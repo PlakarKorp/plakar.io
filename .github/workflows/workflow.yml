@@ -17,5 +17,5 @@ jobs:
       - name: Publish Site
         uses: poolpOrg/hugo-gh-pages@master
         with:
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          githubToken: ${{ github.token }}
           hugoVersion: 'extended_0.133.1'
