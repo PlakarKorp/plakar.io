@@ -1,0 +1,33 @@
+name: Publish Site
+
+on:
+  push:
+    branches:
+      - main
+      - v2
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Set deploy branch
+        id: set-branch
+        run: |
+          if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+            echo "branch=gh-pages" >> $GITHUB_OUTPUT
+          elif [[ "${{ github.ref }}" == "refs/heads/v2" ]]; then
+            echo "branch=gh-pages-v2" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Generate website
+        uses: poolpOrg/hugo-gh-pages@master
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          hugoVersion: 'extended_0.133.1'
+          branch: ${{ steps.set-branch.outputs.branch }}
