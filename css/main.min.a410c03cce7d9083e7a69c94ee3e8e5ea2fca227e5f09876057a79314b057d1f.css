@@ -1,0 +1,55 @@
+@tailwind base;@tailwind components;@tailwind utilities;@layer base{:root {
+        --color-neutral-50:  theme('colors.neutral.50');
+        --color-neutral-100: theme('colors.neutral.100');
+        --color-neutral-200: theme('colors.neutral.200');
+        --color-neutral-300: theme('colors.neutral.300');
+        --color-neutral-400: theme('colors.neutral.400');
+        --color-neutral-500: theme('colors.neutral.500');
+        --color-neutral-600: theme('colors.neutral.600');
+        --color-neutral-700: theme('colors.neutral.700');
+        --color-neutral-800: theme('colors.neutral.800');
+        --color-neutral-900: theme('colors.neutral.900');
+        --pattern-fg:var(--color-neutral-300)
+    }
+
+    .dark {
+        --color-neutral-50:  theme('colors.neutral.900');
+        --color-neutral-100: theme('colors.neutral.800');
+        --color-neutral-200: theme('colors.neutral.700');
+        --color-neutral-300: theme('colors.neutral.600');
+        --color-neutral-400: theme('colors.neutral.500');
+        --color-neutral-500: theme('colors.neutral.400');
+        --color-neutral-600: theme('colors.neutral.300');
+        --color-neutral-700: theme('colors.neutral.200');
+        --color-neutral-800: theme('colors.neutral.100');
+        --color-neutral-900: theme('colors.neutral.50');
+        --pattern-fg:var(--color-neutral-50)
+    }
+}@layer utilities{.fade-word-hero {
+        @apply absolute left-0 right-0 text-right h-[60px] pointer-events-none;
+        animation: fade-in-out 12s ease-in-out infinite;
+    }
+
+    .fade-delay-0 { animation-delay: 0s; }
+    .fade-delay-1 { animation-delay: 3s; }
+    .fade-delay-2 { animation-delay: 6s; }
+    .fade-delay-3 { animation-delay: 9s; }
+
+    .fade-delay-0b { animation-delay: 0s; }
+    .fade-delay-1b { animation-delay: 4s; }
+    .fade-delay-2b { animation-delay: 8s; }
+
+
+
+    @keyframes fade-in-out {
+        0%, 9% {
+            opacity: 0;
+        }
+        10%, 30% {
+            opacity: 1;
+        }
+        31%, 100% {
+            opacity: 0;
+        }
+    }
+}
