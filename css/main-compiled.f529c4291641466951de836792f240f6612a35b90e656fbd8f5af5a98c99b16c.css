@@ -621,6 +621,30 @@ video {
   z-index: 50;
 }
 
+.col-span-1 {
+  grid-column: span 1 / span 1;
+}
+
+.col-start-1 {
+  grid-column-start: 1;
+}
+
+.col-start-2 {
+  grid-column-start: 2;
+}
+
+.col-start-5 {
+  grid-column-start: 5;
+}
+
+.col-start-6 {
+  grid-column-start: 6;
+}
+
+.col-start-3 {
+  grid-column-start: 3;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -641,6 +665,10 @@ video {
 
 .inline-flex {
   display: inline-flex;
+}
+
+.grid {
+  display: grid;
 }
 
 .hidden {
@@ -745,6 +773,10 @@ video {
   resize: both;
 }
 
+.grid-cols-6 {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
 .flex-col {
   flex-direction: column;
 }
@@ -763,6 +795,10 @@ video {
 
 .justify-start {
   justify-content: flex-start;
+}
+
+.justify-end {
+  justify-content: flex-end;
 }
 
 .justify-center {
@@ -791,6 +827,10 @@ video {
 
 .gap-8 {
   gap: 2rem;
+}
+
+.gap-4 {
+  gap: 1rem;
 }
 
 .space-x-2 > :not([hidden]) ~ :not([hidden]) {
@@ -923,12 +963,29 @@ video {
   padding-bottom: 2px;
 }
 
+.px-1 {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+
 .pr-4 {
   padding-right: 1rem;
 }
 
 .pt-20 {
   padding-top: 5rem;
+}
+
+.pl-2 {
+  padding-left: 0.5rem;
+}
+
+.pl-3 {
+  padding-left: 0.75rem;
+}
+
+.pl-4 {
+  padding-left: 1rem;
 }
 
 .text-center {
@@ -1092,10 +1149,6 @@ video {
   animation: fadeout-start 1s ease-in-out 3s forwards;
 }
 
-.fade-delay-0 {
-  animation-delay: 0s;
-}
-
 .fade-delay-1 {
   animation-delay: 3s;
 }
@@ -1200,6 +1253,56 @@ video {
   right: 0;
   border-left: 1px solid var(--border-color);
   border-right: none;
+}
+
+@font-face {
+  font-family: 'SpaceText';
+
+  src: url('/fonts/SpaceText-Light.otf') format('opentype');
+
+  font-weight: 300;
+
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SpaceText';
+
+  src: url('/fonts/SpaceText-Regular.otf') format('opentype');
+
+  font-weight: 400;
+
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SpaceText';
+
+  src: url('/fonts/SpaceText-Medium.otf') format('opentype');
+
+  font-weight: 500;
+
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SpaceText';
+
+  src: url('/fonts/SpaceText-SemiBold.otf') format('opentype');
+
+  font-weight: 600;
+
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SpaceText';
+
+  src: url('/fonts/SpaceText-Bold.otf') format('opentype');
+
+  font-weight: 700;
+
+  font-style: normal;
 }
 
 .hover\:text-blue-600:hover {
