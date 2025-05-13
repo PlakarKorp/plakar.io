@@ -1,78 +1,126 @@
 ---
 title: SFTP
 subtitle: Securely back up remote servers over SFTP with Plakar
-description: Backup your remote directories using the Plakar SFTP connector. Perform versioned, encrypted, and deduplicated backups over the secure SFTP protocol.
+description: Backup your remote directories over the secure SFTP protocol.
 categories:
 - storage connector
 stage: beta
 tags:
-- sftp
-- linux
-- bsd
-- nas
-- synology
-- qnap
-
-date: 2025-04-16
+- SFTP
+- Linux
+- BSD
+- NAS
+- Synology
+- Qnap
+date: 2025-05-13
 ---
 
-## Back up remote directories with Plakar over SFTP
+# SFTP Integration
 
-The **SFTP connector** allows Plakar to perform secure, encrypted backups of remote files and directories over the SSH File Transfer Protocol (SFTP). This is especially useful for backing up critical infrastructure servers, VPS instances, or remote NAS devices.
+## Overview
 
-Plakar treats an SFTP path as a valid source directory, backing up its contents into any configured Plakar repository. It ensures full snapshot creation, deduplication, and encryption, just as it would for local directories.
+SFTP is the protocol for secure file transfer over SSH. The SFTP integration in Plakar allows you to back up servers, NAS devices, and other remote systems securely. If you can SSH into a machine, you can use Plakar to back it up securely.
 
-Whether you're backing up a production web server, a remote dev box, or a critical configuration store on your NAS, the SFTP source connector gives you full control and flexibility.
+## Configuration
 
-## Usage – Backing up a remote SFTP server
+The SFTP integration does not require any special configuration and you can use it directly with the `plakar` command. However, setting up a remote can make things more convenient.
 
-### 1. Create or select a Plakar repository
+### Setting Up a Remote
 
-If you haven’t already created a local Plakar repository, do so:
-
-```bash
-$ plakar at /var/plakar create
-```
-
-Or reuse an existing one.
-
-### 2. Perform a backup over SFTP
-To back up the /etc directory from a remote machine:
+You can configure a remote called `mysftp` to connect to your SFTP server:
 
 ```bash
-$ plakar at /var/plakar backup sftp://user@remote-host/etc
+$ plakar config remote create mysftp
+$ plakar config remote set mysftp location s3://<IP_address_or_hostname>/<path>
 ```
-You can also tag the snapshot for easier retrieval:
+
+To refer to this remote in Plakar commands, use the syntax `@mysftp`, for example `plakar backup @mysftp`.
+
+#### Remote Configuration Options
+
+- **`location`**: SFTP URL. Format: `s3://<endpoint>/<optional_path>`. To specify the username, port or identity file path, use the SSH configuration file `~/.ssh/config`.
+- `insecure_ignore_host_key`: Ignore host key verification (default: false).
+- `identity_file`: Path to the SSH identity file. By default, Plakar reads the file `~/.ssh/config` for the identity file. If not present, it falls back to the default SSH identity files `~/.ssh/id_rsa`, `~/.ssh/id_ed25519`, `~/.ssh/id_ecdsa` and `~/.ssh/id_dsa`.
+
+
+## Example Usage
+
+Let's assume we have a remote server with the IP address `1.2.3.4` and we want to back up the `/etc` directory from that server.
+
+First, create the SSH configuration file `~/.ssh/config` with the following content:
+
+```
+Host myserver
+  HostName 1.2.3.4
+  User root
+  Port 22
+  IdentityFile ~/.ssh/id_rsa
+```
+
+Ensure your public key is added to the remote server's `~/.ssh/authorized_keys` file for the user you specified, and make sure you can connect to the server using SSH:
 
 ```bash
-$ plakar at /var/plakar backup -tag remote-etc sftp://user@remote-host/etc
+ssh myserver
 ```
-Plakar will prompt for the SSH password or use your SSH key automatically (via your SSH agent if available).
 
-### 3. Verify the backup was successful
-List the snapshots in the repository:
+Now create a Kloset repository at `/var/backups` and back up the `/etc` directory from the remote server:
 
 ```bash
-### $ plakar at /var/plakar ls
+$ plakar at /var/backups create
+$ plakar at /var/backups backup sftp://myserver/etc
 ```
-You should see the newly created snapshot with its associated path and size.
 
-### 4. Restore data later if needed
-Use the snapshot ID to restore content from the SFTP backup:
+You can use the remote configuration for convenience:
 
 ```bash
-$ plakar at /var/plakar restore -to /tmp/restore abc123:/etc
+$ plakar config remote create mysftp
+$ plakar config remote set mysftp location s3://myserver
+
+$ plakar at /var/backups create
+$ plakar at /var/backups backup @mysftp
 ```
 
-Replace abc123 with the actual snapshot ID shown from the ls output.
+To restore data from the same Kloset repository to the SFTP server, use the following commands:
 
-## Benefits of using SFTP as a data source
-- 🔐 Secure: Data travels over encrypted SSH connections.
-- 🚫 Agentless: No need to install anything on the remote server.
-- 💾 Efficient: Plakar uses deduplication and compression to reduce bandwidth and storage needs.
-- 🔁 Flexible: Works with any standard sftp-server, whether on Linux servers, NAS devices, or cloud VMs.
+```bash
+# List available backups
+$ plakar at /var/backups ls
 
-## Requirements
-- The remote server must support SFTP (via OpenSSH).
-- Ensure the remote path is absolute (/etc, not etc).
-- Password authentication or SSH key authentication must be properly configured.
+# Restore a specific file using the simple syntax
+$ plakar at /var/backups restore -to sftp://myserver/tmp fc1b1e94:path/to/file.docx
+# Restore the full backup using the simple syntax
+$ plakar at /var/backups restore -to sftp://myserver/tmp fc1b1e94
+
+# Restore a specific file using the remote syntax
+$ plakar at /var/backups restore -to @mysftp fc1b1e94:path/to/file.docx
+# Restore the full backup using the remote syntax
+$ plakar at /var/backups restore -to @mysftp fc1b1e94
+```
+
+See the [QuickStart guide](https://docs.plakar.io/en/quickstart/index.html) for more examples.
+
+## Questions, Feedback, and Support
+
+Found a bug? [Open an issue on GitHub](https://github.com/PlakarKorp/plakar/issues/new?title=Bug%20report%20on%20SFTP%20integration&body=Please%20provide%20a%20detailed%20description%20of%20the%20issue.%0A%0A**Plakar%20version**)
+
+Join our [Discord community](https://discord.gg/uuegtnF2Q5) for real-time help and discussions.
+
+## Q&A
+
+**How can I configure the username, port or identity file for my SFTP server?**
+
+You can set these options in the SSH configuration file `~/.ssh/config`. For example:
+
+```
+Host myserver
+  HostName example.com
+  User myuser
+  Port 2222
+  IdentityFile ~/.ssh/my_id_rsa
+```
+
+**How can I prevent Plakar from prompting for my SSH passphrase?**
+
+If your SSH key is protected by a passphrase, Plakar will prompt you for it. Currently, there is no way to bypass this prompt.
+
+As an alternative, configure a passphrase-less SSH key for the user you are using to connect to the remote server.

@@ -1,111 +1,78 @@
 ---
 title: Filesystem
 subtitle: Protect your local files and folders with immutable, encrypted, verifiable backups
-description: Use the Filesystem integration to back up and restore directories from local or mounted filesystems with full integrity and metadata preservation.
-technology_description: A filesystem is the foundational structure that manages how data is stored and retrieved on storage media such as hard drives, SSDs, or network volumes.
+description: Back up and restore directories from local or mounted filesystems, with full integrity and metadata preservation.
+technology_description: A filesystem stores and organizes files on devices like hard drives or mounted NAS volumes.
 categories: 
 - integration
 tags:
-- filesystem
-- local backup
-- nfs
-- samba
-- nas
-- san
-- ntfs
+- Filesystem
+- Local Backup
+- NFS
+- Samba
+- NAS
+- SAN
+- NTFS
 - ext4
 stage: stable
-date: 2025-05-05
+date: 2025-05-13
 ---
 
-## What is a filesystem?
+# Filesystem Integration
 
-A **filesystem** organizes and stores data on a storage device in a hierarchical structure of files and directories. It handles operations such as reading, writing, access control, timestamps, and permissions. Local filesystems (e.g., ext4, APFS, NTFS) and mounted remote filesystems (e.g., NFS, SMB) are the foundation of most systems and are critical to safeguard.
+## Overview
 
-Plakar leverages its **immutable snapshot engine** to perform consistent, secure, and encrypted backups of filesystem trees. The Filesystem integration transforms the scanned directory structure into a verifiable virtual snapshot that can be restored anywhere, in part or in full.
+The **Plakar Filesystem integration** enables seamless backup and restoration of filesystems to and from a **Kloset repository**.
 
-## Quickstart: Backup a local directory
+This integration is designed to protect the data on your local hard drives, mounted NAS volumes, and SANs.
 
-### 1. Create a repository on your local filesystem
+## Configuration
 
-This creates a local encrypted repository in `/var/backups`:
+The Filesystem integration does not require any special configuration.
 
-```bash
-plakar at /var/backups create
-repository passphrase: *****
-repository passphrase (confirm): *****
-``` 
+## Example Usage
 
-If you prefer an unencrypted repository (not recommended unless purely local):
+To create the Kloset repository at `/var/backups` and back up the path `/etc` from your filesystem, you can use the following commands:
 
 ```bash
-plakar at /var/backups create -no-encryption
+$ plakar at /var/backups create
+$ plakar at /var/backups backup /etc
 ```
 
-### 2. Backup a directory from your filesystem
-
-This backs up `/etc` and creates a new snapshot:
+To restore data from the same Kloset repository to the current directory, use the following commands:
 
 ```bash
-plakar at /var/backups backup /etc
+# List available backups
+$ plakar at /var/backups ls
+
+# Restore a specific file
+$ plakar at /var/backups restore fc1b1e94:path/to/file.docx
+
+# Restore the full backup
+$ plakar at /var/backups restore fc1b1e94
 ```
 
-You can tag snapshots to identify them more easily:
+See the [QuickStart guide](https://docs.plakar.io/en/quickstart/index.html) for more examples.
 
-```bash
-plakar at /var/backups backup -tag system-config /etc
-```
+## Questions, Feedback, and Support
 
-### 3. List your backups
+Found a bug? [Open an issue on GitHub](https://github.com/PlakarKorp/plakar/issues/new?title=Bug%20report%20on%20Filesystem%20integration&body=Please%20provide%20a%20detailed%20description%20of%20the%20issue.%0A%0A**Plakar%20version**)
 
-```bash
-plakar at /var/backups ls
-```
+Join our [Discord community](https://discord.gg/uuegtnF2Q5) for real-time help and discussions.
 
-### 4. Restore a backup
+## Q&A
 
-Restore the `/etc` snapshot to `/tmp/restore`:
+**Do you store file metadata?**
 
-```bash
-plakar at /var/backups restore -to /tmp/restore snapshotID:/etc
-```
+Yes, the Filesystem integration preserves file metadata, including permissions, timestamps, and ownership.
+This ensures that the restored files retain their original attributes.
 
-You can restore only part of a snapshot, and even rebase the structure:
+**Do you follow symlinks?**
 
-```bash
-plakar at /var/backups restore -rebase -to /tmp/etc snapshotID:/etc
-```
+Symlinks are backed up as symlinks, but their targets are not followed by default.
 
-## Supported features
+Following symlinks could be a security risk, as it may lead to backing up sensitive files outside the intended directory.
 
-- Full POSIX metadata preservation (permissions, timestamps, ownership)
-- Deduplicated, compressed, encrypted backups
-- Snapshot tagging and filtering
-- Partial restore (single file, subtree)
-- File exclusion patterns (`-exclude`, `-excludes`)
-- Efficient incremental backups
-- Cryptographic integrity verification
-- Snapshot browsing (CLI and Web UI)
+**Do you store extended attributes?**
 
-## Limitations
-
-- Does not currently support filesystem special types like device nodes or sockets
-- Backup of symlinks is supported, but symlink targets are not followed by default
-
-## Future improvements
-
-- Detection and deduplication of hard links
-- Dry-run support for planned restores
-- Inclusion of ACL and extended attribute support
-
-## Screenshots
-
-
-## Threats
-
-- Ransomware or malicious deletion of source files before backup
-- Human error during restore (e.g. overwriting live system files)
-- Loss of encryption passphrase (makes repository irrecoverable)
-- Local disk corruption if repository is stored on same drive as source
-
-
+Yes, the Filesystem integration preserves extended attributes (xattrs) of files and directories.

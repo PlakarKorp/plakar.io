@@ -1,106 +1,154 @@
 ---
 title: S3
 subtitle: Protect your S3 buckets from rogue deletion, ransomware, and silent corruption.
-description: Use the Plakar S3 integration to back up, restore, or replicate your object storage buckets from any S3-compatible service.
+description: Back up, restore, or replicate your object storage buckets from any S3-compatible service.
 technology_description: S3 is a scalable object storage service commonly used for data archiving, backup, analytics, and cloud-native applications. It is accessible via a RESTful API and widely supported across public cloud providers and self-hosted solutions.
 categories: 
   - integration
 tags:
-  - s3
-  - object storage
-  - aws
-  - minio
-  - ceph rgw
-  - scality
-  - wasabi
+  - S3
+  - Object Storage
+  - AWS
+  - Google Cloud Storage
+  - MinIO
+  - Ceph
+  - Scality
+  - Wasabi
+  - Scaleway
+  - Blackblaze
+  - OVH
 stage:
   - stable
-date: 2025-04-17
+date: 2025-05-13
 ---
 
-## What is S3?
+# S3 Integration
 
-S3 (Simple Storage Service) is a highly available and durable object storage service used to store arbitrary data as discrete objects in buckets. S3 is offered by AWS, and compatible implementations are available via software such as MinIO, Ceph RGW, Wasabi, and Scality Zenko. It is ideal for storing backups, media archives, logs, and large data sets.
+## Overview
 
-With Plakar, you can ingest data from S3 buckets into immutable, encrypted snapshots that are verifiable and portable. You can also use S3 as a target repository to store backups created from any source.
+The **Plakar S3 integration** enables seamless backup and restoration of **S3-compatible object storage buckets** to and from a [Kloset repository](http://localhost:1313/posts/2025-04-29/kloset-the-immutable-data-store/).
 
-
-
-## Quick Start: Backup Your S3 Bucket
-
-To back up an S3 bucket using Plakar:
-
-```bash
-$ plakar config repository create s3
-# For AWS:
-$ plakar config repository set s3 location s3://s3.<region>.amazonaws.com/<bucket>
-$ plakar config repository set s3 passphrase ****************
-$ plakar config repository set s3 access_key <ACCESS_KEY>
-$ plakar config repository set s3 secret_access_key <SECRET_KEY>
-
-$ plakar at @s3 create
-
-# Backup a local path to your S3 repository
-$ plakar at /var/backups sync to @s3
-````
-
+> **Why back up your S3 buckets?**
+>
+> S3 providers *do not* back up your data by default. This makes your data vulnerable to accidental deletion, ransomware, and silent corruption.
+>
+> Plakar lets you implement a reliable [3-2-1 backup strategy](https://docs.plakar.io/en/quickstart/probabilities/index.html) with minimal effort.
 
 ## Configuration
 
-Plakar uses a declarative configuration system to define remote repositories.
+The S3 integration requires to set up a remote configuration to provide the necessary credentials and endpoint information for your S3-compatible provider.
 
-### Minimum Configuration for S3:
+### Setting Up a Remote
 
-- `location`: the full S3 URL (e.g., `s3://minio.plakar.io:9000/mybucket`)
-- `access_key`: your S3 access key
-- `secret_access_key`: your S3 secret key
-- `passphrase`: encryption key used to protect the repository
-
-You can configure the repository using commands:
+You can configure a remote called `mys3` to connect to your S3-compatible provider:
 
 ```bash
-$ plakar config repository create s3
-$ plakar config repository set s3 location s3://<endpoint>/<bucket>
-$ plakar config repository set s3 access_key <ACCESS_KEY>
-$ plakar config repository set s3 secret_access_key <SECRET_KEY>
-$ plakar config repository set s3 passphrase <PASSPHRASE>
+$ plakar config remote create mys3
+# For AWS S3 (see below for other providers):
+$ plakar config remote set mys3 location s3://s3.<region>.amazonaws.com/<bucket>
+
+$ plakar config remote set mys3 access_key <ACCESS_KEY>
+$ plakar config remote set mys3 secret_access_key <SECRET_KEY>
 ```
 
-## Supported Features
+To refer to this remote in Plakar commands, use the syntax `@mys3`, for example `plakar backup @mys3`.
 
-- ✅ Immutable, encrypted backups to S3
-- ✅ Incremental and deduplicated uploads
-- ✅ Integrity check and cryptographic audit
-- ✅ Efficient synchronization between repositories
-- ✅ Partial and granular restore from snapshots
-- ✅ Support for AWS S3 and S3-compatible providers (MinIO, Wasabi, Ceph, etc.)
-- ✅ Fully stateless CLI and UI support
+#### Remote Configuration Options
 
+- **`location`**: Full S3 URL. Format: `s3://<endpoint>/<bucket>/<optional_path>`. **See the provider-specific section below for examples.**
+- **`access_key`**: Your provider's access key.
+- **`secret_access_key`**: Your provider's secret key.
+- `use_tls`: Enables TLS (default: true).
 
-## Limitations
+### Provider-Specific Examples
 
-- No native listing or browsing of object contents from remote S3 buckets (must first snapshot or sync).
-- Snapshots stored in S3 cannot be modified — only added or deleted entirely.
-- Object versioning at the S3 level is not leveraged (handled internally by Plakar).
+The S3 integration expects the location to be in the format `s3://<endpoint>/<bucket>/<optional_path>`.
+While some providers display the `s3://` URL in their web UI, most do not, and you will need to construct it manually.
 
+> ℹ️ If your provider isn’t listed here, join our [Discord](https://discord.gg/uuegtnF2Q5) — we’ll help you configure it and update this guide.
 
-## Future Improvements
+#### [AWS S3](https://aws.amazon.com/s3/)
 
-- Support for multi-region replication policies
-- Native diff inspection between remote buckets
-- Restore directly to S3 objects (re-export snapshot to bucket)
+```bash
+$ plakar config repository set mys3 location s3://s3.<region>.amazonaws.com/<bucket>
+# Example
+$ plakar config repository set mys3 location s3://s3.us-east-1.amazonaws.com/mybucket
+```
 
+#### [MinIO](https://min.io/)
 
-## Screenshots
+```bash
+$ plakar config repository set mys3 location s3://<minio-host>:<port>/<bucket>
+# Example
+$ plakar config repository set mys3 location s3://localhost:9000/mybucket
 
+# If you are running MinIO locally, you may need to set the following configuration to disable TLS verification:
+$ plakar config repository set mys3 use_tls false
+```
+When running MinIO locally without TLS, explicitly disable `use_tls`.
 
+#### [Scaleway](https://www.scaleway.com/en/object-storage/)
 
-## Threats
+```bash
+$ plakar config repository set mys3 location s3://s3.<region>.scw.cloud/<bucket>
+# Example
+$ plakar config repository set mys3 location s3://s3.fr-par.scw.cloud/mybucket
+```
 
-- **Rogue deletion**: accidental or malicious deletion of objects by users or applications.
-- **Ransomware**: encryption of S3 bucket content by compromised credentials.
-- **Silent corruption**: unnoticed object corruption or bit rot without versioning or verification.
-- **Credential leakage**: compromised access keys or shared secrets allowing full access.
+#### [Backblaze](https://www.backblaze.com/cloud-storage)
 
-Using Plakar with S3 mitigates these risks by storing encrypted, immutable, and verifiable backups that can be inspected and restored safely.
+```bash
+$ plakar config repository set mys3 location s3://<minio-host>:<port>/<bucket>
+# Example
+$ plakar config repository set mys3 location s3://localhost:9000/mybucket
+```
 
+#### [CleverCloud](https://www.clever-cloud.com/developers/doc/addons/cellar/)
+
+```bash
+$ plakar config repository set mys3 location s3://cellar-c2.services.clever-cloud.com/<bucket>
+# Example
+$ plakar config repository set mys3 location s3://cellar-c2.services.clever-cloud.com/mybucket
+```
+
+## Example Usage
+
+Once configured, you can back up or restore your S3 bucket using standard Plakar commands.
+
+To create the Kloset repository at `/var/backups` and back up the S3 bucket previously configured as `mys3`, run the following command:
+
+```bash
+$ plakar at /var/backups create
+$ plakar at /var/backups backup @mys3
+```
+
+To restore the data from the same Kloset repository to the S3 bucket, use the following commands:
+
+```bash
+# List available backups
+$ plakar at /var/backups ls
+
+# Restore a specific file
+$ plakar at /var/backups restore -to @mys3 fc1b1e94:path/to/file.docx
+
+# Restore the full backup
+$ plakar at /var/backups restore -to @mys3 fc1b1e94
+```
+
+See the [QuickStart guide](https://docs.plakar.io/en/quickstart/index.html) for more examples.
+
+## Questions, Feedback, and Support
+
+Found a bug? [Open an issue on GitHub](https://github.com/PlakarKorp/plakar/issues/new?title=Bug%20report%20on%20S3%20integration&body=Please%20provide%20a%20detailed%20description%20of%20the%20issue.%0A%0A**Plakar%20version**)
+
+Join our [Discord community](https://discord.gg/uuegtnF2Q5) for real-time help and discussions.
+
+## Q&A
+
+**Do you support other S3-compatible providers?**
+
+Yes! Plakar supports any S3-compatible provider. If the provider is not listed in this page, please join our [Discord](https://discord.gg/uuegtnF2Q5) for help configuring it. We will update this page with the configuration details.
+
+**When versioning is enabled, do you back up all versions of the files?**
+
+No, only the latest version of the objects is backed up.
