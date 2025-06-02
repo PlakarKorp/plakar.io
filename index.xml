@@ -7,14 +7,30 @@
 &lt;p>If you store your data at a single location, you are at risk of losing everything if that storage fails. This can happen due to various reasons, such as:&lt;/p></description></item><item><title>One repository is not enough</title><link>https://www.plakar.io/docs/v2/quickstart/probabilities/</link><pubDate>Mon, 03 Mar 2025 17:00:00 +0100</pubDate><guid>https://www.plakar.io/docs/v2/quickstart/probabilities/</guid><description>&lt;!-- This empty tag is required to render the math blocks below -->
 &lt;pre tabindex="0">&lt;code class="language-math" data-lang="math">&lt;/code>&lt;/pre>&lt;p>Plakar offers a simple way to synchronize repositories across multiple locations. Two questions often arise: &amp;ldquo;Why do I need more than one copy?&amp;rdquo; and &amp;ldquo;How many copies should I have?&amp;rdquo;&lt;/p>
 &lt;h2 id="why-do-i-need-more-than-one-copy">Why do I need more than one copy?&lt;/h2>
-&lt;p>If you store your data at a single location, you are at risk of losing everything if that storage fails. This can happen due to various reasons, such as:&lt;/p></description></item><item><title>Filesystem</title><link>https://www.plakar.io/integrations/filesystem/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/filesystem/</guid><description>&lt;h1 id="filesystem-integration">Filesystem Integration&lt;/h1>
+&lt;p>If you store your data at a single location, you are at risk of losing everything if that storage fails. This can happen due to various reasons, such as:&lt;/p></description></item><item><title>Filesystem</title><link>https://www.plakar.io/integrations/data/fs/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/data/fs/</guid><description>&lt;h1 id="filesystem-integration">Filesystem Integration&lt;/h1>
 &lt;h2 id="overview">Overview&lt;/h2>
 &lt;p>The &lt;strong>Plakar Filesystem integration&lt;/strong> enables seamless backup and restoration of filesystems to and from a &lt;a href="https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/">Kloset repository&lt;/a>.&lt;/p>
 &lt;p>This integration is designed to protect the data on your local hard drives, mounted NAS volumes, and SANs.&lt;/p>
 &lt;h2 id="configuration">Configuration&lt;/h2>
 &lt;p>The Filesystem integration does not require any special configuration.&lt;/p>
 &lt;h2 id="example-usage">Example Usage&lt;/h2>
-&lt;p>To create the Kloset repository at &lt;code>/var/backups&lt;/code> and back up the path &lt;code>/etc&lt;/code> from your filesystem, you can use the following commands:&lt;/p></description></item><item><title>S3</title><link>https://www.plakar.io/integrations/s3/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/s3/</guid><description>&lt;h1 id="s3-integration">S3 Integration&lt;/h1>
+&lt;p>To create the Kloset repository at &lt;code>/var/backups&lt;/code> and back up the path &lt;code>/etc&lt;/code> from your filesystem, you can use the following commands:&lt;/p></description></item><item><title>Filesystem</title><link>https://www.plakar.io/integrations/storage/fs/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/storage/fs/</guid><description>&lt;h1 id="filesystem-integration">Filesystem Integration&lt;/h1>
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>The &lt;strong>Plakar Filesystem integration&lt;/strong> enables seamless backup and restoration of filesystems to and from a &lt;a href="https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/">Kloset repository&lt;/a>.&lt;/p>
+&lt;p>This integration is designed to protect the data on your local hard drives, mounted NAS volumes, and SANs.&lt;/p>
+&lt;h2 id="configuration">Configuration&lt;/h2>
+&lt;p>The Filesystem integration does not require any special configuration.&lt;/p>
+&lt;h2 id="example-usage">Example Usage&lt;/h2>
+&lt;p>To create the Kloset repository at &lt;code>/var/backups&lt;/code> and back up the path &lt;code>/etc&lt;/code> from your filesystem, you can use the following commands:&lt;/p></description></item><item><title>FTP</title><link>https://www.plakar.io/integrations/data/ftp/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/data/ftp/</guid><description>&lt;h1 id="ftp-integration">FTP Integration&lt;/h1>
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>The &lt;strong>FTP integration&lt;/strong> provides support for the legacy, though still around, FTP protocol.&lt;/p>
+&lt;p>It can either backup from a public FTP server or restore to an authentication-less FTP server, a local NAS for example.&lt;/p>
+&lt;h2 id="configuration">Configuration&lt;/h2>
+&lt;p>The &lt;strong>FTP integration&lt;/strong> does not require any particular configuration.&lt;/p>
+&lt;h2 id="example-usage">Example Usage&lt;/h2>
+&lt;p>To back up the path &lt;code>/pub/PlakarKorp&lt;/code> from FTP server located at &lt;code>example.org&lt;/code>, you can use the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">$ plakar at /var/backups backup ftp://example.org/pub/PlakarKorp
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>To restore data to authentication-less FTP server located at &lt;code>example.org&lt;/code>, use the following command:&lt;/p></description></item><item><title>S3</title><link>https://www.plakar.io/integrations/data/s3/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/data/s3/</guid><description>&lt;h1 id="s3-integration">S3 Integration&lt;/h1>
 &lt;h2 id="overview">Overview&lt;/h2>
 &lt;p>The &lt;strong>Plakar S3 integration&lt;/strong> enables seamless backup and restoration of &lt;strong>S3-compatible object storage buckets&lt;/strong> to and from a &lt;a href="https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/">Kloset repository&lt;/a>.&lt;/p>
 &lt;blockquote>
@@ -22,7 +38,21 @@
 &lt;p>S3 providers &lt;em>do not&lt;/em> back up your data by default. This makes your data vulnerable to accidental deletion, ransomware, and silent corruption.&lt;/p>
 &lt;p>Plakar lets you implement a reliable &lt;a href="https://docs.plakar.io/en/quickstart/probabilities/index.html">3-2-1 backup strategy&lt;/a> with minimal effort.&lt;/p>&lt;/blockquote>
 &lt;h2 id="configuration">Configuration&lt;/h2>
-&lt;p>The S3 integration requires to set up a remote configuration to provide the necessary credentials and endpoint information for your S3-compatible provider.&lt;/p></description></item><item><title>SFTP</title><link>https://www.plakar.io/integrations/sftp/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/sftp/</guid><description>&lt;h1 id="sftp-integration">SFTP Integration&lt;/h1>
+&lt;p>The S3 integration requires to set up a remote configuration to provide the necessary credentials and endpoint information for your S3-compatible provider.&lt;/p></description></item><item><title>S3</title><link>https://www.plakar.io/integrations/storage/s3/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/storage/s3/</guid><description>&lt;h1 id="s3-storage-connector">S3 storage connector&lt;/h1>
+&lt;p>The &lt;strong>Plakar S3 storage connector&lt;/strong> enables creation of a plakar &lt;a href="https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/">Kloset
+repository&lt;/a> on any
+&lt;strong>S3-compatible object storage buckets&lt;/strong>&lt;/p>
+&lt;h2 id="configuration">Configuration&lt;/h2>
+&lt;p>Since S3 uses API keys, sensitive piece of information, you can only address it
+through the usage of a configuration entry.&lt;/p>
+&lt;h3 id="setting-up-a-repository">Setting up a repository&lt;/h3>
+&lt;p>You can configure a repository aptly called &lt;code>s3-krepository&lt;/code> to point to your
+S3-compatible bucket like this :&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ plakar config repository create s3-krepository
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ plakar config repository &lt;span class="nb">set&lt;/span> s3-krepository s3://s3.fr-par.scw.cloud/mysuperbucket
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ plakar config repository &lt;span class="nb">set&lt;/span> s3-krepository access_key &amp;lt;ACCESS_KEY&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ plakar config repository &lt;span class="nb">set&lt;/span> s3-krepository secret_access_key &amp;lt;SECRET_KEY&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>From now on you can refer to your S3 repository through the short-hand syntax &lt;code>@s3-krepository.&lt;/code>&lt;/p></description></item><item><title>SFTP</title><link>https://www.plakar.io/integrations/data/sftp/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/data/sftp/</guid><description>&lt;h1 id="sftp-integration">SFTP Integration&lt;/h1>
 &lt;h2 id="overview">Overview&lt;/h2>
 &lt;p>The Plakar SFTP integration enables backup and restoration of remote filesystems over SSH to and from a &lt;a href="https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/">Kloset repository&lt;/a>.&lt;/p>
 &lt;h2 id="configuration">Configuration&lt;/h2>
@@ -31,7 +61,32 @@
 &lt;p>You can configure a remote called &lt;code>mysftp&lt;/code> to connect to your SFTP server:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ plakar config remote create mysftp
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ plakar config remote &lt;span class="nb">set&lt;/span> mysftp location sftp://&amp;lt;IP_address_or_hostname&amp;gt;/&amp;lt;path&amp;gt;
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>To refer to this remote in Plakar commands, use the syntax &lt;code>@mysftp&lt;/code>, for example &lt;code>plakar backup @mysftp&lt;/code>.&lt;/p></description></item><item><title>Legal Notice</title><link>https://www.plakar.io/legal-notice/</link><pubDate>Mon, 05 May 2025 10:00:00 +0000</pubDate><guid>https://www.plakar.io/legal-notice/</guid><description>&lt;p>Last update on: 06/05/2025&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>To refer to this remote in Plakar commands, use the syntax &lt;code>@mysftp&lt;/code>, for example &lt;code>plakar backup @mysftp&lt;/code>.&lt;/p></description></item><item><title>SFTP</title><link>https://www.plakar.io/integrations/storage/sftp/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/storage/sftp/</guid><description>&lt;h1 id="sftp-integration">SFTP Integration&lt;/h1>
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>The Plakar SFTP integration enables backup and restoration of remote filesystems over SSH to and from a &lt;a href="https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/">Kloset repository&lt;/a>.&lt;/p>
+&lt;h2 id="configuration">Configuration&lt;/h2>
+&lt;p>The SFTP integration does not require any special configuration and you can use it directly with the &lt;code>plakar&lt;/code> command. However, setting up a remote can make things more convenient.&lt;/p>
+&lt;h3 id="setting-up-a-remote">Setting Up a Remote&lt;/h3>
+&lt;p>You can configure a remote called &lt;code>mysftp&lt;/code> to connect to your SFTP server:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ plakar config remote create mysftp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ plakar config remote &lt;span class="nb">set&lt;/span> mysftp location sftp://&amp;lt;IP_address_or_hostname&amp;gt;/&amp;lt;path&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>To refer to this remote in Plakar commands, use the syntax &lt;code>@mysftp&lt;/code>, for example &lt;code>plakar backup @mysftp&lt;/code>.&lt;/p></description></item><item><title>Stdio</title><link>https://www.plakar.io/integrations/data/stdio/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/data/stdio/</guid><description>&lt;h1 id="stdio-integration">Stdio Integration&lt;/h1>
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>The &lt;strong>Stdio integration&lt;/strong> enables seamless backup and restoration of stdio streams to and from a &lt;a href="https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/">Kloset repository&lt;/a>.&lt;/p>
+&lt;p>This integration is designed to protect the data on your local hard drives, mounted NAS volumes, and SANs.&lt;/p>
+&lt;h2 id="configuration">Configuration&lt;/h2>
+&lt;p>The &lt;strong>Stdio integration&lt;/strong> does not require any special configuration.&lt;/p>
+&lt;h2 id="example-usage">Example Usage&lt;/h2>
+&lt;p>To back up, you can use the following commands which will copy the content of the stdio stream to a file named &lt;code>passwd&lt;/code> within the snapshot:&lt;/p></description></item><item><title>Tar</title><link>https://www.plakar.io/integrations/data/tar/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/data/tar/</guid><description>&lt;h1 id="tar-integration">TAR Integration&lt;/h1>
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>The &lt;strong>TAR integration&lt;/strong> allows the&lt;/p>
+&lt;p>This integration is designed to protect the data on your local hard drives, mounted NAS volumes, and SANs.&lt;/p>
+&lt;h2 id="configuration">Configuration&lt;/h2>
+&lt;p>The &lt;strong>Stdio integration&lt;/strong> does not require any special configuration.&lt;/p>
+&lt;h2 id="example-usage">Example Usage&lt;/h2>
+&lt;p>To back up, you can use the following commands which will copy the content of the stdio stream to a file named &lt;code>passwd&lt;/code> within the snapshot:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">$ plakar at /var/backups backup tar:foobar.tar.gz
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Restore can be done to a file:&lt;/p></description></item><item><title>Legal Notice</title><link>https://www.plakar.io/legal-notice/</link><pubDate>Mon, 05 May 2025 10:00:00 +0000</pubDate><guid>https://www.plakar.io/legal-notice/</guid><description>&lt;p>Last update on: 06/05/2025&lt;/p>
 &lt;h2 id="publisher">Publisher&lt;/h2>
 &lt;p>&lt;strong>Plakar&lt;/strong>&lt;/p>
 &lt;p>The website accessible at &lt;a href="https://plakar.io/">https://plakar.io/&lt;/a> (the “Website”) is published by PLAKAR, a simplified joint-stock company (société par actions simplifiée) with a capital of €1,289.86, registered with the Paris Trade and Companies Register under number RCS Paris B 933 509 754, and whose VAT number is FR79933509754 (hereinafter referred to as “Plakar”).&lt;/p>
