@@ -180,53 +180,57 @@ text-primary-600 bg-neutral-200 font-semibold">Concepts</a><div class=my-1><div 
 Commands
 </a><button @click.prevent="openSections['root-developers_branch-1-commands-2'] = !openSections['root-developers_branch-1-commands-2']" class=focus:outline-none>
 <span class=text-neutral-500 x-show="!openSections['root-developers_branch-1-commands-2']"><i class=ri-arrow-down-s-line></i>
-</span><span class=text-neutral-500 x-show="openSections['root-developers_branch-1-commands-2']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-developers_branch-1-commands-2']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/main/commands/agent/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</span><span class=text-neutral-500 x-show="openSections['root-developers_branch-1-commands-2']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-developers_branch-1-commands-2']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/main/commands/plakar-agent/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">agent
-</a><a href=/docs/main/commands/archive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-archive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">archive
-</a><a href=/docs/main/commands/backup/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-backup/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">backup
-</a><a href=/docs/main/commands/cat/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-cat/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">cat
-</a><a href=/docs/main/commands/check/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-check/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">check
-</a><a href=/docs/main/commands/clone/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-clone/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">clone
-</a><a href=/docs/main/commands/config/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
-ml-4 pl-2 border-l border-neutral-300">config
-</a><a href=/docs/main/commands/create/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-create/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">create
-</a><a href=/docs/main/commands/diag/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-destination/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">destination
+</a><a href=/docs/main/commands/plakar-diag/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">diag
-</a><a href=/docs/main/commands/diff/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-diff/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">diff
-</a><a href=/docs/main/commands/digest/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-digest/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">digest
-</a><a href=/docs/main/commands/exec/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
-ml-4 pl-2 border-l border-neutral-300">exec
-</a><a href=/docs/main/commands/info/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-info/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">info
-</a><a href=/docs/main/commands/locate/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-locate/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">locate
-</a><a href=/docs/main/commands/ls/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-ls/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">ls
-</a><a href=/docs/main/commands/maintenance/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-maintenance/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">maintenance
-</a><a href=/docs/main/commands/mount/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-mount/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">mount
 </a><a href=/docs/main/commands/plakar/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">plakar
-</a><a href=/docs/main/commands/restore/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-ptar/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">ptar
+</a><a href=/docs/main/commands/plakar-restore/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">restore
-</a><a href=/docs/main/commands/rm/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-rm/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">rm
-</a><a href=/docs/main/commands/server/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-server/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">server
-</a><a href=/docs/main/commands/sync/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-source/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">source
+</a><a href=/docs/main/commands/plakar-store/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">store
+</a><a href=/docs/main/commands/plakar-sync/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">sync
-</a><a href=/docs/main/commands/ui/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-ui/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">ui
-</a><a href=/docs/main/commands/version/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-version/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">version</a></div></div><a href=/docs/main/community/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200">Community</a></div><div x-show="selectedVersion === 'root-v2-2'" x-cloak data-version-container=root-v2-2><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded" :class="{ 'bg-neutral-100': openSections['root-v2-2-quickstart-0'] }"><a href=/docs/v2/quickstart/ class="flex-grow flex items-center gap-1"><span class="ri-folder-line text-neutral-500"></span>
 Quickstart
 </a><button @click.prevent="openSections['root-v2-2-quickstart-0'] = !openSections['root-v2-2-quickstart-0']" class=focus:outline-none>

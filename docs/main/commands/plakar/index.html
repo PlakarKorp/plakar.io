@@ -179,54 +179,58 @@ ml-4 pl-2 border-l border-neutral-300">One repository is not enough</a></div></d
 Commands
 </a><button @click.prevent="openSections['root-developers_branch-1-commands-2'] = !openSections['root-developers_branch-1-commands-2']" class=focus:outline-none>
 <span class=text-neutral-500 x-show="!openSections['root-developers_branch-1-commands-2']"><i class=ri-arrow-down-s-line></i>
-</span><span class=text-neutral-500 x-show="openSections['root-developers_branch-1-commands-2']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-developers_branch-1-commands-2']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/main/commands/agent/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</span><span class=text-neutral-500 x-show="openSections['root-developers_branch-1-commands-2']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-developers_branch-1-commands-2']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/main/commands/plakar-agent/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">agent
-</a><a href=/docs/main/commands/archive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-archive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">archive
-</a><a href=/docs/main/commands/backup/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-backup/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">backup
-</a><a href=/docs/main/commands/cat/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-cat/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">cat
-</a><a href=/docs/main/commands/check/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-check/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">check
-</a><a href=/docs/main/commands/clone/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-clone/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">clone
-</a><a href=/docs/main/commands/config/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
-ml-4 pl-2 border-l border-neutral-300">config
-</a><a href=/docs/main/commands/create/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-create/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">create
-</a><a href=/docs/main/commands/diag/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-destination/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">destination
+</a><a href=/docs/main/commands/plakar-diag/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">diag
-</a><a href=/docs/main/commands/diff/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-diff/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">diff
-</a><a href=/docs/main/commands/digest/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-digest/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">digest
-</a><a href=/docs/main/commands/exec/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
-ml-4 pl-2 border-l border-neutral-300">exec
-</a><a href=/docs/main/commands/info/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-info/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">info
-</a><a href=/docs/main/commands/locate/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-locate/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">locate
-</a><a href=/docs/main/commands/ls/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-ls/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">ls
-</a><a href=/docs/main/commands/maintenance/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-maintenance/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">maintenance
-</a><a href=/docs/main/commands/mount/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-mount/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">mount
 </a><a href=/docs/main/commands/plakar/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300
 text-primary-600 bg-neutral-200 font-semibold">plakar
-</a><a href=/docs/main/commands/restore/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-ptar/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">ptar
+</a><a href=/docs/main/commands/plakar-restore/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">restore
-</a><a href=/docs/main/commands/rm/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-rm/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">rm
-</a><a href=/docs/main/commands/server/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-server/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">server
-</a><a href=/docs/main/commands/sync/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-source/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">source
+</a><a href=/docs/main/commands/plakar-store/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">store
+</a><a href=/docs/main/commands/plakar-sync/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">sync
-</a><a href=/docs/main/commands/ui/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-ui/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">ui
-</a><a href=/docs/main/commands/version/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</a><a href=/docs/main/commands/plakar-version/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">version</a></div></div><a href=/docs/main/community/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200">Community</a></div><div x-show="selectedVersion === 'root-v2-2'" x-cloak data-version-container=root-v2-2><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded" :class="{ 'bg-neutral-100': openSections['root-v2-2-quickstart-0'] }"><a href=/docs/v2/quickstart/ class="flex-grow flex items-center gap-1"><span class="ri-folder-line text-neutral-500"></span>
 Quickstart
 </a><button @click.prevent="openSections['root-v2-2-quickstart-0'] = !openSections['root-v2-2-quickstart-0']" class=focus:outline-none>
@@ -288,87 +292,103 @@ ml-4 pl-2 border-l border-neutral-300">version</a></div></div><a href=/docs/v2/c
 </a><img src=/img/ri/corner-down-right-line.svg alt=">" class="w-4 h-4 text-neutral-400">
 <a href=/docs/main/commands/ class="text-primary-500 hover:text-primary-600 transition-colors">Commands
 </a><img src=/img/ri/corner-down-right-line.svg alt=">" class="w-4 h-4 text-neutral-400">
-<span class="text-neutral-900 font-medium">Plakar</span></div><div class="inline-flex w-max px-2 py-1 rounded-md text-xs font-space-grotesk text-neutral-900 border border-neutral-900"><span>Version developers branch</span></div><h1 class="font-prose font-bold leading-tight ~text-3xl/4xl">plakar</h1><div class="article-content font-prose prose !max-w-none text-base"><p>PLAKAR(1) - General Commands Manual</p><h2 id=name>NAME</h2><p><strong>plakar</strong> - effortless backups</p><h2 id=synopsis>SYNOPSIS</h2><p><strong>plakar</strong>
-[<strong>-config</strong> <em>path</em>]
-[<strong>-cpu</strong> <em>number</em>]
-[<strong>-hostname</strong> <em>name</em>]
-[<strong>-keyfile</strong> <em>path</em>]
-[<strong>-no-agent</strong>]
-[<strong>-quiet</strong>]
-[<strong>-trace</strong> <em>what</em>]
-[<strong>-username</strong> <em>name</em>]
-[<strong>at</strong> <em>repository</em>]
-<em>subcommand &mldr;</em></p><h2 id=description>DESCRIPTION</h2><p><strong>plakar</strong>
-is a tool to create distributed, versioned backups with compression,
-encryption and data deduplication.</p><p>By default,
-<strong>plakar</strong>
-operates on the repository at
-<em>~/.plakar</em>.
-This can be changed either by using the
-<strong>at</strong>
-keyword or by setting a default repository using
-plakar-config(1).</p><p>The following options are available:</p><p><strong>-config</strong> <em>path</em></p><blockquote><p>Use the configuration at
-<em>path</em>.</p></blockquote><p><strong>-cpu</strong> <em>number</em></p><blockquote><p>Limit the number of parallelism that
-<strong>plakar</strong>
-uses to
-<em>number</em>.
-By default it&rsquo;s the number of online CPUs.</p></blockquote><p><strong>-hostname</strong> <em>name</em></p><blockquote><p>Change the hostname used for backups.
-Defaults to the current hostname.</p></blockquote><p><strong>-keyfile</strong> <em>path</em></p><blockquote><p>Use the passphrase from the key file at
-<em>path</em>
-instead of prompting to unlock.</p></blockquote><p><strong>-no-agent</strong></p><blockquote><p>Run without attempting to connect to the agent.</p></blockquote><p><strong>-quiet</strong></p><blockquote><p>Disable all output except for errors.</p></blockquote><p><strong>-trace</strong> <em>what</em></p><blockquote><p>Display trace logs.
-<em>what</em>
-is a comma-separated series of keywords to enable the trace logs for
-different subsystems:
-<strong>all</strong>, <strong>trace</strong>, <strong>repository</strong>, <strong>snapshot</strong> and <strong>server</strong>.</p></blockquote><p><strong>-username</strong> <em>name</em></p><blockquote><p>Change the username used for backups.
-Defaults to the current user name.</p></blockquote><p><strong>at</strong> <em>repository</em></p><blockquote><p>Operate on the given
-<em>repository</em>.
-It could be a path, an URI, or a label in the form
-&ldquo;@<em>name</em>&rdquo;
+<span class="text-neutral-900 font-medium">Plakar</span></div><div class="inline-flex w-max px-2 py-1 rounded-md text-xs font-space-grotesk text-neutral-900 border border-neutral-900"><span>Version developers branch</span></div><h1 class="font-prose font-bold leading-tight ~text-3xl/4xl">plakar</h1><div class="article-content font-prose prose !max-w-none text-base"><div class=head role=doc-pageheader aria-label="Manual header
+  line"><span class=head-ltitle>PLAKAR(1)</span>
+<span class=head-vol>General Commands Manual</span>
+<span class=head-rtitle>PLAKAR(1)</span></div><main class=manual-text><section class=Sh><h2 class=Sh id=NAME><a class=permalink href=#NAME>NAME</a></h2><p class=Pp><code class=Nm>plakar</code> &#8212;
+<span class=Nd role=doc-subtitle>effortless backups</span></p></section><section class=Sh><h2 class=Sh id=SYNOPSIS><a class=permalink href=#SYNOPSIS>SYNOPSIS</a></h2><table class=Nm><tr><td><code class=Nm>plakar</code></td><td>[<code class=Fl>-config</code> <var class=Ar>path</var>]
+[<code class=Fl>-cpu</code> <var class=Ar>number</var>]
+[<code class=Fl>-hostname</code> <var class=Ar>name</var>]
+[<code class=Fl>-keyfile</code> <var class=Ar>path</var>]
+[<code class=Fl>-no-agent</code>] [<code class=Fl>-quiet</code>]
+[<code class=Fl>-trace</code> <var class=Ar>what</var>]
+[<code class=Fl>-username</code> <var class=Ar>name</var>]
+[<code class=Cm>at</code> <var class=Ar>repository</var>]
+<var class=Ar>subcommand ...</var></td></tr></table></section><section class=Sh><h2 class=Sh id=DESCRIPTION><a class=permalink href=#DESCRIPTION>DESCRIPTION</a></h2><p class=Pp><code class=Nm>plakar</code> is a tool to create distributed,
+versioned backups with compression, encryption and data deduplication.</p><p class=Pp>By default, <code class=Nm>plakar</code> operates on the
+repository at <span class=Pa>~/.plakar</span>. This can be changed either
+by using the <code class=Cm>at</code> keyword or by setting a default
+repository using
+<a class=Xr href=../plakar-config/ aria-label="plakar-config, section
+    1">plakar-config(1)</a>.</p><p class=Pp>The following options are available:</p><dl class=Bl-tag><dt id=config><a class=permalink href=#config><code class=Fl>-config</code></a>
+<var class=Ar>path</var></dt><dd>Use the configuration at <var class=Ar>path</var>.</dd><dt id=cpu><a class=permalink href=#cpu><code class=Fl>-cpu</code></a>
+<var class=Ar>number</var></dt><dd>Limit the number of parallelism that <code class=Nm>plakar</code> uses
+to <var class=Ar>number</var>. By default it's the number of online
+CPUs.</dd><dt id=hostname><a class=permalink href=#hostname><code class=Fl>-hostname</code></a>
+<var class=Ar>name</var></dt><dd>Change the hostname used for backups. Defaults to the current
+hostname.</dd><dt id=keyfile><a class=permalink href=#keyfile><code class=Fl>-keyfile</code></a>
+<var class=Ar>path</var></dt><dd>Use the passphrase from the key file at <var class=Ar>path</var> instead
+of prompting to unlock.</dd><dt id=no-agent><a class=permalink href=#no-agent><code class=Fl>-no-agent</code></a></dt><dd>Run without attempting to connect to the agent.</dd><dt id=quiet><a class=permalink href=#quiet><code class=Fl>-quiet</code></a></dt><dd>Disable all output except for errors.</dd><dt id=trace><a class=permalink href=#trace><code class=Fl>-trace</code></a>
+<var class=Ar>what</var></dt><dd>Display trace logs. <var class=Ar>what</var> is a comma-separated series
+of keywords to enable the trace logs for different subsystems:
+<code class=Cm>all</code>, <code class=Cm>trace</code>,
+<code class=Cm>repository</code>, <code class=Cm>snapshot</code>
+<span class=No>and</span> <code class=Cm>server</code>.</dd><dt id=username><a class=permalink href=#username><code class=Fl>-username</code></a>
+<var class=Ar>name</var></dt><dd>Change the username used for backups. Defaults to the current user
+name.</dd><dt id=at><a class=permalink href=#at><code class=Cm>at</code></a>
+<var class=Ar>repository</var></dt><dd>Operate on the given <var class=Ar>repository</var>. It could be a path,
+an URI, or a label in the form &#8220;@<var class=Ar>name</var>&#8221;
 to reference a configuration created with
-plakar-config(1).</p></blockquote><p>The following commands are available:</p><p><strong>agent</strong></p><blockquote><p>Run the plakar agent, documented in
-plakar-agent(1).</p></blockquote><p><strong>archive</strong></p><blockquote><p>Create an archive from a Plakar snapshot, documented in
-plakar-archive(1).</p></blockquote><p><strong>backup</strong></p><blockquote><p>Create a new snapshot, documented in
-plakar-backup(1).</p></blockquote><p><strong>cat</strong></p><blockquote><p>Display file contents from a Plakar snapshot, documented in
-plakar-cat(1).</p></blockquote><p><strong>check</strong></p><blockquote><p>Check data integrity in a Plakar repository, documented in
-plakar-check(1).</p></blockquote><p><strong>clone</strong></p><blockquote><p>Clone a Plakar repository to a new location, documented in
-plakar-clone(1).</p></blockquote><p><strong>config</strong></p><blockquote><p>Manage Plakar configuration, documented in
-plakar-config(1).</p></blockquote><p><strong>create</strong></p><blockquote><p>Create a new Plakar repository, documented in
-plakar-create(1).</p></blockquote><p><strong>diff</strong></p><blockquote><p>Show differences between files in a Plakar snapshot, documented in
-plakar-diff(1).</p></blockquote><p><strong>digest</strong></p><blockquote><p>Compute digests for files in a Plakar snapshot, documented in
-plakar-digest(1).</p></blockquote><p><strong>exec</strong></p><blockquote><p>Execute a file from a Plakar snapshot, documented in
-plakar-exec(1).</p></blockquote><p><strong>help</strong></p><blockquote><p>Show this manpage and the ones for the subcommands.</p></blockquote><p><strong>info</strong></p><blockquote><p>Display detailed information about internal structures, documented in
-plakar-info(1).</p></blockquote><p><strong>locate</strong></p><blockquote><p>Find filenames in a Plakar snapshot, documented in
-plakar-locate(1).</p></blockquote><p><strong>ls</strong></p><blockquote><p>List snapshots and their contents in a Plakar repository, documented in
-plakar-ls(1).</p></blockquote><p><strong>maintenance</strong></p><blockquote><p>Remove unused data from a Plakar repository, documented in
-plakar-mantenance(1).</p></blockquote><p><strong>mount</strong></p><blockquote><p>Mount Plakar snapshots as read-only filesystem, documented in
-plakar-mount(1).</p></blockquote><p><strong>restore</strong></p><blockquote><p>Restore files from a Plakar snapshot, documented in
-plakar-restore(1).</p></blockquote><p><strong>rm</strong></p><blockquote><p>Remove snapshots from a Plakar repository, documented in
-plakar-rm(1).</p></blockquote><p><strong>server</strong></p><blockquote><p>Start a Plakar server, documented in
-plakar-server(1).</p></blockquote><p><strong>sync</strong></p><blockquote><p>Synchronize sanpshots between Plakar repositories, documented in
-plakar-sync(1).</p></blockquote><p><strong>ui</strong></p><blockquote><p>Serve the Plakar web user interface, documented in
-plakar-ui(1).</p></blockquote><p><strong>version</strong></p><blockquote><p>Display the current Plakar version, documented in
-plakar-version(1).</p></blockquote><h2 id=environment>ENVIRONMENT</h2><p><code>PLAKAR_PASSPHRASE</code></p><blockquote><p>Passphrase to unlock the repository, overrides the one from the configuration.
-If set,
-<strong>plakar</strong>
-won&rsquo;t prompt to unlock.</p></blockquote><p><code>PLAKAR_REPOSITORY</code></p><blockquote><p>Path to the default repository, overrides the configuration set with
-<strong>plakar config repository default</strong>.</p></blockquote><h2 id=files>FILES</h2><p><em>~/.cache/plakar and</em> <em>~/.cache/plakar-agentless</em></p><blockquote><p>Plakar cache directories.</p></blockquote><p><em>~/.config/plakar/plakar.yml</em></p><blockquote><p>Default configuration file.</p></blockquote><p><em>~/.plakar</em></p><blockquote><p>Default repository location.</p></blockquote><h2 id=examples>EXAMPLES</h2><p>Create an encrypted repository at the default location:</p><pre><code>$ plakar create
-</code></pre><p>Create an encrypted repository on AWS S3:</p><pre><code>$ plakar config repository create mys3bucket
+<a class=Xr href=../plakar-config/ aria-label="plakar-config, section
+      1">plakar-config(1)</a>.</dd></dl><p class=Pp>The following commands are available:</p><p class=Pp></p><dl class="Bl-tag Bl-compact"><dt id=agent><a class=permalink href=#agent><code class=Cm>agent</code></a></dt><dd>Run the plakar agent, documented in
+<a class=Xr href=../plakar-agent/ aria-label="plakar-agent, section
+      1">plakar-agent(1)</a>.</dd><dt id=archive><a class=permalink href=#archive><code class=Cm>archive</code></a></dt><dd>Create an archive from a Plakar snapshot, documented in
+<a class=Xr href=../plakar-archive/ aria-label="plakar-archive,
+      section 1">plakar-archive(1)</a>.</dd><dt id=backup><a class=permalink href=#backup><code class=Cm>backup</code></a></dt><dd>Create a new snapshot, documented in
+<a class=Xr href=../plakar-backup/ aria-label="plakar-backup, section
+      1">plakar-backup(1)</a>.</dd><dt id=cat><a class=permalink href=#cat><code class=Cm>cat</code></a></dt><dd>Display file contents from a Plakar snapshot, documented in
+<a class=Xr href=../plakar-cat/ aria-label="plakar-cat, section
+      1">plakar-cat(1)</a>.</dd><dt id=check><a class=permalink href=#check><code class=Cm>check</code></a></dt><dd>Check data integrity in a Plakar repository, documented in
+<a class=Xr href=../plakar-check/ aria-label="plakar-check, section
+      1">plakar-check(1)</a>.</dd><dt id=clone><a class=permalink href=#clone><code class=Cm>clone</code></a></dt><dd>Clone a Plakar repository to a new location, documented in
+<a class=Xr href=../plakar-clone/ aria-label="plakar-clone, section
+      1">plakar-clone(1)</a>.</dd><dt id=create><a class=permalink href=#create><code class=Cm>create</code></a></dt><dd>Create a new Plakar repository, documented in
+<a class=Xr href=../plakar-create/ aria-label="plakar-create, section
+      1">plakar-create(1)</a>.</dd><dt id=destination><a class=permalink href=#destination><code class=Cm>destination</code></a></dt><dd>Manage Plakar restore destination configuration, documented in
+<a class=Xr href=../plakar-destination/ aria-label="plakar-destination,
+      section 1">plakar-destination(1)</a>.</dd><dt id=diff><a class=permalink href=#diff><code class=Cm>diff</code></a></dt><dd>Show differences between files in a Plakar snapshot, documented in
+<a class=Xr href=../plakar-diff/ aria-label="plakar-diff, section
+      1">plakar-diff(1)</a>.</dd><dt id=digest><a class=permalink href=#digest><code class=Cm>digest</code></a></dt><dd>Compute digests for files in a Plakar snapshot, documented in
+<a class=Xr href=../plakar-digest/ aria-label="plakar-digest, section
+      1">plakar-digest(1)</a>.</dd><dt id=help><a class=permalink href=#help><code class=Cm>help</code></a></dt><dd>Show this manpage and the ones for the subcommands.</dd><dt id=info><a class=permalink href=#info><code class=Cm>info</code></a></dt><dd>Display detailed information about internal structures, documented in
+<a class=Xr href=../plakar-info/ aria-label="plakar-info, section
+      1">plakar-info(1)</a>.</dd><dt id=locate><a class=permalink href=#locate><code class=Cm>locate</code></a></dt><dd>Find filenames in a Plakar snapshot, documented in
+<a class=Xr href=../plakar-locate/ aria-label="plakar-locate, section
+      1">plakar-locate(1)</a>.</dd><dt id=ls><a class=permalink href=#ls><code class=Cm>ls</code></a></dt><dd>List snapshots and their contents in a Plakar repository, documented in
+<a class=Xr href=../plakar-ls/ aria-label="plakar-ls, section
+      1">plakar-ls(1)</a>.</dd><dt id=maintenance><a class=permalink href=#maintenance><code class=Cm>maintenance</code></a></dt><dd>Remove unused data from a Plakar repository, documented in
+<a class=Xr href=../plakar-maintenance/ aria-label="plakar-maintenance,
+      section 1">plakar-maintenance(1)</a>.</dd><dt id=mount><a class=permalink href=#mount><code class=Cm>mount</code></a></dt><dd>Mount Plakar snapshots as read-only filesystem, documented in
+<a class=Xr href=../plakar-mount/ aria-label="plakar-mount, section
+      1">plakar-mount(1)</a>.</dd><dt id=restore><a class=permalink href=#restore><code class=Cm>restore</code></a></dt><dd>Restore files from a Plakar snapshot, documented in
+<a class=Xr href=../plakar-restore/ aria-label="plakar-restore,
+      section 1">plakar-restore(1)</a>.</dd><dt id=rm><a class=permalink href=#rm><code class=Cm>rm</code></a></dt><dd>Remove snapshots from a Plakar repository, documented in
+<a class=Xr href=../plakar-rm/ aria-label="plakar-rm, section
+      1">plakar-rm(1)</a>.</dd><dt id=server><a class=permalink href=#server><code class=Cm>server</code></a></dt><dd>Start a Plakar server, documented in
+<a class=Xr href=../plakar-server/ aria-label="plakar-server, section
+      1">plakar-server(1)</a>.</dd><dt id=source><a class=permalink href=#source><code class=Cm>source</code></a></dt><dd>Manage Plakar backup source configuration, documented in
+<a class=Xr href=../plakar-source/ aria-label="plakar-source, section
+      1">plakar-source(1)</a>.</dd><dt id=store><a class=permalink href=#store><code class=Cm>store</code></a></dt><dd>Manage Plakar store configurations, documented in
+<a class=Xr href=../plakar-store/ aria-label="plakar-store, section
+      1">plakar-store(1)</a>.</dd><dt id=sync><a class=permalink href=#sync><code class=Cm>sync</code></a></dt><dd>Synchronize sanpshots between Plakar repositories, documented in
+<a class=Xr href=../plakar-sync/ aria-label="plakar-sync, section
+      1">plakar-sync(1)</a>.</dd><dt id=ui><a class=permalink href=#ui><code class=Cm>ui</code></a></dt><dd>Serve the Plakar web user interface, documented in
+<a class=Xr href=../plakar-ui/ aria-label="plakar-ui, section
+      1">plakar-ui(1)</a>.</dd><dt id=version><a class=permalink href=#version><code class=Cm>version</code></a></dt><dd>Display the current Plakar version, documented in
+<a class=Xr href=../plakar-version/ aria-label="plakar-version,
+      section 1">plakar-version(1)</a>.</dd></dl></section><section class=Sh><h2 class=Sh id=ENVIRONMENT><a class=permalink href=#ENVIRONMENT>ENVIRONMENT</a></h2><dl class=Bl-tag><dt id=PLAKAR_PASSPHRASE><a class=permalink href=#PLAKAR_PASSPHRASE><code class=Ev>PLAKAR_PASSPHRASE</code></a></dt><dd>Passphrase to unlock the repository, overrides the one from the
+configuration. If set, <code class=Nm>plakar</code> won't prompt to
+unlock.</dd><dt id=PLAKAR_REPOSITORY><a class=permalink href=#PLAKAR_REPOSITORY><code class=Ev>PLAKAR_REPOSITORY</code></a></dt><dd>Path to the default repository, overrides the configuration set with
+<code class=Cm>plakar config repository default</code>.</dd></dl></section><section class=Sh><h2 class=Sh id=FILES><a class=permalink href=#FILES>FILES</a></h2><dl class=Bl-tag><dt><span class=Pa>~/.cache/plakar and</span>
+<span class=Pa>~/.cache/plakar-agentless</span></dt><dd>Plakar cache directories.</dd><dt><span class=Pa>~/.config/plakar/plakar.yml</span></dt><dd>Default configuration file.</dd><dt><span class=Pa>~/.plakar</span></dt><dd>Default repository location.</dd></dl></section><section class=Sh><h2 class=Sh id=EXAMPLES><a class=permalink href=#EXAMPLES>EXAMPLES</a></h2><p class=Pp>Create an encrypted repository at the default location:</p><div class="Bd Pp Bd-indent Li"><pre>$ plakar create</pre></div><p class=Pp>Create an encrypted repository on AWS S3:</p><div class="Bd Pp Bd-indent Li"><pre>$ plakar config repository create mys3bucket
 $ plakar config repository set mys3bucket location \
 	s3://s3.eu-west-3.amazonaws.com/backups
 $ plakar config repository set mys3bucket access_key &quot;access_key&quot;
 $ plakar config repository set mys3bucket secret_access_key &quot;secret_key&quot;
-$ plakar at @mys3bucket create
-</code></pre><p>Set the
-&ldquo;mys3bucket&rdquo;
-repository just created as the default one used by
-<strong>plakar</strong>:</p><pre><code>$ plakar config repository default mys3bucket
-</code></pre><p>Create a snapshot of the current directory:</p><pre><code>$ plakar backup
-</code></pre><p>List the snapshots:</p><pre><code>$ plakar ls
-</code></pre><p>Restore the file
-&ldquo;notes.md&rdquo;
-in the current directory from the snapshot with id
-&ldquo;abcd&rdquo;:</p><pre><code>$ plakar restore -to . abcd:notes.md
-</code></pre><p>Remove snapshots older than a 30 days:</p><pre><code>$ plakar rm -before 30d
-</code></pre><p>Plakar - March 3, 2025</p></div><div class="bg-neutral-200 border-neutral-300 flex justify-center items-center gap-3 py-4 px-4 flex-wrap rounded-lg"><div class="flex gap-4 items-center"><a class="flex items-center space-x-2" href=https://bsky.app/profile/plakar.bsky.social target=_blank rel="noopener noreferrer" aria-label="Visit us on Bluesky"><span class="w-5 h-5"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M12 11.3884C11.0942 9.62673 8.62833 6.34423 6.335 4.7259 4.13833 3.17506 3.30083 3.4434 2.75167 3.69256 2.11583 3.9784 2 4.95506 2 5.52839c0 .575.315 4.70831.52 5.39921.67917 2.28 3.09417 3.05 5.31917 2.8033-3.26.4833-6.15584 1.6708-2.35834 5.8983C9.65833 23.9542 11.2058 18.7017 12 16.0392c.7942 2.6625 1.7083 7.7259 6.4442 3.59C22 16.0392 19.4208 14.2142 16.1608 13.7309 18.3858 13.9784 20.8008 13.2076 21.48 10.9276 21.685 10.2376 22 6.10256 22 5.52923c0-.575-.1158-1.55084-.7517-1.83833C20.6992 3.44256 19.8617 3.17423 17.665 4.72423 15.3717 6.34506 12.9058 9.62756 12 11.3884z"/></svg>
+$ plakar at @mys3bucket create</pre></div><p class=Pp>Set the &#8220;mys3bucket&#8221; repository just created as the
+default one used by <code class=Nm>plakar</code>:</p><div class="Bd Pp Bd-indent Li"><pre>$ plakar config repository default mys3bucket</pre></div><p class=Pp>Create a snapshot of the current directory:</p><div class="Bd Pp Bd-indent Li"><pre>$ plakar backup</pre></div><p class=Pp>List the snapshots:</p><div class="Bd Pp Bd-indent Li"><pre>$ plakar ls</pre></div><p class=Pp>Restore the file &#8220;notes.md&#8221; in the current directory
+from the snapshot with id &#8220;abcd&#8221;:</p><div class="Bd Pp Bd-indent Li"><pre>$ plakar restore -to . abcd:notes.md</pre></div><p class=Pp>Remove snapshots older than a 30 days:</p><div class="Bd Pp Bd-indent Li"><pre>$ plakar rm -before 30d</pre></div></section></main><div class=foot role=doc-pagefooter aria-label="Manual footer
+  line"><span class=foot-left></span><span class=foot-date>March 3,
+2025</span> <span class=foot-os>Plakar</span></div></div><div class="bg-neutral-200 border-neutral-300 flex justify-center items-center gap-3 py-4 px-4 flex-wrap rounded-lg"><div class="flex gap-4 items-center"><a class="flex items-center space-x-2" href=https://bsky.app/profile/plakar.bsky.social target=_blank rel="noopener noreferrer" aria-label="Visit us on Bluesky"><span class="w-5 h-5"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M12 11.3884C11.0942 9.62673 8.62833 6.34423 6.335 4.7259 4.13833 3.17506 3.30083 3.4434 2.75167 3.69256 2.11583 3.9784 2 4.95506 2 5.52839c0 .575.315 4.70831.52 5.39921.67917 2.28 3.09417 3.05 5.31917 2.8033-3.26.4833-6.15584 1.6708-2.35834 5.8983C9.65833 23.9542 11.2058 18.7017 12 16.0392c.7942 2.6625 1.7083 7.7259 6.4442 3.59C22 16.0392 19.4208 14.2142 16.1608 13.7309 18.3858 13.9784 20.8008 13.2076 21.48 10.9276 21.685 10.2376 22 6.10256 22 5.52923c0-.575-.1158-1.55084-.7517-1.83833C20.6992 3.44256 19.8617 3.17423 17.665 4.72423 15.3717 6.34506 12.9058 9.62756 12 11.3884z"/></svg>
 </span></a><a class="flex items-center space-x-2" href=https://discord.gg/uuegtnF2Q5 target=_blank aria-label="Visit us on Discord"><span class="w-5 h-5"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M19.3034 5.33716C17.9344 4.71103 16.4805 4.2547 14.9629 4 14.7719 4.32899 14.5596 4.77471 14.411 5.12492c-1.6141-.23348-3.2166-.23348-4.80845.0C9.45397 4.77471 9.2311 4.32899 9.05068 4c-1.52817.2547-2.98207.71103-4.34153 1.33716C1.96053 9.39111 1.21766 13.3495 1.5891 17.2549c1.82533 1.3266 3.58702 2.1331 5.31791 2.6638C7.33151 19.3456 7.71356 18.73 8.04255 18.0827 7.41641 17.8492 6.82211 17.5627 6.24904 17.2231 6.39762 17.117 6.5462 17.0003 6.68416 16.8835c3.45964 1.5813 7.20694 1.5813 10.62404.0C17.4568 17.0003 17.5948 17.117 17.7434 17.2231 17.1703 17.5627 16.576 17.8492 15.9499 18.0827 16.2789 18.73 16.6609 19.3456 17.0854 19.9187c1.7298-.5307 3.5021-1.3372 5.3179-2.6638C22.8596 12.7341 21.6806 8.80747 19.3034 5.33716zM8.5201 14.8459c-1.04003.0-1.88903-.9445-1.88903-2.1012.0-1.1568.82777-2.1013 1.88903-2.1013 1.05061.0 1.9102.9445 1.889 2.1013.0 1.1567-.83839 2.1012-1.889 2.1012zm6.9735.0c-1.0401.0-1.8902-.9445-1.8902-2.1012.0-1.1568.828899999999999-2.1013 1.8902-2.1013 1.0506.0 1.9102.9445 1.8889 2.1013.0 1.1567-.8277 2.1012-1.8889 2.1012z"/></svg></span>
-</a><a class="flex items-center space-x-2" href=https://www.linkedin.com/company/plakarkorp target=_blank rel="noopener noreferrer" aria-label="Visit us on LinkedIn"><span class="w-5 h-5"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M18.3362 18.339H15.6707V14.1622c0-.996-.0202000000000009-2.2777-1.389-2.2777-1.3897.0-1.602 1.0838-1.602 2.2042V18.339H10.0142V9.75h2.5605v1.1707H12.6092C12.967 10.2457 13.837 9.53325 15.1367 9.53325c2.7008.0 3.2003 1.77755 3.2003 4.09125V18.339H18.3362zM7.00373 8.57475c-.858.0-1.54725-.6945-1.54725-1.54875.0-.8535.69-1.54725 1.54725-1.54725.855.0 1.548.693750000000001 1.548 1.54725.0.85425-.693749999999999 1.54875-1.548 1.54875zM8.34023 18.339h-2.673V9.75h2.673v8.589zM19.6697 3H4.32923c-.73425.0-1.32825.5805-1.32825 1.29675V19.7033C3.00098 20.4202 3.59498 21 4.32923 21H19.6675C20.401 21 21.001 20.4202 21.001 19.7033V4.29675C21.001 3.5805 20.401 3 19.6675 3H19.6697z"/></svg></span></a></div></div></article><aside class="xl:right-0 xl:sticky w-full xl:w-1/4 pb-4 lg:ps-4 flex flex-col mx-auto xl:mx-0 lg:top-28"><div class="text-xs font-prose flex flex-col gap-6"><details open id=TOCView class="toc-right mt-0 rounded-lg hidden xl:block"><summary class="block xl:hidden rounded-lg py-1 text-lg font-semibold cursor-pointer text-neutral-900">Table of Contents</summary><div class="~text-xs py-2"><style>#TableOfContents>ul{display:flex;flex-direction:column;gap:.6rem;padding:0;margin:0}#TableOfContents>ul>li{margin:0;padding:0}#TableOfContents>ul>li>a{font-weight:600;display:block;color:#111827;margin-bottom:.2rem;text-decoration:none}#TableOfContents>ul>li>ul{padding-left:.75rem;margin-top:.2rem;font-family:source-serif-pro,Georgia,Cambria,times new roman,Times,serif;list-style-type:none;display:flex;flex-direction:column;gap:.2rem}#TableOfContents ul li ul li{margin:0}#TableOfContents a{text-decoration:none;color:#111827}#TableOfContents>ul>li>ul>li>ul{padding-left:.75rem;list-style-type:none}#TableOfContents a.active{color:#524cff;font-weight:600}</style><nav id=TableOfContents><ul><li><a href=#name>NAME</a></li><li><a href=#synopsis>SYNOPSIS</a></li><li><a href=#description>DESCRIPTION</a></li><li><a href=#environment>ENVIRONMENT</a></li><li><a href=#files>FILES</a></li><li><a href=#examples>EXAMPLES</a></li></ul></nav></div></details><details class="toc-inside mt-0 overflow-hidden xl:hidden"><summary class="xl:hidden py-1 xl:pl-4 rounded-lg text-lg font-semibold cursor-pointer text-neutral-900">Table of Contents</summary><div class="py-2 px-4 border-dotted"><nav id=TableOfContents><ul><li><a href=#name>NAME</a></li><li><a href=#synopsis>SYNOPSIS</a></li><li><a href=#description>DESCRIPTION</a></li><li><a href=#environment>ENVIRONMENT</a></li><li><a href=#files>FILES</a></li><li><a href=#examples>EXAMPLES</a></li></ul></nav></div></details><script>document.addEventListener("DOMContentLoaded",()=>{const t=document.querySelectorAll("#TableOfContents");if(!t.length)return;const n=Array.from(document.querySelectorAll("h2[id], h3[id]"));function e(){const s=window.scrollY;let e=null;for(const t of n)t.offsetTop-window.innerHeight/3<=s&&(e=t.id);if(!e)return;t.forEach(t=>{if(t.offsetParent===null)return;t.querySelectorAll("a.active").forEach(e=>e.classList.remove("active"));const n=t.querySelector(`a[href="#${CSS.escape(e)}"]`);console.log(n),n&&n.classList.add("active")})}window.addEventListener("scroll",e),window.addEventListener("resize",e),e()})</script></div></aside></div></section><script>document.querySelectorAll(".article-content img").forEach(e=>{e.addEventListener("click",()=>{basicLightbox.create(`<img src="${e.src}" />`).show()})})</script></div></div></div></div><script>var menuButton=document.getElementById("menu-button"),menuCloseButton=document.getElementById("menu-close-button"),menuMobile=document.getElementById("menu-mobile"),menuOpen=!1,openMenu=function(){menuOpen||(menuOpen=!0,document.body.style.overflowY="hidden",menuButton.classList.add("hidden"),menuMobile.classList.remove("hidden"),requestAnimationFrame(()=>{menuMobile.classList.remove("opacity-0","scale-95"),menuMobile.classList.add("opacity-100","scale-100")}),window.onbeforeunload=function(){closeMenu()})},closeMenu=function(e){menuOpen&&(menuOpen=!1,document.body.style.overflowY="auto",menuButton.classList.remove("hidden"),menuMobile.classList.add("opacity-0","scale-95"),menuMobile.classList.remove("opacity-100","scale-100"),setTimeout(()=>{menuMobile.classList.add("hidden")},300),window.onbeforeunload=function(){},e.stopPropagation())};menuButton.addEventListener("click",openMenu),menuCloseButton.addEventListener("click",closeMenu)</script><script>document.querySelectorAll(".accordion-toggle").forEach(e=>{e.addEventListener("click",function(){const e=this.nextElementSibling,t=!e.classList.contains("hidden");document.querySelectorAll(".accordion-content").forEach(e=>{e.classList.add("hidden"),e.previousElementSibling.querySelector("svg").classList.remove("rotate-180")}),t||(e.classList.remove("hidden"),this.querySelector("svg").classList.add("rotate-180"))})})</script><script>document.addEventListener("DOMContentLoaded",function(){const e=document.querySelectorAll(".tab-button"),t=document.querySelectorAll(".tab-panel");e.forEach(n=>{n.addEventListener("click",()=>{const s=n.getAttribute("data-tab");e.forEach(e=>e.classList.remove("active-tab")),t.forEach(e=>e.classList.add("hidden")),n.classList.add("active-tab"),document.getElementById(`tab-${s}`).classList.remove("hidden")})})})</script><script async defer src=https://buttons.github.io/buttons.js></script></body></html>
+</a><a class="flex items-center space-x-2" href=https://www.linkedin.com/company/plakarkorp target=_blank rel="noopener noreferrer" aria-label="Visit us on LinkedIn"><span class="w-5 h-5"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M18.3362 18.339H15.6707V14.1622c0-.996-.0202000000000009-2.2777-1.389-2.2777-1.3897.0-1.602 1.0838-1.602 2.2042V18.339H10.0142V9.75h2.5605v1.1707H12.6092C12.967 10.2457 13.837 9.53325 15.1367 9.53325c2.7008.0 3.2003 1.77755 3.2003 4.09125V18.339H18.3362zM7.00373 8.57475c-.858.0-1.54725-.6945-1.54725-1.54875.0-.8535.69-1.54725 1.54725-1.54725.855.0 1.548.693750000000001 1.548 1.54725.0.85425-.693749999999999 1.54875-1.548 1.54875zM8.34023 18.339h-2.673V9.75h2.673v8.589zM19.6697 3H4.32923c-.73425.0-1.32825.5805-1.32825 1.29675V19.7033C3.00098 20.4202 3.59498 21 4.32923 21H19.6675C20.401 21 21.001 20.4202 21.001 19.7033V4.29675C21.001 3.5805 20.401 3 19.6675 3H19.6697z"/></svg></span></a></div></div></article><aside class="xl:right-0 xl:sticky w-full xl:w-1/4 pb-4 lg:ps-4 flex flex-col mx-auto xl:mx-0 lg:top-28"><div class="text-xs font-prose flex flex-col gap-6"><details open id=TOCView class="toc-right mt-0 rounded-lg hidden xl:block"><summary class="block xl:hidden rounded-lg py-1 text-lg font-semibold cursor-pointer text-neutral-900">Table of Contents</summary><div class="~text-xs py-2"><style>#TableOfContents>ul{display:flex;flex-direction:column;gap:.6rem;padding:0;margin:0}#TableOfContents>ul>li{margin:0;padding:0}#TableOfContents>ul>li>a{font-weight:600;display:block;color:#111827;margin-bottom:.2rem;text-decoration:none}#TableOfContents>ul>li>ul{padding-left:.75rem;margin-top:.2rem;font-family:source-serif-pro,Georgia,Cambria,times new roman,Times,serif;list-style-type:none;display:flex;flex-direction:column;gap:.2rem}#TableOfContents ul li ul li{margin:0}#TableOfContents a{text-decoration:none;color:#111827}#TableOfContents>ul>li>ul>li>ul{padding-left:.75rem;list-style-type:none}#TableOfContents a.active{color:#524cff;font-weight:600}</style><nav id=TableOfContents></nav></div></details><details class="toc-inside mt-0 overflow-hidden xl:hidden"><summary class="xl:hidden py-1 xl:pl-4 rounded-lg text-lg font-semibold cursor-pointer text-neutral-900">Table of Contents</summary><div class="py-2 px-4 border-dotted"><nav id=TableOfContents></nav></div></details><script>document.addEventListener("DOMContentLoaded",()=>{const t=document.querySelectorAll("#TableOfContents");if(!t.length)return;const n=Array.from(document.querySelectorAll("h2[id], h3[id]"));function e(){const s=window.scrollY;let e=null;for(const t of n)t.offsetTop-window.innerHeight/3<=s&&(e=t.id);if(!e)return;t.forEach(t=>{if(t.offsetParent===null)return;t.querySelectorAll("a.active").forEach(e=>e.classList.remove("active"));const n=t.querySelector(`a[href="#${CSS.escape(e)}"]`);console.log(n),n&&n.classList.add("active")})}window.addEventListener("scroll",e),window.addEventListener("resize",e),e()})</script></div></aside></div></section><script>document.querySelectorAll(".article-content img").forEach(e=>{e.addEventListener("click",()=>{basicLightbox.create(`<img src="${e.src}" />`).show()})})</script></div></div></div></div><script>var menuButton=document.getElementById("menu-button"),menuCloseButton=document.getElementById("menu-close-button"),menuMobile=document.getElementById("menu-mobile"),menuOpen=!1,openMenu=function(){menuOpen||(menuOpen=!0,document.body.style.overflowY="hidden",menuButton.classList.add("hidden"),menuMobile.classList.remove("hidden"),requestAnimationFrame(()=>{menuMobile.classList.remove("opacity-0","scale-95"),menuMobile.classList.add("opacity-100","scale-100")}),window.onbeforeunload=function(){closeMenu()})},closeMenu=function(e){menuOpen&&(menuOpen=!1,document.body.style.overflowY="auto",menuButton.classList.remove("hidden"),menuMobile.classList.add("opacity-0","scale-95"),menuMobile.classList.remove("opacity-100","scale-100"),setTimeout(()=>{menuMobile.classList.add("hidden")},300),window.onbeforeunload=function(){},e.stopPropagation())};menuButton.addEventListener("click",openMenu),menuCloseButton.addEventListener("click",closeMenu)</script><script>document.querySelectorAll(".accordion-toggle").forEach(e=>{e.addEventListener("click",function(){const e=this.nextElementSibling,t=!e.classList.contains("hidden");document.querySelectorAll(".accordion-content").forEach(e=>{e.classList.add("hidden"),e.previousElementSibling.querySelector("svg").classList.remove("rotate-180")}),t||(e.classList.remove("hidden"),this.querySelector("svg").classList.add("rotate-180"))})})</script><script>document.addEventListener("DOMContentLoaded",function(){const e=document.querySelectorAll(".tab-button"),t=document.querySelectorAll(".tab-panel");e.forEach(n=>{n.addEventListener("click",()=>{const s=n.getAttribute("data-tab");e.forEach(e=>e.classList.remove("active-tab")),t.forEach(e=>e.classList.add("hidden")),n.classList.add("active-tab"),document.getElementById(`tab-${s}`).classList.remove("hidden")})})})</script><script async defer src=https://buttons.github.io/buttons.js></script></body></html>
