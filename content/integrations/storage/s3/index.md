@@ -142,7 +142,7 @@ $ plakar at @s3-krepository ls
 $ plakar at @s3-krepository ui
 ```
 
-Refer to the **Quick Start Guide** for additional examples and advanced usage patterns.
+Refer to the **[Quick Start Guide](https://docs.plakar.io/en/quickstart/index.html)** for additional examples and advanced usage patterns.
 
 ## Security Considerations
 
