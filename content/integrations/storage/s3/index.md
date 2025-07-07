@@ -1,6 +1,6 @@
 ---
 title: S3
-subtitle: S3 Storage Connector
+subtitle: How to back up data to S3 using Plakar S3 Connector
 description: The Plakar S3 storage connector enables creation of a plakar Kloset repository on any S3-compatible object storage buckets.
 categories:
   - storage connectors
@@ -20,129 +20,65 @@ stage: stable
 date: 2025-05-13
 ---
 
-## What You Can Do
+## What is Plakar S3 Connector
+Plakar is an open-source backup and restore platform that creates browsable, immutable snapshots of your data with full context without requiring restoration.
 
-The S3 storage connector brings the power of cloud object storage to your backup workflow. You can create repositories on any S3-compatible bucket, back up your local filesystem to S3, restore from S3 to a local filesystem or other storage backends, and sync data between S3 and other Plakar repositories. The connector works with multiple S3 providers including **AWS**, **MinIO**, **Scaleway**, **Backblaze**, and **CleverCloud**.
+The S3 Storage Connector enables you to leverage any S3-compatible object storage as your backup repository, transforming cloud storage into an active, queryable resource you can browse and verify without costly restore operations. Storage Connectors (like S3) provide the underlying storage infrastructure, while Integrations handle data sources and application workflows.
 
-All data transfers use TLS encryption for security, and your data gets encrypted before it even reaches S3 thanks to [Kloset repository encryption](/posts/2025-04-29/kloset-the-immutable-data-store/).
+The connector works with AWS S3, MinIO, Scaleway, Backblaze B2, and CleverCloud. All data is encrypted end-to-end through Kloset before reaching S3, with TLS encryption protecting data in transit.
 
-## Configuration
+## Start backing up to S3 in 3 steps
 
-Since S3 uses API keys, which are sensitive information, you can only configure S3 repositories through the configuration system. This keeps your credentials secure and separate from your backup commands.
+### Install Plakar
+Compile and install Plakar from source using the Go toolchain. Currently supports macOS, OpenBSD, and Linux systems with straightforward build instructions.
 
-### Setting Up a Repository
+### Configure your S3 repository
+Set up your S3-compatible storage endpoint (AWS S3, MinIO, or other S3-compatible services) as a Plakar repository. This includes configuring authentication credentials, specifying the bucket location, and initializing the repository for secure, deduplicated backup storage.
 
-The configuration process involves creating a repository entry and setting the required parameters. Let's walk through setting up a repository called `s3-krepository`:
+### Backup your data
+Execute backup operations by specifying the directories or files you want to protect. Plakar automatically handles compression, deduplication, and encryption (configured during repository creation), with synchronization capabilities to replicate backups to your S3 repository.
 
-```bash
-$ plakar config repository create s3-krepository
-$ plakar config repository set s3-krepository location s3://s3.fr-par.scw.cloud/mysuperbucket
-$ plakar config repository set s3-krepository access_key <ACCESS_KEY>
-$ plakar config repository set s3-krepository secret_access_key <SECRET_KEY>
-```
+## What sets Plakar apart
 
-After configuration, you can refer to your S3 repository using the shorthand syntax `@s3-krepository` in all your backup commands. For example, to backup your `/etc/` directory:
+### Browsable Backups Without Restoring
 
-> Replace the `<ACCESS_KEY>` and `<SECRET_KEY>` variables in the commands with your actual S3 credentials.
+Access and examine backup contents without needing to restore them first. Query and inspect snapshots instantly, allowing you to browse, search, and analyze backup data immediately.
 
-```bash
-$ plakar at @s3-krepository backup /etc/
-```
+### Kloset Immutable Storage Engine
 
-### Configuration Parameters
+Each backup becomes a self-contained, unchangeable data package that includes everything needed, structure, metadata, context, and integrity verification. Similar to how containers package applications with dependencies, Kloset creates portable data units that can be moved anywhere while maintaining the same structure.
 
-When configuring your S3 repository, you'll need to set several parameters:
+### Unmatched Deduplication & Compression
 
-| Option              | Type    | Description                                                                                                                |
-| ------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------- |
-| `location` | String  | Full S3 URL. Format: `s3://<endpoint>/<bucket>/<optional_path>`. **See the provider-specific section below for examples.** |
-| `access_key` | String  | Your provider's access key.                                                                                                |
-| `secret_access_key` | String  | Your provider's secret key.                                                                                                |
-| `use_tls` | Boolean | Enables TLS (default: true).                                                                                               |
+Create more backup versions without increasing storage costs through advanced deduplication and compression technology. Handle massive datasets while using minimal memory resources.
 
-The `location` parameter is crucial - it tells Plakar exactly where your S3 bucket is located. While some providers display the `s3://` URL in their web interfaces, most do not, so you'll need to construct it manually using the patterns shown in the provider-specific examples below.
+### Built for Scale and Performance
 
-## Provider-Specific Configuration
+Process over one million files in under three minutes. Multiple data sources can use a single repository simultaneously without conflicts. Built-in monitoring detects and alerts on unusual activity.
 
-Different S3 providers use different endpoint formats. The S3 connector expects the location to be in the format `s3://<endpoint>/<bucket>/<optional_path>`. Here's how to configure it for various providers:
+## How to backup to S3 Providers
+
+Plakar's S3 connector integrates seamlessly with multiple cloud storage providers, providing you with the flexibility to choose the solution that best suits your needs and budget. Whether you prefer major cloud platforms or specialized storage services, we've got you covered.
 
 ### AWS S3
 
-For AWS S3, the endpoint format includes the region:
-
-```bash
-$ plakar config repository set mys3 location s3://s3.<region>.amazonaws.com/<bucket>
-# Example
-$ plakar config repository set mys3 location s3://s3.us-east-1.amazonaws.com/mybucket
-```
+The industry-leading cloud storage service from Amazon Web Services. Ideal for enterprises and applications that require global availability and extensive integration. View [AWS S3 setup guide](/integrations/storage/s3/aws-s3/).
 
 ### MinIO
 
-MinIO typically runs on custom hostnames and ports:
-
-```bash
-$ plakar config repository set mys3 location s3://<minio-host>:<port>/<bucket>
-# Example
-$ plakar config repository set mys3 location s3://localhost:9000/mybucket
-
-# If you are running MinIO locally, you may need to set the following configuration to turn off TLS verification:
-$ plakar config repository set mys3 use_tls false
-```
-
-When running MinIO locally without TLS, you must explicitly turn off the `use_tls` setting, as the default setting requires encrypted connections.
+Self-hosted, high-performance object storage that's 100% compatible with Amazon S3 APIs. Ideal for on-premises deployments and hybrid cloud strategies. View [MinIO setup guide](/integrations/storage/s3/minio/).
 
 ### Scaleway
 
-Scaleway uses region-specific endpoints:
-
-```bash
-$ plakar config repository set mys3 location s3://s3.<region>.scw.cloud/<bucket>
-# Example
-$ plakar config repository set mys3 location s3://s3.fr-par.scw.cloud/mybucket
-```
+European cloud provider offering competitive pricing and GDPR-compliant storage. Great choice for European businesses and cost-conscious users. View [Scaleway setup guide](/integrations/storage/s3/scaleway/).
 
 ### Backblaze
-
-Backblaze B2 uses its domain pattern:
-
-```bash
-$ plakar config repository set mys3 location s3://s3.<region>.backblazeb2.com/<bucket>
-# Example
-$ plakar config repository set mys3 location s3://s3.eu-central-003.backblazeb2.com/mybucket
-```
+Affordable cloud storage with straightforward pricing and no hidden fees. Excellent for backup scenarios where cost efficiency is paramount. View [Backblaze setup guide](/integrations/storage/s3/backblaze/)
 
 ### CleverCloud
-
-CleverCloud uses a single endpoint for all regions:
-
-```bash
-$ plakar config repository set mys3 location s3://cellar-c2.services.clever-cloud.com/<bucket>
-# Example
-$ plakar config repository set mys3 location s3://cellar-c2.services.clever-cloud.com/mybucket
-```
+French cloud platform with simple, transparent pricing and excellent developer experience. Perfect for European startups and privacy-focused organizations. View [CleverCloud setup guide](/integrations/storage/s3/clevercloud/)
 
 If your provider isn't listed here, join our Discord and we'll assist you in configuring it and updating this guide.
-
-## Working with Your Repository
-
-Once configured, you can use your repository with any Plakar command using the `-at` option. Here's how to create the Kloset repository and start using it:
-
-```bash
-$ plakar at @s3-krepository create
-$ plakar at @s3-krepository backup @mys3
-```
-
-After running backups, you can list your snapshots and browse their contents:
-
-```bash
-# List available backups
-$ plakar at @s3-krepository ls
-
-# Launch (locally) the UI server and open a browser pointing to it.
-$ plakar at @s3-krepository ui
-```
-
-Refer to the **[Quick Start Guide](https://docs.plakar.io/en/quickstart/index.html)** for additional examples and advanced usage patterns.
 
 ## Security Considerations
 
