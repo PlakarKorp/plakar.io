@@ -1,4 +1,17 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Plakar integrations on Plakar - Effortless backup</title><link>https://www.plakar.io/integrations/</link><description>Recent content in Plakar integrations on Plakar - Effortless backup</description><generator>Hugo</generator><language>en</language><lastBuildDate>Tue, 13 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://www.plakar.io/integrations/index.xml" rel="self" type="application/rss+xml"/><item><title>Filesystem</title><link>https://www.plakar.io/integrations/data/fs/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/data/fs/</guid><description>&lt;h1 id="filesystem-integration">Filesystem Integration&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Plakar integrations on Plakar - Effortless backup</title><link>https://www.plakar.io/integrations/</link><description>Recent content in Plakar integrations on Plakar - Effortless backup</description><generator>Hugo</generator><language>en</language><lastBuildDate>Mon, 07 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://www.plakar.io/integrations/index.xml" rel="self" type="application/rss+xml"/><item><title>Notion</title><link>https://www.plakar.io/integrations/data/notion/</link><pubDate>Mon, 07 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/data/notion/</guid><description>&lt;h1 id="notion-integration">Notion Integration&lt;/h1>
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>The &lt;strong>Notion integration&lt;/strong> allows you to back up your Notion pages or entire workspace into a Plakar repository using the official Notion API.&lt;/p>
+&lt;p>All content is fetched via the API and stored as structured JSON, including page metadata, content blocks, and hierarchical relationships.&lt;/p>
+&lt;blockquote>
+&lt;p>Restoration is not supported yet — but planned in a future release.&lt;/p>&lt;/blockquote>
+&lt;h2 id="configuration">Configuration&lt;/h2>
+&lt;ul>
+&lt;li>A valid &lt;a href="https://www.notion.com/my-integrations">&lt;strong>Notion API token&lt;/strong>&lt;/a> (&lt;code>ntn_xxx&lt;/code>)&lt;/li>
+&lt;li>The integration must be &lt;strong>shared with each page&lt;/strong> you want to back up&lt;br>
+→ See &lt;a href="https://developers.notion.com/docs/getting-started#step-1-create-an-integration">Notion’s developer guide&lt;/a> for how to create and share integrations&lt;/li>
+&lt;/ul>
+&lt;h2 id="example-usage">Example Usage&lt;/h2>
+&lt;p>To create the Kloset repository at &lt;code>/var/backups&lt;/code> and back up your Notion content, assuming the following env variable &lt;code>NOTION_API_TOKEN&lt;/code> contained your shared API token, you can use the following command:&lt;/p></description></item><item><title>Filesystem</title><link>https://www.plakar.io/integrations/data/fs/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/data/fs/</guid><description>&lt;h1 id="filesystem-integration">Filesystem Integration&lt;/h1>
 &lt;h2 id="overview">Overview&lt;/h2>
 &lt;p>The &lt;strong>Plakar Filesystem integration&lt;/strong> enables seamless backup and restoration of filesystems to and from a &lt;a href="https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/">Kloset repository&lt;/a>.&lt;/p>
 &lt;p>This integration is designed to protect the data on your local hard drives, mounted NAS volumes, and SANs.&lt;/p>
