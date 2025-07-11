@@ -1,16 +1,10 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>BSD on Plakar - Effortless backup</title><link>https://www.plakar.io/tags/bsd/</link><description>Recent content in BSD on Plakar - Effortless backup</description><generator>Hugo</generator><language>en</language><lastBuildDate>Tue, 13 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://www.plakar.io/tags/bsd/index.xml" rel="self" type="application/rss+xml"/><item><title>SFTP</title><link>https://www.plakar.io/integrations/data/sftp/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/data/sftp/</guid><description>&lt;h1 id="sftp-integration">SFTP Integration&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>BSD on Plakar - Effortless backup</title><link>https://www.plakar.io/tags/bsd/</link><description>Recent content in BSD on Plakar - Effortless backup</description><generator>Hugo</generator><language>en</language><lastBuildDate>Tue, 13 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://www.plakar.io/tags/bsd/index.xml" rel="self" type="application/rss+xml"/><item><title>SFTP</title><link>https://www.plakar.io/integrations/sftp/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/sftp/</guid><description>&lt;h1 id="sftp-integration">SFTP Integration&lt;/h1>
+&lt;h2 id="capabilities">Capabilities&lt;/h2>
+&lt;ul>
+&lt;li>&lt;strong>Source Connector&lt;/strong>: Seamlessly back up remote filesystems over SSH to and from a &lt;a href="https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/">Kloset repository&lt;/a>.&lt;/li>
+&lt;li>&lt;strong>Destination Connector&lt;/strong>: Restore files and directories from a &lt;a href="https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/">Kloset repository&lt;/a> back to your remote server via SFTP.&lt;/li>
+&lt;li>&lt;strong>Storage Connector&lt;/strong>: Host a Kloset repository on a remote SFTP server, persisting snapshots directly on your target system.&lt;/li>
+&lt;li>&lt;strong>Viewer&lt;/strong>: Use the Integration Viewer to browse and visualize snapshots stored on an SFTP host.&lt;/li>
+&lt;/ul>
 &lt;h2 id="overview">Overview&lt;/h2>
-&lt;p>The Plakar SFTP integration enables backup and restoration of remote filesystems over SSH to and from a &lt;a href="https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/">Kloset repository&lt;/a>.&lt;/p>
-&lt;h2 id="configuration">Configuration&lt;/h2>
-&lt;p>The SFTP integration does not require any special configuration and you can use it directly with the &lt;code>plakar&lt;/code> command. However, setting up a remote can make things more convenient.&lt;/p>
-&lt;h3 id="setting-up-a-remote">Setting Up a Remote&lt;/h3>
-&lt;p>You can configure a remote called &lt;code>mysftp&lt;/code> to connect to your SFTP server:&lt;/p>
-&lt;pre tabindex="0">&lt;code>$ plakar config remote create mysftp
-$ plakar config remote set mysftp location sftp://&amp;lt;IP_address_or_hostname&amp;gt;/&amp;lt;path&amp;gt;
-&lt;/code>&lt;/pre>&lt;p>To refer to this remote in Plakar commands, use the syntax &lt;code>@mysftp&lt;/code>, for example &lt;code>plakar backup @mysftp&lt;/code>.&lt;/p></description></item><item><title>SFTP</title><link>https://www.plakar.io/integrations/storage/sftp/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/storage/sftp/</guid><description>&lt;h1 id="sftp-integration">SFTP Integration&lt;/h1>
-&lt;h2 id="overview">Overview&lt;/h2>
-&lt;p>The &lt;strong>Plakar SFTP storage connector&lt;/strong> enables creation of a &lt;a href="https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/">Kloset store&lt;/a> on remote filesystems over SSH.&lt;/p>
-&lt;h2 id="configuration">Configuration&lt;/h2>
-&lt;p>The SFTP storage connector does not require any special configuration and you can use it directly with the &lt;code>plakar&lt;/code> command. However, setting up a source configuration can make things more convenient, and allows to specify additional options like ignoring host key verification or specifying an identity file.&lt;/p>
-&lt;h3 id="setting-up-a-source-configuration">Setting Up a source configuration&lt;/h3>
-&lt;p>You can configure a source configuration &lt;code>mysftp&lt;/code>:&lt;/p></description></item></channel></rss>
+&lt;p>The &lt;strong>Plakar SFTP integration&lt;/strong> combines both source and storage connectors in one package. It enables immutable, encrypted, verifiable backups and restores of remote directories over SSH/SFTP.&lt;/p></description></item></channel></rss>

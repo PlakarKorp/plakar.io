@@ -1,23 +1,28 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Scality on Plakar - Effortless backup</title><link>https://www.plakar.io/tags/scality/</link><description>Recent content in Scality on Plakar - Effortless backup</description><generator>Hugo</generator><language>en</language><lastBuildDate>Tue, 13 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://www.plakar.io/tags/scality/index.xml" rel="self" type="application/rss+xml"/><item><title>S3</title><link>https://www.plakar.io/integrations/data/s3/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/data/s3/</guid><description>&lt;h1 id="s3-integration">S3 Integration&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Scality on Plakar - Effortless backup</title><link>https://www.plakar.io/tags/scality/</link><description>Recent content in Scality on Plakar - Effortless backup</description><generator>Hugo</generator><language>en</language><lastBuildDate>Tue, 13 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://www.plakar.io/tags/scality/index.xml" rel="self" type="application/rss+xml"/><item><title>S3</title><link>https://www.plakar.io/integrations/s3/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/s3/</guid><description>&lt;ul>
+&lt;li>source connector&lt;/li>
+&lt;li>destination connector&lt;/li>
+&lt;li>storage connector&lt;/li>
+&lt;li>viewer tags:&lt;/li>
+&lt;li>S3&lt;/li>
+&lt;li>Object Storage&lt;/li>
+&lt;li>AWS&lt;/li>
+&lt;li>Google Cloud Storage&lt;/li>
+&lt;li>MinIO&lt;/li>
+&lt;li>Ceph&lt;/li>
+&lt;li>Scality&lt;/li>
+&lt;li>Wasabi&lt;/li>
+&lt;li>Scaleway&lt;/li>
+&lt;li>Blackblaze&lt;/li>
+&lt;li>OVH stage: stable date: 2025-05-13&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h1 id="s3-integration">S3 Integration&lt;/h1>
+&lt;h2 id="capabilities">Capabilities&lt;/h2>
+&lt;ul>
+&lt;li>&lt;strong>Source Connector&lt;/strong>: Seamlessly back up S3-compatible buckets to a &lt;a href="https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/">Kloset repository&lt;/a>.&lt;/li>
+&lt;li>&lt;strong>Destination Connector&lt;/strong>: Restore data from a Kloset repository back into your S3 bucket.&lt;/li>
+&lt;li>&lt;strong>Storage Connector&lt;/strong>: Host your Kloset repository directly on any S3-compatible object storage.&lt;/li>
+&lt;li>&lt;strong>Viewer&lt;/strong>: Use the Integration Viewer to browse and visualize snapshots stored in S3.&lt;/li>
+&lt;/ul>
 &lt;h2 id="overview">Overview&lt;/h2>
-&lt;p>The &lt;strong>Plakar S3 integration&lt;/strong> enables seamless backup and restoration of &lt;strong>S3-compatible object storage buckets&lt;/strong> to and from a &lt;a href="https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/">Kloset repository&lt;/a>.&lt;/p>
-&lt;blockquote>
-&lt;p>&lt;strong>Why back up your S3 buckets?&lt;/strong>&lt;/p>
-&lt;p>S3 providers &lt;em>do not&lt;/em> back up your data by default. This makes your data vulnerable to accidental deletion, ransomware, and silent corruption.&lt;/p>
-&lt;p>Plakar lets you implement a reliable &lt;a href="https://docs.plakar.io/en/quickstart/probabilities/index.html">3-2-1 backup strategy&lt;/a> with minimal effort.&lt;/p>&lt;/blockquote>
-&lt;h2 id="configuration">Configuration&lt;/h2>
-&lt;p>The S3 integration requires to set up a remote configuration to provide the necessary credentials and endpoint information for your S3-compatible provider.&lt;/p></description></item><item><title>S3</title><link>https://www.plakar.io/integrations/storage/s3/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/storage/s3/</guid><description>&lt;h1 id="s3-storage-connector">S3 storage connector&lt;/h1>
-&lt;p>The &lt;strong>Plakar S3 storage connector&lt;/strong> enables creation of a plakar &lt;a href="https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/">Kloset
-repository&lt;/a> on any
-&lt;strong>S3-compatible object storage buckets&lt;/strong>&lt;/p>
-&lt;h2 id="configuration">Configuration&lt;/h2>
-&lt;p>Since S3 uses API keys, sensitive piece of information, you can only address it
-through the usage of a configuration entry.&lt;/p>
-&lt;h3 id="setting-up-a-repository">Setting up a repository&lt;/h3>
-&lt;p>You can configure a repository aptly called &lt;code>s3-krepository&lt;/code> to point to your
-S3-compatible bucket like this :&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">$ plakar config repository create s3-krepository
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ plakar config repository &lt;span class="nb">set&lt;/span> s3-krepository s3://s3.fr-par.scw.cloud/mysuperbucket
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ plakar config repository &lt;span class="nb">set&lt;/span> s3-krepository access_key &amp;lt;ACCESS_KEY&amp;gt;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ plakar config repository &lt;span class="nb">set&lt;/span> s3-krepository secret_access_key &amp;lt;SECRET_KEY&amp;gt;
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>From now on you can refer to your S3 repository through the short-hand syntax &lt;code>@s3-krepository.&lt;/code>&lt;/p></description></item></channel></rss>
+&lt;p>The &lt;strong>Plakar S3 integration&lt;/strong> enables immutable, encrypted, verifiable backups and restores of any S3-compatible object storage buckets. Whether you’re using AWS S3, Google Cloud Storage, MinIO, Ceph, or another provider, Plakar delivers a unified interface and military-grade security.&lt;/p></description></item></channel></rss>
