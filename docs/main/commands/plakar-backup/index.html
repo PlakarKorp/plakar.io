@@ -148,6 +148,8 @@ ml-4 pl-2 border-l border-neutral-300">digest
 ml-4 pl-2 border-l border-neutral-300">info
 </a><a href=/docs/main/commands/plakar-locate/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">locate
+</a><a href=/docs/main/commands/plakar-login/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">login
 </a><a href=/docs/main/commands/plakar-ls/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">ls
 </a><a href=/docs/main/commands/plakar-maintenance/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
@@ -164,6 +166,8 @@ ml-4 pl-2 border-l border-neutral-300">restore
 ml-4 pl-2 border-l border-neutral-300">rm
 </a><a href=/docs/main/commands/plakar-server/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">server
+</a><a href=/docs/main/commands/plakar-services/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">services
 </a><a href=/docs/main/commands/plakar-source/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">source
 </a><a href=/docs/main/commands/plakar-store/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
@@ -185,40 +189,47 @@ ml-4 pl-2 border-l border-neutral-300">Notion Integration documentation</a></div
 <span class="text-neutral-900 font-medium">Plakar backup</span></div><div class="inline-flex w-max px-2 py-1 rounded-md text-xs font-space-grotesk text-neutral-900 border border-neutral-900"><span>Version developers branch</span></div><h1 class="font-prose font-bold leading-tight ~text-3xl/4xl">backup</h1></div><div class="article-wrapper relative"><div class="relative docs-content font-prose prose text-base w-full max-w-full"><div class=head role=doc-pageheader aria-label="Manual header
   line"><span class=head-ltitle>PLAKAR-BACKUP(1)</span>
 <span class=head-vol>General Commands Manual</span>
-<span class=head-rtitle>PLAKAR-BACKUP(1)</span></div><main class=manual-text><section class=Sh><h2 class=Sh id=NAME><a class=permalink href=#NAME>NAME</a></h2><p class=Pp><code class=Nm>plakar backup</code> &#8212;
-<span class=Nd role=doc-subtitle>Create a new snapshot in a Plakar
-repository</span></p></section><section class=Sh><h2 class=Sh id=SYNOPSIS><a class=permalink href=#SYNOPSIS>SYNOPSIS</a></h2><table class=Nm><tr><td><code class=Nm>plakar backup</code></td><td>[<code class=Fl>-concurrency</code> <var class=Ar>number</var>]
+<span class=head-rtitle>PLAKAR-BACKUP(1)</span></div><main class=manual-text><section class=Sh><h2 class=Sh id=NAME><a class=permalink href=#NAME>NAME</a></h2><p class=Pp><code class=Nm>plakar-backup</code> &#8212;
+<span class=Nd role=doc-subtitle>Create a new snapshot in a Kloset
+store</span></p></section><section class=Sh><h2 class=Sh id=SYNOPSIS><a class=permalink href=#SYNOPSIS>SYNOPSIS</a></h2><table class=Nm><tr><td><code class=Nm>plakar backup</code></td><td>[<code class=Fl>-concurrency</code> <var class=Ar>number</var>]
 [<code class=Fl>-exclude</code> <var class=Ar>pattern</var>]
-[<code class=Fl>-excludes</code> <var class=Ar>file</var>]
+[<code class=Fl>-exclude-file</code> <var class=Ar>file</var>]
 [<code class=Fl>-check</code>] [<code class=Fl>-o</code>
 <var class=Ar>option</var>] [<code class=Fl>-quiet</code>]
-[<code class=Fl>-tag</code> <var class=Ar>tag</var>]
-[<code class=Fl>-scan</code>] [<var class=Ar>place</var>]</td></tr></table></section><section class=Sh><h2 class=Sh id=DESCRIPTION><a class=permalink href=#DESCRIPTION>DESCRIPTION</a></h2><p class=Pp>The <code class=Nm>plakar backup</code> command creates a new
+[<code class=Fl>-silent</code>] [<code class=Fl>-tag</code>
+<var class=Ar>tag</var>] [<code class=Fl>-scan</code>]
+[<var class=Ar>place</var>]</td></tr></table></section><section class=Sh><h2 class=Sh id=DESCRIPTION><a class=permalink href=#DESCRIPTION>DESCRIPTION</a></h2><p class=Pp>The <code class=Nm>plakar backup</code> command creates a new
 snapshot of <var class=Ar>place</var>, or the current directory. Snapshots
 can be filtered to exclude specific files or directories based on patterns
 provided through options.</p><p class=Pp><var class=Ar>place</var> can be either a path, an URI, or a
-label on the form &#8220;@<var class=Ar>name</var>&#8221; to reference a
-remote configured with
-<a class=Xr href=../plakar-config/ aria-label="plakar-config, section
-    1">plakar-config(1)</a>.</p><p class=Pp>The options are as follows:</p><dl class=Bl-tag><dt id=concurrency><a class=permalink href=#concurrency><code class=Fl>-concurrency</code></a>
+label with the form &#8220;@<var class=Ar>name</var>&#8221; to reference
+a source connector configured with
+<a class=Xr href=../plakar-source/ aria-label="plakar-source, section
+    1">plakar-source(1)</a>.</p><p class=Pp>The options are as follows:</p><dl class=Bl-tag><dt id=concurrency><a class=permalink href=#concurrency><code class=Fl>-concurrency</code></a>
 <var class=Ar>number</var></dt><dd>Set the maximum number of parallel tasks for faster processing. Defaults
 to <code class=Dv>8 * CPU count + 1</code>.</dd><dt id=exclude><a class=permalink href=#exclude><code class=Fl>-exclude</code></a>
 <var class=Ar>pattern</var></dt><dd>Specify individual glob exclusion patterns to ignore files or directories
-in the backup. This option can be repeated.</dd><dt id=excludes><a class=permalink href=#excludes><code class=Fl>-excludes</code></a>
+in the backup. This option can be repeated.</dd><dt id=exclude-file><a class=permalink href=#exclude-file><code class=Fl>-exclude-file</code></a>
 <var class=Ar>file</var></dt><dd>Specify a file containing glob exclusion patterns, one per line, to ignore
 files or directories in the backup.</dd><dt id=check><a class=permalink href=#check><code class=Fl>-check</code></a></dt><dd>Perform a full check on the backup after success.</dd><dt id=o><a class=permalink href=#o><code class=Fl>-o</code></a>
-<var class=Ar>option</var></dt><dd>Can be used to pass extra arguments to the importer. The given
-<var class=Ar>option</var> takes precence over the configuration
-file.</dd><dt id=quiet><a class=permalink href=#quiet><code class=Fl>-quiet</code></a></dt><dd>Suppress output to standard input, only logging errors and warnings.</dd><dt id=tag><a class=permalink href=#tag><code class=Fl>-tag</code></a>
-<var class=Ar>tag</var></dt><dd>Specify a tag to assign to the snapshot for easier identification.</dd><dt id=scan><a class=permalink href=#scan><code class=Fl>-scan</code></a></dt><dd>Don't actually create a snapshot, just output the list of files.</dd></dl></section><section class=Sh><h2 class=Sh id=EXAMPLES><a class=permalink href=#EXAMPLES>EXAMPLES</a></h2><p class=Pp>Create a snapshot of the current directory with a tag:</p><div class="Bd Pp Bd-indent Li"><pre>$ plakar backup -tag daily-backup</pre></div><p class=Pp>Backup a specific directory with exclusion patterns from a
-file:</p><div class="Bd Pp Bd-indent Li"><pre>$ plakar backup -excludes ~/my-excludes-file /var/www</pre></div><p class=Pp>Backup a directory with specific file exclusions:</p><div class="Bd Pp Bd-indent Li"><pre>$ plakar backup -exclude &quot;*.tmp&quot; -exclude &quot;*.log&quot; /var/www</pre></div></section><section class=Sh><h2 class=Sh id=DIAGNOSTICS><a class=permalink href=#DIAGNOSTICS>DIAGNOSTICS</a></h2><p class=Pp>The <code class=Nm>plakar backup</code> utility exits&#160;0
-on success, and&#160;>0 if an error occurs.</p><dl class=Bl-tag><dt>0</dt><dd>Command completed successfully, snapshot created.</dd><dt>>0</dt><dd>An error occurred, such as failure to access the repository or issues with
-exclusion patterns.</dd></dl></section><section class=Sh><h2 class=Sh id=SEE_ALSO><a class=permalink href=#SEE_ALSO>SEE
+<var class=Ar>option</var></dt><dd>Can be used to pass extra arguments to the source connector. The given
+<var class=Ar>option</var> takes precedence over the configuration
+file.</dd><dt id=quiet><a class=permalink href=#quiet><code class=Fl>-quiet</code></a></dt><dd>Suppress output to standard input, only logging errors and warnings.</dd><dt id=silent><a class=permalink href=#silent><code class=Fl>-silent</code></a></dt><dd>Suppress all output.</dd><dt id=tag><a class=permalink href=#tag><code class=Fl>-tag</code></a>
+<var class=Ar>tag</var></dt><dd>Comma-separated list of tags to apply to the snapshot.</dd><dt id=scan><a class=permalink href=#scan><code class=Fl>-scan</code></a></dt><dd>Do not write a snapshot; instead, perform a dry run by outputting the list
+of files and directories that would be included in the backup. Respects
+all exclude patterns and other options, but makes no changes to the Kloset
+store.</dd></dl></section><section class=Sh><h2 class=Sh id=EXAMPLES><a class=permalink href=#EXAMPLES>EXAMPLES</a></h2><p class=Pp>Create a snapshot of the current directory with two tags:</p><div class="Bd Pp Bd-indent Li"><pre>$ plakar backup -tag daily-backup,production</pre></div><p class=Pp>Backup a specific directory with exclusion patterns from a
+file:</p><div class="Bd Pp Bd-indent Li"><pre>$ plakar backup -exclude-file ~/my-excludes-file /var/www</pre></div><p class=Pp>Backup a directory with specific file exclusions:</p><div class="Bd Pp Bd-indent Li"><pre>$ plakar backup -exclude &quot;*.tmp&quot; -exclude &quot;*.log&quot; /var/www</pre></div></section><section class=Sh><h2 class=Sh id=DIAGNOSTICS><a class=permalink href=#DIAGNOSTICS>DIAGNOSTICS</a></h2><p class=Pp>The <code class=Nm>plakar-backup</code> utility exits&#160;0
+on success, and&#160;>0 if an error occurs.</p><dl class=Bl-tag><dt>0</dt><dd>Command completed successfully; a snapshot was created, but some items may
+have been skipped (for example, files without sufficient permissions). Run
+<a class=Xr href=../plakar-info/ aria-label="plakar-info, section
+      1">plakar-info(1)</a> on the new snapshot to view any errors.</dd><dt>>0</dt><dd>An error occurred, such as failure to access the Kloset store or issues
+with exclusion patterns.</dd></dl></section><section class=Sh><h2 class=Sh id=SEE_ALSO><a class=permalink href=#SEE_ALSO>SEE
 ALSO</a></h2><p class=Pp><a class=Xr href=../plakar/ aria-label="plakar, section
     1">plakar(1)</a>,
-<a class=Xr href=../plakar-config/ aria-label="plakar-config, section
-    1">plakar-config(1)</a></p></section></main><div class=foot role=doc-pagefooter aria-label="Manual footer
-  line"><span class=foot-left></span><span class=foot-date>June 27,
+<a class=Xr href=../plakar-source/ aria-label="plakar-source, section
+    1">plakar-source(1)</a></p></section></main><div class=foot role=doc-pagefooter aria-label="Manual footer
+  line"><span class=foot-left></span><span class=foot-date>July 3,
 2025</span> <span class=foot-os>Plakar</span></div></div><div class="bg-neutral-200 border-neutral-300 flex justify-center items-center gap-3 py-4 px-4 flex-wrap w-full max-w-full"><div class="flex gap-4 items-center"><a class="flex items-center space-x-2" href=https://bsky.app/profile/plakar.bsky.social target=_blank rel="noopener noreferrer" aria-label="Visit us on Bluesky"><span class="w-5 h-5"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M12 11.3884C11.0942 9.62673 8.62833 6.34423 6.335 4.7259 4.13833 3.17506 3.30083 3.4434 2.75167 3.69256 2.11583 3.9784 2 4.95506 2 5.52839c0 .575.315 4.70831.52 5.39921.67917 2.28 3.09417 3.05 5.31917 2.8033-3.26.4833-6.15584 1.6708-2.35834 5.8983C9.65833 23.9542 11.2058 18.7017 12 16.0392c.7942 2.6625 1.7083 7.7259 6.4442 3.59C22 16.0392 19.4208 14.2142 16.1608 13.7309 18.3858 13.9784 20.8008 13.2076 21.48 10.9276 21.685 10.2376 22 6.10256 22 5.52923c0-.575-.1158-1.55084-.7517-1.83833C20.6992 3.44256 19.8617 3.17423 17.665 4.72423 15.3717 6.34506 12.9058 9.62756 12 11.3884z"/></svg>
 </span></a><a class="flex items-center space-x-2" href=https://discord.gg/uuegtnF2Q5 target=_blank aria-label="Visit us on Discord"><span class="w-5 h-5"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M19.3034 5.33716C17.9344 4.71103 16.4805 4.2547 14.9629 4 14.7719 4.32899 14.5596 4.77471 14.411 5.12492c-1.6141-.23348-3.2166-.23348-4.80845.0C9.45397 4.77471 9.2311 4.32899 9.05068 4c-1.52817.2547-2.98207.71103-4.34153 1.33716C1.96053 9.39111 1.21766 13.3495 1.5891 17.2549c1.82533 1.3266 3.58702 2.1331 5.31791 2.6638C7.33151 19.3456 7.71356 18.73 8.04255 18.0827 7.41641 17.8492 6.82211 17.5627 6.24904 17.2231 6.39762 17.117 6.5462 17.0003 6.68416 16.8835c3.45964 1.5813 7.20694 1.5813 10.62404.0C17.4568 17.0003 17.5948 17.117 17.7434 17.2231 17.1703 17.5627 16.576 17.8492 15.9499 18.0827 16.2789 18.73 16.6609 19.3456 17.0854 19.9187c1.7298-.5307 3.5021-1.3372 5.3179-2.6638C22.8596 12.7341 21.6806 8.80747 19.3034 5.33716zM8.5201 14.8459c-1.04003.0-1.88903-.9445-1.88903-2.1012.0-1.1568.82777-2.1013 1.88903-2.1013 1.05061.0 1.9102.9445 1.889 2.1013.0 1.1567-.83839 2.1012-1.889 2.1012zm6.9735.0c-1.0401.0-1.8902-.9445-1.8902-2.1012.0-1.1568.828899999999999-2.1013 1.8902-2.1013 1.0506.0 1.9102.9445 1.8889 2.1013.0 1.1567-.8277 2.1012-1.8889 2.1012z"/></svg></span>
 </a><a class="flex items-center space-x-2" href=https://www.linkedin.com/company/plakarkorp target=_blank rel="noopener noreferrer" aria-label="Visit us on LinkedIn"><span class="w-5 h-5"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M18.3362 18.339H15.6707V14.1622c0-.996-.0202000000000009-2.2777-1.389-2.2777-1.3897.0-1.602 1.0838-1.602 2.2042V18.339H10.0142V9.75h2.5605v1.1707H12.6092C12.967 10.2457 13.837 9.53325 15.1367 9.53325c2.7008.0 3.2003 1.77755 3.2003 4.09125V18.339H18.3362zM7.00373 8.57475c-.858.0-1.54725-.6945-1.54725-1.54875.0-.8535.69-1.54725 1.54725-1.54725.855.0 1.548.693750000000001 1.548 1.54725.0.85425-.693749999999999 1.54875-1.548 1.54875zM8.34023 18.339h-2.673V9.75h2.673v8.589zM19.6697 3H4.32923c-.73425.0-1.32825.5805-1.32825 1.29675V19.7033C3.00098 20.4202 3.59498 21 4.32923 21H19.6675C20.401 21 21.001 20.4202 21.001 19.7033V4.29675C21.001 3.5805 20.401 3 19.6675 3H19.6697z"/></svg></span></a></div></div></div></article></div></section><script>document.querySelectorAll(".article-content img").forEach(e=>{e.addEventListener("click",()=>{basicLightbox.create(`<img src="${e.src}" />`).show()})})</script></div></div></div></div><script>var menuButton=document.getElementById("menu-button"),menuCloseButton=document.getElementById("menu-close-button"),menuMobile=document.getElementById("menu-mobile"),menuOpen=!1,openMenu=function(){menuOpen||(menuOpen=!0,document.body.style.overflowY="hidden",menuButton.classList.add("hidden"),menuMobile.classList.remove("hidden"),requestAnimationFrame(()=>{menuMobile.classList.remove("opacity-0","scale-95"),menuMobile.classList.add("opacity-100","scale-100")}),window.onbeforeunload=function(){closeMenu()})},closeMenu=function(e){menuOpen&&(menuOpen=!1,document.body.style.overflowY="auto",menuButton.classList.remove("hidden"),menuMobile.classList.add("opacity-0","scale-95"),menuMobile.classList.remove("opacity-100","scale-100"),setTimeout(()=>{menuMobile.classList.add("hidden")},300),window.onbeforeunload=function(){},e.stopPropagation())};menuButton.addEventListener("click",openMenu),menuCloseButton.addEventListener("click",closeMenu)</script><script>document.querySelectorAll(".accordion-toggle").forEach(e=>{e.addEventListener("click",function(){const e=this.nextElementSibling,t=!e.classList.contains("hidden");document.querySelectorAll(".accordion-content").forEach(e=>{e.classList.add("hidden"),e.previousElementSibling.querySelector("svg").classList.remove("rotate-180")}),t||(e.classList.remove("hidden"),this.querySelector("svg").classList.add("rotate-180"))})})</script><script>document.addEventListener("DOMContentLoaded",function(){const e=document.querySelectorAll(".tab-button"),t=document.querySelectorAll(".tab-panel");e.forEach(n=>{n.addEventListener("click",()=>{const s=n.getAttribute("data-tab");e.forEach(e=>e.classList.remove("active-tab")),t.forEach(e=>e.classList.add("hidden")),n.classList.add("active-tab"),document.getElementById(`tab-${s}`).classList.remove("hidden")})})})</script><script async defer src=https://buttons.github.io/buttons.js></script></body></html>
