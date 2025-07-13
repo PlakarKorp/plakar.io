@@ -108,7 +108,7 @@ Think of it as <code>.tar</code> reimagined for zero-trust systems, deduplicatio
 all you need is an offline <code>.ptar</code> reader such as our opensource tool <code>plakar</code>.</p><p>A <code>.ptar</code> file is:</p><ul><li><strong>Immutable</strong> — write-once, tamper-evident by design.</li><li><strong>Deduplicated</strong> — content-addressed, chunks are referenced multiple times.</li><li><strong>Compressed</strong> — post-deduplication compression to save more space.</li><li><strong>Encrypted</strong> — end-to-end, using same <a href=/posts/2025-02-28/audit-of-plakar-cryptography/>audited model</a> as underlying Kloset store.</li><li><strong>Versioned</strong> — supports granular inspection of previous states.</li><li><strong>Browsable</strong> — via CLI or UI, without full extraction.</li><li><strong>(Trans)Portable</strong> — works on a USB stick, offline machine, or tape.</li></ul><p>If you’ve ever wanted to export a full backup for disaster recovery, legal archiving, or long-term cold storage — and still be able to introspect it years later — that’s exactly what <code>.ptar</code> is built for.</p><p>If you want to pack multiple assets in a content-addressed immutable file with built-in integrity validation, that&rsquo;s also what <code>.ptar</code> is built for.</p><p>But if you <em>just</em> want to produce a <code>.tar</code> or <code>.zip</code>-like archive that comes packed with a ton of user-friendly features,
 well&mldr; it&rsquo;s built for that too 😊</p><p>Creating a <code>.ptar</code> archive is as simple as the following command:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>$ plakar ptar -o test.ptar ~/Downloads
 </span></span><span class=line><span class=cl>passphrase:
-</span></span><span class=line><span class=cl>passphrase <span class=o>(</span>confirm<span class=o>)</span>: 
+</span></span><span class=line><span class=cl>passphrase <span class=o>(</span>confirm<span class=o>)</span>:
 </span></span><span class=line><span class=cl>$
 </span></span></code></pre></div><p>The resulting file contains all of <code>~/Downloads</code>,
 deduplicated,
@@ -137,25 +137,25 @@ like for example, deduplication, restore-less browsing, fast searching, and more
 though in my daily life using a <code>.ptar</code> offers far more benefits.</p><h3 id=a-few-words-about-deduplication-and-compression>A few words about deduplication and compression</h3><p>Due to its structure and sequential I/O pattern in compaction/decompaction,
 <code>.tar</code> (and <code>.zip</code>, and alike&mldr;) can&rsquo;t rely on back-reference tricks to allow deduplication of previously-seen content (at least not without a major change of format).</p><p>As a result,
 it can&rsquo;t perform deduplication at the file level and even less so at the data level:
-any redundant data is duplicated inside the archive.</p><blockquote><p>It doesn&rsquo;t matter, compression will take care of that !</p></blockquote><p>Yeah, no, it won&rsquo;t.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>$ du -sh ~/Downloads 
+any redundant data is duplicated inside the archive.</p><blockquote><p>It doesn&rsquo;t matter, compression will take care of that !</p></blockquote><p>Yeah, no, it won&rsquo;t.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>$ du -sh ~/Downloads
 </span></span><span class=line><span class=cl> 11G    /Users/gilles/Downloads
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>$ <span class=nb>time</span> tar -czf test.tar.gz ~/Downloads
 </span></span><span class=line><span class=cl><span class=o>[</span>...<span class=o>]</span> 166.48s user 14.07s system 99% cpu 3:01.53 total
-</span></span><span class=line><span class=cl>$ du -sh test.tar.gz 
+</span></span><span class=line><span class=cl>$ du -sh test.tar.gz
 </span></span><span class=line><span class=cl>8.8G    test.tar.gz
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>$ <span class=nb>time</span> tar -czf test.tar.gz ~/Downloads ~/Downloads
 </span></span><span class=line><span class=cl><span class=o>[</span>...<span class=o>]</span> 332.98s user 28.09s system 99% cpu 6:02.89 total
-</span></span><span class=line><span class=cl>$ du -sh test.tar.gz                          
+</span></span><span class=line><span class=cl>$ du -sh test.tar.gz
 </span></span><span class=line><span class=cl> 18G    test.tar.gz
-</span></span><span class=line><span class=cl>$ 
+</span></span><span class=line><span class=cl>$
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>$ <span class=nb>time</span> tar -czf test.tar.gz ~/Downloads ~/Downloads ~/Downloads
 </span></span><span class=line><span class=cl><span class=o>[</span>...<span class=o>]</span> 499.69s user 41.99s system 99% cpu 9:05.15 total
-</span></span><span class=line><span class=cl>$ du -sh test.tar.gz                                      
+</span></span><span class=line><span class=cl>$ du -sh test.tar.gz
 </span></span><span class=line><span class=cl> 26G    test.tar.gz
-</span></span><span class=line><span class=cl>$ 
+</span></span><span class=line><span class=cl>$
 </span></span></code></pre></div><p>As seen above,
 <code>.tar</code> is not a dedup-aware archiver and if a file is passed twice, it is archived twice.
 The compression doesn&rsquo;t cancel that because compression algorithms use a sliding window that can only &ldquo;see&rdquo; so far at a time.
@@ -173,15 +173,15 @@ that&rsquo;s a sharp contrast with <code>.ptar</code>:</p><div class=highlight><
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>$ <span class=nb>time</span> plakar ptar -plaintext -o test.ptar ~/Downloads ~/Downloads
 </span></span><span class=line><span class=cl><span class=o>[</span>...<span class=o>]</span> 134.91s user 31.09s system 438% cpu 37.892 total
-</span></span><span class=line><span class=cl>$ du -sh test.ptar                                                     
+</span></span><span class=line><span class=cl>$ du -sh test.ptar
 </span></span><span class=line><span class=cl>8.2G    test.ptar
-</span></span><span class=line><span class=cl>$ 
+</span></span><span class=line><span class=cl>$
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>$ <span class=nb>time</span> plakar ptar -plaintext -o test.ptar ~/Downloads ~/Downloads ~/Downloads
 </span></span><span class=line><span class=cl><span class=o>[</span>...<span class=o>]</span> 134.60s user 30.74s system 438% cpu 37.727 total
-</span></span><span class=line><span class=cl>$ du -sh test.ptar                                                                    
+</span></span><span class=line><span class=cl>$ du -sh test.ptar
 </span></span><span class=line><span class=cl>8.2G    test.ptar
-</span></span><span class=line><span class=cl>$ 
+</span></span><span class=line><span class=cl>$
 </span></span></code></pre></div><p>Of course,
 I&rsquo;m showing a <code>.tar</code> worst-case scenario here for <a href="https://www.youtube.com/watch?v=1YgZyLACn6M">dramatic effect</a>,
 but as you can see even on the very first backup a gain is already visible <strong>when there&rsquo;s redundancy</strong> in the source data:</p><pre tabindex=0><code>$ ls ~/Downloads|grep &#39;(&#39;
@@ -205,7 +205,7 @@ either through a widely supported legacy algorithm that has shown its weaknesses
 or through the strong AES256&mldr; that&rsquo;s not supported by all <code>.zip</code> readers.</p><p>Not much more to say about <code>.tar</code> except that it doesn&rsquo;t have any provision for encryption,
 the common way to send encrypted tarballs is to use GPG&mldr;
 and most of us know how that goes with the general public.</p><p>Contrast this again with <code>.ptar</code> that provides <a href=/posts/2025-02-28/audit-of-plakar-cryptography/>audited cryptography</a> <em>by default</em>,
-producing an archive that has inherent MAC integrity check and that can&rsquo;t be altered without validation failing visibily,
+producing an archive that has inherent MAC integrity check and that can&rsquo;t be altered without validation failing visibly,
 but which can also generate plaintext archives for public consumption.</p><h3 id=about-these-limitations>About these limitations</h3><p>Most archive tools today layer compression and optional encryption on top, but they still operate on cleartext inputs and offer zero insight into version history, deduplication, or even integrity guarantees without layering custom tooling.</p><p>In modern environments—hybrid cloud, air-gapped vaults, regulatory retention—these limitations aren’t just inconvenient, they’re unsafe. If you’re backing up critical infrastructure, you need something that doesn’t leak metadata, doesn’t trust the storage backend, and makes it obvious if anything was <strong>tampered with or silently corrupted</strong> — even a decade later.</p><p><code>.ptar</code> was built as part of the Plakar project to solve this.
 It combines the Kloset engine’s immutable snapshot model with a transportable archive format: everything you need to restore or audit a backup lives inside a single file. No server dependency. No hidden assumptions.</p><h2 id=ptar-vs-traditional-archives><code>.ptar</code> vs Traditional Archives</h2><p>Traditional formats like <code>.tar</code> or <code>.zip</code> were never meant to handle encrypted, deduplicated, or versioned data.
 They operate on raw files, often in-place.
@@ -215,31 +215,31 @@ It solves concrete problems in modern backup and archival workflows — especial
 store it in a vault,
 and forget about it.</p><p>When you need it, everything — metadata, snapshots, file content — is inside, encrypted and verifiable. No runtime, no dependencies, no cloud needed.</p><h3 id=cold-storage>Cold Storage</h3><p><code>.ptar</code> is optimized for random reads and high-density archiving. Snapshots remain deduplicated, compressed, and inspectable without restoring the full payload.</p><h3 id=disaster-recovery>Disaster Recovery</h3><p>You can generate <code>.ptar</code> files as part of your offsite rotation. In a worst-case scenario, restoration is as simple as transferring the archive to a fresh host and running <code>plakar restore</code>. No coordination, no external service, no upstream verification required.</p><h3 id=compliance-and-legal-retention>Compliance and Legal Retention</h3><p>Each <code>.ptar</code> is immutable (tamper-evident), signed, and traceable. Snapshots inside the archive retain their metadata, timestamp, and audit trail — making <code>.ptar</code> a strong fit for GDPR, HIPAA, and internal data retention policies.
 It could become a legally-verifiable record of state.</p><h3 id=distribution-and-transfer>Distribution and Transfer</h3><p>Need to ship a dataset or backup across environments, air gaps, or legal zones?</p><p><code>.ptar</code> packages it up in a single file, preserving structure, permissions, and history. You can hand it over safely, knowing the contents can be validated — but not altered.</p><hr><h2 id=how-to-create-and-use-a-ptar-hand-holding>How to Create and Use a <code>.ptar</code> (hand-holding)</h2><p>A <code>.ptar</code> builder and reader are implemented into <code>plakar</code>, so creating and interacting with archives doesn’t require extra tooling. Everything happens via the CLI.</p><h3 id=create-a-ptar-from-local-directories>Create a <code>.ptar</code> from local directories</h3><p>The following command creates an encrypted snapshot of my <code>~/Downloads</code> directory into the file <code>downloads.ptar</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>$ plakar ptar -o downloads.ptar ~/Downloads
-</span></span><span class=line><span class=cl>passphrase: 
-</span></span><span class=line><span class=cl>passphrase <span class=o>(</span>confirm<span class=o>)</span>: 
+</span></span><span class=line><span class=cl>passphrase:
+</span></span><span class=line><span class=cl>passphrase <span class=o>(</span>confirm<span class=o>)</span>:
 </span></span><span class=line><span class=cl>$
 </span></span></code></pre></div><p>The resulting file has its content deduplicated, compressed, encrypted and is self-verifying. No need to bundle external metadata or config files.</p><p>A non-encrypted version can be produced by passing the <code>-plaintext</code> option:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>$ plakar ptar -plaintext -o downloads.ptar ~/Downloads
 </span></span><span class=line><span class=cl>$
 </span></span></code></pre></div><hr><h3 id=browse-archive-contents-no-extraction-needed>Browse archive contents (no extraction needed)</h3><p>A <code>.ptar</code> can be browsed without extracting the actual data.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>$ plakar at downloads.ptar ls
-</span></span><span class=line><span class=cl>repository passphrase: 
-</span></span><span class=line><span class=cl>repository passphrase <span class=o>(</span>confirm<span class=o>)</span>: 
+</span></span><span class=line><span class=cl>repository passphrase:
+</span></span><span class=line><span class=cl>repository passphrase <span class=o>(</span>confirm<span class=o>)</span>:
 </span></span><span class=line><span class=cl>2025-06-24T00:04:01Z   3055ddc3     <span class=m>12</span> GB       34s /Users/gilles/Downloads
 </span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>$ plakar at test.ptar ls 3055ddc3:medias/          
-</span></span><span class=line><span class=cl>2025-05-03T19:36:29Z drwxr-xr-x   gilles    staff    <span class=m>736</span> B audio    
+</span></span><span class=line><span class=cl>$ plakar at test.ptar ls 3055ddc3:media/
+</span></span><span class=line><span class=cl>2025-05-03T19:36:29Z drwxr-xr-x   gilles    staff    <span class=m>736</span> B audio
 </span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>$ plakar at test.ptar ls 3055ddc3:medias/audio <span class=p>|</span> grep hiphop
+</span></span><span class=line><span class=cl>$ plakar at test.ptar ls 3055ddc3:media/audio <span class=p>|</span> grep hiphop
 </span></span><span class=line><span class=cl>2025-05-03T19:15:39Z -rw-r--r--   gilles    staff   4.6 MB hiphop1.mp3
 </span></span><span class=line><span class=cl>2025-05-03T19:18:35Z -rw-r--r--   gilles    staff   4.3 MB hiphop2.mp3
-</span></span><span class=line><span class=cl>$ 
+</span></span><span class=line><span class=cl>$
 </span></span></code></pre></div><p>This gives you a tree view of all files, snapshot info, timestamps, and version diffs — similar to <code>ls</code>, but scoped inside the archive.</p><p>Of course,
 you can also use the UI,
 providing you with a <strong>local</strong> web-based filesystem browser, preview, search and more:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>$ plakar at downloads.ptar ui
-</span></span><span class=line><span class=cl>repository passphrase: 
+</span></span><span class=line><span class=cl>repository passphrase:
 </span></span><span class=line><span class=cl>repository passphrase <span class=o>(</span>confirm<span class=o>)</span>:
 </span></span></code></pre></div><p><img src=/posts/2025-06-27/it-doesnt-make-sense-to-wrap-modern-data-in-a-1979-format-introducing-.ptar/ui.png alt></p><hr><h3 id=inspect-a-single-file>Inspect a single file</h3><p>Inspecting a single file is as simple as using <code>cat</code> on a specific snapshot:file,
 as shown below:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>$ plakar at downloads.ptar cat 3055ddc3:dragon.txt
-</span></span><span class=line><span class=cl>repository passphrase: 
+</span></span><span class=line><span class=cl>repository passphrase:
 </span></span><span class=line><span class=cl>repository passphrase <span class=o>(</span>confirm<span class=o>)</span>:
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>                   <span class=nv>___</span><span class=o>====</span>-_  _-<span class=o>====</span>___
@@ -253,14 +253,14 @@ as shown below:</p><div class=highlight><pre tabindex=0 class=chroma><code class
 </span></span><span class=line><span class=cl>   -###################<span class=se>\\</span>/  <span class=o>(</span>_<span class=o>)</span> <span class=se>\/</span><span class=c1>###################-</span>
 </span></span><span class=line><span class=cl>  _#/<span class=p>|</span><span class=c1>##########/\######(   &#34;/&#34; )######/\##########|\#_</span>
 </span></span><span class=line><span class=cl>  <span class=p>|</span>/ <span class=p>|</span><span class=c1>#/\#/\#/\/  \#/\##\  ! &#39; !  /##/\#/  \/\#/\#/\| \</span>
-</span></span><span class=line><span class=cl>  <span class=o>||</span>/  V  V <span class=s1>&#39;   V  \\#\##\  ~~~  /##/##/  V  &#39;</span>  V  V  <span class=se>\|</span>  
+</span></span><span class=line><span class=cl>  <span class=o>||</span>/  V  V <span class=s1>&#39;   V  \\#\##\  ~~~  /##/##/  V  &#39;</span>  V  V  <span class=se>\|</span>
 </span></span><span class=line><span class=cl>  <span class=o>||</span><span class=p>|</span> <span class=se>\ \|</span>  <span class=p>|</span> <span class=se>\|</span>  <span class=p>|</span>  <span class=se>\\</span><span class=c1>#\|     |/##/##/|  |/  | | / / |||</span>
 </span></span><span class=line><span class=cl>  <span class=o>||</span><span class=p>|</span>  <span class=p>|</span>_<span class=p>|</span>_<span class=p>|</span>___<span class=p>|</span>_<span class=p>|</span>___<span class=p>|</span>/##<span class=se>\_</span>__/##/##/<span class=p>|</span>_<span class=p>|</span>_<span class=p>|</span>__<span class=p>|</span>_<span class=p>|</span>_<span class=p>|</span>  <span class=o>||</span><span class=p>|</span>
 </span></span><span class=line><span class=cl>  <span class=o>||</span><span class=se>\ </span> .---.  .---.  /###/   <span class=se>\#</span><span class=c1>##\  .---.  .---.  /||</span>
 </span></span><span class=line><span class=cl>   <span class=se>\ </span><span class=p>|</span> <span class=p>|</span>   <span class=p>|</span> <span class=p>|</span>   <span class=p>|</span> <span class=p>|</span><span class=c1>###/     \###| |   | |   | | /</span>
 </span></span><span class=line><span class=cl>    <span class=se>\|</span> <span class=p>|</span>   <span class=p>|</span> <span class=p>|</span>   <span class=p>|</span> <span class=p>|</span><span class=c1>#/         \#| |   | |   | |/</span>
 </span></span><span class=line><span class=cl>     <span class=p>|</span>_<span class=p>|</span>   <span class=p>|</span>_<span class=p>|</span>   <span class=p>|</span>_<span class=p>|</span>             <span class=p>|</span>_<span class=p>|</span>   <span class=p>|</span>_<span class=p>|</span>   <span class=p>|</span>_<span class=p>|</span>
-</span></span></code></pre></div><p>Useful for quickly validating what’s in a backup without extracting or restoring the whole archive.</p><hr><h3 id=restore-files-from-archive>Restore files from archive</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>$ plakar at test.ptar restore -to ./recovery /etc/nginx/nginx.conf 
+</span></span></code></pre></div><p>Useful for quickly validating what’s in a backup without extracting or restoring the whole archive.</p><hr><h3 id=restore-files-from-archive>Restore files from archive</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>$ plakar at test.ptar restore -to ./recovery /etc/nginx/nginx.conf
 </span></span></code></pre></div><p>You can restore full trees, subdirectories or single files.</p><hr><h3 id=sync-into-a-regular-kloset>Sync into a regular kloset</h3><p><code>.ptar</code> can also be used as a mean to import data into a regular kloset:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>$ plakar at /var/backups sync from test.ptar
 </span></span></code></pre></div><p>This makes it easy to sync or relocate backups between machines, zones, or storage tiers:
 you can export some or all snapshots to a <code>.ptar</code> archive,
