@@ -24,17 +24,17 @@ Please note that Plakar currently supports only a subset of the cloud services s
 &lt;li>&lt;code>tls_no_verify&lt;/code>: If set to yes, the client will not verify the server certificate in tls mode.&lt;/li>
 &lt;/ul>
 &lt;h2 id="example-usage">Example Usage&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># configure an IMAP source connector&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ plakar &lt;span class="nb">source&lt;/span> add myIMAPsrc imap://imap.mydomain.com:143 &lt;span class="nv">username&lt;/span>&lt;span class="o">=&lt;/span>myuser &lt;span class="nv">password&lt;/span>&lt;span class="o">=&lt;/span>mypassword &lt;span class="nv">tls&lt;/span>&lt;span class="o">=&lt;/span>starttls
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># backup the mailbox&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ plakar backup @myIMAPsrc
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># configure an IMAP destination connector&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ plakar destination add myIMAPdst imap://imap.alsomydomain.com:143 &lt;span class="nv">username&lt;/span>&lt;span class="o">=&lt;/span>alsomyuser &lt;span class="nv">password&lt;/span>&lt;span class="o">=&lt;/span>alsomypassword &lt;span class="nv">tls&lt;/span>&lt;span class="o">=&lt;/span>starttls
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># restore the snapshot to the destination&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ plakar restore -to @myIMAPdst &amp;lt;snapid&amp;gt;
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="ln"> 1&lt;/span>&lt;span class="cl">&lt;span class="c1"># configure an IMAP source connector&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 2&lt;/span>&lt;span class="cl">$ plakar &lt;span class="nb">source&lt;/span> add myIMAPsrc imap://imap.mydomain.com:143 &lt;span class="nv">username&lt;/span>&lt;span class="o">=&lt;/span>myuser &lt;span class="nv">password&lt;/span>&lt;span class="o">=&lt;/span>mypassword &lt;span class="nv">tls&lt;/span>&lt;span class="o">=&lt;/span>starttls
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 3&lt;/span>&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 4&lt;/span>&lt;span class="cl">&lt;span class="c1"># backup the mailbox&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 5&lt;/span>&lt;span class="cl">$ plakar backup @myIMAPsrc
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 6&lt;/span>&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 7&lt;/span>&lt;span class="cl">&lt;span class="c1"># configure an IMAP destination connector&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 8&lt;/span>&lt;span class="cl">$ plakar destination add myIMAPdst imap://imap.alsomydomain.com:143 &lt;span class="nv">username&lt;/span>&lt;span class="o">=&lt;/span>alsomyuser &lt;span class="nv">password&lt;/span>&lt;span class="o">=&lt;/span>alsomypassword &lt;span class="nv">tls&lt;/span>&lt;span class="o">=&lt;/span>starttls
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 9&lt;/span>&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">10&lt;/span>&lt;span class="cl">&lt;span class="c1"># restore the snapshot to the destination&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">11&lt;/span>&lt;span class="cl">$ plakar restore -to @myIMAPdst &amp;lt;snapid&amp;gt;
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="questions-feedback-and-support">Questions, Feedback, and Support&lt;/h2>
 &lt;p>Found a bug? &lt;a href="https://github.com/PlakarKorp/plakar/issues/new?title=Bug%20report%20on%20Filesystem%20integration&amp;amp;body=Please%20provide%20a%20detailed%20description%20of%20the%20issue.%0A%0A**Plakar%20version**">Open an issue on GitHub&lt;/a>&lt;/p></description></item><item><title>Notion Integration documentation</title><link>https://www.plakar.io/docs/main/integrations/notion/</link><pubDate>Mon, 07 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/main/integrations/notion/</guid><description>&lt;h2 id="overview">Overview&lt;/h2>
 &lt;blockquote>
@@ -48,8 +48,8 @@ Please note that Plakar currently supports only a subset of the cloud services s
 → See &lt;a href="https://developers.notion.com/docs/getting-started#step-1-create-an-integration">Notion’s developer guide&lt;/a> for how to create and share integrations&lt;/li>
 &lt;/ul>
 &lt;h2 id="example-usage">Example Usage&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">$ plakar at /var/backups create
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ plakar at /var/backups backup notion:// &lt;span class="nv">token&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nv">$NOTION_API_TOKEN&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">$ plakar at /var/backups create
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl">$ plakar at /var/backups backup notion:// &lt;span class="nv">token&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nv">$NOTION_API_TOKEN&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>To create the Kloset repository at &lt;code>/var/backups&lt;/code> and back up your Notion content, assuming the following env variable &lt;code>NOTION_API_TOKEN&lt;/code> contained your shared API token, you can use the following command:&lt;/p></description></item><item><title>Technical deep dive into .ptar: replacing .tgz for petabyte-scale S3 archives</title><link>https://www.plakar.io/posts/2025-06-30/technical-deep-dive-into-.ptar-replacing-.tgz-for-petabyte-scale-s3-archives/</link><pubDate>Mon, 30 Jun 2025 13:00:00 +0100</pubDate><guid>https://www.plakar.io/posts/2025-06-30/technical-deep-dive-into-.ptar-replacing-.tgz-for-petabyte-scale-s3-archives/</guid><description>.tgz made sense in 1994, but today we need archiving that supports deduplication, encryption, S3, and zero trust. here’s why we built .ptar.</description></item><item><title>It doesn't make sense to wrap modern data in a 1979 format, introducing .ptar</title><link>https://www.plakar.io/posts/2025-06-27/it-doesnt-make-sense-to-wrap-modern-data-in-a-1979-format-introducing-.ptar/</link><pubDate>Fri, 27 Jun 2025 12:00:00 +0100</pubDate><guid>https://www.plakar.io/posts/2025-06-27/it-doesnt-make-sense-to-wrap-modern-data-in-a-1979-format-introducing-.ptar/</guid><description>.ptar is our own archive format, a self-contained kloset, a container for your data. You end up with a standalone file that provides deduplication, compression, encryption, with all of the fancy features of a kloset store !</description></item><item><title>Plakar v1.0.2 was released: mostly S3 improvements !</title><link>https://www.plakar.io/posts/2025-06-03/plakar-v1.0.2-was-released-mostly-s3-improvements/</link><pubDate>Tue, 03 Jun 2025 08:00:00 +0100</pubDate><guid>https://www.plakar.io/posts/2025-06-03/plakar-v1.0.2-was-released-mostly-s3-improvements/</guid><description>Plakar v1.0.2 adds an automatic security check for new critical releases. It also fixes relative-path resolution when using an agent, plus delivers dramatic S3 performance and memory improvements for faster, more reliable backups.</description></item><item><title>Filesystem</title><link>https://www.plakar.io/integrations/fs/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/fs/</guid><description>&lt;h1 id="filesystem-integration">Filesystem Integration&lt;/h1>
 &lt;h2 id="capabilities">Capabilities&lt;/h2>
 &lt;ul>
@@ -67,7 +67,7 @@ Please note that Plakar currently supports only a subset of the cloud services s
 &lt;p>The &lt;strong>FTP integration&lt;/strong> does not require any particular configuration.&lt;/p>
 &lt;h2 id="example-usage">Example Usage&lt;/h2>
 &lt;p>To back up the path &lt;code>/pub/PlakarKorp&lt;/code> from FTP server located at &lt;code>example.org&lt;/code>, you can use the following command:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">$ plakar at /var/backups backup ftp://example.org/pub/PlakarKorp
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">$ plakar at /var/backups backup ftp://example.org/pub/PlakarKorp
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>To restore data to authentication-less FTP server located at &lt;code>example.org&lt;/code>, use the following command:&lt;/p></description></item><item><title>S3</title><link>https://www.plakar.io/integrations/s3/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/s3/</guid><description>&lt;ul>
 &lt;li>source connector&lt;/li>
 &lt;li>destination connector&lt;/li>
@@ -119,7 +119,7 @@ Please note that Plakar currently supports only a subset of the cloud services s
 &lt;p>The &lt;strong>Stdio integration&lt;/strong> does not require any special configuration.&lt;/p>
 &lt;h2 id="example-usage">Example Usage&lt;/h2>
 &lt;p>To back up, you can use the following commands which will copy the content of the stdio stream to a file named &lt;code>passwd&lt;/code> within the snapshot:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">$ plakar at /var/backups backup tar:foobar.tar.gz
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">$ plakar at /var/backups backup tar:foobar.tar.gz
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Restore can be done to a file:&lt;/p></description></item><item><title>Legal Notice</title><link>https://www.plakar.io/legal-notice/</link><pubDate>Mon, 05 May 2025 10:00:00 +0000</pubDate><guid>https://www.plakar.io/legal-notice/</guid><description>&lt;p>Last update on: 06/05/2025&lt;/p>
 &lt;h2 id="publisher">Publisher&lt;/h2>
 &lt;p>&lt;strong>Plakar&lt;/strong>&lt;/p>

@@ -11,16 +11,16 @@
 &lt;li>&lt;code>tls_no_verify&lt;/code>: If set to yes, the client will not verify the server certificate in tls mode.&lt;/li>
 &lt;/ul>
 &lt;h2 id="example-usage">Example Usage&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># configure an IMAP source connector&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ plakar &lt;span class="nb">source&lt;/span> add myIMAPsrc imap://imap.mydomain.com:143 &lt;span class="nv">username&lt;/span>&lt;span class="o">=&lt;/span>myuser &lt;span class="nv">password&lt;/span>&lt;span class="o">=&lt;/span>mypassword &lt;span class="nv">tls&lt;/span>&lt;span class="o">=&lt;/span>starttls
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># backup the mailbox&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ plakar backup @myIMAPsrc
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># configure an IMAP destination connector&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ plakar destination add myIMAPdst imap://imap.alsomydomain.com:143 &lt;span class="nv">username&lt;/span>&lt;span class="o">=&lt;/span>alsomyuser &lt;span class="nv">password&lt;/span>&lt;span class="o">=&lt;/span>alsomypassword &lt;span class="nv">tls&lt;/span>&lt;span class="o">=&lt;/span>starttls
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># restore the snapshot to the destination&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ plakar restore -to @myIMAPdst &amp;lt;snapid&amp;gt;
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="ln"> 1&lt;/span>&lt;span class="cl">&lt;span class="c1"># configure an IMAP source connector&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 2&lt;/span>&lt;span class="cl">$ plakar &lt;span class="nb">source&lt;/span> add myIMAPsrc imap://imap.mydomain.com:143 &lt;span class="nv">username&lt;/span>&lt;span class="o">=&lt;/span>myuser &lt;span class="nv">password&lt;/span>&lt;span class="o">=&lt;/span>mypassword &lt;span class="nv">tls&lt;/span>&lt;span class="o">=&lt;/span>starttls
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 3&lt;/span>&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 4&lt;/span>&lt;span class="cl">&lt;span class="c1"># backup the mailbox&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 5&lt;/span>&lt;span class="cl">$ plakar backup @myIMAPsrc
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 6&lt;/span>&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 7&lt;/span>&lt;span class="cl">&lt;span class="c1"># configure an IMAP destination connector&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 8&lt;/span>&lt;span class="cl">$ plakar destination add myIMAPdst imap://imap.alsomydomain.com:143 &lt;span class="nv">username&lt;/span>&lt;span class="o">=&lt;/span>alsomyuser &lt;span class="nv">password&lt;/span>&lt;span class="o">=&lt;/span>alsomypassword &lt;span class="nv">tls&lt;/span>&lt;span class="o">=&lt;/span>starttls
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln"> 9&lt;/span>&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">10&lt;/span>&lt;span class="cl">&lt;span class="c1"># restore the snapshot to the destination&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">11&lt;/span>&lt;span class="cl">$ plakar restore -to @myIMAPdst &amp;lt;snapid&amp;gt;
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="questions-feedback-and-support">Questions, Feedback, and Support&lt;/h2>
 &lt;p>Found a bug? &lt;a href="https://github.com/PlakarKorp/plakar/issues/new?title=Bug%20report%20on%20Filesystem%20integration&amp;amp;body=Please%20provide%20a%20detailed%20description%20of%20the%20issue.%0A%0A**Plakar%20version**">Open an issue on GitHub&lt;/a>&lt;/p></description></item></channel></rss>

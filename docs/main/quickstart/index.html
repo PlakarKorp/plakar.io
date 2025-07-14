@@ -183,14 +183,14 @@ ml-4 pl-2 border-l border-neutral-300">version</a></div></div><div class=my-1><d
 ml-4 pl-2 border-l border-neutral-300">Notion Integration documentation</a></div></div><a href=/docs/main/community/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200">Community</a></div></nav></div></aside><div class="flex flex-row w-full"><div :class="isSmallScreen ? (sidebarOpened ? 'ml-64' : 'ml-0') : 'ml-64'" class="relative max-w-[1280px] mx-auto w-full"><section class=section-light-1><div class="content flex flex-col-reverse items-start"><article class="max-w-full flex-1 flex flex-col gap-4 bg-neutral-50 overflow-hidden"><div class="primary-box pointer-events-none"></div><div class="article-header px-8 flex flex-col gap-4 pt-8 max-w-[50%]"><div class="flex items-center gap-2 text-sm font-space-grotesk"><a href=/docs/ class="flex items-center text-primary-500 hover:text-primary-600 transition-colors"><div class="w-4 h-4"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M21 20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V9.48907C3 9.18048 3.14247 8.88917 3.38606 8.69972L11.3861 2.47749c.361099999999999-.28086.8667-.28086 1.2278.0l8 6.22223C20.8575 8.88917 21 9.18048 21 9.48907V20zM11 13v6h2V13H11z"/></svg></div></a><img src=/img/ri/corner-down-right-line.svg alt=">" class="w-4 h-4 text-neutral-400">
 <a href=/docs/main/ class="text-primary-500 hover:text-primary-600 transition-colors">Main
 </a><img src=/img/ri/corner-down-right-line.svg alt=">" class="w-4 h-4 text-neutral-400">
-<span class="text-neutral-900 font-medium">Quickstart</span></div><div class="inline-flex w-max px-2 py-1 rounded-md text-xs font-space-grotesk text-neutral-900 border border-neutral-900"><span>Version developers branch</span></div><h1 class="font-prose font-bold leading-tight ~text-3xl/4xl">Quickstart</h1></div><div class="article-wrapper relative"><div class="relative docs-content font-prose prose text-base w-full max-w-full"><p>This article will guide you through the creation of your first backup with plakar.</p><h2 id=installing-plakar>Installing plakar</h2><blockquote><p>Install <strong>plakar</strong>:</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ go install github.com/PlakarKorp/plakar/cmd/plakar@latest
-</span></span></code></pre></div><blockquote><p>To verify the installation was successful, run:</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ plakar version
-</span></span><span class=line><span class=cl>v1.0.1-beta.13
+<span class="text-neutral-900 font-medium">Quickstart</span></div><div class="inline-flex w-max px-2 py-1 rounded-md text-xs font-space-grotesk text-neutral-900 border border-neutral-900"><span>Version developers branch</span></div><h1 class="font-prose font-bold leading-tight ~text-3xl/4xl">Quickstart</h1></div><div class="article-wrapper relative"><div class="relative docs-content font-prose prose text-base w-full max-w-full"><p>This article will guide you through the creation of your first backup with plakar.</p><h2 id=installing-plakar>Installing plakar</h2><blockquote><p>Install <strong>plakar</strong>:</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl>$ go install github.com/PlakarKorp/plakar/cmd/plakar@latest
+</span></span></code></pre></div><blockquote><p>To verify the installation was successful, run:</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl>$ plakar version
+</span></span><span class=line><span class=ln>2</span><span class=cl>v1.0.1-beta.13
 </span></span></code></pre></div><details open class="box cstyle notices info expand" style=--VARIABLE-BOX-color:var(--BOX-INFO-color)><summary class=box-label><i class="expander-icon fa-fw fas fa-chevron-right"></i>
 <img src=/img/ri/information-line.svg alt class=notice-icon width=20 height=20>
-Requisites</summary><div class=box-content><p>At the time of this writing, we do not yet provide packages and <strong>plakar</strong> has to be compiled from source, which requires the Go toolchain to be installed on your system.</p><p>To install the Go toolchain, please refer to the <a href=https://golang.org/doc/install>official documentation</a> or run the following commands:</p><ul><li><strong>MacOS</strong>: <code>brew install go</code></li><li><strong>Debian/Ubuntu</strong>: <code>sudo apt-get update && sudo apt-get install -y ca-certificates golang</code></li><li><strong>OpenBSD</strong>: <code>doas pkg_add go</code></li></ul><p>At the time of writing this document, Plakar needs Golang 1.23.3 or higher.</p><p>By default, <em>plakar</em> is installed in <em>~/go/bin</em>. Run <code>export PATH=$PATH:~/go/bin</code> to add it to your PATH.</p></div></details><h2 id=running-the-local-agent>Running the local agent</h2><blockquote><p>Start the agent:</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ plakar agent
-</span></span><span class=line><span class=cl>agent started with <span class=nv>pid</span><span class=o>=</span><span class=m>12539</span>
-</span></span></code></pre></div><blockquote><p>The agent can be stopped with the following command:</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ plakar agent -stop
+Requisites</summary><div class=box-content><p>At the time of this writing, we do not yet provide packages and <strong>plakar</strong> has to be compiled from source, which requires the Go toolchain to be installed on your system.</p><p>To install the Go toolchain, please refer to the <a href=https://golang.org/doc/install>official documentation</a> or run the following commands:</p><ul><li><strong>MacOS</strong>: <code>brew install go</code></li><li><strong>Debian/Ubuntu</strong>: <code>sudo apt-get update && sudo apt-get install -y ca-certificates golang</code></li><li><strong>OpenBSD</strong>: <code>doas pkg_add go</code></li></ul><p>At the time of writing this document, Plakar needs Golang 1.23.3 or higher.</p><p>By default, <em>plakar</em> is installed in <em>~/go/bin</em>. Run <code>export PATH=$PATH:~/go/bin</code> to add it to your PATH.</p></div></details><h2 id=running-the-local-agent>Running the local agent</h2><blockquote><p>Start the agent:</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl>$ plakar agent
+</span></span><span class=line><span class=ln>2</span><span class=cl>agent started with <span class=nv>pid</span><span class=o>=</span><span class=m>12539</span>
+</span></span></code></pre></div><blockquote><p>The agent can be stopped with the following command:</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl>$ plakar agent -stop
 </span></span></code></pre></div><p>To work efficiently,
 <strong>plakar</strong> requires each user to run a local agent that will provide caching among other things.
 If the agent is not running,
@@ -201,9 +201,9 @@ a fancy word to designate storage space dedicated to hold these chunks.</p><p>A 
 a mountpoint to your NAS,
 a remote directory over SFTP,
 a bucket on an S3 object store,
-or any storage we provide (or you write) a connector for.</p><blockquote><p>Our first repository will be a directory at <code>/var/backups</code>:</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ plakar at /var/backups create
-</span></span><span class=line><span class=cl>repository passphrase: 
-</span></span><span class=line><span class=cl>repository passphrase <span class=o>(</span>confirm<span class=o>)</span>:
+or any storage we provide (or you write) a connector for.</p><blockquote><p>Our first repository will be a directory at <code>/var/backups</code>:</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl>$ plakar at /var/backups create
+</span></span><span class=line><span class=ln>2</span><span class=cl>repository passphrase: 
+</span></span><span class=line><span class=ln>3</span><span class=cl>repository passphrase <span class=o>(</span>confirm<span class=o>)</span>:
 </span></span></code></pre></div><details open class="box cstyle notices warning expand" style=--VARIABLE-BOX-color:var(--BOX-WARNING-color)><summary class=box-label><i class="expander-icon fa-fw fas fa-chevron-right"></i>
 <img src=/img/ri/alert-line.svg alt class=notice-icon width=20 height=20>
 Your passphrase is important</summary><div class=box-content><p>Be extra careful when choosing the passphrase:
@@ -212,102 +212,102 @@ People with both access to the repository and knowledge of the passphrase can re
 it is not stored anywhere and can&rsquo;t be recovered in case of loss.
 A lost passphrase means the data within the repository can no longer be recovered.</p></div></details><blockquote><p>It is also possible to create unencrypted repositories,
 should your backups remain local,
-in which case the <code>-no-encryption</code> option has to be passed at creation:</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ plakar at /var/backups create -no-encryption
+in which case the <code>-no-encryption</code> option has to be passed at creation:</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl>$ plakar at /var/backups create -no-encryption
 </span></span></code></pre></div><p>Note that once a repository is created,
 it is no longer possible to change its configuration,
-such changes require creating a new repository and performing a synchronization between old and new repository.</p><h2 id=creating-your-first-local-backup>Creating your first local backup</h2><blockquote><p>Once the repository is created, we can do the first backup to it:</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ plakar at /var/backups backup /private/etc
-</span></span><span class=line><span class=cl>9abc3294: OK ✓ /private/etc/ftpusers
-</span></span><span class=line><span class=cl>9abc3294: OK ✓ /private/etc/asl/com.apple.iokit.power
-</span></span><span class=line><span class=cl>9abc3294: OK ✓ /private/etc/pam.d/screensaver_new_ctk
-</span></span><span class=line><span class=cl><span class=o>[</span>...<span class=o>]</span>
-</span></span><span class=line><span class=cl>9abc3294: OK ✓ /private/etc/apache2
-</span></span><span class=line><span class=cl>9abc3294: OK ✓ /private/etc
-</span></span><span class=line><span class=cl>9abc3294: OK ✓ /private
-</span></span><span class=line><span class=cl>9abc3294: OK ✓ /
-</span></span><span class=line><span class=cl>backup: created unsigned snapshot 9abc3294 of size 3.1 MB in 72.55875ms
-</span></span></code></pre></div><blockquote><p>You can verify that it is properly recorded:</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ plakar at /var/backups ls
-</span></span><span class=line><span class=cl>2025-02-19T21:38:16Z   9abc3294    3.1 MB      0s   /private/etc
-</span></span></code></pre></div><blockquote><p>Verify the integrity of its content:</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ plakar at /var/backups check 9abc3294
-</span></span><span class=line><span class=cl>9abc3294: ✓ /private/etc/afpovertcp.cfg
-</span></span><span class=line><span class=cl>9abc3294: ✓ /private/etc/apache2/extra/httpd-autoindex.conf
-</span></span><span class=line><span class=cl>9abc3294: ✓ /private/etc/apache2/extra/httpd-dav.conf
-</span></span><span class=line><span class=cl><span class=o>[</span>...<span class=o>]</span>
-</span></span><span class=line><span class=cl>9abc3294: ✓ /private/etc/xtab
-</span></span><span class=line><span class=cl>9abc3294: ✓ /private/etc/zshrc
-</span></span><span class=line><span class=cl>9abc3294: ✓ /private/etc/zshrc_Apple_Terminal
-</span></span><span class=line><span class=cl>9abc3294: ✓ /private/etc
-</span></span><span class=line><span class=cl>check: verification of 9abc3294:/private/etc completed successfully
-</span></span></code></pre></div><blockquote><p>And restore it to a local directory:</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ plakar at /var/backups restore -to /tmp/restore 9abc3294
-</span></span><span class=line><span class=cl>9abc3294: OK ✓ /private/etc/afpovertcp.cfg
-</span></span><span class=line><span class=cl>9abc3294: OK ✓ /private/etc/apache2/extra/httpd-autoindex.conf
-</span></span><span class=line><span class=cl>9abc3294: OK ✓ /private/etc/apache2/extra/httpd-dav.conf
-</span></span><span class=line><span class=cl><span class=o>[</span>...<span class=o>]</span>
-</span></span><span class=line><span class=cl>9abc3294: OK ✓ /private/etc/xtab
-</span></span><span class=line><span class=cl>9abc3294: OK ✓ /private/etc/zprofile
-</span></span><span class=line><span class=cl>9abc3294: OK ✓ /private/etc/zshrc
-</span></span><span class=line><span class=cl>9abc3294: OK ✓ /private/etc/zshrc_Apple_Terminal
-</span></span><span class=line><span class=cl>restore: restoration of 9abc3294:/private/etc at /tmp/restore completed successfully
-</span></span><span class=line><span class=cl>$ ls -l /tmp/restore
-</span></span><span class=line><span class=cl>total <span class=m>1784</span>
-</span></span><span class=line><span class=cl>-rw-r--r--@  <span class=m>1</span> gilles  wheel     <span class=m>515</span> Feb <span class=m>19</span> 22:47 afpovertcp.cfg
-</span></span><span class=line><span class=cl>drwxr-xr-x@  <span class=m>9</span> gilles  wheel     <span class=m>288</span> Feb <span class=m>19</span> 22:47 apache2
-</span></span><span class=line><span class=cl>drwxr-xr-x@ <span class=m>16</span> gilles  wheel     <span class=m>512</span> Feb <span class=m>19</span> 22:47 asl
-</span></span><span class=line><span class=cl><span class=o>[</span>...<span class=o>]</span>
-</span></span><span class=line><span class=cl>-rw-r--r--@  <span class=m>1</span> gilles  wheel       <span class=m>0</span> Feb <span class=m>19</span> 22:47 xtab
-</span></span><span class=line><span class=cl>-r--r--r--@  <span class=m>1</span> gilles  wheel     <span class=m>255</span> Feb <span class=m>19</span> 22:47 zprofile
-</span></span><span class=line><span class=cl>-r--r--r--@  <span class=m>1</span> gilles  wheel    <span class=m>3094</span> Feb <span class=m>19</span> 22:47 zshrc
-</span></span><span class=line><span class=cl>-rw-r--r--@  <span class=m>1</span> gilles  wheel    <span class=m>9335</span> Feb <span class=m>19</span> 22:47 zshrc_Apple_Terminal
-</span></span></code></pre></div><h2 id=viewing-the-backup-with-the-web-interface>Viewing the backup with the web interface</h2><blockquote><p>Plakar provides a web interface to view the backups and their content. To start the web interface, run:</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ plakar at /var/backups ui
+such changes require creating a new repository and performing a synchronization between old and new repository.</p><h2 id=creating-your-first-local-backup>Creating your first local backup</h2><blockquote><p>Once the repository is created, we can do the first backup to it:</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln> 1</span><span class=cl>$ plakar at /var/backups backup /private/etc
+</span></span><span class=line><span class=ln> 2</span><span class=cl>9abc3294: OK ✓ /private/etc/ftpusers
+</span></span><span class=line><span class=ln> 3</span><span class=cl>9abc3294: OK ✓ /private/etc/asl/com.apple.iokit.power
+</span></span><span class=line><span class=ln> 4</span><span class=cl>9abc3294: OK ✓ /private/etc/pam.d/screensaver_new_ctk
+</span></span><span class=line><span class=ln> 5</span><span class=cl><span class=o>[</span>...<span class=o>]</span>
+</span></span><span class=line><span class=ln> 6</span><span class=cl>9abc3294: OK ✓ /private/etc/apache2
+</span></span><span class=line><span class=ln> 7</span><span class=cl>9abc3294: OK ✓ /private/etc
+</span></span><span class=line><span class=ln> 8</span><span class=cl>9abc3294: OK ✓ /private
+</span></span><span class=line><span class=ln> 9</span><span class=cl>9abc3294: OK ✓ /
+</span></span><span class=line><span class=ln>10</span><span class=cl>backup: created unsigned snapshot 9abc3294 of size 3.1 MB in 72.55875ms
+</span></span></code></pre></div><blockquote><p>You can verify that it is properly recorded:</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl>$ plakar at /var/backups ls
+</span></span><span class=line><span class=ln>2</span><span class=cl>2025-02-19T21:38:16Z   9abc3294    3.1 MB      0s   /private/etc
+</span></span></code></pre></div><blockquote><p>Verify the integrity of its content:</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln> 1</span><span class=cl>$ plakar at /var/backups check 9abc3294
+</span></span><span class=line><span class=ln> 2</span><span class=cl>9abc3294: ✓ /private/etc/afpovertcp.cfg
+</span></span><span class=line><span class=ln> 3</span><span class=cl>9abc3294: ✓ /private/etc/apache2/extra/httpd-autoindex.conf
+</span></span><span class=line><span class=ln> 4</span><span class=cl>9abc3294: ✓ /private/etc/apache2/extra/httpd-dav.conf
+</span></span><span class=line><span class=ln> 5</span><span class=cl><span class=o>[</span>...<span class=o>]</span>
+</span></span><span class=line><span class=ln> 6</span><span class=cl>9abc3294: ✓ /private/etc/xtab
+</span></span><span class=line><span class=ln> 7</span><span class=cl>9abc3294: ✓ /private/etc/zshrc
+</span></span><span class=line><span class=ln> 8</span><span class=cl>9abc3294: ✓ /private/etc/zshrc_Apple_Terminal
+</span></span><span class=line><span class=ln> 9</span><span class=cl>9abc3294: ✓ /private/etc
+</span></span><span class=line><span class=ln>10</span><span class=cl>check: verification of 9abc3294:/private/etc completed successfully
+</span></span></code></pre></div><blockquote><p>And restore it to a local directory:</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln> 1</span><span class=cl>$ plakar at /var/backups restore -to /tmp/restore 9abc3294
+</span></span><span class=line><span class=ln> 2</span><span class=cl>9abc3294: OK ✓ /private/etc/afpovertcp.cfg
+</span></span><span class=line><span class=ln> 3</span><span class=cl>9abc3294: OK ✓ /private/etc/apache2/extra/httpd-autoindex.conf
+</span></span><span class=line><span class=ln> 4</span><span class=cl>9abc3294: OK ✓ /private/etc/apache2/extra/httpd-dav.conf
+</span></span><span class=line><span class=ln> 5</span><span class=cl><span class=o>[</span>...<span class=o>]</span>
+</span></span><span class=line><span class=ln> 6</span><span class=cl>9abc3294: OK ✓ /private/etc/xtab
+</span></span><span class=line><span class=ln> 7</span><span class=cl>9abc3294: OK ✓ /private/etc/zprofile
+</span></span><span class=line><span class=ln> 8</span><span class=cl>9abc3294: OK ✓ /private/etc/zshrc
+</span></span><span class=line><span class=ln> 9</span><span class=cl>9abc3294: OK ✓ /private/etc/zshrc_Apple_Terminal
+</span></span><span class=line><span class=ln>10</span><span class=cl>restore: restoration of 9abc3294:/private/etc at /tmp/restore completed successfully
+</span></span><span class=line><span class=ln>11</span><span class=cl>$ ls -l /tmp/restore
+</span></span><span class=line><span class=ln>12</span><span class=cl>total <span class=m>1784</span>
+</span></span><span class=line><span class=ln>13</span><span class=cl>-rw-r--r--@  <span class=m>1</span> gilles  wheel     <span class=m>515</span> Feb <span class=m>19</span> 22:47 afpovertcp.cfg
+</span></span><span class=line><span class=ln>14</span><span class=cl>drwxr-xr-x@  <span class=m>9</span> gilles  wheel     <span class=m>288</span> Feb <span class=m>19</span> 22:47 apache2
+</span></span><span class=line><span class=ln>15</span><span class=cl>drwxr-xr-x@ <span class=m>16</span> gilles  wheel     <span class=m>512</span> Feb <span class=m>19</span> 22:47 asl
+</span></span><span class=line><span class=ln>16</span><span class=cl><span class=o>[</span>...<span class=o>]</span>
+</span></span><span class=line><span class=ln>17</span><span class=cl>-rw-r--r--@  <span class=m>1</span> gilles  wheel       <span class=m>0</span> Feb <span class=m>19</span> 22:47 xtab
+</span></span><span class=line><span class=ln>18</span><span class=cl>-r--r--r--@  <span class=m>1</span> gilles  wheel     <span class=m>255</span> Feb <span class=m>19</span> 22:47 zprofile
+</span></span><span class=line><span class=ln>19</span><span class=cl>-r--r--r--@  <span class=m>1</span> gilles  wheel    <span class=m>3094</span> Feb <span class=m>19</span> 22:47 zshrc
+</span></span><span class=line><span class=ln>20</span><span class=cl>-rw-r--r--@  <span class=m>1</span> gilles  wheel    <span class=m>9335</span> Feb <span class=m>19</span> 22:47 zshrc_Apple_Terminal
+</span></span></code></pre></div><h2 id=viewing-the-backup-with-the-web-interface>Viewing the backup with the web interface</h2><blockquote><p>Plakar provides a web interface to view the backups and their content. To start the web interface, run:</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl>$ plakar at /var/backups ui
 </span></span></code></pre></div><p>Your default browser will open a new tab. You can navigate through the snapshots, view the files, and restore them.</p><p><img src=/docs/main/quickstart/images/ui-light.png alt="Web UI, light mode">
 <img src=/docs/main/quickstart/images/ui-dark.png alt="Web UI, dark mode"></p><h2 id=digression-one-copy-is-not-enough>Digression: one copy is not enough</h2><p>You&rsquo;ve completed a backup, which is great. However, if you&rsquo;ll allow me, I&rsquo;d like to digress for a moment:</p><details open class="box cstyle notices note expand" style=--VARIABLE-BOX-color:var(--BOX-NOTE-color)><summary class=box-label><i class="expander-icon fa-fw fas fa-chevron-right"></i>
 <img src=/img/ri/error-warning-line.svg alt class=notice-icon width=20 height=20>
 Everything fail</summary><div class=box-content><p>Literature and empirical studies suggest that the annual probability of data loss at a single site—especially when considering factors like hardware failures, human error, and environmental risks—is typically in the low single-digit percentages. For example, a seminal study by Pinheiro, Weber, and Barroso (2007) titled <a href=https://static.googleusercontent.com/media/research.google.com/en//archive/disk_failures.pdf>&ldquo;Failure Trends in a Large Disk Drive Population&rdquo;</a> found that hard drive failure rates generally fall in the range of 2% to 4% per year. In practice, when additional risks beyond basic hardware failure (such as accidental deletion or other operational issues) are factored in, many practitioners adopt a conservative estimate of around 5% per year for a single site.</p></div></details><p>A local backup, as we just did, is helpful in case of accidental removal of the original data&mldr; but not so much if the storage is entirely lost.</p><p>As explained in the page <a href=/docs/probabilities/>One repository is not enough</a>, the probability of losing data is as follows:</p><ul><li>For a single set of data: 5% per year (1 in 20 chance)</li><li>For two copies at distinct sites: 0.00069% per year (1 in 145,000 chance)</li><li>For three copies at distinct sites: 0.0000001% per year (1 in a billion chance)</li></ul><p>To reduce the risk of data loss, it is highly recommended to create multiple copies of your backups across different locations.</p><h2 id=creating-a-second-copy-over-sftp>Creating a second copy over SFTP</h2><p>We now have a local repository with a copy of our backups, but it is done on the same machine: <strong>we&rsquo;re currently at 5% chances of losing data this year if the drive dies</strong>.</p><p>Plakar has been designed to make it easy to synchronize repositories across multiple locations. Let&rsquo;s create another repository on my remote NAS over SFTP and synchronize it with the local one: it should not take more than a couple of minutes.</p><details open class="box cstyle notices grey expand" style=--VARIABLE-BOX-color:var(--BOX-GREY-color)><summary class=box-label><i class="expander-icon fa-fw fas fa-chevron-right"></i>
 <i class=circle-question></i>
-What is SFTP?</summary><div class=box-content><p>SFTP is the Secure File Transfer Protocol that comes with OpenSSH.</p></div></details><blockquote><p>This can be done by creating a new repository there, with its own passphrase:</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ plakar at sftp://gilles@nas.plakar.io/var/backups create
-</span></span><span class=line><span class=cl>repository passphrase: 
-</span></span><span class=line><span class=cl>repository passphrase <span class=o>(</span>confirm<span class=o>)</span>:
-</span></span></code></pre></div><p>We could simply do a new backup to it, but this might produce different snapshots as data may have changed since the first backup.</p><p>Instead, we can perform a repository synchronization.</p><blockquote><p>A repository synchronization ensures that backups are transferred from a repository to another, using the recorded data,and performing necessary decryption and encryption to produce a similar copy:</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ plakar at /var/backups sync to sftp://gilles@nas.plakar.io/var/backups
-</span></span><span class=line><span class=cl>peer repository passphrase: 
-</span></span><span class=line><span class=cl>peer repository passphrase <span class=o>(</span>confirm<span class=o>)</span>:
-</span></span><span class=line><span class=cl>sync: synchronized <span class=m>1</span> snapshot
-</span></span><span class=line><span class=cl>info: sync: synchronization from /var/backups to sftp://gilles@nas.plakar.io/var/backups completed: <span class=m>1</span> snapshots synchronized
-</span></span><span class=line><span class=cl>$ plakar at sftp://gilles@nas.plakar.io/var/backups ls
-</span></span><span class=line><span class=cl>2025-02-19T21:38:16Z   9abc3294    3.1 MB      0s   /private/etc
-</span></span></code></pre></div><blockquote><p>We can verify integrity of the snapshot on the second repository:</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ plakar at sftp://gilles@nas.plakar.io/var/backups check 9abc3294
-</span></span><span class=line><span class=cl>9abc3294: ✓ /private/etc/afpovertcp.cfg
-</span></span><span class=line><span class=cl>9abc3294: ✓ /private/etc/apache2/extra/httpd-autoindex.conf
-</span></span><span class=line><span class=cl>9abc3294: ✓ /private/etc/apache2/extra/httpd-dav.conf
-</span></span><span class=line><span class=cl><span class=o>[</span>...<span class=o>]</span>
-</span></span><span class=line><span class=cl>9abc3294: ✓ /private/etc/xtab
-</span></span><span class=line><span class=cl>9abc3294: ✓ /private/etc/zshrc
-</span></span><span class=line><span class=cl>9abc3294: ✓ /private/etc/zshrc_Apple_Terminal
-</span></span><span class=line><span class=cl>9abc3294: ✓ /private/etc
-</span></span><span class=line><span class=cl>check: verification of 9abc3294:/ completed successfully
-</span></span></code></pre></div><p><strong>The probability of losing data this year has now fallen from 5% to 0.00069% (1 in 145,000)!</strong></p><h2 id=creating-a-third-copy-over-s3>Creating a third copy over S3</h2><blockquote><p>Let’s create yet another repository on a remote S3 bucket!</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ plakar config repository create s3
-</span></span><span class=line><span class=cl><span class=c1># for AWS, set s3://s3.&lt;region&gt;.amazonaws.com/&lt;bucket&gt;</span>
-</span></span><span class=line><span class=cl>$ plakar config repository <span class=nb>set</span> s3 location s3://minio.plakar.io:9001/mybackups
-</span></span><span class=line><span class=cl>$ plakar config repository <span class=nb>set</span> s3 passphrase ****************
-</span></span><span class=line><span class=cl>$ plakar config repository <span class=nb>set</span> s3 access_key gilles
-</span></span><span class=line><span class=cl>$ plakar config repository <span class=nb>set</span> s3 secret_access_key ********
-</span></span><span class=line><span class=cl>$ plakar at @s3 create
-</span></span></code></pre></div><blockquote><p>Let&rsquo;s do another synchronization!</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ plakar at /var/backups sync to @s3
-</span></span><span class=line><span class=cl>sync: synchronization from /var/backups to s3://minio.plakar.io:9001/mybackups completed: <span class=m>1</span> snapshots synchronized
-</span></span><span class=line><span class=cl>$ plakar at @s3 ls
-</span></span><span class=line><span class=cl>2025-02-19T21:38:16Z   9abc3294    3.1 MB      0s   /private/etc
-</span></span></code></pre></div><blockquote><p>We can verify integrity of the snapshot on the third repository:</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ plakar at @s3 check 9abc3294
-</span></span><span class=line><span class=cl>9abc3294: ✓ /private/etc/afpovertcp.cfg
-</span></span><span class=line><span class=cl>9abc3294: ✓ /private/etc/apache2/extra/httpd-autoindex.conf
-</span></span><span class=line><span class=cl>9abc3294: ✓ /private/etc/apache2/extra/httpd-dav.conf
-</span></span><span class=line><span class=cl><span class=o>[</span>...<span class=o>]</span>
-</span></span><span class=line><span class=cl>9abc3294: ✓ /private/etc/xtab
-</span></span><span class=line><span class=cl>9abc3294: ✓ /private/etc/zshrc
-</span></span><span class=line><span class=cl>9abc3294: ✓ /private/etc/zshrc_Apple_Terminal
-</span></span><span class=line><span class=cl>9abc3294: ✓ /private/etc
-</span></span><span class=line><span class=cl>check: verification of 9abc3294:/private/etc completed successfully
+What is SFTP?</summary><div class=box-content><p>SFTP is the Secure File Transfer Protocol that comes with OpenSSH.</p></div></details><blockquote><p>This can be done by creating a new repository there, with its own passphrase:</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl>$ plakar at sftp://gilles@nas.plakar.io/var/backups create
+</span></span><span class=line><span class=ln>2</span><span class=cl>repository passphrase: 
+</span></span><span class=line><span class=ln>3</span><span class=cl>repository passphrase <span class=o>(</span>confirm<span class=o>)</span>:
+</span></span></code></pre></div><p>We could simply do a new backup to it, but this might produce different snapshots as data may have changed since the first backup.</p><p>Instead, we can perform a repository synchronization.</p><blockquote><p>A repository synchronization ensures that backups are transferred from a repository to another, using the recorded data,and performing necessary decryption and encryption to produce a similar copy:</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl>$ plakar at /var/backups sync to sftp://gilles@nas.plakar.io/var/backups
+</span></span><span class=line><span class=ln>2</span><span class=cl>peer repository passphrase: 
+</span></span><span class=line><span class=ln>3</span><span class=cl>peer repository passphrase <span class=o>(</span>confirm<span class=o>)</span>:
+</span></span><span class=line><span class=ln>4</span><span class=cl>sync: synchronized <span class=m>1</span> snapshot
+</span></span><span class=line><span class=ln>5</span><span class=cl>info: sync: synchronization from /var/backups to sftp://gilles@nas.plakar.io/var/backups completed: <span class=m>1</span> snapshots synchronized
+</span></span><span class=line><span class=ln>6</span><span class=cl>$ plakar at sftp://gilles@nas.plakar.io/var/backups ls
+</span></span><span class=line><span class=ln>7</span><span class=cl>2025-02-19T21:38:16Z   9abc3294    3.1 MB      0s   /private/etc
+</span></span></code></pre></div><blockquote><p>We can verify integrity of the snapshot on the second repository:</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln> 1</span><span class=cl>$ plakar at sftp://gilles@nas.plakar.io/var/backups check 9abc3294
+</span></span><span class=line><span class=ln> 2</span><span class=cl>9abc3294: ✓ /private/etc/afpovertcp.cfg
+</span></span><span class=line><span class=ln> 3</span><span class=cl>9abc3294: ✓ /private/etc/apache2/extra/httpd-autoindex.conf
+</span></span><span class=line><span class=ln> 4</span><span class=cl>9abc3294: ✓ /private/etc/apache2/extra/httpd-dav.conf
+</span></span><span class=line><span class=ln> 5</span><span class=cl><span class=o>[</span>...<span class=o>]</span>
+</span></span><span class=line><span class=ln> 6</span><span class=cl>9abc3294: ✓ /private/etc/xtab
+</span></span><span class=line><span class=ln> 7</span><span class=cl>9abc3294: ✓ /private/etc/zshrc
+</span></span><span class=line><span class=ln> 8</span><span class=cl>9abc3294: ✓ /private/etc/zshrc_Apple_Terminal
+</span></span><span class=line><span class=ln> 9</span><span class=cl>9abc3294: ✓ /private/etc
+</span></span><span class=line><span class=ln>10</span><span class=cl>check: verification of 9abc3294:/ completed successfully
+</span></span></code></pre></div><p><strong>The probability of losing data this year has now fallen from 5% to 0.00069% (1 in 145,000)!</strong></p><h2 id=creating-a-third-copy-over-s3>Creating a third copy over S3</h2><blockquote><p>Let’s create yet another repository on a remote S3 bucket!</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl>$ plakar config repository create s3
+</span></span><span class=line><span class=ln>2</span><span class=cl><span class=c1># for AWS, set s3://s3.&lt;region&gt;.amazonaws.com/&lt;bucket&gt;</span>
+</span></span><span class=line><span class=ln>3</span><span class=cl>$ plakar config repository <span class=nb>set</span> s3 location s3://minio.plakar.io:9001/mybackups
+</span></span><span class=line><span class=ln>4</span><span class=cl>$ plakar config repository <span class=nb>set</span> s3 passphrase ****************
+</span></span><span class=line><span class=ln>5</span><span class=cl>$ plakar config repository <span class=nb>set</span> s3 access_key gilles
+</span></span><span class=line><span class=ln>6</span><span class=cl>$ plakar config repository <span class=nb>set</span> s3 secret_access_key ********
+</span></span><span class=line><span class=ln>7</span><span class=cl>$ plakar at @s3 create
+</span></span></code></pre></div><blockquote><p>Let&rsquo;s do another synchronization!</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl>$ plakar at /var/backups sync to @s3
+</span></span><span class=line><span class=ln>2</span><span class=cl>sync: synchronization from /var/backups to s3://minio.plakar.io:9001/mybackups completed: <span class=m>1</span> snapshots synchronized
+</span></span><span class=line><span class=ln>3</span><span class=cl>$ plakar at @s3 ls
+</span></span><span class=line><span class=ln>4</span><span class=cl>2025-02-19T21:38:16Z   9abc3294    3.1 MB      0s   /private/etc
+</span></span></code></pre></div><blockquote><p>We can verify integrity of the snapshot on the third repository:</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln> 1</span><span class=cl>$ plakar at @s3 check 9abc3294
+</span></span><span class=line><span class=ln> 2</span><span class=cl>9abc3294: ✓ /private/etc/afpovertcp.cfg
+</span></span><span class=line><span class=ln> 3</span><span class=cl>9abc3294: ✓ /private/etc/apache2/extra/httpd-autoindex.conf
+</span></span><span class=line><span class=ln> 4</span><span class=cl>9abc3294: ✓ /private/etc/apache2/extra/httpd-dav.conf
+</span></span><span class=line><span class=ln> 5</span><span class=cl><span class=o>[</span>...<span class=o>]</span>
+</span></span><span class=line><span class=ln> 6</span><span class=cl>9abc3294: ✓ /private/etc/xtab
+</span></span><span class=line><span class=ln> 7</span><span class=cl>9abc3294: ✓ /private/etc/zshrc
+</span></span><span class=line><span class=ln> 8</span><span class=cl>9abc3294: ✓ /private/etc/zshrc_Apple_Terminal
+</span></span><span class=line><span class=ln> 9</span><span class=cl>9abc3294: ✓ /private/etc
+</span></span><span class=line><span class=ln>10</span><span class=cl>check: verification of 9abc3294:/private/etc completed successfully
 </span></span></code></pre></div><p>But what if both my drive died AND the data center hosting my NAS burst in flames?</p><p><strong>The probability of losing data has now fallen from 0.00069% to 0.0000001% (1 in a billion)!</strong></p><h2 id=a-few-additional-words-on-synchronization>A few additional words on synchronization</h2><blockquote><p>This first command locates snapshots that exist in my local repository but not in the remote one,
-then sends them over:</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ plakar at /var/backups sync to @s3
-</span></span></code></pre></div><blockquote><p>This second command locates snapshots that exist in the remote repository but not in the local one to bring them over:</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ plakar at /var/backups sync from @s3
-</span></span></code></pre></div><blockquote><p>And this last command does it both ways, pushing to the remote repositories snapshots that exist locally and are missing, but also fetching locally snapshots that only exist remotely:</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ plakar at /var/backups sync with @s3
+then sends them over:</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl>$ plakar at /var/backups sync to @s3
+</span></span></code></pre></div><blockquote><p>This second command locates snapshots that exist in the remote repository but not in the local one to bring them over:</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl>$ plakar at /var/backups sync from @s3
+</span></span></code></pre></div><blockquote><p>And this last command does it both ways, pushing to the remote repositories snapshots that exist locally and are missing, but also fetching locally snapshots that only exist remotely:</p></blockquote><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl>$ plakar at /var/backups sync with @s3
 </span></span></code></pre></div><p>Repository synchronization is slightly more advanced than what was shown,
 and you are encouraged to experiment with it to find the best workflow for your use-case.</p><p>In addition, all these commands support passing snapshot identifiers and various options to perform partial synchronizations, only exchanging snapshots that match certain criteria. More information can be found in the <a href=/docs/commands/sync/>documentation</a>.</p></div><div class="bg-neutral-200 border-neutral-300 flex justify-center items-center gap-3 py-4 px-4 flex-wrap w-full max-w-full"><div class="flex gap-4 items-center"><a class="flex items-center space-x-2" href=https://bsky.app/profile/plakar.bsky.social target=_blank rel="noopener noreferrer" aria-label="Visit us on Bluesky"><span class="w-5 h-5"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M12 11.3884C11.0942 9.62673 8.62833 6.34423 6.335 4.7259 4.13833 3.17506 3.30083 3.4434 2.75167 3.69256 2.11583 3.9784 2 4.95506 2 5.52839c0 .575.315 4.70831.52 5.39921.67917 2.28 3.09417 3.05 5.31917 2.8033-3.26.4833-6.15584 1.6708-2.35834 5.8983C9.65833 23.9542 11.2058 18.7017 12 16.0392c.7942 2.6625 1.7083 7.7259 6.4442 3.59C22 16.0392 19.4208 14.2142 16.1608 13.7309 18.3858 13.9784 20.8008 13.2076 21.48 10.9276 21.685 10.2376 22 6.10256 22 5.52923c0-.575-.1158-1.55084-.7517-1.83833C20.6992 3.44256 19.8617 3.17423 17.665 4.72423 15.3717 6.34506 12.9058 9.62756 12 11.3884z"/></svg>
 </span></a><a class="flex items-center space-x-2" href=https://discord.gg/uuegtnF2Q5 target=_blank aria-label="Visit us on Discord"><span class="w-5 h-5"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M19.3034 5.33716C17.9344 4.71103 16.4805 4.2547 14.9629 4 14.7719 4.32899 14.5596 4.77471 14.411 5.12492c-1.6141-.23348-3.2166-.23348-4.80845.0C9.45397 4.77471 9.2311 4.32899 9.05068 4c-1.52817.2547-2.98207.71103-4.34153 1.33716C1.96053 9.39111 1.21766 13.3495 1.5891 17.2549c1.82533 1.3266 3.58702 2.1331 5.31791 2.6638C7.33151 19.3456 7.71356 18.73 8.04255 18.0827 7.41641 17.8492 6.82211 17.5627 6.24904 17.2231 6.39762 17.117 6.5462 17.0003 6.68416 16.8835c3.45964 1.5813 7.20694 1.5813 10.62404.0C17.4568 17.0003 17.5948 17.117 17.7434 17.2231 17.1703 17.5627 16.576 17.8492 15.9499 18.0827 16.2789 18.73 16.6609 19.3456 17.0854 19.9187c1.7298-.5307 3.5021-1.3372 5.3179-2.6638C22.8596 12.7341 21.6806 8.80747 19.3034 5.33716zM8.5201 14.8459c-1.04003.0-1.88903-.9445-1.88903-2.1012.0-1.1568.82777-2.1013 1.88903-2.1013 1.05061.0 1.9102.9445 1.889 2.1013.0 1.1567-.83839 2.1012-1.889 2.1012zm6.9735.0c-1.0401.0-1.8902-.9445-1.8902-2.1012.0-1.1568.828899999999999-2.1013 1.8902-2.1013 1.0506.0 1.9102.9445 1.8889 2.1013.0 1.1567-.8277 2.1012-1.8889 2.1012z"/></svg></span>
