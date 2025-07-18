@@ -14,10 +14,9 @@
 &lt;p>&lt;strong>Why use Rclone with Plakar?&lt;/strong>&lt;/p>
 &lt;p>Rclone is here to simplify the connection between Plakar and your cloud storage. It allows you to back up and restore data from various cloud providers like Google Drive, Google Photos, OneDrive, Dropbox, Amazon S3, Box, Mega, pCloud, WebDAV, and many more — directly to your Kloset repository.
 Please note that Plakar currently supports only a subset of the cloud services supported by Rclone. See the &lt;strong>Q&amp;amp;A&lt;/strong> section below for the list of providers currently supported.&lt;/p></description></item><item><title>Notion Integration documentation</title><link>https://www.plakar.io/docs/main/integrations/notion/</link><pubDate>Mon, 07 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/main/integrations/notion/</guid><description>&lt;h2 id="overview">Overview&lt;/h2>
-&lt;blockquote>
-&lt;p>Restoration is not supported yet — but planned in a future release.&lt;/p>&lt;/blockquote>
-&lt;p>The &lt;strong>Notion integration&lt;/strong> allows you to back up your Notion pages or entire workspace into a Plakar repository using the official Notion API.&lt;/p>
+&lt;p>The &lt;strong>Notion integration&lt;/strong> allows you to back up and restore your Notion pages or entire workspace into a Plakar repository using the official Notion API.&lt;/p>
 &lt;p>All content is fetched via the API and stored as structured JSON, including page metadata, content blocks, and hierarchical relationships.&lt;/p>
+&lt;h1 id="backup">Backup&lt;/h1>
 &lt;h2 id="configuration">Configuration&lt;/h2>
 &lt;ul>
 &lt;li>A valid &lt;a href="https://www.notion.com/my-integrations">&lt;strong>Notion API token&lt;/strong>&lt;/a> (&lt;code>ntn_xxx&lt;/code>)&lt;/li>
@@ -27,4 +26,4 @@ Please note that Plakar currently supports only a subset of the cloud services s
 &lt;h2 id="example-usage">Example Usage&lt;/h2>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">$ plakar at /var/backups create
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl">$ plakar at /var/backups backup notion:// &lt;span class="nv">token&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nv">$NOTION_API_TOKEN&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>To create the Kloset repository at &lt;code>/var/backups&lt;/code> and back up your Notion content, assuming the following env variable &lt;code>NOTION_API_TOKEN&lt;/code> contained your shared API token, you can use the following command:&lt;/p></description></item></channel></rss>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>To create the Kloset repository at &lt;code>/var/backups&lt;/code> and back up your Notion content, assuming the following env variable &lt;code>NOTION_API_TOKEN&lt;/code> contained your shared API token.&lt;/p></description></item></channel></rss>
