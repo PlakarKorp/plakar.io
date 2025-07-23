@@ -8,10 +8,6 @@
             },
             checkScreenSize() {
                 this.isSmallScreen = window.innerWidth < 1280;
-                console.log('window.innerWidth ' + window.innerWidth);
-                console.log('isSmallScreen ' + this.isSmallScreen);
-                console.log('sidebarOpened ' + this.sidebarOpened);
-                console.log('sidebarState ' + localStorage.getItem('sidebarState'));
             }
         }" x-init="
             checkScreenSize();
