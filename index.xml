@@ -1,7 +1,60 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Autonomous Page on Plakar - Effortless backup</title><link>https://www.plakar.io/</link><description>Recent content in Autonomous Page on Plakar - Effortless backup</description><generator>Hugo</generator><language>en</language><lastBuildDate>Mon, 21 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://www.plakar.io/index.xml" rel="self" type="application/rss+xml"/><item><title>One repository is not enough</title><link>https://www.plakar.io/docs/main/quickstart/probabilities/</link><pubDate>Mon, 03 Mar 2025 17:00:00 +0100</pubDate><guid>https://www.plakar.io/docs/main/quickstart/probabilities/</guid><description>&lt;!-- This empty tag is required to render the math blocks below -->
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Autonomous Page on Plakar - Effortless backup</title><link>https://www.plakar.io/</link><description>Recent content in Autonomous Page on Plakar - Effortless backup</description><generator>Hugo</generator><language>en</language><lastBuildDate>Tue, 22 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://www.plakar.io/index.xml" rel="self" type="application/rss+xml"/><item><title>One repository is not enough</title><link>https://www.plakar.io/docs/main/quickstart/probabilities/</link><pubDate>Mon, 03 Mar 2025 17:00:00 +0100</pubDate><guid>https://www.plakar.io/docs/main/quickstart/probabilities/</guid><description>&lt;!-- This empty tag is required to render the math blocks below -->
 &lt;pre tabindex="0">&lt;code class="language-math" data-lang="math">&lt;/code>&lt;/pre>&lt;p>Plakar offers a simple way to synchronize repositories across multiple locations. Two questions often arise: &amp;ldquo;Why do I need more than one copy?&amp;rdquo; and &amp;ldquo;How many copies should I have?&amp;rdquo;&lt;/p>
 &lt;h2 id="why-do-i-need-more-than-one-copy">Why do I need more than one copy?&lt;/h2>
-&lt;p>If you store your data at a single location, you are at risk of losing everything if that storage fails. This can happen due to various reasons, such as:&lt;/p></description></item><item><title>CalDAV</title><link>https://www.plakar.io/integrations/caldav/</link><pubDate>Mon, 21 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/caldav/</guid><description>&lt;h2 id="back-up-your-calendar-with-plakar">Back up your calendar with Plakar&lt;/h2>
+&lt;p>If you store your data at a single location, you are at risk of losing everything if that storage fails. This can happen due to various reasons, such as:&lt;/p></description></item><item><title>MinIO</title><link>https://www.plakar.io/integrations/minio/</link><pubDate>Tue, 22 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/minio/</guid><description>&lt;h1 id="plakar--minio-backup-solution-protect-your-object-storage-from-data-loss-and-ransomware">Plakar + MinIO Backup Solution: Protect Your Object Storage from Data Loss and Ransomware&lt;/h1>
+&lt;p>MinIO is fast. Scalable. Battle-tested across edge, hybrid, and private cloud deployments.
+But even the best object storage can&amp;rsquo;t protect you from everything:&lt;/p>
+&lt;ul>
+&lt;li>🧍 One accidental &lt;code>rm -rf&lt;/code>&lt;/li>
+&lt;li>🦠 Bit rot and silent corruption&lt;/li>
+&lt;li>🔓 Leaked credentials or compromised access&lt;/li>
+&lt;/ul>
+&lt;p>🔐 Plakar makes your MinIO data immutable, encrypted, and rollback-ready, by design.&lt;/p>
+&lt;p>Because resilience isn’t a feature. It’s a mindset.&lt;/p></description></item><item><title>MinIO Integration Documentation</title><link>https://www.plakar.io/docs/main/integrations/minio/</link><pubDate>Tue, 22 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/main/integrations/minio/</guid><description>&lt;p>This page guides you through the process of setting up MinIO backups using Plakar.&lt;/p>
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;ul>
+&lt;li>&lt;strong>Storage target:&lt;/strong> MinIO (S3-compatible)&lt;/li>
+&lt;li>&lt;strong>Integration Type:&lt;/strong> Storage Connector&lt;/li>
+&lt;li>&lt;strong>Use Cases:&lt;/strong> Immutable backups, rollback recovery, ransomware defense&lt;/li>
+&lt;li>&lt;strong>Works with:&lt;/strong> SNSD, SNMD, MNMD topologies&lt;/li>
+&lt;li>&lt;strong>Included:&lt;/strong> Source Connector · Storage Connector · Viewer · Snapshot Engine&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="prerequisites">Prerequisites&lt;/h2>
+&lt;p>Make sure you have the following before you begin:&lt;/p>
+&lt;ul>
+&lt;li>Basic familiarity with MinIO and S3 concepts&lt;/li>
+&lt;li>Plakar version &lt;code>v1.0.2&lt;/code> installed&lt;/li>
+&lt;/ul>
+&lt;h2 id="supported-topologies-minio">Supported Topologies (MinIO)&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Mode&lt;/th>
+ &lt;th>Reliability&lt;/th>
+ &lt;th>Recommended For&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>SNSD&lt;/td>
+ &lt;td>Low&lt;/td>
+ &lt;td>Local testing, low-stakes environments&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>SNMD&lt;/td>
+ &lt;td>Moderate&lt;/td>
+ &lt;td>Dev workloads, small business environments&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>MNMD&lt;/td>
+ &lt;td>High&lt;/td>
+ &lt;td>Enterprise-grade backup and restore setups&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="1-configure-minio-as-a-storage-backend">1. Configure MinIO as a Storage Backend&lt;/h3>
+&lt;p>MinIO can serve two purposes with Plakar:&lt;/p></description></item><item><title>CalDAV</title><link>https://www.plakar.io/integrations/caldav/</link><pubDate>Mon, 21 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/caldav/</guid><description>&lt;h2 id="back-up-your-calendar-with-plakar">Back up your calendar with Plakar&lt;/h2>
 &lt;p>Plakar’s CalDAV integration lets you import and export calendar events to and from your Plakar repository. It supports any CalDAV-compatible provider and preserves events in full fidelity using the &lt;code>.ics&lt;/code> format.&lt;/p>
 &lt;p>Use it to archive your schedule, sync events between systems, or push them back to your calendar server with no data loss.&lt;/p>
 &lt;h2 id="why-back-up-caldav-calendars">Why back up CalDAV calendars?&lt;/h2>
