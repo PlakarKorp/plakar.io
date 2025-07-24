@@ -6,16 +6,15 @@ technology_description: MinIO is a high-performance, S3-compatible object storag
 categories:
   - object storage
 tags:
-  - minio
-  - s3
-  - backup
-  - self-hosted
-  - devops
-stage: available
+- source connector
+- destination connector
+- storage connector
+- viewer
+stage: stable
 date: 2025-07-22
 ---
 
-# Plakar + MinIO Backup Solution: Protect Your Object Storage from Data Loss and Ransomware
+# Plakar + MinIO backup solution: protect your object storage from data loss and ransomware
 
 MinIO is fast. Scalable. Battle-tested across edge, hybrid, and private cloud deployments.
 But even the best object storage can't protect you from everything:
@@ -38,7 +37,7 @@ It’s open-source, built for speed, and optimized for modern workloads, from ma
 Its S3 API compatibility makes it easy to integrate, but like any storage, it’s only as safe as your last clean backup.
 
 
-## 🚨 Why MinIO Needs Backup (Even With Replication)
+## 🚨 Why MinIO needs backup (even with replication)
 
 >Replication ≠ backup. It can replicate mistakes, not protect against them.
 
@@ -52,11 +51,11 @@ Replication won’t help you:
 
 🎯 That’s where Plakar steps in.
 
-## 🛡️ How Plakar Protects Your MinIO Buckets
+## 🛡️ How Plakar protects your MinIO buckets
 
 Plakar creates encrypted, content-aware snapshots of your MinIO buckets.
 
-| **Risk**                        | **How Plakar Helps**                                            |
+| **Risk**                        | **How Plakar helps**                                            |
 |---------------------------------|------------------------------------------------------------------|
 | 🧍 Accidental deletion           | Restore from a snapshot to recover lost data                    |
 | 🦠 Bit rot or silent corruption  | Every chunk is verified by its content hash                     |
@@ -64,31 +63,27 @@ Plakar creates encrypted, content-aware snapshots of your MinIO buckets.
 | 📉 Gaps in versioning or metadata | Full history is preserved in the Kloset Store                  |
 | 🪝 Cloud or vendor lock-in       | Use MinIO as your storage backend with no hidden dependencies   |
 
-## ⚠️ But Backups Aren’t the Only Challenge
+## ⚠️ But backups aren’t the only challenge
 Even with MinIO’s Site Replication, some critical parts of your data and configuration aren’t copied at all.
 
 ## ⛔ What MinIO Replication Doesn’t Cover
 
-MinIO skips:
+MinIO replication ensures data is mirrored across nodes or sites but it won’t protect you from accidental deletions, ransomware, or misconfigurations.
 
-- 🔔 Bucket notifications
-- 🧬 Lifecycle (ILM) rules
-- 🛠️ Site-level config settings
+This integration focuses on backing up **bucket data** it does **not** handle MinIO's internal configuration (e.g., users, policies, tenant settings). While backing up configuration files could be a useful future integration, it's **not currently supported** in this setup.
 
-This can lead to configuration drift, policy gaps, or incomplete recovery.
+If configuration backup is important to your use case, consider using **Plakar’s filesystem backup** independently to snapshot those files.
 
-Plakar doesn’t just replicate your data, it captures the full state of your storage exactly as it is, every time.
-
-## 🔄 TL;DR: Backups You Control
+## 🔄 TL;DR: Backups you control
 
 Plakar + MinIO gives you:
 
-✅ Snapshots with rollback and metadata 
-✅ Encryption at the chunk level 
-✅ Support for any topology 
-✅ Zero-trust backup flows 
-✅ Visual inspection and audit readiness 
-✅ No cloud vendor lock-in
+- ✅ Snapshots with rollback and metadata 
+- ✅ Encryption at the chunk level 
+- ✅ Support for any topology 
+- ✅ Zero-trust backup flows 
+- ✅ Visual inspection and audit readiness 
+- ✅ No cloud vendor lock-in
 
 ---
 
