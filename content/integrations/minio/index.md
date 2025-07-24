@@ -6,11 +6,10 @@ technology_description: MinIO is a high-performance, S3-compatible object storag
 categories:
   - object storage
 tags:
-  - minio
-  - s3
-  - backup
-  - self-hosted
-  - devops
+- source connector
+- destination connector
+- storage connector
+- viewer
 stage: stable
 date: 2025-07-22
 ---
