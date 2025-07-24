@@ -13,177 +13,200 @@ stage: "stable"
 date: 2025-07-22
 ---
 
-This page guides you through the process of setting up MinIO backups using Plakar.
+# MinIO integration
+
+This document describes how to use MinIO with Plakar as part of a complete integration package. This includes:
+
+- Extracting data from a resource using a **Source Connector**
+- Persisting snapshots to MinIO using a **Storage Connector**
+- Restoring data to a resource using a **Destination Connector**
+- Inspecting and managing snapshots using the **Integration Viewer**
+
+---
 
 ## Overview
 
-- **Storage target:** MinIO (S3-compatible)
-- **Integration Type:** Storage Connector
-- **Use Cases:** Immutable backups, rollback recovery, ransomware defense
-- **Works with:** SNSD, SNMD, MNMD topologies
-- **Included:** Source Connector · Storage Connector · Viewer · Snapshot Engine
+- **Storage Target:** MinIO (S3-compatible)
+- **Integration Type:** Full Integration Package
+- **Use Cases:** Immutable backups, disaster recovery, secure restore pipelines
+- **Components Included:**
+  - Source Connector
+  - Storage Connector
+  - Destination Connector
+  - Viewer
+  - Snapshot Engine (Kloset)
 
 ---
 
 ## Prerequisites
 
-Make sure you have the following before you begin:
+- Plakar `v1.0.2` or later installed
+- A running MinIO instance (local or remote)
+- Basic understanding of S3-compatible APIs and snapshot concepts
 
-- Basic familiarity with MinIO and S3 concepts
-- Plakar version `v1.0.2` installed
+---
+
+## Supported MinIO Topologies
+
+| Topology | Fault Tolerance | Recommended Use Case |
+|----------|------------------|-----------------------|
+| SNSD (Single Node Single Drive) | Low       | Single-node local testing or dev environments |
+| SNMD (Single Node Multi Drive)  | Moderate  | Local dev/testing with redundancy across disks |
+| MNMD (Multi Node Multi Drive)   | High      | Production-grade, highly available deployments |
+
+<sub><strong>Note:</strong> These terms follow MinIO’s standard topology naming convention. Refer to the [MinIO Topologies Guide](https://min.io/docs/minio/linux/operations/concepts.html) for full reference.</sub>
 
 
-## Supported Topologies (MinIO)
 
-| Mode      | Reliability     | Recommended For                             |
-|-----------|-----------------|----------------------------------------------|
-| SNSD      | Low          | Local testing, low-stakes environments       |
-| SNMD      | Moderate     | Dev workloads, small business environments   |
-| MNMD      | High        | Enterprise-grade backup and restore setups   |
+## MinIO Setup
 
-
-### 1. Configure MinIO as a Storage Backend
-
-MinIO can serve two purposes with Plakar:
-
-1. As a storage backend for your Kloset repository.
-2. As a source of backup, allowing Plakar to read and write data to S3-compatible buckets.
-
-First, download and install MinIO from the [official MinIO website](https://min.io/download?platform=kubernetes&installer=helm).
-
-Then, run MinIO locally. The `--console-address` flag exposes a management dashboard at http://localhost:9001.
 ```bash
 minio server ~/minio --console-address :9001
 ```
+### 1. Start MinIO
+- Console: http://localhost:9001
+- API: http://localhost:9000
 
-This will host your object storage at http://localhost:9000.
-
-### Create a Bucket in MinIO
-
-Visit the MinIO web console at http://localhost:9001 and log in with:
 ```
 Username: minioadmin
 Password: minioadmin
 ```
-Create a new bucket (e.g., `mybackups`). This will serve as the Plakar storage backend.
-
-### Set Up AWS CLI for Local MinIO
-
-Configure a new profile to interact with your local MinIO instance using the AWS CLI.
-```
-aws configure --profile minio-local
-```
-Use the following credentials when prompted:
-```
-AWS Access Key ID [None]: minioadmin
-AWS Secret Access Key [None]: minioadmin
-Default region name [None]: us-east-1
-Default output format [None]: json
-```
-Verify the connection to MinIO:
-
-```
-aws --profile minio-local --endpoint-url http://localhost:9000 s3 ls
-```
-If your server is running and your bucket (`mybackups`) exists, it will be listed.
+### 2. Create a bucket
+Login using default credentials:
+Create a bucket (e.g., `mybackups`).
 
 ---
 
-### 2. Connect Plakar to MinIO using the `plakar config`
+plakar config repository
+---
 
-Use Plakar's [config system](https://docs.plakar.io/en/commands/plakar/v1.0.2/config/index.html) to register MinIO as a named remote repository.
+| **Description** | Configure and initialize a remote Plakar repository (e.g. MinIO) |
+|-----------------|------------------------------------------------------------------|
+| **Usage**       | `plakar config repository [COMMAND] <name> [OPTIONS]`           |
+| **Aliases**     | `plakar repository`                                              |
+## Description
+The `plakar config repository` command is used to configure and initialize remote Plakar repositories, including S3-compatible services like MinIO.
 
-```bash
+You can define a named configuration profile, set access credentials, define the remote bucket location, and create the repository to store your Plakar snapshots. This enables Plakar to sync and restore backups directly from your remote object storage.
+
+## Options
+
+| Option                                      | Default | Description                                                                 |
+|---------------------------------------------|---------|-----------------------------------------------------------------------------|
+| `repository create <name>`                  | –       | Initializes a named Plakar repository configuration                         |
+| `repository set <name> location`            | –       | Sets the S3-compatible URL to your MinIO bucket                             |
+| `repository set <name> access_key`          | –       | Access key for MinIO                                                        |
+| `repository set <name> secret_access_key`   | –       | Secret key for MinIO                                                        |
+| `repository set <name> use_tls`             | `true`  | Enables or disables TLS (set to `false` for local HTTP use)                 |
+| `plakar at @<name> create`                  | –       | Initializes a Plakar repository at the specified remote location            |
+
+## Configuration
+```
 plakar config repository create minio-s3
 plakar config repository set minio-s3 location s3://localhost:9000/mybackups
 plakar config repository set minio-s3 access_key minioadmin
 plakar config repository set minio-s3 secret_access_key minioadmin
 plakar config repository set minio-s3 use_tls false
 ```
+**Choose the Resource** you want to configure with the integration and use the Storage Connector to link the repository to the S3-compatible storage backend.
 
-You now have a named repository `@minio-s3` pointing to your MinIO bucket.
+## Integration Commands
 
-Initialize the Plakar Repository on MinIO
+| Section     | Details                                                                 |
+|-------------|-------------------------------------------------------------------------|
+| **Description** | Perform snapshot operations on an S3-backed Kloset repository using the Plakar CLI |
+| **Usage**       | `plakar at @<repository-name> <COMMAND> [OPTIONS]`                   |
+| **Alias**       | `plakar @`                                                          |
+### Description
 
-```
+The `plakar at` command group is used to interact with a configured remote repository. Once an S3-compatible repository (such as MinIO) is defined, these commands allow you to perform snapshot operations — including backup, restore, listing, and launching the viewer interface.
+
+This enables direct backup and recovery workflows on object storage as if it were a local Plakar environment.
+
+### Commands
+
+| Command   | Description                                               |
+|-----------|-----------------------------------------------------------|
+| `create`  | create a new Kloset repository on the S3 destination  |
+| `backup`  | take a snapshot of a local resource                       |
+| `ls`      | list available snapshots in the remote repository         |
+| `restore` | restore specific files or full snapshots to a target      |
+| `ui`      | launch the web-based viewer to explore stored snapshots   |
+
+## Integration workflow
+```bash
 plakar at @minio-s3 create
 ```
+### Initialize remote repository
 
->*When prompted, enter a new passphrase. Important: do not paste it. Type it manually to avoid encoding issues.*
+> ⚠️ You’ll be prompted to enter a passphrase for the repository. This secures all stored snapshots.
 
-## Plakar MinIO Remote Configuration Options (Example)
+Prepare the remote repository for snapshot operations by creating a Kloset on your S3 bucket:
 
-| Command                                                   | Description                                                                 | Required | Value Used                            |
-|-----------------------------------------------------------|-----------------------------------------------------------------------------|----------|----------------------------------------|
-| `plakar config repository create minio-s3`             | Initializes a named remote repository configuration in Plakar              | ✅ Yes   | `minio-s3`                          |
-| `plakar config repository set minio-s3 location s3://localhost:9000/mybackups` | Sets the S3-compatible URL to your MinIO bucket            | ✅ Yes   | `s3://localhost:9000/mybackups`        |
-| `plakar config repository set minio-s3 access_key minioadmin` | Access key for your MinIO instance                              | ✅ Yes   | `minioadmin`                           |
-| `plakar config repository set minio-s3 secret_access_key minioadmin` | Secret key for your MinIO instance                       | ✅ Yes   | `minioadmin`                           |
-| `plakar config repository set minio-s3 use_tls false`  | Disables TLS (useful for local HTTP MinIO setups)                          | ✅ Yes   | `false`                                |
-| `plakar at @minio-s3 create`                            | Initializes a new Plakar repository at the configured MinIO location       | ✅ Yes   | `minio-s3` repository created       |
 
-### Sync from Local Repository to MinIO
-
-Once your MinIO remote repository is configured, you can synchronize data from your local Plakar repository (e.g., `plkr-lcl-backups`) to your MinIO-backed remote (`@minio-s3`):
+```bash
+plakar at @minio-s3 backup /var/backups
 ```
-plakar at plkr-lcl-backups sync to @minio-s3
-```
-### What This Does:
+### Use the Source Connector to capture a snapshot
 
-- Pushes all local snapshots to the remote MinIO-based repository.
-- Ensures data redundancy by storing backups offsite (even if MinIO is local, this mirrors a remote-like workflow).
+Back up a directory or file and store it as a snapshot:
 
-Useful for air-gapped backups, cloud syncing, or preparing for automated retention policies.
-
-## Test Your Integration
-
-### List available snapshots
-
-Verify that your MinIO-backed Plakar repository is working correctly by listing available snapshots:
-
-```
+```bash
 plakar at @minio-s3 ls
 ```
+### Use the Storage Connector to persist the snapshot to MinIO
 
-### Open the Web Interface
-You can also browse your snapshots using Plakar's built-in web UI:
-```
+Confirm that the snapshot has been successfully persisted to the remote Kloset repository:
+
+
+```bash
 plakar at @minio-s3 ui
 ```
->This will launch a local web interface in your browser (ensure your environment allows GUI-based access if running headless or on a server).
+### Use the Integration Viewer to inspect the snapshot
 
-### Restore Snapshots from MinIO
+> Open your browser and navigate to: `http://localhost:24077`
 
-You can retrieve backed-up data from your S3-compatible repository using Plakar’s restore command.
+Visualize and browse the contents of your remote repository using the Integration Viewer:
 
-Restore a Single File
 
-```
+```bash
 plakar at @minio-s3 restore <snapshot_id>:path/to/file.txt
 ```
+### Use the Destination Connector to restore data
+Restore a single file from a specific snapshot:
 
-Or Restore an Entire Snapshot
-
-```
+```bash
 plakar at @minio-s3 restore <snapshot_id>
 ```
-
-This will restore the full contents of the selected snapshot to your current working directory.
-
-> **Kloset** is Plakar’s snapshot engine that compresses, encrypts, and addresses data chunks by their content hash. The resulting snapshot is immutable, portable, and verifiable.
+Restore the entire snapshot:
 
 
-## What This Integration Does
+## Component Glossary
 
-This integration uses:
+**Kloset** 
+The immutable (tamper-evident) data-storage engine that splits data into deduplicated, compressed, encrypted chunks, addresses them by content hash, and retains them in a write-once form.
 
-- **Storage Connector**: sends deduplicated chunks to MinIO
-- **Viewer**: allows inspection of snapshot metadata via CLI
-- **Kloset**: Plakar’s core engine for splitting, encrypting, and indexing snapshots
+**Kloset Store** 
+A data store managed by Kloset that holds all chunks and metadata for each snapshot, providing local organization, indexing, and fast access.
+
+**Storage Connector** 
+A pluggable component that enables a Kloset store to be persisted to a specific storage medium such as Amazon S3, a local filesystem, or a database.
+
+**Source Connector** 
+A pluggable component that extracts data from a resource (filesystem, VM, database, etc.) into the Kloset snapshot pipeline.
+
+**Destination Connector** 
+A pluggable component that applies Kloset snapshots back to a target resource (filesystem, database, cloud) to restore data and metadata.
+
+**Viewer** 
+An interface (CLI or GUI) for listing, previewing and diffing Kloset snapshots without performing a full restore.
+
+**Integration Package** 
+A turnkey package that accesses a resource (e.g. a hypervisor, VM, server, database, filesystem, object storage…), uses Kloset to take snapshots of that resource, and provides all the tooling needed to back up, restore, and visualize both the live environment and its snapshots.
 
 
-## Related Docs
+## Further Reading
 
 - [Plakar CLI Reference](https://docs.plakar.io/en/commands/plakar/index.html)
-- [How Snapshots Work](https://docs.plakar.io/en/concepts/index.html)
-- [Plakar Architecture (Kloset Engine)](https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/)
+- [Understanding Snapshots](https://docs.plakar.io/en/concepts/index.html)
+- [Kloset Engine Overview](https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/)
