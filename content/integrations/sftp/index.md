@@ -59,7 +59,7 @@ resource: SFTP
 resource_type: file-transfer
 ---
 
-## 🧠 Why protecting SFTP matters
+## 🧠 Why protecting SFTP-based workflows matters
 
 SFTP is the backbone of secure file transfers across Linux servers 🐧, BSD hosts 🏴, and NAS devices 💾 like Synology and QNAP.
 But secure transfer is not backup:
@@ -70,7 +70,7 @@ But secure transfer is not backup:
 When compliance, uptime, or disaster recovery is critical, simply storing files on SFTP is not enough.
 You need verifiable, immutable backups that can survive mistakes, misconfigurations, or attacks.
 
-## 🔓 What happens when SFTP credentials get compromised?
+## 🔓 What happens when SFTP access credentials get compromised?
 
 SFTP relies on SSH keys or passwords to control access. If a key is leaked, misused, or an account is compromised:
 - Attackers can delete or overwrite files instantly
@@ -109,4 +109,4 @@ With Plakar, SFTP becomes a complete backup workflow instead of just a file drop
 - 🔎 Browse and verify backups directly without restoring
 - 📦 Optional offline or air‑gapped retention for compliance
 
-From snapshot creation to inspection to recovery, Plakar protects your SFTP‑based infrastructure — all in one tool.
+From snapshot creation to inspection to recovery, Plakar protects your SFTP‑based infrastructure, all in one tool.
