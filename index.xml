@@ -10,7 +10,25 @@
 &lt;li>&lt;strong>Source connector&lt;/strong>: to back up any MinIO bucket into an existing Kloset store.&lt;/li>
 &lt;li>&lt;strong>Destination connector&lt;/strong>: to restore from any Kloset store into a MinIO bucket.&lt;/li>
 &lt;/ul>
-&lt;p>&lt;strong>Use-cases for this integration&lt;/strong>&lt;/p></description></item><item><title>Dropbox</title><link>https://www.plakar.io/integrations/dropbox/</link><pubDate>Mon, 28 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/dropbox/</guid><description>&lt;h2 id="-why-protecting-dropbox-matters">🧠 Why protecting Dropbox matters&lt;/h2>
+&lt;p>&lt;strong>Use-cases for this integration&lt;/strong>&lt;/p></description></item><item><title>SFTP integration package</title><link>https://www.plakar.io/docs/main/integrations/sftp/</link><pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/main/integrations/sftp/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;blockquote>
+&lt;p>&lt;strong>Requirements&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Plakar version: &amp;ldquo;1.0.2 or &amp;gt;=1.0.3&amp;rdquo;&lt;/li>
+&lt;li>Integration version: &amp;ldquo;0.1.0&amp;rdquo;&lt;/li>
+&lt;li>SFTP/SSH server accessible with read/write permissions&lt;/li>
+&lt;/ul>&lt;/blockquote>
+&lt;p>This integration enables &lt;strong>backing up, restoring, and storing&lt;/strong> remote directories using Plakar’s built-in SFTP connector over SSH. SFTP is supported natively, requiring only that the target system has SSH and SFTP access enabled.&lt;/p>
+&lt;p>Snapshots are stored in a Kloset store with full deduplication, encryption, and immutability, whether hosted locally or on an SFTP-accessible remote server. All data transfers are encrypted end-to-end, and Plakar automatically verifies each snapshot to ensure data integrity.&lt;/p></description></item><item><title>SFTP</title><link>https://www.plakar.io/integrations/sftp/</link><pubDate>Tue, 29 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/sftp/</guid><description>&lt;h2 id="-why-protecting-sftp-matters">🧠 Why protecting SFTP matters&lt;/h2>
+&lt;p>SFTP is the backbone of secure file transfers across Linux servers 🐧, BSD hosts 🏴, and NAS devices 💾 like Synology and QNAP.
+But secure transfer is not backup:&lt;/p>
+&lt;ul>
+&lt;li>Files can be overwritten or deleted immediately after upload&lt;/li>
+&lt;li>No versioning or immutable snapshots exist for recovery&lt;/li>
+&lt;li>Manual transfers or scripts are error‑prone and hard to audit&lt;/li>
+&lt;/ul>
+&lt;p>When compliance, uptime, or disaster recovery is critical, simply storing files on SFTP is not enough.
+You need verifiable, immutable backups that can survive mistakes, misconfigurations, or attacks.&lt;/p></description></item><item><title>Dropbox</title><link>https://www.plakar.io/integrations/dropbox/</link><pubDate>Mon, 28 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/dropbox/</guid><description>&lt;h2 id="-why-protecting-dropbox-matters">🧠 Why protecting Dropbox matters&lt;/h2>
 &lt;p>Dropbox syncs and shares files instantly, but sync is not backup. Accidental deletions, ransomware, or sync errors can propagate across all devices, leading to permanent data loss. Dropbox’s retention policies are limited, and recovery options may not meet compliance or audit requirements. Without immutable, externalized backups, your Dropbox data remains vulnerable to silent corruption, overwrites, or account compromise.&lt;/p>
 &lt;h2 id="-what-happens-when-dropbox-is-compromised-or-data-is-lost">🔓 What happens when Dropbox is compromised or data is lost?&lt;/h2>
 &lt;p>If Dropbox credentials are leaked, ransomware encrypts files, or a user accidentally deletes critical data, the problem can spread rapidly across all linked devices and users. Native Dropbox recovery is limited by trash expiry and retention windows, and may not cover all scenarios. Once data is gone or corrupted, recovery is often impossible without a separate backup.&lt;/p></description></item><item><title>Google Drive</title><link>https://www.plakar.io/integrations/googledrive/</link><pubDate>Mon, 28 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/googledrive/</guid><description>&lt;h2 id="-why-protecting-google-drive-matters">🧠 Why protecting Google Drive matters&lt;/h2>
@@ -130,16 +148,7 @@ Icloud can be backed up by Apple but it is not free and after 180 days it is del
 &lt;li>&lt;strong>Viewer&lt;/strong>: Use the Integration Viewer to browse and visualize snapshots stored in S3.&lt;/li>
 &lt;/ul>
 &lt;h2 id="overview">Overview&lt;/h2>
-&lt;p>The &lt;strong>Plakar S3 integration&lt;/strong> enables immutable, encrypted, verifiable backups and restores of any S3-compatible object storage buckets. Whether you’re using AWS S3, Google Cloud Storage, MinIO, Ceph, or another provider, Plakar delivers a unified interface and military-grade security.&lt;/p></description></item><item><title>SFTP</title><link>https://www.plakar.io/integrations/sftp/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/sftp/</guid><description>&lt;h1 id="sftp-integration">SFTP Integration&lt;/h1>
-&lt;h2 id="capabilities">Capabilities&lt;/h2>
-&lt;ul>
-&lt;li>&lt;strong>Source Connector&lt;/strong>: Seamlessly back up remote filesystems over SSH to and from a &lt;a href="https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/">Kloset repository&lt;/a>.&lt;/li>
-&lt;li>&lt;strong>Destination Connector&lt;/strong>: Restore files and directories from a &lt;a href="https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/">Kloset repository&lt;/a> back to your remote server via SFTP.&lt;/li>
-&lt;li>&lt;strong>Storage Connector&lt;/strong>: Host a Kloset repository on a remote SFTP server, persisting snapshots directly on your target system.&lt;/li>
-&lt;li>&lt;strong>Viewer&lt;/strong>: Use the Integration Viewer to browse and visualize snapshots stored on an SFTP host.&lt;/li>
-&lt;/ul>
-&lt;h2 id="overview">Overview&lt;/h2>
-&lt;p>The &lt;strong>Plakar SFTP integration&lt;/strong> combines both source and storage connectors in one package. It enables immutable, encrypted, verifiable backups and restores of remote directories over SSH/SFTP.&lt;/p></description></item><item><title>Stdio</title><link>https://www.plakar.io/integrations/stdio/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/stdio/</guid><description>&lt;h1 id="stdio-integration">Stdio Integration&lt;/h1>
+&lt;p>The &lt;strong>Plakar S3 integration&lt;/strong> enables immutable, encrypted, verifiable backups and restores of any S3-compatible object storage buckets. Whether you’re using AWS S3, Google Cloud Storage, MinIO, Ceph, or another provider, Plakar delivers a unified interface and military-grade security.&lt;/p></description></item><item><title>Stdio</title><link>https://www.plakar.io/integrations/stdio/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/stdio/</guid><description>&lt;h1 id="stdio-integration">Stdio Integration&lt;/h1>
 &lt;h2 id="overview">Overview&lt;/h2>
 &lt;p>The &lt;strong>Stdio integration&lt;/strong> enables seamless backup and restoration of stdio streams to and from a &lt;a href="https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/">Kloset repository&lt;/a>.&lt;/p>
 &lt;p>This integration is designed to protect the data on your local hard drives, mounted NAS volumes, and SANs.&lt;/p>
