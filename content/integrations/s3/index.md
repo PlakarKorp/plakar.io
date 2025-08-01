@@ -63,7 +63,7 @@ seo_tags:
   - portable format
 
 # Link to the technical documentation of the integration
-technical_documentation_link: docs/main/integrations/s3/
+technical_documentation_link: /docs/main/integrations/s3/
 
 # Stage of maturity
 stage: stable
