@@ -1,13 +1,34 @@
 ---
+# Title used to describe the integration in the listing page
+title: "AWS S3"
 
-title: S3
-subtitle: Protect your S3 buckets from rogue deletion, ransomware, and silent corruption
-description: Backup and restore your object storage buckets to and from any S3-compatible service, and host your Kloset repository on S3.
+# Concise benefit-driven subtitle (used as subheading in hero section)
+subtitle: "Resilient, encrypted backups for your AWS S3 environment"
+
+# SEO friendly description used in integration hero section
+description: >
+  Back up your AWS S3 workloads with Plakar to protect against data loss,
+  corruption, and ransomware. Immutable, encrypted, and restorable
+  even across regions, offline, or in hybrid cloud environments.
+
+# Just after the hero, if not set or blank, "Amazon S3 is everywhere and often underprotected" will be used
+technology_title: AWS S3 is everywhere and often underprotected
+
+# SEO friendly answer to: Amazon S3 is everywhere and often underprotected
+technology_description: >
+  AWS S3 powers modern cloud workloads from web apps to analytics and enterprise backups.
+  Its storage classes, including S3 Glacier for cold storage, offer scalable and cost-efficient data management.
+  Yet misconfigured buckets, limited versioning, and lack of air‑gapped backups leave data exposed.
+  Plakar secures S3 with immutable, encrypted, deduplicated snapshots that remain verifiable and restorable even if the cloud account is compromised.
+
+# What the integration provides
 categories:
   - source connector
   - destination connector
   - storage connector
   - viewer
+
+# Tags used for filtering on the Plakar site
 tags:
   - S3
   - Object Storage
@@ -20,136 +41,61 @@ tags:
   - Scaleway
   - Blackblaze
   - OVH
+
+# Tags used for SEO and search on the Plakar site
+seo_tags:
+  - Amazon S3
+  - AWS S3 backup
+  - AWS object storage
+  - S3 Glacier
+  - cloud object storage
+  - multi-cloud backup
+  - backup
+  - disaster recovery
+  - encryption
+  - deduplication
+  - versioning
+  - immutable storage
+  - compliance
+  - long-term archiving
+  - airgapped backup
+  - snapshot technology
+  - portable format
+
+# Link to the technical documentation of the integration
+technical_documentation_link: docs/main/integrations/s3/
+
+# Stage of maturity
 stage: stable
+
+# Publication or last updated date (ISO 8601)
 date: 2025-05-13
+
+# Plakar version compatibility
+plakar_version: ">=1.0.3"
+
+# Name of the resource
+resource: AWS S3
+
+# Type of resource integrated
+resource_type: object-storage
 ---
 
+## 🧠 Why protecting Amazon S3 matters
+Amazon S3 powers countless workloads from web applications to enterprise backups yet S3 buckets are often misconfigured, exposed, or unprotected. Even with features like versioning and S3 Glacier, organizations still face risks from accidental deletions, misconfigurations, or compromised IAM credentials.
 
-- source connector
-- destination connector
-- storage connector
-- viewer tags:
-- S3
-- Object Storage
-- AWS
-- Google Cloud Storage
-- MinIO
-- Ceph
-- Scality
-- Wasabi
-- Scaleway
-- Blackblaze
-- OVH stage: stable date: 2025-05-13
+## 🔓 What happens when Amazon S3 is compromised?
+- Public or misconfigured buckets can expose sensitive data.
+- Malicious users with access can delete buckets or lifecycle-managed archives.
+- Cross-region or multi-account disaster recovery becomes complex without automation.
 
----
+## 🛡️ How Plakar secures your Amazon S3 workflows
+Plakar integrates with Amazon S3 as:
+- A **source connector** to snapshot S3 buckets into encrypted, deduplicated backups
+- A **restore destination** to rehydrate verified snapshots directly into S3
+- A **storage backend** to host Plakar Kloset stores, leveraging S3 or S3 Glacier for cold storage
 
-# S3 Integration
+**Plakar provides end‑to‑end encryption, global deduplication, versioning, and snapshot browsing ensuring your S3 data remains secure, portable, and instantly recoverable across environments.**
 
-## Capabilities
-
-- **Source Connector**: Seamlessly back up S3-compatible buckets to a [Kloset repository](/posts/2025-04-29/kloset-the-immutable-data-store/).
-- **Destination Connector**: Restore data from a Kloset repository back into your S3 bucket.
-- **Storage Connector**: Host your Kloset repository directly on any S3-compatible object storage.
-- **Viewer**: Use the Integration Viewer to browse and visualize snapshots stored in S3.
-
-## Overview
-
-The **Plakar S3 integration** enables immutable, encrypted, verifiable backups and restores of any S3-compatible object storage buckets. Whether you’re using AWS S3, Google Cloud Storage, MinIO, Ceph, or another provider, Plakar delivers a unified interface and military-grade security.
-
-## Configuration
-
-Configure a named remote to connect to your S3-compatible provider:
-
-```bash
-$ plakar config remote create mys3
-$ plakar config remote set mys3 location s3://<endpoint>/<bucket>/<optional_path>
-$ plakar config remote set mys3 access_key <ACCESS_KEY>
-$ plakar config remote set mys3 secret_access_key <SECRET_KEY>
-# Optional: disable TLS verification
-$ plakar config remote set mys3 use_tls false
-```
-
-Supported options:
-
-- `location`: Full S3 URL, e.g. `s3://s3.<region>.amazonaws.com/mybucket`.
-- `access_key` / `secret_access_key`: Your provider’s credentials.
-- `use_tls`: Enable or disable TLS (default: true).
-
-### Provider Examples
-
-```bash
-$ plakar config remote set mys3 location s3://s3.us-east-1.amazonaws.com/mybucket
-```
-
-```bash
-$ plakar config remote set mys3 location s3://localhost:9000/mybucket
-$ plakar config remote set mys3 use_tls false
-```
-
-```bash
-$ plakar config remote set mys3 location s3://s3.fr-par.scw.cloud/mybucket
-```
-
-```bash
-$ plakar config remote set mys3 location s3://s3.eu-central-003.backblazeb2.com/mybucket
-```
-
-```bash
-$ plakar config remote set mys3 location s3://cellar-c2.services.clever-cloud.com/mybucket
-```
-
-If your provider isn’t listed, join our [Discord community](https://discord.gg/uuegtnF2Q5) for assistance.
-
-## Example Usage
-
-1. **Create** a Kloset repository on your S3 bucket:
-
-```bash
-$ plakar at @mys3 create
-```
-
-2. **Back up** a local directory (e.g., `/etc`):
-
-```bash
-$ plakar at @mys3 backup /etc
-```
-
-3. **List** available snapshots:
-
-```bash
-$ plakar at @mys3 ls
-```
-
-4. **Restore** data back to your S3 bucket:
-
-```bash
-# Restore a single file
-$ plakar at @mys3 restore fc1b1e94:path/to/file.txt
-
-# Restore the full backup
-$ plakar at @mys3 restore fc1b1e94
-```
-
-5. **Browse** snapshots via the UI:
-
-```bash
-$ plakar at @mys3 ui
-```
-
-See the [QuickStart guide](https://docs.plakar.io/en/quickstart/index.html) for further examples.
-
-## Questions, Feedback, and Support
-
-- Found a bug? [Open an issue on GitHub](https://github.com/PlakarKorp/plakar/issues/new?title=Bug%20report%20on%20S3%20integration\&body=Please%20provide%20a%20detailed%20description%20of%20the%20issue.%0A%0A**Plakar%20version**)
-- Join our [Discord community](https://discord.gg/uuegtnF2Q5) for real-time help.
-
-## Q&A
-
-**Do you support all S3-compatible providers?**\
-Yes. If your provider isn’t listed above, reach out on Discord and we’ll help you configure it.
-
-**When versioning is enabled, do you back up all object versions?**\
-No, Plakar backs up only the latest version of each object to avoid redundant storage.
-
-**Can I replicate between buckets?**\
-Use Plakar CLI to push snapshots from one bucket to another by configuring multiple remotes and using `plakar at` commands.
+## 🧰 Everything in one tool: backup, verify, restore, browse
+Plakar unifies **backup**, **verification**, **restore**, and browsing into a single workflow, making AWS S3 not just a storage destination but a fully secured archival solution.
