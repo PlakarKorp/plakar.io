@@ -7,6 +7,15 @@
 &lt;li>&lt;strong>Exporter&lt;/strong>: Provides an implementation to export from plakar to a destination&lt;/li>
 &lt;/ul>
 &lt;h2 id="-step-1--implement-the-interface">✅ Step 1 — Implement the Interface&lt;/h2>
+&lt;p>Each plugin &lt;strong>must implement the right interface&lt;/strong> from the Plakar source tree.&lt;/p></description></item><item><title>SDK</title><link>https://www.plakar.io/docs/v1.0.3-rc.2/sdk/</link><pubDate>Mon, 07 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/v1.0.3-rc.2/sdk/</guid><description>&lt;p>This guide explains &lt;strong>how to implement a Plakar Integration&lt;/strong> (Source, Destination, or Storage) in Go, and how to use the provided &lt;strong>SDK&lt;/strong> to run it.&lt;/p>
+&lt;h2 id="-what-is-a-plakar-plugin">📌 What is a Plakar Plugin?&lt;/h2>
+&lt;p>A Plakar Plugin is an external binary that implements one of the &lt;strong>Plakar interfaces&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Storage&lt;/strong>: Provides the implementation of a storage for backups&lt;/li>
+&lt;li>&lt;strong>Importer&lt;/strong>: Provides an implementation to import from a source into plakar&lt;/li>
+&lt;li>&lt;strong>Exporter&lt;/strong>: Provides an implementation to export from plakar to a destination&lt;/li>
+&lt;/ul>
+&lt;h2 id="-step-1--implement-the-interface">✅ Step 1 — Implement the Interface&lt;/h2>
 &lt;p>Each plugin &lt;strong>must implement the right interface&lt;/strong> from the Plakar source tree.&lt;/p></description></item><item><title>MinIO integration package</title><link>https://www.plakar.io/docs/main/integrations/minio/</link><pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/main/integrations/minio/</guid><description>&lt;p>This documentation assumes Plakar v1.0.2 is installed.&lt;/p>
 &lt;p>If you are running a newer version, the commands differ slightly as some of the &lt;strong>configuration commands have changed in v1.0.3&lt;/strong>. Check the Changelog of v1.0.3 to adapt the commands accordingly.&lt;/p>
 &lt;h2 id="introduction">Introduction&lt;/h2>
@@ -17,6 +26,15 @@
 &lt;li>&lt;strong>Destination connector&lt;/strong>: to restore from any Kloset store into a MinIO bucket.&lt;/li>
 &lt;/ul>
 &lt;p>&lt;strong>Use-cases for this integration&lt;/strong>&lt;/p></description></item><item><title>MinIO integration package</title><link>https://www.plakar.io/docs/v1.0.2/integrations/minio/</link><pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/v1.0.2/integrations/minio/</guid><description>&lt;p>This documentation assumes Plakar v1.0.2 is installed.&lt;/p>
+&lt;p>If you are running a newer version, the commands differ slightly as some of the &lt;strong>configuration commands have changed in v1.0.3&lt;/strong>. Check the Changelog of v1.0.3 to adapt the commands accordingly.&lt;/p>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>Plakar&amp;rsquo;s built-in MinIO integration includes three connectors:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Storage connector&lt;/strong>: to host a Kloset store in a MinIO bucket.&lt;/li>
+&lt;li>&lt;strong>Source connector&lt;/strong>: to back up any MinIO bucket into an existing Kloset store.&lt;/li>
+&lt;li>&lt;strong>Destination connector&lt;/strong>: to restore from any Kloset store into a MinIO bucket.&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>Use-cases for this integration&lt;/strong>&lt;/p></description></item><item><title>MinIO integration package</title><link>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/minio/</link><pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/minio/</guid><description>&lt;p>This documentation assumes Plakar v1.0.2 is installed.&lt;/p>
 &lt;p>If you are running a newer version, the commands differ slightly as some of the &lt;strong>configuration commands have changed in v1.0.3&lt;/strong>. Check the Changelog of v1.0.3 to adapt the commands accordingly.&lt;/p>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Plakar&amp;rsquo;s built-in MinIO integration includes three connectors:&lt;/p>
@@ -43,7 +61,20 @@
 &lt;li>SFTP/SSH server accessible with read/write permissions&lt;/li>
 &lt;/ul>&lt;/blockquote>
 &lt;p>This integration enables &lt;strong>backing up, restoring, and storing&lt;/strong> remote directories using Plakar’s built-in SFTP connector over SSH. SFTP is supported natively, requiring only that the target system has SSH and SFTP access enabled.&lt;/p>
+&lt;p>Snapshots are stored in a Kloset store with full deduplication, encryption, and immutability, whether hosted locally or on an SFTP-accessible remote server. All data transfers are encrypted end-to-end, and Plakar automatically verifies each snapshot to ensure data integrity.&lt;/p></description></item><item><title>SFTP integration package</title><link>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/sftp/</link><pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/sftp/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;blockquote>
+&lt;p>&lt;strong>Requirements&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Plakar version: &amp;ldquo;1.0.2 or &amp;gt;=1.0.3&amp;rdquo;&lt;/li>
+&lt;li>Integration version: &amp;ldquo;0.1.0&amp;rdquo;&lt;/li>
+&lt;li>SFTP/SSH server accessible with read/write permissions&lt;/li>
+&lt;/ul>&lt;/blockquote>
+&lt;p>This integration enables &lt;strong>backing up, restoring, and storing&lt;/strong> remote directories using Plakar’s built-in SFTP connector over SSH. SFTP is supported natively, requiring only that the target system has SSH and SFTP access enabled.&lt;/p>
 &lt;p>Snapshots are stored in a Kloset store with full deduplication, encryption, and immutability, whether hosted locally or on an SFTP-accessible remote server. All data transfers are encrypted end-to-end, and Plakar automatically verifies each snapshot to ensure data integrity.&lt;/p></description></item><item><title>iCloud Drive integration documentation</title><link>https://www.plakar.io/docs/main/integrations/iclouddrive/</link><pubDate>Tue, 29 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/main/integrations/iclouddrive/</guid><description>&lt;h1 id="integration-package-icloud-drive">Integration Package: iCloud Drive&lt;/h1>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>This integration allows you to snapshot and restore iCloud Drive data using Plakar to store it in a Kloset store, while minimizing storage usage and ensuring strong data security.
+It includes a Storage Connector that lets you persist snapshots to iCloud Drive itself, either from iCloud Drive or from other sources.
+A Viewer is also provided to inspect, search, and restore snapshots without requiring full extraction.&lt;/p></description></item><item><title>iCloud Drive integration documentation</title><link>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/iclouddrive/</link><pubDate>Tue, 29 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/iclouddrive/</guid><description>&lt;h1 id="integration-package-icloud-drive">Integration Package: iCloud Drive&lt;/h1>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>This integration allows you to snapshot and restore iCloud Drive data using Plakar to store it in a Kloset store, while minimizing storage usage and ensuring strong data security.
 It includes a Storage Connector that lets you persist snapshots to iCloud Drive itself, either from iCloud Drive or from other sources.
@@ -58,7 +89,22 @@ A Viewer is also provided to inspect, search, and restore snapshots without requ
 &lt;li>Long-term archiving and disaster recovery&lt;/li>
 &lt;li>Portable export and vendor escape to other platforms&lt;/li>
 &lt;/ul>
+&lt;p>&lt;strong>Target technologies:&lt;/strong>&lt;/p></description></item><item><title>OpenDrive integration documentation</title><link>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/opendrive/</link><pubDate>Tue, 29 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/opendrive/</guid><description>&lt;h1 id="integration-package-opendrive">Integration Package: OpenDrive&lt;/h1>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>This integration allows you to snapshot and restore OpenDrive data using Plakar to store it in a Kloset store, while minimizing storage usage and ensuring strong data security.
+It includes a Storage Connector that lets you persist snapshots to OpenDrive itself, either from OpenDrive or from other sources.
+A Viewer is also provided to inspect, search, and restore snapshots without requiring full extraction.&lt;/p>
+&lt;p>&lt;strong>Use cases:&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Cold backup of OpenDrive folders&lt;/li>
+&lt;li>Long-term archiving and disaster recovery&lt;/li>
+&lt;li>Portable export and vendor escape to other platforms&lt;/li>
+&lt;/ul>
 &lt;p>&lt;strong>Target technologies:&lt;/strong>&lt;/p></description></item><item><title>Proton Drive integration documentation</title><link>https://www.plakar.io/docs/main/integrations/protondrive/</link><pubDate>Tue, 29 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/main/integrations/protondrive/</guid><description>&lt;h1 id="integration-package-proton-drive">Integration Package: Proton Drive&lt;/h1>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>This integration allows you to snapshot and restore Proton Drive data using Plakar to store it in a Kloset store, while minimizing storage usage and ensuring strong data security.
+It includes a Storage Connector that lets you persist snapshots to Proton Drive itself, either from Proton Drive or from other sources.
+A Viewer is also provided to inspect, search, and restore snapshots without requiring full extraction.&lt;/p></description></item><item><title>Proton Drive integration documentation</title><link>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/protondrive/</link><pubDate>Tue, 29 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/protondrive/</guid><description>&lt;h1 id="integration-package-proton-drive">Integration Package: Proton Drive&lt;/h1>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>This integration allows you to snapshot and restore Proton Drive data using Plakar to store it in a Kloset store, while minimizing storage usage and ensuring strong data security.
 It includes a Storage Connector that lets you persist snapshots to Proton Drive itself, either from Proton Drive or from other sources.
@@ -73,7 +119,22 @@ A Viewer is also provided to inspect, search, and restore snapshots without requ
 &lt;li>Long-term archiving and disaster recovery&lt;/li>
 &lt;li>Portable export and vendor migration to other platforms&lt;/li>
 &lt;/ul>
+&lt;p>&lt;strong>Target technologies:&lt;/strong>&lt;/p></description></item><item><title>Dropbox integration</title><link>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/dropbox/</link><pubDate>Sat, 26 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/dropbox/</guid><description>&lt;h1 id="integration-package-dropbox">Integration Package: Dropbox&lt;/h1>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>This integration allows you to snapshot and restore Dropbox data using Plakar, storing it in a Kloset store while minimizing storage usage and ensuring strong data security.
+It includes a Storage Connector that lets you persist snapshots to Dropbox itself, either from Dropbox or other sources.
+A Viewer is also provided to inspect, search, and restore snapshots without requiring full extraction.&lt;/p>
+&lt;p>&lt;strong>Use cases:&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Cold backup of Dropbox folders&lt;/li>
+&lt;li>Long-term archiving and disaster recovery&lt;/li>
+&lt;li>Portable export and vendor migration to other platforms&lt;/li>
+&lt;/ul>
 &lt;p>&lt;strong>Target technologies:&lt;/strong>&lt;/p></description></item><item><title>Google Drive integration</title><link>https://www.plakar.io/docs/main/integrations/googledrive/</link><pubDate>Sat, 26 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/main/integrations/googledrive/</guid><description>&lt;h1 id="integration-package-google-drive">Integration Package: Google Drive&lt;/h1>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>This integration allows you to snapshot and restore Google Drive data using Plakar to store it in a Kloset store, while minimizing storage usage and ensuring strong data security.
+It includes a Storage Connector that lets you persist snapshots to Google Drive itself, either from Google Drive or from other sources.
+A Viewer is also provided to inspect, search, and restore snapshots without requiring full extraction.&lt;/p></description></item><item><title>Google Drive integration</title><link>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/googledrive/</link><pubDate>Sat, 26 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/googledrive/</guid><description>&lt;h1 id="integration-package-google-drive">Integration Package: Google Drive&lt;/h1>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>This integration allows you to snapshot and restore Google Drive data using Plakar to store it in a Kloset store, while minimizing storage usage and ensuring strong data security.
 It includes a Storage Connector that lets you persist snapshots to Google Drive itself, either from Google Drive or from other sources.
@@ -81,7 +142,22 @@ A Viewer is also provided to inspect, search, and restore snapshots without requ
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>This integration allows you to snapshot and restore Google Photos data using Plakar to store it in a Kloset store, while minimizing storage usage and ensuring strong data security.
 It includes connectors that let you import and export snapshots to Google Photos itself, either from Google Photos or from other sources.
+A Viewer is also provided to inspect, search, and restore snapshots without requiring full extraction.&lt;/p></description></item><item><title>Google Photos integration documentation</title><link>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/googlephotos/</link><pubDate>Sat, 26 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/googlephotos/</guid><description>&lt;h1 id="integration-package-google-photos">Integration Package: Google Photos&lt;/h1>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>This integration allows you to snapshot and restore Google Photos data using Plakar to store it in a Kloset store, while minimizing storage usage and ensuring strong data security.
+It includes connectors that let you import and export snapshots to Google Photos itself, either from Google Photos or from other sources.
 A Viewer is also provided to inspect, search, and restore snapshots without requiring full extraction.&lt;/p></description></item><item><title>Koofr integration documentation</title><link>https://www.plakar.io/docs/main/integrations/koofr/</link><pubDate>Sat, 26 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/main/integrations/koofr/</guid><description>&lt;h1 id="integration-package-koofr">Integration Package: Koofr&lt;/h1>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>This integration allows you to snapshot and restore Koofr data using Plakar to store it in a Kloset store, while minimizing storage usage and ensuring strong data security.
+It includes a Storage Connector that lets you persist snapshots to Koofr itself, either from Koofr or from other sources.
+A Viewer is also provided to inspect, search, and restore snapshots without requiring full extraction.&lt;/p>
+&lt;p>&lt;strong>Use cases:&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Cold backup of Koofr folders&lt;/li>
+&lt;li>Long-term archiving and disaster recovery&lt;/li>
+&lt;li>Portable export and vendor escape to other platforms&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>Target technologies:&lt;/strong>&lt;/p></description></item><item><title>Koofr integration documentation</title><link>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/koofr/</link><pubDate>Sat, 26 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/koofr/</guid><description>&lt;h1 id="integration-package-koofr">Integration Package: Koofr&lt;/h1>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>This integration allows you to snapshot and restore Koofr data using Plakar to store it in a Kloset store, while minimizing storage usage and ensuring strong data security.
 It includes a Storage Connector that lets you persist snapshots to Koofr itself, either from Koofr or from other sources.
@@ -103,7 +179,31 @@ A Viewer is also provided to inspect, search, and restore snapshots without requ
 &lt;li>Long-term archiving and disaster recovery&lt;/li>
 &lt;li>Portable export and vendor escape to other platforms&lt;/li>
 &lt;/ul>
+&lt;p>&lt;strong>Target technologies:&lt;/strong>&lt;/p></description></item><item><title>OneDrive integration documentation</title><link>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/onedrive/</link><pubDate>Sat, 26 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/onedrive/</guid><description>&lt;h1 id="integration-package-onedrive">Integration Package: OneDrive&lt;/h1>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>This integration allows you to snapshot and restore OneDrive data using Plakar to store it in a Kloset store, while minimizing storage usage and ensuring strong data security.
+It includes a Storage Connector that lets you persist snapshots to OneDrive itself, either from OneDrive or from other sources.
+A Viewer is also provided to inspect, search, and restore snapshots without requiring full extraction.&lt;/p>
+&lt;p>&lt;strong>Use cases:&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Cold backup of OneDrive folders&lt;/li>
+&lt;li>Long-term archiving and disaster recovery&lt;/li>
+&lt;li>Portable export and vendor escape to other platforms&lt;/li>
+&lt;/ul>
 &lt;p>&lt;strong>Target technologies:&lt;/strong>&lt;/p></description></item><item><title>Notion Integration documentation</title><link>https://www.plakar.io/docs/main/integrations/notion/</link><pubDate>Mon, 07 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/main/integrations/notion/</guid><description>&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>The &lt;strong>Notion integration&lt;/strong> allows you to back up and restore your Notion pages or entire workspace into a Plakar repository using the official Notion API.&lt;/p>
+&lt;p>All content is fetched via the API and stored as structured JSON, including page metadata, content blocks, and hierarchical relationships.&lt;/p>
+&lt;h1 id="backup">Backup&lt;/h1>
+&lt;h2 id="configuration">Configuration&lt;/h2>
+&lt;ul>
+&lt;li>A valid &lt;a href="https://www.notion.com/my-integrations">&lt;strong>Notion API token&lt;/strong>&lt;/a> (&lt;code>ntn_xxx&lt;/code>)&lt;/li>
+&lt;li>The integration must be &lt;strong>shared with each page&lt;/strong> you want to back up&lt;br>
+→ See &lt;a href="https://developers.notion.com/docs/getting-started#step-1-create-an-integration">Notion’s developer guide&lt;/a> for how to create and share integrations&lt;/li>
+&lt;/ul>
+&lt;h2 id="example-usage">Example Usage&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">$ plakar at /var/backups create
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="ln">2&lt;/span>&lt;span class="cl">$ plakar at /var/backups backup notion:// &lt;span class="nv">token&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nv">$NOTION_API_TOKEN&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>To create the Kloset repository at &lt;code>/var/backups&lt;/code> and back up your Notion content, assuming the following env variable &lt;code>NOTION_API_TOKEN&lt;/code> contained your shared API token.&lt;/p></description></item><item><title>Notion Integration documentation</title><link>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/notion/</link><pubDate>Mon, 07 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/notion/</guid><description>&lt;h2 id="overview">Overview&lt;/h2>
 &lt;p>The &lt;strong>Notion integration&lt;/strong> allows you to back up and restore your Notion pages or entire workspace into a Plakar repository using the official Notion API.&lt;/p>
 &lt;p>All content is fetched via the API and stored as structured JSON, including page metadata, content blocks, and hierarchical relationships.&lt;/p>
 &lt;h1 id="backup">Backup&lt;/h1>
