@@ -34,7 +34,7 @@ provides:
 ## Introduction
 
 > **Requirements**
-> - Plakar version: "1.0.2 or >=1.0.3"
+>  - Plakar version: "1.0.2 or >=1.0.3"
 >  - Integration version: "0.1.0"
 >  - SFTP/SSH server accessible with read/write permissions
 
@@ -69,6 +69,9 @@ Snapshots are stored in a Kloset store with full deduplication, encryption, and 
 This integration is bundled natively with Plakar. No additional package installation is required.
 
 ***Verify SFTP Support:***
+Confirm that SFTP is listed in your available connectors by running the command ```plakar version```.
+
+You should see `sftp` listed under **importers**, **exporters**, and **klosets**, for example:
 ```bash
 plakar/v1.0.2
 
@@ -76,10 +79,6 @@ importers: fs, ftp, s3, sftp # <--- SFTP LISTED
 exporters: fs, ftp, s3, sftp # <--- SFTP LISTED
 klosets: fs, http, https, ptar, s3, sftp, sqlite # <--- SFTP LISTED
 ```
-
-Check that SFTP is listed in your available connectors by running the command ```plakar version```.
-
-You should see `sftp` listed under **importers**, **exporters**, and **klosets**, for example:
 
 This verifies integration is now ready for use.
 
@@ -89,18 +88,36 @@ No special installation is required to use SFTP with Plakar.
 
 ### Using direct SFTP URLs
 
+Direct URLs are fully self‑contained and require no prior configuration, ideal for ad‑hoc or one‑off operations.
+
 ```bash
 # Create a Kloset store on the local SFTP server
 plakar at sftp://sftpuser@localhost/uploads create
 
-# Backup data into the SFTP store
+# example direct url backup
 plakar at sftp://sftpuser@localhost/uploads backup /home/<user>/Documents
 ```
-Direct URLs are the simplest way to use SFTP with Plakar:
 
-Direct URLs are fully self‑contained and require no prior configuration, ideal for ad‑hoc or one‑off operations.
+### Confirm passwordless SSH access
+
+Plakar relies on unattended SSH sessions for SFTP operations. To avoid interruptions or failed backups, configure passwordless login with an SSH key:
+```bash
+#  Must connect without a password for Plakar.
+ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519_plakar
+sftp -i ~/.ssh/id_ed25519_plakar sftpuser@localhost
+```
+
+Test passwordless login with:
+```
+sftp -i ~/.ssh/id_ed25519_plakar sftpuser@localhost
+```
+The command should log in directly without prompting for a password, this verifies that Plakar can reliably perform backups and restores over SFTP.
 
 ### Configure a named remote
+
+Named remotes let you simplify and reuse SFTP URLs in Plakar commands without typing the full connection string each time.
+
+This allows using `sftp://local-sftp` instead of the full `sftp://sftpuser@localhost.`
 
 ```bash
 plakar config remote create mysftp
@@ -108,12 +125,10 @@ plakar config remote create mysftp
 # Point 'mysftp' to your SFTP server via an SSH host alias
 plakar config remote set mysftp location sftp://local-sftp/uploads
 ```
-Named remotes let you simplify and reuse SFTP URLs in Plakar commands without typing the full connection string each time.
-This allows using `sftp://local-sftp` instead of the full `sftp://sftpuser@localhost.`
 
 ### Configure an SSH host alias
 
-> (required) create an SSH host alias
+Since `local-sftp` is not a real hostname, you must define it in your `~/.ssh/config`:
 ```bash
 Host local-sftp
     HostName localhost # <--- Creates the alias used in the Plakar URL
@@ -121,38 +136,84 @@ Host local-sftp
     IdentityFile ~/.ssh/id_ed25519_plakar # <--- Enables passwordless SSH for reliable backups
 ```
 
-> Test the alias
+Test the alias for connection:
 ```bash
 # If it logs in without a password, the alias works
 sftp local-sftp
 ```
 
-Since `local-sftp` is not a real hostname, you must define it in your `~/.ssh/config`:
+## Backup & Restore using the SFTP protocol
 
+### Make a backup (Snapshot)
 
-### Ensure passwordless SSH access
+You can back up:
+- A local directory to a remote SFTP store
+- A remote directory over SFTP into a store
+- Between two SFTP remotes using source + destination
 
-```bash
-#  Must connect without a password for Plakar.
-ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519_plakar
-sftp -i ~/.ssh/id_ed25519_plakar sftpuser@localhost
+### Create a Kloset store on your SFTP server:
+
+```bash=
+plakar at sftp://sftpuser@localhost/uploads create
 ```
-Plakar relies on unattended SSH sessions for SFTP operations. To avoid interruptions or failed backups, configure passwordless login with an SSH key:
 
-> Test passwordless login with
+### Back up a local path into the SFTP store:
+
+```bash=
+plakar at sftp://sftpuser@localhost/uploads backup /etc
 ```
-sftp -i ~/.ssh/id_ed25519_plakar sftpuser@localhost
+
+### Back up a remote SFTP path into the same store:
+
+```bash=
+plakar at sftp://sftpuser@localhost/uploads backup sftp://sftpuser@localhost/etc
 ```
-The command should log in directly without prompting for a password, this verifies that
-Plakar can reliably perform backups and restores over SFTP.
 
-## 5. Setup backup model with SFTP Integration
+### Using a named remote (optional, for cleaner commands):
 
+```bash=
+plakar config remote create mysftp
+plakar config remote set mysftp location sftp://local-sftp/uploads
 
+plakar at @mysftp create
+plakar at @mysftp backup /etc
+```
 
+### Restore from Snapshot
 
-## 6. Integration-specific behaviors
-### 6.1 Limitations
+**You can restore to:**
+- The local filesystem
+- Another remote location via SFTP
+- Any other destination connector (like MinIO, S3, or a mounted FS)
+
+```bash=
+# Restore locally
+plakar at @mysftp restore -to ./restored <snapshot-id>
+
+# Restore to another SFTP path
+plakar at @mysftp restore -to sftp://sftpuser@localhost/restore <snapshot-id>
+
+# Restore to another compatible backend
+plakar at @mysftp restore -to s3://mybucket/restore/ <snapshot-id>
+```
+> While SFTP doesn't support `plakar config source` or `destination`,
+you can still perform backups and restores by referencing SFTP directly as a source or destination URL.
+
+### Kloset Inspection
+
+```bash=
+# List snapshots in the SFTP store
+plakar at @mysftp ls
+
+# View a file from a snapshot
+plakar at @mysftp cat <snapshot-id>:/etc/ssh/sshd_config
+
+# Open the UI viewer
+plakar at @mysftp ui
+```
+
+## Integration-specific behaviors
+### Limitations
 
 **The following are not included in SFTP snapshot backups:**
 - System-wide configuration (e.g., SSH server settings, firewall rules)
@@ -166,7 +227,7 @@ Plakar can reliably perform backups and restores over SFTP.
 - File metadata such as timestamps, permissions, and sizes
 
 
-### 6.2 Restore behavior specifics
+### Restore behavior specifics
 
 **Recommended best practices for restoring SFTP snapshots:**
 - Always restore to a temporary or namespaced directory (e.g., `sftp://myserver/restore-preview/`) to avoid overwriting live data directly
@@ -174,7 +235,7 @@ Plakar can reliably perform backups and restores over SFTP.
 - Use Plakar’s verification commands or checksum tools to validate snapshot correctness
 - Consider restoring snapshots to local filesystem first for inspection before pushing to remote servers
 
-## 7. Troubleshooting
+## Troubleshooting
 
 **Credential / SSH errors**
 If you see `Permission denied` or `Connection refused`:
@@ -186,16 +247,16 @@ If you see `Permission denied` or `Connection refused`:
 **Permission denied on paths**
 Ensure the SFTP user has read/write access to the source or destination directories.
 
-## 8. Backup Strategy
+## Backup Strategy
 - Schedule daily or weekly snapshots with cron or timers.
 - Keep multiple snapshots for rollback and auditing.
 - Store backups on a separate SFTP store or local FS for safety.
 - Periodically verify snapshots with `plakar ls` or `plakar verify`.
 
-## 9. Appendix
-[Plakar CLI Reference](https://www.plakar.io/docs/main/)
-[Plakar Architecture (Kloset Engine)](https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/)
-[OpenSSH / SFTP Documentation](https://man.openbsd.org/sftp.1)
+## Appendix
+- [Plakar CLI Reference](https://www.plakar.io/docs/main/)
+- [Plakar Architecture (Kloset Engine)](https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/)
+- [OpenSSH / SFTP Documentation](https://man.openbsd.org/sftp.1)
 
 ## Frequently Asked Questions
 
