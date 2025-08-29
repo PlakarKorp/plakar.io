@@ -1,37 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Object Storage on Plakar - Effortless backup</title><link>https://www.plakar.io/tags/object-storage/</link><description>Recent content in Object Storage on Plakar - Effortless backup</description><generator>Hugo</generator><language>en</language><lastBuildDate>Wed, 30 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://www.plakar.io/tags/object-storage/index.xml" rel="self" type="application/rss+xml"/><item><title>MinIO integration package</title><link>https://www.plakar.io/docs/main/integrations/minio/</link><pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/main/integrations/minio/</guid><description>&lt;p>This documentation assumes Plakar v1.0.2 is installed.&lt;/p>
-&lt;p>If you are running a newer version, the commands differ slightly as some of the &lt;strong>configuration commands have changed in v1.0.3&lt;/strong>. Check the Changelog of v1.0.3 to adapt the commands accordingly.&lt;/p>
-&lt;h2 id="introduction">Introduction&lt;/h2>
-&lt;p>Plakar&amp;rsquo;s built-in MinIO integration includes three connectors:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Storage connector&lt;/strong>: to host a Kloset store in a MinIO bucket.&lt;/li>
-&lt;li>&lt;strong>Source connector&lt;/strong>: to back up any MinIO bucket into an existing Kloset store.&lt;/li>
-&lt;li>&lt;strong>Destination connector&lt;/strong>: to restore from any Kloset store into a MinIO bucket.&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>Use-cases for this integration&lt;/strong>&lt;/p></description></item><item><title>MinIO integration package</title><link>https://www.plakar.io/docs/v1.0.2/integrations/minio/</link><pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/v1.0.2/integrations/minio/</guid><description>&lt;p>This documentation assumes Plakar v1.0.2 is installed.&lt;/p>
-&lt;p>If you are running a newer version, the commands differ slightly as some of the &lt;strong>configuration commands have changed in v1.0.3&lt;/strong>. Check the Changelog of v1.0.3 to adapt the commands accordingly.&lt;/p>
-&lt;h2 id="introduction">Introduction&lt;/h2>
-&lt;p>Plakar&amp;rsquo;s built-in MinIO integration includes three connectors:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Storage connector&lt;/strong>: to host a Kloset store in a MinIO bucket.&lt;/li>
-&lt;li>&lt;strong>Source connector&lt;/strong>: to back up any MinIO bucket into an existing Kloset store.&lt;/li>
-&lt;li>&lt;strong>Destination connector&lt;/strong>: to restore from any Kloset store into a MinIO bucket.&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>Use-cases for this integration&lt;/strong>&lt;/p></description></item><item><title>MinIO integration package</title><link>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/minio/</link><pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/minio/</guid><description>&lt;p>This documentation assumes Plakar v1.0.2 is installed.&lt;/p>
-&lt;p>If you are running a newer version, the commands differ slightly as some of the &lt;strong>configuration commands have changed in v1.0.3&lt;/strong>. Check the Changelog of v1.0.3 to adapt the commands accordingly.&lt;/p>
-&lt;h2 id="introduction">Introduction&lt;/h2>
-&lt;p>Plakar&amp;rsquo;s built-in MinIO integration includes three connectors:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Storage connector&lt;/strong>: to host a Kloset store in a MinIO bucket.&lt;/li>
-&lt;li>&lt;strong>Source connector&lt;/strong>: to back up any MinIO bucket into an existing Kloset store.&lt;/li>
-&lt;li>&lt;strong>Destination connector&lt;/strong>: to restore from any Kloset store into a MinIO bucket.&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>Use-cases for this integration&lt;/strong>&lt;/p></description></item><item><title>MinIO</title><link>https://www.plakar.io/integrations/minio/</link><pubDate>Mon, 28 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/minio/</guid><description>&lt;h2 id="-why-protecting-minio-matters">🧠 Why protecting MinIO matters&lt;/h2>
-&lt;p>Object storage is often perceived as durable by default, but durability is not backup.&lt;/p>
-&lt;p>Many organizations use MinIO to store logs, ML datasets, container images, or even backup files themselves, assuming they are safe. But without immutability, integrity validation, or isolation from the main system, data stored in MinIO can be silently corrupted, deleted by lifecycle policies, or compromised by access key leaks.&lt;/p>
-&lt;p>When retention rules, audits, or recovery are mission-critical, storing objects is not enough. You need a verifiable backup strategy.&lt;/p></description></item><item><title>OpenDrive</title><link>https://www.plakar.io/integrations/opendrive/</link><pubDate>Mon, 28 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/opendrive/</guid><description>&lt;h2 id="-why-protecting-opendrive-matters">🧠 Why protecting OpenDrive matters&lt;/h2>
-&lt;p>Relying solely on OpenDrive’s built-in sync and versioning exposes you to risks like silent corruption, accidental deletion, ransomware, or account compromise. Permanent data loss or compliance failures can occur if files are deleted or tampered with and no independent backup exists. Without robust, externalized backups, recovery options are limited and downtime can be costly.&lt;/p>
-&lt;h2 id="-what-if-your-opendrive-is-deleted-or-compromised">🔓 What if your OpenDrive is deleted or compromised?&lt;/h2>
-&lt;p>OpenDrive’s native protections may not be enough if files are deleted, overwritten by malware, or accessed with leaked credentials. Permanent deletions or ransomware attacks can propagate quickly, leaving no clean copy to restore. Plakar mitigates these risks by:&lt;/p></description></item><item><title>S3</title><link>https://www.plakar.io/integrations/s3/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/s3/</guid><description>&lt;ul>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Object Storage on Plakar - Effortless backup</title><link>https://www.plakar.io/tags/object-storage/</link><description>Recent content in Object Storage on Plakar - Effortless backup</description><generator>Hugo</generator><language>en</language><lastBuildDate>Tue, 13 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://www.plakar.io/tags/object-storage/index.xml" rel="self" type="application/rss+xml"/><item><title>S3</title><link>https://www.plakar.io/integrations/s3/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/s3/</guid><description>&lt;ul>
 &lt;li>source connector&lt;/li>
 &lt;li>destination connector&lt;/li>
 &lt;li>storage connector&lt;/li>
