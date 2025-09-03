@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Airgapped Backup on Plakar - Effortless backup</title><link>https://www.plakar.io/tags/airgapped-backup/</link><description>Recent content in Airgapped Backup on Plakar - Effortless backup</description><generator>Hugo</generator><language>en</language><lastBuildDate>Wed, 30 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://www.plakar.io/tags/airgapped-backup/index.xml" rel="self" type="application/rss+xml"/><item><title>MinIO integration package</title><link>https://www.plakar.io/docs/main/integrations/minio/</link><pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/main/integrations/minio/</guid><description>&lt;p>This documentation assumes Plakar v1.0.2 is installed.&lt;/p>
+&lt;p>If you are running a newer version, the commands differ slightly as some of the &lt;strong>configuration commands have changed in v1.0.3&lt;/strong>. Check the Changelog of v1.0.3 to adapt the commands accordingly.&lt;/p>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>Plakar&amp;rsquo;s built-in MinIO integration includes three connectors:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Storage connector&lt;/strong>: to host a Kloset store in a MinIO bucket.&lt;/li>
+&lt;li>&lt;strong>Source connector&lt;/strong>: to back up any MinIO bucket into an existing Kloset store.&lt;/li>
+&lt;li>&lt;strong>Destination connector&lt;/strong>: to restore from any Kloset store into a MinIO bucket.&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>Use-cases for this integration&lt;/strong>&lt;/p></description></item><item><title>MinIO integration package</title><link>https://www.plakar.io/docs/v1.0.2/integrations/minio/</link><pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/v1.0.2/integrations/minio/</guid><description>&lt;p>This documentation assumes Plakar v1.0.2 is installed.&lt;/p>
+&lt;p>If you are running a newer version, the commands differ slightly as some of the &lt;strong>configuration commands have changed in v1.0.3&lt;/strong>. Check the Changelog of v1.0.3 to adapt the commands accordingly.&lt;/p>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>Plakar&amp;rsquo;s built-in MinIO integration includes three connectors:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Storage connector&lt;/strong>: to host a Kloset store in a MinIO bucket.&lt;/li>
+&lt;li>&lt;strong>Source connector&lt;/strong>: to back up any MinIO bucket into an existing Kloset store.&lt;/li>
+&lt;li>&lt;strong>Destination connector&lt;/strong>: to restore from any Kloset store into a MinIO bucket.&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>Use-cases for this integration&lt;/strong>&lt;/p></description></item><item><title>MinIO integration package</title><link>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/minio/</link><pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/minio/</guid><description>&lt;p>This documentation assumes Plakar v1.0.2 is installed.&lt;/p>
+&lt;p>If you are running a newer version, the commands differ slightly as some of the &lt;strong>configuration commands have changed in v1.0.3&lt;/strong>. Check the Changelog of v1.0.3 to adapt the commands accordingly.&lt;/p>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>Plakar&amp;rsquo;s built-in MinIO integration includes three connectors:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Storage connector&lt;/strong>: to host a Kloset store in a MinIO bucket.&lt;/li>
+&lt;li>&lt;strong>Source connector&lt;/strong>: to back up any MinIO bucket into an existing Kloset store.&lt;/li>
+&lt;li>&lt;strong>Destination connector&lt;/strong>: to restore from any Kloset store into a MinIO bucket.&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>Use-cases for this integration&lt;/strong>&lt;/p></description></item><item><title>SFTP integration package</title><link>https://www.plakar.io/docs/main/integrations/sftp/</link><pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/main/integrations/sftp/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;blockquote>
+&lt;p>&lt;strong>Requirements&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Plakar version: &amp;ldquo;1.0.2 or &amp;gt;=1.0.3&amp;rdquo;&lt;/li>
+&lt;li>Integration version: &amp;ldquo;0.1.0&amp;rdquo;&lt;/li>
+&lt;li>SFTP/SSH server accessible with read/write permissions&lt;/li>
+&lt;/ul>&lt;/blockquote>
+&lt;p>This integration enables &lt;strong>backing up, restoring, and storing&lt;/strong> remote directories using Plakar’s built-in SFTP connector over SSH. SFTP is supported natively, requiring only that the target system has SSH and SFTP access enabled.&lt;/p>
+&lt;p>Snapshots are stored in a Kloset store with full deduplication, encryption, and immutability, whether hosted locally or on an SFTP-accessible remote server. All data transfers are encrypted end-to-end, and Plakar automatically verifies each snapshot to ensure data integrity.&lt;/p></description></item><item><title>SFTP integration package</title><link>https://www.plakar.io/docs/v1.0.2/integrations/sftp/</link><pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/v1.0.2/integrations/sftp/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;blockquote>
+&lt;p>&lt;strong>Requirements&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Plakar version: &amp;ldquo;1.0.2 or &amp;gt;=1.0.3&amp;rdquo;&lt;/li>
+&lt;li>Integration version: &amp;ldquo;0.1.0&amp;rdquo;&lt;/li>
+&lt;li>SFTP/SSH server accessible with read/write permissions&lt;/li>
+&lt;/ul>&lt;/blockquote>
+&lt;p>This integration enables &lt;strong>backing up, restoring, and storing&lt;/strong> remote directories using Plakar’s built-in SFTP connector over SSH. SFTP is supported natively, requiring only that the target system has SSH and SFTP access enabled.&lt;/p>
+&lt;p>Snapshots are stored in a Kloset store with full deduplication, encryption, and immutability, whether hosted locally or on an SFTP-accessible remote server. All data transfers are encrypted end-to-end, and Plakar automatically verifies each snapshot to ensure data integrity.&lt;/p></description></item><item><title>SFTP integration package</title><link>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/sftp/</link><pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/sftp/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;blockquote>
+&lt;p>&lt;strong>Requirements&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Plakar version: &amp;ldquo;1.0.2 or &amp;gt;=1.0.3&amp;rdquo;&lt;/li>
+&lt;li>Integration version: &amp;ldquo;0.1.0&amp;rdquo;&lt;/li>
+&lt;li>SFTP/SSH server accessible with read/write permissions&lt;/li>
+&lt;/ul>&lt;/blockquote>
+&lt;p>This integration enables &lt;strong>backing up, restoring, and storing&lt;/strong> remote directories using Plakar’s built-in SFTP connector over SSH. SFTP is supported natively, requiring only that the target system has SSH and SFTP access enabled.&lt;/p>
+&lt;p>Snapshots are stored in a Kloset store with full deduplication, encryption, and immutability, whether hosted locally or on an SFTP-accessible remote server. All data transfers are encrypted end-to-end, and Plakar automatically verifies each snapshot to ensure data integrity.&lt;/p></description></item><item><title>Dropbox integration</title><link>https://www.plakar.io/docs/main/integrations/dropbox/</link><pubDate>Sat, 26 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/main/integrations/dropbox/</guid><description>&lt;h1 id="integration-package-dropbox">Integration Package: Dropbox&lt;/h1>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>This integration allows you to snapshot and restore Dropbox data using Plakar, storing it in a Kloset store while minimizing storage usage and ensuring strong data security.
+It includes a Storage Connector that lets you persist snapshots to Dropbox itself, either from Dropbox or other sources.
+A Viewer is also provided to inspect, search, and restore snapshots without requiring full extraction.&lt;/p>
+&lt;p>&lt;strong>Use cases:&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Cold backup of Dropbox folders&lt;/li>
+&lt;li>Long-term archiving and disaster recovery&lt;/li>
+&lt;li>Portable export and vendor migration to other platforms&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>Target technologies:&lt;/strong>&lt;/p></description></item><item><title>Dropbox integration</title><link>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/dropbox/</link><pubDate>Sat, 26 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/dropbox/</guid><description>&lt;h1 id="integration-package-dropbox">Integration Package: Dropbox&lt;/h1>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>This integration allows you to snapshot and restore Dropbox data using Plakar, storing it in a Kloset store while minimizing storage usage and ensuring strong data security.
+It includes a Storage Connector that lets you persist snapshots to Dropbox itself, either from Dropbox or other sources.
+A Viewer is also provided to inspect, search, and restore snapshots without requiring full extraction.&lt;/p>
+&lt;p>&lt;strong>Use cases:&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Cold backup of Dropbox folders&lt;/li>
+&lt;li>Long-term archiving and disaster recovery&lt;/li>
+&lt;li>Portable export and vendor migration to other platforms&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>Target technologies:&lt;/strong>&lt;/p></description></item><item><title>Google Drive integration</title><link>https://www.plakar.io/docs/main/integrations/googledrive/</link><pubDate>Sat, 26 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/main/integrations/googledrive/</guid><description>&lt;h1 id="integration-package-google-drive">Integration Package: Google Drive&lt;/h1>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>This integration allows you to snapshot and restore Google Drive data using Plakar to store it in a Kloset store, while minimizing storage usage and ensuring strong data security.
+It includes a Storage Connector that lets you persist snapshots to Google Drive itself, either from Google Drive or from other sources.
+A Viewer is also provided to inspect, search, and restore snapshots without requiring full extraction.&lt;/p></description></item><item><title>Google Drive integration</title><link>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/googledrive/</link><pubDate>Sat, 26 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/googledrive/</guid><description>&lt;h1 id="integration-package-google-drive">Integration Package: Google Drive&lt;/h1>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>This integration allows you to snapshot and restore Google Drive data using Plakar to store it in a Kloset store, while minimizing storage usage and ensuring strong data security.
+It includes a Storage Connector that lets you persist snapshots to Google Drive itself, either from Google Drive or from other sources.
+A Viewer is also provided to inspect, search, and restore snapshots without requiring full extraction.&lt;/p></description></item><item><title>Google Photos integration documentation</title><link>https://www.plakar.io/docs/main/integrations/googlephotos/</link><pubDate>Sat, 26 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/main/integrations/googlephotos/</guid><description>&lt;h1 id="integration-package-google-photos">Integration Package: Google Photos&lt;/h1>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>This integration allows you to snapshot and restore Google Photos data using Plakar to store it in a Kloset store, while minimizing storage usage and ensuring strong data security.
+It includes connectors that let you import and export snapshots to Google Photos itself, either from Google Photos or from other sources.
+A Viewer is also provided to inspect, search, and restore snapshots without requiring full extraction.&lt;/p></description></item><item><title>Google Photos integration documentation</title><link>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/googlephotos/</link><pubDate>Sat, 26 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/googlephotos/</guid><description>&lt;h1 id="integration-package-google-photos">Integration Package: Google Photos&lt;/h1>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>This integration allows you to snapshot and restore Google Photos data using Plakar to store it in a Kloset store, while minimizing storage usage and ensuring strong data security.
+It includes connectors that let you import and export snapshots to Google Photos itself, either from Google Photos or from other sources.
+A Viewer is also provided to inspect, search, and restore snapshots without requiring full extraction.&lt;/p></description></item><item><title>Koofr integration documentation</title><link>https://www.plakar.io/docs/main/integrations/koofr/</link><pubDate>Sat, 26 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/main/integrations/koofr/</guid><description>&lt;h1 id="integration-package-koofr">Integration Package: Koofr&lt;/h1>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>This integration allows you to snapshot and restore Koofr data using Plakar to store it in a Kloset store, while minimizing storage usage and ensuring strong data security.
+It includes a Storage Connector that lets you persist snapshots to Koofr itself, either from Koofr or from other sources.
+A Viewer is also provided to inspect, search, and restore snapshots without requiring full extraction.&lt;/p>
+&lt;p>&lt;strong>Use cases:&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Cold backup of Koofr folders&lt;/li>
+&lt;li>Long-term archiving and disaster recovery&lt;/li>
+&lt;li>Portable export and vendor escape to other platforms&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>Target technologies:&lt;/strong>&lt;/p></description></item><item><title>Koofr integration documentation</title><link>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/koofr/</link><pubDate>Sat, 26 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/koofr/</guid><description>&lt;h1 id="integration-package-koofr">Integration Package: Koofr&lt;/h1>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>This integration allows you to snapshot and restore Koofr data using Plakar to store it in a Kloset store, while minimizing storage usage and ensuring strong data security.
+It includes a Storage Connector that lets you persist snapshots to Koofr itself, either from Koofr or from other sources.
+A Viewer is also provided to inspect, search, and restore snapshots without requiring full extraction.&lt;/p>
+&lt;p>&lt;strong>Use cases:&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Cold backup of Koofr folders&lt;/li>
+&lt;li>Long-term archiving and disaster recovery&lt;/li>
+&lt;li>Portable export and vendor escape to other platforms&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>Target technologies:&lt;/strong>&lt;/p></description></item><item><title>OneDrive integration documentation</title><link>https://www.plakar.io/docs/main/integrations/onedrive/</link><pubDate>Sat, 26 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/main/integrations/onedrive/</guid><description>&lt;h1 id="integration-package-onedrive">Integration Package: OneDrive&lt;/h1>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>This integration allows you to snapshot and restore OneDrive data using Plakar to store it in a Kloset store, while minimizing storage usage and ensuring strong data security.
+It includes a Storage Connector that lets you persist snapshots to OneDrive itself, either from OneDrive or from other sources.
+A Viewer is also provided to inspect, search, and restore snapshots without requiring full extraction.&lt;/p>
+&lt;p>&lt;strong>Use cases:&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Cold backup of OneDrive folders&lt;/li>
+&lt;li>Long-term archiving and disaster recovery&lt;/li>
+&lt;li>Portable export and vendor escape to other platforms&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>Target technologies:&lt;/strong>&lt;/p></description></item><item><title>OneDrive integration documentation</title><link>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/onedrive/</link><pubDate>Sat, 26 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/onedrive/</guid><description>&lt;h1 id="integration-package-onedrive">Integration Package: OneDrive&lt;/h1>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>This integration allows you to snapshot and restore OneDrive data using Plakar to store it in a Kloset store, while minimizing storage usage and ensuring strong data security.
+It includes a Storage Connector that lets you persist snapshots to OneDrive itself, either from OneDrive or from other sources.
+A Viewer is also provided to inspect, search, and restore snapshots without requiring full extraction.&lt;/p>
+&lt;p>&lt;strong>Use cases:&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Cold backup of OneDrive folders&lt;/li>
+&lt;li>Long-term archiving and disaster recovery&lt;/li>
+&lt;li>Portable export and vendor escape to other platforms&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>Target technologies:&lt;/strong>&lt;/p></description></item></channel></rss>
