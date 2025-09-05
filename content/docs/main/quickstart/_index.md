@@ -80,7 +80,7 @@ The default package manager for FreeBSD uses simple tar files for packaging. Dow
 
 Before we can backup any data, we need to define where the backup will go. In **plakar** terms, this storage location is called a 'Kloset'. You can find out more about the concept and rationale behind Kloset in [this post on our blog](https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/).
 
-For our first backup, we will create a local Kloset on the filesystem of the host OS. 
+For our first backup, we will create a local Kloset on the filesystem of the host OS. In a real backup scenario you would want to create a backup on a different physical device, so substitute in a better location if you have one.
 
 > In the CLI enter the following command:
 ```shell
@@ -142,6 +142,7 @@ $ plakar at $HOME/backups ls
 2025-09-02T15:38:16Z   9abc3294    3.1 MB      0s   /private/etc
 ```
 
+The output lists the datestamp of the last backup, the short UUID, the size of files backed-up, the time it took to create the backup and the source path of the backup.
 
 > Verify the integrity of the contents:
 
@@ -166,6 +167,8 @@ check: verification of 9abc3294:/private/etc completed successfully
 $ plakar at $HOME/backups restore -to /tmp/restore 9abc3294
 ```
 
+In this case we are restoring to temporary storage as it is just a test. The output will list the restored files as it creates them:
+
 ```
 9abc3294: OK ✓ /private/etc/afpovertcp.cfg
 9abc3294: OK ✓ /private/etc/apache2/extra/httpd-autoindex.conf
@@ -178,9 +181,13 @@ $ plakar at $HOME/backups restore -to /tmp/restore 9abc3294
 restore: restoration of 9abc3294:/private/etc at /tmp/restore completed successfully
 ```
 
+> To verify the files have been re-created, list the directory they were restored to:
+
 ```
 $ ls -l /tmp/restore
 ```
+
+This will list the restored file. Note that the properties of the restored files, such as the creation date, will be the same as the original files that were backed up:
 
 ```
 total 1784
@@ -204,7 +211,14 @@ Logging in is simple and needs only an email address or github account for authe
 
 > To log in using the CLI:
 ```
-plakar login
+plakar login -email <youremailaddress@example.com>
+```
+
+Substitute in your own email address and follow the prompt. You can then check your email and follow the link sent from plakar.io. 
+>To check that you are now logged in you can run:
+
+```
+plakar login -status
 ```
 
 ## Access the UI
@@ -215,7 +229,7 @@ plakar login
 $ plakar at $HOME/backups ui
 ```
 
-Your default browser will open a new tab. You can navigate through the snapshots, view the files, and restore them.
+Your default browser will open a new tab. You can navigate through the snapshots, search and view the files, and download them.
 
 ![Web UI, light mode](./images/ui-light.png)
 ![Web UI, dark mode](./images/ui-dark.png)
@@ -238,6 +252,4 @@ There is plenty more to discover about **plakar**. Here are our suggestions on w
 
  - Enable integrations and backup more things to and from more places
  - Reduce the risk of data loss by creating multiple copies of your backups across different locations.
- -
- -
  
