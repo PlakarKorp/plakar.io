@@ -91,7 +91,7 @@ else
 {{ if .Site.Params.discord.enabled | default false }}
     <script>
         async function fetchDiscordMembers() {
-            const inviteCode = "{{ .Site.Params.discord.inviteCode }}"; // exemple: uuegtnF2Q5
+            const inviteCode = "{{ .Site.Params.discord.inviteCode }}"; // example: uuegtnF2Q5
             const url = `https://discord.com/api/invites/${inviteCode}?with_counts=true`;
 
             try {

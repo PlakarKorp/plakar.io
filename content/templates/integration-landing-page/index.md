@@ -89,7 +89,7 @@ Mention scenarios like silent corruption, accidental deletion, compliance failur
 The goal is to justify the need for added protection, not to reintroduce the resource.
 SEO goal: capture queries like “{{ Resource }} backup risks”, “protecting {{ Resource }} data”, “immutable backups for {{ Resource }}”.
 
-If {{ Resource }} is under a shared responsability model contract, let's explain to user that it's their responsability to make their backups from a contractual standpoint.
+If {{ Resource }} is under a shared responsibility model contract, let's explain to user that it's their responsibility to make their backups from a contractual standpoint.
 
 -->
 

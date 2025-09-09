@@ -142,7 +142,7 @@ summary: "effortless backups"
       <a class="Xr" href="../plakar-pkg-create/">plakar-pkg-create(1)</a>.</dd>
   <dt id="pkg~5"><a class="permalink" href="#pkg~5"><code class="Cm">pkg
     rm</code></a></dt>
-  <dd>Unistall a plugin, documented in
+  <dd>Uninstall a plugin, documented in
       <a class="Xr" href="../plakar-pkg-rm/">plakar-pkg-rm(1)</a>.</dd>
   <dt id="restore"><a class="permalink" href="#restore"><code class="Cm">restore</code></a></dt>
   <dd>Restore files from a Kloset snapshot, documented in
