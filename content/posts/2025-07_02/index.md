@@ -84,7 +84,7 @@ func (p *FTPImporter) Close() error
 // produce the full list of resources to backup
 func (p *FTPImporter) Scan() (<-chan *importer.ScanResult, error)
 
-// provide a ReadCloser to a specific ressource 
+// provide a ReadCloser to a specific resource 
 func (p *FTPImporter) NewReader(string) (io.ReadCloser, error)
 ```
 

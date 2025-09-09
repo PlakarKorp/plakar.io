@@ -55,7 +55,7 @@ provides:
   - viewer
 
 # Template notes:
-# - {{< clearfix >}} can be used to fix alignement issues between the two columns
+# - {{< clearfix >}} can be used to fix alignment issues between the two columns
 # - Use {{< param "param_name" >}} to reference parameters defined in the header
 
 ---
@@ -102,7 +102,7 @@ This integration supports the following versions and deployment models of {resou
 
 **Components provided:**
 - **Source Connector**: to extract data from the {resource} to back up it
-- **Destination Connector**: to restore snapshots to the {resource} or compatibles ressources
+- **Destination Connector**: to restore snapshots to the {resource} or compatibles resources
 - **Storage Connector**: to persist data to the {resource}
 - **Viewer**: CLI or UI to browse and search snapshots (reads from Kloset Store)
 
@@ -195,11 +195,11 @@ plakar config destination set myresource secret_access_key {your-secret-key}
 
 #### Snapshot: make a backup
 
-Provide diffrent examples to make a backup
+Provide different examples to make a backup
 > To take a snapshot of your configured resource:
 ```bash
 plakar at @mystore backup @myresource
-plakar at @mystore backup ressource://
+plakar at @mystore backup resource://
 ```
 
 Plakar connects to the resource and lists all accessible objects in the specified bucket.
