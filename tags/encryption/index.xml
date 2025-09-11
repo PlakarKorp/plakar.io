@@ -1,4 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Encryption on Plakar - Effortless backup</title><link>https://www.plakar.io/tags/encryption/</link><description>Recent content in Encryption on Plakar - Effortless backup</description><generator>Hugo</generator><language>en</language><lastBuildDate>Wed, 30 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://www.plakar.io/tags/encryption/index.xml" rel="self" type="application/rss+xml"/><item><title>MinIO integration package</title><link>https://www.plakar.io/docs/main/integrations/minio/</link><pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/main/integrations/minio/</guid><description>&lt;p>This documentation assumes Plakar v1.0.2 is installed.&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Encryption on Plakar - Effortless backup</title><link>https://www.plakar.io/tags/encryption/</link><description>Recent content in Encryption on Plakar - Effortless backup</description><generator>Hugo</generator><language>en</language><lastBuildDate>Wed, 30 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://www.plakar.io/tags/encryption/index.xml" rel="self" type="application/rss+xml"/><item><title>MinIO integration package</title><link>https://www.plakar.io/docs/main/integrations/minio/</link><pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/main/integrations/minio/</guid><description>&lt;p>This documentation assumes Plakar v1.0.4 is installed.&lt;/p>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>Plakar&amp;rsquo;s MinIO integration includes three connectors:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Storage connector&lt;/strong>: to host a Kloset store in a MinIO bucket.&lt;/li>
+&lt;li>&lt;strong>Source connector&lt;/strong>: to back up any MinIO bucket into an existing Kloset store.&lt;/li>
+&lt;li>&lt;strong>Destination connector&lt;/strong>: to restore from any Kloset store into a MinIO bucket.&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>Use-cases for this integration&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Host a Kloset store in a MinIO bucket&lt;/strong>, and use it to back up your local filesystem, remote servers, databases, or any other data source supported by Plakar.&lt;/li>
+&lt;li>&lt;strong>Backup a MinIO bucket&lt;/strong> to any Kloset store, for example hosted on the local filesystem, in a remote SFTP server, or even in another MinIO bucket.&lt;/li>
+&lt;li>&lt;strong>Restore a snapshot from a Kloset store into a MinIO bucket&lt;/strong>.&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>Compatibility&lt;/strong>&lt;/p></description></item><item><title>MinIO integration package</title><link>https://www.plakar.io/docs/v1.0.2/integrations/minio/</link><pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/v1.0.2/integrations/minio/</guid><description>&lt;p>This documentation assumes Plakar v1.0.2 is installed.&lt;/p>
 &lt;p>If you are running a newer version, the commands differ slightly as some of the &lt;strong>configuration commands have changed in v1.0.3&lt;/strong>. Check the Changelog of v1.0.3 to adapt the commands accordingly.&lt;/p>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Plakar&amp;rsquo;s built-in MinIO integration includes three connectors:&lt;/p>
@@ -7,8 +21,7 @@
 &lt;li>&lt;strong>Source connector&lt;/strong>: to back up any MinIO bucket into an existing Kloset store.&lt;/li>
 &lt;li>&lt;strong>Destination connector&lt;/strong>: to restore from any Kloset store into a MinIO bucket.&lt;/li>
 &lt;/ul>
-&lt;p>&lt;strong>Use-cases for this integration&lt;/strong>&lt;/p></description></item><item><title>MinIO integration package</title><link>https://www.plakar.io/docs/v1.0.2/integrations/minio/</link><pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/v1.0.2/integrations/minio/</guid><description>&lt;p>This documentation assumes Plakar v1.0.2 is installed.&lt;/p>
-&lt;p>If you are running a newer version, the commands differ slightly as some of the &lt;strong>configuration commands have changed in v1.0.3&lt;/strong>. Check the Changelog of v1.0.3 to adapt the commands accordingly.&lt;/p>
+&lt;p>&lt;strong>Use-cases for this integration&lt;/strong>&lt;/p></description></item><item><title>MinIO integration package</title><link>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/minio/</link><pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/minio/</guid><description>&lt;p>This documentation assumes Plakar v1.0.4 is installed.&lt;/p>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Plakar&amp;rsquo;s built-in MinIO integration includes three connectors:&lt;/p>
 &lt;ul>
@@ -16,16 +29,13 @@
 &lt;li>&lt;strong>Source connector&lt;/strong>: to back up any MinIO bucket into an existing Kloset store.&lt;/li>
 &lt;li>&lt;strong>Destination connector&lt;/strong>: to restore from any Kloset store into a MinIO bucket.&lt;/li>
 &lt;/ul>
-&lt;p>&lt;strong>Use-cases for this integration&lt;/strong>&lt;/p></description></item><item><title>MinIO integration package</title><link>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/minio/</link><pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/v1.0.3-rc.2/integrations/minio/</guid><description>&lt;p>This documentation assumes Plakar v1.0.2 is installed.&lt;/p>
-&lt;p>If you are running a newer version, the commands differ slightly as some of the &lt;strong>configuration commands have changed in v1.0.3&lt;/strong>. Check the Changelog of v1.0.3 to adapt the commands accordingly.&lt;/p>
-&lt;h2 id="introduction">Introduction&lt;/h2>
-&lt;p>Plakar&amp;rsquo;s built-in MinIO integration includes three connectors:&lt;/p>
+&lt;p>&lt;strong>Use-cases for this integration&lt;/strong>&lt;/p>
 &lt;ul>
-&lt;li>&lt;strong>Storage connector&lt;/strong>: to host a Kloset store in a MinIO bucket.&lt;/li>
-&lt;li>&lt;strong>Source connector&lt;/strong>: to back up any MinIO bucket into an existing Kloset store.&lt;/li>
-&lt;li>&lt;strong>Destination connector&lt;/strong>: to restore from any Kloset store into a MinIO bucket.&lt;/li>
+&lt;li>&lt;strong>Host a Kloset store in a MinIO bucket&lt;/strong>, and use it to back up your local filesystem, remote servers, databases, or any other data source supported by Plakar.&lt;/li>
+&lt;li>&lt;strong>Backup a MinIO bucket&lt;/strong> to any Kloset store, for example hosted on the local filesystem, in a remote SFTP server, or even in another MinIO bucket.&lt;/li>
+&lt;li>&lt;strong>Restore a snapshot from a Kloset store into a MinIO bucket&lt;/strong>.&lt;/li>
 &lt;/ul>
-&lt;p>&lt;strong>Use-cases for this integration&lt;/strong>&lt;/p></description></item><item><title>SFTP integration package</title><link>https://www.plakar.io/docs/main/integrations/sftp/</link><pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/main/integrations/sftp/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>&lt;strong>Compatibility&lt;/strong>&lt;/p></description></item><item><title>SFTP integration package</title><link>https://www.plakar.io/docs/main/integrations/sftp/</link><pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/main/integrations/sftp/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;blockquote>
 &lt;p>&lt;strong>Requirements&lt;/strong>&lt;/p>
 &lt;ul>
