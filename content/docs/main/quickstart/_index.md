@@ -32,32 +32,34 @@ So, for example for a Mac running on modern Mac hardware you would fetch the fil
 
 Once you have downloaded the appropriate package, installation depends on your local operating system.
 
-### Debian-based OS
+{{< tabs name="Installing" >}}
+{{% tab name="Debian-based OS"%}}
 
-For a Debian-based OS (e.g. Ubuntu, Debian) it's easiest to download the '.deb' package from the releases page. 
->You can install the package with the `dpkg` command:
-```
-$ sudo dpkg -i plakar_1.0.3_linux_amd64.deb
-```
+  For a Debian-based OS (e.g. Ubuntu, Debian) it's easiest to download the '.deb' package from the releases page. 
+  
+  You can install the package with the `dpkg` command:
+  ```bash
+  $ sudo dpkg -i plakar_1.0.3_linux_amd64.deb
+  ```
 
->Verify the installation by running:
-```
-$ plakar version
-```
+  Verify the installation by running:
+  ```no-highlight
+  $ plakar version
+  ```
 
 This should return the expected version number, for example 'v1.0.3'.
-
-### RPM-based OS
-
+{{< /tab >}}
+{{% tab name="RPM-based OS" %}}
 For an OS which uses RPM-based packages, download the relevant '.rpm' file from the releases page.
 
 Then use the package manager to install the package. 
-> For example, on Fedora:
-```
+For example, on Fedora:
+```no-highlight
 $ sudo dnf install plakar_1.0.3_linux_amd64.rpm
 ```
 
-### MacOS
+{{< /tab >}}
+{{% tab name="MacOS" %}}
 
 The MacOS built packages use 'darwin' as the OS designation. Modern Mac processors are based
 on the arm64 architecture, so you will most likely want to fetch the 
@@ -68,14 +70,18 @@ to explicitly allow it from the `Privacy & Security` settings.
 
 ![MacOS Privacy and Security settings](./images/macos.png)
 
-### FreeBSD
+{{< /tab >}}
+{{% tab name="FreeBSD" %}}
 
 The default package manager for FreeBSD uses simple tar files for packaging. Download the appropriate one based on the hardware architecture.
 
-> For FreeBSD, use the 'pkg' command with root privilege to install the downloaded package: 
-```
+For FreeBSD, use the 'pkg' command with root privilege to install the downloaded package: 
+```no-highlight
 # pkg add ./plakar_1.0.3_freebsd_amd64.tar.gz
 ```
+ 
+{{< /tab >}}
+{{< /tabs >}}
  
 ## Create a Kloset
 
@@ -109,7 +115,7 @@ or recovered.
 
 Now we have created the Kloset where data will be stored we can use it to create our first backup. **plakar** uses the 'at' keyword to specify where a command is to take place. 
 > To create a simple example backup, try running:
-```
+```bash
 plakar at $HOME/backups backup /private/etc
 ```
 **plakar** will process the files it finds at that location and pass them to the Kloset where they will be chunked and encrypted. 
@@ -251,5 +257,6 @@ How long did it take? That's how easy **plakar** is for simple, secure backups.
 
 There is plenty more to discover about **plakar**. Here are our suggestions on what to try next:
 
- - Enable integrations and backup more things to and from more places
- - Reduce the risk of data loss by creating multiple copies of your backups across different locations.
+ - Create a [schedule for your backups](../guides/setup-scheduler-daily-backups/_index.md)
+ - Enable integrations and [backup an S3 bucket](../guides/how-to-backup-a-s3-bucket/_index.md)
+ - Discover more about the [plakar command syntax](../guides/plakar-command-line-syntax/_index.md)
