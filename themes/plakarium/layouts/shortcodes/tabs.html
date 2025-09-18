@@ -6,12 +6,12 @@
 
 {{- if .Inner -}}{{- /* silence unused .Inner warning */ -}}{{- end -}}
 
-<div id="{{ $tab_set_id }}" class="content-tabs border rounded-xl not-prose mx-6" data-tabs-root>
+<div id="{{ $tab_set_id }}" class="content-tabs border rounded-xl mx-0 md:mx-6" data-tabs-root>
   <!-- Mobile: select -->
   <div class="grid grid-cols-1 sm:hidden relative">
     <select aria-label="Select a tab"
-            class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-neutral-50 py-2 pr-8 pl-3 ~text-base text-neutral-900
-                   outline outline-1 -outline-offset-1 outline-neutral-300
+            class="col-start-1 row-start-1 w-full bg-neutral-50 py-2 pr-10 pl-3 text-base text-neutral-900
+                   outline outline-1 outline-neutral-300 appearance-none
                    focus:outline-2 focus:-outline-offset-2 focus:outline-primary-600"
             data-tabs-select>
       {{- range $i, $e := $tabs -}}
@@ -19,6 +19,12 @@
         <option value="{{ $id }}" {{ if eq $i 0 }}selected{{ end }}>{{- trim $e.name " " -}}</option>
       {{- end -}}
     </select>
+
+    <!-- dropdown arrow: absolute, vertically centered, right offset -->
+    <svg class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-neutral-500"
+         viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false">
+      <path d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" />
+    </svg>
   </div>
 
   <!-- Desktop: tab bar -->
