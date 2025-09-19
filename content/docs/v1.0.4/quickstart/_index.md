@@ -39,14 +39,24 @@ Welcome to **plakar** - easy, secure and efficient backups for people who value 
   ```
 {{< /tab >}}
 {{% tab name="RPM-based OS" %}}
-  For an OS which uses RPM-based packages, download the relevant '.rpm' file from the [releases page](https://github.com/PlakarKorp/plakar/releases/tag/v1.0.4).
+  For an OS which uses RPM-based packages (eg. Fedora), the easiest way is to use our dnf repository.
 
-  Then use the package manager to install the package.
-  For example, on Fedora:
+  First, setup the repository:
   ```bash
-  sudo dnf install plakar_1.0.4_linux_amd64.rpm
+  cat <<EOF | sudo tee /etc/yum.repos.d/plakar.repo
+[plakar]
+name=Plakar Repository
+baseurl=https://packages.plakar.io/rpm/$(uname -m)/
+enabled=1
+gpgcheck=0
+gpgkey=https://packages.plakar.io/keys/plakar.gpg
+EOF
   ```
 
+  Then install plakar with:
+  ```bash
+  sudo dnf install plakar
+  ```
 {{< /tab >}}
 {{% tab name="MacOS" %}}
   The simplest way to install Plakar on macOS is with [Homebrew](https://brew.sh/).
@@ -62,15 +72,6 @@ Welcome to **plakar** - easy, secure and efficient backups for people who value 
   to explicitly allow it from the `Privacy & Security` settings.
 
   ![MacOS Privacy and Security settings](./images/macos.png)
-{{< /tab >}}
-{{% tab name="FreeBSD" %}}
-  The default package manager for FreeBSD uses simple tar files for packaging. Download the appropriate one based on the hardware architecture from from the [releases page](https://github.com/PlakarKorp/plakar/releases/tag/v1.0.4).
-
-  For FreeBSD, use the 'pkg' command with root privilege to install the downloaded package:
-  ```no-highlight
-  # pkg add ./plakar_1.0.3_freebsd_amd64.tar.gz
-  ```
- 
 {{< /tab >}}
 
 {{% tab name="Go Install" %}}
