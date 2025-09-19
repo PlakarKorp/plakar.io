@@ -1,0 +1,26 @@
+{{ define "main" }}
+    {{/* Only redirect on the section root, not on children */}}
+    {{ if eq .RelPermalink "/download/" }}
+        {{ $latest := .Site.Params.latest }} {{/* e.g. "v1.0.4" */}}
+
+        <meta http-equiv="refresh" content='0;url={{ (printf "/download/%s/" $latest) | relURL }}'>
+        <script>
+            window.location.replace("{{ (printf "/download/%s/" $latest) | relURL }}");
+        </script>
+
+        <p>
+            Redirecting to
+            <a href='{{ (printf "/download/%s/" $latest) | relURL }}'>
+                latest Plakar version ({{ $latest }})
+            </a>…
+        </p>
+    {{ else }}
+        {{/* Optional: render a fallback for non-root sections if you have any */}}
+        <section class="section-light-1 py-12">
+            <div class="content px-4">
+                <p class="text-neutral-600">This page is not the root “/download/”.</p>
+            </div>
+        </section>
+    {{ end }}
+{{ end }}
+

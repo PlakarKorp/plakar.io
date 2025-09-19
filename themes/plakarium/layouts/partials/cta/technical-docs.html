@@ -1,11 +1,33 @@
-    <!-- for tailwind safelist -->
+{{ $site := .Site }}
+{{ if isset . "ctx" }}
+    {{ $site = .ctx.Site }}
+{{ end }}
+
+{{ $label := "Technical docs" }}
+{{ if (isset . "label") }}
+    {{ $label = .label }}
+{{ end }}
+
+{{ $labelShort := "Tech docs" }}
+{{ if (isset . "labelShort") }}
+    {{ $labelShort = .labelShort }}
+{{ end }}
+
+{{ $href := (printf "/docs/%s/" $site.Params.latest) }}
+{{ if (isset . "href") }}
+    {{ $href = .href }}
+{{ end }}
+
+
+
+<!-- for tailwind safelist -->
     <span class="hover:text-neutral-50"></span>
 
     {{ partial "cta/based-button.html" (dict
-            "href" "https://docs.plakar.io/en/index.html"
+            "href" $href
             "target" "_blank"
-            "label" "Technical docs"
-            "labelShort" "Tech docs"
+            "label" $label
+            "labelShort" $labelShort
             "bgHoverColor" "bg-neutral-50"
             "textHoverColor" "text-neutral-900"
             "bgColor" "bg-neutral-300"
@@ -13,4 +35,3 @@
             "borderColor" "border-neutral-900"
             "textColor" "text-neutral-900"
             ) }}
-

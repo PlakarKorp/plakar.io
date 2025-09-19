@@ -1,5 +1,25 @@
+{{ $site := .Site }}
+{{ if isset . "ctx" }}
+        {{ $site = .ctx.Site }}
+{{ end }}
+
+{{ $label := "Get started" }}
+{{ if (isset . "label") }}
+        {{ $label = .label }}
+{{ end }}
+
+{{ $labelShort := "Start" }}
+{{ if (isset . "labelShort") }}
+        {{ $labelShort = .labelShort }}
+{{ end }}
+
+{{ $href := (printf "/docs/%s/" $site.Params.latest) }}
+{{ if (isset . "href") }}
+        {{ $href = .href }}
+{{ end }}
+
 {{ partial "cta/based-button.html" (dict
-        "href" (printf "docs/%s/quickstart/" .Site.Params.latest)
-        "label" "Get started"
-        "labelShort" "Start"
+        "href" $href
+        "label" $label
+        "labelShort" $labelShort
         ) }}
