@@ -63,15 +63,6 @@ Welcome to **plakar** - easy, secure and efficient backups for people who value 
 
   ![MacOS Privacy and Security settings](./images/macos.png)
 {{< /tab >}}
-{{% tab name="FreeBSD" %}}
-  The default package manager for FreeBSD uses simple tar files for packaging. Download the appropriate one based on the hardware architecture from from the [releases page](https://github.com/PlakarKorp/plakar/releases/tag/v1.0.4).
-
-  For FreeBSD, use the 'pkg' command with root privilege to install the downloaded package:
-  ```no-highlight
-  # pkg add ./plakar_1.0.3_freebsd_amd64.tar.gz
-  ```
- 
-{{< /tab >}}
 
 {{% tab name="Go Install" %}}
   To install using the Go toolchain, use 'go install' with the version you want to install:
