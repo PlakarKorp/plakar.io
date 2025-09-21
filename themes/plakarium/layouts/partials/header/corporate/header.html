@@ -1,15 +1,10 @@
-{{ $logoLight := resources.Get .Site.Params.logoLight }}
 {{ $logoDark := resources.Get .Site.Params.logoDark }}
-{{ $riGithubFill := resources.Get "img/ri/github-fill.svg" }}
-{{ $riAmazonLine := resources.Get "img/ri/amazon-line.svg" }}
-{{ $riNotionLine := resources.Get "img/ri/notion-line.svg" }}
-{{ $riCornerDownRightLine := resources.Get "img/ri/corner-down-right-line.svg" }}
 
 <!-- Fixed Navbar -->
 <header id="site-header"
         class="fixed flex px-2 py-2 md:px-4 top-5 rounded-2xl mx-auto inset-x-4 md:inset-x-10 max-w-[1400px] z-50 bg-neutral-50 border-b border-l border-r border-neutral-300">
     <div class="flex mx-auto w-full justify-between relative">
-        <div class="flex mx-auto items-center w-full space-x-4 lg:space-x-16">
+        <div class="flex mx-auto items-center w-full space-x-2 xl:space-x-16">
             <!-- Logo -->
             <a href="/" id="logo-link" class="block md:w-32 w-28 pb-[2px] relative group">
                 <span class="block">
@@ -39,7 +34,7 @@
         <!-- Right-side buttons (GitHub + Actions) -->
         <div class="flex flex-row items-center space-x-2 w-full justify-end">
             <!-- Discord link -->
-            <div class="hidden min-h-[48px] items-stretch lg:flex gap-2 pr-4 p-[1px] border border-neutral-300 bg-neutral-50 rounded-lg font-space-text">
+            <div class="hidden min-h-[24px] xl:min-h-[48px] items-stretch lg:flex gap-2 pr-4 p-[1px] border border-neutral-300 bg-neutral-50 rounded-lg font-space-text">
                 {{ partial "social/discord-badge.html" (dict
                         "badgeSize" "8"
                         "format" "star_light"
@@ -47,7 +42,7 @@
                         ) }}
             </div>
             <!-- GitHub link -->
-            <div class="hidden min-h-[48px] items-stretch lg:flex gap-2 pr-4 p-[1px] border border-neutral-300 bg-neutral-50 rounded-lg font-space-text">
+            <div class="hidden min-h-[24px] xl:min-h-[48px] items-stretch lg:flex gap-2 pr-4 p-[1px] border border-neutral-300 bg-neutral-50 rounded-lg font-space-text">
                 {{ partial "social/github-badge.html" (dict
                         "badgeSize" "8"
                         "format" "star_light"
