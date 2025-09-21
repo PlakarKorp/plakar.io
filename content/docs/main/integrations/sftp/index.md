@@ -22,8 +22,8 @@ tags:
   - portable format
 stage: beta
 date: 2025-07-30
-plakar_version: {1.0.2 or >=1.0.3}
-integration_version: "0.1.0"
+plakar_version: '>=1.0.4'
+integration_version: '1.0.4'
 resource_type: filesystem
 provides:
   - source connector
@@ -34,11 +34,11 @@ provides:
 ## Introduction
 
 > **Requirements**
-> - Plakar version: "1.0.2 or >=1.0.3"
->  - Integration version: "0.1.0"
+> - Plakar version: '>=1.0.4'
+>  - Integration version: '1.0.4'
 >  - SFTP/SSH server accessible with read/write permissions
 
-This integration enables **backing up, restoring, and storing** remote directories using Plakar’s built-in SFTP connector over SSH. SFTP is supported natively, requiring only that the target system has SSH and SFTP access enabled.
+This integration enables **backing up, restoring, and storing** remote directories using Plakar’s SFTP connector over SSH. SFTP is supported natively, requiring only that the target system has SSH and SFTP access enabled.
 
 Snapshots are stored in a Kloset store with full deduplication, encryption, and immutability, whether hosted locally or on an SFTP-accessible remote server. All data transfers are encrypted end-to-end, and Plakar automatically verifies each snapshot to ensure data integrity.
 
@@ -66,20 +66,24 @@ Snapshots are stored in a Kloset store with full deduplication, encryption, and 
 - **Viewer**: Accessible via the Plakar CLI or UI, allowing users to browse, search, and verify snapshots stored on SFTP-hosted Kloset stores.
 
 ## Installation
-This integration is bundled natively with Plakar. No additional package installation is required.
+This integration is no longer bundled natively with Plakar. Starting from version 1.0.4, the SFTP connector must be manually installed.
 
-***Verify SFTP Support:***
+***Install SFTP Support:***
 ```bash
-plakar/v1.0.2
-
-importers: fs, ftp, s3, sftp # <--- SFTP LISTED
-exporters: fs, ftp, s3, sftp # <--- SFTP LISTED
-klosets: fs, http, https, ptar, s3, sftp, sqlite # <--- SFTP LISTED
+# First login on plakar to get access to the pre-compile package repository
+plakar login -email <Your Email Address>
+# Confirm the login by clicking the link sent to your email
+plakar pkg add sftp
 ```
 
-Check that SFTP is listed in your available connectors by running the command ```plakar version```.
+Check that SFTP is listed in your available connectors by running the command ```plakar pkg list```.
 
-You should see `sftp` listed under **importers**, **exporters**, and **klosets**, for example:
+You should see `sftp` listed under installed packages, for example:
+
+```bash
+% plakar pkg list
+sftp@v1.0.4
+```
 
 This verifies integration is now ready for use.
 
@@ -103,10 +107,7 @@ Direct URLs are fully self‑contained and require no prior configuration, ideal
 ### Configure a named remote
 
 ```bash
-plakar config remote create mysftp
-
-# Point 'mysftp' to your SFTP server via an SSH host alias
-plakar config remote set mysftp location sftp://local-sftp/uploads
+plakar source add mysftp sftp://local-sftp/uploads
 ```
 Named remotes let you simplify and reuse SFTP URLs in Plakar commands without typing the full connection string each time.
 This allows using `sftp://local-sftp` instead of the full `sftp://sftpuser@localhost.`
