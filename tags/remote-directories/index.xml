@@ -1,4 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Remote Directories on Plakar - Effortless backup</title><link>https://www.plakar.io/tags/remote-directories/</link><description>Recent content in Remote Directories on Plakar - Effortless backup</description><generator>Hugo</generator><language>en</language><lastBuildDate>Wed, 30 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://www.plakar.io/tags/remote-directories/index.xml" rel="self" type="application/rss+xml"/><item><title>SFTP integration package</title><link>https://www.plakar.io/docs/main/integrations/sftp/</link><pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/main/integrations/sftp/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Remote Directories on Plakar - Effortless backup</title><link>https://www.plakar.io/tags/remote-directories/</link><description>Recent content in Remote Directories on Plakar - Effortless backup</description><generator>Hugo</generator><language>en</language><lastBuildDate>Wed, 30 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://www.plakar.io/tags/remote-directories/index.xml" rel="self" type="application/rss+xml"/><item><title>SFTP integration package</title><link>https://www.plakar.io/docs/main/integrations/sftp/</link><pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/main/integrations/sftp/</guid><description>&lt;blockquote>
+&lt;p>&lt;strong>Requirements&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Plakar &lt;code>v1.0.4&lt;/code> or later&lt;/li>
+&lt;li>SFTP connector &lt;code>v1.0.4&lt;/code>&lt;/li>
+&lt;li>An SFTP/SSH server reachable from the Plakar agent, with appropriate read/write permissions&lt;/li>
+&lt;/ul>&lt;/blockquote>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>Plakar&amp;rsquo;s SFTP integration includes three connectors:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Storage connector&lt;/strong> — host a Kloset store on any SFTP-accessible server.&lt;/li>
+&lt;li>&lt;strong>Source connector&lt;/strong> — back up a remote directory reachable over SFTP into a Kloset store.&lt;/li>
+&lt;li>&lt;strong>Destination connector&lt;/strong> — restore data from a Kloset store to an SFTP target.&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>Typical use cases&lt;/strong>&lt;/p></description></item><item><title>SFTP integration package</title><link>https://www.plakar.io/docs/v1.0.2/integrations/sftp/</link><pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/v1.0.2/integrations/sftp/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;blockquote>
 &lt;p>&lt;strong>Requirements&lt;/strong>&lt;/p>
 &lt;ul>
@@ -7,22 +21,18 @@
 &lt;li>SFTP/SSH server accessible with read/write permissions&lt;/li>
 &lt;/ul>&lt;/blockquote>
 &lt;p>This integration enables &lt;strong>backing up, restoring, and storing&lt;/strong> remote directories using Plakar’s built-in SFTP connector over SSH. SFTP is supported natively, requiring only that the target system has SSH and SFTP access enabled.&lt;/p>
-&lt;p>Snapshots are stored in a Kloset store with full deduplication, encryption, and immutability, whether hosted locally or on an SFTP-accessible remote server. All data transfers are encrypted end-to-end, and Plakar automatically verifies each snapshot to ensure data integrity.&lt;/p></description></item><item><title>SFTP integration package</title><link>https://www.plakar.io/docs/v1.0.2/integrations/sftp/</link><pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/v1.0.2/integrations/sftp/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
-&lt;blockquote>
+&lt;p>Snapshots are stored in a Kloset store with full deduplication, encryption, and immutability, whether hosted locally or on an SFTP-accessible remote server. All data transfers are encrypted end-to-end, and Plakar automatically verifies each snapshot to ensure data integrity.&lt;/p></description></item><item><title>SFTP integration package</title><link>https://www.plakar.io/docs/v1.0.4/integrations/sftp/</link><pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/v1.0.4/integrations/sftp/</guid><description>&lt;blockquote>
 &lt;p>&lt;strong>Requirements&lt;/strong>&lt;/p>
 &lt;ul>
-&lt;li>Plakar version: &amp;ldquo;1.0.2 or &amp;gt;=1.0.3&amp;rdquo;&lt;/li>
-&lt;li>Integration version: &amp;ldquo;0.1.0&amp;rdquo;&lt;/li>
-&lt;li>SFTP/SSH server accessible with read/write permissions&lt;/li>
+&lt;li>Plakar &lt;code>v1.0.4&lt;/code> or later&lt;/li>
+&lt;li>SFTP connector &lt;code>v1.0.4&lt;/code>&lt;/li>
+&lt;li>An SFTP/SSH server reachable from the Plakar agent, with appropriate read/write permissions&lt;/li>
 &lt;/ul>&lt;/blockquote>
-&lt;p>This integration enables &lt;strong>backing up, restoring, and storing&lt;/strong> remote directories using Plakar’s built-in SFTP connector over SSH. SFTP is supported natively, requiring only that the target system has SSH and SFTP access enabled.&lt;/p>
-&lt;p>Snapshots are stored in a Kloset store with full deduplication, encryption, and immutability, whether hosted locally or on an SFTP-accessible remote server. All data transfers are encrypted end-to-end, and Plakar automatically verifies each snapshot to ensure data integrity.&lt;/p></description></item><item><title>SFTP integration package</title><link>https://www.plakar.io/docs/v1.0.4/integrations/sftp/</link><pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/v1.0.4/integrations/sftp/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
-&lt;blockquote>
-&lt;p>&lt;strong>Requirements&lt;/strong>&lt;/p>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>Plakar&amp;rsquo;s SFTP integration includes three connectors:&lt;/p>
 &lt;ul>
-&lt;li>Plakar version: &amp;ldquo;1.0.2 or &amp;gt;=1.0.4&amp;rdquo;&lt;/li>
-&lt;li>Integration version: &amp;ldquo;0.1.0&amp;rdquo;&lt;/li>
-&lt;li>SFTP/SSH server accessible with read/write permissions&lt;/li>
-&lt;/ul>&lt;/blockquote>
-&lt;p>This integration enables &lt;strong>backing up, restoring, and storing&lt;/strong> remote directories using Plakar’s built-in SFTP connector over SSH. SFTP is supported natively, requiring only that the target system has SSH and SFTP access enabled.&lt;/p>
-&lt;p>Snapshots are stored in a Kloset store with full deduplication, encryption, and immutability, whether hosted locally or on an SFTP-accessible remote server. All data transfers are encrypted end-to-end, and Plakar automatically verifies each snapshot to ensure data integrity.&lt;/p></description></item></channel></rss>
+&lt;li>&lt;strong>Storage connector&lt;/strong> — host a Kloset store on any SFTP-accessible server.&lt;/li>
+&lt;li>&lt;strong>Source connector&lt;/strong> — back up a remote directory reachable over SFTP into a Kloset store.&lt;/li>
+&lt;li>&lt;strong>Destination connector&lt;/strong> — restore data from a Kloset store to an SFTP target.&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>Typical use cases&lt;/strong>&lt;/p></description></item></channel></rss>
