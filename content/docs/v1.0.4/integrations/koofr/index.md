@@ -116,7 +116,7 @@ Once Rclone is configured, import it into Plakar.
 To import your rclone config as a source connector (to make backups), run:
 
 ```bash
-rclone config show mykoofr | plakar source import
+rclone config show mykoofr | plakar source import -rclone
 ```
 
 ### Destination Connector
@@ -124,7 +124,7 @@ rclone config show mykoofr | plakar source import
 To import your rclone config as a destination connector (to restore backups), run:
 
 ```bash
-rclone config show mykoofr | plakar destination import
+rclone config show mykoofr | plakar destination import -rclone
 ```
 
 ### Storage Connector
@@ -132,7 +132,7 @@ rclone config show mykoofr | plakar destination import
 To import your rclone config as a storage connector (to store backups in Koofr), run:
 
 ```bash
-rclone config show mykoofr | plakar store import
+rclone config show mykoofr | plakar store import -rclone
 ```
 
 > Replace `mykoofr` with your Rclone remote name.
