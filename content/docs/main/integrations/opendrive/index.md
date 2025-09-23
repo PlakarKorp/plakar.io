@@ -106,7 +106,7 @@ Once Rclone is configured, import it into Plakar.
 To import your rclone config as a source connector (to make backups), run:
 
 ```bash
-rclone config show myopendrive | plakar source import
+rclone config show myopendrive | plakar source import -rclone
 ```
 
 ### Destination Connector
@@ -114,7 +114,7 @@ rclone config show myopendrive | plakar source import
 To import your rclone config as a destination connector (to restore backups), run:
 
 ```bash
-rclone config show myopendrive | plakar destination import
+rclone config show myopendrive | plakar destination import -rclone
 ```
 
 ### Storage Connector
@@ -122,7 +122,7 @@ rclone config show myopendrive | plakar destination import
 To import your rclone config as a storage connector (to store backups in OpenDrive), run:
 
 ```bash
-rclone config show myopendrive | plakar store import
+rclone config show myopendrive | plakar store import -rclone
 ```
 
 > Replace `myopendrive` with your Rclone remote name.

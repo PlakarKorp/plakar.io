@@ -106,7 +106,7 @@ Once Rclone is configured, import it into Plakar.
 To import your rclone config as a source connector (to make backups), run:
 
 ```bash
-rclone config show myprotondrive | plakar source import
+rclone config show myprotondrive | plakar source import -rclone
 ```
 
 ### Destination Connector
@@ -114,7 +114,7 @@ rclone config show myprotondrive | plakar source import
 To import your rclone config as a destination connector (to restore backups), run:
 
 ```bash
-rclone config show myprotondrive | plakar destination import
+rclone config show myprotondrive | plakar destination import -rclone
 ```
 
 ### Storage Connector
@@ -122,7 +122,7 @@ rclone config show myprotondrive | plakar destination import
 To import your rclone config as a storage connector (to store backups in Dropbox), run:
 
 ```bash
-rclone config show myprotondrive | plakar store import
+rclone config show myprotondrive | plakar store import -rclone
 ```
 
 > Replace `myprotondrive` with your Rclone remote name.
