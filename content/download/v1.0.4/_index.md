@@ -64,32 +64,25 @@ This method provides secure, automatic updates and integrity verification for al
 
 ## Install via Official RPM Repository (Fedora / RHEL / CentOS)
 
-The recommended way to install Plakar on RPM-based systems is to use our official repository. This ensures secure updates and verified packages.
+For an OS which uses RPM-based packages (eg. Fedora), the easiest way is to use our dnf repository.
 
-1. **Add the repository:**
+1. **First, setup the repository**
+  ```bash
+  cat <<EOF | sudo tee /etc/yum.repos.d/plakar.repo
+[plakar]
+name=Plakar Repository
+baseurl=https://packages.plakar.io/rpm/$(uname -m)/
+enabled=1
+gpgcheck=0
+gpgkey=https://packages.plakar.io/keys/plakar.gpg
+EOF
+  ```
 
-    ```bash
-    sudo dnf install -y curl sudo
-    sudo curl -fsSL https://packages.plakar.io/keys/plakar.gpg -o /etc/pki/rpm-gpg/RPM-GPG-KEY-plakar
-    sudo tee /etc/yum.repos.d/plakar.repo <<EOF
-    [plakar]
-    name=Plakar Official Repository
-    baseurl=https://packages.plakar.io/rpm
-    enabled=1
-    gpgcheck=1
-    gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-plakar
-    EOF
-    ```
+2. **Install plakar with dnf**
 
-2. **Install Plakar:**
-
-    ```bash
-    sudo dnf clean all
-    sudo dnf install plakar
-    ```
-
-This method provides secure, automatic updates and integrity verification for all Plakar releases.
-
+  ```bash
+  sudo dnf install plakar
+  ```
 
 ## Verify integrity locally
 
