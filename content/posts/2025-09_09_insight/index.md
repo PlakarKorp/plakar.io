@@ -59,10 +59,10 @@ These misconceptions often sound reasonable, but they create a false sense of sa
   AWS itself advises creating immutable copies in an isolated secondary account to protect against breaches, misconfigurations, compromised credentials, or accidental deletions.
   The official architecture (AWS Storage Blog, 2023) explicitly shows that replication and object-lock alone do not protect you from logical corruption or account compromise: you must replicate to a separate, restricted account to keep an independent, immutable copy.
 
-  In practice, replication can also amplify failures or ransomware attacks if not isolated: when the source data is encrypted or deleted, the replication faithfully propagates the damage to the destination. This is why AWS recommends automated suspension of replication when suspicious PUT or DELETE activity is detected — a classic anti-ransomware safeguard.
+  In practice, replication can also amplify failures or ransomware attacks if not isolated: when the source data is encrypted or deleted, the replication faithfully propagates the damage to the destination. This is why AWS recommends automated suspension of replication when suspicious PUT or DELETE activity is detected a classic anti-ransomware safeguard.
 
   S3 is designed for durability, not recoverability. A “well-configured bucket” ensures data isn’t lost due to hardware failure, but it won’t help you recover from a logic error, a bad IAM policy, or an API key compromise.
-  True protection requires an independent, immutable backup — ideally in another account or region, with Object Lock compliance and strict key isolation.
+  True protection requires an independent, immutable backup ideally in another account or region, with Object Lock compliance and strict key isolation.
 
   *[(AWS Blog: Modern Data Protection Architecture on Amazon S3, Part 1)](https://aws.amazon.com/blogs/storage/modern-data-protection-architecture-on-amazon-s3-part-1/?utm_source=chatgpt.com)*
 
@@ -109,7 +109,7 @@ These misconceptions often sound reasonable, but they create a false sense of sa
 
 
 
-Help us debunk these myths by sharing your own experiences and insights in this reddit thread: 
+Help us debunk these myths by sharing your own experiences and insights in this reddit thread: [Reddit thread](https://www.reddit.com/r/plakar/comments/1o4ovbr/falsehoods_engineers_believe_about_backup/)
 
 Most backup incidents go underreported: for obvious reasons, vendors and affected organizations rarely disclose full details. All the more reason to master the fundamentals (RPO/RTO, isolation, immutability, key separation) and to regularly test restores don’t wait for public post-mortems to learn.
 
