@@ -7,12 +7,15 @@
 
 {{ $currentPage := . }}
 {{ $versionId := "" }}
-{{ $versionName := "" }}
+
+{{ $versionName := .Params.plakarVersion | default "" }}
 {{ $docsSection := .Site.GetPage "section" "docs" }}
 {{ range $index, $subsection := $docsSection.Sections }}
     {{ if $subsection.IsAncestor $currentPage }}
         {{ $versionId = partial "sidebar/version-id" (dict "title" $subsection.Title "index" $index) }}
-        {{ $versionName = $subsection.Title }}
+        {{ if not $versionName }}
+            {{ $versionName = $subsection.Params.plakarVersion | default $subsection.Title }}
+        {{ end }}
     {{ end }}
 {{ end }}
 
