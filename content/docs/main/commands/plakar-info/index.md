@@ -1,5 +1,5 @@
 ---
-date: "2025-09-15T14:20:51Z"
+date: "2025-10-15T09:23:58Z"
 title: info
 summary: "Display detailed information about internal structures"
 ---
