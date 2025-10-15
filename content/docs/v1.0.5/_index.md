@@ -1,6 +1,6 @@
 ---
-title: "Plakar v1.0.4"
-date: "2025-03-18T10:07:31Z"
+title: "Plakar v1.0.5"
+date: "2025-10-15T12:00:00Z"
 weight: 98
 chapter: false
 sort: "title"
