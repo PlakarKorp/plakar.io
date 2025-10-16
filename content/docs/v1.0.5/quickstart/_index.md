@@ -77,7 +77,7 @@ EOF
 {{% tab name="Go Install" %}}
   To install using the Go toolchain, use 'go install' with the version you want to install:
   ```bash
-  $ go install github.com/PlakarKorp/plakar@v1.0.4
+  $ go install github.com/PlakarKorp/plakar@v1.0.5
   ```
 
   This will install the binary into your `$GOPATH/bin` directory, which you may need to add to your `$PATH` if it is not already there.
@@ -90,7 +90,7 @@ Verify the installation by running:
 plakar version
 ```
 
-This should return the expected version number, for example 'plakar/v1.0.4'.
+This should return the expected version number, for example 'plakar/v1.0.5'.
  
 ## Create a Kloset store
 
