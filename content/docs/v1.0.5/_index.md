@@ -5,6 +5,7 @@ weight: 98
 chapter: false
 sort: "title"
 docsBase: "/docs/main"
+plakarVersion: "v1.0.5"
 summary: "Main documentation hub for the developer branch of Plakar. Find guides, references, and resources for developers working with Plakar."
 ---
 
