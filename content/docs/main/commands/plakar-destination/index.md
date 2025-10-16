@@ -1,5 +1,5 @@
 ---
-date: "2025-09-15T14:20:51Z"
+date: "2025-10-15T09:23:58Z"
 title: destination
 summary: "Manage Plakar restore destination configuration"
 ---
@@ -50,16 +50,23 @@ summary: "Manage Plakar restore destination configuration"
     [<code class="Fl">-config</code> <var class="Ar">location</var>]
     [<code class="Fl">-overwrite</code>] [<code class="Fl">-rclone</code>]
     [<var class="Ar">sections ...</var>]</dt>
-  <dd>Import a configuration from either stdin (default), a file, or a URL.
-    <p class="Pp">If <var class="Ar">location</var> is specified, the input will
-        be read from that file or URL.</p>
-    <p class="Pp">If <code class="Fl">-overwrite</code> is specified, existing
-        sections will be overwritten by new ones.</p>
-    <p class="Pp">If <code class="Fl">-rclone</code> is specified, the input
-        will be treated as an rclone configuration.</p>
-    <p class="Pp">If <var class="Ar">sections</var> are specified, only those
-        sections will be imported. A section can be renamed on import by
-        appending a colon and the new name.</p>
+  <dd>Import destination configurations from various sources including files,
+      piped input, or rclone configurations.
+    <p class="Pp">By default, reads from stdin, allowing for piped input from
+        other commands like <code class="Cm">plakar source show</code>.</p>
+    <p class="Pp">The <code class="Fl">-config</code> option specifies a file or
+        URL to read the configuration from.</p>
+    <p class="Pp">The <code class="Fl">-overwrite</code> option allows
+        overwriting existing destination configurations with the same names.</p>
+    <p class="Pp">The <code class="Fl">-rclone</code> option treats the input as
+        an rclone configuration, useful for importing rclone remotes as Plakar
+        destinations.</p>
+    <p class="Pp">Specific sections can be imported by listing their names.</p>
+    <p class="Pp">Sections can be renamed during import by appending
+        <code class="Cm">:</code><var class="Ar">newname</var>.</p>
+    <p class="Pp">For detailed examples and usage patterns, see the
+        <a class="Lk" href="https://docs.plakar.io/en/guides/importing-configurations/">https://docs.plakar.io/en/guides/importing-configurations/</a>
+        Importing Configurations guide.</p>
   </dd>
   <dt id="ping"><a class="permalink" href="#ping"><code class="Cm">ping</code></a>
     <var class="Ar">name</var></dt>
