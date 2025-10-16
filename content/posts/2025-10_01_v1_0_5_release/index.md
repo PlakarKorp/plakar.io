@@ -100,6 +100,10 @@ These refinements make the codebase leaner, more predictable, and easier to main
 
 A warm welcome to **[@pata27](https://github.com/pata27)**, who made their first contribution in [#1725](https://github.com/PlakarKorp/plakar/pull/1725) 🎉
 
+We are awarding him this avatar (S stands for Superpata, just so you know):
+
+![](pata27.png)
+
 ---
 
 ## Full Changelog
