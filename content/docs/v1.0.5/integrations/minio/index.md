@@ -33,7 +33,7 @@ provides:
 - viewer
 ---
 
-This documentation assumes Plakar v1.0.4 is installed.
+This documentation assumes Plakar v1.0.4 or superior is installed.
 
 ## Introduction
 
