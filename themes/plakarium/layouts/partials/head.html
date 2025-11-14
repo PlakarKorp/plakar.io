@@ -15,7 +15,11 @@
 <!-- Open Graph data -->
 <meta property="og:type" content="article">
 <meta property="og:title" content="Plakar | {{ .Title }}">
+<meta property="og:author" content="{{ with .Params.author }}{{ . }}{{ else }}{{ .Site.Params.author }}{{ end }}">
 <meta property="og:description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+{{- $iso := .Lastmod.Format "2006-01-02T15:04:05Z07:00" -}}
+<meta property="og:publish_date" content="{{ $iso }}">
+
 <meta property="og:url" content="{{ .Permalink }}">
 <meta property="og:image" content="{{
         with .Params.og_image
