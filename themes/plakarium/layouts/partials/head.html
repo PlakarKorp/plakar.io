@@ -13,12 +13,14 @@
 
 
 <!-- Open Graph data -->
-<meta property="og:type" content="article">
+{{- $isArticle := or (eq .Section "posts") (eq .Type "post") -}}
+<meta property="og:type" content="{{ if $isArticle }}article{{ else }}website{{ end }}">
 <meta property="og:title" content="Plakar | {{ .Title }}">
 <meta property="og:author" content="{{ with .Params.author }}{{ . }}{{ else }}{{ .Site.Params.author }}{{ end }}">
 <meta property="og:description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
 
 
+{{- if $isArticle -}}
 {{- $pub := .PublishDate -}}
 {{- if $pub.IsZero }}{{ $pub = .Date }}{{ end -}}
 {{- if $pub.IsZero }}{{ $pub = now }}{{ end -}}
@@ -30,6 +32,7 @@
 <meta property="article:published_time" content="{{ $isoPub }}">
 <meta property="article:modified_time"  content="{{ $isoMod }}">
 <meta property="og:updated_time"        content="{{ $isoMod }}">
+{{- end -}}
 
 <meta property="og:url" content="{{ .Permalink }}">
 <meta property="og:image" content="{{
@@ -43,7 +46,7 @@ else
         end
 }}{{ end }}">
 <meta property="og:locale" content="en_US">
-<meta property="og:site_name" content="Plakar | {{ .Site.Title }}">
+<meta property="og:site_name" content="Plakar">
 
 <!-- Twitter Card (optional) -->
 <meta name="twitter:card" content="summary_large_image">
