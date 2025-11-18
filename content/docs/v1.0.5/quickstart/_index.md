@@ -13,7 +13,7 @@ Welcome to **plakar** - easy, secure and efficient backups for people who value 
 ## What you will need
 
  - an internet connection
- - a Linux, MacOS, FreeBSD or OpenBSD machine to run the software
+ - a Linux, macOS, Windows, FreeBSD or OpenBSD machine to run the software
  - admin access to install
  - sufficient local storage to store your backups
  - a web browser (for logging in and using the UI)
@@ -22,9 +22,10 @@ Welcome to **plakar** - easy, secure and efficient backups for people who value 
 
 {{< tabs name="Installing" >}}
 {{% tab name="Debian-based OS"%}}
-  For a Debian-based OS (e.g. Ubuntu, Debian) the easiest way is to use our apt repository.
+  For a Debian-based OS (for example Ubuntu or Debian), the easiest way is to use our apt repository.
 
   First, install necessary dependencies and add the repository's GPG key:
+
   ```bash
   apt-get update
   apt-get install -y curl sudo gnupg2
@@ -33,13 +34,14 @@ Welcome to **plakar** - easy, secure and efficient backups for people who value 
   ```
 
   Then update the package list and install plakar:
+
   ```bash
   sudo apt-get update
   sudo apt-get install plakar
   ```
 {{< /tab >}}
 {{% tab name="RPM-based OS" %}}
-  For an OS which uses RPM-based packages (eg. Fedora), the easiest way is to use our dnf repository.
+  For an OS which uses RPM-based packages (such as Fedora), the easiest way is to use our dnf repository.
 
   First, setup the repository:
   ```bash
@@ -68,19 +70,35 @@ EOF
 
   If you prefer not to use our tap, you can install from the default Homebrew repository instead with `brew install plakar`. Note that the version in the default repository may not always be the latest release.
 
-  MacOS has some built-in protection from malware. To enable the binary to be run, you will need
-  to explicitly allow it from the `Privacy & Security` settings.
+  macOS includes built-in protection against untrusted binaries. To allow plakar to run, you will need to explicitly approve it in the Privacy & Security settings.
 
   ![MacOS Privacy and Security settings](./images/macos.png)
 {{< /tab >}}
 
+{{% tab name="Windows" %}}
+  The simplest way to install Plakar on Windows is by downloading the pre-built package from the [Download page](/download/_index.md).
+
+  The downloaded package is simply an archive containing the executable. Copy this to anywhere on your system PATH, or run it directly from a shell where it is installed.
+
+  ![Windows running plakar](./images/windows.png)
+
+{{< /tab >}}
+
 {{% tab name="Go Install" %}}
-  To install using the Go toolchain, use 'go install' with the version you want to install:
+  To install using the Go toolchain, use `go install` with the version you want to install:
   ```bash
   $ go install github.com/PlakarKorp/plakar@v1.0.5
   ```
 
   This will install the binary into your `$GOPATH/bin` directory, which you may need to add to your `$PATH` if it is not already there.
+{{< /tab >}}
+
+{{% tab name="Others" %}}
+
+  For other supported operating systems, or for an alternative to the methods mentioned above, it is possible to download pre-built binaries for different platforms and architectures from the [Download page](/download/_index.md).
+
+  These are in standard formats for the relevant platforms, so consult OS-specific documentation for how to install them.
+
 {{< /tab >}}
 
 {{< /tabs >}}
@@ -92,11 +110,11 @@ plakar version
 
 This should return the expected version number, for example 'plakar/v1.0.5'.
  
-## Create a Kloset store
+## Create a Kloset Store
 
-Before we can backup any data, we need to define where the backup will go. In **plakar** terms, this storage location is called a 'Kloset Store'. You can find out more about the concept and rationale behind Kloset in [this post on our blog](https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/).
+Before we can back up any data, we need to define where the backup will go. In **plakar** terms, this storage location is called a 'Kloset Store'. You can find out more about the concept and rationale behind Kloset in [this post on our blog](https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/).
 
-For our first backup, we will create a local Kloset on the filesystem of the host OS. In a real backup scenario you would want to create a backup on a different physical device, so substitute in a better location if you have one.
+For our first backup, we will create a local Kloset Store on the filesystem of the host OS. In a real backup scenario you would want to create a backup on a different physical device, so substitute in a better location if you have one.
 
 > In the CLI enter the following command:
 ```shell
@@ -112,7 +130,7 @@ People with access to the repository and knowledge of the passphrase can read yo
 
 By default **plakar** will enforce rules on your choice of passphrase to make sure it is 
 complex enough to be secure. To add complexity, use a mixture of upper and lower case 
-characters and symbols.
+characters, numbers and symbols.
 
 **DO NOT LOSE OR FORGET THE PASSPHRASE:**
 it is not stored anywhere and **can not** be recovered in case of loss.
@@ -122,7 +140,7 @@ or recovered.
 
 ## Create your first backup
 
-Now we have created the Kloset where data will be stored we can use it to create our first backup. **plakar** uses the 'at' keyword to specify where a command is to take place. 
+Now that we have created the Kloset Store where data will be stored we can use it to create our first backup. **plakar** uses the 'at' keyword to specify where a command is to take place. 
 > To create a simple example backup, try running:
 ```bash
 plakar at $HOME/backups backup /private/etc
@@ -203,7 +221,7 @@ restore: restoration of 9abc3294:/private/etc at /tmp/restore completed successf
 $ ls -l /tmp/restore
 ```
 
-This will list the restored file. Note that the properties of the restored files, such as the creation date, will be the same as the original files that were backed up:
+This will list the restored files. Note that the properties of the restored files, such as the creation date, will be the same as the original files that were backed up:
 
 ```
 total 1784
@@ -221,9 +239,9 @@ drwxr-xr-x@ 16 gilles  wheel     512 Feb 19 22:47 asl
 
 By default, **plakar** works without requiring you to create an account or log in. You can back up and restore your data with just a few commands, no external services involved.
 
-However, logging in unlocks optional features that improve usability and monitoring, and by adding the ability to easily install pre-built integrations. In plakar, an integration is a package which supports an additional protocol as a source, destination or storage method (or all three), such as ftp, Google Cloud Storage or an s3 bucket.
+However, logging in unlocks optional features that improve usability and monitoring, and adds the ability to easily install pre-built integrations. In plakar, an integration is a package which supports an additional protocol as a source, destination or storage method (or all three), such as FTP, Google Cloud Storage or an S3 bucket.
 
-Logging in is simple and needs only an email address or github account for authentication.
+Logging in is simple and needs only an email address or GitHub account for authentication.
 
 > To log in using the CLI:
 ```
@@ -267,5 +285,6 @@ How long did it take? That's how easy **plakar** is for simple, secure backups.
 There is plenty more to discover about **plakar**. Here are our suggestions on what to try next:
 
  - Create a [schedule for your backups](../guides/setup-scheduler-daily-backups/_index.md)
- - Enable integrations and [backup an S3 bucket](../guides/how-to-backup-a-s3-bucket/_index.md)
+ - Enable integrations and [back up an S3 bucket](../guides/how-to-backup-a-s3-bucket/_index.md)
  - Discover more about the [plakar command syntax](../guides/plakar-command-line-syntax/_index.md)
+ - Learn more about [why one backup is not enough](./probabilities.md)
