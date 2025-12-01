@@ -26,7 +26,7 @@ For each release, check under the 'assets' section for a list of prebuilt packag
 
 `plakar_<version>_<os>_<arch>.<format>`
 
-So, for example for a Mac running on modern Mac hardware you would fetch the file `plakar_1.0.3-rc.2_darwin_arm64.tar.gz`; for OpenSuse on Intel hardware, you would want `plakar_1.0.3_linux_amd64.rpm`.
+So, for example for a Mac running on modern Mac hardware you would fetch the file `plakar_1.0.6_darwin_arm64.tar.gz`; for OpenSuse on Intel hardware, you would want `plakar_1.0.6_linux_amd64.rpm`.
 
 ## Install plakar
 
@@ -47,7 +47,7 @@ Once you have downloaded the appropriate package, installation depends on your l
   $ plakar version
   ```
 
-This should return the expected version number, for example 'v1.0.3'.
+This should return the expected version number, for example 'v1.0.6'.
 {{< /tab >}}
 {{% tab name="RPM-based OS" %}}
 For an OS which uses RPM-based packages, download the relevant '.rpm' file from the releases page.
