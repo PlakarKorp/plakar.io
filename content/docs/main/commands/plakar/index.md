@@ -1,5 +1,5 @@
 ---
-date: "2025-10-15T09:23:59Z"
+date: "2025-12-01T16:54:45Z"
 title: plakar
 summary: "effortless backups"
 ---
@@ -18,7 +18,7 @@ summary: "effortless backups"
 <table class="Nm">
   <tr>
     <td><code class="Nm">plakar</code></td>
-    <td>[<code class="Fl">-config</code> <var class="Ar">path</var>]
+    <td>[<code class="Fl">-config</code> <var class="Ar">dir</var>]
       [<code class="Fl">-cpu</code> <var class="Ar">number</var>]
       [<code class="Fl">-keyfile</code> <var class="Ar">path</var>]
       [<code class="Fl">-no-agent</code>] [<code class="Fl">-quiet</code>]
@@ -38,8 +38,9 @@ summary: "effortless backups"
 <p class="Pp">The following options are available:</p>
 <dl class="Bl-tag">
   <dt id="config"><a class="permalink" href="#config"><code class="Fl">-config</code></a>
-    <var class="Ar">path</var></dt>
-  <dd>Use the configuration at <var class="Ar">path</var>.</dd>
+    <var class="Ar">dir</var></dt>
+  <dd>Specify an alternate configuration directory. Defaults to
+      <span class="Pa">~/.config/plakar</span>.</dd>
   <dt id="cpu"><a class="permalink" href="#cpu"><code class="Fl">-cpu</code></a>
     <var class="Ar">number</var></dt>
   <dd>Limit the number of parallel workers <code class="Nm">plakar</code> uses

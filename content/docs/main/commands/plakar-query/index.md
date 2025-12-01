@@ -1,5 +1,5 @@
 ---
-date: "2025-10-15T09:23:58Z"
+date: "2025-12-01T16:54:45Z"
 title: query
 summary: "query flags shared among many Plakar subcommands"
 ---
@@ -186,10 +186,12 @@ summary: "query flags shared among many Plakar subcommands"
     <var class="Ar">name</var></dt>
   <dd>Select snapshots tagged with <var class="Ar">name</var>. May be specified
       multiple times, and multiple tags may be given at the same time if
-      comma-separated.</dd>
+      comma-separated. If a tag name is prefixed with an exclamation mark
+      &#x2018;!&#x2019;, the matching is inverted and the snapshot is ignored if
+      it contains said tag.</dd>
 </dl>
 </section>
 </main>
 <div class="foot" role="doc-pagefooter" aria-label="Manual footer
-  line"><span class="foot-left">Plakar</span> <span class="foot-date">September
-  10, 2025</span> <span class="foot-right">PLAKAR-QUERY(7)</span></div>
+  line"><span class="foot-left">Plakar</span> <span class="foot-date">November
+  28, 2025</span> <span class="foot-right">PLAKAR-QUERY(7)</span></div>

@@ -1,5 +1,5 @@
 ---
-date: "2025-10-15T09:23:58Z"
+date: "2025-12-01T16:54:45Z"
 title: backup
 summary: "Create a new snapshot in a Kloset store"
 ---
@@ -23,12 +23,13 @@ summary: "Create a new snapshot in a Kloset store"
       [<code class="Fl">-force-timestamp</code> <var class="Ar">timestamp</var>]
       [<code class="Fl">-ignore</code> <var class="Ar">pattern</var>]
       [<code class="Fl">-ignore-file</code> <var class="Ar">file</var>]
-      [<code class="Fl">-check</code>] [<code class="Fl">-o</code>
-      <var class="Ar">option</var>] [<code class="Fl">-packfiles</code>
-      <var class="Ar">path</var>] [<code class="Fl">-quiet</code>]
-      [<code class="Fl">-silent</code>] [<code class="Fl">-tag</code>
-      <var class="Ar">tag</var>] [<code class="Fl">-scan</code>]
-      [<var class="Ar">place</var>]</td>
+      [<code class="Fl">-check</code>] [<code class="Fl">-no-xattr</code>]
+      [<code class="Fl">-o</code>
+      <var class="Ar">option</var><span class="No">=</span><var class="Ar">value</var>]
+      [<code class="Fl">-packfiles</code> <var class="Ar">path</var>]
+      [<code class="Fl">-quiet</code>] [<code class="Fl">-silent</code>]
+      [<code class="Fl">-tag</code> <var class="Ar">tag</var>]
+      [<code class="Fl">-scan</code>] [<var class="Ar">place</var>]</td>
   </tr>
 </table>
 </section>
@@ -64,8 +65,10 @@ summary: "Create a new snapshot in a Kloset store"
       ignore files or directories in the backup.</dd>
   <dt id="check"><a class="permalink" href="#check"><code class="Fl">-check</code></a></dt>
   <dd>Perform a full check on the backup after success.</dd>
+  <dt id="no-xattr"><a class="permalink" href="#no-xattr"><code class="Fl">-no-xattr</code></a></dt>
+  <dd>Skip extended attributes (xattrs) when creating the backup.</dd>
   <dt id="o"><a class="permalink" href="#o"><code class="Fl">-o</code></a>
-    <var class="Ar">option</var></dt>
+    <var class="Ar">option</var><span class="No">=</span><var class="Ar">value</var></dt>
   <dd>Can be used to pass extra arguments to the source connector. The given
       <var class="Ar">option</var> takes precedence over the configuration
     file.</dd>
@@ -94,14 +97,18 @@ summary: "Create a new snapshot in a Kloset store"
 <div class="Bd Pp Bd-indent Li">
 <pre>$ plakar backup -tag daily-backup,production</pre>
 </div>
-<p class="Pp">Backup a specific directory with exclusion patterns from a
-  file:</p>
+<p class="Pp">Ignore files using patterns in a given file:</p>
 <div class="Bd Pp Bd-indent Li">
 <pre>$ plakar backup -ignore-file ~/my-ignore-file /var/www</pre>
 </div>
-<p class="Pp">Backup a directory with specific file exclusions:</p>
+<p class="Pp">or by using patterns specified inline:</p>
 <div class="Bd Pp Bd-indent Li">
 <pre>$ plakar backup -ignore &quot;*.tmp&quot; -ignore &quot;*.log&quot; /var/www</pre>
+</div>
+<p class="Pp">Pass an option to the importer, in this case to don't traverse
+    mount points:</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>$ plakar backup -o dont_traverse_fs=true /</pre>
 </div>
 </section>
 <section class="Sh">

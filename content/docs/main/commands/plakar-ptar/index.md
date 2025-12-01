@@ -1,5 +1,5 @@
 ---
-date: "2025-10-15T09:23:58Z"
+date: "2025-12-01T16:54:45Z"
 title: ptar
 summary: "generate a self-contained Kloset archive (.ptar)"
 ---
