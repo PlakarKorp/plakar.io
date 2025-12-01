@@ -86,13 +86,13 @@ EOF
 ## Verify integrity locally
 
 ```bash
-sha256sum plakar_1.0.5_*
+sha256sum plakar_1.0.6_*
 ```
 
 ## Quick install (Linux tar.gz)
 
 ```bash
-tar xzf plakar_1.0.5_linux_amd64.tar.gz
+tar xzf plakar_1.0.6_linux_amd64.tar.gz
 sudo install -m 0755 plakar /usr/local/bin/plakar
 plakar version
 ```
