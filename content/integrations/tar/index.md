@@ -17,7 +17,7 @@ date: 2025-05-13
 ## Overview
 
 The **TAR integration** allows to import data into a Kloset from a tarball.
-This integration is bundled with Plakar since 1.0.3.
+This integration is bundled since Plakar v1.0.3.
 
 ## Configuration
 
