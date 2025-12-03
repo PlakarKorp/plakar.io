@@ -25,13 +25,13 @@ The **TAR integration** does not require any special configuration.
 
 ## Example Usage
 
-To back up, you can use the following commands which will copy the content of the stdio stream to a file named `passwd` within the snapshot:
+To backup a tar gzip'd file into the kloset at `/var/backups` run:
 
 ```sh
 $ plakar at /var/backups backup tgz:foobar.tar.gz
 ```
 
-In case of a plain, non compressed tarball, use:
+In case of a plain, non compressed tarball, please use instead:
 
 ```sh
 $ plakar at /var/backups backup tar:foobar.tar
