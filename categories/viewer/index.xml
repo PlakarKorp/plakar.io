@@ -66,6 +66,8 @@ This integration is bundled since Plakar v1.0.3.&lt;/p>
 &lt;h2 id="configuration">Configuration&lt;/h2>
 &lt;p>The &lt;strong>TAR integration&lt;/strong> does not require any special configuration.&lt;/p>
 &lt;h2 id="example-usage">Example Usage&lt;/h2>
-&lt;p>To back up, you can use the following commands which will copy the content of the stdio stream to a file named &lt;code>passwd&lt;/code> within the snapshot:&lt;/p>
+&lt;p>To backup a tar gzip&amp;rsquo;d file into the kloset at &lt;code>/var/backups&lt;/code> run:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">$ plakar at /var/backups backup tgz:foobar.tar.gz
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>In case of a plain, non compressed tarball, use:&lt;/p></description></item></channel></rss>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>In case of a plain, non compressed tarball, please use instead:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="ln">1&lt;/span>&lt;span class="cl">$ plakar at /var/backups backup tar:foobar.tar
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>See the &lt;a href="https://docs.plakar.io/en/quickstart/index.html">QuickStart guide&lt;/a> for more examples.&lt;/p></description></item></channel></rss>
