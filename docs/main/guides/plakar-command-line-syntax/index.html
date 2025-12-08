@@ -702,16 +702,16 @@ ml-4 pl-2 border-l border-neutral-300">version</a></div></div><div class="my-1 o
 </span><span class=text-neutral-500 x-show="openSections['root-plakar:_developer_branch-4-guides-3']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar:_developer_branch-4-guides-3']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/main/guides/excluding-files-from-a-backup/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">Excluding files from a backup
 </a><a href=/docs/main/guides/how-to-backup-a-s3-bucket/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
-ml-4 pl-2 border-l border-neutral-300">How to backup a S3 bucket?
+ml-4 pl-2 border-l border-neutral-300">Backup a S3 bucket
 </a><a href=/docs/main/guides/plakar-command-line-syntax/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300
 text-primary-600 bg-neutral-200 font-semibold">Plakar command line syntax
 </a><a href=/docs/main/guides/setup-scheduler-daily-backups/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
-ml-4 pl-2 border-l border-neutral-300">Setup the scheduler to run backups every day
+ml-4 pl-2 border-l border-neutral-300">Configure the Plakar Scheduler for Daily Backups
 </a><a href=/docs/main/guides/what-is-plakar-login/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
-ml-4 pl-2 border-l border-neutral-300">What is `plakar login`, and why should I use it?
+ml-4 pl-2 border-l border-neutral-300">Unlocking Features with plakar login
 </a><a href=/docs/main/guides/what-is-plakar-server/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
-ml-4 pl-2 border-l border-neutral-300">What is `plakar server`, and why should I use it?
+ml-4 pl-2 border-l border-neutral-300">What is plakar server?
 </a><a href=/docs/main/guides/backups-push-or-pull/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">Backups: push or pull?
 </a><a href=/docs/main/guides/create-kloset-repository/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
@@ -719,7 +719,7 @@ ml-4 pl-2 border-l border-neutral-300">Create a Kloset repository on the filesys
 </a><a href=/docs/main/guides/how-many-kloset-stores/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">How many Kloset stores should you create for your backups?
 </a><a href=/docs/main/guides/retrieve-passphrase-kloset-store/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
-ml-4 pl-2 border-l border-neutral-300">How to call a command to retrieve the passphrase of a Kloset store
+ml-4 pl-2 border-l border-neutral-300">Retrieve a Kloset store passphrase via external command
 </a><a href=/docs/main/guides/importing-configurations/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">Importing Configurations</a></div></div><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded" :class="{ 'bg-neutral-100': openSections['root-plakar:_developer_branch-4-integrations-4'] }"><a href=/docs/main/integrations/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">Integrations
 </a><button @click.prevent="openSections['root-plakar:_developer_branch-4-integrations-4'] = !openSections['root-plakar:_developer_branch-4-integrations-4']" class=focus:outline-none>
@@ -752,9 +752,9 @@ ml-4 pl-2 border-l border-neutral-300">Notion Integration documentation</a></div
 <a href=/docs/main/guides/ class="text-primary-500 hover:text-primary-600 transition-colors">Guides
 </a></span><span class="flex items-center"><img src=/img/ri/corner-down-right-line.svg alt=">" class="w-4 h-4 text-neutral-400 me-2">
 <span class="text-neutral-900 font-medium">Plakar command line syntax</span></span></div><div class="inline-flex px-2 w-max py-1 rounded-md text-xs font-space-grotesk text-neutral-900 border border-neutral-900"><span>Version main</span></div><h1 class="font-prose font-bold leading-tight ~text-3xl/4xl">Plakar command line syntax</h1></div><div class="article-wrapper relative"><div class="relative docs-content font-prose prose text-base w-full max-w-full ps-8 pe-2 md:pe-8"><p><em>Last reviewed:
-2025-09-04
+2025-12-08
 / Plakar
-v1.0.3</em></p><p>Plakar intends to provide a simple and intuitive command line interface for managing your backups.</p><p>There are two syntaxes available: the simple syntax and the rich syntax.</p><h2 id=simple-syntax>Simple Syntax</h2><p>With the simple syntax, you can directly use the path to the resource. For example:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln> 1</span><span class=cl><span class=c1># List the contents of the Kloset store located at /var/backups</span>
+v1.0.6</em></p><p>Plakar intends to provide a simple and intuitive command line interface for managing your backups.</p><p>There are two syntaxes available: the simple syntax and the rich syntax.</p><p>While the simple syntax is easier to use for basic operations, the rich syntax provides more flexibility and is required for certain integrations that need additional parameters (e.g., credentials for S3, store the passphrase, etc.).</p><h2 id=simple-syntax>Simple Syntax</h2><p>With the simple syntax, you can directly use the path to the resource. For example:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln> 1</span><span class=cl><span class=c1># List the contents of the Kloset store located at /var/backups</span>
 </span></span><span class=line><span class=ln> 2</span><span class=cl>plakar at /var/backups ls
 </span></span><span class=line><span class=ln> 3</span><span class=cl>
 </span></span><span class=line><span class=ln> 4</span><span class=cl><span class=c1># Back up the directory /etc into the default Kloset store, stored at ~/.plakar</span>
