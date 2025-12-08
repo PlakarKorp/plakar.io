@@ -2,8 +2,8 @@
 date: "2025-08-21T00:00:00Z"
 title: Create a Kloset repository on the filesystem
 summary: "Learn how to create a Kloset repository on the filesystem using Plakar. This tutorial covers both the simple syntax and the rich configuration syntax."
-last_reviewed: "2025-08-21"
-last_reviewed_version: "v1.0.3"
+last_reviewed: "2025-12-08"
+last_reviewed_version: "v1.0.6"
 ---
 
 *Last reviewed: {{<param "last_reviewed">}} / Plakar {{<param "last_reviewed_version">}}*
