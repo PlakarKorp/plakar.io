@@ -1,9 +1,9 @@
 ---
 date: "2025-09-02T00:00:00Z"
-title: What is `plakar login`, and why should I use it?
+title: Unlocking Features with plakar login
 summary: "Learn about the benefits of logging in with `plakar login`, including installing pre-built packages and enabling alerting for better usability and monitoring."
-last_reviewed: "2025-09-02"
-last_reviewed_version: "v1.0.3"
+last_reviewed: "2025-12-08"
+last_reviewed_version: "v1.0.6"
 ---
 
 *Last reviewed: {{<param "last_reviewed">}} / Plakar {{<param "last_reviewed_version">}}*
@@ -55,7 +55,4 @@ This ensures you’ll be notified promptly if something fails — especially use
 ### Using the CLI
 
 * Log in with GitHub: `plakar login -github` or with email: `plakar login -email myemail@domain.com`
-* After logging in, enable alerting with: `plakar services enable alerting`.
-
-Configuring email reporting is not yet supported from the CLI. You must use the UI for this.
-
+* After logging in, enable alerting with: `plakar service enable alerting` and `plakar service set alerting report.email=true`.
