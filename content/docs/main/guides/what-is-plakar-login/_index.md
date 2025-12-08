@@ -1,58 +1,114 @@
 ---
 date: "2025-09-02T00:00:00Z"
 title: Unlocking Features with plakar login
-summary: "Learn about the benefits of logging in with `plakar login`, including installing pre-built packages and enabling alerting for better usability and monitoring."
+summary: "Logging in enables pre-built package installation, alerting. See how to log in on a non-interactive system (CI)."
 last_reviewed: "2025-12-08"
 last_reviewed_version: "v1.0.6"
 ---
 
 *Last reviewed: {{<param "last_reviewed">}} / Plakar {{<param "last_reviewed_version">}}*
 
-By default, Plakar works without requiring you to create an account or log in. You can back up and restore your data with just a few commands, no external services involved.
+By default, Plakar works without requiring you to create an account. You can back up and restore your data with just a few commands, without depending on external services.
 
-However, logging in with `plakar login` unlocks optional features that improve usability and monitoring.
-
-As of today, logging in is useful for two main reasons:
-
-1. Installing pre-built packages from our servers (e.g., integrations such as S3, SFTP, rclone).
-2. Enabling alerting (to receive status dashboards and notifications if something goes wrong).
-
-More features may require login in the future.
+Logging in unlocks additional features. **These features are entirely opt-in.**
 
 ## Why log in?
 
+As of today, logging in is useful for two main reasons:
+
+1. **Installing pre-built packages** from Plakar's servers (integrations such as S3, SFTP, rclone).
+2. **Enabling alerting**, which provides reporting dashboards and email notifications.
+
+More features may require login in the future.
+
 ### 1. Install pre-built packages
 
-Starting with Plakar v1.0.3, you can extend Plakar with integrations, for example:
+Plakar provides multiple integrations, such as:
+
 * S3
 * SFTP
 * rclone
 
-These integrations can be:
-* Built from source (requires a toolchain), or
-* Installed as pre-built packages through the UI or CLI.
+[But also many others](/integrations).
 
-Installing the pre-built packages stored on our storage servers requires that you are logged in.
+You can build these integrations from source or install the pre-built versions hosted on Plakar's servers using the UI or `plakar pkg add`.
 
 ### 2. Alerting
 
-When logged in and alerting is enabled, Plakar sends non-sensitive metadata to the Plakar servers each time you run a backup, restore, sync, or maintenance.
+When logged in and alerting is enabled, Plakar sends non-sensitive metadata to Plakar's servers whenever you run backup, restore, sync, or maintenance operations.
 
-This metadata powers the reporting system, which provides a dashboard in the UI and sends you email notifications.
+This metadata powers:
 
-Your backup contents are never sent to Plakar.
+* A reporting dashboard in the UI  
+* Email notifications about backup status  
 
-This ensures you’ll be notified promptly if something fails — especially useful for individuals and small teams without dedicated monitoring.
+Backup data is never sent to Plakar.
+
+Alerting notifies you quickly if something breaks — especially useful for individuals and small teams without dedicated monitoring.
 
 ## How to log in
 
 ### Using the UI
 
 1. Run `plakar ui`.
-2. Click the Login button.
-3. Go to the Settings page to enable alerting and email reporting.
+2. Click the **Login** button.
+3. Open **Settings** to enable alerting and email reporting.
 
 ### Using the CLI
 
-* Log in with GitHub: `plakar login -github` or with email: `plakar login -email myemail@domain.com`
-* After logging in, enable alerting with: `plakar service enable alerting` and `plakar service set alerting report.email=true`.
+Log in using GitHub or email:
+
+```bash
+plakar login -github
+plakar login -email myemail@domain.com
+```
+
+After logging in, enable alerting *(optional)*:
+
+```bash
+plakar service enable alerting
+plakar service set alerting report.email=true
+```
+
+### Non-interactive login (CI, SSH, automation)
+
+In some environments (CI pipelines, remote servers, automated jobs), an interactive login prompt is not possible. Plakar provides a token-based workflow for these cases.
+
+#### Step 1: Generate a token on a machine where you can log in
+
+Run:
+
+```bash
+plakar login
+plakar token create
+```
+
+This prints a token, for example:
+
+```
+eyJhbGc......
+```
+
+You can now use this token on any system where interactive login is not possible.
+
+#### Step 2: Use the token in the non-interactive environment
+
+Set the environment variable:
+
+```bash
+export PLAKAR_TOKEN=eyJhbGc......
+```
+
+Plakar automatically uses this token for authentication.
+
+
+#### Step 3: Persist the token (optional)
+
+If you want to save the token in the configuration on that machine, run:
+
+
+```bash
+plakar login -env
+```
+
+The `-env` flag reads `PLAKAR_TOKEN` and saves it into the local configuration.
