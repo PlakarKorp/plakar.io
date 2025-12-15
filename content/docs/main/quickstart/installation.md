@@ -2,7 +2,7 @@
 title: "Installation"
 date: "2025-12-15T00:00:00Z"
 weight: 1
-summary: Install plakar from pre-built packages or source code.
+summary: Install Plakar and verify your installation.
 ---
 
 ## Installing via System Package Managers
