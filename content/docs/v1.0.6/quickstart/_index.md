@@ -20,8 +20,6 @@ Welcome to **plakar** - easy, secure and efficient backups for people who value 
 
 ## Install plakar
 
-Once you have downloaded the appropriate package, installation depends on your local operating system.
-
 {{< tabs name="Installing" >}}
 {{% tab name="Debian-based OS"%}}
   For a Debian-based OS (for example Ubuntu or Debian), the easiest way is to use our apt repository.
