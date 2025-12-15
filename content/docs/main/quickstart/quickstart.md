@@ -1,21 +1,19 @@
 ---
 title: "Quickstart"
-date: "2025-09-02T12:00:00+01:00"
+date: "2025-12-15T00:00:00Z"
 weight: 2
-chapter: true
 summary: "Get started with plakar: create your first backup, verify integrity, restore, and use the UI."
 ---
 
-The aim of this quick guide is to get you up and running with **plakar** and create your first backup within minutes. Let's get started!
+In this guide, we will walk you through the basic steps to create your first backup using **plakar**.
 
 ## Requirements
 
 Make sure **plakar** is installed on your system. If you haven't done this yet, please refer to the [Installation guide](./installation.md) for detailed instructions.
 
-
 ## Create a Kloset Store
 
-Before we can back up any data, we need to define where the backup will go. In **plakar** terms, this storage location is called a 'Kloset Store'. You can find out more about the concept and rationale behind Kloset in [this post on our blog](https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/).
+Before we can back up any data, we need to define where the backup will go. In **plakar** terms, this storage location is called a **Kloset Store**. You can find out more about the concept and rationale behind Kloset in [this post on our blog](https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/).
 
 For our first backup, we will create a local Kloset Store on the filesystem of the host OS. In a real backup scenario you would want to store backups on a different physical device, so substitute in a better location if you have one.
 
@@ -26,7 +24,7 @@ plakar at $HOME/backups create
 
 **plakar** will then ask you to enter a passphrase, and repeat it to confirm.
 
-{{% notice style="warning" title="Your passphrase is important!" expanded="true"  %}}
+{{% notice style="warning" title="Your passphrase is important!" expanded="true" %}}
 
 Be extra careful when choosing the passphrase:
 People with access to the Kloset Store and knowledge of the passphrase can read your backups.
@@ -39,7 +37,7 @@ it is not stored anywhere and **cannot** be recovered in case of loss. A lost pa
 
 ## Create your first backup
 
-Now that we have created the Kloset Store where data will be stored, we can use it to create our first backup. **plakar** uses the 'at' keyword to specify where a command is to take place. 
+Now that we have created the Kloset Store where data will be stored, we can use it to create our first backup. **plakar** uses the 'at' keyword to specify the Kloset Store to use.
 
 To create a simple example backup, try running:
 ```bash
@@ -66,9 +64,9 @@ The output lists the short form of the snapshot ID. This is used to identify a p
 Learning new tools can be confusing. To make things easier, **plakar** includes built-in help for all commands. Just use `plakar help` and then the command you need help with for a full list of options and examples. For example, if you forget what the options are for restoring files from a snapshot: `plakar help restore`
 {{% /notice %}}
 
-## List Snapshots in the Kloset Store
+## List snapshots
 
-You can verify that the backup exists with the `ls` command, returns the backups in that Kloset:
+You can verify that the backup exists with the `ls` command, returns the backups in that Kloset Store:
 ```bash
 $ plakar at $HOME/backups ls
 2025-09-02T15:38:16Z   9abc3294    3.1 MB      0s   /private/etc
@@ -112,7 +110,7 @@ $ plakar at $HOME/backups restore -to /tmp/restore 9abc3294
 restore: restoration of 9abc3294:/private/etc at /tmp/restore completed successfully
 ```
 
-To verify the files have been re-created, list the directory they were restored to. Note that the properties of the restored files, such as the creation date, will be the same as the original files that were backed up:
+To verify the files have been re-created, list the directory they were restored to. Note that the properties of the restored files, such as timestamps and permissions, will match the original files:
 
 ```bash
 $ ls -l /tmp/restore
@@ -127,51 +125,20 @@ drwxr-xr-x@ 16 gilles  wheel     512 Feb 19 22:47 asl
 -rw-r--r--@  1 gilles  wheel    9335 Feb 19 22:47 zshrc_Apple_Terminal
 ```
 
-## Login
-
-By default, **plakar** works without requiring you to create an account or log in. You can back up and restore your data with just a few commands, no external services involved.
-
-However, logging in unlocks optional features that improve usability and monitoring, and adds the ability to easily install pre-built integrations. In **plakar**, an integration is a package which supports an additional protocol as a source, destination or storage method (or all three), such as FTP, Google Cloud Storage or an S3 bucket.
-
-Logging in is simple and needs only an email address or GitHub account for authentication.
-
-To log in using the CLI:
-
-{{< tabs name="To log in using the CLI" >}}
-{{% tab name="With email" %}}
-```bash
-plakar login -email <youremailaddress@example.com>
-```
-
-Substitute in your own email address and follow the prompt. You can then check your email and follow the link sent from plakar.io. 
-{{< /tab >}}
-{{% tab name="With GitHub" %}}
-```bash
-plakar login -github
-```
-
-Your default browser will open a new tab where you can authorize plakar to use your GitHub account for authentication. Follow the prompts to complete the login.
-{{< /tab >}}
-{{< /tabs >}}
-
-To check that you are now logged in you can run:
-
-```
-plakar login -status
-```
-
 ## Access the UI
 
 Plakar provides a web interface to view the backups and their content. To start the web interface, run:
 
 ```bash
-$ plakar at $HOME/backups ui
+plakar at $HOME/backups ui
 ```
 
 Your default browser will open a new tab. You can navigate through the snapshots, search and view the files, and download them.
 
 ![Web UI, light mode](../images/ui-light.png)
 ![Web UI, dark mode](../images/ui-dark.png)
+
+A public instance of the web UI is also available at [https://demo.plakar.io](https://demo.plakar.io). You can use it to explore the features of the UI on real backups without installing anything.
 
 ## Congratulations!
 
@@ -182,13 +149,10 @@ You have successfully:
  - restored files
  - used the graphical UI
 
-How long did it take? That's how easy **plakar** is for simple, secure backups.   
+How long did it take? This is how easy **plakar** is for simple, secure backups.   
 
 ## Next steps
 
-There is plenty more to discover about **plakar**. Here are our suggestions on what to try next:
+Having a backup on the filesystem is a start, but to improve the durability of your backups, you should consider hosting multiple copies in different locations.
 
- - Create a [schedule for your backups](../guides/setup-scheduler-daily-backups/_index.md)
- - Enable integrations and [back up an S3 bucket](../guides/how-to-backup-a-s3-bucket/_index.md)
- - Discover more about the [plakar command syntax](../guides/plakar-command-line-syntax/_index.md)
- - Learn more about [why one backup is not enough](./probabilities.md)
+Continue to the [Part 2 of the Quickstart](./quickstart-2.md) to create multiple copies of your backups.

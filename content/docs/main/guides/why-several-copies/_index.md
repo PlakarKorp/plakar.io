@@ -1,9 +1,10 @@
-+++
-title = "One repository is not enough"
-date = "2025-03-03 17:00:00 +0100"
-weight = 3
-chapter = false
-+++
+---
+date: "2025-12-15T00:00:00Z"
+title: Why should you keep several copies of your backups?
+summary: "Understand the importance of multiple backup copies and how they drastically reduce the risk of data loss."
+last_reviewed: "2025-12-15"
+last_reviewed_version: "v1.0.6"
+---
 
 <!-- This empty tag is required to render the math blocks below -->
 ```math

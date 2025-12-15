@@ -1,6 +1,6 @@
 ---
 title: "SDK"
-weight: 4
+weight: 20
 date: "2025-07-07"
 summary: "Learn how to implement a Plakar Integration (Source, Destination, or Storage) in Go, and use the SDK to run it. This guide covers interfaces, implementation, packaging, and installation."
 ---

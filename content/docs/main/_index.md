@@ -9,4 +9,4 @@ plakarVersion: "main"
 summary: "Plakar documentation hub, find guides, references, and resources for working with Plakar."
 ---
 
-{{%children description="true"%}}
+{{% children description="true" %}}

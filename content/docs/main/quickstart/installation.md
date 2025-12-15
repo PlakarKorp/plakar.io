@@ -9,7 +9,7 @@ Several installation methods are available depending on your operating system. C
 
 {{< tabs name="Installation Methods" >}}
 {{% tab name="Debian/Ubuntu (APT)"%}}
-  For a Debian-based OS (such as Ubuntu or Debian), the easiest way is to use our APT repository.
+  For Debian-based operating systems (such as Ubuntu or Debian), the easiest way is to use our APT repository.
 
   First, install necessary dependencies and add the repository's GPG key:
 
@@ -28,7 +28,7 @@ Several installation methods are available depending on your operating system. C
   ```
 {{< /tab >}}
 {{% tab name="RPM-based (DNF)" %}}
-  For an OS which uses RPM-based packages (such as Fedora), the easiest way is to use our DNF repository.
+  For operating systems which use RPM-based packages (such as Fedora), the easiest way is to use our DNF repository.
 
   First, set up the repository:
   ```bash
@@ -102,7 +102,7 @@ This should return the expected version number, for example 'plakar/v1.0.6'.
 
 ## Downloading Specific Versions
 
-All the release versions of plakar are available directly from GitHub on the project's [release page](https://github.com/PlakarKorp/plakar/releases).
+All release versions of **plakar** are available directly from GitHub on the project's [release page](https://github.com/PlakarKorp/plakar/releases).
 
 For each release, check under the "Assets" section for a list of pre-built packages. They follow the naming convention `plakar_<version>_<os>_<arch>.<format>`.
 
