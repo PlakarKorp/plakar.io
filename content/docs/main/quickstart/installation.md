@@ -5,7 +5,7 @@ weight: 1
 summary: Install Plakar and verify your installation.
 ---
 
-## Installing via System Package Managers
+Several installation methods are available depending on your operating system. Choose the method that best suits your environment.
 
 {{< tabs name="Installation Methods" >}}
 {{% tab name="Debian/Ubuntu (APT)"%}}
@@ -91,12 +91,6 @@ EOF
 
 {{< /tabs >}}
 
-## Manual Installation from Release Assets
-
-All the release versions of plakar are available directly from GitHub on the project's [release page](https://github.com/PlakarKorp/plakar/releases).
-
-For each release, check under the "Assets" section for a list of pre-built packages. They follow the naming convention `plakar_<version>_<os>_<arch>.<format>`.
-
 ## Verifying the Installation
 
 Verify the installation by running:
@@ -106,6 +100,13 @@ plakar version
 
 This should return the expected version number, for example 'plakar/v1.0.6'.
 
+## Downloading Specific Versions
+
+All the release versions of plakar are available directly from GitHub on the project's [release page](https://github.com/PlakarKorp/plakar/releases).
+
+For each release, check under the "Assets" section for a list of pre-built packages. They follow the naming convention `plakar_<version>_<os>_<arch>.<format>`.
+
+
 ## Installation Troubleshooting
 
 If you encounter any issues during installation, or notice that this documentation is out of date:
@@ -114,4 +115,4 @@ If you encounter any issues during installation, or notice that this documentati
 
 ## Next Steps: Getting Started
 
-Now that you have plakar installed, we recommend proceeding to the [Getting Started guide](../_index.md) to set up your first backup.
+Now that you have plakar installed, we recommend proceeding to the [Quickstart guide](quickstart.md) to set up your first backup.
