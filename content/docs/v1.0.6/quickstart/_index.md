@@ -18,16 +18,6 @@ Welcome to **plakar** - easy, secure and efficient backups for people who value 
  - sufficient local storage to store your backups
  - a web browser (for logging in and using the UI)
 
-## Get plakar
-
-All the release versions of plakar are available directly from github on the project's [release page](https://github.com/PlakarKorp/plakar/releases). 
-
-For each release, check under the 'assets' section for a list of prebuilt packages. They follow the naming convention:
-
-`plakar_<version>_<os>_<arch>.<format>`
-
-So, for example for a Mac running on modern Mac hardware you would fetch the file `plakar_1.0.6_darwin_arm64.tar.gz`; for OpenSuse on Intel hardware, you would want `plakar_1.0.6_linux_amd64.rpm`.
-
 ## Install plakar
 
 Once you have downloaded the appropriate package, installation depends on your local operating system.
