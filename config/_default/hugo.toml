@@ -11,10 +11,15 @@ latest = 'v1.0.6'
 description =  "Enterprise ready backups with developer friendly tooling. Encrypted, deduplicated snapshots, instant browsing and restore, and zero knowledge workflows across clouds and on-prem."
 author = "Nestor"
 
-
-[goldmark]
-[goldmark.renderer]
+[markup.goldmark.renderer]
   unsafe = true
+
+[markup.goldmark.extensions.passthrough]
+  enable = true
+
+[markup.goldmark.extensions.passthrough.delimiters]
+  block = [['$$', '$$']]
+  inline = [['\\(', '\\)']]
 
 [highlight]
   noClasses = false
