@@ -1,10 +1,7 @@
-+++
-title = "Integrations"
-date = "2025-06-30T18:16:35Z"
-weight = 3
-chapter = false
-pre = "<b>3. </b>"
-sort = "title"
-+++
+---
+title: "Integrations"
+date: "2025-12-16T00:00:00Z"
+weight: 3
+---
 
-{{%children description="false"%}}
+{{% children description="false" %}}
