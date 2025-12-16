@@ -6,10 +6,6 @@ last_reviewed: "2025-12-15"
 last_reviewed_version: "v1.0.6"
 ---
 
-<!-- This empty tag is required to render the math blocks below -->
-```math
-```
-
 Plakar offers a simple way to synchronize repositories across multiple locations. Two questions often arise: "Why do I need more than one copy?" and "How many copies should I have?"
 
 ## Why do I need more than one copy?
