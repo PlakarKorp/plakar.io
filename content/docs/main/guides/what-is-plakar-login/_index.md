@@ -1,9 +1,10 @@
 ---
 date: "2025-09-02T00:00:00Z"
-title: Unlocking Features with plakar login
-summary: "Logging in enables pre-built package installation, alerting. See how to log in on a non-interactive system (CI)."
+title: Login to Plakar to unlock features
+summary: Logging in is optional but enables additional features such as pre-built package installation and alerting. See how to log in from the CLI, UI, or on a non-interactive system (CI).
 last_reviewed: "2025-12-08"
 last_reviewed_version: "v1.0.6"
+weight: 60
 ---
 
 *Last reviewed: {{<param "last_reviewed">}} / Plakar {{<param "last_reviewed_version">}}*

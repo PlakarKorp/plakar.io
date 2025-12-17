@@ -4,6 +4,7 @@ title: Plakar command line syntax
 last_reviewed: "2025-12-08"
 last_reviewed_version: "v1.0.6"
 summary: "This tutorial explains the syntax of Plakar's command line interface, covering both simple and rich syntaxes. It includes examples for managing backups, restoring data, and configuring integrations such as S3 and SFTP."
+weight: 30
 ---
 
 *Last reviewed: {{<param "last_reviewed">}} / Plakar {{<param "last_reviewed_version">}}*
