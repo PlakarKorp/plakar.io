@@ -85,6 +85,15 @@ s3://cellar-c2.services.clever-cloud.com/<BUCKET>
 s3://cellar-c2.services.clever-cloud.com/mybucket
 ```
 
+**Infomaniak**
+```bash
+# Customize Location: swiss-backup02, 03, 04, etc.:
+s3://s3.swiss-backup0X.infomaniak.com/<BUCKET>
+where <Bucket> is 'default' by default
+# Example:
+s3://s3.swiss-backup04.infomaniak.com/default
+```
+
 ## 4. Configure the **s3 source**
 
 ```bash
