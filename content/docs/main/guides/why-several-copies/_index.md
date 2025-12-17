@@ -4,6 +4,7 @@ title: Why should you keep several copies of your backups?
 summary: "Understand the importance of multiple backup copies and how they drastically reduce the risk of data loss."
 last_reviewed: "2025-12-15"
 last_reviewed_version: "v1.0.6"
+weight: 1
 ---
 
 Plakar offers a simple way to synchronize repositories across multiple locations. Two questions often arise: "Why do I need more than one copy?" and "How many copies should I have?"
