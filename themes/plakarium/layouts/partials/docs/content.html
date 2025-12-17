@@ -11,30 +11,32 @@
 {{ $versionName := .Params.plakarVersion | default "" }}
 {{ $docsSection := .Site.GetPage "section" "docs" }}
 {{ range $index, $subsection := $docsSection.Sections }}
-    {{ if $subsection.IsAncestor $currentPage }}
-        {{ $versionId = partial "sidebar/version-id" (dict "title" $subsection.Title "index" $index) }}
-        {{ if not $versionName }}
-            {{ $versionName = $subsection.Params.plakarVersion | default $subsection.Title }}
-        {{ end }}
-    {{ end }}
+{{ if $subsection.IsAncestor $currentPage }}
+{{ $versionId = partial "sidebar/version-id" (dict "title" $subsection.Title "index" $index) }}
+{{ if not $versionName }}
+{{ $versionName = $subsection.Params.plakarVersion | default $subsection.Title }}
 {{ end }}
-
+{{ end }}
+{{ end }}
 
 <section class="section-light-1 w-full">
     <div class="content flex flex-col 2xl:flex-row-reverse items-start">
         <!-- Sidebar (right) -->
-        <aside class="xl:right-0 xl:sticky w-full h-full 2xl:w-[340px] max-w-full px-8 2xl:px-0 2xl:max-w-[calc((100%-680px-32px)/2)] pb-4 2xl:pe-4 lg:top-28 flex flex-col  mx-auto 2xl:mx-0">
-        <div class="~text-xs/lg font-prose flex flex-col gap-6 p-2 2xl:p-4 bg-neutral-50 2xl:border-r border-dotted ">
-            {{ partial "toc-docs.html" . }}
-        </div>
-    </aside>
+        <aside
+            class="xl:right-0 xl:sticky w-full h-full 2xl:w-[340px] max-w-full px-8 2xl:px-0 2xl:max-w-[calc((100%-680px-32px)/2)] pb-4 2xl:pe-4 lg:top-28 flex flex-col  mx-auto 2xl:mx-0">
+            <div
+                class="~text-xs/lg font-prose flex flex-col gap-6 p-2 2xl:p-4 bg-neutral-50 2xl:border-r border-dotted ">
+                {{ partial "toc-docs.html" . }}
+            </div>
+        </aside>
 
         <!-- Article content (right)  -->
         <article class="max-w-full flex-1 flex flex-col gap-4 bg-neutral-50 overflow-hidden pb-8">
             <div class="article-header ps-8 pe-2 md:pe-8 flex flex-col gap-4 pt-8">
                 <!-- Breadcrumbs -->
                 <div class="flex flex-wrap items-center gap-2 text-sm font-space-grotesk">
-                    <a href="/docs/" class="flex items-center text-primary-500 hover:text-primary-600 transition-colors">
+                    <a href="/docs/"
+                        class="flex items-center text-primary-500 hover:text-primary-600 transition-colors">
                         <div class="w-4 h-4">
                             {{ $riHome5Fill.Content | safeHTML }}
                         </div>
@@ -46,53 +48,55 @@
                     {{ $firstElement := true }}
 
                     {{ range $index, $element := $elements }}
-                        {{ if ne $element "" }}
-                            {{ $scratch.Add "path" (print $element "/") }}
-                            {{ $currentPath := $scratch.Get "path" }}
+                    {{ if ne $element "" }}
+                    {{ $scratch.Add "path" (print $element "/") }}
+                    {{ $currentPath := $scratch.Get "path" }}
 
-                            {{ if and (ne $element "docs") (ne $firstElement false) }}
-                                <span class="flex items-center">
-                                    {{ if ne $index (sub (len $elements) 2) }}
-                                        {{ if ne $element "docs" }}
-                                            <a href="{{ $currentPath }}" class="text-primary-500 hover:text-primary-600 transition-colors">
-                                                {{ humanize (replace $element "-" " ") }}
-                                            </a>
-                                        {{ end }}
-                                    {{ else }}
-                                        <span class="text-neutral-900 font-medium">{{ humanize (replace $element "-" " ") }}</span>
-                                    {{ end }}
-                                </span>
-                                {{ $firstElement = false }}
-                            {{ else if ne $firstElement true }}
-                                <span class="flex items-center">
-                                    <img src="{{ $riCornerDownRightLine.RelPermalink }}" alt=">" class="w-4 h-4 text-neutral-400 me-2">
-                                    {{ if ne $index (sub (len $elements) 2) }}
-                                        {{ if ne $element "docs" }}
-                                            <a href="{{ $currentPath }}" class="text-primary-500 hover:text-primary-600 transition-colors">
-                                                {{ humanize (replace $element "-" " ") }}
-                                            </a>
-                                        {{ end }}
-                                    {{ else }}
-                                        <span class="text-neutral-900 font-medium">{{ humanize (replace $element "-" " ") }}</span>
-                                    {{ end }}
-                                </span>
-                            {{ else }}
-                                {{ if ne $index (sub (len $elements) 2) }}
-                                    {{ if ne $element "docs" }}
-                                        <a href="{{ $currentPath }}" class="text-primary-500 hover:text-primary-600 transition-colors">
-                                            {{ humanize (replace $element "-" " ") }}
-                                        </a>
-                                    {{ end }}
-                                {{ else }}
-                                    <span class="text-neutral-900 font-medium">{{ humanize (replace $element "-" " ") }}</span>
-                                {{ end }}
-                                {{ $firstElement = false }}
-                            {{ end }}
+                    {{ if and (ne $element "docs") (ne $firstElement false) }}
+                    <span class="flex items-center">
+                        {{ if ne $index (sub (len $elements) 2) }}
+                        {{ if ne $element "docs" }}
+                        <a href="{{ $currentPath }}" class="text-primary-500 hover:text-primary-600 transition-colors">
+                            {{ humanize (replace $element "-" " ") }}
+                        </a>
                         {{ end }}
+                        {{ else }}
+                        <span class="text-neutral-900 font-medium">{{ humanize (replace $element "-" " ") }}</span>
+                        {{ end }}
+                    </span>
+                    {{ $firstElement = false }}
+                    {{ else if ne $firstElement true }}
+                    <span class="flex items-center">
+                        <img src="{{ $riCornerDownRightLine.RelPermalink }}" alt=">"
+                            class="w-4 h-4 text-neutral-400 me-2">
+                        {{ if ne $index (sub (len $elements) 2) }}
+                        {{ if ne $element "docs" }}
+                        <a href="{{ $currentPath }}" class="text-primary-500 hover:text-primary-600 transition-colors">
+                            {{ humanize (replace $element "-" " ") }}
+                        </a>
+                        {{ end }}
+                        {{ else }}
+                        <span class="text-neutral-900 font-medium">{{ humanize (replace $element "-" " ") }}</span>
+                        {{ end }}
+                    </span>
+                    {{ else }}
+                    {{ if ne $index (sub (len $elements) 2) }}
+                    {{ if ne $element "docs" }}
+                    <a href="{{ $currentPath }}" class="text-primary-500 hover:text-primary-600 transition-colors">
+                        {{ humanize (replace $element "-" " ") }}
+                    </a>
+                    {{ end }}
+                    {{ else }}
+                    <span class="text-neutral-900 font-medium">{{ humanize (replace $element "-" " ") }}</span>
+                    {{ end }}
+                    {{ $firstElement = false }}
+                    {{ end }}
+                    {{ end }}
                     {{ end }}
                 </div>
 
-                <div class="inline-flex px-2 w-max py-1 rounded-md text-xs font-space-grotesk  text-neutral-900 border border-neutral-900">
+                <div
+                    class="inline-flex px-2 w-max py-1 rounded-md text-xs font-space-grotesk  text-neutral-900 border border-neutral-900">
                     <span>Version {{ $versionName | default "latest" }}</span>
                 </div>
                 <h1 class="font-prose font-bold leading-tight ~text-3xl/4xl">
@@ -107,7 +111,8 @@
                 </div>
             </div>
 
-            <div class="bg-neutral-200 border-neutral-300 flex justify-center items-center gap-3 py-4 px-4 flex-wrap w-full max-w-full">
+            <div
+                class="bg-neutral-200 border-neutral-300 flex justify-center items-center gap-3 py-4 px-4 flex-wrap w-full max-w-full">
                 <div class="flex gap-4 items-center">
                     {{ partial "social/bluesky-badge.html" . }}
                     {{ partial "social/discord-badge.html" . }}
@@ -117,7 +122,6 @@
             </div>
         </article>
     </div>
-
 </section>
 
 <script>
