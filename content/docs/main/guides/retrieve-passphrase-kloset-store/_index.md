@@ -1,7 +1,7 @@
 ---
 date: "2025-08-21T00:00:00Z"
-title: Retrieve a Kloset store passphrase via external command
-summary: "Learn how to configure and use a command to retrieve the passphrase for accessing an encrypted Kloset store in Plakar."
+title: Retrieve passphrase via external command
+summary: The passphrase for accessing an encrypted Kloset Store can be stored in the environment, a file, or in the configuration. It can also be retrieved via an external command, for example your password manager.
 last_reviewed: "2025-12-08"
 last_reviewed_version: "v1.0.6"
 ---

@@ -3,8 +3,8 @@ date: "2025-09-04T06:20:40Z"
 title: Backup a S3 bucket
 last_reviewed: "2025-12-17"
 last_reviewed_version: "v1.0.6"
-summary: "Configure and use the Plakar S3 integration to back up an S3 bucket to a Kloset Store. This documentation is specific to S3, but the same principles apply for any other integration."
-weight: 2
+summary: "Configure and use the Plakar S3 integration to back up an S3 bucket to a Kloset Store. This documentation is specific to S3, but the same principles apply for other integrations."
+weight: 30
 ---
 
 *Last reviewed: {{<param "last_reviewed">}} / Plakar {{<param "last_reviewed_version">}}*
