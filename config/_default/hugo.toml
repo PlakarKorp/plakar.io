@@ -11,6 +11,10 @@ latest = 'v1.0.6'
 description =  "Enterprise ready backups with developer friendly tooling. Encrypted, deduplicated snapshots, instant browsing and restore, and zero knowledge workflows across clouds and on-prem."
 author = "Nestor"
 
+[module]
+  [[module.imports]]
+    path = 'github.com/hugomods/katex'
+
 [markup.goldmark.renderer]
   unsafe = true
 
@@ -68,3 +72,6 @@ cookiesVersion = "plakar-fr-EU-2"
 [Params.googleAnalytics]
 enabled = true
 id = "G-4EJ3HLL4HS"
+
+[Params.katex]
+  enable = true

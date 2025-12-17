@@ -211,3 +211,8 @@ else
         document.head.appendChild(script);
     })();
 </script>
+
+{{ if site.Params.katex.enable }}
+  {{ partial "katex/assets/css" . }}
+  {{ partial "katex/assets/js" . }}
+{{ end }}
