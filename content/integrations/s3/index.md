@@ -20,6 +20,7 @@ tags:
   - Scaleway
   - Blackblaze
   - OVH
+  - Infomaniak
 stage: stable
 date: 2025-05-13
 ---
@@ -39,7 +40,8 @@ date: 2025-05-13
 - Wasabi
 - Scaleway
 - Blackblaze
-- OVH stage: stable date: 2025-05-13
+- OVH
+- Infomaniak
 
 ---
 
@@ -99,6 +101,9 @@ $ plakar config remote set mys3 location s3://s3.eu-central-003.backblazeb2.com/
 $ plakar config remote set mys3 location s3://cellar-c2.services.clever-cloud.com/mybucket
 ```
 
+```bash
+$ plakar config remote set mys3 location s3://s3.swiss-backup04.infomaniak.com/mybucket
+```
 If your provider isn’t listed, join our [Discord community](https://discord.gg/uuegtnF2Q5) for assistance.
 
 ## Example Usage
