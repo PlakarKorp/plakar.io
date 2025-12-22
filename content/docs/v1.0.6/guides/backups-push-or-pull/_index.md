@@ -1,9 +1,9 @@
 ---
 date: "2025-08-21T00:00:00Z"
-title: "Backups: push or pull?"
-summary: "Learn about the push and pull models for managing backups with Plakar. This tutorial explains both approaches, their pros and cons, and when to use each."
-last_reviewed: "2025-08-21"
-last_reviewed_version: "v1.0.3"
+title: Push or pull backups?
+summary: What is the difference between push and pull models for managing backups with Plakar? Learn the pros and cons of each approach.
+last_reviewed: "2025-12-08"
+last_reviewed_version: "v1.0.6"
 ---
 
 *Last reviewed: {{<param "last_reviewed">}} / Plakar {{<param "last_reviewed_version">}}*

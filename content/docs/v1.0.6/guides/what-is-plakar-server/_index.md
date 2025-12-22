@@ -1,9 +1,9 @@
 ---
 date: "2025-09-02T00:00:00Z"
-title: What is `plakar server`, and why should I use it?
-summary: "Learn about the `plakar server` command, which creates an HTTP proxy on top of a Kloset store. This tutorial explains how it works, its use cases, and its limitations."
-last_reviewed: "2025-09-02"
-last_reviewed_version: "v1.0.3"
+title: Serve a Kloset Store over HTTP
+summary: A Kloset Store can be exposed over HTTP using the `plakar server` command. This tutorial explains how it works, its use cases, and its limitations.
+last_reviewed: "2025-12-08"
+last_reviewed_version: "v1.0.6"
 ---
 
 *Last reviewed: {{<param "last_reviewed">}} / Plakar {{<param "last_reviewed_version">}}*
@@ -70,7 +70,7 @@ This creates a new proxy pointing to the original one.
 
 ### No access to decrypted data
 
-The proxy only exposes the encrypted store. Clients must provide the passphrase when running commands.
+By design, the proxy only exposes the encrypted store. Clients must provide the passphrase when running commands.
 
 ### No TLS support
 

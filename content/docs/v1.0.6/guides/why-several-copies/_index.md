@@ -1,13 +1,11 @@
-+++
-title = "One repository is not enough"
-date = "2025-03-03 17:00:00 +0100"
-weight = 1
-chapter = false
-+++
-
-<!-- This empty tag is required to render the math blocks below -->
-```math
-```
+---
+date: "2025-12-15T00:00:00Z"
+title: Why should you keep several copies of your backups?
+summary: "Understand the importance of multiple backup copies and how they drastically reduce the risk of data loss."
+last_reviewed: "2025-12-15"
+last_reviewed_version: "v1.0.6"
+weight: 20
+---
 
 Plakar offers a simple way to synchronize repositories across multiple locations. Two questions often arise: "Why do I need more than one copy?" and "How many copies should I have?"
 
@@ -43,7 +41,9 @@ Assuming that the annual probability of data loss at a single site is \( p = 0.0
 
 The annual probability of loss is simply:
 
-$$p = 0.05$$
+```katex
+p = 0.05
+```
 
 which corresponds to a **1 in 20 chance** of losing the data.
  
@@ -54,19 +54,27 @@ data is only lost if both sites lose their copies simultaneously.
 
 If we assume that each site's failure occurs uniformly at random over 365 days. The daily failure probability for a single site is:
 
-$$\frac{p}{365}$$
+```katex
+\frac{p}{365}
+```
 
 Thus, the probability that both copies fail on the same day is:
 
-$$\left(\frac{p}{365}\right)^2$$
+```katex
+\left(\frac{p}{365}\right)^2
+```
 
 Since there are 365 days in a year, the annual probability of a simultaneous failure is approximately:
 
-$$365 \times \left(\frac{p}{365}\right)^2 = \frac{p^2}{365}$$
+```katex
+365 \times \left(\frac{p}{365}\right)^2 = \frac{p^2}{365}
+```
 
 For p=0.05, this becomes:
 
-$$\frac{0.0025}{365} \approx 6.85 \times 10^{-6}$$
+```katex
+\frac{0.0025}{365} \approx 6.85 \times 10^{-6}
+```
 
 which corresponds to roughly a **1 in 145,000 chance** of both copies failing on the same day over the course of a year.
 
@@ -75,15 +83,21 @@ which corresponds to roughly a **1 in 145,000 chance** of both copies failing on
 
 Similarly, the probability that all three copies fail on the same day is:
 
-$$\left(\frac{p}{365}\right)^3$$
+```katex
+\left(\frac{p}{365}\right)^3
+```
 
 Over the year, the probability becomes:
 
-$$365 \times \left(\frac{p}{365}\right)^3 = \frac{p^3}{365^2}$$
+```katex
+365 \times \left(\frac{p}{365}\right)^3 = \frac{p^3}{365^2}
+```
 
-For \( p = 0.05 \), this calculates to:
+For {{% k %}}p = 0.05{{% /k %}}, this calculates to:
 
-$$\frac{0.000125}{133225} \approx 9.38 \times 10^{-10}$$
+```katex
+\frac{0.000125}{133225} \approx 9.38 \times 10^{-10}
+```
 
 or roughly a **1 in 1 billion chance**.
 
