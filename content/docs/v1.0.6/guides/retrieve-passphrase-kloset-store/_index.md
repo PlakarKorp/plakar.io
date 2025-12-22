@@ -1,9 +1,9 @@
 ---
 date: "2025-08-21T00:00:00Z"
-title: How to call a command to retrieve the passphrase of a Kloset store
-summary: "Learn how to configure and use a command to retrieve the passphrase for accessing an encrypted Kloset store in Plakar."
-last_reviewed: "2025-08-21"
-last_reviewed_version: "v1.0.3"
+title: Retrieve passphrase via external command
+summary: The passphrase for accessing an encrypted Kloset Store can be stored in the environment, a file, or in the configuration. It can also be retrieved via an external command, for example your password manager.
+last_reviewed: "2025-12-08"
+last_reviewed_version: "v1.0.6"
 ---
 
 *Last reviewed: {{<param "last_reviewed">}} / Plakar {{<param "last_reviewed_version">}}*
@@ -29,7 +29,7 @@ The last option is to configure an external command that will be called to retri
 
 ## Setup a Kloset store
 
-To set up the command, you need to configure a Kloset store in the configuration:
+To set up the command, you first need to configure a Kloset store in the configuration:
 
 ```bash
 plakar store add mystore location=/var/backups passphrase_cmd='echo mypassphrase'
@@ -44,14 +44,3 @@ plakar at @mystore ls
 ```
 
 When you run this command, the `plakar` command will call the `passphrase_cmd` command to retrieve the passphrase, and then use it to access the Kloset store.
-
-## Note for Plakar <=1.0.2
-
-For older versions of Plakar (<=1.0.2), the `passphrase_cmd` option is not available.
-
-As an alternative, you can use your shell to provide the passphrase from a custom command. For example:
-
-```bash
-plakar -keyfile <(gpg --quiet --batch --decrypt ~/.keyfile.txt.gpg) at @mystore ls
-```
-

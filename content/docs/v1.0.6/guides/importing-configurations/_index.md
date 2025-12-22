@@ -4,16 +4,23 @@ linkTitle: "Importing Configurations"
 weight: 10
 description: >
   Learn how to import configurations for stores, sources, and destinations in Plakar using the import command.
+last_reviewed: "2025-12-08"
+last_reviewed_version: "v1.0.6"
 ---
+
+*Last reviewed: {{<param "last_reviewed">}} / Plakar {{<param "last_reviewed_version">}}*
 
 ## Overview
 
-Plakar allows you to import configurations for stores, sources, and destinations from various sources including files, piped input, and external tools like rclone. This guide explains how to use the `import` subcommand for `plakar store`, `plakar source`, and `plakar destination`.
+The commands `plakar store`, `plakar source` and `plakar destination` configure storage locations, backup sources, and restore destinations respectively.
+
+Each command includes an import subcommand for importing configurations from different sources.
+
 
 ## Basic Usage
 
-The import command can read configuration data from:
-- Standard input (stdin) - useful for piping from other commands
+The import subcommand can read configuration data from:
+- Standard input (stdin) — useful for piping from other commands
 - A file specified with the `-config` option
 - URLs (when using `-config` with a URL)
 

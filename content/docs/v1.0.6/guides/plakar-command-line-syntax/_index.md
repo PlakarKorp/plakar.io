@@ -1,9 +1,10 @@
 ---
 date: "2025-09-04T06:20:40Z"
 title: Plakar command line syntax
-last_reviewed: "2025-09-04"
-last_reviewed_version: "v1.0.3"
+last_reviewed: "2025-12-08"
+last_reviewed_version: "v1.0.6"
 summary: "This tutorial explains the syntax of Plakar's command line interface, covering both simple and rich syntaxes. It includes examples for managing backups, restoring data, and configuring integrations such as S3 and SFTP."
+weight: 30
 ---
 
 *Last reviewed: {{<param "last_reviewed">}} / Plakar {{<param "last_reviewed_version">}}*
@@ -11,6 +12,8 @@ summary: "This tutorial explains the syntax of Plakar's command line interface, 
 Plakar intends to provide a simple and intuitive command line interface for managing your backups.
 
 There are two syntaxes available: the simple syntax and the rich syntax.
+
+While the simple syntax is easier to use for basic operations, the rich syntax provides more flexibility and is required for certain integrations that need additional parameters (e.g., credentials for S3, store the passphrase, etc.).
 
 ## Simple Syntax
 
