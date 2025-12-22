@@ -43,7 +43,7 @@ To create a simple example backup, try running:
 ```bash
 plakar at $HOME/backups backup /private/etc
 ```
-**plakar** will process the files it finds at that location and pass them to the Kloset where they will be chunked and encrypted. 
+**plakar** will process the files it finds at that location and pass them to the Kloset where they will be chunked and encrypted.
 
 The output will indicate the progress:
 ```bash
@@ -143,13 +143,13 @@ A public instance of the web UI is also available at [https://demo.plakar.io](ht
 ## Congratulations!
 
 You have successfully:
- 
+
  - created a backup
  - verified it
  - restored files
  - used the graphical UI
 
-How long did it take? This is how easy **plakar** is for simple, secure backups.   
+How long did it take? This is how easy **plakar** is for simple, secure backups.
 
 ## Next steps
 

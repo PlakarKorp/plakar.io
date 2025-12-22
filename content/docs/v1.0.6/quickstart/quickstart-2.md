@@ -39,7 +39,7 @@ To log in using the CLI:
 plakar login -email <youremailaddress@example.com>
 ```
 
-Substitute in your own email address and follow the prompt. You can then check your email and follow the link sent from plakar.io. 
+Substitute in your own email address and follow the prompt. You can then check your email and follow the link sent from plakar.io.
 {{< /tab >}}
 {{% tab name="With GitHub" %}}
 ```bash
