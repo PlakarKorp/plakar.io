@@ -60,7 +60,7 @@ To create a backup of the S3 bucket to the local Kloset Store at `$HOME/backups`
 plakar at $HOME/backups backup @mydata
 ```
 
-As you can see, the **rich syntax** is used to reference sources by prefixing their names with the `@` symbol.
+As you can see, the alias `@mydata` is used to reference the source previously configured.
 
 To verify that the backup was created successfully, you can list the snapshots in the local Kloset Store:
 
@@ -98,7 +98,7 @@ info: 842de8b1: OK ✓ /Makefile
 info: restore: restoration of 842de8b1:/ at @mydata completed successfully
 ```
 
-For the `restore` command, we used the **rich syntax** again to specify the destination `@mydata` which references the S3 location we just configured.
+For the `restore` command, we used the alias again with `@mydata` which references the S3 destination we just configured.
 
 ## Congratulations!
 
