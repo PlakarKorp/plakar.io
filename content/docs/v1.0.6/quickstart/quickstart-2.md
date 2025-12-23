@@ -111,7 +111,7 @@ plakar at @s3-backups create
 
 This command initializes the Kloset Store at the S3 location, creating the necessary bucket and structure to hold the backups.
 
-Note the `@` symbol before the store name. This is referred to as the 'rich syntax', which indicates that we are referencing a Kloset Store from the configuration. Without the `@`, **plakar** would interpret `s3-backups` as a filesystem path.
+Note the `@` symbol before the store name. This is an alias, which indicates that we are referencing a Kloset Store from the configuration. Without the `@`, **plakar** would interpret `s3-backups` as a filesystem path.
 
 The passphrase prompt will appear: **you do not have to enter the same passphrase** as the local Kloset Store, but you can if you want to.
 

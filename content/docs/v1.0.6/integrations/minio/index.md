@@ -335,18 +335,6 @@ $ plakar at @mystore restore -to @minio_dst <snapshot-id>
 
 ## Limitations and considerations
 
-### Plakar rich-syntax vs simple-syntax
-
-Plakar supports two formats to specify the Kloset store location and the source or destination connector to operate on:
-- The **rich syntax** with `plakar at @<store>` referencing a storage connector, `plakar backup @<source>` referencing a source connector, and `plakar restore -to @<destination>` referencing a destination connector.
-- The **simple syntax** with `plakar at <store>` (eg. `plakar at ./mystore`), `plakar backup <source>` (eg. `plakar backup ./mybucket`), and `plakar restore -to <destination>` (eg. `plakar restore -to ./mybucket`).
-
-The rich syntax is the only way to refer to the MinIO storage connector, source connector, or destination connector.
-
-The reason is that only the rich syntax allows to provide the necessary configuration options (like `access_key`, `secret_access_key`, and `use_tls`) to connect to the MinIO instance.
-
----
-
 ### Store MinIO configuration
 
 The MinIO source connector makes a snapshots of a bucket by listing all objects in the bucket and downloading their contents. It **does not** store the bucket configuration itself, such as policies, lifecycle rules, or versioning settings.
