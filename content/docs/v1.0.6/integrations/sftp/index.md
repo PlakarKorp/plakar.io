@@ -1,55 +1,26 @@
 ---
 title: SFTP / SSH
-description: Securely back up and restore remote directories over SFTP with Plakar — encrypted, verifiable, and portable.
-technology_description: This integration leverages the SFTP protocol over SSH to securely transfer and verify remote directories into a Plakar Kloset for backup and restoration.
-categories:
-  - integrations
-tags:
-  - sftp
-  - ssh
-  - secure file transfer
-  - remote directories
-  - backup
-  - disaster recovery
-  - encryption
-  - deduplication
-  - versioning
-  - immutable storage
-  - compliance
-  - long-term archiving
-  - airgapped backup
-  - snapshot technology
-  - portable format
-stage: beta
-date: 2025-07-30
-plakar_version: '>=1.0.4'
-integration_version: '1.0.4'
-resource_type: filesystem
-provides:
-  - source connector
-  - destination connector
-  - storage connector
+summary: Back up and restore remote directories over SFTP/SSH, and host Kloset stores on remote SFTP servers.
+date: "2025-12-23T00:00:00Z"
 ---
 
-> **Requirements**
->
-> * Plakar `v1.0.4` or later
-> * SFTP connector `v1.0.4`
-> * An SFTP/SSH server reachable from the Plakar agent, with appropriate read/write permissions
+SFTP is a protocol for securely transferring files over SSH. The SFTP integration includes three connectors:
 
-## Introduction
+| Connector type               | Description
+| ---------------------------- | -----------
+| ✅ **Storage connector**     | Host a Kloset store on any SFTP-accessible server.
+| ✅ **Source connector**      | Back up a remote directory reachable over SFTP into a Kloset store.
+| ✅ **Destination connector** | Restore data from a Kloset store to an SFTP target.
 
-Plakar's SFTP integration includes three connectors:
+**Requirements**
 
-* **Storage connector** — host a Kloset store on any SFTP-accessible server.
-* **Source connector** — back up a remote directory reachable over SFTP into a Kloset store.
-* **Destination connector** — restore data from a Kloset store to an SFTP target.
+* An SFTP/SSH server with appropriate read and write permissions.
 
 **Typical use cases**
 
 * Encrypted backups of remote Linux/BSD/application servers over SSH.
 * Offsite or air-gapped snapshot storage by hosting a Kloset store on an SFTP server.
-* DR workflows: restore server trees over SSH to warm or cold standby.
+* Data recovery workflows: restore server trees over SSH to warm or cold standby.
 * Centralized archiving of distributed environments into one Kloset.
 
 **Compatibility**
@@ -62,71 +33,188 @@ Plakar's SFTP integration includes three connectors:
 
 ## Installation
 
-Starting with Plakar `v1.0.4`, connectors are installed on demand.
+The SFTP integration is distributed as a Plakar package. It can be installed either by downloading a pre-built package or by building the package from source.
 
-Check if the SFTP package is installed:
+{{< tabs name="Installation Methods" >}}
+{{% tab name="Pre-built package" %}}
+Plakar provides pre-compiled packages for common platforms. This is the simplest installation method and is suitable for most users.
+
+**Note:** Installing pre-built packages requires you to be authenticated with Plakar. See [Login to Plakar to unlock features](../../guides/what-is-plakar-login/).
+
+Install the SFTP package:
 
 ```bash
-$ plakar pkg list
-sftp@v1.0.4
-```
-
-If it is missing, install it:
-
-```bash
-# Authenticate to the precompiled package repository
-$ plakar login -email <Your Email Address>
-# Confirm the link sent to your email, then:
 $ plakar pkg add sftp
 ```
 
+Verify the installation:
+
+```bash
+$ plakar pkg list
+```
+{{< /tab >}}
+
+{{% tab name="Building from source" %}}
+Building from source is useful if you cannot use pre-built packages.
+
+**Prerequisites**
+
+* A working Go toolchain compatible with your version of Plakar.
+
+Build the SFTP package:
+
+```bash
+$ plakar pkg build sftp
+```
+
+On success, a package archive is generated in the current directory, for example `sftp_v1.0.7_darwin_arm64.ptar`.
+
+Install the generated package:
+
+```bash
+$ plakar pkg add ./sftp_v1.0.7_darwin_arm64.ptar
+```
+
+Verify the installation:
+
+```bash
+$ plakar pkg list
+```
+{{< /tab >}}
+
+{{% tab name="Reinstalling or upgrading" %}}
+To check whether the SFTP package is already installed:
+
+```bash
+$ plakar pkg list
+```
+
+To upgrade to the latest available version, remove the existing package and reinstall it:
+
+```bash
+$ plakar pkg rm sftp
+$ plakar pkg add sftp
+```
+
+This preserves existing store, source, and destination configurations.
+{{< /tab >}}
+{{< /tabs >}}
+
 ---
 
-## Quick start
+## Connectors
 
-> **Prerequisites**
-> - Have an ssh key loaded with access to the target SFTP server.
+The SFTP package provides three connectors: a storage connector for hosting Kloset stores on SFTP servers, a source connector for backing up remote directories over SFTP, and a destination connector for restoring data over SFTP.
 
-### Option A — Direct SFTP URLs (ad‑hoc)
+You can use any combination of these connectors together with other supported Plakar connectors.
 
-```bash
-# Create a Kloset store on a remote SFTP server
-$ plakar at sftp://sftpuser@host.example.com/backups create
-# Create a Kloset store in the user's home directory on a remote server
-$ plakar at sftp://sftpuser@host.example.com/home/sftp-test/backups create
+### Storage connector
 
-# Back up a local folder into that SFTP‑hosted store
-$ plakar at sftp://sftpuser@host.example.com/backups backup /var/www
+The Plakar SFTP package provides a storage connector to host Kloset stores on SFTP servers.
 
-# Restore a file from a snapshot in that store
-$ plakar at sftp://sftpuser@host.example.com/backups restore <snapshot_id>:/var/www/index.html
-```
+{{< mermaid >}}
+flowchart LR
+  subgraph Sources[Source Connectors]
+    direction LR
+    DB[(Databases)]
+    FS@{ shape: docs, label: "Filesystem/NAS" }
+    SAS[SaaS]
+    RCLONE@{ shape: st-rect, label: "Rclone" }
+    S3[S3‑compatible]
+    IMAP[IMAP]
+  end
+  Sources e1@--> Plakar[Plakar]
+  Plakar e2@-->|SFTP| Kloset(((Kloset Store)))
+  classDef animate stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 25s linear infinite;
+  class e1 animate
+  class e2 animate
+{{< /mermaid >}}
 
-Direct URLs are self‑contained and require no prior configuration. Ideal for trials or one‑off operations.
-
-### Option B — Named connectors (reusable)
-
-Define reusable names for store/source/destination:
-
-```bash
-# Storage connector: host a Kloset store on SFTP
-$ plakar store add sftp_store sftp://host.example.com/backups
-
-# Source connector: back up a remote directory
-$ plakar source add sftp_src sftp://host.example.com:/srv/data
-
-# Destination connector: restore to an SFTP target
-$ plakar destination add sftp_dst sftp://host.example.com:/srv/restore
-```
-
-Use them in commands:
+#### Configure
 
 ```bash
-# Initialize the store and back up the source
+# Configure a Kloset store
+$ plakar store add sftp_store sftp://sftp-prod/backups
+
+# Initialize the Kloset store
 $ plakar at @sftp_store create
-$ plakar at @sftp_store backup @sftp_src
+# List snapshots in the Kloset store
+$ plakar at @sftp_store ls
+```
 
-# Restore a snapshot into the destination path
+#### Options
+
+| Option     | Description                      |
+| ---------- | -------------------------------- |
+| `location` | `sftp://[user@]host[:port]/path` |
+
+
+### Source connector
+
+The Plakar SFTP package provides a source connector to back up remote directories reachable over SFTP. The Kloset store where data is stored can be hosted on any supported backend.
+
+{{< mermaid >}}
+flowchart LR
+  DIR@{ shape: docs, label: "/srv/data" }
+  DIR e1@-- SFTP --> Plakar[Plakar]
+  Plakar e2@-->|SFTP| SFTP_Target(((Kloset Store)))
+  Plakar e3@-->|Rclone| Rclone_Target(((Kloset Store)))
+  Plakar e4@-->|S3-Compatible| S3_Target(((Kloset Store)))
+  Plakar e5@-->|Filesystem| FS_Target(((Kloset Store)))
+  Plakar e6@-->|...| All_Target(((Kloset Store)))
+  classDef animate stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 25s linear infinite;
+  class e1 animate
+  class e2 animate
+  class e3 animate
+  class e4 animate
+  class e5 animate
+  class e6 animate
+{{< /mermaid >}}
+
+#### Configure
+
+```bash
+# Configure a source pointing to the remote SFTP directory
+$ plakar source add sftp_src sftp://sftp-prod:/srv/data
+
+# Back up the remote directory to the Kloset store on the filesystem
+$ plakar at /var/backups backup @sftp_src
+# Or back up the remote directory to the Kloset store on SFTP created above
+$ plakar at @sftp_store backup @sftp_src
+```
+
+#### Options
+
+| Option     | Purpose                                                             |
+| ---------- | ------------------------------------------------------------------- |
+| `location` | `sftp://[user@]host[:port]/path` of the remote directory to back up |
+
+---
+
+### Destination connector
+
+The Plakar SFTP package provides a destination connector to restore data over SFTP. The source Kloset store can be hosted on any supported backend.
+
+{{< mermaid >}}
+flowchart LR
+  Kloset(((Kloset Store)))
+  Kloset e1@--> Plakar[Plakar]
+  DIR@{ shape: docs, label: "/srv/data" }
+  Plakar e2@-- SFTP --> DIR
+  classDef animate stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 25s linear infinite;
+  class e1 animate
+  class e2 animate
+{{< /mermaid >}}
+
+#### Configure
+
+```bash
+# Configure a destination pointing to the remote SFTP directory
+$ plakar destination add sftp_dst sftp://sftp-prod:/srv/restore
+
+# Restore a snapshot from a filesystem-hosted Kloset store to the remote SFTP directory
+$ plakar at /var/backups restore -to @sftp_dst <snapshot_id>
+# Or restore a snapshot from the Kloset store on SFTP created above to the remote SFTP directory
 $ plakar at @sftp_store restore -to @sftp_dst <snapshot_id>
 ```
 
@@ -156,7 +244,7 @@ Then reference it in Plakar URLs:
 
 ```bash
 $ plakar store add sftp_store sftp://sftp-prod/backups
-$ plakar source add sftp_src  sftp://sftp-prod:/srv/data
+$ plakar source add sftp_src sftp://sftp-prod:/srv/data
 $ plakar destination add sftp_dst sftp://sftp-prod:/srv/restore
 ```
 
@@ -183,114 +271,9 @@ For production, keep strict host key checking enabled and manage `~/.ssh/known_h
 
 ---
 
-## Storage connector
-
-Host a Kloset store on any SFTP server.
-
-## {{< mermaid >}}
----
-title: Hosting a Remote Kloset Store over SFTP
----
-
-flowchart LR
-    subgraph Sources[Source Connectors]
-        direction LR
-        DB[(Databases)]
-        FS@{ shape: docs, label: "Filesystem/NAS" }
-        SAAS[SAAS]
-        RCLONE@{ shape: st-rect, label: "Rclone" }
-        S3[S3‑compatible]
-        IMAP[IMAP]
-    end
-    Sources e1@--> Plakar[Plakar Agent]
-    Plakar e2@-->|SFTP| Kloset(((Kloset Store)))
-    classDef animate stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 25s linear infinite;
-    class e1 animate
-    class e2 animate
-{{< /mermaid >}}
-
-**Configure**
-
-```bash
-$ plakar store add sftp_store sftp://sftp-prod/backups
-$ plakar at @sftp_store create
-$ plakar at @sftp_store ls
-```
-
-**Common options**
-
-| Option     | Purpose                                                            |
-| ---------- | ------------------------------------------------------------------ |
-| `location` | `sftp://[user@]host[:port]/path` where the Kloset store will live  |
-| SSH config | Username, port, and identity are typically set via `~/.ssh/config` |
-
----
-
-## Source connector
-
-Back up a remote directory over SFTP into any Kloset store.
-
-{{< mermaid >}}
----
-title: Back up a remote SFTP directory
----
-
-flowchart LR
-    DIR@{ shape: docs, label: "/srv/data" }
-    DIR e1@-- SFTP --> Plakar[Plakar Agent]
-    Plakar e2@-->|SFTP| SFTP_Target(((Kloset Store)))
-    Plakar e3@-->|Rclone| Rclone_Target(((Kloset Store)))
-    Plakar e4@-->|S3-Compatible| S3_Target(((Kloset Store)))
-    Plakar e5@-->|Filesystem| FS_Target(((Kloset Store)))
-    Plakar e6@-->|...| All_Target(((Kloset Store)))
-    classDef animate stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 25s linear infinite;
-    class e1 animate
-    class e2 animate
-    class e3 animate
-    class e4 animate
-    class e5 animate
-    class e6 animate
-{{< /mermaid >}}
-
-**Configure and run**
-
-```bash
-$ plakar source add sftp_src sftp://sftp-prod:/srv/data
-$ plakar at @sftp_store backup @sftp_src
-```
-
----
-
-## Destination connector
-
-Restore data from a Kloset store to an SFTP target.
-
-## {{< mermaid >}}
----
-title: Restore a snapshot to SFTP
----
-flowchart LR
-    Kloset(((Kloset Store)))
-    Kloset e1@--> Plakar[Plakar Agent]
-    DIR@{ shape: docs, label: "/srv/data" }
-    Plakar e2@-- SFTP --> DIR
-    classDef animate stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 25s linear infinite;
-    class e1 animate
-    class e2 animate
-{{< /mermaid >}}
-
-**Configure and run**
-
-```bash
-$ plakar destination add sftp_dst sftp://sftp-prod:/srv/restore
-$ plakar at @sftp_store restore -to @sftp_dst <snapshot_id>
-```
-
----
-
 ## Limitations and scope
 
-**What is captured**
+**What is captured during backup**
 
 * Files and directories reachable under the specified SFTP path
 * File metadata (timestamps, permissions, sizes)
@@ -303,7 +286,7 @@ $ plakar at @sftp_store restore -to @sftp_dst <snapshot_id>
 
 **Snapshot consistency**
 
-Object changes during backup (creates/updates/deletes) may lead to a snapshot that reflects different points in time for different files. For highly dynamic paths, consider quiescing the workload or backing up from a read‑only replica.
+Changes during backup (creates, updates, deletes) may result in a snapshot that reflects different points in time for different files. For highly dynamic paths, consider quiescing the workload or backing up from a read‑only replica.
 
 ---
 
@@ -317,7 +300,8 @@ Object changes during backup (creates/updates/deletes) may lead to a snapshot th
 **Host key verification failed**
 
 * Connect once interactively to record the host key in `~/.ssh/known_hosts`.
-* Only use any `insecure_ignore_host_key=true`‑style option in throw‑away test setups.
+* Only use `insecure_ignore_host_key=true`-style options in disposable test environments.
+
 
 **Chroot or path issues**
 
@@ -329,15 +313,6 @@ Object changes during backup (creates/updates/deletes) may lead to a snapshot th
 
 ---
 
-## Backup strategy
-
-* Schedule recurring snapshots (daily or weekly) based on data volatility and recovery objectives.
-* Keep multiple generations for rollbacks and audits.
-* Follow a 3‑2‑1 approach (3 copies, 2 media, 1 offsite) when feasible.
-* Periodically verify with `plakar verify` and perform restore drills.
-
----
-
 ## FAQ
 
 **How do I set username, port, or identity file?**
@@ -346,7 +321,7 @@ Prefer SSH config (`~/.ssh/config`) with a host alias.
 
 **Can I move snapshots between two SFTP‑hosted stores?**
 
-Yes. Define two stores, then use `plakar ... sync` between them.
+Yes. Define two stores, then use `plakar at @store1 sync to @store2` to synchronize them.
 
 ---
 
