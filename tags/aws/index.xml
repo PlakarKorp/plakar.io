@@ -1,29 +1,10 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>AWS on Plakar | The Open Standard for Backup and Restore</title><link>https://www.plakar.io/tags/aws/</link><description>Recent content in AWS on Plakar | The Open Standard for Backup and Restore</description><generator>Hugo</generator><language>en</language><lastBuildDate>Tue, 13 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://www.plakar.io/tags/aws/index.xml" rel="self" type="application/rss+xml"/><item><title>S3</title><link>https://www.plakar.io/integrations/s3/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/s3/</guid><description>&lt;ul>
-&lt;li>source connector&lt;/li>
-&lt;li>destination connector&lt;/li>
-&lt;li>storage connector&lt;/li>
-&lt;li>viewer tags:&lt;/li>
-&lt;li>S3&lt;/li>
-&lt;li>Object Storage&lt;/li>
-&lt;li>AWS&lt;/li>
-&lt;li>Google Cloud Storage&lt;/li>
-&lt;li>MinIO&lt;/li>
-&lt;li>Ceph&lt;/li>
-&lt;li>Scality&lt;/li>
-&lt;li>Wasabi&lt;/li>
-&lt;li>Scaleway&lt;/li>
-&lt;li>Blackblaze&lt;/li>
-&lt;li>OVH&lt;/li>
-&lt;li>Infomaniak&lt;/li>
-&lt;/ul>
-&lt;hr>
-&lt;h1 id="s3-integration">S3 Integration&lt;/h1>
-&lt;h2 id="capabilities">Capabilities&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>AWS on Plakar | The Open Standard for Backup and Restore</title><link>https://www.plakar.io/tags/aws/</link><description>Recent content in AWS on Plakar | The Open Standard for Backup and Restore</description><generator>Hugo</generator><language>en</language><lastBuildDate>Tue, 13 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://www.plakar.io/tags/aws/index.xml" rel="self" type="application/rss+xml"/><item><title>S3</title><link>https://www.plakar.io/integrations/s3/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/s3/</guid><description>&lt;h2 id="-why-protecting-s3-data-matters">🧠 Why protecting S3 data matters&lt;/h2>
+&lt;p>S3 is often treated as the backup, but object storage is not immune to failure or abuse:&lt;/p>
 &lt;ul>
-&lt;li>&lt;strong>Source Connector&lt;/strong>: Seamlessly back up S3-compatible buckets to a &lt;a href="https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/">Kloset repository&lt;/a>.&lt;/li>
-&lt;li>&lt;strong>Destination Connector&lt;/strong>: Restore data from a Kloset repository back into your S3 bucket.&lt;/li>
-&lt;li>&lt;strong>Storage Connector&lt;/strong>: Host your Kloset repository directly on any S3-compatible object storage.&lt;/li>
-&lt;li>&lt;strong>Viewer&lt;/strong>: Use the Integration Viewer to browse and visualize snapshots stored in S3.&lt;/li>
+&lt;li>Objects can be overwritten or deleted instantly&lt;/li>
+&lt;li>Versioning is optional and easy to misconfigure&lt;/li>
+&lt;li>Replication spreads corruption just as fast as good data&lt;/li>
+&lt;li>Lifecycle policies can silently delete critical objects&lt;/li>
 &lt;/ul>
-&lt;h2 id="overview">Overview&lt;/h2>
-&lt;p>The &lt;strong>Plakar S3 integration&lt;/strong> enables immutable, encrypted, verifiable backups and restores of any S3-compatible object storage buckets. Whether you’re using AWS S3, Google Cloud Storage, MinIO, Ceph, or another provider, Plakar delivers a unified interface and military-grade security.&lt;/p></description></item></channel></rss>
+&lt;p>In practice, S3 is highly durable but logically fragile.&lt;/p>
+&lt;p>Human error, compromised credentials, buggy applications, or ransomware can destroy or encrypt entire buckets in seconds.&lt;/p></description></item></channel></rss>
