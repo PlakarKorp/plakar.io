@@ -1,5 +1,5 @@
 ---
-title: Google Photos integration documentation
+title: Google Photos
 description: Import and export your Google Photos library with Plakar using Rclone. Encrypted, deduplicated, and portable backups.
 technology_description: This integration uses Rclone’s official Google Photos remote to extract and restore data into a Kloset store.
 categories: integrations

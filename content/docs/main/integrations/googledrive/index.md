@@ -1,5 +1,5 @@
 ---
-title: Google Drive integration
+title: Google Drive
 description: Backup and restore your Google Drive with Plakar, secure, portable, and deduplicated.
 technology_description: This integration uses the official Google Drive remote via Rclone to extract and restore data into a Kloset store.
 categories: integrations

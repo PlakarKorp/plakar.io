@@ -1,5 +1,5 @@
 ---
-title: iCloud Drive integration documentation
+title: iCloud Drive
 description: Back up and restore your iCloud Drive data, or store your Plakar backups on iCloud Drive, using the Rclone integration.
 technology_description: This integration uses Rclone’s official iCloud Drive remote to connect Plakar to your iCloud Drive account securely and efficiently.
 categories:

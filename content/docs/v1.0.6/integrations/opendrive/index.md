@@ -1,5 +1,5 @@
 ---
-title: OpenDrive integration documentation
+title: OpenDrive
 description: Back up and restore your OpenDrive data, or store your Plakar backups on OpenDrive, using the Rclone integration.
 technology_description: This integration uses Rclone’s official OpenDrive remote to connect Plakar to your OpenDrive account securely and efficiently.
 categories:

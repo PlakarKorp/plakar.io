@@ -1,5 +1,5 @@
 ---
-title: Proton Drive integration documentation
+title: Proton Drive
 description: Back up and restore your Proton Drive data, or store your Plakar backups on Proton Drive, using the Rclone integration.
 technology_description: This integration uses Rclone’s official Proton Drive remote to connect Plakar to your Proton Drive account securely and efficiently.
 categories:

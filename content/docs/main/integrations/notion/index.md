@@ -1,5 +1,5 @@
 ---
-title: Notion Integration documentation
+title: Notion
 description: Backup content from your Notion workspace directly into Plakar — fast, structured, and API-driven.
 technology_description: This integration uses the Notion API to retrieve structured JSON representations of your workspace and pages.
 categories:

@@ -1,5 +1,5 @@
 ---
-title: MinIO integration
+title: MinIO
 description: Backup and restore your MinIO buckets with Plakar; secure, portable, and deduplicated.
 technology_description: This integration uses the S3-compatible API of MinIO to extract and restore bucket contents into a Kloset store.
 categories:
