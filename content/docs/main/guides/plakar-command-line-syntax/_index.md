@@ -1,104 +1,119 @@
 ---
 date: "2025-09-04T06:20:40Z"
 title: Plakar command line syntax
-last_reviewed: "2025-12-08"
+last_reviewed: "2025-12-23"
 last_reviewed_version: "v1.0.6"
-summary: "This tutorial explains the syntax of Plakar's command line interface, covering both simple and rich syntaxes. It includes examples for managing backups, restoring data, and configuring integrations such as S3 and SFTP."
+summary: "This guide explains the basics of the Plakar command line syntax: how to specify stores, sources, destinations, argument order, and how to get help."
 weight: 30
 ---
 
 *Last reviewed: {{<param "last_reviewed">}} / Plakar {{<param "last_reviewed_version">}}*
 
-Plakar intends to provide a simple and intuitive command line interface for managing your backups.
+Plakar exposes several types of commands, depending on the resources they operate on (stores, sources, and/or destinations).
 
-There are two syntaxes available: the simple syntax and the rich syntax.
+## Commands operating on a Kloset store
 
-While the simple syntax is easier to use for basic operations, the rich syntax provides more flexibility and is required for certain integrations that need additional parameters (e.g., credentials for S3, store the passphrase, etc.).
+Many commands operate directly on a Kloset store, such as `backup`, `restore`, `ls`, `create`, `check`, and `locate`.
 
-## Simple Syntax
-
-With the simple syntax, you can directly use the path to the resource. For example:
+To specify the Kloset store, use the `at` keyword followed by the path to the store:
 
 ```bash
-# List the contents of the Kloset store located at /var/backups
-plakar at /var/backups ls
+# Using a store located on the filesystem
+plakar at /path/to/kloset store-command [options]
 
-# Back up the directory /etc into the default Kloset store, stored at ~/.plakar
-plakar backup /etc
-
-# Back up the directory /etc into a specific Kloset store
-plakar at /var/backups backup /etc
-
-# Restore the contents of the snapshot dc60f09a located in the default Kloset store at ~/.plakar into ./restore-dir
-plakar restore -to ./restore-dir dc60f09a
-
-# Restore the contents of the snapshot dc60f09a located in the Kloset store at /var/backups into ./restore-dir
-plakar at /var/backups restore -to ./restore-dir dc60f09a
+# Using a store located on a SFTP server (requires the sftp package)
+plakar at sftp://myserver/path/to/kloset store-command [options]
 ```
 
-The simple syntax is not limited to the filesystem. You can, for example, specify a store exposed by `plakar server` (requires the package `http`):
+*If no `at` is provided, Plakar uses the default Kloset store located at `~/.plakar`.*
+
+Instead of a path, you can also reference a store using an alias configured with `plakar store add`:
 
 ```bash
-plakar at http://127.0.0.1:9876/ ls
+# Configure the store using the S3 integration (requires the s3 package)
+plakar store add mystore s3://localhost:9000/mybucket passphrase='S3cR3tP4sSwPhr@53' access_key=minioadmin secret_access_key=minioadmin use_tls=false
+
+# Use the configured store via its alias
+plakar at @mystore store-command [options]
 ```
 
-Or back up using the SFTP integration (requires the `sftp` package):
+Using an alias is required for stores that need additional parameters (for example, credentials), but aliases may also be used for stores that do not require them.
+
+## Commands operating on sources and destinations
+
+Some commands operate on a source (for example, `backup`) or on a destination (for example, `restore`). In these cases, the source or destination is provided as a command argument.
+
+To specify a source or destination, provide its path as an argument to the command:
 
 ```bash
-plakar at /var/backups backup sftp://myserver/etc/resolv.conf
+# Referencing a source located on the filesystem
+plakar at @mystore backup /path/to/directory
+
+# Or on a SFTP server (requires the sftp package)
+plakar at @mystore backup sftp://myserver/path/to/directory
 ```
 
-You can also use the `sftp` package to access a Kloset store hosted on an SFTP server:
-
 ```bash
-plakar at sftp://myserver/var/backups backup ./myfolder
+# Referencing a destination located on the filesystem
+plakar at @mystore restore -to /path/to/directory snapshot-id
+
+# Or on a SFTP server (requires the sftp package)
+plakar at @mystore restore -to sftp://myserver/path/to/directory snapshot-id
 ```
 
-Or even back up an SFTP server to a store hosted on another SFTP server:
+As with stores, sources and destinations can also be referenced using aliases configured with `plakar source add` and `plakar destination add`:
 
 ```bash
-plakar at sftp://myserver/var/backups backup sftp://anotherserver/etc
-```
-
-## Rich syntax
-
-Some integrations require additional parameters. For example, the S3 integration requires an access key and a secret key. In this case, Plakar provides a rich syntax to reference resources configured with `plakar store`, `plakar source` and `plakar destination`.
-
-Let's look at some examples by creating a configuration for a Kloset store on a local MinIO instance:
-
-```bash
-plakar store add myminio s3://localhost:9000/mybackups access_key=minioadmin secret_access_key=minioadmin use_tls=false passphrase=mysecretpassphrase
-```
-
-To reference the store in Plakar commands, use the `@` syntax:
-
-```bash
-plakar at @myminio create
-plakar at @myminio backup /etc
-```
-
-The syntax works exactly the same to reference a source to back up:
-
-```bash
-# Configure the source
+# Configure the source using the S3 integration (requires the s3 package)
 plakar source add mybucket s3://localhost:9000/mybucket access_key=minioadmin secret_access_key=minioadmin use_tls=false
 
-# Back up mybucket into the default Kloset store, located at ~/.plakar
-plakar backup @mybucket
+# Back up the configured source using its alias
+plakar at @mystore backup @mybucket
 ```
 
-Or destinations:
-
 ```bash
-# Configure the destination
+# Configure the destination using the S3 integration (requires the s3 package)
 plakar destination add mybucket s3://localhost:9000/mybucket access_key=minioadmin secret_access_key=minioadmin use_tls=false
 
-# Restore the path /etc/resolv.conf of the snapshot dc60f09a located in the default Kloset store at ~/.plakar into the bucket
-plakar restore -to @mybucket dc60f09a:/etc/resolv.conf
+# Restore to the configured destination using its alias
+plakar at @mystore restore -to @mybucket snapshot-id
 ```
 
-You can also mix these parameters to back up a source specified in the configuration to a Kloset store specified in the configuration:
+## Argument order
+
+Argument order is important in Plakar commands. The general command syntax is:
+
+```
+plakar [at <store>] <command> [command options] [source/destination]
+```
+
+For example, the `backup` command accepts a `-check` option to perform a full check after a successful backup. This option must appear before the path to back up:
 
 ```bash
-plakar at @myminio backup @mybucket
+# ❌ Incorrect order
+plakar at /path/to/kloset backup /path/to/directory -check
+
+# ✅ Correct order
+plakar at /path/to/kloset backup -check /path/to/directory
 ```
+
+## Getting help
+
+Plakar offers two levels of help.
+
+To display the list of parameters for a specific command, use `-h` or `--help` after the command name, for example:
+
+```bash
+$ plakar backup -h
+Usage: backup [OPTIONS] path
+       backup [OPTIONS] @LOCATION
+
+OPTIONS:
+[…]
+```
+
+For more detailed documentation, including explanations and examples, use `plakar help <command>` to display the manual page for a command.
+
+At the bottom of each manual page, the *SEE ALSO* section lists related commands that may be useful.
+
+For example, `plakar help backup` references `plakar-source(1)`, which you can view with `plakar help source` to learn more about configuring sources.
