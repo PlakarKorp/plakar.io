@@ -1,5 +1,5 @@
 ---
-title: SFTP integration package
+title: SFTP / SSH
 description: Securely back up and restore remote directories over SFTP with Plakar — encrypted, verifiable, and portable.
 technology_description: This integration leverages the SFTP protocol over SSH to securely transfer and verify remote directories into a Plakar Kloset for backup and restoration.
 categories:

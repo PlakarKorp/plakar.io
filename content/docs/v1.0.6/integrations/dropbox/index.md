@@ -1,5 +1,5 @@
 ---
-title: Dropbox integration
+title: Dropbox
 description: Backup and restore your Dropbox with Plakar secure, portable, and deduplicated.
 technology_description: This integration uses the official Dropbox remote via Rclone to extract and restore data into a Kloset store.
 categories: integrations

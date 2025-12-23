@@ -1,5 +1,5 @@
 ---
-title: Koofr integration documentation
+title: Koofr
 description: Back up and restore your Koofr data, or store your Plakar backups on Koofr, using the Rclone integration.
 technology_description: This integration uses Rclone’s official Koofr remote to connect Plakar to your Koofr account securely and efficiently.
 categories: integrations

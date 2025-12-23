@@ -1,5 +1,5 @@
 ---
-title: OneDrive integration documentation
+title: OneDrive
 description: Back up and restore your OneDrive data, or store your Plakar backups on OneDrive, using the Rclone integration.
 technology_description: This integration uses Rclone’s official OneDrive remote to connect Plakar to your OneDrive account securely and efficiently.
 categories: integrations
