@@ -13,7 +13,7 @@ A **Kloset store** is Plakar’s immutable storage backend where all your data l
 
 This tutorial explains how to create a Kloset repository on the filesystem.
 
-## Option 1. Using the simple syntax
+## Option 1. Using a simple path
 
 Run the following command:
 
@@ -29,9 +29,9 @@ To avoid the prompt, you can set the passphrase via the environment variable:
 export PLAKAR_PASSPHRASE="my-secret-passphrase"
 ```
 
-## Option 2. Using the rich configuration syntax
+## Option 2. Using an alias to refer to a store configuration
 
-Plakar offers a more flexible way to configure stores using a **rich syntax**.
+Plakar offers a more flexible way to configure stores using an alias.
 This works in two steps:
 
 1. **Configure the store once** with `plakar store`.
