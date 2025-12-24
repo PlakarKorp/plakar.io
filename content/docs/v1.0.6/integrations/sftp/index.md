@@ -33,7 +33,7 @@ SFTP is a protocol for securely transferring files over SSH. The SFTP integratio
 
 ## Installation
 
-The SFTP integration is distributed as a Plakar package. It can be installed either by downloading a pre-built package or by building the package from source.
+The SFTP integration is distributed as a Plakar package. It can be installed either by downloading a pre-built package or by building it from source.
 
 {{< tabs name="Installation Methods" >}}
 {{% tab name="Pre-built package" %}}
