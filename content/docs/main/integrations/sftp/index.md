@@ -33,7 +33,7 @@ SFTP is a protocol for securely transferring files over SSH. The SFTP integratio
 
 ## Installation
 
-The SFTP integration is distributed as a Plakar package. It can be installed either by downloading a pre-built package or by building the package from source.
+The SFTP integration is distributed as a Plakar package. It can be installed either by downloading a pre-built package or by building it from source.
 
 {{< tabs name="Installation Methods" >}}
 {{% tab name="Pre-built package" %}}
@@ -114,35 +114,55 @@ The Plakar SFTP package provides a storage connector to host Kloset stores on SF
 
 {{< mermaid >}}
 flowchart LR
-  subgraph Sources[Source Connectors]
-    direction LR
-    DB[(Databases)]
-    FS@{ shape: docs, label: "Filesystem/NAS" }
-    SAS[SaaS]
-    RCLONE@{ shape: st-rect, label: "Rclone" }
-    S3[S3‑compatible]
-    IMAP[IMAP]
-  end
-  Sources e1@--> Plakar[Plakar]
-  Plakar e2@-->|SFTP| Kloset(((Kloset Store)))
-  classDef animate stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 25s linear infinite;
-  class e1 animate
-  class e2 animate
+
+Source@{ shape: cloud, label: "Source data" }
+
+Source --> Plakar[<b>Plakar</b>]
+
+subgraph Store[<b>SFTP Server</b>]
+  Kloset@{ shape: cyl, label: "Kloset Store" }
+end
+
+Plakar -- <small>Store snapshot via</small><br><b>SFTP storage connector</b> --> Store
+
+%% Apply classes
+class Source sourceBox
+class Plakar brandBox
+class Store storeBox
+
+%% Classes definitions
+classDef sourceBox fill:#ffe4e6,stroke:#cad5e2,stroke-width:1px
+classDef brandBox fill:#524cff,color:#ffffff
+classDef storeBox fill:#dbeafe,stroke:#cad5e2,stroke-width:1px
+
+linkStyle default stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 25s linear infinite;
 {{< /mermaid >}}
 
 #### Configure
 
 ```bash
-# Configure a Kloset store
+# Configure the Kloset store
 $ plakar store add sftp_store sftp://sftp-prod/backups
 
 # Initialize the Kloset store
 $ plakar at @sftp_store create
+
 # List snapshots in the Kloset store
 $ plakar at @sftp_store ls
+
+# Verify integrity of the Kloset store
+$ plakar at @sftp_store check
+
+# Backup a local folder to the Kloset store
+$ plakar at @sftp_store backup /etc
+
+# Backup a source configured in Plakar to the Kloset store
+$ plakar at @sftp_store backup @my_source
 ```
 
 #### Options
+
+These options can be set when configuring the storage connector with `plakar store add` or `plakar store set`:
 
 | Option     | Description                      |
 | ---------- | -------------------------------- |
@@ -151,24 +171,32 @@ $ plakar at @sftp_store ls
 
 ### Source connector
 
-The Plakar SFTP package provides a source connector to back up remote directories reachable over SFTP. The Kloset store where data is stored can be hosted on any supported backend.
+The Plakar SFTP package provides a source connector to back up remote directories reachable over SFTP.
 
 {{< mermaid >}}
 flowchart LR
-  DIR@{ shape: docs, label: "/srv/data" }
-  DIR e1@-- SFTP --> Plakar[Plakar]
-  Plakar e2@-->|SFTP| SFTP_Target(((Kloset Store)))
-  Plakar e3@-->|Rclone| Rclone_Target(((Kloset Store)))
-  Plakar e4@-->|S3-Compatible| S3_Target(((Kloset Store)))
-  Plakar e5@-->|Filesystem| FS_Target(((Kloset Store)))
-  Plakar e6@-->|...| All_Target(((Kloset Store)))
-  classDef animate stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 25s linear infinite;
-  class e1 animate
-  class e2 animate
-  class e3 animate
-  class e4 animate
-  class e5 animate
-  class e6 animate
+
+subgraph Source[<b>SFTP Server</b>]
+  fs@{ shape: st-rect, label: "/srv/data" }
+end
+
+Source -- <small>Retrieve data via</small><br><b>SFTP source connector</b> --> Plakar
+
+Store@{ shape: cyl, label: "Kloset Store" }
+
+Plakar --> Store
+
+%% Apply classes
+class Source sourceBox
+class Plakar brandBox
+class Store storeBox
+
+%% Classes definitions
+classDef sourceBox fill:#ffe4e6,stroke:#cad5e2,stroke-width:1px
+classDef brandBox fill:#524cff,color:#ffffff
+classDef storeBox fill:#dbeafe,stroke:#cad5e2,stroke-width:1px
+
+linkStyle default stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 25s linear infinite;
 {{< /mermaid >}}
 
 #### Configure
@@ -179,31 +207,47 @@ $ plakar source add sftp_src sftp://sftp-prod:/srv/data
 
 # Back up the remote directory to the Kloset store on the filesystem
 $ plakar at /var/backups backup @sftp_src
+
 # Or back up the remote directory to the Kloset store on SFTP created above
 $ plakar at @sftp_store backup @sftp_src
 ```
 
 #### Options
 
+These options can be set when configuring the source connector with `plakar source add` or `plakar source set`:
+
 | Option     | Purpose                                                             |
 | ---------- | ------------------------------------------------------------------- |
 | `location` | `sftp://[user@]host[:port]/path` of the remote directory to back up |
 
----
-
 ### Destination connector
 
-The Plakar SFTP package provides a destination connector to restore data over SFTP. The source Kloset store can be hosted on any supported backend.
+The Plakar SFTP package provides a destination connector to restore snapshots to remote directories reachable over SFTP.
 
 {{< mermaid >}}
 flowchart LR
-  Kloset(((Kloset Store)))
-  Kloset e1@--> Plakar[Plakar]
-  DIR@{ shape: docs, label: "/srv/data" }
-  Plakar e2@-- SFTP --> DIR
-  classDef animate stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 25s linear infinite;
-  class e1 animate
-  class e2 animate
+
+Store@{ shape: cyl, label: "Kloset Store" }
+
+Store --> Plakar
+
+subgraph Destination[<b>SFTP Server</b>]
+  fs@{ shape: st-rect, label: "/srv/data" }
+end
+
+Plakar -- <small>Push data via</small><br><b>SFTP destination connector</b> --> Destination
+
+%% Apply classes
+class Destination destinationBox
+class Plakar brandBox
+class Store storeBox
+
+%% Classes definitions
+classDef destinationBox fill:#d0fae5,stroke:#cad5e2,stroke-width:1px
+classDef brandBox fill:#524cff,color:#ffffff
+classDef storeBox fill:#dbeafe,stroke:#cad5e2,stroke-width:1px
+
+linkStyle default stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 25s linear infinite;
 {{< /mermaid >}}
 
 #### Configure
@@ -214,9 +258,18 @@ $ plakar destination add sftp_dst sftp://sftp-prod:/srv/restore
 
 # Restore a snapshot from a filesystem-hosted Kloset store to the remote SFTP directory
 $ plakar at /var/backups restore -to @sftp_dst <snapshot_id>
+
 # Or restore a snapshot from the Kloset store on SFTP created above to the remote SFTP directory
 $ plakar at @sftp_store restore -to @sftp_dst <snapshot_id>
 ```
+
+#### Options
+
+These options can be set when configuring the destination connector with `plakar destination add` or `plakar destination set`:
+
+| Option     | Purpose                                                             |
+| ---------- | ------------------------------------------------------------------- |
+| `location` | `sftp://[user@]host[:port]/path` of the remote directory to back up |
 
 ---
 
@@ -325,7 +378,7 @@ Yes. Define two stores, then use `plakar at @store1 sync to @store2` to synchron
 
 ---
 
-## Appendix
+## See also
 
 * [Plakar Architecture (Kloset Engine)](https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/)
 * [OpenSSH / SFTP Documentation](https://man.openbsd.org/sftp.1)
