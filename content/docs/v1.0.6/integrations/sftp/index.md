@@ -141,16 +141,28 @@ linkStyle default stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 2
 #### Configure
 
 ```bash
-# Configure a Kloset store
+# Configure the Kloset store
 $ plakar store add sftp_store sftp://sftp-prod/backups
 
 # Initialize the Kloset store
 $ plakar at @sftp_store create
+
 # List snapshots in the Kloset store
 $ plakar at @sftp_store ls
+
+# Verify integrity of the Kloset store
+$ plakar at @sftp_store check
+
+# Backup a local folder to the Kloset store
+$ plakar at @sftp_store backup /etc
+
+# Backup a source configured in Plakar to the Kloset store
+$ plakar at @sftp_store backup @my_source
 ```
 
 #### Options
+
+These options can be set when configuring the storage connector with `plakar store add` or `plakar store set`:
 
 | Option     | Description                      |
 | ---------- | -------------------------------- |
@@ -159,7 +171,7 @@ $ plakar at @sftp_store ls
 
 ### Source connector
 
-The Plakar SFTP package provides a source connector to back up remote directories reachable over SFTP. The Kloset store where data is stored can be hosted on any supported backend.
+The Plakar SFTP package provides a source connector to back up remote directories reachable over SFTP.
 
 {{< mermaid >}}
 flowchart LR
@@ -195,21 +207,22 @@ $ plakar source add sftp_src sftp://sftp-prod:/srv/data
 
 # Back up the remote directory to the Kloset store on the filesystem
 $ plakar at /var/backups backup @sftp_src
+
 # Or back up the remote directory to the Kloset store on SFTP created above
 $ plakar at @sftp_store backup @sftp_src
 ```
 
 #### Options
 
+These options can be set when configuring the source connector with `plakar source add` or `plakar source set`:
+
 | Option     | Purpose                                                             |
 | ---------- | ------------------------------------------------------------------- |
 | `location` | `sftp://[user@]host[:port]/path` of the remote directory to back up |
 
----
-
 ### Destination connector
 
-The Plakar SFTP package provides a destination connector to restore data over SFTP. The source Kloset store can be hosted on any supported backend.
+The Plakar SFTP package provides a destination connector to restore snapshots to remote directories reachable over SFTP.
 
 {{< mermaid >}}
 flowchart LR
@@ -245,9 +258,18 @@ $ plakar destination add sftp_dst sftp://sftp-prod:/srv/restore
 
 # Restore a snapshot from a filesystem-hosted Kloset store to the remote SFTP directory
 $ plakar at /var/backups restore -to @sftp_dst <snapshot_id>
+
 # Or restore a snapshot from the Kloset store on SFTP created above to the remote SFTP directory
 $ plakar at @sftp_store restore -to @sftp_dst <snapshot_id>
 ```
+
+#### Options
+
+These options can be set when configuring the destination connector with `plakar destination add` or `plakar destination set`:
+
+| Option     | Purpose                                                             |
+| ---------- | ------------------------------------------------------------------- |
+| `location` | `sftp://[user@]host[:port]/path` of the remote directory to back up |
 
 ---
 
@@ -356,7 +378,7 @@ Yes. Define two stores, then use `plakar at @store1 sync to @store2` to synchron
 
 ---
 
-## Appendix
+## See also
 
 * [Plakar Architecture (Kloset Engine)](https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/)
 * [OpenSSH / SFTP Documentation](https://man.openbsd.org/sftp.1)
