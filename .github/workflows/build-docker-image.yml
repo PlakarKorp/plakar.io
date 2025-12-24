@@ -17,11 +17,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Log in to GHCR
+      - name: Log in to Scaleway Container Registry
         uses: docker/login-action@5e57cd118135c172c3672efd75eb46360885c0ef # @v3
         with:
           registry: ${{ secrets.SCW_REGISTRY }}
-          username: ${{ secrets.SCW_ACCESS_KEY }}
+          username: nologin
           password: ${{ secrets.SCW_SECRET_KEY }}
 
       - name: Build and push
@@ -30,4 +30,4 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ secrets.SCW_REGISTRY }}:latest
+            ${{ secrets.SCW_REGISTRY }}/www.plakar.io:latest
