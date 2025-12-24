@@ -314,7 +314,7 @@ By combining snapshot immutability, content-addressing, and portable metadata, K
 
 Kloset is designed with **security as a foundational, non-optional feature**.
 Its security layer is **always enabled**, woven directly into the architecture, not layered on top as an afterthought.
-Its cryptographic design has been [reviewed by an independent auditor](/docs/audits/) and project is maintained by developers with strong understanding of security concepts.
+Its cryptographic design has been [reviewed by an independent auditor](/posts/2025-02-28/audit-of-plakar-cryptography/) and project is maintained by developers with strong understanding of security concepts.
 
 
 The system guarantees **confidentiality, integrity, and traceability** for all data at all times — during backup, storage, and restore.
