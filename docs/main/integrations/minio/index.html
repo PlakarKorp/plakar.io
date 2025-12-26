@@ -510,26 +510,24 @@ ml-4 pl-2 border-l border-neutral-300">Scheduling tasks
 ml-4 pl-2 border-l border-neutral-300">Login to Plakar to unlock features</a></div></div><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded" :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.6-3-integrations-2'] }"><a href=/docs/v1.0.6/integrations/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">Integrations
 </a><button @click.prevent="openSections['root-plakar_v1.0.6-3-integrations-2'] = !openSections['root-plakar_v1.0.6-3-integrations-2']" class=focus:outline-none>
 <span class=text-neutral-500 x-show="!openSections['root-plakar_v1.0.6-3-integrations-2']"><i class=ri-arrow-down-s-line></i>
-</span><span class=text-neutral-500 x-show="openSections['root-plakar_v1.0.6-3-integrations-2']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar_v1.0.6-3-integrations-2']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/v1.0.6/integrations/googledrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</span><span class=text-neutral-500 x-show="openSections['root-plakar_v1.0.6-3-integrations-2']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar_v1.0.6-3-integrations-2']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/v1.0.6/integrations/dropbox/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Dropbox
+</a><a href=/docs/v1.0.6/integrations/iclouddrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">iCloud Drive
+</a><a href=/docs/v1.0.6/integrations/koofr/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Koofr
+</a><a href=/docs/v1.0.6/integrations/googledrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">Google Drive
 </a><a href=/docs/v1.0.6/integrations/onedrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">OneDrive
-</a><a href=/docs/v1.0.6/integrations/minio/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
-ml-4 pl-2 border-l border-neutral-300">MinIO
-</a><a href=/docs/v1.0.6/integrations/sftp/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
-ml-4 pl-2 border-l border-neutral-300">SFTP / SSH
-</a><a href=/docs/v1.0.6/integrations/iclouddrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
-ml-4 pl-2 border-l border-neutral-300">iCloud Drive
 </a><a href=/docs/v1.0.6/integrations/opendrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">OpenDrive
 </a><a href=/docs/v1.0.6/integrations/protondrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">Proton Drive
-</a><a href=/docs/v1.0.6/integrations/dropbox/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
-ml-4 pl-2 border-l border-neutral-300">Dropbox
-</a><a href=/docs/v1.0.6/integrations/googlephotos/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
-ml-4 pl-2 border-l border-neutral-300">Google Photos
-</a><a href=/docs/v1.0.6/integrations/koofr/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
-ml-4 pl-2 border-l border-neutral-300">Koofr
+</a><a href=/docs/v1.0.6/integrations/minio/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">MinIO
+</a><a href=/docs/v1.0.6/integrations/sftp/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">SFTP / SSH
 </a><a href=/docs/v1.0.6/integrations/notion/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">Notion</a></div></div><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded" :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.6-3-commands-3'] }"><a href=/docs/v1.0.6/commands/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">Commands
 </a><button @click.prevent="openSections['root-plakar_v1.0.6-3-commands-3'] = !openSections['root-plakar_v1.0.6-3-commands-3']" class=focus:outline-none>
@@ -660,27 +658,25 @@ ml-4 pl-2 border-l border-neutral-300">Scheduling tasks
 ml-4 pl-2 border-l border-neutral-300">Login to Plakar to unlock features</a></div></div><div class="my-1 open"><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded" :class="{ 'bg-neutral-100': openSections['root-plakar:_developer_branch-4-integrations-2'] }"><a href=/docs/main/integrations/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">Integrations
 </a><button @click.prevent="openSections['root-plakar:_developer_branch-4-integrations-2'] = !openSections['root-plakar:_developer_branch-4-integrations-2']" class=focus:outline-none>
 <span class=text-neutral-500 x-show="!openSections['root-plakar:_developer_branch-4-integrations-2']"><i class=ri-arrow-down-s-line></i>
-</span><span class=text-neutral-500 x-show="openSections['root-plakar:_developer_branch-4-integrations-2']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar:_developer_branch-4-integrations-2']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/main/integrations/googledrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+</span><span class=text-neutral-500 x-show="openSections['root-plakar:_developer_branch-4-integrations-2']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar:_developer_branch-4-integrations-2']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/main/integrations/dropbox/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Dropbox
+</a><a href=/docs/main/integrations/iclouddrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">iCloud Drive
+</a><a href=/docs/main/integrations/koofr/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Koofr
+</a><a href=/docs/main/integrations/googledrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">Google Drive
 </a><a href=/docs/main/integrations/onedrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">OneDrive
+</a><a href=/docs/main/integrations/opendrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">OpenDrive
+</a><a href=/docs/main/integrations/protondrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Proton Drive
 </a><a href=/docs/main/integrations/minio/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300
 text-primary-600 bg-neutral-200 font-semibold">MinIO
 </a><a href=/docs/main/integrations/sftp/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">SFTP / SSH
-</a><a href=/docs/main/integrations/iclouddrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
-ml-4 pl-2 border-l border-neutral-300">iCloud Drive
-</a><a href=/docs/main/integrations/opendrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
-ml-4 pl-2 border-l border-neutral-300">OpenDrive
-</a><a href=/docs/main/integrations/protondrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
-ml-4 pl-2 border-l border-neutral-300">Proton Drive
-</a><a href=/docs/main/integrations/dropbox/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
-ml-4 pl-2 border-l border-neutral-300">Dropbox
-</a><a href=/docs/main/integrations/googlephotos/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
-ml-4 pl-2 border-l border-neutral-300">Google Photos
-</a><a href=/docs/main/integrations/koofr/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
-ml-4 pl-2 border-l border-neutral-300">Koofr
 </a><a href=/docs/main/integrations/notion/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
 ml-4 pl-2 border-l border-neutral-300">Notion</a></div></div><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded" :class="{ 'bg-neutral-100': openSections['root-plakar:_developer_branch-4-commands-3'] }"><a href=/docs/main/commands/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">Commands
 </a><button @click.prevent="openSections['root-plakar:_developer_branch-4-commands-3'] = !openSections['root-plakar:_developer_branch-4-commands-3']" class=focus:outline-none>
@@ -836,7 +832,7 @@ linkStyle default stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 2
 </span></span><span class=line><span class=ln>19</span><span class=cl>
 </span></span><span class=line><span class=ln>20</span><span class=cl><span class=c1># Backup a source configured in Plakar to the Kloset store</span>
 </span></span><span class=line><span class=ln>21</span><span class=cl>$ plakar at @minio backup @my_source
-</span></span></code></pre></div><h4 id=options>Options</h4><p>These options can be set when configuring the storage connector with <code>plakar store add</code> or <code>plakar store set</code>:</p><table><thead><tr><th>Option</th><th>Purpose</th></tr></thead><tbody><tr><td><code>location</code></td><td>Bucket location in the format <code>s3://&lt;hostname[:port]>/&lt;bucket-name></code></td></tr><tr><td><code>access_key</code></td><td>Access key for the MinIO instance</td></tr><tr><td><code>secret_access_key</code></td><td>Secret key for the MinIO instance</td></tr><tr><td><code>use_tls</code></td><td>Whether to use TLS for the connection (default: <code>true</code>)</td></tr><tr><td><code>storage_class</code></td><td>The storage class to use for objects in the bucket (default: <code>STANDARD</code>)</td></tr></tbody></table><h3 id=source-connector>Source connector</h3><p>The Plakar S3 package provides a source connector to back up S3-compatible buckets, including MinIO.</p><div class=mermaid>flowchart LR
+</span></span></code></pre></div><h4 id=options>Options</h4><p>These options can be set when configuring the storage connector with <code>plakar store add</code> or <code>plakar store set</code>:</p><table><thead><tr><th>Option</th><th>Purpose</th></tr></thead><tbody><tr><td><code>location</code></td><td>Bucket location in the format <code>s3://&lt;hostname[:port]>/&lt;bucket-name></code></td></tr><tr><td><code>access_key</code></td><td>Access key for the MinIO instance</td></tr><tr><td><code>secret_access_key</code></td><td>Secret key for the MinIO instance</td></tr><tr><td><code>use_tls</code></td><td>Whether to use TLS for the connection (default: <code>true</code>)</td></tr><tr><td><code>storage_class</code></td><td>The storage class to use for objects in the bucket (default: <code>STANDARD</code>)</td></tr><tr><td><code>passphrase</code></td><td>The Kloset store passphrase</td></tr></tbody></table><h3 id=source-connector>Source connector</h3><p>The Plakar S3 package provides a source connector to back up S3-compatible buckets, including MinIO.</p><div class=mermaid>flowchart LR
 subgraph Source[<b>MinIO Bucket</b>]
 fs@{ shape: cloud, label: "Data" }
 end
