@@ -4,7 +4,7 @@ summary: Back up and restore your Google Drive with Plakar, and host Kloset stor
 date: "2025-12-24T00:00:00Z"
 ---
 
-Google Drive is a widely used cloud storage service provided by Google, offering users the ability to store files, share documents, and collaborate in real-time.
+Google Drive is a widely used cloud storage service provided by Google, offering users the ability to store files, share documents, and collaborate in real time.
 
 [Rclone](https://rclone.org/) is a command-line program to manage files on cloud storage, and supports Google Drive as one of its many backends.
 
@@ -140,7 +140,7 @@ The output should list the files and folders in your Google Drive.
 
 ## Connectors
 
-The Rclone package provides three connectors to interact with Google Drive via Rclone: a storage connector for hosting Kloset stores on Rclone remotes, a source connector for backing up Rclone remotes, and a destination connector for restoring data to Rclone remotes.
+The Rclone package provides storage, source, and destination connectors to interact with Google Drive via Rclone.
 
 You can use any combination of these connectors together with other supported Plakar connectors.
 
@@ -209,7 +209,7 @@ The Plakar Rclone package provides a source connector to back up remote director
 flowchart LR
 
 subgraph Source[<b>Rclone Remote</b>]
-  fs@{ shape: st-rect, label: "/srv/data" }
+  fs@{ shape: cloud, label: "data" }
 end
 
 Source -- <small>Retrieve data via</small><br><b>Rclone source connector</b> --> Plakar
@@ -261,7 +261,7 @@ Store@{ shape: cyl, label: "Kloset Store" }
 Store --> Plakar
 
 subgraph Destination[<b>Rclone Remote</b>]
-  fs@{ shape: st-rect, label: "/srv/data" }
+  fs@{ shape: cloud, label: "data" }
 end
 
 Plakar -- <small>Push data via</small><br><b>Rclone destination connector</b> --> Destination
@@ -302,11 +302,11 @@ The Rclone destination connector doesn't support any specific options.
 ## Limitations and considerations
 
 * Google Drive API has rate limits, heavy usage may require throttling.
-* Only the latest version of each file is snapshotted.
+* File version history is not preserved. Only the current version of each file is snapshotted.
 * Shared links and permissions are not preserved in snapshots.
 
 ---
 
 ## See also
 
-* [Rclone Google Drive Docs](https://rclone.org/drive/)
+* [Rclone documentation for Google Drive](https://rclone.org/drive/)
