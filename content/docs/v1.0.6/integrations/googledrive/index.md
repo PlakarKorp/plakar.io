@@ -179,7 +179,7 @@ linkStyle default stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 2
 ```bash
 # Import the rclone configuration as a storage configuration.
 # Replace "mydrive" with your Rclone remote name.
-rclone config show mydrive | plakar store import -rclone
+rclone config show | plakar store import -rclone mydrive
 
 # Initialize the Kloset store
 $ plakar at @mydrive create
@@ -236,7 +236,7 @@ linkStyle default stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 2
 ```bash
 # Import the rclone configuration as a source configuration.
 # Replace "mydrive" with your Rclone remote name.
-rclone config show mydrive | plakar source import -rclone
+rclone config show | plakar source import -rclone mydrive
 
 # Back up the remote directory to the Kloset store on the filesystem
 $ plakar at /var/backups backup @mydrive
@@ -284,7 +284,7 @@ linkStyle default stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 2
 ```bash
 # Import the rclone configuration as a destination configuration.
 # Replace "mydrive" with your Rclone remote name.
-rclone config show mydrive | plakar destination import -rclone
+rclone config show | plakar destination import -rclone mydrive
 
 # Restore a snapshot from a filesystem-hosted Kloset store to the Rclone remote
 $ plakar at /var/backups restore -to @mydrive <snapshot_id>
