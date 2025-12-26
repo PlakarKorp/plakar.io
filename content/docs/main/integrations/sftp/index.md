@@ -167,7 +167,7 @@ These options can be set when configuring the storage connector with `plakar sto
 | Option     | Description                      |
 | ---------- | -------------------------------- |
 | `location` | `sftp://[user@]host[:port]/path` |
-
+| `passphrase` | The Kloset store passphrase |
 
 ### Source connector
 

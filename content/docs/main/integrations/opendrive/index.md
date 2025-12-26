@@ -194,7 +194,11 @@ $ plakar at @mydrive backup @my_source
 
 #### Options
 
-The Rclone storage connector doesn't support any specific options.
+These options can be set when configuring the storage connector with `plakar store add` or `plakar store set`:
+
+| Option | Purpose |
+|--------|-------------|
+| `passphrase` | The Kloset store passphrase |
 
 ### Source connector
 
