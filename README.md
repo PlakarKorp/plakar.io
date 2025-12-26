@@ -24,5 +24,5 @@
 
 * **Change code highlight style**
 
-    - `hugo gen chromastyles --style=monokailight > assets/css/chroma.css`
-    - `hugo gen chromastyles --style=native > assets/css/native.css`
+    - `hugo gen chromastyles --style=monokailight > ./themes/plakarium/assets/css/chroma.css`
+    - `hugo gen chromastyles --style=native > ./themes/plakarium/assets/css/native.css`
