@@ -172,6 +172,7 @@ These options can be set when configuring the storage connector with `plakar sto
 | `secret_access_key` | Secret key for the MinIO instance |
 | `use_tls` | Whether to use TLS for the connection (default: `true`) |
 | `storage_class` | The storage class to use for objects in the bucket (default: `STANDARD`) |
+| `passphrase` | The Kloset store passphrase |
 
 
 ### Source connector
