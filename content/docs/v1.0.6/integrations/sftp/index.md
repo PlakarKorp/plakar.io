@@ -39,7 +39,7 @@ The SFTP integration is distributed as a Plakar package. It can be installed eit
 {{% tab name="Pre-built package" %}}
 Plakar provides pre-compiled packages for common platforms. This is the simplest installation method and is suitable for most users.
 
-**Note:** Installing pre-built packages requires you to be authenticated with Plakar. See [Login to Plakar to unlock features](../../guides/what-is-plakar-login/).
+**Note:** Installing pre-built packages requires authentication with Plakar. See [Login to Plakar to unlock features](../../guides/what-is-plakar-login/).
 
 Install the SFTP package:
 

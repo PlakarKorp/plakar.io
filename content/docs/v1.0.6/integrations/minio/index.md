@@ -6,9 +6,7 @@ date: "2025-12-23T00:00:00Z"
 
 MinIO is an S3-compatible object storage system commonly used for on-prem, cloud, and hybrid deployments.
 
-The MinIO integration allows Plakar to interact with MinIO buckets through the standard S3 API.
-
-The MinIO integration provides three connectors:
+The S3 integration allows Plakar to interact with MinIO buckets through the standard S3 API. It provides three connectors:
 
 | Connector type               | Description |
 | ---------------------------- | ----------- |
@@ -39,7 +37,7 @@ To interact with MinIO, you need to install the S3 Plakar package. It can be ins
 {{% tab name="Pre-built package" %}}
 Plakar provides pre-compiled packages for common platforms. This is the simplest installation method and is suitable for most users.
 
-**Note:** Installing pre-built packages requires you to be authenticated with Plakar. See [Login to Plakar to unlock features](../../guides/what-is-plakar-login/).
+**Note:** Installing pre-built packages requires authentication with Plakar. See [Login to Plakar to unlock features](../../guides/what-is-plakar-login/).
 
 Install the S3 package:
 

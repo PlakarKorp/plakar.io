@@ -6,431 +6,469 @@
 @plugin "@tailwindcss/typography";
 
 @layer base {
-    :root {
-        --color-neutral-50:  theme('colors.neutral.50');
-        --color-neutral-100: theme('colors.neutral.100');
-        --color-neutral-200: theme('colors.neutral.200');
-        --color-neutral-300: theme('colors.neutral.300');
-        --color-neutral-400: theme('colors.neutral.400');
-        --color-neutral-500: theme('colors.neutral.500');
-        --color-neutral-600: theme('colors.neutral.600');
-        --color-neutral-700: theme('colors.neutral.700');
-        --color-neutral-800: theme('colors.neutral.800');
-        --color-neutral-900: theme('colors.neutral.900');
-        --pattern-fg: var(--color-neutral-300);
-        --border-color: var(--color-neutral-300);
-        /* Main colors for box types */
-        --BOX-DEFAULT-color: #a0a0a0;
-        --BOX-BLUE-color: #3075e5;
-        --BOX-CYAN-color: #2dbec8;
-        --BOX-GREEN-color: #2ab218;
-        --BOX-GREY-color: #a0a0a0;
-        --BOX-MAGENTA-color: #e532d2;
-        --BOX-ORANGE-color: #ed9909;
-        --BOX-RED-color: #e03e3e;
+  :root {
+    --color-neutral-50: theme("colors.neutral.50");
+    --color-neutral-100: theme("colors.neutral.100");
+    --color-neutral-200: theme("colors.neutral.200");
+    --color-neutral-300: theme("colors.neutral.300");
+    --color-neutral-400: theme("colors.neutral.400");
+    --color-neutral-500: theme("colors.neutral.500");
+    --color-neutral-600: theme("colors.neutral.600");
+    --color-neutral-700: theme("colors.neutral.700");
+    --color-neutral-800: theme("colors.neutral.800");
+    --color-neutral-900: theme("colors.neutral.900");
+    --pattern-fg: var(--color-neutral-300);
+    --border-color: var(--color-neutral-300);
+    /* Main colors for box types */
+    --BOX-DEFAULT-color: #a0a0a0;
+    --BOX-BLUE-color: #3075e5;
+    --BOX-CYAN-color: #2dbec8;
+    --BOX-GREEN-color: #2ab218;
+    --BOX-GREY-color: #a0a0a0;
+    --BOX-MAGENTA-color: #e532d2;
+    --BOX-ORANGE-color: #ed9909;
+    --BOX-RED-color: #e03e3e;
 
-        /* Caption background colors - using the main colors */
-        --BOX-DEFAULT-CAPTION-BG-color: var(--BOX-DEFAULT-color);
-        --BOX-BLUE-CAPTION-BG-color: var(--BOX-BLUE-color);
-        --BOX-CYAN-CAPTION-BG-color: var(--BOX-CYAN-color);
-        --BOX-GREEN-CAPTION-BG-color: var(--BOX-GREEN-color);
-        --BOX-GREY-CAPTION-BG-color: var(--BOX-GREY-color);
-        --BOX-MAGENTA-CAPTION-BG-color: var(--BOX-MAGENTA-color);
-        --BOX-ORANGE-CAPTION-BG-color: var(--BOX-ORANGE-color);
-        --BOX-RED-CAPTION-BG-color: var(--BOX-RED-color);
+    /* Caption background colors - using the main colors */
+    --BOX-DEFAULT-CAPTION-BG-color: var(--BOX-DEFAULT-color);
+    --BOX-BLUE-CAPTION-BG-color: var(--BOX-BLUE-color);
+    --BOX-CYAN-CAPTION-BG-color: var(--BOX-CYAN-color);
+    --BOX-GREEN-CAPTION-BG-color: var(--BOX-GREEN-color);
+    --BOX-GREY-CAPTION-BG-color: var(--BOX-GREY-color);
+    --BOX-MAGENTA-CAPTION-BG-color: var(--BOX-MAGENTA-color);
+    --BOX-ORANGE-CAPTION-BG-color: var(--BOX-ORANGE-color);
+    --BOX-RED-CAPTION-BG-color: var(--BOX-RED-color);
 
-        /* Caption text colors - typically white for contrast */
-        --BOX-DEFAULT-CAPTION-TEXT-color: white;
-        --BOX-BLUE-CAPTION-TEXT-color: white;
-        --BOX-CYAN-CAPTION-TEXT-color: white;
-        --BOX-GREEN-CAPTION-TEXT-color: white;
-        --BOX-GREY-CAPTION-TEXT-color: white;
-        --BOX-MAGENTA-CAPTION-TEXT-color: white;
-        --BOX-ORANGE-CAPTION-TEXT-color: white;
-        --BOX-RED-CAPTION-TEXT-color: white;
+    /* Caption text colors - typically white for contrast */
+    --BOX-DEFAULT-CAPTION-TEXT-color: white;
+    --BOX-BLUE-CAPTION-TEXT-color: white;
+    --BOX-CYAN-CAPTION-TEXT-color: white;
+    --BOX-GREEN-CAPTION-TEXT-color: white;
+    --BOX-GREY-CAPTION-TEXT-color: white;
+    --BOX-MAGENTA-CAPTION-TEXT-color: white;
+    --BOX-ORANGE-CAPTION-TEXT-color: white;
+    --BOX-RED-CAPTION-TEXT-color: white;
 
-        /* Box content background colors - pastel/lighter versions of main colors */
-        --BOX-DEFAULT-BG-color: #f7f7f7;
-        --BOX-BLUE-BG-color: #eef5ff;
-        --BOX-CYAN-BG-color: #ecfcfd;
-        --BOX-GREEN-BG-color: #edfde9;
-        --BOX-GREY-BG-color: #f7f7f7;
-        --BOX-MAGENTA-BG-color: #fdeffc;
-        --BOX-ORANGE-BG-color: #fff8e6;
-        --BOX-RED-BG-color: #fdf0f0;
+    /* Box content background colors - pastel/lighter versions of main colors */
+    --BOX-DEFAULT-BG-color: #f7f7f7;
+    --BOX-BLUE-BG-color: #eef5ff;
+    --BOX-CYAN-BG-color: #ecfcfd;
+    --BOX-GREEN-BG-color: #edfde9;
+    --BOX-GREY-BG-color: #f7f7f7;
+    --BOX-MAGENTA-BG-color: #fdeffc;
+    --BOX-ORANGE-BG-color: #fff8e6;
+    --BOX-RED-BG-color: #fdf0f0;
 
-        /* Box content text colors - darker versions for readable text */
-        --BOX-DEFAULT-TEXT-color: #505050;
-        --BOX-BLUE-TEXT-color: #1a4388;
-        --BOX-CYAN-TEXT-color: #176269;
-        --BOX-GREEN-TEXT-color: #155c0c;
-        --BOX-GREY-TEXT-color: #505050;
-        --BOX-MAGENTA-TEXT-color: #7d1a71;
-        --BOX-ORANGE-TEXT-color: #905c04;
-        --BOX-RED-TEXT-color: #7a1f1f;
+    /* Box content text colors - darker versions for readable text */
+    --BOX-DEFAULT-TEXT-color: #505050;
+    --BOX-BLUE-TEXT-color: #1a4388;
+    --BOX-CYAN-TEXT-color: #176269;
+    --BOX-GREEN-TEXT-color: #155c0c;
+    --BOX-GREY-TEXT-color: #505050;
+    --BOX-MAGENTA-TEXT-color: #7d1a71;
+    --BOX-ORANGE-TEXT-color: #905c04;
+    --BOX-RED-TEXT-color: #7a1f1f;
 
-        /* Semantic mappings for caption backgrounds */
-        --BOX-CAUTION-CAPTION-BG-color: var(--BOX-MAGENTA-CAPTION-BG-color);
-        --BOX-INFO-CAPTION-BG-color: var(--BOX-BLUE-CAPTION-BG-color);
-        --BOX-IMPORTANT-CAPTION-BG-color: var(--BOX-CYAN-CAPTION-BG-color);
-        --BOX-NEUTRAL-CAPTION-BG-color: var(--BOX-GREY-CAPTION-BG-color);
-        --BOX-NOTE-CAPTION-BG-color: var(--BOX-ORANGE-CAPTION-BG-color);
-        --BOX-TIP-CAPTION-BG-color: var(--BOX-GREEN-CAPTION-BG-color);
-        --BOX-WARNING-CAPTION-BG-color: var(--BOX-RED-CAPTION-BG-color);
+    /* Semantic mappings for caption backgrounds */
+    --BOX-CAUTION-CAPTION-BG-color: var(--BOX-MAGENTA-CAPTION-BG-color);
+    --BOX-INFO-CAPTION-BG-color: var(--BOX-BLUE-CAPTION-BG-color);
+    --BOX-IMPORTANT-CAPTION-BG-color: var(--BOX-CYAN-CAPTION-BG-color);
+    --BOX-NEUTRAL-CAPTION-BG-color: var(--BOX-GREY-CAPTION-BG-color);
+    --BOX-NOTE-CAPTION-BG-color: var(--BOX-ORANGE-CAPTION-BG-color);
+    --BOX-TIP-CAPTION-BG-color: var(--BOX-GREEN-CAPTION-BG-color);
+    --BOX-WARNING-CAPTION-BG-color: var(--BOX-RED-CAPTION-BG-color);
 
-        /* Semantic mappings for caption text */
-        --BOX-CAUTION-CAPTION-TEXT-color: var(--BOX-MAGENTA-CAPTION-TEXT-color);
-        --BOX-INFO-CAPTION-TEXT-color: var(--BOX-BLUE-CAPTION-TEXT-color);
-        --BOX-IMPORTANT-CAPTION-TEXT-color: var(--BOX-CYAN-CAPTION-TEXT-color);
-        --BOX-NEUTRAL-CAPTION-TEXT-color: var(--BOX-GREY-CAPTION-TEXT-color);
-        --BOX-NOTE-CAPTION-TEXT-color: var(--BOX-ORANGE-CAPTION-TEXT-color);
-        --BOX-TIP-CAPTION-TEXT-color: var(--BOX-GREEN-CAPTION-TEXT-color);
-        --BOX-WARNING-CAPTION-TEXT-color: var(--BOX-RED-CAPTION-TEXT-color);
+    /* Semantic mappings for caption text */
+    --BOX-CAUTION-CAPTION-TEXT-color: var(--BOX-MAGENTA-CAPTION-TEXT-color);
+    --BOX-INFO-CAPTION-TEXT-color: var(--BOX-BLUE-CAPTION-TEXT-color);
+    --BOX-IMPORTANT-CAPTION-TEXT-color: var(--BOX-CYAN-CAPTION-TEXT-color);
+    --BOX-NEUTRAL-CAPTION-TEXT-color: var(--BOX-GREY-CAPTION-TEXT-color);
+    --BOX-NOTE-CAPTION-TEXT-color: var(--BOX-ORANGE-CAPTION-TEXT-color);
+    --BOX-TIP-CAPTION-TEXT-color: var(--BOX-GREEN-CAPTION-TEXT-color);
+    --BOX-WARNING-CAPTION-TEXT-color: var(--BOX-RED-CAPTION-TEXT-color);
 
-        /* Semantic mappings for content background colors */
-        --BOX-CAUTION-BG-color: var(--BOX-MAGENTA-BG-color);
-        --BOX-INFO-BG-color: var(--BOX-BLUE-BG-color);
-        --BOX-IMPORTANT-BG-color: var(--BOX-CYAN-BG-color);
-        --BOX-NEUTRAL-BG-color: var(--BOX-GREY-BG-color);
-        --BOX-NOTE-BG-color: var(--BOX-ORANGE-BG-color);
-        --BOX-TIP-BG-color: var(--BOX-GREEN-BG-color);
-        --BOX-WARNING-BG-color: var(--BOX-RED-BG-color);
+    /* Semantic mappings for content background colors */
+    --BOX-CAUTION-BG-color: var(--BOX-MAGENTA-BG-color);
+    --BOX-INFO-BG-color: var(--BOX-BLUE-BG-color);
+    --BOX-IMPORTANT-BG-color: var(--BOX-CYAN-BG-color);
+    --BOX-NEUTRAL-BG-color: var(--BOX-GREY-BG-color);
+    --BOX-NOTE-BG-color: var(--BOX-ORANGE-BG-color);
+    --BOX-TIP-BG-color: var(--BOX-GREEN-BG-color);
+    --BOX-WARNING-BG-color: var(--BOX-RED-BG-color);
 
-        /* Semantic mappings for content text colors */
-        --BOX-CAUTION-TEXT-color: var(--BOX-MAGENTA-TEXT-color);
-        --BOX-INFO-TEXT-color: var(--BOX-BLUE-TEXT-color);
-        --BOX-IMPORTANT-TEXT-color: var(--BOX-CYAN-TEXT-color);
-        --BOX-NEUTRAL-TEXT-color: var(--BOX-GREY-TEXT-color);
-        --BOX-NOTE-TEXT-color: var(--BOX-ORANGE-TEXT-color);
-        --BOX-TIP-TEXT-color: var(--BOX-GREEN-TEXT-color);
-        --BOX-WARNING-TEXT-color: var(--BOX-RED-TEXT-color);
-    }
+    /* Semantic mappings for content text colors */
+    --BOX-CAUTION-TEXT-color: var(--BOX-MAGENTA-TEXT-color);
+    --BOX-INFO-TEXT-color: var(--BOX-BLUE-TEXT-color);
+    --BOX-IMPORTANT-TEXT-color: var(--BOX-CYAN-TEXT-color);
+    --BOX-NEUTRAL-TEXT-color: var(--BOX-GREY-TEXT-color);
+    --BOX-NOTE-TEXT-color: var(--BOX-ORANGE-TEXT-color);
+    --BOX-TIP-TEXT-color: var(--BOX-GREEN-TEXT-color);
+    --BOX-WARNING-TEXT-color: var(--BOX-RED-TEXT-color);
+  }
 
-    .dark {
-        --color-neutral-50:  theme('colors.neutral.900');
-        --color-neutral-100: theme('colors.neutral.800');
-        --color-neutral-200: theme('colors.neutral.700');
-        --color-neutral-300: theme('colors.neutral.600');
-        --color-neutral-400: theme('colors.neutral.500');
-        --color-neutral-500: theme('colors.neutral.400');
-        --color-neutral-600: theme('colors.neutral.300');
-        --color-neutral-700: theme('colors.neutral.200');
-        --color-neutral-800: theme('colors.neutral.100');
-        --color-neutral-900: theme('colors.neutral.50');
-        --pattern-fg:var(--color-neutral-50);
-        --border-color: var(--color-neutral-50);
-    }
-
-}
-
-
-@layer utilities {
-    .fade-word-hero {
-        @apply absolute left-0 right-0 text-right h-[60px] pointer-events-none;
-        animation: fade-in-out 12s ease-in-out infinite;
-    }
-
-    .fadeout-word-hero {
-        @apply absolute left-0 right-0 text-right h-[60px] pointer-events-none;
-        animation: fadeout-start 1s ease-in-out 3s forwards;
-    }
-
-    .fade-delay-0 { animation-delay: 0s; }
-    .fade-delay-1 { animation-delay: 3s; }
-    .fade-delay-2 { animation-delay: 6s; }
-    .fade-delay-3 { animation-delay: 9s; }
-    .fade-delay-4 { animation-delay: 12s; }
-
-    .fade-delay-0b { animation-delay: 0s; }
-    .fade-delay-1b { animation-delay: 4s; }
-    .fade-delay-2b { animation-delay: 8s; }
-
-
-
-    @keyframes fadeout-start {
-        0% { opacity: 1; }
-        100% { opacity: 0; }
-    }
-
-    @keyframes fade-in-out {
-        0%, 9% {
-            opacity: 0;
-        }
-        10%, 30% {
-            opacity: 1;
-        }
-        31%, 100% {
-            opacity: 0;
-        }
-    }
+  .dark {
+    --color-neutral-50: theme("colors.neutral.900");
+    --color-neutral-100: theme("colors.neutral.800");
+    --color-neutral-200: theme("colors.neutral.700");
+    --color-neutral-300: theme("colors.neutral.600");
+    --color-neutral-400: theme("colors.neutral.500");
+    --color-neutral-500: theme("colors.neutral.400");
+    --color-neutral-600: theme("colors.neutral.300");
+    --color-neutral-700: theme("colors.neutral.200");
+    --color-neutral-800: theme("colors.neutral.100");
+    --color-neutral-900: theme("colors.neutral.50");
+    --pattern-fg: var(--color-neutral-50);
+    --border-color: var(--color-neutral-50);
+  }
 }
 
 @layer utilities {
-    .grid-background {
-        background-image:
-                linear-gradient(to right, theme('colors.neutral.200') 1px, transparent 1px),
-                linear-gradient(to bottom, theme('colors.neutral.200') 1px, transparent 1px);
-        background-size: 64px 64px;
-        background-repeat: repeat;
-        background-attachment: fixed;
+  .fade-word-hero {
+    @apply absolute left-0 right-0 text-right h-[60px] pointer-events-none;
+    animation: fade-in-out 12s ease-in-out infinite;
+  }
+
+  .fadeout-word-hero {
+    @apply absolute left-0 right-0 text-right h-[60px] pointer-events-none;
+    animation: fadeout-start 1s ease-in-out 3s forwards;
+  }
+
+  .fade-delay-0 {
+    animation-delay: 0s;
+  }
+  .fade-delay-1 {
+    animation-delay: 3s;
+  }
+  .fade-delay-2 {
+    animation-delay: 6s;
+  }
+  .fade-delay-3 {
+    animation-delay: 9s;
+  }
+  .fade-delay-4 {
+    animation-delay: 12s;
+  }
+
+  .fade-delay-0b {
+    animation-delay: 0s;
+  }
+  .fade-delay-1b {
+    animation-delay: 4s;
+  }
+  .fade-delay-2b {
+    animation-delay: 8s;
+  }
+
+  @keyframes fadeout-start {
+    0% {
+      opacity: 1;
     }
-    .bg-gradient-section {
-        background-image: linear-gradient(
-                transparent 0%,
-                transparent 25%,
-                theme('colors.primary.350') 65%,
-                theme('colors.primary.500') 100%
-        );
-        background-repeat: no-repeat;
-        background-size: 100% auto;
-        background-attachment: scroll;
+    100% {
+      opacity: 0;
     }
-    .bg-gradient-section-light,
-    .bg-gradient-section-light-1 {
-        background-image: linear-gradient(
-                transparent 0%,
-                transparent 25%,
-                theme('colors.neutral.50') 100%
-        );
-        background-repeat: no-repeat;
-        background-size: 100% auto;
-        background-attachment: scroll;
+  }
+
+  @keyframes fade-in-out {
+    0%,
+    9% {
+      opacity: 0;
     }
-    .bg-gradient-section-light-2 {
-        background-image: linear-gradient(
-                transparent 0%,
-                transparent 25%,
-                theme('colors.neutral.100') 100%
-        );
-        background-repeat: no-repeat;
-        background-size: 100% auto;
-        background-attachment: scroll;
+    10%,
+    30% {
+      opacity: 1;
     }
+    31%,
+    100% {
+      opacity: 0;
+    }
+  }
+}
+
+@layer utilities {
+  .grid-background {
+    background-image: linear-gradient(
+        to right,
+        theme("colors.neutral.200") 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        theme("colors.neutral.200") 1px,
+        transparent 1px
+      );
+    background-size: 64px 64px;
+    background-repeat: repeat;
+    background-attachment: fixed;
+  }
+  .bg-gradient-section {
+    background-image: linear-gradient(
+      transparent 0%,
+      transparent 25%,
+      theme("colors.primary.350") 65%,
+      theme("colors.primary.500") 100%
+    );
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-attachment: scroll;
+  }
+  .bg-gradient-section-light,
+  .bg-gradient-section-light-1 {
+    background-image: linear-gradient(
+      transparent 0%,
+      transparent 25%,
+      theme("colors.neutral.50") 100%
+    );
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-attachment: scroll;
+  }
+  .bg-gradient-section-light-2 {
+    background-image: linear-gradient(
+      transparent 0%,
+      transparent 25%,
+      theme("colors.neutral.100") 100%
+    );
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-attachment: scroll;
+  }
 }
 
 /* Fix for the open class in the docs sidebar */
-.open .pl-2 { display: block !important; }
+.open .pl-2 {
+  display: block !important;
+}
 
 .not-ready {
-    animation: none !important;
-    opacity: 1 !important;
+  animation: none !important;
+  opacity: 1 !important;
 }
 
 @layer utilities {
-    section.section-light-1 {
-        @apply bg-neutral-50 text-neutral-900;
-    }
-    section.section-light-2 {
-        @apply bg-neutral-100 text-neutral-900;
-    }
-    section.section-light-3 {
-        @apply bg-neutral-200 text-neutral-900;
-    }
-    section.section-dark-1 {
-        @apply bg-neutral-900 text-neutral-50;
-    }
-    section.section-secondary-1 {
-        @apply bg-secondary-100 text-neutral-900;
-    }
-    section.section-primary-1 {
-        @apply bg-primary-500 text-neutral-50;
-    }
+  section.section-light-1 {
+    @apply bg-neutral-50 text-neutral-900;
+  }
+  section.section-light-2 {
+    @apply bg-neutral-100 text-neutral-900;
+  }
+  section.section-light-3 {
+    @apply bg-neutral-200 text-neutral-900;
+  }
+  section.section-dark-1 {
+    @apply bg-neutral-900 text-neutral-50;
+  }
+  section.section-secondary-1 {
+    @apply bg-secondary-100 text-neutral-900;
+  }
+  section.section-primary-1 {
+    @apply bg-primary-500 text-neutral-50;
+  }
 
-    section.section-primary-100 {
-        @apply text-neutral-900;
-        background-color: #e8e8f5;
-    }
+  section.section-primary-100 {
+    @apply text-neutral-900;
+    background-color: #e8e8f5;
+  }
 
-    section.section-gradient-primary-1,
-    section.section-gradient-blue-1 {
-        @apply text-neutral-50;
-        background-image: url(/img/GRADIENT_BLUE.png);
-        background-size: 100% 100%;
-        background-repeat: no-repeat;
-        background-position: center;
-    }
+  section.section-gradient-primary-1,
+  section.section-gradient-blue-1 {
+    @apply text-neutral-50;
+    background-image: url(/img/GRADIENT_BLUE.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
 
-    section.section-gradient-secondary-1 {
-        @apply text-neutral-900;
-        background-image: url(/img/GRADIENT_ORANGE.png);
-        background-size: 100% 100%;
-        background-repeat: no-repeat;
-        background-position: center;
-    }
-    footer.section-blue {
-        @apply bg-primary-500 text-neutral-50;
-    }
+  section.section-gradient-secondary-1 {
+    @apply text-neutral-900;
+    background-image: url(/img/GRADIENT_ORANGE.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  footer.section-blue {
+    @apply bg-primary-500 text-neutral-50;
+  }
 
-
-    section .content {
-        @apply relative mx-auto max-w-[1400px] font-space-grotesk;
-    }
-}
-
-
-@font-face {
-    font-family: 'SpaceText';
-    src: url('/fonts/SpaceText-Light.otf') format('opentype');
-    font-weight: 300;
-    font-style: normal;
+  section .content {
+    @apply relative mx-auto max-w-[1400px] font-space-grotesk;
+  }
 }
 
 @font-face {
-    font-family: 'SpaceText';
-    src: url('/fonts/SpaceText-Regular.otf') format('opentype');
-    font-weight: 400;
-    font-style: normal;
+  font-family: "SpaceText";
+  src: url("/fonts/SpaceText-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'SpaceText';
-    src: url('/fonts/SpaceText-Medium.otf') format('opentype');
-    font-weight: 500;
-    font-style: normal;
+  font-family: "SpaceText";
+  src: url("/fonts/SpaceText-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'SpaceText';
-    src: url('/fonts/SpaceText-SemiBold.otf') format('opentype');
-    font-weight: 600;
-    font-style: normal;
+  font-family: "SpaceText";
+  src: url("/fonts/SpaceText-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'SpaceText';
-    src: url('/fonts/SpaceText-Bold.otf') format('opentype');
-    font-weight: 700;
-    font-style: normal;
+  font-family: "SpaceText";
+  src: url("/fonts/SpaceText-SemiBold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
 }
 
+@font-face {
+  font-family: "SpaceText";
+  src: url("/fonts/SpaceText-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
 
 @layer components {
-    .terminal-tabs .tab-button {
-        @apply px-4 py-2 text-xs md:px-6 md:py-3 md:text-sm
+  .terminal-tabs .tab-button {
+    @apply px-4 py-2 text-xs md:px-6 md:py-3 md:text-sm
         outline outline-1 outline-offset-[-1px] outline-neutral-700
         bg-zinc-900 text-neutral-400 font-medium font-["DM_Mono"] uppercase
         leading-tight flex items-center gap-2;
-    }
+  }
 
-    .terminal-tabs .tab-button.active-tab {
-        @apply bg-primary-600 text-white outline-primary-600;
-    }
+  .terminal-tabs .tab-button.active-tab {
+    @apply bg-primary-600 text-white outline-primary-600;
+  }
 
-    .terminal-tabs .tab-panel.hidden {
-        display: none;
-    }
+  .terminal-tabs .tab-panel.hidden {
+    display: none;
+  }
 
-    .terminal-tabs .panels {
-        @apply border border-primary-600 p-2 md:p-4
+  .terminal-tabs .panels {
+    @apply border border-primary-600 p-2 md:p-4
         bg-gradient-to-b from-primary-600 via-primary-400 to-primary-400;
-    }
+  }
 
-    .terminal {
-        @apply rounded-lg overflow-hidden text-xs md:text-sm text-neutral-300 bg-neutral-900;
-    }
+  .terminal {
+    @apply rounded-lg overflow-hidden text-xs md:text-sm text-neutral-300 bg-neutral-900;
+  }
 
+  .terminal::before {
+    --circle-size: 5px;
+    content: "";
+    display: block;
+    @apply h-5 md:h-7 bg-neutral-800 border-b border-neutral-700 px-2;
+    background-image: radial-gradient(
+        circle,
+        #ef4444 var(--circle-size),
+        transparent var(--circle-size)
+      ),
+      radial-gradient(
+        circle,
+        #facc15 var(--circle-size),
+        transparent var(--circle-size)
+      ),
+      radial-gradient(
+        circle,
+        #22c55e var(--circle-size),
+        transparent var(--circle-size)
+      );
+    background-size: 18px 18px;
+    background-repeat: no-repeat;
+    background-position: 4px center, 22px center, 40px center;
+  }
+
+  @media (min-width: 768px) {
     .terminal::before {
-        --circle-size: 5px;
-        content: '';
-        display: block;
-        @apply h-5 md:h-7 bg-neutral-800 border-b border-neutral-700 px-2;
-        background-image:
-                radial-gradient(circle, #ef4444 var(--circle-size), transparent var(--circle-size)),
-                radial-gradient(circle, #facc15 var(--circle-size), transparent var(--circle-size)),
-                radial-gradient(circle, #22c55e var(--circle-size), transparent var(--circle-size));
-        background-size: 18px 18px;
-        background-repeat: no-repeat;
-        background-position: 4px center, 22px center, 40px center;
+      --circle-size: 7px;
+      background-size: 24px 24px;
+      background-position: 6px center, 28px center, 50px center;
     }
+  }
 
-    @media (min-width: 768px) {
-        .terminal::before {
-            --circle-size: 7px;
-            background-size: 24px 24px;
-            background-position: 6px center, 28px center, 50px center;
-        }
-    }
+  .terminal-body {
+    @apply ml-2 md:ml-4 mt-2 pb-2 md:border-l border-orange-400 md:p-4 space-y-1 font-['DM_Mono'] ~text-xxs/sm;
+  }
 
-    .terminal-body {
-        @apply ml-2 md:ml-4 mt-2 pb-2 md:border-l border-orange-400 md:p-4 space-y-1 font-['DM_Mono'] ~text-xxs/sm;
-    }
+  .terminal .t-line {
+    @apply break-all leading-tight whitespace-pre-wrap;
+  }
 
-    .terminal .t-line {
-        @apply break-all leading-tight whitespace-pre-wrap;
-    }
+  .terminal .t-line .t-prompt {
+    @apply font-semibold text-secondary-500;
+  }
 
-    .terminal .t-line .t-prompt {
-        @apply font-semibold text-secondary-500;
-    }
+  .terminal .t-line .t-path {
+    @apply text-white font-semibold;
+  }
 
-    .terminal .t-line .t-path {
-        @apply text-white font-semibold;
-    }
-
-    .terminal .t-line .t-comment {
-        @apply text-neutral-500 italic;
-    }
+  .terminal .t-line .t-comment {
+    @apply text-neutral-500 italic;
+  }
 }
 
 @layer components {
-    .terminal-slim {
-        @apply rounded-lg overflow-hidden text-xs md:text-sm text-neutral-300 bg-black;
-    }
+  .terminal-slim {
+    @apply rounded-lg overflow-hidden text-xs md:text-sm text-neutral-300 bg-black;
+  }
 
-    .terminal-slim-body {
-        @apply ml-2 md:ml-4 mt-2 pb-2 md:p-4 space-y-1 font-['DM_Mono'] ~text-xxs/sm items-start justify-start;
-    }
+  .terminal-slim-body {
+    @apply ml-2 md:ml-4 mt-2 pb-2 md:p-4 space-y-1 font-['DM_Mono'] ~text-xxs/sm items-start justify-start;
+  }
 
-    .terminal-slim .t-line {
-        @apply break-all leading-tight;
-    }
+  .terminal-slim .t-line {
+    @apply break-all leading-tight;
+  }
 
-    .terminal-slim .t-line .t-prompt {
-        @apply font-semibold text-cyan-200;
-    }
+  .terminal-slim .t-line .t-prompt {
+    @apply font-semibold text-cyan-200;
+  }
 
-    .terminal-slim .t-line .t-path {
-        @apply text-white font-semibold;
-    }
+  .terminal-slim .t-line .t-path {
+    @apply text-white font-semibold;
+  }
 
-    .terminal-slim .t-line .t-comment {
-        @apply text-neutral-500 italic;
-    }
+  .terminal-slim .t-line .t-comment {
+    @apply text-neutral-500 italic;
+  }
 }
 
 @layer components {
-    .list-icon-x li,
-    .list-icon-check li {
-        @apply flex items-start gap-3 leading-tight;
-    }
+  .list-icon-x li,
+  .list-icon-check li {
+    @apply flex items-start gap-3 leading-tight;
+  }
 
-    .list-icon-x li::before {
-        content: '';
-        @apply w-5 h-5 shrink-0 text-red-400 inline-block relative top-[0.15em];
-        mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M6.225 4.811a1 1 0 0 1 1.414 0L12 9.172l4.361-4.36a1 1 0 0 1 1.415 1.414L13.414 10.5l4.362 4.36a1 1 0 0 1-1.415 1.415L12 11.914l-4.361 4.361a1 1 0 0 1-1.414-1.415L10.586 10.5 6.225 6.14a1 1 0 0 1 0-1.329z'/%3E%3C/svg%3E") no-repeat center;
-        background-color: currentColor;
-        mask-size: contain;
-    }
+  .list-icon-x li::before {
+    content: "";
+    @apply w-5 h-5 shrink-0 text-red-400 inline-block relative top-[0.15em];
+    mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M6.225 4.811a1 1 0 0 1 1.414 0L12 9.172l4.361-4.36a1 1 0 0 1 1.415 1.414L13.414 10.5l4.362 4.36a1 1 0 0 1-1.415 1.415L12 11.914l-4.361 4.361a1 1 0 0 1-1.414-1.415L10.586 10.5 6.225 6.14a1 1 0 0 1 0-1.329z'/%3E%3C/svg%3E")
+      no-repeat center;
+    background-color: currentColor;
+    mask-size: contain;
+  }
 
-    .list-icon-check li::before {
-        content: '';
-        @apply w-5 h-5 shrink-0 text-green-400 inline-block relative top-[0.15em];
-        mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") no-repeat center;
-        background-color: currentColor;
-        mask-size: contain;
-    }
+  .list-icon-check li::before {
+    content: "";
+    @apply w-5 h-5 shrink-0 text-green-400 inline-block relative top-[0.15em];
+    mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='currentColor' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E")
+      no-repeat center;
+    background-color: currentColor;
+    mask-size: contain;
+  }
 }
 
 .article-content img:hover {
-    cursor: zoom-in;
+  cursor: zoom-in;
 }
 
 .download-content table,
 .article-content table {
-    display: block;
-    width: 100%;
-    overflow-x: auto;
-    white-space: nowrap;
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 
 .article-content h1,
@@ -439,48 +477,48 @@
 .article-content h4,
 .article-content h5,
 .article-content h6 {
-    @apply scroll-mt-28;
+  @apply scroll-mt-28;
 }
 
 #logo-context-menu {
-    transition: opacity 0.15s ease;
+  transition: opacity 0.15s ease;
 }
 #logo-context-menu.hidden {
-    opacity: 0;
-    pointer-events: none;
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* improvements for the manpages */
 table.Nm td {
-    white-space: normal;
+  white-space: normal;
 }
 code.Nm {
-    white-space: pre;
+  white-space: pre;
 }
 code.Fl {
-    white-space: pre;
+  white-space: pre;
 }
 
 /* Apply the box theme color to the icon */
 .box > summary.box-label img.notice-icon {
-    /* Direct color inheritance from box variable */
-    filter: brightness(0) saturate(100%) !important;
-    filter: invert(1) !important;
-    opacity: 0.9 !important;
+  /* Direct color inheritance from box variable */
+  filter: brightness(0) saturate(100%) !important;
+  filter: invert(1) !important;
+  opacity: 0.9 !important;
 }
 
 /* Info box specific styling for the icon */
 .box.info > summary.box-label img.notice-icon {
-    /* Use the same color as defined in the box variable */
-    filter: invert(1) !important;
+  /* Use the same color as defined in the box variable */
+  filter: invert(1) !important;
 }
 
 /* Ensure proper layout */
 .box > summary.box-label {
-    display: flex !important;
-    align-items: center !important;
-    gap: 0.5rem !important;
-    cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  cursor: pointer !important;
 }
 
 /* Hide all expansion markers */
@@ -488,221 +526,218 @@ code.Fl {
 .box > summary::marker,
 details > summary::-webkit-details-marker,
 details > summary::marker {
-    display: none !important;
+  display: none !important;
 }
 
 .box > summary.box-label img.notice-icon {
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-    vertical-align: middle !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  vertical-align: middle !important;
 }
 
 details.box,
 details.box > summary,
 details.box .box-content {
-    pointer-events: auto !important;
-    position: relative !important;
-    z-index: 0 !important;
-
+  pointer-events: auto !important;
+  position: relative !important;
+  z-index: 0 !important;
 }
 
 details.box .box-content {
-    padding-top: 8px;
-    padding-bottom: 8px;
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 
 details.box::before,
 details.box::after {
-    pointer-events: none !important;
-    display: none !important;
+  pointer-events: none !important;
+  display: none !important;
 }
 
 details > summary {
-    list-style: none !important;
+  list-style: none !important;
 }
 
 /* Base box styling */
 .box {
-    outline: none;
-    pointer-events: none;
-    padding-top: 16px;
+  outline: none;
+  pointer-events: none;
+  padding-top: 16px;
 }
 
 @media (min-width: 768px) {
-    .box {
-        padding-top: 0px;
-    }
+  .box {
+    padding-top: 0px;
+  }
 }
 
 .box > .box-label {
-    font-weight: 500;
-    padding-left: 16px;
-    padding-right: 16px;
+  font-weight: 500;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 .box > .box-label::-webkit-details-marker,
 .box > .box-label::marker {
-    display: none;
+  display: none;
 }
-
-
 
 /* Color variants - Default */
 .box.default > .box-label {
-    background-color: var(--BOX-DEFAULT-CAPTION-BG-color);
-    color: var(--BOX-DEFAULT-CAPTION-TEXT-color);
+  background-color: var(--BOX-DEFAULT-CAPTION-BG-color);
+  color: var(--BOX-DEFAULT-CAPTION-TEXT-color);
 }
 .box.default > .box-content {
-    background-color: var(--BOX-DEFAULT-BG-color);
-    color: var(--BOX-DEFAULT-TEXT-color);
+  background-color: var(--BOX-DEFAULT-BG-color);
+  color: var(--BOX-DEFAULT-TEXT-color);
 }
 
 /* Color variants - Blue */
 .box.blue > .box-label {
-    background-color: var(--BOX-BLUE-CAPTION-BG-color);
-    color: var(--BOX-BLUE-CAPTION-TEXT-color);
+  background-color: var(--BOX-BLUE-CAPTION-BG-color);
+  color: var(--BOX-BLUE-CAPTION-TEXT-color);
 }
 .box.blue > .box-content {
-    background-color: var(--BOX-BLUE-BG-color);
-    color: var(--BOX-BLUE-TEXT-color);
+  background-color: var(--BOX-BLUE-BG-color);
+  color: var(--BOX-BLUE-TEXT-color);
 }
 
 /* Color variants - Cyan */
 .box.cyan > .box-label {
-    background-color: var(--BOX-CYAN-CAPTION-BG-color);
-    color: var(--BOX-CYAN-CAPTION-TEXT-color);
+  background-color: var(--BOX-CYAN-CAPTION-BG-color);
+  color: var(--BOX-CYAN-CAPTION-TEXT-color);
 }
 .box.cyan > .box-content {
-    background-color: var(--BOX-CYAN-BG-color);
-    color: var(--BOX-CYAN-TEXT-color);
+  background-color: var(--BOX-CYAN-BG-color);
+  color: var(--BOX-CYAN-TEXT-color);
 }
 
 /* Color variants - Green */
 .box.green > .box-label {
-    background-color: var(--BOX-GREEN-CAPTION-BG-color);
-    color: var(--BOX-GREEN-CAPTION-TEXT-color);
+  background-color: var(--BOX-GREEN-CAPTION-BG-color);
+  color: var(--BOX-GREEN-CAPTION-TEXT-color);
 }
 .box.green > .box-content {
-    background-color: var(--BOX-GREEN-BG-color);
-    color: var(--BOX-GREEN-TEXT-color);
+  background-color: var(--BOX-GREEN-BG-color);
+  color: var(--BOX-GREEN-TEXT-color);
 }
 
 /* Color variants - Grey */
 .box.grey > .box-label {
-    background-color: var(--BOX-GREY-CAPTION-BG-color);
-    color: var(--BOX-GREY-CAPTION-TEXT-color);
+  background-color: var(--BOX-GREY-CAPTION-BG-color);
+  color: var(--BOX-GREY-CAPTION-TEXT-color);
 }
 .box.grey > .box-content {
-    background-color: var(--BOX-GREY-BG-color);
-    color: var(--BOX-GREY-TEXT-color);
+  background-color: var(--BOX-GREY-BG-color);
+  color: var(--BOX-GREY-TEXT-color);
 }
 
 /* Color variants - Magenta */
 .box.magenta > .box-label {
-    background-color: var(--BOX-MAGENTA-CAPTION-BG-color);
-    color: var(--BOX-MAGENTA-CAPTION-TEXT-color);
+  background-color: var(--BOX-MAGENTA-CAPTION-BG-color);
+  color: var(--BOX-MAGENTA-CAPTION-TEXT-color);
 }
 .box.magenta > .box-content {
-    background-color: var(--BOX-MAGENTA-BG-color);
-    color: var(--BOX-MAGENTA-TEXT-color);
+  background-color: var(--BOX-MAGENTA-BG-color);
+  color: var(--BOX-MAGENTA-TEXT-color);
 }
 
 /* Color variants - Orange */
 .box.orange > .box-label {
-    background-color: var(--BOX-ORANGE-CAPTION-BG-color);
-    color: var(--BOX-ORANGE-CAPTION-TEXT-color);
+  background-color: var(--BOX-ORANGE-CAPTION-BG-color);
+  color: var(--BOX-ORANGE-CAPTION-TEXT-color);
 }
 .box.orange > .box-content {
-    background-color: var(--BOX-ORANGE-BG-color);
-    color: var(--BOX-ORANGE-TEXT-color);
+  background-color: var(--BOX-ORANGE-BG-color);
+  color: var(--BOX-ORANGE-TEXT-color);
 }
 
 /* Color variants - Red */
 .box.red > .box-label {
-    background-color: var(--BOX-RED-CAPTION-BG-color);
-    color: var(--BOX-RED-CAPTION-TEXT-color);
+  background-color: var(--BOX-RED-CAPTION-BG-color);
+  color: var(--BOX-RED-CAPTION-TEXT-color);
 }
 .box.red > .box-content {
-    background-color: var(--BOX-RED-BG-color);
-    color: var(--BOX-RED-TEXT-color);
+  background-color: var(--BOX-RED-BG-color);
+  color: var(--BOX-RED-TEXT-color);
 }
 
 /* Semantic variants - Caution */
 .box.caution > .box-label {
-    background-color: var(--BOX-CAUTION-CAPTION-BG-color);
-    color: var(--BOX-CAUTION-CAPTION-TEXT-color);
+  background-color: var(--BOX-CAUTION-CAPTION-BG-color);
+  color: var(--BOX-CAUTION-CAPTION-TEXT-color);
 }
 .box.caution > .box-content {
-    background-color: var(--BOX-CAUTION-BG-color);
-    color: var(--BOX-CAUTION-TEXT-color);
+  background-color: var(--BOX-CAUTION-BG-color);
+  color: var(--BOX-CAUTION-TEXT-color);
 }
 
 /* Semantic variants - Info */
 .box.info > .box-label {
-    background-color: var(--BOX-INFO-CAPTION-BG-color);
-    color: var(--BOX-INFO-CAPTION-TEXT-color);
+  background-color: var(--BOX-INFO-CAPTION-BG-color);
+  color: var(--BOX-INFO-CAPTION-TEXT-color);
 }
 .box.info > .box-content {
-    background-color: var(--BOX-INFO-BG-color);
-    color: var(--BOX-INFO-TEXT-color);
+  background-color: var(--BOX-INFO-BG-color);
+  color: var(--BOX-INFO-TEXT-color);
 }
 
 /* Semantic variants - Important */
 .box.important > .box-label {
-    background-color: var(--BOX-IMPORTANT-CAPTION-BG-color);
-    color: var(--BOX-IMPORTANT-CAPTION-TEXT-color);
+  background-color: var(--BOX-IMPORTANT-CAPTION-BG-color);
+  color: var(--BOX-IMPORTANT-CAPTION-TEXT-color);
 }
 .box.important > .box-content {
-    background-color: var(--BOX-IMPORTANT-BG-color);
-    color: var(--BOX-IMPORTANT-TEXT-color);
+  background-color: var(--BOX-IMPORTANT-BG-color);
+  color: var(--BOX-IMPORTANT-TEXT-color);
 }
 
 /* Semantic variants - Neutral */
 .box.neutral > .box-label {
-    background-color: var(--BOX-NEUTRAL-CAPTION-BG-color);
-    color: var(--BOX-NEUTRAL-CAPTION-TEXT-color);
+  background-color: var(--BOX-NEUTRAL-CAPTION-BG-color);
+  color: var(--BOX-NEUTRAL-CAPTION-TEXT-color);
 }
 .box.neutral > .box-content {
-    background-color: var(--BOX-NEUTRAL-BG-color);
-    color: var(--BOX-NEUTRAL-TEXT-color);
+  background-color: var(--BOX-NEUTRAL-BG-color);
+  color: var(--BOX-NEUTRAL-TEXT-color);
 }
 
 /* Semantic variants - Note */
 .box.note > .box-label {
-    background-color: var(--BOX-NOTE-CAPTION-BG-color);
-    color: var(--BOX-NOTE-CAPTION-TEXT-color);
+  background-color: var(--BOX-NOTE-CAPTION-BG-color);
+  color: var(--BOX-NOTE-CAPTION-TEXT-color);
 }
 .box.note > .box-content {
-    background-color: var(--BOX-NOTE-BG-color);
-    color: var(--BOX-NOTE-TEXT-color);
+  background-color: var(--BOX-NOTE-BG-color);
+  color: var(--BOX-NOTE-TEXT-color);
 }
 
 /* Semantic variants - Tip */
 .box.tip > .box-label {
-    background-color: var(--BOX-TIP-CAPTION-BG-color);
-    color: var(--BOX-TIP-CAPTION-TEXT-color);
+  background-color: var(--BOX-TIP-CAPTION-BG-color);
+  color: var(--BOX-TIP-CAPTION-TEXT-color);
 }
 .box.tip > .box-content {
-    background-color: var(--BOX-TIP-BG-color);
-    color: var(--BOX-TIP-TEXT-color);
+  background-color: var(--BOX-TIP-BG-color);
+  color: var(--BOX-TIP-TEXT-color);
 }
 
 /* Semantic variants - Warning */
 .box.warning > .box-label {
-    background-color: var(--BOX-WARNING-CAPTION-BG-color);
-    color: var(--BOX-WARNING-CAPTION-TEXT-color);
+  background-color: var(--BOX-WARNING-CAPTION-BG-color);
+  color: var(--BOX-WARNING-CAPTION-TEXT-color);
 }
 .box.warning > .box-content {
-    background-color: var(--BOX-WARNING-BG-color);
-    color: var(--BOX-WARNING-TEXT-color);
+  background-color: var(--BOX-WARNING-BG-color);
+  color: var(--BOX-WARNING-TEXT-color);
 }
 
 /* Style for notice icons in box labels */
 .box > summary.box-label img.notice-icon {
-    filter: brightness(0) saturate(100%);
-    filter: invert(1);
-    opacity: 0.9;
+  filter: brightness(0) saturate(100%);
+  filter: invert(1);
+  opacity: 0.9;
 }
 
 /* Remove default markers from summary elements */
@@ -710,19 +745,19 @@ details > summary {
 .box > summary::marker,
 details > summary::-webkit-details-marker,
 details > summary::marker {
-    display: none;
+  display: none;
 }
 
 /* Fix interaction with details/summary elements */
 details.box,
 details.box > summary,
 details.box .box-content {
-    pointer-events: auto;
-    position: relative;
-    z-index: 0;
+  pointer-events: auto;
+  position: relative;
+  z-index: 0;
 }
 
 /* Remove list styling from summary */
 details > summary {
-    list-style: none;
+  list-style: none;
 }
