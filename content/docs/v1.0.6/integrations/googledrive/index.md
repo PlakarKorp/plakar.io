@@ -199,7 +199,7 @@ $ plakar at @mydrive backup @my_source
 
 #### Options
 
-These options can be set when configuring the source connector with `plakar store add` or `plakar store set`:
+These options can be set when configuring the storage connector with `plakar store add` or `plakar store set`:
 
 | Option     | Purpose                                                             |
 | ---------- | ------------------------------------------------------------------- |
