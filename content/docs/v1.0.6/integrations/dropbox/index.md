@@ -1,225 +1,302 @@
 ---
 title: Dropbox
-description: Backup and restore your Dropbox with Plakar secure, portable, and deduplicated.
-technology_description: This integration uses the official Dropbox remote via Rclone to extract and restore data into a Kloset store.
-categories: integrations
-tags:
-  - dropbox
-  - backup
-  - disaster recovery
-  - encryption
-  - deduplication
-  - versioning
-  - immutable storage
-  - compliance
-  - long-term archiving
-  - airgapped backup
-  - snapshot technology
-  - portable format
-stage: test
-date: 2025-07-26
-plakar_version: ">=1.0.3"
-integration_version: 0.1.0
-resource_type: object-storage
-provides:
-  - source connector
-  - destination connector
-  - storage connector
-  - viewer
+summary: Back up and restore your Dropbox with Plakar, and host Kloset stores in Dropbox.
+date: "2025-12-26T00:00:00Z"
 ---
 
-# Integration Package: Dropbox
+The Dropbox integration package for Plakar allows you to back up and restore data to and from Dropbox cloud storage, as well as host Kloset stores directly within Dropbox. It is built on top of [Rclone](https://rclone.org/), a command-line program to manage files on cloud storage, and supports Dropbox as one of its many backends.
 
-## Introduction
+The integration provides three connectors:
 
-This integration allows you to snapshot and restore Dropbox data using Plakar, storing it in a Kloset store while minimizing storage usage and ensuring strong data security.
-It includes a Storage Connector that lets you persist snapshots to Dropbox itself, either from Dropbox or other sources.
-A Viewer is also provided to inspect, search, and restore snapshots without requiring full extraction.
+| Connector type               | Description |
+| ---------------------------- | ----------- |
+| ✅ **Storage connector**     | Host a Kloset store inside a Rclone remote. |
+| ✅ **Source connector**      | Back up a Rclone remote into a Kloset store. |
+| ✅ **Destination connector** | Restore data from a Kloset store into a Rclone remote. |
 
-**Use cases:**
+**Requirements**
+
+* Rclone must be installed, and at least one Dropbox remote must be configured.
+
+**Typical use cases**
 
 * Cold backup of Dropbox folders
 * Long-term archiving and disaster recovery
-* Portable export and vendor migration to other platforms
+* Portable export and vendor escape to other platforms
 
-**Target technologies:**
-
-* Supported versions: All Dropbox accounts supported by Rclone
-* Supported editions: Personal and Business Dropbox
-* System compatibility: macOS, Linux, Windows via Rclone
-
-**Requirements:**
-
-* Plakar version: >=1.0.3
-* Integration version: 0.1.0
-* Dropbox API credentials configured in Rclone
-
-## Architecture
-
-```
-                                Viewer (CLI/UI)
-                                  ↑
-Dropbox ← Source Connector → Kloset Store ←→ Storage Connector → Dropbox
-                                  ↓
-                   Dropbox ← Destination Connector → Other compatible resources
-```
-
-**Components provided:**
-
-* Source Connector: extract data from Dropbox
-* Destination Connector: restore snapshots to Dropbox
-* Storage Connector: persist snapshots inside Dropbox as the backend
-* Viewer: browse and search snapshots in UI/CLI
+---
 
 ## Installation
 
-### Prerequisites 
+To interact with Dropbox, you need to install the Rclone Plakar package. It can be installed either by downloading a pre-built package or by building it from source.
 
-This integration is distributed as an Rclone-powered connector.
-You only need Plakar and Rclone installed.
+{{< tabs name="Installation Methods" >}}
+{{% tab name="Pre-built package" %}}
+Plakar provides pre-compiled packages for common platforms. This is the simplest installation method and is suitable for most users.
 
-Install Rclone: [https://rclone.org/install/](https://rclone.org/install/)
-Configure your Dropbox remote: [https://rclone.org/dropbox/](https://rclone.org/dropbox/)
+**Note:** Installing pre-built packages requires authentication with Plakar. See [Login to Plakar to unlock features](../../guides/what-is-plakar-login/).
 
+Install the Rclone package:
 ```bash
-rclone config
+$ plakar pkg add rclone
 ```
 
-Afterwards, you can install it in a few seconds using Plakar’s built-in tooling.
-
-**Install the package:**
-
-Run the following command to install the integration:
+Verify the installation:
 
 ```bash
-plakar pkg add rclone
+$ plakar pkg list
 ```
+{{< /tab >}}
 
-This will generate a portable .ptar archive and install it in your Plakar environment.
+{{% tab name="Building from source" %}}
+Building from source is useful if you cannot use pre-built packages.
 
-**Verify installation:**
+**Prerequisites**
 
-Check that the integration appears in your available connectors:
+* A working Go toolchain compatible with your version of Plakar.
+
+Build the Rclone package:
 
 ```bash
-plakar pkg
+$ plakar pkg build rclone
 ```
 
-You should now see the rclone.
+On success, a package archive is generated in the current directory, for example `rclone_v1.0.0_darwin_arm64.ptar`.
 
-## Setup Dropbox with Rclone
-
-This integration provides three types of connectors to interact with your {resource type}:
-
-- Source Connector to extract data from the resource
-- Destination Connector to restore data into the resource
-- Storage Connector to persist snapshots inside the resource itself, turning it into a Kloset backend
-
-The configuration is done using plakar config commands. Each parameter is set explicitly and separately.
-
-Depending on the type of usage, you can configure Dropbox as a source, destination, or storage connector.
-
-Once Rclone is configured, import it into Plakar.
-
-### Source Connector
-
-To import your rclone config as a source connector (to make backups), run:
+Install the generated package:
 
 ```bash
-rclone config show | plakar source import -rclone mydropbox
+$ plakar pkg add ./rclone_v1.0.0_darwin_arm64.ptar
 ```
 
-### Destination Connector
-
-To import your rclone config as a destination connector (to restore backups), run:
+Verify the installation:
 
 ```bash
-rclone config show | plakar destination import -rclone mydropbox
+$ plakar pkg list
 ```
+{{< /tab >}}
 
-### Storage Connector
-
-To import your rclone config as a storage connector (to store backups in Dropbox), run:
+{{% tab name="Reinstalling or upgrading" %}}
+To check whether the Rclone package is already installed:
 
 ```bash
-rclone config show | plakar store import -rclone mydropbox
+$ plakar pkg list
 ```
 
-> Replace `mydropbox` with your Rclone remote name.
-
-## Usage
-
-For the following examples, we will use `@mydropbox` as the Rclone remote name configured in Plakar.
-
-First, to be able to backup and restore, you need to create a Kloset store to hold your snapshots:
+To upgrade to the latest available version, remove the existing package and reinstall it:
 
 ```bash
-plakar at ./save create
+$ plakar pkg rm rclone
+$ plakar pkg add rclone
 ```
 
-A folder named `save` will be created in the current directory, which will hold the snapshots.
+This preserves existing store, source, and destination configurations.
+{{< /tab >}}
+{{< /tabs >}}
 
-### Backup a Snapshot
+---
 
-To back up your Dropbox data in the newly created Kloset store, use the following command:
+## Generate Rclone configuration
+
+Install Rclone on your system by following the instructions at [https://rclone.org/install/](https://rclone.org/install/).
+
+Then, run the following command to configure Rclone with Dropbox:
 
 ```bash
-plakar at ./save backup @mydropbox
+$ rclone config
 ```
 
-The last line of the output will show the snapshot ID, which you can use to inspect or restore later.
+You will be guided through a series of prompts to set up a new remote for Dropbox.
 
-### Restore a Snapshot
+For Rclone v1.72.1, the configuration flow is as follows:
+1. Choose `n` to create a new remote.
+2. Name the remote (e.g., `mydrive`).
+3. Enter the number corresponding to "Dropbox" from the list of supported storage providers.
+4. Leave client_id and client_secret empty to use Rclone's defaults, or provide your own if you have them.
+5. Choose to open the browser for authentication.
+6. Confirm the settings.
 
-To restore a snapshot back to Dropbox, use the following command:
+To verify that the remote is configured, run:
 
 ```bash
-plakar at ./save restore -to @mydropbox <snapshot-id>
+$ rclone config show mydrive
 ```
 
-This will restore the snapshot to your Dropbox account, making it available in the same structure as it was when backed up.
-
-### Kloset Creation 
-
-To use Dropbox as storage, you have to create a Kloset store that uses the Dropbox remote.
+And to verify you have access to your Dropbox files, run:
 
 ```bash
-plakar at @mydropbox create
+$ rclone ls mydrive:
 ```
 
-This will create a Kloset store in your Dropbox cloud. It will be used like any other Kloset store.
+The output should list the files and folders in your Dropbox.
 
-#### Kloset Inspection
+---
 
-Test your Kloset store is functional.
+## Connectors
 
-List available snapshots with:
+The Rclone package provides storage, source, and destination connectors to interact with Dropbox via Rclone.
+
+You can use any combination of these connectors together with other supported Plakar connectors.
+
+### Storage connector
+
+The Plakar Rclone package provides a storage connector to host Kloset stores on Rclone remotes.
+
+{{< mermaid >}}
+flowchart LR
+
+Source@{ shape: cloud, label: "Source data" }
+
+Source --> Plakar[<b>Plakar</b>]
+
+subgraph Store[<b>Rclone Remote</b>]
+  Kloset@{ shape: cyl, label: "Kloset Store" }
+end
+
+Plakar -- <small>Store snapshot via</small><br><b>Rclone storage connector</b> --> Store
+
+%% Apply classes
+class Source sourceBox
+class Plakar brandBox
+class Store storeBox
+
+%% Classes definitions
+classDef sourceBox fill:#ffe4e6,stroke:#cad5e2,stroke-width:1px
+classDef brandBox fill:#524cff,color:#ffffff
+classDef storeBox fill:#dbeafe,stroke:#cad5e2,stroke-width:1px
+
+linkStyle default stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 25s linear infinite;
+{{< /mermaid >}}
+
+#### Configure
 
 ```bash
-plakar at @mystore ls
+# Import the rclone configuration as a storage configuration.
+# Replace "mydrive" with your Rclone remote name.
+rclone config show | plakar store import -rclone mydrive
+
+# Initialize the Kloset store
+$ plakar at @mydrive create
+
+# List snapshots in the Kloset store
+$ plakar at @mydrive ls
+
+# Verify integrity of the Kloset store
+$ plakar at @mydrive check
+
+# Back up a local folder to the Kloset store
+$ plakar at @mydrive backup /etc
+
+# Back up a source configured in Plakar to the Kloset store
+$ plakar at @mydrive backup @my_source
 ```
 
-Inspect file content without full restore:
+#### Options
+
+These options can be set when configuring the storage connector with `plakar store add` or `plakar store set`:
+
+| Option     | Purpose                                                             |
+| ---------- | ------------------------------------------------------------------- |
+| `passphrase` | The Kloset store passphrase |
+
+### Source connector
+
+The Plakar Rclone package provides a source connector to back up remote directories accessible via Rclone.
+
+{{< mermaid >}}
+flowchart LR
+
+subgraph Source[<b>Rclone Remote</b>]
+  fs@{ shape: cloud, label: "data" }
+end
+
+Source -- <small>Retrieve data via</small><br><b>Rclone source connector</b> --> Plakar
+
+Store@{ shape: cyl, label: "Kloset Store" }
+
+Plakar --> Store
+
+%% Apply classes
+class Source sourceBox
+class Plakar brandBox
+class Store storeBox
+
+%% Classes definitions
+classDef sourceBox fill:#ffe4e6,stroke:#cad5e2,stroke-width:1px
+classDef brandBox fill:#524cff,color:#ffffff
+classDef storeBox fill:#dbeafe,stroke:#cad5e2,stroke-width:1px
+
+linkStyle default stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 25s linear infinite;
+{{< /mermaid >}}
+
+#### Configure
 
 ```bash
-plakar at @mystore cat <snapshot-id>:/path/to/file
+# Import the rclone configuration as a source configuration.
+# Replace "mydrive" with your Rclone remote name.
+rclone config show | plakar source import -rclone mydrive
+
+# Back up the remote directory to the Kloset store on the filesystem
+$ plakar at /var/backups backup @mydrive
+
+# Or back up the remote directory to a Kloset store configured with "plakar store add"
+$ plakar at @store backup @mydrive
 ```
 
-Launch the UI viewer:
+#### Options
+
+The Rclone source connector doesn't support any specific options.
+
+### Destination connector
+
+The Rclone package provides a destination connector to restore snapshots to remote directories reachable over Rclone.
+
+{{< mermaid >}}
+flowchart LR
+
+Store@{ shape: cyl, label: "Kloset Store" }
+
+Store --> Plakar
+
+subgraph Destination[<b>Rclone Remote</b>]
+  fs@{ shape: cloud, label: "data" }
+end
+
+Plakar -- <small>Push data via</small><br><b>Rclone destination connector</b> --> Destination
+
+%% Apply classes
+class Destination destinationBox
+class Plakar brandBox
+class Store storeBox
+
+%% Classes definitions
+classDef destinationBox fill:#d0fae5,stroke:#cad5e2,stroke-width:1px
+classDef brandBox fill:#524cff,color:#ffffff
+classDef storeBox fill:#dbeafe,stroke:#cad5e2,stroke-width:1px
+
+linkStyle default stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 25s linear infinite;
+{{< /mermaid >}}
+
+#### Configure
 
 ```bash
-plakar at @mystore ui
+# Import the rclone configuration as a destination configuration.
+# Replace "mydrive" with your Rclone remote name.
+rclone config show | plakar destination import -rclone mydrive
+
+# Restore a snapshot from a filesystem-hosted Kloset store to the Rclone remote
+$ plakar at /var/backups restore -to @mydrive <snapshot_id>
+
+# Or restore a snapshot from the Kloset store configured with "plakar store add store …"
+$ plakar at @store restore -to @mydrive <snapshot_id>
 ```
 
-## Integration-specific behaviors
+#### Options
 
-### Limitations
+The Rclone destination connector doesn't support any specific options.
 
-* Dropbox API has rate limits; heavy usage may require throttling
-* Only the latest version of files is snapshotted
-* Shared links and permissions are not preserved in snapshots
+---
 
-## Appendix
+## See also
 
-* [Rclone Dropbox Docs](https://rclone.org/dropbox/)
-* [Plakar CLI Reference](/docs/main)
+* [Rclone documentation for Dropbox](https://rclone.org/dropbox/)
