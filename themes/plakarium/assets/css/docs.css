@@ -1,31 +1,24 @@
 @layer base {
+  .docs-content {
+    @apply text-neutral-900 leading-relaxed text-base;
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  }
 
-    .docs-content {
-        @apply text-neutral-900 leading-relaxed text-base;
-        font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-    }
+  .docs-content h1,
+  .docs-content h2,
+  .docs-content h3,
+  .docs-content h4,
+  .docs-content h5,
+  .docs-content h6 {
+    @apply scroll-mt-28;
+  }
 
-    .docs-content h1,
-    .docs-content h2,
-    .docs-content h3,
-    .docs-content h4,
-    .docs-content h5,
-    .docs-content h6 {
-        @apply scroll-mt-28;
-    }
+  .docs-content code:not(pre code) {
+    @apply bg-secondary-200 px-2 py-1 rounded-sm;
+  }
 
-    .docs-content code:not(pre code) {
-        @apply bg-secondary-200 px-2 py-1 rounded-sm;
-    }
-
-    .docs-content blockquote code,
-    .docs-content blockquote p code {
-        @apply bg-neutral-600 px-2 py-1 rounded-sm;
-    }
-
-
-
-
-
+  .docs-content blockquote code,
+  .docs-content blockquote p code {
+    @apply bg-neutral-600 px-2 py-1 rounded-sm;
+  }
 }
-
