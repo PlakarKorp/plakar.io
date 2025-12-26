@@ -58,12 +58,7 @@
                                         {{ range sort .items "Weight" }}
                                             <a href="{{ partial "menu-link.html" (dict "url" .URL "context" $ctx) | relLangURL }}" {{ with .Params.target }}target="{{ . }}" {{end}} class="group/link flex items-center gap-2 p-2 rounded-lg hover:bg-neutral-100">
                                                 <div class="w-10 h-10 bg-neutral-100 text-neutral-600 group-hover/link:bg-white group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
-                                                    {{ with .Params.icon }}
-                                                        {{ $icon := printf "img/ri/%s.svg" . }}
-                                                        {{ with resources.Get $icon }}
-                                                            <span class="w-6 h-6">{{ .Content | safeHTML }}</span>
-                                                        {{ end }}
-                                                    {{ end }}
+                                                    {{ partial "icon.html" (dict "name" .Params.icon "class" "w-6 h-6 flex items-center justify-center") }}
                                                 </div>
                                                 <div class="flex-1">
                                                     <div class="text-neutral-900 font-space-text font-semibold">{{ .Name }}</div>

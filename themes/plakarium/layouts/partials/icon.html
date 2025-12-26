@@ -1,6 +1,23 @@
-{{ $icon := resources.Get (print "icons/" . ".svg") }}
-{{ if $icon }}
-  <span class="relative block icon">
-    {{ $icon.Content | safeHTML }}
-  </span>
+{{ $iconType := "" }}
+{{ $iconName := .name }}
+{{ $class := .class | default "" }}
+{{ $alt := .alt | default "icon" }}
+
+{{ if hasPrefix .name "ri:" }}
+  {{ $iconType = "remix" }}
+  {{ $iconName = strings.TrimPrefix "ri:" .name  }}
+{{ else }}
+  {{ $iconType = "icons" }}
+{{ end }}
+
+{{ if eq $iconType "remix" }}
+  {{ $icon := resources.Get (print "img/ri/" $iconName ".svg") }}
+  {{ if $icon }}
+    <span class="{{ $class }}">{{ $icon.Content | safeHTML }}</span>
+  {{ end }}
+{{ else if eq $iconType "icons" }}
+  {{ $icon := resources.Get (print "icons/" $iconName ".svg") }}
+  {{ if $icon }}
+    <span class="{{ $class }}">{{ $icon.Content | safeHTML }}</span>
+  {{ end }}
 {{ end }}

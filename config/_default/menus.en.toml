@@ -40,48 +40,112 @@ weight = 50
 [[main.params]]
     enabled = false
 
-# ----------- Solutions > Use Cases -----------
+
+
+# ----------- Solutions > Platforms -----------
 
 [[main]]
-identifier = "solutions-usecases-backup"
-name = "Backup & Restore"
+identifier = "solutions-onpremises-backup"
+name = "On-premises"
 url = "/solutions/backup-and-restore/"
 weight = 10
 parent = "solutions"
 [[main.params]]
-    description = "Cross platform backup"
+    description = "On your infrastructure"
     enabled = true
-    section = "Use cases"
+    section = "Platforms"
     section_weight = 10
-    icon = "refresh-line"
+    icon = "ri:refresh-line"
 
 [[main]]
-identifier = "solutions-usecases-notion"
-name = "Plakar for Notion"
-url = "/solutions/plakar-for-notion/"
+identifier = "solutions-cloud-aws"
+name = "AWS"
+url = "#"
 weight = 20
 parent = "solutions"
 [[main.params]]
-    description = "Backup your workspace"
     enabled = true
-    section = "Use cases"
+    section = "Platforms"
     section_weight = 10
-    icon = "notion-line"
-
+    icon = "AWS"
 
 [[main]]
-identifier = "solutions-usecases-aws"
-name = "Plakar for AWS"
+identifier = "solutions-cloud-gcp"
+name = "Google Cloud"
 url = "#"
 weight = 30
 parent = "solutions"
 [[main.params]]
-    description = "Coming soon"
     enabled = true
-    section = "Use cases"
+    section = "Platforms"
     section_weight = 10
-    icon = "amazon-line"
+    icon = "Google-Cloud"
 
+[[main]]
+identifier = "solutions-cloud-azure"
+name = "Azure"
+url = "#"
+weight = 40
+parent = "solutions"
+[[main.params]]
+    enabled = true
+    section = "Platforms"
+    section_weight = 10
+    icon = "Microsoft-Azure"
+
+
+[[main]]
+identifier = "solutions-cloud-ovh"
+name = "OVH"
+url = "#"
+weight = 50
+parent = "solutions"
+[[main.params]]
+    enabled = true
+    section = "Platforms"
+    section_weight = 10
+    icon = "OVH"
+
+# ----------- Solutions > Services -----------
+
+[[main]]
+identifier = "solutions-services-kubernetes"
+name = "Kubernetes"
+url = "/solutions/plakar-for-kubernetes/"
+weight = 10
+parent = "solutions"
+[[main.params]]
+    description = "Backup your clusters"
+    enabled = true
+    section = "Services"
+    section_weight = 20
+    icon = "Kubernetes"
+
+[[main]]
+identifier = "solutions-services-proxmox"
+name = "Proxmox"
+url = "/solutions/plakar-for-kubernetes/"
+weight = 20
+parent = "solutions"
+[[main.params]]
+    description = "Backup your VMs"
+    enabled = true
+    section = "Services"
+    section_weight = 20
+    icon = "Proxmox"
+
+[[main]]
+identifier = "solutions-services-notion"
+name = "Notion"
+url = "/solutions/plakar-for-notion/"
+weight = 30
+parent = "solutions"
+[[main.params]]
+    description = "Backup your workspace"
+    enabled = true
+    section = "Services"
+    section_weight = 20
+    icon = "Notion"
 
 # ----------- Solutions > Resources -----------
 
@@ -93,10 +157,23 @@ weight = 40
 parent = "solutions"
 [[main.params]]
     description = "Discover Plakar strengths"
-    enabled = false
+    enabled = true
     section = "Resources"
-    section_weight = 20
-    icon = "arrow-left-right-line"
+    section_weight = 30
+    icon = "ri:arrow-left-right-line"
+
+[[main]]
+identifier = "solutions-resources-reduce-costs"
+name = "Reduce Backup Costs"
+url = "#"
+weight = 40
+parent = "solutions"
+[[main.params]]
+    description = "Better coverage less costs"
+    enabled = true
+    section = "Resources"
+    section_weight = 30
+    icon = "ri:arrow-left-right-line"
 
 [[main]]
 identifier = "solutions-resources-review"
@@ -109,7 +186,7 @@ parent = "solutions"
     enabled = false
     section = "Resources"
     section_weight = 20
-    icon = "chat-quote-line"
+    icon = "ri:chat-quote-line"
 
 # ----------- Engineering > Learn -----------
 
@@ -124,7 +201,7 @@ parent = "engineering"
     enabled = true
     section = "Learn"
     section_weight = 10
-    icon = "rocket-2-line"
+    icon = "ri:rocket-2-line"
     target = "_blank"
 
 [[main]]
@@ -138,7 +215,7 @@ parent = "engineering"
     enabled = true
     section = "Learn"
     section_weight = 10
-    icon = "book-open-line"
+    icon = "ri:book-open-line"
     target = "_blank"
 
 [[main]]
@@ -152,7 +229,7 @@ parent = "engineering"
     enabled = true
     section = "Learn"
     section_weight = 10
-    icon = "article-line"
+    icon = "ri:article-line"
 
 # ----------- Engineering > Community -----------
 
@@ -167,7 +244,7 @@ parent = "engineering"
     enabled = true
     section = "Community"
     section_weight = 20
-    icon = "team-line"
+    icon = "ri:team-line"
 
 [[main]]
 identifier = "engineering-community-calendar"
@@ -180,7 +257,7 @@ parent = "engineering"
     enabled = true
     section = "Community"
     section_weight = 20
-    icon = "calendar-event-line"
+    icon = "ri:calendar-event-line"
 
 [[main]]
 identifier = "contact-us"
@@ -193,7 +270,7 @@ parent = "engineering"
     enabled = true
     section = "Community"
     section_weight = 20
-    icon = "mail-line"
+    icon = "ri:mail-line"
 
 [[main]]
 identifier = "engineering-community-events"
@@ -206,7 +283,7 @@ parent = "engineering"
     enabled = false
     section = "Community"
     section_weight = 20
-    icon = "calendar-2-line"
+    icon = "ri:calendar-2-line"
 
 [[main]]
 identifier = "engineering-community-newsletter"
@@ -219,7 +296,7 @@ parent = "engineering"
     enabled = true
     section = "Community"
     section_weight = 20
-    icon = "mail-ai-line"
+    icon = "ri:mail-ai-line"
 
 [[main_docs]]
 identifier = "documentation"
