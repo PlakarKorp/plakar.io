@@ -2,10 +2,8 @@
         {{ $riDatabaseLine := resources.Get "img/ri/database-line.svg" }}
         {{ $riArchiveLine := resources.Get "img/ri/archive-line.svg" }}
         {{ $riPuzzle2Line := resources.Get "img/ri/puzzle-2-line.svg" }}
-        {{ $riFlashlightLine := resources.Get "img/ri/flashlight-line.svg" }}
         {{ $riListView := resources.Get "img/ri/list-view.svg" }}
         {{ $riMenuSearchLine := resources.Get "img/ri/menu-search-line.svg" }}
-        {{ $riShieldCheckLine := resources.Get "img/ri/shield-check-line.svg" }}
         {{ $riCheckLine := resources.Get "img/ri/check-line.svg" }}
         {{ $riApps2Line := resources.Get "img/ri/apps-2-line.svg" }}
         {{ $riServerLine := resources.Get "img/ri/server-line.svg" }}
@@ -109,6 +107,159 @@
                     </div>
 
                 </div>
+            </div>
+        </section>
+
+        <!-- Plakar Unified Resilience Architecture  -->
+        <section class="section-dark-1 py-14 lg:py-28 relative overflow-hidden">
+
+            <div class="absolute inset-0 pointer-events-none opacity-20">
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[400px] bg-gradient-to-r from-secondary-500/30 to-primary-500/20 blur-[120px] rounded-full"></div>
+            </div>
+
+            <div class="content relative z-10">
+
+                <div class="text-center flex flex-col gap-6 max-w-3xl mx-auto mb-16">
+                    <h2 class="~text-3xl/5xl font-space-grotesk font-medium text-white leading-tight">
+                        Plakar <span class="text-primary-500">Unified Resilience</span> Architecture
+                    </h2>
+                    <p class="~text-lg/xl font-space-grotesk text-neutral-400 leading-relaxed">
+                        Decoupling data protection from infrastructure constraints.<br class="hidden md:block"/>
+                        From <span class="text-white">source</span> to <span class="text-white">value</span>, you are in control.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+
+                    <div class="hidden lg:block absolute top-12 left-[12%] right-[12%] h-0.5 bg-gradient-to-r from-transparent via-secondary-900 to-transparent -z-10"></div>
+
+                    <div class="bg-neutral-800 border border-neutral-700 rounded-xl p-6 shadow-lg flex flex-col gap-4 relative group hover:border-secondary-500 transition-colors">
+                        <div class="absolute top-4 right-4">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-secondary-400 border border-secondary-900 bg-secondary-900/30 px-2 py-0.5 rounded-full">Open Source</span>
+                        </div>
+
+                        <div class="w-12 h-12 bg-neutral-900 border border-neutral-700 rounded-lg flex items-center justify-center text-secondary-500 mb-2 group-hover:scale-110 transition-transform shadow-inner">
+                            {{ $riLock2Line := resources.Get "img/ri/lock-2-line.svg" }}
+                            <div class="w-6 h-6">{{ $riLock2Line.Content | safeHTML }}</div>
+                        </div>
+
+                        <div>
+                            <div class="text-secondary-500 font-mono text-xs font-bold tracking-widest mb-1">01 / BACKUP</div>
+                            <h3 class="font-space-grotesk font-semibold text-xl text-white">
+                                Secure at Source
+                            </h3>
+                        </div>
+
+                        <p class="text-neutral-400 font-space-grotesk text-sm leading-relaxed">
+                            Deploy <b class="text-secondary-400">agents</b> on-premise or use <b class="text-secondary-400">agentless connectors</b> for Cloud & SaaS. Deduplication & encryption happen <i>at the source</i>, ensuring zero-knowledge privacy before data moves.
+                        </p>
+                    </div>
+
+                    <div class="bg-neutral-800 border border-neutral-700 rounded-xl p-6 shadow-lg flex flex-col gap-4 relative group hover:border-secondary-500 transition-colors">
+                        <div class="absolute top-4 right-4">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-secondary-400 border border-secondary-900 bg-secondary-900/30 px-2 py-0.5 rounded-full">Open Source</span>
+                        </div>
+
+                        <div class="w-12 h-12 bg-neutral-900 border border-neutral-700 rounded-lg flex items-center justify-center text-secondary-500 mb-2 group-hover:scale-110 transition-transform shadow-inner">
+                            {{ $riHardDrive2Line := resources.Get "img/ri/hard-drive-2-line.svg" }}
+                            <div class="w-6 h-6">{{ $riHardDrive2Line.Content | safeHTML }}</div>
+                        </div>
+
+                        <div>
+                            <div class="text-secondary-500 font-mono text-xs font-bold tracking-widest mb-1">02 / STORAGE</div>
+                            <h3 class="font-space-grotesk font-semibold text-xl text-white">
+                                Self-Host or Delegate
+                            </h3>
+                        </div>
+
+                        <p class="text-neutral-400 font-space-grotesk text-sm leading-relaxed">
+                            Store copies yourself on any disk or cloud, OR delegate resilience to a Provider via the <b class="text-secondary-400">Plakar Vault Protocol</b>. In both cases, your data remains fully encrypted and sovereign.
+                        </p>
+                    </div>
+
+                    <div class="bg-neutral-800 border border-neutral-700 rounded-xl p-6 shadow-lg flex flex-col gap-4 relative group hover:border-secondary-500 transition-colors">
+                        <div class="absolute top-4 right-4">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-secondary-400 border border-secondary-900 bg-secondary-900/30 px-2 py-0.5 rounded-full">Open Source</span>
+                        </div>
+
+                        <div class="w-12 h-12 bg-neutral-900 border border-neutral-700 rounded-lg flex items-center justify-center text-secondary-500 mb-2 group-hover:scale-110 transition-transform shadow-inner">
+                            {{ $riShieldCheckLine := resources.Get "img/ri/shield-check-line.svg" }}
+                            <div class="w-6 h-6">{{ $riShieldCheckLine.Content | safeHTML }}</div>
+                        </div>
+
+                        <div>
+                            <div class="text-secondary-500 font-mono text-xs font-bold tracking-widest mb-1">03 / VERIFY</div>
+                            <h3 class="font-space-grotesk font-semibold text-xl text-white">
+                                Native Integrity Proofs
+                            </h3>
+                        </div>
+
+                        <p class="text-neutral-400 font-space-grotesk text-sm leading-relaxed">
+                            Don't assume, verify. Mount snapshots to run business logic tests, or rely on Plakar's <b class="text-secondary-400">native cryptographic proofs</b> to guarantee zero bit-rot without full restoration.
+                        </p>
+                    </div>
+
+                    <div class="bg-neutral-800 border border-neutral-700 rounded-xl p-6 shadow-lg flex flex-col gap-4 relative group hover:border-secondary-500 transition-colors">
+                        <div class="absolute top-4 right-4">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-secondary-400 border border-secondary-900 bg-secondary-900/30 px-2 py-0.5 rounded-full">Open Source</span>
+                        </div>
+
+                        <div class="w-12 h-12 bg-neutral-900 border border-neutral-700 rounded-lg flex items-center justify-center text-secondary-500 mb-2 group-hover:scale-110 transition-transform shadow-inner">
+                            {{ $riFlashlightLine := resources.Get "img/ri/flashlight-line.svg" }}
+                            <div class="w-6 h-6">{{ $riFlashlightLine.Content | safeHTML }}</div>
+                        </div>
+
+                        <div>
+                            <div class="text-secondary-500 font-mono text-xs font-bold tracking-widest mb-1">04 / CREATE VALUE</div>
+                            <h3 class="font-space-grotesk font-semibold text-xl text-white">
+                                Recover & Provision
+                            </h3>
+                        </div>
+
+                        <p class="text-neutral-400 font-space-grotesk text-sm leading-relaxed">
+                            Stop treating backups as dead weight. Trigger full disaster recovery or <b class="text-secondary-400">provision staging environments</b> instantly to fuel your business workflows.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="mt-8 md:mt-12 bg-black border border-neutral-800 rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-8 md:gap-16 shadow-2xl relative overflow-hidden group">
+
+                    <div class="absolute top-0 right-0 p-40 bg-primary-900/20 rounded-full blur-[100px] group-hover:bg-primary-900/30 transition-colors"></div>
+
+                    <div class="flex-1 flex flex-col gap-4 relative z-10">
+                        <div class="flex items-center gap-3 text-primary-500 mb-2">
+                            {{ $riDashboardLine := resources.Get "img/ri/dashboard-3-line.svg" }}
+                            <div class="w-5 h-5">{{ $riDashboardLine.Content | safeHTML }}</div>
+                            <span class="font-space-grotesk font-bold uppercase tracking-widest text-sm text-primary-500">Governance Layer</span>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-space-grotesk font-medium text-white">
+                            Plakar Enterprise: <span class="text-primary-500">Unified Backup Posture</span>
+                        </h3>
+                        <p class="text-neutral-400 font-space-grotesk text-lg leading-relaxed">
+                            The missing link for C-Levels. Aggregates metadata from all agents to map your real-time protection status. Identify <span class="text-white">blind spots</span>, un-backed up assets, and enforce <span class="text-white">compliance</span> across the entire estate.
+                        </p>
+                    </div>
+
+                    <div class="w-full md:w-1/3 bg-neutral-900 border border-neutral-800 rounded-xl p-6 relative z-10 shadow-inner group-hover:border-primary-900/50 transition-colors">
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center border-b border-neutral-800 pb-2">
+                                <span class="text-neutral-500 font-mono text-sm">Total Assets</span>
+                                <span class="text-white font-mono font-bold">1,420</span>
+                            </div>
+                            <div class="flex justify-between items-center border-b border-neutral-800 pb-2">
+                                <span class="text-neutral-500 font-mono text-sm">Protected</span>
+                                <span class="text-primary-500 font-mono font-bold">99.9%</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-neutral-500 font-mono text-sm">Integrity Check</span>
+                                <span class="text-primary-500 font-mono font-bold">PASSED</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
         </section>
 
