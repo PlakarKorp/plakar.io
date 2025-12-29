@@ -802,9 +802,14 @@ data-[selected=true]:text-primary-600">
 subgraph Source[<b>Notion</b>]
 fs@{ shape: cloud, label: "data" }
 end
-Source -- <small>Retrieve data via</small><br><b>Notion source connector</b> --> Plakar
+subgraph Plakar[<b>Plakar</b>]
+Connector@{ shape: rect, label: "<small>Retrieve data via</small><br><b>Notion source connector</b>" }
+Transform@{ shape: rect, label: "<small>Transform data as a structured JSON document</small>" }
+Connector --> Transform
+end
+Source --> Connector
 Store@{ shape: cyl, label: "Kloset Store" }
-Plakar --> Store
+Transform --> Store
 %% Apply classes
 class Source sourceBox
 class Plakar brandBox
@@ -820,11 +825,16 @@ linkStyle default stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 2
 </span></span><span class=line><span class=ln>5</span><span class=cl>$ plakar at /var/backups backup <span class=s2>&#34;@mynotion&#34;</span>
 </span></span></code></pre></div><h4 id=options>Options</h4><p>These options can be set when configuring the source connector with <code>plakar source add</code> or <code>plakar source set</code>:</p><table><thead><tr><th>Option</th><th>Purpose</th></tr></thead><tbody><tr><td><code>location</code></td><td><strong>mandatory</strong>: Must be set to the string <code>notion://</code></td></tr><tr><td><code>token</code></td><td><strong>mandatory</strong>: Your Notion API token (<code>ntn_xxx</code>)</td></tr></tbody></table><h3 id=destination-connector>Destination connector</h3><p>The destination connector fetches data from the structured JSON stored by the source connector, and pushes it to the Notion API to recreate pages and content blocks.</p><div class=mermaid>flowchart LR
 Store@{ shape: cyl, label: "Kloset Store" }
-Store --> Plakar
+subgraph Plakar[<b>Plakar</b>]
+Transform@{ shape: rect, label: "<small>Reconstruct data from structured JSON document</small>" }
+Connector@{ shape: rect, label: "<small>Restore data via</small><br><b>Notion destination connector</b>" }
+Transform --> Connector
+end
+Store --> Transform
 subgraph Destination[<b>Notion</b>]
 fs@{ shape: cloud, label: "data" }
 end
-Plakar -- <small>Push data via</small><br><b>Notion destination connector</b> --> Destination
+Connector --> Destination
 %% Apply classes
 class Destination destinationBox
 class Plakar brandBox
