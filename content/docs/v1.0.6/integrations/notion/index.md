@@ -108,11 +108,18 @@ subgraph Source[<b>Notion</b>]
   fs@{ shape: cloud, label: "data" }
 end
 
-Source -- <small>Retrieve data via</small><br><b>Notion source connector</b> --> Plakar
+subgraph Plakar[<b>Plakar</b>]
+  Connector@{ shape: rect, label: "<small>Retrieve data via</small><br><b>Notion source connector</b>" }
+  Transform@{ shape: rect, label: "<small>Transform data as a structured JSON document</small>" }
+
+  Connector --> Transform
+end
+
+Source --> Connector
 
 Store@{ shape: cyl, label: "Kloset Store" }
 
-Plakar --> Store
+Transform --> Store
 
 %% Apply classes
 class Source sourceBox
@@ -160,13 +167,21 @@ flowchart LR
 
 Store@{ shape: cyl, label: "Kloset Store" }
 
-Store --> Plakar
+subgraph Plakar[<b>Plakar</b>]
+  Transform@{ shape: rect, label: "<small>Reconstruct data from structured JSON document</small>" }
+  Connector@{ shape: rect, label: "<small>Restore data via</small><br><b>Notion destination connector</b>" }
+
+  Transform --> Connector
+end
+
+Store --> Transform
 
 subgraph Destination[<b>Notion</b>]
   fs@{ shape: cloud, label: "data" }
 end
 
-Plakar -- <small>Push data via</small><br><b>Notion destination connector</b> --> Destination
+Connector --> Destination
+
 %% Apply classes
 class Destination destinationBox
 class Plakar brandBox
