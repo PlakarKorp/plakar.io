@@ -229,4 +229,3 @@ Note: check the URL to get the `rootID` parameter. For example, in the URL `http
 ### Limitations and considerations
 
 * The destination connector is currently under development and requires more love and testing to work.
-* The source connector is not able to back up certain types of objects (such as images). Do not rely on this integration in production yet.
