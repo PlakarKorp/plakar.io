@@ -816,7 +816,7 @@ v1.0.6</em></p><p>The <code>plakar backup</code> command supports the <code>-ign
     └── github.com
         ├── lib1.go
         └── lib2.go
-</code></pre><p>And we assume the backup command is:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=ln>1</span><span class=cl>plakar at /var/backups backup -ignore-file ./excludes.txt /var/files
+</code></pre><p>And we assume the backup command is:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>plakar at /var/backups backup -ignore-file ./excludes.txt /var/files
 </span></span></code></pre></div><p><em>You can use <code>-ignore</code> multiple times with different patterns, or use <code>-ignore-file</code> with a file containing one pattern per line. The result is the same.</em></p><h3 id=ignore-the-varfilesdemovendor-directory-only>Ignore the <code>/var/files/demo/vendor</code> directory only:</h3><pre tabindex=0><code>/var/files/demo/vendor
 </code></pre><h3 id=ignore-the-node_modules-directory-wherever-it-is-in-the-tree>Ignore the <code>node_modules</code> directory, wherever it is in the tree:</h3><pre tabindex=0><code>node_modules
 </code></pre><p><em>In this case, both <code>/var/files/demo/node_modules</code> and <code>/var/files/demo/src/node_modules</code> would be ignored.</em></p><h3 id=ignore-the-file-gitconfig-wherever-it-is-in-the-tree>Ignore the file <code>.git/config</code>, wherever it is in the tree:</h3><pre tabindex=0><code>**/.git/config
