@@ -113,6 +113,10 @@ This command initializes the Kloset Store at the S3 location, creating the neces
 
 Note the `@` symbol before the store name. This is an alias, which indicates that we are referencing a Kloset Store from the configuration. Without the `@`, **plakar** would interpret `s3-backups` as a filesystem path.
 
+{{% notice style="info" title="Escaping on Windows" expanded="true" %}}
+On Windows, make sure to use double quotes (`"`) around the store name to avoid issues with the `@` symbol being interpreted by the shell. On Unix-like systems, quotes are often unnecessary.
+{{% /notice %}}
+
 The passphrase prompt will appear: **you do not have to enter the same passphrase** as the local Kloset Store, but you can if you want to.
 
 Plakar will automatically create the bucket if it does not already exist.
