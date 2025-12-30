@@ -145,19 +145,19 @@ linkStyle default stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 2
 $ plakar store add sftp_store sftp://sftp-prod/backups
 
 # Initialize the Kloset store
-$ plakar at @sftp_store create
+$ plakar at "@sftp_store" create
 
 # List snapshots in the Kloset store
-$ plakar at @sftp_store ls
+$ plakar at "@sftp_store" ls
 
 # Verify integrity of the Kloset store
-$ plakar at @sftp_store check
+$ plakar at "@sftp_store" check
 
 # Backup a local folder to the Kloset store
-$ plakar at @sftp_store backup /etc
+$ plakar at "@sftp_store" backup /etc
 
 # Backup a source configured in Plakar to the Kloset store
-$ plakar at @sftp_store backup @my_source
+$ plakar at "@sftp_store" backup "@my_source"
 ```
 
 #### Options
@@ -206,10 +206,10 @@ linkStyle default stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 2
 $ plakar source add sftp_src sftp://sftp-prod:/srv/data
 
 # Back up the remote directory to the Kloset store on the filesystem
-$ plakar at /var/backups backup @sftp_src
+$ plakar at /var/backups backup "@sftp_src"
 
 # Or back up the remote directory to the Kloset store on SFTP created above
-$ plakar at @sftp_store backup @sftp_src
+$ plakar at "@sftp_store" backup "@sftp_src"
 ```
 
 #### Options
@@ -257,10 +257,10 @@ linkStyle default stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 2
 $ plakar destination add sftp_dst sftp://sftp-prod:/srv/restore
 
 # Restore a snapshot from a filesystem-hosted Kloset store to the remote SFTP directory
-$ plakar at /var/backups restore -to @sftp_dst <snapshot_id>
+$ plakar at /var/backups restore -to "@sftp_dst" <snapshot_id>
 
 # Or restore a snapshot from the Kloset store on SFTP created above to the remote SFTP directory
-$ plakar at @sftp_store restore -to @sftp_dst <snapshot_id>
+$ plakar at "@sftp_store" restore -to "@sftp_dst" <snapshot_id>
 ```
 
 #### Options
@@ -374,7 +374,7 @@ Prefer SSH config (`~/.ssh/config`) with a host alias.
 
 **Can I move snapshots between two SFTP‑hosted stores?**
 
-Yes. Define two stores, then use `plakar at @store1 sync to @store2` to synchronize them.
+Yes. Define two stores, then use `plakar at "@store1" sync to "@store2"` to synchronize them.
 
 ---
 

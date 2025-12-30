@@ -57,7 +57,7 @@ This command creates a new source named `mydata` that points to the `mydata` buc
 To create a backup of the S3 bucket to the local Kloset Store at `$HOME/backups`, run the following command:
 
 ```bash
-plakar at $HOME/backups backup @mydata
+plakar at $HOME/backups backup "@mydata"
 ```
 
 As you can see, the alias `@mydata` is used to reference the source previously configured.
@@ -70,7 +70,7 @@ $ plakar at $HOME/backups ls
 2025-12-15T21:09:32Z   772fba5f   2.9 MiB        0s /private/etc # the previous backup, from Part 1
 ```
 
-Note that in this example, we created the backup to a store hosted on the local filesystem. It is perfectly possible to back up S3 data directly to another S3 location, or any other supported store, using `plakar at @store-name backup @source-name`.
+Note that in this example, we created the backup to a store hosted on the local filesystem. It is perfectly possible to back up S3 data directly to another S3 location, or any other supported store, using `plakar at "@store-name" backup "@source-name"`.
 
 ## Restore the backup
 
@@ -91,7 +91,7 @@ plakar destination add mydata \
 And then, restore the snapshot to that destination:
 
 ```bash
-plakar at $HOME/backups restore -to @mydata 842de8b1
+plakar at $HOME/backups restore -to "@mydata" 842de8b1
 repository passphrase:
 info: 842de8b1: OK ✓ /
 info: 842de8b1: OK ✓ /Makefile

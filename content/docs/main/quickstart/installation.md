@@ -75,7 +75,7 @@ EOF
 {{% tab name="Go Install" %}}
   To install using the Go toolchain, use `go install` with the version you want to install:
   ```bash
-  go install github.com/PlakarKorp/plakar@<version>
+  go install "github.com/PlakarKorp/plakar@<version>"
   ```
 
   This will install the binary into your `$GOPATH/bin` directory, which you may need to add to your `$PATH` if it is not already there.
