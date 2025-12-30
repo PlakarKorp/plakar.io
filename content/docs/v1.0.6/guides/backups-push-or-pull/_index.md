@@ -21,7 +21,7 @@ plakar store add mybackup sftp://backup.tld.com/var/backups
 Then you would run the following command on each server:
 
 ```bash
-plakar at @mybackup backup /home
+plakar at "@mybackup" backup /home
 ```
 
 ## The pull model
@@ -37,9 +37,9 @@ plakar store add server3 sftp://server3.tld.com
 Then you would run the following command on `backup.tld.com`:
 
 ```bash
-plakar at /var/backups backup @server1
-plakar at /var/backups backup @server2
-plakar at /var/backups backup @server3
+plakar at /var/backups backup "@server1"
+plakar at /var/backups backup "@server2"
+plakar at /var/backups backup "@server3"
 ```
 
 ## Pros and cons

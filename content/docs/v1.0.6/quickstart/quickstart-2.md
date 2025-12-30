@@ -106,12 +106,16 @@ This command creates a new store named `s3-backups` that points to the `mybucket
 For now, the Kloset Store points to a bucket that does not exist yet. We need to create it by initializing the store:
 
 ```bash
-plakar at @s3-backups create
+plakar at "@s3-backups" create
 ```
 
 This command initializes the Kloset Store at the S3 location, creating the necessary bucket and structure to hold the backups.
 
 Note the `@` symbol before the store name. This is an alias, which indicates that we are referencing a Kloset Store from the configuration. Without the `@`, **plakar** would interpret `s3-backups` as a filesystem path.
+
+{{% notice style="info" title="Escaping on Windows" expanded="true" %}}
+On Windows, make sure to use double quotes (`"`) around the store name to avoid issues with the `@` symbol being interpreted by the shell. On Unix-like systems, quotes are often unnecessary.
+{{% /notice %}}
 
 The passphrase prompt will appear: **you do not have to enter the same passphrase** as the local Kloset Store, but you can if you want to.
 
@@ -122,7 +126,7 @@ Plakar will automatically create the bucket if it does not already exist.
 If you list the snapshots in this new store, you will see that it is currently empty:
 
 ```bash
-plakar at @s3-backups ls
+plakar at "@s3-backups" ls
 ```
 
 ## Synchronize the local Kloset Store to S3
@@ -132,7 +136,7 @@ Now, let's synchronize the local Kloset Store at `$HOME/backups` to the S3 Klose
 Run the following command:
 
 ```bash
-$ plakar at $HOME/backups sync to @s3-backups
+$ plakar at $HOME/backups sync to "@s3-backups"
 info: Synchronizing snapshot 772fba5f575272ba8742e63c6ec1878623900d158c5de4b20b854a0aa15a7b47 from fs:///Users/niluje/backups to s3://localhost:9000/mybucket
 info: Synchronization of 772fba5f575272ba8742e63c6ec1878623900d158c5de4b20b854a0aa15a7b47 finished
 info: sync: synchronization from fs:///Users/niluje/backups to s3://localhost:9000/mybucket completed: 1 snapshots synchronized
@@ -143,7 +147,7 @@ The command transfers all the snapshots from the local Kloset Store to the S3 Kl
 To verify that the synchronization was successful, you can list the snapshots in the S3 Kloset Store again:
 
 ```bash
-$ plakar at @s3-backups ls
+$ plakar at "@s3-backups" ls
 2025-12-15T21:09:32Z   772fba5f   2.9 MiB        0s /private/etc
 ```
 
@@ -152,7 +156,7 @@ Notice that the snapshot ID is the same as the one in the local Kloset Store, co
 If you run the sync command again, you will see that no data is transferred because the destination store already contains all the snapshots from the source store.
 
 ```bash
-$ plakar at $HOME/backups sync to @s3-backups
+$ plakar at $HOME/backups sync to "@s3-backups"
 destination store passphrase:
 info: sync: synchronization from fs:///Users/niluje/backups to s3://localhost:9000/mybucket completed: 0 snapshots synchronized
 ```
@@ -163,9 +167,9 @@ In production, you would typically run this command periodically to ensure that 
 
 As a side note, you can use the remote Kloset Store just as you would use the local one:
 
-* to run the UI, `plakar at @s3-backups ui`
-* to verify integrity, `plakar at @s3-backups check`
-* to restore files, `plakar at @s3-backups restore -to /tmp/restore <snapshot-id>`
+* to run the UI, `plakar at "@s3-backups" ui`
+* to verify integrity, `plakar at "@s3-backups" check`
+* to restore files, `plakar at "@s3-backups" restore -to /tmp/restore <snapshot-id>`
 
 Check `plakar help` to see all the available commands.
 

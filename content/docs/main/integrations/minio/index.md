@@ -146,19 +146,19 @@ $ plakar store add minio \
   use_tls=false
 
 # Initialize the Kloset store
-$ plakar at @minio create
+$ plakar at "@minio" create
 
 # List snapshots in the Kloset store
-$ plakar at @minio ls
+$ plakar at "@minio" ls
 
 # Verify integrity of the Kloset store
-$ plakar at @minio check
+$ plakar at "@minio" check
 
 # Backup a local folder to the Kloset store
-$ plakar at @minio backup /etc
+$ plakar at "@minio" backup /etc
 
 # Backup a source configured in Plakar to the Kloset store
-$ plakar at @minio backup @my_source
+$ plakar at "@minio" backup "@my_source"
 ```
 
 #### Options
@@ -215,10 +215,10 @@ $ plakar source add minio_src \
     use_tls=false
 
 # Back up the remote directory to the Kloset store on the filesystem
-$ plakar at /var/backups backup @minio_src
+$ plakar at /var/backups backup "@minio_src"
 
 # Or back up the remote directory to the Kloset store on S3 created above
-$ plakar at @minio backup @minio_src
+$ plakar at "@minio" backup "@minio_src"
 ```
 
 #### Options
@@ -273,10 +273,10 @@ $ plakar destination add minio_dst \
     use_tls=false
 
 # Restore a snapshot from a filesystem-hosted Kloset store to the remote MinIO bucket
-$ plakar at /var/backups restore -to @minio_dst <snapshot_id>
+$ plakar at /var/backups restore -to "@minio_dst" <snapshot_id>
 
 # Or restore a snapshot from a MinIO-hosted Kloset store to the remote MinIO bucket
-$ plakar at @minio restore -to @minio_dst <snapshot_id>
+$ plakar at "@minio" restore -to "@minio_dst" <snapshot_id>
 ```
 
 #### Options
@@ -394,12 +394,12 @@ Declare two Kloset stores pointing to your source and target MinIO buckets (e.g.
 
 Transfer a single snapshot from a Kloset store in MinIO to another one:
 ```bash
-$ plakar at @minio_prod sync <snapshot-id> to @minio_backup
+$ plakar at "@minio_prod" sync <snapshot-id> to "@minio_backup"
 ```
 
 Transfer all the snapshots of a Kloset store to another one:
 ```bash
-$ plakar at @minio_prod sync to @minio_backup
+$ plakar at "@minio_prod" sync to "@minio_backup"
 ```
 
 Note that this is not specific to MinIO: two Kloset stores can be synchronized regardless of their underlying storage backend, even if they are different (e.g., one on MinIO and the other on a local filesystem).
@@ -425,7 +425,7 @@ Yes. Configure the storage connector to point to the MinIO bucket, and set the d
 Like any other Kloset store, you can use `plakar ptar` to export a Kloset store into a portable `.ptar` file.
 
 ```bash
-$ plakar ptar -o ./export.ptar -k @minio_store
+$ plakar ptar -o ./export.ptar -k "@minio_store"
 ```
 
 #### How to restore a flat `.ptar` file to a MinIO bucket?
@@ -433,7 +433,7 @@ $ plakar ptar -o ./export.ptar -k @minio_store
 Run the following command to restore a `.ptar` file into a MinIO bucket configured in the destination connector `@minio_dst`.
 
 ```bash
-$ plakar at ./export.ptar restore -to @minio_dst
+$ plakar at ./export.ptar restore -to "@minio_dst"
 ```
 
 ---

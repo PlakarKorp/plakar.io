@@ -21,7 +21,7 @@ To access an encrypted Kloset store, a passphrase is required. There are several
   ```
   Then use the syntax:
   ```bash
-  plakar at @mystore ls
+  plakar at "@mystore" ls
   ```
   to list the files in the Kloset store.
 
@@ -40,7 +40,7 @@ plakar store add mystore location=/var/backups passphrase_cmd='echo mypassphrase
 To use the configuration, use the `@` syntax to refer to the Kloset store:
 
 ```bash
-plakar at @mystore ls
+plakar at "@mystore" ls
 ```
 
 When you run this command, the `plakar` command will call the `passphrase_cmd` command to retrieve the passphrase, and then use it to access the Kloset store.

@@ -176,19 +176,19 @@ linkStyle default stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 2
 rclone config show | plakar store import -rclone mydrive
 
 # Initialize the Kloset store
-$ plakar at @mydrive create
+$ plakar at "@mydrive" create
 
 # List snapshots in the Kloset store
-$ plakar at @mydrive ls
+$ plakar at "@mydrive" ls
 
 # Verify integrity of the Kloset store
-$ plakar at @mydrive check
+$ plakar at "@mydrive" check
 
 # Back up a local folder to the Kloset store
-$ plakar at @mydrive backup /etc
+$ plakar at "@mydrive" backup /etc
 
 # Back up a source configured in Plakar to the Kloset store
-$ plakar at @mydrive backup @my_source
+$ plakar at "@mydrive" backup "@my_source"
 ```
 
 #### Options
@@ -237,10 +237,10 @@ linkStyle default stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 2
 rclone config show | plakar source import -rclone mydrive
 
 # Back up the remote directory to the Kloset store on the filesystem
-$ plakar at /var/backups backup @mydrive
+$ plakar at /var/backups backup "@mydrive"
 
 # Or back up the remote directory to a Kloset store configured with "plakar store add"
-$ plakar at @store backup @mydrive
+$ plakar at "@store" backup "@mydrive"
 ```
 
 #### Options
@@ -285,10 +285,10 @@ linkStyle default stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 2
 rclone config show | plakar destination import -rclone mydrive
 
 # Restore a snapshot from a filesystem-hosted Kloset store to the Rclone remote
-$ plakar at /var/backups restore -to @mydrive <snapshot_id>
+$ plakar at /var/backups restore -to "@mydrive" <snapshot_id>
 
 # Or restore a snapshot from the Kloset store configured with "plakar store add store …"
-$ plakar at @store restore -to @mydrive <snapshot_id>
+$ plakar at "@store" restore -to "@mydrive" <snapshot_id>
 ```
 
 #### Options

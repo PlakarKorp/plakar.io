@@ -117,7 +117,7 @@ plakar source set mys3 use_tls=false
  Once your S3 source is configured, trigger a backup of your bucket with:
 
 ```bash
-plakar at @myrepo backup @mys3
+plakar at "@myrepo" backup "@mys3"
 ```
 
 This assumes you already have a Kloset Store named `@myrepo`.

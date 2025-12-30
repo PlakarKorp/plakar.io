@@ -24,7 +24,7 @@ plakar store add mybackups /var/backups passphrase=mysuperpassphrase
 Then, create the store referencing the configuration:
 
 ```bash
-plakar at @mybackups create
+plakar at "@mybackups" create
 ```
 
 ## Configuration

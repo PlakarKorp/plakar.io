@@ -34,7 +34,7 @@ Instead of a path, you can also reference a store using an alias configured with
 plakar store add mystore s3://localhost:9000/mybucket passphrase='S3cR3tP4sSwPhr@53' access_key=minioadmin secret_access_key=minioadmin use_tls=false
 
 # Use the configured store via its alias
-plakar at @mystore store-command [options]
+plakar at "@mystore" store-command [options]
 ```
 
 Using an alias is required for stores that need additional parameters (for example, credentials), but aliases may also be used for stores that do not require them.
@@ -47,18 +47,18 @@ To specify a source or destination, provide its path as an argument to the comma
 
 ```bash
 # Referencing a source located on the filesystem
-plakar at @mystore backup /path/to/directory
+plakar at "@mystore" backup /path/to/directory
 
 # Or on a SFTP server (requires the sftp package)
-plakar at @mystore backup sftp://myserver/path/to/directory
+plakar at "@mystore" backup sftp://myserver/path/to/directory
 ```
 
 ```bash
 # Referencing a destination located on the filesystem
-plakar at @mystore restore -to /path/to/directory snapshot-id
+plakar at "@mystore" restore -to /path/to/directory snapshot-id
 
 # Or on a SFTP server (requires the sftp package)
-plakar at @mystore restore -to sftp://myserver/path/to/directory snapshot-id
+plakar at "@mystore" restore -to sftp://myserver/path/to/directory snapshot-id
 ```
 
 As with stores, sources and destinations can also be referenced using aliases configured with `plakar source add` and `plakar destination add`:
@@ -68,7 +68,7 @@ As with stores, sources and destinations can also be referenced using aliases co
 plakar source add mybucket s3://localhost:9000/mybucket access_key=minioadmin secret_access_key=minioadmin use_tls=false
 
 # Back up the configured source using its alias
-plakar at @mystore backup @mybucket
+plakar at @mystore backup "@mybucket"
 ```
 
 ```bash
@@ -76,7 +76,7 @@ plakar at @mystore backup @mybucket
 plakar destination add mybucket s3://localhost:9000/mybucket access_key=minioadmin secret_access_key=minioadmin use_tls=false
 
 # Restore to the configured destination using its alias
-plakar at @mystore restore -to @mybucket snapshot-id
+plakar at "@mystore" restore -to "@mybucket" snapshot-id
 ```
 
 ## Argument order
