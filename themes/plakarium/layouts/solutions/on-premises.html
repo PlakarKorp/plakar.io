@@ -7,6 +7,7 @@
     {{ $riDashboardLine := resources.Get "img/ri/dashboard-3-line.svg" }}
     {{ $riFlowChart := resources.Get "img/ri/flow-chart.svg" }}
     {{ $riHardDrive2Line := resources.Get "img/ri/hard-drive-2-line.svg" }}
+    {{ $riServerLine := resources.Get "img/ri/server-line.svg" }}
     {{ $riBarChartGroupedLine := resources.Get "img/ri/bar-chart-grouped-line.svg" }}
     {{ $riShareForwardLine := resources.Get "img/ri/share-forward-line.svg" }}
     {{ $riTerminalBoxLine := resources.Get "img/ri/terminal-box-line.svg" }}
@@ -59,6 +60,66 @@
                             <img src="{{ $dashboardEnterprise1.RelPermalink }}" alt="Plakar Enterprise Dashboard" class="w-full h-auto rounded shadow-lg opacity-90">
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-dark-1 py-14 lg:py-20 border-y border-neutral-800 relative overflow-hidden">
+
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary-900/20 blur-[100px] rounded-full pointer-events-none"></div>
+
+        <div class="content p-2 lg:p-4 relative z-10">
+            <div class="flex flex-col gap-12">
+
+                <div class="text-center max-w-4xl mx-auto space-y-4">
+                    <h2 class="font-space-grotesk font-medium ~text-3xl/5xl text-white leading-tight">
+                        Shipped as a <span class="text-primary-500">Hardened Virtual Appliance</span>
+                    </h2>
+                    <p class="text-lg font-space-grotesk text-neutral-400 leading-relaxed">
+                        Skip the configuration hell. Plakar Enterprise is delivered as a production-ready, immutable appliance designed for Zero-Trust environments.
+                        <span class="text-white font-medium">Download. Import. Secure.</span>
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                    <div class="bg-neutral-800/50 border border-neutral-700 p-6 rounded-xl flex flex-col gap-4 hover:bg-neutral-800 transition-colors group">
+                        <div class="w-12 h-12 bg-neutral-900 rounded-lg flex items-center justify-center text-secondary-500 border border-neutral-700 group-hover:border-secondary-500/50 transition-colors">
+                            {{ $riServerLine.Content | safeHTML }}
+                        </div>
+                        <div>
+                            <h3 class="text-white font-bold text-lg font-space-grotesk mb-2">Ready-to-Deploy Format</h3>
+                            <p class="text-neutral-400 text-sm leading-relaxed">
+                                Available as <b>OVA</b>, <b>QCOW2</b>, and <b>ISO</b>. Compatible with VMware, Proxmox, Nutanix, and Bare Metal. No OS installation or dependency management required.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-neutral-800/50 border border-neutral-700 p-6 rounded-xl flex flex-col gap-4 hover:bg-neutral-800 transition-colors group">
+                        <div class="w-12 h-12 bg-neutral-900 rounded-lg flex items-center justify-center text-green-500 border border-neutral-700 group-hover:border-green-500/50 transition-colors">
+                            {{ $riLock2Line.Content | safeHTML }}
+                        </div>
+                        <div>
+                            <h3 class="text-white font-bold text-lg font-space-grotesk mb-2">Immutable Linux OS</h3>
+                            <p class="text-neutral-400 text-sm leading-relaxed">
+                                Runs on a stripped-down, <b>read-only Linux kernel</b>. SSH disabled by default, no package managers, no drift. Updates are atomic and cryptographically signed.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-neutral-800/50 border border-neutral-700 p-6 rounded-xl flex flex-col gap-4 hover:bg-neutral-800 transition-colors group">
+                        <div class="w-12 h-12 bg-neutral-900 rounded-lg flex items-center justify-center text-primary-500 border border-neutral-700 group-hover:border-primary-500/50 transition-colors">
+                            {{ $riShareForwardLine.Content | safeHTML }}
+                        </div>
+                        <div>
+                            <h3 class="text-white font-bold text-lg font-space-grotesk mb-2">Zero-Knowledge Architecture</h3>
+                            <p class="text-neutral-400 text-sm leading-relaxed">
+                                The appliance acts as a <b>Blind Proxy</b>. It orchestrates policies and storage, but encryption keys remain at the edge. We can't see your data, even if we wanted to.
+                            </p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -298,7 +359,7 @@
                             Military Grade <span class="text-primary-600">Security</span>
                         </h2>
                         <p class="text-lg text-neutral-600">
-                            Reduce your attack surface by keeping encryption keys out of storage. With true end-to-end encryption, your data is protected before it leaves the source.
+                            Reduce your attack surface by keeping encryption keys out of storage. With true end-to-end encryption, your data is protected as close as possible to the source.
                         </p>
                     </div>
 
