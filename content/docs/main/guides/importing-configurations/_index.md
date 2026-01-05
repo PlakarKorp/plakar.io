@@ -227,8 +227,8 @@ plakar destination check mydest
 
 ## Related Commands
 
-- [`plakar store`](../commands/plakar-store/) - Manage store configurations
-- [`plakar source`](../commands/plakar-source/) - Manage source configurations
-- [`plakar destination`](../commands/plakar-destination/) - Manage destination configurations
-- [`plakar store show`](../commands/plakar-store/) - Display current store configurations
-- [`plakar source show`](../commands/plakar-source/) - Display current source configurations
+- [`plakar store`](../../commands/plakar-store/) - Manage store configurations
+- [`plakar source`](../../commands/plakar-source/) - Manage source configurations
+- [`plakar destination`](../../commands/plakar-destination/) - Manage destination configurations
+- [`plakar store show`](../../commands/plakar-store/) - Display current store configurations
+- [`plakar source show`](../../commands/plakar-source/) - Display current source configurations
