@@ -71,7 +71,7 @@
                         </div>
                     </div>
                 {{ else }}
-                    <a href="{{ .URL | relLangURL }}" class="block py-3 text-gray-700 font-space-text hover:text-primary-500">
+                    <a href="{{ partial "menu-link.html" (dict "url" .URL "context" $ctx) | relLangURL }}" class="block py-3">
                         {{ .Name }}
                     </a>
                 {{ end }}
