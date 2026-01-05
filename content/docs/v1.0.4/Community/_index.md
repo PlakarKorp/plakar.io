@@ -30,7 +30,7 @@ Choose the channel that matches your intent:
 - [Reddit (asynchronous discussions & feedback)](https://www.reddit.com/r/plakar)
 - [X (announcements & progress)](https://x.com/plakar_io)
 - [Bluesky (announcements & progress)](https://bsky.app/profile/plakar.io)
-- [LinkedIn (announcements & progress)](https://www.linkedin.com/company/plakar)
+- [LinkedIn (announcements & progress)](https://www.linkedin.com/company/plakarkorp)
 - [GitHub (issues, code, roadmap)](https://github.com/PlakarKorp/plakar)
 
 ---
