@@ -1,0 +1,271 @@
+{{ define "main" }}
+    {{ $riMoneyDollarCircleLine := resources.Get "img/ri/money-dollar-circle-line.svg" }}
+    {{ $riStockLine := resources.Get "img/ri/stock-line.svg" }}
+    {{ $riHardDrive2Line := resources.Get "img/ri/hard-drive-2-line.svg" }}
+    {{ $riPriceTag3Line := resources.Get "img/ri/price-tag-3-line.svg" }}
+    {{ $riScalesLine := resources.Get "img/ri/scales-3-line.svg" }}
+    {{ $riCloudOffLine := resources.Get "img/ri/cloud-off-line.svg" }}
+    {{ $riStackLine := resources.Get "img/ri/stack-line.svg" }}
+    {{ $riCheckLine := resources.Get "img/ri/check-line.svg" }}
+    {{ $riCloseLine := resources.Get "img/ri/close-line.svg" }}
+    {{ $riTimeLine := resources.Get "img/ri/time-line.svg" }}
+    {{ $riCpuLine := resources.Get "img/ri/cpu-line.svg" }}
+    {{ $riArrowLeftRightLine := resources.Get "img/ri/arrow-left-right-line.svg" }}
+    {{ $riGlobalLine := resources.Get "img/ri/global-line.svg" }}
+
+    <section class="section-light-2 grid-background">
+        <div class="content p-2 lg:p-4 md:px-12 h-[67px] md:h-[98px] "></div>
+    </section>
+
+    <section class="section-light-2 grid-background pt-20 pb-20 relative overflow-hidden">
+        <div class="absolute top-0 right-0 p-64 bg-green-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="content p-2 lg:p-4 flex flex-col items-center text-center gap-8 relative z-10">
+
+            <div class="max-w-5xl flex flex-col gap-4">
+                <h1 class="font-space-grotesk font-medium ~text-4xl/6xl text-neutral-900 leading-tight">
+                    Slash Storage Footprint<br/>
+                    <span class="text-primary-500">Eliminate Egress Barriers</span>
+                </h1>
+            </div>
+
+            <div class="max-w-3xl text-neutral-600 ~text-lg/xl font-space-grotesk leading-relaxed">
+                Legacy backup solutions tax you twice: once to store your data, and again to move it.
+                <br/>
+                <span class="font-bold text-neutral-800">Plakar reverses the math.</span> By deduplicating at the source, we collapse storage costs and make cross-cloud mobility financially realistic for the first time—without sacrificing security.
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4 mt-4">
+                {{ partial "cta/book-a-demo-button.html" (dict "ctx" . "label" "Simulate Your Savings") }}
+            </div>
+        </div>
+    </section>
+
+    <section class="section-dark-1 py-14 lg:py-20 border-y border-neutral-800 relative overflow-hidden">
+        <div class="content p-2 lg:p-4 relative z-10">
+
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl lg:text-5xl font-space-grotesk font-medium text-white mb-6">
+                    Why is your cloud bill holding you hostage
+                </h2>
+                <p class="text-neutral-400 text-lg">
+                    It's not just about capacity. It's about the hidden costs that prevent you from leaving.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <div class="bg-neutral-800 border border-neutral-700 p-8 rounded-2xl flex flex-col gap-4">
+                    <div class="w-12 h-12 bg-neutral-900 rounded-lg flex items-center justify-center text-red-400 border border-neutral-700">
+                        {{ $riStackLine.Content | safeHTML }}
+                    </div>
+                    <h3 class="text-xl font-bold font-space-grotesk text-white">The Duplication Tax</h3>
+                    <p class="text-neutral-400 text-sm leading-relaxed">
+                        Traditional backups store the same data thousands of times. You are paying premium cloud rates to store redundancy.
+                    </p>
+                </div>
+
+                <div class="bg-neutral-800 border border-neutral-700 p-8 rounded-2xl flex flex-col gap-4 border-l-4 border-l-red-500">
+                    <div class="w-12 h-12 bg-neutral-900 rounded-lg flex items-center justify-center text-red-400 border border-neutral-700">
+                        {{ $riCloudOffLine.Content | safeHTML }}
+                    </div>
+                    <h3 class="text-xl font-bold font-space-grotesk text-white">The Egress Wall</h3>
+                    <p class="text-neutral-400 text-sm leading-relaxed">
+                        Want to replicate S3 data to another cloud? The egress fees on full re-hydration are often prohibitive. <b>Your data is technically yours, but financially stuck.</b>
+                    </p>
+                </div>
+
+                <div class="bg-neutral-800 border border-neutral-700 p-8 rounded-2xl flex flex-col gap-4">
+                    <div class="w-12 h-12 bg-neutral-900 rounded-lg flex items-center justify-center text-red-400 border border-neutral-700">
+                        {{ $riHardDrive2Line.Content | safeHTML }}
+                    </div>
+                    <h3 class="text-xl font-bold font-space-grotesk text-white">The Appliance Anchor</h3>
+                    <p class="text-neutral-400 text-sm leading-relaxed">
+                        Competitors require heavy, proprietary appliances to manage deduplication. Scaling means buying more iron, adding CAPEX to your OPEX.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="section-light-2 py-14 lg:py-28">
+        <div class="content p-2 lg:p-4">
+
+            <div class="flex flex-col md:flex-row gap-12 items-center">
+
+                <div class="w-full md:w-1/2 flex flex-col gap-8">
+                    <h2 class="text-3xl lg:text-5xl font-space-grotesk font-medium text-neutral-900">
+                        We Solved the<br/>
+                        <span class="text-primary-600">Encryption vs. Efficiency Dilemma</span>
+                    </h2>
+
+                    <div class="prose prose-lg text-neutral-600 leading-relaxed">
+                        <p>
+                            For decades, engineers faced a costly trade-off. You could either <b>encrypt at the source</b> (turning data into random noise that cannot be deduplicated) or <b>deduplicate at the server</b> (forcing you to expose unencrypted data).
+                        </p>
+
+                        <p>
+                            <b>Plakar breaks this trade-off.</b> Our research-driven Content Defined Chunking (CDC) algorithms enable global deduplication on fully encrypted data.
+                        </p>
+                    </div>
+
+                    <div class="flex flex-col gap-4 mt-6">
+
+                        <div class="flex items-center gap-4 p-4 rounded-xl bg-white border border-neutral-200 shadow-sm hover:border-primary-300 hover:shadow-md transition-all group">
+                            <div class="w-12 h-12 rounded-lg bg-primary-50 text-primary-600 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                                {{ $riCheckLine.Content | safeHTML }}
+                            </div>
+                            <div class="flex flex-col">
+                                <span class="font-space-grotesk font-bold text-lg text-neutral-900 leading-tight">90% reduction in storage volume</span>
+                                <span class="text-xs text-neutral-500 font-medium uppercase tracking-wide mt-1">Maximum Efficiency</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4 p-4 rounded-xl bg-white border border-neutral-200 shadow-sm hover:border-primary-300 hover:shadow-md transition-all group">
+                            <div class="w-12 h-12 rounded-lg bg-primary-50 text-primary-600 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                                {{ $riArrowLeftRightLine.Content | safeHTML }}
+                            </div>
+                            <div class="flex flex-col">
+                                <span class="font-space-grotesk font-bold text-lg text-neutral-900 leading-tight">Unlocked Cross-Cloud Mobility</span>
+                                <span class="text-xs text-neutral-500 font-medium uppercase tracking-wide mt-1">Zero Lock-in</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4 p-4 rounded-xl bg-white border border-neutral-200 shadow-sm hover:border-primary-300 hover:shadow-md transition-all group">
+                            <div class="w-12 h-12 rounded-lg bg-primary-50 text-primary-600 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                                {{ $riCpuLine.Content | safeHTML }}
+                            </div>
+                            <div class="flex flex-col">
+                                <span class="font-space-grotesk font-bold text-lg text-neutral-900 leading-tight">Runs on commodity hardware</span>
+                                <span class="text-xs text-neutral-500 font-medium uppercase tracking-wide mt-1">No Appliances</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="w-full md:w-1/2 bg-white rounded-2xl border border-neutral-200 shadow-lg overflow-hidden">
+
+                    <div class="bg-neutral-50 px-6 py-4 border-b border-neutral-200">
+                        <h3 class="font-space-grotesk font-bold text-neutral-900">Efficiency Model (10TB Dataset)</h3>
+                    </div>
+
+                    <div class="p-8 flex flex-col gap-8">
+
+                        <div class="flex flex-col gap-3 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                            <div class="flex justify-between items-end">
+                                <span class="text-sm font-bold text-neutral-600 uppercase tracking-wider">Legacy Backup</span>
+                                <span class="text-xs font-mono text-neutral-500 bg-neutral-100 px-2 py-1 rounded border border-neutral-200">High Egress Cost</span>
+                            </div>
+                            <div class="grid grid-cols-10 gap-1 h-12">
+                                <div class="bg-red-400 rounded-sm w-full h-full"></div>
+                                <div class="bg-red-400 rounded-sm w-full h-full"></div>
+                                <div class="bg-red-400 rounded-sm w-full h-full"></div>
+                                <div class="bg-red-400 rounded-sm w-full h-full"></div>
+                                <div class="bg-red-400 rounded-sm w-full h-full"></div>
+                                <div class="bg-red-400 rounded-sm w-full h-full"></div>
+                                <div class="bg-red-400 rounded-sm w-full h-full"></div>
+                                <div class="bg-red-400 rounded-sm w-full h-full"></div>
+                                <div class="bg-red-400 rounded-sm w-full h-full"></div>
+                                <div class="bg-red-400 rounded-sm w-full h-full"></div>
+                            </div>
+                            <div class="text-xs text-red-500 font-mono font-bold text-right">100% Transfer Size</div>
+                        </div>
+
+                        <div class="h-px w-full bg-neutral-100"></div>
+
+                        <div class="flex flex-col gap-3">
+                            <div class="flex justify-between items-end">
+                                <span class="text-sm font-bold text-primary-600 uppercase tracking-wider flex items-center gap-2">
+                                    {{ $riGlobalLine.Content | safeHTML }} Plakar Global Dedupe
+                                </span>
+                                <span class="text-xs font-mono text-green-700 bg-green-50 px-2 py-1 rounded border border-green-200">Minimal Egress</span>
+                            </div>
+                            <div class="grid grid-cols-10 gap-1 h-12 relative">
+                                <div class="bg-primary-500 rounded-sm w-full h-full shadow-lg shadow-primary-500/30 z-10"></div>
+                                <div class="bg-neutral-100 rounded-sm w-full h-full border border-neutral-200 border-dashed"></div>
+                                <div class="bg-neutral-100 rounded-sm w-full h-full border border-neutral-200 border-dashed"></div>
+                                <div class="bg-neutral-100 rounded-sm w-full h-full border border-neutral-200 border-dashed"></div>
+                                <div class="bg-neutral-100 rounded-sm w-full h-full border border-neutral-200 border-dashed"></div>
+                                <div class="bg-neutral-100 rounded-sm w-full h-full border border-neutral-200 border-dashed"></div>
+                                <div class="bg-neutral-100 rounded-sm w-full h-full border border-neutral-200 border-dashed"></div>
+                                <div class="bg-neutral-100 rounded-sm w-full h-full border border-neutral-200 border-dashed"></div>
+                                <div class="bg-neutral-100 rounded-sm w-full h-full border border-neutral-200 border-dashed"></div>
+                                <div class="bg-neutral-100 rounded-sm w-full h-full border border-neutral-200 border-dashed"></div>
+
+                                <div class="absolute top-1/2 left-[15%] -translate-y-1/2 ml-4 text-xs font-medium text-neutral-400 hidden sm:block">
+                                    ← Only unique chunks moved
+                                </div>
+                            </div>
+                            <div class="text-xs text-primary-600 font-mono font-bold text-right">-90% Egress Fees</div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="section-light-1 py-14 lg:py-20 border-t border-neutral-200">
+        <div class="content p-2 lg:p-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <div class="flex flex-col gap-4 p-6 bg-white rounded-xl border border-neutral-200 hover:border-primary-300 transition-colors shadow-sm">
+                    <div class="w-10 h-10 bg-primary-50 text-primary-600 rounded flex items-center justify-center">
+                        {{ $riTimeLine.Content | safeHTML }}
+                    </div>
+                    <h3 class="font-space-grotesk font-bold text-lg text-neutral-900">Frequency without Penalty</h3>
+                    <p class="text-neutral-600 text-sm">
+                        Because we only store changes, <b>backing up every hour costs the same as backing up every day.</b> Drastically improve your RPO without increasing your storage bill.
+                    </p>
+                </div>
+
+                <div class="flex flex-col gap-4 p-6 bg-white rounded-xl border border-neutral-200 hover:border-primary-300 transition-colors shadow-sm">
+                    <div class="w-10 h-10 bg-primary-50 text-primary-600 rounded flex items-center justify-center">
+                        {{ $riArrowLeftRightLine.Content | safeHTML }}
+                    </div>
+                    <h3 class="font-space-grotesk font-bold text-lg text-neutral-900">True Cross-Cloud Mobility</h3>
+                    <p class="text-neutral-600 text-sm">
+                        Unlock real cross-provider backups. You pay an optimized egress fee on the first sync, then <b>costs trend toward zero</b> over time. Vendor lock-in is finally purely optional.
+                    </p>
+                </div>
+
+                <div class="flex flex-col gap-4 p-6 bg-white rounded-xl border border-neutral-200 hover:border-primary-300 transition-colors shadow-sm">
+                    <div class="w-10 h-10 bg-primary-50 text-primary-600 rounded flex items-center justify-center">
+                        {{ $riCpuLine.Content | safeHTML }}
+                    </div>
+                    <h3 class="font-space-grotesk font-bold text-lg text-neutral-900">No Hardware Lock-in</h3>
+                    <p class="text-neutral-600 text-sm">
+                        Competitors require specific appliances to handle deduplication. Plakar's modern algorithmic approach runs on standard, cheap hardware or virtual machines.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="section-light-2 grid-background py-24 relative overflow-hidden border-t border-neutral-200">
+
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-primary-500/10 blur-[120px] rounded-full pointer-events-none"></div>
+
+        <div class="content px-4 text-center relative z-10">
+
+            <div class="max-w-3xl mx-auto flex flex-col gap-6">
+                <h2 class="text-3xl md:text-5xl font-space-grotesk font-medium text-neutral-900 leading-tight">
+                    Your budget can do more
+                </h2>
+
+                <p class="text-lg text-neutral-600 font-space-grotesk leading-relaxed">
+                    Stop renting your peace of mind. Switch to the resilience architecture that is open, audited, and cost-efficient by design.
+                </p>
+
+                <div class="flex justify-center mt-4">
+                    {{ partial "cta/book-a-demo-button.html" (dict "ctx" . "label" "Schedule a Cost Analysis" "class" "shadow-xl hover:scale-105 transition-transform") }}
+                </div>
+            </div>
+
+        </div>
+    </section>
+{{ end }}
