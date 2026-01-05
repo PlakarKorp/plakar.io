@@ -1,0 +1,492 @@
+{{ define "main" }}
+    {{ $riServerLine := resources.Get "img/ri/server-line.svg" }}
+    {{ $riShieldKeyholeLine := resources.Get "img/ri/shield-keyhole-line.svg" }}
+    {{ $riCpuLine := resources.Get "img/ri/cpu-line.svg" }}
+    {{ $riFileListLine := resources.Get "img/ri/file-list-3-line.svg" }}
+    {{ $riGlobalLine := resources.Get "img/ri/global-line.svg" }}
+    {{ $riOrganizationChart := resources.Get "img/ri/organization-chart.svg" }}
+    {{ $riLock2Line := resources.Get "img/ri/lock-2-line.svg" }}
+    {{ $riCheckLine := resources.Get "img/ri/check-line.svg" }}
+    {{ $riDashboardLine := resources.Get "img/ri/dashboard-3-line.svg" }}
+    {{ $riFlowChart := resources.Get "img/ri/flow-chart.svg" }}
+    {{ $riHardDrive2Line := resources.Get "img/ri/hard-drive-2-line.svg" }}
+    {{ $riBarChartGroupedLine := resources.Get "img/ri/bar-chart-grouped-line.svg" }}
+    {{ $riShareForwardLine := resources.Get "img/ri/share-forward-line.svg" }}
+    {{ $riTerminalBoxLine := resources.Get "img/ri/terminal-box-line.svg" }}
+    {{ $riCloudLine := resources.Get "img/ri/cloud-line.svg" }}
+    {{ $riSettings4Line := resources.Get "img/ri/settings-4-line.svg" }}
+    {{ $riLogoutBoxRLine := resources.Get "img/ri/logout-box-r-line.svg" }}
+
+    <section class="section-light-2 grid-background">
+        <div class="content p-2 lg:p-4 md:px-12 h-[67px] md:h-[98px] "></div>
+    </section>
+
+    <section class="section-light-2 grid-background pt-10 pb-20 relative overflow-hidden">
+        <div class="absolute top-0 right-0 p-96 bg-[#FF9900]/5 rounded-full blur-[150px] pointer-events-none"></div>
+
+        <div class="content p-2 lg:p-4 flex flex-col lg:flex-row items-center gap-8 relative z-10">
+
+            <div class="flex-1 flex flex-col gap-8 text-left min-w-0">
+                <div class="flex flex-col gap-4">
+                    <h2 class="text-primary-600 font-mono text-sm font-bold uppercase tracking-widest">Plakar for AWS</h2>
+
+                    <h1 class="font-space-grotesk font-medium ~text-3xl/5xl text-neutral-900 leading-tight">
+                        Cloud-Native Resilience<br/>
+                        <span class="text-primary-500 whitespace-nowrap">Agentless & Zero-Trust</span>
+                    </h1>
+                </div>
+
+                <p class="text-neutral-600 ~text-lg/xl font-space-grotesk leading-relaxed max-w-xl">
+                    Protect your AWS buckets and resources without deploying agents.
+                    Manage your resilience from within your VPC, but keep the freedom to replicate copies <b>outside of AWS</b> for a bulletproof disaster recovery strategy.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 mt-2">
+                    {{ partial "cta/book-a-demo-button.html" (dict "ctx" . "label" "Get AMI from Marketplace") }}
+                    <a href="#features" class="px-6 py-3 rounded-lg border border-neutral-300 bg-white text-neutral-900 font-medium hover:bg-neutral-50 transition-colors shadow-sm text-center">
+                        View Architecture
+                    </a>
+                </div>
+
+                <div class="flex items-center gap-4 text-xs font-mono text-neutral-500">
+                    <span class="flex items-center gap-1"><span class="w-2 h-2 bg-[#FF9900] rounded-full"></span> S3 Optimized</span>
+                    <span class="flex items-center gap-1"><span class="w-2 h-2 bg-[#FF9900] rounded-full"></span> Cloud Exit Ready</span>
+                </div>
+            </div>
+
+            <div class="flex-1 w-full relative flex justify-center lg:justify-end">
+                <div class="absolute inset-0 bg-primary-500/10 blur-3xl -z-10 rounded-full"></div>
+                <div class="relative w-full max-w-xl lg:max-w-max">
+                    {{ $dashboardEnterprise1 := resources.Get "img/dashboard-enterprise-1.png" }}
+                    <img src="{{ $dashboardEnterprise1.RelPermalink }}"
+                         alt="Plakar AWS Dashboard"
+                         class="w-full h-auto rounded-2xl shadow-2xl hover:scale-[1.02] transition-transform duration-500 border border-neutral-200/50">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-dark-1 py-14 lg:py-20 border-y border-neutral-800 relative overflow-hidden">
+
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#FF9900]/10 blur-[100px] rounded-full pointer-events-none"></div>
+
+        <div class="content p-2 lg:p-4 relative z-10">
+            <div class="flex flex-col gap-12">
+
+                <div class="text-center max-w-4xl mx-auto space-y-4">
+                    <h2 class="font-space-grotesk font-medium ~text-3xl/5xl text-white leading-tight">
+                        Shipped as a <span class="text-primary-500">Hardened AMI</span>
+                    </h2>
+                    <p class="text-lg font-space-grotesk text-neutral-400 leading-relaxed">
+                        Skip the configuration hell. Plakar Enterprise is delivered as a production-ready, immutable Amazon Machine Image designed for Zero-Trust VPCs.
+                        <span class="text-white font-medium">Launch. Connect. Secure.</span>
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                    <div class="bg-neutral-800/50 border border-neutral-700 p-6 rounded-xl flex flex-col gap-4 hover:bg-neutral-800 transition-colors group">
+                        <div class="w-12 h-12 bg-neutral-900 rounded-lg flex items-center justify-center text-[#FF9900] border border-neutral-700 group-hover:border-[#FF9900]/50 transition-colors">
+                            {{ $riCloudLine.Content | safeHTML }}
+                        </div>
+                        <div>
+                            <h3 class="text-white font-bold text-lg font-space-grotesk mb-2">Native AWS Marketplace</h3>
+                            <p class="text-neutral-400 text-sm leading-relaxed">
+                                Deploy directly into your private subnet from the <b>AWS Marketplace</b>. No EC2 configuration, no manual OS installation, no dependency management.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-neutral-800/50 border border-neutral-700 p-6 rounded-xl flex flex-col gap-4 hover:bg-neutral-800 transition-colors group">
+                        <div class="w-12 h-12 bg-neutral-900 rounded-lg flex items-center justify-center text-green-500 border border-neutral-700 group-hover:border-green-500/50 transition-colors">
+                            {{ $riLock2Line.Content | safeHTML }}
+                        </div>
+                        <div>
+                            <h3 class="text-white font-bold text-lg font-space-grotesk mb-2">Immutable Linux OS</h3>
+                            <p class="text-neutral-400 text-sm leading-relaxed">
+                                Runs on a stripped-down, <b>read-only Linux kernel</b>. SSH disabled by default, no package managers, no drift. Updates are atomic and cryptographically signed.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-neutral-800/50 border border-neutral-700 p-6 rounded-xl flex flex-col gap-4 hover:bg-neutral-800 transition-colors group">
+                        <div class="w-12 h-12 bg-neutral-900 rounded-lg flex items-center justify-center text-primary-500 border border-neutral-700 group-hover:border-primary-500/50 transition-colors">
+                            {{ $riShareForwardLine.Content | safeHTML }}
+                        </div>
+                        <div>
+                            <h3 class="text-white font-bold text-lg font-space-grotesk mb-2">Zero-Knowledge Architecture</h3>
+                            <p class="text-neutral-400 text-sm leading-relaxed">
+                                The AMI acts as a <b>Blind Proxy</b> inside your VPC. It orchestrates snapshots to S3/Glacier, but encryption keys remain with the source agents.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-light-1 py-14 lg:py-20 border-b border-neutral-200">
+        <div class="content p-2 lg:p-4 text-center max-w-4xl mx-auto flex flex-col gap-10">
+
+            <div class="flex flex-col gap-4">
+                <h2 class="font-space-grotesk font-medium ~text-3xl/5xl text-neutral-900">
+                    Stop Managing Backup Agents
+                </h2>
+                <p class="text-neutral-600 text-lg leading-relaxed">
+                    Discovery and protection happen at the API level. Plakar connects directly to your AWS resources using native data streams. No agents to install, update, or debug on your instances.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <div class="flex flex-col items-center gap-3">
+                    <div class="w-12 h-12 rounded-full bg-white border border-neutral-200 shadow-sm flex items-center justify-center text-[#FF9900]">
+                        {{ $riGlobalLine.Content | safeHTML }}
+                    </div>
+                    <h3 class="text-neutral-900 font-bold">Auto-Discovery</h3>
+                    <p class="text-sm text-neutral-600">Automatically detects new buckets and resources across your accounts and regions.</p>
+                </div>
+
+                <div class="flex flex-col items-center gap-3">
+                    <div class="w-12 h-12 rounded-full bg-white border border-neutral-200 shadow-sm flex items-center justify-center text-[#FF9900]">
+                        {{ $riCloudLine.Content | safeHTML }}
+                    </div>
+                    <h3 class="text-neutral-900 font-bold">Native AWS Objects Support</h3>
+                    <p class="text-sm text-neutral-600">Seamlessly back up S3 buckets and cloud-native assets without complex scripting.</p>
+                </div>
+
+                <div class="flex flex-col items-center gap-3">
+                    <div class="w-12 h-12 rounded-full bg-white border border-neutral-200 shadow-sm flex items-center justify-center text-[#FF9900]">
+                        {{ $riShieldKeyholeLine.Content | safeHTML }}
+                    </div>
+                    <h3 class="text-neutral-900 font-bold">Zero Impact</h3>
+                    <p class="text-sm text-neutral-600">Perform backups without consuming CPU or RAM on your production workloads.</p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section id="features" class="section-light-2 py-14 lg:py-28">
+        <div class="content p-2 lg:p-4 flex flex-col gap-12">
+
+            <div class="flex flex-col md:flex-row justify-between items-end gap-6 border-b border-neutral-200 pb-8">
+                <div class="max-w-2xl">
+                    <h2 class="~text-3xl/5xl font-space-grotesk font-medium text-neutral-900 leading-tight">
+                        Enterprise-Grade Management
+                    </h2>
+                    <p class="mt-4 text-lg font-space-grotesk text-neutral-600 leading-relaxed">
+                        Full visibility and control over your AWS resilience strategy.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white border border-neutral-200 p-8 rounded-2xl flex flex-col gap-4 shadow-sm hover:border-primary-500 transition-colors">
+                    <div class="w-10 h-10 bg-primary-50 text-primary-600 rounded flex items-center justify-center">
+                        {{ $riDashboardLine.Content | safeHTML }}
+                    </div>
+                    <h3 class="font-space-grotesk font-bold text-xl text-neutral-900">Unified Posture Dashboard</h3>
+                    <p class="text-neutral-600">
+                        Aggregates metadata from all AWS regions into a single pane of glass. Visualize protection status and storage consumption in real-time.
+                    </p>
+                </div>
+
+                <div class="bg-white border border-neutral-200 p-8 rounded-2xl flex flex-col gap-4 shadow-sm hover:border-primary-500 transition-colors">
+                    <div class="w-10 h-10 bg-primary-50 text-primary-600 rounded flex items-center justify-center">
+                        {{ $riFlowChart.Content | safeHTML }}
+                    </div>
+                    <h3 class="font-space-grotesk font-bold text-xl text-neutral-900">Policy-Driven Orchestration</h3>
+                    <p class="text-neutral-600">
+                        Define SLA and retention policies globally. The orchestrator handles scheduling and alerts you immediately if a backup job misses its window.
+                    </p>
+                </div>
+
+                <div class="bg-white border border-neutral-200 p-8 rounded-2xl flex flex-col gap-4 shadow-sm hover:border-primary-500 transition-colors">
+                    <div class="w-10 h-10 bg-primary-50 text-primary-600 rounded flex items-center justify-center">
+                        {{ $riOrganizationChart.Content | safeHTML }}
+                    </div>
+                    <h3 class="font-space-grotesk font-bold text-xl text-neutral-900">Advanced RBAC & Multi-Tenancy</h3>
+                    <p class="text-neutral-600">
+                        Create isolated environments for different teams. Define granular roles (Admin, Operator, Viewer) to enforce least-privilege access.
+                    </p>
+                </div>
+
+                <div class="bg-white border border-neutral-200 p-8 rounded-2xl flex flex-col gap-4 shadow-sm hover:border-primary-500 transition-colors">
+                    <div class="w-10 h-10 bg-primary-50 text-primary-600 rounded flex items-center justify-center">
+                        {{ $riShieldKeyholeLine.Content | safeHTML }}
+                    </div>
+                    <h3 class="font-space-grotesk font-bold text-xl text-neutral-900">AWS Secrets Manager Ready</h3>
+                    <p class="text-neutral-600">
+                        Native integration with AWS Secrets Manager. The appliance orchestrates backups but secrets are managed by your existing cloud infrastructure.
+                    </p>
+                </div>
+
+                <div class="md:col-span-2 bg-neutral-900 p-8 rounded-2xl flex flex-col justify-center items-start gap-4 shadow-lg relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-32 bg-primary-600 rounded-full blur-[80px] opacity-20 group-hover:opacity-30 transition-opacity"></div>
+                    <h3 class="relative z-10 font-space-grotesk font-bold text-2xl text-white">Simple Licensing, Premium Support</h3>
+                    <p class="relative z-10 text-neutral-400 max-w-lg">
+                        One simple license for the AMI. Includes priority support from the core engineering team. License costs are negligible compared to storage savings.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-dark-1 py-14 lg:py-28">
+        <div class="content">
+            <div class="pl-4 flex flex-col md:flex-row w-full gap-12 items-center">
+                <div class="w-full md:w-1/2 space-y-8">
+                    <div class="text-left space-y-4">
+                        <h2 class="~text-3xl/5xl font-medium font-space-grotesk text-white">
+                            Military Grade <span class="text-primary-500">Security</span>
+                        </h2>
+                        <p class="text-lg text-neutral-400">
+                            Reduce your attack surface by utilizing AWS IAM roles. Plakar integrates natively with your VPC security groups and IAM policies.
+                        </p>
+                    </div>
+
+                    <ul class="space-y-4 font-space-text text-neutral-300">
+                        <li class="flex items-start gap-3">
+                            <span class="text-primary-500 mt-1">✓</span>
+                            <span>End-to-end encryption with modern crypto</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-primary-500 mt-1">✓</span>
+                            <span>Audited Open Source Core by top experts</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-primary-500 mt-1">✓</span>
+                            <span>Blind Proxies for Zero-Knowledge agent operations</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-primary-500 mt-1">✓</span>
+                            <span>Cloud Exit Strategy: Sync copies outside AWS safely</span>
+                        </li>
+                    </ul>
+
+                    <blockquote class="border-l-4 border-primary-500 pl-6 py-2 italic text-neutral-300 text-lg font-space-text bg-neutral-800/50 rounded-r-lg">
+                        "You don’t have to trust your storage provider."
+                    </blockquote>
+                </div>
+
+                <div class="w-full md:w-1/2 flex items-center justify-center">
+                    {{ $laptop := resources.Get "img/laptop-plakar-demo.png" }}
+                    <img src="{{ $laptop.RelPermalink }}" alt="Security Demo" class="w-full max-w-md h-auto object-contain drop-shadow-2xl rounded-2xl opacity-90 hover:opacity-100 transition-opacity">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-light-2 py-14 lg:py-28 relative overflow-hidden">
+        <div class="content p-2 lg:p-4 relative z-10">
+            <div class="flex flex-col gap-12">
+
+                <div class="text-center max-w-3xl mx-auto space-y-4">
+                    <h2 class="~text-3xl/5xl font-space-grotesk font-medium text-neutral-900 leading-tight">
+                        Drastically Reduce <span class="text-primary-500">Resource Usage</span>
+                    </h2>
+                    <p class="text-lg font-space-grotesk text-neutral-600">
+                        Security usually implies a "storage tax". Plakar reverses the math. By performing deduplication and compression <i>at the source</i>, we slash both network API calls and storage footprints.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 items-stretch">
+
+                    <div class="bg-white border border-neutral-200 rounded-2xl p-8 flex flex-col gap-6 shadow-sm">
+                        <div class="flex items-center gap-3 text-primary-600">
+                            {{ $riBarChartGroupedLine.Content | safeHTML }}
+                            <h3 class="font-bold text-xl font-space-grotesk text-neutral-900">Network & Egress Costs</h3>
+                        </div>
+                        <p class="text-neutral-600 text-sm h-12">
+                            Replicating backups to another region or cloud provider usually triggers massive Egress fees. Plakar sends only deduplicated chunks, reducing these costs by up to 90%.
+                        </p>
+
+                        <div class="flex items-end gap-8 h-48 mt-4 border-b border-neutral-200 pb-2 px-4 relative">
+                            <div class="w-1/3 flex flex-col justify-end items-center gap-2 h-full">
+                                <span class="text-xs font-mono text-neutral-400">100%</span>
+                                <div class="w-full h-full bg-neutral-300 rounded-t-md relative group">
+                                    <div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-neutral-800 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                                        Full Egress Fees
+                                    </div>
+                                </div>
+                                <span class="text-xs font-bold text-neutral-500 uppercase tracking-wider">Standard</span>
+                            </div>
+                            <div class="w-1/3 flex flex-col justify-end items-center gap-2 h-full">
+                                <span class="text-xs font-mono text-primary-600 font-bold">-90%</span>
+                                <div class="w-full h-[10%] bg-primary-500 rounded-t-md relative group">
+                                    <div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary-600 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                                        Deduped Egress
+                                    </div>
+                                </div>
+                                <span class="text-xs font-bold text-primary-600 uppercase tracking-wider">Plakar</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white border border-neutral-200 rounded-2xl p-8 flex flex-col gap-6 shadow-sm">
+                        <div class="flex items-center gap-3 text-primary-600">
+                            {{ $riHardDrive2Line.Content | safeHTML }}
+                            <h3 class="font-bold text-xl font-space-grotesk text-neutral-900">Direct-to-Glacier</h3>
+                        </div>
+                        <p class="text-neutral-600 text-sm h-12">
+                            Native snapshots often trap data in expensive tiers. Plakar writes directly to S3 Glacier Instant Retrieval or Deep Archive, bypassing standard storage costs.
+                        </p>
+
+                        <div class="flex items-end gap-8 h-48 mt-4 border-b border-neutral-200 pb-2 px-4 relative">
+                            <div class="w-1/3 flex flex-col justify-end items-center gap-2 h-full">
+                                <span class="text-xs font-mono text-neutral-400">High</span>
+                                <div class="w-full h-[80%] bg-neutral-300 rounded-t-md relative group">
+                                    <div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-neutral-800 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                                        Standard Class
+                                    </div>
+                                </div>
+                                <span class="text-xs font-bold text-neutral-500 uppercase tracking-wider">Snapshots</span>
+                            </div>
+                            <div class="w-1/3 flex flex-col justify-end items-center gap-2 h-full">
+                                <span class="text-xs font-mono text-primary-600 font-bold">Low</span>
+                                <div class="w-full h-[20%] bg-primary-500 rounded-t-md relative group">
+                                    <div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary-600 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                                        Glacier Direct
+                                    </div>
+                                </div>
+                                <span class="text-xs font-bold text-primary-600 uppercase tracking-wider">Plakar</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-light-1 py-14 lg:py-28">
+        <div class="content space-y-10 p-4 flex flex-col gap-6">
+            <div class="flex flex-col items-end text-right space-y-6 pl-4">
+                <h2 class="~text-2xl/4xl font-medium font-space-grotesk text-neutral-900">
+                    Designed for modern cloud infrastructure
+                </h2>
+                <p class="text-lg text-neutral-600 max-w-3xl">
+                    Automate your protection workflows with simple CLI and API integration, perfect for GitOps and CI/CD pipelines.
+                </p>
+            </div>
+
+            <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="text-center md:text-left space-y-2 bg-white border border-primary-100 rounded-2xl p-6 hover:border-primary-300 transition-colors shadow-sm">
+                    <h3 class="~text-lg/2xl font-semibold text-primary-600">CLI & API Friendly</h3>
+                    <p class="text-neutral-600 font-space-text ~text-base/lg">
+                        Built for DevOps teams. Automate backups or run them manually with simple, powerful commands from your EC2 instances.
+                    </p>
+                </div>
+                <div class="text-center md:text-left space-y-2 bg-white border border-primary-100 rounded-2xl p-6 hover:border-primary-300 transition-colors shadow-sm">
+                    <h3 class="~text-lg/2xl font-semibold text-primary-600">Cross-Cloud Ready</h3>
+                    <p class="text-neutral-600 font-space-text ~text-base/lg">
+                        Works everywhere. Replicate your AWS S3 backups to on-premise NAS or another cloud provider for a bulletproof exit strategy.
+                    </p>
+                </div>
+                <div class="text-center md:text-left space-y-2 bg-white border border-primary-100 rounded-2xl p-6 hover:border-primary-300 transition-colors shadow-sm">
+                    <h3 class="~text-lg/2xl font-semibold text-primary-600">Network Agnostic</h3>
+                    <p class="text-neutral-600 font-space-text ~text-base/lg">
+                        Push, pull, or bidirectional — Plakar handles sync even across VPC peering or between isolated cloud regions.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="architecture" class="section-dark-1 py-14 lg:py-28 relative overflow-hidden">
+        <div class="content p-2 lg:p-4 flex flex-col gap-16 items-center">
+
+            <div class="text-center max-w-3xl">
+                <h2 class="font-space-grotesk font-medium ~text-3xl/5xl text-white leading-tight mb-6">
+                    Inside the AMI: <span class="text-primary-500">The Stack</span>
+                </h2>
+                <p class="text-neutral-400 text-lg">
+                    A hardened stack designed for cloud-native operations.
+                </p>
+            </div>
+
+            <div class="w-full max-w-5xl flex flex-col gap-6 relative">
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-neutral-800 border border-neutral-700 rounded-xl p-5 flex flex-col items-center text-center gap-3 group hover:border-secondary-500 transition-colors">
+                        <div class="text-secondary-500">{{ $riTerminalBoxLine.Content | safeHTML }}</div>
+                        <h3 class="text-white font-bold text-base">Embedded Agents</h3>
+                        <p class="text-neutral-400 text-xs">Self-contained runners</p>
+                    </div>
+                    <div class="bg-neutral-800 border border-neutral-700 rounded-xl p-5 flex flex-col items-center text-center gap-3 group hover:border-primary-500 transition-colors">
+                        <div class="text-primary-400">{{ $riShareForwardLine.Content | safeHTML }}</div>
+                        <h3 class="text-white font-bold text-base">Blind Proxies</h3>
+                        <p class="text-neutral-400 text-xs">Zero-Knowledge Relay</p>
+                    </div>
+                    <div class="bg-neutral-800 border border-neutral-700 rounded-xl p-5 flex flex-col items-center text-center gap-3 group hover:border-primary-500 transition-colors">
+                        <div class="text-primary-400">{{ $riGlobalLine.Content | safeHTML }}</div>
+                        <h3 class="text-white font-bold text-base">Orchestrator</h3>
+                        <p class="text-neutral-400 text-xs">Policy Engine & Scheduler</p>
+                    </div>
+                    <div class="bg-neutral-800 border border-neutral-700 rounded-xl p-5 flex flex-col items-center text-center gap-3 group hover:border-primary-500 transition-colors">
+                        <div class="text-primary-400">{{ $riDashboardLine.Content | safeHTML }}</div>
+                        <h3 class="text-white font-bold text-base">Control Plane UI</h3>
+                        <p class="text-neutral-400 text-xs">Unified Console</p>
+                    </div>
+                </div>
+
+                <div class="bg-neutral-800 border border-neutral-700 rounded-xl p-6 flex flex-col md:flex-row items-center justify-between gap-6 group hover:border-blue-400 transition-colors">
+                    <div class="flex items-center gap-4">
+                        <div class="p-2 bg-neutral-900 rounded-lg text-blue-400">
+                            {{ $riCpuLine.Content | safeHTML }}
+                        </div>
+                        <div class="text-left">
+                            <h3 class="text-white font-bold text-lg">Container Runtime Isolation</h3>
+                            <p class="text-neutral-400 text-sm">Strict process isolation via Docker engine. Limits lateral movement.</p>
+                        </div>
+                    </div>
+                    <div class="h-1 flex-1 bg-blue-900/30 rounded mx-4 hidden md:block"></div>
+                </div>
+
+                <div class="bg-neutral-800 border border-neutral-700 rounded-xl p-6 flex flex-col md:flex-row items-center justify-between gap-6 group hover:border-green-400 transition-colors">
+                    <div class="flex items-center gap-4">
+                        <div class="p-2 bg-neutral-900 rounded-lg text-green-400">
+                            {{ $riLock2Line.Content | safeHTML }}
+                        </div>
+                        <div class="text-left">
+                            <h3 class="text-white font-bold text-lg">Immutable Linux Kit OS</h3>
+                            <p class="text-neutral-400 text-sm">Minimal, read-only operating system. No SSH, no drift, atomic updates.</p>
+                        </div>
+                    </div>
+                    <div class="h-1 flex-1 bg-green-900/30 rounded mx-4 hidden md:block"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="section-light-1 py-20 px-4 border-t border-neutral-200">
+        <div class="content p-2 lg:p-4 flex flex-col items-center text-center gap-12">
+
+            <div class="flex flex-col gap-4 max-w-4xl mx-auto">
+                <h2 class="font-space-grotesk font-medium ~text-3xl/5xl text-neutral-900 leading-tight">
+                    "60% of organizations don’t trust their backups."
+                </h2>
+                <div class="text-neutral-500 text-xs font-mono uppercase tracking-widest">
+                    Source: Unitrends, The State of Backup and Recovery Report 2025
+                </div>
+            </div>
+
+            <div class="flex flex-col items-center gap-8 max-w-2xl">
+                <p class="text-neutral-600 text-lg leading-relaxed">
+                    Stop hoping, start knowing. <br/>
+                    Secure your AWS Cloud with a control plane you actually own.
+                </p>
+
+                <div class="flex justify-center w-full">
+                    {{ partial "cta/book-a-demo-button.html" (dict "ctx" . "label" "Deploy from Marketplace" "class" "bg-[#FF9900] text-white hover:bg-[#E68A00] border-none px-8 py-4 text-lg shadow-xl transition-transform hover:scale-105 font-bold") }}
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+{{ end }}

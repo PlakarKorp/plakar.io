@@ -1,20 +1,17 @@
     {{ define "main" }}
         {{ $riDatabaseLine := resources.Get "img/ri/database-line.svg" }}
-        {{ $riCodeBoxLine := resources.Get "img/ri/code-box-line.svg" }}
         {{ $riArchiveLine := resources.Get "img/ri/archive-line.svg" }}
         {{ $riPuzzle2Line := resources.Get "img/ri/puzzle-2-line.svg" }}
-        {{ $riFlashlightLine := resources.Get "img/ri/flashlight-line.svg" }}
         {{ $riListView := resources.Get "img/ri/list-view.svg" }}
         {{ $riMenuSearchLine := resources.Get "img/ri/menu-search-line.svg" }}
-        {{ $riShieldCheckLine := resources.Get "img/ri/shield-check-line.svg" }}
-        {{ $riTerminalBoxLine := resources.Get "img/ri/terminal-box-line.svg" }}
-        {{ $riTerminalWindowLine := resources.Get "img/ri/terminal-window-line.svg" }}
         {{ $riCheckLine := resources.Get "img/ri/check-line.svg" }}
+        {{ $riApps2Line := resources.Get "img/ri/apps-2-line.svg" }}
+        {{ $riServerLine := resources.Get "img/ri/server-line.svg" }}
+        {{ $riFileLockLine := resources.Get "img/ri/file-lock-line.svg" }}
         {{ $testimonialJJ := resources.Get "img/testimonial/jj.jpeg" }}
         {{ $gradientBlue := resources.Get "img/GRADIENT_BLUE.png" }}
         {{ $nestorInline := resources.Get "img/nestor-inline.svg" }}
         {{ $dockerLogo := resources.Get "img/docker-logo.svg" }}
-        {{ $prompt := "<span class=\"t-path\">$ </span>" | safeHTML }}
 
         <!-- Navbar placeholder -->
         <section class="section-light-2 grid-background">
@@ -26,149 +23,370 @@
         <section class="section-light-2 grid-background px-4 pt-20 pb-7">
             <div class="content flex flex-col justify-between items-start gap-8">
                 <div class="self-stretch text-center justify-start font-medium ~text-4xl/6xl">
-                    <h1><span class="text-primary-500">Backup</span>
-                        for <span class="line-through"> lazy</span> <span class="text-primary-500">smart</span> engineers.</h1>
+                    <h1>
+                        <span class="text-primary-500">Backup</span> Anything.
+                        <span class="text-primary-500">Store</span> Anywhere. <br />
+                        <span class="text-primary-500">Restore</span> Everywhere.
+                    </h1>
                 </div>
                 <div class="self-stretch text-center justify-start text-neutral-600 ~text-lg/xl">
-                    Encrypted, queryable backups for engineers who value their time and data.<br/>
-                    CLI, API and UI interfaces. Clean defaults, easy to deploy. Just install and run.
+                    The open standard for unified resilience.<br/>
+                    Secure your Cloud, SaaS and On-Prem data with native zero-trust encryption.
                 </div>
                 <div class="self-stretch flex text-center items-center justify-center">
-                    {{ partial "cta/get-started-button.html" . }}
+                    {{ partial "cta/get-started-button.html" (dict "ctx" . "label" "Quickstart guide") }}
                 </div>
             </div>
         </section>
 
-        <!-- Get started section -->
-        <section class="section-light-2 grid-background pt-14 lg:pt-28"
-                 x-data="{
-                focus: window.innerWidth >= 1024 ? 'web' : '',
-                smallScreen: window.innerWidth < 1024,
-                handleResize() {
-                  this.focus = window.innerWidth >= 1024 ? 'web' : '';
-                  this.smallScreen = window.innerWidth < 1024;
-                }
-              }"
-                 @resize.window="handleResize"
+        <!-- Title footer -->
+        <section class="section-light-2 grid-background pt-14 lg:pt-14">
+            <div class="bg-gradient-section">
+                <div class="content px-4 flex flex-col lg:flex-row gap-6 ">
+                    <!-- Image -->
+                        {{ $dashboard8 := resources.Get "img/dashboard-8.png" }}
+                        <img src="{{ $dashboard8.RelPermalink }}" alt="Plakar dashboard"
+                             class="block mx-auto rounded-t-xl border-x-8 border-t-8 border-neutral-900/20">
+                </div>
+            </div>
+        </section>
 
-        >
-            <div class="bg-gradient-section pb-4">
-                <div class="content px-4 flex flex-col lg:flex-row gap-6 transition-all duration-500 lg:h-[600px]">
+        <!-- Problem statement section -->
+        <section class="section-light-2 py-14 lg:py-28">
+            <div class="content pt-12">
 
-                    <!-- Terminal block (left) -->
-                    <div
-                            @mouseenter="if (window.innerWidth >= 1024) focus = 'terminal'"
-                            class="transition-all duration-500 flex flex-col bg-neutral-700 text-neutral-50 outline outline-8 outline-neutral-900/20 shadow-xl rounded-lg"
-                            :class="focus === 'terminal' || smallScreen ? 'lg:basis-2/3 p-4' : 'lg:basis-1/3 p-0'"
-                    >
-                        <!-- Inner flex with dynamic gap -->
-                        <div class="flex flex-col lg:flex-row transition-all duration-500 ease-in-out h-full "
-                             :class="focus === 'terminal' || smallScreen ? 'gap-6' : 'gap-0'">
+                <div class="text-center flex flex-col gap-8 max-w-4xl mx-auto">
+                    <h2 class="~text-4xl/6xl font-space-grotesk font-medium text-neutral-900 leading-tight">
+                        The <span class="text-primary-500">Math</span> has changed
+                    </h2>
+                    <p class="~text-lg/xl font-space-grotesk text-neutral-600 leading-normal">
+                        End-to-end encryption broke the efficiency model of traditional backup.<br class="hidden md:block"/>
+                        Plakar defined a new architectural standard.
+                    </p>
+                </div>
 
-                            <!-- Terminal text container -->
-                            <div class="relative overflow-hidden transition-all duration-500 ease-in-out h-full order-2 lg:order-1"
-                                 :class="focus === 'terminal' || smallScreen ? 'lg:w-[200px] xl:w-[300px]' : 'lg:w-0 pl-0'"
-                            >
-                                <div class="flex flex-col justify-between gap-4 lg:w-[200px] xl:w-[300px]">
-                                    <div class="flex flex-col gap-4">
-                                        <h2 class="~text-xl/4xl font-space-grotesk leading-tight">
-                                            Your first backup in few seconds.
-                                        </h2>
-                                        <p class="font-space-grotesk ~text-base/xl leading-snug">
-                                            No setup hassle, no obscure commands, no reason not to protect your data.
-                                        </p>
-                                    </div>
-                                    <div>
-                                        {{ partial "cta/get-started-button.html" . }}
-                                    </div>
-                                </div>
+                <div class="pt-6 grid md:grid-cols-3 gap-8 lg:gap-12">
+
+                    <div class="p-6 bg-white border border-neutral-200 rounded-lg shadow-sm flex flex-col gap-3">
+                        <div class="flex items-center gap-3 text-primary-500">
+                            <div class="w-6 h-6 shrink-0">{{ $riFileLockLine.Content | safeHTML }}</div>
+                            <h3 class="font-space-grotesk font-semibold text-lg text-neutral-900 leading-tight">
+                                Encryption kills storage efficiency
+                            </h3>
+                        </div>
+                        <p class="text-neutral-600 leading-relaxed font-space-grotesk text-base">
+                            Standard backup solutions cannot deduplicate what they cannot see. You are forced to choose: explode your storage costs or surrender your encryption keys.<br/>
+                            <span class="font-medium text-neutral-800 mt-2 block">Plakar fixes the math: high density on fully encrypted data.</span>
+                        </p>
+                    </div>
+
+                    <div class="p-6 bg-white border border-neutral-200 rounded-lg shadow-sm flex flex-col gap-3">
+                        <div class="flex items-center gap-3 text-primary-500">
+                            <div class="w-6 h-6 shrink-0">{{ $riServerLine.Content | safeHTML }}</div>
+                            <h3 class="font-space-grotesk font-semibold text-lg text-neutral-900 leading-tight">
+                                Backup engines break at scale
+                            </h3>
+                        </div>
+                        <p class="text-neutral-600 leading-relaxed font-space-grotesk text-base">
+                            Architectures built for gigabytes crumble under petabytes. They consume too much RAM, scan too slowly and inevitably miss your SLAs.<br/>
+                            <span class="font-medium text-neutral-800 mt-2 block">Plakar is engineered for exabytes with a minimal footprint.</span>
+                        </p>
+                    </div>
+
+                    <div class="p-6 bg-white border border-neutral-200 rounded-lg shadow-sm flex flex-col gap-3">
+                        <div class="flex items-center gap-3 text-primary-500">
+                            <div class="w-6 h-6 shrink-0">{{ $riApps2Line.Content | safeHTML }}</div>
+                            <h3 class="font-space-grotesk font-semibold text-lg text-neutral-900 leading-tight">
+                                Files are just a fraction of your data
+                            </h3>
+                        </div>
+                        <p class="text-neutral-600 leading-relaxed font-space-grotesk text-base">
+                            Your assets live in SaaS, databases and Cloud buckets. Traditional tools ignore these sources, forcing you to maintain brittle custom scripts.<br/>
+                            <span class="font-medium text-neutral-800 mt-2 block">Plakar builds the open ecosystem to secure any data source.</span>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Plakar Unified Resilience Architecture  -->
+        <section class="section-dark-1 py-14 lg:py-28 relative overflow-hidden">
+
+            <div class="absolute inset-0 pointer-events-none opacity-20">
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[400px] bg-gradient-to-r from-secondary-500/30 to-primary-500/20 blur-[120px] rounded-full"></div>
+            </div>
+
+            <div class="content relative z-10">
+
+                <div class="text-center flex flex-col gap-6 max-w-3xl mx-auto mb-16">
+                    <h2 class="~text-3xl/5xl font-space-grotesk font-medium text-white leading-tight">
+                        Plakar <span class="text-primary-500">Unified Resilience</span> Architecture
+                    </h2>
+                    <p class="~text-lg/xl font-space-grotesk text-neutral-400 leading-relaxed">
+                        Decoupling data protection from infrastructure constraints.<br class="hidden md:block"/>
+                        From <span class="text-white">source</span> to <span class="text-white">value</span>, you are in control.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+
+                    <div class="hidden lg:block absolute top-12 left-[12%] right-[12%] h-0.5 bg-gradient-to-r from-transparent via-secondary-900 to-transparent -z-10"></div>
+
+                    <div class="bg-neutral-800 border border-neutral-700 rounded-xl p-6 shadow-lg flex flex-col gap-4 relative group hover:border-secondary-500 transition-colors">
+                        <div class="absolute top-4 right-4">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-secondary-400 border border-secondary-900 bg-secondary-900/30 px-2 py-0.5 rounded-full">Open Source</span>
+                        </div>
+
+                        <div class="w-12 h-12 bg-neutral-900 border border-neutral-700 rounded-lg flex items-center justify-center text-secondary-500 mb-2 group-hover:scale-110 transition-transform shadow-inner">
+                            {{ $riLock2Line := resources.Get "img/ri/lock-2-line.svg" }}
+                            <div class="w-6 h-6">{{ $riLock2Line.Content | safeHTML }}</div>
+                        </div>
+
+                        <div>
+                            <div class="text-secondary-500 font-mono text-xs font-bold tracking-widest mb-1">01 / BACKUP</div>
+                            <h3 class="font-space-grotesk font-semibold text-xl text-white">
+                                Secure at Source
+                            </h3>
+                        </div>
+
+                        <p class="text-neutral-400 font-space-grotesk text-sm leading-relaxed">
+                            Deploy <b class="text-secondary-400">agents</b> on-premise or use <b class="text-secondary-400">agentless connectors</b> for Cloud & SaaS. Deduplication & encryption happen <i>at the source</i>, ensuring zero-knowledge privacy before data moves.
+                        </p>
+                    </div>
+
+                    <div class="bg-neutral-800 border border-neutral-700 rounded-xl p-6 shadow-lg flex flex-col gap-4 relative group hover:border-secondary-500 transition-colors">
+                        <div class="absolute top-4 right-4">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-secondary-400 border border-secondary-900 bg-secondary-900/30 px-2 py-0.5 rounded-full">Open Source</span>
+                        </div>
+
+                        <div class="w-12 h-12 bg-neutral-900 border border-neutral-700 rounded-lg flex items-center justify-center text-secondary-500 mb-2 group-hover:scale-110 transition-transform shadow-inner">
+                            {{ $riHardDrive2Line := resources.Get "img/ri/hard-drive-2-line.svg" }}
+                            <div class="w-6 h-6">{{ $riHardDrive2Line.Content | safeHTML }}</div>
+                        </div>
+
+                        <div>
+                            <div class="text-secondary-500 font-mono text-xs font-bold tracking-widest mb-1">02 / STORAGE</div>
+                            <h3 class="font-space-grotesk font-semibold text-xl text-white">
+                                Self-Host or Delegate
+                            </h3>
+                        </div>
+
+                        <p class="text-neutral-400 font-space-grotesk text-sm leading-relaxed">
+                            Store copies yourself on any disk or cloud, OR delegate resilience to a Provider via the <b class="text-secondary-400">Plakar Vault Protocol</b>. In both cases, your data remains fully encrypted and sovereign.
+                        </p>
+                    </div>
+
+                    <div class="bg-neutral-800 border border-neutral-700 rounded-xl p-6 shadow-lg flex flex-col gap-4 relative group hover:border-secondary-500 transition-colors">
+                        <div class="absolute top-4 right-4">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-secondary-400 border border-secondary-900 bg-secondary-900/30 px-2 py-0.5 rounded-full">Open Source</span>
+                        </div>
+
+                        <div class="w-12 h-12 bg-neutral-900 border border-neutral-700 rounded-lg flex items-center justify-center text-secondary-500 mb-2 group-hover:scale-110 transition-transform shadow-inner">
+                            {{ $riShieldCheckLine := resources.Get "img/ri/shield-check-line.svg" }}
+                            <div class="w-6 h-6">{{ $riShieldCheckLine.Content | safeHTML }}</div>
+                        </div>
+
+                        <div>
+                            <div class="text-secondary-500 font-mono text-xs font-bold tracking-widest mb-1">03 / VERIFY</div>
+                            <h3 class="font-space-grotesk font-semibold text-xl text-white">
+                                Native Integrity Proofs
+                            </h3>
+                        </div>
+
+                        <p class="text-neutral-400 font-space-grotesk text-sm leading-relaxed">
+                            Don't assume, verify. Mount snapshots to run business logic tests or rely on Plakar's <b class="text-secondary-400">native cryptographic proofs</b> to guarantee zero bit-rot without full restoration.
+                        </p>
+                    </div>
+
+                    <div class="bg-neutral-800 border border-neutral-700 rounded-xl p-6 shadow-lg flex flex-col gap-4 relative group hover:border-secondary-500 transition-colors">
+                        <div class="absolute top-4 right-4">
+                            <span class="text-[10px] font-bold uppercase tracking-wider text-secondary-400 border border-secondary-900 bg-secondary-900/30 px-2 py-0.5 rounded-full">Open Source</span>
+                        </div>
+
+                        <div class="w-12 h-12 bg-neutral-900 border border-neutral-700 rounded-lg flex items-center justify-center text-secondary-500 mb-2 group-hover:scale-110 transition-transform shadow-inner">
+                            {{ $riFlashlightLine := resources.Get "img/ri/flashlight-line.svg" }}
+                            <div class="w-6 h-6">{{ $riFlashlightLine.Content | safeHTML }}</div>
+                        </div>
+
+                        <div>
+                            <div class="text-secondary-500 font-mono text-xs font-bold tracking-widest mb-1">04 / CREATE VALUE</div>
+                            <h3 class="font-space-grotesk font-semibold text-xl text-white">
+                                Recover & Provision
+                            </h3>
+                        </div>
+
+                        <p class="text-neutral-400 font-space-grotesk text-sm leading-relaxed">
+                            Stop treating backups as dead weight. Trigger full disaster recovery or <b class="text-secondary-400">provision staging environments</b> instantly to fuel your business workflows.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="mt-8 md:mt-12 bg-black border border-neutral-800 rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-8 md:gap-16 shadow-2xl relative overflow-hidden group">
+
+                    <div class="absolute top-0 right-0 p-40 bg-primary-900/20 rounded-full blur-[100px] group-hover:bg-primary-900/30 transition-colors"></div>
+
+                    <div class="flex-1 flex flex-col gap-4 relative z-10">
+                        <div class="flex items-center gap-3 text-primary-500 mb-2">
+                            {{ $riDashboardLine := resources.Get "img/ri/dashboard-3-line.svg" }}
+                            <div class="w-5 h-5">{{ $riDashboardLine.Content | safeHTML }}</div>
+                            <span class="font-space-grotesk font-bold uppercase tracking-widest text-sm text-primary-500">Governance Layer</span>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-space-grotesk font-medium text-white">
+                            Plakar Enterprise: <span class="text-primary-500">Unified Backup Posture</span>
+                        </h3>
+                        <p class="text-neutral-400 font-space-grotesk text-lg leading-relaxed">
+                            The missing link for C-Levels. Aggregates metadata from all agents to map your real-time protection status. Identify <span class="text-white">blind spots</span>, unbacked up assets, and enforce <span class="text-white">compliance</span> across the entire estate.
+                        </p>
+                    </div>
+
+                    <div class="w-full md:w-1/3 bg-neutral-900 border border-neutral-800 rounded-xl p-6 relative z-10 shadow-inner group-hover:border-primary-900/50 transition-colors">
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center border-b border-neutral-800 pb-2">
+                                <span class="text-neutral-500 font-mono text-sm">Total Assets</span>
+                                <span class="text-white font-mono font-bold">1,420</span>
                             </div>
-
-                            <!-- Terminal UI -->
-                            <div class="terminal-slim flex flex-col flex-1 h-full bg-black rounded-lg overflow-hidden p-0 order-1 lg:order-2">
-                                <div class="terminal-slim-body space-y-1">
-                                    <div class="t-line"><span class="t-prompt">$</span> go install
-                                        github.com/PlakarKorp/plakar@latest
-                                    </div>
-                                    <div class="t-line">&nbsp;</div>
-                                    <div class="t-line"><span class="t-prompt">$</span> plakar at ~/backups backup /etc
-                                    </div>
-                                    <div class="t-line text-green-400">backup: created 003affd1, 9.8 MB in 262ms</div>
-                                    <div class="t-line">&nbsp;</div>
-                                    <div class="t-line"><span class="t-prompt">$</span> plakar at ~/backups restore -to
-                                        /tmp/
-                                    </div>
-                                    <div class="t-line">backups 003affd1</div>
-                                    <div class="t-line text-green-400">restore completed</div>
-                                </div>
+                            <div class="flex justify-between items-center border-b border-neutral-800 pb-2">
+                                <span class="text-neutral-500 font-mono text-sm">Protected</span>
+                                <span class="text-primary-500 font-mono font-bold">99.9%</span>
                             </div>
-
+                            <div class="flex justify-between items-center">
+                                <span class="text-neutral-500 font-mono text-sm">Integrity Check</span>
+                                <span class="text-primary-500 font-mono font-bold">PASSED</span>
+                            </div>
                         </div>
                     </div>
 
+                </div>
 
-                    <!-- Web interface block (right) -->
-                    <div
-                            @mouseenter="if (window.innerWidth >= 1024) focus = 'web'"
-                            class="lg:max-h-[600px] transition-all duration-500 flex flex-col bg-primary-50 outline outline-8 outline-neutral-900/20 shadow-xl rounded-lg overflow-hidden"
-                            :class="focus === 'web' || smallScreen ? 'lg:basis-2/3 p-4' : 'lg:basis-1/3 p-0'"
-                    >
-                        <!-- Inner flex row with dynamic spacing -->
-                        <div class="flex flex-col lg:flex-row items-stretch transition-all duration-500 ease-in-out overflow-hidden h-full"
-                             :class="focus === 'web' || smallScreen ? 'gap-6' : 'gap-0'">
+            </div>
+        </section>
 
-                            <!-- Web text container -->
-                            <div class="relative overflow-hidden transition-all duration-500 ease-in-out h-full order-2 lg:order-1"
-                                 :class="focus === 'web' || smallScreen ? 'lg:w-[200px] xl:w-[300px]' : 'lg:w-0 pl-0'"
-                            >
-                                <div class="flex flex-col justify-between gap-4 lg:w-[200px] xl:w-[300px]">
-                                    <div class="flex flex-col gap-4">
-                                        <h2 class="~text-xl/4xl font-space-grotesk text-neutral-900 leading-tight">
-                                            Browse your backups
-                                        </h2>
-                                        <p class="text-neutral-600 font-space-grotesk ~text-base/xl leading-snug">
-                                            With plakar embedded web interface, you can easily browse and manage your
-                                            backups.
-                                        </p>
+        <!-- Why tech leaders choose Plakar Enterprise -->
+        <section class="section-light-1 py-14 lg:py-28 bg-white relative">
+            <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-30 pointer-events-none">
+                <div class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-primary-100 rounded-full blur-3xl"></div>
+                <div class="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-secondary-50 rounded-full blur-3xl"></div>
+            </div>
+
+            <div class="content flex flex-col gap-12 relative z-10 px-4">
+
+                <div class="flex flex-col md:flex-row justify-between items-end gap-6 border-b border-neutral-200 pb-8">
+                    <div class="max-w-2xl">
+                        <h2 class="~text-4xl/6xl font-space-grotesk font-medium text-neutral-900 leading-tight">
+                            From blind spots to <span class="text-primary-500">provable posture</span>
+                        </h2>
+                        <p class="mt-4 ~text-lg/xl font-space-grotesk text-neutral-600 leading-relaxed">
+                            For tech leaders, Plakar Enterprise transforms backup from a fragmented operational task into a unified, audit-ready strategy.
+                        </p>
+                    </div>
+                    <div class="hidden md:flex flex-col items-end">
+                        <div class="text-neutral-400 text-sm font-space-grotesk uppercase tracking-widest font-semibold">Risk Management</div>
+                        <div class="text-neutral-900 text-xl font-space-grotesk font-bold">Zero-Trust Native</div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 h-auto lg:h-[600px]">
+
+                    <div class="lg:col-span-7 bg-neutral-50 border border-neutral-200 rounded-2xl p-8 flex flex-col justify-between relative overflow-hidden group hover:border-primary-200 transition-colors duration-300">
+                        <div class="flex flex-col gap-4 relative z-10">
+                            <div class="w-12 h-12 bg-white rounded-lg border border-neutral-200 flex items-center justify-center text-primary-500 shadow-sm">
+                                {{ $riListView.Content | safeHTML }}
+                            </div>
+                            <h3 class="font-space-grotesk text-2xl font-semibold text-neutral-900">Unified Resilience Posture</h3>
+                            <p class="text-neutral-600 font-space-grotesk text-lg max-w-md">
+                                Stop guessing what is recoverable. Get one consolidated view of your resilience across On-Prem, Cloud and SaaS. Eliminate coverage gaps before the audit.
+                            </p>
+                        </div>
+
+                        <div class="mt-8 relative w-full h-full min-h-[200px] bg-white rounded-tl-xl border-t border-l border-neutral-200 shadow-sm p-6 overflow-hidden">
+                            <div class="flex gap-4 mb-4">
+                                <div class="w-1/3 h-2 bg-neutral-100 rounded-full"></div>
+                                <div class="w-1/4 h-2 bg-neutral-100 rounded-full"></div>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between p-3 bg-neutral-50 rounded border border-neutral-100">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                                        <span class="text-xs font-mono text-neutral-600">aws-prod-db-01</span>
                                     </div>
-                                    <div>
-                                        {{ partial "cta/demo-website-button.html" . }}
+                                    <span class="text-xs font-mono text-neutral-400">Verified • 2h ago</span>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-neutral-50 rounded border border-neutral-100">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                                        <span class="text-xs font-mono text-neutral-600">saas-salesforce-crm</span>
                                     </div>
+                                    <span class="text-xs font-mono text-neutral-400">Verified • 15m ago</span>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-neutral-50 rounded border border-neutral-100">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                                        <span class="text-xs font-mono text-neutral-600">onprem-nas-finance</span>
+                                    </div>
+                                    <span class="text-xs font-mono text-neutral-400">Verified • 1d ago</span>
                                 </div>
                             </div>
-
-                            <!-- Image -->
-                            <div class="flex transition-all duration-500 ease-in-out lg:h-440 overflow-hidden ml-auto flex-1 items-stretch order-1 lg:order-2"
-                                 :class="focus === 'web' || smallScreen ? 'lg:w-1/2' : ''">
-                                {{ $dashboard7 := resources.Get "img/dashboard-7.png" }}
-                                <img src="{{ $dashboard7.RelPermalink }}" alt="Plakar dashboard"
-                                     class="w-full object-left-top object-cover transition-all duration-500 ease-in-out">
+                            <div class="absolute bottom-4 right-4 bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold border border-green-200">
+                                100% Coverage
                             </div>
-
                         </div>
                     </div>
+
+                    <div class="lg:col-span-5 flex flex-col gap-6 h-full">
+
+                        <div class="flex-1 bg-neutral-900 rounded-2xl p-8 flex flex-col justify-center gap-4 relative overflow-hidden group">
+                            <div class="absolute top-0 right-0 p-32 bg-primary-500 rounded-full blur-[80px] opacity-20 group-hover:opacity-30 transition-opacity"></div>
+
+                            <div class="relative z-10">
+                                <h3 class="font-space-grotesk text-2xl font-semibold text-white mb-2">Cost vs. Security: Solved</h3>
+                                <p class="text-neutral-400 font-space-grotesk text-base">
+                                    Encryption usually kills deduplication. We fixed the math. Enforce Zero-Trust without exploding your storage budget.
+                                </p>
+                            </div>
+                            <div class="flex items-baseline gap-2 mt-2">
+                                <span class="text-4xl font-bold text-white font-space-grotesk">>100:1</span>
+                                <span class="text-primary-400 font-medium">Efficiency Ratio</span>
+                            </div>
+                        </div>
+
+                        <div class="flex-1 bg-primary-50 border border-primary-100 rounded-2xl p-8 flex flex-col justify-center gap-4 relative overflow-hidden hover:border-primary-300 transition-colors">
+                            <div class="w-10 h-10 bg-white rounded-lg border border-primary-100 flex items-center justify-center text-primary-600 shadow-sm mb-2">
+                                {{ $riShieldCheckLine.Content | safeHTML }}
+                            </div>
+                            <div>
+                                <h3 class="font-space-grotesk text-xl font-semibold text-neutral-900">Delegate Ops, Keep Keys</h3>
+                                <p class="text-neutral-600 font-space-grotesk text-sm mt-2">
+                                    Outsource retention and replication to MSPs or Cloud without ever exposing your secrets. The Plakar Vault Protocol ensures the provider remains blind.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
         </section>
 
         <!-- Testimonial -->
-        <section class="section-light-1 py-14 lg:py-28">
+        <section class="bg-primary-600 py-14 lg:py-28">
             <div class="content flex flex-col gap-12">
 
-                <!-- Testimonial section -->
                 <div class="flex flex-col gap-6 p-8 items-center">
-                    <div class="text-neutral-700 font-space-grotesk ~text-xl/3xl leading-tight text-center">
-                        "Plakar has completely transformed our backup strategy. What used to take hours now takes minutes at
-                        30% of the previous cost with more restore points."
+                    <div class="text-white font-space-grotesk ~text-xl/3xl leading-tight text-center max-w-5xl">
+                        "Plakar reconciles the rigor of Open Source security with the scale of Enterprise needs. It’s the first time we’ve achieved a <span class="text-secondary-500 font-bold">70% cost reduction</span> through high-density efficiency, without ever handing over our encryption keys."
                     </div>
+
                     <div class="flex items-center gap-4">
-                        <img class="size-10 rounded-full outline outline-2 outline-primary-500 object-cover"
+                        <img class="size-10 rounded-full outline outline-2 outline-white object-cover"
                              src="{{ $testimonialJJ.RelPermalink }}" alt="John Jean profile picture"/>
+
                         <div class="flex flex-col">
-                            <div class="text-neutral-900 font-space-grotesk text-lg font-semibold leading-normal">
+                            <div class="text-white font-space-grotesk text-lg font-semibold leading-normal">
                                 John JEAN
                             </div>
-                            <div class="text-neutral-500 font-space-grotesk text-sm font-medium leading-tight">
+                            <div class="text-primary-200 font-space-grotesk text-sm font-medium leading-tight">
                                 CTO Group at Wargan
                             </div>
                         </div>
@@ -178,118 +396,22 @@
             </div>
         </section>
 
-        <!-- What's new -->
-        <section class="section-dark-1 py-14 lg:py-28">
-            <div class="content flex flex-col gap-12 px-4 items-start">
-                <div class="text-center">
-                    <h2 class="~text-4xl/6xl font-space-grotesk font-medium">
-                        What's new at <span class="text-secondary-500">Plakar</span>?
-                    </h2>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="group/link flex items-start gap-4 p-4 border bg-neutral-50 border-neutral-300 rounded-lg hover:bg-neutral-300 transition">
-                        <div class="w-10 h-10 rounded-lg  text-primary-500 flex items-strech justify-center">
-                            <!-- Icon: Shield -->
-                            {{ $riShieldCheckLine.Content | safeHTML }}
-                        </div>
-                        <div>
-                            <h3 class="font-space-grotesk text-lg font-semibold text-neutral-900">Cryptography audit: ✅ passed</h3>
-                            <p class="text-neutral-600 ~text-sm/base font-space-text mt-1">Before releasing Plakar, we commissioned a cryptographic review from Jean-Philippe Aumasson, the author of multiple widely-used algorithms and seminal books on cryptography.</p>
-                            <a href="/posts/2025-02-28/audit-of-plakar-cryptography/" target="_blank" class="text-primary-500 text-sm font-medium hover:underline">Read the report</a>
-                        </div>
-                    </div>
-
-                    <!-- Card 2: New UI version -->
-                    <div class="group/link flex items-start gap-4 p-4 border bg-neutral-50 border-neutral-300 rounded-lg hover:bg-neutral-300 transition">
-                        <div class="w-10 h-10 rounded-lg text-primary-500 flex items-strech justify-center">
-                            <!-- Icon: Window -->
-                            {{ $riTerminalWindowLine.Content | safeHTML }}
-                        </div>
-                        <div>
-                            <h3 class="font-space-grotesk text-lg font-semibold text-neutral-900">New plakar UI available</h3>
-                            <p class="text-neutral-600 ~text-sm/base font-space-text mt-1">Introducing the new UI: more responsive, faster, and better structured for large-scale browsing.</p>
-                            <a href="https://demo.plakar.io" target="_blank" class="text-primary-500 text-sm font-medium hover:underline">Visit demo</a>
-                        </div>
-                    </div>
-                    <!-- Card 3: Plakar SDK -->
-                    <div class="group/link flex items-start gap-4 p-4 border bg-neutral-50 border-neutral-300 rounded-lg hover:bg-neutral-300 transition">
-                        <div class="w-10 h-10 rounded-lg text-primary-500 flex items-stretch justify-center">
-                            <!-- Icon: CodeBox -->
-                            {{ $riCodeBoxLine.Content | safeHTML }}
-                        </div>
-                        <div>
-                            <h3 class="font-space-grotesk text-lg font-semibold text-neutral-900">
-                                Plakar SDK is live !
-                            </h3>
-                            <p class="text-neutral-600 ~text-sm/base font-space-text mt-1">
-                                We’ve abstracted all the hard parts of writing integrations into a simple Go SDK : no boilerplate, no hassle. Build, package and run powerful plugins in minutes.
-                            </p>
-                            <a href="/posts/2025-07-15/go-kloset-sdk-is-live/" target="_blank" class="text-primary-500 text-sm font-medium hover:underline">
-                                Read more
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Card 4: Kapsul -->
-                    <div class="group/link flex items-start gap-4 p-4 border bg-neutral-50 border-neutral-300 rounded-lg hover:bg-neutral-300 transition">
-                        <div class="w-10 h-10 rounded-lg text-primary-500 flex items-stretch justify-center">
-                            <!-- Icon: Archive -->
-                            {{ $riArchiveLine.Content | safeHTML }}
-                        </div>
-                        <div>
-                            <h3 class="font-space-grotesk text-lg font-semibold text-neutral-900">
-                                Kapsul: a tool to create and manage PTAR archives
-                            </h3>
-                            <p class="text-neutral-600 ~text-sm/base font-space-text mt-1">
-                                Discover our new CLI command for `.ptar` archives: zero-config, agentless, deduplicated, compressed and end-to-end encrypted.
-                            </p>
-                            <a href="/posts/2025-07-07/kapsul-a-tool-to-create-and-manage-deduplicated-compressed-and-encrypted-ptar-vaults/" target="_blank" class="text-primary-500 text-sm font-medium hover:underline">
-                                Read more
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Card 5: go-cdc-chunkers -->
-                    <div class="group/link flex items-start gap-4 p-4 border bg-neutral-50 border-neutral-300 rounded-lg hover:bg-neutral-300 transition">
-                        <div class="w-10 h-10 rounded-lg text-primary-500 flex items-stretch justify-center">
-                            <!-- Icon: Cube -->
-                            {{ $riPuzzle2Line.Content | safeHTML }}
-                        </div>
-                        <div>
-                            <h3 class="font-space-grotesk text-lg font-semibold text-neutral-900">
-                                Introducing go-cdc-chunkers: chunk and deduplicate everything
-                            </h3>
-                            <p class="text-neutral-600 ~text-sm/base font-space-text mt-1">
-                                Our new ISC-licensed Go library for Content-Defined Chunking.
-                            </p>
-                            <a href="/posts/2025-07-11/introducing-go-cdc-chunkers-chunk-and-deduplicate-everything/" target="_blank" class="text-primary-500 text-sm font-medium hover:underline">
-                                Read more
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- Why engineers choose Plakar -->
         <section class="section-light-2 overflow-hidden py-14 lg:py-28" x-data="progressScrollLine()" x-init="init()">
             <div class="content flex flex-col gap-10 lg:gap-40 lg:p-4">
 
-                <!-- Title -->
                 <div class="text-center flex flex-col gap-8 max-w-4xl mx-auto">
                     <h2 class="~text-4xl/6xl font-space-grotesk font-medium text-neutral-900 leading-tight">
                         Why engineers choose <span class="text-secondary-500">Plakar</span>
                     </h2>
                     <p class="~text-xl font-space-grotesk text-neutral-600 leading-normal">
-                        Powerful technology designed for engineers who value <br class="hidden md:block"/> reliability, security, and efficiency.
+                        Because it combines <span class="text-secondary-500 font-medium">Open Source</span> transparency with production-grade rigor.<br class="hidden md:block"/>
+                        <span class="text-primary-500 font-medium">Secure by default</span> and built by veterans to fit seamlessly into your DevOps workflows.
                     </p>
                 </div>
 
-                <!-- Steps -->
                 <div class="progress-scroll-line flex flex-col gap-1 relative h-full p-1">
 
-                    <!-- Step 1 -->
                     <div class="step flex flex-row items-start gap-2 md:gap-6">
                         <div class="step-line-wrapper flex flex-col items-center gap-2 self-stretch relative flex-shrink-0">
                             <div class="step-line-step w-10 h-10 rounded-full flex items-center justify-center font-bold text-base transition-all"
@@ -305,34 +427,30 @@
                             <div class="flex-1 w-full lg:max-w-[30%]">
                                 <div class="flex flex-col gap-2">
                                     <h3 class="~text-xl/3xl font-space-grotesk text-neutral-900">
-                                        Confidence by Design
+                                        Trust Nothing Architecture
                                     </h3>
-                                    <p class="text-neutral-500  ~text-lg">
-                                        Backup isn’t a priority, but it’s always on your mind.</p>
-                                    <p class="text-neutral-500 ~text-lg">In 10 minutes, you have a setup reliable
-                                        enough to sleep soundly. And if anything goes wrong, you’ll be alerted. </p>
+                                    <p class="text-neutral-500 ~text-lg">
+                                        We assume the network is compromised and the storage is untrusted.
+                                    </p>
+                                    <p class="text-neutral-500 ~text-lg">
+                                        With client-side encryption and immutable snapshots, we don't just "hope" your data is safe; we mathematically guarantee it.
+                                    </p>
                                 </div>
                             </div>
                             <div  class="flex w-full lg:w-1/2 h-full p-4 rounded-lg overflow-hidden">
-
-                                <!-- Small Preview Video (click to open modal) -->
                                 <div class="relative flex flex-col aspect-[16/9] h-full min-h-[150px] md:min-h-[200px] lg:min-h-[300px] bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer group">
-
-
-                                        <iframe
-                                                class="h-full w-full top-0 left-0  rounded-lg"
-                                                src="https://www.youtube.com/embed/9PmMDWsOVyA?rel=0&modestbranding=1"
-                                                title="Vidéo de présentation Plakar"
-                                                frameborder="0"
-                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                allowfullscreen>
-                                        </iframe>
+                                    <iframe
+                                            class="h-full w-full top-0 left-0  rounded-lg"
+                                            src="https://www.youtube.com/embed/9PmMDWsOVyA?rel=0&modestbranding=1"
+                                            title="Vidéo de présentation Plakar"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen>
+                                    </iframe>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Step 2 -->
                     <div class="step flex flex-row items-start gap-2 md:gap-6 h-full">
                         <div class="step-line-wrapper flex flex-col items-center gap-1 self-stretch relative flex-shrink-0">
                             <div class="step-line-step w-10 h-10 rounded-full flex items-center justify-center font-bold text-base transition-all"
@@ -348,94 +466,96 @@
                             <div class="flex-1 w-full lg:max-w-[30%]">
                                 <div class="flex flex-col gap-2">
                                     <h3 class="~text-xl/3xl font-space-grotesk text-neutral-900 leading-tight">
-                                        Engineered for excellence
+                                        The Efficiency Engine
                                     </h3>
                                     <p class="text-neutral-500 font-space-grotesk ~text-lg leading-normal">
-                                        Secure by design with end-to-end encryption, Plakar can store massive volumes of
-                                        data from multiple sources and formats.</p>
+                                        Encryption blinds standard tools. Plakar's Kloset engine performs high-density deduplication <i>before</i> the encryption layer.
+                                    </p>
                                     <p class="text-neutral-500 font-space-grotesk ~text-lg leading-normal">
-                                        Increase your restore points without increasing costs, thanks to Plakar’s unmatched
-                                        deduplication and compression algorithms.
-
-
+                                        Slash your storage costs and network usage without ever exposing a single byte of plain text to the infrastructure.
                                     </p>
                                 </div>
                             </div>
-                            <!-- Features grid -->
+
                             <div class="flex-1 flex flex-wrap gap-2 lg:gap-6">
-                                <!-- Feature card -->
+
                                 <div class="w-80 bg-white p-2 lg:p-6 rounded-lg flex flex-col gap-2 shadow-sm">
                                     <div class="flex items-center gap-2">
-                                        <div class="w-5 h-4">
+                                        <div class="w-5 h-4 text-primary-500">
                                             {{ $riMenuSearchLine.Content | safeHTML }}
                                         </div>
                                         <h4 class="font-space-grotesk text-neutral-900 ~text-xl font-semibold">
-                                            Searchable
+                                            Searchable & Browsable
                                         </h4>
                                     </div>
                                     <p class="text-neutral-500 font-space-grotesk ~text-base leading-normal">
-                                        Browse your backups without restoring.
-                                    </p>
-                                </div>
-                                <div class="w-80 bg-white p-2 lg:p-6 rounded-lg flex flex-col gap-2 shadow-sm">
-                                    <div class="flex items-center gap-2">
-                                        <div class="w-5 h-4">{{ $riDatabaseLine.Content | safeHTML }}</div>
-                                        <h4 class="font-space-grotesk text-neutral-900 ~text-xl font-semibold">Exo bytes
-                                            ready</h4>
-                                    </div>
-                                    <p class="text-neutral-500 font-space-grotesk ~text-base leading-normal">
-                                        Support massive data with little RAM.
+                                        Mount snapshots as a filesystem or browse terabytes instantly via the UI without restoring.
                                     </p>
                                 </div>
 
                                 <div class="w-80 bg-white p-2 lg:p-6 rounded-lg flex flex-col gap-2 shadow-sm">
                                     <div class="flex items-center gap-2">
-                                        <div class="w-5 h-4">{{ $riListView.Content | safeHTML }}</div>
+                                        <div class="w-5 h-4 text-primary-500">{{ $riDatabaseLine.Content | safeHTML }}</div>
                                         <h4 class="font-space-grotesk text-neutral-900 ~text-xl font-semibold">
-                                            Extensible</h4>
+                                            Petabyte Scale
+                                        </h4>
                                     </div>
                                     <p class="text-neutral-500 font-space-grotesk ~text-base leading-normal">
-                                        Easily add integration for new sources.
+                                        Engineered to handle millions of files and massive datasets with a minimal memory footprint.
                                     </p>
                                 </div>
 
                                 <div class="w-80 bg-white p-2 lg:p-6 rounded-lg flex flex-col gap-2 shadow-sm">
                                     <div class="flex items-center gap-2">
-                                        <div class="w-5 h-4">{{ $riShieldCheckLine.Content | safeHTML }}</div>
-                                        <h4 class="font-space-grotesk text-neutral-900 ~text-xl font-semibold">Threat
-                                            Detection</h4>
-                                    </div>
-                                    <p class="text-neutral-500 font-space-grotesk ~text-base leading-normal">
-                                        Detect and alert on suspicious activity.
-                                    </p>
-                                </div>
-
-                                <div class="w-80 bg-white p-2 lg:p-6 rounded-lg flex flex-col gap-2 shadow-sm">
-                                    <div class="flex items-center gap-2">
-                                        <div class="w-5 h-4">{{ $riTerminalBoxLine.Content | safeHTML }}</div>
+                                        <div class="w-5 h-4 text-primary-500">{{ $riPuzzle2Line.Content | safeHTML }}</div>
                                         <h4 class="font-space-grotesk text-neutral-900 ~text-xl font-semibold">
-                                            Lock-free</h4>
+                                            Integration Architecture
+                                        </h4>
                                     </div>
                                     <p class="text-neutral-500 font-space-grotesk ~text-base leading-normal">
-                                        Use one repository for several sources.
+                                        Write your own input/output connectors in your favorite language. The ecosystem is open.
                                     </p>
                                 </div>
 
                                 <div class="w-80 bg-white p-2 lg:p-6 rounded-lg flex flex-col gap-2 shadow-sm">
                                     <div class="flex items-center gap-2">
-                                        <div class="w-5 h-4">{{ $riFlashlightLine.Content | safeHTML }}</div>
-                                        <h4 class="font-space-grotesk text-neutral-900 ~text-xl font-semibold">Super
-                                            fast</h4>
+                                        <div class="w-5 h-4 text-primary-500">{{ $riShieldCheckLine.Content | safeHTML }}</div>
+                                        <h4 class="font-space-grotesk text-neutral-900 ~text-xl font-semibold">
+                                            Entropy Analysis
+                                        </h4>
                                     </div>
                                     <p class="text-neutral-500 font-space-grotesk ~text-base leading-normal">
-                                        Backup >1M files in under 3 min.
+                                        Detect high-entropy anomalies typical of ransomware activity before it spreads.
+                                    </p>
+                                </div>
+
+                                <div class="w-80 bg-white p-2 lg:p-6 rounded-lg flex flex-col gap-2 shadow-sm">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-5 h-4 text-primary-500">{{ $riArchiveLine.Content | safeHTML }}</div>
+                                        <h4 class="font-space-grotesk text-neutral-900 ~text-xl font-semibold">
+                                            Vendor Lock-Free
+                                        </h4>
+                                    </div>
+                                    <p class="text-neutral-500 font-space-grotesk ~text-base leading-normal">
+                                        Data is stored in open formats, readable by Open Source code. No proprietary chains.
+                                    </p>
+                                </div>
+
+                                <div class="w-80 bg-white p-2 lg:p-6 rounded-lg flex flex-col gap-2 shadow-sm">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-5 h-4 text-primary-500">{{ $riFlashlightLine.Content | safeHTML }}</div>
+                                        <h4 class="font-space-grotesk text-neutral-900 ~text-xl font-semibold">
+                                            Immutable & Verifiable
+                                        </h4>
+                                    </div>
+                                    <p class="text-neutral-500 font-space-grotesk ~text-base leading-normal">
+                                        Snapshots are read-only by design. Cryptographic checks guarantee restore integrity.
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Step 3 -->
                     <div class="step flex flex-row items-start gap-2 md:gap-6 h-full">
                         <div class="step-line-wrapper flex flex-col items-center gap-2 self-stretch relative flex-shrink-0">
                             <div class="step-line-step w-10 h-10 rounded-full flex items-center justify-center font-bold text-base transition-all"
@@ -448,11 +568,10 @@
                             <div class="flex-1 w-full lg:max-w-[30%]">
                                 <div class="flex flex-col gap-2">
                                     <h3 class="~text-xl/3xl font-space-grotesk text-neutral-900 leading-tight">
-                                        Store everything, anywhere
+                                        Store Anywhere.<br/> Restore Everywhere.
                                     </h3>
                                     <p class="text-neutral-500 font-space-grotesk ~text-lg leading-normal">
-                                        From cloud to on-prem, from databases to SaaS and object storage, your backups are
-                                        unified, secure, and ready to restore.
+                                        Decouple your data from the infrastructure. From cloud buckets to cold storage tapes, your backups are unified, portable and ready to restore.
                                     </p>
                                 </div>
                                 <div class="hidden lg:flex gap-4 mt-8 ">
@@ -460,7 +579,6 @@
                                 </div>
 
                             </div>
-                            <!-- Integrations and  storage -->
                             {{ partial "schema/kloset-integrations-connectors.html" . }}
                             <div class="flex lg:hidden gap-4 mt-8 ">
                                 {{ partial "cta/see-it-in-action.html" . }}
@@ -470,7 +588,6 @@
                 </div>
             </div>
         </section>
-
         <script>
             function progressScrollLine() {
                 return {
@@ -549,54 +666,6 @@
             }
         </script>
 
-        <!-- Newsletter section -->
-        <section class="section-gradient-blue-1 overflow-hidden py-14 lg:py-28">
-            <div class="content flex flex-col lg:flex-row-reverse gap-16 items-start px-4">
-
-                <!-- Text Block -->
-                <div class="lg:w-1/2 flex flex-col gap-8 text-white">
-                    <h2 class="~text-4xl/6xl font-space-grotesk font-medium leading-tight text-primary-900">
-                        Stay ahead of <span class="text-secondary-500">data resilience</span>
-                    </h2>
-                    <p class="~text-xl font-space-grotesk text-neutral-900 leading-normal">
-                        Get exclusive insights, new features, and expert tips on backup, storage and immutability.<br/> No spam, ever.
-                    </p>
-                    <ul class="space-y-4 text-neutral-900 text-sm">
-                        <li class="flex items-start gap-3">
-                            <svg class="w-5 h-5 mt-1 text-secondary-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                            Only relevant technical content.
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <svg class="w-5 h-5 mt-1 text-secondary-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                            Unsubscribe anytime.
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Form Block -->
-                <div class="lg:w-1/2 bg-neutral-800 border border-neutral-700 rounded-2xl shadow-sm overflow-hidden">
-                    <div class="bg-primary-600 px-6 py-5">
-                        <h3 class="~text-xl text-white font-space-grotesk font-semibold">Sign up with your email</h3>
-                        <p class="~text-sm text-white opacity-80 mt-1">We’ll send you major product updates, no noise.</p>
-                    </div>
-                    <form id="newsletter-form-home" class="px-6 py-8 space-y-6">
-                        <input type="email" name="email" placeholder="Your email address" required class="w-full border border-neutral-600 bg-neutral-50 text-neutral-900 placeholder-neutral-500 rounded p-3" />
-                        <div class="flex justify-end">
-                            <button type="submit" class="bg-primary-500 hover:bg-primary-600 text-white px-6 py-2 rounded-lg font-medium transition">
-                                Subscribe
-                            </button>
-                        </div>
-                    </form>
-                </div>
-
-            </div>
-        </section>
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                handleSubmit("newsletter-form-home", "48034556", "a65a0673-a43b-41cc-ba1c-a7084f704685");
-            });
-        </script>
-
         <!-- Kloset section -->
         <section class="section-dark-1 overflow-hidden py-14 lg:py-28">
             <div class="content flex flex-col gap-24 ">
@@ -611,7 +680,7 @@
                     <div class="flex flex-col gap-8 max-w-md">
                         <p class="~text-lg/2xl font-space-grotesk text-zinc-200">
                             Powerful technology designed for developers who value <span class="font-semibold text-white">reliability</span>,
-                            <span class="font-semibold text-white">security</span>, and <span
+                            <span class="font-semibold text-white">security</span> and <span
                                 class="font-semibold text-white">efficiency</span>.
                         </p>
                         <div class="flex gap-4 text-sm">
@@ -631,8 +700,7 @@
                         </div>
                         <div class="absolute inset-0 flex justify-center items-center gap-6 translate-y-[-10%] lg:translate-y-[10%] p-4">
                             <div class="flex flex-col bg-neutral-800 p-6 gap-6 rounded-lg shadow-lg">
-                                <div class="self-stretch bg-neutral-900 pt-8 pb-8 pl-8 pr-10 rounded-lg flex-col justify-center items-start gap-8 inline-flex">                                {{ $klosetSchema := resources.Get "img/kloset-schema.svg" }}
-
+                                <div class="self-stretch bg-neutral-900 pt-8 pb-8 pl-8 pr-10 rounded-lg flex-col justify-center items-start gap-8 inline-flex">
                                     <p class="text-green-400 font-mono text-xs">
                                         $ plakar inspect kloset://backup-2023-04-18<br>
                                         • Integrity verified<br>
@@ -664,7 +732,7 @@
                                             <p class="text-neutral-300 ~text-sm/base font-medium leading-snug">
                                                 Kloset encapsulates each backup into a self-contained, immutable, structured
                                                 data asset. Like a container that packages an app with everything it needs,
-                                                Kloset packages data with context, structure, metadata, and integrity.
+                                                Kloset packages data with context, structure, metadata and integrity.
                                             </p>
                                         </div>
                                     </div>
@@ -791,6 +859,45 @@
             </div>
         </section>
 
+        <!-- Newsletter section -->
+        <section class="section-gradient-blue-1 overflow-hidden py-14 lg:py-28">
+            <div class="content flex flex-col lg:flex-row-reverse gap-16 items-start px-4">
+
+                <!-- Text Block -->
+                <div class="lg:w-1/2 flex flex-col gap-8 text-white">
+                    <h2 class="~text-4xl/6xl font-space-grotesk font-medium leading-tight text-primary-900">
+                        Stay ahead with Plakar updates
+                    </h2>
+                    <p class="~text-xl font-space-grotesk text-neutral-900 leading-normal">
+                        Get exclusive insights, new features and expert tips on backup, storage and immutability.<br/> No spam, ever.
+                    </p>
+
+                </div>
+
+                <!-- Form Block -->
+                <div class="lg:w-1/2 bg-neutral-800 border border-neutral-700 rounded-2xl shadow-sm overflow-hidden">
+                    <div class="bg-primary-600 px-6 py-5">
+                        <h3 class="~text-xl text-white font-space-grotesk font-semibold">Sign up with your email</h3>
+                        <p class="~text-sm text-white opacity-80 mt-1">We’ll send you major product updates, no noise.</p>
+                    </div>
+                    <form id="newsletter-form-home" class="px-6 py-8 space-y-6">
+                        <input type="email" name="email" placeholder="Your email address" required class="w-full border border-neutral-600 bg-neutral-50 text-neutral-900 placeholder-neutral-500 rounded p-3" />
+                        <div class="flex justify-end">
+                            <button type="submit" class="bg-primary-500 hover:bg-primary-600 text-white px-6 py-2 rounded-lg font-medium transition">
+                                Subscribe
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                handleSubmit("newsletter-form-home", "48034556", "a65a0673-a43b-41cc-ba1c-a7084f704685");
+            });
+        </script>
+
         <!-- Open source section -->
         <section class="section-light-2 py-14 lg:py-28">
             <div class="content flex flex-col gap-16">
@@ -805,7 +912,7 @@
                     <!-- Subtitle -->
                     <p class="~text-base/lg text-neutral-600 font-space-grotesk font-medium leading-snug max-w-2xl text-center">
                         There must be a way to ensure backups remain accessible 10 or 30 years from now.
-                        Built with transparency, tested by the community, and trusted for critical infrastructure.
+                        Built with transparency, tested by the community and trusted for critical infrastructure.
                     </p>
                 </div>
 
@@ -862,7 +969,7 @@
                                 platform engineers.
                             </p>
                             <p class="text-lg font-medium font-space-grotesk text-neutral-900 opacity-70 leading-relaxed">
-                                Write your own plugins, contribute to the codebase, or just help us.
+                                Write your own plugins, contribute to the codebase or just help us.
                             </p>
                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 2xl:grid-cols-2 gap-4 items-stretch">
                                 <div class="flex flex-col w-full">
@@ -955,6 +1062,7 @@
                 </div>
             </div>
         </section>
+
 
         <!-- Plakar blog section -->
         <section class="section-light-2 bg-gradient-section py-14 lg:py-28">

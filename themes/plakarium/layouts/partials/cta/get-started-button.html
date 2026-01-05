@@ -13,7 +13,7 @@
         {{ $labelShort = .labelShort }}
 {{ end }}
 
-{{ $href := (printf "/docs/%s/" $site.Params.latest) }}
+{{ $href := (printf "/docs/%s/quickstart/quickstart/" $site.Params.latest) }}
 {{ if (isset . "href") }}
         {{ $href = .href }}
 {{ end }}
@@ -21,5 +21,6 @@
 {{ partial "cta/based-button.html" (dict
         "href" $href
         "label" $label
+        "target" "_blank"
         "labelShort" $labelShort
         ) }}
