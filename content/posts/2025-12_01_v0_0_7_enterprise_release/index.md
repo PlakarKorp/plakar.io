@@ -5,11 +5,8 @@ authors:
   - "nestor"
 summary: "We are proud to announce the immediate availability of Plakar Enterprise for AWS, bringing Cloud-Native Resilience and Zero-Trust security to your VPC."
 categories:
-  - technology
-  - backup
-  - release
-  - enterprise
-  - aws
+  - release-notes
+  - announcement
 featured-scope:
   - hero-page
 tags:

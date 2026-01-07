@@ -5,9 +5,7 @@ authors:
 - "nestor"
 summary: "v1.0.5 is here! This release focuses on build improvements, UI updates, smarter pipelines, new hook capabilities, and various maintenance enhancements."
 categories:
- - technology
- - backup
- - release
+ - release-notes
 featured-scope:
  - hero-page
 tags:

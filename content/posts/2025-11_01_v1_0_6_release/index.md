@@ -5,9 +5,7 @@ authors:
 - "nestor"
 summary: "v1.0.6 brings a few bugfixes and huge memory usage improvements."
 categories:
- - technology
- - backup
- - release
+  - release-notes
 featured-scope:
  - hero-page
 tags:
