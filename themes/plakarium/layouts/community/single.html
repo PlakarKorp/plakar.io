@@ -16,14 +16,21 @@
     </section>
 
     <section class="section-gradient-secondary-1">
-            <div class="content flex flex-col">
-                <!-- Title -->
-                <div class="flex flex-col pt-16 text-left pl-4 items-center">
-                    <p class="~text-base/2xl  text-neutral-900 max-w-6xl text-center">
-                        Our mission is to set a <span class="text-secondary-500 font-bold">new open-source standard for data protection</span>.
-                        Achieving it depends on the strength and engagement of our community.
-                        This page outlines our community guidelines and defines the boundaries of our open-source project.</p>
+                <div class="content flex flex-col">
+                    <div class="flex flex-col pt-16 text-left pl-4 items-center">
+                        <p class="~text-base/2xl  text-neutral-900 max-w-6xl text-center">
+                            Our mission is to set a <span class="text-secondary-500 font-bold">new open-source standard for data protection</span>.
+                            Achieving it depends on the strength and engagement of our community.
+                            This page outlines our community guidelines and defines the boundaries of our open-source project.</p>
+                    </div>
 
+                    {{ $lfLogo := resources.Get "img/community/LF_MemberLevel_silver.svg" }} {{ $cncfLogo := resources.Get "img/community/cncf-member-silver-color.svg" }} <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12 py-8 opacity-90">
+                    {{ if $lfLogo }}
+                    <img src="{{ $lfLogo.RelPermalink }}" alt="Linux Foundation Silver Member" class="h-12 md:h-16 w-auto" />
+                    {{ end }}
+
+                    {{ if $cncfLogo }}
+                    <img src="{{ $cncfLogo.RelPermalink }}" alt="CNCF Silver Member" class="h-10 md:h-14 w-auto" /> {{ end }}
                 </div>
                 <div class="flex flex-col items-center py-16">
                     {{ partial "cta/join-us-on-discord.html" (dict "label" "Join Plakar community on Discord" "ctx" . ) }}
