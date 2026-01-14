@@ -101,7 +101,7 @@ In production, you would typically run this command periodically to ensure the i
 
 ## Restore files from a backup
 
-You can restore files from a backup using the `restore` command. In this case, we are restoring the snapshot we just created to another directory called restored.
+You can restore files from a backup using the `restore` command. In this case, we are restoring the snapshot we just created to another directory called `restored`.
 
 ```bash
 $ plakar at $HOME/backups restore -to $HOME/restored dd62691d
