@@ -29,9 +29,9 @@ However, logging in unlocks optional features that improve usability and monitor
 
 In this quickstart, we will use the S3 integration, which requires the integration to be installed first. Therefore, we need to log in.
 
-*If you don't want to log in, it is instead possible to build and install the integration manually. See the [Installing Integrations guide](../guides/installing-integrations/_index.md) for details.*
+*If you don't want to log in, it is instead possible to build and install the integration manually. See the [Installing Integrations guide](../integrations/_index.md) for details.*
 
-To log in using the CLI:
+You can log in either through the CLI or the web UI:
 
 {{< tabs name="To log in using the CLI" >}}
 {{% tab name="With email" %}}
@@ -48,28 +48,87 @@ plakar login -github
 
 Your default browser will open a new tab where you can authorize plakar to use your GitHub account for authentication. Follow the prompts to complete the login.
 {{< /tab >}}
+{{% tab name="With Plakar UI" %}}
+You can also log in through the **plakar** ui:
+
+Start **plakar** ui by launching it on an existing Kloset Store. If you are following along from [Part 1 of the Quickstart](./quickstart.md) you should have a kloset store at `$HOME/backups`.
+
+```bash
+plakar at $HOME/backups ui
+```
+
+Your default browser will open automatically with the **plakar** ui. Click the Sign In button in the sidebar which will take you to the login page where you can either:
+
+1. Enter your email address and click Send magic link, then check your email and follow the link sent from **plakar**.
+2. Click Continue with GitHub to authorize plakar to use your GitHub account for authentication.
+
+Once logged in, you can proceed to install integrations through the ui under the integrations section.
+
+{{< /tab >}}
 {{< /tabs >}}
 
 To check that you are now logged in, you can run:
-
-```
+```bash
 plakar login -status
+```
+
+To log out at any time, you can run:
+```bash
+plakar logout
 ```
 
 ## Install the S3 integration
 
-To install the S3 integration, run the following command:
+You can install integrations either from the terminal directly or from the **plakar** ui. Note that integrations are installed system-wide, not per Kloset Store.
+
+{{< tabs name="install-s3-integration" >}}
+{{% tab name="CLI" %}}
+Run the following command to install the S3 integration:
 
 ```bash
 plakar pkg add s3
 ```
 
-If you already had the S3 integration installed and just wanted to update it, you can instead remove the existing version and install the latest one with:
+If you already have the S3 integration installed and want to update it, remove the existing version first and then install the latest one:
 
 ```bash
 plakar pkg rm s3
 plakar pkg add s3
 ```
+
+You can list all installed integrations to confirm the S3 integration was installed successfully:
+
+```bash
+$ plakar pkg list
+s3@v1.0.7
+```
+
+{{< /tab >}}
+{{% tab name="Plakar UI" %}}
+
+You can install integrations directly through the plakar ui:
+
+Start **plakar** ui by launching it on an existing Kloset Store. If you are following along from [Part 1 of the Quickstart](./quickstart.md) you should have a kloset store at `$HOME/backups`.
+
+```bash
+plakar at $HOME/backups ui
+```
+
+Your default browser will open automatically with the **plakar** ui. Navigate to the **Integrations** tab. Find the S3 integration in the list and click the install button
+
+To update an integration, remove it and then add it again.
+
+{{% notice style="info" title="Important Notes" expanded="true" %}}
+- You must be logged in to install integrations via **plakar** ui.
+- Integrations are installed system-wide, not per Kloset Store.
+- The UI can only be started by pointing to an existing Kloset Store, even though integrations are not stored within that **Kloset**.
+- Some integrations may not yet be available in the UI. Check the [integrations documentation](../integrations/_index.md) for a complete list of available integrations
+{{% /notice %}}
+
+![Integrations tab in plakar ui showing available integrations including S3](../images/integrations.png)
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Set up S3-compatible storage
 
@@ -81,7 +140,7 @@ Run the following command to start a MinIO instance using Docker:
 docker run -d --name minio -p 9000:9000 -p 9001:9001 quay.io/minio/minio server /data --console-address ":9001"
 ```
 
-This command starts a MinIO server on `http://localhost:9000`, and a web interface available at `http://localhost:9001`. The default access key is `minioadmin` and the secret key is also `minioadmin`.
+This command starts a MinIO server accessible at `http://localhost:9000`, with a web interface available at `http://localhost:9001`. The default access key is `minioadmin` and the secret key is also `minioadmin`.
 
 ## Configure Plakar
 
@@ -162,6 +221,13 @@ info: sync: synchronization from fs:///Users/niluje/backups to s3://localhost:90
 ```
 
 In production, you would typically run this command periodically to ensure that the S3 Kloset Store remains up-to-date with the local Kloset Store. If there are no new snapshots to transfer, the command will complete quickly without transferring any data.
+
+### Understanding sync behavior
+
+The `sync` command is:
+- **One-directional**: transfers snapshots from source to destination only
+- **Idempotent**: safe to run multiple times; only transfers what's missing
+- **Snapshot-preserving**: maintains the same snapshot IDs across stores
 
 ## A remote Kloset Store works just like a local one
 
