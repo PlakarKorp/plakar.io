@@ -19,7 +19,7 @@ This guide assumes that:
 
 Keeping multiple backup copies dramatically reduces the risk of total data loss by **turning a realistic single-site failure into an extremely unlikely event when data is replicated across independent locations** (see the [Why should you keep several copies of your backups?](../guides/why-several-copies/_index.md) guide).
 
-Plakar is designed to make it easy to synchronize a Kloset Store to another location.
+**Plakar** is designed to make it easy to synchronize a Kloset Store to another location.
 
 ## Login to install pre-built integrations
 
@@ -29,9 +29,7 @@ However, logging in unlocks optional features that improve usability and monitor
 
 In this quickstart, we will use the S3 integration, which requires the integration to be installed first. Therefore, we need to log in.
 
-*If you don't want to log in, it is instead possible to build and install the integration manually. See the [Installing Integrations guide](../guides/installing-integrations/_index.md) for details.*
-
-To log in using the CLI:
+You can log in through the CLI:
 
 {{< tabs name="To log in using the CLI" >}}
 {{% tab name="With email" %}}
@@ -51,24 +49,30 @@ Your default browser will open a new tab where you can authorize plakar to use y
 {{< /tabs >}}
 
 To check that you are now logged in, you can run:
-
-```
+```bash
 plakar login -status
 ```
 
 ## Install the S3 integration
 
-To install the S3 integration, run the following command:
+Run the following command to install the S3 integration:
 
 ```bash
 plakar pkg add s3
 ```
 
-If you already had the S3 integration installed and just wanted to update it, you can instead remove the existing version and install the latest one with:
+If you already have the S3 integration installed and want to update it, remove the existing version first and then install the latest one:
 
 ```bash
 plakar pkg rm s3
 plakar pkg add s3
+```
+
+You can list all installed integrations to confirm the S3 integration was installed successfully:
+
+```bash
+$ plakar pkg list
+s3@v1.0.7
 ```
 
 ## Set up S3-compatible storage
@@ -81,7 +85,7 @@ Run the following command to start a MinIO instance using Docker:
 docker run -d --name minio -p 9000:9000 -p 9001:9001 quay.io/minio/minio server /data --console-address ":9001"
 ```
 
-This command starts a MinIO server on `http://localhost:9000`, and a web interface available at `http://localhost:9001`. The default access key is `minioadmin` and the secret key is also `minioadmin`.
+This command starts a MinIO server accessible at `http://localhost:9000`, with a web interface available at `http://localhost:9001`. The default access key is `minioadmin` and the secret key is also `minioadmin`.
 
 ## Configure Plakar
 
