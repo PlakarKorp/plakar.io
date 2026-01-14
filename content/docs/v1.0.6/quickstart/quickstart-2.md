@@ -222,7 +222,7 @@ info: sync: synchronization from fs:///Users/niluje/backups to s3://localhost:90
 
 In production, you would typically run this command periodically to ensure that the S3 Kloset Store remains up-to-date with the local Kloset Store. If there are no new snapshots to transfer, the command will complete quickly without transferring any data.
 
-### Understanding sync behavior
+## Understanding sync behavior
 
 The `sync` command is:
 - **One-directional**: transfers snapshots from source to destination only
