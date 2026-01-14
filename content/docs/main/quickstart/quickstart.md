@@ -5,7 +5,11 @@ weight: 2
 summary: "Get started with plakar: create your first backup, verify integrity, restore, and use the UI."
 ---
 
-In this guide, we will walk you through the basic steps to create your first backup using **plakar**.
+This guide gets you started in minutes. You'll create your first backup snapshot, verify it's secure, and learn how to restore your files.
+
+**Plakar** makes backups simple and secure by default. Every backup is end-to-end encrypted, deduplicated to save space, and stored as an independent snapshot you can restore at any time—without depending on previous backups.
+
+If you've used traditional backup tools, here's what's different: instead of incremental archives that chain together, Plakar creates self-contained snapshots. You can delete old snapshots without breaking newer ones, compare any two snapshots directly, and trust that your data is tamper-evident and encrypted before it ever leaves your machine.
 
 ## Requirements
 
@@ -13,13 +17,13 @@ Make sure **plakar** is installed on your system. If you haven't done this yet, 
 
 ## Create a Kloset Store
 
-Before we can back up any data, we need to define where the backup will go. In **plakar** terms, this storage location is called a **Kloset Store**. You can find out more about the concept and rationale behind Kloset in [this post on our blog](https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/).
+Before we can back up any data, we need to define where the backup will go. In **plakar** terms, this storage location is called a **Kloset Store**. This is where Plakar keeps your backups. Think of it like a safe folder for snapshots. You can find out more about the concept and rationale behind Kloset in [this post on our blog](https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/).
 
 For our first backup, we will create a local Kloset Store on the filesystem of the host OS. In a real backup scenario you would want to store backups on a different physical device, so substitute in a better location if you have one.
 
-In the CLI, enter the following command:
+In your terminal, run the following command:
 ```bash
-plakar at $HOME/backups create
+$ plakar at $HOME/backups create
 ```
 
 **plakar** will then ask you to enter a passphrase, and repeat it to confirm.
@@ -37,25 +41,27 @@ it is not stored anywhere and **cannot** be recovered in case of loss. A lost pa
 
 ## Create your first backup
 
-Now that we have created the Kloset Store where data will be stored, we can use it to create our first backup. **plakar** uses the 'at' keyword to specify the Kloset Store to use.
+Now that we have created the Kloset Store where data will be stored, we can use it to create our first backup. **plakar** uses the `at` keyword to specify the Kloset Store to use.
 
 To create a simple example backup, try running:
 ```bash
-plakar at $HOME/backups backup /private/etc
+$ plakar at $HOME/backups backup $HOME/Documents
 ```
-**plakar** will process the files it finds at that location and pass them to the Kloset where they will be chunked and encrypted.
+This backs up your Documents folder into the `$HOME/backups`. Replace the paths with any folder or storage location you prefer to do plakar operations on.
+
+**plakar** will process the files it finds at that location (in this case the Documents folder) and pass them to the Kloset where they will be chunked and encrypted.
 
 The output will indicate the progress:
 ```bash
-9abc3294: OK ✓ /private/etc/ftpusers
-9abc3294: OK ✓ /private/etc/asl/com.apple.iokit.power
-9abc3294: OK ✓ /private/etc/pam.d/screensaver_new_ctk
+dd62691d: OK ✓ /home/user/Documents/Obsidian/NOTES.md
+dd62691d: OK ✓ /home/user/Documents/budget.xlsx
+dd62691d: OK ✓ /home/user/Documents/notes.txt
 [...]
-9abc3294: OK ✓ /private/etc/apache2
-9abc3294: OK ✓ /private/etc
-9abc3294: OK ✓ /private
-9abc3294: OK ✓ /
-backup: created unsigned snapshot 9abc3294 of size 3.1 MB in 72.55875ms
+dd62691d: OK ✓ /home/user/Documents
+dd62691d: OK ✓ /home/user
+dd62691d: OK ✓ /home
+dd62691d: OK ✓ /
+info: backup: created unsigned snapshot dd62691d of size 6.4 KiB in 125.317267ms (wrote 577 KiB)
 ```
 
 The output lists the short form of the snapshot ID. This is used to identify a particular snapshot and is also how you identify the snapshot to use for various **plakar** commands.
@@ -66,10 +72,10 @@ Learning new tools can be confusing. To make things easier, **plakar** includes 
 
 ## List snapshots
 
-You can verify that the backup exists with the `ls` command, returns the backups in that Kloset Store:
+You can verify that the backup exists with the `ls` command, which returns the backups in that Kloset Store:
 ```bash
 $ plakar at $HOME/backups ls
-2025-09-02T15:38:16Z   9abc3294    3.1 MB      0s   /private/etc
+2026-01-14T06:45:32Z   dd62691d   6.4 KiB        0s /home/user/Documents
 ```
 
 The output lists the date of the last backup, the short UUID, the size of files backed-up, the time it took to create the backup and the source path of the backup.
@@ -79,50 +85,50 @@ The output lists the date of the last backup, the short UUID, the size of files 
 It's always a good idea to verify the integrity of your backups. You can do this with the `check` command. This will read back the data from the Kloset Store, decrypt it and verify its integrity by recomputing checksums.
 
 ```bash
-$ plakar at $HOME/backups check 9abc3294
-9abc3294: ✓ /private/etc/afpovertcp.cfg
-9abc3294: ✓ /private/etc/apache2/extra/httpd-autoindex.conf
-9abc3294: ✓ /private/etc/apache2/extra/httpd-dav.conf
+$ plakar at $HOME/backups check dd62691d
+info: dd62691d: ✓ /home/user/Documents
+info: dd62691d: ✓ /home/user/Documents/Obsidian
+info: dd62691d: ✓ /home/user/Documents/code_samples
 [...]
-9abc3294: ✓ /private/etc/xtab
-9abc3294: ✓ /private/etc/zshrc
-9abc3294: ✓ /private/etc/zshrc_Apple_Terminal
-9abc3294: ✓ /private/etc
-check: verification of 9abc3294:/private/etc completed successfully
+info: dd62691d: ✓ /home/user/Documents/Obsidian/NOTES.md
+info: dd62691d: ✓ /home/user/Documents/recipes/ingredients.csv
+info: dd62691d: ✓ /home/user/Documents/resume.pdf
+info: dd62691d: ✓ /home/user/Documents/project_proposal.docx
+info: check: verification of dd62691d:/home/user/Documents completed successfully
 ```
 
 In production, you would typically run this command periodically to ensure the integrity of your backups over time. This is necessary to ensure that data has not degraded or become corrupted while stored.
 
 ## Restore files from a backup
 
-You can restore files from a backup using the `restore` command. In this case, we are restoring the snapshot we just created to a temporary storage.
+You can restore files from a backup using the `restore` command. In this case, we are restoring the snapshot we just created to another directory called restored.
 
 ```bash
-$ plakar at $HOME/backups restore -to /tmp/restore 9abc3294
-9abc3294: OK ✓ /private/etc/afpovertcp.cfg
-9abc3294: OK ✓ /private/etc/apache2/extra/httpd-autoindex.conf
-9abc3294: OK ✓ /private/etc/apache2/extra/httpd-dav.conf
+$ plakar at $HOME/backups restore -to $HOME/restored dd62691d
+info: dd62691d: OK ✓ /home/user/Documents
+info: dd62691d: OK ✓ /home/user/Documents/Obsidian
+info: dd62691d: OK ✓ /home/user/Documents/budget.xlsx
 [...]
-9abc3294: OK ✓ /private/etc/xtab
-9abc3294: OK ✓ /private/etc/zprofile
-9abc3294: OK ✓ /private/etc/zshrc
-9abc3294: OK ✓ /private/etc/zshrc_Apple_Terminal
-restore: restoration of 9abc3294:/private/etc at /tmp/restore completed successfully
+info: dd62691d: OK ✓ /home/user/Documents/recipes/desserts.txt
+info: dd62691d: OK ✓ /home/user/Documents/recipes/dinner.txt
+info: dd62691d: OK ✓ /home/user/Documents/resume.pdf
+info: dd62691d: OK ✓ /home/user/Documents/recipes/ingredients.csv
+info: restore: restoration of dd62691d:/home/user/Documents at /home/user/restored completed successfully
 ```
 
 To verify the files have been re-created, list the directory they were restored to. Note that the properties of the restored files, such as timestamps and permissions, will match the original files:
 
 ```bash
-$ ls -l /tmp/restore
-total 1784
--rw-r--r--@  1 gilles  wheel     515 Feb 19 22:47 afpovertcp.cfg
-drwxr-xr-x@  9 gilles  wheel     288 Feb 19 22:47 apache2
-drwxr-xr-x@ 16 gilles  wheel     512 Feb 19 22:47 asl
+$ ls -l $HOME/restored/Documents/
+total 36
+-rw-r--r-- 1 user user   30 Jan 14 06:31 budget.xlsx
+drwxr-xr-x 2 user user 4096 Jan 14 06:31 code_samples
+-rw-r--r-- 1 user user   28 Jan 14 06:31 notes.txt
 [...]
--rw-r--r--@  1 gilles  wheel       0 Feb 19 22:47 xtab
--r--r--r--@  1 gilles  wheel     255 Feb 19 22:47 zprofile
--r--r--r--@  1 gilles  wheel    3094 Feb 19 22:47 zshrc
--rw-r--r--@  1 gilles  wheel    9335 Feb 19 22:47 zshrc_Apple_Terminal
+-rw-r--r-- 1 user user   36 Jan 14 06:31 presentation.pptx
+-rw-r--r-- 1 user user   40 Jan 14 06:31 project_proposal.docx
+drwxr-xr-x 2 user user 4096 Jan 14 06:31 recipes
+-rw-r--r-- 1 user user   29 Jan 14 06:31 resume.pdf
 ```
 
 ## Access the UI
@@ -130,7 +136,7 @@ drwxr-xr-x@ 16 gilles  wheel     512 Feb 19 22:47 asl
 Plakar provides a web interface to view the backups and their content. To start the web interface, run:
 
 ```bash
-plakar at $HOME/backups ui
+$ plakar at $HOME/backups ui
 ```
 
 Your default browser will open a new tab. You can navigate through the snapshots, search and view the files, and download them.
