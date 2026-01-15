@@ -7,7 +7,7 @@ last_reviewed_version: "v1.0.6"
 weight: 1
 ---
 
-Ptar (Portable Tar) is **plakar's** portable archive file format that bundles one or more Kloset Stores and filesystem data into a single, self-contained `.ptar` file. Think of it as a "powerful tar file" that includes all of plakar's advanced features: deduplication, compression, encryption, versioning, and tamper-evidence while remaining completely portable.
+Ptar (Portable Tar) is **plakar's** portable archive file format that bundles data from any supported source such as Kloset Stores, the local filesystem or any Plakar plugins added into a single, self-contained `.ptar` file. Think of it as a "powerful tar file" that includes all of plakar's advanced features: deduplication, compression, encryption, versioning, and tamper-evidence while remaining completely portable.
 
 ## Quick Example
 ```bash
@@ -26,7 +26,7 @@ A `.ptar` file is a complete, standalone package that contains:
 - **Snapshots**: All snapshot metadata and history
 - **Data chunks**: Deduplicated blocks of actual file content
 
-## When you create a ptar file, plakar:
+## When you create a Ptar file, plakar:
 
 1. Reads data from one or more sources (Kloset Stores or filesystem paths)
 2. Deduplicates the data at the block level
@@ -34,12 +34,25 @@ A `.ptar` file is a complete, standalone package that contains:
 4. Encrypts the compressed data (unless `-plaintext` is specified)
 5. Packages everything into a single `.ptar` file
 
+## Supported Sources
+
+One of the most powerful features of Ptar is its ability to ingest data from multiple, diverse locations simultaneously. Supported sources include:
+
+- **Local Filesystem**: Standard absolute or relative paths (e.g., `/etc` or `./data`).
+- **Remote Protocols**: Any integration supported by plakar plugins, such as `sftp://`, `s3://`, or `ipfs://`.
+- **Kloset Stores**: You can use the `-k` flag to import existing Kloset stores into a portable archive.
+- **Aliases**: While currently being refined in v1.0.6, plakar aims to support repository aliases (e.g., `@s3-backup`) as direct sources.
+
+{{% notice style="info" title="Note on Aliases" expanded="true" %}}
+In version v1.0.6 and before there is a known issue [Issue #1882](https://github.com/PlakarKorp/plakar/issues/1882) regarding the resolution of aliases (e.g., `@myalias`) during Ptar archive creation. It is recommended to use direct paths or URI strings until the fix is released.
+{{% /notice %}}
+
 ## When to Use Ptar
 Ideal use cases are:
 - **Offsite backups**: Create encrypted archives to store in remote locations
 - **System migrations**: Package your data for moving to a new system
 - **Long-term archival**: Self-contained format that includes all metadata
-- **Sharing backups**: Transfer backups without needing plakar infrastructure
+- **Sharing backups**: Transfer backups as a single portable file
 - **Compliance storage**: Tamper-evident archives with cryptographic verification
 
 ## Ptar vs. Traditional Archives
@@ -52,33 +65,19 @@ Ideal use cases are:
 | Versioning           | ✓ Multiple snapshots         | ✗ Single version           |
 | Tamper detection     | ✓ Cryptographic verification | ✗ None                     |
 
-## File Format Details
-### Encryption
-By default, Ptar files are encrypted using a key derived from your passphrase:
-- Passphrase can be provided via `PLAKAR_PASSPHRASE` environment variable
-- Or prompted interactively during creation/extraction
-- Use `-plaintext` flag to disable encryption (not recommended)
+## File Format & Technical Details
 
-### Compression
-All data in `ptar` files is automatically compressed using efficient algorithms (currently LZ4) optimized for data backup.
+Because a `.ptar` file is a single-file implementation of a Kloset Store, it inherits all the performance and security characteristics of the **plakar** ecosystem.
 
-### Deduplication
-Ptar maintains plakar's block-level deduplication:
-- **Algorithm**: FASTCDC (Fast Content-Defined Chunking)
-- **Chunk sizes**: 64 KiB minimum, 1 MiB normal, 4 MiB maximum
-- **Efficiency**: Identical data blocks are stored only once
-- **Cross-source**: Works even when combining multiple Kloset Stores
-- **Size reduction**: Significantly reduces file size for similar content
+- **Storage Logic**: For detailed information on how data is deduplicated, compressed, and secured, please refer to the [Kloset Store Documentation](../../quickstart/concepts.md).
+- **Integrity**: Running `plakar at backup.ptar check` verifies the cryptographic integrity of every chunk.
 
-### Security
-Ptar files are designed with security in mind:
-- **Encryption**: Data is encrypted within the archive using AES256-GCM-SIV
-- **Tamper-evident**: Cryptographic verification (BLAKE3 hashes) detects modifications
-- **Passphrase-protected**: Only those with the passphrase can access the archive
-- **Key derivation**: ARGON2ID provides strong protection against brute-force attacks
+## Further Reading
+For a deeper dive into the philosophy and technical design of the format, check out the following posts on the plakar blog:
+
+- [It doesn't make sense to wrap modern data in a 1979 format, introducing .ptar](https://www.plakar.io/posts/2025-06-27/it-doesnt-make-sense-to-wrap-modern-data-in-a-1979-format-introducing-.ptar/)
+- [Technical deep dive into .ptar: replacing .tgz for petabyte-scale S3 archives](https://www.plakar.io/posts/2025-06-30/technical-deep-dive-into-.ptar-replacing-.tgz-for-petabyte-scale-s3-archives/)
 
 {{% notice style="warning" title="Passphrase Safety" expanded="true" %}}
-Store your passphrase securely! If you lose it, the `.ptar` file cannot be decrypted.
+By default, Ptar files are encrypted. Store your passphrase securely! If you lose it, the `.ptar` file cannot be decrypted.
 {{% /notice %}}
-
-When you run `plakar at backup.ptar check`, **plakar** verifies the cryptographic integrity of every chunk, detecting any tampering or corruption.
