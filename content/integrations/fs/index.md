@@ -1,12 +1,26 @@
 ---
-title: Filesystem
-subtitle: Protect your local files and folders with immutable, encrypted, verifiable backups
-description: Back up and restore directories from local or mounted filesystems.
-categories: 
+title: "Filesystem"
+
+subtitle: "Immutable, encrypted backups for local and mounted filesystems"
+
+description: >
+  Back up local directories and mounted filesystems to protect against accidental deletion, corruption, and ransomware. Versioned, encrypted, and fully restorable across systems.
+
+technology_title: Your filesystem is familiar and fragile
+
+technology_description: >
+  Local filesystems remain the primary place where personal data, system state, and application files live. From laptops and servers to NAS, SAN, and mounted volumes, filesystems are easy to use but easy to lose.
+
+  Accidental deletions, disk failures, malware, and human error can permanently destroy data in seconds.
+
+  Plakar turns filesystems into verifiable, immutable backup sources, creating encrypted point-in-time snapshots that survive mistakes, corruption, and loss.
+
+categories:
 - source connector
 - destination connector
 - viewer
 - storage connector
+
 tags:
 - Filesystem
 - NFS
@@ -15,69 +29,64 @@ tags:
 - SAN
 - NTFS
 - EXT4
+
+seo_tags:
+  - filesystem backup
+  - local backup
+  - immutable backup
+  - encrypted backups
+  - ransomware protection
+  - versioned backups
+  - disaster recovery
+  - NAS backup
+  - server backup
+  - workstation backup
+  - airgapped backup
+  - snapshot technology
+
+technical_documentation_link: 
+
 stage: stable
+
 date: 2025-05-13
+
+plakar_version: ">=1.0.0"
+
+resource: Filesystem
+
+resource_type: filesystem
 ---
 
+## Why protecting your Filesystem matters
+Most of us protect our files by simply copying them to an external drive or a USB stick. While having a second copy is a good start, it isn't a real backup strategy. Standard file copying leaves your data vulnerable to a few common problems:
+- **Accidental Deletion**: If you delete a file by mistake and your sync tool mirrors that change, the file is gone from both places.
+- **Ransomware and Corruption**: If your files are hit by malware or a disk failure, "copying" those files usually just preserves the damaged versions.
+- **Human Error**: It is incredibly easy to overwrite a new version of a document with an old one during a manual move.
 
-# Filesystem Integration
+For your personal photos, system settings, or work projects, you need a way to go back to a specific version of your data that you know is safe and healthy in case of a mishap with your current data.
 
-## Capabilities
+## Security and Integrity
+Local drives are the most common place for data to go missing. Whether it's a hard drive finally giving up or a misspelled command, local data is fragile.
 
-- **Source Connector**: Seamlessly back up filesystems to and from a [Kloset repository](/posts/2025-04-29/kloset-the-immutable-data-store/). Protect data on local hard drives, mounted NAS volumes, and SANs.
-- **Destination Connector**: Seamlessly restore filesystems to and from a [Kloset repository](/posts/2025-04-29/kloset-the-immutable-data-store/).
-- **Storage Connector**: Host your Kloset repository on any local or mounted filesystem, leveraging the same integration package to persist snapshots in place.
-- **Viewer**: Use the Integration Viewer to browse and visualize snapshots taken from local filesystems.
+With Plakar, every backup is a fixed snapshot that cannot be changed or overwritten once created. If your files are later deleted, damaged, or encrypted by malware, you can always return to a known-good version. All backups are end-to-end encrypted to protect your data.
 
-## Overview
+Plakar also allows for direct inspection of these backups. You can easily browse, search, or verify that your data is safe via the CLI or UI without needing to perform a full restore first.
 
-The **Plakar Filesystem integration** combines both source and storage connectors in one package. It enables immutable, encrypted, verifiable backups of directories from your local or mounted filesystems.
+## How Plakar secures your Filesystem files
+Plakar acts as a bridge for your local data, allowing you to move and protect it seamlessly:
+- **Source Connector**: Take snapshots of any directory on your computer, local hard drives, or mounted NAS and SAN volumes.
+- **Storage Connector**: Use any local folder or external drive as the "vault" (Kloset store) to hold your encrypted and deduplicated backups.
+- **Destination Connector**: Restore your files exactly where they belong, or to an entirely new location, with all original permissions and timestamps intact.
 
-## Configuration
+## Common Questions
+**1. Does Plakar keep file details?**  
 
-No special configuration is required for the Filesystem package.
+Yes. When you restore a file, Plakar brings back the original permissions, timestamps, and ownership, so your files look and act exactly as they did before.
 
-## Example Usage
+**2. How does Plakar handle symlinks?**  
 
-1. **Create a Kloset repository** on your local filesystem at `/var/backups`:
+Plakar backs up symlinks as they are. It records the link itself rather than the file it points to, which keeps your backups from growing unexpectedly.
 
-```bash
-$ plakar at /var/backups create
-```
+**3. Do you store extended attributes?**
 
-2. **Back up** the path `/etc` from your filesystem:
-
-```bash
-$ plakar at /var/backups backup /etc
-```
-
-3. **Restore** data from the same repository to the current directory:
-
-```bash
-# List available backups
-$ plakar at /var/backups ls
-
-# Restore a specific file
-$ plakar at /var/backups restore fc1b1e94:path/to/file.docx
-
-# Restore the full backup
-$ plakar at /var/backups restore fc1b1e94
-```
-
-See the [QuickStart guide](https://docs.plakar.io/en/quickstart/index.html) for more examples.
-
-## Questions, Feedback, and Support
-
-- Found a bug? [Open an issue on GitHub](https://github.com/PlakarKorp/plakar/issues/new?title=Bug%20report%20on%20Filesystem%20integration&body=Please%20provide%20a%20detailed%20description%20of%20the%20issue.%0A%0A**Plakar%20version**)
-- Join our [Discord community](https://discord.gg/uuegtnF2Q5) for real-time help and discussions.
-
-## Q&A
-
-**Do you store file metadata?**  
-Yes, the Filesystem package preserves file metadata, including permissions, timestamps, and ownership, ensuring restored files retain their original attributes.
-
-**Do you follow symlinks?**  
-Symlinks are backed up as symlinks only; their targets are not followed by default to avoid unintentional exposure of sensitive files outside the intended directory.
-
-**Do you store extended attributes?**  
-Yes, the Filesystem package preserves extended attributes (xattrs) of files and directories.
+Yes, Plakar preserves extended attributes (xattrs) of files and directories.
