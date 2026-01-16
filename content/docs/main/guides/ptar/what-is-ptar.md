@@ -77,6 +77,7 @@ For a deeper dive into the philosophy and technical design of the format, check 
 
 - [It doesn't make sense to wrap modern data in a 1979 format, introducing .ptar](https://www.plakar.io/posts/2025-06-27/it-doesnt-make-sense-to-wrap-modern-data-in-a-1979-format-introducing-.ptar/)
 - [Technical deep dive into .ptar: replacing .tgz for petabyte-scale S3 archives](https://www.plakar.io/posts/2025-06-30/technical-deep-dive-into-.ptar-replacing-.tgz-for-petabyte-scale-s3-archives/)
+- [Kloset Store & Ptar design documentation](https://github.com/PlakarKorp/kloset/blob/main/encryption/README.md)
 
 {{% notice style="warning" title="Passphrase Safety" expanded="true" %}}
 By default, Ptar files are encrypted. Store your passphrase securely! If you lose it, the `.ptar` file cannot be decrypted.
