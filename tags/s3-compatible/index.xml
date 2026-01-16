@@ -35,7 +35,12 @@
 &lt;li>&lt;strong>Source connector&lt;/strong>: to back up any MinIO bucket into an existing Kloset store.&lt;/li>
 &lt;li>&lt;strong>Destination connector&lt;/strong>: to restore from any Kloset store into a MinIO bucket.&lt;/li>
 &lt;/ul>
-&lt;p>&lt;strong>Use-cases for this integration&lt;/strong>&lt;/p></description></item><item><title>MinIO</title><link>https://www.plakar.io/integrations/minio/</link><pubDate>Mon, 28 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/minio/</guid><description>&lt;h2 id="-why-protecting-minio-matters">🧠 Why protecting MinIO matters&lt;/h2>
-&lt;p>Object storage is often perceived as durable by default, but durability is not backup.&lt;/p>
-&lt;p>Many organizations use MinIO to store logs, ML datasets, container images, or even backup files themselves, assuming they are safe. But without immutability, integrity validation, or isolation from the main system, data stored in MinIO can be silently corrupted, deleted by lifecycle policies, or compromised by access key leaks.&lt;/p>
-&lt;p>When retention rules, audits, or recovery are mission-critical, storing objects is not enough. You need a verifiable backup strategy.&lt;/p></description></item></channel></rss>
+&lt;p>&lt;strong>Use-cases for this integration&lt;/strong>&lt;/p></description></item><item><title>MinIO</title><link>https://www.plakar.io/integrations/minio/</link><pubDate>Mon, 28 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/minio/</guid><description>&lt;h2 id="why-protecting-minio-matters">Why protecting MinIO matters&lt;/h2>
+&lt;p>Object storage is often perceived as durable by default, but durability is not the same as a backup. Many organizations use MinIO to store logs, datasets, container images, or even other backup files, assuming they are safe.&lt;/p>
+&lt;p>However, without independent immutability and integrity validation, data stored in MinIO is still vulnerable to:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Silent Corruption&lt;/strong>: Data can degrade over time without being noticed.&lt;/li>
+&lt;li>&lt;strong>Accidental Deletion&lt;/strong>: Misconfigured lifecycle policies can delete important data automatically.&lt;/li>
+&lt;li>&lt;strong>Access Mismanagement&lt;/strong>: If security keys are leaked or misused, your entire data store can be wiped or altered.&lt;/li>
+&lt;/ul>
+&lt;p>When retention and recovery are mission-critical, simply storing objects is not enough. You need a verifiable backup strategy.&lt;/p></description></item></channel></rss>
