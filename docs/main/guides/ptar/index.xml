@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ptar: Portable Archives on Plakar | The Open Standard for Backup and Restore</title><link>https://www.plakar.io/docs/main/guides/ptar/</link><description>Recent content in Ptar: Portable Archives on Plakar | The Open Standard for Backup and Restore</description><generator>Hugo</generator><language>en</language><lastBuildDate>Mon, 01 Jan 0001 00:00:00 +0000</lastBuildDate><atom:link href="https://www.plakar.io/docs/main/guides/ptar/index.xml" rel="self" type="application/rss+xml"/><item><title>What is Ptar?</title><link>https://www.plakar.io/docs/main/guides/ptar/what-is-ptar/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/main/guides/ptar/what-is-ptar/</guid><description>&lt;p>Ptar (Portable Tar) is &lt;strong>plakar&amp;rsquo;s&lt;/strong> portable archive file format that bundles data from any supported source such as Kloset Stores, the local filesystem or any Plakar plugins added into a single, self-contained &lt;code>.ptar&lt;/code> file. Think of it as a &amp;ldquo;powerful tar file&amp;rdquo; that includes all of plakar&amp;rsquo;s advanced features: deduplication, compression, encryption, versioning, and tamper-evidence while remaining completely portable.&lt;/p>
+&lt;h2 id="quick-example">Quick Example&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Create a portable archive from your documents&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">plakar ptar -o documents.ptar /home/user/Documents
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Access it anywhere&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">plakar at documents.ptar ls
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="how-ptar-works">How Ptar Works&lt;/h2>
+&lt;p>A &lt;code>.ptar&lt;/code> file is a complete, standalone package that contains:&lt;/p></description></item><item><title>Creating Ptar Files</title><link>https://www.plakar.io/docs/main/guides/ptar/creating-ptar/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/main/guides/ptar/creating-ptar/</guid><description>&lt;p>The &lt;code>plakar ptar&lt;/code> command creates portable &lt;code>.ptar&lt;/code> archives from one or more data sources. You can include existing Kloset Stores, filesystem paths, or both when creating a single archive.&lt;/p>
+&lt;h2 id="basic-syntax">Basic Syntax&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">plakar ptar &lt;span class="o">[&lt;/span>options&lt;span class="o">]&lt;/span> -o output.ptar &lt;span class="o">[&lt;/span>sources&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="required">Required&lt;/h3>
+&lt;ul>
+&lt;li>&lt;code>-o output.ptar&lt;/code> - Destination file path&lt;/li>
+&lt;li>At least one source:
+&lt;ul>
+&lt;li>&lt;code>-k location&lt;/code> to include a Kloset Store&lt;/li>
+&lt;li>&lt;code>path ...&lt;/code> to include a filesystem paths&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="common-options">Common options&lt;/h3>
+&lt;ul>
+&lt;li>&lt;code>-plaintext&lt;/code> - Disable encryption (not recommended)&lt;/li>
+&lt;li>&lt;code>-overwrite&lt;/code> - Allow overwriting existing Ptar files&lt;/li>
+&lt;/ul>
+&lt;h2 id="creating-from-filesystem-paths">Creating from Filesystem Paths&lt;/h2>
+&lt;p>The simplest way to create a Ptar archive is directly from filesystem directories:&lt;/p></description></item><item><title>Using Ptar Files</title><link>https://www.plakar.io/docs/main/guides/ptar/using-ptar/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/main/guides/ptar/using-ptar/</guid><description>&lt;p>Once you have a Ptar file, you can use it like any other Kloset Store. This guide explains how to access, inspect, verify, and restore data from Ptar archives.&lt;/p>
+&lt;p>Ptar files are read-only and are accessed using the standard &lt;code>plakar at&lt;/code> command.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">plakar at backup.ptar &amp;lt;command&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="accessing-ptar-files">Accessing Ptar Files&lt;/h2>
+&lt;p>When using &lt;code>plakar at&lt;/code>, the Ptar file behaves like a read-only Kloset Store.&lt;/p>
+&lt;h2 id="listing-contents">Listing Contents&lt;/h2>
+&lt;h3 id="list-all-snapshots">List All Snapshots&lt;/h3>
+&lt;p>To view all snapshots contained in a Ptar file:&lt;/p></description></item></channel></rss>
