@@ -75,23 +75,20 @@ SFTP relies on SSH keys or passwords. If these credentials are leaked or an acco
 - **Corruption**: Ransomware or rogue scripts can encrypt live data on the server.
 - **Synchronization Issues**: Automated sync tools can unintentionally spread corruption from one server to another.
 
-Without independent snapshots, recovery from these events can be impossible. Plakar closes this gap by providing immutable, deduplicated snapshots and end-to-end encryption that remains secure even if the SFTP server itself is compromised.
+Without independent snapshots, recovery from these events can be impossible. Plakar closes this gap by providing a system where every snapshot acts as an immutable version that cannot be altered or deleted. This ensures your history remains intact even if the SFTP server itself is compromised.
+
+Plakar allows for direct inspection of backups, you can easily browse, search, or verify the integrity of your data via the CLI or UI without needing to perform a full restore first. 
 
 ## How Plakar secures your SFTP workflows
-Plakar turns any SFTP-accessible server into a flexible backup system by acting as a bridge between your data and your storage:
+Plakar turns any SFTP-accessible server into a flexible backup system by acting as a bridge between your data and your storage. By using deduplication, Plakar ensures that only unique data chunks are stored, keeping storage costs low.
+
+You can use Plakar through several integration points:
 - **Source Connector**: Take snapshots of files located on a remote SFTP server and bring them into a secure Plakar Kloset.
 - **Storage Connector**: Use an SFTP server as the vault to store your encrypted, deduplicated Plakar backups.
 - **Destination Connector**: Restore your snapshots to any SFTP server in your environment.
 
 This flexibility allows you to choose the backup model that fits your needs:
 - **Push Backups**: Send snapshots from source servers to a central storage location independently.
-- **Pull Backups**: Centrally collect data from multiple remote servers into a single, deduplicated Kloset.
+- **Pull Backups**: Centrally collect data from multiple remote servers into a single Kloset.
 
-### A Complete Backup Workflow
-With Plakar, SFTP becomes a professional backup solution instead of just a file-drop location. You gain several key advantages in one tool:
-- **Immutable Versioning**: Every snapshot is a point-in-time version that cannot be altered or deleted.
-- **Global Deduplication**: Save significant storage space by only storing unique data chunks across multiple servers.
-- **Direct Inspection**: Browse, search, and verify the integrity of your backups via the CLI or UI without having to restore the files first.
-- **Portable Retention**: Bundle your backups into the Ptar format for offline storage to meet strict compliance or security requirements.
-
-From creation to recovery, Plakar ensures your SFTP-based infrastructure remains resilient, secure, and verifiable.
+Plakar ensures your SFTP-based infrastructure remains resilient, secure, and verifiable from creation to recovery.
