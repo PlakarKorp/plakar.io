@@ -59,54 +59,39 @@ resource: SFTP
 resource_type: file-transfer
 ---
 
-## 🧠 Why protecting SFTP matters
+## Why protecting SFTP matters
+SFTP is a standard for secure file transfers across Linux servers, BSD hosts, and NAS devices like Synology and QNAP. However, secure transfer is not the same as a backup strategy.
 
-SFTP is the backbone of secure file transfers across Linux servers 🐧, BSD hosts 🏴, and NAS devices 💾 like Synology and QNAP.
-But secure transfer is not backup:
-- Files can be overwritten or deleted immediately after upload
-- No versioning or immutable snapshots exist for recovery
-- Manual transfers or scripts are error‑prone and hard to audit
+While SFTP secures the data in transit, it does not protect the data once it arrives to where you want to store it. Standard SFTP setups face several risks:
+- **Lack of Versioning**: Files can be overwritten or deleted immediately after upload.
+- **No Immutability**: There are no permanent snapshots to revert to if a file is corrupted.
+- **Operational Risk**: Manual transfers or custom scripts are error-prone and difficult to audit.
 
-When compliance, uptime, or disaster recovery is critical, simply storing files on SFTP is not enough.
-You need verifiable, immutable backups that can survive mistakes, misconfigurations, or attacks.
+When compliance, uptime, or disaster recovery is critical, simply storing files on SFTP is not enough. You need verifiable, immutable backups that can survive mistakes, misconfigurations, or attacks.
 
-## 🔓 What happens when SFTP credentials get compromised?
+## Security and Compromise
+SFTP relies on SSH keys or passwords. If these credentials are leaked or an account is compromised, your data is at risk:
+- **Data Loss**: Unauthorized access can be used to delete or overwrite entire directories instantly.
+- **Corruption**: Ransomware or rogue scripts can encrypt live data on the server.
+- **Synchronization Issues**: Automated sync tools can unintentionally spread corruption from one server to another.
 
-SFTP relies on SSH keys or passwords to control access. If a key is leaked, misused, or an account is compromised:
-- Attackers can delete or overwrite files instantly
-- 🦠 Ransomware or rogue scripts can encrypt or destroy live data
-- Automated sync or replication can spread corruption across servers
+Without independent snapshots, recovery from these events can be impossible. Plakar closes this gap by providing immutable, deduplicated snapshots and end-to-end encryption that remains secure even if the SFTP server itself is compromised.
 
-Without independent, immutable snapshots, recovery can be impossible.
+## How Plakar secures your SFTP workflows
+Plakar turns any SFTP-accessible server into a flexible backup system by acting as a bridge between your data and your storage:
+- **Source Connector**: Take snapshots of files located on a remote SFTP server and bring them into a secure Plakar Kloset.
+- **Storage Connector**: Use an SFTP server as the vault to store your encrypted, deduplicated Plakar backups.
+- **Destination Connector**: Restore your snapshots to any SFTP server in your environment.
 
-Plakar closes this gap by:
-- 🔒 Immutable, deduplicated snapshots outside normal SFTP access
-- 🔐 End‑to‑end encryption, even if the SFTP server is compromised
-- 📦 Portable backups that support offline or air‑gapped storage
+This flexibility allows you to choose the backup model that fits your needs:
+- **Push Backups**: Send snapshots from source servers to a central storage location independently.
+- **Pull Backups**: Centrally collect data from multiple remote servers into a single, deduplicated Kloset.
 
-Your snapshots stay safe, verifiable, and recoverable even if the server isn’t.
+### A Complete Backup Workflow
+With Plakar, SFTP becomes a professional backup solution instead of just a file-drop location. You gain several key advantages in one tool:
+- **Immutable Versioning**: Every snapshot is a point-in-time version that cannot be altered or deleted.
+- **Global Deduplication**: Save significant storage space by only storing unique data chunks across multiple servers.
+- **Direct Inspection**: Browse, search, and verify the integrity of your backups via the CLI or UI without having to restore the files first.
+- **Portable Retention**: Bundle your backups into the Ptar format for offline storage to meet strict compliance or security requirements.
 
-## 🛡️ How Plakar secures your SFTP workflows
-
-Plakar turns any SFTP‑accessible server into a flexible backup system:
-- Source Connector: Snapshot files from the SFTP server into a secure Kloset store
-- Storage Connector: Store encrypted, deduplicated backups on an SFTP server
-- Destination Connector: Restore snapshots to SFTP, anywhere in your environment
-
-With Push and Pull backup models, you can:
-- Push snapshots from each source server independently
-- Pull data centrally from multiple servers into a single Kloset
-- Scale to multi‑server environments without complicated scripts
-
-Snapshots remain immutable, portable, and browsable via CLI or UI, without rehydration.
-
-## 🧰 Everything in one tool: backup, verify, restore, browse
-
-With Plakar, SFTP becomes a complete backup workflow instead of just a file drop:
-- ✅ Immutable, versioned snapshots
-- 🔐 End‑to‑end encryption with SSH transport
-- 🧠 Global deduplication to save space across multiple servers
-- 🔎 Browse and verify backups directly without restoring
-- 📦 Optional offline or air‑gapped retention for compliance
-
-From snapshot creation to inspection to recovery, Plakar protects your SFTP‑based infrastructure — all in one tool.
+From creation to recovery, Plakar ensures your SFTP-based infrastructure remains resilient, secure, and verifiable.
