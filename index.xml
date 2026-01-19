@@ -408,14 +408,14 @@ A Viewer is also provided to inspect, search, and restore snapshots without requ
 &lt;li>Lifecycle policies can silently delete critical objects&lt;/li>
 &lt;/ul>
 &lt;p>In practice, S3 is highly durable but logically fragile.&lt;/p>
-&lt;p>Human error, compromised credentials, buggy applications, or ransomware can destroy or encrypt entire buckets in seconds.&lt;/p></description></item><item><title>Stdio</title><link>https://www.plakar.io/integrations/stdio/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/stdio/</guid><description>&lt;h1 id="stdio-integration">Stdio Integration&lt;/h1>
-&lt;h2 id="overview">Overview&lt;/h2>
-&lt;p>The &lt;strong>Stdio integration&lt;/strong> enables seamless backup and restoration of stdio streams to and from a &lt;a href="https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/">Kloset repository&lt;/a>.&lt;/p>
-&lt;p>This integration is designed to protect the data on your local hard drives, mounted NAS volumes, and SANs.&lt;/p>
-&lt;h2 id="configuration">Configuration&lt;/h2>
-&lt;p>The &lt;strong>Stdio integration&lt;/strong> does not require any special configuration.&lt;/p>
-&lt;h2 id="example-usage">Example Usage&lt;/h2>
-&lt;p>To back up, you can use the following commands which will copy the content of the stdio stream to a file named &lt;code>passwd&lt;/code> within the snapshot:&lt;/p></description></item><item><title>Tar</title><link>https://www.plakar.io/integrations/tar/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/tar/</guid><description>&lt;h2 id="using-tar-archives-with-plakar">Using tar archives with Plakar&lt;/h2>
+&lt;p>Human error, compromised credentials, buggy applications, or ransomware can destroy or encrypt entire buckets in seconds.&lt;/p></description></item><item><title>Stdio</title><link>https://www.plakar.io/integrations/stdio/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/stdio/</guid><description>&lt;h2 id="why-use-streams-instead-of-files">Why use Streams instead of Files?&lt;/h2>
+&lt;p>Plakar’s Stdio integration can back up any data stream provided via stdin like database dumps, system logs, command output or custom scripts. Unlike workflows that first create an intermediate files, streaming data directly avoids several challenges:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Storage Waste&lt;/strong>: You need enough free space to hold the uncompressed export before it even gets to your backup tool.&lt;/li>
+&lt;li>&lt;strong>Security Risks&lt;/strong>: Temporary files often sit on your disk unencrypted while waiting to be backed up.&lt;/li>
+&lt;li>&lt;strong>Complexity&lt;/strong>: You have to manage the creation and deletion of these intermediate files.&lt;/li>
+&lt;/ul>
+&lt;p>With the Stdio integration, Plakar reads data as it’s generated, encrypts and deduplicates it, and streams it straight to your Kloset Store without creating any intermediate files on disk.&lt;/p></description></item><item><title>Tar</title><link>https://www.plakar.io/integrations/tar/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/tar/</guid><description>&lt;h2 id="using-tar-archives-with-plakar">Using tar archives with Plakar&lt;/h2>
 &lt;p>Tar has been a standard Unix archive format for decades, commonly used to bundle files for distribution, transfer, and simple backups. It is widely supported and highly portable.&lt;/p>
 &lt;p>Tar archives themselves do not provide backup semantics such as deduplication, version tracking, or built-in encryption. Managing backups as collections of independent tar files becomes difficult as data evolves over time.&lt;/p>
 &lt;p>Tar archives are imported into Plakar, which handles storage, deduplication, and verification.&lt;/p></description></item><item><title>Legal Notice</title><link>https://www.plakar.io/legal-notice/</link><pubDate>Mon, 05 May 2025 10:00:00 +0000</pubDate><guid>https://www.plakar.io/legal-notice/</guid><description>&lt;p>Last update on: 06/05/2025&lt;/p>
