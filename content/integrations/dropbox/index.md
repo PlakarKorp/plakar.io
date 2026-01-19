@@ -59,6 +59,11 @@ Dropbox is excellent for syncing and sharing files instantly, but syncing is not
 
 For your important projects and shared team folders, you need an independent record of your data that remains safe, verifiable, and restorable no matter what happens in your live Dropbox environment.
 
+## Dropbox Shared Responsibility Model
+In Dropbox's security framework, Dropbox secures the cloud infrastructure, while customers are responsible for managing user access, sharing settings, permissions, and protecting sensitive information. Essentially, Dropbox protects the cloud, but you protect what's in the cloud.
+
+This means you must actively manage how your data is accessed, shared, and protected. You control passwords, permissions, and content to prevent leaks or misuse. That's why you need something like Plakar—an independent backup layer that ensures your data remains safe, verifiable, and restorable regardless of what happens in your Dropbox environment. For more details on Dropbox shared responsibilities, see [Dropbox's Shared Responsibility Guide](https://assets.dropbox.com/documents/en/trust/shared-responsibility-guide.pdf).
+
 ## Security and Compromise
 Dropbox relies on account credentials that can be targeted or lost through simple mistakes. If an account is compromised or a connected app behaves unexpectedly:
 - **Mass Data Loss**: Unauthorized access can result in the deletion or corruption of years of data in seconds.
