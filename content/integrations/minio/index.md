@@ -90,6 +90,6 @@ MinIO is also a powerful destination for your Plakar snapshots. By using MinIO a
 - **Systems**: Backup file systems from servers, workstations, or NAS devices.
 - **Applications**: Store exports from containers or cloud applications.
 
-Because Plakar uses content-addressing, it only stores unique data blocks. This significantly reduces the amount of storage space and bandwidth needed as your MinIO-based backup library grows.
+Plakar uses deduplication which significantly reduces the amount of storage space and bandwidth needed as your MinIO-based backup library grows.
 
 Plakar ensures that MinIO works as both a secure source and a trusted storage backend for your entire infrastructure.
