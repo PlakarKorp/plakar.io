@@ -48,7 +48,7 @@ resource_type: stdio
 ---
 
 ## Why use Streams instead of Files?
-In a typical workflow, you might export a database to a `.sql` file and then back up that file. This creates a few challenges:
+Plakar’s Stdio integration can back up any data stream provided via stdin like database dumps, system logs, command output or custom scripts. Unlike workflows that first create an intermediate files, streaming data directly avoids several challenges:
 - **Storage Waste**: You need enough free space to hold the uncompressed export before it even gets to your backup tool.
 - **Security Risks**: Temporary files often sit on your disk unencrypted while waiting to be backed up.
 - **Complexity**: You have to manage the creation and deletion of these intermediate files.
