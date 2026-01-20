@@ -85,16 +85,15 @@ Icloud can be backed up by Apple but it is not free and after 180 days it is del
 &lt;h2 id="example-usage">Example Usage&lt;/h2>
 &lt;p>To back up the path &lt;code>/pub/PlakarKorp&lt;/code> from FTP server located at &lt;code>example.org&lt;/code>, you can use the following command:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">$ plakar at /var/backups backup ftp://example.org/pub/PlakarKorp
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>To restore data to authentication-less FTP server located at &lt;code>example.org&lt;/code>, use the following command:&lt;/p></description></item><item><title>S3</title><link>https://www.plakar.io/integrations/s3/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/s3/</guid><description>&lt;h2 id="-why-protecting-s3-data-matters">🧠 Why protecting S3 data matters&lt;/h2>
-&lt;p>S3 is often treated as the backup, but object storage is not immune to failure or abuse:&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>To restore data to authentication-less FTP server located at &lt;code>example.org&lt;/code>, use the following command:&lt;/p></description></item><item><title>S3</title><link>https://www.plakar.io/integrations/s3/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/s3/</guid><description>&lt;h2 id="why-protecting-s3-data-matters">Why protecting S3 data matters&lt;/h2>
+&lt;p>S3 is often treated as the backup, but object storage durability is not the same as data protection. While S3 provides excellent infrastructure resilience, it remains logically vulnerable to:&lt;/p>
 &lt;ul>
-&lt;li>Objects can be overwritten or deleted instantly&lt;/li>
-&lt;li>Versioning is optional and easy to misconfigure&lt;/li>
-&lt;li>Replication spreads corruption just as fast as good data&lt;/li>
-&lt;li>Lifecycle policies can silently delete critical objects&lt;/li>
+&lt;li>&lt;strong>Silent Corruption&lt;/strong>: Data can degrade over time without detection, and standard object storage lacks built-in integrity validation across your entire dataset.&lt;/li>
+&lt;li>&lt;strong>Accidental Deletion&lt;/strong>: Misconfigured lifecycle policies can automatically delete critical objects. Human errors like bulk delete operations happen instantly and affect thousands of objects.&lt;/li>
+&lt;li>&lt;strong>Versioning Gaps&lt;/strong>: Versioning is optional and easy to misconfigure. Even when enabled, it doesn&amp;rsquo;t protect against lifecycle policy deletions or deliberate version purging.&lt;/li>
+&lt;li>&lt;strong>Replication Risks&lt;/strong>: S3 replication is a double-edged sword. It spreads corruption, accidental deletions, and malicious changes just as quickly as legitimate data.&lt;/li>
 &lt;/ul>
-&lt;p>In practice, S3 is highly durable but logically fragile.&lt;/p>
-&lt;p>Human error, compromised credentials, buggy applications, or ransomware can destroy or encrypt entire buckets in seconds.&lt;/p></description></item><item><title>Stdio</title><link>https://www.plakar.io/integrations/stdio/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/stdio/</guid><description>&lt;h2 id="why-use-streams-instead-of-files">Why use Streams instead of Files?&lt;/h2>
+&lt;p>For production data, assets, logs, and compliance records, S3 needs an independent safety net beyond buckets and replication.&lt;/p></description></item><item><title>Stdio</title><link>https://www.plakar.io/integrations/stdio/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/stdio/</guid><description>&lt;h2 id="why-use-streams-instead-of-files">Why use Streams instead of Files?&lt;/h2>
 &lt;p>Plakar’s Stdio integration can back up any data stream provided via stdin like database dumps, system logs, command output or custom scripts. Unlike workflows that first create an intermediate files, streaming data directly avoids several challenges:&lt;/p>
 &lt;ul>
 &lt;li>&lt;strong>Storage Waste&lt;/strong>: You need enough free space to hold the uncompressed export before it even gets to your backup tool.&lt;/li>
