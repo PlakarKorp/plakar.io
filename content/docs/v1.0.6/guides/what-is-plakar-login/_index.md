@@ -75,4 +75,6 @@ plakar service set alerting report.email=true
 
 While this version allows generating authentication tokens, the CLI cannot consume them. Support for token-based non-interactive login was introduced after the release of v1.0.6.
 
-This workflow is supported in the development branch and will be available in the next Plakar release. You can view the non-interactive login flow in the development branch documentation [here](../../../main/guides/what-is-plakar-login).
+{{% notice style="warning" title="Partial Support" expanded="true" %}}
+This workflow is supported in the development branch and will be available in the next Plakar release. You can view the non-interactive login flow in the development branch documentation here.
+{{% /notice %}}
