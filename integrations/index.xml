@@ -48,32 +48,16 @@ Icloud can be backed up by Apple but it is not free and after 180 days it is del
 &lt;p>Plakar’s Notion integration offers a reliable way to protect your content against deletion, corruption, or unauthorized changes. Pages, databases, media files and comments are backed up automatically and stored in secure, immutable snapshots.&lt;/p>
 &lt;p>Unlike native Notion exports, Plakar captures complete structured representations of your content using its internal snapshot model, enabling traceability, inspection, and future restoration.&lt;/p>
 &lt;h2 id="why-back-up-notion">Why back up Notion?&lt;/h2>
-&lt;p>Notion provides platform availability but does not guarantee recovery. If content is deleted, edited by mistake, or compromised via API or integrations, it is lost permanently without a user-managed backup.&lt;/p></description></item><item><title>IMAP</title><link>https://www.plakar.io/integrations/imap/</link><pubDate>Mon, 07 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/imap/</guid><description>&lt;h1 id="imap-integration">IMAP Integration&lt;/h1>
-&lt;h2 id="overview">Overview&lt;/h2>
-&lt;p>The &lt;strong>Plakar IMAP integration&lt;/strong> enables seamless backup and restoration of IMAP mail folders to and from a &lt;a href="https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/">Kloset repository&lt;/a>.&lt;/p>
-&lt;h2 id="configuration">Configuration&lt;/h2>
-&lt;p>The configuration parameters are as follow:&lt;/p>
+&lt;p>Notion provides platform availability but does not guarantee recovery. If content is deleted, edited by mistake, or compromised via API or integrations, it is lost permanently without a user-managed backup.&lt;/p></description></item><item><title>IMAP</title><link>https://www.plakar.io/integrations/imap/</link><pubDate>Mon, 07 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/imap/</guid><description>&lt;h2 id="why-protecting-imap-matters">Why protecting IMAP matters&lt;/h2>
+&lt;p>Email is often treated as inherently persistent, but IMAP mailboxes are vulnerable to both accidental and malicious data loss. Standard IMAP setups face several critical risks:&lt;/p>
 &lt;ul>
-&lt;li>&lt;code>location&lt;/code>: The URL of the IMAP server in the form imap://&lt;host>:&lt;port>.&lt;/li>
-&lt;li>&lt;code>username&lt;/code>: Username to login.&lt;/li>
-&lt;li>&lt;code>password&lt;/code>: Password for login.&lt;/li>
-&lt;li>&lt;code>tls&lt;/code>: TlS mode to use. Possible values are tls (the default), starttls and no-tls.&lt;/li>
-&lt;li>&lt;code>tls_no_verify&lt;/code>: If set to yes, the client will not verify the server certificate in tls mode.&lt;/li>
+&lt;li>&lt;strong>Accidental Deletion&lt;/strong>: Users can permanently delete entire folders with a few clicks. Most mail clients offer no meaningful undo beyond a trash folder that itself can be emptied.&lt;/li>
+&lt;li>&lt;strong>Account Compromise&lt;/strong>: If credentials are stolen or phished, attackers can delete years of correspondence instantly. Business email compromise attacks specifically target mailboxes to destroy evidence or communication history.&lt;/li>
+&lt;li>&lt;strong>Retention Policy Gaps&lt;/strong>: Server-side policies may automatically delete old messages. Quota pressures can force users to delete important emails. These deletions happen silently and often without adequate warning.&lt;/li>
+&lt;li>&lt;strong>Synchronization Cascades&lt;/strong>: IMAP synchronizes deletions across all connected devices immediately. A mistake on one device propagates everywhere, leaving no local copy to recover from.&lt;/li>
+&lt;li>&lt;strong>No Version History&lt;/strong>: Unlike documents or files, emails have no built-in versioning. Once modified or deleted on the server, the original is gone unless you have an independent backup.&lt;/li>
 &lt;/ul>
-&lt;h2 id="example-usage">Example Usage&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># configure an IMAP source connector&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ plakar &lt;span class="nb">source&lt;/span> add myIMAPsrc imap://imap.mydomain.com:143 &lt;span class="nv">username&lt;/span>&lt;span class="o">=&lt;/span>myuser &lt;span class="nv">password&lt;/span>&lt;span class="o">=&lt;/span>mypassword &lt;span class="nv">tls&lt;/span>&lt;span class="o">=&lt;/span>starttls
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># backup the mailbox&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ plakar backup @myIMAPsrc
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># configure an IMAP destination connector&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ plakar destination add myIMAPdst imap://imap.alsomydomain.com:143 &lt;span class="nv">username&lt;/span>&lt;span class="o">=&lt;/span>alsomyuser &lt;span class="nv">password&lt;/span>&lt;span class="o">=&lt;/span>alsomypassword &lt;span class="nv">tls&lt;/span>&lt;span class="o">=&lt;/span>starttls
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># restore the snapshot to the destination&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ plakar restore -to @myIMAPdst &amp;lt;snapid&amp;gt;
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="questions-feedback-and-support">Questions, Feedback, and Support&lt;/h2>
-&lt;p>Found a bug? &lt;a href="https://github.com/PlakarKorp/plakar/issues/new?title=Bug%20report%20on%20Filesystem%20integration&amp;amp;body=Please%20provide%20a%20detailed%20description%20of%20the%20issue.%0A%0A**Plakar%20version**">Open an issue on GitHub&lt;/a>&lt;/p></description></item><item><title>Filesystem</title><link>https://www.plakar.io/integrations/fs/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/fs/</guid><description>&lt;h2 id="why-protecting-your-filesystem-matters">Why protecting your Filesystem matters&lt;/h2>
+&lt;p>Emails often contain business records, compliance data, legal correspondence, or irreplaceable personal history and relying solely on the mail server is not enough. You need verifiable, immutable snapshots that exist independently of your IMAP account.&lt;/p></description></item><item><title>Filesystem</title><link>https://www.plakar.io/integrations/fs/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/fs/</guid><description>&lt;h2 id="why-protecting-your-filesystem-matters">Why protecting your Filesystem matters&lt;/h2>
 &lt;p>Most of us protect our files by simply copying them to an external drive or a USB stick. While having a second copy is a good start, it isn&amp;rsquo;t a real backup strategy. Standard file copying leaves your data vulnerable to a few common problems:&lt;/p>
 &lt;ul>
 &lt;li>&lt;strong>Accidental Deletion&lt;/strong>: If you delete a file by mistake and your sync tool mirrors that change, the file is gone from both places.&lt;/li>
