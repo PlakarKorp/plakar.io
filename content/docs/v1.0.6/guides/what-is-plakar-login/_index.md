@@ -73,43 +73,6 @@ plakar service set alerting report.email=true
 
 ### Non-interactive login (CI, SSH, automation)
 
-In some environments (CI pipelines, remote servers, automated jobs), an interactive login prompt is not possible. Plakar provides a token-based workflow for these cases.
+While this version allows generating authentication tokens, the CLI cannot consume them. Support for token-based non-interactive login was introduced after the release of v1.0.6.
 
-#### Step 1: Generate a token on a machine where you can log in
-
-Run:
-
-```bash
-plakar login
-plakar token create
-```
-
-This prints a token, for example:
-
-```
-eyJhbGc......
-```
-
-You can now use this token on any system where interactive login is not possible.
-
-#### Step 2: Use the token in the non-interactive environment
-
-Set the environment variable:
-
-```bash
-export PLAKAR_TOKEN=eyJhbGc......
-```
-
-Plakar automatically uses this token for authentication.
-
-
-#### Step 3: Persist the token (optional)
-
-If you want to save the token in the configuration on that machine, run:
-
-
-```bash
-plakar login -env
-```
-
-The `-env` flag reads `PLAKAR_TOKEN` and saves it into the local configuration.
+This workflow is supported in the development branch and will be available in the next Plakar release. You can view the non-interactive login flow in the development branch documentation [here](../../../main/guides/what-is-plakar-login).
