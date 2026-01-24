@@ -67,7 +67,7 @@ SSH into your new backup VPS and install Plakar.
 ssh ubuntu@your-vps-ip
 ```
 
-Intall Plakar to your VPS using [Plakar Installation Guide](../../../../../docs/main/quickstart/installation/)
+Install Plakar to your VPS using [Plakar Installation Guide](../../../../../docs/main/quickstart/installation/)
 
 ## Step 4: Configure OVH Object Storage in Plakar
 In this step, you’ll connect Plakar to the OVH S3-compatible Object Storage you created earlier and initialize it as a Kloset Store.
