@@ -320,7 +320,7 @@ Look for a line like:
 ```bash
 launching webUI at http://:8080?plakar_token=d9fccdbd-77a3-41a0-8657-24d77a6d00ac
 ```
-Open your browser and navigate to http://your-vps-ip:8080. If prompted for a token, copy the token from the logs and paste it into the input dialog.
+Open your browser and navigate to `http://your-vps-ip:8080`. If prompted for a token, copy the token from the logs and paste it into the input dialog.
 
 {{% notice style="warning" title="Security Note" expanded="true" %}}
 For production use, configure a firewall to restrict access to port 8080 to only your IP addresses, or set up a reverse proxy with SSL.
