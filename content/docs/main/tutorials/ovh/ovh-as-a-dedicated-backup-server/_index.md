@@ -251,7 +251,7 @@ This configuration:
 - Verifies each backup after creation (`check: true`)
 
 {{% notice style="info" title="Plakar Scheduler" expanded="true" %}}
-Plakar scheduler is right now just nothing more than a simple cron job, it will be updated in future versions with features like automatically running as a systemd service and others.
+The scheduler is still basic and will be improved in future versions with additional features and capabilities.
 {{% /notice %}}
 
 ### Start the scheduler
