@@ -1,5 +1,5 @@
 ---
-title: "Using OVH VPS as a Dedicated Backup Server"
+title: "Setup an OVH VPS as a Dedicated Backup Server"
 date: "2026-01-21T10:00:00Z"
 weight: 1
 summary: "Setup a working backup server that automatically backs up your OVH servers to an Object Storage"
@@ -26,7 +26,7 @@ end
 BackupVPS["Backup VPS<br/>Plakar + Scheduler"]
 
 subgraph Storage["OVH S3 Object Storage"]
-  Kloset["Kloset Store<br/>Encrypted & Deduplicated<br/>Snapshots"]
+  Kloset["Kloset Store<br/>Encrypted & Deduplicated<br/>Backup"]
 end
 
 Server1 -->|SSH/SFTP| BackupVPS
@@ -52,12 +52,14 @@ linkStyle default stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 2
 Before you can store backups, you need to set up an S3-compatible storage location. OVH's Object Storage provides scalable, durable storage that Plakar can use as a backend. This approach separates your backup data from your VPS, ensuring backups survive even if your VPS fails.
 
 First, you'll need to create a user who can be assigned to access containers. You'll need access credentials to connect Plakar to your Object Storage:
-1. In your Object Storage project, go to **Users & Roles**
-2. Click **Create User** or select an existing user
-3. Generate S3 credentials for this user
-4. Save the following information securely:
-    - Access Key ID
-    - Secret Access Key
+1. Log in to the OVHcloud Control Panel
+2. Navigate to **Public Cloud** → **Storage & Backup** → **Object Storage**
+3. Go to the Users tab then click on **Create User** (if you have no users yet)
+4. Enter a description for the user and click **Create**
+5. Download the information provided and store them securely.
+
+![Create a user in OVHcloud Object Storage](./images/ovh-object-storage-create-user.png)
+![Download user information](./images/download-user-information.png)
 
 Next, you'll create an S3-compatible Object Storage container to store your backups.
 1. Log in to the OVHcloud Control Panel
@@ -72,19 +74,25 @@ Next, you'll create an S3-compatible Object Storage container to store your back
     - Region: Select the location closest to your servers
 6. Click Create
 
+![Create a new object storage](./images/create-object-storage-1.png)
+![Create a new object storage](./images/create-object-storage-2.png)
+
 For detailed instructions, see the [OVHcloud S3 Object Storage documentation](https://help.ovhcloud.com/csm/fr-documentation-public-cloud-storage-object-storage-s3?id=kb_browse_cat&kb_id=574a8325551974502d4c6e78b7421938&kb_category=8eaef5882c21fe144a4e082b79ed2fb9&spa=1).
 
 ## Step 2: Provision Your Backup VPS
 You need a dedicated server to run Plakar continuously. While you could run backups from your local machine, a VPS provides several advantages: it runs 24/7 and it doesn't depend on your local infrastructure to stay online.
 
 Create a VPS to run your backup server:
-1. In the OVHcloud Control Panel, go to Bare Metal Cloud → Dedicated and Virtual Servers → Virtual Private Servers
-2. Click on Order
+1. In the OVHcloud Control Panel, go to **Bare Metal Cloud** → **Dedicated and Virtual Servers** → **Virtual Private Servers**
+2. Click on **Order** then on the next page click on **Configure your VPS**
 3. Select your configuration:
     - Model: Start with a general purpose instance e.g VPS-1 (2 vCores, 8 GB RAM, 75GB Storage)
     - Region: Same region as your Object Storage for best performance
     - Image: Distribution only, Ubuntu 25.04 (you can use any image you prefer)
 4. Order your VPS
+
+![Order VPS from OVHcloud](./images/order-vps.png)
+![Configure your VPS](./images/configure-vps.png)
 
 ### Initial VPS Setup
 When you first receive your VPS, you'll get a delivery email with connection details. For security reasons, OVHcloud creates a default username based on your chosen operating system (e.g., `ubuntu` for Ubuntu, `debian` for Debian).
