@@ -1,7 +1,7 @@
 ---
 title: "Community"
 date: "2025-09-09T00:00:00Z"
-weight: 4
+weight: 6
 chapter: false
 summary: "How to engage with the Plakar community: where to talk, collaborate, follow updates, and read the rules."
 ---
