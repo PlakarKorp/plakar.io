@@ -1,5 +1,5 @@
 ---
-title: "OVH Backup Server Setup"
+title: "Using OVH VPS as a Dedicated Backup Server"
 date: "2026-01-21T10:00:00Z"
 weight: 1
 summary: "Setup a working backup server that automatically backs up your OVH servers to an Object Storage"
@@ -13,6 +13,40 @@ The system consists of three components:
 - **Backup VPS**: Runs Plakar and schedules backups
 - **Source servers**: Your OVH servers that need to be backed up
 - **OVH Object Storage**: Stores the backups in a Kloset Store.
+
+{{< mermaid >}}
+flowchart TB
+
+subgraph Sources["Source Servers"]
+  Server1["Web Server 1"]
+  Server2["Web Server 2"]
+  ServerN["Server N"]
+end
+
+BackupVPS["Backup VPS<br/>Plakar + Scheduler"]
+
+subgraph Storage["OVH S3 Object Storage"]
+  Kloset["Kloset Store<br/>Encrypted & Deduplicated<br/>Snapshots"]
+end
+
+Server1 -->|SSH/SFTP| BackupVPS
+Server2 -->|SSH/SFTP| BackupVPS
+ServerN -->|SSH/SFTP| BackupVPS
+
+BackupVPS -->|Store Snapshots| Storage
+
+%% Apply classes
+class Server1,Server2,ServerN sourceBox
+class BackupVPS brandBox
+class Storage,Kloset storeBox
+
+%% Classes definitions
+classDef sourceBox fill:#ffe4e6,stroke:#cad5e2,stroke-width:1px
+classDef brandBox fill:#524cff,color:#ffffff
+classDef storeBox fill:#dbeafe,stroke:#cad5e2,stroke-width:1px
+
+linkStyle default stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 25s linear infinite;
+{{< /mermaid >}}
 
 ## Step 1: Create OVH Object Storage
 Before you can store backups, you need to set up an S3-compatible storage location. OVH's Object Storage provides scalable, durable storage that Plakar can use as a backend. This approach separates your backup data from your VPS, ensuring backups survive even if your VPS fails.
