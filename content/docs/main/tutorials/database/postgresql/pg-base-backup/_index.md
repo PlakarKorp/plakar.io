@@ -4,6 +4,7 @@ description: >
     How to perform physical backups of a PostgreSQL cluster using pg_basebackup, and store them with Plakar.
 last_reviewed: "2026-01-05"
 last_reviewed_version: "v1.0.6"
+weight: 2
 ---
 
 *Last reviewed: {{<param "last_reviewed">}} / Plakar {{<param "last_reviewed_version">}}*
