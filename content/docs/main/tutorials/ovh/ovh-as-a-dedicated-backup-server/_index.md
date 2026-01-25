@@ -377,12 +377,45 @@ sudo systemctl status plakar-ui
 ```
 
 ### Access the UI
-Plakar UI requires an access token for security. Plakar automatically generates a random token when the UI starts. You can retrieve it from the service logs:
+The Plakar UI requires an access token for security. You can set a custom token using an environment variable, or Plakar will generate one automatically.
 
+#### Option 1: Set a custom token (recommended)
+Set the `PLAKAR_UI_TOKEN` environment variable before starting the UI service. Update your systemd service file:
+
+```bash
+cat << 'EOF' | sudo tee /etc/systemd/system/plakar-ui.service > /dev/null
+[Unit]
+Description=Plakar Web UI
+After=network.target
+
+[Service]
+Type=simple
+Environment="PLAKAR_UI_TOKEN=your-secure-token-here"
+ExecStart=/usr/bin/plakar at "@ovh-s3-backups" ui -listen :8080
+Restart=always
+User=ubuntu
+WorkingDirectory=/home/ubuntu
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+
+Replace `your-secure-token-here` with a secure token of your choice (e.g., a UUID or strong random string).
+
+Then reload and restart the service:
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart plakar-ui
+```
+
+Open your browser and navigate to `http://your-vps-ip:8080?plakar_token=your-secure-token-here`.
+
+#### Option 2: Use auto-generated token
+If you don't set `PLAKAR_UI_TOKEN`, Plakar generates a random token automatically. You can retrieve it from the logs:
 ```bash
 sudo journalctl -u plakar-ui -n 100 --no-pager | grep -i token
 ```
-
 Look for a line like:
 ```bash
 launching webUI at http://:8080?plakar_token=d9fccdbd-77a3-41a0-8657-24d77a6d00ac
