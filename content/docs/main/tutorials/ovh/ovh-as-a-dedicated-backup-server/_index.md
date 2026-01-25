@@ -335,15 +335,18 @@ sudo systemctl status plakar-ui
 ```
 
 ### Access the UI
-The Plakar UI requires an access token for security. To get your token:
+Plakar UI requires an access token for security. Plakar automatically generates a random token when the UI starts. You can retrieve it from the service logs:
+
 ```bash
 sudo journalctl -u plakar-ui -n 100 --no-pager | grep -i token
 ```
+
 Look for a line like:
 ```bash
 launching webUI at http://:8080?plakar_token=d9fccdbd-77a3-41a0-8657-24d77a6d00ac
 ```
-Open your browser and navigate to `http://your-vps-ip:8080`. If prompted for a token, copy the token from the logs and paste it into the input dialog.
+
+Copy the token from the URL and open your browser to `http://your-vps-ip:8080`. If prompted for a token, paste the token value.
 
 {{% notice style="warning" title="Security Note" expanded="true" %}}
 For production use, configure a firewall to restrict access to port 8080 to only your IP addresses, or set up a reverse proxy with SSL.
