@@ -1,62 +1,93 @@
 ---
 title: "CalDAV"
-subtitle: "Sync and back up your calendar events with Plakar"
-description: Import and export your calendar data from any CalDAV-compatible server using Plakar. Events are securely stored in `.ics` format and can be restored or synced back at any time.
-technology_description: CalDAV is a protocol that allows clients to access and manage scheduling information on a remote server. It’s supported by popular providers like Fastmail, Nextcloud, iCloud, and Google Workspace (via third-party gateways).
+
+subtitle: "Secure, encrypted backups for your calendar data"
+
+description: >
+  Backup and restore your calendar data from any CalDAV-compatible server using Plakar. Plakar creates encrypted, deduplicated, and verifiable backups of your scheduling data.
+
+technology_title: "CalDAV is a universal calendar infrastructure"
+
+technology_description: >
+  CalDAV (Calendaring Extensions to WebDAV) is an open standard protocol for accessing and managing calendar data on remote servers. It's supported by major providers including Nextcloud, Fastmail, iCloud, and Google Workspace (via gateways). CalDAV provides reliable synchronization across devices, but fails to provide immutability, versioning, or protection against accidental deletion of data or corruption. Plakar can backup and restore your calendar data from any CalDAV server, it also preserves complete event history and metadata.
+
 categories:
-- source connector
-- destination connector
+  - source connector
+  - destination connector
+
 tags:
-- caldav
-- calendar
-- backup
+  - CalDAV
+  - Calendar
+  - Nextcloud
+  - Fastmail
+  - iCloud
+
+seo_tags:
+  - CalDAV backup
+  - calendar backup
+  - encrypted calendar backup
+  - Nextcloud calendar backup
+  - Fastmail backup
+  - iCloud calendar backup
+  - disaster recovery
+  - immutable snapshots
+  - calendar version control
+  - calendar data protection
+
+technical_documentation_link:
+
 stage: beta
+
 date: 2025-07-21
+
+plakar_version: ">=1.0.0"
+
+resource: CalDAV
+
+resource_type: calendar-protocol
 ---
-## Back up your calendar with Plakar
 
-Plakar’s CalDAV integration lets you import and export calendar events to and from your Plakar repository. It supports any CalDAV-compatible provider and preserves events in full fidelity using the `.ics` format.
+## Why protecting CalDAV matters
+Calendar data has become a critical infrastructure for personal and professional life. Meetings, appointments, deadlines, and event history represent important scheduling information that organizations and individuals depend on daily.
 
-Use it to archive your schedule, sync events between systems, or push them back to your calendar server with no data loss.
+CalDAV provides reliable synchronization across devices, but synchronization is not the same as backup. Standard CalDAV usage faces several risks:
+- **Accidental Deletion**: Events can be permanently deleted across all synchronized devices instantly.
+- **Limited Recovery**: Most providers offer minimal version history or trash functionality with short retention windows.
+- **Calendar Corruption**: Malformed events or sync errors can corrupt entire calendars.
 
-## Why back up CalDAV calendars?
+## Security and Compromise
+CalDAV servers are accessed via account credentials and application-specific passwords. If credentials are compromised or permissions are misconfigured, your calendar data is vulnerable:
+- **Mass Deletion**: Unauthorized access can delete years of event history instantly.
+- **Silent Modification**: Compromised accounts can alter meeting times, locations, or attendee lists without detection.
+- **Sync Propagation**: Malicious changes spread automatically to all connected devices.
+- **Account Lockout**: Lost credentials or provider issues can leave you unable to access your own calendar data.
 
-Calendars often contain critical personal or work-related data, but most providers offer limited options for long-term backups or restorations. Plakar gives you:
+Without independent snapshots, recovering from these events requires manual reconstruction from scattered sources. Plakar solves this by creating immutable snapshots that exist outside your CalDAV infrastructure. Even if your calendar server is compromised, your backup history remains intact and independently verifiable.
 
-- Full snapshot history of your calendar
-- The ability to recover deleted or modified events
-- A secure and encrypted archive that works across providers
+## How Plakar secures your CalDAV workflows
+You can use Plakar's CalDAV integration as:
+- **Source Connector**: Capture complete snapshots of your calendar events and store them in a secure Kloset Store.
+- **Destination Connector**: Restore calendar data as `.ics` format from a backup to your CalDAV server.
 
-## Supported features
+This approach provides several advantages over native calendar exports:
+- **Automated Scheduling**: Run backups on schedule without manual intervention.
+- **Complete Fidelity**: All event metadata, recurrence rules, attendees, and timestamps are preserved.
+- **Deduplication**: All calendar data and metadata are deduplicated to minimize storage.
+- **Point-in-Time Recovery**: Restore your calendar to any previous backup snapshot.
+- **Cross-Provider Migration**: Move calendar data between different CalDAV providers seamlessly.
 
-- Import from any CalDAV server (Nextcloud, Fastmail, iCloud, etc.)
-- Export `.ics` files from Plakar back to the calendar server
-- Support for multiple calendars in one operation
-- Secure authentication (supports app passwords)
-- Round-trip support with no data loss
-- Preservation of metadata including:
-    - Event title, time, recurrence rules
-    - Attendees, organizer, UID, creation timestamps
+## What Plakar backs up
+- **Events**: Complete event details including title, description, location, and time
+- **Recurrence Rules**: Repeating event patterns and exception dates
+- **Attendees**: Participant lists with email addresses and response status
+- **Metadata**: Creation dates, last modified timestamps, organizer information, UIDs
+- **Alarms**: Reminder and notification settings
+- **Attachments**: Document and file references
+- **Time Zones**: Complete timezone information for accurate scheduling across regions
 
-## Limitations
-
-- All accessible calendars and events are synced; per-calendar selection is not yet supported
-- Export may fail if your account is read-only or lacks write permissions
-- Events must be stored in Plakar in `.ics` format to be exported
-- Does not yet support partial or time-based filtering
-- Services requiring OAuth2 (like Google Calendar) are not supported directly; fill the OAuth2 provider configuration to use a third-party gateway
-
-For usage details, see the [configuration guide]()
-
-## Threats mitigated
-
-- Loss of events due to accidental deletion
-- Calendar corruption or sync errors
-- Locked-in provider limitations (e.g. platform shutdowns)
-- Incomplete manual exports
-
-## Questions and support
-
-Need help or want to report a bug?  
-→ [Open an issue on GitHub](https://github.com/PlakarKorp/integration-caldav/issues/new)  
-→ [Join our Discord](https://discord.gg/xjkbsWgyDZ) to get support from the team and community
+## Current Limitations
+The CalDAV integration is in beta and has some known limitations:
+- **Bulk Operations**: All accessible calendars are backed up together; per-calendar selection is not yet supported.
+- **Filtering**: Time-based or event-type filtering during backup is not yet available.
+- **OAuth2 Providers**: Services requiring OAuth2 authentication (like native Google Calendar) require third-party gateway configuration.
+- **Write Permissions**: Restoration requires write access to the target CalDAV server.
