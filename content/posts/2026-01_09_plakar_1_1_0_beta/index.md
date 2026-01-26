@@ -103,12 +103,12 @@ transfer time scales roughly linearly and is determined by raw storage or networ
 
 We measure performance with **Korpus**, an assorted collection of resources (low- and high-entropy; small and large; images, audio, video, text, code, PDFs, etc.) laid out across a very large, deep directory tree.
 
-| Op        | Items     | v1.0.6      | v1.1.0-beta.1         | v1.1.0-beta (w/optimizations) |
-|-----------|-----------|-------------|-----------------------|--------------------------------|
-| Backup    | 1.000.000 | ~3 minutes  | ~3 minutes            | ~2 minutes **(-33%)**          |
-| Sync      | 1.000.000 | ~5 minutes  | ~5 minutes            | ~4 minutes **(-20%)**          |
-| Restore   | 1.000.000 | ~60 minutes | ~3 minutes **(-95%)** | ~3 minutes **(-95%)**          |
-| Check     | 1.000.000 | ~1 minute   | ~1 minute             | ~1 minute                      |
+| Op        | Items     | v1.0.6      | v1.1.0-beta.1         |
+|-----------|-----------|-------------|-----------------------|
+| Backup    | 1.000.000 | ~3 minutes  | ~3 minutes            |
+| Sync      | 1.000.000 | ~5 minutes  | ~5 minutes            |
+| Restore   | 1.000.000 | ~60 minutes | ~3 minutes **(-95%)** |
+| Check     | 1.000.000 | ~1 minute   | ~1 minute             |
 
 <small>*tested on a 14-core mac mini with 64 GiB RAM and NVMe storage.</small>
 
@@ -123,6 +123,16 @@ We didn't include most of our backup optimizations in v1.1.0-beta:
 they're fairly recent and we didn't want them to interfere with the release cycle as we're already happy with unoptimized performances.
 Most of them will be merged during the beta phase,
 others may have to wait for the next release in Q2.
+
+| Op        | Items     | v1.0.6                | v1.1.0-beta (w/optimizations)  |
+|-----------|-----------|-----------------------|--------------------------------|
+| Backup    | 1.000.000 | ~3 minutes            | ~2 minutes **(-33%)**          |
+| Sync      | 1.000.000 | ~5 minutes            | ~4 minutes **(-20%)**          |
+| Restore   | 1.000.000 | ~60 minutes           | ~3 minutes **(-95%)**          |
+| Check     | 1.000.000 | ~1 minute             | ~1 minute                      |
+
+<small>*tested on a 14-core mac mini with 64 GiB RAM and NVMe storage.</small>
+
 
 Note that we also have plans for further optimizations,
 which we have not yet pushed past the point of initial experimentation,
