@@ -1,9 +1,9 @@
 ---
-title: "Introducing v1.1.0-beta.1: plakar’s next chapter"
+title: "v1.1.0-beta: plakar’s next chapter"
 date: 2026-01-26T10:00:00+0100
 authors:
   - "gilles"
-summary: "plakar v1.1.0-beta.1 marks a major step forward, with significant performance gains, architectural simplifications, and powerful new user-facing features. From faster backups and restores to better mounting, cleaner integrations, and a more reliable execution model, this release lays solid foundations for what comes next. The beta is stable, backward compatible, and ready to be explored."
+summary: "plakar v1.1.0-beta marks a major step forward, with significant performance gains, architectural simplifications, and powerful new user-facing features. From faster backups and restores to better mounting, cleaner integrations, and a more reliable execution model, this release lays solid foundations for what comes next. The beta is stable, backward compatible, and ready to be explored."
 categories:
   - announcement
   - community
@@ -32,7 +32,19 @@ That said, we have not shared many updates about the community edition since Nov
 The two are far from isolated: they share the same building blocks, and a significant part of the work done for the enterprise edition now flows back into the community edition.
 
 
-## Announcing plakar v1.1.0-beta.1
+## TL;DR
+
+* v1.1.0-beta is out, stable and fully backward compatible. We expect RC in February and the final release in March.
+* What’s new: a cleaner terminal UI, multi-directory backups (single source), much better FUSE mounting (plus HTTP mounts), and a new package manager for integrations.
+* Reliability: the old agent is gone and replaced by a tiny background service called cached that only manages shared cache and locking while commands run in the CLI.
+* Performance: big wins in our Korpus tests, especially restore speeds. More backup latency improvements are coming with the next optimizations.
+* Memory and disk: peak RAM use is down, and the VFS cache footprint is much smaller by trading a bit of bandwidth for disk space.
+* For integrators: importer/exporter/store interfaces are much simpler, so writing a connector is easier than before.
+* Next up: point-in-time recovery, multi-source snapshots, better store maintenance and repair tools, and packfile work.
+* Try it, tell us what breaks, and help shape the final release.
+
+
+## Announcing plakar v1.1.0-beta
 
 Throughout 2025, we released **four updates to the v1.0.x branch** of plakar’s community edition, each bringing its share of improvements and new features.
 As we begin 2026, roughly two months after our last release, we are entering the beta phase of the v1.1.0 branch, which packs **a lot** of new capabilities and internal improvements.
@@ -92,123 +104,6 @@ The result is a quieter, more readable terminal experience, especially for long-
 The new `tui` view is available on `backup` and `restore` commands but we will progressively cover more commands,
 such as `check` or `sync` as we go.
 
-
-### Improved performance
-
-Contrary to common assumption, backup and restore complexity isn’t driven by total bytes but by per-item work:
-tree traversal and stat calls, open/close overhead, lots of small random I/O, hashing/chunking each object, dedup lookups and metadata handling,
-plus the CPU, memory and coordination costs that come with huge file counts and deep directory trees.
-So beyond a few dozen GiB, total size ceases to be informative:
-transfer time scales roughly linearly and is determined by raw storage or network throughput, not by the metadata, CPU, and I/O-seek costs that actually make backups hard.
-
-We measure performance with **Korpus**, an assorted collection of resources (low- and high-entropy; small and large; images, audio, video, text, code, PDFs, etc.) laid out across a very large, deep directory tree.
-
-| Op        | Items     | v1.0.6      | v1.1.0-beta.1         |
-|-----------|-----------|-------------|-----------------------|
-| Backup    | 1.000.000 | ~3 minutes  | ~3 minutes            |
-| Sync      | 1.000.000 | ~5 minutes  | ~5 minutes            |
-| Restore   | 1.000.000 | ~60 minutes | ~3 minutes **(-95%)** |
-| Check     | 1.000.000 | ~1 minute   | ~1 minute             |
-
-<small>*tested on a 14-core mac mini with 64 GiB RAM and NVMe storage.</small>
-
-
-Note the **dramatic** improvement for Restore which is due to several changes:
-- a better algorithm for restore
-- a better use of parallelism
-- a better use of our prefetch mechanism
-- the removal of some expensive system calls that were not strictly necessary
-
-We didn't include most of our backup optimizations in v1.1.0-beta:
-they're fairly recent and we didn't want them to interfere with the release cycle as we're already happy with unoptimized performances.
-Most of them will be merged during the beta phase,
-others may have to wait for the next release in Q2.
-
-| Op        | Items     | v1.0.6                | v1.1.0-beta (w/optimizations)  |
-|-----------|-----------|-----------------------|--------------------------------|
-| Backup    | 1.000.000 | ~3 minutes            | ~2 minutes **(-33%)**          |
-| Sync      | 1.000.000 | ~5 minutes            | ~4 minutes **(-20%)**          |
-| Restore   | 1.000.000 | ~60 minutes           | ~3 minutes **(-95%)**          |
-| Check     | 1.000.000 | ~1 minute             | ~1 minute                      |
-
-<small>*tested on a 14-core mac mini with 64 GiB RAM and NVMe storage.</small>
-
-
-Note that we also have plans for further optimizations,
-which we have not yet pushed past the point of initial experimentation,
-and which show promising results in all cases for future releases.
-
-
-### Improved RAM usage
-
-We received reports of high memory usage during certain operations.
-Investigations revealed two separate root causes and we’ve made targeted fixes that already show measurable improvements.
-
-The first issue was a gRPC-level memory leak that mostly affected long-running backups using integrations (notably SFTP and S3). We reviewed the gRPC code path end-to-end and applied a series of fixes to eliminate the leak and stabilise long jobs.
-
-The second issue stemmed from the third-party cache implementation we were using. Replacing this component was non-trivial as our cache layer must satisfy strict correctness and performance properties and there are few viable alternatives. Over a focused three-month effort we reworked the caching subsystem: while we haven’t yet removed the old implementation completely, the changes already deliver clear RAM reductions and better behaviour under load.
-
-Lastly, we now default to spilling temporary data to disk rather than keeping it all in memory. The performance impact is small, but the memory savings are significant, it is a practical trade that greatly improves stability for large or long-running operations.
-
-|           | v1.0.6     | v1.1.0-beta.1         |
-|-----------|------------|-----------------------|
-| Backup    | ~3.0 GiB <br />![graph](procmon-v100-backup.png) | ~1.3 GiB **(-43%)** <br />![graph](procmon-v110-backup.png) |
-| Sync      | ~3.6 GiB <br />![graph](procmon-v100-sync.png) | ~2.5 GiB **(-30%)** <br />![graph](procmon-v110-sync.png) |
-| Restore   | ~2.3 GiB <br />![graph](procmon-v100-restore.png) | ~800 MiB **(-66%)** <br />![graph](procmon-v110-restore.png) |
-| Check     | ~1.3 GiB <br />![graph](procmon-v100-check.png) | ~800 MiB **(-40%)** <br />![graph](procmon-v110-check.png) |
-
-<small>*tested on a 14-core mac mini with 64 GiB RAM and NVMe storage.</small>
-
-There's still some room for improvement but memory usage being a factor of concurrency,
-this is controlable by reducing concurrency to an amount that suits the RAM requirements.
-
-
-
-### Improved cache space
-
-We received reports that the local cache was taking too much space, so we reworked caching to reduce on-disk usage.
-
-Plakar uses three caches:
-
-* **State cache**: not really a cache but a required copy of the store state used to decide whether data needs to be pushed. It’s synchronized before an operation and recreated if missing, so it must remain local.
-* **VFS cache**: stores metadata for resources as last seen so we can skip work (and avoid recomputing chunks) when a resource appears unchanged. We removed the on-disk VFS cache and now query the store instead, saving local storage in exchange for additional bandwidth. During the beta we’ll add a flag to prefer the previous local-cache behaviour when that makes more sense.
-* **Scan cache**: a transient cache built during operations and discarded when the operation completes.
-
-Removing the on-disk VFS cache has **significantly reduced** local cache usage for large trees by trading some bandwidth for disk space, while still allowing users to opt back into a local cache to save bandwidth when desired.
-
-|     Items | v1.0.6 |      v1.1.0-beta.1 |
-| --------: | -----: | -----------------: |
-| 1,000,000 |  4 GiB | 1.8 GiB **(-55%)** |
-
-In short: less local disk usage by default, an explicit option to favour the old local cache if you prefer lower bandwidth, and the required state cache still ensures correctness and fast change detection.
-
-
-
-### Agent is dead. Long live cached.
-
-When you use backup software, you expect to be able to run multiple commands in parallel.
-This implies some level of shared cache and state.
-
-In **plakar v1.0.0**, to coordinate access and handle locking, we introduced an *agent* process that executed commands on behalf of the CLI.  
-This meant the agent had to be running for anything to work at all, which quickly proved to be a fairly annoying requirement.
-
-To address this, **plakar v1.0.4** introduced an auto-spawned, auto-teardown agent.  
-While this improved usability, the agent remained on the critical path. Every command was still executed by the agent, with the CLI merely proxying input and output.
-
-This design came with drawbacks:
-
-- Interactive prompting was difficult or impossible for some integrations, for example SFTP passphrase prompts.
-- A failure in a single command, including an out-of-memory condition, could take down the agent rather than just the operation.
-- The agent accumulated complexity by combining execution, coordination, and cache management in a single process.
-
-With **plakar v1.1.0**, the agent is gone.
-
-It is replaced by **cached**, a lightweight, auto-managed process dedicated exclusively to shared cache maintenance and locking.
-**cached** will automagically start if needed and stop when not needed anymore,
-so you never have to think about it.
-Commands now execute directly in the CLI, while cached ensures safe, coordinated access to the cache.
-
-This separation of responsibilities simplifies the architecture, dramatically reduces the failure blast radius, unlocks features that were previously difficult to implement, and makes plakar **considerably more reliable**.
 
 
 ### Multi-directory support
@@ -345,6 +240,124 @@ We believe this significantly lowers the barrier to entry.
 Writing a first integration can now take just a few hours for newcomers, and only minutes for experienced developers.
 I think we will start seeing some Twitch sessions of integration development from our team soon :-)
 
+
+
+### Improved performance
+
+Contrary to common assumption, backup and restore complexity isn’t driven by total bytes but by per-item work:
+tree traversal and stat calls, open/close overhead, lots of small random I/O, hashing/chunking each object, dedup lookups and metadata handling,
+plus the CPU, memory and coordination costs that come with huge file counts and deep directory trees.
+So beyond a few dozen GiB, total size ceases to be informative:
+transfer time scales roughly linearly and is determined by raw storage or network throughput, not by the metadata, CPU, and I/O-seek costs that actually make backups hard.
+
+We measure performance with **Korpus**, an assorted collection of resources (low- and high-entropy; small and large; images, audio, video, text, code, PDFs, etc.) laid out across a very large, deep directory tree.
+
+| Op        | Items     | v1.0.6      | v1.1.0-beta           |
+|-----------|-----------|-------------|-----------------------|
+| Backup    | 1.000.000 | ~3 minutes  | ~3 minutes            |
+| Sync      | 1.000.000 | ~5 minutes  | ~5 minutes            |
+| Restore   | 1.000.000 | ~60 minutes | ~3 minutes **(-95%)** |
+| Check     | 1.000.000 | ~1 minute   | ~1 minute             |
+
+<small>*tested on a 14-core mac mini with 64 GiB RAM and NVMe storage.</small>
+
+
+Note the **dramatic** improvement for Restore which is due to several changes:
+- a better algorithm for restore
+- a better use of parallelism
+- a better use of our prefetch mechanism
+- the removal of some expensive system calls that were not strictly necessary
+
+We didn't include most of our backup optimizations in v1.1.0-beta:
+they're fairly recent and we didn't want them to interfere with the release cycle as we're already happy with unoptimized performances.
+Most of them will be merged during the beta phase,
+others may have to wait for the next release in Q2.
+
+| Op        | Items     | v1.0.6                | v1.1.0-beta (w/optimizations)  |
+|-----------|-----------|-----------------------|--------------------------------|
+| Backup    | 1.000.000 | ~3 minutes            | ~2 minutes **(-33%)**          |
+| Sync      | 1.000.000 | ~5 minutes            | ~4 minutes **(-20%)**          |
+| Restore   | 1.000.000 | ~60 minutes           | ~3 minutes **(-95%)**          |
+| Check     | 1.000.000 | ~1 minute             | ~1 minute                      |
+
+<small>*tested on a 14-core mac mini with 64 GiB RAM and NVMe storage.</small>
+
+
+Note that we also have plans for further optimizations,
+which we have not yet pushed past the point of initial experimentation,
+and which show promising results in all cases for future releases.
+
+
+### Improved RAM usage
+
+We received reports of high memory usage during certain operations.
+Investigations revealed two separate root causes and we’ve made targeted fixes that already show measurable improvements.
+
+The first issue was a gRPC-level memory leak that mostly affected long-running backups using integrations (notably SFTP and S3). We reviewed the gRPC code path end-to-end and applied a series of fixes to eliminate the leak and stabilise long jobs.
+
+The second issue stemmed from the third-party cache implementation we were using. Replacing this component was non-trivial as our cache layer must satisfy strict correctness and performance properties and there are few viable alternatives. Over a focused three-month effort we reworked the caching subsystem: while we haven’t yet removed the old implementation completely, the changes already deliver clear RAM reductions and better behaviour under load.
+
+Lastly, we now default to spilling temporary data to disk rather than keeping it all in memory. The performance impact is small, but the memory savings are significant, it is a practical trade that greatly improves stability for large or long-running operations.
+
+|           | v1.0.6     | v1.1.0-beta           |
+|-----------|------------|-----------------------|
+| Backup    | ~3.0 GiB <br />![graph](procmon-v100-backup.png) | ~1.3 GiB **(-43%)** <br />![graph](procmon-v110-backup.png) |
+| Sync      | ~3.6 GiB <br />![graph](procmon-v100-sync.png) | ~1.7 GiB **(-52%)** <br />![graph](procmon-v110-sync.png) |
+| Restore   | ~2.3 GiB <br />![graph](procmon-v100-restore.png) | ~800 MiB **(-66%)** <br />![graph](procmon-v110-restore.png) |
+| Check     | ~1.3 GiB <br />![graph](procmon-v100-check.png) | ~800 MiB **(-40%)** <br />![graph](procmon-v110-check.png) |
+
+<small>*tested on a 14-core mac mini with 64 GiB RAM and NVMe storage.</small>
+
+There's still some room for improvement but memory usage being a factor of concurrency,
+this is controlable by reducing concurrency to an amount that suits the RAM requirements.
+
+
+
+### Improved cache space
+
+The local cache was taking too much space, so we reworked caching to reduce on-disk usage.
+
+Plakar uses three caches:
+
+* **State cache**: not really a cache but a required copy of the store state used to decide whether data needs to be pushed. It’s synchronized before an operation and recreated if missing, so it must remain local.
+* **VFS cache**: stores metadata for resources as last seen so we can skip work (and avoid recomputing chunks) when a resource appears unchanged. We removed the on-disk VFS cache and now query the store instead, saving local storage in exchange for additional bandwidth. During the beta we’ll add a flag to prefer the previous local-cache behaviour when that makes more sense.
+* **Scan cache**: a transient cache built during operations and discarded when the operation completes.
+
+Removing the on-disk VFS cache has **significantly reduced** local cache usage for large trees by trading some bandwidth for disk space, while still allowing users to opt back into a local cache to save bandwidth when desired.
+
+|     Items | v1.0.6 |      v1.1.0-beta   |
+| --------: | -----: | -----------------: |
+| 1,000,000 |  4 GiB | 1.8 GiB **(-55%)** |
+
+In short: less local disk usage by default, an explicit option to favour the old local cache if you prefer lower bandwidth, and the required state cache still ensures correctness and fast change detection.
+
+
+
+### Agent is dead. Long live cached.
+
+When you use backup software, you expect to be able to run multiple commands in parallel.
+This implies some level of shared cache and state.
+
+In **plakar v1.0.0**, to coordinate access and handle locking, we introduced an *agent* process that executed commands on behalf of the CLI.  
+This meant the agent had to be running for anything to work at all, which quickly proved to be a fairly annoying requirement.
+
+To address this, **plakar v1.0.4** introduced an auto-spawned, auto-teardown agent.  
+While this improved usability, the agent remained on the critical path. Every command was still executed by the agent, with the CLI merely proxying input and output.
+
+This design came with drawbacks:
+
+- Interactive prompting was difficult or impossible for some integrations, for example SFTP passphrase prompts.
+- A failure in a single command, including an out-of-memory condition, could take down the agent rather than just the operation.
+- The agent accumulated complexity by combining execution, coordination, and cache management in a single process.
+
+With **plakar v1.1.0**, the agent is gone.
+
+It is replaced by **cached**, a lightweight, auto-managed process dedicated exclusively to shared cache maintenance and locking.
+**cached** will automagically start if needed and stop when not needed anymore,
+so you never have to think about it.
+Commands now execute directly in the CLI, while cached ensures safe, coordinated access to the cache.
+
+This separation of responsibilities simplifies the architecture, dramatically reduces the failure blast radius, unlocks features that were previously difficult to implement, and makes plakar **considerably more reliable**.
 
 
 
