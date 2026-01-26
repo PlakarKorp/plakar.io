@@ -1,5 +1,5 @@
 ---
-title: "v1.1.0-beta: plakar’s next chapter"
+title: "Plakar v1.1.0-beta: the foundation for what’s next"
 date: 2026-01-26T10:00:00+0100
 authors:
   - "gilles"
@@ -67,9 +67,20 @@ New development during this period will continue on our main development branch 
 Feel free to join our Discord channel and help us by testing the beta and reporting any issues you encounter.
 Your feedback is invaluable and directly helps shape the final release.
 
+```terminal
+$ go install github.com/PlakarKorp/plakar@v1.1.0-beta.2
+```
+
 Active testers can earn a contributor role,
 allowing them to talk in our hackrooms,
-and with significant contributions come significant goodies too :-p
+and with significant contributions comes significant goodies too :-p
+
+<center>
+
+![](goodies.jpg)
+![](goodies2.jpg)
+
+</center>
 
 
 ## What's new ?
