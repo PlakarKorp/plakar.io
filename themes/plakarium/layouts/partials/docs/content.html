@@ -135,14 +135,24 @@
                                 </p>
                                 <div class="mt-4">
                                     {{ if $latestUrl }}
-                                    <a href="{{ $latestUrl }}"
-                                       class="items-center gap-2 px-3 py-2 bg-primary-500  hover:bg-primary-600 text-white text-sm font-semibold font-space-grotesk rounded-md transition-colors duration-200 shadow-sm hover:shadow">
-                                        <span>View Latest Version ({{ $latestVersion }})</span>
+                                    <a href="{{ $latestUrl }}" class="text-neutral-50 bg-primary-500 inline-flex relative group overflow-hidden px-3 py-2 rounded-lg items-center gap-2 font-space-grotesk text-sm transition-all duration-150 ease-out hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1 active:shadow-inner">
+                                        <div class="absolute inset-0 bg-primary-600 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-0"></div>
+                                        <div class="relative z-10 flex items-center gap-2">
+                                            <span>View Latest Version ({{ $latestVersion }})</span>
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                                            </svg>
+                                        </div>
                                     </a>
                                     {{ else }}
-                                    <a href="/docs/{{ $latestVersion }}/"
-                                       class="items-center gap-2 px-3 py-2 bg-primary-500  hover:bg-primary-600 text-white text-sm font-semibold font-space-grotesk rounded-md transition-colors duration-200 shadow-sm hover:shadow">
-                                        <span>Go to Latest Docs ({{ $latestVersion }})</span>
+                                    <a href="/docs/{{ $latestVersion }}/" class="text-neutral-50 bg-primary-500 inline-flex relative group overflow-hidden px-3 py-2 rounded-lg items-center gap-2 font-space-grotesk text-sm transition-all duration-150 ease-out hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1 active:shadow-inner">
+                                        <div class="absolute inset-0 bg-primary-600 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-0"></div>
+                                        <div class="relative z-10 flex items-center gap-2">
+                                            <span>Go to Latest Docs ({{ $latestVersion }})</span>
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                                            </svg>
+                                        </div>
                                     </a>
                                     {{ end }}
                                 </div>
