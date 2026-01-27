@@ -62,7 +62,7 @@ For your important projects and shared team folders, you need an independent rec
 ## Dropbox Shared Responsibility Model
 Dropbox operates under a [shared responsibility model](https://assets.dropbox.com/documents/en/trust/shared-responsibility-guide.pdf) where Dropbox secures the infrastructure, you're responsible for protecting your data. Plakar ensures you meet your side with independent, verifiable backups.
 
-To learn more about the general idea about the shared responsibility model you can check the docs on [Shared Responsibility Model](../../../docs/main/integrations/shared-responsibility-model).
+To learn more about the general idea about the shared responsibility model you can check the docs on [Why your should backup your SaaS](../../../docs/main/guides/why-should-i-backup-my-saas).
 
 ## Security and Compromise
 Dropbox relies on account credentials that can be targeted or lost through simple mistakes. If an account is compromised or a connected app behaves unexpectedly:
