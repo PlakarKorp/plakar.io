@@ -68,7 +68,7 @@ Feel free to join our Discord channel and help us by testing the beta and report
 Your feedback is invaluable and directly helps shape the final release.
 
 ```terminal
-$ go install github.com/PlakarKorp/plakar@v1.1.0-beta.2
+$ go install github.com/PlakarKorp/plakar@v1.1.0-beta.3
 ```
 
 Active testers can earn a contributor role,
