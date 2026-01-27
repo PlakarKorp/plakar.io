@@ -4,11 +4,9 @@ title: "OpenDrive"
 subtitle: "Resilient, encrypted backups for your OpenDrive environment"
 
 description: >
-  Back up your OpenDrive workloads with Plakar to protect against data loss,
-  corruption, and ransomware. Immutable, encrypted,
-  even offline and across environments.
+  Back up your OpenDrive workloads with Plakar to protect against data loss, corruption, and ransomware. Plakar provides immutable, encrypted backups.
 
-technology_title: OpenDrive is everywhere and often underprotected
+technology_title: OpenDrive is widely used but often underprotected
 
 technology_description: >
   OpenDrive is a flexible cloud storage and backup platform for individuals and businesses, supporting file sync, online storage, and collaboration. Its accessibility and ease of use make it a popular choice for storing critical data, but native protections like versioning and trash bins are limited and can be bypassed or exhausted. Plakar helps secure OpenDrive by providing encrypted, immutable backups, ensuring you can restore files after deletion, corruption, or compromise, and maintain compliance and resilience across environments.
@@ -19,8 +17,8 @@ categories:
   - storage connector
 
 tags:
-  - opendrive
-  - object storage
+  - Opendrive
+  - Cloud storage
 
 seo_tags:
   - OpenDrive
@@ -48,41 +46,37 @@ plakar_version: ">=1.0.3"
 
 resource: OpenDrive
 
-resource_type: object-storage
+resource_type: cloud-storage
 ---
 
-## 🧠 Why protecting OpenDrive matters
+## Why protecting OpenDrive matters
 
-Relying solely on OpenDrive’s built-in sync and versioning exposes you to risks like silent corruption, accidental deletion, ransomware, or account compromise. Permanent data loss or compliance failures can occur if files are deleted or tampered with and no independent backup exists. Without robust, externalized backups, recovery options are limited and downtime can be costly.
+OpenDrive excels at synchronizing files and making them accessible across devices. But this doesn't count as a backup strategy. Your files are still vulnerable to:
 
-## 🔓 What if your OpenDrive is deleted or compromised?
+- **Accidental Deletion**: Deleted files are synced instantly and may be permanently removed once retention limits are reached.
+- **Overwrites and Corruption**: Bad edits or corrupted files replace healthy versions across all devices.
+- **Ransomware**: Encrypted files created by malware are synced back to OpenDrive, overwriting clean data.
 
-OpenDrive’s native protections may not be enough if files are deleted, overwritten by malware, or accessed with leaked credentials. Permanent deletions or ransomware attacks can propagate quickly, leaving no clean copy to restore. Plakar mitigates these risks by:
+For important personal data, shared folders, or business assets, you need an independent history of your files that cannot be altered by mistakes, malware, or account issues.
 
-- Creating immutable, encrypted snapshots outside OpenDrive’s access scope
-- Storing backups in external or air-gapped locations
-- Enabling granular recovery of individual files or folders without full restores
+## Security and compromise
 
-Your data remains safe, verifiable, and restorable, regardless of what happens in your live OpenDrive environment.
+OpenDrive access is tied to user credentials and connected devices. If those are lost, misused, or compromised:
 
-## 🛡️ How Plakar secures your OpenDrive workflows
+- Mass data loss can happen in minutes
+- Malicious changes are synchronized automatically
+- Recovery windows may be limited or unavailable
 
-Plakar integrates with OpenDrive as both a source and destination:
+Plakar protects against these scenarios by creating encrypted snapshots that cannot be modified. Encryption keys are owned by you, ensuring that your backups remain private and secure even if the OpenDrive account itself is compromised.
 
-- Snapshot files and folders from OpenDrive, encrypt and deduplicate them, and store them in a trusted Kloset store
-- Restore verified snapshots back into OpenDrive or other environments, on-prem or cloud-based
-- Use OpenDrive as a Plakar Kloset stores, keeping backups portable and secure
+Plakar also allows direct inspection of your backups. You can browse, search, and verify snapshot contents through the CLI or UI without performing a full restore.
 
-Plakar adds end-to-end encryption, global deduplication, versioning, and snapshot browsing giving you full control over backup and restore, even offline or across providers.
+## How Plakar secures your OpenDrive workflows
 
-## 🧰 Everything in one tool: backup, verify, restore, browse
+Plakar integrates with OpenDrive as a flexible bridge for your data:
 
-Plakar provides:
+- **Source Connector**: Take snapshots of your OpenDrive files and store them in a secure Plakar Kloset.
+- **Storage Connector**: Use OpenDrive as a vault to store encrypted and deduplicated Plakar backups from other sources.
+- **Destination Connector**: Restore verified snapshots back into OpenDrive when needed.
 
-- ✅ Immutable, versioned snapshots of your OpenDrive data
-- 🔐 End-to-end encryption at the source
-- 🧠 Global deduplication to reduce storage footprint
-- 🔎 Full inspection via UI or CLI, without restoring
-- 📦 Optional offline storage and long-term retention
-
-From snapshot creation to visual browsing to recovery, Plakar handles it all, with OpenDrive as both a secure source and a trusted storage backend.
+Plakar uses deduplication to minimize storage usage and bandwidth while preserving full snapshot history. This approach ensures your OpenDrive data remains resilient, verifiable, and easily recoverable.
