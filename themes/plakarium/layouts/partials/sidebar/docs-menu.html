@@ -10,13 +10,18 @@
     {{ $isDev := false }}
     {{ $sortKey := 0 }}
 
-    {{ $lowerTitle := lower $subsection.Title }}
-    {{ if or (eq $lowerTitle "main") (eq $lowerTitle "develop") (eq $lowerTitle "dev") (eq $lowerTitle "master") }}
+    {{ $versionString := "" }}
+    {{ if isset $subsection.Params "plakarversion" }}
+        {{ $versionString = $subsection.Params.plakarversion }}
+    {{ end }}
+
+    {{ $lowerVersion := lower $versionString }}
+    {{ if eq $lowerVersion "main" }}
         {{ $isDev = true }}
         {{ $sortKey = 999999999 }}
     {{ else }}
         {{/* Parse semantic version */}}
-        {{ $cleanVersion := strings.TrimPrefix "v" $subsection.Title }}
+        {{ $cleanVersion := strings.TrimPrefix "v" $versionString }}
         {{ $cleanVersion = strings.TrimPrefix "V" $cleanVersion }}
 
         {{ $versionPart := $cleanVersion }}
