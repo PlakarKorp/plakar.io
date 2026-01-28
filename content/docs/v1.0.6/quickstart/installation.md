@@ -82,8 +82,14 @@ EOF
 {{< /tab >}}
 
 {{% tab name="Others" %}}
+  ### Arch Linux
+  Plakar is available on the Arch User Repository (AUR). If you use an AUR helper such as `yay`, you can install it with:
+  ```bash
+  yay -S plakar
+  ```
+  ### Other Platforms
 
-  For other supported operating systems, or for an alternative to the methods mentioned above, it is possible to download pre-built binaries for different platforms and architectures from the [Download page](/download/_index.md).
+  For other supported operating systems, or for an alternative to the methods mentioned above, it is possible to download pre-built binaries for different platforms and architectures from the [Download page](https://github.com/PlakarKorp/plakar/releases).
 
   These are in standard formats for the relevant platforms, so consult OS-specific documentation for how to install them.
 
