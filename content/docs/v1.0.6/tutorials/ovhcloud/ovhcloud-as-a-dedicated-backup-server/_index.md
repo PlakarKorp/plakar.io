@@ -1,18 +1,18 @@
 ---
-title: "Setup an OVH VPS as a Dedicated Backup Server"
+title: "Setup an OVHcloud VPS as a Dedicated Backup Server"
 date: "2026-01-21T10:00:00Z"
 weight: 1
-summary: "Setup a working backup server that automatically backs up your OVH servers to an Object Storage"
+summary: "Setup a working backup server that automatically backs up your OVHcloud servers to an Object Storage"
 ---
 
 ## Introduction
-This tutorial shows you how to create a dedicated backup server on OVH that automatically backs up your other servers to an Object Storage. By the end, you'll have a VPS running Plakar that backs up your servers on a scheduled interval, with a web UI to monitor the backups.
+This tutorial shows you how to create a dedicated backup server on OVHcloud that automatically backs up your other servers to an Object Storage. By the end, you'll have a VPS running Plakar that backs up your servers on a scheduled interval, with a web UI to monitor the backups.
 
 ## Architecture Overview
 The system consists of three components:
 - **Backup VPS**: Runs Plakar and schedules backups
-- **Source servers**: Your OVH servers that need to be backed up
-- **OVH Object Storage**: Stores the backups in a Kloset Store.
+- **Source servers**: Your OVHcloud servers that need to be backed up
+- **OVHcloud Object Storage**: Stores the backups in a Kloset Store.
 
 {{< mermaid >}}
 flowchart TB
@@ -25,7 +25,7 @@ end
 
 BackupVPS["Backup VPS<br/>Plakar + Scheduler"]
 
-subgraph Storage["OVH S3 Object Storage"]
+subgraph Storage["OVHcloud S3 Object Storage"]
   Kloset["Kloset Store<br/>Encrypted & Deduplicated<br/>Backup"]
 end
 
@@ -48,8 +48,8 @@ classDef storeBox fill:#dbeafe,stroke:#cad5e2,stroke-width:1px
 linkStyle default stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 25s linear infinite;
 {{< /mermaid >}}
 
-## Step 1: Create OVH Object Storage
-Before you can store backups, you need to set up an S3-compatible storage location. OVH's Object Storage provides scalable, durable storage that Plakar can use as a backend. This approach separates your backup data from your VPS, ensuring backups survive even if your VPS fails.
+## Step 1: Create OVHcloud Object Storage
+Before you can store backups, you need to set up an S3-compatible storage location. OVHcloud Object Storage provides scalable, durable storage that Plakar can use as a backend. This approach separates your backup data from your VPS, ensuring backups survive even if your VPS fails.
 
 First, you'll need to create a user who can be assigned to access containers. You'll need access credentials to connect Plakar to your Object Storage:
 1. Log in to the OVHcloud Control Panel
@@ -58,7 +58,7 @@ First, you'll need to create a user who can be assigned to access containers. Yo
 4. Enter a description for the user and click **Create**
 5. Download the information provided and store them securely.
 
-![Create a user in OVHcloud Object Storage](./images/ovh-object-storage-create-user.png)
+![Create a user in OVHcloud Object Storage](./images/ovhcloud-object-storage-create-user.png)
 ![Download user information](./images/download-user-information.png)
 
 Next, you'll create an S3-compatible Object Storage container to store your backups.
@@ -117,8 +117,8 @@ ssh ubuntu@your-vps-ip
 
 Install Plakar to your VPS using [Plakar Installation Guide](../../../../../docs/main/quickstart/installation/)
 
-## Step 4: Configure OVH Object Storage in Plakar
-In this step, you'll connect Plakar to the OVH S3-compatible Object Storage you created earlier and initialize it as a Kloset Store.
+## Step 4: Configure OVHcloud Object Storage in Plakar
+In this step, you'll connect Plakar to the OVHcloud S3-compatible Object Storage you created earlier and initialize it as a Kloset Store.
 
 ### Install the S3 integration
 First, login to Plakar so you can install integrations:
@@ -133,12 +133,12 @@ Once logged in, install the S3 integration:
 plakar pkg add s3
 ```
 
-### Add OVH S3 storage as a Storage Connector
+### Add OVHcloud S3 storage as a Storage Connector
 Storage connectors in Plakar define where backups are stored. By configuring this once, you can reference it in all future backup commands using a simple alias.
 
-Now, add your OVH Object Storage as a storage connector. Use the S3 endpoint and credentials you generated earlier:
+Now, add your OVHcloud Object Storage as a storage connector. Use the S3 endpoint and credentials you generated earlier:
 ```bash
-plakar store add ovh-s3-backups \
+plakar store add ovhcloud-s3-backups \
   location=s3://<S3_ENDPOINT>/<BUCKET_NAME> \
   access_key=<YOUR_ACCESS_KEY_ID> \
   secret_access_key=<YOUR_SECRET_ACCESS_KEY> \
@@ -147,7 +147,7 @@ plakar store add ovh-s3-backups \
 ```
 
 Replace:
-  - `<S3_ENDPOINT>` with your OVH S3 endpoint (e.g., `s3.eu-west-par.io.cloud.ovh.net`)
+  - `<S3_ENDPOINT>` with your OVHcloud S3 endpoint (e.g., `s3.eu-west-par.io.cloud.ovh.net`)
   - `<BUCKET_NAME>` with the container name you created (e.g., `plakar-backups`)
   - `<YOUR_ACCESS_KEY_ID>` and `<YOUR_SECRET_ACCESS_KEY>` with the credentials generated in Step 1
   - `<YOUR_SECURE_PASSPHRASE>` with a strong passphrase for encrypting your backups (use single quotes if it contains special characters)
@@ -159,11 +159,11 @@ By configuring the passphrase in the store, automated backups will run without p
 ### Initialize the Kloset Store
 Finally, initialize the Object Storage location as a Kloset Store:
 ```bash
-plakar at "ovh-s3-backups" create
+plakar at "ovhcloud-s3-backups" create
 ```
 Since you already configured the passphrase when adding the store, this will use that passphrase automatically to encrypt all data before sending it to Object Storage.
 
-Once this step completes, your backup server is fully connected to OVH Object Storage and ready to receive encrypted, deduplicated snapshots.
+Once this step completes, your backup server is fully connected to OVHcloud Object Storage and ready to receive encrypted, deduplicated snapshots.
 
 ## Step 5: Set Up SSH Access to Source Servers
 To back up remote servers, Plakar needs secure access to read their files. SSH key-based authentication is the standard approach because it's more secure than passwords and allows automated backups without interactive prompts. You'll configure the backup VPS to connect to your source servers using SSH keys.
@@ -245,19 +245,19 @@ Test your backup configuration by running a manual backup.
 
 ### Back up a single source
 ```bash
-plakar at "@ovh-s3-backups" backup "@web-server-1"
+plakar at "@ovhcloud-s3-backups" backup "@web-server-1"
 ```
-You should see progress as Plakar connects to the source server, reads files, deduplicates, encrypts, and uploads to OVH Object Storage.
+You should see progress as Plakar connects to the source server, reads files, deduplicates, encrypts, and uploads to OVHcloud Object Storage.
 
 ### Back up multiple sources
 ```bash
-plakar at "@ovh-s3-backups" backup "@web-server-1" "@web-server-2"
+plakar at "@ovhcloud-s3-backups" backup "@web-server-1" "@web-server-2"
 ```
 
 ### Verify the backup
 List snapshots in your Kloset Store:
 ```bash
-plakar at "@ovh-s3-backups" ls
+plakar at "@ovhcloud-s3-backups" ls
 ```
 You should see your snapshot(s) listed with timestamps and snapshot id.
 
@@ -273,14 +273,14 @@ cat > ~/scheduler.yaml << 'EOF'
 agent:
   tasks:
     - name: Backup web-server-1
-      repository: "@ovh-s3-backups"
+      repository: "@ovhcloud-s3-backups"
       backup:
         path: "@web-server-1"
         interval: 24h
         check: true
 
     - name: Backup web-server-2
-      repository: "@ovh-s3-backups"
+      repository: "@ovhcloud-s3-backups"
       backup:
         path: "@web-server-2"
         interval: 24h
@@ -347,7 +347,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/plakar at "@ovh-s3-backups" ui -listen :8080
+ExecStart=/usr/bin/plakar at "@ovhcloud-s3-backups" ui -listen :8080
 Restart=always
 User=ubuntu
 WorkingDirectory=/home/ubuntu
@@ -391,7 +391,7 @@ After=network.target
 [Service]
 Type=simple
 Environment="PLAKAR_UI_TOKEN=your-secure-token-here"
-ExecStart=/usr/bin/plakar at "@ovh-s3-backups" ui -listen :8080
+ExecStart=/usr/bin/plakar at "@ovhcloud-s3-backups" ui -listen :8080
 Restart=always
 User=ubuntu
 WorkingDirectory=/home/ubuntu
@@ -429,8 +429,8 @@ For production use, configure a firewall to restrict access to port 8080 to only
 
 ## Troubleshooting
 1. **Authentication errors**: Verify SSH keys are properly configured and the user has read permissions on source servers
-2. **Can't connect to Object Storage**: Check your S3 credentials and endpoint URL are correct. Verify the passphrase is configured with `plakar store show ovh-s3-backups`
+2. **Can't connect to Object Storage**: Check your S3 credentials and endpoint URL are correct. Verify the passphrase is configured with `plakar store show ovhcloud-s3-backups`
 3. **Permission denied on source servers**: Ensure the SSH user has read access to the directories you're backing up
 4. **Services won't start after reboot**: Check service status with `systemctl status` and view logs with `journalctl -u plakar-scheduler` or `journalctl -u plakar-ui`
 
-You can also run the UI locally on your own computer by installing Plakar and configuring the same store with your OVH S3 credentials. This allows you to access backups without connecting to the VPS.
+You can also run the UI locally on your own computer by installing Plakar and configuring the same store with your OVHcloud S3 credentials. This allows you to access backups without connecting to the VPS.
