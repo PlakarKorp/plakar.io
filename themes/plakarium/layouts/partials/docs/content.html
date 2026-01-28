@@ -19,7 +19,7 @@
 {{ end }}
 {{ end }}
 
-{{ $latestVersion := "v1.0.6" }}
+{{ $latestVersion := .Site.Params.latest }}
 {{ $isOldVersion := and (ne $versionName "main") (ne $versionName $latestVersion) (ne $versionName "") }}
 
 {{ $latestUrl := "" }}
