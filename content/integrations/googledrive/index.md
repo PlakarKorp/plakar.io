@@ -4,20 +4,12 @@ title: "Google Drive"
 subtitle: "Resilient, encrypted backups for your Google Drive environment"
 
 description: >
-  Back up your Google Drive workloads with Plakar to protect against data loss,
-  corruption, and ransomware. Immutable, encrypted, and restorable 
-  even offline and across environments.
-
-technology_title: Google Drive is everywhere and often underprotected
+  Back up your Google Drive workloads with Plakar to protect against data loss, corruption, and ransomware. Create immutable, encrypted, and verifiable backups for your Google drive data.
+  
+technology_title: Google Drive is convenient, but not a backup
 
 technology_description: >
-  Google Drive is a widely used cloud storage service for individuals and businesses,
-  syncing files across devices and teams for seamless collaboration and access.
-
-  Yet, Google Drive is often deployed without robust safeguards against accidental deletion,
-  ransomware, sync errors, or account compromise. Plakar helps by enabling encrypted,
-  deduplicated, and versioned backups of your Drive data, stored wherever you choose
-  ensuring recoverability and auditability beyond native retention policies.
+  Google Drive is a widely used cloud storage and collaboration platform for individuals and businesses, enabling teams to store, share, and edit files across devices in real time. While Google Drive excels at synchronization and collaboration, it is not designed to provide independent backups, long-term retention, or recovery. Accidental deletion, malicious changes, or account compromise can permanently affect your data. Plakar creates encrypted, deduplicated, and versioned snapshots of your Google Drive data, stored wherever you choose, easily restorable and fully under your control.
 
 categories:
   - source connector
@@ -25,12 +17,12 @@ categories:
   - storage connector
 
 tags:
-  - google drive
-  - cloud storage
+  - Google Drive
+  - Cloud storage
 
 seo_tags:
   - Google Drive
-  - Google Drive providers
+  - Google Drive backup
   - cloud storage
   - backup
   - disaster recovery
@@ -54,43 +46,38 @@ plakar_version: ">=1.0.3"
 
 resource: Google Drive
 
-resource_type: object-storage
+resource_type: cloud-storage
 ---
 
-## 🧠 Why protecting Google Drive matters
+## Why protecting Google Drive matters
 
-Google Drive is trusted for everyday work and collaboration, but its convenience can mask real risks. Data can be silently corrupted, deleted by mistake, or encrypted by ransomware often with sync propagating the issue instantly across all devices and users. Native retention and recovery options are limited, and compliance needs may go unmet without immutable, verifiable backups.
+Google Drive is central to everyday work and collaboration, but synchronization is not a backup solution. Actions taken in Google Drive are synced to all connected devices almost instantly. This leaves it vulnerable to:
 
-## 🔓 What happens when Google Drive is compromised or data is lost?
+- **Accidental Deletion**: Files removed by a user are quickly removed across all devices and shared workspaces.
+- **Overwrites and Corruption**: Bad edits or corrupted files replace healthy versions across the entire environment.
+- **Ransomware**: Malware-encrypted files are synchronized back to Google Drive, overwriting clean data.
 
-If your Google Drive credentials are leaked, or files are deleted or overwritten whether by accident, malware, or sync error data can vanish instantly across all connected devices. Google’s trash and retention policies offer only short-term protection, and recovery is not guaranteed.
+Native retention and recovery options are limited in scope and duration. For business‑critical or compliance‑sensitive data, an independent and immutable backup history is essential.
 
-Plakar addresses these risks by:
+## Google Drive Shared Responsibility Model
+Google drive operates under a [shared responsibility model](https://services.google.com/fh/files/misc/google_workspace_data_protection_guide_en_dec2020.pdf) where Google secures the infrastructure, you're responsible for protecting your data. Plakar ensures you meet your side with independent, verifiable backups.
 
-- Creating immutable, encrypted snapshots stored outside Google’s ecosystem
-- Enabling air-gapped or access-isolated backup storage
-- Allowing granular recovery of individual files or entire folders without full restore
+To learn more about the general idea about the shared responsibility model you can check the docs on [Why your should backup your SaaS](../../../docs/main/guides/why-should-i-backup-my-saas).
 
-Your data remains safe, verifiable, and restorable no matter what happens in your live Google Drive.
+## Security and compromise
 
-## 🛡️ How Plakar secures your Google Drive workflows
+Access to Google Drive is tied to user accounts, credentials, and connected applications. If any of these are compromised:
+- Mass data loss can occur within minutes
+- Malicious changes are synchronized automatically
+- Recovery windows may be limited or unavailable
 
-Plakar integrates with Google Drive in multiple ways:
+Plakar mitigates these risks by creating immutable snapshots of your data that cannot be altered or deleted. Backups are encrypted end‑to‑end, with keys that you own, ensuring privacy and control even if the Google account itself is compromised.
 
-- As a **source connector**, Plakar snapshots your Drive data, encrypts and deduplicates it, and stores it in a trusted Kloset store.
-- As a **restore destination**, Plakar can rehydrate verified snapshots directly into Google Drive, preserving structure and metadata.
-- As a **storage backend**, you can use Google Drive to store encrypted Plakar snapshots from any source, keeping backups portable and accessible.
+## How Plakar secures your Google Drive workflows
 
-Snapshots are immutable, versioned, and inspectable via CLI or UI even offline.
+Plakar integrates with Google Drive as a flexible bridge for your data:
+- **Source Connector**: Take snapshots of your Google Drive files and store them in a secure Kloset Store.
+- **Storage Connector**: Use Google Drive as a vault to store encrypted and deduplicated Plakar backups from other sources.
+- **Destination Connector**: Restore verified snapshots directly back into Google Drive when needed.
 
-## 🧰 Everything in one tool: backup, verify, restore, browse
-
-Plakar centralizes your Google Drive backup workflows:
-
-- ✅ Immutable, versioned snapshots
-- 🔐 End-to-end encryption (you own the keys)
-- 🧠 Global deduplication to save space
-- 🔎 Visual inspection and audit readiness
-- 📦 Offline export and long-term retention
-
-From snapshot creation to browsing and recovery, Plakar provides a single, efficient solution for protecting your Google Drive data on your terms.
+Plakar uses deduplication to minimize storage space and bandwidth usage while preserving full snapshot history.
