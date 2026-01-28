@@ -2,9 +2,99 @@
 {{ $docsSection := .Site.GetPage "section" "docs" }}
 {{ $defaultVersionId := "" }}
 
+{{ $versions := slice }}
 {{ range $index, $subsection := $docsSection.Sections }}
-    {{ if or ($subsection.IsAncestor $currentPage) (eq $subsection.RelPermalink $currentPage.RelPermalink) }}
-        {{ $defaultVersionId = partial "sidebar/version-id" (dict "title" $subsection.Title "index" $index) }}
+    {{ $versionId := partial "sidebar/version-id" (dict "title" $subsection.Title "index" $index) }}
+
+    {{/* Initialize version components */}}
+    {{ $isDev := false }}
+    {{ $sortKey := 0 }}
+
+    {{ $lowerTitle := lower $subsection.Title }}
+    {{ if or (eq $lowerTitle "main") (eq $lowerTitle "develop") (eq $lowerTitle "dev") (eq $lowerTitle "master") }}
+        {{ $isDev = true }}
+        {{ $sortKey = 999999999 }}
+    {{ else }}
+        {{/* Parse semantic version */}}
+        {{ $cleanVersion := strings.TrimPrefix "v" $subsection.Title }}
+        {{ $cleanVersion = strings.TrimPrefix "V" $cleanVersion }}
+
+        {{ $versionPart := $cleanVersion }}
+        {{ if strings.Contains $cleanVersion " " }}
+            {{ $parts := split $cleanVersion " " }}
+            {{ range $parts }}
+                {{ if and (strings.Contains . ".") (not (strings.Contains . " ")) }}
+                    {{ $versionPart = strings.TrimPrefix "v" . }}
+                    {{ $versionPart = strings.TrimPrefix "V" $versionPart }}
+                {{ end }}
+            {{ end }}
+        {{ end }}
+
+        {{ $parts := split $versionPart "." }}
+
+        {{ $major := 0 }}
+        {{ $minor := 0 }}
+        {{ $patch := 0 }}
+        {{ $isValidVersion := true }}
+
+        {{ if ge (len $parts) 1 }}
+            {{ $part := index $parts 0 }}
+            {{ if findRE `^\d+$` $part }}
+                {{ $major = int $part }}
+            {{ else }}
+                {{ $isValidVersion = false }}
+            {{ end }}
+        {{ end }}
+
+        {{ if ge (len $parts) 2 }}
+            {{ $part := index $parts 1 }}
+            {{ if findRE `^\d+$` $part }}
+                {{ $minor = int $part }}
+            {{ else }}
+                {{ $isValidVersion = false }}
+            {{ end }}
+        {{ end }}
+
+        {{ if ge (len $parts) 3 }}
+            {{ $part := index $parts 2 }}
+            {{ if findRE `^\d+$` $part }}
+                {{ $patch = int $part }}
+            {{ else }}
+                {{ $isValidVersion = false }}
+            {{ end }}
+        {{ end }}
+
+        {{ if not $isValidVersion }}
+            {{ $isDev = true }}
+            {{ $sortKey = 999999999 }}
+        {{ else }}
+            {{ $sortKey = add (mul $major 1000000) (add (mul $minor 1000) $patch) }}
+        {{ end }}
+    {{ end }}
+
+    {{ $versions = $versions | append (dict
+        "title" $subsection.Title
+        "url" $subsection.RelPermalink
+        "id" $versionId
+        "sortKey" $sortKey
+        "subsection" $subsection
+        "index" $index
+    ) }}
+{{ end }}
+
+{{ $sortedVersions := sort $versions "sortKey" "desc" }}
+
+{{ range $sortedVersions }}
+    {{ if or (.subsection.IsAncestor $currentPage) (eq .url $currentPage.RelPermalink) }}
+        {{ $defaultVersionId = .id }}
+    {{ end }}
+{{ end }}
+
+{{ if eq $defaultVersionId "" }}
+    {{ range $sortedVersions }}
+        {{ if and (eq $defaultVersionId "") (lt .sortKey 999999999) }}
+            {{ $defaultVersionId = .id }}
+        {{ end }}
     {{ end }}
 {{ end }}
 
@@ -74,12 +164,11 @@
         }
     }
 }" x-init="
-    {{ range $index, $subsection := $docsSection.Sections }}
-        {{ $versionId := partial "sidebar/version-id" (dict "title" $subsection.Title "index" $index) }}
+    {{ range $sortedVersions }}
         versions.push({
-            title: {{ $subsection.Title | jsonify }},
-            url: {{ $subsection.RelPermalink | jsonify }},
-            id: {{ $versionId | jsonify }}
+            title: {{ .title | jsonify }},
+            url: {{ .url | jsonify }},
+            id: {{ .id | jsonify }}
         });
     {{ end }}
 
@@ -93,10 +182,9 @@
                 @change="changeVersion()"
                 class="block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-sm"
         >
-            {{ range $index, $subsection := $docsSection.Sections }}
-                {{ $versionId := partial "sidebar/version-id" (dict "title" $subsection.Title "index" $index) }}
-                <option value="{{ $versionId }}" {{ if eq $versionId $defaultVersionId }}selected{{ end }}>
-                    {{ $subsection.Title }}
+            {{ range $sortedVersions }}
+                <option value="{{ .id }}" {{ if eq .id $defaultVersionId }}selected{{ end }}>
+                    {{ .title }}
                 </option>
             {{ end }}
         </select>
