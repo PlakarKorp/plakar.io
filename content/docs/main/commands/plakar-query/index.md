@@ -1,24 +1,26 @@
 ---
-date: "2025-12-01T16:54:45Z"
+date: "2026-01-29T09:34:09Z"
 title: query
 summary: "query flags shared among many Plakar subcommands"
 ---
-<div class="head" role="doc-pageheader" aria-label="Manual header
-  line"><span class="head-ltitle">PLAKAR-QUERY(7)</span>
-  <span class="head-vol">Miscellaneous Information Manual</span>
-  <span class="head-rtitle">PLAKAR-QUERY(7)</span></div>
-<main class="manual-text">
+<table class="head">
+  <tr>
+    <td class="head-ltitle">PLAKAR-QUERY(7)</td>
+    <td class="head-vol">Miscellaneous Information Manual</td>
+    <td class="head-rtitle">PLAKAR-QUERY(7)</td>
+  </tr>
+</table>
+<div class="manual-text">
 <section class="Sh">
-<h2 class="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h2>
+<h1 class="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h1>
 <p class="Pp"><code class="Nm">plakar-query</code> &#x2014;
-    <span class="Nd" role="doc-subtitle">query flags shared among many Plakar
-    subcommands</span></p>
+    <span class="Nd">query flags shared among many Plakar subcommands</span></p>
 </section>
 <section class="Sh">
-<h2 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h2>
+<h1 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h1>
 <p class="Pp">What follows is a set of command line arguments that many
-    <a class="Xr" href="../plakar/" aria-label="plakar, section 1">plakar(1)</a>
-    subcommands provide to filter snapshots.</p>
+    <a class="Xr" href="../plakar/">plakar(1)</a> subcommands provide to filter
+    snapshots.</p>
 <p class="Pp">There are two kind of flags:</p>
 <dl class="Bl-tag">
   <dt>matchers</dt>
@@ -191,7 +193,10 @@ summary: "query flags shared among many Plakar subcommands"
       it contains said tag.</dd>
 </dl>
 </section>
-</main>
-<div class="foot" role="doc-pagefooter" aria-label="Manual footer
-  line"><span class="foot-left">Plakar</span> <span class="foot-date">November
-  28, 2025</span> <span class="foot-right">PLAKAR-QUERY(7)</span></div>
+</div>
+<table class="foot">
+  <tr>
+    <td class="foot-date">November 28, 2025</td>
+    <td class="foot-os">Plakar</td>
+  </tr>
+</table>
