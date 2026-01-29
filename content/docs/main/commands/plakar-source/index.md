@@ -1,21 +1,23 @@
 ---
-date: "2025-12-01T16:54:45Z"
+date: "2026-01-29T09:34:09Z"
 title: source
 summary: "Manage Plakar backup source configuration"
 ---
-<div class="head" role="doc-pageheader" aria-label="Manual header
-  line"><span class="head-ltitle">PLAKAR-SOURCE(1)</span>
-  <span class="head-vol">General Commands Manual</span>
-  <span class="head-rtitle">PLAKAR-SOURCE(1)</span></div>
-<main class="manual-text">
+<table class="head">
+  <tr>
+    <td class="head-ltitle">PLAKAR-SOURCE(1)</td>
+    <td class="head-vol">General Commands Manual</td>
+    <td class="head-rtitle">PLAKAR-SOURCE(1)</td>
+  </tr>
+</table>
+<div class="manual-text">
 <section class="Sh">
-<h2 class="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h2>
+<h1 class="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h1>
 <p class="Pp"><code class="Nm">plakar-source</code> &#x2014;
-    <span class="Nd" role="doc-subtitle">Manage Plakar backup source
-    configuration</span></p>
+    <span class="Nd">Manage Plakar backup source configuration</span></p>
 </section>
 <section class="Sh">
-<h2 class="Sh" id="SYNOPSIS"><a class="permalink" href="#SYNOPSIS">SYNOPSIS</a></h2>
+<h1 class="Sh" id="SYNOPSIS"><a class="permalink" href="#SYNOPSIS">SYNOPSIS</a></h1>
 <table class="Nm">
   <tr>
     <td><code class="Nm">plakar source</code></td>
@@ -24,7 +26,7 @@ summary: "Manage Plakar backup source configuration"
 </table>
 </section>
 <section class="Sh">
-<h2 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h2>
+<h1 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h1>
 <p class="Pp">The <code class="Nm">plakar source</code> command manages the
     configuration of data sources for Plakar to backup.</p>
 <p class="Pp">The configuration consists in a set of named entries, each of them
@@ -94,18 +96,20 @@ summary: "Manage Plakar backup source configuration"
 </dl>
 </section>
 <section class="Sh">
-<h2 class="Sh" id="EXIT_STATUS"><a class="permalink" href="#EXIT_STATUS">EXIT
-  STATUS</a></h2>
+<h1 class="Sh" id="EXIT_STATUS"><a class="permalink" href="#EXIT_STATUS">EXIT
+  STATUS</a></h1>
 <p class="Pp">The <code class="Nm">plakar-source</code> utility exits&#x00A0;0
     on success, and&#x00A0;&gt;0 if an error occurs.</p>
 </section>
 <section class="Sh">
-<h2 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
-  ALSO</a></h2>
-<p class="Pp"><a class="Xr" href="../plakar/" aria-label="plakar, section
-    1">plakar(1)</a></p>
+<h1 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
+  ALSO</a></h1>
+<p class="Pp"><a class="Xr" href="../plakar/">plakar(1)</a></p>
 </section>
-</main>
-<div class="foot" role="doc-pagefooter" aria-label="Manual footer
-  line"><span class="foot-left">Plakar</span> <span class="foot-date">September
-  11, 2025</span> <span class="foot-right">PLAKAR-SOURCE(1)</span></div>
+</div>
+<table class="foot">
+  <tr>
+    <td class="foot-date">September 11, 2025</td>
+    <td class="foot-os">Plakar</td>
+  </tr>
+</table>
