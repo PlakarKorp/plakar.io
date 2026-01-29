@@ -6,6 +6,7 @@ authors:
 summary: "plakar v1.1.0-beta marks a major step forward, with significant performance gains, architectural simplifications, and powerful new user-facing features. From faster backups and restores to better mounting, cleaner integrations, and a more reliable execution model, this release lays solid foundations for what comes next. The beta is stable, backward compatible, and ready to be explored."
 categories:
   - announcement
+  - release-notes
   - community
 featured-scope:
   - hero-page
