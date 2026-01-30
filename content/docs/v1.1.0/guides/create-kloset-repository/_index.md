@@ -1,10 +1,10 @@
 ---
 date: "2025-08-21T00:00:00Z"
-title: Create a Kloset Store
+title: Creating a Kloset Store
 summary: "Learn how to create a Kloset Store on the filesystem using Plakar. In Plakar terms, the Kloset Store is the place where all your backup data is stored."
-last_reviewed: "2025-12-23"
-last_reviewed_version: "v1.0.6"
-weight: 21
+last_reviewed: "2026-01-29"
+last_reviewed_version: "v1.1.0"
+weight: 3
 ---
 
 *Last reviewed: {{<param "last_reviewed">}} / Plakar {{<param "last_reviewed_version">}}*
@@ -50,7 +50,10 @@ To edit the configuration and later update the passphrase of an existing store:
 plakar store set mybackups passphrase=yyy
 ```
 
-*Note: In this example, changing the passphrase only updates the configuration. Accessing existing data created with the old passphrase will fail unless the passphrase is set back to its original value.”
+
+{{% notice style="warning" title="Changing Passphrase" expanded="true" %}}
+In this example, changing the passphrase only updates the configuration. Accessing existing data created with the old passphrase will fail unless the passphrase is set back to its original value.”
+{{% /notice %}}
 
 To use the configured store:
 
@@ -61,19 +64,4 @@ plakar at @mybackups ls
 
 ## Default behavior for `at <path>`
 
-The `plakar at <path>` parameter is optional.
-
-By default, running:
-
-```bash
-plakar create
-```
-
-creates the Kloset Store in `~/.plakar`.
-
-## More help
-
-As with all other Plakar commands:
-
-- Use `plakar create -h` for a quick list of flags.
-- Use `plakar help create` for the full manual with examples.
+The `plakar at <path>` parameter is optional. By default, running `plakar create` creates the Kloset Store in `~/.plakar`.

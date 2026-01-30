@@ -1,7 +1,7 @@
 ---
 title: "Installation"
 date: "2025-12-15T00:00:00Z"
-weight: 1
+weight: 2
 summary: Install Plakar and verify your installation.
 ---
 
@@ -64,7 +64,7 @@ EOF
 {{< /tab >}}
 
 {{% tab name="Windows" %}}
-  The simplest way to install Plakar on Windows is by downloading the pre-built package from the [Download page](/download/_index.md).
+  The simplest way to install Plakar on Windows is by downloading the pre-built package from the [Download page](https://github.com/PlakarKorp/plakar/releases).
 
   The downloaded package is simply an archive containing the executable. Copy this to anywhere on your system PATH, or run it directly from a shell where it is installed.
 
@@ -104,7 +104,7 @@ Verify the installation by running:
 plakar version
 ```
 
-This should return the expected version number, for example 'plakar/v1.0.6'.
+This should return the expected version number, for example `plakar/v1.1.0`.
 
 ## Downloading Specific Versions
 
