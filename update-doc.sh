@@ -26,15 +26,15 @@ echo
     cd -
 echo
 
-rm  -rf ./content/docs/${VERSION}/commands/*
+rm  -rf ./content/docs/${VERSION}/references/commands/*
 
 echo "generating documentation for ${VERSION}"
-mkdir -p ./content/docs/${VERSION}/commands/
+mkdir -p ./content/docs/${VERSION}/references/commands/
 TITLE=${VERSION}
 if test ${VERSION} = "main" ; then
     TITLE="developers branch"
 fi
-cat <<EOF > ./content/docs/${VERSION}/commands/_index.md
+cat <<EOF > ./content/docs/${VERSION}/references/commands/_index.md
 ---
 title: "Commands"
 date: "$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
@@ -68,9 +68,9 @@ for man in "$TMPDIR/manpages/"*; do
 	summary="$(grep -m1 ^\.Nd "$man" | sed 's/^.Nd //')"
 
 	echo "generating documentation for ${name}"
-	mkdir -p ./content/docs/${VERSION}/commands/${name}
+	mkdir -p ./content/docs/${VERSION}/references/commands/${name}
 
-	dest="./content/docs/${VERSION}/commands/${name}/index.md"
+	dest="./content/docs/${VERSION}/references/commands/${name}/index.md"
 
 	cat <<EOF > $dest
 ---
