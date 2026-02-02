@@ -4,16 +4,12 @@ title: "iCloud Drive"
 subtitle: "Resilient, encrypted backups for your iCloud Drive environment"
 
 description: >
-  Back up your iCloud Drive files with Plakar to protect against data loss,
-  corruption, and ransomware. Immutable, encrypted, and restorable 
-  even offline and across environments.
-
-technology_title: iCloud Drive is everywhere and often underprotected
+  Back up your iCloud Drive files with Plakar to protect against data loss, corruption, and ransomware. Create immutable, encrypted, and verifiable backups for your iCloud Drive data.
+  
+technology_title: iCloud Drive is convenient, but not a backup solution
 
 technology_description: >
-  iCloud Drive is Apple’s cloud file storage service, keeping documents, folders, and app data synced across your Apple devices.
-  It’s trusted for seamless access and sharing, but native sync does not provide true backup, versioning, or protection against accidental deletion and compromise.
-  Plakar fills the gap by enabling encrypted, deduplicated, and versioned snapshots of your iCloud Drive files, giving you control over retention, recovery, and compliance.
+  iCloud Drive is Apple's cloud storage service that keeps documents, folders, and app data synced across all your Apple devices. iCloud Drive excels at synchronization and seamless access but it's not designed to provide independent backups, long-term retention, or comprehensive recovery. Accidental deletion, malicious changes, or account compromise can permanently affect your data. Plakar creates encrypted, deduplicated, and versioned snapshots of your iCloud Drive data, stored wherever you choose, easily restorable and fully under your control.
 
 categories:
   - source connector
@@ -22,16 +18,15 @@ categories:
   - viewer
 
 tags:
-  - icloud drive
-  - apple
-  - icloud
-  - storage
-
+  - iCloud Drive
+  - Apple
+  - iCloud
+  - Cloud storage
+ 
 seo_tags:
   - iCloud Drive
-  - iCloud
+  - iCloud Drive backup
   - Apple cloud storage
-  - file sync
   - backup
   - disaster recovery
   - encryption
@@ -43,7 +38,7 @@ seo_tags:
   - airgapped backup
   - snapshot technology
   - portable format
-
+  
 technical_documentation_link: /docs/main/integrations/iclouddrive/
 
 stage: beta
@@ -54,46 +49,35 @@ plakar_version: ">=1.0.3"
 
 resource: iCloud Drive
 
-resource_type: filesystem
+resource_type: cloud-storage
 ---
 
-## 🧠 Why protecting iCloud Drive matters
+## Why protecting iCloud Drive matters
 
-iCloud Drive syncs files across all your Apple devices, but sync is not backup. If files are deleted, corrupted, or compromised, those changes propagate everywhere instantly. Without immutable backups, you risk silent data loss, ransomware spread, or compliance failures, and recovery options are limited or unavailable.
+iCloud Drive is central to the Apple ecosystem, seamlessly syncing files across devices, however synchronization doesn't count as a backup solution. Actions taken in iCloud Drive are synced to all connected devices almost instantly. This leaves it vulnerable to:
+- **Accidental Deletion**: Files removed by a user are quickly removed across all devices.
+- **Overwrites and Corruption**: Bad edits or corrupted files replace healthy versions across the entire environment.
+- **Ransomware**: Malware-encrypted files are synchronized back to iCloud Drive, overwriting clean data.
 
-## 🔓 What happens when iCloud Drive files are deleted or compromised?
+Native retention and recovery options are limited in scope and duration. While Apple provides some version history, it's restricted to recent changes and specific file types. For business-critical or compliance-sensitive data, an independent and immutable backup history is essential.
 
-A mistaken deletion, malware infection, or stolen credentials can wipe or corrupt your files across every device. Native versioning is limited and often hidden, making recovery unreliable. If you need to restore a specific version or recover from a major incident, iCloud Drive alone cannot guarantee data integrity or rollback.
-Icloud can be backed up by Apple but it is not free and after 180 days it is deleted, and it does not provide the level of control and security that Plakar offers.
+## Security and compromise
+Access to iCloud Drive is tied to Apple ID credentials, two-factor authentication, and connected devices. If any of these are compromised:
+- Mass data loss can occur within minutes
+- Malicious changes are synchronized automatically across all devices
+- Recovery windows may be limited or unavailable
 
-Plakar addresses these risks by:
+Plakar mitigates these risks by creating immutable snapshots of your data that cannot be altered. Backups are end-to-end encrypted, with keys that you own, ensuring privacy and control even if your Apple ID itself is compromised.
 
-- Creating immutable, encrypted snapshots outside the iCloud sync scope
-- Enabling granular recovery of files or folders without full restore
-- Supporting offline and air-gapped backup options for true isolation
+## How Plakar secures your iCloud Drive workflows
+Plakar integrates with iCloud Drive as a flexible bridge for your data:
+- **Source Connector**: Take snapshots of your iCloud Drive files and store them in a secure Kloset Store.
+- **Storage Connector**: Use iCloud Drive as a vault to store encrypted and deduplicated Plakar backups from other sources.
+- **Destination Connector**: Restore verified snapshots directly back into iCloud Drive when needed.
 
-Your backups remain safe, verifiable, and restorable, even if your iCloud account is compromised.
+Plakar uses deduplication to minimize storage space and bandwidth usage while preserving full snapshot history. It also allows for direct inspection of backups, letting you browse, search, and verify file content via the CLI or UI without needing to restore to iCloud Drive first.
 
-## 🛡️ How Plakar secures your iCloud Drive workflows
-
-Plakar integrates with iCloud Drive as both a source and destination:
-
-- **Source connector:** Import and snapshot your iCloud Drive files, encrypt and deduplicate them, and store in a trusted Plakar Kloset store.
-- **Destination connector:** Export clean, verified files or folders back to iCloud Drive as needed.
-- **Storage connector:** Optionally store Plakar snapshots in a Kloset store on iCloud Drive for redundancy or compliance.
-
-Snapshots are immutable, versioned, and inspectable via CLI or UI, with end-to-end encryption and global deduplication.
-
-## 🧰 Everything in one tool: backup, verify, restore, browse
-
-Plakar provides a unified platform for iCloud Drive protection:
-
-- ✅ Immutable, versioned snapshots
-- 🔐 End-to-end encryption (you own the keys)
-- 🧠 Deduplication to save space and bandwidth
-- 🔎 Visual inspection and audit readiness via UI or CLI
-- 📦 Offline export and long-term retention
-
-From backup creation to granular restore, Plakar centralizes all workflows for iCloud Drive, ensuring your Apple files are resilient, compliant, and always under your control.
-
-⚠️ The ICloud Drive api does not give access to the picture in iCloud Photos, so you cannot back up your iCloud Photos library with this integration.
+## Current Limitations
+The iCloud Drive integration is in beta and has some known limitations:
+- **iCloud Photos**: The iCloud Drive API does not provide access to photos stored in iCloud Photos. You cannot back up your iCloud Photos library with this integration.
+- **App-Specific Data**: Some app containers and system-managed data may not be accessible through the standard iCloud Drive API.
