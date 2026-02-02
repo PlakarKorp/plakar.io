@@ -1,7 +1,7 @@
 ---
 title: "Plakar v1.0.5"
 date: "2025-10-15T12:00:00Z"
-weight: 98
+weight: 4
 chapter: false
 sort: "title"
 docsBase: "/docs/main"
