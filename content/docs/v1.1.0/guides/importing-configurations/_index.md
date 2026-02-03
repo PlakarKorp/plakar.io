@@ -1,11 +1,11 @@
 ---
 title: "Importing Configurations"
 linkTitle: "Importing Configurations"
-weight: 10
+weight: 2
 description: >
   Learn how to import configurations for stores, sources, and destinations in Plakar using the import command.
-last_reviewed: "2025-12-08"
-last_reviewed_version: "v1.0.6"
+last_reviewed: "2026-01-29"
+last_reviewed_version: "v1.1.0"
 ---
 
 *Last reviewed: {{<param "last_reviewed">}} / Plakar {{<param "last_reviewed_version">}}*
@@ -15,7 +15,6 @@ last_reviewed_version: "v1.0.6"
 The commands `plakar store`, `plakar source` and `plakar destination` configure storage locations, backup sources, and restore destinations respectively.
 
 Each command includes an import subcommand for importing configurations from different sources.
-
 
 ## Basic Usage
 
@@ -68,41 +67,6 @@ plakar source show | plakar destination import
 # Import from rclone configuration
 rclone config show | plakar store import -rclone koofr
 ```
-
-## Command Options
-
-### -config <location>
-
-Specifies the file or URL to read configuration from. Without this option, the command reads from stdin.
-
-**Examples:**
-```bash
-# Import from a local file
-plakar store import -config /path/to/stores.yaml
-
-# Import from a URL
-plakar store import -config https://example.com/config.yaml
-```
-
-### -overwrite
-
-Overwrites existing configuration sections with the same names. Without this option, importing will fail if a section with the same name already exists.
-
-**Example:**
-```bash
-plakar store import -config new-stores.yaml -overwrite
-```
-
-### -rclone
-
-Treats the input as an rclone configuration file. This allows you to import rclone remotes as Plakar stores.
-
-**Example:**
-```bash
-rclone config show | plakar store import -rclone myremote
-```
-
-When using `-rclone`, you can specify which rclone remote to import by providing its name as an additional argument.
 
 ### Section Selection
 
@@ -195,18 +159,6 @@ plakar source show | plakar destination import
 plakar source show | plakar destination import mysource:myrestore
 ```
 
-## Troubleshooting
-
-### Common Issues
-
-1. **Permission Denied**: Ensure you have read access to the configuration file and write access to Plakar's configuration directory.
-
-2. **Invalid YAML**: Validate your YAML syntax before importing. Use tools like `yamllint` or online validators.
-
-3. **Name Conflicts**: Use `-overwrite` to replace existing configurations, or rename sections during import.
-
-4. **rclone Import Issues**: Ensure rclone is installed and the specified remote exists in your rclone configuration.
-
 ### Verification
 
 After importing, verify the configuration was imported correctly:
@@ -225,10 +177,14 @@ plakar source check mysource
 plakar destination check mydest
 ```
 
-## Related Commands
+## Troubleshooting
 
-- [`plakar store`](../../commands/plakar-store/) - Manage store configurations
-- [`plakar source`](../../commands/plakar-source/) - Manage source configurations
-- [`plakar destination`](../../commands/plakar-destination/) - Manage destination configurations
-- [`plakar store show`](../../commands/plakar-store/) - Display current store configurations
-- [`plakar source show`](../../commands/plakar-source/) - Display current source configurations
+### Common Issues
+
+1. **Permission Denied**: Ensure you have read access to the configuration file and write access to Plakar's configuration directory.
+
+2. **Invalid YAML**: Validate your YAML syntax before importing. Use tools like `yamllint` or online validators.
+
+3. **Name Conflicts**: Use `-overwrite` to replace existing configurations, or rename sections during import.
+
+4. **rclone Import Issues**: Ensure rclone is installed and the specified remote exists in your rclone configuration.

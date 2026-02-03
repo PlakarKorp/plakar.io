@@ -50,4 +50,3 @@ Whether you choose the push or pull model depends on your use case:
 
 - **Push model**: Useful if you want the backup process initiated from the servers themselves. It can be simpler to set up if you have a small number of servers and want each server to manage its own backups.
 - **Pull model**: Useful if you want to centralize the backup process on the backup server. It can be easier if you have many servers, as you can manage backups, retention policies, and monitoring all from a single location. Another benefit is that the store encryption passphrase only resides on one server.
-

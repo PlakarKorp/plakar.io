@@ -2,7 +2,7 @@
 title: "Tutorials"
 date: "2026-01-21T10:00:00Z"
 summary: "A collection of practical examples showing how to deploy Plakar, configure backups, and protect real infrastructure across cloud providers and use cases."
-weight: 4
+weight: 3
 ---
 
 This section contains practical examples on showing how to deploy and use Plakar in real environments.

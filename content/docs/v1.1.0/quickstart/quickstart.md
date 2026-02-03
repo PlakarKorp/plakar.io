@@ -1,7 +1,7 @@
 ---
 title: "Quickstart"
 date: "2025-12-15T00:00:00Z"
-weight: 2
+weight: 3
 summary: "Get started with plakar: create your first backup, verify integrity, restore, and use the UI."
 ---
 
