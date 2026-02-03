@@ -1,7 +1,7 @@
 ---
 title: "Plakar: Developer branch"
 date: "2025-03-18T10:07:31Z"
-weight: 100
+weight: 1
 chapter: false
 sort: "title"
 docsBase: "/docs/main"
