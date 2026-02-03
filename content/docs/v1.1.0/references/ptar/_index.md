@@ -249,7 +249,7 @@ plakar ptar -o backup.ptar -k $HOME/backups
 | Tamper-evident | Yes (cryptographic verification via `check`) |
 
 ## Further Reading
-For a deeper dive into the philosophy and technical design of the format, check out the following posts on the plakar blog:
+For a deeper dive into the philosophy and technical design of the format, check out the following posts on the Plakar blog:
 
 - [It doesn't make sense to wrap modern data in a 1979 format, introducing .ptar](https://www.plakar.io/posts/2025-06-27/it-doesnt-make-sense-to-wrap-modern-data-in-a-1979-format-introducing-.ptar/)
 - [Technical deep dive into .ptar: replacing .tgz for petabyte-scale S3 archives](https://www.plakar.io/posts/2025-06-30/technical-deep-dive-into-.ptar-replacing-.tgz-for-petabyte-scale-s3-archives/)
