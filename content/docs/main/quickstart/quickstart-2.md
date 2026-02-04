@@ -1,7 +1,7 @@
 ---
 title: "Synchronize multiple copies"
 date: "2025-12-15T00:00:00Z"
-weight: 3
+weight: 4
 summary: "Create a second copy of your Kloset Store to improve the durability of your backups."
 ---
 
