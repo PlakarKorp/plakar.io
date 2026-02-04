@@ -134,18 +134,18 @@ restores can be **verified** by hash. Snapshots are **portable** across backends
 
 ```go-text-template
 {{</* tabs name="tab_with_file_include" >}}
-{{< tab name="plakar ls" include="main/commands/plakar-ls" />}}
-{{< tab name="plakar cat" include="main/commands/plakar-cat" />}}
-{{< tab name="plakar diff" include="main/commands/plakar-diff" />}} 
+{{< tab name="plakar ls" include="main/references/commands/plakar-ls" />}}
+{{< tab name="plakar cat" include="main/references/commands/plakar-cat" />}}
+{{< tab name="plakar diff" include="main/references/commands/plakar-diff" />}} 
 {{< /tabs */>}}
 ```
 
 Renders to:
 
 {{< tabs name="tab_with_file_include" >}}
-{{< tab name="plakar ls" include="main/commands/plakar-ls" />}}
-{{< tab name="plakar cat" include="main/commands/plakar-cat" />}}
-{{< tab name="plakar diff" include="main/commands/plakar-diff" />}}
+{{< tab name="plakar ls" include="main/references/commands/plakar-ls" />}}
+{{< tab name="plakar cat" include="main/references/commands/plakar-cat" />}}
+{{< tab name="plakar diff" include="main/references/commands/plakar-diff" />}}
 {{< /tabs >}}
 
 **Notes**
@@ -161,4 +161,3 @@ Renders to:
 - Prefer **consistent ordering** across pages (for example: CLI, Go, Python).
 - When mixing Markdown and HTML, remember to use `%` for Markdown tabs.
 - Keep examples runnable and minimal, then link to deeper guides when needed.
-
