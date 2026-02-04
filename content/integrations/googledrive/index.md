@@ -62,7 +62,7 @@ Native retention and recovery options are limited in scope and duration. For bus
 ## Google Drive Shared Responsibility Model
 Google drive operates under a [shared responsibility model](https://services.google.com/fh/files/misc/google_workspace_data_protection_guide_en_dec2020.pdf) where Google secures the infrastructure, you're responsible for protecting your data. Plakar ensures you meet your side with independent, verifiable backups.
 
-To learn more about the general idea about the shared responsibility model you can check the docs on [Why your should backup your SaaS](../../../docs/main/guides/why-should-i-backup-my-saas).
+To learn more about the general idea about the shared responsibility model you can check the docs on [Why you should backup your SaaS](../../../docs/main/explanations/why-should-i-backup-my-saas).
 
 ## Security and compromise
 
