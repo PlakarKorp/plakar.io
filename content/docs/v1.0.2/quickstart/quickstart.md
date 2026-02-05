@@ -231,7 +231,7 @@ We could simply do a new backup to it, but this might produce different snapshot
 
 Instead, we can perform a repository synchronization.
 
-> A repository synchronization ensures that backups are transferred from a repository to another, using the recorded data,and performing necessary decryption and encryption to produce a similar copy:
+> A repository synchronization ensures that backups are transferred from a repository to another, using the recorded data, and performing necessary decryption and encryption to produce a similar copy:
 
 ```bash
 $ plakar at ~/backups sync to sftp://gilles@nas.plakar.io/home/gilles/backups
