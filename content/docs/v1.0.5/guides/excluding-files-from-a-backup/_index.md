@@ -2,15 +2,16 @@
 date: "2025-09-05T00:00:00Z"
 title: Excluding files from a backup
 summary: "Learn how to exclude files from a backup using the `-ignore` and `-ignore-file` options in Plakar. This tutorial explains the syntax and provides examples for excluding files and directories."
-last_reviewed: "2025-09-05"
-last_reviewed_version: "v1.0.4"
+last_reviewed: "2026-01-29"
+last_reviewed_version: "v1.1.0"
+weight: 5
 ---
 
 *Last reviewed: {{<param "last_reviewed">}} / Plakar {{<param "last_reviewed_version">}}*
 
-The `plakar backup` command supports the `-ignore` and `-ignore-file` options to exclude files from a backup.
+This guide shows how to exclude files and directories from a backup using ignore patterns.
 
-These options use patterns with a syntax similar to `.gitignore` files.
+The `plakar backup` command supports the `-ignore` and `-ignore-file` options to exclude files from a backup. These options use patterns with a syntax similar to `.gitignore` files.
 
 ## Examples
 
@@ -109,4 +110,3 @@ Here, the double asterisk `**` is required.
 !**/*.pdf
 !**/*.docx
 ```
-
