@@ -99,4 +99,4 @@ Check if you're logged in:
 plakar login --status
 ```
 
-This displays your login status and enabled services.
+This displays your login status.
