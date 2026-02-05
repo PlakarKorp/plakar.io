@@ -1,0 +1,1053 @@
+<!doctype html><html lang=en dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>source | Plakar | The Open Standard for Backup and Restore</title>
+<meta name=author content="Nestor"><link rel=stylesheet href=/css/main-compiled.min.111e4df6428ae332f0cb1fbc7e60163c562239413e143d4c57d239402382ae7f.css integrity="sha256-ER5N9kKK4zLwyx+8fmAWPFYiOUE+FD1MV9I5QCOCrn8=" crossorigin=anonymous><script src=/js/main.71a1ad907d0198fb2101a3e8a665dbb661f9bcf626ba7db0daadbdb30de7df17.js integrity="sha256-caGtkH0BmPshAaPopmXbtmH5vPYmun2w2q29sw3n3xc=" crossorigin=anonymous></script><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><meta property="og:type" content="website"><meta property="og:title" content="Plakar | source"><meta property="og:author" content="Nestor"><meta property="og:description" content="Enterprise ready backups with developer friendly tooling. Encrypted, deduplicated snapshots, instant browsing and restore, and zero knowledge workflows across clouds and on-prem."><meta property="og:url" content="https://www.plakar.io/docs/main/references/commands/plakar-source/"><meta property="og:image" content="https://www.plakar.io/"><meta property="og:locale" content="en_US"><meta property="og:site_name" content="Plakar"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="Plakar | source"><meta name=twitter:description content="Enterprise ready backups with developer friendly tooling. Encrypted, deduplicated snapshots, instant browsing and restore, and zero knowledge workflows across clouds and on-prem."><meta name=twitter:image content="https://www.plakar.io/"><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap" rel=stylesheet><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap" rel=stylesheet><link href="https://fonts.googleapis.com/css2?family=DM+Mono&display=swap" rel=stylesheet><script src=https://unpkg.com/@studio-freight/lenis></script><script src=https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js></script><script defer src=https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js></script><link href=/fonts/remixicon/remixicon.css rel=stylesheet><link rel=stylesheet href=/vendor/basiclightbox/basicLightbox.min.css><script src=/vendor/basiclightbox/basicLightbox.min.js></script><style>[x-cloak]{display:none!important}</style><script>async function fetchGitHubStars(){const e=`https://api.github.com/repos/PlakarKorp/plakar`;try{const t=await fetch(e);if(!t.ok)throw new Error("GitHub API request failed");const n=await t.json();document.querySelectorAll(`#github-stars-count`).forEach(e=>{e.textContent=n.stargazers_count})}catch(e){console.error("Error fetching GitHub data:",e)}}fetchGitHubStars()</script><script>async function fetchDiscordMembers(){const e="uuegtnF2Q5",t=`https://discord.com/api/invites/${e}?with_counts=true`;try{const e=await fetch(t);if(!e.ok)throw new Error("API error");const n=await e.json(),s=n.approximate_member_count;document.querySelectorAll("#discord-members-count").forEach(e=>{e.textContent=(new Intl.NumberFormat).format(s)})}catch(e){console.error("Failed to fetch Discord count:",e),document.querySelectorAll("#discord-members-count").forEach(e=>{e.textContent="..."})}}fetchDiscordMembers()</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-4EJ3HLL4HS"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-4EJ3HLL4HS")</script><script>window.axeptioSettings={clientId:"670b04f487d8b40de2e7f22c",cookiesVersion:"plakar-fr-EU-2",googleConsentMode:{default:{analytics_storage:"denied",ad_storage:"denied",ad_user_data:"denied",ad_personalization:"denied",wait_for_update:500}}},function(e,t){var s=e.getElementsByTagName(t)[0],n=e.createElement(t);n.async=!0,n.src="//static.axept.io/sdk.js",s.parentNode.insertBefore(n,s)}(document,"script")</script><script>const handleSubmit=async function(e,t,n){const s=document.getElementById(e);s.addEventListener("submit",async function(e){e.preventDefault();const o=s.email.value.trim(),i=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;if(!i.test(o)){addToast({title:"Error!",message:"Please enter a valid email address.",duration:5e3});return}const a=`https://api.hsforms.com/submissions/v3/integration/submit/${t}/${n}`,r={fields:[{name:"email",value:o}]};try{const e=await fetch(a,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(r)});if(e.ok)addToast({title:"Success!",message:"You're now subscribed.",duration:5e3}),s.reset();else throw new Error("Subscription failed.")}catch(e){console.error("Error:",e),addToast({title:"Error!",message:"Something went wrong. Please try again later.",duration:5e3})}})}</script><script>(function(){var e=document.createElement("script");e.setAttribute("data-project-id","ab415e83-1a84-4508-ab98-efd861517895"),e.src="https://ingest.promptwatch.com/js/client.min.js",document.head.appendChild(e)})()</script></head><body><div x-data="{
+            isSmallScreen: window.innerWidth < 1280,
+            sidebarOpened: localStorage.getItem('sidebarState') === 'open',
+            toggleSidebar(state) {
+                this.sidebarOpened = state;
+                localStorage.setItem('sidebarState', state ? 'open' : 'closed');
+            },
+            checkScreenSize() {
+                this.isSmallScreen = window.innerWidth < 1280;
+            }
+        }" x-init="
+            checkScreenSize();
+            window.addEventListener('resize', () => checkScreenSize());
+        " @mousemove.window="isSmallScreen && sidebarOpened === false && $event.clientX < 24 ? toggleSidebar(true) : null" @mouseleave.window="isSmallScreen ? toggleSidebar(false) : null" class="relative w-full"><header id=site-header class="fixed h-[50px] md:h-[88px] w-full flex px-2 md:px-4 py-2 z-50 bg-neutral-50 border-b border-l border-r border-neutral-300"><div class="flex mx-auto w-full justify-between relative"><div class="flex mx-auto items-center w-full space-x-4 lg:space-x-16"><a href=/ class="block md:w-32 w-28 pb-[2px] items-center"><span class=block><svg viewBox="0 0 1270 320" fill="none"><rect x="25.2271" y="15.0121" width="286.976" height="286.976" rx="143.488" fill="#000"/><path d="M233.627 134.001C230.783 124.925 226.122 116.668 220.078 109.646 224.369 106.458 227.148 101.325 227.148 95.545 227.148 85.8665 219.358 78.026 209.758 78.026c-7.869.0-14.512 5.2629-16.657 12.4787C185.425 87.5035 177.086 85.8593 168.362 85.8593 160.501 85.8593 152.946 87.2019 145.911 89.6574 143.509 82.8796 137.08 78.026 129.525 78.026c-9.607.0-17.39 7.8476-17.39 17.519C112.135 100.636 114.287 105.216 117.73 108.419c-6.572 7.273-11.618 15.968-14.633 25.574V134.008C77.3247 136.995 57.3112 159.044 57.3112 185.803c0 28.799 23.178 52.148 51.7658 52.148C121.863 237.951 133.559 233.27 142.59 225.53L184.719 225.616 194.106 225.559C203.136 233.284 214.818 237.951 227.59 237.951c28.588.0 51.766-23.349 51.766-52.148.0-26.745-19.985-48.787-45.729-51.802zM168.348 97.0312C173.166 97.0312 177.841 97.663 182.31 98.9123L173.729 132.766C173.472 133.785 172.646 134.482 171.691 134.467 169.83 134.438 166.787 134.446 164.927 134.474 163.972 134.489 163.145 133.792 162.881 132.773l-8.524-33.8391C158.847 97.6702 163.523 97.0312 168.341 97.0312H168.348zM177.421 158.563 171.819 163.56C169.83 165.334 166.83 165.334 164.841 163.56L159.239 158.563C155.611 155.325 157.885 149.294 162.731 149.294h11.205C178.782 149.294 181.049 155.332 177.428 158.563H177.421zM145.02 131.078C148.969 131.078 152.169 135.444 152.169 140.836 152.169 146.228 148.969 150.593 145.02 150.593 141.072 150.593 137.871 146.228 137.871 140.836 137.871 135.444 141.072 131.078 145.02 131.078zm50.269 63.384C197.698 196.925 197.677 200.888 195.232 203.315 194.02 204.521 192.445 205.117 190.863 205.117S187.656 204.493 186.437 203.251C183.151 199.898 180.899 195.224 179.908 189.925 175.796 190.801 171.598 191.246 167.4 191.246 163.808 191.246 160.216 190.923 156.68 190.277 155.661 195.425 153.43 199.969 150.223 203.251 149.004 204.493 147.401 205.117 145.797 205.117 144.193 205.117 142.64 204.514 141.428 203.315 138.983 200.888 138.955 196.918 141.371 194.462 143.067 192.732 144.878 189.02 144.878 183.793 144.878 179.37 143.445 175.127 141.235 172.995 138.755 170.604 138.677 166.64 141.05 164.142 143.424 161.643 147.365 161.564 149.838 163.955 153.245 167.243 155.647 172.083 156.702 177.518 164.107 179.227 171.911 179.133 179.274 177.231L180.037 177.037C181.141 171.795 183.493 167.15 186.8 163.955 189.281 161.564 193.215 161.643 195.588 164.142 197.962 166.64 197.883 170.604 195.403 172.995 193.187 175.134 191.761 179.37 191.761 183.793 191.761 189.02 193.571 192.732 195.275 194.462H195.289zm-3.642-43.876C187.698 150.586 184.498 146.221 184.498 140.829 184.498 135.436 187.698 131.071 191.647 131.071 195.596 131.071 198.796 135.436 198.796 140.829 198.796 146.221 195.596 150.586 191.647 150.586z" fill="#fff"/><path d="M391.379 233V83.9532h64.335c33.114.0 55.31 20.9598 55.31 52.6908.0 32.094-22.779 52.108-56.765 52.108H431.843V233H391.379zm40.464-75.688h14.265C460.299 157.312 468.814 149.38 468.814 136.644c0-12.809-8.51500000000004-20.378-22.706-20.378H431.843v41.046zM525.871 233V83.9532H566.335V200.396h60.259V233H525.871zm155.797.0H638.002L687.199 83.9532H742.509L791.706 233H748.04L739.452 204.472H690.255L681.668 233zM699.425 174.196H730.283l-14.847-49.197H714.272L699.425 174.196zM806.061 233V83.9532H846.525V144.212H848.563l44.83-60.2588h47.16L890.191 150.326 941.717 233H893.393l-33.477-55.893L846.525 194.574V233H806.061zm185.217.0H947.612L996.809 83.9532H1052.12L1101.32 233H1057.65L1049.06 204.472H999.866L991.278 233zM1009.04 174.196H1039.89L1025.05 124.999H1023.88l-14.84 49.197zM1115.67 233V83.9532H1180.01C1213.12 83.9532 1235.32 102.875 1235.32 134.606 1235.32 155.274 1225.86 169.757 1209.99 177.399L1240.27 233h-43.96l-26.2-49.197H1156.14V233h-40.47zm40.47-80.637h14.26C1184.59 152.363 1193.11 147.342 1193.11 134.606 1193.11 121.797 1184.59 116.266 1170.4 116.266h-14.26v36.097z" fill="#000"/></svg></span></a><nav id=main-nav class="hidden md:flex relative items-center h-[62px]"></nav><script>document.addEventListener("DOMContentLoaded",()=>{const t=document.querySelectorAll(".dropdown-group"),n=`<svg class="w-4 h-4 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"></path></svg>`,s=`<svg class="w-4 h-4 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.9999 10.8284L7.0502 15.7782L5.63599 14.364L11.9999 8L18.3639 14.364L16.9497 15.7782L11.9999 10.8284Z"></path></svg>`,e=()=>{t.forEach(e=>{const t=e.querySelector(".dropdown-menu"),s=e.querySelector(".dropdown-chevron");t&&t.classList.add("hidden"),s&&(s.innerHTML=n)})};t.forEach(t=>{const a=t.querySelector(".dropdown-btn"),o=t.querySelector(".dropdown-menu"),i=t.querySelector(".dropdown-chevron"),n=document.getElementById("site-header");a.addEventListener("click",t=>{t.stopPropagation();const n=!o.classList.contains("hidden");e(),n||(o.classList.remove("hidden"),i&&(i.innerHTML=s))}),t.addEventListener("mouseleave",s=>{const o=s.relatedTarget;!t.contains(o)&&!n?.contains(o)&&e()}),n.addEventListener("mouseleave",s=>{const o=s.relatedTarget;!t.contains(o)&&!n?.contains(o)&&e()})}),document.addEventListener("click",n=>{const s=n.target.closest("a");(![...t].some(e=>e.contains(n.target))||s)&&e()})})</script><script>document.addEventListener("DOMContentLoaded",()=>{const e=document.getElementById("site-header"),n=document.querySelectorAll(".dropdown-menu"),s=document.getElementById("main-nav"),t=()=>{const t=e.getBoundingClientRect(),i=s.getBoundingClientRect(),o=e.getBoundingClientRect().width;n.forEach(e=>{const n=e.closest(".dropdown-group"),s=n.querySelector(".dropdown-btn"),i=s.getBoundingClientRect(),a=i.left-t.left;e.style.left=`${-a}px`,e.style.width=`${o}px`})};t(),window.addEventListener("resize",t)})</script></div><div class="flex flex-row items-center space-x-2 w-full justify-end"><div class="hidden min-h-[48px] items-stretch lg:flex gap-2 pr-4 p-[1px] border border-neutral-300 bg-neutral-50 rounded-lg font-space-text"><a class="github-stars flex space-x-2" href=https://github.com/PlakarKorp/plakar target=_blank aria-label="Visit usNon, mais le paramètre est bien mis. Le même code appelé en desktop génère du code.  on Github"><div class="flex items-center gap-1 px-2 pr-2 bg-[#F5F4FB] text-primary-500 rounded-lg"><span class="w-5 h-5"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M12.001 2C6.47598 2 2.00098 6.475 2.00098 12c0 4.425 2.8625 8.1625 6.8375 9.4875C9.33848 21.575 9.52598 21.275 9.52598 21.0125 9.52598 20.775 9.51348 19.9875 9.51348 19.15 7.00098 19.6125 6.35098 18.5375 6.15098 17.975 6.03848 17.6875 5.55098 16.8 5.12598 16.5625 4.77598 16.375 4.27598 15.9125 5.11348 15.9 5.90098 15.8875 6.46348 16.625 6.65098 16.925 7.55098 18.4375 8.98848 18.0125 9.56348 17.75 9.65098 17.1 9.91348 16.6625 10.201 16.4125c-2.22502-.25-4.55002-1.1125-4.55002-4.9375.0-1.0875.3875-1.9875 1.025-2.6875C6.57598 8.5375 6.22598 7.5125 6.77598 6.1375c0 0 .8375-.2625 2.75 1.025C10.326 6.9375 11.176 6.825 12.026 6.825S13.726 6.9375 14.526 7.1625c1.9125-1.3 2.75-1.025 2.75-1.025C17.826 7.5125 17.476 8.5375 17.376 8.7875 18.0135 9.4875 18.401 10.375 18.401 11.475c0 3.8375-2.3375 4.6875-4.5625 4.9375C14.201 16.725 14.5135 17.325 14.5135 18.2625 14.5135 19.6 14.501 20.675 14.501 21.0125 14.501 21.275 14.6885 21.5875 15.1885 21.4875 19.259 20.1133 21.9999 16.2963 22.001 12c0-5.525-4.475-10-10-10z"/></svg></span></div><div class="flex items-center"><span id=github-stars-count class="inline-block min-w-[4ch] text-right"></span></div></a></div><div x-data="{ showBookADemoModal: false }" x-ref=bookADemoModalRoot><button @click="showBookADemoModal = true">
+<a href=# target=_self class="flex items-center"><div class="text-neutral-50 bg-primary-500 hover:text-neutral-50 inline-flex
+relative group overflow-hidden min-h-[28px] md:min-h-[48px] px-4 pr-4
+rounded-lg items-center gap-2 font-space-grotesk
+transition-all duration-150 ease-out hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1 active:shadow-inner"><div class="absolute inset-0 bg-primary-600 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-0"></div><div class="relative z-10 flex items-center gap-2"><span class="w-5 h-5"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M4.99989 13.9999 4.99976 5 6.99976 4.99997 6.99986 11.9999 17.1717 12 13.222 8.05024l1.4142-1.41421L21.0001 13l-6.3639 6.364-1.4142-1.4143L17.1717 14 4.99989 13.9999z"/></svg></span>
+<span class="hidden xl:block">Book a demo</span>
+<span class="block xl:hidden">Demo</span></div></div></a></button><div x-show=showBookADemoModal x-transition.opacity x-cloak @keydown.escape.window="showBookADemoModal = false" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4"><div @click.outside="showBookADemoModal = false" class="bg-white rounded-lg p-6 w-full max-w-xl shadow-xl flex flex-col gap-6 relative"><button @click="showBookADemoModal = false" class="absolute top-4 right-4 text-neutral-500 hover:text-neutral-900">
+✕</button><h2 class="~text-2xl/4xl font-space-grotesk font-medium text-neutral-900">Book a demo</h2><p>A Plakar team member will contact you shortly to organize the demo.</p><form id=demo-request method=POST netlify><div class="grid grid-cols-1 md:grid-cols-2 gap-4"><input type=text name=first_name placeholder="First Name" required class="w-full border border-neutral-300 rounded p-2">
+<input type=text name=last_name placeholder="Last Name" required class="w-full border border-neutral-300 rounded p-2">
+<input type=email name=email placeholder="Work email" required class="w-full border border-neutral-300 rounded p-2 md:col-span-2">
+<textarea name=context placeholder="Context (optional)" class="w-full border border-neutral-300 rounded p-2 md:col-span-2 h-24 resize-none" aria-label="Context (optional)"></textarea></div><div class="mt-6 flex justify-end text-xs"><p>By submitting this form you agree to our <a class="text-blue-600 underline hover:text-blue-800" href=/privacy-policy/>Privacy Policy.</a></p></div><div class="mt-6 flex justify-end"><button type=submit class="bg-primary-500 hover:bg-primary-600 text-white px-6 py-2 rounded-lg font-medium transition">
+Submit</button></div></form></div></div><script>document.addEventListener("DOMContentLoaded",function(){document.getElementById("demo-request").addEventListener("submit",async function(e){e.preventDefault();const n=new FormData(this),t={};n.forEach((e,n)=>{t[n]=e});const s=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;if(!s.test(t.email||"")){addToast({title:"Error!",message:"Please enter a valid email address.",iconHTML:`<svg class="h-6 w-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                     </svg>`,duration:5e3});return}const o="48034556",i="8230a5c9-edf7-492e-ae14-b9246a6206d5",a=`https://api.hsforms.com/submissions/v3/integration/submit/${o}/${i}`,r={fields:Object.keys(t).map(e=>({name:e,value:t[e]}))};try{const e=await fetch(a,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(r)});if(e.ok){addToast({title:"Success!",message:"Your request has been submitted successfully.",duration:5e3}),this.reset();const e=document.querySelector('[x-ref="bookADemoModalRoot"]');e&&e._x_dataStack&&e._x_dataStack.length>0&&(e._x_dataStack[0].showBookADemoModal=!1)}else throw new Error("Submission failed.")}catch(e){console.error("Error:",e),addToast({title:"Error!",message:"An error occurred while submitting the form. Please try again.",iconHTML:`<svg class="h-6 w-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                     </svg>`,duration:5e3})}})})</script></div><button id=menu-button class="min-h-[24px] md:hidden border border-neutral-900 rounded-lg text-neutral-900 focus:outline-none"><svg class="w-6 h-6" fill="none" stroke="currentcolor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></div><div id=menu-mobile class="absolute hidden md:hidden left-0 right-0 w-full top-full bg-neutral-100 border-t border-b border-neutral-300 pt-4 pb-6"><div class="space-y-3 items-end text-right pr-4"><button id=menu-close-button class="top-4 right-4 text-2xl font-bold text-neutral-900">&#215;</button></div><nav class="mt-6 px-4 flex flex-col text-left divide-y divide-neutral-300"></nav><div class="flex flex-line mt-6 px-2 justify-end gap-1 text-right text-sm"><div class="flex max-h-[32px] items-stretch gap-2 pr-2 p-[1px] border border-neutral-300 bg-neutral-50 rounded-lg font-space-text"><a class="discord-members flex space-x-2" href=https://discord.gg/uuegtnF2Q5 target=_blank aria-label="Visit us on Discord"><div class="flex items-center gap-1 px-2 pr-2 bg-[#F5F4FB] text-primary-500 rounded-lg"><span class="w-7 h-7"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M19.3034 5.33716C17.9344 4.71103 16.4805 4.2547 14.9629 4 14.7719 4.32899 14.5596 4.77471 14.411 5.12492c-1.6141-.23348-3.2166-.23348-4.80845.0C9.45397 4.77471 9.2311 4.32899 9.05068 4c-1.52817.2547-2.98207.71103-4.34153 1.33716C1.96053 9.39111 1.21766 13.3495 1.5891 17.2549c1.82533 1.3266 3.58702 2.1331 5.31791 2.6638C7.33151 19.3456 7.71356 18.73 8.04255 18.0827 7.41641 17.8492 6.82211 17.5627 6.24904 17.2231 6.39762 17.117 6.5462 17.0003 6.68416 16.8835c3.45964 1.5813 7.20694 1.5813 10.62404.0C17.4568 17.0003 17.5948 17.117 17.7434 17.2231 17.1703 17.5627 16.576 17.8492 15.9499 18.0827 16.2789 18.73 16.6609 19.3456 17.0854 19.9187c1.7298-.5307 3.5021-1.3372 5.3179-2.6638C22.8596 12.7341 21.6806 8.80747 19.3034 5.33716zM8.5201 14.8459c-1.04003.0-1.88903-.9445-1.88903-2.1012.0-1.1568.82777-2.1013 1.88903-2.1013 1.05061.0 1.9102.9445 1.889 2.1013.0 1.1567-.83839 2.1012-1.889 2.1012zm6.9735.0c-1.0401.0-1.8902-.9445-1.8902-2.1012.0-1.1568.828899999999999-2.1013 1.8902-2.1013 1.0506.0 1.9102.9445 1.8889 2.1013.0 1.1567-.8277 2.1012-1.8889 2.1012z"/></svg></span></div><div class="flex items-center"><span id=discord-members-count class="inline-block min-w-[4ch] text-right"></span></div></a></div><div class="flex max-h-[32px] items-stretch gap-2 pr-2 p-[1px] border border-neutral-300 bg-neutral-50 rounded-lg font-space-text"><a class="github-stars flex space-x-2" href=https://github.com/PlakarKorp/plakar target=_blank aria-label="Visit usNon, mais le paramètre est bien mis. Le même code appelé en desktop génère du code.  on Github"><div class="flex items-center gap-1 px-2 pr-2 bg-[#F5F4FB] text-primary-500 rounded-lg"><span class="w-7 h-7"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M12.001 2C6.47598 2 2.00098 6.475 2.00098 12c0 4.425 2.8625 8.1625 6.8375 9.4875C9.33848 21.575 9.52598 21.275 9.52598 21.0125 9.52598 20.775 9.51348 19.9875 9.51348 19.15 7.00098 19.6125 6.35098 18.5375 6.15098 17.975 6.03848 17.6875 5.55098 16.8 5.12598 16.5625 4.77598 16.375 4.27598 15.9125 5.11348 15.9 5.90098 15.8875 6.46348 16.625 6.65098 16.925 7.55098 18.4375 8.98848 18.0125 9.56348 17.75 9.65098 17.1 9.91348 16.6625 10.201 16.4125c-2.22502-.25-4.55002-1.1125-4.55002-4.9375.0-1.0875.3875-1.9875 1.025-2.6875C6.57598 8.5375 6.22598 7.5125 6.77598 6.1375c0 0 .8375-.2625 2.75 1.025C10.326 6.9375 11.176 6.825 12.026 6.825S13.726 6.9375 14.526 7.1625c1.9125-1.3 2.75-1.025 2.75-1.025C17.826 7.5125 17.476 8.5375 17.376 8.7875 18.0135 9.4875 18.401 10.375 18.401 11.475c0 3.8375-2.3375 4.6875-4.5625 4.9375C14.201 16.725 14.5135 17.325 14.5135 18.2625 14.5135 19.6 14.501 20.675 14.501 21.0125 14.501 21.275 14.6885 21.5875 15.1885 21.4875 19.259 20.1133 21.9999 16.2963 22.001 12c0-5.525-4.475-10-10-10z"/></svg></span></div><div class="flex items-center"><span id=github-stars-count class="inline-block min-w-[4ch] text-right"></span></div></a></div><a href=https://docs.plakar.io/en/quickstart/index.html target=_blank class=mt-0><div class="flex max-h-[32px] items-center gap-2 border border-neutral-900 px-1 py-2 rounded-lg"><span class="w-5 h-5"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M4.99989 13.9999 4.99976 5 6.99976 4.99997 6.99986 11.9999 17.1717 12 13.222 8.05024l1.4142-1.41421L21.0001 13l-6.3639 6.364-1.4142-1.4143L17.1717 14 4.99989 13.9999z"/></svg></span>
+<span class="font-space-grotesk text-xs">Get started</span></div></a></div></div></header><section class="section-light grid-background"><div class="content md:px-12 h-[50px] md:h-[88px]"></div></section><div class="relative z-10 bg-neutral-50 flex flex-row font-grotesk"><button @click=toggleSidebar(true) x-show="isSmallScreen && !sidebarOpened" x-transition style="transform:rotate(-90deg);transform-origin:left center" class="fixed top-28 md:top-40 left-3 z-50 flex items-center gap-2 bg-neutral-50/50 backdrop-blur rounded-m">
+<span class="tracking-widest text-sm">NAV</span><svg class="w-4 h-4" fill="none" stroke="currentcolor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round"/></svg></button><aside :class="isSmallScreen ? (sidebarOpened ? 'w-64' : 'w-0') : 'w-64'" class="fixed overflow-y-auto left-0 h-[calc(100vh-50px)] md:h-[calc(100vh-88px)] transition-all duration-300 bg-white border-r border-neutral-300 flex flex-col" @mouseleave="isSmallScreen ? toggleSidebar(false) : null"><div class=flex-grow><nav class="flex flex-col gap-2 p-4 bg-neutral-100 h-full" x-data="{
+    openSections: {},
+    selectedVersion: &#34;root-plakar:_developer_branch-0&#34;,
+    versions: [],
+    isSectionPage: false,
+    initializeSections() {
+        const currentPath = &#34;/docs/main/references/commands/plakar-source/&#34;;
+
+        const findAncestors = () => {
+            const activeLink = document.querySelector(`a[href='${currentPath}']`);
+            if (!activeLink) return;
+
+            // Reset all sections to closed
+            for (const key in this.openSections) {
+                if (Object.prototype.hasOwnProperty.call(this.openSections, key)) {
+                    this.openSections[key] = false;
+                }
+            }
+
+            let element = activeLink.parentElement;
+
+            while (element && element.tagName !== 'NAV') {
+                let sectionContainer = null;
+
+                // Try to find a section container with Alpine directives
+                if (element.hasAttribute('x-show') && element.hasAttribute('x-transition:enter')) {
+                    sectionContainer = element;
+                } else {
+                    // Fallback: look for the closest parent with the right Alpine setup
+                    sectionContainer = element.closest('[x-show][x-transition\\:enter]');
+                }
+
+                if (sectionContainer && !sectionContainer.dataset.checked) {
+                    const match = sectionContainer.getAttribute('x-show').match(/openSections\['([^']+)'\]/);
+                    if (match && match[1]) {
+                        this.openSections[match[1]] = true;
+                    }
+                }
+
+                element = element.parentElement;
+            }
+
+            setTimeout(() => {
+                activeLink.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 300);
+        };
+
+        setTimeout(findAncestors, 200);
+    },
+    changeVersion() {
+        const versionSelect = document.getElementById('version-select');
+        const selectedVersionId = versionSelect.value;
+        const selectedVersionObj = this.versions.find(v => v.id === selectedVersionId);
+
+        if (selectedVersionObj) {
+            const currentUrl = window.location.pathname;
+            const baseUrls = this.versions.map(v => v.url);
+            let foundBase = baseUrls.find(url => currentUrl.startsWith(url));
+            let newUrl = selectedVersionObj.url;
+            if (foundBase) {
+                newUrl = currentUrl.replace(foundBase, selectedVersionObj.url);
+            }
+            window.location.href = newUrl;
+        }
+    }
+}" x-init='
+    
+        
+        versions.push({
+            title: "Plakar: Developer branch",
+            url: "/docs/main/",
+            id: "root-plakar:_developer_branch-0"
+        });
+    
+        
+        versions.push({
+            title: "Plakar: v1.1.0 (beta)",
+            url: "/docs/v1.1.0/",
+            id: "root-plakar:_v1.1.0_(beta)-1"
+        });
+    
+        
+        versions.push({
+            title: "Plakar v1.0.6",
+            url: "/docs/v1.0.6/",
+            id: "root-plakar_v1.0.6-2"
+        });
+    
+        
+        versions.push({
+            title: "Plakar v1.0.5",
+            url: "/docs/v1.0.5/",
+            id: "root-plakar_v1.0.5-3"
+        });
+    
+        
+        versions.push({
+            title: "Plakar v1.0.4",
+            url: "/docs/v1.0.4/",
+            id: "root-plakar_v1.0.4-4"
+        });
+    
+        
+        versions.push({
+            title: "Plakar v1.0.2",
+            url: "/docs/v1.0.2/",
+            id: "root-plakar_v1.0.2-5"
+        });
+    
+
+    initializeSections();
+'><div class=mb-4><label for=version-select class="block text-sm font-medium text-gray-700 mb-1 hidden">Version</label>
+<select id=version-select @change=changeVersion() class="block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 text-sm"><option value=root-plakar:_developer_branch-0 selected>Plakar: Developer branch</option><option value=root-plakar:_v1.1.0_(beta)-1>Plakar: v1.1.0 (beta)</option><option value=root-plakar_v1.0.6-2>Plakar v1.0.6</option><option value=root-plakar_v1.0.5-3>Plakar v1.0.5</option><option value=root-plakar_v1.0.4-4>Plakar v1.0.4</option><option value=root-plakar_v1.0.2-5>Plakar v1.0.2</option></select></div><div x-show="selectedVersion === 'root-plakar:_developer_branch-0'" x-cloak data-version-container=root-plakar:_developer_branch-0><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded" :class="{ 'bg-neutral-100': openSections['root-plakar:_developer_branch-0-getting_started-0'] }"><a href=/docs/main/quickstart/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">Getting Started
+</a><button @click.prevent="openSections['root-plakar:_developer_branch-0-getting_started-0'] = !openSections['root-plakar:_developer_branch-0-getting_started-0']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar:_developer_branch-0-getting_started-0']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar:_developer_branch-0-getting_started-0']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar:_developer_branch-0-getting_started-0']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/main/quickstart/overview/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Overview
+</a><a href=/docs/main/quickstart/installation/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Installation
+</a><a href=/docs/main/quickstart/quickstart/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Quickstart
+</a><a href=/docs/main/quickstart/quickstart-2/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Synchronize multiple copies
+</a><a href=/docs/main/quickstart/quickstart-3/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Backup non-filesystem data</a></div></div><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded" :class="{ 'bg-neutral-100': openSections['root-plakar:_developer_branch-0-guides-1'] }"><a href=/docs/main/guides/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">Guides
+</a><button @click.prevent="openSections['root-plakar:_developer_branch-0-guides-1'] = !openSections['root-plakar:_developer_branch-0-guides-1']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar:_developer_branch-0-guides-1']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar:_developer_branch-0-guides-1']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar:_developer_branch-0-guides-1']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/main/guides/setup-scheduler-daily-backups/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Scheduling Tasks
+</a><a href=/docs/main/guides/importing-configurations/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Importing Configurations
+</a><a href=/docs/main/guides/create-kloset-repository/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Creating a Kloset Store
+</a><a href=/docs/main/guides/serving-a-kloset-store-over-http/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Serving a Kloset Store over HTTP
+</a><a href=/docs/main/guides/excluding-files-from-a-backup/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Excluding files from a backup
+</a><a href=/docs/main/guides/retrieve-passphrase-kloset-store/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Retrieving passphrase via external command
+</a><a href=/docs/main/guides/creating-a-custom-connector/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Creating a Custom Connector</a></div></div><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded" :class="{ 'bg-neutral-100': openSections['root-plakar:_developer_branch-0-tutorials-2'] }"><a href=/docs/main/tutorials/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">Tutorials
+</a><button @click.prevent="openSections['root-plakar:_developer_branch-0-tutorials-2'] = !openSections['root-plakar:_developer_branch-0-tutorials-2']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar:_developer_branch-0-tutorials-2']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar:_developer_branch-0-tutorials-2']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar:_developer_branch-0-tutorials-2']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded ml-4" :class="{ 'bg-neutral-100': openSections['root-plakar:_developer_branch-0-tutorials-2-databases-0'] }"><a href=/docs/main/tutorials/database/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">Databases
+</a><button @click.prevent="openSections['root-plakar:_developer_branch-0-tutorials-2-databases-0'] = !openSections['root-plakar:_developer_branch-0-tutorials-2-databases-0']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar:_developer_branch-0-tutorials-2-databases-0']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar:_developer_branch-0-tutorials-2-databases-0']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar:_developer_branch-0-tutorials-2-databases-0']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded ml-4" :class="{ 'bg-neutral-100': openSections['root-plakar:_developer_branch-0-tutorials-2-databases-0-postgresql-0'] }"><a href=/docs/main/tutorials/database/postgresql/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">PostgreSQL
+</a><button @click.prevent="openSections['root-plakar:_developer_branch-0-tutorials-2-databases-0-postgresql-0'] = !openSections['root-plakar:_developer_branch-0-tutorials-2-databases-0-postgresql-0']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar:_developer_branch-0-tutorials-2-databases-0-postgresql-0']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar:_developer_branch-0-tutorials-2-databases-0-postgresql-0']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar:_developer_branch-0-tutorials-2-databases-0-postgresql-0']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/main/tutorials/database/postgresql/pgdump/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Logical backups with SQL dumps
+</a><a href=/docs/main/tutorials/database/postgresql/pg-base-backup/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Physical backups with pg_basebackup</a></div></div><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded ml-4" :class="{ 'bg-neutral-100': openSections['root-plakar:_developer_branch-0-tutorials-2-databases-0-mysql-1'] }"><a href=/docs/main/tutorials/database/mysql/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">MySQL
+</a><button @click.prevent="openSections['root-plakar:_developer_branch-0-tutorials-2-databases-0-mysql-1'] = !openSections['root-plakar:_developer_branch-0-tutorials-2-databases-0-mysql-1']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar:_developer_branch-0-tutorials-2-databases-0-mysql-1']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar:_developer_branch-0-tutorials-2-databases-0-mysql-1']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar:_developer_branch-0-tutorials-2-databases-0-mysql-1']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/main/tutorials/database/mysql/sqldump/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Logical backups with SQL dumps
+</a><a href=/docs/main/tutorials/database/mysql/physical-backups/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Physical backups</a></div></div></div></div><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded ml-4" :class="{ 'bg-neutral-100': openSections['root-plakar:_developer_branch-0-tutorials-2-ovhcloud-1'] }"><a href=/docs/main/tutorials/ovhcloud/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">OVHcloud
+</a><button @click.prevent="openSections['root-plakar:_developer_branch-0-tutorials-2-ovhcloud-1'] = !openSections['root-plakar:_developer_branch-0-tutorials-2-ovhcloud-1']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar:_developer_branch-0-tutorials-2-ovhcloud-1']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar:_developer_branch-0-tutorials-2-ovhcloud-1']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar:_developer_branch-0-tutorials-2-ovhcloud-1']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/main/tutorials/ovhcloud/ovhcloud-as-a-dedicated-backup-server/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Setup an OVHcloud VPS as a Dedicated Backup Server
+</a><a href=/docs/main/tutorials/ovhcloud/backup-ovhcloud-managed-postgres/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Back Up an OVHcloud Managed PostgreSQL Database</a></div></div></div></div><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded" :class="{ 'bg-neutral-100': openSections['root-plakar:_developer_branch-0-integrations-3'] }"><a href=/docs/main/integrations/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">Integrations
+</a><button @click.prevent="openSections['root-plakar:_developer_branch-0-integrations-3'] = !openSections['root-plakar:_developer_branch-0-integrations-3']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar:_developer_branch-0-integrations-3']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar:_developer_branch-0-integrations-3']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar:_developer_branch-0-integrations-3']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/main/integrations/notion/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Notion
+</a><a href=/docs/main/integrations/dropbox/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Dropbox
+</a><a href=/docs/main/integrations/iclouddrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">iCloud Drive
+</a><a href=/docs/main/integrations/koofr/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Koofr
+</a><a href=/docs/main/integrations/googledrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Google Drive
+</a><a href=/docs/main/integrations/onedrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">OneDrive
+</a><a href=/docs/main/integrations/opendrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">OpenDrive
+</a><a href=/docs/main/integrations/protondrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Proton Drive
+</a><a href=/docs/main/integrations/minio/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">MinIO
+</a><a href=/docs/main/integrations/sftp/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">SFTP / SSH</a></div></div><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded" :class="{ 'bg-neutral-100': openSections['root-plakar:_developer_branch-0-explanations-4'] }"><a href=/docs/main/explanations/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">Explanations
+</a><button @click.prevent="openSections['root-plakar:_developer_branch-0-explanations-4'] = !openSections['root-plakar:_developer_branch-0-explanations-4']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar:_developer_branch-0-explanations-4']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar:_developer_branch-0-explanations-4']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar:_developer_branch-0-explanations-4']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/main/explanations/should-you-pull-or-push-backups/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Should you push or pull backups?
+</a><a href=/docs/main/explanations/how-many-kloset-stores/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">How many Kloset Stores should you create?
+</a><a href=/docs/main/explanations/why-several-copies/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Why multiple backup copies matter
+</a><a href=/docs/main/explanations/why-should-i-backup-my-saas/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Why you need to backup your SaaS</a></div></div><div class="my-1 open"><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded" :class="{ 'bg-neutral-100': openSections['root-plakar:_developer_branch-0-references-5'] }"><a href=/docs/main/references/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">References
+</a><button @click.prevent="openSections['root-plakar:_developer_branch-0-references-5'] = !openSections['root-plakar:_developer_branch-0-references-5']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar:_developer_branch-0-references-5']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar:_developer_branch-0-references-5']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar:_developer_branch-0-references-5']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/main/references/ptar/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Plakar Ptar
+</a><a href=/docs/main/references/command-line-syntax/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Command line syntax</a><div class="my-1 open"><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded ml-4" :class="{ 'bg-neutral-100': openSections['root-plakar:_developer_branch-0-references-5-commands-2'] }"><a href=/docs/main/references/commands/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">Commands
+</a><button @click.prevent="openSections['root-plakar:_developer_branch-0-references-5-commands-2'] = !openSections['root-plakar:_developer_branch-0-references-5-commands-2']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar:_developer_branch-0-references-5-commands-2']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar:_developer_branch-0-references-5-commands-2']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar:_developer_branch-0-references-5-commands-2']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/main/references/commands/plakar-archive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">archive
+</a><a href=/docs/main/references/commands/plakar-backup/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">backup
+</a><a href=/docs/main/references/commands/plakar-cat/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">cat
+</a><a href=/docs/main/references/commands/plakar-check/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">check
+</a><a href=/docs/main/references/commands/plakar-create/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">create
+</a><a href=/docs/main/references/commands/plakar-destination/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">destination
+</a><a href=/docs/main/references/commands/plakar-diag/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">diag
+</a><a href=/docs/main/references/commands/plakar-diff/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">diff
+</a><a href=/docs/main/references/commands/plakar-digest/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">digest
+</a><a href=/docs/main/references/commands/plakar-dup/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">dup
+</a><a href=/docs/main/references/commands/plakar-info/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">info
+</a><a href=/docs/main/references/commands/plakar-locate/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">locate
+</a><a href=/docs/main/references/commands/plakar-login/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">login
+</a><a href=/docs/main/references/commands/plakar-logout/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">logout
+</a><a href=/docs/main/references/commands/plakar-ls/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">ls
+</a><a href=/docs/main/references/commands/plakar-maintenance/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">maintenance
+</a><a href=/docs/main/references/commands/plakar-mount/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">mount
+</a><a href=/docs/main/references/commands/plakar-pkg-add/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">pkg-add
+</a><a href=/docs/main/references/commands/plakar-pkg-build/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">pkg-build
+</a><a href=/docs/main/references/commands/plakar-pkg-create/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">pkg-create
+</a><a href=/docs/main/references/commands/plakar-pkg-manifest.yaml/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">pkg-manifest.yaml
+</a><a href=/docs/main/references/commands/plakar-pkg-recipe.yaml/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">pkg-recipe.yaml
+</a><a href=/docs/main/references/commands/plakar-pkg-rm/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">pkg-rm
+</a><a href=/docs/main/references/commands/plakar-pkg-show/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">pkg-show
+</a><a href=/docs/main/references/commands/plakar/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">plakar
+</a><a href=/docs/main/references/commands/plakar-policy/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">policy
+</a><a href=/docs/main/references/commands/plakar-prune/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">prune
+</a><a href=/docs/main/references/commands/plakar-ptar/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">ptar
+</a><a href=/docs/main/references/commands/plakar-query/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">query
+</a><a href=/docs/main/references/commands/plakar-restore/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">restore
+</a><a href=/docs/main/references/commands/plakar-rm/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">rm
+</a><a href=/docs/main/references/commands/plakar-scheduler/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">scheduler
+</a><a href=/docs/main/references/commands/plakar-server/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">server
+</a><a href=/docs/main/references/commands/plakar-service/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">service
+</a><a href=/docs/main/references/commands/plakar-source/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300
+text-primary-600 bg-neutral-200 font-semibold">source
+</a><a href=/docs/main/references/commands/plakar-store/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">store
+</a><a href=/docs/main/references/commands/plakar-sync/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">sync
+</a><a href=/docs/main/references/commands/plakar-token/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">token
+</a><a href=/docs/main/references/commands/plakar-ui/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">ui
+</a><a href=/docs/main/references/commands/plakar-version/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">version</a></div></div></div></div><a href=/docs/main/community/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200">Community</a></div><div x-show="selectedVersion === 'root-plakar:_v1.1.0_(beta)-1'" x-cloak data-version-container=root-plakar:_v1.1.0_(beta)-1><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded" :class="{ 'bg-neutral-100': openSections['root-plakar:_v1.1.0_(beta)-1-getting_started-0'] }"><a href=/docs/v1.1.0/quickstart/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">Getting Started
+</a><button @click.prevent="openSections['root-plakar:_v1.1.0_(beta)-1-getting_started-0'] = !openSections['root-plakar:_v1.1.0_(beta)-1-getting_started-0']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar:_v1.1.0_(beta)-1-getting_started-0']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar:_v1.1.0_(beta)-1-getting_started-0']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar:_v1.1.0_(beta)-1-getting_started-0']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/v1.1.0/quickstart/overview/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Overview
+</a><a href=/docs/v1.1.0/quickstart/installation/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Installation
+</a><a href=/docs/v1.1.0/quickstart/quickstart/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Quickstart
+</a><a href=/docs/v1.1.0/quickstart/quickstart-2/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Synchronize multiple copies
+</a><a href=/docs/v1.1.0/quickstart/quickstart-3/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Backup non-filesystem data</a></div></div><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded" :class="{ 'bg-neutral-100': openSections['root-plakar:_v1.1.0_(beta)-1-guides-1'] }"><a href=/docs/v1.1.0/guides/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">Guides
+</a><button @click.prevent="openSections['root-plakar:_v1.1.0_(beta)-1-guides-1'] = !openSections['root-plakar:_v1.1.0_(beta)-1-guides-1']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar:_v1.1.0_(beta)-1-guides-1']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar:_v1.1.0_(beta)-1-guides-1']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar:_v1.1.0_(beta)-1-guides-1']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/v1.1.0/guides/setup-scheduler-daily-backups/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Scheduling Tasks
+</a><a href=/docs/v1.1.0/guides/importing-configurations/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Importing Configurations
+</a><a href=/docs/v1.1.0/guides/create-kloset-repository/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Creating a Kloset Store
+</a><a href=/docs/v1.1.0/guides/serving-a-kloset-store-over-http/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Serving a Kloset Store over HTTP
+</a><a href=/docs/v1.1.0/guides/excluding-files-from-a-backup/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Excluding files from a backup
+</a><a href=/docs/v1.1.0/guides/retrieve-passphrase-kloset-store/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Retrieving passphrase via external command
+</a><a href=/docs/v1.1.0/guides/creating-a-custom-connector/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Creating a Custom Connector
+</a><a href=/docs/v1.1.0/guides/logging-in-to-plakar/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Logging In to Plakar</a></div></div><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded" :class="{ 'bg-neutral-100': openSections['root-plakar:_v1.1.0_(beta)-1-tutorials-2'] }"><a href=/docs/v1.1.0/tutorials/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">Tutorials
+</a><button @click.prevent="openSections['root-plakar:_v1.1.0_(beta)-1-tutorials-2'] = !openSections['root-plakar:_v1.1.0_(beta)-1-tutorials-2']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar:_v1.1.0_(beta)-1-tutorials-2']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar:_v1.1.0_(beta)-1-tutorials-2']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar:_v1.1.0_(beta)-1-tutorials-2']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded ml-4" :class="{ 'bg-neutral-100': openSections['root-plakar:_v1.1.0_(beta)-1-tutorials-2-databases-0'] }"><a href=/docs/v1.1.0/tutorials/database/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">Databases
+</a><button @click.prevent="openSections['root-plakar:_v1.1.0_(beta)-1-tutorials-2-databases-0'] = !openSections['root-plakar:_v1.1.0_(beta)-1-tutorials-2-databases-0']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar:_v1.1.0_(beta)-1-tutorials-2-databases-0']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar:_v1.1.0_(beta)-1-tutorials-2-databases-0']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar:_v1.1.0_(beta)-1-tutorials-2-databases-0']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded ml-4" :class="{ 'bg-neutral-100': openSections['root-plakar:_v1.1.0_(beta)-1-tutorials-2-databases-0-postgresql-0'] }"><a href=/docs/v1.1.0/tutorials/database/postgresql/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">PostgreSQL
+</a><button @click.prevent="openSections['root-plakar:_v1.1.0_(beta)-1-tutorials-2-databases-0-postgresql-0'] = !openSections['root-plakar:_v1.1.0_(beta)-1-tutorials-2-databases-0-postgresql-0']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar:_v1.1.0_(beta)-1-tutorials-2-databases-0-postgresql-0']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar:_v1.1.0_(beta)-1-tutorials-2-databases-0-postgresql-0']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar:_v1.1.0_(beta)-1-tutorials-2-databases-0-postgresql-0']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/v1.1.0/tutorials/database/postgresql/pgdump/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Logical backups with SQL dumps
+</a><a href=/docs/v1.1.0/tutorials/database/postgresql/pg-base-backup/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Physical backups with pg_basebackup</a></div></div><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded ml-4" :class="{ 'bg-neutral-100': openSections['root-plakar:_v1.1.0_(beta)-1-tutorials-2-databases-0-mysql-1'] }"><a href=/docs/v1.1.0/tutorials/database/mysql/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">MySQL
+</a><button @click.prevent="openSections['root-plakar:_v1.1.0_(beta)-1-tutorials-2-databases-0-mysql-1'] = !openSections['root-plakar:_v1.1.0_(beta)-1-tutorials-2-databases-0-mysql-1']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar:_v1.1.0_(beta)-1-tutorials-2-databases-0-mysql-1']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar:_v1.1.0_(beta)-1-tutorials-2-databases-0-mysql-1']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar:_v1.1.0_(beta)-1-tutorials-2-databases-0-mysql-1']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/v1.1.0/tutorials/database/mysql/sqldump/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Logical backups with SQL dumps
+</a><a href=/docs/v1.1.0/tutorials/database/mysql/physical-backups/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Physical backups</a></div></div></div></div><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded ml-4" :class="{ 'bg-neutral-100': openSections['root-plakar:_v1.1.0_(beta)-1-tutorials-2-ovhcloud-1'] }"><a href=/docs/v1.1.0/tutorials/ovhcloud/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">OVHcloud
+</a><button @click.prevent="openSections['root-plakar:_v1.1.0_(beta)-1-tutorials-2-ovhcloud-1'] = !openSections['root-plakar:_v1.1.0_(beta)-1-tutorials-2-ovhcloud-1']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar:_v1.1.0_(beta)-1-tutorials-2-ovhcloud-1']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar:_v1.1.0_(beta)-1-tutorials-2-ovhcloud-1']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar:_v1.1.0_(beta)-1-tutorials-2-ovhcloud-1']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/v1.1.0/tutorials/ovhcloud/ovhcloud-as-a-dedicated-backup-server/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Setup an OVHcloud VPS as a Dedicated Backup Server
+</a><a href=/docs/v1.1.0/tutorials/ovhcloud/backup-ovhcloud-managed-postgres/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Back Up an OVHcloud Managed PostgreSQL Database</a></div></div></div></div><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded" :class="{ 'bg-neutral-100': openSections['root-plakar:_v1.1.0_(beta)-1-integrations-3'] }"><a href=/docs/v1.1.0/integrations/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">Integrations
+</a><button @click.prevent="openSections['root-plakar:_v1.1.0_(beta)-1-integrations-3'] = !openSections['root-plakar:_v1.1.0_(beta)-1-integrations-3']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar:_v1.1.0_(beta)-1-integrations-3']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar:_v1.1.0_(beta)-1-integrations-3']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar:_v1.1.0_(beta)-1-integrations-3']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/v1.1.0/integrations/notion/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Notion
+</a><a href=/docs/v1.1.0/integrations/dropbox/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Dropbox
+</a><a href=/docs/v1.1.0/integrations/iclouddrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">iCloud Drive
+</a><a href=/docs/v1.1.0/integrations/koofr/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Koofr
+</a><a href=/docs/v1.1.0/integrations/googledrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Google Drive
+</a><a href=/docs/v1.1.0/integrations/onedrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">OneDrive
+</a><a href=/docs/v1.1.0/integrations/opendrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">OpenDrive
+</a><a href=/docs/v1.1.0/integrations/protondrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Proton Drive
+</a><a href=/docs/v1.1.0/integrations/minio/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">MinIO
+</a><a href=/docs/v1.1.0/integrations/sftp/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">SFTP / SSH</a></div></div><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded" :class="{ 'bg-neutral-100': openSections['root-plakar:_v1.1.0_(beta)-1-explanations-4'] }"><a href=/docs/v1.1.0/explanations/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">Explanations
+</a><button @click.prevent="openSections['root-plakar:_v1.1.0_(beta)-1-explanations-4'] = !openSections['root-plakar:_v1.1.0_(beta)-1-explanations-4']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar:_v1.1.0_(beta)-1-explanations-4']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar:_v1.1.0_(beta)-1-explanations-4']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar:_v1.1.0_(beta)-1-explanations-4']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/v1.1.0/explanations/should-you-pull-or-push-backups/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Should you push or pull backups?
+</a><a href=/docs/v1.1.0/explanations/how-many-kloset-stores/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">How many Kloset Stores should you create?
+</a><a href=/docs/v1.1.0/explanations/why-several-copies/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Why multiple backup copies matter
+</a><a href=/docs/v1.1.0/explanations/why-should-i-backup-my-saas/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Why you need to backup your SaaS</a></div></div><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded" :class="{ 'bg-neutral-100': openSections['root-plakar:_v1.1.0_(beta)-1-references-5'] }"><a href=/docs/v1.1.0/references/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">References
+</a><button @click.prevent="openSections['root-plakar:_v1.1.0_(beta)-1-references-5'] = !openSections['root-plakar:_v1.1.0_(beta)-1-references-5']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar:_v1.1.0_(beta)-1-references-5']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar:_v1.1.0_(beta)-1-references-5']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar:_v1.1.0_(beta)-1-references-5']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/v1.1.0/references/ptar/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Plakar Ptar
+</a><a href=/docs/v1.1.0/references/command-line-syntax/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Command line syntax</a><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded ml-4" :class="{ 'bg-neutral-100': openSections['root-plakar:_v1.1.0_(beta)-1-references-5-commands-2'] }"><a href=/docs/v1.1.0/references/commands/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">Commands
+</a><button @click.prevent="openSections['root-plakar:_v1.1.0_(beta)-1-references-5-commands-2'] = !openSections['root-plakar:_v1.1.0_(beta)-1-references-5-commands-2']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar:_v1.1.0_(beta)-1-references-5-commands-2']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar:_v1.1.0_(beta)-1-references-5-commands-2']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar:_v1.1.0_(beta)-1-references-5-commands-2']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/v1.1.0/references/commands/plakar-archive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">archive
+</a><a href=/docs/v1.1.0/references/commands/plakar-backup/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">backup
+</a><a href=/docs/v1.1.0/references/commands/plakar-cat/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">cat
+</a><a href=/docs/v1.1.0/references/commands/plakar-check/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">check
+</a><a href=/docs/v1.1.0/references/commands/plakar-create/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">create
+</a><a href=/docs/v1.1.0/references/commands/plakar-destination/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">destination
+</a><a href=/docs/v1.1.0/references/commands/plakar-diag/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">diag
+</a><a href=/docs/v1.1.0/references/commands/plakar-diff/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">diff
+</a><a href=/docs/v1.1.0/references/commands/plakar-digest/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">digest
+</a><a href=/docs/v1.1.0/references/commands/plakar-dup/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">dup
+</a><a href=/docs/v1.1.0/references/commands/plakar-info/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">info
+</a><a href=/docs/v1.1.0/references/commands/plakar-locate/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">locate
+</a><a href=/docs/v1.1.0/references/commands/plakar-login/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">login
+</a><a href=/docs/v1.1.0/references/commands/plakar-logout/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">logout
+</a><a href=/docs/v1.1.0/references/commands/plakar-ls/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">ls
+</a><a href=/docs/v1.1.0/references/commands/plakar-maintenance/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">maintenance
+</a><a href=/docs/v1.1.0/references/commands/plakar-mount/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">mount
+</a><a href=/docs/v1.1.0/references/commands/plakar-pkg-add/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">pkg-add
+</a><a href=/docs/v1.1.0/references/commands/plakar-pkg-build/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">pkg-build
+</a><a href=/docs/v1.1.0/references/commands/plakar-pkg-create/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">pkg-create
+</a><a href=/docs/v1.1.0/references/commands/plakar-pkg-manifest.yaml/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">pkg-manifest.yaml
+</a><a href=/docs/v1.1.0/references/commands/plakar-pkg-recipe.yaml/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">pkg-recipe.yaml
+</a><a href=/docs/v1.1.0/references/commands/plakar-pkg-rm/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">pkg-rm
+</a><a href=/docs/v1.1.0/references/commands/plakar-pkg-show/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">pkg-show
+</a><a href=/docs/v1.1.0/references/commands/plakar/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">plakar
+</a><a href=/docs/v1.1.0/references/commands/plakar-policy/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">policy
+</a><a href=/docs/v1.1.0/references/commands/plakar-prune/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">prune
+</a><a href=/docs/v1.1.0/references/commands/plakar-ptar/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">ptar
+</a><a href=/docs/v1.1.0/references/commands/plakar-query/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">query
+</a><a href=/docs/v1.1.0/references/commands/plakar-restore/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">restore
+</a><a href=/docs/v1.1.0/references/commands/plakar-rm/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">rm
+</a><a href=/docs/v1.1.0/references/commands/plakar-scheduler/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">scheduler
+</a><a href=/docs/v1.1.0/references/commands/plakar-server/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">server
+</a><a href=/docs/v1.1.0/references/commands/plakar-service/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">service
+</a><a href=/docs/v1.1.0/references/commands/plakar-source/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">source
+</a><a href=/docs/v1.1.0/references/commands/plakar-store/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">store
+</a><a href=/docs/v1.1.0/references/commands/plakar-sync/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">sync
+</a><a href=/docs/v1.1.0/references/commands/plakar-token/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">token
+</a><a href=/docs/v1.1.0/references/commands/plakar-ui/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">ui
+</a><a href=/docs/v1.1.0/references/commands/plakar-version/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">version</a></div></div></div></div><a href=/docs/v1.1.0/community/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200">Community</a></div><div x-show="selectedVersion === 'root-plakar_v1.0.6-2'" x-cloak data-version-container=root-plakar_v1.0.6-2><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded" :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.6-2-getting_started-0'] }"><a href=/docs/v1.0.6/quickstart/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">Getting Started
+</a><button @click.prevent="openSections['root-plakar_v1.0.6-2-getting_started-0'] = !openSections['root-plakar_v1.0.6-2-getting_started-0']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar_v1.0.6-2-getting_started-0']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar_v1.0.6-2-getting_started-0']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar_v1.0.6-2-getting_started-0']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/v1.0.6/quickstart/installation/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Installation
+</a><a href=/docs/v1.0.6/quickstart/quickstart/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Quickstart
+</a><a href=/docs/v1.0.6/quickstart/quickstart-2/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Synchronize multiple copies
+</a><a href=/docs/v1.0.6/quickstart/quickstart-3/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Backup non-filesystem data
+</a><a href=/docs/v1.0.6/quickstart/concepts/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Concepts</a></div></div><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded" :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.6-2-guides-1'] }"><a href=/docs/v1.0.6/guides/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">Guides
+</a><button @click.prevent="openSections['root-plakar_v1.0.6-2-guides-1'] = !openSections['root-plakar_v1.0.6-2-guides-1']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar_v1.0.6-2-guides-1']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar_v1.0.6-2-guides-1']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar_v1.0.6-2-guides-1']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/v1.0.6/guides/what-is-plakar-server/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Serve a Kloset Store over HTTP
+</a><a href=/docs/v1.0.6/guides/how-many-kloset-stores/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">How many Kloset stores should you create for your backups?
+</a><a href=/docs/v1.0.6/guides/backups-push-or-pull/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Push or pull backups?
+</a><a href=/docs/v1.0.6/guides/retrieve-passphrase-kloset-store/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Retrieve passphrase via external command
+</a><a href=/docs/v1.0.6/guides/sdk/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">SDK</a><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded ml-4" :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.6-2-guides-1-ptar:_portable_archives-0'] }"><a href=/docs/v1.0.6/guides/ptar/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">Ptar: Portable Archives
+</a><button @click.prevent="openSections['root-plakar_v1.0.6-2-guides-1-ptar:_portable_archives-0'] = !openSections['root-plakar_v1.0.6-2-guides-1-ptar:_portable_archives-0']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar_v1.0.6-2-guides-1-ptar:_portable_archives-0']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar_v1.0.6-2-guides-1-ptar:_portable_archives-0']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar_v1.0.6-2-guides-1-ptar:_portable_archives-0']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/v1.0.6/guides/ptar/what-is-ptar/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">What is Ptar?
+</a><a href=/docs/v1.0.6/guides/ptar/creating-ptar/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Creating Ptar Files
+</a><a href=/docs/v1.0.6/guides/ptar/using-ptar/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Using Ptar Files</a></div></div><a href=/docs/v1.0.6/guides/importing-configurations/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Importing Configurations
+</a><a href=/docs/v1.0.6/guides/why-several-copies/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Why should you keep several copies of your backups?
+</a><a href=/docs/v1.0.6/guides/create-kloset-repository/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Create a Kloset Store
+</a><a href=/docs/v1.0.6/guides/how-to-backup-a-s3-bucket/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Backup a S3 bucket
+</a><a href=/docs/v1.0.6/guides/plakar-command-line-syntax/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Plakar command line syntax
+</a><a href=/docs/v1.0.6/guides/excluding-files-from-a-backup/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Excluding files from a backup
+</a><a href=/docs/v1.0.6/guides/why-should-i-backup-my-saas/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Why Should I Back Up My SaaS?
+</a><a href=/docs/v1.0.6/guides/setup-scheduler-daily-backups/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Scheduling tasks
+</a><a href=/docs/v1.0.6/guides/what-is-plakar-login/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Login to Plakar to unlock features</a></div></div><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded" :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.6-2-integrations-2'] }"><a href=/docs/v1.0.6/integrations/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">Integrations
+</a><button @click.prevent="openSections['root-plakar_v1.0.6-2-integrations-2'] = !openSections['root-plakar_v1.0.6-2-integrations-2']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar_v1.0.6-2-integrations-2']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar_v1.0.6-2-integrations-2']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar_v1.0.6-2-integrations-2']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/v1.0.6/integrations/notion/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Notion
+</a><a href=/docs/v1.0.6/integrations/dropbox/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Dropbox
+</a><a href=/docs/v1.0.6/integrations/iclouddrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">iCloud Drive
+</a><a href=/docs/v1.0.6/integrations/koofr/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Koofr
+</a><a href=/docs/v1.0.6/integrations/googledrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Google Drive
+</a><a href=/docs/v1.0.6/integrations/onedrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">OneDrive
+</a><a href=/docs/v1.0.6/integrations/opendrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">OpenDrive
+</a><a href=/docs/v1.0.6/integrations/protondrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Proton Drive
+</a><a href=/docs/v1.0.6/integrations/minio/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">MinIO
+</a><a href=/docs/v1.0.6/integrations/sftp/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">SFTP / SSH</a></div></div><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded" :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.6-2-tutorials-3'] }"><a href=/docs/v1.0.6/tutorials/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">Tutorials
+</a><button @click.prevent="openSections['root-plakar_v1.0.6-2-tutorials-3'] = !openSections['root-plakar_v1.0.6-2-tutorials-3']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar_v1.0.6-2-tutorials-3']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar_v1.0.6-2-tutorials-3']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar_v1.0.6-2-tutorials-3']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded ml-4" :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.6-2-tutorials-3-databases-0'] }"><a href=/docs/v1.0.6/tutorials/database/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">Databases
+</a><button @click.prevent="openSections['root-plakar_v1.0.6-2-tutorials-3-databases-0'] = !openSections['root-plakar_v1.0.6-2-tutorials-3-databases-0']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar_v1.0.6-2-tutorials-3-databases-0']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar_v1.0.6-2-tutorials-3-databases-0']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar_v1.0.6-2-tutorials-3-databases-0']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded ml-4" :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.6-2-tutorials-3-databases-0-postgresql-0'] }"><a href=/docs/v1.0.6/tutorials/database/postgresql/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">PostgreSQL
+</a><button @click.prevent="openSections['root-plakar_v1.0.6-2-tutorials-3-databases-0-postgresql-0'] = !openSections['root-plakar_v1.0.6-2-tutorials-3-databases-0-postgresql-0']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar_v1.0.6-2-tutorials-3-databases-0-postgresql-0']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar_v1.0.6-2-tutorials-3-databases-0-postgresql-0']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar_v1.0.6-2-tutorials-3-databases-0-postgresql-0']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/v1.0.6/tutorials/database/postgresql/pgdump/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Logical backups with SQL dumps
+</a><a href=/docs/v1.0.6/tutorials/database/postgresql/pg-base-backup/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Physical backups with pg_basebackup</a></div></div><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded ml-4" :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.6-2-tutorials-3-databases-0-mysql-1'] }"><a href=/docs/v1.0.6/tutorials/database/mysql/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">MySQL
+</a><button @click.prevent="openSections['root-plakar_v1.0.6-2-tutorials-3-databases-0-mysql-1'] = !openSections['root-plakar_v1.0.6-2-tutorials-3-databases-0-mysql-1']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar_v1.0.6-2-tutorials-3-databases-0-mysql-1']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar_v1.0.6-2-tutorials-3-databases-0-mysql-1']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar_v1.0.6-2-tutorials-3-databases-0-mysql-1']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/v1.0.6/tutorials/database/mysql/sqldump/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Logical backups with SQL dumps
+</a><a href=/docs/v1.0.6/tutorials/database/mysql/physical-backups/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Physical backups</a></div></div></div></div><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded ml-4" :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.6-2-tutorials-3-ovhcloud-1'] }"><a href=/docs/v1.0.6/tutorials/ovhcloud/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">OVHcloud
+</a><button @click.prevent="openSections['root-plakar_v1.0.6-2-tutorials-3-ovhcloud-1'] = !openSections['root-plakar_v1.0.6-2-tutorials-3-ovhcloud-1']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar_v1.0.6-2-tutorials-3-ovhcloud-1']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar_v1.0.6-2-tutorials-3-ovhcloud-1']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar_v1.0.6-2-tutorials-3-ovhcloud-1']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/v1.0.6/tutorials/ovhcloud/ovhcloud-as-a-dedicated-backup-server/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Setup an OVHcloud VPS as a Dedicated Backup Server
+</a><a href=/docs/v1.0.6/tutorials/ovhcloud/backup-ovhcloud-managed-postgres/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Back Up an OVHcloud Managed PostgreSQL Database</a></div></div></div></div><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded" :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.6-2-commands-4'] }"><a href=/docs/v1.0.6/commands/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">Commands
+</a><button @click.prevent="openSections['root-plakar_v1.0.6-2-commands-4'] = !openSections['root-plakar_v1.0.6-2-commands-4']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar_v1.0.6-2-commands-4']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar_v1.0.6-2-commands-4']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar_v1.0.6-2-commands-4']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/v1.0.6/commands/plakar-agent/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">agent
+</a><a href=/docs/v1.0.6/commands/plakar-archive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">archive
+</a><a href=/docs/v1.0.6/commands/plakar-backup/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">backup
+</a><a href=/docs/v1.0.6/commands/plakar-cat/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">cat
+</a><a href=/docs/v1.0.6/commands/plakar-check/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">check
+</a><a href=/docs/v1.0.6/commands/plakar-clone/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">clone
+</a><a href=/docs/v1.0.6/commands/plakar-create/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">create
+</a><a href=/docs/v1.0.6/commands/plakar-destination/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">destination
+</a><a href=/docs/v1.0.6/commands/plakar-diag/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">diag
+</a><a href=/docs/v1.0.6/commands/plakar-diff/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">diff
+</a><a href=/docs/v1.0.6/commands/plakar-digest/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">digest
+</a><a href=/docs/v1.0.6/commands/plakar-dup/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">dup
+</a><a href=/docs/v1.0.6/commands/plakar-info/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">info
+</a><a href=/docs/v1.0.6/commands/plakar-locate/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">locate
+</a><a href=/docs/v1.0.6/commands/plakar-login/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">login
+</a><a href=/docs/v1.0.6/commands/plakar-logout/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">logout
+</a><a href=/docs/v1.0.6/commands/plakar-ls/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">ls
+</a><a href=/docs/v1.0.6/commands/plakar-maintenance/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">maintenance
+</a><a href=/docs/v1.0.6/commands/plakar-mount/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">mount
+</a><a href=/docs/v1.0.6/commands/plakar-pkg-add/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">pkg-add
+</a><a href=/docs/v1.0.6/commands/plakar-pkg-build/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">pkg-build
+</a><a href=/docs/v1.0.6/commands/plakar-pkg-create/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">pkg-create
+</a><a href=/docs/v1.0.6/commands/plakar-pkg-manifest.yaml/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">pkg-manifest.yaml
+</a><a href=/docs/v1.0.6/commands/plakar-pkg-recipe.yaml/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">pkg-recipe.yaml
+</a><a href=/docs/v1.0.6/commands/plakar-pkg-rm/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">pkg-rm
+</a><a href=/docs/v1.0.6/commands/plakar-pkg-show/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">pkg-show
+</a><a href=/docs/v1.0.6/commands/plakar/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">plakar
+</a><a href=/docs/v1.0.6/commands/plakar-policy/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">policy
+</a><a href=/docs/v1.0.6/commands/plakar-prune/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">prune
+</a><a href=/docs/v1.0.6/commands/plakar-ptar/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">ptar
+</a><a href=/docs/v1.0.6/commands/plakar-query/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">query
+</a><a href=/docs/v1.0.6/commands/plakar-restore/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">restore
+</a><a href=/docs/v1.0.6/commands/plakar-rm/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">rm
+</a><a href=/docs/v1.0.6/commands/plakar-scheduler/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">scheduler
+</a><a href=/docs/v1.0.6/commands/plakar-server/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">server
+</a><a href=/docs/v1.0.6/commands/plakar-service/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">service
+</a><a href=/docs/v1.0.6/commands/plakar-source/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">source
+</a><a href=/docs/v1.0.6/commands/plakar-store/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">store
+</a><a href=/docs/v1.0.6/commands/plakar-sync/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">sync
+</a><a href=/docs/v1.0.6/commands/plakar-token/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">token
+</a><a href=/docs/v1.0.6/commands/plakar-ui/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">ui
+</a><a href=/docs/v1.0.6/commands/plakar-version/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">version</a></div></div><a href=/docs/v1.0.6/community/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200">Community</a></div><div x-show="selectedVersion === 'root-plakar_v1.0.5-3'" x-cloak data-version-container=root-plakar_v1.0.5-3><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded" :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.5-3-quickstart-0'] }"><a href=/docs/v1.0.5/quickstart/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">Quickstart
+</a><button @click.prevent="openSections['root-plakar_v1.0.5-3-quickstart-0'] = !openSections['root-plakar_v1.0.5-3-quickstart-0']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar_v1.0.5-3-quickstart-0']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar_v1.0.5-3-quickstart-0']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar_v1.0.5-3-quickstart-0']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/v1.0.5/quickstart/probabilities/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">One repository is not enough</a></div></div><a href=/docs/v1.0.5/concepts/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200">Concepts</a><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded" :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.5-3-commands-2'] }"><a href=/docs/v1.0.5/commands/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">Commands
+</a><button @click.prevent="openSections['root-plakar_v1.0.5-3-commands-2'] = !openSections['root-plakar_v1.0.5-3-commands-2']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar_v1.0.5-3-commands-2']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar_v1.0.5-3-commands-2']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar_v1.0.5-3-commands-2']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/v1.0.5/commands/plakar-agent/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">agent
+</a><a href=/docs/v1.0.5/commands/plakar-archive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">archive
+</a><a href=/docs/v1.0.5/commands/plakar-backup/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">backup
+</a><a href=/docs/v1.0.5/commands/plakar-cat/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">cat
+</a><a href=/docs/v1.0.5/commands/plakar-check/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">check
+</a><a href=/docs/v1.0.5/commands/plakar-clone/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">clone
+</a><a href=/docs/v1.0.5/commands/plakar-create/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">create
+</a><a href=/docs/v1.0.5/commands/plakar-destination/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">destination
+</a><a href=/docs/v1.0.5/commands/plakar-diag/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">diag
+</a><a href=/docs/v1.0.5/commands/plakar-diff/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">diff
+</a><a href=/docs/v1.0.5/commands/plakar-digest/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">digest
+</a><a href=/docs/v1.0.5/commands/plakar-dup/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">dup
+</a><a href=/docs/v1.0.5/commands/plakar-info/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">info
+</a><a href=/docs/v1.0.5/commands/plakar-locate/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">locate
+</a><a href=/docs/v1.0.5/commands/plakar-login/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">login
+</a><a href=/docs/v1.0.5/commands/plakar-logout/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">logout
+</a><a href=/docs/v1.0.5/commands/plakar-ls/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">ls
+</a><a href=/docs/v1.0.5/commands/plakar-maintenance/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">maintenance
+</a><a href=/docs/v1.0.5/commands/plakar-mount/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">mount
+</a><a href=/docs/v1.0.5/commands/plakar-pkg-add/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">pkg-add
+</a><a href=/docs/v1.0.5/commands/plakar-pkg-build/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">pkg-build
+</a><a href=/docs/v1.0.5/commands/plakar-pkg-create/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">pkg-create
+</a><a href=/docs/v1.0.5/commands/plakar-pkg-manifest.yaml/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">pkg-manifest.yaml
+</a><a href=/docs/v1.0.5/commands/plakar-pkg-recipe.yaml/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">pkg-recipe.yaml
+</a><a href=/docs/v1.0.5/commands/plakar-pkg-rm/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">pkg-rm
+</a><a href=/docs/v1.0.5/commands/plakar-pkg-show/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">pkg-show
+</a><a href=/docs/v1.0.5/commands/plakar/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">plakar
+</a><a href=/docs/v1.0.5/commands/plakar-policy/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">policy
+</a><a href=/docs/v1.0.5/commands/plakar-prune/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">prune
+</a><a href=/docs/v1.0.5/commands/plakar-ptar/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">ptar
+</a><a href=/docs/v1.0.5/commands/plakar-query/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">query
+</a><a href=/docs/v1.0.5/commands/plakar-restore/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">restore
+</a><a href=/docs/v1.0.5/commands/plakar-rm/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">rm
+</a><a href=/docs/v1.0.5/commands/plakar-scheduler/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">scheduler
+</a><a href=/docs/v1.0.5/commands/plakar-server/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">server
+</a><a href=/docs/v1.0.5/commands/plakar-service/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">service
+</a><a href=/docs/v1.0.5/commands/plakar-source/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">source
+</a><a href=/docs/v1.0.5/commands/plakar-store/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">store
+</a><a href=/docs/v1.0.5/commands/plakar-sync/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">sync
+</a><a href=/docs/v1.0.5/commands/plakar-token/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">token
+</a><a href=/docs/v1.0.5/commands/plakar-ui/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">ui
+</a><a href=/docs/v1.0.5/commands/plakar-version/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">version</a></div></div><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded" :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.5-3-guides-3'] }"><a href=/docs/v1.0.5/guides/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">Guides
+</a><button @click.prevent="openSections['root-plakar_v1.0.5-3-guides-3'] = !openSections['root-plakar_v1.0.5-3-guides-3']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar_v1.0.5-3-guides-3']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar_v1.0.5-3-guides-3']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar_v1.0.5-3-guides-3']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/v1.0.5/guides/excluding-files-from-a-backup/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Excluding files from a backup
+</a><a href=/docs/v1.0.5/guides/how-to-backup-a-s3-bucket/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">How to backup a S3 bucket?
+</a><a href=/docs/v1.0.5/guides/plakar-command-line-syntax/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Plakar command line syntax
+</a><a href=/docs/v1.0.5/guides/setup-scheduler-daily-backups/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Setup the scheduler to run backups every day
+</a><a href=/docs/v1.0.5/guides/what-is-plakar-login/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">What is `plakar login`, and why should I use it?
+</a><a href=/docs/v1.0.5/guides/what-is-plakar-server/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">What is `plakar server`, and why should I use it?
+</a><a href=/docs/v1.0.5/guides/backups-push-or-pull/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Backups: push or pull?
+</a><a href=/docs/v1.0.5/guides/create-kloset-repository/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Create a Kloset repository on the filesystem
+</a><a href=/docs/v1.0.5/guides/how-many-kloset-stores/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">How many Kloset stores should you create for your backups?
+</a><a href=/docs/v1.0.5/guides/retrieve-passphrase-kloset-store/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">How to call a command to retrieve the passphrase of a Kloset store</a></div></div><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded" :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.5-3-integrations-4'] }"><a href=/docs/v1.0.5/integrations/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">Integrations
+</a><button @click.prevent="openSections['root-plakar_v1.0.5-3-integrations-4'] = !openSections['root-plakar_v1.0.5-3-integrations-4']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar_v1.0.5-3-integrations-4']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar_v1.0.5-3-integrations-4']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar_v1.0.5-3-integrations-4']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/v1.0.5/integrations/minio/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">MinIO integration
+</a><a href=/docs/v1.0.5/integrations/sftp/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">SFTP integration package
+</a><a href=/docs/v1.0.5/integrations/iclouddrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">iCloud Drive integration documentation
+</a><a href=/docs/v1.0.5/integrations/opendrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">OpenDrive integration documentation
+</a><a href=/docs/v1.0.5/integrations/protondrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Proton Drive integration documentation
+</a><a href=/docs/v1.0.5/integrations/dropbox/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Dropbox integration
+</a><a href=/docs/v1.0.5/integrations/googledrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Google Drive integration
+</a><a href=/docs/v1.0.5/integrations/googlephotos/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Google Photos integration documentation
+</a><a href=/docs/v1.0.5/integrations/koofr/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Koofr integration documentation
+</a><a href=/docs/v1.0.5/integrations/onedrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">OneDrive integration documentation
+</a><a href=/docs/v1.0.5/integrations/notion/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Notion Integration documentation</a></div></div><a href=/docs/v1.0.5/community/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200">Community
+</a><a href=/docs/v1.0.5/sdk/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200">SDK</a></div><div x-show="selectedVersion === 'root-plakar_v1.0.4-4'" x-cloak data-version-container=root-plakar_v1.0.4-4><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded" :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.4-4-quickstart-0'] }"><a href=/docs/v1.0.4/quickstart/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">Quickstart
+</a><button @click.prevent="openSections['root-plakar_v1.0.4-4-quickstart-0'] = !openSections['root-plakar_v1.0.4-4-quickstart-0']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar_v1.0.4-4-quickstart-0']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar_v1.0.4-4-quickstart-0']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar_v1.0.4-4-quickstart-0']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/v1.0.4/quickstart/probabilities/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">One repository is not enough</a></div></div><a href=/docs/v1.0.4/concepts/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200">Concepts</a><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded" :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.4-4-commands-2'] }"><a href=/docs/v1.0.4/commands/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">Commands
+</a><button @click.prevent="openSections['root-plakar_v1.0.4-4-commands-2'] = !openSections['root-plakar_v1.0.4-4-commands-2']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar_v1.0.4-4-commands-2']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar_v1.0.4-4-commands-2']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar_v1.0.4-4-commands-2']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/v1.0.4/commands/plakar-agent/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">agent
+</a><a href=/docs/v1.0.4/commands/plakar-archive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">archive
+</a><a href=/docs/v1.0.4/commands/plakar-backup/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">backup
+</a><a href=/docs/v1.0.4/commands/plakar-cat/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">cat
+</a><a href=/docs/v1.0.4/commands/plakar-check/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">check
+</a><a href=/docs/v1.0.4/commands/plakar-clone/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">clone
+</a><a href=/docs/v1.0.4/commands/plakar-create/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">create
+</a><a href=/docs/v1.0.4/commands/plakar-destination/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">destination
+</a><a href=/docs/v1.0.4/commands/plakar-diag/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">diag
+</a><a href=/docs/v1.0.4/commands/plakar-diff/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">diff
+</a><a href=/docs/v1.0.4/commands/plakar-digest/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">digest
+</a><a href=/docs/v1.0.4/commands/plakar-dup/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">dup
+</a><a href=/docs/v1.0.4/commands/plakar-info/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">info
+</a><a href=/docs/v1.0.4/commands/plakar-locate/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">locate
+</a><a href=/docs/v1.0.4/commands/plakar-login/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">login
+</a><a href=/docs/v1.0.4/commands/plakar-logout/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">logout
+</a><a href=/docs/v1.0.4/commands/plakar-ls/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">ls
+</a><a href=/docs/v1.0.4/commands/plakar-maintenance/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">maintenance
+</a><a href=/docs/v1.0.4/commands/plakar-mount/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">mount
+</a><a href=/docs/v1.0.4/commands/plakar-pkg-add/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">pkg-add
+</a><a href=/docs/v1.0.4/commands/plakar-pkg-build/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">pkg-build
+</a><a href=/docs/v1.0.4/commands/plakar-pkg-create/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">pkg-create
+</a><a href=/docs/v1.0.4/commands/plakar-pkg-manifest.yaml/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">pkg-manifest.yaml
+</a><a href=/docs/v1.0.4/commands/plakar-pkg-recipe.yaml/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">pkg-recipe.yaml
+</a><a href=/docs/v1.0.4/commands/plakar-pkg-rm/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">pkg-rm
+</a><a href=/docs/v1.0.4/commands/plakar-pkg-show/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">pkg-show
+</a><a href=/docs/v1.0.4/commands/plakar/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">plakar
+</a><a href=/docs/v1.0.4/commands/plakar-policy/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">policy
+</a><a href=/docs/v1.0.4/commands/plakar-prune/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">prune
+</a><a href=/docs/v1.0.4/commands/plakar-ptar/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">ptar
+</a><a href=/docs/v1.0.4/commands/plakar-query/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">query
+</a><a href=/docs/v1.0.4/commands/plakar-restore/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">restore
+</a><a href=/docs/v1.0.4/commands/plakar-rm/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">rm
+</a><a href=/docs/v1.0.4/commands/plakar-scheduler/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">scheduler
+</a><a href=/docs/v1.0.4/commands/plakar-server/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">server
+</a><a href=/docs/v1.0.4/commands/plakar-service/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">service
+</a><a href=/docs/v1.0.4/commands/plakar-source/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">source
+</a><a href=/docs/v1.0.4/commands/plakar-store/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">store
+</a><a href=/docs/v1.0.4/commands/plakar-sync/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">sync
+</a><a href=/docs/v1.0.4/commands/plakar-token/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">token
+</a><a href=/docs/v1.0.4/commands/plakar-ui/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">ui
+</a><a href=/docs/v1.0.4/commands/plakar-version/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">version</a></div></div><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded" :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.4-4-guides-3'] }"><a href=/docs/v1.0.4/guides/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">Guides
+</a><button @click.prevent="openSections['root-plakar_v1.0.4-4-guides-3'] = !openSections['root-plakar_v1.0.4-4-guides-3']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar_v1.0.4-4-guides-3']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar_v1.0.4-4-guides-3']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar_v1.0.4-4-guides-3']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/v1.0.4/guides/excluding-files-from-a-backup/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Excluding files from a backup
+</a><a href=/docs/v1.0.4/guides/how-to-backup-a-s3-bucket/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">How to backup a S3 bucket?
+</a><a href=/docs/v1.0.4/guides/plakar-command-line-syntax/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Plakar command line syntax
+</a><a href=/docs/v1.0.4/guides/setup-scheduler-daily-backups/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Setup the scheduler to run backups every day
+</a><a href=/docs/v1.0.4/guides/what-is-plakar-login/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">What is `plakar login`, and why should I use it?
+</a><a href=/docs/v1.0.4/guides/what-is-plakar-server/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">What is `plakar server`, and why should I use it?
+</a><a href=/docs/v1.0.4/guides/backups-push-or-pull/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Backups: push or pull?
+</a><a href=/docs/v1.0.4/guides/create-kloset-repository/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Create a Kloset repository on the filesystem
+</a><a href=/docs/v1.0.4/guides/how-many-kloset-stores/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">How many Kloset stores should you create for your backups?
+</a><a href=/docs/v1.0.4/guides/retrieve-passphrase-kloset-store/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">How to call a command to retrieve the passphrase of a Kloset store
+</a><a href=/docs/v1.0.4/guides/importing-configurations/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Importing Configurations</a></div></div><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded" :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.4-4-integrations-4'] }"><a href=/docs/v1.0.4/integrations/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">Integrations
+</a><button @click.prevent="openSections['root-plakar_v1.0.4-4-integrations-4'] = !openSections['root-plakar_v1.0.4-4-integrations-4']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar_v1.0.4-4-integrations-4']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar_v1.0.4-4-integrations-4']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar_v1.0.4-4-integrations-4']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/v1.0.4/integrations/minio/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">MinIO integration
+</a><a href=/docs/v1.0.4/integrations/sftp/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">SFTP integration package
+</a><a href=/docs/v1.0.4/integrations/iclouddrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">iCloud Drive integration documentation
+</a><a href=/docs/v1.0.4/integrations/opendrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">OpenDrive integration documentation
+</a><a href=/docs/v1.0.4/integrations/protondrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Proton Drive integration documentation
+</a><a href=/docs/v1.0.4/integrations/dropbox/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Dropbox integration
+</a><a href=/docs/v1.0.4/integrations/googledrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Google Drive integration
+</a><a href=/docs/v1.0.4/integrations/googlephotos/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Google Photos integration documentation
+</a><a href=/docs/v1.0.4/integrations/koofr/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Koofr integration documentation
+</a><a href=/docs/v1.0.4/integrations/onedrive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">OneDrive integration documentation
+</a><a href=/docs/v1.0.4/integrations/notion/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">Notion Integration documentation</a></div></div><a href=/docs/v1.0.4/community/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200">Community
+</a><a href=/docs/v1.0.4/sdk/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200">SDK</a></div><div x-show="selectedVersion === 'root-plakar_v1.0.2-5'" x-cloak data-version-container=root-plakar_v1.0.2-5><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded" :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.2-5-quickstart-0'] }"><a href=/docs/v1.0.2/quickstart/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">Quickstart
+</a><button @click.prevent="openSections['root-plakar_v1.0.2-5-quickstart-0'] = !openSections['root-plakar_v1.0.2-5-quickstart-0']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar_v1.0.2-5-quickstart-0']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar_v1.0.2-5-quickstart-0']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar_v1.0.2-5-quickstart-0']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/v1.0.2/quickstart/probabilities/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">One repository is not enough</a></div></div><a href=/docs/v1.0.2/concepts/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200">Concepts</a><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded" :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.2-5-commands-2'] }"><a href=/docs/v1.0.2/commands/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">Commands
+</a><button @click.prevent="openSections['root-plakar_v1.0.2-5-commands-2'] = !openSections['root-plakar_v1.0.2-5-commands-2']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar_v1.0.2-5-commands-2']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar_v1.0.2-5-commands-2']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar_v1.0.2-5-commands-2']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/v1.0.2/commands/plakar-agent/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">agent
+</a><a href=/docs/v1.0.2/commands/plakar-archive/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">archive
+</a><a href=/docs/v1.0.2/commands/plakar-backup/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">backup
+</a><a href=/docs/v1.0.2/commands/plakar-cat/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">cat
+</a><a href=/docs/v1.0.2/commands/plakar-check/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">check
+</a><a href=/docs/v1.0.2/commands/plakar-clone/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">clone
+</a><a href=/docs/v1.0.2/commands/plakar-create/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">create
+</a><a href=/docs/v1.0.2/commands/plakar-diag/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">diag
+</a><a href=/docs/v1.0.2/commands/plakar-diff/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">diff
+</a><a href=/docs/v1.0.2/commands/plakar-digest/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">digest
+</a><a href=/docs/v1.0.2/commands/plakar-info/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">info
+</a><a href=/docs/v1.0.2/commands/plakar-locate/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">locate
+</a><a href=/docs/v1.0.2/commands/plakar-ls/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">ls
+</a><a href=/docs/v1.0.2/commands/plakar-maintenance/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">maintenance
+</a><a href=/docs/v1.0.2/commands/plakar-mount/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">mount
+</a><a href=/docs/v1.0.2/commands/plakar-restore/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">restore
+</a><a href=/docs/v1.0.2/commands/plakar-rm/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">rm
+</a><a href=/docs/v1.0.2/commands/plakar-server/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">server
+</a><a href=/docs/v1.0.2/commands/plakar-sync/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">sync
+</a><a href=/docs/v1.0.2/commands/plakar-ui/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">ui
+</a><a href=/docs/v1.0.2/commands/plakar-version/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">version</a></div></div><div class=my-1><div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded" :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.2-5-integrations-3'] }"><a href=/docs/v1.0.2/integrations/ @click="localStorage.setItem('sidebarState', 'open')" class="flex-grow flex items-center gap-1">Integrations
+</a><button @click.prevent="openSections['root-plakar_v1.0.2-5-integrations-3'] = !openSections['root-plakar_v1.0.2-5-integrations-3']" class=focus:outline-none>
+<span class=text-neutral-500 x-show="!openSections['root-plakar_v1.0.2-5-integrations-3']"><i class=ri-arrow-down-s-line></i>
+</span><span class=text-neutral-500 x-show="openSections['root-plakar_v1.0.2-5-integrations-3']"><i class=ri-arrow-up-s-line></i></span></button></div><div x-show="openSections['root-plakar_v1.0.2-5-integrations-3']" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" class=pl-2><a href=/docs/v1.0.2/integrations/minio/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">MinIO integration package
+</a><a href=/docs/v1.0.2/integrations/sftp/ class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+ml-4 pl-2 border-l border-neutral-300">SFTP integration package</a></div></div><a href=/docs/v1.0.2/community/ @click="localStorage.setItem('sidebarState', 'open')" class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200">Community</a></div></nav></div></aside><div class="relative flex flex-row" :class="sidebarOpened ||  !isSmallScreen ? 'ml-64 w-full' : 'w-full ml-0'" @click="isSmallScreen && sidebarOpened ? toggleSidebar(false) : null"><section class="section-light-1 w-full"><div class="content flex flex-col 2xl:flex-row-reverse items-start"><aside class="xl:right-0 xl:sticky w-full h-full 2xl:w-[340px] max-w-full px-8 2xl:px-0 2xl:max-w-[calc((100%-680px-32px)/2)] pb-4 2xl:pe-4 lg:top-28 flex flex-col mx-auto 2xl:mx-0"><div class="~text-xs/lg font-prose flex flex-col gap-6 p-2 2xl:p-4 bg-neutral-50 2xl:border-r border-dotted"><details open id=TOCView class="toc-right mt-0 rounded-lg hidden 2xl:block"><summary class="block 2xl:hidden rounded-lg py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 dark:bg-neutral-700 dark:text-neutral-100">Table of Contents</summary><div class="text-base py-2 font-grotesk"><style>s .toc-right{width:250px;max-width:250px;overflow:hidden}.toc-right #TableOfContents{width:100%;max-width:100%}#TableOfContents ul{list-style-type:none;margin:0;padding:0;width:100%}#TableOfContents>ul{display:flex;flex-direction:column}#TableOfContents>ul>li>a{font-weight:600;display:block;color:#111827;margin-bottom:.2rem;text-decoration:none;white-space:normal;overflow-wrap:break-word;word-wrap:break-word;word-break:break-word;hyphens:auto;max-width:100%;padding-right:.5rem}#TableOfContents>ul>li>ul{padding-left:.75rem;margin-top:.2rem;display:flex;flex-direction:column;gap:.2rem;width:calc(100% - .75rem)}#TableOfContents>ul>li>ul>li>ul{padding-left:.75rem;width:calc(100% - .75rem)}#TableOfContents a{text-decoration:none;color:#111827;display:block;white-space:normal;overflow-wrap:break-word;word-wrap:break-word;word-break:break-word;hyphens:auto;max-width:100%;padding-right:.5rem;line-height:1.3}#TableOfContents a.active{color:#524cff;font-weight:600}</style><nav id=TableOfContents></nav></div></details><details class="toc-inside mt-0 overflow-hidden hidden"><summary class="2xl:hidden py-1 pl-4 rounded-lg text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 dark:bg-primary-500 dark:text-neutral-100">Table of Contents</summary><div class="py-2 px-4 border-dotted border-neutral-300 dark:border-neutral-600"><nav id=TableOfContents></nav></div></details><script>document.addEventListener("DOMContentLoaded",()=>{const s=document.querySelectorAll("#TableOfContents");if(!s.length)return;const e=Array.from(document.querySelectorAll("h2[id], h3[id]"));let t=null,n=null;e.forEach(e=>{e.classList.add("scroll-mt-28")});function a(e,t){let n=!1;return function(){n||(e.apply(this,arguments),n=!0,setTimeout(()=>{n=!1},t))}}function o(){let n=null;if(t)n=t,t=null;else{const t=[];let s=null;for(let n=0;n<e.length;n++){const o=e[n],i=o.getBoundingClientRect();i.bottom<=0?s=o:i.top<=window.innerHeight&&t.push({heading:o,top:i.top})}t.length>0?(t.sort((e,t)=>Math.abs(e.top-80)-Math.abs(t.top-80)),n=t[0].heading.id):s?n=s.id:e.length>0&&(n=e[0].id)}if(!n)return;s.forEach(e=>{if(e.offsetParent===null)return;e.querySelectorAll("a.active").forEach(e=>e.classList.remove("active"));const t=e.querySelector(`a[href="#${CSS.escape(n)}"]`);t&&t.classList.add("active")})}s.forEach(e=>{e.addEventListener("click",s=>{const i=s.target.closest("a");i&&i.hash&&(t=i.hash.substring(1),e.querySelectorAll("a.active").forEach(e=>e.classList.remove("active")),i.classList.add("active"),n&&clearTimeout(n),n=setTimeout(()=>{o(),n=null},200))})});const i=a(o,100);window.addEventListener("scroll",i),window.addEventListener("resize",i),o()})</script></div></aside><article class="max-w-full flex-1 flex flex-col gap-4 bg-neutral-50 overflow-hidden pb-8"><div class="article-header ps-8 pe-2 md:pe-8 flex flex-col gap-4 pt-8"><div class="flex flex-wrap items-center gap-2 text-sm font-space-grotesk"><a href=/docs/ class="flex items-center text-primary-500 hover:text-primary-600 transition-colors"><div class="w-4 h-4"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M21 20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V9.48907C3 9.18048 3.14247 8.88917 3.38606 8.69972L11.3861 2.47749c.361099999999999-.28086.8667-.28086 1.2278.0l8 6.22223C20.8575 8.88917 21 9.18048 21 9.48907V20zM11 13v6h2V13H11z"/></svg></div></a><span class="flex items-center"><img src=/img/ri/corner-down-right-line.svg alt=">" class="w-4 h-4 text-neutral-400 me-2">
+<a href=/docs/main/ class="text-primary-500 hover:text-primary-600 transition-colors">Main
+</a></span><span class="flex items-center"><img src=/img/ri/corner-down-right-line.svg alt=">" class="w-4 h-4 text-neutral-400 me-2">
+<a href=/docs/main/references/ class="text-primary-500 hover:text-primary-600 transition-colors">References
+</a></span><span class="flex items-center"><img src=/img/ri/corner-down-right-line.svg alt=">" class="w-4 h-4 text-neutral-400 me-2">
+<a href=/docs/main/references/commands/ class="text-primary-500 hover:text-primary-600 transition-colors">Commands
+</a></span><span class="flex items-center"><img src=/img/ri/corner-down-right-line.svg alt=">" class="w-4 h-4 text-neutral-400 me-2">
+<span class="text-neutral-900 font-medium">Plakar source</span></span></div><div class="inline-flex px-2 w-max py-1 rounded-md text-xs font-space-grotesk text-neutral-900 border border-neutral-900"><span>Version main</span></div><h1 class="font-prose font-bold leading-tight ~text-3xl/4xl">source</h1></div><div class="article-wrapper relative"><div class="relative docs-content font-prose prose text-base w-full max-w-full ps-8 pe-2 md:pe-8"><table class=head><tr><td class=head-ltitle>PLAKAR-SOURCE(1)</td><td class=head-vol>General Commands Manual</td><td class=head-rtitle>PLAKAR-SOURCE(1)</td></tr></table><div class=manual-text><section class=Sh><h1 class=Sh id=NAME><a class=permalink href=#NAME>NAME</a></h1><p class=Pp><code class=Nm>plakar-source</code> &#8212;
+<span class=Nd>Manage Plakar backup source configuration</span></p></section><section class=Sh><h1 class=Sh id=SYNOPSIS><a class=permalink href=#SYNOPSIS>SYNOPSIS</a></h1><table class=Nm><tr><td><code class=Nm>plakar source</code></td><td><var class=Ar>subcommand ...</var></td></tr></table></section><section class=Sh><h1 class=Sh id=DESCRIPTION><a class=permalink href=#DESCRIPTION>DESCRIPTION</a></h1><p class=Pp>The <code class=Nm>plakar source</code> command manages the
+configuration of data sources for Plakar to backup.</p><p class=Pp>The configuration consists in a set of named entries, each of them
+describing a source for a backup operation.</p><p class=Pp>A source is defined by at least a location, specifying the
+importer to use, and some importer-specific parameters.</p><p class=Pp>The subcommands are as follows:</p><dl class=Bl-tag><dt id=add><a class=permalink href=#add><code class=Cm>add</code></a>
+<var class=Ar>name</var> <var class=Ar>location</var>
+[<var class=Ar>option</var><span class=No>=</span><var class=Ar>value
+...</var>]</dt><dd>Create a new source entry identified by <var class=Ar>name</var> with
+the specified <var class=Ar>location</var> describing the importer to
+use. Additional importer options can be set by adding
+<var class=Ar>option=value</var> parameters.</dd><dt id=check><a class=permalink href=#check><code class=Cm>check</code></a>
+<var class=Ar>name</var></dt><dd>Check wether the importer for the source identified by
+<var class=Ar>name</var> is properly configured.</dd><dt id=import><a class=permalink href=#import><code class=Cm>import</code></a>
+[<code class=Fl>-config</code> <var class=Ar>location</var>]
+[<code class=Fl>-overwrite</code>] [<code class=Fl>-rclone</code>]
+[<var class=Ar>sections ...</var>]</dt><dd>Import source configurations from various sources including files, piped
+input, or rclone configurations.<p class=Pp>By default, reads from stdin, allowing for piped input from
+other commands.</p><p class=Pp>The <code class=Fl>-config</code> option specifies a file or
+URL to read the configuration from.</p><p class=Pp>The <code class=Fl>-overwrite</code> option allows
+overwriting existing source configurations with the same names.</p><p class=Pp>The <code class=Fl>-rclone</code> option treats the input as
+an rclone configuration, useful for importing rclone remotes as Plakar
+sources.</p><p class=Pp>Specific sections can be imported by listing their names.</p><p class=Pp>Sections can be renamed during import by appending
+<code class=Cm>:</code><var class=Ar>newname</var>.</p><p class=Pp>For detailed examples and usage patterns, see the
+<a class=Lk href=https://docs.plakar.io/en/guides/importing-configurations/>https://docs.plakar.io/en/guides/importing-configurations/</a>
+Importing Configurations guide.</p></dd><dt id=ping><a class=permalink href=#ping><code class=Cm>ping</code></a>
+<var class=Ar>name</var></dt><dd>Try to open the data source identified by <var class=Ar>name</var> to
+make sure it is reachable.</dd><dt id=rm><a class=permalink href=#rm><code class=Cm>rm</code></a>
+<var class=Ar>name</var></dt><dd>Remove the source identified by <var class=Ar>name</var> from the
+configuration.</dd><dt id=set><a class=permalink href=#set><code class=Cm>set</code></a>
+<var class=Ar>name</var>
+[<var class=Ar>option</var><span class=No>=</span><var class=Ar>value
+...</var>]</dt><dd>Set the <var class=Ar>option</var> to <var class=Ar>value</var> for
+the source identified by <var class=Ar>name</var>. Multiple option/value
+pairs can be specified.</dd><dt id=show><a class=permalink href=#show><code class=Cm>show</code></a>
+[<code class=Fl>-secrets</code>] [<var class=Ar>name ...</var>]</dt><dd>Display the current sources configuration. If
+<code class=Fl>-secrets</code> is specified, sensitive information such
+as passwords or tokens will be shown.</dd><dt id=unset><a class=permalink href=#unset><code class=Cm>unset</code></a>
+<var class=Ar>name</var> [<var class=Ar>option ...</var>]</dt><dd>Remove the <var class=Ar>option</var> for the source entry identified by
+<var class=Ar>name</var>.</dd></dl></section><section class=Sh><h1 class=Sh id=EXIT_STATUS><a class=permalink href=#EXIT_STATUS>EXIT
+STATUS</a></h1><p class=Pp>The <code class=Nm>plakar-source</code> utility exits&#160;0
+on success, and&#160;>0 if an error occurs.</p></section><section class=Sh><h1 class=Sh id=SEE_ALSO><a class=permalink href=#SEE_ALSO>SEE
+ALSO</a></h1><p class=Pp><a class=Xr href=../plakar/>plakar(1)</a></p></section></div><table class=foot><tr><td class=foot-date>September 11, 2025</td><td class=foot-os>Plakar</td></tr></table></div></div><div class="ps-8 pe-2 md:pe-8 mt-8"><div class="border-t border-neutral-300 pt-6"><p class="text-sm text-neutral-600 font-prose">Found a bug or mistake in the documentation?
+<a href=https://github.com/PlakarKorp/plakar.io/issues/new target=_blank rel="noopener noreferrer" class="text-primary-500 hover:text-primary-600 underline">Create an issue on GitHub</a></p></div></div><div class="bg-neutral-200 border-neutral-300 flex justify-center items-center gap-3 py-4 px-4 flex-wrap w-full max-w-full"><div class="flex gap-4 items-center"><a class="flex items-center space-x-2" href=https://bsky.app/profile/plakar.bsky.social target=_blank rel="noopener noreferrer" aria-label="Visit us on Bluesky"><span class="w-5 h-5"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M12 11.3884C11.0942 9.62673 8.62833 6.34423 6.335 4.7259 4.13833 3.17506 3.30083 3.4434 2.75167 3.69256 2.11583 3.9784 2 4.95506 2 5.52839c0 .575.315 4.70831.52 5.39921.67917 2.28 3.09417 3.05 5.31917 2.8033-3.26.4833-6.15584 1.6708-2.35834 5.8983C9.65833 23.9542 11.2058 18.7017 12 16.0392c.7942 2.6625 1.7083 7.7259 6.4442 3.59C22 16.0392 19.4208 14.2142 16.1608 13.7309 18.3858 13.9784 20.8008 13.2076 21.48 10.9276 21.685 10.2376 22 6.10256 22 5.52923c0-.575-.1158-1.55084-.7517-1.83833C20.6992 3.44256 19.8617 3.17423 17.665 4.72423 15.3717 6.34506 12.9058 9.62756 12 11.3884z"/></svg>
+</span></a><a class="flex items-center space-x-2" href=https://discord.gg/uuegtnF2Q5 target=_blank aria-label="Visit us on Discord"><span class="w-5 h-5"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M19.3034 5.33716C17.9344 4.71103 16.4805 4.2547 14.9629 4 14.7719 4.32899 14.5596 4.77471 14.411 5.12492c-1.6141-.23348-3.2166-.23348-4.80845.0C9.45397 4.77471 9.2311 4.32899 9.05068 4c-1.52817.2547-2.98207.71103-4.34153 1.33716C1.96053 9.39111 1.21766 13.3495 1.5891 17.2549c1.82533 1.3266 3.58702 2.1331 5.31791 2.6638C7.33151 19.3456 7.71356 18.73 8.04255 18.0827 7.41641 17.8492 6.82211 17.5627 6.24904 17.2231 6.39762 17.117 6.5462 17.0003 6.68416 16.8835c3.45964 1.5813 7.20694 1.5813 10.62404.0C17.4568 17.0003 17.5948 17.117 17.7434 17.2231 17.1703 17.5627 16.576 17.8492 15.9499 18.0827 16.2789 18.73 16.6609 19.3456 17.0854 19.9187c1.7298-.5307 3.5021-1.3372 5.3179-2.6638C22.8596 12.7341 21.6806 8.80747 19.3034 5.33716zM8.5201 14.8459c-1.04003.0-1.88903-.9445-1.88903-2.1012.0-1.1568.82777-2.1013 1.88903-2.1013 1.05061.0 1.9102.9445 1.889 2.1013.0 1.1567-.83839 2.1012-1.889 2.1012zm6.9735.0c-1.0401.0-1.8902-.9445-1.8902-2.1012.0-1.1568.828899999999999-2.1013 1.8902-2.1013 1.0506.0 1.9102.9445 1.8889 2.1013.0 1.1567-.8277 2.1012-1.8889 2.1012z"/></svg></span>
+</a><a class="flex items-center space-x-2" href=https://www.linkedin.com/company/plakarkorp target=_blank rel="noopener noreferrer" aria-label="Visit us on LinkedIn"><span class="w-5 h-5"><svg viewBox="0 0 24 24" fill="currentcolor"><path d="M18.3362 18.339H15.6707V14.1622c0-.996-.0202000000000009-2.2777-1.389-2.2777-1.3897.0-1.602 1.0838-1.602 2.2042V18.339H10.0142V9.75h2.5605v1.1707H12.6092C12.967 10.2457 13.837 9.53325 15.1367 9.53325c2.7008.0 3.2003 1.77755 3.2003 4.09125V18.339H18.3362zM7.00373 8.57475c-.858.0-1.54725-.6945-1.54725-1.54875.0-.8535.69-1.54725 1.54725-1.54725.855.0 1.548.693750000000001 1.548 1.54725.0.85425-.693749999999999 1.54875-1.548 1.54875zM8.34023 18.339h-2.673V9.75h2.673v8.589zM19.6697 3H4.32923c-.73425.0-1.32825.5805-1.32825 1.29675V19.7033C3.00098 20.4202 3.59498 21 4.32923 21H19.6675C20.401 21 21.001 20.4202 21.001 19.7033V4.29675C21.001 3.5805 20.401 3 19.6675 3H19.6697z"/></svg></span></a></div></div></article></div></section><script>document.querySelectorAll(".article-content img").forEach(e=>{e.addEventListener("click",()=>{basicLightbox.create(`<img src="${e.src}" />`).show()})})</script></div></div></div><script>var menuButton=document.getElementById("menu-button"),menuCloseButton=document.getElementById("menu-close-button"),menuMobile=document.getElementById("menu-mobile"),menuOpen=!1,openMenu=function(){menuOpen||(menuOpen=!0,document.body.style.overflowY="hidden",menuButton.classList.add("hidden"),menuMobile.classList.remove("hidden"),requestAnimationFrame(()=>{menuMobile.classList.remove("opacity-0","scale-95"),menuMobile.classList.add("opacity-100","scale-100")}),window.onbeforeunload=function(){closeMenu()})},closeMenu=function(e){menuOpen&&(menuOpen=!1,document.body.style.overflowY="auto",menuButton.classList.remove("hidden"),menuMobile.classList.add("opacity-0","scale-95"),menuMobile.classList.remove("opacity-100","scale-100"),setTimeout(()=>{menuMobile.classList.add("hidden")},300),window.onbeforeunload=function(){},e.stopPropagation())};menuButton.addEventListener("click",openMenu),menuCloseButton.addEventListener("click",closeMenu)</script><script>document.querySelectorAll(".accordion-toggle").forEach(e=>{e.addEventListener("click",function(){const e=this.nextElementSibling,t=!e.classList.contains("hidden");document.querySelectorAll(".accordion-content").forEach(e=>{e.classList.add("hidden"),e.previousElementSibling.querySelector("svg").classList.remove("rotate-180")}),t||(e.classList.remove("hidden"),this.querySelector("svg").classList.add("rotate-180"))})})</script><script>document.addEventListener("DOMContentLoaded",function(){const e=document.querySelectorAll(".tab-button"),t=document.querySelectorAll(".tab-panel");e.forEach(n=>{n.addEventListener("click",()=>{const s=n.getAttribute("data-tab");e.forEach(e=>e.classList.remove("active-tab")),t.forEach(e=>e.classList.add("hidden")),n.classList.add("active-tab"),document.getElementById(`tab-${s}`).classList.remove("hidden")})})})</script><script async defer src=https://buttons.github.io/buttons.js></script></body></html>
