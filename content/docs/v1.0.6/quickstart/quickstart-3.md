@@ -1,7 +1,7 @@
 ---
 title: "Backup non-filesystem data"
 date: "2025-12-15T00:00:00Z"
-weight: 4
+weight: 5
 summary: "Create a backup for your non-filesystem data. In this guide, we will back up an S3 bucket but this logic applies to any connector supported by plakar."
 ---
 

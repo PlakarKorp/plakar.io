@@ -1,10 +1,10 @@
 ---
 date: "2025-09-02T00:00:00Z"
-title: Scheduling tasks
-summary: "Learn how to configure and run the Plakar scheduler to automate daily backups."
-last_reviewed: "2025-12-08"
-last_reviewed_version: "v1.0.6"
-weight: 50
+title: Scheduling Tasks
+summary: "Learn how to configure and run the Plakar scheduler to automate backups."
+last_reviewed: "2026-01-29"
+last_reviewed_version: "v1.1.0"
+weight: 1
 ---
 
 *Last reviewed: {{<param "last_reviewed">}} / Plakar {{<param "last_reviewed_version">}}*
@@ -63,4 +63,3 @@ The scheduler runs in the background. To stop it, run:
 ```bash
 plakar scheduler stop
 ```
-
