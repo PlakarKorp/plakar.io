@@ -27,7 +27,7 @@ The Notion package can be installed using pre-built binaries or compiled from so
 {{% tab name="Pre-built package" %}}
 Pre-compiled packages are available for common platforms and provide the simplest installation method.
 
-**Note:** Pre-built packages require Plakar authentication. See [Login to Plakar to unlock features]() for details.
+**Note:** Pre-built packages require Plakar authentication. See [Logging in to Plakar](../../guides/logging-in-to-plakar) for details.
 
 Install the Notion package:
 ```bash
