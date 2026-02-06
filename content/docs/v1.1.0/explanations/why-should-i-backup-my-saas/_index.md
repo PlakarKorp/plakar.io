@@ -4,7 +4,7 @@ title: Why you need to backup your SaaS
 summary: Understand why cloud services do not replace backups, and why SaaS data requires independent protection.
 last_reviewed: "2026-01-30"
 last_reviewed_version: "v1.1.0"
-weight: 4
+weight: 5
 ---
 
 Modern SaaS platforms such as Google Drive, Dropbox, Notion, and others are highly

@@ -4,7 +4,7 @@ title: How many Kloset Stores should you create?
 summary: Understand how deduplication, data similarity, and security requirements affect the number of Kloset Stores you should use.
 last_reviewed: "2026-01-30"
 last_reviewed_version: "v1.1.0"
-weight: 2
+weight: 3
 ---
 
 *Last reviewed: {{<param "last_reviewed">}} / Plakar {{<param "last_reviewed_version">}}*
