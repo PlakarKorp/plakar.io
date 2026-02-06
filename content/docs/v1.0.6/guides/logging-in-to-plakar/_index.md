@@ -41,44 +41,6 @@ plakar service set alerting report.email=true
 
 Alerting sends non-sensitive metadata (backup status, timestamps, sizes) to power the reporting dashboard and email notifications. Your backup data never leaves your system.
 
-## Non-Interactive Login
-
-For CI pipelines, remote servers, or automated jobs where interactive login isn't possible, use token-based authentication.
-
-### Generate a Token
-
-On a machine where you can log in interactively:
-
-```bash
-plakar login
-plakar token create
-```
-
-This outputs a token:
-```
-eyJhbGc......
-```
-
-### Use the Token
-
-On the non-interactive system, set the environment variable:
-
-```bash
-export PLAKAR_TOKEN=eyJhbGc......
-```
-
-Plakar automatically uses this token for authentication.
-
-### Persist the Token
-
-To save the token in the local configuration:
-
-```bash
-plakar login -env
-```
-
-This reads `PLAKAR_TOKEN` from the environment and stores it in Plakar's configuration file.
-
 ## Installing Pre-Built Packages
 
 Once logged in, you install pre-built integration packages hosted on Plakar's servers:
