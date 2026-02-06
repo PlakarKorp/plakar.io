@@ -64,7 +64,7 @@ EOF
 {{< /tab >}}
 
 {{% tab name="Windows" %}}
-  The simplest way to install Plakar on Windows is by downloading the pre-built package from the [Download page](https://github.com/PlakarKorp/plakar/releases).
+  The simplest way to install Plakar on Windows is by downloading the pre-built package from the [Download page](/download).
 
   The downloaded package is simply an archive containing the executable. Copy this to anywhere on your system PATH, or run it directly from a shell where it is installed.
 
@@ -89,7 +89,7 @@ EOF
   ```
   ### Other Platforms
 
-  For other supported operating systems, or for an alternative to the methods mentioned above, it is possible to download pre-built binaries for different platforms and architectures from the [Download page](https://github.com/PlakarKorp/plakar/releases).
+  For other supported operating systems, or for an alternative to the methods mentioned above, it is possible to download pre-built binaries for different platforms and architectures from the [Download page](/download).
 
   These are in standard formats for the relevant platforms, so consult OS-specific documentation for how to install them.
 
@@ -108,7 +108,7 @@ This should return the expected version number, for example `plakar/v1.1.0`.
 
 ## Downloading Specific Versions
 
-All release versions of **plakar** are available directly from GitHub on the project's [release page](https://github.com/PlakarKorp/plakar/releases).
+All release versions of **plakar** are available directly from GitHub on the project's [release page](/download).
 
 For each release, check under the "Assets" section for a list of pre-built packages. They follow the naming convention `plakar_<version>_<os>_<arch>.<format>`.
 
