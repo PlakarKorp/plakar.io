@@ -110,6 +110,6 @@ This guide demonstrated how to back up non-filesystem data using **plakar**. The
 
 There is plenty more to discover about **plakar**. Here are our suggestions on what to try next:
 
-- Learn more about the [core concepts behind Plakar](./concepts.md).
+- Learn more about the [core concepts behind Plakar](../explanations/how-plakar-works).
 - Create a [schedule for your backups](../guides/setup-scheduler-daily-backups)
 - Discover more about the [Plakar command line syntax](../references/command-line-syntax)

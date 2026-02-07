@@ -75,7 +75,7 @@ EOF
 {{< /tab >}}
 
 {{% tab name="Windows" %}}
-  The simplest way to install Plakar on Windows is by downloading the pre-built package from the [Download page](/download/_index.md).
+  The simplest way to install Plakar on Windows is by downloading the pre-built package from the [Download page](/download/v1.0.5).
 
   The downloaded package is simply an archive containing the executable. Copy this to anywhere on your system PATH, or run it directly from a shell where it is installed.
 
@@ -94,7 +94,7 @@ EOF
 
 {{% tab name="Others" %}}
 
-  For other supported operating systems, or for an alternative to the methods mentioned above, it is possible to download pre-built binaries for different platforms and architectures from the [Download page](/download/_index.md).
+  For other supported operating systems, or for an alternative to the methods mentioned above, it is possible to download pre-built binaries for different platforms and architectures from the [Download page](/download/v1.0.5).
 
   These are in standard formats for the relevant platforms, so consult OS-specific documentation for how to install them.
 

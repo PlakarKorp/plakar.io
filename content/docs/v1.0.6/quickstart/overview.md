@@ -22,5 +22,5 @@ Plakar is a simple, powerful backup tool designed to protect your data without t
 ## Core Concepts
 
 As you use Plakar, these concepts will help you understand how it works:
-- [Kloset Store]() - The engine that powers Plakar's storage
-- [Integrations]() - Connecting to different data sources and destinations
+- [Kloset Store](../explanations/how-plakar-works/#kloset-store) - The engine that powers Plakar's storage
+- [Integrations](../integrations) - Connecting to different data sources and destinations
