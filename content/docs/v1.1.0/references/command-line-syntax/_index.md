@@ -23,6 +23,51 @@ plakar [at <store>] <command> [options] [arguments]
 | `[options]` | No | Command-specific flags (must precede arguments) |
 | `[arguments]` | Varies | Paths, snapshot IDs, or other command inputs |
 
+## Global Arguments
+
+Global arguments apply to all Plakar commands and must be placed before the `at` clause or command.
+
+### Syntax
+```bash
+plakar [global-args] [at <store>] <command> [options] [arguments]
+```
+
+### Available Global Arguments
+
+| Argument | Description |
+|----------|-------------|
+| `-quiet` | No output except errors |
+| `-silent` | No output at all (including errors) |
+| `-concurrency int` | Limit the number of concurrent operations (default: -1) |
+| `-cpu int` | Limit the number of usable CPU cores (default: 7) |
+| `-keyfile string` | Use passphrase from key file when prompted |
+| `-time` | Display command execution time |
+| `-trace string` | Display trace logs, comma-separated (all, trace, repository, snapshot, server) |
+| `-config string` | Configuration directory (default: `~/.config/plakar`) |
+| `-stdio` | Use stdio user interface |
+| `-profile-cpu string` | Profile CPU usage |
+| `-profile-mem string` | Profile memory usage |
+| `-enable-security-check` | Enable update check |
+| `-disable-security-check` | Disable update check |
+
+### Examples
+```bash
+# Quiet backup - only shows errors
+plakar -quiet at /backup backup /data
+
+# Silent backup - no output at all
+plakar -silent at /backup backup /data
+
+# Limit CPU cores
+plakar -cpu 4 at /backup backup /data
+
+# Time the operation
+plakar -time at /backup backup /data
+
+# Use keyfile for passphrase
+plakar -keyfile /secure/key at /backup backup /data
+```
+
 ## Store Specification
 
 ### Syntax
