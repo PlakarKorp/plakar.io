@@ -4,7 +4,7 @@ title: Should you push or pull backups?
 summary: Understand the difference between push and pull backup models, and how Plakar supports both.
 last_reviewed: "2026-01-30"
 last_reviewed_version: "v1.1.0"
-weight: 1
+weight: 2
 ---
 
 *Last reviewed: {{<param "last_reviewed">}} / Plakar {{<param "last_reviewed_version">}}*
