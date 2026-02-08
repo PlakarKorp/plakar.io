@@ -1,9 +1,9 @@
 ---
-title: "OCI registry storage"
+title: "Storing backups in an OCI registry"
 date: 2026-02-07T20:00:00+0100
 authors:
   - "gilles"
-summary: "An R&D exploration of adding an OCI registry storage backend."
+summary: "After a podcast discussion, we implemented an OCI registry storage backend. This article discusses the concept and showcases our proof of concept."
 categories: []
 featured-scope: []
 tags:
@@ -38,7 +38,7 @@ I honestly believe we’ve lowered the bar enough that a first-year computer sci
 That’s exactly the kind of extensibility we were aiming for: not just *possible*, but *boringly easy*.
 
 
-## But first, what is an OCI Registry?
+## First of all, what is an OCI Registry?
 
 An **OCI registry** is a standardized service for storing, versioning, and distributing binary artifacts. While best known for container images, it is not limited to them.
 
