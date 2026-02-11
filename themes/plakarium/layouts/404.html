@@ -1,0 +1,35 @@
+{{ define "main" }}
+  {{ $nestorSupport := resources.Get "img/Nestor/Nestor-support.png" }}
+  {{ $arrowGoBackLine := resources.Get "img/ri/arrow-go-back-line.svg"}}
+
+  <section class="section-light-2 grid-background">
+    <div class="content p-2 lg:p-4 md:px-12 h-[67px] md:h-[98px]"></div>
+  </section>
+  <section class="section-light-2 grid-background pt-20 pb-20 relative overflow-hidden">
+      <div class="absolute top-0 right-0 p-64 bg-green-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+      <div class="content p-2 lg:p-4 flex flex-col items-center text-center gap-8 relative z-10">
+          <div class="max-w-5xl flex flex-col gap-6">
+              {{ if $nestorSupport }}
+                <img src="{{ $nestorSupport.RelPermalink }}" alt="Nestor Support" class="w-64 h-64 mx-auto object-contain" />
+              {{ end }}
+              <h1 class="font-space-grotesk font-medium ~text-4xl/6xl text-neutral-900 leading-tight">
+                  Page Not Found
+              </h1>
+          </div>
+          <div class="max-w-3xl text-neutral-600 ~text-lg/xl font-space-grotesk leading-relaxed space-y-4">
+              <p>The page you're looking for doesn't exist. It might have been moved, deleted, or the URL might be incorrect.</p>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-4 mt-4">
+            {{ partial "cta/based-button.html" (dict
+              "label" "Return Home"
+              "icon" $arrowGoBackLine
+              "href" "/"
+            ) }}
+
+            <a href="/docs" class="inline-flex items-center justify-center px-6 py-3 bg-neutral-200 hover:bg-neutral-500 text-neutral-900 font-space-grotesk font-medium rounded-lg transition-colors">
+              View Documentation
+            </a>
+          </div>
+      </div>
+  </section>
+{{ end }}
