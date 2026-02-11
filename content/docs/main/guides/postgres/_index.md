@@ -1,8 +1,8 @@
 ---
 title: "PostgreSQL"
 date: "2026-01-05T00:00:00Z"
-weight: 1
-summary: "Backing up and restoring Postgres databases"
+weight: 10
+summary: "Guides on backing up and restoring Postgres databases"
 ---
 
 There are several ways to back up PostgreSQL databases, via dumps, file system-level backups, or continuous archiving. Each method has its own advantages and use cases.
