@@ -267,5 +267,5 @@ How long did it take? That's how easy **plakar** is for simple, secure backups.
 There is plenty more to discover about **plakar**. Here are our suggestions on what to try next:
 
  - Create a [schedule for your backups](../guides/setup-scheduler-daily-backups/_index.md)
- - Enable integrations and [backup an S3 bucket](../guides/how-to-backup-a-s3-bucket/_index.md)
- - Discover more about the [plakar command syntax](../guides/plakar-command-line-syntax/_index.md)
+ <!--- Enable integrations and [backup an S3 bucket](../guides/how-to-backup-a-s3-bucket/_index.md)-->
+ - Discover more about the [plakar command syntax](../references/command-line-syntax)
