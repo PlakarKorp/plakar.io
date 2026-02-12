@@ -33,7 +33,7 @@
 **Examples**: How Plakar works, backup strategies
 
 ### Integrations
-**For**: Connecting Plakar to external services  
+**For**: Connecting Plakar to other services  
 **Goal**: Setup and configuration for integrations  
 **Examples**: S3, SFTP, tar, Notion, Google Drive, Proton Drive
 
