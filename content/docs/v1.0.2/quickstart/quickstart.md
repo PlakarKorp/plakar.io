@@ -1,10 +1,12 @@
-+++
+---
 title = "Quickstart"
 date = "2025-03-03 17:00:00 +0100"
 weight = 1
 chapter = false
 pre = "<b>1. </b>"
-+++
+aliases:
+  - /docs/v1.0.4/quickstart
+---
 
 This article will guide you through the creation of your first backup with plakar.
 

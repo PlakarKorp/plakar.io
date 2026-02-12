@@ -5,6 +5,8 @@ summary: Understand how deduplication, data similarity, and security requirement
 last_reviewed: "2026-01-30"
 last_reviewed_version: "v1.1.0"
 weight: 2
+aliases:
+  - /docs/v1.0.4/guides/how-many-kloset-stores
 ---
 
 *Last reviewed: {{<param "last_reviewed">}} / Plakar {{<param "last_reviewed_version">}}*

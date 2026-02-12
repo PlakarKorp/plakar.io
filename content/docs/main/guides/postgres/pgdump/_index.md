@@ -4,6 +4,8 @@ description: >
     Back up PostgreSQL databases using pg_dump and restore from these backups.
 last_reviewed: "2026-01-05"
 last_reviewed_version: "v1.0.6"
+aliases:
+  - /docs/main/guides/postgresql/pgdump
 ---
 
 *Last reviewed: {{<param "last_reviewed">}} / Plakar {{<param "last_reviewed_version">}}*

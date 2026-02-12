@@ -5,6 +5,8 @@ last_reviewed: "2026-02-03"
 last_reviewed_version: "v1.1.0"
 summary: "This guide explains the basics of the Plakar command line syntax: how to specify stores, sources, destinations, argument order, and how to get help."
 weight: 2
+aliases:
+  - /docs/v1.0.4/guides/plakar-command-line-syntax
 ---
 *Last reviewed: {{<param "last_reviewed">}} / Plakar {{<param "last_reviewed_version">}}*
 

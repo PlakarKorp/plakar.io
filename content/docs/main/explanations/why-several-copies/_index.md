@@ -5,6 +5,8 @@ summary: Understand why multiple backup copies drastically reduce the risk of da
 last_reviewed: "2026-01-30"
 last_reviewed_version: "v1.1.0"
 weight: 4
+aliases:
+  - /docs/main/guides/why-several-copies
 ---
 
 Keeping multiple copies of your backups is one of the most important principles in data protection. The goal is simple: reduce the chance that a single failure can destroy all copies of your data at once.

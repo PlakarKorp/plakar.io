@@ -5,6 +5,8 @@ summary: Expose a Kloset Store over HTTP using the plakar server command.
 last_reviewed: "2026-01-30"
 last_reviewed_version: "v1.1.0"
 weight: 4
+aliases:
+  - /docs/main/guides/what-is-plakar-server
 ---
 
 *Last reviewed: {{<param "last_reviewed">}} / Plakar {{<param "last_reviewed_version">}}*

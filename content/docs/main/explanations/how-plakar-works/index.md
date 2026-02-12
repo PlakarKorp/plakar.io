@@ -3,6 +3,8 @@ title: "How Plakar Works"
 date: "2026-02-06T00:00:00Z"
 weight: 1
 summary: "Understand the core architecture and data processing pipeline behind Plakar, including Kloset stores, chunking, deduplication, compression, encryption, and snapshot management."
+aliases:
+  - /docs/main/quickstart/concepts
 ---
 
 Plakar is built on top of Kloset, an immutable data store engine designed specifically for backup workloads. Understanding how Plakar processes and stores your data helps you make informed decisions about backup strategies and troubleshoot issues when they arise.
