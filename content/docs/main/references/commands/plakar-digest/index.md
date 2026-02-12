@@ -2,6 +2,8 @@
 date: "2026-01-29T09:34:09Z"
 title: digest
 summary: "Compute digests for files in a Plakar snapshot"
+aliases:
+  - /docs/main/commands/plakar-digest/
 ---
 <table class="head">
   <tr>

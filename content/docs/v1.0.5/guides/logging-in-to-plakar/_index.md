@@ -5,6 +5,8 @@ summary: Log in to unlock optional features like pre-built package installation 
 last_reviewed: "2026-02-05"
 last_reviewed_version: "v1.1.0"
 weight: 8
+aliases:
+  - /docs/v1.0.5/guides/what-is-plakar-login
 ---
 
 *Last reviewed: {{<param "last_reviewed">}} / Plakar {{<param "last_reviewed_version">}}*

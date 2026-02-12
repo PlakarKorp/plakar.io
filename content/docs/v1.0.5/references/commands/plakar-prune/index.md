@@ -2,6 +2,8 @@
 date: "2025-10-15T10:33:18Z"
 title: prune
 summary: "Prune snapshots according to a policy"
+aliases:
+  - /docs/v1.0.5/commands/plakar-prune/
 ---
 <div class="head" role="doc-pageheader" aria-label="Manual header
   line"><span class="head-ltitle">PLAKAR-PRUNE(1)</span>

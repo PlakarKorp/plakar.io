@@ -2,6 +2,8 @@
 date: "2025-07-31T20:16:52Z"
 title: diff
 summary: "Show differences between files in a Plakar snapshots"
+aliases:
+  - /docs/v1.0.2/commands/plakar-diff/
 ---
 <table class="head">
   <tr>

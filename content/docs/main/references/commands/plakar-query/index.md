@@ -2,6 +2,8 @@
 date: "2026-01-29T09:34:09Z"
 title: query
 summary: "query flags shared among many Plakar subcommands"
+aliases:
+  - /docs/main/commands/plakar-query/
 ---
 <table class="head">
   <tr>

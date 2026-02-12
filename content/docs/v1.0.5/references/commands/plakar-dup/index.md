@@ -2,6 +2,8 @@
 date: "2025-10-15T10:33:18Z"
 title: dup
 summary: "Duplicates an existing snapshot with a different ID"
+aliases:
+  - /docs/v1.0.5/commands/plakar-dup/
 ---
 <div class="head" role="doc-pageheader" aria-label="Manual header
   line"><span class="head-ltitle">PLAKAR-DUP(1)</span>

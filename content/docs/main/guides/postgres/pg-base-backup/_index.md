@@ -5,6 +5,8 @@ description: >
 last_reviewed: "2026-02-11"
 last_reviewed_version: "v1.1.0"
 weight: 2
+aliases:
+  - /docs/main/guides/postgresql/pg_base_backup
 ---
 
 *Last reviewed: {{<param "last_reviewed">}} / Plakar {{<param "last_reviewed_version">}}*

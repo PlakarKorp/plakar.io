@@ -2,6 +2,8 @@
 date: "2026-01-29T09:34:09Z"
 title: pkg-build
 summary: "Build Plakar plugins from source"
+aliases:
+  - /docs/main/commands/plakar-pkg-build/
 ---
 <table class="head">
   <tr>

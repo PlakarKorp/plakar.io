@@ -2,6 +2,8 @@
 date: "2025-10-15T10:33:18Z"
 title: ptar
 summary: "generate a self-contained Kloset archive (.ptar)"
+aliases:
+  - /docs/v1.0.5/commands/plakar-ptar/
 ---
 <div class="head" role="doc-pageheader" aria-label="Manual header
   line"><span class="head-ltitle">PLAKAR-PTAR(1)</span>

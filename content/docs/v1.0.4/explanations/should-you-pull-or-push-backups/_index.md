@@ -5,6 +5,8 @@ summary: Understand the difference between push and pull backup models, and how 
 last_reviewed: "2026-01-30"
 last_reviewed_version: "v1.1.0"
 weight: 1
+aliases:
+  - /docs/v1.0.4/guides/backups-push-or-pull
 ---
 
 *Last reviewed: {{<param "last_reviewed">}} / Plakar {{<param "last_reviewed_version">}}*

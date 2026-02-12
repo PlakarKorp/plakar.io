@@ -2,6 +2,8 @@
 date: "2026-01-29T09:34:09Z"
 title: service
 summary: "Manage optional Plakar-connected services"
+aliases:
+  - /docs/v1.1.0/commands/plakar-service/
 ---
 <table class="head">
   <tr>

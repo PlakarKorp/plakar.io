@@ -2,6 +2,8 @@
 date: "2025-10-15T10:33:18Z"
 title: digest
 summary: "Compute digests for files in a Plakar snapshot"
+aliases:
+  - /docs/v1.0.5/commands/plakar-digest/
 ---
 <div class="head" role="doc-pageheader" aria-label="Manual header
   line"><span class="head-ltitle">PLAKAR-DIGEST(1)</span>

@@ -2,6 +2,8 @@
 date: "2025-09-15T17:20:33Z"
 title: destination
 summary: "Manage Plakar restore destination configuration"
+aliases:
+  - /docs/v1.0.4/commands/plakar-destination/
 ---
 <div class="head" role="doc-pageheader" aria-label="Manual header
   line"><span class="head-ltitle">PLAKAR-DESTINATION(1)</span>

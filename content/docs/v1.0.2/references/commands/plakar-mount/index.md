@@ -2,6 +2,8 @@
 date: "2025-07-31T20:16:52Z"
 title: mount
 summary: "Mount Plakar snapshots as read-only filesystem"
+aliases:
+  - /docs/v1.0.2/commands/plakar-mount/
 ---
 <table class="head">
   <tr>

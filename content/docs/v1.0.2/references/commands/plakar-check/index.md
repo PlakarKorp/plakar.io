@@ -2,6 +2,8 @@
 date: "2025-07-31T20:16:52Z"
 title: check
 summary: "Check data integrity in a Plakar repository"
+aliases:
+  - /docs/v1.0.2/commands/plakar-check/
 ---
 <table class="head">
   <tr>

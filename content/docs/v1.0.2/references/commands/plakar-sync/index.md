@@ -2,6 +2,8 @@
 date: "2025-07-31T20:16:52Z"
 title: sync
 summary: "Synchronize snapshots between Plakar repositories"
+aliases:
+  - /docs/v1.0.2/commands/plakar-sync/
 ---
 <table class="head">
   <tr>

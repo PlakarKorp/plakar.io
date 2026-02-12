@@ -2,6 +2,8 @@
 date: "2025-07-31T20:16:52Z"
 title: rm
 summary: "Remove snapshots from a Plakar repository"
+aliases:
+  - /docs/v1.0.2/commands/plakar-rm/
 ---
 <table class="head">
   <tr>

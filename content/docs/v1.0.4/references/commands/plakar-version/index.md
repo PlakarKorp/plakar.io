@@ -2,6 +2,8 @@
 date: "2025-09-15T17:20:33Z"
 title: version
 summary: "Display the current Plakar version"
+aliases:
+  - /docs/v1.0.4/commands/plakar-version/
 ---
 <div class="head" role="doc-pageheader" aria-label="Manual header
   line"><span class="head-ltitle">PLAKAR-VERSION(1)</span>

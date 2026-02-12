@@ -2,6 +2,8 @@
 date: "2026-01-29T09:34:09Z"
 title: pkg-rm
 summary: "Uninstall Plakar plugins"
+aliases:
+  - /docs/main/commands/plakar-pkg-rm/
 ---
 <table class="head">
   <tr>

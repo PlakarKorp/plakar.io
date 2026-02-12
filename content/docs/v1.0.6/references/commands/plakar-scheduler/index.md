@@ -2,6 +2,8 @@
 date: "2025-12-01T16:54:45Z"
 title: scheduler
 summary: "Run the Plakar scheduler"
+aliases:
+  - /docs/v1.0.6/commands/plakar-scheduler/
 ---
 <div class="head" role="doc-pageheader" aria-label="Manual header
   line"><span class="head-ltitle">PLAKAR-SCHEDULER(1)</span>

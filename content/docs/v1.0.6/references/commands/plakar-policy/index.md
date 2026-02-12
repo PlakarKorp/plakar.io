@@ -2,6 +2,8 @@
 date: "2025-12-01T16:54:45Z"
 title: policy
 summary: "Manage Plakar retention policies"
+aliases:
+  - /docs/v1.0.6/commands/plakar-policy/
 ---
 <div class="head" role="doc-pageheader" aria-label="Manual header
   line"><span class="head-ltitle">PLAKAR-POLICY(1)</span>

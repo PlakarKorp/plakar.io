@@ -2,6 +2,8 @@
 date: "2025-10-15T10:33:18Z"
 title: pkg-build
 summary: "Build Plakar plugins from source"
+aliases:
+  - /docs/v1.0.5/commands/plakar-pkg-build/
 ---
 <div class="head" role="doc-pageheader" aria-label="Manual header
   line"><span class="head-ltitle">PLAKAR-PKG-BUILD(1)</span>

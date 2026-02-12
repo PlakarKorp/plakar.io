@@ -2,6 +2,8 @@
 title: S3
 summary: Back up and restore S3 buckets with Plakar.
 date: "2026-02-06T00:00:00Z"
+aliases:
+  - /docs/main/guides/how-to-backup-a-s3-bucket
 ---
 
 The **S3 integration** enables backup and restoration of S3 buckets through S3-compatible APIs. All bucket contents—including objects, metadata, and folder hierarchies—are captured and stored in a Kloset store with encryption and deduplication.

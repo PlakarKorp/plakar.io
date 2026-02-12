@@ -2,6 +2,8 @@
 date: "2025-09-15T17:20:33Z"
 title: pkg-add
 summary: "Install Plakar plugins"
+aliases:
+  - /docs/v1.0.4/commands/plakar-pkg-add/
 ---
 <div class="head" role="doc-pageheader" aria-label="Manual header
   line"><span class="head-ltitle">PLAKAR-PKG-ADD(1)</span>

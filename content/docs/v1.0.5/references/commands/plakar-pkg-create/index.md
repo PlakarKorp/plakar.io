@@ -2,6 +2,8 @@
 date: "2025-10-15T10:33:18Z"
 title: pkg-create
 summary: "Package a plugin"
+aliases:
+  - /docs/v1.0.5/commands/plakar-pkg-create/
 ---
 <div class="head" role="doc-pageheader" aria-label="Manual header
   line"><span class="head-ltitle">PLAKAR-PKG-CREATE(1)</span>

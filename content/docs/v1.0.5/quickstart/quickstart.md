@@ -5,6 +5,8 @@ weight: 1
 chapter: false
 pre: "<b>1. </b>"
 summary: "Get started with plakar: installation, creating your first backup, verifying, restoring, and using the UI. This guide helps you quickly set up plakar and perform essential backup operations."
+aliases:
+  - /docs/v1.0.5/quickstart
 ---
 
 Welcome to **plakar** - easy, secure and efficient backups for people who value their time and data. The aim of this quick guide is to get you up and running with **plakar** and create your first backup within minutes. Let's get started!
