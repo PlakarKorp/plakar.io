@@ -2,6 +2,8 @@
 date: "2025-07-31T20:16:52Z"
 title: maintenance
 summary: "Remove unused data from a Plakar repository"
+aliases:
+  - /docs/v1.0.2/commands/plakar-maintenance/
 ---
 <table class="head">
   <tr>

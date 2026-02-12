@@ -2,6 +2,8 @@
 date: "2025-09-15T17:20:33Z"
 title: check
 summary: "Check data integrity in a Plakar repository"
+aliases:
+  - /docs/v1.0.4/commands/plakar-check/
 ---
 <div class="head" role="doc-pageheader" aria-label="Manual header
   line"><span class="head-ltitle">PLAKAR-CHECK(1)</span>

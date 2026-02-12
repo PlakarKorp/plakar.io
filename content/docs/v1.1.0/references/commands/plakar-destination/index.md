@@ -2,6 +2,8 @@
 date: "2026-01-29T09:34:09Z"
 title: destination
 summary: "Manage Plakar restore destination configuration"
+aliases:
+  - /docs/v1.1.0/commands/plakar-destination/
 ---
 <table class="head">
   <tr>

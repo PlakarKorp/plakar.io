@@ -2,6 +2,8 @@
 date: "2025-12-01T16:54:45Z"
 title: source
 summary: "Manage Plakar backup source configuration"
+aliases:
+  - /docs/v1.0.6/commands/plakar-source/
 ---
 <div class="head" role="doc-pageheader" aria-label="Manual header
   line"><span class="head-ltitle">PLAKAR-SOURCE(1)</span>

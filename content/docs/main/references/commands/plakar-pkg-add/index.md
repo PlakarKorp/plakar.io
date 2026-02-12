@@ -2,6 +2,8 @@
 date: "2026-01-29T09:34:09Z"
 title: pkg-add
 summary: "Install Plakar plugins"
+aliases:
+  - /docs/main/commands/plakar-pkg-add/
 ---
 <table class="head">
   <tr>

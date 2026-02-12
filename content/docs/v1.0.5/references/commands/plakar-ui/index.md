@@ -2,6 +2,8 @@
 date: "2025-10-15T10:33:18Z"
 title: ui
 summary: "Serve the Plakar web user interface"
+aliases:
+  - /docs/v1.0.5/commands/plakar-ui/
 ---
 <div class="head" role="doc-pageheader" aria-label="Manual header
   line"><span class="head-ltitle">PLAKAR-UI(1)</span>

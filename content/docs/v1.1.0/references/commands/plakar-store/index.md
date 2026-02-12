@@ -2,6 +2,8 @@
 date: "2026-01-29T09:34:09Z"
 title: store
 summary: "Manage Plakar store configurations"
+aliases:
+  - /docs/v1.1.0/commands/plakar-store/
 ---
 <table class="head">
   <tr>

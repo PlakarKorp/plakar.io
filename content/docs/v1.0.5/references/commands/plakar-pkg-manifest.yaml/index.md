@@ -2,6 +2,8 @@
 date: "2025-10-15T10:33:18Z"
 title: pkg-manifest.yaml
 summary: "Manifest for plugin assemblation"
+aliases:
+  - /docs/v1.0.5/commands/plakar-pkg-manifest.yaml/
 ---
 <div class="head" role="doc-pageheader" aria-label="Manual header
   line"><span class="head-ltitle">PLAKAR-PKG-MANIFEST.YAML(5)</span>

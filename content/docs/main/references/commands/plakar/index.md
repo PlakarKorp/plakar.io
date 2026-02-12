@@ -2,6 +2,8 @@
 date: "2026-01-29T09:34:09Z"
 title: plakar
 summary: "effortless backups"
+aliases:
+  - /docs/main/commands/plakar/
 ---
 <table class="head">
   <tr>

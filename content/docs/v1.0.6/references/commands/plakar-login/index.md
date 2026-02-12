@@ -2,6 +2,8 @@
 date: "2025-12-01T16:54:45Z"
 title: login
 summary: "Authenticate to Plakar services"
+aliases:
+  - /docs/v1.0.6/commands/plakar-login/
 ---
 <div class="head" role="doc-pageheader" aria-label="Manual header
   line"><span class="head-ltitle">PLAKAR-LOGIN(1)</span>

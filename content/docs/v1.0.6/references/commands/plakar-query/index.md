@@ -2,6 +2,8 @@
 date: "2025-12-01T16:54:45Z"
 title: query
 summary: "query flags shared among many Plakar subcommands"
+aliases:
+  - /docs/v1.0.6/commands/plakar-query/
 ---
 <div class="head" role="doc-pageheader" aria-label="Manual header
   line"><span class="head-ltitle">PLAKAR-QUERY(7)</span>

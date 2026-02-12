@@ -2,6 +2,8 @@
 date: "2025-10-15T10:33:18Z"
 title: store
 summary: "Manage Plakar store configurations"
+aliases:
+  - /docs/v1.0.5/commands/plakar-store/
 ---
 <div class="head" role="doc-pageheader" aria-label="Manual header
   line"><span class="head-ltitle">PLAKAR-STORE(1)</span>

@@ -2,6 +2,8 @@
 date: "2026-01-29T09:34:09Z"
 title: archive
 summary: "Create an archive from a Plakar snapshot"
+aliases:
+  - /docs/v1.1.0/commands/plakar-archive/
 ---
 <table class="head">
   <tr>

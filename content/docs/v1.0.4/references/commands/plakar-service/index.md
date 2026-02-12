@@ -2,6 +2,8 @@
 date: "2025-09-15T17:20:33Z"
 title: service
 summary: "Manage optional Plakar-connected services"
+aliases:
+  - /docs/v1.0.4/commands/plakar-service/
 ---
 <div class="head" role="doc-pageheader" aria-label="Manual header
   line"><span class="head-ltitle">PLAKAR-SERVICE(1)</span>

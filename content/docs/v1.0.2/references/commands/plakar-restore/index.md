@@ -2,6 +2,8 @@
 date: "2025-07-31T20:16:52Z"
 title: restore
 summary: "Restore files from a Plakar snapshot"
+aliases:
+  - /docs/v1.0.2/commands/plakar-restore/
 ---
 <table class="head">
   <tr>

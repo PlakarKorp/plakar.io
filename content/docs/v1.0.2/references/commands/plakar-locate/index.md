@@ -2,6 +2,8 @@
 date: "2025-07-31T20:16:52Z"
 title: locate
 summary: "Find filenames in a Plakar snapshot"
+aliases:
+  - /docs/v1.0.2/commands/plakar-locate/
 ---
 <table class="head">
   <tr>
