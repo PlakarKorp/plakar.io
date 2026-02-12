@@ -94,7 +94,7 @@ calls are mapped 1:1 with the registry with manifests being used to locate the b
 ### Installing the OCI registry integration
 
 At the time of this writing,
-the OCI registry integration has been [committed to a public repository](https://github.com/PlakarKorp/integration-oci) and is **only available for plakar v1.1.0-beta** through our plugins build system.
+the OCI registry integration has been [committed to a public repository](https://github.com/PlakarKorp/integration-oci) and is **only available for plakar v1.1.0-beta**.
 
 To test it, you first need to install our latest beta of plakar:
 
@@ -102,22 +102,31 @@ To test it, you first need to install our latest beta of plakar:
 $ go install github.com/PlakarKorp/plakar@v1.1.0-beta.4
 ```
 
-Build the integration:
+You can their either use our prebuilt package by authenticating to our platform:
+
+```
+$ plakar login
+[...]
+$ plakar pkg add oci
+$
+```
+
+Or build the integration yourself...
 
 ```
 $ plakar pkg build oci
-/usr/bin/make -C /var/folders/9x/9k0f6mc10sbd0_kfx63__fvc0000gn/T/build-oci-v1.1.0-beta.3-7f8d0c3
+/usr/bin/make -C /var/folders/9x/9k0f6mc10sbd0_kfx63__fvc0000gn/T/build-oci-v1.1.0-beta.4-510526837
 48317f2d: OK ✓ /
 48317f2d: OK ✓ /manifest.yaml
 48317f2d: OK ✓ /ociStorage
-Plugin created successfully: oci_v1.1.0-beta.3_darwin_arm64.ptar
+Plugin created successfully: oci_v1.1.0-beta.4_darwin_arm64.ptar
 $ 
 ```
 
-Then install the resulting ptar:
+... and install the resulting ptar:
 
 ```
-$ plakar pkg add ./oci_v1.1.0-beta.3_darwin_arm64.ptar
+$ plakar pkg add ./oci_v1.1.0-beta.4_darwin_arm64.ptar
 ```
 
 That's it, you're good to go !
