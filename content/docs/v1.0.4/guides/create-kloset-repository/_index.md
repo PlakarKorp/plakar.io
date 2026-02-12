@@ -1,7 +1,7 @@
 ---
 date: "2025-08-21T00:00:00Z"
 title: Creating a Kloset Store
-summary: "Learn how to create a Kloset Store on the filesystem using Plakar. In Plakar terms, the Kloset Store is the place where all your backup data is stored."
+summary: "Create a Kloset Store on the filesystem using Plakar"
 last_reviewed: "2026-01-29"
 last_reviewed_version: "v1.1.0"
 weight: 3
@@ -9,59 +9,58 @@ weight: 3
 
 *Last reviewed: {{<param "last_reviewed">}} / Plakar {{<param "last_reviewed_version">}}*
 
-A **Kloset store** is Plakar’s immutable storage backend where all your data lives. You can learn more in the [Kloset deep dive article](https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/).
+## Overview
 
-This tutorial explains how to create a Kloset store on the filesystem.
+A Kloset store is Plakar's immutable storage backend for backup data. This guide covers filesystem-based store creation. You can learn more in the [Kloset deep dive article](https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/)
 
-## Option 1: Using a simple path
-
-Run the following command:
+## Create Store with Path
 
 ```bash
 plakar at /var/backups create
 ```
 
-When you create a store this way, Plakar will **prompt you interactively for an encryption passphrase**.
-
-To avoid the prompt, you can set the passphrase via the `PLAKAR_PASSPHRASE`environment variable:
+Plakar prompts for an encryption passphrase. To avoid the prompt, set:
 
 ```bash
 export PLAKAR_PASSPHRASE="my-secret-passphrase"
+plakar at /var/backups create
 ```
 
-## Option 2: Using an alias to refer to a store configuration
+## Create Store with Alias
 
-Plakar offers a more flexible way to configure stores by defining an alias. This works in two steps:
-
-1. **Configure the store once** with `plakar store`.
-2. **Refer to it later** in all Plakar commands using the `@name` alias.
-
-Using an alias is especially useful for integrations that require parameters (e.g. credentials in S3).
-
-### Example: configuring and using a filesystem store
+Configure store once, reference by alias in all commands:
 
 ```bash
 plakar store add mybackups /var/backups passphrase=xxx
 ```
 
-To edit the configuration and later update the passphrase of an existing store:
-
-```bash
-plakar store set mybackups passphrase=yyy
-```
-
-
-{{% notice style="warning" title="Changing Passphrase" expanded="true" %}}
-In this example, changing the passphrase only updates the configuration. Accessing existing data created with the old passphrase will fail unless the passphrase is set back to its original value.”
-{{% /notice %}}
-
-To use the configured store:
-
+Use the configured store:
 ```bash
 plakar at @mybackups create
 plakar at @mybackups ls
 ```
 
-## Default behavior for `at <path>`
+### Update store configuration
 
-The `plakar at <path>` parameter is optional. By default, running `plakar create` creates the Kloset Store in `~/.plakar`.
+```bash
+plakar store set mybackups passphrase=yyy
+```
+
+{{% notice style="warning" title="Passphrase Changes" expanded="true" %}}
+Updating the passphrase only affects the configuration. Existing data created with the old passphrase requires the original passphrase to access.
+{{% /notice %}}
+
+## Default Store Location
+
+Without specifying a path, `plakar create` uses `~/.plakar`:
+
+```bash
+plakar create
+```
+
+## When to Use Aliases
+
+Use aliases for:
+- Stores requiring credentials (S3, cloud storage)
+- Multiple stores with different configurations
+- Avoiding repetitive path specifications
