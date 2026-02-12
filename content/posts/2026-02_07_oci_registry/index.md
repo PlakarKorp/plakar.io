@@ -12,6 +12,13 @@ tags:
   - oci
 ---
 
+**TL;DR:**
+
+> After a podcast suggestion, we built an **OCI registry storage backend for Plakar**... and it took ~30 minutes.
+> OCI registries (the tech behind Docker Hub) are content-addressed, immutable artifact stores, which map surprisingly well to Plakar’s packfile model.
+> It’s now available in beta (`plakar pkg add oci`), fully working and testable.
+
+
 Three weeks ago,
 Julien and I were invited by [Bret Fisher](https://www.youtube.com/@BretFisher) on his podcast, [Cloud Native DevOps and Docker Talk](https://www.youtube.com/playlist?list=PLX0bTycx8m-UhIXY2c4-7AXaEokaTdn6S).
 
