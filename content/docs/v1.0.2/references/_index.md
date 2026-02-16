@@ -7,4 +7,4 @@ summary: "Reference docs for Plakar"
 
 This section provides comprehensive technical reference documentation for Plakar's commands, configurations, file formats, and integrations. These pages are designed for quick lookup and detailed specification rather than learning or conceptual understanding.
 
-{{% children description="false" %}}
+{{% children description="true" %}}
