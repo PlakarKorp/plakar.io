@@ -8,4 +8,4 @@ Plakar can be extended through integrations that enable storing backups or backi
 
 Below is a list of links to the documentation for each supported integration.
 
-{{% children description="false" %}}
+{{% children description="true" %}}

@@ -10,4 +10,4 @@ trade‑offs, and best practices rather than step‑by‑step instructions.
 
 If you’re looking for practical instructions, see the [Guides](../guides) section.
 
-{{% children description="false" %}}
+{{% children description="true" %}}

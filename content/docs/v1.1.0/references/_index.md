@@ -9,4 +9,4 @@ This section provides comprehensive technical reference documentation for Plakar
 
 If you're looking for learning materials or conceptual explanations, see the [Explanations](../explanations) section. For step-by-step instructions, see the [Guides](../guides) section.
 
-{{% children description="false" %}}
+{{% children description="true" %}}
