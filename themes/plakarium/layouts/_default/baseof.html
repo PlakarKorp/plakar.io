@@ -5,8 +5,10 @@
 <head>
     {{ partial "head.html" . }}
     {{ if eq .RelPermalink "/docs/" }}
+    {{ $latest := .Site.Params.latest }}
+    <meta http-equiv="refresh" content='0;url={{ (printf "/docs/%s/" $latest) | relURL }}'>
     <script>
-        window.location.replace("/docs/main/");
+        window.location.replace("{{ (printf "/docs/%s/" $latest) | relURL }}");
     </script>
     {{ end }}
 </head>
