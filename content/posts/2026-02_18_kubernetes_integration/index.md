@@ -1,15 +1,21 @@
 ---
-title: "Backing up kubernetes clusters"
+title: "Backing up kubernetes clusters with Plakar"
 date: 2026-02-17T20:00:00+0100
 authors:
   - "op"
-summary: "After joining the Linux Foundation and the CNCF we started to attend some events, like the Cloud Native Days in Paris or the upcoming KubeConf in Amsterdam. While we’re already providing a large number of integrations, we felt we couldn’t go empty-handed to these events; we had to announce and present something new-something like a Kubernetes integration."
+summary: "We built a Kubernetes integration for Plakar that backs up clusters at three levels: etcd (disaster recovery), manifests (granular restore and inspection), and persistent volumes (via CSI snapshots). This enables full cluster recovery, fine-grained restores, and data portability across environments."
 categories: []
 featured-scope: []
 tags:
   - integration
   - kubernetes
 ---
+
+**TL;DR:**
+
+> We built a Kubernetes integration for Plakar that backs up clusters at three levels: etcd (disaster recovery), manifests (granular restore and inspection), and persistent volumes (via CSI snapshots). This enables full cluster recovery, fine-grained restores, and data portability across environments.
+
+--- 
 
 After joining the [Linux Foundation and the CNCF][cncf-join] we
 started to attend some events, like the Cloud Native Days in Paris or
@@ -18,7 +24,9 @@ large number of integrations, we felt we couldn't go empty-handed to
 these events; we had to announce and present something new-something
 like a Kubernetes integration.
 
-[cncf-join]: https://plakar.io/posts/2026-02-07/storing-backups-in-an-oci-registry/
+[cncf-join]: https://plakar.io/posts/2026-01-07/plakar-joins-the-linux-foundation-and-cloud-native-computing-foundation/
+
+![](cnd-booth.png)
 
 I've worked a lot with Kubernetes in the last years, but it was mostly
 as a user and in a particular environment: strict adherence to a
