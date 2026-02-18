@@ -37,6 +37,18 @@ So this has also been a chance for me to dive into the Kubernetes
 Golang APIs and into the workings of
 <abbr title="Container Storage Interface">CSI</abbr>-backed drives.
 
+## Installing the k8s integrations
+
+At the time of this writing, the etcd and k8s integrations have been committed to public repositories and are **only available for plakar v1.1.0-beta**.
+
+To test them, you first need to install our latest beta of plakar:
+
+```sh
+$ go install github.com/PlakarKorp/plakar@v1.1.0-beta.4
+```
+
+This is needed for the commands of this article to succeed !
+
 
 ## Disaster recovery with etcd
 
