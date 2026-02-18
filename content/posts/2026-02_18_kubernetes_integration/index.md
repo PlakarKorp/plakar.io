@@ -3,7 +3,7 @@ title: "Backing up kubernetes clusters"
 date: 2026-02-17T20:00:00+0100
 authors:
   - "op"
-summary: "Backup etcd, kubernetes configuration and CSI drives with ease"
+summary: "After joining the Linux Foundation and the CNCF we started to attend some events, like the Cloud Native Days in Paris or the upcoming KubeConf in Amsterdam. While we’re already providing a large number of integrations, we felt we couldn’t go empty-handed to these events; we had to announce and present something new-something like a Kubernetes integration."
 categories: []
 featured-scope: []
 tags:
@@ -12,18 +12,17 @@ tags:
 ---
 
 After joining the [Linux Foundation and the CNCF][cncf-join] we
-started to attend some events, like the Cloud Native Days in Paris
-or the upcoming KubeConf in Amsterdam.
+started to attend some events, like the Cloud Native Days in Paris or
+the upcoming KubeConf in Amsterdam.  While we're already providing a
+large number of integrations, we felt we couldn't go empty-handed to
+these events; we had to announce and present something new-something
+like a Kubernetes integration.
 
 [cncf-join]: https://plakar.io/posts/2026-02-07/storing-backups-in-an-oci-registry/
 
-While we're already providing a large number of integrations, we felt
-we couldn't go empty-handed to these events; we had to announce and
-present something new-something like a Kubernetes integration.
-
 I've worked a lot with Kubernetes in the last years, but it was mostly
 as a user and in a particular environment: strict adherence to a
-GitOps flow, Kubernetes hosted elsewhere, and almost no usage of any
+GitOps flow, managed Kubernetes, and almost no usage of any
 <abbr title="Persistent Volume Claims">PVCs</abbr> since all the data
 was in managed databases or on buckets.
 
@@ -47,8 +46,13 @@ the nodes of its cluster, but if too many nodes fail, it might not
 recover.  Given how critical this piece is, it's important to have a
 sound disaster recovery strategy.
 
-For this, I've written a first version of the [etcd
-integration][etcd-integration].
+For this, we've just release a first version of the [etcd
+integration][etcd-integration]: backing up etcd is now as easy as:
+
+```sh
+$ plakar pkg add etcd
+$ plakar backup etcd://node1:2379
+```
 
 [etcd-integration]: https://github.com/PlakarKorp/integration-etcd
 
@@ -72,10 +76,15 @@ resources in a granular way: the whole cluster configuration, just one
 namespace, or even a single Deployment.
 
 This is part of what the [kubernetes integration][k8s-integration]
-does: it persists all the manifests, the resources, present on the
-cluster.
+does: fetches all the manifests, the resources, present on the
+cluster for archival with Plakar.
 
 [k8s-integration]: https://github.com/PlakarKorp/integration-k8s
+
+```sh
+$ plakar pkg add k8s
+$ plakar backup k8s://localhost:8001
+```
 
 The presence of the status metadata in the backup also unlocks other
 uses: for example, it may help investigate incidents since it's
@@ -95,10 +104,12 @@ to provide a way to back up and restore the contents of persistent
 volumes. Incidentally, this was also the most complicated part for me
 to implement.
 
-I owe a lot to Mathieu and Gilles for helping me in this journey,
-providing help when I was in a pinch and for brutally simplifying the
-design to make the integration easier to develop and to use, and more
-powerful too.
+I owe a lot to Mathieu and Gilles for helping me on this journey,
+providing support when I was in a pinch, and for brutally simplifying
+the design to make the integration easier to develop and use-and more
+powerful, too.  When working alone, it's easy to fall for the
+temptation of writing "clever" code that ends up being fairly complex
+and just plain weird to use.
 
 The current version only works on
 <abbr title="Persistent Volume Claims">PVCs</abbr>
@@ -106,12 +117,17 @@ that are backed by a
 <abbr title="Container Storage Interface">CSI</abbr>
 driver, which are quite widespread in practice.
 
-The integration works by first creating a snapshot of a given
-<abbr title="Persistent Volume Claims">PVC</abbr>;
-then, when it's ready, as it could take some time, it mounts it in a
-pod running a small helper, which I've called "kubelet", which runs
-our filesystem importer.  Plakar then connects to it and ingests the
-data. When it's done, the snapshot gets deleted from the cluster.
+```sh
+$ plakar pkg add k8s
+$ plakar backup k8s+csi://localhost:8001/prod/my-pvc
+```
+
+The integration works by first creating a snapshot of a given <abbr
+title="Persistent Volume Claims">PVC</abbr>.  Then, when it's ready,
+as it could take some time, it mounts it in a pod running a small
+helper that runs our filesystem importer.  Plakar connects to it and
+ingests the data.  Finally, the PVC snapshot gets deleted from the
+Kubernetes cluster.
 
 Restoring works in a similar way, except that no snapshot is taken.
 
