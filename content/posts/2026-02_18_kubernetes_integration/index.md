@@ -12,23 +12,23 @@ tags:
 ---
 
 After joining the [Linux Foundation and the CNCF][cncf-join] we
-started to attend to some events, like the Cloud Native Days in Paris
+started to attend some events, like the Cloud Native Days in Paris
 or the upcoming KubeConf in Amsterdam.
 
 [cncf-join]: https://plakar.io/posts/2026-02-07/storing-backups-in-an-oci-registry/
 
 While we're already providing a large number of integrations, we felt
-we couldn't go empty-handed to these events, we had to announce and
-present something new.  Something like a kubernetes integration.
+we couldn't go empty-handed to these events; we had to announce and
+present something new-something like a Kubernetes integration.
 
-I've worked a lot with kubernetes in the last years, but it was mostly
-as a user and in a particular environment: strictly adherence to a
-gitops flow, kubernetes hosted elsewhere, and almost no usage of any
+I've worked a lot with Kubernetes in the last years, but it was mostly
+as a user and in a particular environment: strict adherence to a
+GitOps flow, Kubernetes hosted elsewhere, and almost no usage of any
 <abbr title="Persistent Volume Claims">PVCs</abbr> since all the data
 was in managed databases or on buckets.
 
-So, this has also been a chance for me to dive into the kubernetes
-golang APIs, and into the workings of
+So this has also been a chance for me to dive into the Kubernetes
+Golang APIs and into the workings of
 <abbr title="Container Storage Interface">CSI</abbr>-backed drives.
 
 
@@ -38,7 +38,7 @@ To provide a complete solution, I decided to tackle the backup
 strategy in multiple levels.  The lowest level is keeping etcd safe.
 
 [etcd][etcd] is a distributed key-value store for distributed systems.
-It's often used as the single source of truth in kubernetes clusters.
+It's often used as the single source of truth in Kubernetes clusters.
 
 [etcd]: https://etcd.io
 
@@ -47,14 +47,14 @@ the nodes of its cluster, but if too many nodes fail, it might not
 recover.  Given how critical this piece is, it's important to have a
 sound disaster recovery strategy.
 
-For this, I've wrote a first version of the [etcd
+For this, I've written a first version of the [etcd
 integration][etcd-integration].
 
 [etcd-integration]: https://github.com/PlakarKorp/integration-etcd
 
 Unfortunately, due to how etcd restore works, it's difficult to do so
-in a granular way, so this is really about the last line of defens in
-case of a wide cluster diruption.
+in a granular way, so this is really about the last line of defense in
+case of a wide cluster disruption.
 
 To inspect or restore the state of the cluster in a more granular way
 we need to handle the manifests.
@@ -72,31 +72,31 @@ resources in a granular way: the whole cluster configuration, just one
 namespace, or even a single Deployment.
 
 This is part of what the [kubernetes integration][k8s-integration]
-does: it persist all the manifests, the resources, present on the
+does: it persists all the manifests, the resources, present on the
 cluster.
 
 [k8s-integration]: https://github.com/PlakarKorp/integration-k8s
 
 The presence of the status metadata in the backup also unlocks other
-uses: for example it may help investigating incidents since it's
+uses: for example, it may help investigate incidents since it's
 easily possible from the UI to browse what was happening at a specific
 time in the cluster (the nodes available, the state of the
-deployments, etc...), in addition to existing monitoring tools.
+deployments, etc.), in addition to existing monitoring tools.
 
 
 ## What about the data?
 
-Even if kubernetes was not initially designed for stateful workloads,
+Even if Kubernetes was not initially designed for stateful workloads,
 in practice it's normal to have Persistent Volumes attached to pods,
-and these needs to be protected as well.
+and these need to be protected as well.
 
 The other main job of the [kubernetes integration][k8s-integration] is
-to provide a way to backup and restore the contents of persistent
-volumes.  Incidentally, this was also the most complicate part for me
+to provide a way to back up and restore the contents of persistent
+volumes. Incidentally, this was also the most complicated part for me
 to implement.
 
 I owe a lot to Mathieu and Gilles for helping me in this journey,
-providing help when I was in a pinch, and for brutally simplifying the
+providing help when I was in a pinch and for brutally simplifying the
 design to make the integration easier to develop and to use, and more
 powerful too.
 
@@ -107,27 +107,27 @@ that are backed by a
 driver, which are quite widespread in practice.
 
 The integration works by first creating a snapshot of a given
-<abbr title="Persistent Volume Claims">PVCs</abbr>,
-then when it's ready, as it could take some time, it mounts it in a
+<abbr title="Persistent Volume Claims">PVC</abbr>;
+then, when it's ready, as it could take some time, it mounts it in a
 pod running a small helper, which I've called "kubelet", which runs
-our filesystem importer, and then plakar connects to it and ingest the
-data.  When it's done, the snapshots gets deleted from the cluster.
+our filesystem importer.  Plakar then connects to it and ingests the
+data. When it's done, the snapshot gets deleted from the cluster.
 
 Restoring works in a similar way, except that no snapshot is taken.
 
-A powerful feature provided by plakar is that is possible to
-mix-and-match connectors, so for example it's possible to restore etcd
-snapshot in a, say, persistent volume in a kubernetes cluster.  Or to
+A powerful feature provided by Plakar is that it is possible to
+mix and match connectors, so, for example, it's possible to restore an etcd
+snapshot in, say, a persistent volume in a Kubernetes cluster, or to
 move data from a
-<abbr title="Persistent Volume Claims">PVCs</abbr>
-to a s3 bucket.  The sky is the limit!
+<abbr title="Persistent Volume Claims">PVC</abbr>
+to an S3 bucket.  The sky is the limit!
 
 
 ## Wrapping up
 
 What lies ahead is to keep testing the integration across different
-flavors of kubernetes distributions and providers, and extend the
+flavors of Kubernetes distributions and providers, and extend the
 support for non-<abbr title="Container Storage Interface">CSI</abbr>
-volumes.  If you're running a kubernetes cluster, be it on premise or
+volumes.  If you're running a Kubernetes cluster, be it on premise or
 managed somewhere, please don't hesitate to give it a try and let us
 know what you think!
