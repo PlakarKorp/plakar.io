@@ -310,47 +310,23 @@ sudo systemctl status plakar-ui
 
 ## Access Web UI
 
-### Option 1: Custom token (recommended)
-Update the UI service with a custom token:
-```bash
-cat << 'EOF' | sudo tee /etc/systemd/system/plakar-ui.service > /dev/null
-[Unit]
-Description=Plakar Web UI
-After=network.target
-
-[Service]
-Type=simple
-Environment="PLAKAR_UI_TOKEN=your-secure-token-here"
-ExecStart=/usr/bin/plakar at "@ovhcloud-s3-backups" ui -listen :8080
-Restart=always
-User=ubuntu
-WorkingDirectory=/home/ubuntu
-
-[Install]
-WantedBy=multi-user.target
-EOF
-```
-
-Reload and restart:
-```bash
-sudo systemctl daemon-reload
-sudo systemctl restart plakar-ui
-```
-
-Access: `http://your-vps-ip:8080?plakar_token=your-secure-token-here`
-
-### Option 2: Auto-generated token
-Retrieve the token from logs:
+When the UI service starts, Plakar automatically generates an access token. Retrieve it from the service logs:
 ```bash
 sudo journalctl -u plakar-ui -n 100 --no-pager | grep -i token
 ```
 
-Look for:
+You should see output similar to:
 ```
 launching webUI at http://:8080?plakar_token=d9fccdbd-77a3-41a0-8657-24d77a6d00ac
 ```
 
-Access: `http://your-vps-ip:8080` with the token from the URL.
+Copy the `plakar_token` value from the URL and use it to access the UI: `http://your-vps-ip:8080?plakar_token=<token>`
+
+{{% notice style="info" title="Custom UI Token" expanded="true" %}}
+From v1.1.0 onwards, you can set a custom token via the `PLAKAR_UI_TOKEN` environment variable instead of retrieving it from the logs. See the [v1.1.0 version of this guide](/docs/v1.1.0/guides/ovhcloud/ovhcloud-as-a-dedicated-backup-server/#access-web-ui) for details.
+{{% /notice %}}
+
+<br/>
 
 {{% notice style="warning" title="Security" expanded="true" %}}
 Configure firewall to restrict port 8080 access or use a reverse proxy with SSL.
