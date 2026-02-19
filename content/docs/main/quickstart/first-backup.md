@@ -3,6 +3,8 @@ title: "Quickstart"
 date: "2025-12-15T00:00:00Z"
 weight: 3
 summary: "Get started with plakar: create your first backup, verify integrity, restore, and use the UI."
+aliases:
+  - /docs/main/quickstart/quickstart
 ---
 
 This guide gets you started in minutes. You'll create your first backup snapshot, verify it's secure, and learn how to restore your files.
@@ -161,4 +163,4 @@ How long did it take? This is how easy **plakar** is for simple, secure backups.
 
 Having a backup on the filesystem is a start, but to improve the durability of your backups, you should consider hosting multiple copies in different locations.
 
-Continue to the [Part 2 of the Quickstart](./quickstart-2.md) to create multiple copies of your backups.
+Continue to the [Part 2 of the Quickstart](./synchronize-copies.md) to create multiple copies of your backups.

@@ -3,11 +3,13 @@ title: "Backup non-filesystem data"
 date: "2025-12-15T00:00:00Z"
 weight: 5
 summary: "Create a backup for your non-filesystem data. In this guide, we will back up an S3 bucket but this logic applies to any connector supported by plakar."
+aliases:
+  - /docs/v1.1.0/quickstart/quickstart-3
 ---
 
 Modern infrastructures are not limited to files stored on traditional filesystems. Your data may reside in various services, databases, or cloud storage solutions.
 
-In the first two parts of this quickstart, we [created a Kloset Store and performed a backup of local filesystem data](./quickstart.md), and then [synchronized that Kloset Store to a second location](./quickstart-2.md) to improve durability.
+In the first two parts of this quickstart, we [created a Kloset Store and performed a backup of local filesystem data](./first-backup.md), and then [synchronized that Kloset Store to a second location](./synchronize-copies.md) to improve durability.
 
 In this guide, we will create a backup of an S3 bucket using **plakar**. The same logic applies to any other data source supported by **plakar** through its various connectors.
 
@@ -16,7 +18,7 @@ In this guide, we will create a backup of an S3 bucket using **plakar**. The sam
 After following the previous parts of this quickstart, you should have:
 * **plakar** is installed on your system (see the [Installation guide](./installation.md)).
 * A Kloset Store on your local filesystem at `$HOME/backups`.
-* A S3-compatible storage location configured in your **plakar** configuration file under the name `s3-backups` (see [Part 2 of this quickstart](./quickstart-2.md)).
+* A S3-compatible storage location configured in your **plakar** configuration file under the name `s3-backups` (see [Part 2 of this quickstart](./synchronize-copies.md)).
 
 ## Initialize the S3 bucket with some data
 
@@ -36,7 +38,7 @@ Then, click on the "Upload" button, and upload a few files of your choice to the
 
 ## Configure the S3 source in plakar
 
-Similarly to how we configured the S3 store in [Part 2 of this quickstart](./quickstart-2.md), we need to let **plakar** know about the S3 source we want to back up.
+Similarly to how we configured the S3 store in [Part 2 of this quickstart](./synchronize-copies.md), we need to let **plakar** know about the S3 source we want to back up.
 
 Run the following command to create the new **source**:
 

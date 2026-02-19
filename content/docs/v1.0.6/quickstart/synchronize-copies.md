@@ -3,9 +3,11 @@ title: "Synchronize multiple copies"
 date: "2025-12-15T00:00:00Z"
 weight: 4
 summary: "Create a second copy of your Kloset Store to improve the durability of your backups."
+aliases:
+  - /docs/v1.0.6/quickstart/quickstart-2
 ---
 
-In this guide, we will create a second copy of the Kloset Store created in [Part 1 of the Quickstart](./quickstart.md).
+In this guide, we will create a second copy of the Kloset Store created in [Part 1 of the Quickstart](./first-backup.md).
 
 This second copy will be stored on a S3-compatible storage service, but the same logic applies to any other storage location supported by **plakar**.
 
@@ -13,7 +15,7 @@ This second copy will be stored on a S3-compatible storage service, but the same
 
 This guide assumes that:
 * **plakar** is installed on your system (see the [Installation guide](./installation.md)).
-* A Kloset Store exists on your local filesystem at `$HOME/backups` with at least one snapshot (see [Part 1 of the Quickstart](./quickstart.md)).
+* A Kloset Store exists on your local filesystem at `$HOME/backups` with at least one snapshot (see [Part 1 of the Quickstart](./first-backup.md)).
 
 ## Why create multiple copies?
 
@@ -190,4 +192,4 @@ With **plakar**, hosting your backups on S3 is as easy as hosting them locally. 
 
 Modern infrastructure involves more than just filesystems. In the next part of this Quickstart, we will see how to back up an S3 bucket using **plakar**.
 
-- Continue to [Part 3 of the Quickstart](./quickstart-3.md) to create a backup for your non-filesystem data.
+- Continue to [Part 3 of the Quickstart](./backup-non-filesystem-data.md) to create a backup for your non-filesystem data.

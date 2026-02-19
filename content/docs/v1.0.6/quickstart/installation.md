@@ -121,4 +121,4 @@ If you encounter any issues during installation, or notice that this documentati
 
 ## Next Steps: Getting Started
 
-Now that you have plakar installed, we recommend proceeding to the [Quickstart guide](quickstart.md) to set up your first backup.
+Now that you have plakar installed, we recommend proceeding to the [Quickstart guide](first-backup.md) to set up your first backup.
