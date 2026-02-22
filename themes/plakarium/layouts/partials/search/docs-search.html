@@ -1,0 +1,223 @@
+{{ $docsSection := .Site.GetPage "section" "docs" }}
+{{ $riCloseLine := resources.Get "img/ri/close-line.svg" }}
+{{ $riSearchLine := resources.Get "img/ri/search-line.svg" }}
+{{ $riFileTextLine := resources.Get "img/ri/file-text-line.svg" }}
+
+<script>
+function docsSearch() {
+  return {
+    isOpen: false,
+    query: '',
+    selectedVersion: '',
+    results: [],
+    rawResults: [],
+    resultCount: 0,
+    loadedCount: 0,
+    pageSize: 20,
+    loading: false,
+    loadingMore: false,
+    pagefind: null,
+
+    get hasMore() {
+      return this.loadedCount < this.resultCount;
+    },
+
+    async ensurePagefind() {
+      if (!this.pagefind) {
+        try {
+          this.pagefind = await import('/pagefind/pagefind.js');
+          await this.pagefind.init();
+        } catch (e) {
+          console.error('Failed to load Pagefind:', e);
+        }
+      }
+    },
+
+    async open() {
+      this.isOpen = true;
+      document.body.style.overflow = 'hidden';
+      await this.ensurePagefind();
+      this.$nextTick(() => {
+        if (this.$refs.searchInput) {
+          this.$refs.searchInput.focus();
+        }
+      });
+    },
+
+    close() {
+      this.isOpen = false;
+      document.body.style.overflow = '';
+    },
+
+    handleKeydown(event) {
+      if ((event.metaKey || event.ctrlKey) && event.key === 'k') {
+        event.preventDefault();
+        this.isOpen ? this.close() : this.open();
+      }
+      if (event.key === 'Escape' && this.isOpen) {
+        event.preventDefault();
+        this.close();
+      }
+    },
+
+    async search() {
+      if (!this.query || this.query.length < 2) {
+        this.results = [];
+        this.rawResults = [];
+        this.resultCount = 0;
+        this.loadedCount = 0;
+        return;
+      }
+
+      await this.ensurePagefind();
+      if (!this.pagefind) return;
+
+      this.loading = true;
+
+      const options = {};
+      if (this.selectedVersion) {
+        options.filters = { version: this.selectedVersion };
+      }
+
+      const search = await this.pagefind.debouncedSearch(this.query, options);
+
+      if (!search) {
+        return;
+      }
+
+      this.rawResults = search.results;
+      this.resultCount = search.results.length;
+      this.results = [];
+      this.loadedCount = 0;
+
+      await this.loadBatch();
+      this.loading = false;
+    },
+
+    async loadBatch() {
+      const start = this.loadedCount;
+      const end = Math.min(start + this.pageSize, this.resultCount);
+      const batch = this.rawResults.slice(start, end);
+
+      const loaded = await Promise.all(batch.map(r => r.data()));
+      const mapped = loaded.map(data => ({
+        url: data.url,
+        title: data.meta?.title || 'Untitled',
+        excerpt: data.excerpt || '',
+      }));
+
+      this.results = this.results.concat(mapped);
+      this.loadedCount = end;
+    },
+
+    async loadMore() {
+      this.loadingMore = true;
+      await this.loadBatch();
+      this.loadingMore = false;
+    }
+  };
+}
+</script>
+
+<!-- Search Modal -->
+<div x-data="docsSearch()" x-on:open-search.window="open()" x-on:keydown.window="handleKeydown($event)" x-cloak>
+  <!-- Backdrop -->
+  <div x-show="isOpen"
+       x-transition:enter="transition ease-out duration-200"
+       x-transition:enter-start="opacity-0"
+       x-transition:enter-end="opacity-100"
+       x-transition:leave="transition ease-in duration-150"
+       x-transition:leave-start="opacity-100"
+       x-transition:leave-end="opacity-0"
+       x-on:click="close()"
+       class="fixed inset-0 z-[100] bg-neutral-900/30 backdrop-blur-[2px]">
+  </div>
+
+  <!-- Modal panel -->
+  <div x-show="isOpen"
+       x-transition:enter="transition ease-out duration-200"
+       x-transition:enter-start="opacity-0 translate-y-4"
+       x-transition:enter-end="opacity-100 translate-y-0"
+       x-transition:leave="transition ease-in duration-150"
+       x-transition:leave-start="opacity-100 translate-y-0"
+       x-transition:leave-end="opacity-0 translate-y-4"
+       class="fixed inset-0 z-[101] flex items-start justify-center pt-[8vh] px-4 pointer-events-none">
+    <div x-on:click.stop class="bg-white rounded-xl shadow-2xl w-full max-w-[680px] max-h-[75vh] flex flex-col overflow-hidden pointer-events-auto ring-1 ring-neutral-200">
+
+      <!-- Search input row -->
+      <div class="flex items-center gap-3 px-5 py-4 border-b border-neutral-200">
+        <span class="w-5 h-5 text-neutral-400 -mt-0.5">{{ $riSearchLine.Content | safeHTML }}</span>
+        <input x-ref="searchInput"
+               x-model="query"
+               x-on:input.debounce.200ms="search()"
+               type="text"
+               placeholder="Search documentation..."
+               class="flex-1 bg-transparent text-neutral-900 placeholder-neutral-400 text-base font-space-grotesk outline-none border-none focus:ring-0 p-0">
+        <button x-on:click="close()" class="text-neutral-400 hover:text-neutral-600 flex-shrink-0 transition-colors">
+          <span class="w-5 h-5 block">{{ $riCloseLine.Content | safeHTML }}</span>
+        </button>
+      </div>
+
+      <!-- Version filter -->
+      <div class="flex items-center gap-3 px-5 py-2.5 border-b border-neutral-200 bg-white">
+        <span class="text-sm text-neutral-500 font-space-grotesk">Version:</span>
+        <select x-model="selectedVersion"
+                x-on:change="search()"
+                class="text-sm font-space-grotesk bg-white border border-neutral-300 rounded-md px-2.5 py-1 text-neutral-700 outline-none focus:ring-0 cursor-pointer">
+          <option value="">All versions</option>
+          {{ range $docsSection.Sections }}
+          <option value="{{ .Title }}">{{ .Title }}</option>
+          {{ end }}
+        </select>
+      </div>
+
+      <!-- Status bar -->
+      <div x-show="query.length > 0" class="px-5 py-2 text-sm font-space-grotesk border-b border-neutral-100">
+        <span x-show="loading" class="text-neutral-400">Searching...</span>
+        <span x-show="!loading && resultCount > 0" class="text-neutral-500" x-text="loadedCount + ' of ' + resultCount + ' results'"></span>
+        <span x-show="!loading && resultCount === 0" class="text-neutral-400">No results found.</span>
+      </div>
+
+      <!-- Results list -->
+      <div class="overflow-y-auto flex-1 search-results">
+        <!-- Empty state -->
+        <div x-show="query.length === 0 && !loading"
+             class="px-5 py-10 text-center text-neutral-400 text-sm font-space-grotesk">
+          Start typing to search the documentation.
+        </div>
+
+        <!-- Result items -->
+        <template x-for="result in results" :key="result.url">
+          <a x-bind:href="result.url"
+             x-on:click="close()"
+             class="flex gap-3 px-5 py-4 border-b border-neutral-100 hover:bg-neutral-50 transition-colors group">
+            <div class="flex-shrink-0 mt-0.5 text-neutral-300 group-hover:text-neutral-500 transition-colors">
+              <span class="w-5 h-5 block">{{ $riFileTextLine.Content | safeHTML }}</span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="text-sm font-semibold text-neutral-900 font-space-grotesk" x-text="result.title"></div>
+              <div class="text-sm text-neutral-500 mt-1 font-space-grotesk leading-relaxed line-clamp-2" x-html="result.excerpt"></div>
+              <div class="text-xs text-neutral-400 mt-1.5 font-space-grotesk" x-text="result.url"></div>
+            </div>
+          </a>
+        </template>
+
+        <!-- Load more -->
+        <div x-show="!loading && hasMore" class="px-5 py-3 text-center">
+          <button x-on:click="loadMore()"
+                  x-bind:disabled="loadingMore"
+                  class="text-sm text-primary-500 hover:text-primary-600 font-space-grotesk font-medium disabled:opacity-50 transition-colors">
+            <span x-show="!loadingMore" x-text="'Load more (' + (resultCount - loadedCount) + ' remaining)'"></span>
+            <span x-show="loadingMore">Loading...</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="flex items-center gap-2 px-5 py-2.5 border-t border-neutral-200 bg-neutral-50">
+        <kbd class="inline-flex items-center justify-center h-5 bg-neutral-100 border border-neutral-200 rounded px-1.5 text-neutral-400"><span class="text-[10px] font-space-grotesk translate-y-px">ESC</span></kbd>
+        <span class="text-xs text-neutral-400 font-space-grotesk">close</span>
+      </div>
+    </div>
+  </div>
+</div>
