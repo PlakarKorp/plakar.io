@@ -100,11 +100,22 @@ function docsSearch() {
       const batch = this.rawResults.slice(start, end);
 
       const loaded = await Promise.all(batch.map(r => r.data()));
-      const mapped = loaded.map(data => ({
-        url: data.url,
-        title: data.meta?.title || 'Untitled',
-        excerpt: data.excerpt || '',
-      }));
+      const mapped = loaded.map(data => {
+        const parts = (data.url || '').split('/').filter(Boolean);
+        const version = parts.length > 1 ? parts[1] : '';
+        return {
+          url: data.url,
+          title: data.meta?.title || 'Untitled',
+          excerpt: data.excerpt || '',
+          version: version,
+          subResults: (data.sub_results || []).map(sub => ({
+            title: sub.title || '',
+            url: sub.url || data.url,
+            excerpt: sub.excerpt || '',
+          })),
+          showAllSubs: false,
+        };
+      });
 
       this.results = this.results.concat(mapped);
       this.loadedCount = end;
@@ -146,7 +157,7 @@ function docsSearch() {
 
       <!-- Search input row -->
       <div class="flex items-center gap-3 px-5 py-4 border-b border-neutral-200">
-        <span class="w-5 h-5 text-neutral-400 -mt-0.5">{{ $riSearchLine.Content | safeHTML }}</span>
+        <span class="w-5 h-5 text-neutral-400 flex-shrink-0">{{ $riSearchLine.Content | safeHTML }}</span>
         <input x-ref="searchInput"
                x-model="query"
                x-on:input.debounce.200ms="search()"
@@ -188,18 +199,45 @@ function docsSearch() {
 
         <!-- Result items -->
         <template x-for="result in results" :key="result.url">
-          <a x-bind:href="result.url"
-             x-on:click="close()"
-             class="flex gap-3 px-5 py-4 border-b border-neutral-100 hover:bg-neutral-50 transition-colors group">
-            <div class="flex-shrink-0 mt-0.5 text-neutral-300 group-hover:text-neutral-500 transition-colors">
-              <span class="w-5 h-5 block">{{ $riFileTextLine.Content | safeHTML }}</span>
-            </div>
-            <div class="flex-1 min-w-0">
-              <div class="text-sm font-semibold text-neutral-900 font-space-grotesk" x-text="result.title"></div>
-              <div class="text-sm text-neutral-500 mt-1 font-space-grotesk leading-relaxed line-clamp-2" x-html="result.excerpt"></div>
-              <div class="text-xs text-neutral-400 mt-1.5 font-space-grotesk" x-text="result.url"></div>
-            </div>
-          </a>
+          <div class="border-b border-neutral-100 group">
+            <!-- Page-level result -->
+            <a x-bind:href="result.subResults.length > 0 ? result.subResults[0].url : result.url"
+               x-on:click="close()"
+               class="flex gap-3 px-5 py-3 hover:bg-neutral-50 transition-colors">
+              <div class="flex-shrink-0 mt-0.5 text-neutral-300 group-hover:text-neutral-500 transition-colors">
+                <span class="w-5 h-5 block">{{ $riFileTextLine.Content | safeHTML }}</span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-semibold text-neutral-900 font-space-grotesk truncate" x-text="result.title"></span>
+                  <span x-show="result.version"
+                        class="flex-shrink-0 text-[10px] font-space-grotesk px-1.5 py-0.5 rounded bg-neutral-100 text-neutral-500 border border-neutral-200"
+                        x-text="result.version"></span>
+                </div>
+                <div class="text-sm text-neutral-500 mt-1 font-space-grotesk leading-relaxed line-clamp-2"
+                     x-html="result.subResults.length > 0 ? result.subResults[0].excerpt : result.excerpt"></div>
+              </div>
+            </a>
+            <!-- Sub results (skip first since it's shown above) -->
+            <template x-for="(sub, idx) in (result.showAllSubs ? result.subResults.slice(1) : result.subResults.slice(1, 5))" :key="sub.url">
+              <a x-bind:href="sub.url"
+                 x-on:click="close()"
+                 class="flex items-start gap-2 pl-14 pr-5 py-1.5 hover:bg-neutral-50 transition-colors border-t border-neutral-50">
+                <span class="text-neutral-300 text-xs mt-px">#</span>
+                <div class="flex-1 min-w-0">
+                  <div class="text-sm font-medium text-neutral-700 font-space-grotesk" x-text="sub.title"></div>
+                  <div class="text-xs text-neutral-500 mt-0.5 font-space-grotesk leading-relaxed line-clamp-1" x-html="sub.excerpt"></div>
+                </div>
+              </a>
+            </template>
+            <!-- Show all sub-results toggle -->
+            <template x-if="result.subResults.length > 5 && !result.showAllSubs">
+              <button x-on:click="result.showAllSubs = true"
+                      class="pl-14 pr-5 py-1.5 text-xs text-primary-500 hover:text-primary-600 font-space-grotesk font-medium transition-colors border-t border-neutral-50 w-full text-left"
+                      x-text="'Show all (' + (result.subResults.length - 5) + ' more)'">
+              </button>
+            </template>
+          </div>
         </template>
 
         <!-- Load more -->
