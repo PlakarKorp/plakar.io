@@ -9,4 +9,4 @@ plakarVersion: "v1.0.4"
 summary: "Plakar documentation hub, find guides, references, and resources for working with Plakar."
 ---
 
-{{%children description="true"%}}
+{{% children description="true" style="sections" %}}

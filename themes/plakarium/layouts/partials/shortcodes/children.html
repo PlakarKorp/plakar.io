@@ -9,29 +9,79 @@
   {{- $withDescription = (eq $withDescription "true") }}
 {{- end }}
 {{- $sortTerm := .sort | lower }}
+{{- $style := .style | default "" }}
+
+{{- $riArrowRight := resources.Get "img/ri/arrow-right-line.svg" }}
 
 {{- with $page -}}
-<div class="section-index">
-  <hr class="panel-line my-6">
   {{- $pages := partial "_relearn/pages.gotmpl" (dict "page" . "by" $sortTerm) }}
-  {{- range $pages }}
-    {{- $hidden := and (or (.Params.hidden) (eq .Title "")) (not $showhidden) }}
-    {{- if not $hidden }}
-      <div class="entry pb-12">
-        <h2 class="!my-0 !py-0">
-          {{- if .RelPermalink }}
-            <a class="font-bold text-primary-500" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
-          {{- else }}
-            <span>{{ .LinkTitle }}</span>
-          {{- end }}
-        </h2>
-        {{- if $withDescription }}
-          {{- with or .Description .Summary }}
-            <p class="!my-0 !py-0">{{ . }}</p>
+
+  {{- if eq $style "sections" }}
+    {{/* Sections mode: each child is a heading, grandchildren are one-line cards */}}
+    <div class="section-index">
+      {{- range $pages }}
+        {{- $hidden := and (or (.Params.hidden) (eq .Title "")) (not $showhidden) }}
+        {{- if not $hidden }}
+          <div class="mt-8">
+            <h3 class="!mt-0 !mb-3 text-xl font-space-grotesk font-semibold">
+              {{- if .RelPermalink }}
+                <a href="{{ .RelPermalink }}" class="text-neutral-900 no-underline hover:text-primary-500 transition-colors">{{ .LinkTitle }}</a>
+              {{- else }}
+                {{ .LinkTitle }}
+              {{- end }}
+            </h3>
+            {{- $subpages := partial "_relearn/pages.gotmpl" (dict "page" . "by" $sortTerm) }}
+            {{- if $subpages }}
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {{- range $subpages }}
+                  {{- $subhidden := and (or (.Params.hidden) (eq .Title "")) (not $showhidden) }}
+                  {{- if not $subhidden }}
+                    <a href="{{ .RelPermalink }}" class="children-card group/card flex items-center justify-between rounded-lg border border-neutral-200 bg-white px-4 py-3 no-underline hover:border-neutral-300 hover:shadow-sm transition-all duration-200">
+                      <span class="text-sm font-space-grotesk font-medium text-neutral-900 group-hover/card:text-primary-500 transition-colors">
+                        {{ .LinkTitle }}
+                      </span>
+                      {{- if $riArrowRight }}
+                        <div class="w-4 h-4 flex-shrink-0 ml-3 text-neutral-400 group-hover/card:text-primary-500 group-hover/card:translate-x-1 transition-all duration-200">
+                          {{ $riArrowRight.Content | safeHTML }}
+                        </div>
+                      {{- end }}
+                    </a>
+                  {{- end }}
+                {{- end }}
+              </div>
+            {{- end }}
+          </div>
+        {{- end }}
+      {{- end }}
+    </div>
+
+  {{- else }}
+    {{/* Default mode: flat card grid */}}
+    <div class="section-index">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+        {{- range $pages }}
+          {{- $hidden := and (or (.Params.hidden) (eq .Title "")) (not $showhidden) }}
+          {{- if not $hidden }}
+            <a href="{{ .RelPermalink }}" class="children-card group/card flex flex-col justify-between rounded-lg border border-neutral-200 bg-white p-5 no-underline hover:border-neutral-300 hover:shadow-sm transition-all duration-200">
+              <div>
+                <span class="!my-0 !py-0 text-base font-space-grotesk font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
+                  {{ .LinkTitle }}
+                </span>
+                {{- if $withDescription }}
+                  {{- with or .Description .Summary }}
+                    <p class="!mb-0 mt-2 text-sm text-neutral-500 font-space-grotesk leading-relaxed line-clamp-3">{{ . }}</p>
+                  {{- end }}
+                {{- end }}
+              </div>
+              {{- if $riArrowRight }}
+                <div class="mt-3 w-4 h-4 text-neutral-400 group-hover/card:text-primary-500 group-hover/card:translate-x-1 transition-all duration-200">
+                  {{ $riArrowRight.Content | safeHTML }}
+                </div>
+              {{- end }}
+            </a>
           {{- end }}
         {{- end }}
       </div>
-    {{- end }}
+    </div>
   {{- end }}
-</div>
 {{- end }}
