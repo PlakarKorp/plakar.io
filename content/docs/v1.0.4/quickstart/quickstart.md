@@ -51,7 +51,7 @@ name=Plakar Repository
 baseurl=https://packages.plakar.io/rpm/$(uname -m)/
 enabled=1
 gpgcheck=0
-gpgkey=https://packages.plakar.io/keys/plakar.gpg
+gpgkey=https://plakar.io/dist/keys/community-v1.0.0.gpg
 EOF
   ```
 
