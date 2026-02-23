@@ -30,7 +30,7 @@ Welcome to **plakar** - easy, secure and efficient backups for people who value 
   ```bash
   apt-get update
   apt-get install -y curl sudo gnupg2
-  curl -fsSL https://packages.plakar.io/keys/plakar.gpg | sudo gpg --dearmor -o /usr/share/keyrings/plakar.gpg
+  curl -fsSL https://plakar.io/dist/keys/community-v1.0.0.gpg | sudo gpg --dearmor -o /usr/share/keyrings/plakar.gpg
   echo "deb [signed-by=/usr/share/keyrings/plakar.gpg] https://packages.plakar.io/deb stable main" | sudo tee /etc/apt/sources.list.d/plakar.list
   ```
 

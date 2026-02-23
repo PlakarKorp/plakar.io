@@ -48,7 +48,7 @@ The recommended way to install Plakar on Debian-based systems is to use our offi
     ```bash
     sudo apt-get update
     sudo apt-get install -y curl sudo gnupg2
-    curl -fsSL https://packages.plakar.io/keys/plakar.gpg | sudo gpg --dearmor -o /usr/share/keyrings/plakar.gpg
+    curl -fsSL https://plakar.io/dist/keys/community-v1.0.0.gpg | sudo gpg --dearmor -o /usr/share/keyrings/plakar.gpg
     echo "deb [signed-by=/usr/share/keyrings/plakar.gpg] https://packages.plakar.io/deb stable main" | sudo tee /etc/apt/sources.list.d/plakar.list
     ```
 
