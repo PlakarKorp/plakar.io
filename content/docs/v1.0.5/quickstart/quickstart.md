@@ -31,7 +31,7 @@ Welcome to **plakar** - easy, secure and efficient backups for people who value 
   apt-get update
   apt-get install -y curl sudo gnupg2
   curl -fsSL https://plakar.io/dist/keys/community-v1.0.0.gpg | sudo gpg --dearmor -o /usr/share/keyrings/plakar.gpg
-  echo "deb [signed-by=/usr/share/keyrings/plakar.gpg] https://packages.plakar.io/deb stable main" | sudo tee /etc/apt/sources.list.d/plakar.list
+  echo "deb [signed-by=/usr/share/keyrings/plakar.gpg] https://plakar.io/dist/repos/deb/ stable main" | sudo tee /etc/apt/sources.list.d/plakar.list
   ```
 
   Then update the package list and install plakar:
@@ -49,7 +49,7 @@ Welcome to **plakar** - easy, secure and efficient backups for people who value 
   cat <<EOF | sudo tee /etc/yum.repos.d/plakar.repo
 [plakar]
 name=Plakar Repository
-baseurl=https://packages.plakar.io/rpm/$(uname -m)/
+baseurl=https://plakar.io/dist/repos/rpm/$(uname -m)/
 enabled=1
 gpgcheck=0
 gpgkey=https://plakar.io/dist/keys/community-v1.0.0.gpg

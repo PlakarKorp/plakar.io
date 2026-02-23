@@ -36,8 +36,8 @@ description: "Download binaries and packages for Plakar v1.0.6. All links are se
 
 ## Official repositories
 
-- **APT (Debian / Ubuntu):** `https://packages.plakar.io/deb/`
-- **RPM (Fedora / RHEL / CentOS):** `https://packages.plakar.io/rpm/`
+- **APT (Debian / Ubuntu):** `https://plakar.io/dist/repos/deb/`
+- **RPM (Fedora / RHEL / CentOS):** `https://plakar.io/dist/repos/rpm/`
 
 ## Install via Official APT Repository (Debian / Ubuntu)
 
@@ -49,7 +49,7 @@ The recommended way to install Plakar on Debian-based systems is to use our offi
     sudo apt-get update
     sudo apt-get install -y curl sudo gnupg2
     curl -fsSL https://plakar.io/dist/keys/community-v1.0.0.gpg | sudo gpg --dearmor -o /usr/share/keyrings/plakar.gpg
-    echo "deb [signed-by=/usr/share/keyrings/plakar.gpg] https://packages.plakar.io/deb stable main" | sudo tee /etc/apt/sources.list.d/plakar.list
+    echo "deb [signed-by=/usr/share/keyrings/plakar.gpg] https://plakar.io/dist/repos/deb/ stable main" | sudo tee /etc/apt/sources.list.d/plakar.list
     ```
 
 2. **Update the package list and install Plakar:**
@@ -70,7 +70,7 @@ For an OS which uses RPM-based packages (eg. Fedora), the easiest way is to use 
   cat <<EOF | sudo tee /etc/yum.repos.d/plakar.repo
 [plakar]
 name=Plakar Repository
-baseurl=https://packages.plakar.io/rpm/$(uname -m)/
+baseurl=https://plakar.io/dist/repos/rpm/$(uname -m)/
 enabled=1
 gpgcheck=0
 gpgkey=https://plakar.io/dist/keys/community-v1.0.0.gpg
