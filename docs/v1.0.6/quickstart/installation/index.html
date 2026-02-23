@@ -1082,13 +1082,13 @@ data-[selected=true]:text-primary-600">
 <span>Others</span></button></nav></div></div><div class="my-3 mx-6"><div id=installation-methods-0 role=tabpanel aria-labelledby=installation-methods-0-tab class="prose max-w-none w-full"><div class="prose max-w-none w-full prose-pre:max-w-none"><p>For Debian-based operating systems (such as Ubuntu or Debian), the easiest way is to use our APT repository.</p><p>First, install necessary dependencies and add the repository&rsquo;s GPG key:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt-get update
 </span></span><span class=line><span class=cl>sudo apt-get install -y curl gnupg2
 </span></span><span class=line><span class=cl>curl -fsSL https://plakar.io/dist/keys/community-v1.0.0.gpg <span class=p>|</span> sudo gpg --dearmor -o /usr/share/keyrings/plakar.gpg
-</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;deb [signed-by=/usr/share/keyrings/plakar.gpg] https://packages.plakar.io/deb stable main&#34;</span> <span class=p>|</span> sudo tee /etc/apt/sources.list.d/plakar.list
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;deb [signed-by=/usr/share/keyrings/plakar.gpg] https://plakar.io/dist/repos/deb/ stable main&#34;</span> <span class=p>|</span> sudo tee /etc/apt/sources.list.d/plakar.list
 </span></span></code></pre></div><p>Then update the package list and install plakar:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt-get update
 </span></span><span class=line><span class=cl>sudo apt-get install plakar
 </span></span></code></pre></div></div></div><div id=installation-methods-1 role=tabpanel aria-labelledby=installation-methods-1-tab class="hidden prose max-w-none w-full"><div class="prose max-w-none w-full prose-pre:max-w-none"><p>For operating systems which use RPM-based packages (such as Fedora), the easiest way is to use our DNF repository.</p><p>First, set up the repository:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>cat <span class=s>&lt;&lt;EOF | sudo tee /etc/yum.repos.d/plakar.repo
 </span></span></span><span class=line><span class=cl><span class=s>[plakar]
 </span></span></span><span class=line><span class=cl><span class=s>name=Plakar Repository
-</span></span></span><span class=line><span class=cl><span class=s>baseurl=https://packages.plakar.io/rpm/$(uname -m)/
+</span></span></span><span class=line><span class=cl><span class=s>baseurl=https://plakar.io/dist/repos/rpm/$(uname -m)/
 </span></span></span><span class=line><span class=cl><span class=s>enabled=1
 </span></span></span><span class=line><span class=cl><span class=s>gpgcheck=0
 </span></span></span><span class=line><span class=cl><span class=s>gpgkey=https://plakar.io/dist/keys/community-v1.0.0.gpg
