@@ -30,11 +30,12 @@
         <div class="flex flex-row items-center font-space-grotesk space-x-2 w-full justify-end">
             <!-- Search trigger -->
             <button x-on:click="$dispatch('open-search')"
+                    aria-label="Open search dialog"
                     class="flex items-center justify-center w-[28px] h-[28px] md:w-auto md:h-auto lg:gap-2 md:px-3 md:min-h-[48px] border border-neutral-300 rounded-lg text-neutral-500 bg-neutral-50 text-sm">
                 <span class="w-4 h-4 -mt-0.5">{{ $riSearchLine.Content | safeHTML }}</span>
                 <span class="hidden lg:inline">Search</span>
                 <kbd class="hidden lg:inline-flex items-center justify-center h-5 bg-neutral-100 border border-neutral-200 rounded px-1.5 ml-1 text-neutral-400"
-                     x-data><span class="text-[10px] translate-y-px" x-text="navigator.platform.indexOf('Mac') > -1 ? '\u2318K' : 'Ctrl K'"></span></kbd>
+                     x-data><span class="text-[10px] translate-y-px" x-text="((navigator.userAgentData?.platform || navigator.platform || '').indexOf('Mac') > -1) ? '\u2318K' : 'Ctrl K'"></span></kbd>
             </button>
             <!-- GitHub link -->
             <div class="hidden min-h-[48px] items-stretch lg:flex gap-2 pr-4 p-[1px] border border-neutral-300 bg-neutral-50 rounded-lg font-space-text">

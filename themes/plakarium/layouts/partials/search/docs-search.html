@@ -153,7 +153,11 @@ function docsSearch() {
        x-transition:leave-start="opacity-100 translate-y-0"
        x-transition:leave-end="opacity-0 translate-y-4"
        class="fixed inset-0 z-[101] flex items-start justify-center pt-[8vh] px-4 pointer-events-none">
-    <div x-on:click.stop class="bg-white rounded-xl shadow-2xl w-full max-w-[680px] max-h-[75vh] flex flex-col overflow-hidden pointer-events-auto ring-1 ring-neutral-200">
+    <div x-on:click.stop
+         role="dialog"
+         aria-modal="true"
+         aria-label="Search documentation"
+         class="bg-white rounded-xl shadow-2xl w-full max-w-[680px] max-h-[75vh] flex flex-col overflow-hidden pointer-events-auto ring-1 ring-neutral-200">
 
       <!-- Search input row -->
       <div class="flex items-center gap-3 px-5 py-4 border-b border-neutral-200">
@@ -163,8 +167,9 @@ function docsSearch() {
                x-on:input.debounce.200ms="search()"
                type="text"
                placeholder="Search documentation..."
+               aria-label="Search documentation"
                class="flex-1 bg-transparent text-neutral-900 placeholder-neutral-400 text-base font-space-grotesk outline-none border-none focus:ring-0 p-0">
-        <button x-on:click="close()" class="text-neutral-400 hover:text-neutral-600 flex-shrink-0 transition-colors">
+        <button x-on:click="close()" aria-label="Close search" class="text-neutral-400 hover:text-neutral-600 flex-shrink-0 transition-colors">
           <span class="w-5 h-5 block">{{ $riCloseLine.Content | safeHTML }}</span>
         </button>
       </div>
@@ -174,6 +179,7 @@ function docsSearch() {
         <span class="text-sm text-neutral-500 font-space-grotesk">Version:</span>
         <select x-model="selectedVersion"
                 x-on:change="search()"
+                aria-label="Filter by version"
                 class="text-sm font-space-grotesk bg-white border border-neutral-300 rounded-md px-2.5 py-1 text-neutral-700 outline-none focus:ring-0 cursor-pointer">
           <option value="">All versions</option>
           {{ range $docsSection.Sections }}
@@ -234,7 +240,8 @@ function docsSearch() {
             <template x-if="result.subResults.length > 5 && !result.showAllSubs">
               <button x-on:click="result.showAllSubs = true"
                       class="pl-14 pr-5 py-1.5 text-xs text-primary-500 hover:text-primary-600 font-space-grotesk font-medium transition-colors border-t border-neutral-50 w-full text-left"
-                      x-text="'Show all (' + (result.subResults.length - 5) + ' more)'">
+                      x-text="'Show all (' + (result.subResults.length - 5) + ' more)'"
+                      x-bind:aria-label="'Show all ' + (result.subResults.length - 5) + ' more sub-results for ' + result.title">
               </button>
             </template>
           </div>
