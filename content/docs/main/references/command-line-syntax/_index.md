@@ -1,300 +1,89 @@
 ---
 date: "2025-09-04T06:20:40Z"
 title: Command line syntax
-last_reviewed: "2026-02-03"
+last_reviewed: "2026-02-23"
 last_reviewed_version: "v1.1.0"
-summary: "This guide explains the basics of the Plakar command line syntax: how to specify stores, sources, destinations, argument order, and how to get help."
+summary: "How Plakar commands are structured, why flag order matters, and how to get help from the CLI."
 weight: 2
 aliases:
-  - /docs/main/guides/plakar-command-line-syntax
+  - /docs/v1.1.0/guides/plakar-command-line-syntax
 ---
 *Last reviewed: {{<param "last_reviewed">}} / Plakar {{<param "last_reviewed_version">}}*
 
-Plakar exposes several types of commands, depending on the resources they operate on (stores, sources, and/or destinations).
+## General syntax
 
-## General Syntax
+Every Plakar invocation follows this pattern:
 
 ```bash
-plakar [at <store>] <command> [options] [arguments]
+plakar [OPTIONS] [at REPOSITORY] COMMAND [COMMAND_OPTIONS]...
 ```
 
 | Component | Required | Description |
 |-----------|----------|-------------|
-| `at <store>` | No | Specifies target Kloset Store; defaults to `~/.plakar` if omitted |
-| `<command>` | Yes | The operation to perform |
-| `[options]` | No | Command-specific flags (must precede arguments) |
-| `[arguments]` | Varies | Paths, snapshot IDs, or other command inputs |
+| `OPTIONS` | No | Global options that apply to all commands (see below) |
+| `at REPOSITORY` | No | Target repository; defaults to `$PLAKAR_REPOSITORY` or `~/.plakar` if omitted |
+| `COMMAND` | Yes | The operation to perform (e.g. `backup`, `restore`, `check`) |
+| `COMMAND_OPTIONS` | No | Options and arguments specific to the command (documented under each [command reference](/docs/v1.1.0/references/commands/)) |
 
-## Global Arguments
+A few examples to make the structure concrete:
 
-Global arguments apply to all Plakar commands and must be placed before the `at` clause or command.
-
-### Syntax
 ```bash
-plakar [global-args] [at <store>] <command> [options] [arguments]
+# Simplest form: just a command
+plakar version
+
+# Operating on a repository
+plakar at /backup ls
+
+# Global option + repository + command + command options
+plakar -time at /backup ls -tag daily-backups
 ```
 
-### Available Global Arguments
+## Global options
 
-| Argument | Description |
-|----------|-------------|
-| `-quiet` | No output except errors |
-| `-silent` | No output at all (including errors) |
+Global options appear before the `at` clause and apply to every command. Options that come after the command are command-specific and are documented in each [command reference page](/docs/v1.1.0/references/commands/).
+
+| Option | Description |
+|--------|-------------|
 | `-concurrency int` | Limit the number of concurrent operations (default: -1) |
-| `-cpu int` | Limit the number of usable CPU cores (default: 7) |
-| `-keyfile string` | Use passphrase from key file when prompted |
-| `-time` | Display command execution time |
-| `-trace string` | Display trace logs, comma-separated (all, trace, repository, snapshot, server) |
 | `-config string` | Configuration directory (default: `~/.config/plakar`) |
-| `-stdio` | Use stdio user interface |
+| `-cpu int` | Limit the number of usable CPU cores |
+| `-disable-security-check` | Disable update check |
+| `-enable-security-check` | Enable update check |
+| `-keyfile string` | Use passphrase from key file when prompted |
 | `-profile-cpu string` | Profile CPU usage |
 | `-profile-mem string` | Profile memory usage |
-| `-enable-security-check` | Enable update check |
-| `-disable-security-check` | Disable update check |
+| `-quiet` | No output except errors |
+| `-silent` | No output at all |
+| `-stdio` | Use stdio user interface |
+| `-time` | Display command execution time |
+| `-trace string` | Display trace logs, comma-separated (`all`, `trace`, `repository`, `snapshot`, `server`) |
 
-### Examples
-```bash
-# Quiet backup - only shows errors
-plakar -quiet at /backup backup /data
+## Option order matters
 
-# Silent backup - no output at all
-plakar -silent at /backup backup /data
-
-# Limit CPU cores
-plakar -cpu 4 at /backup backup /data
-
-# Time the operation
-plakar -time at /backup backup /data
-
-# Use keyfile for passphrase
-plakar -keyfile /secure/key at /backup backup /data
-```
-
-## Store Specification
-
-### Syntax
+Options must appear in the correct position. Global options go before `at`, command options go after the command.
 
 ```bash
-plakar at <store-location> <command> [options] [arguments]
+# Correct: -tag is a command option for ls
+plakar -time at /backup ls -tag daily-backups
+
+# Wrong: -tag is placed before the command — plakar sees it as the command name
+plakar -time at /backup -tag daily-backups ls
+# → command not found: -tag
 ```
 
-### Location Types
+A misplaced option will either be ignored or cause an error. When something doesn't work as expected, check option placement first.
 
-| Type | Syntax | Example |
-|------|--------|---------|
-| Filesystem path | `/path/to/store` | `plakar at /backup/kloset ls` |
-| Alias | `@alias-name` | `plakar at @s3-backup ls` |
-| SFTP | `sftp://host/path` | `plakar at sftp://server/backup ls` |
-| S3 | `s3://bucket/path` | `plakar at s3://mybucket/store ls` |
-| Default | (omit `at`) | `plakar ls` (uses `~/.plakar`) |
+## Getting help
 
-### Store Aliases
-
-Aliases are configured with `plakar store add`:
+Plakar has built-in help at every level.
 
 ```bash
-plakar store add <alias> <location> [key=value ...]
-```
+# Show global usage, all options and available commands
+plakar -h
+plakar help
 
-**Parameters:**
-
-| Parameter | Required | Description |
-|-----------|----------|-------------|
-| `<alias>` | Yes | Name for the alias (used with `@`) |
-| `<location>` | Yes | Store location (path or URI) |
-| `key=value` | No | Protocol-specific parameters |
-
-**Common Parameters:**
-
-| Key | Used For | Example |
-|-----|----------|---------|
-| `passphrase` | Encrypted stores | `passphrase='secret'` |
-| `access_key` | S3 stores | `access_key=AKIAIOSFODNN7EXAMPLE` |
-| `secret_access_key` | S3 stores | `secret_access_key=wJalrXUtnFEMI` |
-| `use_tls` | S3/SFTP | `use_tls=false` |
-
-**Example:**
-```bash
-plakar store add backup s3://mybucket/store \
-  access_key=minioadmin \
-  secret_access_key=minioadmin \
-  use_tls=false
-```
-
-## Source Specification
-
-Sources are locations to back up from.
-
-### Syntax
-
-```bash
-plakar at <store> backup [options] <source>
-```
-
-### Location Types
-
-| Type | Syntax | Example |
-|------|--------|---------|
-| Filesystem path | `/path` or `./path` | `plakar backup /home/user/docs` |
-| Alias | `@alias-name` | `plakar backup @myfiles` |
-| SFTP | `sftp://host/path` | `plakar backup sftp://server/data` |
-| S3 | `s3://bucket/path` | `plakar backup s3://bucket/folder` |
-
-### Source Aliases
-
-Aliases are configured with `plakar source add`:
-
-```bash
-plakar source add <alias> <location> [key=value ...]
-```
-
-**Example:**
-```bash
-plakar source add mybucket s3://localhost:9000/data \
-  access_key=minioadmin \
-  secret_access_key=minioadmin \
-  use_tls=false
-```
-
-## Destination Specification
-
-Destinations are locations to restore to.
-
-### Syntax
-
-```
-plakar at <store> restore -to <destination> <snapshot-id>
-```
-
-### Location Types
-
-| Type | Syntax | Example |
-|------|--------|---------|
-| Filesystem path | `/path` or `./path` | `plakar restore -to /restore/dir abc123` |
-| Alias | `@alias-name` | `plakar restore -to @target abc123` |
-| SFTP | `sftp://host/path` | `plakar restore -to sftp://server/restore abc123` |
-| S3 | `s3://bucket/path` | `plakar restore -to s3://bucket/restore abc123` |
-
-### Destination Aliases
-
-Aliases are configured with `plakar destination add`:
-
-```bash
-plakar destination add <alias> <location> [key=value ...]
-```
-
-**Example:**
-```bash
-plakar destination add target s3://localhost:9000/restore \
-  access_key=minioadmin \
-  secret_access_key=minioadmin \
-  use_tls=false
-```
-
-## Argument Order
-
-Order matters in plakar commands. Options must precede arguments.
-
-**Pattern:**
-```bash
-plakar [at <store>] <command> [options] <arguments>
-```
-
-**Examples:**
-
-| Status | Command |
-|--------|---------|
-| *Correct* | `plakar at /store backup -check /path` |
-| *Incorrect* | `plakar at /store backup /path -check` |
-
-## Common Commands
-
-### Store Operations
-
-| Command | Syntax | Description |
-|---------|--------|-------------|
-| `create` | `plakar at <store> create` | Initialize new Kloset Store |
-| `ls` | `plakar at <store> ls [snapshot-id]` | List snapshots or snapshot contents |
-| `check` | `plakar at <store> check [snapshot-id]` | Verify integrity |
-| `info` | `plakar at <store> info` | Display store metadata |
-
-### Backup Operations
-
-| Command | Syntax | Description |
-|---------|--------|-------------|
-| `backup` | `plakar at <store> backup [options] <source>` | Create snapshot |
-| `push` | `plakar at <store> push [options] <source>` | Scheduled backup (same as backup) |
-
-### Restore Operations
-
-| Command | Syntax | Description |
-|---------|--------|-------------|
-| `restore` | `plakar at <store> restore -to <dest> <snapshot-id>` | Restore snapshot |
-| `cat` | `plakar at <store> cat <snapshot-id>:<path>` | Output file contents |
-
-### Configuration
-
-| Command | Syntax | Description |
-|---------|--------|-------------|
-| `store add` | `plakar store add <alias> <location> [params]` | Add store alias |
-| `source add` | `plakar source add <alias> <location> [params]` | Add source alias |
-| `destination add` | `plakar destination add <alias> <location> [params]` | Add destination alias |
-
-## Help System
-
-### Quick Help
-
-Display command usage:
-```bash
-plakar <command> -h
-plakar <command> --help
-```
-
-**Output:**
-```bash
-Usage: <command> [OPTIONS] arguments
-
-OPTIONS:
-  ...
-```
-
-### Manual Pages
-
-Display detailed documentation:
-```bash
+# Show the manual page for a specific command
 plakar help <command>
 ```
 
-**Output includes:**
-- Full command description
-- All options with explanations
-- Examples
-- Related commands (SEE ALSO section)
-
-**Example:**
-```bash
-# View backup command manual
-plakar help backup
-
-# View related source configuration manual
-plakar help source
-```
-
-## Special Syntax
-
-### Snapshot References
-
-| Syntax | Description |
-|--------|-------------|
-| `snapshot-id` | Full snapshot ID (e.g., `eb66133a`) |
-| `snapshot-id:path` | File within snapshot (e.g., `eb66133a:/etc/config`) |
-
-### Alias References
-
-All aliases use `@` prefix:
-
-| Type | Syntax |
-|------|--------|
-| Store alias | `@store-name` |
-| Source alias | `@source-name` |
-| Destination alias | `@dest-name` |
+The built-in help is always in sync with the version of Plakar you have installed, making it the most reliable reference for available options and commands.
