@@ -1,7 +1,7 @@
 {{ define "main" }}
     {{/* Only redirect on the section root, not on children */}}
     {{ if eq .RelPermalink "/download/" }}
-        {{ $latest := .Site.Params.latest }} {{/* e.g. "v1.0.4" */}}
+        {{ $latest := .Site.Params.latest }} {{/* e.g. "v1.1.0" */}}
 
         <meta http-equiv="refresh" content='0;url={{ (printf "/download/%s/" $latest) | relURL }}'>
         <script>
@@ -23,4 +23,3 @@
         </section>
     {{ end }}
 {{ end }}
-
