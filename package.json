@@ -11,7 +11,8 @@
     "tailwindcss-rtl": "^0.9.0"
   },
   "scripts": {
-    "dev:css": "tailwindcss -c tailwind.config.js -i themes/plakarium/assets/css/main.css -o themes/plakarium/assets/css/main-compiled.css --watch"
+    "dev:css": "tailwindcss -c tailwind.config.js -i themes/plakarium/assets/css/main.css -o themes/plakarium/assets/css/main-compiled.css --watch",
+    "pagefind:index": "npx -y pagefind --site public"
   },
   "dependencies": {
     "basiclightbox": "^5.0.4",

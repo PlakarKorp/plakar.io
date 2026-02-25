@@ -33,6 +33,7 @@
         @mousemove.window="isSmallScreen && sidebarOpened === false && $event.clientX < 24 ? toggleSidebar(true) : null"
         @mouseleave.window="isSmallScreen ? toggleSidebar(false) : null" class="relative w-full">
         {{- if eq .Section "docs" -}} {{ partial "header/docs/header.html" . }}
+        {{ partial "search/docs-search.html" . }}
         <div class="relative z-10 bg-neutral-50 flex flex-row font-grotesk">
             <button @click="toggleSidebar(true)" x-show="isSmallScreen && !sidebarOpened" x-transition
                 style="transform: rotate(-90deg); transform-origin: left center"
