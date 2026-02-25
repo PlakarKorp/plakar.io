@@ -13,7 +13,7 @@
         {{ $labelShort = .labelShort }}
 {{ end }}
 
-{{ $href := (printf "/docs/%s/quickstart/quickstart/" $site.Params.latest) }}
+{{ $href := (printf "/docs/%s/quickstart/" $site.Params.latest) }}
 {{ if (isset . "href") }}
         {{ $href = .href }}
 {{ end }}
