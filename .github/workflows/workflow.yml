@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - v2
 
 jobs:
   build:
@@ -12,14 +11,12 @@ jobs:
 
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           submodules: true
 
       - name: Set up Go
-        uses: actions/setup-go@v5
-        with:
-          go-version: "stable"
+        uses: actions/setup-go@v6
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -29,8 +26,7 @@ jobs:
 
       - name: Install Hugo
         run: |
-          sudo apt-get update
-          sudo apt-get install -y hugo
+          go install github.com/gohugoio/hugo@latest
 
       - name: Install npm deps
         run: npm ci
