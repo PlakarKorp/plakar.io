@@ -16,18 +16,44 @@ jobs:
         with:
           submodules: true
 
-      - name: Set deploy branch
-        id: set-branch
-        run: |
-          if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
-            echo "branch=gh-pages" >> $GITHUB_OUTPUT
-          elif [[ "${{ github.ref }}" == "refs/heads/v2" ]]; then
-            echo "branch=gh-pages-v2" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Generate website
-        uses: poolpOrg/hugo-gh-pages@master
+      - name: Set up Go
+        uses: actions/setup-go@v5
         with:
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
-          hugoVersion: 'extended_0.133.1'
-          branch: ${{ steps.set-branch.outputs.branch }}
+          go-version: "stable"
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install Hugo
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y hugo
+
+      - name: Install npm deps
+        run: npm ci
+
+      - name: Build site (hugo)
+        run: hugo
+
+      - name: Build search index (pagefind)
+        run: npm run pagefind:index
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
