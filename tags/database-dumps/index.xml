@@ -1,8 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Database Dumps on Plakar | The Open Standard for Backup and Restore</title><link>https://www.plakar.io/tags/database-dumps/</link><description>Recent content in Database Dumps on Plakar | The Open Standard for Backup and Restore</description><generator>Hugo</generator><language>en</language><lastBuildDate>Tue, 13 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://www.plakar.io/tags/database-dumps/index.xml" rel="self" type="application/rss+xml"/><item><title>Stdio</title><link>https://www.plakar.io/integrations/stdio/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/stdio/</guid><description>&lt;h2 id="why-use-streams-instead-of-files">Why use Streams instead of Files?&lt;/h2>
-&lt;p>Plakar’s Stdio integration can back up any data stream provided via stdin like database dumps, system logs, command output or custom scripts. Unlike workflows that first create an intermediate files, streaming data directly avoids several challenges:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Storage Waste&lt;/strong>: You need enough free space to hold the uncompressed export before it even gets to your backup tool.&lt;/li>
-&lt;li>&lt;strong>Security Risks&lt;/strong>: Temporary files often sit on your disk unencrypted while waiting to be backed up.&lt;/li>
-&lt;li>&lt;strong>Complexity&lt;/strong>: You have to manage the creation and deletion of these intermediate files.&lt;/li>
-&lt;/ul>
-&lt;p>With the Stdio integration, Plakar reads data as it’s generated, encrypts and deduplicates it, and streams it straight to your Kloset Store without creating any intermediate files on disk.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Database Dumps on Plakar | The Open Standard for Backup and Restore</title>
+    <link>https://www.plakar.io/tags/database-dumps/</link>
+    <description>Recent content in Database Dumps on Plakar | The Open Standard for Backup and Restore</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 13 May 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.plakar.io/tags/database-dumps/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Stdio</title>
+      <link>https://www.plakar.io/integrations/stdio/</link>
+      <pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate>
+      <guid>https://www.plakar.io/integrations/stdio/</guid>
+      <description>&lt;h2 id=&#34;why-use-streams-instead-of-files&#34;&gt;Why use Streams instead of Files?&lt;/h2&gt;&#xA;&lt;p&gt;Plakar’s Stdio integration can back up any data stream provided via stdin like database dumps, system logs, command output or custom scripts. Unlike workflows that first create an intermediate files, streaming data directly avoids several challenges:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Storage Waste&lt;/strong&gt;: You need enough free space to hold the uncompressed export before it even gets to your backup tool.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Security Risks&lt;/strong&gt;: Temporary files often sit on your disk unencrypted while waiting to be backed up.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Complexity&lt;/strong&gt;: You have to manage the creation and deletion of these intermediate files.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;With the Stdio integration, Plakar reads data as it’s generated, encrypts and deduplicates it, and streams it straight to your Kloset Store without creating any intermediate files on disk.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

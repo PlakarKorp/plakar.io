@@ -1,23 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SFTP on Plakar | The Open Standard for Backup and Restore</title><link>https://www.plakar.io/tags/sftp/</link><description>Recent content in SFTP on Plakar | The Open Standard for Backup and Restore</description><generator>Hugo</generator><language>en</language><lastBuildDate>Wed, 30 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://www.plakar.io/tags/sftp/index.xml" rel="self" type="application/rss+xml"/><item><title>SFTP integration package</title><link>https://www.plakar.io/docs/v1.0.5/integrations/sftp/</link><pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/v1.0.5/integrations/sftp/</guid><description>&lt;blockquote>
-&lt;p>&lt;strong>Requirements&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>Plakar &lt;code>v1.0.4&lt;/code> or later&lt;/li>
-&lt;li>SFTP connector &lt;code>v1.0.4&lt;/code>&lt;/li>
-&lt;li>An SFTP/SSH server reachable from the Plakar agent, with appropriate read/write permissions&lt;/li>
-&lt;/ul>&lt;/blockquote>
-&lt;h2 id="introduction">Introduction&lt;/h2>
-&lt;p>Plakar&amp;rsquo;s SFTP integration includes three connectors:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Storage connector&lt;/strong> — host a Kloset store on any SFTP-accessible server.&lt;/li>
-&lt;li>&lt;strong>Source connector&lt;/strong> — back up a remote directory reachable over SFTP into a Kloset store.&lt;/li>
-&lt;li>&lt;strong>Destination connector&lt;/strong> — restore data from a Kloset store to an SFTP target.&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>Typical use cases&lt;/strong>&lt;/p></description></item><item><title>SFTP</title><link>https://www.plakar.io/integrations/sftp/</link><pubDate>Tue, 29 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/sftp/</guid><description>&lt;h2 id="why-protecting-sftp-matters">Why protecting SFTP matters&lt;/h2>
-&lt;p>SFTP is a standard for secure file transfers across Linux servers, BSD hosts, and NAS devices like Synology and QNAP. However, secure transfer is not the same as a backup strategy.&lt;/p>
-&lt;p>While SFTP secures the data in transit, it does not protect the data once it arrives to where you want to store it. Standard SFTP setups face several risks:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Lack of Versioning&lt;/strong>: Files can be overwritten or deleted immediately after upload.&lt;/li>
-&lt;li>&lt;strong>No Immutability&lt;/strong>: There are no permanent snapshots to revert to if a file is corrupted.&lt;/li>
-&lt;li>&lt;strong>Operational Risk&lt;/strong>: Manual transfers or custom scripts are error-prone and difficult to audit.&lt;/li>
-&lt;/ul>
-&lt;p>When compliance, uptime, or disaster recovery is critical, simply storing files on SFTP is not enough. You need verifiable, immutable backups that can survive mistakes, misconfigurations, or attacks.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sftp on Plakar | The Open Standard for Backup and Restore</title>
+    <link>https://www.plakar.io/tags/sftp/</link>
+    <description>Recent content in Sftp on Plakar | The Open Standard for Backup and Restore</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 30 Jul 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.plakar.io/tags/sftp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SFTP integration package</title>
+      <link>https://www.plakar.io/docs/v1.0.5/integrations/sftp/</link>
+      <pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://www.plakar.io/docs/v1.0.5/integrations/sftp/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;Requirements&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Plakar &lt;code&gt;v1.0.4&lt;/code&gt; or later&lt;/li&gt;&#xA;&lt;li&gt;SFTP connector &lt;code&gt;v1.0.4&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;An SFTP/SSH server reachable from the Plakar agent, with appropriate read/write permissions&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;Plakar&amp;rsquo;s SFTP integration includes three connectors:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Storage connector&lt;/strong&gt; — host a Kloset store on any SFTP-accessible server.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Source connector&lt;/strong&gt; — back up a remote directory reachable over SFTP into a Kloset store.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Destination connector&lt;/strong&gt; — restore data from a Kloset store to an SFTP target.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;strong&gt;Typical use cases&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Encrypted backups of remote Linux/BSD/application servers over SSH.&lt;/li&gt;&#xA;&lt;li&gt;Offsite or air-gapped snapshot storage by hosting a Kloset store on an SFTP server.&lt;/li&gt;&#xA;&lt;li&gt;DR workflows: restore server trees over SSH to warm or cold standby.&lt;/li&gt;&#xA;&lt;li&gt;Centralized archiving of distributed environments into one Kloset.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;strong&gt;Compatibility&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>SFTP</title>
+      <link>https://www.plakar.io/integrations/sftp/</link>
+      <pubDate>Tue, 29 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://www.plakar.io/integrations/sftp/</guid>
+      <description>&lt;h2 id=&#34;why-protecting-sftp-matters&#34;&gt;Why protecting SFTP matters&lt;/h2&gt;&#xA;&lt;p&gt;SFTP is a standard for secure file transfers across Linux servers, BSD hosts, and NAS devices like Synology and QNAP. However, secure transfer is not the same as a backup strategy.&lt;/p&gt;&#xA;&lt;p&gt;While SFTP secures the data in transit, it does not protect the data once it arrives to where you want to store it. Standard SFTP setups face several risks:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Lack of Versioning&lt;/strong&gt;: Files can be overwritten or deleted immediately after upload.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;No Immutability&lt;/strong&gt;: There are no permanent snapshots to revert to if a file is corrupted.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Operational Risk&lt;/strong&gt;: Manual transfers or custom scripts are error-prone and difficult to audit.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;When compliance, uptime, or disaster recovery is critical, simply storing files on SFTP is not enough. You need verifiable, immutable backups that can survive mistakes, misconfigurations, or attacks.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

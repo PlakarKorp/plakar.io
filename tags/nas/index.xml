@@ -1,24 +1,33 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>NAS on Plakar | The Open Standard for Backup and Restore</title><link>https://www.plakar.io/tags/nas/</link><description>Recent content in NAS on Plakar | The Open Standard for Backup and Restore</description><generator>Hugo</generator><language>en</language><lastBuildDate>Tue, 29 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://www.plakar.io/tags/nas/index.xml" rel="self" type="application/rss+xml"/><item><title>SFTP</title><link>https://www.plakar.io/integrations/sftp/</link><pubDate>Tue, 29 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/sftp/</guid><description>&lt;h2 id="why-protecting-sftp-matters">Why protecting SFTP matters&lt;/h2>
-&lt;p>SFTP is a standard for secure file transfers across Linux servers, BSD hosts, and NAS devices like Synology and QNAP. However, secure transfer is not the same as a backup strategy.&lt;/p>
-&lt;p>While SFTP secures the data in transit, it does not protect the data once it arrives to where you want to store it. Standard SFTP setups face several risks:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Lack of Versioning&lt;/strong>: Files can be overwritten or deleted immediately after upload.&lt;/li>
-&lt;li>&lt;strong>No Immutability&lt;/strong>: There are no permanent snapshots to revert to if a file is corrupted.&lt;/li>
-&lt;li>&lt;strong>Operational Risk&lt;/strong>: Manual transfers or custom scripts are error-prone and difficult to audit.&lt;/li>
-&lt;/ul>
-&lt;p>When compliance, uptime, or disaster recovery is critical, simply storing files on SFTP is not enough. You need verifiable, immutable backups that can survive mistakes, misconfigurations, or attacks.&lt;/p></description></item><item><title>Filesystem</title><link>https://www.plakar.io/integrations/fs/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/fs/</guid><description>&lt;h2 id="why-protecting-your-filesystem-matters">Why protecting your Filesystem matters&lt;/h2>
-&lt;p>Most of us protect our files by simply copying them to an external drive or a USB stick. While having a second copy is a good start, it isn&amp;rsquo;t a real backup strategy. Standard file copying leaves your data vulnerable to a few common problems:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Accidental Deletion&lt;/strong>: If you delete a file by mistake and your sync tool mirrors that change, the file is gone from both places.&lt;/li>
-&lt;li>&lt;strong>Ransomware and Corruption&lt;/strong>: If your files are hit by malware or a disk failure, &amp;ldquo;copying&amp;rdquo; those files usually just preserves the damaged versions.&lt;/li>
-&lt;li>&lt;strong>Human Error&lt;/strong>: It is incredibly easy to overwrite a new version of a document with an old one during a manual move.&lt;/li>
-&lt;/ul>
-&lt;p>For your personal photos, system settings, or work projects, you need a way to go back to a specific version of your data that you know is safe and healthy in case of a mishap with your current data.&lt;/p></description></item><item><title>FTP</title><link>https://www.plakar.io/integrations/ftp/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/ftp/</guid><description>&lt;h2 id="why-protecting-ftp-servers-matters">Why protecting FTP servers matters&lt;/h2>
-&lt;p>FTP is a standard protocol for file transfers across public repositories, network appliances, and production systems. However, file transfer is not the same as a backup strategy.&lt;/p>
-&lt;p>While FTP moves files between systems, it does not protect the data once it arrives. Standard FTP setups face several risks:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Lack of Versioning&lt;/strong>: Files can be overwritten or deleted immediately after upload.&lt;/li>
-&lt;li>&lt;strong>No Immutability&lt;/strong>: There are no permanent snapshots to revert to if a file is corrupted.&lt;/li>
-&lt;li>&lt;strong>Operational Risk&lt;/strong>: Manual transfers or custom scripts are error-prone and difficult to audit.&lt;/li>
-&lt;/ul>
-&lt;p>Simply storing files via FTP is not enough when compliance, uptime, or disaster recovery is critical. You need verifiable, immutable backups that can survive mistakes, misconfigurations, or unauthorized access.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>NAS on Plakar | The Open Standard for Backup and Restore</title>
+    <link>https://www.plakar.io/tags/nas/</link>
+    <description>Recent content in NAS on Plakar | The Open Standard for Backup and Restore</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 29 Jul 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.plakar.io/tags/nas/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SFTP</title>
+      <link>https://www.plakar.io/integrations/sftp/</link>
+      <pubDate>Tue, 29 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://www.plakar.io/integrations/sftp/</guid>
+      <description>&lt;h2 id=&#34;why-protecting-sftp-matters&#34;&gt;Why protecting SFTP matters&lt;/h2&gt;&#xA;&lt;p&gt;SFTP is a standard for secure file transfers across Linux servers, BSD hosts, and NAS devices like Synology and QNAP. However, secure transfer is not the same as a backup strategy.&lt;/p&gt;&#xA;&lt;p&gt;While SFTP secures the data in transit, it does not protect the data once it arrives to where you want to store it. Standard SFTP setups face several risks:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Lack of Versioning&lt;/strong&gt;: Files can be overwritten or deleted immediately after upload.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;No Immutability&lt;/strong&gt;: There are no permanent snapshots to revert to if a file is corrupted.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Operational Risk&lt;/strong&gt;: Manual transfers or custom scripts are error-prone and difficult to audit.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;When compliance, uptime, or disaster recovery is critical, simply storing files on SFTP is not enough. You need verifiable, immutable backups that can survive mistakes, misconfigurations, or attacks.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Filesystem</title>
+      <link>https://www.plakar.io/integrations/fs/</link>
+      <pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate>
+      <guid>https://www.plakar.io/integrations/fs/</guid>
+      <description>&lt;h2 id=&#34;why-protecting-your-filesystem-matters&#34;&gt;Why protecting your Filesystem matters&lt;/h2&gt;&#xA;&lt;p&gt;Most of us protect our files by simply copying them to an external drive or a USB stick. While having a second copy is a good start, it isn&amp;rsquo;t a real backup strategy. Standard file copying leaves your data vulnerable to a few common problems:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Accidental Deletion&lt;/strong&gt;: If you delete a file by mistake and your sync tool mirrors that change, the file is gone from both places.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Ransomware and Corruption&lt;/strong&gt;: If your files are hit by malware or a disk failure, &amp;ldquo;copying&amp;rdquo; those files usually just preserves the damaged versions.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Human Error&lt;/strong&gt;: It is incredibly easy to overwrite a new version of a document with an old one during a manual move.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;For your personal photos, system settings, or work projects, you need a way to go back to a specific version of your data that you know is safe and healthy in case of a mishap with your current data.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>FTP</title>
+      <link>https://www.plakar.io/integrations/ftp/</link>
+      <pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate>
+      <guid>https://www.plakar.io/integrations/ftp/</guid>
+      <description>&lt;h2 id=&#34;why-protecting-ftp-servers-matters&#34;&gt;Why protecting FTP servers matters&lt;/h2&gt;&#xA;&lt;p&gt;FTP is a standard protocol for file transfers across public repositories, network appliances, and production systems. However, file transfer is not the same as a backup strategy.&lt;/p&gt;&#xA;&lt;p&gt;While FTP moves files between systems, it does not protect the data once it arrives. Standard FTP setups face several risks:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Lack of Versioning&lt;/strong&gt;: Files can be overwritten or deleted immediately after upload.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;No Immutability&lt;/strong&gt;: There are no permanent snapshots to revert to if a file is corrupted.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Operational Risk&lt;/strong&gt;: Manual transfers or custom scripts are error-prone and difficult to audit.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Simply storing files via FTP is not enough when compliance, uptime, or disaster recovery is critical. You need verifiable, immutable backups that can survive mistakes, misconfigurations, or unauthorized access.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,127 +1,131 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Source Connector on Plakar | The Open Standard for Backup and Restore</title><link>https://www.plakar.io/categories/source-connector/</link><description>Recent content in Source Connector on Plakar | The Open Standard for Backup and Restore</description><generator>Hugo</generator><language>en</language><lastBuildDate>Tue, 29 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://www.plakar.io/categories/source-connector/index.xml" rel="self" type="application/rss+xml"/><item><title>SFTP</title><link>https://www.plakar.io/integrations/sftp/</link><pubDate>Tue, 29 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/sftp/</guid><description>&lt;h2 id="why-protecting-sftp-matters">Why protecting SFTP matters&lt;/h2>
-&lt;p>SFTP is a standard for secure file transfers across Linux servers, BSD hosts, and NAS devices like Synology and QNAP. However, secure transfer is not the same as a backup strategy.&lt;/p>
-&lt;p>While SFTP secures the data in transit, it does not protect the data once it arrives to where you want to store it. Standard SFTP setups face several risks:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Lack of Versioning&lt;/strong>: Files can be overwritten or deleted immediately after upload.&lt;/li>
-&lt;li>&lt;strong>No Immutability&lt;/strong>: There are no permanent snapshots to revert to if a file is corrupted.&lt;/li>
-&lt;li>&lt;strong>Operational Risk&lt;/strong>: Manual transfers or custom scripts are error-prone and difficult to audit.&lt;/li>
-&lt;/ul>
-&lt;p>When compliance, uptime, or disaster recovery is critical, simply storing files on SFTP is not enough. You need verifiable, immutable backups that can survive mistakes, misconfigurations, or attacks.&lt;/p></description></item><item><title>Dropbox</title><link>https://www.plakar.io/integrations/dropbox/</link><pubDate>Mon, 28 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/dropbox/</guid><description>&lt;h2 id="why-protecting-dropbox-matters">Why protecting Dropbox matters&lt;/h2>
-&lt;p>Dropbox is excellent for syncing and sharing files instantly, but syncing is not the same as a backup. Because Dropbox mirrors your actions across all devices, any mistake or error can spread everywhere at once:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Instant Deletion&lt;/strong>: If you or a collaborator accidentally delete a folder, that deletion spreads to every linked computer immediately.&lt;/li>
-&lt;li>&lt;strong>Limited Recovery&lt;/strong>: Dropbox has a specific &amp;ldquo;trash&amp;rdquo; window, but if data loss is discovered after that window closes, those files may be permanently gone.&lt;/li>
-&lt;li>&lt;strong>Ransomware&lt;/strong>: If your local files are hit by malware, Dropbox will sync the versions encrypted by malware, overwriting your healthy data in the cloud.&lt;/li>
-&lt;/ul>
-&lt;p>For your important projects and shared team folders, you need an independent record of your data that remains safe, verifiable, and restorable no matter what happens in your live Dropbox environment.&lt;/p></description></item><item><title>Google Drive</title><link>https://www.plakar.io/integrations/googledrive/</link><pubDate>Mon, 28 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/googledrive/</guid><description>&lt;h2 id="why-protecting-google-drive-matters">Why protecting Google Drive matters&lt;/h2>
-&lt;p>Google Drive is central to everyday work and collaboration, but synchronization is not a backup solution. Actions taken in Google Drive are synced to all connected devices almost instantly. This leaves it vulnerable to:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Accidental Deletion&lt;/strong>: Files removed by a user are quickly removed across all devices and shared workspaces.&lt;/li>
-&lt;li>&lt;strong>Overwrites and Corruption&lt;/strong>: Bad edits or corrupted files replace healthy versions across the entire environment.&lt;/li>
-&lt;li>&lt;strong>Ransomware&lt;/strong>: Malware-encrypted files are synchronized back to Google Drive, overwriting clean data.&lt;/li>
-&lt;/ul>
-&lt;p>Native retention and recovery options are limited in scope and duration. For business‑critical or compliance‑sensitive data, an independent and immutable backup history is essential.&lt;/p></description></item><item><title>iCloud Drive</title><link>https://www.plakar.io/integrations/iclouddrive/</link><pubDate>Mon, 28 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/iclouddrive/</guid><description>&lt;h2 id="why-protecting-icloud-drive-matters">Why protecting iCloud Drive matters&lt;/h2>
-&lt;p>iCloud Drive is central to the Apple ecosystem, seamlessly syncing files across devices, however synchronization doesn&amp;rsquo;t count as a backup solution. Actions taken in iCloud Drive are synced to all connected devices almost instantly. This leaves it vulnerable to:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Accidental Deletion&lt;/strong>: Files removed by a user are quickly removed across all devices.&lt;/li>
-&lt;li>&lt;strong>Overwrites and Corruption&lt;/strong>: Bad edits or corrupted files replace healthy versions across the entire environment.&lt;/li>
-&lt;li>&lt;strong>Ransomware&lt;/strong>: Malware-encrypted files are synchronized back to iCloud Drive, overwriting clean data.&lt;/li>
-&lt;/ul>
-&lt;p>Native retention and recovery options are limited in scope and duration. While Apple provides some version history, it&amp;rsquo;s restricted to recent changes and specific file types. For business-critical or compliance-sensitive data, an independent and immutable backup history is essential.&lt;/p></description></item><item><title>Koofr</title><link>https://www.plakar.io/integrations/koofr/</link><pubDate>Mon, 28 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/koofr/</guid><description>&lt;h2 id="why-protecting-koofr-matters">Why protecting Koofr matters&lt;/h2>
-&lt;p>Koofr provides privacy-focused cloud storage with multi-cloud integration, but these features are not a backup solution. Actions taken in Koofr can affect your files instantly. This leaves it vulnerable to:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Accidental Deletion&lt;/strong>: Files removed by a user are permanently deleted from your storage.&lt;/li>
-&lt;li>&lt;strong>Overwrites and Corruption&lt;/strong>: Bad edits or corrupted files replace healthy versions.&lt;/li>
-&lt;li>&lt;strong>Ransomware&lt;/strong>: Malware-encrypted files can overwrite clean data in your Koofr storage.&lt;/li>
-&lt;/ul>
-&lt;p>Native retention and recovery options are limited in scope and duration. For business-critical or compliance-sensitive data, an independent and immutable backup history is essential.&lt;/p></description></item><item><title>MinIO</title><link>https://www.plakar.io/integrations/minio/</link><pubDate>Mon, 28 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/minio/</guid><description>&lt;h2 id="why-protecting-minio-matters">Why protecting MinIO matters&lt;/h2>
-&lt;p>Object storage is often perceived as durable by default, but durability is not the same as a backup. Many organizations use MinIO to store logs, datasets, container images, or even other backup files, assuming they are safe.&lt;/p>
-&lt;p>However, without independent immutability and integrity validation, data stored in MinIO is still vulnerable to:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Silent Corruption&lt;/strong>: Data can degrade over time without being noticed.&lt;/li>
-&lt;li>&lt;strong>Accidental Deletion&lt;/strong>: Misconfigured lifecycle policies can delete important data automatically.&lt;/li>
-&lt;li>&lt;strong>Access Mismanagement&lt;/strong>: If security keys are leaked or misused, your entire data store can be wiped or altered.&lt;/li>
-&lt;/ul>
-&lt;p>When retention and recovery are mission-critical, simply storing objects is not enough. You need a verifiable backup strategy.&lt;/p></description></item><item><title>OneDrive</title><link>https://www.plakar.io/integrations/onedrive/</link><pubDate>Mon, 28 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/onedrive/</guid><description>&lt;h2 id="why-protecting-onedrive-matters">Why protecting OneDrive matters&lt;/h2>
-&lt;p>OneDrive&amp;rsquo;s seamless integration with Microsoft 365 makes it indispensable for modern work, but this same integration creates unique risks. When something goes wrong—whether accidental deletion, file corruption, or ransomware—the problem spreads instantly across every connected device and user. This leaves OneDrive environments vulnerable to:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Synchronized Deletions&lt;/strong>: A file deleted on one device disappears from OneDrive and all other devices within seconds.&lt;/li>
-&lt;li>&lt;strong>Rapid Corruption Spread&lt;/strong>: Corrupted or maliciously encrypted files replace healthy versions across your entire organization.&lt;/li>
-&lt;li>&lt;strong>Credential-Based Attacks&lt;/strong>: A single compromised account can be used to delete or encrypt large portions of your shared files.&lt;/li>
-&lt;/ul>
-&lt;p>While OneDrive provides a recycle bin and version history, these features have time limits and may not protect against determined attackers or cascading failures. For regulated industries or business-critical data, these built-in protections are insufficient.&lt;/p></description></item><item><title>OpenDrive</title><link>https://www.plakar.io/integrations/opendrive/</link><pubDate>Mon, 28 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/opendrive/</guid><description>&lt;h2 id="why-protecting-opendrive-matters">Why protecting OpenDrive matters&lt;/h2>
-&lt;p>OpenDrive excels at synchronizing files and making them accessible across devices. But this doesn&amp;rsquo;t count as a backup strategy. Your files are still vulnerable to:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Accidental Deletion&lt;/strong>: Deleted files are synced instantly and may be permanently removed once retention limits are reached.&lt;/li>
-&lt;li>&lt;strong>Overwrites and Corruption&lt;/strong>: Bad edits or corrupted files replace healthy versions across all devices.&lt;/li>
-&lt;li>&lt;strong>Ransomware&lt;/strong>: Encrypted files created by malware are synced back to OpenDrive, overwriting clean data.&lt;/li>
-&lt;/ul>
-&lt;p>For important personal data, shared folders, or business assets, you need an independent history of your files that cannot be altered by mistakes, malware, or account issues.&lt;/p></description></item><item><title>Proton Drive</title><link>https://www.plakar.io/integrations/protondrive/</link><pubDate>Mon, 28 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/protondrive/</guid><description>&lt;h2 id="why-protecting-proton-drive-matters">Why protecting Proton Drive matters&lt;/h2>
-&lt;p>Proton Drive provides strong privacy through end-to-end encryption, but like any cloud storage platform, it faces risks from accidental deletion, device compromise, and sync propagation:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Instant Deletion&lt;/strong>: If you or a collaborator accidentally delete a folder, that deletion spreads to every synced device immediately.&lt;/li>
-&lt;li>&lt;strong>Limited Recovery Window&lt;/strong>: Proton Drive provides a trash retention period, but if data loss is discovered after that window closes, those files may be permanently gone.&lt;/li>
-&lt;li>&lt;strong>Ransomware&lt;/strong>: If your local files are encrypted by malware, Proton Drive will sync those corrupted versions, overwriting your healthy data in the cloud.&lt;/li>
-&lt;/ul>
-&lt;p>For important documents and sensitive files, an independent backup provides an additional safety layer that remains available regardless of what happens in your live Proton Drive environment.&lt;/p></description></item><item><title>CalDAV</title><link>https://www.plakar.io/integrations/caldav/</link><pubDate>Mon, 21 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/caldav/</guid><description>&lt;h2 id="why-protecting-caldav-matters">Why protecting CalDAV matters&lt;/h2>
-&lt;p>Calendar data has become a critical infrastructure for personal and professional life. Meetings, appointments, deadlines, and event history represent important scheduling information that organizations and individuals depend on daily.&lt;/p>
-&lt;p>CalDAV provides reliable synchronization across devices, but synchronization is not the same as backup. Standard CalDAV usage faces several risks:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Accidental Deletion&lt;/strong>: Events can be permanently deleted across all synchronized devices instantly.&lt;/li>
-&lt;li>&lt;strong>Limited Recovery&lt;/strong>: Most providers offer minimal version history or trash functionality with short retention windows.&lt;/li>
-&lt;li>&lt;strong>Calendar Corruption&lt;/strong>: Malformed events or sync errors can corrupt entire calendars.&lt;/li>
-&lt;/ul>
-&lt;h2 id="security-and-compromise">Security and Compromise&lt;/h2>
-&lt;p>CalDAV servers are accessed via account credentials and application-specific passwords. If credentials are compromised or permissions are misconfigured, your calendar data is vulnerable:&lt;/p></description></item><item><title>Notion</title><link>https://www.plakar.io/integrations/notion/</link><pubDate>Tue, 08 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/notion/</guid><description>&lt;h2 id="why-protecting-notion-matters">Why protecting Notion matters&lt;/h2>
-&lt;p>Notion has become central to how organizations document processes, manage projects, and preserve institutional knowledge. As more critical information moves into Notion, the risks of data loss grow proportionally.&lt;/p>
-&lt;p>Notion provides platform availability and collaboration features, but it does not guarantee recovery from common failure scenarios. Standard Notion usage faces several risks:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Accidental Deletion&lt;/strong>: Pages and databases can be permanently deleted by any user with edit access.&lt;/li>
-&lt;li>&lt;strong>Unauthorized Changes&lt;/strong>: API integrations, compromised accounts, or malicious actors can modify or destroy content.&lt;/li>
-&lt;li>&lt;strong>Limited Version History&lt;/strong>: Notion&amp;rsquo;s native version history has retention limits and cannot protect against all scenarios.&lt;/li>
-&lt;li>&lt;strong>Export Limitations&lt;/strong>: Native exports are one-time snapshots in generic formats that lose structure and relationships.&lt;/li>
-&lt;/ul>
-&lt;h2 id="security-and-compromise">Security and Compromise&lt;/h2>
-&lt;p>Notion workspaces are accessed via user accounts, API tokens, and third-party integrations. If credentials are compromised or permissions are misconfigured, your workspace is vulnerable:&lt;/p></description></item><item><title>IMAP</title><link>https://www.plakar.io/integrations/imap/</link><pubDate>Mon, 07 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/imap/</guid><description>&lt;h2 id="why-protecting-imap-matters">Why protecting IMAP matters&lt;/h2>
-&lt;p>Email is often treated as inherently persistent, but IMAP mailboxes are vulnerable to both accidental and malicious data loss. Standard IMAP setups face several critical risks:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Accidental Deletion&lt;/strong>: Users can permanently delete entire folders with a few clicks. Most mail clients offer no meaningful undo beyond a trash folder that itself can be emptied.&lt;/li>
-&lt;li>&lt;strong>Account Compromise&lt;/strong>: If credentials are stolen or phished, attackers can delete years of correspondence instantly. Business email compromise attacks specifically target mailboxes to destroy evidence or communication history.&lt;/li>
-&lt;li>&lt;strong>Retention Policy Gaps&lt;/strong>: Server-side policies may automatically delete old messages. Quota pressures can force users to delete important emails. These deletions happen silently and often without adequate warning.&lt;/li>
-&lt;li>&lt;strong>Synchronization Cascades&lt;/strong>: IMAP synchronizes deletions across all connected devices immediately. A mistake on one device propagates everywhere, leaving no local copy to recover from.&lt;/li>
-&lt;li>&lt;strong>No Version History&lt;/strong>: Unlike documents or files, emails have no built-in versioning. Once modified or deleted on the server, the original is gone unless you have an independent backup.&lt;/li>
-&lt;/ul>
-&lt;p>Emails often contain business records, compliance data, legal correspondence, or irreplaceable personal history and relying solely on the mail server is not enough. You need verifiable, immutable snapshots that exist independently of your IMAP account.&lt;/p></description></item><item><title>Filesystem</title><link>https://www.plakar.io/integrations/fs/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/fs/</guid><description>&lt;h2 id="why-protecting-your-filesystem-matters">Why protecting your Filesystem matters&lt;/h2>
-&lt;p>Most of us protect our files by simply copying them to an external drive or a USB stick. While having a second copy is a good start, it isn&amp;rsquo;t a real backup strategy. Standard file copying leaves your data vulnerable to a few common problems:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Accidental Deletion&lt;/strong>: If you delete a file by mistake and your sync tool mirrors that change, the file is gone from both places.&lt;/li>
-&lt;li>&lt;strong>Ransomware and Corruption&lt;/strong>: If your files are hit by malware or a disk failure, &amp;ldquo;copying&amp;rdquo; those files usually just preserves the damaged versions.&lt;/li>
-&lt;li>&lt;strong>Human Error&lt;/strong>: It is incredibly easy to overwrite a new version of a document with an old one during a manual move.&lt;/li>
-&lt;/ul>
-&lt;p>For your personal photos, system settings, or work projects, you need a way to go back to a specific version of your data that you know is safe and healthy in case of a mishap with your current data.&lt;/p></description></item><item><title>FTP</title><link>https://www.plakar.io/integrations/ftp/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/ftp/</guid><description>&lt;h2 id="why-protecting-ftp-servers-matters">Why protecting FTP servers matters&lt;/h2>
-&lt;p>FTP is a standard protocol for file transfers across public repositories, network appliances, and production systems. However, file transfer is not the same as a backup strategy.&lt;/p>
-&lt;p>While FTP moves files between systems, it does not protect the data once it arrives. Standard FTP setups face several risks:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Lack of Versioning&lt;/strong>: Files can be overwritten or deleted immediately after upload.&lt;/li>
-&lt;li>&lt;strong>No Immutability&lt;/strong>: There are no permanent snapshots to revert to if a file is corrupted.&lt;/li>
-&lt;li>&lt;strong>Operational Risk&lt;/strong>: Manual transfers or custom scripts are error-prone and difficult to audit.&lt;/li>
-&lt;/ul>
-&lt;p>Simply storing files via FTP is not enough when compliance, uptime, or disaster recovery is critical. You need verifiable, immutable backups that can survive mistakes, misconfigurations, or unauthorized access.&lt;/p></description></item><item><title>S3</title><link>https://www.plakar.io/integrations/s3/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/s3/</guid><description>&lt;h2 id="why-protecting-s3-data-matters">Why protecting S3 data matters&lt;/h2>
-&lt;p>S3 is often treated as the backup, but object storage durability is not the same as data protection. While S3 provides excellent infrastructure resilience, it remains logically vulnerable to:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Silent Corruption&lt;/strong>: Data can degrade over time without detection, and standard object storage lacks built-in integrity validation across your entire dataset.&lt;/li>
-&lt;li>&lt;strong>Accidental Deletion&lt;/strong>: Misconfigured lifecycle policies can automatically delete critical objects. Human errors like bulk delete operations happen instantly and affect thousands of objects.&lt;/li>
-&lt;li>&lt;strong>Versioning Gaps&lt;/strong>: Versioning is optional and easy to misconfigure. Even when enabled, it doesn&amp;rsquo;t protect against lifecycle policy deletions or deliberate version purging.&lt;/li>
-&lt;li>&lt;strong>Replication Risks&lt;/strong>: S3 replication is a double-edged sword. It spreads corruption, accidental deletions, and malicious changes just as quickly as legitimate data.&lt;/li>
-&lt;/ul>
-&lt;p>For production data, assets, logs, and compliance records, S3 needs an independent safety net beyond buckets and replication.&lt;/p></description></item><item><title>Stdio</title><link>https://www.plakar.io/integrations/stdio/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/stdio/</guid><description>&lt;h2 id="why-use-streams-instead-of-files">Why use Streams instead of Files?&lt;/h2>
-&lt;p>Plakar’s Stdio integration can back up any data stream provided via stdin like database dumps, system logs, command output or custom scripts. Unlike workflows that first create an intermediate files, streaming data directly avoids several challenges:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Storage Waste&lt;/strong>: You need enough free space to hold the uncompressed export before it even gets to your backup tool.&lt;/li>
-&lt;li>&lt;strong>Security Risks&lt;/strong>: Temporary files often sit on your disk unencrypted while waiting to be backed up.&lt;/li>
-&lt;li>&lt;strong>Complexity&lt;/strong>: You have to manage the creation and deletion of these intermediate files.&lt;/li>
-&lt;/ul>
-&lt;p>With the Stdio integration, Plakar reads data as it’s generated, encrypts and deduplicates it, and streams it straight to your Kloset Store without creating any intermediate files on disk.&lt;/p></description></item><item><title>Tar</title><link>https://www.plakar.io/integrations/tar/</link><pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/tar/</guid><description>&lt;h2 id="using-tar-archives-with-plakar">Using tar archives with Plakar&lt;/h2>
-&lt;p>Tar has been a standard Unix archive format for decades, commonly used to bundle files for distribution, transfer, and simple backups. It is widely supported and highly portable.&lt;/p>
-&lt;p>Tar archives themselves do not provide backup semantics such as deduplication, version tracking, or built-in encryption. Managing backups as collections of independent tar files becomes difficult as data evolves over time.&lt;/p>
-&lt;p>Tar archives are imported into Plakar, which handles storage, deduplication, and verification.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Source Connector on Plakar | The Open Standard for Backup and Restore</title>
+    <link>https://www.plakar.io/categories/source-connector/</link>
+    <description>Recent content in Source Connector on Plakar | The Open Standard for Backup and Restore</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 29 Jul 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.plakar.io/categories/source-connector/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SFTP</title>
+      <link>https://www.plakar.io/integrations/sftp/</link>
+      <pubDate>Tue, 29 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://www.plakar.io/integrations/sftp/</guid>
+      <description>&lt;h2 id=&#34;why-protecting-sftp-matters&#34;&gt;Why protecting SFTP matters&lt;/h2&gt;&#xA;&lt;p&gt;SFTP is a standard for secure file transfers across Linux servers, BSD hosts, and NAS devices like Synology and QNAP. However, secure transfer is not the same as a backup strategy.&lt;/p&gt;&#xA;&lt;p&gt;While SFTP secures the data in transit, it does not protect the data once it arrives to where you want to store it. Standard SFTP setups face several risks:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Lack of Versioning&lt;/strong&gt;: Files can be overwritten or deleted immediately after upload.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;No Immutability&lt;/strong&gt;: There are no permanent snapshots to revert to if a file is corrupted.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Operational Risk&lt;/strong&gt;: Manual transfers or custom scripts are error-prone and difficult to audit.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;When compliance, uptime, or disaster recovery is critical, simply storing files on SFTP is not enough. You need verifiable, immutable backups that can survive mistakes, misconfigurations, or attacks.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Dropbox</title>
+      <link>https://www.plakar.io/integrations/dropbox/</link>
+      <pubDate>Mon, 28 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://www.plakar.io/integrations/dropbox/</guid>
+      <description>&lt;h2 id=&#34;why-protecting-dropbox-matters&#34;&gt;Why protecting Dropbox matters&lt;/h2&gt;&#xA;&lt;p&gt;Dropbox is excellent for syncing and sharing files instantly, but syncing is not the same as a backup. Because Dropbox mirrors your actions across all devices, any mistake or error can spread everywhere at once:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Instant Deletion&lt;/strong&gt;: If you or a collaborator accidentally delete a folder, that deletion spreads to every linked computer immediately.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Limited Recovery&lt;/strong&gt;: Dropbox has a specific &amp;ldquo;trash&amp;rdquo; window, but if data loss is discovered after that window closes, those files may be permanently gone.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Ransomware&lt;/strong&gt;: If your local files are hit by malware, Dropbox will sync the versions encrypted by malware, overwriting your healthy data in the cloud.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;For your important projects and shared team folders, you need an independent record of your data that remains safe, verifiable, and restorable no matter what happens in your live Dropbox environment.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Google Drive</title>
+      <link>https://www.plakar.io/integrations/googledrive/</link>
+      <pubDate>Mon, 28 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://www.plakar.io/integrations/googledrive/</guid>
+      <description>&lt;h2 id=&#34;why-protecting-google-drive-matters&#34;&gt;Why protecting Google Drive matters&lt;/h2&gt;&#xA;&lt;p&gt;Google Drive is central to everyday work and collaboration, but synchronization is not a backup solution. Actions taken in Google Drive are synced to all connected devices almost instantly. This leaves it vulnerable to:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Accidental Deletion&lt;/strong&gt;: Files removed by a user are quickly removed across all devices and shared workspaces.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Overwrites and Corruption&lt;/strong&gt;: Bad edits or corrupted files replace healthy versions across the entire environment.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Ransomware&lt;/strong&gt;: Malware-encrypted files are synchronized back to Google Drive, overwriting clean data.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Native retention and recovery options are limited in scope and duration. For business‑critical or compliance‑sensitive data, an independent and immutable backup history is essential.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>iCloud Drive</title>
+      <link>https://www.plakar.io/integrations/iclouddrive/</link>
+      <pubDate>Mon, 28 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://www.plakar.io/integrations/iclouddrive/</guid>
+      <description>&lt;h2 id=&#34;why-protecting-icloud-drive-matters&#34;&gt;Why protecting iCloud Drive matters&lt;/h2&gt;&#xA;&lt;p&gt;iCloud Drive is central to the Apple ecosystem, seamlessly syncing files across devices, however synchronization doesn&amp;rsquo;t count as a backup solution. Actions taken in iCloud Drive are synced to all connected devices almost instantly. This leaves it vulnerable to:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Accidental Deletion&lt;/strong&gt;: Files removed by a user are quickly removed across all devices.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Overwrites and Corruption&lt;/strong&gt;: Bad edits or corrupted files replace healthy versions across the entire environment.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Ransomware&lt;/strong&gt;: Malware-encrypted files are synchronized back to iCloud Drive, overwriting clean data.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Native retention and recovery options are limited in scope and duration. While Apple provides some version history, it&amp;rsquo;s restricted to recent changes and specific file types. For business-critical or compliance-sensitive data, an independent and immutable backup history is essential.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Koofr</title>
+      <link>https://www.plakar.io/integrations/koofr/</link>
+      <pubDate>Mon, 28 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://www.plakar.io/integrations/koofr/</guid>
+      <description>&lt;h2 id=&#34;why-protecting-koofr-matters&#34;&gt;Why protecting Koofr matters&lt;/h2&gt;&#xA;&lt;p&gt;Koofr provides privacy-focused cloud storage with multi-cloud integration, but these features are not a backup solution. Actions taken in Koofr can affect your files instantly. This leaves it vulnerable to:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Accidental Deletion&lt;/strong&gt;: Files removed by a user are permanently deleted from your storage.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Overwrites and Corruption&lt;/strong&gt;: Bad edits or corrupted files replace healthy versions.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Ransomware&lt;/strong&gt;: Malware-encrypted files can overwrite clean data in your Koofr storage.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Native retention and recovery options are limited in scope and duration. For business-critical or compliance-sensitive data, an independent and immutable backup history is essential.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>MinIO</title>
+      <link>https://www.plakar.io/integrations/minio/</link>
+      <pubDate>Mon, 28 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://www.plakar.io/integrations/minio/</guid>
+      <description>&lt;h2 id=&#34;why-protecting-minio-matters&#34;&gt;Why protecting MinIO matters&lt;/h2&gt;&#xA;&lt;p&gt;Object storage is often perceived as durable by default, but durability is not the same as a backup. Many organizations use MinIO to store logs, datasets, container images, or even other backup files, assuming they are safe.&lt;/p&gt;&#xA;&lt;p&gt;However, without independent immutability and integrity validation, data stored in MinIO is still vulnerable to:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Silent Corruption&lt;/strong&gt;: Data can degrade over time without being noticed.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Accidental Deletion&lt;/strong&gt;: Misconfigured lifecycle policies can delete important data automatically.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Access Mismanagement&lt;/strong&gt;: If security keys are leaked or misused, your entire data store can be wiped or altered.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;When retention and recovery are mission-critical, simply storing objects is not enough. You need a verifiable backup strategy.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>OneDrive</title>
+      <link>https://www.plakar.io/integrations/onedrive/</link>
+      <pubDate>Mon, 28 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://www.plakar.io/integrations/onedrive/</guid>
+      <description>&lt;h2 id=&#34;why-protecting-onedrive-matters&#34;&gt;Why protecting OneDrive matters&lt;/h2&gt;&#xA;&lt;p&gt;OneDrive&amp;rsquo;s seamless integration with Microsoft 365 makes it indispensable for modern work, but this same integration creates unique risks. When something goes wrong—whether accidental deletion, file corruption, or ransomware—the problem spreads instantly across every connected device and user. This leaves OneDrive environments vulnerable to:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Synchronized Deletions&lt;/strong&gt;: A file deleted on one device disappears from OneDrive and all other devices within seconds.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Rapid Corruption Spread&lt;/strong&gt;: Corrupted or maliciously encrypted files replace healthy versions across your entire organization.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Credential-Based Attacks&lt;/strong&gt;: A single compromised account can be used to delete or encrypt large portions of your shared files.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;While OneDrive provides a recycle bin and version history, these features have time limits and may not protect against determined attackers or cascading failures. For regulated industries or business-critical data, these built-in protections are insufficient.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>OpenDrive</title>
+      <link>https://www.plakar.io/integrations/opendrive/</link>
+      <pubDate>Mon, 28 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://www.plakar.io/integrations/opendrive/</guid>
+      <description>&lt;h2 id=&#34;why-protecting-opendrive-matters&#34;&gt;Why protecting OpenDrive matters&lt;/h2&gt;&#xA;&lt;p&gt;OpenDrive excels at synchronizing files and making them accessible across devices. But this doesn&amp;rsquo;t count as a backup strategy. Your files are still vulnerable to:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Accidental Deletion&lt;/strong&gt;: Deleted files are synced instantly and may be permanently removed once retention limits are reached.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Overwrites and Corruption&lt;/strong&gt;: Bad edits or corrupted files replace healthy versions across all devices.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Ransomware&lt;/strong&gt;: Encrypted files created by malware are synced back to OpenDrive, overwriting clean data.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;For important personal data, shared folders, or business assets, you need an independent history of your files that cannot be altered by mistakes, malware, or account issues.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Proton Drive</title>
+      <link>https://www.plakar.io/integrations/protondrive/</link>
+      <pubDate>Mon, 28 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://www.plakar.io/integrations/protondrive/</guid>
+      <description>&lt;h2 id=&#34;why-protecting-proton-drive-matters&#34;&gt;Why protecting Proton Drive matters&lt;/h2&gt;&#xA;&lt;p&gt;Proton Drive provides strong privacy through end-to-end encryption, but like any cloud storage platform, it faces risks from accidental deletion, device compromise, and sync propagation:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Instant Deletion&lt;/strong&gt;: If you or a collaborator accidentally delete a folder, that deletion spreads to every synced device immediately.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Limited Recovery Window&lt;/strong&gt;: Proton Drive provides a trash retention period, but if data loss is discovered after that window closes, those files may be permanently gone.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Ransomware&lt;/strong&gt;: If your local files are encrypted by malware, Proton Drive will sync those corrupted versions, overwriting your healthy data in the cloud.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;For important documents and sensitive files, an independent backup provides an additional safety layer that remains available regardless of what happens in your live Proton Drive environment.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>CalDAV</title>
+      <link>https://www.plakar.io/integrations/caldav/</link>
+      <pubDate>Mon, 21 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://www.plakar.io/integrations/caldav/</guid>
+      <description>&lt;h2 id=&#34;why-protecting-caldav-matters&#34;&gt;Why protecting CalDAV matters&lt;/h2&gt;&#xA;&lt;p&gt;Calendar data has become a critical infrastructure for personal and professional life. Meetings, appointments, deadlines, and event history represent important scheduling information that organizations and individuals depend on daily.&lt;/p&gt;&#xA;&lt;p&gt;CalDAV provides reliable synchronization across devices, but synchronization is not the same as backup. Standard CalDAV usage faces several risks:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Accidental Deletion&lt;/strong&gt;: Events can be permanently deleted across all synchronized devices instantly.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Limited Recovery&lt;/strong&gt;: Most providers offer minimal version history or trash functionality with short retention windows.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Calendar Corruption&lt;/strong&gt;: Malformed events or sync errors can corrupt entire calendars.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;security-and-compromise&#34;&gt;Security and Compromise&lt;/h2&gt;&#xA;&lt;p&gt;CalDAV servers are accessed via account credentials and application-specific passwords. If credentials are compromised or permissions are misconfigured, your calendar data is vulnerable:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Notion</title>
+      <link>https://www.plakar.io/integrations/notion/</link>
+      <pubDate>Tue, 08 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://www.plakar.io/integrations/notion/</guid>
+      <description>&lt;h2 id=&#34;why-protecting-notion-matters&#34;&gt;Why protecting Notion matters&lt;/h2&gt;&#xA;&lt;p&gt;Notion has become central to how organizations document processes, manage projects, and preserve institutional knowledge. As more critical information moves into Notion, the risks of data loss grow proportionally.&lt;/p&gt;&#xA;&lt;p&gt;Notion provides platform availability and collaboration features, but it does not guarantee recovery from common failure scenarios. Standard Notion usage faces several risks:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Accidental Deletion&lt;/strong&gt;: Pages and databases can be permanently deleted by any user with edit access.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Unauthorized Changes&lt;/strong&gt;: API integrations, compromised accounts, or malicious actors can modify or destroy content.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Limited Version History&lt;/strong&gt;: Notion&amp;rsquo;s native version history has retention limits and cannot protect against all scenarios.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Export Limitations&lt;/strong&gt;: Native exports are one-time snapshots in generic formats that lose structure and relationships.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;security-and-compromise&#34;&gt;Security and Compromise&lt;/h2&gt;&#xA;&lt;p&gt;Notion workspaces are accessed via user accounts, API tokens, and third-party integrations. If credentials are compromised or permissions are misconfigured, your workspace is vulnerable:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>IMAP</title>
+      <link>https://www.plakar.io/integrations/imap/</link>
+      <pubDate>Mon, 07 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://www.plakar.io/integrations/imap/</guid>
+      <description>&lt;h2 id=&#34;why-protecting-imap-matters&#34;&gt;Why protecting IMAP matters&lt;/h2&gt;&#xA;&lt;p&gt;Email is often treated as inherently persistent, but IMAP mailboxes are vulnerable to both accidental and malicious data loss. Standard IMAP setups face several critical risks:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Accidental Deletion&lt;/strong&gt;: Users can permanently delete entire folders with a few clicks. Most mail clients offer no meaningful undo beyond a trash folder that itself can be emptied.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Account Compromise&lt;/strong&gt;: If credentials are stolen or phished, attackers can delete years of correspondence instantly. Business email compromise attacks specifically target mailboxes to destroy evidence or communication history.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Retention Policy Gaps&lt;/strong&gt;: Server-side policies may automatically delete old messages. Quota pressures can force users to delete important emails. These deletions happen silently and often without adequate warning.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Synchronization Cascades&lt;/strong&gt;: IMAP synchronizes deletions across all connected devices immediately. A mistake on one device propagates everywhere, leaving no local copy to recover from.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;No Version History&lt;/strong&gt;: Unlike documents or files, emails have no built-in versioning. Once modified or deleted on the server, the original is gone unless you have an independent backup.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Emails often contain business records, compliance data, legal correspondence, or irreplaceable personal history and relying solely on the mail server is not enough. You need verifiable, immutable snapshots that exist independently of your IMAP account.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Filesystem</title>
+      <link>https://www.plakar.io/integrations/fs/</link>
+      <pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate>
+      <guid>https://www.plakar.io/integrations/fs/</guid>
+      <description>&lt;h2 id=&#34;why-protecting-your-filesystem-matters&#34;&gt;Why protecting your Filesystem matters&lt;/h2&gt;&#xA;&lt;p&gt;Most of us protect our files by simply copying them to an external drive or a USB stick. While having a second copy is a good start, it isn&amp;rsquo;t a real backup strategy. Standard file copying leaves your data vulnerable to a few common problems:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Accidental Deletion&lt;/strong&gt;: If you delete a file by mistake and your sync tool mirrors that change, the file is gone from both places.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Ransomware and Corruption&lt;/strong&gt;: If your files are hit by malware or a disk failure, &amp;ldquo;copying&amp;rdquo; those files usually just preserves the damaged versions.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Human Error&lt;/strong&gt;: It is incredibly easy to overwrite a new version of a document with an old one during a manual move.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;For your personal photos, system settings, or work projects, you need a way to go back to a specific version of your data that you know is safe and healthy in case of a mishap with your current data.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>FTP</title>
+      <link>https://www.plakar.io/integrations/ftp/</link>
+      <pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate>
+      <guid>https://www.plakar.io/integrations/ftp/</guid>
+      <description>&lt;h2 id=&#34;why-protecting-ftp-servers-matters&#34;&gt;Why protecting FTP servers matters&lt;/h2&gt;&#xA;&lt;p&gt;FTP is a standard protocol for file transfers across public repositories, network appliances, and production systems. However, file transfer is not the same as a backup strategy.&lt;/p&gt;&#xA;&lt;p&gt;While FTP moves files between systems, it does not protect the data once it arrives. Standard FTP setups face several risks:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Lack of Versioning&lt;/strong&gt;: Files can be overwritten or deleted immediately after upload.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;No Immutability&lt;/strong&gt;: There are no permanent snapshots to revert to if a file is corrupted.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Operational Risk&lt;/strong&gt;: Manual transfers or custom scripts are error-prone and difficult to audit.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Simply storing files via FTP is not enough when compliance, uptime, or disaster recovery is critical. You need verifiable, immutable backups that can survive mistakes, misconfigurations, or unauthorized access.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>S3</title>
+      <link>https://www.plakar.io/integrations/s3/</link>
+      <pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate>
+      <guid>https://www.plakar.io/integrations/s3/</guid>
+      <description>&lt;h2 id=&#34;why-protecting-s3-data-matters&#34;&gt;Why protecting S3 data matters&lt;/h2&gt;&#xA;&lt;p&gt;S3 is often treated as the backup, but object storage durability is not the same as data protection. While S3 provides excellent infrastructure resilience, it remains logically vulnerable to:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Silent Corruption&lt;/strong&gt;: Data can degrade over time without detection, and standard object storage lacks built-in integrity validation across your entire dataset.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Accidental Deletion&lt;/strong&gt;: Misconfigured lifecycle policies can automatically delete critical objects. Human errors like bulk delete operations happen instantly and affect thousands of objects.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Versioning Gaps&lt;/strong&gt;: Versioning is optional and easy to misconfigure. Even when enabled, it doesn&amp;rsquo;t protect against lifecycle policy deletions or deliberate version purging.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Replication Risks&lt;/strong&gt;: S3 replication is a double-edged sword. It spreads corruption, accidental deletions, and malicious changes just as quickly as legitimate data.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;For production data, assets, logs, and compliance records, S3 needs an independent safety net beyond buckets and replication.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Stdio</title>
+      <link>https://www.plakar.io/integrations/stdio/</link>
+      <pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate>
+      <guid>https://www.plakar.io/integrations/stdio/</guid>
+      <description>&lt;h2 id=&#34;why-use-streams-instead-of-files&#34;&gt;Why use Streams instead of Files?&lt;/h2&gt;&#xA;&lt;p&gt;Plakar’s Stdio integration can back up any data stream provided via stdin like database dumps, system logs, command output or custom scripts. Unlike workflows that first create an intermediate files, streaming data directly avoids several challenges:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Storage Waste&lt;/strong&gt;: You need enough free space to hold the uncompressed export before it even gets to your backup tool.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Security Risks&lt;/strong&gt;: Temporary files often sit on your disk unencrypted while waiting to be backed up.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Complexity&lt;/strong&gt;: You have to manage the creation and deletion of these intermediate files.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;With the Stdio integration, Plakar reads data as it’s generated, encrypts and deduplicates it, and streams it straight to your Kloset Store without creating any intermediate files on disk.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Tar</title>
+      <link>https://www.plakar.io/integrations/tar/</link>
+      <pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate>
+      <guid>https://www.plakar.io/integrations/tar/</guid>
+      <description>&lt;h2 id=&#34;using-tar-archives-with-plakar&#34;&gt;Using tar archives with Plakar&lt;/h2&gt;&#xA;&lt;p&gt;Tar has been a standard Unix archive format for decades, commonly used to bundle files for distribution, transfer, and simple backups. It is widely supported and highly portable.&lt;/p&gt;&#xA;&lt;p&gt;Tar archives themselves do not provide backup semantics such as deduplication, version tracking, or built-in encryption. Managing backups as collections of independent tar files becomes difficult as data evolves over time.&lt;/p&gt;&#xA;&lt;p&gt;Tar archives are imported into Plakar, which handles storage, deduplication, and verification.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

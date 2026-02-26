@@ -1,24 +1,40 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Notion on Plakar | The Open Standard for Backup and Restore</title><link>https://www.plakar.io/tags/notion/</link><description>Recent content in Notion on Plakar | The Open Standard for Backup and Restore</description><generator>Hugo</generator><language>en</language><lastBuildDate>Tue, 16 Sep 2025 10:00:00 +0100</lastBuildDate><atom:link href="https://www.plakar.io/tags/notion/index.xml" rel="self" type="application/rss+xml"/><item><title>Release v1.0.4 — A new milestone for Plakar</title><link>https://www.plakar.io/posts/2025-09-16/release-v1.0.4-a-new-milestone-for-plakar/</link><pubDate>Tue, 16 Sep 2025 10:00:00 +0100</pubDate><guid>https://www.plakar.io/posts/2025-09-16/release-v1.0.4-a-new-milestone-for-plakar/</guid><description>Plakar v1.0.4 introduces pre-packaged binaries, a new plugin system for integrations, smarter caching, policy-based lifecycle management, UI refinements, and major performance boosts — marking a milestone release for the platform.</description></item><item><title>Back up Notion? Yes, you can.</title><link>https://www.plakar.io/posts/2025-07-17/back-up-notion-yes-you-can./</link><pubDate>Thu, 17 Jul 2025 10:00:00 +0100</pubDate><guid>https://www.plakar.io/posts/2025-07-17/back-up-notion-yes-you-can./</guid><description>With our new Notion integration, plakar can now snapshot and restore workspaces directly — docs, databases, and more. No hacks. Just data.</description></item><item><title>Notion</title><link>https://www.plakar.io/integrations/notion/</link><pubDate>Tue, 08 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/integrations/notion/</guid><description>&lt;h2 id="why-protecting-notion-matters">Why protecting Notion matters&lt;/h2>
-&lt;p>Notion has become central to how organizations document processes, manage projects, and preserve institutional knowledge. As more critical information moves into Notion, the risks of data loss grow proportionally.&lt;/p>
-&lt;p>Notion provides platform availability and collaboration features, but it does not guarantee recovery from common failure scenarios. Standard Notion usage faces several risks:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Accidental Deletion&lt;/strong>: Pages and databases can be permanently deleted by any user with edit access.&lt;/li>
-&lt;li>&lt;strong>Unauthorized Changes&lt;/strong>: API integrations, compromised accounts, or malicious actors can modify or destroy content.&lt;/li>
-&lt;li>&lt;strong>Limited Version History&lt;/strong>: Notion&amp;rsquo;s native version history has retention limits and cannot protect against all scenarios.&lt;/li>
-&lt;li>&lt;strong>Export Limitations&lt;/strong>: Native exports are one-time snapshots in generic formats that lose structure and relationships.&lt;/li>
-&lt;/ul>
-&lt;h2 id="security-and-compromise">Security and Compromise&lt;/h2>
-&lt;p>Notion workspaces are accessed via user accounts, API tokens, and third-party integrations. If credentials are compromised or permissions are misconfigured, your workspace is vulnerable:&lt;/p></description></item><item><title>Notion Integration documentation</title><link>https://www.plakar.io/docs/v1.0.5/integrations/notion/</link><pubDate>Mon, 07 Jul 2025 00:00:00 +0000</pubDate><guid>https://www.plakar.io/docs/v1.0.5/integrations/notion/</guid><description>&lt;h2 id="overview">Overview&lt;/h2>
-&lt;p>The &lt;strong>Notion integration&lt;/strong> allows you to back up and restore your Notion pages or entire workspace into a Plakar repository using the official Notion API.&lt;/p>
-&lt;p>All content is fetched via the API and stored as structured JSON, including page metadata, content blocks, and hierarchical relationships.&lt;/p>
-&lt;h1 id="backup">Backup&lt;/h1>
-&lt;h2 id="configuration">Configuration&lt;/h2>
-&lt;ul>
-&lt;li>A valid &lt;a href="https://www.notion.com/my-integrations">&lt;strong>Notion API token&lt;/strong>&lt;/a> (&lt;code>ntn_xxx&lt;/code>)&lt;/li>
-&lt;li>The integration must be &lt;strong>shared with each page&lt;/strong> you want to back up&lt;br>
-→ See &lt;a href="https://developers.notion.com/docs/getting-started#step-1-create-an-integration">Notion’s developer guide&lt;/a> for how to create and share integrations&lt;/li>
-&lt;/ul>
-&lt;h2 id="example-usage">Example Usage&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">$ plakar at /var/backups create
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ plakar at /var/backups backup notion:// &lt;span class="nv">token&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="nv">$NOTION_API_TOKEN&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>To create the Kloset repository at &lt;code>/var/backups&lt;/code> and back up your Notion content, assuming the following env variable &lt;code>NOTION_API_TOKEN&lt;/code> contained your shared API token.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Notion on Plakar | The Open Standard for Backup and Restore</title>
+    <link>https://www.plakar.io/tags/notion/</link>
+    <description>Recent content in Notion on Plakar | The Open Standard for Backup and Restore</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 16 Sep 2025 10:00:00 +0100</lastBuildDate>
+    <atom:link href="https://www.plakar.io/tags/notion/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Release v1.0.4 — A new milestone for Plakar</title>
+      <link>https://www.plakar.io/posts/2025-09-16/release-v1.0.4-a-new-milestone-for-plakar/</link>
+      <pubDate>Tue, 16 Sep 2025 10:00:00 +0100</pubDate>
+      <guid>https://www.plakar.io/posts/2025-09-16/release-v1.0.4-a-new-milestone-for-plakar/</guid>
+      <description>Plakar v1.0.4 introduces pre-packaged binaries, a new plugin system for integrations, smarter caching, policy-based lifecycle management, UI refinements, and major performance boosts — marking a milestone release for the platform.</description>
+    </item>
+    <item>
+      <title>Back up Notion? Yes, you can.</title>
+      <link>https://www.plakar.io/posts/2025-07-17/back-up-notion-yes-you-can./</link>
+      <pubDate>Thu, 17 Jul 2025 10:00:00 +0100</pubDate>
+      <guid>https://www.plakar.io/posts/2025-07-17/back-up-notion-yes-you-can./</guid>
+      <description>With our new Notion integration, plakar can now snapshot and restore workspaces directly — docs, databases, and more. No hacks. Just data.</description>
+    </item>
+    <item>
+      <title>Notion</title>
+      <link>https://www.plakar.io/integrations/notion/</link>
+      <pubDate>Tue, 08 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://www.plakar.io/integrations/notion/</guid>
+      <description>&lt;h2 id=&#34;why-protecting-notion-matters&#34;&gt;Why protecting Notion matters&lt;/h2&gt;&#xA;&lt;p&gt;Notion has become central to how organizations document processes, manage projects, and preserve institutional knowledge. As more critical information moves into Notion, the risks of data loss grow proportionally.&lt;/p&gt;&#xA;&lt;p&gt;Notion provides platform availability and collaboration features, but it does not guarantee recovery from common failure scenarios. Standard Notion usage faces several risks:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Accidental Deletion&lt;/strong&gt;: Pages and databases can be permanently deleted by any user with edit access.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Unauthorized Changes&lt;/strong&gt;: API integrations, compromised accounts, or malicious actors can modify or destroy content.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Limited Version History&lt;/strong&gt;: Notion&amp;rsquo;s native version history has retention limits and cannot protect against all scenarios.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Export Limitations&lt;/strong&gt;: Native exports are one-time snapshots in generic formats that lose structure and relationships.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;security-and-compromise&#34;&gt;Security and Compromise&lt;/h2&gt;&#xA;&lt;p&gt;Notion workspaces are accessed via user accounts, API tokens, and third-party integrations. If credentials are compromised or permissions are misconfigured, your workspace is vulnerable:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Notion Integration documentation</title>
+      <link>https://www.plakar.io/docs/v1.0.5/integrations/notion/</link>
+      <pubDate>Mon, 07 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://www.plakar.io/docs/v1.0.5/integrations/notion/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;The &lt;strong&gt;Notion integration&lt;/strong&gt; allows you to back up and restore your Notion pages or entire workspace into a Plakar repository using the official Notion API.&lt;/p&gt;&#xA;&lt;p&gt;All content is fetched via the API and stored as structured JSON, including page metadata, content blocks, and hierarchical relationships.&lt;/p&gt;&#xA;&lt;h1 id=&#34;backup&#34;&gt;Backup&lt;/h1&gt;&#xA;&lt;h2 id=&#34;configuration&#34;&gt;Configuration&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;A valid &lt;a href=&#34;https://www.notion.com/my-integrations&#34;&gt;&lt;strong&gt;Notion API token&lt;/strong&gt;&lt;/a&gt; (&lt;code&gt;ntn_xxx&lt;/code&gt;)&lt;/li&gt;&#xA;&lt;li&gt;The integration must be &lt;strong&gt;shared with each page&lt;/strong&gt; you want to back up&lt;br&gt;&#xA;→ See &lt;a href=&#34;https://developers.notion.com/docs/getting-started#step-1-create-an-integration&#34;&gt;Notion’s developer guide&lt;/a&gt; for how to create and share integrations&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;example-usage&#34;&gt;Example Usage&lt;/h2&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ plakar at /var/backups create&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ plakar at /var/backups backup notion:// &lt;span class=&#34;nv&#34;&gt;token&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$NOTION_API_TOKEN&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To create the Kloset repository at &lt;code&gt;/var/backups&lt;/code&gt; and back up your Notion content, assuming the following env variable &lt;code&gt;NOTION_API_TOKEN&lt;/code&gt; contained your shared API token.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
