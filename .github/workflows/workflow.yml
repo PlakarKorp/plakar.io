@@ -17,6 +17,8 @@ jobs:
 
       - name: Set up Go
         uses: actions/setup-go@v6
+        with:
+          go-version: "1.25"
 
       - name: Set up Node
         uses: actions/setup-node@v4
