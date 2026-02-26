@@ -81,12 +81,34 @@ EOF
   This will install the binary into your `$GOPATH/bin` directory, which you may need to add to your `$PATH` if it is not already there.
 {{< /tab >}}
 
+{{% tab name="Build from Source" %}}
+  You can build Plakar from source. You will need:
+  - [Go (Golang)](https://go.dev/doc/install)
+  - `make` (available by default on most Linux distributions; on macOS, install the Xcode command line tools with `xcode-select --install`; on Windows, use [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) or a tool like [GnuWin32 Make](https://gnuwin32.sourceforge.net/packages/make.htm))
+
+  Clone the repository and run `make`:
+  ```bash
+  git clone https://github.com/PlakarKorp/plakar.git
+  cd plakar
+  make
+  ```
+
+  This produces a `plakar` binary in the current directory.
+
+  To build a specific release version, check out the corresponding tag before running `make`:
+  ```bash
+  git checkout v1.1.0
+  make
+  ```
+{{< /tab >}}
+
 {{% tab name="Others" %}}
   ### Arch Linux
   Plakar is available on the Arch User Repository (AUR). If you use an AUR helper such as `yay`, you can install it with:
   ```bash
   yay -S plakar
   ```
+
   ### Other Platforms
 
   For other supported operating systems, or for an alternative to the methods mentioned above, it is possible to download pre-built binaries for different platforms and architectures from the [Download page](/download).
