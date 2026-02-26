@@ -1,12 +1,13 @@
 FROM alpine:latest AS build
 
-RUN apk add go git hugo
+RUN apk add go git hugo npm
 
 WORKDIR /opt/app
 
 COPY . .
 
 RUN hugo
+RUN npm run pagefind:index
 
 FROM nginx
 
