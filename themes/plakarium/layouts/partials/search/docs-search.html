@@ -4,10 +4,11 @@
 {{ $riFileTextLine := resources.Get "img/ri/file-text-line.svg" }}
 
 <script>
-function docsSearch() {
+function siteSearch() {
   return {
     isOpen: false,
     query: '',
+    selectedSection: '',
     selectedVersion: '',
     results: [],
     rawResults: [],
@@ -60,6 +61,13 @@ function docsSearch() {
       }
     },
 
+    onSectionChange() {
+      if (this.selectedSection !== 'Docs') {
+        this.selectedVersion = '';
+      }
+      this.search();
+    },
+
     async search() {
       if (!this.query || this.query.length < 2) {
         this.results = [];
@@ -74,9 +82,17 @@ function docsSearch() {
 
       this.loading = true;
 
+      const filters = {};
+      if (this.selectedSection) {
+        filters.section = this.selectedSection;
+      }
+      if (this.selectedVersion && this.selectedSection === 'Docs') {
+        filters.version = this.selectedVersion;
+      }
+
       const options = {};
-      if (this.selectedVersion) {
-        options.filters = { version: this.selectedVersion };
+      if (Object.keys(filters).length > 0) {
+        options.filters = filters;
       }
 
       const search = await this.pagefind.debouncedSearch(this.query, options);
@@ -101,12 +117,13 @@ function docsSearch() {
 
       const loaded = await Promise.all(batch.map(r => r.data()));
       const mapped = loaded.map(data => {
-        const parts = (data.url || '').split('/').filter(Boolean);
-        const version = parts.length > 1 ? parts[1] : '';
+        const section = data.filters?.section?.[0] || '';
+        const version = data.filters?.version?.[0] || '';
         return {
           url: data.url,
           title: data.meta?.title || 'Untitled',
           excerpt: data.excerpt || '',
+          section: section,
           version: version,
           subResults: (data.sub_results || []).map(sub => ({
             title: sub.title || '',
@@ -131,7 +148,7 @@ function docsSearch() {
 </script>
 
 <!-- Search Modal -->
-<div x-data="docsSearch()" x-on:open-search.window="open()" x-on:keydown.window="handleKeydown($event)" x-cloak>
+<div x-data="siteSearch()" x-on:open-search.window="open()" x-on:keydown.window="handleKeydown($event)" x-cloak>
   <!-- Backdrop -->
   <div x-show="isOpen"
        x-transition:enter="transition ease-out duration-200"
@@ -156,7 +173,7 @@ function docsSearch() {
     <div x-on:click.stop
          role="dialog"
          aria-modal="true"
-         aria-label="Search documentation"
+         aria-label="Search site"
          class="bg-white rounded-xl shadow-2xl w-full max-w-[680px] max-h-[75vh] flex flex-col overflow-hidden pointer-events-auto ring-1 ring-neutral-200">
 
       <!-- Search input row -->
@@ -166,26 +183,42 @@ function docsSearch() {
                x-model="query"
                x-on:input.debounce.200ms="search()"
                type="text"
-               placeholder="Search documentation..."
-               aria-label="Search documentation"
+               placeholder="Search..."
+               aria-label="Search site"
                class="flex-1 bg-transparent text-neutral-900 placeholder-neutral-400 text-base font-space-grotesk outline-none border-none focus:ring-0 p-0">
         <button x-on:click="close()" aria-label="Close search" class="text-neutral-400 hover:text-neutral-600 flex-shrink-0 transition-colors">
           <span class="w-5 h-5 block">{{ $riCloseLine.Content | safeHTML }}</span>
         </button>
       </div>
 
-      <!-- Version filter -->
-      <div class="flex items-center gap-3 px-5 py-2.5 border-b border-neutral-200 bg-white">
-        <span class="text-sm text-neutral-500 font-space-grotesk">Version:</span>
-        <select x-model="selectedVersion"
-                x-on:change="search()"
-                aria-label="Filter by version"
+      <!-- Filters -->
+      <div class="flex items-center gap-3 px-5 py-2.5 border-b border-neutral-200 bg-white flex-wrap">
+        <span class="text-sm text-neutral-500 font-space-grotesk">Section:</span>
+        <select x-model="selectedSection"
+                x-on:change="onSectionChange()"
+                aria-label="Filter by section"
                 class="text-sm font-space-grotesk bg-white border border-neutral-300 rounded-md px-2.5 py-1 text-neutral-700 outline-none focus:ring-0 cursor-pointer">
-          <option value="">All versions</option>
-          {{ range $docsSection.Sections }}
-          <option value="{{ .Title }}">{{ .Title }}</option>
-          {{ end }}
+          <option value="">All sections</option>
+          <option value="Docs">Documentation</option>
+          <option value="Blog">Blog</option>
+          <option value="Integrations">Integrations</option>
+          <option value="Pages">Pages</option>
         </select>
+
+        <template x-if="selectedSection === 'Docs'">
+          <div class="flex items-center gap-2">
+            <span class="text-sm text-neutral-500 font-space-grotesk">Version:</span>
+            <select x-model="selectedVersion"
+                    x-on:change="search()"
+                    aria-label="Filter by version"
+                    class="text-sm font-space-grotesk bg-white border border-neutral-300 rounded-md px-2.5 py-1 text-neutral-700 outline-none focus:ring-0 cursor-pointer">
+              <option value="">All versions</option>
+              {{ range $docsSection.Sections }}
+              <option value="{{ .Title }}">{{ .Title }}</option>
+              {{ end }}
+            </select>
+          </div>
+        </template>
       </div>
 
       <!-- Status bar -->
@@ -200,7 +233,7 @@ function docsSearch() {
         <!-- Empty state -->
         <div x-show="query.length === 0 && !loading"
              class="px-5 py-10 text-center text-neutral-400 text-sm font-space-grotesk">
-          Start typing to search the documentation.
+          Start typing to search.
         </div>
 
         <!-- Result items -->
@@ -216,6 +249,9 @@ function docsSearch() {
               <div class="flex-1 min-w-0">
                 <div class="flex items-center gap-2">
                   <span class="text-sm font-semibold text-neutral-900 font-space-grotesk truncate" x-text="result.title"></span>
+                  <span x-show="result.section"
+                        class="flex-shrink-0 text-[10px] font-space-grotesk px-1.5 py-0.5 rounded bg-primary-50 text-primary-600 border border-primary-200"
+                        x-text="result.section"></span>
                   <span x-show="result.version"
                         class="flex-shrink-0 text-[10px] font-space-grotesk px-1.5 py-0.5 rounded bg-neutral-100 text-neutral-500 border border-neutral-200"
                         x-text="result.version"></span>

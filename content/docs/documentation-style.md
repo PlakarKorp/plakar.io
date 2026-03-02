@@ -1,10 +1,11 @@
-+++
-title = "Documentation style guidelines"
-date = "2025-03-18T10:07:31Z"
-weight = 2
-chapter = false
-pre = "<b>2. </b>"
-+++
+---
+title: "Documentation style guidelines"
+date: "2025-03-18T10:07:31Z"
+weight: 2
+chapter: false
+pre: "<b>2. </b>"
+excludeFromSearch: true
+---
 
 ## Custom shortcodes
 
