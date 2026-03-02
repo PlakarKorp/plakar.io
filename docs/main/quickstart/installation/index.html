@@ -9527,7 +9527,7 @@ function docsSearch() {
             class="col-start-1 row-start-1 w-full bg-neutral-50 py-2 pr-10 pl-3 text-base text-neutral-900
                    outline outline-1 outline-neutral-300 appearance-none
                    focus:outline-2 focus:-outline-offset-2 focus:outline-primary-600"
-            data-tabs-select><option value="installation-methods-0" selected>Debian/Ubuntu (APT)</option><option value="installation-methods-1" >RPM-based (DNF)</option><option value="installation-methods-2" >macOS (Homebrew)</option><option value="installation-methods-3" >Windows</option><option value="installation-methods-4" >Go Install</option><option value="installation-methods-5" >Others</option></select>
+            data-tabs-select><option value="installation-methods-0" selected>Debian/Ubuntu (APT)</option><option value="installation-methods-1" >RPM-based (DNF)</option><option value="installation-methods-2" >macOS (Homebrew)</option><option value="installation-methods-3" >Windows</option><option value="installation-methods-4" >Go Install</option><option value="installation-methods-5" >Build from Source</option><option value="installation-methods-6" >Others</option></select>
 
     
     <svg class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-neutral-500"
@@ -9616,6 +9616,19 @@ function docsSearch() {
                     data-[selected=true]:font-semibold data-[selected=true]:border-primary-600
                     data-[selected=true]:text-primary-600">
             
+            <span>Build from Source</span>
+          </button><button type="button"
+                  id="installation-methods-6-tab"
+                  data-target="installation-methods-6"
+                  aria-controls="installation-methods-6"
+                  aria-selected="false"
+                  role="tab"
+                  class="py-4 px-1 inline-flex items-center gap-x-2 border-b-2 border-transparent text-sm
+                    whitespace-nowrap text-neutral-500 hover:text-primary-600 focus:outline-hidden
+                    focus:text-primary-600 disabled:opacity-50 disabled:pointer-events-none
+                    data-[selected=true]:font-semibold data-[selected=true]:border-primary-600
+                    data-[selected=true]:text-primary-600">
+            
             <span>Others</span>
           </button></nav>
     </div>
@@ -9683,6 +9696,24 @@ function docsSearch() {
       </div><div id="installation-methods-5"
            role="tabpanel"
            aria-labelledby="installation-methods-5-tab"
+           class="hidden prose max-w-none w-full">
+        <div class="prose max-w-none w-full prose-pre:max-w-none"><p>You can build Plakar from source. You will need:</p>
+<ul>
+<li><a href="https://go.dev/doc/install">Go (Golang)</a></li>
+<li><code>make</code> (available by default on most Linux distributions; on macOS, install the Xcode command line tools with <code>xcode-select --install</code>; on Windows, use <a href="https://learn.microsoft.com/en-us/windows/wsl/install">WSL</a> or a tool like <a href="https://gnuwin32.sourceforge.net/packages/make.htm">GnuWin32 Make</a>)</li>
+</ul>
+<p>Clone the repository and run <code>make</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone https://github.com/PlakarKorp/plakar.git
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> plakar
+</span></span><span class="line"><span class="cl">make
+</span></span></code></pre></div><p>This produces a <code>plakar</code> binary in the current directory.</p>
+<p>To build a specific release version, check out the corresponding tag before running <code>make</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git checkout v1.1.0
+</span></span><span class="line"><span class="cl">make
+</span></span></code></pre></div></div>
+      </div><div id="installation-methods-6"
+           role="tabpanel"
+           aria-labelledby="installation-methods-6-tab"
            class="hidden prose max-w-none w-full">
         <div class="prose max-w-none w-full prose-pre:max-w-none"><h3 id="arch-linux">Arch Linux</h3>
 <p>Plakar is available on the Arch User Repository (AUR). If you use an AUR helper such as <code>yay</code>, you can install it with:</p>
