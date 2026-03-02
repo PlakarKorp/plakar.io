@@ -87,3 +87,18 @@ plakar help <command>
 ```
 
 The built-in help is always in sync with the version of Plakar you have installed, making it the most reliable reference for available options and commands.
+
+## Environment variables
+
+| Variable | Description |
+|----------|-------------|
+| `PLAKAR_PASSPHRASE` | Supply the encryption passphrase non-interactively |
+| `PLAKAR_REPOSITORY` | Set the default repository path |
+
+### `PLAKAR_PASSPHRASE`
+
+When creating or opening an encrypted repository, Plakar prompts for a passphrase. Setting `PLAKAR_PASSPHRASE` provides it automatically, which is useful in scripts, CI pipelines, or any non-interactive context where a terminal prompt isn't available.
+
+### `PLAKAR_REPOSITORY`
+
+Sets the default repository location so you don't need to specify `at REPOSITORY` on every command. When omitted and no `at` clause is provided, Plakar falls back to `~/.plakar`.

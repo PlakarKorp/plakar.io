@@ -87,3 +87,28 @@ plakar help <command>
 ```
 
 The built-in help is always in sync with the version of Plakar you have installed, making it the most reliable reference for available options and commands.
+
+## Environment variables
+
+| Variable | Description |
+|----------|-------------|
+| `PLAKAR_PASSPHRASE` | Supply the encryption passphrase non-interactively |
+| `PLAKAR_REPOSITORY` | Set the default repository path |
+| `PLAKAR_TOKEN` | Token-based authentication for non-interactive environments |
+| `PLAKAR_UI_TOKEN` | Set a custom access token for the web UI |
+
+### `PLAKAR_PASSPHRASE`
+
+When creating or opening an encrypted repository, Plakar prompts for a passphrase. Setting `PLAKAR_PASSPHRASE` provides it automatically, which is useful in scripts, CI pipelines, or any non-interactive context where a terminal prompt isn't available.
+
+### `PLAKAR_REPOSITORY`
+
+Sets the default repository location so you don't need to specify `at REPOSITORY` on every command. When omitted and no `at` clause is provided, Plakar falls back to `~/.plakar`.
+
+### `PLAKAR_TOKEN`
+
+Used for authentication in CI pipelines, remote servers, or automated jobs where interactive login isn't possible. Generate a token on a machine where you can run `plakar login` followed by `plakar token create`, then set `PLAKAR_TOKEN` to the resulting value on the target system. Plakar automatically picks it up for authentication. You can also run `plakar login -env` to persist the token from the environment into Plakar's local configuration file.
+
+### `PLAKAR_UI_TOKEN`
+
+By default, the web UI generates a random access token on each start, which you must retrieve from the service logs. Setting `PLAKAR_UI_TOKEN` lets you define a stable, known token so you can bookmark the UI URL or script access without inspecting logs every time the service restarts.
