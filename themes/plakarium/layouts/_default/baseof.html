@@ -56,6 +56,7 @@
         </div>
 
         {{ else }}
+        {{ partial "search/docs-search.html" . }}
         <div class="relative z-10 mx-auto">
             {{ partial "header/corporate/header.html" . }}{{ block "main" . }}{{end}}{{ partial "footer.html" . }}
         </div>
@@ -64,5 +65,4 @@
     {{ $react := resources.Get "js/bundle.js" | js.Build (dict "minify" true) }}
     {{ partial "scripts.html" . }}
 </body>
-
 </html>

@@ -1,4 +1,5 @@
 {{ $logoDark := resources.Get .Site.Params.logoDark }}
+{{ $riSearchLine := resources.Get "img/ri/search-line.svg" }}
 
 <!-- Fixed Navbar -->
 <header id="site-header"
@@ -31,8 +32,14 @@
 
         </div>
 
-        <!-- Right-side buttons (GitHub + Actions) -->
+        <!-- Right-side buttons (Search + GitHub + Actions) -->
         <div class="flex flex-row items-center space-x-2 w-full justify-end">
+            <!-- Search trigger -->
+            <button x-on:click="$dispatch('open-search')"
+                    aria-label="Open search"
+                    class="flex items-center justify-center w-[28px] h-[28px] md:w-[48px] md:h-[48px] border border-neutral-300 rounded-lg text-neutral-500 bg-neutral-50 text-sm">
+                <span class="w-4 h-4 md:w-[22px] md:h-[22px] -mt-0.5 md:mt-0">{{ $riSearchLine.Content | safeHTML }}</span>
+            </button>
             <!-- Discord link -->
             <div class="hidden min-h-[24px] xl:min-h-[48px] items-stretch lg:flex gap-2 pr-4 p-[1px] border border-neutral-300 bg-neutral-50 rounded-lg font-space-text">
                 {{ partial "social/discord-badge.html" (dict
@@ -88,4 +95,3 @@
         });
     });
 </script>
-

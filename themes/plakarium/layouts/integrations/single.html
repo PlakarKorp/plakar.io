@@ -10,7 +10,6 @@
         </div>
     </section>
 
-
     <!-- Title -->
     <section class="section-light-2 grid-background">
         <div class="bg-gradient-section-light-1 p-4">
@@ -83,7 +82,8 @@
         <div class="content flex flex-col lg:flex-row gap-12 items-start px-4">
 
             <!-- Article content -->
-            <article class="w-full flex flex-col gap-16">
+            <article class="w-full flex flex-col gap-16" data-pagefind-body>
+                <span data-pagefind-filter="section" class="hidden">Integrations</span>
 
                 <!-- Author info -->
                 {{ range .GetTerms "authors" }}
@@ -234,5 +234,4 @@
             </div>
         </div>
     </section>
-
 {{ end }}
