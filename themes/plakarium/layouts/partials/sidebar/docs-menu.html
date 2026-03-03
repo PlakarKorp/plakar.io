@@ -174,15 +174,23 @@
                 </a>
             {{ else }}
                 <!-- Section with children, render with accordion -->
-                <div class="my-1 {{ if $subsection.IsAncestor $currentPage }}open{{ end }}">
+                <div class="my-1">
                     <div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded {{ if gt $depth 0 }}ml-4{{ end }}"
                          :class="{ 'bg-neutral-100': openSections['{{ $sectionId }}'] }">
                         <a href="{{ $subsection.RelPermalink }}"
-                           @click="localStorage.setItem('sidebarState', 'open')"
+                           @click.prevent.stop="
+                             if (openSections['{{ $sectionId }}']) {
+                               openSections['{{ $sectionId }}'] = false;
+                             } else {
+                               openSections['{{ $sectionId }}'] = true;
+                               localStorage.setItem('sidebarState', 'open');
+                               window.location.href = '{{ $subsection.RelPermalink }}';
+                             }
+                           "
                            class="flex-grow flex items-center gap-1 {{ if eq $currentPage.RelPermalink $subsection.RelPermalink }}text-primary-600 font-semibold{{ end }}">
                             {{ $subsection.Title }}
                         </a>
-                        <button @click.prevent="openSections['{{ $sectionId }}'] = !openSections['{{ $sectionId }}']"
+                        <button @click.prevent.stop="openSections['{{ $sectionId }}'] = !openSections['{{ $sectionId }}']"
                                 class="focus:outline-none">
                             <span class="text-neutral-500" x-show="!openSections['{{ $sectionId }}']">
                                 <i class="ri-arrow-down-s-line"></i>

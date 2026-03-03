@@ -2207,7 +2207,8 @@ video {
 }
 
 .terminal::before {
-  background-image: radial-gradient(
+  background-image:
+      radial-gradient(
         circle,
         #ef4444 var(--circle-size),
         transparent var(--circle-size)
@@ -2224,14 +2225,20 @@ video {
       );
   background-size: 18px 18px;
   background-repeat: no-repeat;
-  background-position: 4px center, 22px center, 40px center;
+  background-position:
+      4px center,
+      22px center,
+      40px center;
 }
 
 @media (min-width: 768px) {
   .terminal::before {
     --circle-size: 7px;
     background-size: 24px 24px;
-    background-position: 6px center, 28px center, 50px center;
+    background-position:
+        6px center,
+        28px center,
+        50px center;
   }
 }
 
@@ -5620,7 +5627,8 @@ video {
 }
 
 .grid-background {
-  background-image: linear-gradient(
+  background-image:
+      linear-gradient(
         to right,
         #E7E6F0 1px,
         transparent 1px
@@ -5754,12 +5762,6 @@ section .content {
 }
 
 @plugin "@tailwindcss/typography";
-
-/* Fix for the open class in the docs sidebar */
-
-.open .pl-2 {
-  display: block !important;
-}
 
 .not-ready {
   animation: none !important;
@@ -6745,6 +6747,10 @@ details > summary {
     height:1.5rem;
   }
 
+  .md\:h-\[22px\] {
+    height:22px;
+  }
+
   .md\:h-\[250px\] {
     height:250px;
   }
@@ -6753,12 +6759,8 @@ details > summary {
     height:300px;
   }
 
-  .md\:h-\[50px\] {
-    height:50px;
-  }
-
-  .md\:h-\[60px\] {
-    height:60px;
+  .md\:h-\[48px\] {
+    height:48px;
   }
 
   .md\:h-\[88px\] {
@@ -6775,30 +6777,6 @@ details > summary {
 
   .md\:h-auto {
     height:auto;
-  }
-
-  .md\:h-\[18px\] {
-    height:18px;
-  }
-
-  .md\:h-\[36px\] {
-    height:36px;
-  }
-
-  .md\:h-\[45px\] {
-    height:45px;
-  }
-
-  .md\:h-\[48px\] {
-    height:48px;
-  }
-
-  .md\:h-\[24px\] {
-    height:24px;
-  }
-
-  .md\:h-\[22px\] {
-    height:22px;
   }
 
   .md\:max-h-\[400px\] {
@@ -6849,12 +6827,12 @@ details > summary {
     width:1.5rem;
   }
 
-  .md\:w-\[50px\] {
-    width:50px;
+  .md\:w-\[22px\] {
+    width:22px;
   }
 
-  .md\:w-\[60px\] {
-    width:60px;
+  .md\:w-\[48px\] {
+    width:48px;
   }
 
   .md\:w-auto {
@@ -6863,30 +6841,6 @@ details > summary {
 
   .md\:w-full {
     width:100%;
-  }
-
-  .md\:w-\[18px\] {
-    width:18px;
-  }
-
-  .md\:w-\[36px\] {
-    width:36px;
-  }
-
-  .md\:w-\[45px\] {
-    width:45px;
-  }
-
-  .md\:w-\[48px\] {
-    width:48px;
-  }
-
-  .md\:w-\[24px\] {
-    width:24px;
-  }
-
-  .md\:w-\[22px\] {
-    width:22px;
   }
 
   .md\:max-w-\[calc\(680px\+32px\)\] {

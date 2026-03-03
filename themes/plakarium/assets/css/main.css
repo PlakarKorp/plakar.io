@@ -186,7 +186,8 @@
 
 @layer utilities {
   .grid-background {
-    background-image: linear-gradient(
+    background-image:
+      linear-gradient(
         to right,
         theme("colors.neutral.200") 1px,
         transparent 1px
@@ -232,11 +233,6 @@
     background-size: 100% auto;
     background-attachment: scroll;
   }
-}
-
-/* Fix for the open class in the docs sidebar */
-.open .pl-2 {
-  display: block !important;
 }
 
 .not-ready {
@@ -359,7 +355,8 @@
     content: "";
     display: block;
     @apply h-5 md:h-7 bg-neutral-800 border-b border-neutral-700 px-2;
-    background-image: radial-gradient(
+    background-image:
+      radial-gradient(
         circle,
         #ef4444 var(--circle-size),
         transparent var(--circle-size)
@@ -376,14 +373,20 @@
       );
     background-size: 18px 18px;
     background-repeat: no-repeat;
-    background-position: 4px center, 22px center, 40px center;
+    background-position:
+      4px center,
+      22px center,
+      40px center;
   }
 
   @media (min-width: 768px) {
     .terminal::before {
       --circle-size: 7px;
       background-size: 24px 24px;
-      background-position: 6px center, 28px center, 50px center;
+      background-position:
+        6px center,
+        28px center,
+        50px center;
     }
   }
 
