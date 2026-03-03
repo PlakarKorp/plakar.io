@@ -680,7 +680,12 @@ function siteSearch() {
   return {
     isOpen: false,
     query: '',
-    selectedSection: '',
+    selectedSection: (() => {
+      const path = window.location.pathname;
+      if (path.startsWith('/docs/')) return 'Docs';
+      if (path.startsWith('/posts/')) return 'Blog';
+      return '';
+    })(),
     selectedVersion: '',
     results: [],
     rawResults: [],

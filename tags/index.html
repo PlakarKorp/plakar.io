@@ -233,7 +233,12 @@ function siteSearch() {
   return {
     isOpen: false,
     query: '',
-    selectedSection: '',
+    selectedSection: (() => {
+      const path = window.location.pathname;
+      if (path.startsWith('/docs/')) return 'Docs';
+      if (path.startsWith('/posts/')) return 'Blog';
+      return '';
+    })(),
     selectedVersion: '',
     results: [],
     rawResults: [],
@@ -2372,7 +2377,7 @@ function siteSearch() {
     <h2><a href="/tags/qcow2/">Qcow2</a></h2>
     
   
-    <h2><a href="/tags/ui/">Ui</a></h2>
+    <h2><a href="/tags/ui/">UI</a></h2>
     
   
     <h2><a href="/tags/cncf/">Cncf</a></h2>
@@ -2438,7 +2443,7 @@ function siteSearch() {
     <h2><a href="/tags/long-term-archiving/">Long-Term Archiving</a></h2>
     
   
-    <h2><a href="/tags/minio/">MinIO</a></h2>
+    <h2><a href="/tags/minio/">Minio</a></h2>
     
   
     <h2><a href="/tags/object-storage/">Object Storage</a></h2>
