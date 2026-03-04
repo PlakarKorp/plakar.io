@@ -1028,13 +1028,6 @@ function siteSearch() {
             const activeLink = document.querySelector(`a[href='${currentPath}']`);
             if (!activeLink) return;
 
-            // Reset all sections to closed
-            for (const key in this.openSections) {
-                if (Object.prototype.hasOwnProperty.call(this.openSections, key)) {
-                    this.openSections[key] = false;
-                }
-            }
-
             let element = activeLink.parentElement;
 
             while (element && element.tagName !== 'NAV') {
@@ -1056,6 +1049,20 @@ function siteSearch() {
                 }
 
                 element = element.parentElement;
+            }
+
+            // If current page is a section, expand its first child section
+            if (this.isSectionPage) {
+                const siblingContainer = activeLink.closest('.my-1');
+                if (siblingContainer) {
+                    const childAccordion = siblingContainer.querySelector('[x-show][x-transition\\:enter]');
+                    if (childAccordion) {
+                        const match = childAccordion.getAttribute('x-show').match(/openSections\['([^']+)'\]/);
+                        if (match && match[1]) {
+                            this.openSections[match[1]] = true;
+                        }
+                    }
+                }
             }
 
             setTimeout(() => {

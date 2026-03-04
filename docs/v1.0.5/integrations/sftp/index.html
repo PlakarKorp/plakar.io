@@ -1040,13 +1040,6 @@ function siteSearch() {
             const activeLink = document.querySelector(`a[href='${currentPath}']`);
             if (!activeLink) return;
 
-            // Reset all sections to closed
-            for (const key in this.openSections) {
-                if (Object.prototype.hasOwnProperty.call(this.openSections, key)) {
-                    this.openSections[key] = false;
-                }
-            }
-
             let element = activeLink.parentElement;
 
             while (element && element.tagName !== 'NAV') {
@@ -1068,6 +1061,20 @@ function siteSearch() {
                 }
 
                 element = element.parentElement;
+            }
+
+            // If current page is a section, expand its first child section
+            if (this.isSectionPage) {
+                const siblingContainer = activeLink.closest('.my-1');
+                if (siblingContainer) {
+                    const childAccordion = siblingContainer.querySelector('[x-show][x-transition\\:enter]');
+                    if (childAccordion) {
+                        const match = childAccordion.getAttribute('x-show').match(/openSections\['([^']+)'\]/);
+                        if (match && match[1]) {
+                            this.openSections[match[1]] = true;
+                        }
+                    }
+                }
             }
 
             setTimeout(() => {
@@ -9570,10 +9577,10 @@ function siteSearch() {
       </ul>
     </li>
     <li><a href="#storage-connector">Storage connector</a></li>
-    <li><a href="#hahahugoshortcode279s0hbhb">HAHAHUGOSHORTCODE279s0HBHB</a></li>
+    <li><a href="#hahahugoshortcode430s0hbhb">HAHAHUGOSHORTCODE430s0HBHB</a></li>
     <li><a href="#source-connector">Source connector</a></li>
     <li><a href="#destination-connector">Destination connector</a></li>
-    <li><a href="#hahahugoshortcode279s2hbhb">HAHAHUGOSHORTCODE279s2HBHB</a></li>
+    <li><a href="#hahahugoshortcode430s2hbhb">HAHAHUGOSHORTCODE430s2HBHB</a></li>
     <li><a href="#limitations-and-scope">Limitations and scope</a></li>
     <li><a href="#troubleshooting">Troubleshooting</a></li>
     <li><a href="#backup-strategy">Backup strategy</a></li>
@@ -9607,10 +9614,10 @@ function siteSearch() {
       </ul>
     </li>
     <li><a href="#storage-connector">Storage connector</a></li>
-    <li><a href="#hahahugoshortcode279s0hbhb">HAHAHUGOSHORTCODE279s0HBHB</a></li>
+    <li><a href="#hahahugoshortcode430s0hbhb">HAHAHUGOSHORTCODE430s0HBHB</a></li>
     <li><a href="#source-connector">Source connector</a></li>
     <li><a href="#destination-connector">Destination connector</a></li>
-    <li><a href="#hahahugoshortcode279s2hbhb">HAHAHUGOSHORTCODE279s2HBHB</a></li>
+    <li><a href="#hahahugoshortcode430s2hbhb">HAHAHUGOSHORTCODE430s2HBHB</a></li>
     <li><a href="#limitations-and-scope">Limitations and scope</a></li>
     <li><a href="#troubleshooting">Troubleshooting</a></li>
     <li><a href="#backup-strategy">Backup strategy</a></li>
@@ -10009,7 +10016,7 @@ function siteSearch() {
 <hr>
 <h2 id="storage-connector">Storage connector</h2>
 <p>Host a Kloset store on any SFTP server.</p>
-<h2 id="hahahugoshortcode279s0hbhb"><div class="mermaid">
+<h2 id="hahahugoshortcode430s0hbhb"><div class="mermaid">
     
 ---
 title: Hosting a Remote Kloset Store over SFTP
@@ -10089,7 +10096,7 @@ flowchart LR
 </span></span></code></pre></div><hr>
 <h2 id="destination-connector">Destination connector</h2>
 <p>Restore data from a Kloset store to an SFTP target.</p>
-<h2 id="hahahugoshortcode279s2hbhb"><div class="mermaid">
+<h2 id="hahahugoshortcode430s2hbhb"><div class="mermaid">
     
 ---
 title: Restore a snapshot to SFTP
