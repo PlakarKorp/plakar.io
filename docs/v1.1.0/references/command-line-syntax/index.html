@@ -9591,6 +9591,14 @@ function siteSearch() {
     <li><a href="#global-options">Global options</a></li>
     <li><a href="#option-order-matters">Option order matters</a></li>
     <li><a href="#getting-help">Getting help</a></li>
+    <li><a href="#environment-variables">Environment variables</a>
+      <ul>
+        <li><a href="#plakar_passphrase"><code>PLAKAR_PASSPHRASE</code></a></li>
+        <li><a href="#plakar_repository"><code>PLAKAR_REPOSITORY</code></a></li>
+        <li><a href="#plakar_token"><code>PLAKAR_TOKEN</code></a></li>
+        <li><a href="#plakar_ui_token"><code>PLAKAR_UI_TOKEN</code></a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
         
@@ -9607,6 +9615,14 @@ function siteSearch() {
     <li><a href="#global-options">Global options</a></li>
     <li><a href="#option-order-matters">Option order matters</a></li>
     <li><a href="#getting-help">Getting help</a></li>
+    <li><a href="#environment-variables">Environment variables</a>
+      <ul>
+        <li><a href="#plakar_passphrase"><code>PLAKAR_PASSPHRASE</code></a></li>
+        <li><a href="#plakar_repository"><code>PLAKAR_REPOSITORY</code></a></li>
+        <li><a href="#plakar_token"><code>PLAKAR_TOKEN</code></a></li>
+        <li><a href="#plakar_ui_token"><code>PLAKAR_UI_TOKEN</code></a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
     </div>
@@ -10027,6 +10043,41 @@ v1.1.0
 </span></span><span class="line"><span class="cl"><span class="c1"># Show the manual page for a specific command</span>
 </span></span><span class="line"><span class="cl">plakar <span class="nb">help</span> &lt;command&gt;
 </span></span></code></pre></div><p>The built-in help is always in sync with the version of Plakar you have installed, making it the most reliable reference for available options and commands.</p>
+<h2 id="environment-variables">Environment variables</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Variable</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>PLAKAR_PASSPHRASE</code></td>
+          <td>Supply the encryption passphrase non-interactively</td>
+      </tr>
+      <tr>
+          <td><code>PLAKAR_REPOSITORY</code></td>
+          <td>Set the default repository path</td>
+      </tr>
+      <tr>
+          <td><code>PLAKAR_TOKEN</code></td>
+          <td>Token-based authentication for non-interactive environments</td>
+      </tr>
+      <tr>
+          <td><code>PLAKAR_UI_TOKEN</code></td>
+          <td>Set a custom access token for the web UI</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="plakar_passphrase"><code>PLAKAR_PASSPHRASE</code></h3>
+<p>When creating or opening an encrypted repository, Plakar prompts for a passphrase. Setting <code>PLAKAR_PASSPHRASE</code> provides it automatically, which is useful in scripts, CI pipelines, or any non-interactive context where a terminal prompt isn&rsquo;t available.</p>
+<h3 id="plakar_repository"><code>PLAKAR_REPOSITORY</code></h3>
+<p>Sets the default repository location so you don&rsquo;t need to specify <code>at REPOSITORY</code> on every command. When omitted and no <code>at</code> clause is provided, Plakar falls back to <code>~/.plakar</code>.</p>
+<h3 id="plakar_token"><code>PLAKAR_TOKEN</code></h3>
+<p>Used for authentication in CI pipelines, remote servers, or automated jobs where interactive login isn&rsquo;t possible. Generate a token on a machine where you can run <code>plakar login</code> followed by <code>plakar token create</code>, then set <code>PLAKAR_TOKEN</code> to the resulting value on the target system. Plakar automatically picks it up for authentication. You can also run <code>plakar login -env</code> to persist the token from the environment into Plakar&rsquo;s local configuration file.</p>
+<h3 id="plakar_ui_token"><code>PLAKAR_UI_TOKEN</code></h3>
+<p>By default, the web UI generates a random access token on each start, which you must retrieve from the service logs. Setting <code>PLAKAR_UI_TOKEN</code> lets you define a stable, known token so you can bookmark the UI URL or script access without inspecting logs every time the service restarts.</p>
 
                 </div>
             </div>

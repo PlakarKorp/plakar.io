@@ -9598,6 +9598,12 @@ function siteSearch() {
     <li><a href="#global-options">Global options</a></li>
     <li><a href="#option-order-matters">Option order matters</a></li>
     <li><a href="#getting-help">Getting help</a></li>
+    <li><a href="#environment-variables">Environment variables</a>
+      <ul>
+        <li><a href="#plakar_passphrase"><code>PLAKAR_PASSPHRASE</code></a></li>
+        <li><a href="#plakar_repository"><code>PLAKAR_REPOSITORY</code></a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
         
@@ -9614,6 +9620,12 @@ function siteSearch() {
     <li><a href="#global-options">Global options</a></li>
     <li><a href="#option-order-matters">Option order matters</a></li>
     <li><a href="#getting-help">Getting help</a></li>
+    <li><a href="#environment-variables">Environment variables</a>
+      <ul>
+        <li><a href="#plakar_passphrase"><code>PLAKAR_PASSPHRASE</code></a></li>
+        <li><a href="#plakar_repository"><code>PLAKAR_REPOSITORY</code></a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
     </div>
@@ -10033,6 +10045,29 @@ v1.1.0
 </span></span><span class="line"><span class="cl"><span class="c1"># Show the manual page for a specific command</span>
 </span></span><span class="line"><span class="cl">plakar <span class="nb">help</span> &lt;command&gt;
 </span></span></code></pre></div><p>The built-in help is always in sync with the version of Plakar you have installed, making it the most reliable reference for available options and commands.</p>
+<h2 id="environment-variables">Environment variables</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Variable</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>PLAKAR_PASSPHRASE</code></td>
+          <td>Supply the encryption passphrase non-interactively</td>
+      </tr>
+      <tr>
+          <td><code>PLAKAR_REPOSITORY</code></td>
+          <td>Set the default repository path</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="plakar_passphrase"><code>PLAKAR_PASSPHRASE</code></h3>
+<p>When creating or opening an encrypted repository, Plakar prompts for a passphrase. Setting <code>PLAKAR_PASSPHRASE</code> provides it automatically, which is useful in scripts, CI pipelines, or any non-interactive context where a terminal prompt isn&rsquo;t available.</p>
+<h3 id="plakar_repository"><code>PLAKAR_REPOSITORY</code></h3>
+<p>Sets the default repository location so you don&rsquo;t need to specify <code>at REPOSITORY</code> on every command. When omitted and no <code>at</code> clause is provided, Plakar falls back to <code>~/.plakar</code>.</p>
 
                 </div>
             </div>
