@@ -69,9 +69,7 @@ With this method, WAL files are fetched as needed during the base backup process
 
 ## Tar-based backup
 
-Storing the backup to an intermediate directory can be a problem, as it requires enough space to store the backup.
-
-Alternatively, `pg_basebackup` can create a tarball. This tarball can be used with the `tar` source importer of Plakar.
+Alternatively, `pg_basebackup` can create a tarball. This tarball can be backed up using the `tar` source importer of Plakar.
 
 ```bash
 export PGUSER=xxx
@@ -79,10 +77,12 @@ export PGPORT=5432
 export PGHOST=xxx
 export PGPASSWORD=xxx
 
-pg_basebackup -D - -F tar -X fetch | plakar at /var/backups backup -no-progress tar:///dev/stdin
+pg_basebackup -D - -F tar -X fetch > /tmp/pg_backup.tar
+plakar at /var/backups backup tar:///tmp/pg_backup.tar
+rm /tmp/pg_backup.tar
 ```
 
-*While no intermediate directory is created, this method may be slower as it requires serializing the data into a tarball stream.*
+*This method may be slower than a directory-based backup as it requires serializing the data into a tarball. Ensure you have enough temporary disk space for the tarball before running the backup.*
 
 ## Restoring a physical backup
 
