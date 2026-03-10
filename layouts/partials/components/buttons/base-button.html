@@ -2,9 +2,7 @@
 {{ $target := .target | default "_self" }}
 {{ $label := .label | default "Click Me" }}
 {{ $labelShort := .labelShort | default $label }}
-
-{{ $icon := .icon | default (resources.Get "img/ri/corner-down-right-line.svg") }}
-
+{{ $icon := .icon | default "corner_down_right_line" }}
 {{ $bgColor := .bgColor | default "bg-primary-500" }}
 {{ $bgHoverColor := .bgHoverColor | default "bg-primary-600" }}
 {{ $textHoverColor := .textHoverColor | default "text-neutral-50" }}
@@ -23,7 +21,7 @@
 
     <!-- Content -->
     <div class="relative z-10 flex items-center gap-2">
-      <span class="w-5 h-5">{{ $icon.Content | safeHTML }}</span>
+      <span>{{ partial "icon.html" $icon }}</span>
       <span class="hidden xl:block">{{ $label }}</span>
       <span class="block xl:hidden">{{ $labelShort }}</span>
     </div>

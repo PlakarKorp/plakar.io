@@ -1,0 +1,5 @@
+{{ if eq .Section "docs" }}
+  {{ partial "common/header/header-docs.html" . }}
+{{ else }}
+  {{ partial "common/header/header-corporate.html" . }}
+{{ end }}

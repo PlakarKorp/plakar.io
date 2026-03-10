@@ -1,0 +1,33 @@
+<!-- JS: assets/js/bundle/github.js -->
+
+{{ $site := .ctx.Site }}
+{{ $format := .format | default "star_light" }}
+
+{{ with $site.Params.github }}
+  {{ if .enabled }}
+    {{ $href := printf "https://github.com/%s/%s" .organization .repository }}
+
+    {{ if eq $format "star_light" }}
+      <a href="{{ $href }}" target="_blank"
+         class="github-stars hidden lg:flex items-stretch min-h-7 md:min-h-12 border border-neutral-300 bg-neutral-50 rounded-lg overflow-hidden">
+        <div class="flex items-center justify-center px-3 bg-neutral-100 text-primary-500">
+          <span class="w-5 h-5 flex items-center justify-center">
+            {{ partial "icon.html" "github" }}
+          </span>
+        </div>
+        <div class="flex items-center justify-center px-3 border-l border-neutral-300">
+          <span class="github-stars-count text-neutral-900" data-repo="{{ .organization }}/{{ .repository }}"></span>
+        </div>
+      </a>
+
+    {{ else if eq $format "icon" }}
+      <a href="{{ $href }}" target="_blank" aria-label="Visit us on Github"
+         class="github-stars hidden lg:flex items-center justify-center min-h-7 md:min-h-12 aspect-square border border-neutral-300 bg-neutral-50 rounded-lg text-primary-500">
+        <span class="w-5 h-5 flex items-center justify-center">
+          {{ partial "icon.html" "github" }}
+        </span>
+      </a>
+    {{ end }}
+
+  {{ end }}
+{{ end }}

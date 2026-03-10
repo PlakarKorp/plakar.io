@@ -1,0 +1,34 @@
+{{ $logoDark := resources.Get "img/logos/plakar_logo_dark.svg" }}
+
+<header id="site-header" class="fixed flex px-2 py-2 md:px-4 top-5 rounded-2xl mx-auto inset-x-4 md:inset-x-10 max-w-350 z-50 bg-neutral-50 border-b border-l border-r border-neutral-300">
+  <div class="flex mx-auto w-full justify-between relative">
+    <div class="flex mx-auto items-center w-full space-x-2 xl:space-x-16">
+      <!-- Logo -->
+      <a href="/" class="block md:w-32 w-28 pb-0.5">
+        <span class="block">{{ $logoDark.Content | safeHTML }}</span>
+      </a>
+
+      <!-- Desktop nav -->
+    </div>
+
+    <div class="flex flex-row items-center space-x-2 w-full justify-end">
+      <!-- Discord badge -->
+      {{ partial "components/badges/discord-badge.html" (dict
+        "format" "star_light"
+        "ctx" .
+      ) }}
+
+      <!-- GitHub badge -->
+      {{ partial "components/badges/github-badge.html" (dict
+        "format" "star_light"
+        "ctx" .
+      ) }}
+
+      <!-- Demo button -->
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "Book a demo"
+        "labelShort" "Demo"
+      ) }}
+    </div>
+  </div>
+</header>

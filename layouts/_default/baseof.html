@@ -2,13 +2,20 @@
 <html lang="en">
   <head>
     {{ partial "head.html" . }}
+    {{ $js := slice
+      (resources.Get "js/main/github.js")
+      (resources.Get "js/main/discord.js")
+      | resources.Concat "js/compiled/bundle.js"
+      | minify | fingerprint
+    }}
+    <script src="{{ $js.RelPermalink }}" defer></script>
   </head>
   <body>
+    {{ partial "common/header/header.html" . }}
     <main>
       {{ block "main" . }}{{ end }}
     </main>
-  </body>
-  <footer>
     {{ partial "common/footer/footer.html" . }}
-  </footer>
+    {{ block "scripts" . }}{{ end }}
+  </body>
 </html>
