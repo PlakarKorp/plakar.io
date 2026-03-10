@@ -1,0 +1,5 @@
+{{ if eq .Section "docs" }}
+  {{ partial "common/footer/footer-docs.html" . }}
+{{ else }}
+  {{ partial "common/footer/footer-main.html" . }}
+{{ end }}

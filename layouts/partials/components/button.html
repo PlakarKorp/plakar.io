@@ -1,9 +1,10 @@
 {{ $href := .href | default "#" }}
 {{ $target := .target | default "_self" }}
-
 {{ $label := .label | default "Click Me" }}
 {{ $labelShort := .labelShort | default $label }}
+
 {{ $icon := .icon | default (resources.Get "img/ri/corner-down-right-line.svg") }}
+
 {{ $bgColor := .bgColor | default "bg-primary-500" }}
 {{ $bgHoverColor := .bgHoverColor | default "bg-primary-600" }}
 {{ $textHoverColor := .textHoverColor | default "text-neutral-50" }}
@@ -13,9 +14,9 @@
 {{ $flex := .flex | default "inline-flex" }}
 
 <a href="{{ $href }}" target="{{ $target }}" class="flex items-center">
-  <div class="{{ $textColor }} {{ $border }} {{ $borderColor }} {{$bgColor}} hover:{{$textHoverColor}} {{ $flex }}
-    relative group overflow-hidden min-h-7 md:min-h-12 px-4 pr-4 rounded-lg  items-center gap-2 font-space-grotesk
-    transition-all duration-150 ease-out hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1 active:shadow-inner">
+  <div class="{{ $textColor }} {{ $border }} {{ $borderColor }} {{$bgColor}} hover:{{$textHoverColor}} {{ $flex }} relative
+    group overflow-hidden min-h-7 md:min-h-12 px-4 pr-4 rounded-lg  items-center gap-2 font-space-grotesk transition-all
+    duration-150 ease-out hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1 active:shadow-inner">
 
     <!-- Background hover fill -->
     <div class="absolute inset-0 {{$bgHoverColor}} translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-0"></div>
