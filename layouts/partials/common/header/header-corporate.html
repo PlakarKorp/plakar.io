@@ -9,6 +9,10 @@
       </a>
 
       <!-- Desktop nav -->
+      {{ partial "common/header/header-corporate-menu-desktop.html" (dict
+        "menu" "main"
+        "ctx" .
+      ) }}
     </div>
 
     <div class="flex flex-row items-center space-x-2 w-full justify-end">

@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
   fetch(`https://discord.com/api/invites/${invite}?with_counts=true`)
     .then((r) => r.json())
     .then((data) => {
-      console.log(data);
       if (!data.approximate_member_count) return;
       els.forEach((el) => (el.textContent = data.approximate_member_count));
     })

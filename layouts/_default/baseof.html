@@ -5,6 +5,7 @@
     {{ $js := slice
       (resources.Get "js/main/github.js")
       (resources.Get "js/main/discord.js")
+      (resources.Get "js/main/header.js")
       | resources.Concat "js/compiled/bundle.js"
       | minify | fingerprint
     }}

@@ -1,0 +1,77 @@
+<!-- JS: assets/js/bundle/header.js -->
+
+{{- /* JS: assets/js/bundle/header.js */ -}}
+{{ $ctx := .ctx }}
+{{ $menuItems := index .ctx.Site.Menus .menu | default slice }}
+{{ $topLevelItems := where $menuItems "Parent" "" }}
+
+<nav id="main-nav" class="hidden md:flex relative items-center h-14">
+  {{ range $topLevelItems }}
+    {{ if eq .Params.enabled true }}
+      <div class="relative dropdown-group">
+
+        {{ if .HasChildren }}
+          <button class="dropdown-btn px-2 text-neutral-700 hover:text-primary-500 inline-flex items-center gap-1">
+            {{ .Name }}
+            <span class="dropdown-chevron w-4 h-4 flex items-center justify-center">
+              {{ partial "icon.html" "chevron-down" }}
+            </span>
+          </button>
+        {{ else }}
+          <a href="{{ .URL | relLangURL }}" {{ with .Params.target }}target="{{ . }}"{{ end }}
+             class="px-2 text-neutral-700 hover:text-primary-500 inline-flex items-center">
+            {{ .Name }}
+          </a>
+        {{ end }}
+
+        {{ if .HasChildren }}
+          {{ $groupedChildren := dict }}
+          {{ range .Children }}
+            {{ if eq .Params.enabled true }}
+              {{ $child := . }}
+              {{ with .Params.section }}
+                {{ $entries := index $groupedChildren . | default slice }}
+                {{ $entries = $entries | append $child }}
+                {{ $groupedChildren = merge $groupedChildren (dict . $entries) }}
+              {{ end }}
+            {{ end }}
+          {{ end }}
+
+          {{ $sections := slice }}
+          {{ range $section, $items := $groupedChildren }}
+            {{ $weight := (index $items 0).Params.section_weight | default 0 }}
+            {{ $sections = $sections | append (dict "name" $section "weight" $weight "items" $items) }}
+          {{ end }}
+
+          <div class="dropdown-menu absolute top-full mt-4 hidden z-50">
+            <div class="flex flex-wrap items-stretch py-8 px-4 bg-neutral-50 shadow-lg border border-neutral-200 rounded-2xl">
+              {{ range sort $sections "weight" }}
+                <div class="w-1/2 lg:w-[30%] flex flex-col gap-6">
+                  <span class="text-primary-500 text-xs">{{ .name }}</span>
+                  <div class="flex flex-col gap-2">
+                    {{ range sort .items "Weight" }}
+                      <a href="{{ .URL | relLangURL }}" {{ with .Params.target }}target="{{ . }}"{{ end }}
+                         class="group/link flex items-center gap-2 p-2 rounded-lg hover:bg-neutral-100">
+                        <div class="w-10 h-10 bg-neutral-100 text-neutral-600 group-hover/link:bg-neutral-50 group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
+                          {{ partial "icon.html" .Params.icon }}
+                        </div>
+                        <div class="flex-1">
+                          <div class="text-neutral-900 font-semibold">{{ .Name }}</div>
+                          {{ with .Params.description }}
+                            <div class="text-neutral-400 text-xs">{{ . }}</div>
+                          {{ end }}
+                        </div>
+                      </a>
+                    {{ end }}
+                  </div>
+                </div>
+              {{ end }}
+              <!-- TODO: latest blog post partia -->
+            </div>
+          </div>
+        {{ end }}
+
+      </div>
+    {{ end }}
+  {{ end }}
+</nav>

@@ -1,14 +1,15 @@
+# Top level items
 [[main]]
-identifier = "product"
-name = "Product"
+identifier = "solutions"
+name = "Solutions"
 url = "#"
 weight = 10
 [[main.params]]
   enabled = true
 
 [[main]]
-identifier = "resources"
-name = "Resources"
+identifier = "engineering"
+name = "Engineering"
 url = "#"
 weight = 20
 [[main.params]]
@@ -29,3 +30,191 @@ url = "/download/"
 weight = 40
 [[main.params]]
   enabled = true
+
+# Solutions > Platforms
+[[main]]
+identifier = "solutions-onpremises-backup"
+name = "On-premises"
+url = "/solutions/on-premises/"
+weight = 10
+parent = "solutions"
+[[main.params]]
+  description = "On your infrastructure"
+  enabled = true
+  section = "Platforms"
+  section_weight = 10
+  icon = "ri/refresh-line"
+
+[[main]]
+identifier = "solutions-cloud-aws"
+name = "Amazon Web Services"
+url = "/solutions/aws/"
+weight = 20
+parent = "solutions"
+[[main.params]]
+  description = "Inside your AWS account"
+  enabled = true
+  section = "Platforms"
+  section_weight = 10
+  icon = "corporate/aws"
+
+[[main]]
+identifier = "solutions-cloud-gcp"
+name = "Google Cloud"
+url = "#"
+weight = 30
+parent = "solutions"
+[[main.params]]
+  description = "Coming soon"
+  enabled = true
+  section = "Platforms"
+  section_weight = 10
+  icon = "corporate/google_cloud"
+
+[[main]]
+identifier = "solutions-cloud-azure"
+name = "Azure"
+url = "#"
+weight = 40
+parent = "solutions"
+[[main.params]]
+  description = "Coming soon"
+  enabled = true
+  section = "Platforms"
+  section_weight = 10
+  icon = "corporate/microsoft_azure"
+
+[[main]]
+identifier = "solutions-cloud-ovh"
+name = "OVHCloud"
+url = "#"
+weight = 50
+parent = "solutions"
+[[main.params]]
+  description = "Coming soon"
+  enabled = true
+  section = "Platforms"
+  section_weight = 10
+  icon = "corporate/ovhcloud"
+
+# Solutions > Resources
+[[main]]
+identifier = "solutions-resources-compare"
+name = "Compare Plakar to Alternatives"
+url = "/solutions/compare/"
+weight = 40
+parent = "solutions"
+[[main.params]]
+  description = "Discover Plakar strengths"
+  enabled = true
+  section = "Resources"
+  section_weight = 30
+  icon = "ri/arrow_left_right_line"
+
+[[main]]
+identifier = "solutions-resources-reduce-costs"
+name = "Cost Efficiency"
+url = "/solutions/cost-efficiency/"
+weight = 40
+parent = "solutions"
+[[main.params]]
+  description = "Slash storage & egress fees"
+  enabled = true
+  section = "Resources"
+  section_weight = 30
+  icon = "ri/arrow_left_right_line"
+
+# Engineering > Learn
+[[main]]
+identifier = "engineering-learn-quickstart"
+name = "Quick start"
+url = "/docs/v1.1.0/quickstart/first-backup/"
+weight = 10
+parent = "engineering"
+[[main.params]]
+  description = "Protect your data in a minute"
+  enabled = true
+  section = "Learn"
+  section_weight = 10
+  icon = "ri/rocket_2_line"
+  target = "_blank"
+
+[[main]]
+identifier = "engineering-learn-docs"
+name = "Documentation"
+url = "/docs/v1.1.0/"
+weight = 20
+parent = "engineering"
+[[main.params]]
+  description = "How to use Plakar?"
+  enabled = true
+  section = "Learn"
+  section_weight = 10
+  icon = "ri/book_open_line"
+  target = "_blank"
+
+[[main]]
+identifier = "engineering-learn-blog"
+name = "Plakar blog"
+url = "/posts/"
+weight = 30
+parent = "engineering"
+[[main.params]]
+  description = "Engineers thought & last news"
+  enabled = true
+  section = "Learn"
+  section_weight = 10
+  icon = "ri/article_line"
+
+# Engineering > Community
+[[main]]
+identifier = "engineering-community-join"
+name = "Plakar community"
+url = "community/"
+weight = 40
+parent = "engineering"
+[[main.params]]
+  description = "Open by default, join us!"
+  enabled = true
+  section = "Community"
+  section_weight = 20
+  icon = "ri/team_line"
+
+[[main]]
+identifier = "engineering-community-calendar"
+name = "Upcoming events"
+url = "contact/#upcoming-events"
+weight = 40
+parent = "engineering"
+[[main.params]]
+  description = "Meet Plakar team"
+  enabled = true
+  section = "Community"
+  section_weight = 20
+  icon = "ri/calendar_event_line"
+
+[[main]]
+identifier = "contact-us"
+name = "Contact us"
+url = "/contact/#email-contact"
+weight = 50
+parent = "engineering"
+[[main.params]]
+  description = "How to contact Plakar team?"
+  enabled = true
+  section = "Community"
+  section_weight = 20
+  icon = "ri/mail_line"
+
+[[main]]
+identifier = "engineering-community-newsletter"
+name = "Newsletter"
+url = "contact/#newsletter-signup"
+weight = 60
+parent = "engineering"
+[[main.params]]
+  description = "Receive our monthly newsletter"
+  enabled = true
+  section = "Community"
+  section_weight = 20
+  icon = "ri/mail_ai_line"
