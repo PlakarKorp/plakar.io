@@ -1,11 +1,10 @@
 <!-- JS: assets/js/bundle/header.js -->
 
-{{- /* JS: assets/js/bundle/header.js */ -}}
 {{ $ctx := .ctx }}
 {{ $menuItems := index .ctx.Site.Menus .menu | default slice }}
 {{ $topLevelItems := where $menuItems "Parent" "" }}
 
-<nav id="main-nav" class="hidden md:flex relative items-center h-14">
+<nav id="main-nav" class="hidden lg:flex relative items-center h-14">
   {{ range $topLevelItems }}
     {{ if eq .Params.enabled true }}
       <div class="relative dropdown-group">

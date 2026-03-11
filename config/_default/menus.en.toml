@@ -16,14 +16,6 @@ weight = 20
   enabled = true
 
 [[main]]
-identifier = "integrations"
-name = "Integrations"
-url = "/integrations/"
-weight = 30
-[[main.params]]
-  enabled = true
-
-[[main]]
 identifier = "download"
 name = "Download"
 url = "/download/"
@@ -152,6 +144,19 @@ parent = "engineering"
   section_weight = 10
   icon = "ri/book_open_line"
   target = "_blank"
+
+[[main]]
+identifier = "integrations"
+name = "Integrations"
+url = "/integrations/"
+weight = 30
+parent = "engineering"
+[[main.params]]
+  description = "Plakar Integrations"
+  enabled = true
+  section = "Learn"
+  section_weight = 10
+  icon = "ri/connector_line"
 
 [[main]]
 identifier = "engineering-learn-blog"
