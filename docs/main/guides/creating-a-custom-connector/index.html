@@ -5878,15 +5878,8 @@ function siteSearch() {
     
         
     
-        
-    
 
     
-    
-        
-        
-
-        
     
         
         
@@ -6080,25 +6073,6 @@ function siteSearch() {
 
             
                 
-                <a href="/docs/v1.0.6/guides/creating-a-custom-connector/"
-                   @click="localStorage.setItem('sidebarState', 'open')"
-                   class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
-                   ml-4 pl-2 border-l border-neutral-300
-                   ">
-                    Creating a Custom Connector
-                </a>
-            
-        
-    
-        
-            
-            
-            
-            
-            
-
-            
-                
                 <a href="/docs/v1.0.6/guides/logging-in-to-plakar/"
                    @click="localStorage.setItem('sidebarState', 'open')"
                    class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
@@ -6120,13 +6094,13 @@ function siteSearch() {
                 
                 <div class="my-1">
                     <div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded ml-4"
-                         :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.6-2-guides-1-mysql-8'] }">
+                         :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.6-2-guides-1-mysql-7'] }">
                         <a href="/docs/v1.0.6/guides/mysql/"
                            @click.prevent.stop="
-                             if (openSections['root-plakar_v1.0.6-2-guides-1-mysql-8']) {
-                               openSections['root-plakar_v1.0.6-2-guides-1-mysql-8'] = false;
+                             if (openSections['root-plakar_v1.0.6-2-guides-1-mysql-7']) {
+                               openSections['root-plakar_v1.0.6-2-guides-1-mysql-7'] = false;
                              } else {
-                               openSections['root-plakar_v1.0.6-2-guides-1-mysql-8'] = true;
+                               openSections['root-plakar_v1.0.6-2-guides-1-mysql-7'] = true;
                                localStorage.setItem('sidebarState', 'open');
                                window.location.href = '/docs/v1.0.6/guides/mysql/';
                              }
@@ -6134,18 +6108,18 @@ function siteSearch() {
                            class="flex-grow flex items-center gap-1 ">
                             MySQL
                         </a>
-                        <button @click.prevent.stop="openSections['root-plakar_v1.0.6-2-guides-1-mysql-8'] = !openSections['root-plakar_v1.0.6-2-guides-1-mysql-8']"
+                        <button @click.prevent.stop="openSections['root-plakar_v1.0.6-2-guides-1-mysql-7'] = !openSections['root-plakar_v1.0.6-2-guides-1-mysql-7']"
                                 class="focus:outline-none">
-                            <span class="text-neutral-500" x-show="!openSections['root-plakar_v1.0.6-2-guides-1-mysql-8']">
+                            <span class="text-neutral-500" x-show="!openSections['root-plakar_v1.0.6-2-guides-1-mysql-7']">
                                 <i class="ri-arrow-down-s-line"></i>
                             </span>
-                            <span class="text-neutral-500" x-show="openSections['root-plakar_v1.0.6-2-guides-1-mysql-8']">
+                            <span class="text-neutral-500" x-show="openSections['root-plakar_v1.0.6-2-guides-1-mysql-7']">
                                 <i class="ri-arrow-up-s-line"></i>
                             </span>
                         </button>
                     </div>
 
-                    <div x-show="openSections['root-plakar_v1.0.6-2-guides-1-mysql-8']"
+                    <div x-show="openSections['root-plakar_v1.0.6-2-guides-1-mysql-7']"
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -6239,13 +6213,13 @@ function siteSearch() {
                 
                 <div class="my-1">
                     <div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded ml-4"
-                         :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.6-2-guides-1-postgresql-9'] }">
+                         :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.6-2-guides-1-postgresql-8'] }">
                         <a href="/docs/v1.0.6/guides/postgres/"
                            @click.prevent.stop="
-                             if (openSections['root-plakar_v1.0.6-2-guides-1-postgresql-9']) {
-                               openSections['root-plakar_v1.0.6-2-guides-1-postgresql-9'] = false;
+                             if (openSections['root-plakar_v1.0.6-2-guides-1-postgresql-8']) {
+                               openSections['root-plakar_v1.0.6-2-guides-1-postgresql-8'] = false;
                              } else {
-                               openSections['root-plakar_v1.0.6-2-guides-1-postgresql-9'] = true;
+                               openSections['root-plakar_v1.0.6-2-guides-1-postgresql-8'] = true;
                                localStorage.setItem('sidebarState', 'open');
                                window.location.href = '/docs/v1.0.6/guides/postgres/';
                              }
@@ -6253,18 +6227,18 @@ function siteSearch() {
                            class="flex-grow flex items-center gap-1 ">
                             PostgreSQL
                         </a>
-                        <button @click.prevent.stop="openSections['root-plakar_v1.0.6-2-guides-1-postgresql-9'] = !openSections['root-plakar_v1.0.6-2-guides-1-postgresql-9']"
+                        <button @click.prevent.stop="openSections['root-plakar_v1.0.6-2-guides-1-postgresql-8'] = !openSections['root-plakar_v1.0.6-2-guides-1-postgresql-8']"
                                 class="focus:outline-none">
-                            <span class="text-neutral-500" x-show="!openSections['root-plakar_v1.0.6-2-guides-1-postgresql-9']">
+                            <span class="text-neutral-500" x-show="!openSections['root-plakar_v1.0.6-2-guides-1-postgresql-8']">
                                 <i class="ri-arrow-down-s-line"></i>
                             </span>
-                            <span class="text-neutral-500" x-show="openSections['root-plakar_v1.0.6-2-guides-1-postgresql-9']">
+                            <span class="text-neutral-500" x-show="openSections['root-plakar_v1.0.6-2-guides-1-postgresql-8']">
                                 <i class="ri-arrow-up-s-line"></i>
                             </span>
                         </button>
                     </div>
 
-                    <div x-show="openSections['root-plakar_v1.0.6-2-guides-1-postgresql-9']"
+                    <div x-show="openSections['root-plakar_v1.0.6-2-guides-1-postgresql-8']"
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -6358,13 +6332,13 @@ function siteSearch() {
                 
                 <div class="my-1">
                     <div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded ml-4"
-                         :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.6-2-guides-1-ovhcloud-10'] }">
+                         :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.6-2-guides-1-ovhcloud-9'] }">
                         <a href="/docs/v1.0.6/guides/ovhcloud/"
                            @click.prevent.stop="
-                             if (openSections['root-plakar_v1.0.6-2-guides-1-ovhcloud-10']) {
-                               openSections['root-plakar_v1.0.6-2-guides-1-ovhcloud-10'] = false;
+                             if (openSections['root-plakar_v1.0.6-2-guides-1-ovhcloud-9']) {
+                               openSections['root-plakar_v1.0.6-2-guides-1-ovhcloud-9'] = false;
                              } else {
-                               openSections['root-plakar_v1.0.6-2-guides-1-ovhcloud-10'] = true;
+                               openSections['root-plakar_v1.0.6-2-guides-1-ovhcloud-9'] = true;
                                localStorage.setItem('sidebarState', 'open');
                                window.location.href = '/docs/v1.0.6/guides/ovhcloud/';
                              }
@@ -6372,18 +6346,18 @@ function siteSearch() {
                            class="flex-grow flex items-center gap-1 ">
                             OVHcloud
                         </a>
-                        <button @click.prevent.stop="openSections['root-plakar_v1.0.6-2-guides-1-ovhcloud-10'] = !openSections['root-plakar_v1.0.6-2-guides-1-ovhcloud-10']"
+                        <button @click.prevent.stop="openSections['root-plakar_v1.0.6-2-guides-1-ovhcloud-9'] = !openSections['root-plakar_v1.0.6-2-guides-1-ovhcloud-9']"
                                 class="focus:outline-none">
-                            <span class="text-neutral-500" x-show="!openSections['root-plakar_v1.0.6-2-guides-1-ovhcloud-10']">
+                            <span class="text-neutral-500" x-show="!openSections['root-plakar_v1.0.6-2-guides-1-ovhcloud-9']">
                                 <i class="ri-arrow-down-s-line"></i>
                             </span>
-                            <span class="text-neutral-500" x-show="openSections['root-plakar_v1.0.6-2-guides-1-ovhcloud-10']">
+                            <span class="text-neutral-500" x-show="openSections['root-plakar_v1.0.6-2-guides-1-ovhcloud-9']">
                                 <i class="ri-arrow-up-s-line"></i>
                             </span>
                         </button>
                     </div>
 
-                    <div x-show="openSections['root-plakar_v1.0.6-2-guides-1-ovhcloud-10']"
+                    <div x-show="openSections['root-plakar_v1.0.6-2-guides-1-ovhcloud-9']"
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -6477,13 +6451,13 @@ function siteSearch() {
                 
                 <div class="my-1">
                     <div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded ml-4"
-                         :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.6-2-guides-1-exoscale-11'] }">
+                         :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.6-2-guides-1-exoscale-10'] }">
                         <a href="/docs/v1.0.6/guides/exoscale/"
                            @click.prevent.stop="
-                             if (openSections['root-plakar_v1.0.6-2-guides-1-exoscale-11']) {
-                               openSections['root-plakar_v1.0.6-2-guides-1-exoscale-11'] = false;
+                             if (openSections['root-plakar_v1.0.6-2-guides-1-exoscale-10']) {
+                               openSections['root-plakar_v1.0.6-2-guides-1-exoscale-10'] = false;
                              } else {
-                               openSections['root-plakar_v1.0.6-2-guides-1-exoscale-11'] = true;
+                               openSections['root-plakar_v1.0.6-2-guides-1-exoscale-10'] = true;
                                localStorage.setItem('sidebarState', 'open');
                                window.location.href = '/docs/v1.0.6/guides/exoscale/';
                              }
@@ -6491,18 +6465,18 @@ function siteSearch() {
                            class="flex-grow flex items-center gap-1 ">
                             Exoscale
                         </a>
-                        <button @click.prevent.stop="openSections['root-plakar_v1.0.6-2-guides-1-exoscale-11'] = !openSections['root-plakar_v1.0.6-2-guides-1-exoscale-11']"
+                        <button @click.prevent.stop="openSections['root-plakar_v1.0.6-2-guides-1-exoscale-10'] = !openSections['root-plakar_v1.0.6-2-guides-1-exoscale-10']"
                                 class="focus:outline-none">
-                            <span class="text-neutral-500" x-show="!openSections['root-plakar_v1.0.6-2-guides-1-exoscale-11']">
+                            <span class="text-neutral-500" x-show="!openSections['root-plakar_v1.0.6-2-guides-1-exoscale-10']">
                                 <i class="ri-arrow-down-s-line"></i>
                             </span>
-                            <span class="text-neutral-500" x-show="openSections['root-plakar_v1.0.6-2-guides-1-exoscale-11']">
+                            <span class="text-neutral-500" x-show="openSections['root-plakar_v1.0.6-2-guides-1-exoscale-10']">
                                 <i class="ri-arrow-up-s-line"></i>
                             </span>
                         </button>
                     </div>
 
-                    <div x-show="openSections['root-plakar_v1.0.6-2-guides-1-exoscale-11']"
+                    <div x-show="openSections['root-plakar_v1.0.6-2-guides-1-exoscale-10']"
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -8009,15 +7983,8 @@ function siteSearch() {
     
         
     
-        
-    
 
     
-    
-        
-        
-
-        
     
         
         
@@ -8170,25 +8137,6 @@ function siteSearch() {
                    ml-4 pl-2 border-l border-neutral-300
                    ">
                     Retrieving passphrase via external command
-                </a>
-            
-        
-    
-        
-            
-            
-            
-            
-            
-
-            
-                
-                <a href="/docs/v1.0.5/guides/creating-a-custom-connector/"
-                   @click="localStorage.setItem('sidebarState', 'open')"
-                   class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
-                   ml-4 pl-2 border-l border-neutral-300
-                   ">
-                    Creating a Custom Connector
                 </a>
             
         
@@ -9543,7 +9491,15 @@ function siteSearch() {
             <nav id="TableOfContents">
   <ul>
     <li><a href="#what-you-will-build">What you will build</a></li>
-    <li><a href="#1-choose-the-connector-type">1. Choose the connector type</a></li>
+    <li><a href="#prerequisites">Prerequisites</a></li>
+    <li><a href="#1-set-up-the-project">1. Set up the project</a></li>
+    <li><a href="#2-implement-the-connector">2. Implement the connector</a></li>
+    <li><a href="#3-create-the-entrypoint">3. Create the entrypoint</a></li>
+    <li><a href="#4-write-the-manifest">4. Write the manifest</a></li>
+    <li><a href="#5-build-the-plugin">5. Build the plugin</a></li>
+    <li><a href="#6-package-and-install">6. Package and install</a></li>
+    <li><a href="#7-use-the-connector">7. Use the connector</a></li>
+    <li><a href="#next-steps">Next steps</a></li>
   </ul>
 </nav>
         
@@ -9557,7 +9513,15 @@ function siteSearch() {
         <nav id="TableOfContents">
   <ul>
     <li><a href="#what-you-will-build">What you will build</a></li>
-    <li><a href="#1-choose-the-connector-type">1. Choose the connector type</a></li>
+    <li><a href="#prerequisites">Prerequisites</a></li>
+    <li><a href="#1-set-up-the-project">1. Set up the project</a></li>
+    <li><a href="#2-implement-the-connector">2. Implement the connector</a></li>
+    <li><a href="#3-create-the-entrypoint">3. Create the entrypoint</a></li>
+    <li><a href="#4-write-the-manifest">4. Write the manifest</a></li>
+    <li><a href="#5-build-the-plugin">5. Build the plugin</a></li>
+    <li><a href="#6-package-and-install">6. Package and install</a></li>
+    <li><a href="#7-use-the-connector">7. Use the connector</a></li>
+    <li><a href="#next-steps">Next steps</a></li>
   </ul>
 </nav>
     </div>
@@ -9803,24 +9767,155 @@ function siteSearch() {
                 
                 <div class="relative docs-content font-prose prose text-base w-full max-w-full ps-8 pe-2 md:pe-8">
                     <p><em>Last reviewed: 
-2026-01-30
+2026-03-06
  / Plakar 
 v1.1.0
 </em></p>
-<p>This guide shows how to create a <strong>custom Plakar connector</strong> in Go, build it,
-package it, and install it using the <code>plakar</code> CLI.</p>
+<p>This guide shows how to create a custom Plakar <strong>Importer</strong> connector in Go, build it, package it, and install it using the <code>plakar</code> CLI.</p>
 <h2 id="what-you-will-build">What you will build</h2>
-<p>A minimal <strong>Exporter</strong> connector that restores snapshot contents to disk.</p>
-<p>The same workflow applies to Importer or Storage connectors, but this guide
-focuses on Exporter.</p>
-<h2 id="1-choose-the-connector-type">1. Choose the connector type</h2>
-<p>Plakar supports three connector types:</p>
+<p>A minimal Importer connector that backs up a single hardcoded file. This is the simplest possible integration — once you understand the pattern, you can extend it to walk directories, read from APIs, or consume any other data source.</p>
+<h2 id="prerequisites">Prerequisites</h2>
 <ul>
-<li><strong>Store</strong> – where backups are stored</li>
-<li><strong>Importer</strong> – where data is read from</li>
-<li><strong>Exporter</strong> – where data is written to</li>
+<li>Go 1.21 or later</li>
+<li><code>plakar</code> installed and available in your <code>$PATH</code></li>
 </ul>
-<p>In this guide, you will implement an <strong>Exporter</strong>.</p>
+<h2 id="1-set-up-the-project">1. Set up the project</h2>
+<p>Create a new Go module for your plugin:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mkdir plakar-myimporter
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> plakar-myimporter
+</span></span><span class="line"><span class="cl">go mod init github.com/yourorg/plakar-myimporter
+</span></span></code></pre></div><p>Install the two required dependencies:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">go get github.com/PlakarKorp/kloset
+</span></span><span class="line"><span class="cl">go get github.com/PlakarKorp/go-kloset-sdk
+</span></span></code></pre></div><p>Create the project structure:</p>
+<pre tabindex="0"><code>plakar-myimporter/
+├── connector.go
+├── importer/
+│   └── main.go
+├── manifest.yaml
+├── Makefile
+├── go.mod
+└── go.sum
+</code></pre><h2 id="2-implement-the-connector">2. Implement the connector</h2>
+<p>Create <code>connector.go</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span><span class="w"> </span><span class="nx">connector</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="s">&#34;context&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="s">&#34;io&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="s">&#34;os&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="s">&#34;path/filepath&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="s">&#34;github.com/PlakarKorp/kloset/connectors&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="s">&#34;github.com/PlakarKorp/kloset/connectors/importer&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="s">&#34;github.com/PlakarKorp/kloset/location&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="s">&#34;github.com/PlakarKorp/kloset/objects&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">const</span><span class="w"> </span><span class="nx">FILE</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#34;/home/user/Documents/notes.md&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="nf">init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">importer</span><span class="p">.</span><span class="nf">Register</span><span class="p">(</span><span class="s">&#34;test&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">location</span><span class="p">.</span><span class="nx">FLAG_LOCALFS</span><span class="p">,</span><span class="w"> </span><span class="nx">NewImporter</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">type</span><span class="w"> </span><span class="nx">testConnector</span><span class="w"> </span><span class="kd">struct</span><span class="p">{}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="nf">NewImporter</span><span class="p">(</span><span class="nx">ctx</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span><span class="w"> </span><span class="nx">opts</span><span class="w"> </span><span class="o">*</span><span class="nx">connectors</span><span class="p">.</span><span class="nx">Options</span><span class="p">,</span><span class="w"> </span><span class="nx">proto</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">config</span><span class="w"> </span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nx">importer</span><span class="p">.</span><span class="nx">Importer</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">testConnector</span><span class="p">{},</span><span class="w"> </span><span class="kc">nil</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">f</span><span class="w"> </span><span class="o">*</span><span class="nx">testConnector</span><span class="p">)</span><span class="w"> </span><span class="nf">Root</span><span class="p">()</span><span class="w"> </span><span class="kt">string</span><span class="w">              </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nx">filepath</span><span class="p">.</span><span class="nf">Dir</span><span class="p">(</span><span class="nx">FILE</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">f</span><span class="w"> </span><span class="o">*</span><span class="nx">testConnector</span><span class="p">)</span><span class="w"> </span><span class="nf">Origin</span><span class="p">()</span><span class="w"> </span><span class="kt">string</span><span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s">&#34;localhost&#34;</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">f</span><span class="w"> </span><span class="o">*</span><span class="nx">testConnector</span><span class="p">)</span><span class="w"> </span><span class="nf">Type</span><span class="p">()</span><span class="w"> </span><span class="kt">string</span><span class="w">              </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s">&#34;test&#34;</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">f</span><span class="w"> </span><span class="o">*</span><span class="nx">testConnector</span><span class="p">)</span><span class="w"> </span><span class="nf">Flags</span><span class="p">()</span><span class="w"> </span><span class="nx">location</span><span class="p">.</span><span class="nx">Flags</span><span class="w">     </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nx">location</span><span class="p">.</span><span class="nx">FLAG_LOCALFS</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">f</span><span class="w"> </span><span class="o">*</span><span class="nx">testConnector</span><span class="p">)</span><span class="w"> </span><span class="nf">Ping</span><span class="p">(</span><span class="nx">_</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">f</span><span class="w"> </span><span class="o">*</span><span class="nx">testConnector</span><span class="p">)</span><span class="w"> </span><span class="nf">Close</span><span class="p">(</span><span class="nx">_</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">f</span><span class="w"> </span><span class="o">*</span><span class="nx">testConnector</span><span class="p">)</span><span class="w"> </span><span class="nf">Import</span><span class="p">(</span><span class="nx">ctx</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span><span class="w"> </span><span class="nx">records</span><span class="w"> </span><span class="kd">chan</span><span class="o">&lt;-</span><span class="w"> </span><span class="o">*</span><span class="nx">connectors</span><span class="p">.</span><span class="nx">Record</span><span class="p">,</span><span class="w"> </span><span class="nx">results</span><span class="w"> </span><span class="o">&lt;-</span><span class="kd">chan</span><span class="w"> </span><span class="o">*</span><span class="nx">connectors</span><span class="p">.</span><span class="nx">Result</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">defer</span><span class="w"> </span><span class="nb">close</span><span class="p">(</span><span class="nx">records</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">info</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">os</span><span class="p">.</span><span class="nf">Stat</span><span class="p">(</span><span class="nx">FILE</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="nx">err</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">fi</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">objects</span><span class="p">.</span><span class="nx">FileInfo</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">Lname</span><span class="p">:</span><span class="w">    </span><span class="nx">filepath</span><span class="p">.</span><span class="nf">Base</span><span class="p">(</span><span class="nx">FILE</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">Lsize</span><span class="p">:</span><span class="w">    </span><span class="nx">info</span><span class="p">.</span><span class="nf">Size</span><span class="p">(),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">Lmode</span><span class="p">:</span><span class="w">    </span><span class="nx">info</span><span class="p">.</span><span class="nf">Mode</span><span class="p">(),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">LmodTime</span><span class="p">:</span><span class="w"> </span><span class="nx">info</span><span class="p">.</span><span class="nf">ModTime</span><span class="p">(),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="nx">Ldev</span><span class="p">:</span><span class="w">     </span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">records</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nx">connectors</span><span class="p">.</span><span class="nf">NewRecord</span><span class="p">(</span><span class="nx">FILE</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">fi</span><span class="p">,</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span><span class="w"> </span><span class="kd">func</span><span class="p">()</span><span class="w"> </span><span class="p">(</span><span class="nx">io</span><span class="p">.</span><span class="nx">ReadCloser</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="nx">os</span><span class="p">.</span><span class="nf">Open</span><span class="p">(</span><span class="nx">FILE</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">})</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div>
+
+<details open class=" box cstyle notices warning expand" style=";--VARIABLE-BOX-color: var(--BOX-WARNING-color)">
+      <summary class="box-label">
+        <i class="expander-icon fa-fw fas fa-chevron-right"></i> 
+          <img src="/img/ri/alert-line.svg" alt="" class="notice-icon" width="20" height="20"> 
+        Writting to console
+      </summary>
+          <div class="box-content">
+        <p>Never write to <code>os.Stdout</code>. Plakar communicates with the plugin over gRPC through stdin/stdout — any writes there corrupt the stream. Use <code>os.Stderr</code> for debug output instead.</p>
+          </div>
+    </details>
+<h2 id="3-create-the-entrypoint">3. Create the entrypoint</h2>
+<p>Create <code>importer/main.go</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span><span class="w"> </span><span class="nx">main</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="s">&#34;os&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">sdk</span><span class="w"> </span><span class="s">&#34;github.com/PlakarKorp/go-kloset-sdk&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">connector</span><span class="w"> </span><span class="s">&#34;github.com/yourorg/plakar-myimporter&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">sdk</span><span class="p">.</span><span class="nf">EntrypointImporter</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">,</span><span class="w"> </span><span class="nx">connector</span><span class="p">.</span><span class="nx">NewImporter</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><h2 id="4-write-the-manifest">4. Write the manifest</h2>
+<p>Create <code>manifest.yaml</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">test</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l">v0.1.0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">connectors</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">importer</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">executable</span><span class="p">:</span><span class="w"> </span><span class="l">test-importer</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">protocols</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">test</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">flags</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">localfs</span><span class="w">
+</span></span></span></code></pre></div><p>The <code>executable</code> value must match the binary name you produce in the build step. The <code>flags</code> list must reflect the <code>location.Flags</code> returned by your connector&rsquo;s <code>Flags()</code> method.</p>
+<h2 id="5-build-the-plugin">5. Build the plugin</h2>
+<p>Create a <code>Makefile</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="nf">build</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">	go build -o test-importer ./importer
+</span></span></code></pre></div><p>Then build:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">make build
+</span></span></code></pre></div><h2 id="6-package-and-install">6. Package and install</h2>
+<p>Package the plugin into a <code>.ptar</code> file:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">plakar pkg create
+</span></span></code></pre></div><p>Install it:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">plakar pkg add test-v0.1.0.ptar
+</span></span></code></pre></div><p>Verify the installation:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">plakar pkg show
+</span></span></code></pre></div><p>You should see <code>test</code> listed.</p>
+<h2 id="7-use-the-connector">7. Use the connector</h2>
+<p>Back up using your new importer:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">plakar at /var/backups backup test://
+</span></span></code></pre></div><p>Because this connector uses a hardcoded file path, the location after <code>test://</code> is ignored — the importer always reads from <code>/home/user/Documents/notes.md</code>.</p>
+<h2 id="next-steps">Next steps</h2>
+<p><strong>Walking a directory</strong> — instead of a hardcoded path, parse the location from the <code>config</code> map (<code>strings.TrimPrefix(config[&quot;location&quot;], proto+&quot;://&quot;)</code>) and use <code>filepath.WalkDir</code> to send a record for each file.</p>
+<p><strong>Remote sources</strong> — for connectors that talk to an API, use <code>0</code> as the flags value instead of <code>location.FLAG_LOCALFS</code>, and parse credentials and endpoints from the <code>config</code> map passed to your constructor.</p>
+<p><strong>Streaming imports</strong> — if your source cannot be replayed (e.g. reading from a pipe or tarball), add <code>location.FLAG_STREAM</code> to your flags. Plakar will disable the progress bar and call <code>Import</code> only once.</p>
+<p><strong>Adding an Exporter or Storage backend</strong> — implement the <code>Exporter</code> or <code>Store</code> interface, register it in <code>init()</code>, add a corresponding entrypoint directory, and add an entry to <code>manifest.yaml</code>.</p>
+<p>See the <a href="/docs/main/references/sdk/">SDK reference</a> and the <a href="https://github.com/PlakarKorp/integration-example">integration example repository</a> for the full interface definitions and a complete working implementation.</p>
 
                 </div>
             </div>

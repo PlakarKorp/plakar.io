@@ -5878,15 +5878,8 @@ function siteSearch() {
     
         
     
-        
-    
 
     
-    
-        
-        
-
-        
     
         
         
@@ -6080,25 +6073,6 @@ function siteSearch() {
 
             
                 
-                <a href="/docs/v1.0.6/guides/creating-a-custom-connector/"
-                   @click="localStorage.setItem('sidebarState', 'open')"
-                   class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
-                   ml-4 pl-2 border-l border-neutral-300
-                   ">
-                    Creating a Custom Connector
-                </a>
-            
-        
-    
-        
-            
-            
-            
-            
-            
-
-            
-                
                 <a href="/docs/v1.0.6/guides/logging-in-to-plakar/"
                    @click="localStorage.setItem('sidebarState', 'open')"
                    class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
@@ -6120,13 +6094,13 @@ function siteSearch() {
                 
                 <div class="my-1">
                     <div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded ml-4"
-                         :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.6-2-guides-1-mysql-8'] }">
+                         :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.6-2-guides-1-mysql-7'] }">
                         <a href="/docs/v1.0.6/guides/mysql/"
                            @click.prevent.stop="
-                             if (openSections['root-plakar_v1.0.6-2-guides-1-mysql-8']) {
-                               openSections['root-plakar_v1.0.6-2-guides-1-mysql-8'] = false;
+                             if (openSections['root-plakar_v1.0.6-2-guides-1-mysql-7']) {
+                               openSections['root-plakar_v1.0.6-2-guides-1-mysql-7'] = false;
                              } else {
-                               openSections['root-plakar_v1.0.6-2-guides-1-mysql-8'] = true;
+                               openSections['root-plakar_v1.0.6-2-guides-1-mysql-7'] = true;
                                localStorage.setItem('sidebarState', 'open');
                                window.location.href = '/docs/v1.0.6/guides/mysql/';
                              }
@@ -6134,18 +6108,18 @@ function siteSearch() {
                            class="flex-grow flex items-center gap-1 ">
                             MySQL
                         </a>
-                        <button @click.prevent.stop="openSections['root-plakar_v1.0.6-2-guides-1-mysql-8'] = !openSections['root-plakar_v1.0.6-2-guides-1-mysql-8']"
+                        <button @click.prevent.stop="openSections['root-plakar_v1.0.6-2-guides-1-mysql-7'] = !openSections['root-plakar_v1.0.6-2-guides-1-mysql-7']"
                                 class="focus:outline-none">
-                            <span class="text-neutral-500" x-show="!openSections['root-plakar_v1.0.6-2-guides-1-mysql-8']">
+                            <span class="text-neutral-500" x-show="!openSections['root-plakar_v1.0.6-2-guides-1-mysql-7']">
                                 <i class="ri-arrow-down-s-line"></i>
                             </span>
-                            <span class="text-neutral-500" x-show="openSections['root-plakar_v1.0.6-2-guides-1-mysql-8']">
+                            <span class="text-neutral-500" x-show="openSections['root-plakar_v1.0.6-2-guides-1-mysql-7']">
                                 <i class="ri-arrow-up-s-line"></i>
                             </span>
                         </button>
                     </div>
 
-                    <div x-show="openSections['root-plakar_v1.0.6-2-guides-1-mysql-8']"
+                    <div x-show="openSections['root-plakar_v1.0.6-2-guides-1-mysql-7']"
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -6239,13 +6213,13 @@ function siteSearch() {
                 
                 <div class="my-1">
                     <div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded ml-4"
-                         :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.6-2-guides-1-postgresql-9'] }">
+                         :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.6-2-guides-1-postgresql-8'] }">
                         <a href="/docs/v1.0.6/guides/postgres/"
                            @click.prevent.stop="
-                             if (openSections['root-plakar_v1.0.6-2-guides-1-postgresql-9']) {
-                               openSections['root-plakar_v1.0.6-2-guides-1-postgresql-9'] = false;
+                             if (openSections['root-plakar_v1.0.6-2-guides-1-postgresql-8']) {
+                               openSections['root-plakar_v1.0.6-2-guides-1-postgresql-8'] = false;
                              } else {
-                               openSections['root-plakar_v1.0.6-2-guides-1-postgresql-9'] = true;
+                               openSections['root-plakar_v1.0.6-2-guides-1-postgresql-8'] = true;
                                localStorage.setItem('sidebarState', 'open');
                                window.location.href = '/docs/v1.0.6/guides/postgres/';
                              }
@@ -6253,18 +6227,18 @@ function siteSearch() {
                            class="flex-grow flex items-center gap-1 ">
                             PostgreSQL
                         </a>
-                        <button @click.prevent.stop="openSections['root-plakar_v1.0.6-2-guides-1-postgresql-9'] = !openSections['root-plakar_v1.0.6-2-guides-1-postgresql-9']"
+                        <button @click.prevent.stop="openSections['root-plakar_v1.0.6-2-guides-1-postgresql-8'] = !openSections['root-plakar_v1.0.6-2-guides-1-postgresql-8']"
                                 class="focus:outline-none">
-                            <span class="text-neutral-500" x-show="!openSections['root-plakar_v1.0.6-2-guides-1-postgresql-9']">
+                            <span class="text-neutral-500" x-show="!openSections['root-plakar_v1.0.6-2-guides-1-postgresql-8']">
                                 <i class="ri-arrow-down-s-line"></i>
                             </span>
-                            <span class="text-neutral-500" x-show="openSections['root-plakar_v1.0.6-2-guides-1-postgresql-9']">
+                            <span class="text-neutral-500" x-show="openSections['root-plakar_v1.0.6-2-guides-1-postgresql-8']">
                                 <i class="ri-arrow-up-s-line"></i>
                             </span>
                         </button>
                     </div>
 
-                    <div x-show="openSections['root-plakar_v1.0.6-2-guides-1-postgresql-9']"
+                    <div x-show="openSections['root-plakar_v1.0.6-2-guides-1-postgresql-8']"
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -6358,13 +6332,13 @@ function siteSearch() {
                 
                 <div class="my-1">
                     <div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded ml-4"
-                         :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.6-2-guides-1-ovhcloud-10'] }">
+                         :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.6-2-guides-1-ovhcloud-9'] }">
                         <a href="/docs/v1.0.6/guides/ovhcloud/"
                            @click.prevent.stop="
-                             if (openSections['root-plakar_v1.0.6-2-guides-1-ovhcloud-10']) {
-                               openSections['root-plakar_v1.0.6-2-guides-1-ovhcloud-10'] = false;
+                             if (openSections['root-plakar_v1.0.6-2-guides-1-ovhcloud-9']) {
+                               openSections['root-plakar_v1.0.6-2-guides-1-ovhcloud-9'] = false;
                              } else {
-                               openSections['root-plakar_v1.0.6-2-guides-1-ovhcloud-10'] = true;
+                               openSections['root-plakar_v1.0.6-2-guides-1-ovhcloud-9'] = true;
                                localStorage.setItem('sidebarState', 'open');
                                window.location.href = '/docs/v1.0.6/guides/ovhcloud/';
                              }
@@ -6372,18 +6346,18 @@ function siteSearch() {
                            class="flex-grow flex items-center gap-1 ">
                             OVHcloud
                         </a>
-                        <button @click.prevent.stop="openSections['root-plakar_v1.0.6-2-guides-1-ovhcloud-10'] = !openSections['root-plakar_v1.0.6-2-guides-1-ovhcloud-10']"
+                        <button @click.prevent.stop="openSections['root-plakar_v1.0.6-2-guides-1-ovhcloud-9'] = !openSections['root-plakar_v1.0.6-2-guides-1-ovhcloud-9']"
                                 class="focus:outline-none">
-                            <span class="text-neutral-500" x-show="!openSections['root-plakar_v1.0.6-2-guides-1-ovhcloud-10']">
+                            <span class="text-neutral-500" x-show="!openSections['root-plakar_v1.0.6-2-guides-1-ovhcloud-9']">
                                 <i class="ri-arrow-down-s-line"></i>
                             </span>
-                            <span class="text-neutral-500" x-show="openSections['root-plakar_v1.0.6-2-guides-1-ovhcloud-10']">
+                            <span class="text-neutral-500" x-show="openSections['root-plakar_v1.0.6-2-guides-1-ovhcloud-9']">
                                 <i class="ri-arrow-up-s-line"></i>
                             </span>
                         </button>
                     </div>
 
-                    <div x-show="openSections['root-plakar_v1.0.6-2-guides-1-ovhcloud-10']"
+                    <div x-show="openSections['root-plakar_v1.0.6-2-guides-1-ovhcloud-9']"
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -6477,13 +6451,13 @@ function siteSearch() {
                 
                 <div class="my-1">
                     <div class="font-semibold px-2 py-1 text-neutral-800 flex items-center justify-between cursor-pointer hover:bg-neutral-200 rounded ml-4"
-                         :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.6-2-guides-1-exoscale-11'] }">
+                         :class="{ 'bg-neutral-100': openSections['root-plakar_v1.0.6-2-guides-1-exoscale-10'] }">
                         <a href="/docs/v1.0.6/guides/exoscale/"
                            @click.prevent.stop="
-                             if (openSections['root-plakar_v1.0.6-2-guides-1-exoscale-11']) {
-                               openSections['root-plakar_v1.0.6-2-guides-1-exoscale-11'] = false;
+                             if (openSections['root-plakar_v1.0.6-2-guides-1-exoscale-10']) {
+                               openSections['root-plakar_v1.0.6-2-guides-1-exoscale-10'] = false;
                              } else {
-                               openSections['root-plakar_v1.0.6-2-guides-1-exoscale-11'] = true;
+                               openSections['root-plakar_v1.0.6-2-guides-1-exoscale-10'] = true;
                                localStorage.setItem('sidebarState', 'open');
                                window.location.href = '/docs/v1.0.6/guides/exoscale/';
                              }
@@ -6491,18 +6465,18 @@ function siteSearch() {
                            class="flex-grow flex items-center gap-1 text-primary-600 font-semibold">
                             Exoscale
                         </a>
-                        <button @click.prevent.stop="openSections['root-plakar_v1.0.6-2-guides-1-exoscale-11'] = !openSections['root-plakar_v1.0.6-2-guides-1-exoscale-11']"
+                        <button @click.prevent.stop="openSections['root-plakar_v1.0.6-2-guides-1-exoscale-10'] = !openSections['root-plakar_v1.0.6-2-guides-1-exoscale-10']"
                                 class="focus:outline-none">
-                            <span class="text-neutral-500" x-show="!openSections['root-plakar_v1.0.6-2-guides-1-exoscale-11']">
+                            <span class="text-neutral-500" x-show="!openSections['root-plakar_v1.0.6-2-guides-1-exoscale-10']">
                                 <i class="ri-arrow-down-s-line"></i>
                             </span>
-                            <span class="text-neutral-500" x-show="openSections['root-plakar_v1.0.6-2-guides-1-exoscale-11']">
+                            <span class="text-neutral-500" x-show="openSections['root-plakar_v1.0.6-2-guides-1-exoscale-10']">
                                 <i class="ri-arrow-up-s-line"></i>
                             </span>
                         </button>
                     </div>
 
-                    <div x-show="openSections['root-plakar_v1.0.6-2-guides-1-exoscale-11']"
+                    <div x-show="openSections['root-plakar_v1.0.6-2-guides-1-exoscale-10']"
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -8009,15 +7983,8 @@ function siteSearch() {
     
         
     
-        
-    
 
     
-    
-        
-        
-
-        
     
         
         
@@ -8170,25 +8137,6 @@ function siteSearch() {
                    ml-4 pl-2 border-l border-neutral-300
                    ">
                     Retrieving passphrase via external command
-                </a>
-            
-        
-    
-        
-            
-            
-            
-            
-            
-
-            
-                
-                <a href="/docs/v1.0.5/guides/creating-a-custom-connector/"
-                   @click="localStorage.setItem('sidebarState', 'open')"
-                   class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
-                   ml-4 pl-2 border-l border-neutral-300
-                   ">
-                    Creating a Custom Connector
                 </a>
             
         
