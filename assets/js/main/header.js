@@ -1,11 +1,19 @@
 // Targets: layouts/partials/common/header/header-corporate.html
+// Targets: layouts/partials/common/header/header-corporate-menu-desktop.html
+// Targets: layouts/partials/common/header/header-corporate-menu-mobile.html
 // Elements: .dropdown-group, .dropdown-btn, .dropdown-menu, .dropdown-chevron
+// Elements: #menu-button, #menu-close-button, #menu-mobile
+// Elements: .accordion-item, .accordion-toggle, .accordion-content, .accordion-chevron
 
 document.addEventListener("DOMContentLoaded", () => {
   const header = document.getElementById("site-header");
   const nav = document.getElementById("main-nav");
   const dropdownGroups = document.querySelectorAll(".dropdown-group");
+  const menuButton = document.getElementById("menu-button");
+  const menuClose = document.getElementById("menu-close-button");
+  const menuMobile = document.getElementById("menu-mobile");
 
+  // --- Desktop dropdown ---
   const closeAll = () => {
     dropdownGroups.forEach((g) => {
       g.querySelector(".dropdown-menu")?.classList.add("hidden");
@@ -64,4 +72,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setDropdownWidths();
   window.addEventListener("resize", setDropdownWidths);
+
+  // --- Mobile menu ---
+  menuButton?.addEventListener("click", () => {
+    menuMobile?.classList.toggle("hidden");
+  });
+
+  menuClose?.addEventListener("click", () => {
+    menuMobile?.classList.add("hidden");
+  });
+
+  // --- Mobile accordion ---
+  document.querySelectorAll(".accordion-toggle").forEach((toggle) => {
+    toggle.addEventListener("click", () => {
+      const content = toggle.nextElementSibling;
+      const chevron = toggle.querySelector(".accordion-chevron");
+      const isOpen = !content?.classList.contains("hidden");
+
+      content?.classList.toggle("hidden");
+      content?.classList.toggle("flex");
+      if (chevron) chevron.style.transform = isOpen ? "" : "rotate(180deg)";
+    });
+  });
 });

@@ -1,3 +1,5 @@
+<!-- JS: assets/js/bundle/header.js -->
+
 {{ $logoDark := resources.Get "img/logos/plakar_logo_dark.svg" }}
 
 <header id="site-header" class="fixed flex px-2 py-2 md:px-4 top-5 rounded-2xl mx-auto inset-x-4 md:inset-x-10 max-w-350 z-50 bg-neutral-50 border-b border-l border-r border-neutral-300">
@@ -35,11 +37,17 @@
       ) }}
 
       <!-- Mobile menu toggle -->
-      <button id="menu-button" class="lg:hidden min-h-7 aspect-square border border-neutral-300 rounded-lg text-neutral-900 focus:outline-none flex items-center justify-center">
+      <button id="menu-button" class="lg:hidden min-h-7 aspect-square overflow-y-auto border border-neutral-300 rounded-lg text-neutral-900 focus:outline-none flex items-center justify-center">
         <span class="w-4 h-4 flex items-center justify-center">
           {{ partial "icon.html" "ri/menu_line" }}
         </span>
       </button>
     </div>
   </div>
+
+  <!-- Mobile nav -->
+  {{ partial "common/header/header-corporate-menu-mobile.html" (dict
+     "menu" "main"
+     "ctx" .
+   ) }}
 </header>
