@@ -9851,15 +9851,16 @@ local   replication     all                                     trust
 </ul>
 <p>With this method, WAL files are fetched as needed during the base backup process.</p>
 <h2 id="tar-based-backup">Tar-based backup</h2>
-<p>Storing the backup to an intermediate directory can be a problem, as it requires enough space to store the backup.</p>
-<p>Alternatively, <code>pg_basebackup</code> can create a tarball. This tarball can be used with the <code>tar</code> source importer of Plakar.</p>
+<p>Alternatively, <code>pg_basebackup</code> can create a tarball. This tarball can be backed up using the <code>tar</code> source importer of Plakar.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PGUSER</span><span class="o">=</span>xxx
 </span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PGPORT</span><span class="o">=</span><span class="m">5432</span>
 </span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PGHOST</span><span class="o">=</span>xxx
 </span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PGPASSWORD</span><span class="o">=</span>xxx
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">pg_basebackup -D - -F tar -X fetch <span class="p">|</span> plakar at /var/backups backup -no-progress tar:///dev/stdin
-</span></span></code></pre></div><p><em>While no intermediate directory is created, this method may be slower as it requires serializing the data into a tarball stream.</em></p>
+</span></span><span class="line"><span class="cl">pg_basebackup -D - -F tar -X fetch &gt; /tmp/pg_backup.tar
+</span></span><span class="line"><span class="cl">plakar at /var/backups backup tar:///tmp/pg_backup.tar
+</span></span><span class="line"><span class="cl">rm /tmp/pg_backup.tar
+</span></span></code></pre></div><p><em>This method may be slower than a directory-based backup as it requires serializing the data into a tarball. Ensure you have enough temporary disk space for the tarball before running the backup.</em></p>
 <h2 id="restoring-a-physical-backup">Restoring a physical backup</h2>
 <p>To restore a physical backup created with <code>pg_basebackup</code>, use the <code>plakar restore</code> command to extract the backup to a local directory.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> plakar at /var/backups restore -to ./mydb 3bcb4fd8
