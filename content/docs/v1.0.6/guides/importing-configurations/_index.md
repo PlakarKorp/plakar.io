@@ -59,10 +59,10 @@ You can pipe configuration data directly from other commands:
 
 ```bash
 # Import a specific source configuration as a destination
-plakar source show | plakar destination import mybucket
+plakar source show -secrets | plakar destination import mybucket
 
 # Import all sources as destinations
-plakar source show | plakar destination import
+plakar source show -secrets | plakar destination import
 
 # Import from rclone configuration
 rclone config show | plakar store import -rclone koofr
@@ -141,7 +141,7 @@ You can export and import configurations between different Plakar installations:
 
 ```bash
 # Export current store configurations
-plakar store show > stores-backup.yaml
+plakar store show -secrets > stores-backup.yaml
 
 # Import on another machine
 plakar store import -config stores-backup.yaml
@@ -153,10 +153,10 @@ A common use case is to use the same locations for both backup sources and resto
 
 ```bash
 # Import all sources as destinations
-plakar source show | plakar destination import
+plakar source show -secrets | plakar destination import
 
 # Import a specific source as a destination with a new name
-plakar source show | plakar destination import mysource:myrestore
+plakar source show -secrets | plakar destination import mysource:myrestore
 ```
 
 ### Verification
