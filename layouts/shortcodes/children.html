@@ -1,0 +1,55 @@
+{{- $style := .Get "style" | default "" }}
+{{- $showhidden := .Get "showhidden" | default false }}
+{{- $withDescription := eq (.Get "description") "true" }}
+{{- $pages := .Page.Pages }}
+
+{{- if not $showhidden }}
+  {{- $pages = where $pages "Params.hidden" "ne" true }}
+  {{- $pages = where $pages "Title" "ne" "" }}
+{{- end }}
+
+{{- if eq $style "sections" }}
+  {{/* Sections mode: each child is a heading, grandchildren are cards */}}
+  <div class="not-prose section-index mt-6">
+    {{- range $pages }}
+      <div class="mt-8">
+        <h3 class="text-xl font-semibold mt-0 mb-3">
+          {{- if .RelPermalink }}
+            <a href="{{ .RelPermalink }}" class="text-neutral-900 no-underline hover:text-primary-500">{{ .LinkTitle }}</a>
+          {{- else }}
+            {{ .LinkTitle }}
+          {{- end }}
+        </h3>
+        {{- $subpages := .Pages }}
+        {{- if $subpages }}
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {{- range $subpages }}
+              <a href="{{ .RelPermalink }}"
+                 class="block rounded-lg border border-neutral-200 bg-neutral-50 hover:bg-neutral-100 px-4 py-3 no-underline text-base font-medium text-neutral-900">
+                {{ .LinkTitle }}
+              </a>
+            {{- end }}
+          </div>
+        {{- end }}
+      </div>
+    {{- end }}
+  </div>
+
+{{- else }}
+  {{/* Default mode: flat card grid */}}
+  <div class="not-prose section-index mt-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      {{- range $pages }}
+        <a href="{{ .RelPermalink }}"
+           class="block rounded-lg border border-neutral-200 bg-neutral-50 hover:bg-neutral-100 px-4 py-3 no-underline">
+          <span class="text-base font-semibold text-neutral-900">{{ .LinkTitle }}</span>
+          {{- if $withDescription }}
+            {{- with or .Description .Summary }}
+              <p class="mt-1 text-xs text-neutral-500 leading-snug line-clamp-2">{{ . }}</p>
+            {{- end }}
+          {{- end }}
+        </a>
+      {{- end }}
+    </div>
+  </div>
+{{- end }}
