@@ -9889,10 +9889,10 @@ v1.1.0
 <h3 id="importing-from-piped-input">Importing from Piped Input</h3>
 <p>You can pipe configuration data directly from other commands:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Import a specific source configuration as a destination</span>
-</span></span><span class="line"><span class="cl">plakar <span class="nb">source</span> show <span class="p">|</span> plakar destination import mybucket
+</span></span><span class="line"><span class="cl">plakar <span class="nb">source</span> show -secrets <span class="p">|</span> plakar destination import mybucket
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># Import all sources as destinations</span>
-</span></span><span class="line"><span class="cl">plakar <span class="nb">source</span> show <span class="p">|</span> plakar destination import
+</span></span><span class="line"><span class="cl">plakar <span class="nb">source</span> show -secrets <span class="p">|</span> plakar destination import
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># Import from rclone configuration</span>
 </span></span><span class="line"><span class="cl">rclone config show <span class="p">|</span> plakar store import -rclone koofr
@@ -9941,17 +9941,17 @@ v1.1.0
 </span></span></code></pre></div><h3 id="bulk-configuration-management">Bulk Configuration Management</h3>
 <p>You can export and import configurations between different Plakar installations:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Export current store configurations</span>
-</span></span><span class="line"><span class="cl">plakar store show &gt; stores-backup.yaml
+</span></span><span class="line"><span class="cl">plakar store show -secrets &gt; stores-backup.yaml
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># Import on another machine</span>
 </span></span><span class="line"><span class="cl">plakar store import -config stores-backup.yaml
 </span></span></code></pre></div><h3 id="converting-sources-to-destinations">Converting Sources to Destinations</h3>
 <p>A common use case is to use the same locations for both backup sources and restore destinations:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Import all sources as destinations</span>
-</span></span><span class="line"><span class="cl">plakar <span class="nb">source</span> show <span class="p">|</span> plakar destination import
+</span></span><span class="line"><span class="cl">plakar <span class="nb">source</span> show -secrets <span class="p">|</span> plakar destination import
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># Import a specific source as a destination with a new name</span>
-</span></span><span class="line"><span class="cl">plakar <span class="nb">source</span> show <span class="p">|</span> plakar destination import mysource:myrestore
+</span></span><span class="line"><span class="cl">plakar <span class="nb">source</span> show -secrets <span class="p">|</span> plakar destination import mysource:myrestore
 </span></span></code></pre></div><h3 id="verification">Verification</h3>
 <p>After importing, verify the configuration was imported correctly:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">plakar store show
