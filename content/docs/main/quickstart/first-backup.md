@@ -17,7 +17,7 @@ If you've used traditional backup tools, here's what's different: instead of inc
 
 ## Requirements
 
-Make sure **Plakar** is installed on your system. If you haven't done this yet, please refer to the [Installation guide](../installation) for detailed instructions.
+Make sure **Plakar** is installed on your system. If you haven't done this yet, please refer to the [installation guide](../installation) for detailed instructions.
 
 ## Create a Kloset Store
 

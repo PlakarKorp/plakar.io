@@ -18,7 +18,7 @@ In this guide, we will create a backup of an S3 bucket using **Plakar**. The sam
 ## Requirements
 
 After following the previous parts of this quickstart, you should have:
-- **Plakar** is installed on your system (see the [Installation guide](../installation)).
+- **Plakar** is installed on your system (see the [installation guide](../installation)).
 - A Kloset Store on your local filesystem at `$HOME/backups`.
 - A S3-compatible storage location configured in your **Plakar** configuration file under the name `s3-backups` (see [Part 2 of this quickstart](../synchronize-copies)).
 

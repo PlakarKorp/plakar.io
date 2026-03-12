@@ -1,1 +1,10 @@
-toc
+<!-- JS: assets/js/docs/main.js -->
+
+{{ with .TableOfContents }}
+  <nav class="toc docs-font sticky top-24 text-sm">
+    <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
+    <div class="toc-content text-neutral-600">
+      {{ . | emojify }}
+    </div>
+  </nav>
+{{ end }}

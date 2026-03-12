@@ -21,3 +21,30 @@ html {
 .docs-font {
   font-family: "Inter", sans-serif;
 }
+
+/* Docs TOC styles */
+.toc-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.toc-content ul ul {
+  padding-left: 0.75rem;
+  margin-top: 0.35rem;
+}
+
+.toc-content a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  line-height: 1.4;
+}
+
+.toc-content a:hover,
+.toc-content a.active {
+  color: rgb(var(--color-primary-500));
+}

@@ -24,3 +24,8 @@
 
   </div>
 {{ end }}
+
+{{ define "scripts" }}
+  {{ $docsJs := resources.Get "js/docs/main.js" | minify | fingerprint }}
+  <script src="{{ $docsJs.RelPermalink }}" defer></script>
+{{ end }}
