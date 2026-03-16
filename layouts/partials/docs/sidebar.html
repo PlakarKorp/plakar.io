@@ -34,7 +34,7 @@
             <a href="{{ .RelPermalink }}"
                data-same-page="{{ $samePage }}"
                class="version-selector-option block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500
-               {{ if eq .RelPermalink $currentVersion.RelPermalink }}text-primary-500 bg-neutral-100 font-medium{{ end }}">
+               {{ if eq .RelPermalink $currentVersion.RelPermalink }}text-primary-500 bg-neutral-100 {{ end }}">
               {{ .Title }}
             </a>
           {{ end }}
@@ -74,11 +74,11 @@
       {{ if $hasChildren }}
         <div class="sidebar-accordion {{ if $isActive }}open{{ end }}">
           <div class="flex items-center rounded-lg hover:bg-neutral-100
-            {{ if $isActive }}text-primary-500 font-medium{{ end }}"
+            {{ if $isActive }}text-primary-500 {{ end }}"
             style="margin-left: {{ $indentPx }}px;">
             <a href="{{ .RelPermalink }}"
                class="flex-1 px-2 py-1.5 text-neutral-700 hover:text-primary-500
-               {{ if $isActive }}text-primary-500 font-medium{{ end }}">
+               {{ if $isActive }}text-primary-500 {{ end }}">
               {{ .Title }}
             </a>
             <button class="sidebar-accordion-btn px-2 py-1.5 shrink-0">
@@ -96,7 +96,7 @@
         <div style="margin-left: {{ $indentPx }}px;">
           <a href="{{ .RelPermalink }}"
              class="block px-2 py-1.5 rounded-lg text-neutral-700 hover:text-primary-500 hover:bg-neutral-100
-             {{ if eq $currentPage.RelPermalink .RelPermalink }}text-primary-500 bg-neutral-100 font-medium{{ end }}">
+             {{ if eq $currentPage.RelPermalink .RelPermalink }}text-primary-500 bg-neutral-100 {{ end }}">
             {{ .Title }}
           </a>
         </div>
@@ -106,7 +106,7 @@
       <div style="margin-left: {{ add $indentPx 8 }}px;">
         <a href="{{ .RelPermalink }}"
            class="block px-2 py-1.5 rounded-lg text-neutral-700 hover:text-primary-500 hover:bg-neutral-100
-           {{ if eq $currentPage.RelPermalink .RelPermalink }}text-primary-500 bg-neutral-100 font-medium{{ end }}">
+           {{ if eq $currentPage.RelPermalink .RelPermalink }}text-primary-500 bg-neutral-100 {{ end }}">
           {{ .Title }}
         </a>
       </div>
