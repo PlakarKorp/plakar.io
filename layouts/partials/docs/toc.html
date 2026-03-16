@@ -6,5 +6,19 @@
     <div class="toc-content text-neutral-600">
       {{ . | emojify }}
     </div>
+
+    {{ with $.Site.Params.docs.docsRepo }}
+      {{ with $.File }}
+        <div class="border-t border-neutral-200 mt-4 pt-4">
+          <a href="{{ $.Site.Params.docs.docsRepo }}/edit/main/content/{{ .Path }}" target="_blank"
+            class="flex items-center gap-2 text-xs text-neutral-400">
+            Edit this page on GitHub
+            <span class="w-3 h-3 flex items-center justify-center">
+              {{ partial "icon.html" "ri/external-link-line" }}
+            </span>
+          </a>
+        </div>
+      {{ end }}
+    {{ end }}
   </nav>
 {{ end }}
