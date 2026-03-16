@@ -11,7 +11,7 @@ aliases:
 
 This guide gets you started in minutes. You'll create your first backup snapshot, verify it's secure, and learn how to restore your files.
 
-**Plakar** makes backups simple and secure by default. Every backup is end-to-end encrypted, deduplicated to save space, and stored as an independent snapshot you can restore at any time—without depending on previous backups.
+**Plakar** makes backups simple and secure by default. Every backup is end-to-end encrypted, deduplicated to save space, and stored as an independent snapshot you can restore at any time without depending on previous backups.
 
 If you've used traditional backup tools, here's what's different: instead of incremental archives that chain together, Plakar creates self-contained snapshots. You can delete old snapshots without breaking newer ones, compare any two snapshots directly, and trust that your data is tamper-evident and encrypted before it ever leaves your machine.
 

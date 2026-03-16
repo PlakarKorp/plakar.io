@@ -1,6 +1,5 @@
 <!-- JS: assets/js/docs/sidebar.js -->
 
-{{- /* JS: assets/js/docs/sidebar.js */ -}}
 {{ $currentPage := . }}
 {{ $docsSection := .Site.GetPage "section" "docs" }}
 {{ $versions := $docsSection.Sections }}
@@ -65,6 +64,7 @@
   {{ $section := .section }}
   {{ $depth := .depth }}
   {{ $items := $section.Pages }}
+  {{ $indentPx := mul $depth 2 }}
 
   {{ range $items }}
     {{ if .IsSection }}
@@ -73,35 +73,43 @@
 
       {{ if $hasChildren }}
         <div class="sidebar-accordion {{ if $isActive }}open{{ end }}">
-          <button class="sidebar-accordion-btn w-full flex items-center justify-between px-2 py-1.5 rounded-lg text-neutral-700 hover:text-primary-500 hover:bg-neutral-100
-            {{ if $isActive }}text-primary-500 font-medium{{ end }}
-            {{ if gt $depth 0 }}ml-{{ mul $depth 3 }}{{ end }}">
-            <span>{{ .Title }}</span>
-            <span class="sidebar-accordion-chevron w-4 h-4 flex items-center justify-center transition-transform {{ if $isActive }}rotate-180{{ end }}">
-              {{ partial "icon.html" "chevron-down" }}
-            </span>
-          </button>
+          <div class="flex items-center rounded-lg hover:bg-neutral-100
+            {{ if $isActive }}text-primary-500 font-medium{{ end }}"
+            style="margin-left: {{ $indentPx }}px;">
+            <a href="{{ .RelPermalink }}"
+               class="flex-1 px-2 py-1.5 text-neutral-700 hover:text-primary-500
+               {{ if $isActive }}text-primary-500 font-medium{{ end }}">
+              {{ .Title }}
+            </a>
+            <button class="sidebar-accordion-btn px-2 py-1.5 shrink-0">
+              <span class="sidebar-accordion-chevron w-4 h-4 flex items-center justify-center transition-transform {{ if $isActive }}rotate-180{{ end }}">
+                {{ partial "icon.html" "chevron-down" }}
+              </span>
+            </button>
+          </div>
           <div class="sidebar-accordion-content {{ if not $isActive }}hidden{{ end }}">
             {{ template "sidebar-section" (dict "section" . "currentPage" $currentPage "depth" (add $depth 1)) }}
           </div>
         </div>
 
       {{ else }}
-        <a href="{{ .RelPermalink }}"
-           class="block px-2 py-1.5 rounded-lg text-neutral-700 hover:text-primary-500 hover:bg-neutral-100
-           {{ if gt $depth 0 }}ml-{{ mul $depth 3 }}{{ end }}
-           {{ if eq $currentPage.RelPermalink .RelPermalink }}text-primary-500 bg-neutral-100 font-medium{{ end }}">
-          {{ .Title }}
-        </a>
+        <div style="margin-left: {{ $indentPx }}px;">
+          <a href="{{ .RelPermalink }}"
+             class="block px-2 py-1.5 rounded-lg text-neutral-700 hover:text-primary-500 hover:bg-neutral-100
+             {{ if eq $currentPage.RelPermalink .RelPermalink }}text-primary-500 bg-neutral-100 font-medium{{ end }}">
+            {{ .Title }}
+          </a>
+        </div>
       {{ end }}
 
     {{ else }}
-      <a href="{{ .RelPermalink }}"
-         class="block px-2 py-1.5 rounded-lg text-neutral-700 hover:text-primary-500 hover:bg-neutral-100
-         {{ if gt $depth 0 }}ml-{{ mul $depth 3 }}{{ end }}
-         {{ if eq $currentPage.RelPermalink .RelPermalink }}text-primary-500 bg-neutral-100 font-medium{{ end }}">
-        {{ .Title }}
-      </a>
+      <div style="margin-left: {{ add $indentPx 8 }}px;">
+        <a href="{{ .RelPermalink }}"
+           class="block px-2 py-1.5 rounded-lg text-neutral-700 hover:text-primary-500 hover:bg-neutral-100
+           {{ if eq $currentPage.RelPermalink .RelPermalink }}text-primary-500 bg-neutral-100 font-medium{{ end }}">
+          {{ .Title }}
+        </a>
+      </div>
     {{ end }}
   {{ end }}
 
