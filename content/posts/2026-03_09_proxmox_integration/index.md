@@ -1,6 +1,6 @@
 ---
 title: "Backing up Proxmox with Plakar: a third-party integration built in a few days"
-date: 2026-03-09T20:00:00+0100
+date: 2026-03-16T15:00:00+0100
 authors:
   - "gilles"
 summary: "The team at FactorFX built a Proxmox integration for Plakar that wraps Proxmox’s native vzdump backups and stores them as deduplicated Plakar snapshots, making VM and container backups portable, encrypted, and easy to restore across clusters."
@@ -152,7 +152,7 @@ The proxmox integration has been [committed to a public repository](https://gith
 To test it, you first need to install our latest beta of plakar:
 
 ```sh
-$ go install github.com/PlakarKorp/plakar@v1.1.0-beta.5
+$ go install github.com/PlakarKorp/plakar@v1.1.0-beta.7
 ```
 
 You can then either use our prebuilt package by authenticating to our platform:
