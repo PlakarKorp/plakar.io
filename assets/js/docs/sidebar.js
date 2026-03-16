@@ -1,9 +1,12 @@
 // Targets: layouts/partials/docs/sidebar.html
+// Targets: layouts/docs/single.html
+// Targets: layouts/docs/list.html
 // Elements: .sidebar-accordion, .sidebar-accordion-btn, .sidebar-accordion-content
 // Elements: .version-selector, .version-selector-btn, .version-selector-menu
+// Elements: #docs-sidebar-open, #docs-sidebar-close, #docs-sidebar-overlay, #docs-sidebar-mobile
 
 document.addEventListener("DOMContentLoaded", () => {
-  // --- Accordion ---
+  // Accordion
   document.querySelectorAll(".sidebar-accordion-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
       const accordion = btn.closest(".sidebar-accordion");
@@ -16,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // --- Version selector ---
+  // Version selector
   const selectorBtn = document.querySelector(".version-selector-btn");
   const selectorMenu = document.querySelector(".version-selector-menu");
 
@@ -38,4 +41,24 @@ document.addEventListener("DOMContentLoaded", () => {
       selectorMenu?.classList.add("hidden");
     }
   });
+
+  // Mobile sidebar
+  const sidebarOpen = document.getElementById("docs-sidebar-open");
+  const sidebarClose = document.getElementById("docs-sidebar-close");
+  const sidebarOverlay = document.getElementById("docs-sidebar-overlay");
+  const sidebarMobile = document.getElementById("docs-sidebar-mobile");
+
+  const openSidebar = () => {
+    sidebarMobile?.classList.remove("-translate-x-full");
+    sidebarOverlay?.classList.remove("hidden");
+  };
+
+  const closeSidebar = () => {
+    sidebarMobile?.classList.add("-translate-x-full");
+    sidebarOverlay?.classList.add("hidden");
+  };
+
+  sidebarOpen?.addEventListener("click", openSidebar);
+  sidebarClose?.addEventListener("click", closeSidebar);
+  sidebarOverlay?.addEventListener("click", closeSidebar);
 });

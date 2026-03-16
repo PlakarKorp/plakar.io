@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const menuClose = document.getElementById("menu-close-button");
   const menuMobile = document.getElementById("menu-mobile");
 
-  // --- Desktop dropdown ---
+  // Desktop dropdown
   const closeAll = () => {
     dropdownGroups.forEach((g) => {
       g.querySelector(".dropdown-menu")?.classList.add("hidden");
@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setDropdownWidths();
   window.addEventListener("resize", setDropdownWidths);
 
-  // --- Mobile menu ---
+  // Mobile menu
   menuButton?.addEventListener("click", () => {
     menuMobile?.classList.toggle("hidden");
   });
@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
     menuMobile?.classList.add("hidden");
   });
 
-  // --- Mobile accordion ---
+  // Mobile accordion
   document.querySelectorAll(".accordion-toggle").forEach((toggle) => {
     toggle.addEventListener("click", () => {
       const content = toggle.nextElementSibling;
