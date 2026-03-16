@@ -20,25 +20,21 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Version selector
-  const selectorBtn = document.querySelector(".version-selector-btn");
-  const selectorMenu = document.querySelector(".version-selector-menu");
-
-  selectorBtn?.addEventListener("click", (e) => {
-    e.stopPropagation();
-    selectorMenu?.classList.toggle("hidden");
-  });
-
-  document.querySelectorAll(".version-selector-option").forEach((option) => {
-    option.addEventListener("click", (e) => {
-      e.preventDefault();
-      const samePage = option.dataset.samePage;
-      window.location.href = samePage || option.getAttribute("href");
+  document.querySelectorAll(".version-selector-btn").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const menu = btn
+        .closest(".version-selector")
+        .querySelector(".version-selector-menu");
+      menu?.classList.toggle("hidden");
     });
   });
 
   document.addEventListener("click", (e) => {
     if (!e.target.closest(".version-selector")) {
-      selectorMenu?.classList.add("hidden");
+      document
+        .querySelectorAll(".version-selector-menu")
+        .forEach((m) => m.classList.add("hidden"));
     }
   });
 
