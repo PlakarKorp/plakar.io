@@ -1,1 +1,20 @@
-header
+<header class="flex flex-col gap-4 mb-8">
+  <nav class="flex items-center gap-1 text-sm text-neutral-400">
+    <a href="/docs/" class="hover:text-primary-500 transition-colors">
+      <span class="w-5 h-5 flex items-center justify-center">
+        {{ partial "icon.html" "ri/home-5-fill" }}
+      </span>
+    </a>
+    {{ range .Ancestors.Reverse }}
+      {{ if ne .Kind "home" }}
+        <a href="{{ .RelPermalink }}" class="hover:text-primary-500 transition-colors">
+          {{ .Title }}
+        </a>
+        <span class="w-3 h-3 flex items-center justify-center">
+          {{ partial "icon.html" "ri/corner-down-right-line" }}
+        </span>
+      {{ end }}
+    {{ end }}
+    <span class="text-neutral-900 font-medium">{{ .Title }}</span>
+  </nav>
+</header>
