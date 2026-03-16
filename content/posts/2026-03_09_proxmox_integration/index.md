@@ -167,18 +167,18 @@ Or build the integration yourself...
 
 ```sh
 $ plakar pkg build proxmox
-/usr/bin/make -C /var/folders/9x/9k0f6mc10sbd0_kfx63__fvc0000gn/T/build-proxmox-v1.1.0-510526837
-48317f2d: OK ✓ /
-48317f2d: OK ✓ /manifest.yaml
-48317f2d: OK ✓ /proxmoxImporter
-48317f2d: OK ✓ /proxmoxExporter
-Plugin created successfully: proxmox_v1.1.0_darwin_arm64.ptar
+/usr/bin/make -C /var/folders/9x/9k0f6mc10sbd0_kfx63__fvc0000gn/T/build-proxmox-v1.1.0-rc.1-4157532844
+83b7da91: OK ✓ /
+83b7da91: OK ✓ /manifest.yaml
+83b7da91: OK ✓ /proxmoxExporter
+83b7da91: OK ✓ /proxmoxImporter
+Plugin created successfully: proxmox_v1.1.0-rc.1_darwin_arm64.ptar
 ```
 
 ... and install the resulting ptar:
 
 ```sh
-$ plakar pkg add ./proxmox_v1.1.0_darwin_arm64.ptar
+$ plakar pkg add ./proxmox_v1.1.0-rc.1_darwin_arm64.ptar
 ```
 
 Aaaaaand that's it.
