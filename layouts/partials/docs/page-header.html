@@ -1,5 +1,5 @@
 <header class="flex flex-col docs-font gap-4 mb-8">
-  <nav class="flex items-center gap-1 text-sm text-neutral-400">
+  <nav class="flex items-center flex-wrap gap-1 text-sm text-neutral-400">
     {{ range .Ancestors.Reverse }}
       {{ if and (ne .Kind "home") (ne .RelPermalink "/docs/") }}
         <a href="{{ .RelPermalink }}" class="hover:text-primary-500 transition-colors">
