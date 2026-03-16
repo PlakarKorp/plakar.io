@@ -1,5 +1,5 @@
 {{ define "main" }}
-  <div class="flex mt-12 gap-8 px-6 py-8 max-w-350 mx-auto">
+  <div class="flex mt-12 gap-8 px-3 lg:px-6 py-8 max-w-350 mx-auto">
 
     <!-- Left sidebar -->
     <aside class="hidden lg:block w-52 shrink-0">
@@ -9,13 +9,11 @@
     </aside>
 
     <!-- Main content -->
-    <main class="flex-1 min-w-0 px-12">
+    <main class="flex-1 min-w-0 px-3 lg:px-12">
       {{ partial "docs/page-header.html" . }}
-
       <article class="docs-font prose dark:prose-invert max-w-none mt-8">
         {{ .Content | safeHTML }}
       </article>
-
       {{ partial "docs/page-footer.html" . }}
     </main>
 
