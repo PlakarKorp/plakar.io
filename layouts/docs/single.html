@@ -3,7 +3,9 @@
 
     <!-- Left sidebar -->
     <aside class="hidden lg:block w-52 shrink-0">
-      {{ partial "docs/sidebar.html" . }}
+      <div class="sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto">
+        {{ partial "docs/sidebar.html" . }}
+      </div>
     </aside>
 
     <!-- Main content -->
@@ -26,6 +28,11 @@
 {{ end }}
 
 {{ define "scripts" }}
-  {{ $docsJs := resources.Get "js/docs/main.js" | minify | fingerprint }}
-  <script src="{{ $docsJs.RelPermalink }}" defer></script>
+  {{ $js := slice
+    (resources.Get "js/docs/main.js")
+    (resources.Get "js/docs/sidebar.js")
+    | resources.Concat "js/docs-bundle.js"
+    | minify | fingerprint
+  }}
+  <script src="{{ $js.RelPermalink }}" defer></script>
 {{ end }}

@@ -1,1 +1,108 @@
-sidebar
+<!-- JS: assets/js/docs/sidebar.js -->
+
+{{- /* JS: assets/js/docs/sidebar.js */ -}}
+{{ $currentPage := . }}
+{{ $docsSection := .Site.GetPage "section" "docs" }}
+{{ $versions := $docsSection.Sections }}
+
+{{ $currentVersion := false }}
+{{ range $versions }}
+  {{ if or (.IsAncestor $currentPage) (eq .RelPermalink $currentPage.RelPermalink) }}
+    {{ $currentVersion = . }}
+  {{ end }}
+{{ end }}
+
+<aside class="flex flex-col docs-font h-full gap-6">
+
+  <!-- Version selector -->
+  {{ if gt (len $versions) 1 }}
+    <div class="relative version-selector">
+      <button class="version-selector-btn w-full flex items-center justify-between px-3 py-2 border border-neutral-200 rounded-lg text-neutral-700 hover:border-neutral-300 bg-neutral-50">
+        {{ if $currentVersion }}
+          <span class="truncate text-sm">{{ $currentVersion.Title }}</span>
+        {{ else }}
+          <span class="truncate text-sm">Select version</span>
+        {{ end }}
+        <span class="w-4 h-4 shrink-0 flex items-center justify-center">
+          {{ partial "icon.html" "chevron-down" }}
+        </span>
+      </button>
+      <div class="version-selector-menu hidden absolute top-full mt-1 w-full bg-neutral-50 border border-neutral-200 rounded-lg z-50 overflow-hidden">
+        {{ if $currentVersion }}
+          {{ range $versions }}
+            {{ $versionPath := .RelPermalink }}
+            {{ $samePage := replace $currentPage.RelPermalink $currentVersion.RelPermalink $versionPath }}
+            <a href="{{ .RelPermalink }}"
+               data-same-page="{{ $samePage }}"
+               class="version-selector-option block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500
+               {{ if eq .RelPermalink $currentVersion.RelPermalink }}text-primary-500 bg-neutral-100 font-medium{{ end }}">
+              {{ .Title }}
+            </a>
+          {{ end }}
+        {{ else }}
+          {{ range $versions }}
+            <a href="{{ .RelPermalink }}"
+               class="version-selector-option block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500">
+              {{ .Title }}
+            </a>
+          {{ end }}
+        {{ end }}
+      </div>
+    </div>
+  {{ end }}
+
+  <!-- Nav tree -->
+  <nav class="flex flex-col gap-1 flex-1 overflow-y-auto text-sm">
+    {{ if $currentVersion }}
+      {{ template "sidebar-section" (dict "section" $currentVersion "currentPage" $currentPage "depth" 0) }}
+    {{ end }}
+  </nav>
+
+</aside>
+
+{{ define "sidebar-section" }}
+  {{ $currentPage := .currentPage }}
+  {{ $section := .section }}
+  {{ $depth := .depth }}
+  {{ $items := $section.Pages }}
+
+  {{ range $items }}
+    {{ if .IsSection }}
+      {{ $isActive := or (.IsAncestor $currentPage) (eq .RelPermalink $currentPage.RelPermalink) }}
+      {{ $hasChildren := or (gt (len .Pages) 0) (gt (len .Sections) 0) }}
+
+      {{ if $hasChildren }}
+        <div class="sidebar-accordion {{ if $isActive }}open{{ end }}">
+          <button class="sidebar-accordion-btn w-full flex items-center justify-between px-2 py-1.5 rounded-lg text-neutral-700 hover:text-primary-500 hover:bg-neutral-100
+            {{ if $isActive }}text-primary-500 font-medium{{ end }}
+            {{ if gt $depth 0 }}ml-{{ mul $depth 3 }}{{ end }}">
+            <span>{{ .Title }}</span>
+            <span class="sidebar-accordion-chevron w-4 h-4 flex items-center justify-center transition-transform {{ if $isActive }}rotate-180{{ end }}">
+              {{ partial "icon.html" "chevron-down" }}
+            </span>
+          </button>
+          <div class="sidebar-accordion-content {{ if not $isActive }}hidden{{ end }}">
+            {{ template "sidebar-section" (dict "section" . "currentPage" $currentPage "depth" (add $depth 1)) }}
+          </div>
+        </div>
+
+      {{ else }}
+        <a href="{{ .RelPermalink }}"
+           class="block px-2 py-1.5 rounded-lg text-neutral-700 hover:text-primary-500 hover:bg-neutral-100
+           {{ if gt $depth 0 }}ml-{{ mul $depth 3 }}{{ end }}
+           {{ if eq $currentPage.RelPermalink .RelPermalink }}text-primary-500 bg-neutral-100 font-medium{{ end }}">
+          {{ .Title }}
+        </a>
+      {{ end }}
+
+    {{ else }}
+      <a href="{{ .RelPermalink }}"
+         class="block px-2 py-1.5 rounded-lg text-neutral-700 hover:text-primary-500 hover:bg-neutral-100
+         {{ if gt $depth 0 }}ml-{{ mul $depth 3 }}{{ end }}
+         {{ if eq $currentPage.RelPermalink .RelPermalink }}text-primary-500 bg-neutral-100 font-medium{{ end }}">
+        {{ .Title }}
+      </a>
+    {{ end }}
+  {{ end }}
+
+{{ end }}
