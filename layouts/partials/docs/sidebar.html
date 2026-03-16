@@ -31,17 +31,9 @@
           {{ range $versions }}
             {{ $versionPath := .RelPermalink }}
             {{ $samePage := replace $currentPage.RelPermalink $currentVersion.RelPermalink $versionPath }}
-            <a href="{{ .RelPermalink }}"
-               data-same-page="{{ $samePage }}"
+            <a href="{{ $samePage }}"
                class="version-selector-option block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500
-               {{ if eq .RelPermalink $currentVersion.RelPermalink }}text-primary-500 bg-neutral-100 {{ end }}">
-              {{ .Title }}
-            </a>
-          {{ end }}
-        {{ else }}
-          {{ range $versions }}
-            <a href="{{ .RelPermalink }}"
-               class="version-selector-option block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500">
+               {{ if eq .RelPermalink $currentVersion.RelPermalink }}text-primary-500 bg-neutral-100{{ end }}">
               {{ .Title }}
             </a>
           {{ end }}
