@@ -4,7 +4,7 @@ date: "2026-03-11T00:00:00Z"
 weight: 4
 summary: "Create a second copy of your Kloset Store to improve the durability of your backups."
 aliases:
-  - /docs/v1.1.0/quickstart/quickstart-2
+  - /docs/v1.0.6/quickstart/quickstart-2
 ---
 
 # Synchronize multiple copies

@@ -4,7 +4,7 @@ date: "2026-03-11T00:00:00Z"
 weight: 3
 summary: "Get started with plakar: create your first backup, verify integrity, restore, and use the UI."
 aliases:
-  - /docs/v1.1.0/quickstart/quickstart
+  - /docs/v1.0.6/quickstart/quickstart
 ---
 
 # Quickstart
