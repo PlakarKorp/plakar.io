@@ -49,5 +49,7 @@
 
 ## Development
 
-- CD into `/theme/blowfish` directory then run `npm install` to install blowfish dependencies
-- Now at the root of the repo run `hugo server` to start hugo and `npm run dev` alongside to recompile css on watch mode
+- Clone the repo or a fork of the repo
+- Pull the blowfish submodule using `git submodule update --init --recursive`
+- CD into `/themes/blowfish` directory then run `npm install` to install blowfish dependencies
+- Now at the root of the repo run `hugo server` to start hugo and `npm run dev` alongside to compile css on watch mode
