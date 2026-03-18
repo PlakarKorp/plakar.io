@@ -9503,18 +9503,15 @@ function siteSearch() {
             <nav id="TableOfContents">
   <ul>
     <li><a href="#installation">Installation</a></li>
-    <li><a href="#source-connector">Source connector</a>
+    <li><a href="#configuration">Configuration</a>
       <ul>
-        <li><a href="#configuration">Configuration</a></li>
+        <li><a href="#addressing-styles">Addressing styles</a></li>
         <li><a href="#configuration-options">Configuration options</a></li>
       </ul>
     </li>
+    <li><a href="#source-connector">Source connector</a></li>
     <li><a href="#storage-connector">Storage connector</a></li>
-    <li><a href="#destination-connector">Destination connector</a>
-      <ul>
-        <li><a href="#configuration-1">Configuration</a></li>
-      </ul>
-    </li>
+    <li><a href="#destination-connector">Destination connector</a></li>
   </ul>
 </nav>
         
@@ -9528,18 +9525,15 @@ function siteSearch() {
         <nav id="TableOfContents">
   <ul>
     <li><a href="#installation">Installation</a></li>
-    <li><a href="#source-connector">Source connector</a>
+    <li><a href="#configuration">Configuration</a>
       <ul>
-        <li><a href="#configuration">Configuration</a></li>
+        <li><a href="#addressing-styles">Addressing styles</a></li>
         <li><a href="#configuration-options">Configuration options</a></li>
       </ul>
     </li>
+    <li><a href="#source-connector">Source connector</a></li>
     <li><a href="#storage-connector">Storage connector</a></li>
-    <li><a href="#destination-connector">Destination connector</a>
-      <ul>
-        <li><a href="#configuration-1">Configuration</a></li>
-      </ul>
-    </li>
+    <li><a href="#destination-connector">Destination connector</a></li>
   </ul>
 </nav>
     </div>
@@ -10031,6 +10025,75 @@ function siteSearch() {
     });
   })();
 </script>
+<h2 id="configuration">Configuration</h2>
+<h3 id="addressing-styles">Addressing styles</h3>
+<p>S3-compatible services use one of two addressing styles for buckets.</p>
+<p><strong>Path-style</strong> (default) — the bucket name is part of the URL path:</p>
+<pre tabindex="0"><code>s3://&lt;S3_ENDPOINT&gt;/&lt;BUCKET_NAME&gt;
+</code></pre><p><strong>Virtual-hosted-style</strong> — the bucket name is part of the hostname. Required by some services that do not support path-style access (such as AWS S3 in certain regions):</p>
+<pre tabindex="0"><code>s3://&lt;BUCKET_NAME&gt;.&lt;S3_ENDPOINT&gt;
+</code></pre><p>Set <code>virtual_host=true</code> when using virtual-hosted-style addressing.</p>
+<h3 id="configuration-options">Configuration options</h3>
+<p>These options apply to all three connectors (source, storage, destination).</p>
+<table>
+  <thead>
+      <tr>
+          <th>Option</th>
+          <th>Required</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>location</code></td>
+          <td>Yes</td>
+          <td>S3 endpoint and bucket. See <a href="/docs/v1.1.0/integrations/s3/#addressing-styles">Addressing styles</a> above.</td>
+      </tr>
+      <tr>
+          <td><code>access_key</code></td>
+          <td>Yes</td>
+          <td>S3 Access Key ID.</td>
+      </tr>
+      <tr>
+          <td><code>secret_access_key</code></td>
+          <td>Yes</td>
+          <td>S3 Secret Access Key.</td>
+      </tr>
+      <tr>
+          <td><code>passphrase</code></td>
+          <td>No</td>
+          <td>Encryption passphrase. If not set, Plakar will prompt interactively. Source connector only.</td>
+      </tr>
+      <tr>
+          <td><code>use_tls</code></td>
+          <td>No</td>
+          <td>Enable TLS. Recommended for all internet-facing connections.</td>
+      </tr>
+      <tr>
+          <td><code>virtual_host</code></td>
+          <td>No</td>
+          <td>Use virtual-hosted-style addressing. Defaults to <code>false</code>.</td>
+      </tr>
+      <tr>
+          <td><code>tls_insecure_no_verify</code></td>
+          <td>No</td>
+          <td>Skip TLS certificate verification. Defaults to <code>false</code>. See warning below.</td>
+      </tr>
+  </tbody>
+</table>
+
+
+<details open class=" box cstyle notices warning expand" style=";--VARIABLE-BOX-color: var(--BOX-WARNING-color)">
+      <summary class="box-label">
+        <i class="expander-icon fa-fw fas fa-chevron-right"></i> 
+          <img src="/img/ri/alert-line.svg" alt="" class="notice-icon" width="20" height="20"> 
+        TLS Certificate Verification
+      </summary>
+          <div class="box-content">
+        <p>Setting <code>tls_insecure_no_verify=true</code> disables TLS certificate verification, leaving your connection open to man-in-the-middle attacks. Only use this in controlled environments with self-signed certificates on trusted networks. Never use it with AWS S3, public cloud storage, or any production data.</p>
+          </div>
+    </details>
+<hr>
 <h2 id="source-connector">Source connector</h2>
 <p>The source connector retrieves objects from S3 buckets and stores them in a Kloset store with encryption and deduplication.</p>
 <div class="mermaid">
@@ -10044,119 +10107,32 @@ end
 subgraph Plakar[<b>Plakar</b>]
   Connector@{ shape: rect, label: "<small>Retrieve objects via</small><br><b>S3 API</b>" }
   Transform@{ shape: rect, label: "<small>Encrypt & deduplicate</small>" }
-
   Connector --> Transform
 end
 
 Source --> Connector
-
 Store@{ shape: cyl, label: "Kloset Store" }
-
 Transform --> Store
 
-%% Apply classes
-class Source sourceBox
-class Plakar brandBox
-class Store storeBox
-
-%% Classes definitions
 classDef sourceBox fill:#ffe4e6,stroke:#cad5e2,stroke-width:1px
 classDef brandBox fill:#524cff,color:#ffffff
 classDef storeBox fill:#dbeafe,stroke:#cad5e2,stroke-width:1px
-
+class Source sourceBox
+class Plakar brandBox
+class Store storeBox
 linkStyle default stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 25s linear infinite;
 
 </div>
 
-<h3 id="configuration">Configuration</h3>
-<p>Create an S3 source configuration:</p>
+<p>Register the source and run a backup:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">plakar <span class="nb">source</span> add my-s3-bucket <span class="se">\
 </span></span></span><span class="line"><span class="cl">  <span class="nv">location</span><span class="o">=</span>s3://&lt;S3_ENDPOINT&gt;/&lt;BUCKET_NAME&gt; <span class="se">\
 </span></span></span><span class="line"><span class="cl">  <span class="nv">access_key</span><span class="o">=</span>&lt;YOUR_ACCESS_KEY_ID&gt; <span class="se">\
 </span></span></span><span class="line"><span class="cl">  <span class="nv">secret_access_key</span><span class="o">=</span>&lt;YOUR_SECRET_ACCESS_KEY&gt; <span class="se">\
 </span></span></span><span class="line"><span class="cl">  <span class="nv">use_tls</span><span class="o">=</span><span class="nb">true</span>
-</span></span></code></pre></div><p>Back up the bucket to a Kloset store:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">plakar at /var/backups backup <span class="s2">&#34;@my-s3-bucket&#34;</span>
-</span></span></code></pre></div><p>If you don&rsquo;t want to be prompted for a passphrase interactively (for example, when running automated backups), you can configure the passphrase directly in the store configuration:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">plakar <span class="nb">source</span> add my-s3-bucket <span class="se">\
-</span></span></span><span class="line"><span class="cl">  <span class="nv">location</span><span class="o">=</span>s3://&lt;S3_ENDPOINT&gt;/&lt;BUCKET_NAME&gt; <span class="se">\
-</span></span></span><span class="line"><span class="cl">  <span class="nv">access_key</span><span class="o">=</span>&lt;YOUR_ACCESS_KEY_ID&gt; <span class="se">\
-</span></span></span><span class="line"><span class="cl">  <span class="nv">secret_access_key</span><span class="o">=</span>&lt;YOUR_SECRET_ACCESS_KEY&gt; <span class="se">\
-</span></span></span><span class="line"><span class="cl">  <span class="nv">passphrase</span><span class="o">=</span><span class="s1">&#39;&lt;YOUR_ENCRYPTION_PASSPHRASE&gt;&#39;</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl">  <span class="nv">use_tls</span><span class="o">=</span><span class="nb">true</span>
-</span></span></code></pre></div><h3 id="configuration-options">Configuration options</h3>
-<table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Required</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>location</code></td>
-          <td>Yes</td>
-          <td>S3 endpoint and bucket including region (format: <code>s3://s3.region.amazonaws.com/bucket</code>)</td>
-      </tr>
-      <tr>
-          <td><code>access_key</code></td>
-          <td>Yes</td>
-          <td>S3 Access Key ID</td>
-      </tr>
-      <tr>
-          <td><code>secret_access_key</code></td>
-          <td>Yes</td>
-          <td>S3 Secret Access Key</td>
-      </tr>
-      <tr>
-          <td><code>passphrase</code></td>
-          <td>No</td>
-          <td>Encryption passphrase (if not set, Plakar will prompt interactively)</td>
-      </tr>
-      <tr>
-          <td><code>use_tls</code></td>
-          <td>No</td>
-          <td>Enable TLS encryption for secure data transfer (recommended: <code>true</code> for internet connections)</td>
-      </tr>
-      <tr>
-          <td><code>tls_insecure_no_verify</code></td>
-          <td>No</td>
-          <td>Skips TLS certificate verification. It&rsquo;s set to <code>false</code> by default (<strong>see warning below</strong>)</td>
-      </tr>
-  </tbody>
-</table>
-
-
-<details open class=" box cstyle notices warning expand" style=";--VARIABLE-BOX-color: var(--BOX-WARNING-color)">
-      <summary class="box-label">
-        <i class="expander-icon fa-fw fas fa-chevron-right"></i> 
-          <img src="/img/ri/alert-line.svg" alt="" class="notice-icon" width="20" height="20"> 
-        TLS Certificate Verification
-      </summary>
-          <div class="box-content">
-        <p>The <code>tls_insecure_no_verify</code> parameter disables TLS certificate verification and should <strong>only be used in controlled testing environments</strong>.</p>
-<p>When set to <code>true</code>, Plakar won&rsquo;t validate TLS certificates when connecting over HTTPS. This makes your connection vulnerable to man-in-the-middle attacks where an attacker could intercept, read, or modify your backup data.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">plakar store add my-internal-s3 <span class="se">\
-</span></span></span><span class="line"><span class="cl">  <span class="nv">location</span><span class="o">=</span>s3://internal-minio.company.local/backups <span class="se">\
-</span></span></span><span class="line"><span class="cl">  <span class="nv">access_key</span><span class="o">=</span>&lt;YOUR_ACCESS_KEY_ID&gt; <span class="se">\
-</span></span></span><span class="line"><span class="cl">  <span class="nv">secret_access_key</span><span class="o">=</span>&lt;YOUR_SECRET_ACCESS_KEY&gt; <span class="se">\
-</span></span></span><span class="line"><span class="cl">  <span class="nv">use_tls</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl">  <span class="nv">tls_insecure_no_verify</span><span class="o">=</span><span class="nb">true</span>
-</span></span></code></pre></div><p><strong>Only use this when:</strong></p>
-<ul>
-<li>Connecting to internal S3-compatible services with self-signed certificates in a trusted network</li>
-<li>You fully understand the security implications</li>
-</ul>
-<p><strong>Never use this when:</strong></p>
-<ul>
-<li>Connecting to AWS S3 or any public cloud storage</li>
-<li>Transferring data over the internet or untrusted networks</li>
-<li>Handling production or sensitive data</li>
-</ul>
-<p>For production environments, always use valid TLS certificates instead of disabling verification.</p>
-          </div>
-    </details>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">plakar at /var/backups backup <span class="s2">&#34;@my-s3-bucket&#34;</span>
+</span></span></code></pre></div><hr>
 <h2 id="storage-connector">Storage connector</h2>
 <p>The storage connector uses S3-compatible storage as the backend for a Kloset store. All Plakar data—snapshots, chunks, metadata—is stored as S3 objects.</p>
 <div class="mermaid">
@@ -10170,7 +10146,6 @@ end
 subgraph Plakar[<b>Plakar</b>]
   Transform@{ shape: rect, label: "<small>Encrypt & deduplicate</small>" }
   Connector@{ shape: rect, label: "<small>Store via</small><br><b>S3 API</b>" }
-
   Transform --> Connector
 end
 
@@ -10182,31 +10157,27 @@ end
 
 Connector --> Store
 
-%% Apply classes
-class Sources sourceBox
-class Plakar brandBox
-class Storage,Store storeBox
-
-%% Classes definitions
 classDef sourceBox fill:#ffe4e6,stroke:#cad5e2,stroke-width:1px
 classDef brandBox fill:#524cff,color:#ffffff
 classDef storeBox fill:#dbeafe,stroke:#cad5e2,stroke-width:1px
-
+class Sources sourceBox
+class Plakar brandBox
+class Storage,Store storeBox
 linkStyle default stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 25s linear infinite;
 
 </div>
 
-<p>Create an S3 storage configuration:</p>
+<p>Register the store, initialize it, and run a backup:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">plakar store add my-s3-store <span class="se">\
 </span></span></span><span class="line"><span class="cl">  <span class="nv">location</span><span class="o">=</span>s3://&lt;S3_ENDPOINT&gt;/&lt;BUCKET_NAME&gt; <span class="se">\
 </span></span></span><span class="line"><span class="cl">  <span class="nv">access_key</span><span class="o">=</span>&lt;YOUR_ACCESS_KEY_ID&gt; <span class="se">\
 </span></span></span><span class="line"><span class="cl">  <span class="nv">secret_access_key</span><span class="o">=</span>&lt;YOUR_SECRET_ACCESS_KEY&gt; <span class="se">\
 </span></span></span><span class="line"><span class="cl">  <span class="nv">use_tls</span><span class="o">=</span><span class="nb">true</span>
-</span></span></code></pre></div><p>Initialize the Kloset store:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">plakar at <span class="s2">&#34;@my-s3-store&#34;</span> create
-</span></span></code></pre></div><p>Back up data from any source:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">plakar at <span class="s2">&#34;@my-s3-store&#34;</span> backup /var/www
-</span></span></code></pre></div><h2 id="destination-connector">Destination connector</h2>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">plakar at <span class="s2">&#34;@my-s3-store&#34;</span> create
+</span></span><span class="line"><span class="cl">plakar at <span class="s2">&#34;@my-s3-store&#34;</span> backup /var/www
+</span></span></code></pre></div><hr>
+<h2 id="destination-connector">Destination connector</h2>
 <p>The destination connector restores objects from a Kloset store back to an S3 bucket.</p>
 <div class="mermaid">
     
@@ -10217,7 +10188,6 @@ Store@{ shape: cyl, label: "Kloset Store" }
 subgraph Plakar[<b>Plakar</b>]
   Transform@{ shape: rect, label: "<small>Decrypt & reconstruct</small>" }
   Connector@{ shape: rect, label: "<small>Restore via</small><br><b>S3 API</b>" }
-
   Transform --> Connector
 end
 
@@ -10229,29 +10199,24 @@ end
 
 Connector --> Destination
 
-%% Apply classes
-class Destination destinationBox
-class Plakar brandBox
-class Store storeBox
-
-%% Classes definitions
 classDef destinationBox fill:#d0fae5,stroke:#cad5e2,stroke-width:1px
 classDef brandBox fill:#524cff,color:#ffffff
 classDef storeBox fill:#dbeafe,stroke:#cad5e2,stroke-width:1px
-
+class Destination destinationBox
+class Plakar brandBox
+class Store storeBox
 linkStyle default stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 25s linear infinite;
 
 </div>
 
-<h3 id="configuration-1">Configuration</h3>
-<p>Create an S3 destination configuration:</p>
+<p>Register the destination and restore a snapshot:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">plakar destination add my-s3-restore <span class="se">\
 </span></span></span><span class="line"><span class="cl">  <span class="nv">location</span><span class="o">=</span>s3://&lt;S3_ENDPOINT&gt;/&lt;BUCKET_NAME&gt; <span class="se">\
 </span></span></span><span class="line"><span class="cl">  <span class="nv">access_key</span><span class="o">=</span>&lt;YOUR_ACCESS_KEY_ID&gt; <span class="se">\
 </span></span></span><span class="line"><span class="cl">  <span class="nv">secret_access_key</span><span class="o">=</span>&lt;YOUR_SECRET_ACCESS_KEY&gt; <span class="se">\
 </span></span></span><span class="line"><span class="cl">  <span class="nv">use_tls</span><span class="o">=</span><span class="nb">true</span>
-</span></span></code></pre></div><p>Restore a snapshot:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">plakar at /var/backups restore -to <span class="s2">&#34;@my-s3-restore&#34;</span> &lt;snapshot_id&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">plakar at /var/backups restore -to <span class="s2">&#34;@my-s3-restore&#34;</span> &lt;snapshot_id&gt;
 </span></span></code></pre></div>
                 </div>
             </div>
