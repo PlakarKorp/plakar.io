@@ -77,6 +77,44 @@ Existing configurations (stores, sources, destinations) are preserved during upg
 {{< /tab >}}
 {{< /tabs >}}
 
+## Configuration
+
+### Addressing styles
+
+S3-compatible services use one of two addressing styles for buckets.
+
+**Path-style** (default) — the bucket name is part of the URL path:
+```
+s3://<S3_ENDPOINT>/<BUCKET_NAME>
+```
+
+**Virtual-hosted-style** — the bucket name is part of the hostname. Required by some services that do not support path-style access (such as AWS S3 in certain regions):
+```
+s3://<BUCKET_NAME>.<S3_ENDPOINT>
+```
+
+Set `virtual_host=true` when using virtual-hosted-style addressing.
+
+### Configuration options
+
+These options apply to all three connectors (source, storage, destination).
+
+| Option                   | Required | Description |
+| ------------------------ | -------- | ----------- |
+| `location`               | Yes      | S3 endpoint and bucket. See [Addressing styles](#addressing-styles) above. |
+| `access_key`             | Yes      | S3 Access Key ID. |
+| `secret_access_key`      | Yes      | S3 Secret Access Key. |
+| `passphrase`             | No       | Encryption passphrase. If not set, Plakar will prompt interactively. Source connector only. |
+| `use_tls`                | No       | Enable TLS. Recommended for all internet-facing connections. |
+| `virtual_host`           | No       | Use virtual-hosted-style addressing. Defaults to `false`. |
+| `tls_insecure_no_verify` | No       | Skip TLS certificate verification. Defaults to `false`. See warning below. |
+
+{{% notice style="warning" title="TLS Certificate Verification" expanded="true" %}}
+Setting `tls_insecure_no_verify=true` disables TLS certificate verification, leaving your connection open to man-in-the-middle attacks. Only use this in controlled environments with self-signed certificates on trusted networks. Never use it with AWS S3, public cloud storage, or any production data.
+{{% /notice %}}
+
+---
+
 ## Source connector
 
 The source connector retrieves objects from S3 buckets and stores them in a Kloset store with encryption and deduplication.
@@ -91,32 +129,23 @@ end
 subgraph Plakar[<b>Plakar</b>]
   Connector@{ shape: rect, label: "<small>Retrieve objects via</small><br><b>S3 API</b>" }
   Transform@{ shape: rect, label: "<small>Encrypt & deduplicate</small>" }
-
   Connector --> Transform
 end
 
 Source --> Connector
-
 Store@{ shape: cyl, label: "Kloset Store" }
-
 Transform --> Store
 
-%% Apply classes
-class Source sourceBox
-class Plakar brandBox
-class Store storeBox
-
-%% Classes definitions
 classDef sourceBox fill:#ffe4e6,stroke:#cad5e2,stroke-width:1px
 classDef brandBox fill:#524cff,color:#ffffff
 classDef storeBox fill:#dbeafe,stroke:#cad5e2,stroke-width:1px
-
+class Source sourceBox
+class Plakar brandBox
+class Store storeBox
 linkStyle default stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 25s linear infinite;
 {{< /mermaid >}}
 
-### Configuration
-
-Create an S3 source configuration:
+Register the source and run a backup:
 
 ```bash
 plakar source add my-s3-bucket \
@@ -124,58 +153,11 @@ plakar source add my-s3-bucket \
   access_key=<YOUR_ACCESS_KEY_ID> \
   secret_access_key=<YOUR_SECRET_ACCESS_KEY> \
   use_tls=true
-```
 
-Back up the bucket to a Kloset store:
-```bash
 plakar at /var/backups backup "@my-s3-bucket"
 ```
 
-If you don't want to be prompted for a passphrase interactively (for example, when running automated backups), you can configure the passphrase directly in the store configuration:
-```bash
-plakar source add my-s3-bucket \
-  location=s3://<S3_ENDPOINT>/<BUCKET_NAME> \
-  access_key=<YOUR_ACCESS_KEY_ID> \
-  secret_access_key=<YOUR_SECRET_ACCESS_KEY> \
-  passphrase='<YOUR_ENCRYPTION_PASSPHRASE>' \
-  use_tls=true
-```
-
-### Configuration options
-
-| Option              | Required | Description |
-| ------------------- | -------- | ----------- |
-| `location`          | Yes      | S3 endpoint and bucket including region (format: `s3://s3.region.amazonaws.com/bucket`) |
-| `access_key`        | Yes      | S3 Access Key ID |
-| `secret_access_key` | Yes      | S3 Secret Access Key |
-| `passphrase`        | No       | Encryption passphrase (if not set, Plakar will prompt interactively) |
-| `use_tls`           | No       | Enable TLS encryption for secure data transfer (recommended: `true` for internet connections) |
-| `tls_insecure_no_verify`| No   | Skips TLS certificate verification. It's set to `false` by default (**see warning below**) |
-
-{{% notice style="warning" title="TLS Certificate Verification" expanded="true" %}}
-The `tls_insecure_no_verify` parameter disables TLS certificate verification and should **only be used in controlled testing environments**.
-
-When set to `true`, Plakar won't validate TLS certificates when connecting over HTTPS. This makes your connection vulnerable to man-in-the-middle attacks where an attacker could intercept, read, or modify your backup data.
-```bash
-plakar store add my-internal-s3 \
-  location=s3://internal-minio.company.local/backups \
-  access_key=<YOUR_ACCESS_KEY_ID> \
-  secret_access_key=<YOUR_SECRET_ACCESS_KEY> \
-  use_tls=true \
-  tls_insecure_no_verify=true
-```
-
-**Only use this when:**
-- Connecting to internal S3-compatible services with self-signed certificates in a trusted network
-- You fully understand the security implications
-
-**Never use this when:**
-- Connecting to AWS S3 or any public cloud storage
-- Transferring data over the internet or untrusted networks
-- Handling production or sensitive data
-
-For production environments, always use valid TLS certificates instead of disabling verification.
-{{% /notice %}}
+---
 
 ## Storage connector
 
@@ -191,7 +173,6 @@ end
 subgraph Plakar[<b>Plakar</b>]
   Transform@{ shape: rect, label: "<small>Encrypt & deduplicate</small>" }
   Connector@{ shape: rect, label: "<small>Store via</small><br><b>S3 API</b>" }
-
   Transform --> Connector
 end
 
@@ -203,20 +184,16 @@ end
 
 Connector --> Store
 
-%% Apply classes
-class Sources sourceBox
-class Plakar brandBox
-class Storage,Store storeBox
-
-%% Classes definitions
 classDef sourceBox fill:#ffe4e6,stroke:#cad5e2,stroke-width:1px
 classDef brandBox fill:#524cff,color:#ffffff
 classDef storeBox fill:#dbeafe,stroke:#cad5e2,stroke-width:1px
-
+class Sources sourceBox
+class Plakar brandBox
+class Storage,Store storeBox
 linkStyle default stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 25s linear infinite;
 {{< /mermaid >}}
 
-Create an S3 storage configuration:
+Register the store, initialize it, and run a backup:
 
 ```bash
 plakar store add my-s3-store \
@@ -224,21 +201,16 @@ plakar store add my-s3-store \
   access_key=<YOUR_ACCESS_KEY_ID> \
   secret_access_key=<YOUR_SECRET_ACCESS_KEY> \
   use_tls=true
-```
 
-Initialize the Kloset store:
-```bash
 plakar at "@my-s3-store" create
-```
-
-Back up data from any source:
-```bash
 plakar at "@my-s3-store" backup /var/www
 ```
 
+---
+
 ## Destination connector
 
-The destination connector restores objects from a Kloset store back to an S3 bucket.
+Restores objects from a Kloset store back to an S3 bucket.
 
 {{< mermaid >}}
 flowchart LR
@@ -248,7 +220,6 @@ Store@{ shape: cyl, label: "Kloset Store" }
 subgraph Plakar[<b>Plakar</b>]
   Transform@{ shape: rect, label: "<small>Decrypt & reconstruct</small>" }
   Connector@{ shape: rect, label: "<small>Restore via</small><br><b>S3 API</b>" }
-
   Transform --> Connector
 end
 
@@ -260,22 +231,16 @@ end
 
 Connector --> Destination
 
-%% Apply classes
-class Destination destinationBox
-class Plakar brandBox
-class Store storeBox
-
-%% Classes definitions
 classDef destinationBox fill:#d0fae5,stroke:#cad5e2,stroke-width:1px
 classDef brandBox fill:#524cff,color:#ffffff
 classDef storeBox fill:#dbeafe,stroke:#cad5e2,stroke-width:1px
-
+class Destination destinationBox
+class Plakar brandBox
+class Store storeBox
 linkStyle default stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 25s linear infinite;
 {{< /mermaid >}}
 
-### Configuration
-
-Create an S3 destination configuration:
+Register the destination and restore a snapshot:
 
 ```bash
 plakar destination add my-s3-restore \
@@ -283,9 +248,6 @@ plakar destination add my-s3-restore \
   access_key=<YOUR_ACCESS_KEY_ID> \
   secret_access_key=<YOUR_SECRET_ACCESS_KEY> \
   use_tls=true
-```
 
-Restore a snapshot:
-```bash
 plakar at /var/backups restore -to "@my-s3-restore" <snapshot_id>
 ```
