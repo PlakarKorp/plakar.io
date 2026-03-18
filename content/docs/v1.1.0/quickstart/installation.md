@@ -129,6 +129,7 @@ Several installation methods are available depending on your operating system. C
 ## Verifying the Installation
 
 Verify the installation by running:
+
 ```bash
 $ plakar version
 ```

@@ -4,7 +4,7 @@ date: "2026-03-16T00:00:00Z"
 weight: 4
 summary: "Expose a Kloset Store over HTTP using the plakar server command."
 aliases:
-  - /docs/v1.1.0/guides/what-is-plakar-server
+  - /docs/v1.0.5/guides/what-is-plakar-server
 ---
 
 # Serving a Kloset Store over HTTP
@@ -25,6 +25,14 @@ By default, Plakar listens on `http://localhost:9876`. To expose this store over
 
 ```bash
 $ plakar at /var/backups server
+```
+
+## Accessing the store over HTTP
+
+To use a Kloset Store over HTTP, install the HTTP integration:
+
+```bash
+$ plakar pkg add http
 ```
 
 You can now access the store via its HTTP address:
