@@ -2,6 +2,8 @@
 date: "2026-03-18T08:01:28Z"
 title: pkg-show
 summary: "Show installed Plakar plugins"
+aliases:
+  - /docs/v1.0.6/commands/plakar-pkg-show/
 ---
 
 <table class="head">

@@ -2,6 +2,8 @@
 date: "2026-03-18T08:05:04Z"
 title: clone
 summary: "Clone a Plakar repository to a new location"
+aliases:
+  - /docs/v1.0.5/commands/plakar-clone/
 ---
 
 <table class="head">

@@ -2,6 +2,8 @@
 date: "2026-03-18T08:05:04Z"
 title: agent
 summary: "Run the Plakar agent"
+aliases:
+  - /docs/v1.0.5/commands/plakar-agent/
 ---
 
 <table class="head">

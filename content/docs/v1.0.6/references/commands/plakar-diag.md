@@ -2,6 +2,8 @@
 date: "2026-03-18T08:01:28Z"
 title: diag
 summary: "Display detailed information about Plakar internal structures"
+aliases:
+  - /docs/v1.0.6/commands/plakar-diag/
 ---
 
 <table class="head">

@@ -2,6 +2,8 @@
 date: "2026-03-18T08:05:04Z"
 title: scheduler
 summary: "Run the Plakar scheduler"
+aliases:
+  - /docs/v1.0.5/commands/plakar-scheduler/
 ---
 
 <table class="head">

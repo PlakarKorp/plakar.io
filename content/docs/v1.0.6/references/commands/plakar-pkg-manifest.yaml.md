@@ -2,6 +2,8 @@
 date: "2026-03-18T08:01:28Z"
 title: pkg-manifest.yaml
 summary: "Manifest for plugin assemblation"
+aliases:
+  - /docs/v1.0.6/commands/plakar-pkg-manifest.yaml/
 ---
 
 <table class="head">

@@ -2,6 +2,8 @@
 date: "2026-03-18T08:01:28Z"
 title: prune
 summary: "Prune snapshots according to a policy"
+aliases:
+  - /docs/v1.0.6/commands/plakar-prune/
 ---
 
 <table class="head">
