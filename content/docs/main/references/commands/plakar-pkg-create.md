@@ -2,6 +2,8 @@
 date: "2026-03-17T14:06:16Z"
 title: pkg-create
 summary: "Package a plugin"
+aliases:
+  - /docs/main/commands/plakar-pkg-create/
 ---
 
 <table class="head">

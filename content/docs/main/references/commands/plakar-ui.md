@@ -2,6 +2,8 @@
 date: "2026-03-17T14:06:16Z"
 title: ui
 summary: "Serve the Plakar web user interface"
+aliases:
+  - /docs/main/commands/plakar-ui/
 ---
 
 <table class="head">

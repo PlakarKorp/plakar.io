@@ -2,6 +2,8 @@
 date: "2026-03-17T14:06:16Z"
 title: policy
 summary: "Manage Plakar retention policies"
+aliases:
+  - /docs/main/commands/plakar-policy/
 ---
 
 <table class="head">

@@ -2,6 +2,8 @@
 date: "2026-03-17T14:06:16Z"
 title: pkg-recipe.yaml
 summary: "Recipe to build Plakar plugins from source"
+aliases:
+  - /docs/main/commands/plakar-pkg-recipe.yaml/
 ---
 
 <table class="head">

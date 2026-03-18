@@ -2,6 +2,8 @@
 date: "2026-03-17T14:06:16Z"
 title: info
 summary: "Display detailed information about internal structures"
+aliases:
+  - /docs/v1.1.0/commands/plakar-info/
 ---
 
 <table class="head">

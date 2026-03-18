@@ -2,6 +2,8 @@
 date: "2026-03-17T14:06:16Z"
 title: create
 summary: "Create a new Plakar repository"
+aliases:
+  - /docs/v1.1.0/commands/plakar-create/
 ---
 
 <table class="head">

@@ -2,6 +2,8 @@
 date: "2026-03-17T14:06:16Z"
 title: server
 summary: "Start a Plakar server"
+aliases:
+  - /docs/main/commands/plakar-server/
 ---
 
 <table class="head">

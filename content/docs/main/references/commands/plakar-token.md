@@ -2,6 +2,8 @@
 date: "2026-03-17T14:06:16Z"
 title: token
 summary: "Manage Plakar tokens"
+aliases:
+  - /docs/main/commands/plakar-token/
 ---
 
 <table class="head">

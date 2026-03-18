@@ -2,6 +2,8 @@
 date: "2026-03-17T14:06:16Z"
 title: cat
 summary: "Display file contents from a Plakar snapshot"
+aliases:
+  - /docs/v1.1.0/commands/plakar-cat/
 ---
 
 <table class="head">

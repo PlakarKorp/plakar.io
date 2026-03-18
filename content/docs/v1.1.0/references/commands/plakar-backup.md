@@ -2,6 +2,8 @@
 date: "2026-03-17T14:06:15Z"
 title: backup
 summary: "Create a new snapshot in a Kloset store"
+aliases:
+  - /docs/v1.1.0/commands/plakar-backup/
 ---
 
 <table class="head">
