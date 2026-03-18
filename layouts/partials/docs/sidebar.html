@@ -43,7 +43,7 @@
   {{ end }}
 
   <!-- Nav tree -->
-  <nav class="flex flex-col gap-1 flex-1 overflow-y-auto text-sm">
+  <nav class="flex flex-col gap-0.5 flex-1 text-sm">
     {{ if $currentVersion }}
       {{ template "sidebar-section" (dict "section" $currentVersion "currentPage" $currentPage "depth" 0) }}
     {{ end }}
@@ -55,54 +55,62 @@
   {{ $currentPage := .currentPage }}
   {{ $section := .section }}
   {{ $depth := .depth }}
-  {{ $items := $section.Pages }}
-  {{ $indentPx := mul $depth 2 }}
+  {{ $depth1 := gt $depth 0 }}
 
-  {{ range $items }}
-    {{ if .IsSection }}
-      {{ $isActive := or (.IsAncestor $currentPage) (eq .RelPermalink $currentPage.RelPermalink) }}
-      {{ $hasChildren := or (gt (len .Pages) 0) (gt (len .Sections) 0) }}
+  {{ $all := slice }}
+  {{ range $section.Pages }}
+    {{ $all = $all | append (dict "page" . "weight" .Weight) }}
+  {{ end }}
+  {{ $sorted := sort $all "weight" "asc" }}
+
+  {{ if $depth1 }}
+    <div class="border-l border-neutral-200 ml-3 pl-2 flex flex-col gap-0.5">
+  {{ end }}
+
+  {{ range $sorted }}
+    {{ $p := .page }}
+    {{ if $p.IsSection }}
+      {{ $isActive := or ($p.IsAncestor $currentPage) (eq $p.RelPermalink $currentPage.RelPermalink) }}
+      {{ $hasChildren := or (gt (len $p.Pages) 0) (gt (len $p.Sections) 0) }}
 
       {{ if $hasChildren }}
         <div class="sidebar-accordion {{ if $isActive }}open{{ end }}">
-          <div class="flex items-center rounded-lg hover:bg-neutral-100
-            {{ if $isActive }}text-primary-500 {{ end }}"
-            style="margin-left: {{ $indentPx }}px;">
-            <a href="{{ .RelPermalink }}"
-               class="flex-1 px-2 py-1.5 text-neutral-700 hover:text-primary-500
-               {{ if $isActive }}text-primary-500 {{ end }}">
-              {{ .Title }}
+          <div class="flex items-center rounded-lg hover:bg-neutral-100 {{ if $isActive }}bg-neutral-50{{ end }}">
+            <a href="{{ $p.RelPermalink }}"
+               class="flex-1 px-2 py-1.5 font-medium text-neutral-700 hover:text-primary-500
+               {{ if $isActive }}text-primary-500{{ end }}">
+              {{ $p.Title }}
             </a>
-            <button class="sidebar-accordion-btn px-2 py-1.5 shrink-0">
-              <span class="sidebar-accordion-chevron w-4 h-4 flex items-center justify-center transition-transform {{ if $isActive }}rotate-180{{ end }}">
+            <button class="sidebar-accordion-btn px-2 py-1.5 shrink-0 text-neutral-400 hover:text-neutral-700">
+              <span class="sidebar-accordion-chevron w-4 h-4 flex items-center justify-center transition-transform duration-200 {{ if $isActive }}rotate-180{{ end }}">
                 {{ partial "icon.html" "chevron-down" }}
               </span>
             </button>
           </div>
           <div class="sidebar-accordion-content {{ if not $isActive }}hidden{{ end }}">
-            {{ template "sidebar-section" (dict "section" . "currentPage" $currentPage "depth" (add $depth 1)) }}
+            {{ template "sidebar-section" (dict "section" $p "currentPage" $currentPage "depth" (add $depth 1)) }}
           </div>
         </div>
 
       {{ else }}
-        <div style="margin-left: {{ $indentPx }}px;">
-          <a href="{{ .RelPermalink }}"
-             class="block px-2 py-1.5 rounded-lg text-neutral-700 hover:text-primary-500 hover:bg-neutral-100
-             {{ if eq $currentPage.RelPermalink .RelPermalink }}text-primary-500 bg-neutral-100 {{ end }}">
-            {{ .Title }}
-          </a>
-        </div>
+        <a href="{{ $p.RelPermalink }}"
+           class="block px-2 py-1.5 rounded-lg font-medium text-neutral-700 hover:text-primary-500 hover:bg-neutral-100
+           {{ if eq $currentPage.RelPermalink $p.RelPermalink }}text-primary-500 bg-neutral-100{{ end }}">
+          {{ $p.Title }}
+        </a>
       {{ end }}
 
     {{ else }}
-      <div style="margin-left: {{ add $indentPx 8 }}px;">
-        <a href="{{ .RelPermalink }}"
-           class="block px-2 py-1.5 rounded-lg text-neutral-700 hover:text-primary-500 hover:bg-neutral-100
-           {{ if eq $currentPage.RelPermalink .RelPermalink }}text-primary-500 bg-neutral-100 {{ end }}">
-          {{ .Title }}
-        </a>
-      </div>
+      <a href="{{ $p.RelPermalink }}"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         {{ if eq $currentPage.RelPermalink $p.RelPermalink }}text-primary-500 bg-neutral-100 font-medium{{ end }}">
+        {{ $p.Title }}
+      </a>
     {{ end }}
+  {{ end }}
+
+  {{ if $depth1 }}
+    </div>
   {{ end }}
 
 {{ end }}
