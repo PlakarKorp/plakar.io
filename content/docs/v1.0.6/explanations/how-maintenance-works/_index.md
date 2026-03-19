@@ -65,6 +65,8 @@ When you run `plakar rm`, Plakar records a new state where that snapshot no long
 
 Running `plakar maintenance` is what actually reclaims storage. During a maintenance run, Plakar scans the store and identifies chunks that are no longer referenced by any snapshot. Those chunks are marked as candidates for deletion and held for a grace period before removal.
 
+Maintenance can be automated using the Plakar scheduler. See [Scheduling tasks](../../guides/scheduling) for details.
+
 ### The grace period
 
 Marked chunks remain in the store for a grace period, currently set to 7 days. On the next maintenance run after that window, chunks that are still unreferenced become eligible for removal. If a chunk has since been referenced again by a new backup, the mark is removed and the chunk is kept.
@@ -73,7 +75,8 @@ This delay exists to protect backups that are currently in progress. A long-runn
 
 {{< mermaid >}}
 flowchart LR
-  A["plakar rm (snapshot removed)"] --> B["Unreferenced chunks marked for deletion"]
+  A["plakar rm (snapshot removed)"] --> M["plakar maintenance scans the store"]
+  M --> B["Unreferenced chunks marked for deletion"]
   B --> C{"Grace period elapsed?"}
   C -- No --> D["Chunks retained"]
   C -- Yes --> E{"Still unreferenced?"}
@@ -94,9 +97,11 @@ This means some unreferenced chunks may remain stored beyond the grace period if
 
 ### Checkpoints and long-running backups
 
-Plakar prevents maintenance from deleting data that an active backup depends on through a checkpoint mechanism: the state of an in-progress backup is recorded every 15 minutes. Maintenance accounts for these checkpoints and will not remove chunks that a running backup may still need.
+A potential problem arises with backups that run longer than the grace period. Maintenance could mark chunks as unreferenced while a backup is still in progress and has not yet committed its snapshot. If those chunks were deleted, the backup would fail or produce a corrupt snapshot.
 
-## Current limitations
+Plakar prevents this through a checkpoint mechanism: the state of an in-progress backup is recorded every hour. Maintenance accounts for these checkpoints and treats any chunks referenced by an active checkpoint as still in use, regardless of whether a snapshot has been committed yet.
+
+## Recompaction
 
 The current maintenance model can only garbage-collect packfiles that are entirely unreferenced. Partially unused packfiles cannot be compacted. Consider the following scenario:
 
