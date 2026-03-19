@@ -4,7 +4,11 @@ date: "2026-03-18T00:00:00Z"
 weight: 1
 summary: "Get started with plakar: installation, creating your first backup, verifying, restoring, and using the UI. This guide helps you quickly set up plakar and perform essential backup operations."
 aliases:
-  - /docs/v1.0.5/quickstart
+  - /docs/v1.0.5/quickstart/
+  - /docs/v1.0.5/quickstart/overview/
+  - /docs/v1.0.5/quickstart/installation/
+  - /docs/v1.0.5/quickstart/synchronize-copies/
+  - /docs/v1.0.5/quickstart/backup-non-filesystem-data/
 ---
 
 # Quickstart
@@ -58,6 +62,7 @@ Welcome to **Plakar** - easy, secure and efficient backups for people who value 
   ```
 
   Then install plakar with:
+
   ```bash
   $ sudo dnf install plakar
   ```
@@ -71,7 +76,7 @@ Welcome to **Plakar** - easy, secure and efficient backups for people who value 
   $ brew install plakarkorp/tap/plakar
   ```
 
-  *If you prefer not to use our tap, you can install from the default Homebrew repository instead with `brew install plakar`. Note that the version in the default repository may not always be the latest release.*
+  > If you prefer not to use our tap, you can install from the default Homebrew repository instead with `brew install plakar`. Note that the version in the default repository may not always be the latest release.
 
   macOS includes built-in protection against untrusted binaries. **To allow plakar to run, you will need to explicitly approve it in the Privacy & Security settings.**
 
@@ -103,6 +108,7 @@ Welcome to **Plakar** - easy, secure and efficient backups for people who value 
   ### Arch Linux
 
   Plakar is available on the Arch User Repository (AUR). If you use an AUR helper such as `yay`, you can install it with:
+
   ```bash
   $ yay -S plakar
   ```

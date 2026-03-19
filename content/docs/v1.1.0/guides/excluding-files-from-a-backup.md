@@ -68,7 +68,7 @@ And we assume the backup command is:
 $ plakar at /var/backups backup -ignore-file ./excludes.txt /var/files
 ```
 
-*You can use `-ignore` multiple times with different patterns, or use `-ignore-file` with a file containing one pattern per line. The result is the same.*
+> You can use `-ignore` multiple times with different patterns, or use `-ignore-file` with a file containing one pattern per line. The result is the same.
 
 ### Ignore the `/var/files/demo/vendor` directory only:
 
@@ -82,7 +82,7 @@ $ plakar at /var/backups backup -ignore-file ./excludes.txt /var/files
 node_modules
 ```
 
-*In this case, both `/var/files/demo/node_modules` and `/var/files/demo/src/node_modules` would be ignored.*
+> In this case, both `/var/files/demo/node_modules` and `/var/files/demo/src/node_modules` would be ignored.
 
 ### Ignore the file `.git/config`, wherever it is in the tree:
 
@@ -92,7 +92,7 @@ node_modules
 
 Here, the double asterisk `**` is required.
 
-*When a path pattern contains multiple parts, it is evaluated relative to the root directory `/`.*
+> When a path pattern contains multiple parts, it is evaluated relative to the root directory `/`.
 
 ### Exclude all files located in a `tmp` directory anywhere in the tree, except for `cache.db`:
 

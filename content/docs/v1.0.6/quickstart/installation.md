@@ -48,6 +48,7 @@ Several installation methods are available depending on your operating system. C
   ```
 
   Then install plakar with:
+
   ```bash
   $ sudo dnf install plakar
   ```
@@ -61,7 +62,7 @@ Several installation methods are available depending on your operating system. C
   $ brew install plakarkorp/tap/plakar
   ```
 
-  *If you prefer not to use our tap, you can install from the default Homebrew repository instead with `brew install plakar`. Note that the version in the default repository may not always be the latest release.*
+  > If you prefer not to use our tap, you can install from the default Homebrew repository instead with `brew install plakar`. Note that the version in the default repository may not always be the latest release.
 
   macOS includes built-in protection against untrusted binaries. **To allow plakar to run, you will need to explicitly approve it in the Privacy & Security settings.**
 
@@ -93,6 +94,7 @@ Several installation methods are available depending on your operating system. C
   ### Arch Linux
 
   Plakar is available on the Arch User Repository (AUR). If you use an AUR helper such as `yay`, you can install it with:
+
   ```bash
   $ yay -S plakar
   ```
