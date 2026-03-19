@@ -130,7 +130,6 @@ Replace:
 - `<YOUR_ACCESS_KEY_ID>` and `<YOUR_SECRET_ACCESS_KEY>`: From Step 1
 - `<YOUR_SECURE_PASSPHRASE>`: Strong passphrase for encryption
 
-
 > [!NOTE]+ Passphrase
 > Configuring the passphrase in the store enables automated backups without prompts.
 

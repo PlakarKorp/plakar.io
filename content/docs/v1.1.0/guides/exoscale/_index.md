@@ -1,11 +1,11 @@
 ---
-title: "OVHcloud"
+title: "Exoscale"
 date: "2026-03-19T00:00:00Z"
-weight: 10
-summary: "Guides on running backups in OVHcloud"
+weight: 11
+summary: "Guides on running backups in Exoscale"
 ---
 
-# OVHcloud
+# Exoscale
 
 Guides on running backups in OVHcloud
 
