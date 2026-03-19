@@ -42,7 +42,7 @@
   <!-- Last modified + report bug -->
   <div class="flex items-center justify-between text-xs text-neutral-400">
     {{ if not .Lastmod.IsZero }}
-      <span>Last updated: {{ .Lastmod.Format "January 1, 2006" }}</span>
+      <span>Last updated: {{ .Lastmod.Format "January 2, 2006" }}</span>
     {{ end }}
     {{ with $.Site.Params.docs.docsRepo }}
       <a href="{{ . }}/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">
