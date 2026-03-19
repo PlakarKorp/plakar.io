@@ -140,7 +140,7 @@ This should return the expected version number, for example `plakar/v1.1.0`.
 
 ## Downloading Specific Versions
 
-All release versions of **plakar** are available directly from GitHub on the project's [release page](/download).
+All release versions of **Plakar** are available directly from GitHub on the project's [release page](/download).
 
 For each release, check under the "Assets" section for a list of pre-built packages. They follow the naming convention `plakar_<version>_<os>_<arch>.<format>`.
 
