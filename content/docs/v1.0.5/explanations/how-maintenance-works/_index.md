@@ -69,7 +69,7 @@ Maintenance can be automated using the Plakar scheduler. See [Scheduling tasks](
 
 ### The grace period
 
-Marked chunks remain in the store for a grace period, currently set to 7 days. On the next maintenance run after that window, chunks that are still unreferenced become eligible for removal. If a chunk has since been referenced again by a new backup, the mark is removed and the chunk is kept.
+Marked chunks remain in the store for a grace period, currently set to 30 days. On the next maintenance run after that window, chunks that are still unreferenced become eligible for removal. If a chunk has since been referenced again by a new backup, the mark is removed and the chunk is kept.
 
 This delay exists to protect backups that are currently in progress. A long-running backup might write chunks that appear unreferenced to maintenance, because the snapshot that will reference them has not been committed yet.
 
