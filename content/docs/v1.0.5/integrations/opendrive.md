@@ -1,15 +1,15 @@
 ---
-title: "OneDrive"
+title: "OpenDrive"
 date: "2026-03-20T00:00:00Z"
-weight: 8
-summary: "Back up and restore your OneDrive with Plakar, and host Kloset stores in OneDrive."
+weight: 9
+summary: "Back up and restore OpenDrive data with Plakar, and host Kloset stores in OpenDrive."
 ---
 
-# OneDrive
+# OpenDrive
 
-OneDrive is a widely used cloud storage service provided by Microsoft, offering users the ability to store files, share documents, and collaborate in real time.
+The OpenDrive integration for Plakar lets you back up and restore data from OpenDrive, as well as host Kloset stores in OpenDrive, using Rclone.
 
-[Rclone](https://rclone.org/) is a command-line program to manage files on cloud storage, and supports OneDrive as one of its many backends.
+[Rclone](https://rclone.org/) is a command-line program to manage files on cloud storage, and supports OpenDrive as one of its many backends.
 
 The Rclone integration package for Plakar provides three connectors:
 
@@ -21,17 +21,17 @@ The Rclone integration package for Plakar provides three connectors:
 
 **Requirements**
 
-- Rclone must be installed, and at least one OneDrive remote must be configured.
+- Rclone must be installed, and at least one OpenDrive remote must be configured.
 
 **Typical use cases**
 
-- Cold backup of OneDrive folders
+- Cold backup of OpenDrive folders
 - Long-term archiving and disaster recovery
 - Portable export and vendor escape to other platforms
 
 ## Installation
 
-To interact with OneDrive, you need to install the Rclone Plakar package. It can be installed either by downloading a pre-built package or by building it from source.
+To interact with OpenDrive, you need to install the Rclone Plakar package. It can be installed either by downloading a pre-built package or by building it from source.
 
 {{< tabs >}}
   {{< tab label="Pre-built package" >}}
@@ -105,26 +105,20 @@ To interact with OneDrive, you need to install the Rclone Plakar package. It can
 
 Install Rclone on your system by following the instructions at [https://rclone.org/install/](https://rclone.org/install/).
 
-Then, run the following command to configure Rclone with OneDrive:
+Then, run the following command to configure Rclone with OpenDrive:
 
 ```bash
 $ rclone config
 ```
 
-You will be guided through a series of prompts to set up a new remote for OneDrive.
+You will be guided through a series of prompts to set up a new remote for OpenDrive.
 
 For Rclone v1.72.1, the configuration flow is as follows:
 1. Choose `n` to create a new remote.
 2. Name the remote (e.g., `mydrive`).
-3. Enter the number corresponding to "Microsoft OneDrive" from the list of supported storage providers.
-4. Leave client_id and client_secret empty to use Rclone's defaults, or provide your own if you have them.
-5. Select your region (usually "Microsoft Cloud Global")  .
-6. Enter service principal's tenant ID if applicable, or leave empty.
-7. Stay with the current settings, and do not edit advanced config.
-8. Choose to open the browser for authentication.
-9. Once validated, select the type of connection.
-10. Select the drive to use.
-11. Validate the remote configuration.
+3. Enter your username (your OpenDrive email).
+4. Enter your password.
+5. Confirm the settings.
 
 To verify that the remote is configured, run:
 
@@ -132,17 +126,17 @@ To verify that the remote is configured, run:
 $ rclone config show mydrive
 ```
 
-And to verify you have access to your OneDrive files, run:
+And to verify you have access to your OpenDrive files, run:
 
 ```bash
 $ rclone ls mydrive:
 ```
 
-The output should list the files and folders in your OneDrive.
+The output should list the files and folders in your OpenDrive.
 
 ## Connectors
 
-The Rclone package provides storage, source, and destination connectors to interact with OneDrive via Rclone.
+The Rclone package provides storage, source, and destination connectors to interact with OpenDrive via Rclone.
 
 You can use any combination of these connectors together with other supported Plakar connectors.
 
@@ -199,7 +193,7 @@ These options can be set when configuring the storage connector with `plakar sto
 
 ### Source connector
 
-The Plakar Rclone package provides a source connector to back up remote directories accessible via Rclone.
+The Plakar Rclone package provides a source connector to back up OpenDrive directories accessible via Rclone.
 
 {{< mermaid >}}
 flowchart LR
@@ -227,7 +221,7 @@ $ rclone config show | plakar source import -rclone mydrive
 # Back up the remote directory to the Kloset store on the filesystem
 $ plakar at /var/backups backup "@mydrive"
 
-# Or back up the remote directory to a Kloset store configure with "plakar store add"
+# Or back up the remote directory to a Kloset store configured with "plakar store add"
 $ plakar at "@store" backup "@mydrive"
 ```
 
@@ -237,7 +231,7 @@ The Rclone source connector doesn't support any specific options.
 
 ### Destination connector
 
-The Rclone package provides a destination connector to restore snapshots to remote directories reachable over Rclone.
+The Rclone package provides a destination connector to restore snapshots to OpenDrive directories.
 
 {{< mermaid >}}
 flowchart LR
@@ -273,12 +267,6 @@ $ plakar at "@store" restore -to "@mydrive" <snapshot_id>
 
 The Rclone destination connector doesn't support any specific options.
 
-## Limitations and considerations
-
-- OneDrive API has rate limits, heavy usage may require throttling.
-- File version history is not preserved. Only the current version of each file is snapshotted.
-- Shared links and permissions are not preserved in snapshots.
-
 ## See also
 
-- [Rclone documentation for OneDrive](https://rclone.org/onedrive/)
+- [Rclone documentation for OpenDrive](https://rclone.org/opendrive/)

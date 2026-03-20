@@ -1,11 +1,11 @@
 ---
-title: "One Drive"
+title: "OneDrive"
 date: "2026-03-20T00:00:00Z"
 weight: 8
 summary: "Back up and restore your OneDrive with Plakar, and host Kloset stores in OneDrive."
 ---
 
-# One Drive
+# OneDrive
 
 OneDrive is a widely used cloud storage service provided by Microsoft, offering users the ability to store files, share documents, and collaborate in real time.
 
