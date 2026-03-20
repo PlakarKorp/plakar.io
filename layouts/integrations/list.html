@@ -1,0 +1,83 @@
+{{ define "main" }}
+
+{{ $allIntegrations := where .Site.RegularPages "Section" "integrations" }}
+{{ $sourceConnectors := where $allIntegrations "Params.categories" "intersect" (slice "source connector") }}
+{{ $destConnectors := where $allIntegrations "Params.categories" "intersect" (slice "destination connector") }}
+{{ $storageConnectors := where $allIntegrations "Params.categories" "intersect" (slice "storage connector") }}
+
+<!-- Hero -->
+<section class="section-light-2 grid-background px-4 pt-44 pb-7">
+  <div class="max-w-350 mx-auto flex flex-col items-center gap-6">
+    <h1 class="text-center font-medium text-4xl lg:text-6xl">
+      Plakar <span class="text-primary-500">Integrations</span>
+    </h1>
+    <p class="text-center text-neutral-600 text-lg lg:text-xl max-w-2xl">
+      Seamlessly backup and restore data from any source to any destination
+      with our growing ecosystem of integrations.
+    </p>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="section-light-2 grid-background">
+  <div class="bg-gradient-section">
+    <div class="max-w-350 mx-auto relative h-56 md:h-75 overflow-hidden">
+      <div class="absolute -bottom-10 md:-bottom-14 flex gap-4 items-center justify-center w-full">
+
+        <!-- Card 1 -->
+        <div class="w-1/4 h-50 md:h-63 lg:h-75 shrink-0 p-2 md:p-6 bg-neutral-50/70 backdrop-blur-[17px] rounded-lg outline-8 outline-neutral-50/60 flex flex-col gap-4 shadow-xl rotate-[-8deg] items-center justify-center">
+          <div class="text-2xl lg:text-6xl font-bold text-neutral-900">
+            {{ $connectors := union $sourceConnectors $destConnectors }}
+            {{ len $connectors }}+
+          </div>
+          <div class="text-xs lg:text-2xl font-medium text-neutral-700 text-center">
+            Source / Destination Connectors
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="w-1/4 h-50 md:h-63 lg:h-75 shrink-0 p-2 md:p-6 bg-neutral-50/70 backdrop-blur-[17px] rounded-lg outline-8 outline-neutral-50/60 flex flex-col gap-4 shadow-xl z-10 -translate-y-4 items-center justify-center">
+          <div class="text-2xl lg:text-6xl font-bold text-neutral-900">100%</div>
+          <div class="text-xs lg:text-2xl font-medium text-neutral-700 text-center">
+            Open Source
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="w-1/4 h-50 md:h-63 lg:h-75 shrink-0 p-2 md:p-6 bg-neutral-50/70 backdrop-blur-[17px] rounded-lg outline-8 outline-neutral-50/60 flex flex-col gap-4 shadow-xl rotate-[8deg] items-center justify-center">
+          <div class="text-2xl lg:text-6xl font-bold text-neutral-900">
+            {{ len $storageConnectors }}+
+          </div>
+          <div class="text-xs lg:text-2xl font-medium text-neutral-700 text-center">
+            Storage Connectors
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How it works -->
+<section class="section-light-2 py-14 lg:py-28">
+  <div class="max-w-350 mx-auto px-4 flex flex-col gap-8">
+    <h2 class="font-medium text-4xl lg:text-6xl text-neutral-900 leading-tight text-center">
+      How Plakar <span class="text-secondary-500">Integration Packages</span> and <span class="text-secondary-500">Connectors</span> work
+    </h2>
+    <div class="flex flex-col gap-6 text-neutral-600 text-lg lg:text-xl font-medium mx-auto">
+      <p>
+        <span class="text-secondary-500">Integration Packages</span> bundle everything you need to back up, restore, and visualize a resource:
+        they include a <strong>Source Connector</strong>, <strong>Destination Connector</strong>, <strong>Storage Connector</strong>, and <strong>Viewer</strong>.
+      </p>
+      <p>
+        <span class="text-secondary-500">Storage Connectors</span> persist your snapshots: they handle writing, reading, and listing deduplicated, encrypted chunks to storage backends like S3 or a local filesystem.
+      </p>
+      <p>
+        At the core is <span class="text-secondary-500">Kloset</span>, our immutable data engine that splits data into deduplicated, compressed, encrypted chunks addressed by content hash,
+        creating portable, verifiable snapshots stored in a <strong>Kloset Store</strong> for fast access.
+      </p>
+    </div>
+  </div>
+</section>
+
+{{ end }}

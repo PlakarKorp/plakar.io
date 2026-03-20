@@ -48,3 +48,36 @@ html {
 .toc-content a.active {
   color: rgb(var(--color-primary-500));
 }
+
+section.section-light-2 {
+  background-color: rgb(var(--color-neutral-100));
+  color: rgb(var(--color-neutral-900));
+}
+
+.grid-background {
+  background-image:
+    linear-gradient(
+      to right,
+      rgb(var(--color-neutral-200)) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      rgb(var(--color-neutral-200)) 1px,
+      transparent 1px
+    );
+  background-size: 64px 64px;
+  background-repeat: repeat;
+  background-attachment: fixed;
+}
+
+.bg-gradient-section {
+  background-image: linear-gradient(
+    transparent 0%,
+    transparent 25%,
+    rgb(var(--color-primary-300)) 65%,
+    rgb(var(--color-primary-500)) 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+}
