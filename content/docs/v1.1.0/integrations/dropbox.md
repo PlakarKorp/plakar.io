@@ -99,7 +99,6 @@ To interact with Dropbox, you need to install the Rclone Plakar package. It can 
   {{< /tab >}}
 {{< /tabs >}}
 
-
 ## Generate Rclone configuration
 
 Install Rclone on your system by following the instructions at [https://rclone.org/install/](https://rclone.org/install/). Then, run the following command to configure Rclone with Dropbox:

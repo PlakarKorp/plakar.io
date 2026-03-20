@@ -1,15 +1,17 @@
 ---
-title: "Dropbox"
+title: "iCloud Drive"
 date: "2026-03-20T00:00:00Z"
-weight: 4
-summary: "Back up and restore your Dropbox with Plakar, and host Kloset stores in Dropbox."
+weight: 5
+summary: "Back up and restore your iCloud Drive with Plakar, and host Kloset stores in iCloud Drive."
 ---
 
-# Dropbox
+# iCloud Drive
 
-The Dropbox integration package for Plakar allows you to back up and restore data to and from Dropbox cloud storage, as well as host Kloset stores directly within Dropbox. It is built on top of [Rclone](https://rclone.org/), a command-line program to manage files on cloud storage, and supports Dropbox as one of its many backends.
+The Plakar iCloud Drive integration allows you to interact with iCloud Drive, Apple's cloud storage service, using Rclone.
 
-The integration provides three connectors:
+[Rclone](https://rclone.org/) is a command-line program to manage files on cloud storage, and supports iCloud Drive as one of its many backends.
+
+The Rclone integration package for Plakar provides three connectors:
 
 | Connector type               | Description |
 | ---------------------------- | ----------- |
@@ -19,17 +21,17 @@ The integration provides three connectors:
 
 **Requirements**
 
-- Rclone must be installed, and at least one Dropbox remote must be configured.
+- Rclone must be installed, and at least one iCloud Drive remote must be configured.
 
 **Typical use cases**
 
-- Cold backup of Dropbox folders
+- Cold backup of iCloud Drive folders
 - Long-term archiving and disaster recovery
 - Portable export and vendor escape to other platforms
 
 ## Installation
 
-To interact with Dropbox, you need to install the Rclone Plakar package. It can be installed either by downloading a pre-built package or by building it from source.
+To interact with iCloud Drive, you need to install the Rclone Plakar package. It can be installed either by downloading a pre-built package or by building it from source.
 
 {{< tabs >}}
   {{< tab label="Pre-built package" >}}
@@ -101,21 +103,26 @@ To interact with Dropbox, you need to install the Rclone Plakar package. It can 
 
 ## Generate Rclone configuration
 
-Install Rclone on your system by following the instructions at [https://rclone.org/install/](https://rclone.org/install/). Then, run the following command to configure Rclone with Dropbox:
+> [!WARNING] iCloud Drive login
+> Due to current limitations in Rclone, logging in to iCloud Drive is not possible at the time of writing. The steps below are provided for reference and future compatibility.
+
+Install Rclone on your system by following the instructions at [https://rclone.org/install/](https://rclone.org/install/).
+
+Then, run the following command to configure Rclone with iCloud Drive:
 
 ```bash
 $ rclone config
 ```
 
-You will be guided through a series of prompts to set up a new remote for Dropbox.
+You will be guided through a series of prompts to set up a new remote for iCloud Drive.
 
 For Rclone v1.72.1, the configuration flow is as follows:
 1. Choose `n` to create a new remote.
 2. Name the remote (e.g., `mydrive`).
-3. Enter the number corresponding to "Dropbox" from the list of supported storage providers.
-4. Leave `client_id` and `client_secret` empty to use Rclone's defaults, or provide your own if you have them.
-5. Choose to open the browser for authentication.
-6. Confirm the settings.
+3. Enter the number corresponding to "iCloud Drive" from the list of supported storage providers.
+4. Enter your Apple ID
+5. Enter your password
+6. Validate the remote configuration.
 
 To verify that the remote is configured, run:
 
@@ -123,17 +130,17 @@ To verify that the remote is configured, run:
 $ rclone config show mydrive
 ```
 
-And to verify you have access to your Dropbox files, run:
+To verify that you have access to your iCloud Drive files, run:
 
 ```bash
 $ rclone ls mydrive:
 ```
 
-The output should list the files and folders in your Dropbox.
+The output should list the files and folders in your iCloud Drive.
 
 ## Connectors
 
-The Rclone package provides storage, source, and destination connectors to interact with Dropbox via Rclone.
+The Rclone package provides storage, source, and destination connectors to interact with iCloud Drive via Rclone.
 
 You can use any combination of these connectors together with other supported Plakar connectors.
 
@@ -264,6 +271,10 @@ $ plakar at "@store" restore -to "@mydrive" <snapshot_id>
 
 The Rclone destination connector doesn't support any specific options.
 
+## Limitations and considerations
+
+At the time of writing and according to this [GitHub issue](https://github.com/rclone/rclone/issues/8587#issuecomment-3240025307), it is currently impossible to log in to iCloud Drive using Rclone.
+
 ## See also
 
-- [Rclone documentation for Dropbox](https://rclone.org/dropbox/)
+- [Rclone documentation for iCloud Drive](https://rclone.org/iclouddrive/)
