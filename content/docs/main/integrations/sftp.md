@@ -78,6 +78,7 @@ The SFTP integration is distributed as a Plakar package. It can be installed eit
   ```
   
   Verify installation:
+  
   ```bash
   $ plakar pkg list
   ```

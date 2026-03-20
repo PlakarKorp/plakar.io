@@ -40,6 +40,7 @@ The Notion package can be installed using pre-built binaries or compiled from so
   ```
 
   Verify installation:
+  
   ```bash
   $ plakar pkg list
   ```
