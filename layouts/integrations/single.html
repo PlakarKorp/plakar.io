@@ -54,4 +54,29 @@
   </div>
 </section>
 
+<!-- Technology -->
+<section class="section-light-2 py-7 lg:py-14">
+  <div class="max-w-350 mx-auto px-4">
+    <div class="flex flex-row gap-4 items-end justify-end w-full">
+      <div class="flex flex-col w-full lg:w-2/3">
+        <h2 class="text-3xl lg:text-5xl font-medium text-right">
+          {{ partial "utils/colorize.html" (dict "text" .Params.technology_title "word" .Params.resource) }}
+        </h2>
+        <p class="text-lg lg:text-xl text-neutral-700 font-medium leading-snug w-full pt-8">
+          {{ .Params.technology_description }}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Article body -->
+<section class="section-light-1 py-14 lg:py-28">
+  <div class="max-w-350 mx-auto px-4">
+    <article class="prose max-w-full">
+      {{ .Content }}
+    </article>
+  </div>
+</section>
+
 {{ end }}
