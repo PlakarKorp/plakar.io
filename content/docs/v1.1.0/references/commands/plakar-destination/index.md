@@ -1,25 +1,21 @@
 ---
-date: "2026-01-29T09:34:09Z"
+date: "2026-03-23T11:20:14Z"
 title: destination
 summary: "Manage Plakar restore destination configuration"
-aliases:
-  - /docs/v1.1.0/commands/plakar-destination/
 ---
-<table class="head">
-  <tr>
-    <td class="head-ltitle">PLAKAR-DESTINATION(1)</td>
-    <td class="head-vol">General Commands Manual</td>
-    <td class="head-rtitle">PLAKAR-DESTINATION(1)</td>
-  </tr>
-</table>
-<div class="manual-text">
+<div class="head" role="doc-pageheader" aria-label="Manual header
+  line"><span class="head-ltitle">PLAKAR-DESTINATION(1)</span>
+  <span class="head-vol">General Commands Manual</span>
+  <span class="head-rtitle">PLAKAR-DESTINATION(1)</span></div>
+<main class="manual-text">
 <section class="Sh">
-<h1 class="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h1>
+<h2 class="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h2>
 <p class="Pp"><code class="Nm">plakar-destination</code> &#x2014;
-    <span class="Nd">Manage Plakar restore destination configuration</span></p>
+    <span class="Nd" role="doc-subtitle">Manage Plakar restore destination
+    configuration</span></p>
 </section>
 <section class="Sh">
-<h1 class="Sh" id="SYNOPSIS"><a class="permalink" href="#SYNOPSIS">SYNOPSIS</a></h1>
+<h2 class="Sh" id="SYNOPSIS"><a class="permalink" href="#SYNOPSIS">SYNOPSIS</a></h2>
 <table class="Nm">
   <tr>
     <td><code class="Nm">plakar destination</code></td>
@@ -28,7 +24,7 @@ aliases:
 </table>
 </section>
 <section class="Sh">
-<h1 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h1>
+<h2 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h2>
 <p class="Pp">The <code class="Nm">plakar destination</code> command manages the
     configuration of destinations where Plakar will restore.</p>
 <p class="Pp">The configuration consists in a set of named entries, each of them
@@ -69,7 +65,7 @@ aliases:
     <p class="Pp">Sections can be renamed during import by appending
         <code class="Cm">:</code><var class="Ar">newname</var>.</p>
     <p class="Pp">For detailed examples and usage patterns, see the
-        <a class="Lk" href="https://docs.plakar.io/en/guides/importing-configurations/">https://docs.plakar.io/en/guides/importing-configurations/</a>
+        <a class="Lk" href="https://plakar.io/docs/v1.1.0/guides/importing-configurations/">https://plakar.io/docs/v1.1.0/guides/importing-configurations/</a>
         Importing Configurations guide.</p>
   </dd>
   <dt id="ping"><a class="permalink" href="#ping"><code class="Cm">ping</code></a>
@@ -99,20 +95,18 @@ aliases:
 </dl>
 </section>
 <section class="Sh">
-<h1 class="Sh" id="EXIT_STATUS"><a class="permalink" href="#EXIT_STATUS">EXIT
-  STATUS</a></h1>
+<h2 class="Sh" id="EXIT_STATUS"><a class="permalink" href="#EXIT_STATUS">EXIT
+  STATUS</a></h2>
 <p class="Pp">The <code class="Nm">plakar-destination</code> utility
     exits&#x00A0;0 on success, and&#x00A0;&gt;0 if an error occurs.</p>
 </section>
 <section class="Sh">
-<h1 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
-  ALSO</a></h1>
-<p class="Pp"><a class="Xr" href="../plakar/">plakar(1)</a></p>
+<h2 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
+  ALSO</a></h2>
+<p class="Pp"><a class="Xr" href="../plakar/" aria-label="plakar, section
+    1">plakar(1)</a></p>
 </section>
-</div>
-<table class="foot">
-  <tr>
-    <td class="foot-date">September 11, 2025</td>
-    <td class="foot-os">Plakar</td>
-  </tr>
-</table>
+</main>
+<div class="foot" role="doc-pagefooter" aria-label="Manual footer
+  line"><span class="foot-left">Plakar</span> <span class="foot-date">September
+  11, 2025</span> <span class="foot-right">PLAKAR-DESTINATION(1)</span></div>
