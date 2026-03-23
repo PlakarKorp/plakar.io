@@ -1,5 +1,5 @@
 ---
-date: "2026-01-29T09:34:09Z"
+date: "2026-03-23T16:59:12Z"
 title: restore
 summary: "Restore files from a Plakar snapshot"
 aliases:
@@ -23,17 +23,18 @@ aliases:
 <table class="Nm">
   <tr>
     <td><code class="Nm">plakar restore</code></td>
-    <td>[<code class="Fl">-name</code> <var class="Ar">name</var>]
+    <td>[<code class="Fl">-before</code> <var class="Ar">date</var>]
       [<code class="Fl">-category</code> <var class="Ar">category</var>]
       [<code class="Fl">-environment</code> <var class="Ar">environment</var>]
-      [<code class="Fl">-perimeter</code> <var class="Ar">perimeter</var>]
       [<code class="Fl">-job</code> <var class="Ar">job</var>]
-      [<code class="Fl">-tag</code> <var class="Ar">tag</var>]
-      [<code class="Fl">-latest</code>] [<code class="Fl">-before</code>
-      <var class="Ar">date</var>] [<code class="Fl">-since</code>
-      <var class="Ar">date</var>] [<code class="Fl">-quiet</code>]
-      [<code class="Fl">-to</code> <var class="Ar">directory</var>]
-      [<code class="Fl">-skip-permissions</code>]
+      [<code class="Fl">-latest</code>] [<code class="Fl">-name</code>
+      <var class="Ar">name</var>] [<code class="Fl">-perimeter</code>
+      <var class="Ar">perimeter</var>] [<code class="Fl">-quiet</code>]
+      [<code class="Fl">-since</code> <var class="Ar">date</var>]
+      [<code class="Fl">-skip-permissions</code>] [<code class="Fl">-tag</code>
+      <var class="Ar">tag</var>] [<code class="Fl">-to</code>
+      <var class="Ar">directory</var>] [<code class="Fl">-o</code>
+      <var class="Ar">option</var><span class="No">=</span><var class="Ar">value</var>]
       [<var class="Ar">snapshotID</var>:<var class="Ar">path ...</var>]</td>
   </tr>
 </table>
@@ -76,6 +77,11 @@ aliases:
       to 0750 for directories and 0640 for files. It Fl to Ar directory Specify
       the base directory to which the files will be restored. If omitted, files
       are restored to the current working directory.</dd>
+  <dt id="o"><a class="permalink" href="#o"><code class="Fl">-o</code></a>
+    <var class="Ar">option</var><span class="No">=</span><var class="Ar">value</var></dt>
+  <dd>Can be used to pass extra arguments to the destination connector. The
+      given <var class="Ar">option</var> takes precedence over the configuration
+      file.</dd>
   <dt id="quiet"><a class="permalink" href="#quiet"><code class="Fl">-quiet</code></a></dt>
   <dd>Suppress output to standard input, only logging errors and warnings.</dd>
 </dl>

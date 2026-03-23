@@ -1,17 +1,14 @@
 ---
 title: "Commands"
-date: "2025-10-15T10:33:18Z"
-weight: 3
-chapter: false
-pre: "<b>3. </b>"
-sort: "title"
+date: "2026-03-23T16:59:32Z"
+weight: 5
 summary: "Reference for all Plakar commands. Browse detailed documentation for each command, including usage, options, and examples. Access help online or directly from your terminal."
 ---
 
-Welcome to the Plakar commands reference! Here you'll find detailed documentation for every available command in Plakar.
+Welcome to the Plakar commands reference. This section provides detailed documentation for all available Plakar commands, including usage, options, and examples.
 
-You can browse the documentation here, or access it directly from your terminal using the `plakar help` command. This makes it easy to get help and usage information whether you're online or working locally.
+You can browse the command documentation here, or access it directly from your terminal using `plakar help`. This allows you to explore command behavior and options whether you are online or working locally.
 
-Below, you'll find the full list of commands. Click any command to view its documentation.
+Below is the complete list of commands. Select any command to view its detailed documentation.
 
-{{%children description="true"%}}
+{{% children description="true" %}}

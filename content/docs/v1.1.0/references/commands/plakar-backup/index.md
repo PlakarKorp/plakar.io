@@ -1,5 +1,5 @@
 ---
-date: "2026-01-29T09:34:09Z"
+date: "2026-03-23T16:59:11Z"
 title: backup
 summary: "Create a new snapshot in a Kloset store"
 aliases:
@@ -88,6 +88,14 @@ aliases:
   <dt id="tag"><a class="permalink" href="#tag"><code class="Fl">-tag</code></a>
     <var class="Ar">tag</var></dt>
   <dd>Comma-separated list of tags to apply to the snapshot.</dd>
+</dl>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="ENVIRONMENT"><a class="permalink" href="#ENVIRONMENT">ENVIRONMENT</a></h1>
+<dl class="Bl-tag">
+  <dt id="PLAKAR_TAGS"><a class="permalink" href="#PLAKAR_TAGS"><code class="Ev">PLAKAR_TAGS</code></a></dt>
+  <dd>Comma-separated list of tags to apply to the snapshot during backup.
+      Overridden by the <code class="Fl">-tag</code> command-line flag.</dd>
 </dl>
 </section>
 <section class="Sh">

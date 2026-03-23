@@ -1,23 +1,25 @@
 ---
-date: "2025-12-01T16:54:45Z"
+date: "2026-03-23T16:59:19Z"
 title: backup
 summary: "Create a new snapshot in a Kloset store"
 aliases:
   - /docs/v1.0.6/commands/plakar-backup/
 ---
-<div class="head" role="doc-pageheader" aria-label="Manual header
-  line"><span class="head-ltitle">PLAKAR-BACKUP(1)</span>
-  <span class="head-vol">General Commands Manual</span>
-  <span class="head-rtitle">PLAKAR-BACKUP(1)</span></div>
-<main class="manual-text">
+<table class="head">
+  <tr>
+    <td class="head-ltitle">PLAKAR-BACKUP(1)</td>
+    <td class="head-vol">General Commands Manual</td>
+    <td class="head-rtitle">PLAKAR-BACKUP(1)</td>
+  </tr>
+</table>
+<div class="manual-text">
 <section class="Sh">
-<h2 class="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h2>
+<h1 class="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h1>
 <p class="Pp"><code class="Nm">plakar-backup</code> &#x2014;
-    <span class="Nd" role="doc-subtitle">Create a new snapshot in a Kloset
-    store</span></p>
+    <span class="Nd">Create a new snapshot in a Kloset store</span></p>
 </section>
 <section class="Sh">
-<h2 class="Sh" id="SYNOPSIS"><a class="permalink" href="#SYNOPSIS">SYNOPSIS</a></h2>
+<h1 class="Sh" id="SYNOPSIS"><a class="permalink" href="#SYNOPSIS">SYNOPSIS</a></h1>
 <table class="Nm">
   <tr>
     <td><code class="Nm">plakar backup</code></td>
@@ -36,7 +38,7 @@ aliases:
 </table>
 </section>
 <section class="Sh">
-<h2 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h2>
+<h1 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h1>
 <p class="Pp">The <code class="Nm">plakar backup</code> command creates a new
     snapshot of <var class="Ar">place</var>, or the current directory. Snapshots
     can be filtered to ignore specific files or directories based on patterns
@@ -44,8 +46,7 @@ aliases:
 <p class="Pp"><var class="Ar">place</var> can be either a path, an URI, or a
     label with the form &#x201C;@<var class="Ar">name</var>&#x201D; to reference
     a source connector configured with
-    <a class="Xr" href="../plakar-source/" aria-label="plakar-source, section
-    1">plakar-source(1)</a>.</p>
+    <a class="Xr" href="../plakar-source/">plakar-source(1)</a>.</p>
 <p class="Pp">The options are as follows:</p>
 <dl class="Bl-tag">
   <dt id="concurrency"><a class="permalink" href="#concurrency"><code class="Fl">-concurrency</code></a>
@@ -94,7 +95,7 @@ aliases:
 </dl>
 </section>
 <section class="Sh">
-<h2 class="Sh" id="EXAMPLES"><a class="permalink" href="#EXAMPLES">EXAMPLES</a></h2>
+<h1 class="Sh" id="EXAMPLES"><a class="permalink" href="#EXAMPLES">EXAMPLES</a></h1>
 <p class="Pp">Create a snapshot of the current directory with two tags:</p>
 <div class="Bd Pp Bd-indent Li">
 <pre>$ plakar backup -tag daily-backup,production</pre>
@@ -114,29 +115,30 @@ aliases:
 </div>
 </section>
 <section class="Sh">
-<h2 class="Sh" id="DIAGNOSTICS"><a class="permalink" href="#DIAGNOSTICS">DIAGNOSTICS</a></h2>
+<h1 class="Sh" id="DIAGNOSTICS"><a class="permalink" href="#DIAGNOSTICS">DIAGNOSTICS</a></h1>
 <p class="Pp">The <code class="Nm">plakar-backup</code> utility exits&#x00A0;0
     on success, and&#x00A0;&gt;0 if an error occurs.</p>
 <dl class="Bl-tag">
   <dt>0</dt>
   <dd>Command completed successfully; a snapshot was created, but some items may
       have been skipped (for example, files without sufficient permissions). Run
-      <a class="Xr" href="../plakar-info/" aria-label="plakar-info, section
-      1">plakar-info(1)</a> on the new snapshot to view any errors.</dd>
+      <a class="Xr" href="../plakar-info/">plakar-info(1)</a> on the new
+      snapshot to view any errors.</dd>
   <dt>&gt;0</dt>
   <dd>An error occurred, such as failure to access the Kloset store or issues
       with exclusion patterns.</dd>
 </dl>
 </section>
 <section class="Sh">
-<h2 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
-  ALSO</a></h2>
-<p class="Pp"><a class="Xr" href="../plakar/" aria-label="plakar, section
-    1">plakar(1)</a>,
-    <a class="Xr" href="../plakar-source/" aria-label="plakar-source, section
-    1">plakar-source(1)</a></p>
+<h1 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
+  ALSO</a></h1>
+<p class="Pp"><a class="Xr" href="../plakar/">plakar(1)</a>,
+    <a class="Xr" href="../plakar-source/">plakar-source(1)</a></p>
 </section>
-</main>
-<div class="foot" role="doc-pagefooter" aria-label="Manual footer
-  line"><span class="foot-left">Plakar</span> <span class="foot-date">July 3,
-  2025</span> <span class="foot-right">PLAKAR-BACKUP(1)</span></div>
+</div>
+<table class="foot">
+  <tr>
+    <td class="foot-date">July 3, 2025</td>
+    <td class="foot-os">Plakar</td>
+  </tr>
+</table>

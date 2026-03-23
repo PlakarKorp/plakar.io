@@ -1,5 +1,5 @@
 ---
-date: "2026-01-29T09:34:09Z"
+date: "2026-03-23T16:59:01Z"
 title: pkg-add
 summary: "Install Plakar plugins"
 aliases:
@@ -22,9 +22,8 @@ aliases:
 <h1 class="Sh" id="SYNOPSIS"><a class="permalink" href="#SYNOPSIS">SYNOPSIS</a></h1>
 <table class="Nm">
   <tr>
-    <td><code class="Nm">plakar pkg add <var class="Ar">plugin
-      ...</var></code></td>
-    <td></td>
+    <td><code class="Nm">plakar pkg add</code></td>
+    <td>[<code class="Fl">-u</code>] <var class="Ar">plugin ...</var></td>
   </tr>
 </table>
 </section>
@@ -40,8 +39,14 @@ aliases:
     <a class="Xr" href="../plakar-pkg-build/">plakar-pkg-build(1)</a> command,
     provided you have the necessary dependencies to build it locally (currently,
     official plugins require make and a working Go toolchain).</p>
-<p class="Pp">To force local resolution use an absolute path, otherwise to force
-    remote fetching pass an HTTP or HTTPS URL.</p>
+<p class="Pp">To install a specific version of a plugin, use the
+    <var class="Ar">name</var>@<var class="Ar">version</var> syntax.</p>
+<p class="Pp">The options are as follows:</p>
+<dl class="Bl-tag">
+  <dt id="u"><a class="permalink" href="#u"><code class="Fl">-u</code></a></dt>
+  <dd>Update the specific plugins. If none are given, attempt to update all the
+      installed ones.</dd>
+</dl>
 </section>
 <section class="Sh">
 <h1 class="Sh" id="FILES"><a class="permalink" href="#FILES">FILES</a></h1>
@@ -66,7 +71,7 @@ aliases:
 </div>
 <table class="foot">
   <tr>
-    <td class="foot-date">November 27, 2025</td>
+    <td class="foot-date">March 23, 2026</td>
     <td class="foot-os">Plakar</td>
   </tr>
 </table>

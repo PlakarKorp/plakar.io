@@ -1,5 +1,5 @@
 ---
-date: "2026-01-29T09:34:09Z"
+date: "2026-03-23T16:59:02Z"
 title: token
 summary: "Manage Plakar tokens"
 aliases:

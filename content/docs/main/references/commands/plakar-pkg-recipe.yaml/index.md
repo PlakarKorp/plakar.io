@@ -1,5 +1,5 @@
 ---
-date: "2026-01-29T09:34:09Z"
+date: "2026-03-23T16:59:01Z"
 title: pkg-recipe.yaml
 summary: "Recipe to build Plakar plugins from source"
 aliases:

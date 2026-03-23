@@ -6,6 +6,13 @@ if [ "$1" != "" ]; then
     VERSION=$1
 fi
 
+TAG=$VERSION
+
+
+if [ "$2" != "" ]; then
+    TAG=$2
+fi
+
 tempfoo=`basename $0`
 TMPDIR=`mktemp -d /tmp/${tempfoo}.XXXXXX` || exit 1
 
@@ -16,13 +23,13 @@ onexit() {
 
 trap 'onexit' EXIT INT TERM
 
-git clone --depth 1 https://github.com/PlakarKorp/plakar.git -b ${VERSION} ${TMPDIR}
+git clone --depth 1 https://github.com/PlakarKorp/plakar.git -b ${TAG} ${TMPDIR}
 
 echo
     cd ${TMPDIR}
-    commit=`git log ${VERSION} | head -4 |  grep ^commit | cut -d' ' -f2`
-    date=`git log ${VERSION} | head -4 |  grep ^Date: | cut -d' ' -f2`
-    author=`git log ${VERSION} | head -4 |  grep ^Author: | cut -d' ' -f2,3,4,5`
+    commit=`git log ${TAG} | head -4 |  grep ^commit | cut -d' ' -f2`
+    date=`git log ${TAG} | head -4 |  grep ^Date: | cut -d' ' -f2`
+    author=`git log ${TAG} | head -4 |  grep ^Author: | cut -d' ' -f2,3,4,5`
     cd -
 echo
 
@@ -77,6 +84,8 @@ for man in "$TMPDIR/manpages/"*; do
 date: "$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 title: ${name##plakar-}
 summary: "${summary}"
+aliases:
+  - /docs/${VERSION}/commands/${name}/
 ---
 EOF
 
