@@ -1,0 +1,57 @@
+{{ define "main" }}
+{{ $logo := resources.Get .Site.Params.logos.icon }}
+{{ $image := resources.Get .Params.image }}
+
+<!-- Hero -->
+<section class="section-light-2 grid-background pt-14 lg:pt-20">
+  <div class="bg-gradient-section-light-1 p-4">
+    <div class="max-w-350 mx-auto pt-14 lg:pt-20 pb-7 lg:pb-14">
+      <div class="flex flex-col gap-8">
+
+        <div class="flex flex-row gap-8 w-full items-stretch">
+
+          <!-- Left: title + description + CTA -->
+          <div class="flex flex-col gap-4 justify-end w-full lg:w-1/2">
+            <h1 class="text-3xl lg:text-6xl font-medium">
+              {{ .Params.subtitle }}
+            </h1>
+            <p class="text-lg lg:text-2xl text-neutral-600 font-medium leading-snug pt-4">
+              {{ .Description }}
+            </p>
+            <div class="flex flex-col gap-3 mt-4">
+              {{ partial "components/buttons/base-button.html" (dict
+                "label" "Get started"
+                "labelShort" "Start"
+                "href" "/docs/"
+              ) }}
+              {{ with .Params.technical_documentation_link }}
+                <a href="{{ . }}" class="inline-flex mt-2 w-fit items-center gap-2 text-base font-medium text-neutral-900 hover:text-primary-500 transition-colors">
+                  <span class="w-5 h-5 flex items-center justify-center">
+                    {{ partial "icon.html" "ri/corner-down-right-line" }}
+                  </span>
+                  Read the {{ $.Params.resource }} docs
+                </a>
+              {{ end }}
+            </div>
+          </div>
+
+          <!-- Right: integration image → arrow → plakar logo -->
+          <div class="hidden lg:flex flex-row items-center justify-end gap-4 w-full max-w-[50%]">
+            {{ if $image }}
+              <img src="{{ $image.RelPermalink }}" alt="{{ .Title }}" class="max-w-[40%] max-h-[200px] object-contain rounded-lg">
+            {{ end }}
+            <span class="w-16 h-16 text-neutral-900 shrink-0 flex items-center justify-center">
+              {{ partial "icon.html" "ri/arrow-right-long-fill" }}
+            </span>
+            {{ if $logo }}
+              <img src="{{ $logo.RelPermalink }}" alt="Plakar" class="max-h-[200px] object-contain rounded-sm">
+            {{ end }}
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ end }}

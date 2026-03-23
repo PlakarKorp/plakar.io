@@ -44,7 +44,7 @@ seo_tags:
   - airgapped backup
   - snapshot technology
 
-technical_documentation_link: 
+technical_documentation_link:
 
 stage: stable
 
