@@ -1,5 +1,5 @@
 ---
-date: "2026-01-29T09:34:09Z"
+date: "2026-03-23T16:59:01Z"
 title: pkg-build
 summary: "Build Plakar plugins from source"
 aliases:
@@ -35,6 +35,14 @@ aliases:
     <a class="Xr" href="../plakar-pkg-recipe.yaml/">plakar-pkg-recipe.yaml(5)</a>.
     If it builds successfully, the resulting plugin will be created in the
     current working directory.</p>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="ENVIRONMENT"><a class="permalink" href="#ENVIRONMENT">ENVIRONMENT</a></h1>
+<dl class="Bl-tag">
+  <dt id="PLAKAR_CLONE_TOKEN"><a class="permalink" href="#PLAKAR_CLONE_TOKEN"><code class="Ev">PLAKAR_CLONE_TOKEN</code></a></dt>
+  <dd>If set, this token will be used to authenticate git clone operations. This
+      is useful for cloning private repositories.</dd>
+</dl>
 </section>
 <section class="Sh">
 <h1 class="Sh" id="FILES"><a class="permalink" href="#FILES">FILES</a></h1>

@@ -1,5 +1,5 @@
 ---
-date: "2026-01-29T09:34:09Z"
+date: "2026-03-23T16:59:02Z"
 title: source
 summary: "Manage Plakar backup source configuration"
 aliases:
@@ -68,7 +68,7 @@ aliases:
     <p class="Pp">Sections can be renamed during import by appending
         <code class="Cm">:</code><var class="Ar">newname</var>.</p>
     <p class="Pp">For detailed examples and usage patterns, see the
-        <a class="Lk" href="https://docs.plakar.io/en/guides/importing-configurations/">https://docs.plakar.io/en/guides/importing-configurations/</a>
+        <a class="Lk" href="https://plakar.io/docs/v1.1.0/guides/importing-configurations/">https://plakar.io/docs/v1.1.0/guides/importing-configurations/</a>
         Importing Configurations guide.</p>
   </dd>
   <dt id="ping"><a class="permalink" href="#ping"><code class="Cm">ping</code></a>

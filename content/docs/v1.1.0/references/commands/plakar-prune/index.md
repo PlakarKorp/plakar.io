@@ -1,5 +1,5 @@
 ---
-date: "2026-01-29T09:34:09Z"
+date: "2026-03-23T16:59:12Z"
 title: prune
 summary: "Prune snapshots according to a policy"
 aliases:
@@ -59,7 +59,7 @@ aliases:
 </div>
 <p class="Pp">Remove snapshots older than 30 days:</p>
 <div class="Bd Pp Bd-indent Li">
-<pre>$ plakar prune -days 30d</pre>
+<pre>$ plakar prune -days 30</pre>
 </div>
 <p class="Pp">Remove snapshots with a specific tag:</p>
 <div class="Bd Pp Bd-indent Li">
