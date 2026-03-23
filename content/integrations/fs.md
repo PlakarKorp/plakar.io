@@ -48,13 +48,13 @@ technical_documentation_link:
 
 stage: stable
 
-date: 2025-05-13
-
-plakar_version: ">=1.0.0"
+date: 2026-03-23
 
 resource: Filesystem
 
 resource_type: filesystem
+
+image: img/integrations/fs.png
 ---
 
 ## Why protecting your Filesystem matters
