@@ -21,8 +21,8 @@ categories:
 
 tags:
 - FTP
-- public repositories
-- network appliances
+- Public repositories
+- Network appliances
 - NAS
 
 seo_tags:
