@@ -21,7 +21,9 @@
 
     <!-- Content -->
     <div class="relative z-10 flex items-center gap-2">
-      <span>{{ partial "icon.html" $icon }}</span>
+      <span class="w-5 h-5 flex items-center justify-center">
+        {{ partial "icon.html" $icon }}
+      </span>
       <span class="hidden xl:block">{{ $label }}</span>
       <span class="block xl:hidden">{{ $labelShort }}</span>
     </div>
