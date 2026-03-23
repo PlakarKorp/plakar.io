@@ -51,7 +51,7 @@
                     {{ range sort .items "Weight" }}
                       <a href="{{ .URL | relLangURL }}" {{ with .Params.target }}target="{{ . }}"{{ end }}
                          class="group/link flex items-center gap-2 p-2 rounded-lg hover:bg-neutral-100">
-                        <div class="w-10 h-10 bg-neutral-100 text-neutral-600 group-hover/link:bg-neutral-50 group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
+                        <div class="w-10 h-10 bg-neutral-100 text-neutral-600 p-2 group-hover/link:bg-neutral-50 group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
                           {{ partial "icon.html" .Params.icon }}
                         </div>
                         <div class="flex-1">
