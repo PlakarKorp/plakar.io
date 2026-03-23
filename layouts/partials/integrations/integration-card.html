@@ -1,0 +1,61 @@
+{{ $p := . }}
+
+{{ $stageColors := dict
+  "stable"      "text-green-700 bg-green-50 border-green-200"
+  "beta"        "text-amber-700 bg-amber-50 border-amber-200"
+  "coming soon" "text-neutral-600 bg-neutral-100 border-neutral-200"
+}}
+
+{{ $stageClass := index $stageColors (lower $p.Params.stage) | default "text-neutral-600 bg-neutral-100 border-neutral-200" }}
+{{ $image := or ($p.Resources.GetMatch "featured.webp") (index ($p.Resources.Match "featured.*") 0) }}
+
+<a href="{{ $p.Permalink }}" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-50 shadow-xl outline outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
+  <div class="flex items-start justify-between gap-3">
+    <div class="w-12 h-12 rounded-lg overflow-hidden shrink-0 bg-neutral-100 flex items-center justify-center">
+      {{ if $image }}
+        <img src="{{ $image.RelPermalink }}" alt="{{ $p.Title }}" class="w-full h-full object-cover">
+      {{ else }}
+        <span class="w-6 h-6 text-neutral-400">{{ partial "icon.html" "plug-line" }}</span>
+      {{ end }}
+    </div>
+    {{ with $p.Params.stage }}
+      <span class="text-xs font-medium px-2 py-1 rounded-md border {{ $stageClass }} uppercase shrink-0">
+        {{ . }}
+      </span>
+    {{ end }}
+  </div>
+
+  <!-- Title -->
+  <div class="flex flex-col gap-1">
+    <h3 class="text-lg font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
+      {{ $p.Title }}
+    </h3>
+
+    <!-- Categories -->
+    {{ $categories := $p.GetTerms "categories" }}
+    {{ if gt (len $categories) 0 }}
+      <div class="text-xs text-primary-500 font-medium">
+        {{ range $i, $cat := $categories }}
+          {{ if gt $i 0 }} · {{ end }}{{ replace $cat.LinkTitle " Connector" "" }}
+        {{ end }}
+      </div>
+    {{ end }}
+  </div>
+
+  <!-- Description -->
+  {{ with $p.Params.description }}
+    <p class="text-sm text-neutral-600 leading-snug line-clamp-2">{{ . | plainify }}</p>
+  {{ end }}
+
+  <!-- Tags -->
+  {{ with $p.Params.tags }}
+    <div class="flex flex-wrap gap-1 mt-auto">
+      {{ range . }}
+        <span class="text-xs px-2 py-0.5 rounded bg-primary-50 text-primary-500 border border-primary-100">
+          {{ . }}
+        </span>
+      {{ end }}
+    </div>
+  {{ end }}
+
+</a>
