@@ -13,7 +13,7 @@
           <!-- Left: title + description + CTA -->
           <div class="flex flex-col gap-4 justify-end w-full lg:w-1/2">
             <h1 class="text-3xl lg:text-6xl font-medium">
-              {{ .Params.subtitle }}
+              {{ partial "utils/colorize.html" (dict "text" .Params.subtitle "word" .Params.resource) }}
             </h1>
             <p class="text-lg lg:text-2xl text-neutral-600 font-medium leading-snug pt-4">
               {{ .Description }}
