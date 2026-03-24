@@ -1,5 +1,5 @@
 ---
-date: "2026-03-18T08:01:29Z"
+date: "2026-03-24T09:41:37Z"
 title: version
 summary: "Display the current Plakar version"
 aliases:

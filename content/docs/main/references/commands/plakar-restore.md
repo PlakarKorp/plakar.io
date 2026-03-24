@@ -1,5 +1,5 @@
 ---
-date: "2026-03-17T14:06:16Z"
+date: "2026-03-24T09:40:29Z"
 title: restore
 summary: "Restore files from a Plakar snapshot"
 aliases:
@@ -75,9 +75,11 @@ aliases:
   <dd>Only apply command to snapshots that match <var class="Ar">tag</var>.</dd>
   <dt id="skip-permissions"><a class="permalink" href="#skip-permissions"><code class="Fl">-skip-permissions</code></a></dt>
   <dd>Skip restoring file permissions and ownership during restore, defaulting
-      to 0750 for directories and 0640 for files. It Fl to Ar directory Specify
-      the base directory to which the files will be restored. If omitted, files
-      are restored to the current working directory.</dd>
+      to 0750 for directories and 0640 for files.</dd>
+  <dt id="to"><a class="permalink" href="#to"><code class="Fl">-to</code></a>
+    <var class="Ar">directory</var></dt>
+  <dd>Specify the base directory to which the files will be restored. If
+      omitted, files are restored to the current working directory.</dd>
   <dt id="o"><a class="permalink" href="#o"><code class="Fl">-o</code></a>
     <var class="Ar">option</var><span class="No">=</span><var class="Ar">value</var></dt>
   <dd>Can be used to pass extra arguments to the destination connector. The

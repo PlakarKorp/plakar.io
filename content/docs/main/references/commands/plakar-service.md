@@ -1,5 +1,5 @@
 ---
-date: "2026-03-17T14:06:16Z"
+date: "2026-03-24T09:40:29Z"
 title: service
 summary: "Manage optional Plakar-connected services"
 aliases:

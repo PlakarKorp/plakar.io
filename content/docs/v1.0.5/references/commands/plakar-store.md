@@ -1,5 +1,5 @@
 ---
-date: "2026-03-18T08:05:04Z"
+date: "2026-03-24T09:56:44Z"
 title: store
 summary: "Manage Plakar store configurations"
 aliases:

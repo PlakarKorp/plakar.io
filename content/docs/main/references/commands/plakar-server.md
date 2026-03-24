@@ -1,5 +1,5 @@
 ---
-date: "2026-03-17T14:06:16Z"
+date: "2026-03-24T09:40:29Z"
 title: server
 summary: "Start a Plakar server"
 aliases:
@@ -25,7 +25,9 @@ aliases:
   <tr>
     <td><code class="Nm">plakar server</code></td>
     <td>[<code class="Fl">-allow-delete</code>] [<code class="Fl">-listen</code>
-      [<var class="Ar">host</var>]:<var class="Ar">port</var>]</td>
+      [<var class="Ar">host</var>]:<var class="Ar">port</var>]
+      [<code class="Fl">-cert</code> <var class="Ar">path</var>]
+      [<code class="Fl">-key</code> <var class="Ar">path</var>]</td>
   </tr>
 </table>
 </section>
@@ -45,6 +47,15 @@ aliases:
       listen to, separated by a colon. The host name is optional, and defaults
       to all available addresses. If <code class="Fl">-listen</code> is not
       provided, the server defaults to listen on localhost at port 9876.</dd>
+  <dt id="cert"><a class="permalink" href="#cert"><code class="Fl">-cert</code></a>
+    <var class="Ar">path</var></dt>
+  <dd>Path to a full certificate file in PEM format. If both
+      <code class="Fl">-cert</code> and <code class="Fl">-key</code> are
+      provided, the server will expect https connections. If one or both are
+      missing, the server will fall back to http.</dd>
+  <dt id="key"><a class="permalink" href="#key"><code class="Fl">-key</code></a>
+    <var class="Ar">path</var></dt>
+  <dd>Path to a certificate private key file in PEM format.</dd>
 </dl>
 </section>
 <section class="Sh">
@@ -60,6 +71,10 @@ aliases:
 <p class="Pp">Start a server on a specific address and port:</p>
 <div class="Bd Pp Bd-indent Li">
 <pre>$ plakar server -listen 127.0.0.1:12345</pre>
+</div>
+<p class="Pp">Start a https server on a specific address and port:</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>$ plakar server -listen backup.example.com:12345 -cert fullchain.pem -key privkey.pem</pre>
 </div>
 </section>
 <section class="Sh">

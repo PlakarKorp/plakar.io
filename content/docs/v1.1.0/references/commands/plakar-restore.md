@@ -1,5 +1,5 @@
 ---
-date: "2026-03-17T14:06:16Z"
+date: "2026-03-24T09:48:35Z"
 title: restore
 summary: "Restore files from a Plakar snapshot"
 aliases:

@@ -1,5 +1,5 @@
 ---
-date: "2026-03-17T14:06:16Z"
+date: "2026-03-24T09:48:35Z"
 title: ui
 summary: "Serve the Plakar web user interface"
 aliases:

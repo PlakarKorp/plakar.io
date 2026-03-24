@@ -1,5 +1,5 @@
 ---
-date: "2026-03-18T08:01:28Z"
+date: "2026-03-24T09:41:37Z"
 title: locate
 summary: "Find filenames in a Plakar snapshot"
 aliases:

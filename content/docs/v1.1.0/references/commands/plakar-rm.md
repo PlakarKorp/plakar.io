@@ -1,5 +1,5 @@
 ---
-date: "2026-03-17T14:06:16Z"
+date: "2026-03-24T09:48:35Z"
 title: rm
 summary: "Remove snapshots from a Plakar repository"
 aliases:

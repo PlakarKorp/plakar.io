@@ -1,5 +1,5 @@
 ---
-date: "2026-03-17T14:06:16Z"
+date: "2026-03-24T09:40:29Z"
 title: ui
 summary: "Serve the Plakar web user interface"
 aliases:
@@ -26,7 +26,9 @@ aliases:
     <td><code class="Nm">plakar ui</code></td>
     <td>[<code class="Fl">-addr</code> <var class="Ar">address</var>]
       [<code class="Fl">-cors</code>] [<code class="Fl">-no-auth</code>]
-      [<code class="Fl">-no-spawn</code>]</td>
+      [<code class="Fl">-no-spawn</code>] [<code class="Fl">-cert</code>
+      <var class="Ar">path</var>] [<code class="Fl">-key</code>
+      <var class="Ar">path</var>]</td>
   </tr>
 </table>
 </section>
@@ -49,6 +51,15 @@ aliases:
       exposed HTTP APIs.</dd>
   <dt id="no-spawn"><a class="permalink" href="#no-spawn"><code class="Fl">-no-spawn</code></a></dt>
   <dd>Do not automatically open the web browser.</dd>
+  <dt id="cert"><a class="permalink" href="#cert"><code class="Fl">-cert</code></a>
+    <var class="Ar">path</var></dt>
+  <dd>Path to a full certificate file in PEM format. If both
+      <code class="Fl">-cert</code> and <code class="Fl">-key</code> are
+      provided, the server will expect https connections. If one or both are
+      missing, the server will fall back to http.</dd>
+  <dt id="key"><a class="permalink" href="#key"><code class="Fl">-key</code></a>
+    <var class="Ar">path</var></dt>
+  <dd>Path to a certificate private key file in PEM format.</dd>
 </dl>
 </section>
 <section class="Sh">
@@ -57,6 +68,10 @@ aliases:
   execution:</p>
 <div class="Bd Pp Bd-indent Li">
 <pre>$ plakar ui -addr localhost:9090 -no-spawn</pre>
+</div>
+Create a https server with a custom certificate:
+<div class="Bd Pp Bd-indent Li">
+<pre>$ plakar ui -cert fullchain.pem -key privkey.pem</pre>
 </div>
 </section>
 <section class="Sh">
