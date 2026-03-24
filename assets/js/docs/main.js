@@ -1,12 +1,12 @@
 // Targets: layouts/partials/docs/toc.html
-// Elements: .toc-content a, h2[id], h3[id]
+// Elements: .toc-content a, h2[id], h3[id], h2 .anchor, h3 .anchor
 
 document.addEventListener("DOMContentLoaded", () => {
   const toc = document.querySelector(".toc-content");
   if (!toc) return;
 
   const headings = Array.from(
-    document.querySelectorAll("h2 .anchor, h3 .anchor"),
+    document.querySelectorAll("h2[id], h3[id], h2 .anchor, h3 .anchor"),
   );
   if (!headings.length) return;
 
