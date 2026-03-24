@@ -73,4 +73,5 @@ aliases:
 
 EOF
   mandoc -I os=Plakar -Thtml -Ofragment,man=../%N/ "$man" >> "$dest"
+  sed -i "s|https://docs\.plakar\.io/en/guides/importing-configurations/|https://plakar.io/docs/${VERSION}/guides/importing-configurations/|g" "$dest"
 done
