@@ -1,5 +1,5 @@
 ---
-date: "2026-03-24T09:41:37Z"
+date: "2026-03-24T10:10:51Z"
 title: clone
 summary: "Clone a Plakar repository to a new location"
 aliases:

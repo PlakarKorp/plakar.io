@@ -1,5 +1,5 @@
 ---
-date: "2026-03-24T09:56:44Z"
+date: "2026-03-24T10:10:09Z"
 title: archive
 summary: "Create an archive from a Plakar snapshot"
 aliases:

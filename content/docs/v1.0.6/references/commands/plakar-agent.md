@@ -1,5 +1,5 @@
 ---
-date: "2026-03-24T09:41:37Z"
+date: "2026-03-24T10:10:51Z"
 title: agent
 summary: "Run the Plakar agent"
 aliases:

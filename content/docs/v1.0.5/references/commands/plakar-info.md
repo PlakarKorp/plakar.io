@@ -1,5 +1,5 @@
 ---
-date: "2026-03-24T09:56:44Z"
+date: "2026-03-24T10:10:09Z"
 title: info
 summary: "Display detailed information about internal structures"
 aliases:

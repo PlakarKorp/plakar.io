@@ -1,5 +1,5 @@
 ---
-date: "2026-03-24T09:41:37Z"
+date: "2026-03-24T10:10:51Z"
 title: digest
 summary: "Compute digests for files in a Plakar snapshot"
 aliases:
