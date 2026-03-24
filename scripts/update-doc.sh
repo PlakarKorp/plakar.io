@@ -1,30 +1,35 @@
 # !/bin/sh
 
 VERSION=main
-
 if [ "$1" != "" ]; then
   VERSION=$1
 fi
 
-tempfoo=`basename $0`
-TMPDIR=`mktemp -d /tmp/${tempfoo}.XXXXXX` || exit 1
+TAG=${2:-$VERSION}
+
+tempfoo=$(basename "$0")
+TMPDIR=$(mktemp -d /tmp/${tempfoo}.XXXXXX) || exit 1
+
 onexit() {
-	rm -rf "$TMPDIR"
-	exit 0
+  rm -rf "$TMPDIR"
+  exit 0
 }
-
 trap 'onexit' EXIT INT TERM
-git clone --depth 1 https://github.com/PlakarKorp/plakar.git -b ${VERSION} ${TMPDIR}
 
-rm -rf ../content/docs/${VERSION}/references/commands/*
-echo "generating documentation for ${VERSION}"
-mkdir -p ../content/docs/${VERSION}/references/commands/
+git clone --depth 1 https://github.com/PlakarKorp/plakar.git -b "${TAG}" "${TMPDIR}" || { echo "Clone failed for tag '${TAG}'"; exit 1; }
+
+OUTDIR="../content/docs/${VERSION}/references/commands"
+rm -rf "${OUTDIR}"
+mkdir -p "${OUTDIR}"
+
+echo "generating documentation for ${VERSION} (tag: ${TAG})"
 
 TITLE=${VERSION}
-if test ${VERSION} = "main" ; then
-  TITLE="developers branch"
+if test "${VERSION}" = "main"; then
+    TITLE="developers branch"
 fi
-cat <<EOF > ../content/docs/${VERSION}/references/commands/_index.md
+
+cat <<EOF > "${OUTDIR}/_index.md"
 ---
 title: "Commands"
 date: "$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
@@ -35,9 +40,7 @@ summary: "Reference for all Plakar commands. Browse detailed documentation for e
 # Commands
 
 Welcome to the Plakar commands reference. This section provides detailed documentation for all available Plakar commands, including usage, options, and examples.
-
 You can browse the command documentation here, or access it directly from your terminal using \`plakar help\`. This allows you to explore command behavior and options whether you are online or working locally.
-
 Below is the complete list of commands. Select any command to view its detailed documentation.
 
 {{% children description="true" %}}
@@ -54,18 +57,20 @@ find "$TMPDIR/$SUBCMDDIR" -iname \*.[1-9] -exec ln {} "$TMPDIR/manpages/" \;
 [ -f "$TMPDIR/plakar-query.7" ] && ln "$TMPDIR/plakar-query.7" "$TMPDIR/manpages/"
 
 for man in "$TMPDIR/manpages/"*; do
-	name="${man%%.[1-9]}"
-	name="${name##*/}"
-	summary="$(grep -m1 ^\.Nd "$man" | sed 's/^.Nd //')"
-	echo "generating documentation for ${name}"
-	dest="../content/docs/${VERSION}/references/commands/${name}.md"
-	cat <<EOF > $dest
+  name="${man%%.[1-9]}"
+  name="${name##*/}"
+  summary="$(grep -m1 ^\.Nd "$man" | sed 's/^.Nd //')"
+  echo "generating documentation for ${name}"
+  dest="${OUTDIR}/${name}.md"
+  cat <<EOF > "$dest"
 ---
 date: "$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 title: ${name##plakar-}
 summary: "${summary}"
+aliases:
+  - /docs/${VERSION}/commands/${name}/
 ---
 
 EOF
-	mandoc -I os=Plakar -Thtml -Ofragment,man=../%N/ "$man" >> $dest
+  mandoc -I os=Plakar -Thtml -Ofragment,man=../%N/ "$man" >> "$dest"
 done
