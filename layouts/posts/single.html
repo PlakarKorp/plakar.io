@@ -1,0 +1,110 @@
+{{ define "main" }}
+
+{{ $image := or (.Resources.GetMatch "featured.webp") (index (.Resources.Match "featured.*") 0) }}
+{{ if not $image }}
+  {{ $image = resources.Get "img/placeholder-1600x1200.png" }}
+{{ end }}
+
+<!-- Hero -->
+<section class="section-light-2 grid-background px-4 pt-32 pb-7">
+  <div class="max-w-350 mx-auto flex flex-col items-center">
+    <div class="flex flex-col items-start gap-2 w-full max-w-[712px]">
+
+      <h1 class="font-medium leading-tight text-2xl lg:text-5xl">
+        {{ .Title | emojify }}
+      </h1>
+
+      <div class="flex flex-wrap items-center mt-2 gap-2 text-xs text-neutral-400 uppercase">
+        {{ range .GetTerms "authors" }}
+          {{ $authorKey := . | urlize | strings.TrimPrefix "/authors/" }}
+          {{ $authorData := index site.Data.authors $authorKey }}
+          {{ with $authorData }}
+            <span class="text-neutral-900 normal-case">{{ .name }}</span>
+            <span>•</span>
+          {{ end }}
+        {{ end }}
+        <span>{{ .WordCount }} words</span>
+        <span>•</span>
+        <span>{{ .Date.Format "January 2, 2006" }}</span>
+        <span>•</span>
+        <span>{{ .ReadingTime }} min read</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Featured image -->
+<section class="section-light-2 grid-background">
+  <div class="bg-gradient-section-light-1 px-4 py-2">
+    <div class="max-w-350 mx-auto flex flex-col items-center">
+      <div class="w-full max-w-[712px] rounded-lg bg-neutral-50 border border-neutral-300">
+        <div class="w-full h-7 px-4 flex items-center gap-2 border-b border-neutral-200">
+          <div class="w-2 h-2 bg-neutral-300 rounded-full"></div>
+          <div class="w-2 h-2 bg-neutral-300 rounded-full"></div>
+          <div class="w-2 h-2 bg-neutral-300 rounded-full"></div>
+        </div>
+        <div class="p-4">
+          <div class="aspect-video overflow-hidden rounded-sm">
+            <img src="{{ $image.RelPermalink }}" alt="{{ .Title }}" class="w-full h-full object-cover">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Article -->
+<section class="section-light-1 px-4 py-7">
+  <div class="max-w-350 mx-auto flex flex-col xl:flex-row items-start gap-8">
+
+    <!-- TOC sidebar -->
+    <aside class="hidden xl:block xl:sticky xl:top-28 w-[280px] shrink-0">
+      {{ partial "docs/toc.html" . }}
+    </aside>
+
+    <!-- Article content -->
+    <article class="w-full max-w-[712px] mx-auto xl:mx-0 flex flex-col gap-8">
+
+      <!-- Author -->
+      {{ range .GetTerms "authors" }}
+        {{ $authorKey := . | urlize | strings.TrimPrefix "/authors/" }}
+        {{ $authorData := index site.Data.authors $authorKey }}
+        {{ with $authorData }}
+          <div class="flex items-start gap-4">
+            {{ $authorImg := resources.Get .image }}
+            {{ if $authorImg }}
+              <img src="{{ $authorImg.RelPermalink }}" alt="{{ .name }}"
+                   class="w-14 h-14 rounded-full shrink-0">
+            {{ else }}
+              <div class="w-14 h-14 rounded-full bg-neutral-200 shrink-0 flex items-center justify-center text-neutral-500">
+                <span class="w-6 h-6">{{ partial "icon.html" "ri/user-line" }}</span>
+              </div>
+            {{ end }}
+            <div class="flex flex-col gap-1">
+              <span class="text-sm font-semibold text-neutral-900">{{ .name }}</span>
+              <span class="text-sm text-neutral-600">{{ .bio }}</span>
+            </div>
+          </div>
+        {{ end }}
+      {{ end }}
+
+      <hr class="border-neutral-200">
+
+      <!-- Content -->
+      <div class="prose docs-font max-w-full">
+        {{ .Content }}
+      </div>
+
+    </article>
+
+  </div>
+</section>
+
+{{ end }}
+
+{{ define "scripts" }}
+  {{ $js := resources.Get "js/docs/main.js" | minify | fingerprint }}
+  <script src="{{ $js.RelPermalink }}" defer></script>
+{{ end }}

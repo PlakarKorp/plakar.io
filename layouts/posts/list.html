@@ -1,0 +1,89 @@
+{{ define "main" }}
+
+<!-- Hero -->
+<section class="section-light-2 pt-20 grid-background">
+  <div class="bg-gradient-section-light-2 px-4 pt-20 pb-7">
+    <div class="max-w-350 mx-auto flex flex-col gap-6 px-4 text-center">
+      <h1 class="text-4xl lg:text-6xl font-medium">
+        Plakar Blog
+      </h1>
+      <p class="text-lg lg:text-xl text-neutral-600">
+        Read about data protection and Plakar latest development update.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Featured post -->
+{{ $allVisible := where .Pages "Params.hidden" "ne" true }}
+{{ $featured := first 1 (where $allVisible "Params.featured" true) }}
+{{ if not (gt (len $featured) 0) }}
+  {{ $featured = first 1 (sort $allVisible "Date" "desc") }}
+{{ end }}
+
+{{ with index $featured 0 }}
+  {{ $image := or (.Resources.GetMatch "featured.webp") (index (.Resources.Match "featured.*") 0) }}
+  {{ if not $image }}
+    {{ $image = resources.Get "img/placeholder-400x254.png" }}
+  {{ end }}
+
+  <section class="section-light-2 py-7 px-4">
+    <div class="max-w-350 mx-auto flex flex-col lg:flex-row items-start lg:items-stretch">
+
+      <!-- Left: image in browser window -->
+      <div class="w-4/5 lg:w-1/3 xl:w-1/2 shrink-0 rounded-lg bg-neutral-50 border border-neutral-300">
+        <div class="w-full h-7 px-4 flex items-center gap-2 border-b border-neutral-200">
+          <div class="w-2 h-2 bg-neutral-300 rounded-full"></div>
+          <div class="w-2 h-2 bg-neutral-300 rounded-full"></div>
+          <div class="w-2 h-2 bg-neutral-300 rounded-full"></div>
+        </div>
+        <div class="p-2 lg:p-6">
+          <img src="{{ $image.RelPermalink }}" alt="Article preview" class="w-full h-auto object-cover rounded-sm">
+        </div>
+      </div>
+
+      <!-- Right: metadata + text -->
+      <div class="bg-neutral-100 flex flex-1 flex-col gap-4 items-start justify-center px-4 lg:px-8 py-4">
+
+        <!-- Meta -->
+        <div class="flex flex-wrap gap-2 text-xs font-medium text-neutral-500">
+          {{ range .GetTerms "authors" }}
+            {{ $authorKey := . | urlize | strings.TrimPrefix "/authors/" }}
+            {{ $authorData := index site.Data.authors $authorKey }}
+            {{ with $authorData }}
+              <span class="text-neutral-900">{{ .name }}</span>
+              <span>•</span>
+            {{ end }}
+          {{ end }}
+          <span>{{ .WordCount }} words</span>
+          <span>•</span>
+          <span>{{ .Date.Format "January 2, 2006" }}</span>
+          <span>•</span>
+          <span>{{ .ReadingTime }} min read</span>
+        </div>
+
+        <!-- Title + summary -->
+        <div class="flex flex-col gap-4">
+          <h2 class="text-2xl lg:text-4xl font-medium text-neutral-900 leading-tight">
+            <a href="{{ .RelPermalink }}" class="hover:text-primary-500 transition-colors">
+              {{ .Title | emojify }}
+            </a>
+          </h2>
+          <p class="text-sm lg:text-lg text-neutral-600 leading-relaxed">
+            {{ .Summary }}
+          </p>
+        </div>
+
+        <!-- CTA -->
+        {{ partial "components/buttons/base-button.html" (dict
+          "label" "Read more"
+          "labelShort" "Read"
+          "href" .RelPermalink
+        ) }}
+
+      </div>
+    </div>
+  </section>
+{{ end }}
+
+{{ end }}
