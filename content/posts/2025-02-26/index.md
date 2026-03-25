@@ -1,6 +1,7 @@
 ---
 title: "Plakar beta release!"
 summary: "First public beta of Plakar is out: scalable, encrypted, efficient, and open-source backups ready for real-world testing and feedback"
+slug: "plakar-beta-release"
 date: 2025-02-26T00:00:00+0100
 authors:
 - "gilles"
