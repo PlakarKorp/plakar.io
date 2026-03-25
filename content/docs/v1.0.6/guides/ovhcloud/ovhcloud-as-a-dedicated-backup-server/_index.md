@@ -140,7 +140,7 @@ Configuring the passphrase in the store enables automated backups without prompt
 
 ### Initialize Kloset Store
 ```bash
-plakar at "ovhcloud-s3-backups" create
+plakar at "@ovhcloud-s3-backups" create
 ```
 
 ## Configure SSH Access
