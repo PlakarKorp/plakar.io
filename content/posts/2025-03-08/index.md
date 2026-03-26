@@ -4,10 +4,10 @@ summary: "New UI previews, performance boosts, SFTP fixes, CLI testing, packagin
 slug: "plakar-beta.4-and-upcoming-features"
 date: 2025-03-08T00:00:00+0100
 authors:
-- "gilles"
+  - "gilles"
 tags:
- - plakar
- - backups
+  - plakar
+  - backups
 ---
 
 We were thrilled to release our first beta in late February, but we weren’t just going to sit back and rest on our laurels.

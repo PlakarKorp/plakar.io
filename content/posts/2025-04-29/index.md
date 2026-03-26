@@ -4,11 +4,11 @@ summary: "Immutable, queryable, encrypted snapshots with context and integrity â
 slug: "kloset-the-immutable-data-store"
 date: 2025-04-29T08:00:00+0100
 authors:
-- "gilles"
+  - "gilles"
 tags:
- - plakar
- - kloset
- - backups
+  - plakar
+  - kloset
+  - backups
 ---
 
 On the surface, `plakar` may appear as just another backup tool: it takes data and safely stores it until restoration is neededâ€”essentially, a sophisticated version of the `cp` command.

@@ -4,10 +4,10 @@ summary: "S3 offers durable storage, not true backups. Learn why you need dedica
 slug: "s3-is-not-a-backup-why-you-need-a-real-backup-strategy"
 date: 2025-02-10T15:12:00+0100
 authors:
- - "nestor"
+  - "nestor"
 tags:
- - plakar
- - backup
+  - plakar
+  - backup
 ---
 
 Let us get straight to the point: Amazon S3 is a phenomenal service for scalable, reliable object storage but it is not a backup solution. Sure, S3 boasts rock-solid durability and cost efficiency, but relying on it alone for backups is like trying to cover your bases with duct tape. In today’s world, where a single misclick can spell disaster, a thoughtful, multi-layered backup strategy is not just nice to have; it is absolutely essential.

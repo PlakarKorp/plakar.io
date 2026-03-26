@@ -4,10 +4,10 @@ summary: "First public beta of Plakar is out: scalable, encrypted, efficient, an
 slug: "plakar-beta-release"
 date: 2025-02-26T00:00:00+0100
 authors:
-- "gilles"
+  - "gilles"
 tags:
- - plakar
- - backups
+  - plakar
+  - backups
 ---
 
 **Listen to this article as an AI-generated podcast as you read!**

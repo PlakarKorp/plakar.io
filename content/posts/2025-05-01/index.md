@@ -4,11 +4,11 @@ summary: "Immutable, queryable, encrypted snapshots with context and integrity â
 slug: "introducing-plakar-v1.0-to-redefine-open-source-data-protection-with-3m-funding"
 date: 2025-05-01T08:00:00+0100
 authors:
-- "gilles"
+  - "gilles"
 tags:
- - plakar
- - kloset
- - backups
+  - plakar
+  - kloset
+  - backups
 ---
 
 In February, [we introduced the first plakar beta release](../../2025-02-26/plakar-beta-release/) and since then we worked tirelessly to build our first stable release, improving on user feedback and adding new nice features while at it.

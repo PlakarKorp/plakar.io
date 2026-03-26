@@ -4,10 +4,10 @@ summary: "New UI filters, timeline navigation, S3 and FTP support, checkpointing
 slug: "plakar-1.0.1-beta.13-out"
 date: 2025-03-19T01:00:00+0100
 authors:
-- "gilles"
+  - "gilles"
 tags:
- - plakar
- - backups
+  - plakar
+  - backups
 ---
 
 Hello, it's me again !

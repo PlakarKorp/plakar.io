@@ -4,10 +4,10 @@ summary: "From magnetic tapes to immutable snapshots, how backups evolved into s
 slug: "a-short-history-of-backup"
 date: 2025-03-31T08:00:00+0100
 authors:
-- "jmangeard"
+  - "jmangeard"
 tags:
- - plakar
- - backups
+  - plakar
+  - backups
 ---
 
 ## In honor of World Backup Day – March 31
