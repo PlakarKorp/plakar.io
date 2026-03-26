@@ -11,7 +11,7 @@
 <meta name="author" content="Nestor">
 
 
-      <link rel="stylesheet" href="/css/main-compiled.min.bbf34365aa3dbc5957d92adfceda9e8d9f29f0fd2451422c4659fb77fb22663d.css" integrity="sha256-u/NDZao9vFlX2SrfztqejZ8p8P0kUUIsRln7d/siZj0=" crossorigin="anonymous">
+      <link rel="stylesheet" href="/css/main-compiled.min.061948ebbcf872c02c1ae6c7c204396175a7616af6c9e98c0302e1a5f61cd998.css" integrity="sha256-BhlI67z4csAsGubHwgQ5YXWnYWr2yemMAwLhpfYc2Zg=" crossorigin="anonymous">
 
 
       <script src="/js/main.71a1ad907d0198fb2101a3e8a665dbb661f9bcf626ba7db0daadbdb30de7df17.js" integrity="sha256-caGtkH0BmPshAaPopmXbtmH5vPYmun2w2q29sw3n3xc=" crossorigin="anonymous"></script>
@@ -10108,7 +10108,7 @@ class S3 storage
 <li><code>&lt;ACCESS_KEY&gt;</code> and <code>&lt;SECRET_KEY&gt;</code>: From OVHcloud Control Panel</li>
 </ul>
 <h3 id="initialize-store">Initialize store</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">plakar at <span class="s2">&#34;ovhcloud-s3-postgres&#34;</span> create
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">plakar at <span class="s2">&#34;@ovhcloud-s3-postgres&#34;</span> create
 </span></span></code></pre></div><h2 id="back-up-database">Back Up Database</h2>
 <p>Run backup:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pg_dump &lt;DB_NAME&gt; <span class="p">|</span> plakar at <span class="s2">&#34;@ovhcloud-s3-postgres&#34;</span> backup stdin:dump.sql
