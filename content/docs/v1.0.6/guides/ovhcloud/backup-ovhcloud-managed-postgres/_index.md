@@ -131,7 +131,7 @@ Replace:
 
 ### Initialize store
 ```bash
-plakar at "ovhcloud-s3-postgres" create
+plakar at "@ovhcloud-s3-postgres" create
 ```
 
 ## Back Up Database
