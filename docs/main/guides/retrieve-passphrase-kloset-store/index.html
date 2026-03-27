@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Retrieving passphrase via external command | Plakar | The Open Standard for Backup and Restore</title>
+<title>Retrieving secrets via external command | Plakar | The Open Standard for Backup and Restore</title>
 <meta name="author" content="Nestor">
 
 
@@ -24,7 +24,7 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Plakar | Retrieving passphrase via external command">
+<meta property="og:title" content="Plakar | Retrieving secrets via external command">
 <meta property="og:author" content="Nestor">
 <meta property="og:description" content="Enterprise ready backups with developer friendly tooling. Encrypted, deduplicated snapshots, instant browsing and restore, and zero knowledge workflows across clouds and on-prem."><meta property="og:url" content="https://www.plakar.io/docs/main/guides/retrieve-passphrase-kloset-store/">
 <meta property="og:image" content="https://www.plakar.io/">
@@ -33,7 +33,7 @@
 
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Plakar | Retrieving passphrase via external command">
+<meta name="twitter:title" content="Plakar | Retrieving secrets via external command">
 <meta name="twitter:description" content="Enterprise ready backups with developer friendly tooling. Encrypted, deduplicated snapshots, instant browsing and restore, and zero knowledge workflows across clouds and on-prem.">
 <meta name="twitter:image" content="https://www.plakar.io/">
 
@@ -1624,7 +1624,7 @@ function siteSearch() {
                    class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
                    ml-4 pl-2 border-l border-neutral-300
                    text-primary-600 bg-neutral-200 font-semibold">
-                    Retrieving passphrase via external command
+                    Retrieving secrets via external command
                 </a>
             
         
@@ -3879,7 +3879,7 @@ function siteSearch() {
                    class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
                    ml-4 pl-2 border-l border-neutral-300
                    ">
-                    Retrieving passphrase via external command
+                    Retrieving secrets via external command
                 </a>
             
         
@@ -6127,7 +6127,7 @@ function siteSearch() {
                    class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
                    ml-4 pl-2 border-l border-neutral-300
                    ">
-                    Retrieving passphrase via external command
+                    Retrieving secrets via external command
                 </a>
             
         
@@ -8266,7 +8266,7 @@ function siteSearch() {
                    class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
                    ml-4 pl-2 border-l border-neutral-300
                    ">
-                    Retrieving passphrase via external command
+                    Retrieving secrets via external command
                 </a>
             
         
@@ -9650,8 +9650,16 @@ function siteSearch() {
             </style>
             <nav id="TableOfContents">
   <ul>
-    <li><a href="#example">Example</a></li>
-    <li><a href="#limitations">Limitations</a></li>
+    <li><a href="#setting-the-command">Setting the command</a></li>
+    <li><a href="#examples">Examples</a>
+      <ul>
+        <li><a href="#gopass">gopass</a></li>
+        <li><a href="#1password-cli">1Password CLI</a></li>
+        <li><a href="#hashicorp-vault">HashiCorp Vault</a></li>
+      </ul>
+    </li>
+    <li><a href="#limitation">Limitation</a></li>
+    <li><a href="#whats-coming">What&rsquo;s coming</a></li>
   </ul>
 </nav>
         
@@ -9664,8 +9672,16 @@ function siteSearch() {
     <div class="py-2 px-4  border-dotted border-neutral-300   dark:border-neutral-600">
         <nav id="TableOfContents">
   <ul>
-    <li><a href="#example">Example</a></li>
-    <li><a href="#limitations">Limitations</a></li>
+    <li><a href="#setting-the-command">Setting the command</a></li>
+    <li><a href="#examples">Examples</a>
+      <ul>
+        <li><a href="#gopass">gopass</a></li>
+        <li><a href="#1password-cli">1Password CLI</a></li>
+        <li><a href="#hashicorp-vault">HashiCorp Vault</a></li>
+      </ul>
+    </li>
+    <li><a href="#limitation">Limitation</a></li>
+    <li><a href="#whats-coming">What&rsquo;s coming</a></li>
   </ul>
 </nav>
     </div>
@@ -9903,7 +9919,7 @@ function siteSearch() {
                 
 
                 <h1 class="font-prose font-bold leading-tight ~text-3xl/4xl">
-                    Retrieving passphrase via external command
+                    Retrieving secrets via external command
                 </h1>
             </div>
 
@@ -9911,27 +9927,32 @@ function siteSearch() {
                 
                 <div class="relative docs-content font-prose prose text-base w-full max-w-full ps-8 pe-2 md:pe-8">
                     <p><em>Last reviewed: 
-2026-01-29
+2026-03-27
  / Plakar 
 v1.1.0
 </em></p>
-<p>Plakar can retrieve a Kloset Store passphrase by executing an external command. The command must output the passphrase to standard output.</p>
-<p>This allows you to use password managers or secret stores instead of keeping the passphrase in plain text in the Plakar configuration.</p>
-<h2 id="example">Example</h2>
-<p>If your password manager prints the passphrase to stdout, you can configure the store like this.</p>
-<p>For example, using <code>gopass</code>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">plakar store add <span class="nb">test</span> <span class="se">\
+<p>Plakar can retrieve a Kloset Store passphrase by executing an external command. The command must write the passphrase to standard output. This lets you integrate password managers or secret stores instead of keeping the passphrase in plain text in the Plakar configuration.</p>
+<h2 id="setting-the-command">Setting the command</h2>
+<p>Pass <code>passphrase_cmd</code> when adding the store:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar store add mystore <span class="se">\
 </span></span></span><span class="line"><span class="cl">  <span class="nv">location</span><span class="o">=</span>/var/backups <span class="se">\
 </span></span></span><span class="line"><span class="cl">  <span class="nv">passphrase_cmd</span><span class="o">=</span><span class="s1">&#39;gopass show mystore/passphrase&#39;</span>
-</span></span></code></pre></div><p>When you access the store:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">plakar at <span class="s2">&#34;@test&#34;</span> ls
-</span></span></code></pre></div><p>Plakar executes the command, reads its output, and uses it as the passphrase.</p>
-<h2 id="limitations">Limitations</h2>
-<ul>
-<li>The command must not require user interaction. If the command prompts for input (for example, a GPG key password), Plakar will fail.</li>
-<li>The command must only output the passphrase to <code>stdout</code>.</li>
-</ul>
-<p>This mechanism is useful with tools such as gopass, 1Password, Vault, or any other system that can return secrets via a command.</p>
+</span></span></code></pre></div><p>Or update an existing store:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar store <span class="nb">set</span> mystore <span class="nv">passphrase_cmd</span><span class="o">=</span><span class="s1">&#39;gopass show mystore/passphrase&#39;</span>
+</span></span></code></pre></div><p>When you access the store, Plakar executes the command, reads its stdout, and uses the result as the passphrase:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar at <span class="s2">&#34;@mystore&#34;</span> ls
+</span></span></code></pre></div><h2 id="examples">Examples</h2>
+<h3 id="gopass">gopass</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nv">passphrase_cmd</span><span class="o">=</span><span class="s1">&#39;gopass show mystore/passphrase&#39;</span>
+</span></span></code></pre></div><h3 id="1password-cli">1Password CLI</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nv">passphrase_cmd</span><span class="o">=</span><span class="s1">&#39;op read &#34;op://Personal/mystore/password&#34;&#39;</span>
+</span></span></code></pre></div><h3 id="hashicorp-vault">HashiCorp Vault</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nv">passphrase_cmd</span><span class="o">=</span><span class="s1">&#39;vault kv get -field=password secret/mystore&#39;</span>
+</span></span></code></pre></div><h2 id="limitation">Limitation</h2>
+<p>The only hard requirement is that <strong>the command must not read from stdin</strong>. Plakar does not connect a terminal to the command&rsquo;s stdin, so anything that attempts to read from it will fail. System-level prompts (biometrics, OS dialogs, GUI windows) are fine as long as they do not need input typed into the terminal.</p>
+<p>The command must write only the passphrase to stdout. Any extra output will be treated as part of the passphrase.</p>
+<h2 id="whats-coming">What&rsquo;s coming</h2>
+<p>External command resolution is currently limited to the passphrase. Work is underway to extend this to other configuration fields such as storage credentials and tokens.</p>
 
                 </div>
             </div>
