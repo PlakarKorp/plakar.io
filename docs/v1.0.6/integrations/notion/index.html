@@ -1029,60 +1029,54 @@ function siteSearch() {
 
 
 <nav class="flex flex-col gap-2 p-4 bg-neutral-100 h-full" x-data="{
-    openSections: {},
+    openSections: (function() {
+        const sections = {};
+        const currentPath = &#34;/docs/v1.0.6/integrations/notion/&#34;;
+        const isSectionPage = false;
+        const activeLink = document.querySelector(`a[href='${currentPath}']`);
+        if (!activeLink) return sections;
+
+        let element = activeLink.parentElement;
+        while (element && element.tagName !== 'NAV') {
+            let sectionContainer = null;
+            if (element.hasAttribute('x-show') && element.hasAttribute('x-transition:enter')) {
+                sectionContainer = element;
+            } else {
+                sectionContainer = element.closest('[x-show][x-transition\\:enter]');
+            }
+            if (sectionContainer && !sectionContainer.dataset.checked) {
+                const match = sectionContainer.getAttribute('x-show').match(/openSections\['([^']+)'\]/);
+                if (match && match[1]) {
+                    sections[match[1]] = true;
+                }
+            }
+            element = element.parentElement;
+        }
+
+        if (isSectionPage) {
+            const siblingContainer = activeLink.closest('.my-1');
+            if (siblingContainer) {
+                const childAccordion = siblingContainer.querySelector('[x-show][x-transition\\:enter]');
+                if (childAccordion) {
+                    const match = childAccordion.getAttribute('x-show').match(/openSections\['([^']+)'\]/);
+                    if (match && match[1]) {
+                        sections[match[1]] = true;
+                    }
+                }
+            }
+        }
+        return sections;
+    })(),
     selectedVersion: &#34;root-plakar_v1.0.6-2&#34;,
     versions: [],
-    isSectionPage: false,
     initializeSections() {
         const currentPath = &#34;/docs/v1.0.6/integrations/notion/&#34;;
-
-        const findAncestors = () => {
+        setTimeout(() => {
             const activeLink = document.querySelector(`a[href='${currentPath}']`);
-            if (!activeLink) return;
-
-            let element = activeLink.parentElement;
-
-            while (element && element.tagName !== 'NAV') {
-                let sectionContainer = null;
-
-                // Try to find a section container with Alpine directives
-                if (element.hasAttribute('x-show') && element.hasAttribute('x-transition:enter')) {
-                    sectionContainer = element;
-                } else {
-                    // Fallback: look for the closest parent with the right Alpine setup
-                    sectionContainer = element.closest('[x-show][x-transition\\:enter]');
-                }
-
-                if (sectionContainer && !sectionContainer.dataset.checked) {
-                    const match = sectionContainer.getAttribute('x-show').match(/openSections\['([^']+)'\]/);
-                    if (match && match[1]) {
-                        this.openSections[match[1]] = true;
-                    }
-                }
-
-                element = element.parentElement;
-            }
-
-            // If current page is a section, expand its first child section
-            if (this.isSectionPage) {
-                const siblingContainer = activeLink.closest('.my-1');
-                if (siblingContainer) {
-                    const childAccordion = siblingContainer.querySelector('[x-show][x-transition\\:enter]');
-                    if (childAccordion) {
-                        const match = childAccordion.getAttribute('x-show').match(/openSections\['([^']+)'\]/);
-                        if (match && match[1]) {
-                            this.openSections[match[1]] = true;
-                        }
-                    }
-                }
-            }
-
-            setTimeout(() => {
+            if (activeLink) {
                 activeLink.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 300);
-        };
-
-        setTimeout(findAncestors, 200);
+            }
+        }, 300);
     },
     changeVersion() {
         const versionSelect = document.getElementById('version-select');
@@ -1278,6 +1272,7 @@ function siteSearch() {
                     </div>
 
                     <div x-show="openSections['root-plakar:_developer_branch-0-getting_started-0']"
+                         x-cloak
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -1415,6 +1410,7 @@ function siteSearch() {
                     </div>
 
                     <div x-show="openSections['root-plakar:_developer_branch-0-guides-1']"
+                         x-cloak
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -1720,6 +1716,7 @@ function siteSearch() {
                     </div>
 
                     <div x-show="openSections['root-plakar:_developer_branch-0-guides-1-mysql-8']"
+                         x-cloak
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -1839,6 +1836,7 @@ function siteSearch() {
                     </div>
 
                     <div x-show="openSections['root-plakar:_developer_branch-0-guides-1-postgresql-9']"
+                         x-cloak
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -1958,6 +1956,7 @@ function siteSearch() {
                     </div>
 
                     <div x-show="openSections['root-plakar:_developer_branch-0-guides-1-ovhcloud-10']"
+                         x-cloak
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -2077,6 +2076,7 @@ function siteSearch() {
                     </div>
 
                     <div x-show="openSections['root-plakar:_developer_branch-0-guides-1-exoscale-11']"
+                         x-cloak
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -2202,6 +2202,7 @@ function siteSearch() {
                     </div>
 
                     <div x-show="openSections['root-plakar:_developer_branch-0-integrations-2']"
+                         x-cloak
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -2435,6 +2436,7 @@ function siteSearch() {
                     </div>
 
                     <div x-show="openSections['root-plakar:_developer_branch-0-explanations-3']"
+                         x-cloak
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -2646,6 +2648,7 @@ function siteSearch() {
                     </div>
 
                     <div x-show="openSections['root-plakar:_developer_branch-0-references-4']"
+                         x-cloak
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -2794,6 +2797,7 @@ function siteSearch() {
                     </div>
 
                     <div x-show="openSections['root-plakar:_developer_branch-0-references-4-commands-3']"
+                         x-cloak
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -3523,6 +3527,7 @@ function siteSearch() {
                     </div>
 
                     <div x-show="openSections['root-plakar:_v1.1.0_(beta)-1-getting_started-0']"
+                         x-cloak
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -3660,6 +3665,7 @@ function siteSearch() {
                     </div>
 
                     <div x-show="openSections['root-plakar:_v1.1.0_(beta)-1-guides-1']"
+                         x-cloak
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -3965,6 +3971,7 @@ function siteSearch() {
                     </div>
 
                     <div x-show="openSections['root-plakar:_v1.1.0_(beta)-1-guides-1-mysql-8']"
+                         x-cloak
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -4084,6 +4091,7 @@ function siteSearch() {
                     </div>
 
                     <div x-show="openSections['root-plakar:_v1.1.0_(beta)-1-guides-1-postgresql-9']"
+                         x-cloak
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -4203,6 +4211,7 @@ function siteSearch() {
                     </div>
 
                     <div x-show="openSections['root-plakar:_v1.1.0_(beta)-1-guides-1-ovhcloud-10']"
+                         x-cloak
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -4322,6 +4331,7 @@ function siteSearch() {
                     </div>
 
                     <div x-show="openSections['root-plakar:_v1.1.0_(beta)-1-guides-1-exoscale-11']"
+                         x-cloak
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -4447,6 +4457,7 @@ function siteSearch() {
                     </div>
 
                     <div x-show="openSections['root-plakar:_v1.1.0_(beta)-1-integrations-2']"
+                         x-cloak
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -4680,6 +4691,7 @@ function siteSearch() {
                     </div>
 
                     <div x-show="openSections['root-plakar:_v1.1.0_(beta)-1-explanations-3']"
+                         x-cloak
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -4891,6 +4903,7 @@ function siteSearch() {
                     </div>
 
                     <div x-show="openSections['root-plakar:_v1.1.0_(beta)-1-references-4']"
+                         x-cloak
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -5039,6 +5052,7 @@ function siteSearch() {
                     </div>
 
                     <div x-show="openSections['root-plakar:_v1.1.0_(beta)-1-references-4-commands-3']"
+                         x-cloak
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -5768,6 +5782,7 @@ function siteSearch() {
                     </div>
 
                     <div x-show="openSections['root-plakar_v1.0.6-2-getting_started-0']"
+                         x-cloak
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -5905,6 +5920,7 @@ function siteSearch() {
                     </div>
 
                     <div x-show="openSections['root-plakar_v1.0.6-2-guides-1']"
+                         x-cloak
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -6184,6 +6200,7 @@ function siteSearch() {
                     </div>
 
                     <div x-show="openSections['root-plakar_v1.0.6-2-guides-1-mysql-7']"
+                         x-cloak
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -6303,6 +6320,7 @@ function siteSearch() {
                     </div>
 
                     <div x-show="openSections['root-plakar_v1.0.6-2-guides-1-postgresql-8']"
+                         x-cloak
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -6422,6 +6440,7 @@ function siteSearch() {
                     </div>
 
                     <div x-show="openSections['root-plakar_v1.0.6-2-guides-1-ovhcloud-9']"
+                         x-cloak
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -6541,6 +6560,7 @@ function siteSearch() {
                     </div>
 
                     <div x-show="openSections['root-plakar_v1.0.6-2-guides-1-exoscale-10']"
+                         x-cloak
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -6666,6 +6686,7 @@ function siteSearch() {
                     </div>
 
                     <div x-show="openSections['root-plakar_v1.0.6-2-integrations-2']"
+                         x-cloak
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -6899,6 +6920,7 @@ function siteSearch() {
                     </div>
 
                     <div x-show="openSections['root-plakar_v1.0.6-2-explanations-3']"
+                         x-cloak
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -7110,6 +7132,7 @@ function siteSearch() {
                     </div>
 
                     <div x-show="openSections['root-plakar_v1.0.6-2-references-4']"
+                         x-cloak
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -7232,6 +7255,7 @@ function siteSearch() {
                     </div>
 
                     <div x-show="openSections['root-plakar_v1.0.6-2-references-4-commands-2']"
+                         x-cloak
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -7989,6 +8013,7 @@ function siteSearch() {
                     </div>
 
                     <div x-show="openSections['root-plakar_v1.0.5-3-getting_started-0']"
+                         x-cloak
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -8070,6 +8095,7 @@ function siteSearch() {
                     </div>
 
                     <div x-show="openSections['root-plakar_v1.0.5-3-guides-1']"
+                         x-cloak
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -8319,6 +8345,7 @@ function siteSearch() {
                     </div>
 
                     <div x-show="openSections['root-plakar_v1.0.5-3-integrations-2']"
+                         x-cloak
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -8540,6 +8567,7 @@ function siteSearch() {
                     </div>
 
                     <div x-show="openSections['root-plakar_v1.0.5-3-explanations-3']"
+                         x-cloak
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -8751,6 +8779,7 @@ function siteSearch() {
                     </div>
 
                     <div x-show="openSections['root-plakar_v1.0.5-3-references-4']"
+                         x-cloak
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -8847,6 +8876,7 @@ function siteSearch() {
                     </div>
 
                     <div x-show="openSections['root-plakar_v1.0.5-3-references-4-commands-1']"
+                         x-cloak
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 transform -translate-y-2"
                          x-transition:enter-end="opacity-100 transform translate-y-0"
