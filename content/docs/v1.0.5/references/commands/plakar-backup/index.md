@@ -1,5 +1,5 @@
 ---
-date: "2026-03-23T16:59:33Z"
+date: "2026-03-24T10:24:35Z"
 title: backup
 summary: "Create a new snapshot in a Kloset store"
 aliases:

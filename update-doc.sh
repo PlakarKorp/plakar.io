@@ -30,7 +30,7 @@ echo
     commit=`git log ${TAG} | head -4 |  grep ^commit | cut -d' ' -f2`
     date=`git log ${TAG} | head -4 |  grep ^Date: | cut -d' ' -f2`
     author=`git log ${TAG} | head -4 |  grep ^Author: | cut -d' ' -f2,3,4,5`
-    cd -
+    cd - > /dev/null
 echo
 
 rm  -rf ./content/docs/${VERSION}/references/commands/*
@@ -64,7 +64,7 @@ if ! test -d "${TMPDIR}/${SUBCMDDIR}"; then
 fi
 
 mkdir "$TMPDIR/manpages"
-find "$TMPDIR/$SUBCMDDIR" -iname \*.[1-9] -ls -exec ln {} "$TMPDIR/manpages/" \;
+find "$TMPDIR/$SUBCMDDIR" -iname \*.[1-9] -exec ln {} "$TMPDIR/manpages/" \;
 [ -f "$TMPDIR/plakar.1" ] && ln "$TMPDIR/plakar.1" "$TMPDIR/manpages/"
 [ -f "$TMPDIR/plakar-query.7" ] && ln "$TMPDIR/plakar-query.7" "$TMPDIR/manpages/"
 
@@ -78,8 +78,7 @@ for man in "$TMPDIR/manpages/"*; do
 	mkdir -p ./content/docs/${VERSION}/references/commands/${name}
 
 	dest="./content/docs/${VERSION}/references/commands/${name}/index.md"
-
-	cat <<EOF > $dest
+	cat <<EOF > "$dest"
 ---
 date: "$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 title: ${name##plakar-}
@@ -88,6 +87,6 @@ aliases:
   - /docs/${VERSION}/commands/${name}/
 ---
 EOF
-
-	mandoc -I os=Plakar -Thtml -Ofragment,man=../%N/ "$man" >> $dest
+	mandoc -I os=Plakar -Thtml -Ofragment,man=../%N/ "$man" >> "$dest"
+	sed -i "s|https://docs\.plakar\.io/en/guides/importing-configurations/|https://plakar.io/docs/${VERSION}/guides/importing-configurations/|g" "$dest"
 done

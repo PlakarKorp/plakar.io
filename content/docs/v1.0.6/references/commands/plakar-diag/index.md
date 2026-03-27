@@ -1,5 +1,5 @@
 ---
-date: "2026-03-23T16:59:19Z"
+date: "2026-03-24T10:24:29Z"
 title: diag
 summary: "Display detailed information about Plakar internal structures"
 aliases:
