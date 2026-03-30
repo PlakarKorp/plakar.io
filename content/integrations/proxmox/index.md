@@ -45,7 +45,7 @@ seo_tags:
   - deduplication
   - hypervisor backup
 
-technical_documentation_link:
+technical_documentation_link: /docs/main/integrations/proxmox/
 
 stage: beta
 
