@@ -2378,6 +2378,18 @@ function siteSearch() {
     <h2><a href="/posts/2026-03-16/backing-up-proxmox-with-plakar-a-third-party-integration-built-in-a-few-days/">Backing up Proxmox with Plakar: a third-party integration built in a few days</a></h2>
     The team at FactorFX built a Proxmox integration for Plakar that wraps Proxmox’s native vzdump backups and stores them as deduplicated Plakar snapshots, making VM and container backups portable, encrypted, and easy to restore across clusters.
   
+    <h2><a href="/integrations/proxmox/">Proxmox</a></h2>
+    <h2 id="why-protecting-proxmox-data-matters">Why protecting Proxmox data matters</h2>
+<p>Proxmox includes strong built-in backup capabilities, but backup archives stored on the same cluster or storage backend as your workloads are not truly independent. A single failure, misconfiguration, or attack can affect both your live machines and the backups protecting them.</p>
+<p>Common risks in Proxmox environments:</p>
+<ul>
+<li><strong>Single-cluster exposure</strong>: Backups stored locally or on cluster-attached storage share the same failure domain as the machines they protect.</li>
+<li><strong>No cross-environment portability</strong>: Native Proxmox backups are tightly coupled to the cluster that created them, making restoration to a different environment difficult.</li>
+<li><strong>Storage misconfiguration</strong>: Aggressive retention policies or accidental deletions can wipe backup archives before they are needed.</li>
+<li><strong>No integrity verification</strong>: Without cryptographic validation, there is no reliable way to confirm a backup is intact until you attempt a restore.</li>
+</ul>
+<p>For production workloads, compliance requirements, or multi-cluster environments, Proxmox needs an independent safety net beyond what vzdump provides on its own.</p>
+  
 
 <section class="section-primary-1 pt-7">
     <div class="content flex flex-col gap-12 px-4" >

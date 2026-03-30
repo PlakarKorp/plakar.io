@@ -6,7 +6,7 @@
     <description>Recent content in The Open Standard for Backup and Restore on Plakar | The Open Standard for Backup and Restore</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 24 Mar 2026 10:24:36 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 30 Mar 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.plakar.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How Plakar Works</title>
@@ -154,6 +154,20 @@
       <pubDate>Mon, 15 Dec 2025 00:00:00 +0000</pubDate>
       <guid>https://www.plakar.io/docs/v1.1.0/quickstart/backup-non-filesystem-data/</guid>
       <description>Create a backup for your non-filesystem data. In this guide, we will back up an S3 bucket but this logic applies to any connector supported by plakar.</description>
+    </item>
+    <item>
+      <title>Proxmox</title>
+      <link>https://www.plakar.io/docs/main/integrations/proxmox/</link>
+      <pubDate>Mon, 30 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.plakar.io/docs/main/integrations/proxmox/</guid>
+      <description>Back up and restore Proxmox virtual machines and containers with Plakar.</description>
+    </item>
+    <item>
+      <title>Proxmox</title>
+      <link>https://www.plakar.io/docs/v1.1.0/integrations/proxmox/</link>
+      <pubDate>Mon, 30 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.plakar.io/docs/v1.1.0/integrations/proxmox/</guid>
+      <description>Back up and restore Proxmox virtual machines and containers with Plakar.</description>
     </item>
     <item>
       <title>diff</title>
@@ -1309,6 +1323,13 @@
       <pubDate>Mon, 16 Mar 2026 15:00:00 +0100</pubDate>
       <guid>https://www.plakar.io/posts/2026-03-16/backing-up-proxmox-with-plakar-a-third-party-integration-built-in-a-few-days/</guid>
       <description>The team at FactorFX built a Proxmox integration for Plakar that wraps Proxmox’s native vzdump backups and stores them as deduplicated Plakar snapshots, making VM and container backups portable, encrypted, and easy to restore across clusters.</description>
+    </item>
+    <item>
+      <title>Proxmox</title>
+      <link>https://www.plakar.io/integrations/proxmox/</link>
+      <pubDate>Mon, 16 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.plakar.io/integrations/proxmox/</guid>
+      <description>&lt;h2 id=&#34;why-protecting-proxmox-data-matters&#34;&gt;Why protecting Proxmox data matters&lt;/h2&gt;&#xA;&lt;p&gt;Proxmox includes strong built-in backup capabilities, but backup archives stored on the same cluster or storage backend as your workloads are not truly independent. A single failure, misconfiguration, or attack can affect both your live machines and the backups protecting them.&lt;/p&gt;&#xA;&lt;p&gt;Common risks in Proxmox environments:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Single-cluster exposure&lt;/strong&gt;: Backups stored locally or on cluster-attached storage share the same failure domain as the machines they protect.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;No cross-environment portability&lt;/strong&gt;: Native Proxmox backups are tightly coupled to the cluster that created them, making restoration to a different environment difficult.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Storage misconfiguration&lt;/strong&gt;: Aggressive retention policies or accidental deletions can wipe backup archives before they are needed.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;No integrity verification&lt;/strong&gt;: Without cryptographic validation, there is no reliable way to confirm a backup is intact until you attempt a restore.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;For production workloads, compliance requirements, or multi-cluster environments, Proxmox needs an independent safety net beyond what vzdump provides on its own.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Backing up kubernetes clusters with Plakar</title>
