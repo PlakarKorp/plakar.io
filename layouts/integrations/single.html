@@ -39,13 +39,13 @@
           <!-- Right: integration image → arrow → plakar logo -->
           <div class="hidden lg:flex flex-row items-center justify-end gap-4 w-full max-w-[50%]">
             {{ if $image }}
-              <img src="{{ $image.RelPermalink }}" alt="{{ .Title }}" class="max-w-[40%] max-h-[200px] object-contain rounded-lg">
+              <img src="{{ $image.RelPermalink }}" alt="{{ .Title }}" class="max-w-[40%] max-h-50 object-contain rounded-lg">
             {{ end }}
             <span class="w-16 h-16 text-neutral-900 shrink-0 flex items-center justify-center">
               {{ partial "icon.html" "ri/arrow-right-long-fill" }}
             </span>
             {{ if $logo }}
-              <img src="{{ $logo.RelPermalink }}" alt="Plakar" class="max-h-[200px] object-contain rounded-sm">
+              <img src="{{ $logo.RelPermalink }}" alt="Plakar" class="max-h-50 object-contain rounded-sm">
             {{ end }}
           </div>
 
@@ -203,7 +203,8 @@
     {{ partial "components/buttons/base-button.html" (dict
       "label" "Book a demo"
       "labelShort" "Demo"
-      "href" "/demo"
+      "href" "#"
+      "class" "book-a-demo-modal-open"
     ) }}
   </div>
 </section>
