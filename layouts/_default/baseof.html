@@ -6,6 +6,7 @@
       (resources.Get "js/main/github.js")
       (resources.Get "js/main/discord.js")
       (resources.Get "js/main/header.js")
+      (resources.Get "js/main/book-demo-modal.js")
       | resources.Concat "js/compiled/bundle.js"
       | minify | fingerprint
     }}
@@ -15,6 +16,9 @@
     {{ partial "common/header/header.html" . }}
     <main>
       {{ block "main" . }}{{ end }}
+      <div>
+        {{ partial "common/modals/book-a-demo-modal.html" . }}
+      </div>
     </main>
     {{ partial "common/footer/footer.html" . }}
     {{ block "scripts" . }}{{ end }}
