@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       successEl.classList.remove("hidden");
       form.reset();
-      setTimeout(closeModal, 3000);
+      setTimeout(closeModal, 5000);
     } catch (err) {
       errorEl.textContent = "An error occurred. Please try again.";
       errorEl.classList.remove("hidden");
