@@ -8,6 +8,7 @@ authors:
 tags:
   - plakar
   - backups
+category: "technology"
 ---
 
 We were thrilled to release our first beta in late February, but we weren’t just going to sit back and rest on our laurels.

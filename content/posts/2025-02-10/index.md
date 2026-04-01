@@ -8,6 +8,7 @@ authors:
 tags:
   - plakar
   - backup
+category: "insights"
 ---
 
 In the realm of data protection, **backup** and **replication** are two fundamental strategies employed to safeguard information. While they share the common goal of data preservation, they operate on distinct principles and serve different purposes. Understanding these differences is crucial for developing a robust data protection strategy.

@@ -12,6 +12,7 @@ tags:
   - ui
   - build
   - backup
+category: "release-note"
 ---
 
 Our next major stable version, **v1.1.0**, is planned for December and will bring many significant improvements. However, we recently fixed an issue important enough to justify a minor release ahead of schedule.

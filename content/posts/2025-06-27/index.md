@@ -11,6 +11,7 @@ tags:
   - backups
   - ptar
   - archive
+category: "release-note"
 ---
 
 Now that I caught your attention with my mad clickbait skills... let me explain why this is not complete clickbait, ~~the last reason will surprise you~~ 😊

@@ -11,6 +11,7 @@ tags:
   - backups
   - archive
   - integrations
+category: "technology"
 ---
 
 You didn't ask. We still listened. And now — it’s here 🎉

@@ -8,6 +8,7 @@ authors:
 tags:
   - plakar
   - backup
+category: "insights"
 ---
 
 Here is a list of common false assumptions about backup that I’ve heard repeatedly over the past year from discussions with engineers, CTOs, and sysadmins across various industries. These misconceptions often sound reasonable, but they create a false sense of safety until reality strikes.

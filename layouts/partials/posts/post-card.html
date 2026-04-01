@@ -2,12 +2,21 @@
 
 {{ $image := or ($p.Resources.GetMatch "featured.webp") (index ($p.Resources.Match "featured.*") 0) }}
 
-<a href="{{ $p.Permalink }}" class="group/card flex flex-col rounded-lg border border-neutral-200 bg-neutral-50 shadow-xl outline outline-8 outline-neutral-400/20 hover:shadow-none transition-shadow duration-300 no-underline overflow-hidden">
+<a href="{{ $p.Permalink }}" class="group/card flex flex-col rounded-lg border border-neutral-200 bg-neutral-50 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-shadow duration-300 no-underline overflow-hidden">
   <div class="w-full p-4 aspect-video overflow-hidden">
     <img src="{{ $image.RelPermalink }}" alt="{{ $p.Title }}" class="w-full rounded-md h-full object-cover">
   </div>
 
   <div class="flex flex-col gap-3 p-4 pt-1 flex-1">
+    {{ with $p.Params.category }}
+      {{ $valid := slice "announcement" "release-note" "community" "insights" "technology" }}
+      {{ if not (in $valid .) }}
+        {{ errorf "Invalid category '%s' in %s. Must be one of: %s" . $p.File.Path (delimit $valid ", ") }}
+      {{ end }}
+      <div class="text-sm text-primary-500 font-medium capitalize">
+        {{ replace . "-" " " }}
+      </div>
+    {{ end }}
 
     <h3 class="text-lg md:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors line-clamp-2 leading-snug">
       {{ $p.Title | emojify }}

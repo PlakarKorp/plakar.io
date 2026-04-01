@@ -11,6 +11,7 @@ tags:
   - backups
   - archive
   - integrations
+category: "release-note"
 ---
 
 It’s been a while — but we haven’t been idle.  

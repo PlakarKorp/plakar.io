@@ -10,6 +10,7 @@ tags:
   - kloset
   - backups
   - chunking
+category: "technology"
 ---
 
 ## TL;DR:

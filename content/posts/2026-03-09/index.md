@@ -8,6 +8,7 @@ authors:
 tags:
   - integration
   - proxmox
+category: "technology"
 ---
 
 **TL;DR:**

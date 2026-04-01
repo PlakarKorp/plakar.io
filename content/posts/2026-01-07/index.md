@@ -10,6 +10,7 @@ tags:
   - cncf
   - linux-foundation
   - open-source
+category: "announcement"
 ---
 
 Today marks a significant step forward for our project and our community. We are thrilled to announce that Plakar has officially joined the **Linux Foundation** and the **Cloud Native Computing Foundation (CNCF)** as a member. This is an important milestone in our mission to establish an Open Standard for Resilience.

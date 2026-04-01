@@ -11,6 +11,7 @@ tags:
   - backups
   - archive
   - kapsul
+category: "technology"
 ---
 
 ## TL;DR:

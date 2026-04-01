@@ -9,6 +9,7 @@ tags:
   - plakar
   - kloset
   - backups
+category: "release-note"
 ---
 
 In February, [we introduced the first plakar beta release](../../2025-02-26/plakar-beta-release/) and since then we worked tirelessly to build our first stable release, improving on user feedback and adding new nice features while at it.

@@ -12,6 +12,7 @@ tags:
   - ui
   - build
   - backup
+category: "release-note"
 ---
 
 Hot on the heels of v1.0.4, we’re excited to ship **Plakar v1.0.5** — a release packed with **build refinements**, **pipeline tuning**, **hook support for backups**, and **smaller but meaningful quality-of-life updates** across the board.  

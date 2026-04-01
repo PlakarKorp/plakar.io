@@ -8,6 +8,7 @@ authors:
 tags:
   - plakar
   - backup
+category: "technology"
 ---
 
 In today’s digital landscape, where **downtime can cost businesses thousands of dollars per minute**, having a robust **disaster recovery (DR) strategy** is non-negotiable. Two fundamental metrics in any **business continuity plan** are **recovery time objective (RTO)** and **recovery point objective (RPO)**. These determine how quickly a system can recover after a failure and how much data a company is willing to lose in the process.

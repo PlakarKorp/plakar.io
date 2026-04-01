@@ -8,6 +8,7 @@ authors:
 tags:
   - integration
   - kubernetes
+category: "technology"
 ---
 
 **TL;DR:**

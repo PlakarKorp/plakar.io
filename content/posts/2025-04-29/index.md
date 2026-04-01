@@ -9,6 +9,7 @@ tags:
   - plakar
   - kloset
   - backups
+category: "technology"
 ---
 
 On the surface, `plakar` may appear as just another backup tool: it takes data and safely stores it until restoration is needed—essentially, a sophisticated version of the `cp` command.

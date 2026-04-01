@@ -11,6 +11,7 @@ tags:
   - backups
   - s3
   - archive
+category: "technology"
 ---
 
 Hi, I’m Julien, co-founder of Plakar.

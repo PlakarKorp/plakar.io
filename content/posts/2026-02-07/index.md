@@ -9,6 +9,7 @@ tags:
   - integration
   - storage
   - oci
+category: "technology"
 ---
 
 **TL;DR:**

@@ -6,6 +6,7 @@ date: 2025-02-28T21:00:00+0100
 authors:
   - "gilles"
 tags:
+category: "technology"
 ---
 
 Before releasing a usable version, we wanted an expert to examine our cryptographic design and confirm we hadn’t made any regrettable choices. We were delighted to have [Jean-Philippe Aumasson](https://www.aumasson.jp/) take care of the review—a true privilege given the high level of confidence we have in his skills: he is a recognized cryptographer who created various widely-used algorithms, including ones used in plakar, and who authored great books on the topic, two of which are on my desk as I write this.

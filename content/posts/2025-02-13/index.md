@@ -8,6 +8,7 @@ authors:
 tags:
   - plakar
   - backup
+category: "technology"
 ---
 
 Let us get straight to the point: Amazon S3 is a phenomenal service for scalable, reliable object storage but it is not a backup solution. Sure, S3 boasts rock-solid durability and cost efficiency, but relying on it alone for backups is like trying to cover your bases with duct tape. In today’s world, where a single misclick can spell disaster, a thoughtful, multi-layered backup strategy is not just nice to have; it is absolutely essential.

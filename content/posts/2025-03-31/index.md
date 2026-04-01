@@ -8,6 +8,7 @@ authors:
 tags:
   - plakar
   - backups
+category: "insights"
 ---
 
 ## In honor of World Backup Day – March 31

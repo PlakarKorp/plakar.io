@@ -11,6 +11,7 @@ tags:
   - filesystem
   - overlayfs
   - qcow2
+category: "technology"
 ---
 
 Plakar offers a nice UI to see the content of a Kloset store.

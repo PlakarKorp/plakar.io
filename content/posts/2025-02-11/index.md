@@ -8,6 +8,7 @@ authors:
 tags:
   - plakar
   - backup
+category: "technology"
 ---
 
 Data loss can happen in many ways: whether due to accidental deletion, cyberattacks, hardware failure, or even a catastrophic event like a **data center fire**. To protect against these risks, IT professionals have long relied on the **3-2-1 backup rule**, a fundamental strategy for ensuring data resilience.

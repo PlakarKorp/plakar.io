@@ -8,6 +8,7 @@ authors:
 tags:
   - plakar
   - backups
+category: "release-note"
 ---
 
 Hello, it's me again !

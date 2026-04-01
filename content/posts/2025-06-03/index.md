@@ -9,6 +9,7 @@ tags:
   - plakar
   - kloset
   - backups
+category: "release-note"
 ---
 
 Hello everyone,

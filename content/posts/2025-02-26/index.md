@@ -8,6 +8,7 @@ authors:
 tags:
   - plakar
   - backups
+category: "technology"
 ---
 
 **Listen to this article as an AI-generated podcast as you read!**

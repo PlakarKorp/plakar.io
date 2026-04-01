@@ -11,6 +11,7 @@ tags:
   - backups
   - archive
   - kapsul
+category: "technology"
 ---
 
 Can't really say it’s been that long... but we’re back with exciting new features 😄
