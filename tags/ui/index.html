@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>UI | Plakar | The Open Standard for Backup and Restore</title>
+<title>Ui | Plakar | The Open Standard for Backup and Restore</title>
 <meta name="author" content="Nestor">
 
 
@@ -24,7 +24,7 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Plakar | UI">
+<meta property="og:title" content="Plakar | Ui">
 <meta property="og:author" content="Nestor">
 <meta property="og:description" content="Enterprise ready backups with developer friendly tooling. Encrypted, deduplicated snapshots, instant browsing and restore, and zero knowledge workflows across clouds and on-prem."><meta property="og:url" content="https://www.plakar.io/tags/ui/">
 <meta property="og:image" content="https://www.plakar.io/">
@@ -33,7 +33,7 @@
 
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Plakar | UI">
+<meta name="twitter:title" content="Plakar | Ui">
 <meta name="twitter:description" content="Enterprise ready backups with developer friendly tooling. Encrypted, deduplicated snapshots, instant browsing and restore, and zero knowledge workflows across clouds and on-prem.">
 <meta name="twitter:image" content="https://www.plakar.io/">
 
@@ -1657,134 +1657,169 @@ function siteSearch() {
     </button>
 
     
-    <div x-show="showBookADemoModal" x-transition.opacity x-cloak
-     @keydown.escape.window="showBookADemoModal = false"
-     class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4">
+    <div
+  x-show="showBookADemoModal"
+  x-transition.opacity
+  x-cloak
+  @keydown.escape.window="showBookADemoModal = false"
+  class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 p-4"
+>
+  <div
+    @click.outside="showBookADemoModal = false"
+    class="bg-white rounded-lg p-6 w-full max-w-xl shadow-xl flex flex-col gap-6 relative"
+  >
+    
+    <button
+      @click="showBookADemoModal = false"
+      class="absolute top-4 right-4 text-neutral-500 hover:text-neutral-900"
+    >
+      ✕
+    </button>
 
-    <div @click.outside="showBookADemoModal = false"
-         class="bg-white rounded-lg p-6 w-full max-w-xl shadow-xl flex flex-col gap-6 relative">
+    
+    <h2 class="~text-2xl/4xl font-space-grotesk font-medium text-neutral-900">
+      Book a demo
+    </h2>
 
-        
-        <button @click="showBookADemoModal = false"
-                class="absolute top-4 right-4 text-neutral-500 hover:text-neutral-900">
-            ✕
+    
+    <p>A Plakar team member will contact you shortly to organize the demo.</p>
+
+    <form id="demo-request" method="POST" netlify>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <input
+          type="text"
+          name="first_name"
+          placeholder="First Name"
+          required
+          class="w-full border border-neutral-300 rounded p-2"
+        />
+        <input
+          type="text"
+          name="last_name"
+          placeholder="Last Name"
+          required
+          class="w-full border border-neutral-300 rounded p-2"
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Work email"
+          required
+          class="w-full border border-neutral-300 rounded p-2 md:col-span-2"
+        />
+        <textarea
+          name="context"
+          required
+          placeholder="Context"
+          class="w-full border border-neutral-300 rounded p-2 md:col-span-2 h-24 resize-none"
+          aria-label="Context"
+        ></textarea>
+      </div>
+      <div class="mt-6 flex justify-end text-xs">
+        <p>
+          By submitting this form you agree to our
+          <a
+            class="text-blue-600 underline hover:text-blue-800"
+            href="/privacy-policy/"
+            >Privacy Policy.</a
+          >
+        </p>
+      </div>
+      <div class="mt-6 flex justify-end">
+        <button
+          type="submit"
+          class="bg-primary-500 hover:bg-primary-600 text-white px-6 py-2 rounded-lg font-medium transition"
+        >
+          Submit
         </button>
-
-        
-        <h2 class="~text-2xl/4xl font-space-grotesk font-medium text-neutral-900">
-            Book a demo
-        </h2>
-
-        
-        <p>A Plakar team member will contact you shortly to organize the demo.</p>
-
-        <form id="demo-request" method="POST" netlify>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-
-                <input type="text" name="first_name" placeholder="First Name" required
-                       class="w-full border border-neutral-300 rounded p-2" />
-                <input type="text" name="last_name" placeholder="Last Name" required
-                       class="w-full border border-neutral-300 rounded p-2" />
-                <input type="email" name="email" placeholder="Work email" required
-                       class="w-full border border-neutral-300 rounded p-2 md:col-span-2" />
-                <textarea name="context" placeholder="Context (optional)"
-                          class="w-full border border-neutral-300 rounded p-2 md:col-span-2 h-24 resize-none"
-                          aria-label="Context (optional)"></textarea>
-            </div>
-            <div class="mt-6 flex justify-end text-xs">
-                <p>By submitting this form you agree to our <a class="text-blue-600 underline hover:text-blue-800" href="/privacy-policy/">Privacy Policy.</a></p>
-            </div>
-            <div class="mt-6 flex justify-end">
-                <button type="submit"
-                        class="bg-primary-500 hover:bg-primary-600 text-white px-6 py-2 rounded-lg font-medium transition">
-                    Submit
-                </button>
-            </div>
-        </form>
-
-    </div>
+      </div>
+    </form>
+  </div>
 </div>
 
-
 <script>
-    
-    document.addEventListener("DOMContentLoaded", function () {
-        document.getElementById("demo-request").addEventListener("submit", async function (event) {
-            event.preventDefault();
+  
+  document.addEventListener("DOMContentLoaded", function () {
+    document
+      .getElementById("demo-request")
+      .addEventListener("submit", async function (event) {
+        event.preventDefault();
 
-            const formData = new FormData(this);
-            const data = {};
+        const formData = new FormData(this);
+        const data = {};
 
-            formData.forEach((value, key) => {
-                data[key] = value;
-            });
-
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(data.email || "")) {
-                
-                addToast({
-                    title: "Error!",
-                    message: "Please enter a valid email address.",
-                    iconHTML: `<svg class="h-6 w-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-                     </svg>`,
-                    duration: 5000
-                });
-                return;
-            }
-            
-            const portalId = "48034556";
-            const formId = "8230a5c9-edf7-492e-ae14-b9246a6206d5";
-            const url = `https://api.hsforms.com/submissions/v3/integration/submit/${portalId}/${formId}`;
-
-            const payload = {
-                fields: Object.keys(data).map(key => ({
-                    name: key,
-                    value: data[key]
-                }))
-            };
-
-            try {
-                
-                const response = await fetch(url, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(payload)
-                });
-
-                if (response.ok) {
-                    
-                    addToast({
-                        title: "Success!",
-                        message: "Your request has been submitted successfully.",
-                        duration: 5000
-                    });
-                    this.reset();
-                    const root = document.querySelector('[x-ref="bookADemoModalRoot"]');
-                    if (root && root._x_dataStack && root._x_dataStack.length > 0) {
-                        root._x_dataStack[0].showBookADemoModal = false;
-                    }
-                } else {
-                    
-                    throw new Error("Submission failed.");
-                }
-            } catch (error) {
-                console.error("Error:", error);
-                
-                addToast({
-                    title: "Error!",
-                    message: "An error occurred while submitting the form. Please try again.",
-                    iconHTML: `<svg class="h-6 w-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-                     </svg>`,
-                    duration: 5000
-                });
-            }
+        formData.forEach((value, key) => {
+          data[key] = value;
         });
-    });
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(data.email || "")) {
+          
+          addToast({
+            title: "Error!",
+            message: "Please enter a valid email address.",
+            iconHTML: `<svg class="h-6 w-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                     </svg>`,
+            duration: 5000,
+          });
+          return;
+        }
+        
+        const portalId = "48034556";
+        const formId = "8230a5c9-edf7-492e-ae14-b9246a6206d5";
+        const url = `https://api.hsforms.com/submissions/v3/integration/submit/${portalId}/${formId}`;
+
+        const payload = {
+          fields: Object.keys(data).map((key) => ({
+            name: key,
+            value: data[key],
+          })),
+        };
+
+        try {
+          
+          const response = await fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+          });
+
+          if (response.ok) {
+            
+            addToast({
+              title: "Success!",
+              message: "Your request has been submitted successfully.",
+              duration: 5000,
+            });
+            this.reset();
+            const root = document.querySelector('[x-ref="bookADemoModalRoot"]');
+            if (root && root._x_dataStack && root._x_dataStack.length > 0) {
+              root._x_dataStack[0].showBookADemoModal = false;
+            }
+          } else {
+            
+            throw new Error("Submission failed.");
+          }
+        } catch (error) {
+          console.error("Error:", error);
+          
+          addToast({
+            title: "Error!",
+            message:
+              "An error occurred while submitting the form. Please try again.",
+            iconHTML: `<svg class="h-6 w-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                     </svg>`,
+            duration: 5000,
+          });
+        }
+      });
+  });
 </script>
+
 </div>
             
             <button id="menu-button"
@@ -2372,7 +2407,7 @@ function siteSearch() {
 </script>
 
   <p>Render _default/list.md</p>
-  <h1>UI</h1>
+  <h1>Ui</h1>
   
   
     <h2><a href="/posts/2026-01-11/researching-a-postgresql-viewer-for-plakar/">Researching a PostgreSQL viewer for Plakar</a></h2>
