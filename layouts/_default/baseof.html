@@ -7,6 +7,8 @@
       (resources.Get "js/main/discord.js")
       (resources.Get "js/main/header.js")
       (resources.Get "js/main/home-scroll.js")
+      (resources.Get "js/main/toast.js")
+      (resources.Get "js/main/newsletter.js")
       (resources.Get "js/main/book-demo-modal.js")
       | resources.Concat "js/compiled/bundle.js"
       | minify | fingerprint
@@ -18,6 +20,7 @@
     <main>
       {{ block "main" . }}{{ end }}
       <div>
+        {{ partial "components/common/toast.html" . }}
         {{ partial "common/modals/book-a-demo-modal.html" . }}
       </div>
     </main>
