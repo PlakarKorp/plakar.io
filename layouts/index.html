@@ -1,5 +1,7 @@
 {{ define "main" }}
 
+<!-- JS: assets/js/main/home-scroll.js -->
+
 {{ $dashboardHero := resources.Get "img/general/dashboard-8.png" }}
 {{ $testimonialJJ := resources.Get "img/testimonials/jj.jpeg" }}
 
@@ -324,6 +326,168 @@
   </div>
 </section>
 
-<section class="h-50"></section>
+<!-- Why engineers choose Plakar -->
+<section class="section-light-2 py-14 lg:py-28">
+  <div class="max-w-350 mx-auto px-4 flex flex-col gap-16">
+
+    <!-- Title -->
+    <div class="text-center flex flex-col gap-8 max-w-4xl mx-auto">
+      <h2 class="text-4xl lg:text-6xl font-medium text-neutral-900 leading-tight">
+        Why engineers choose <span class="text-secondary-500">Plakar</span>
+      </h2>
+      <p class="text-lg lg:text-xl text-neutral-600 leading-normal">
+        Because it combines <span class="text-secondary-500 font-medium">Open Source</span> transparency with production-grade rigor.<br class="hidden md:block"/>
+        <span class="text-primary-500 font-medium">Secure by default</span> and built by veterans to fit seamlessly into your DevOps workflows.
+      </p>
+    </div>
+
+    <!-- Steps -->
+    <div class="flex flex-col gap-1 relative" id="progress-steps">
+
+      <!-- Step 1 -->
+      <div class="step flex flex-row items-start gap-4 md:gap-6">
+        <div class="flex flex-col items-center gap-2 shrink-0 relative">
+          <div class="step-circle z-10 w-10 h-10 rounded-full flex items-center justify-center font-bold text-base border border-neutral-300 bg-neutral-50 text-neutral-700 transition-all duration-300">
+            1
+          </div>
+          <div class="step-line absolute w-0.5 bg-neutral-200 transition-all duration-300 origin-top"></div>
+        </div>
+        <div class="flex flex-col lg:flex-row items-start gap-6 pb-12 pt-2 flex-1">
+          <div class="flex flex-col gap-3 lg:max-w-[30%]">
+            <h3 class="text-xl lg:text-3xl font-medium text-neutral-900">Trust Nothing Architecture</h3>
+            <p class="text-neutral-500 text-lg">We assume the network is compromised and the storage is untrusted.</p>
+            <p class="text-neutral-500 text-lg">With client-side encryption and immutable snapshots, we don't just "hope" your data is safe — we mathematically guarantee it.</p>
+          </div>
+          <div class="w-full lg:w-1/2 rounded-lg overflow-hidden aspect-video">
+            <iframe class="w-full h-full rounded-lg"
+                    src="https://www.youtube.com/embed/b5lOzw32J1E?rel=0&modestbranding=1"
+                    title="Plakar presentation"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="step flex flex-row items-start gap-4 md:gap-6">
+        <div class="flex flex-col items-center gap-2 shrink-0 relative">
+          <div class="step-circle z-10 w-10 h-10 rounded-full flex items-center justify-center font-bold text-base border border-neutral-300 bg-neutral-50 text-neutral-700 transition-all duration-300">
+            2
+          </div>
+          <div class="step-line absolute w-0.5 bg-neutral-200 transition-all duration-300 origin-top"></div>
+        </div>
+        <div class="flex flex-col lg:flex-row items-start gap-6 pb-12 pt-2 flex-1">
+          <div class="flex flex-col gap-3 lg:max-w-[30%]">
+            <h3 class="text-xl lg:text-3xl font-medium text-neutral-900 leading-tight">The Efficiency Engine</h3>
+            <p class="text-neutral-500 text-lg leading-normal">Encryption blinds standard tools. Plakar's Kloset engine performs high-density deduplication <em>before</em> the encryption layer.</p>
+            <p class="text-neutral-500 text-lg leading-normal">Slash your storage costs and network usage without ever exposing a single byte of plain text to the infrastructure.</p>
+          </div>
+
+          <div class="flex-1 flex flex-wrap gap-4">
+
+            <div class="w-full sm:w-[calc(50%-8px)] bg-neutral-50 p-4 lg:p-6 rounded-lg flex flex-col gap-2 shadow-sm border border-neutral-200">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 text-primary-500">{{ partial "icon.html" "ri/menu-search-line" }}</span>
+                <h4 class="text-neutral-900 text-lg font-semibold">Searchable & Browsable</h4>
+              </div>
+              <p class="text-neutral-500 text-base leading-normal">Mount snapshots as a filesystem or browse terabytes instantly via the UI without restoring.</p>
+            </div>
+
+            <div class="w-full sm:w-[calc(50%-8px)] bg-neutral-50 p-4 lg:p-6 rounded-lg flex flex-col gap-2 shadow-sm border border-neutral-200">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 text-primary-500">{{ partial "icon.html" "ri/database-line" }}</span>
+                <h4 class="text-neutral-900 text-lg font-semibold">Petabyte Scale</h4>
+              </div>
+              <p class="text-neutral-500 text-base leading-normal">Engineered to handle millions of files and massive datasets with a minimal memory footprint.</p>
+            </div>
+
+            <div class="w-full sm:w-[calc(50%-8px)] bg-neutral-50 p-4 lg:p-6 rounded-lg flex flex-col gap-2 shadow-sm border border-neutral-200">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 text-primary-500">{{ partial "icon.html" "ri/puzzle-2-line" }}</span>
+                <h4 class="text-neutral-900 text-lg font-semibold">Integration Architecture</h4>
+              </div>
+              <p class="text-neutral-500 text-base leading-normal">Write your own input/output connectors in your favorite language. The ecosystem is open.</p>
+            </div>
+
+            <div class="w-full sm:w-[calc(50%-8px)] bg-neutral-50 p-4 lg:p-6 rounded-lg flex flex-col gap-2 shadow-sm border border-neutral-200">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 text-primary-500">{{ partial "icon.html" "ri/shield-check-line" }}</span>
+                <h4 class="text-neutral-900 text-lg font-semibold">Entropy Analysis</h4>
+              </div>
+              <p class="text-neutral-500 text-base leading-normal">Detect high-entropy anomalies typical of ransomware activity before it spreads.</p>
+            </div>
+
+            <div class="w-full sm:w-[calc(50%-8px)] bg-neutral-50 p-4 lg:p-6 rounded-lg flex flex-col gap-2 shadow-sm border border-neutral-200">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 text-primary-500">{{ partial "icon.html" "ri/archive-line" }}</span>
+                <h4 class="text-neutral-900 text-lg font-semibold">Vendor Lock-Free</h4>
+              </div>
+              <p class="text-neutral-500 text-base leading-normal">Data is stored in open formats, readable by Open Source code. No proprietary chains.</p>
+            </div>
+
+            <div class="w-full sm:w-[calc(50%-8px)] bg-neutral-50 p-4 lg:p-6 rounded-lg flex flex-col gap-2 shadow-sm border border-neutral-200">
+              <div class="flex items-center gap-2">
+                <span class="w-5 h-5 text-primary-500">{{ partial "icon.html" "ri/flashlight-line" }}</span>
+                <h4 class="text-neutral-900 text-lg font-semibold">Immutable & Verifiable</h4>
+              </div>
+              <p class="text-neutral-500 text-base leading-normal">Snapshots are read-only by design. Cryptographic checks guarantee restore integrity.</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="step flex flex-row items-start gap-4 md:gap-6">
+        <div class="flex flex-col items-center gap-2 shrink-0">
+          <div class="step-circle w-10 h-10 rounded-full flex items-center justify-center font-bold text-base border border-neutral-300 bg-neutral-50 text-neutral-700 transition-all duration-300 z-10 relative">
+            3
+          </div>
+        </div>
+        <div class="flex flex-col lg:flex-row items-start gap-6 pt-2 flex-1">
+
+          <!-- Text — hidden on mobile, shown on lg -->
+          <div class="hidden lg:flex flex-col gap-3 lg:max-w-[30%]">
+            <h3 class="text-xl lg:text-3xl font-medium text-neutral-900 leading-tight">
+              Store Anywhere.<br/> Restore Everywhere.
+            </h3>
+            <p class="text-neutral-500 text-lg leading-normal">
+              Decouple your data from the infrastructure. From cloud buckets to cold storage tapes, your backups are unified, portable and ready to restore.
+            </p>
+            {{ partial "components/buttons/base-button.html" (dict
+              "label" "See it in action"
+              "href" "/docs/v1.0.6"
+            ) }}
+          </div>
+
+          <!-- Mobile title -->
+          <div class="flex lg:hidden flex-col gap-3 w-full">
+            <h3 class="text-xl font-medium text-neutral-900 leading-tight">
+              Store Anywhere. Restore Everywhere.
+            </h3>
+            <p class="text-neutral-500 text-base leading-normal">
+              Decouple your data from the infrastructure. From cloud buckets to cold storage tapes, your backups are unified, portable and ready to restore.
+            </p>
+          </div>
+
+          <!-- Schema — full width on mobile -->
+          <div class="w-full lg:flex-1">
+            {{ partial "components/common/kloset-schema.html" . }}
+          </div>
+
+          <!-- Button after schema on mobile -->
+          <div class="flex lg:hidden">
+            {{ partial "components/buttons/base-button.html" (dict
+              "label" "See it in action"
+              "href" "/docs/v1.0.6"
+            ) }}
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 {{ end }}
