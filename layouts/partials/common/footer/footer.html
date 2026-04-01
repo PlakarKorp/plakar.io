@@ -41,14 +41,14 @@
       <!-- Newsletter + social -->
       <div class="flex flex-col gap-3">
         <h3 class="font-semibold text-base">Newsletter</h3>
-        <div class="relative">
-          <input type="email" placeholder="Your email..." class="w-full p-4 pr-14 rounded-xl border border-transparent bg-neutral-50 text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary-400 transition">
-          <button class="absolute top-1/2 right-4 -translate-y-1/2 text-neutral-500 hover:text-neutral-900 transition">
-            <span class="w-5 h-5 flex items-center justify-center">
-              {{ partial "icon.html" "ri/arrow-right-line" }}
-            </span>
-          </button>
-        </div>
+          <form id="newsletter-form-footer" class="relative">
+            <input type="email" name="email" placeholder="Your email..." required class="w-full p-4 pr-14 rounded-xl border border-transparent bg-neutral-50 text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary-400 transition">
+            <button type="submit" class="absolute top-1/2 right-4 -translate-y-1/2 text-neutral-500 hover:text-neutral-900 transition">
+              <span class="w-5 h-5 flex items-center justify-center">
+                {{ partial "icon.html" "ri/arrow-right-line" }}
+              </span>
+            </button>
+          </form>
         <div class="flex flex-row gap-3 pt-2">
           <a href="{{ .Site.Params.socials.linkedin | default "#" }}" target="_blank" class="w-7 h-7 text-neutral-50">
             {{ partial "icon.html" "ri/linkedin-box-fill" }}
