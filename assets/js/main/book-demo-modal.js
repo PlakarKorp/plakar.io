@@ -1,6 +1,7 @@
 // Targets: layouts/partials/components/modals/demo-modal.html
 // Elements: #demo-modal, #demo-modal-close, #demo-form
-// Triggers: .book-a-demo-modal-open (any element with this class)
+// Triggers: .book-a-demo-modal-open
+// Depends: assets/js/main/toast.js
 
 const HUBSPOT_PORTAL_ID = "48034556";
 const HUBSPOT_FORM_ID = "8230a5c9-edf7-492e-ae14-b9246a6206d5";
@@ -10,9 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalBox = document.getElementById("demo-modal-box");
   const closeBtn = document.getElementById("demo-modal-close");
   const form = document.getElementById("demo-form");
-  const errorEl = document.getElementById("demo-form-error");
-  const successEl = document.getElementById("demo-form-success");
-
   if (!modal) return;
 
   const openModal = () => {
@@ -26,11 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
     modal.classList.remove("flex");
     document.body.style.overflow = "";
     form?.reset();
-    errorEl?.classList.add("hidden");
-    successEl?.classList.add("hidden");
   };
 
-  // Open on any element with .book-a-demo-modal-open
   document.querySelectorAll(".book-a-demo-modal-open").forEach((el) => {
     el.addEventListener("click", (e) => {
       e.preventDefault();
@@ -38,31 +33,28 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Close on button
   closeBtn?.addEventListener("click", closeModal);
 
-  // Close on backdrop click
   modal.addEventListener("click", (e) => {
     if (!modalBox.contains(e.target)) closeModal();
   });
 
-  // Close on escape
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeModal();
   });
 
-  // Form submit
   form?.addEventListener("submit", async (e) => {
     e.preventDefault();
-    errorEl.classList.add("hidden");
-    successEl.classList.add("hidden");
 
     const data = Object.fromEntries(new FormData(form));
-
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
     if (!emailRegex.test(data.email || "")) {
-      errorEl.textContent = "Please enter a valid email address.";
-      errorEl.classList.remove("hidden");
+      window.addToast({
+        title: "Invalid email",
+        message: "Please enter a valid email address.",
+        type: "error",
+      });
       return;
     }
 
@@ -82,12 +74,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (!res.ok) throw new Error("Submission failed");
 
-      successEl.classList.remove("hidden");
+      window.addToast({
+        title: "Request submitted!",
+        message: "A team member will contact you shortly.",
+        type: "success",
+      });
       form.reset();
-      setTimeout(closeModal, 5000);
-    } catch (err) {
-      errorEl.textContent = "An error occurred. Please try again.";
-      errorEl.classList.remove("hidden");
+      setTimeout(closeModal, 1000);
+    } catch {
+      window.addToast({
+        title: "Something went wrong",
+        message: "Please try again.",
+        type: "error",
+      });
     }
   });
 });
