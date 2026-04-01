@@ -1,0 +1,17 @@
+{{ define "main" }}
+
+<section class="section-light-2 grid-background pt-46">
+  <div class="bg-gradient-section-light-1 ">
+    <div class="px-4 pt-20 pb-7 max-w-350 mx-auto">
+      <h1 class="text-4xl lg:text-6xl">Privacy Policy</h1>
+    </div>
+  </div>
+</section>
+
+<section class="px-4 pt-28 mb-44 max-w-350 mx-auto">
+  <article class="prose dark:prose-invert max-w-prose">
+    {{ .Content | safeHTML }}
+  </article>
+</section>
+
+{{ end }}
