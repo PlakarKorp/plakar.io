@@ -808,4 +808,43 @@
   </div>
 </section>
 
+<!-- Blog preview -->
+<section class="section-light-2 bg-gradient-section py-14 lg:py-28">
+  <div class="max-w-350 mx-auto px-4 flex flex-col gap-12">
+
+    <div class="flex flex-col lg:flex-row justify-between items-start gap-8">
+      <div class="flex flex-col gap-4 max-w-4xl">
+        <h2 class="text-4xl lg:text-7xl font-medium text-neutral-900 leading-tight">
+          Plakar <span class="text-secondary-500">Blog</span>
+        </h2>
+        <p class="text-base lg:text-lg font-medium text-neutral-600">
+          Engineers thoughts, release notes and data protection latest news
+        </p>
+      </div>
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "See all posts"
+        "labelShort" "Blog"
+        "href" "/posts/"
+        "bgColor" "bg-neutral-50"
+        "textColor" "text-neutral-900"
+        "bgHoverColor" "bg-neutral-800"
+        "textHoverColor" "hover:text-neutral-50"
+      ) }}
+    </div>
+
+    {{ $allPosts := where .Site.RegularPages "Section" "posts" }}
+    {{ $posts := where $allPosts "Params.featured-scope" "intersect" (slice "hero-page") }}
+    {{ if not $posts }}
+      {{ $posts = first 3 (sort $allPosts "Date" "desc") }}
+    {{ end }}
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {{ range $posts }}
+        {{ partial "posts/post-card.html" . }}
+      {{ end }}
+    </div>
+
+  </div>
+</section>
+
 {{ end }}

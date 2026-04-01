@@ -9,6 +9,8 @@ tags:
   - plakar
   - open-source
 category: "release-note"
+featured-scope:
+  - hero-page
 ---
 
 In case you missed it, here is a video recap of our 2025 retrospective. It highlights just how impressive the amount of work delivered by our team has been, with meaningful progress and achievements every single month throughout 2025.
