@@ -58,8 +58,31 @@
   </div>
 </section>
 
+<!-- Category filter -->
+<section class="section-light-2 px-4 pt-12">
+  <div class="max-w-350 flex justify-center mx-auto">
+    <div class="inline-flex items-center gap-1 bg-neutral-50 border border-neutral-200 rounded-xl p-1" id="integrations-filter">
+      <a data-filter="all" class="filter-btn px-4 py-3 rounded-lg text-sm cursor-pointer font-medium transition-all duration-150 text-neutral-700">
+        All Integrations
+      </a>
+      <a data-filter="source" class="filter-btn px-4 py-3 rounded-lg text-sm cursor-pointer font-medium transition-all duration-150 text-neutral-700">
+        Source
+      </a>
+      <a data-filter="destination" class="filter-btn px-4 py-3 rounded-lg text-sm cursor-pointer font-medium transition-all duration-150 text-neutral-700">
+        Destination
+      </a>
+      <a data-filter="storage" class="filter-btn px-4 py-3 rounded-lg text-sm cursor-pointer font-medium transition-all duration-150 text-neutral-700">
+        Storage
+      </a>
+      <a data-filter="viewer" class="filter-btn px-4 py-3 rounded-lg text-sm cursor-pointer font-medium transition-all duration-150 text-neutral-700">
+        Viewer
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- Integrations grid -->
-<section class="section-light-2 px-4 pb-16 pt-20">
+<section class="section-light-2 px-4 pb-16 pt-14">
   <div class="max-w-350 mx-auto">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="integrations-grid">
       {{ range $allIntegrations }}
