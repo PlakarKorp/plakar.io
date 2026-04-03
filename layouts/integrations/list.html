@@ -1,5 +1,7 @@
 {{ define "main" }}
 
+<!-- JS: assets/js/main/integrations-filter.js -->
+
 {{ $allIntegrations := where .Site.RegularPages "Section" "integrations" }}
 {{ $sourceConnectors := where $allIntegrations "Params.categories" "intersect" (slice "source connector") }}
 {{ $destConnectors := where $allIntegrations "Params.categories" "intersect" (slice "destination connector") }}

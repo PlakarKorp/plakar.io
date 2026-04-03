@@ -2,7 +2,7 @@
 
 {{ $image := or ($p.Resources.GetMatch "featured.webp") (index ($p.Resources.Match "featured.*") 0) }}
 
-<a href="{{ $p.Permalink }}" class="group/card flex flex-col rounded-lg border border-neutral-200 bg-neutral-50 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-shadow duration-300 no-underline overflow-hidden">
+<a href="{{ $p.Permalink }}" data-category="{{ $p.Params.category }}" class="group/card flex flex-col rounded-lg border border-neutral-200 bg-neutral-50 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-shadow duration-300 no-underline overflow-hidden">
   <div class="w-full p-4 aspect-video overflow-hidden">
     <img src="{{ $image.RelPermalink }}" alt="{{ $p.Title }}" class="w-full rounded-md h-full object-cover">
   </div>
