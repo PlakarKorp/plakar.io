@@ -13,6 +13,7 @@
       (resources.Get "js/main/integrations-filter.js")
       (resources.Get "js/main/posts-filter.js")
       (resources.Get "js/main/book-demo-modal.js")
+      (resources.Get "js/main/axeptio.js")
       | resources.Concat "js/compiled/bundle.js"
       | minify | fingerprint
     }}

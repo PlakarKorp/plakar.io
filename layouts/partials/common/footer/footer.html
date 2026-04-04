@@ -82,6 +82,9 @@
         <span>All rights reserved</span>
       </div>
       <div class="flex gap-6">
+        {{ if .Site.Params.axeptio.enabled | default false }}
+          <a href="javascript:openAxeptioCookies();" class="hover:underline">Cookies</a>
+        {{ end }}
         <a href="/legal-notice/" class="hover:underline">Legal notice</a>
         <a href="/privacy-policy/" class="hover:underline">Privacy policy</a>
       </div>

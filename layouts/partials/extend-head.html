@@ -1,0 +1,3 @@
+{{ if .Params.axeptio.enabled | default false }}
+ <div id="axeptio-config" data-client-id="{{ .Params.axeptio.clientId }}" data-cookies-version="{{ .Params.axeptio.cookiesVersion }}" hidden></div>
+{{ end }}
