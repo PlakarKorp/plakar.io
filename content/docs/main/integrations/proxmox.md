@@ -14,8 +14,8 @@ The integration provides two connectors:
 
 | Connector type               | Description |
 | ---------------------------- | ----------- |
-| ✅ **Source connector**      | Back up VMs and containers from a Proxmox node into a Kloset store. |
-| ✅ **Destination connector** | Restore snapshots from a Kloset store back to a Proxmox node. |
+| **Source connector**      | Back up VMs and containers from a Proxmox node into a Kloset store. |
+| **Destination connector** | Restore snapshots from a Kloset store back to a Proxmox node. |
 
 **Requirements**
 
