@@ -1,5 +1,5 @@
-// Targets: layouts/index.html, layouts/partials/common/footer/footer.html
-// Elements: #newsletter-form-home, #newsletter-form-footer
+// Targets: layouts/index.html, layouts/partials/common/footer/footer.html, layouts/contact/single.html
+// Elements: #newsletter-form-home, #newsletter-form-footer, #newsletter-form-contact
 // Depends: assets/js/bundle/toast.js
 
 const HUBSPOT_NEWSLETTER_PORTAL_ID = "48034556";
@@ -55,4 +55,5 @@ const submitNewsletter = (formId) => {
 document.addEventListener("DOMContentLoaded", () => {
   submitNewsletter("newsletter-form-home");
   submitNewsletter("newsletter-form-footer");
+  submitNewsletter("newsletter-form-contact");
 });
