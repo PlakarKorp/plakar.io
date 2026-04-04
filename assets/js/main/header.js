@@ -1,11 +1,19 @@
 // Targets: layouts/partials/common/header/header-corporate.html
 // Targets: layouts/partials/common/header/header-corporate-menu-desktop.html
 // Targets: layouts/partials/common/header/header-corporate-menu-mobile.html
+// Targets: layouts/partials/common/header/header-docs.html
 // Elements: .dropdown-group, .dropdown-btn, .dropdown-menu, .dropdown-chevron
 // Elements: #menu-button, #menu-close-button, #menu-mobile
 // Elements: .accordion-item, .accordion-toggle, .accordion-content, .accordion-chevron
+// Elements: #search-kbd-hint
 
 document.addEventListener("DOMContentLoaded", () => {
+  const kbdHint = document.getElementById("search-kbd-hint");
+  if (kbdHint) {
+    const isMac = (navigator.userAgentData?.platform || navigator.platform || "").indexOf("Mac") > -1;
+    kbdHint.textContent = isMac ? "⌘K" : "Ctrl K";
+  }
+
   const header = document.getElementById("site-header");
   const nav = document.getElementById("main-nav");
   const dropdownGroups = document.querySelectorAll(".dropdown-group");

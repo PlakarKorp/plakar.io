@@ -15,6 +15,7 @@
       (resources.Get "js/main/posts-filter.js")
       (resources.Get "js/main/book-demo-modal.js")
       (resources.Get "js/main/axeptio.js")
+      (resources.Get "js/main/search.js")
       | resources.Concat "js/compiled/bundle.js"
       | minify | fingerprint
     }}
@@ -27,6 +28,7 @@
       <div>
         {{ partial "components/common/toast.html" . }}
         {{ partial "common/modals/book-a-demo-modal.html" . }}
+        {{ partial "common/search/search-modal.html" . }}
       </div>
     </main>
     {{ partial "common/footer/footer.html" . }}

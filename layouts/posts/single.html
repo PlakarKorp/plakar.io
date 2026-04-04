@@ -1,4 +1,5 @@
 {{ define "main" }}
+<div data-pagefind-filter="section:Blog" hidden></div>
 
 {{ $image := or (.Resources.GetMatch "featured.webp") (index (.Resources.Match "featured.*") 0) }}
 {{ if not $image }}

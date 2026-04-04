@@ -1,0 +1,64 @@
+<!-- JS: assets/js/main/search.js -->
+
+{{ $docsSection := .Site.GetPage "section" "docs" }}
+
+<template id="search-icon-file">{{ partial "icon.html" "ri/file-text-line" }}</template>
+
+<!-- Search Modal -->
+<div id="search-modal" class="hidden fixed inset-0 z-100" role="dialog" aria-modal="true" aria-label="Search site">
+  <div id="search-backdrop" class="absolute inset-0 bg-neutral-900/30 backdrop-blur-[2px]"></div>
+  <div class="relative z-10 flex items-start justify-center pt-[8vh] px-4 pointer-events-none">
+    <div id="search-panel" class="pointer-events-auto bg-white rounded-xl shadow-2xl w-full max-w-[680px] max-h-[75vh] flex flex-col overflow-hidden ring-1 ring-neutral-200">
+
+      <div class="flex items-center gap-3 px-5 py-4 border-b border-neutral-200">
+        <span class="w-5 h-5 text-neutral-400 shrink-0">{{ partial "icon.html" "ri/search-line" }}</span>
+        <input id="search-input" type="text" placeholder="Search..." aria-label="Search site" class="flex-1 bg-transparent text-neutral-900 placeholder-neutral-400 text-base outline-none border-none focus:ring-0 p-0">
+        <button id="search-close" aria-label="Close search" class="text-neutral-400 hover:text-neutral-600 shrink-0 transition-colors">
+          <span class="w-5 h-5 block">{{ partial "icon.html" "ri/close-line" }}</span>
+        </button>
+      </div>
+
+      <div class="flex items-center gap-3 px-5 py-2.5 border-b border-neutral-200 bg-white flex-wrap">
+        <span class="text-sm text-neutral-500">Section:</span>
+        <select id="search-section-filter" aria-label="Filter by section" class="text-sm bg-white border border-neutral-300 rounded-md pl-2.5 pr-8 py-1 text-neutral-700 outline-none cursor-pointer">
+          <option value="">All sections</option>
+          <option value="Docs">Documentation</option>
+          <option value="Blog">Blog</option>
+          <option value="Integrations">Integrations</option>
+          <option value="Pages">Pages</option>
+        </select>
+
+        <div id="search-version-wrap" class="hidden items-center gap-2">
+          <span class="text-sm text-neutral-500">Version:</span>
+          <select id="search-version-filter" aria-label="Filter by version" class="text-sm bg-white border border-neutral-300 rounded-md pl-2.5 pr-8 py-1 text-neutral-700 outline-none cursor-pointer">
+            <option value="">All versions</option>
+            {{ with $docsSection }}
+              {{ range .Sections }}
+                <option value="{{ .Title }}">{{ .Title }}</option>
+              {{ end }}
+            {{ end }}
+          </select>
+        </div>
+      </div>
+
+      <div id="search-status" class="hidden px-5 py-2 text-sm border-b border-neutral-100">
+        <span id="search-status-loading" class="hidden text-neutral-400">Searching...</span>
+        <span id="search-status-count" class="hidden text-neutral-500"></span>
+        <span id="search-status-empty" class="hidden text-neutral-400">No results found.</span>
+      </div>
+
+      <div id="search-results" class="overflow-y-auto flex-1">
+        <div id="search-empty-state" class="px-5 py-10 text-center text-neutral-400 text-sm">
+          Start typing to search.
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2 px-5 py-2.5 border-t border-neutral-200 bg-neutral-50">
+        <kbd class="inline-flex items-center justify-center h-5 bg-neutral-100 border border-neutral-200 rounded px-1.5 text-neutral-400">
+          <span class="text-[10px]">ESC</span>
+        </kbd>
+        <span class="text-xs text-neutral-400">close</span>
+      </div>
+    </div>
+  </div>
+</div>

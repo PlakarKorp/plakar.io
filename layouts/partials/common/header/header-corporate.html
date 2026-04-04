@@ -17,7 +17,16 @@
       ) }}
     </div>
 
-    <div class="flex flex-row items-center space-x-2 w-full justify-end">
+    <div class="flex flex-row items-center space-x-2 shrink-0 justify-end">
+      <!-- Search trigger -->
+      <button class="search-trigger group flex items-center gap-2 min-h-7 lg:min-h-12 px-2.5 border border-neutral-300 rounded-lg bg-neutral-50 text-neutral-400 hover:text-neutral-600 hover:border-neutral-400 transition-colors" aria-label="Open search">
+        <span class="w-4 h-4 shrink-0">{{ partial "icon.html" "ri/search-line" }}</span>
+        <span class="hidden md:inline text-sm">Search...</span>
+        <kbd class="hidden md:inline-flex items-center h-5 bg-white border border-neutral-200 rounded px-1.5 ml-1">
+          <span class="text-[10px] text-neutral-400" id="search-kbd-hint"></span>
+        </kbd>
+      </button>
+
       <!-- Discord badge -->
       {{ partial "components/badges/discord-badge.html" (dict
         "format" "star_light"

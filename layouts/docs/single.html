@@ -1,4 +1,6 @@
 {{ define "main" }}
+<div data-pagefind-filter="section:Docs" hidden></div>
+{{ range .Ancestors }}{{ if and .Parent (eq .Parent.RelPermalink "/docs/") }}<div data-pagefind-filter="version:{{ .Title }}" hidden></div>{{ end }}{{ end }}
   <div class="flex mt-12 gap-8 px-3 lg:px-6 py-8 max-w-350 mx-auto">
 
     <!-- Left sidebar (desktop) -->
