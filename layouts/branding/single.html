@@ -1,0 +1,176 @@
+{{ define "main" }}
+
+{{ $logoCircle := resources.Get "img/branding/logo-circle-white.svg" }}
+{{ $logoMascotBW := resources.Get "img/branding/logo-mascot-bw.svg" }}
+{{ $logoMascotColor := resources.Get "img/branding/logo-mascot-color.svg" }}
+{{ $brandKit := resources.Get "img/branding/logo.zip" }}
+
+<!-- Hero -->
+<section class="section-light-2 grid-background pt-36 pb-7">
+  <div class="max-w-350 mx-auto px-4 flex flex-col items-center gap-6 text-center">
+    <h1 class="text-4xl lg:text-6xl font-medium">
+      Welcome to our <span class="text-primary-500">Brand Center</span>
+    </h1>
+    <p class="text-neutral-600 text-base lg:text-xl max-w-4xl">
+      Whether you are a business, a systems administrator, a software developer, or a technology educator, Plakar provides clear guidance on how and when you can use our logo, product icons, and other brand assets in your projects and communications.
+    </p>
+  </div>
+</section>
+
+<!-- Brand Assets -->
+<section class="section-light-2 grid-background pt-12">
+  <div class="bg-gradient-section">
+    <div class="max-w-350 mx-auto px-4">
+      <div class="bg-neutral-50/70 rounded-t-lg border border-neutral-300 backdrop-blur-lg flex flex-col gap-8 p-8">
+
+        <div class="flex flex-col lg:flex-row gap-8">
+
+          <!-- Left text block -->
+          <div class="flex-1 flex flex-col gap-6">
+            <div class="flex flex-col gap-4">
+              <p class="text-neutral-900 text-lg lg:text-2xl font-medium">
+                Plakar logos are being used to brand and identify official Plakar projects and content.
+              </p>
+              <p class="text-neutral-900 text-lg lg:text-2xl font-medium">
+                Third parties can only use them to provide credit for Plakar products or to link to plakar.io.
+              </p>
+            </div>
+            <a href="#usage-guidelines" class="text-primary-500 underline text-sm lg:text-lg font-medium">
+              For usage guidelines, scroll down.
+            </a>
+            {{ with $brandKit }}
+              <a href="{{ .RelPermalink }}" download>
+                {{ partial "components/buttons/base-button.html" (dict
+                  "label" "Download logo kit"
+                  "href" .RelPermalink
+                  "target" "_self"
+                ) }}
+              </a>
+            {{ end }}
+          </div>
+
+          <!-- Logo preview + color swatches -->
+          <div class="flex-1 p-6 bg-neutral-50 rounded-md border border-neutral-200 flex flex-col gap-6 items-center">
+            {{ with $logoCircle }}
+              <img src="{{ .RelPermalink }}" alt="Plakar Logo">
+            {{ end }}
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full">
+
+              <div class="p-2 bg-neutral-50 rounded-lg border border-neutral-300 flex flex-col gap-3">
+                <div class="h-20 p-2 bg-[#FF8547] rounded-md flex items-end">
+                  <span class="text-neutral-900 text-sm font-medium font-mono uppercase">Orange</span>
+                </div>
+                <span class="text-neutral-900 text-sm font-medium font-mono uppercase">#FF8547</span>
+              </div>
+
+              <div class="p-2 bg-neutral-50 rounded-lg border border-neutral-300 flex flex-col gap-3">
+                <div class="h-20 p-2 bg-primary-500 rounded-md flex items-end">
+                  <span class="text-neutral-50 text-sm font-medium font-mono uppercase">Primary</span>
+                </div>
+                <span class="text-neutral-900 text-sm font-medium font-mono uppercase">#524CFF</span>
+              </div>
+
+              <div class="p-2 bg-neutral-50 rounded-lg border border-neutral-300 flex flex-col gap-3">
+                <div class="h-20 p-2 bg-neutral-900 rounded-md flex items-end">
+                  <span class="text-neutral-50 text-sm font-medium font-mono uppercase">Black</span>
+                </div>
+                <span class="text-neutral-900 text-sm font-medium font-mono uppercase">#1C1C1E</span>
+              </div>
+
+              <div class="p-2 bg-neutral-50 rounded-lg border border-neutral-300 flex flex-col gap-3">
+                <div class="h-20 p-2 bg-white border border-neutral-200 rounded-md flex items-end">
+                  <span class="text-neutral-900 text-sm font-medium font-mono uppercase">White</span>
+                </div>
+                <span class="text-neutral-900 text-sm font-medium font-mono uppercase">#FFFFFF</span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Logo variants -->
+        <div class="flex flex-col gap-4">
+          <p class="text-neutral-900 text-lg lg:text-2xl font-medium">
+            These variations of the logo can be used when the background is simple or plain color.
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {{ with $logoMascotBW }}
+              <div class="p-6 bg-neutral-50 rounded-md border border-neutral-200 flex items-center justify-center">
+                <img src="{{ .RelPermalink }}" alt="Mascot Black & White">
+              </div>
+            {{ end }}
+            {{ with $logoMascotColor }}
+              <div class="p-6 bg-neutral-50 rounded-md border border-neutral-200 flex items-center justify-center">
+                <img src="{{ .RelPermalink }}" alt="Mascot Color">
+              </div>
+            {{ end }}
+            {{ with $logoCircle }}
+              <div class="p-6 bg-neutral-50 rounded-md border border-neutral-200 flex items-center justify-center">
+                <img src="{{ .RelPermalink }}" alt="Circle White Logo">
+              </div>
+            {{ end }}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Usage Guidelines -->
+<section id="usage-guidelines" class="section-light-1 px-4 py-20 border-t border-b border-neutral-300">
+  <div class="max-w-350 mx-auto px-4 flex flex-col gap-16 items-center">
+
+    <h2 class="text-center text-4xl lg:text-6xl font-medium">
+      Usage <span class="text-primary-500">Guidelines</span>
+    </h2>
+
+    <div class="flex flex-col gap-6 max-w-3xl text-neutral-900 text-base lg:text-xl font-medium">
+      <p>Plakar is a registered trademark (<span class="text-3xl">®</span>) of Plakar in EU and USA. The Plakar logo itself is property of the Plakar company. The logo and the brand name "Plakar" are not part of the ISC License, and can only be used commercially by Plakar on products, websites, and publications.</p>
+      <p>Third parties may use the Plakar logo, provided all of the following conditions are met:</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+      {{ range slice
+        (dict "n" "1" "title" "General Usage" "body" "The Plakar name and logo can only be used to point to the product Plakar or to give credit. When used with a link on a web page, it should point to the URL plakar.io.")
+        (dict "n" "2" "title" "Prominence" "body" "You must visualize and promote your own branding more prominently than you use the Plakar logo or name. It must be clear for an average viewer that this is not an official Plakar product or Plakar website, publication or product. Do not use the Plakar name or logo as your own logo or name.")
+        (dict "n" "3" "title" "Products" "body" "You can use the Plakar name or logo on promotional products, such as T-shirts for events or trade show booths, provided it is a secondary brand as described in point 2.")
+        (dict "n" "4" "title" "Modification" "body" "The logo must be used unaltered, without enhancements, in original colors, original typography, and always complete (logo + text Plakar).")
+        (dict "n" "5" "title" "Commercial Use" "body" "Only in exceptional cases will permission be granted to use the logo on commercial products. You must contact us with a picture of how it will be used and ask for explicit permission.")
+        (dict "n" "6" "title" "Endorsement and Affiliation" "body" "The Plakar name and logo may not be used in a way that implies any official endorsement, partnership, affiliation, or certification of third-party products or services, including but not limited to cloud-based distributions, orchestration platforms, or managed services, unless explicit written permission has been granted by Plakar.")
+      }}
+        <div class="flex gap-4 p-4 bg-neutral-50 rounded-lg border border-neutral-200">
+          <div class="shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-primary-500 text-neutral-50 font-bold">
+            {{ .n }}
+          </div>
+          <div class="flex flex-col gap-2">
+            <h3 class="font-medium text-neutral-900 text-lg lg:text-2xl">{{ .title }}</h3>
+            <p class="text-neutral-600 text-base lg:text-lg">{{ .body }}</p>
+          </div>
+        </div>
+      {{ end }}
+    </div>
+
+    <p class="max-w-3xl text-neutral-900 text-base lg:text-xl font-medium text-center">
+      If you have further questions or doubts, do not hesitate to contact us.
+    </p>
+  </div>
+</section>
+
+<!-- Community Websites -->
+<section class="section-light-2 px-4 py-20 border-t border-neutral-300">
+  <div class="max-w-350 mx-auto px-4 flex flex-col gap-12 items-center">
+    <h2 class="text-center text-4xl lg:text-6xl font-medium">
+      Community <span class="text-secondary-500">websites</span>
+    </h2>
+
+    <div class="flex flex-col gap-6 max-w-3xl text-neutral-900 text-base lg:text-xl font-medium">
+      <p>Plakar's logo has not yet been widely adopted or reused by third parties. Nevertheless, we wish to clarify our position early to avoid confusion in the future. These guidelines are not intended to prohibit or discourage legitimate community uses that show support for Plakar.</p>
+      <p>The purpose of this policy is mainly to prevent misuse of the Plakar name and logo in a way that could be unfair, misleading, or intended to take advantage of Plakar's reputation and community for commercial gain without authorization.</p>
+      <p>In particular, we want to ensure that the Plakar brand is not used to promote commercial services or products that may suggest an official partnership or endorsement, or that could create confusion among users about whether an offering is operated by Plakar or by independent third parties.</p>
+      <p>If you are unsure whether your use of the Plakar name or logo is appropriate, feel free to contact us. We are committed to supporting genuine community initiatives and will do our best to provide guidance.</p>
+    </div>
+  </div>
+</section>
+
+{{ end }}
