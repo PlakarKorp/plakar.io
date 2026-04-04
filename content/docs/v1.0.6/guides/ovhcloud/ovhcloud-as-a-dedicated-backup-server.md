@@ -136,7 +136,7 @@ Replace:
 ### Initialize Kloset Store
 
 ```bash
-$ plakar at "ovhcloud-s3-backups" create
+$ plakar at "@ovhcloud-s3-backups" create
 ```
 
 ## Configure SSH Access
