@@ -26,8 +26,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Plakar | Physical backups with pg_basebackup">
 <meta property="og:author" content="Nestor">
-<meta property="og:description" content="How to perform physical backups of a PostgreSQL cluster using pg_basebackup, and store them with Plakar.
-"><meta property="og:url" content="https://www.plakar.io/docs/v1.1.0/guides/postgres/pg-base-backup/">
+<meta property="og:description" content="Back up a PostgreSQL cluster using the Plakar PostgreSQL integration and restore it."><meta property="og:url" content="https://www.plakar.io/docs/v1.1.0/guides/postgres/pg-base-backup/">
 <meta property="og:image" content="https://www.plakar.io/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Plakar">
@@ -35,8 +34,7 @@
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Plakar | Physical backups with pg_basebackup">
-<meta name="twitter:description" content="How to perform physical backups of a PostgreSQL cluster using pg_basebackup, and store them with Plakar.
-">
+<meta name="twitter:description" content="Back up a PostgreSQL cluster using the Plakar PostgreSQL integration and restore it.">
 <meta name="twitter:image" content="https://www.plakar.io/">
 
 
@@ -1914,7 +1912,7 @@ function siteSearch() {
                    class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
                    ml-4 pl-2 border-l border-neutral-300
                    ">
-                    Logical backups with SQL dumps
+                    Logical backups with pg_dump
                 </a>
             
         
@@ -4183,7 +4181,7 @@ function siteSearch() {
                    class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
                    ml-4 pl-2 border-l border-neutral-300
                    ">
-                    Logical backups with SQL dumps
+                    Logical backups with pg_dump
                 </a>
             
         
@@ -9715,26 +9713,28 @@ function siteSearch() {
             </style>
             <nav id="TableOfContents">
   <ul>
+    <li><a href="#overview">Overview</a></li>
     <li><a href="#requirements">Requirements</a>
       <ul>
+        <li><a href="#install-the-package">Install the package</a></li>
         <li><a href="#pg_hbaconf-configuration">pg_hba.conf configuration</a></li>
       </ul>
     </li>
-    <li><a href="#performing-the-backup">Performing the backup</a>
-      <ul>
-        <li><a href="#directory-based-backup">Directory-based backup</a></li>
-      </ul>
-    </li>
-    <li><a href="#tar-based-backup">Tar-based backup</a></li>
-    <li><a href="#restoring-a-physical-backup">Restoring a physical backup</a></li>
-    <li><a href="#running-postgresql-with-docker-from-a-physical-backup">Running PostgreSQL with Docker from a physical backup</a></li>
+    <li><a href="#what-gets-stored-in-a-snapshot">What gets stored in a snapshot</a></li>
+    <li><a href="#back-up-the-cluster">Back up the cluster</a></li>
+    <li><a href="#restore-the-cluster">Restore the cluster</a></li>
+    <li><a href="#list-snapshots">List snapshots</a></li>
+    <li><a href="#source-options">Source options</a></li>
+    <li><a href="#snapshot-manifest">Snapshot manifest</a></li>
     <li><a href="#considerations">Considerations</a>
       <ul>
-        <li><a href="#physical-vs-logical-backups">Physical vs logical backups</a></li>
+        <li><a href="#version-compatibility">Version compatibility</a></li>
+        <li><a href="#server-must-be-stopped-before-restore">Server must be stopped before restore</a></li>
         <li><a href="#read-only-mounts">Read-only mounts</a></li>
         <li><a href="#kloset-store-location">Kloset store location</a></li>
       </ul>
     </li>
+    <li><a href="#see-also">See also</a></li>
   </ul>
 </nav>
         
@@ -9747,26 +9747,28 @@ function siteSearch() {
     <div class="py-2 px-4  border-dotted border-neutral-300   dark:border-neutral-600">
         <nav id="TableOfContents">
   <ul>
+    <li><a href="#overview">Overview</a></li>
     <li><a href="#requirements">Requirements</a>
       <ul>
+        <li><a href="#install-the-package">Install the package</a></li>
         <li><a href="#pg_hbaconf-configuration">pg_hba.conf configuration</a></li>
       </ul>
     </li>
-    <li><a href="#performing-the-backup">Performing the backup</a>
-      <ul>
-        <li><a href="#directory-based-backup">Directory-based backup</a></li>
-      </ul>
-    </li>
-    <li><a href="#tar-based-backup">Tar-based backup</a></li>
-    <li><a href="#restoring-a-physical-backup">Restoring a physical backup</a></li>
-    <li><a href="#running-postgresql-with-docker-from-a-physical-backup">Running PostgreSQL with Docker from a physical backup</a></li>
+    <li><a href="#what-gets-stored-in-a-snapshot">What gets stored in a snapshot</a></li>
+    <li><a href="#back-up-the-cluster">Back up the cluster</a></li>
+    <li><a href="#restore-the-cluster">Restore the cluster</a></li>
+    <li><a href="#list-snapshots">List snapshots</a></li>
+    <li><a href="#source-options">Source options</a></li>
+    <li><a href="#snapshot-manifest">Snapshot manifest</a></li>
     <li><a href="#considerations">Considerations</a>
       <ul>
-        <li><a href="#physical-vs-logical-backups">Physical vs logical backups</a></li>
+        <li><a href="#version-compatibility">Version compatibility</a></li>
+        <li><a href="#server-must-be-stopped-before-restore">Server must be stopped before restore</a></li>
         <li><a href="#read-only-mounts">Read-only mounts</a></li>
         <li><a href="#kloset-store-location">Kloset store location</a></li>
       </ul>
     </li>
+    <li><a href="#see-also">See also</a></li>
   </ul>
 </nav>
     </div>
@@ -10077,81 +10079,125 @@ function siteSearch() {
                 
                 <div class="relative docs-content font-prose prose text-base w-full max-w-full ps-8 pe-2 md:pe-8">
                     <p><em>Last reviewed: 
-2026-02-11
+2026-04-08
  / Plakar 
 v1.1.0
 </em></p>
-<h1 id="overview">Overview</h1>
-<p><code>pg_basebackup</code> is the standard PostgreSQL utility used to perform <strong>physical backups</strong> of a PostgreSQL cluster.<br>
-Unlike SQL dumps, a physical backup captures the entire data directory, allowing you to restore a PostgreSQL instance exactly as it was at backup time, including configuration files and internal state.</p>
-<p>For a deeper understanding of physical backups, replication, and base backups, refer to the <a href="https://www.postgresql.org/docs/current/app-pgbasebackup.html">official PostgreSQL documentation on pg_basebackup</a>.</p>
+<h2 id="overview">Overview</h2>
+<p>The Plakar PostgreSQL integration uses <code>pg_basebackup</code> to perform physical backups of a PostgreSQL cluster. A physical backup captures the entire data directory (all databases, configuration files, and WAL segments) and stores each file as an individual record in the snapshot.</p>
+<p>Physical backups are faster to restore than logical dumps but are version-locked: the backup must be restored with the same PostgreSQL major version that produced it. Selective restore of a single database or table is not possible.</p>
+<p>For a deeper understanding of physical backups and base backups, refer to the <a href="https://www.postgresql.org/docs/current/app-pgbasebackup.html">official PostgreSQL documentation on pg_basebackup</a>.</p>
 <h2 id="requirements">Requirements</h2>
-<p>This guide assumes that you have:</p>
 <ul>
-<li>A running PostgreSQL server configured to allow base backups.</li>
-<li>A PostgreSQL role with <code>REPLICATION</code> privileges.</li>
-<li>The environment variables <code>PGHOST</code>, <code>PGPORT</code>, <code>PGUSER</code>, and <code>PGPASSWORD</code> set to connect to your PostgreSQL server.</li>
-<li><code>pg_basebackup</code> available on the system where the backup is performed.</li>
+<li>A running PostgreSQL server with <code>wal_level = replica</code> or higher in <code>postgresql.conf</code>.</li>
+<li>A PostgreSQL user with the <code>REPLICATION</code> privilege, or a superuser.</li>
+<li><code>pg_hba.conf</code> allowing a replication connection from the backup host.</li>
+<li><code>pg_basebackup</code> available in <code>$PATH</code>.</li>
 </ul>
-<h3 id="pg_hbaconf-configuration">pg_hba.conf configuration</h3>
-<p>Since <code>pg_basebackup</code> requires replication connections, ensure that your <code>pg_hba.conf</code> file includes an entry allowing the backup user to connect for replication. For example:</p>
+<h3 id="install-the-package">Install the package</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar pkg add postgresql
+</span></span></code></pre></div><h3 id="pg_hbaconf-configuration">pg_hba.conf configuration</h3>
+<p>Ensure <code>pg_hba.conf</code> includes an entry allowing replication connections from the backup host. For example, to allow local replication without a password:</p>
 <pre tabindex="0"><code># TYPE  DATABASE        USER            ADDRESS                 METHOD
 local   replication     all                                     trust
-</code></pre><p>This entry allows local replication connections without a password and should only be used in trusted environments.</p>
-<p>Adapt the configuration to your needs and restart PostgreSQL after making changes.</p>
-<h2 id="performing-the-backup">Performing the backup</h2>
-<h3 id="directory-based-backup">Directory-based backup</h3>
-<p><code>pg_basebackup</code> expects a directory where the database will be copied. This directory can be stored with Plakar, like any other directory.</p>
-<p>Run the following commands:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PGUSER</span><span class="o">=</span>xxx
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PGPORT</span><span class="o">=</span><span class="m">5432</span>
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PGHOST</span><span class="o">=</span>xxx
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PGPASSWORD</span><span class="o">=</span>xxx
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">pg_basebackup -D ./database
-</span></span><span class="line"><span class="cl">plakar at /var/backups backup ./database
-</span></span><span class="line"><span class="cl">rm -rf ./database
-</span></span></code></pre></div><p>This sequence of commands:</p>
-<ul>
-<li>Exports the necessary environment variables to connect to the PostgreSQL server.</li>
-<li>Runs <code>pg_basebackup</code>, storing the backup in a local directory named <code>./database</code>.</li>
-<li>Uses Plakar to back up the <code>./database</code> directory into the Kloset store at <code>/var/backups</code>.</li>
-<li>Removes the local backup directory to free up space.</li>
-</ul>
-<p>With this method, WAL files are fetched as needed during the base backup process.</p>
-<h2 id="tar-based-backup">Tar-based backup</h2>
-<p>Storing the backup to an intermediate directory can be a problem, as it requires enough space to store the backup.</p>
-<p>Alternatively, <code>pg_basebackup</code> can create a tarball. This tarball can be used with the <code>tar</code> source importer of Plakar.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PGUSER</span><span class="o">=</span>xxx
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PGPORT</span><span class="o">=</span><span class="m">5432</span>
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PGHOST</span><span class="o">=</span>xxx
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PGPASSWORD</span><span class="o">=</span>xxx
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">pg_basebackup -D - -F tar -X fetch <span class="p">|</span> plakar at /var/backups backup -no-progress tar:///dev/stdin
-</span></span></code></pre></div><p><em>While no intermediate directory is created, this method may be slower as it requires serializing the data into a tarball stream.</em></p>
-<h2 id="restoring-a-physical-backup">Restoring a physical backup</h2>
-<p>To restore a physical backup created with <code>pg_basebackup</code>, use the <code>plakar restore</code> command to extract the backup to a local directory.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> plakar at /var/backups restore -to ./mydb 3bcb4fd8
-</span></span></code></pre></div><p>This command restores the snapshot with ID <code>3bcb4fd8</code> from the Kloset store located at <code>/var/backups</code> to a local directory named <code>./mydb</code>.</p>
-<p><em>This command is not PostgreSQL-specific. It works for any data stored in Plakar.</em></p>
-<h2 id="running-postgresql-with-docker-from-a-physical-backup">Running PostgreSQL with Docker from a physical backup</h2>
-<p>With a physical backup, you can easily run a PostgreSQL instance using Docker, provided the PostgreSQL version matches the one used to create the backup.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run --rm -ti --name pg -v ./mydb:/var/lib/postgresql/data postgres
-</span></span></code></pre></div><p>This command starts a PostgreSQL container using the official <code>postgres</code> image, mounting the restored backup directory <code>./mydb</code> as the data directory for PostgreSQL.</p>
-<p>Replace <code>postgres</code> with <code>postgres:&lt;version&gt;</code> to specify the desired PostgreSQL version.</p>
-<p>To connect to the running PostgreSQL instance, use:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker <span class="nb">exec</span> -ti pg psql -U postgres -c <span class="s1">&#39;\l&#39;</span>
-</span></span></code></pre></div><h2 id="considerations">Considerations</h2>
-<h3 id="physical-vs-logical-backups">Physical vs logical backups</h3>
-<p>SQL dumps (<code>pg_dump</code>, <code>pg_dumpall</code>) are logical backups, portable across PostgreSQL versions and architectures.</p>
-<p><code>pg_basebackup</code> produces physical backups, which are faster to restore but must be used with a compatible PostgreSQL version and system layout.</p>
-<p>Choose the method that best fits your recovery and portability requirements.</p>
+</code></pre><p>Adapt this to your environment and restart PostgreSQL after making changes.</p>
+<h2 id="what-gets-stored-in-a-snapshot">What gets stored in a snapshot</h2>
+<p>Each file from the PostgreSQL data directory is stored as an individual record in the snapshot, preserving paths, permissions, and timestamps. A subpath cannot be specified in the URI — <code>pg_basebackup</code> always backs up the entire cluster.</p>
+<p>A <code>/manifest.json</code> record is also written before the backup data, containing cluster-level metadata. See <a href="/docs/v1.1.0/guides/postgres/pg-base-backup/#snapshot-manifest">Snapshot manifest</a> below.</p>
+<h2 id="back-up-the-cluster">Back up the cluster</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add mypg postgres+bin://replicator:secret@db.example.com
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups backup @mypg
+</span></span></code></pre></div><h2 id="restore-the-cluster">Restore the cluster</h2>
+<p>There is no dedicated destination connector for physical backups. Because the snapshot contains plain files, restore them to a local directory using the standard filesystem restore:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar at /var/backups restore -to ./pgdata &lt;snapshot_id&gt;
+</span></span></code></pre></div><p>Then start PostgreSQL against the restored directory:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ docker run --rm <span class="se">\
+</span></span></span><span class="line"><span class="cl">    -v <span class="s2">&#34;</span><span class="nv">$PWD</span><span class="s2">/pgdata:/var/lib/postgresql/data&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">    postgres:&lt;version&gt;
+</span></span></code></pre></div><p>Replace <code>&lt;version&gt;</code> with the same major PostgreSQL version that was running when the backup was taken.</p>
+<p>To restore directly to a remote host, use an SFTP destination:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar restore -to sftp://user@host/var/lib/postgresql/data &lt;snapshot_id&gt;
+</span></span><span class="line"><span class="cl"><span class="c1"># then on the remote host: pg_ctl -D /var/lib/postgresql/data start</span>
+</span></span></code></pre></div><h2 id="list-snapshots">List snapshots</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar at /var/backups ls
+</span></span></code></pre></div><h2 id="source-options">Source options</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Parameter</th>
+          <th>Default</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>location</code></td>
+          <td>—</td>
+          <td>Connection URI: <code>postgres+bin://[user[:password]@]host[:port]</code>. A subpath is not allowed.</td>
+      </tr>
+      <tr>
+          <td><code>host</code></td>
+          <td><code>localhost</code></td>
+          <td>Server hostname. Overrides the URI host.</td>
+      </tr>
+      <tr>
+          <td><code>port</code></td>
+          <td><code>5432</code></td>
+          <td>Server port. Overrides the URI port.</td>
+      </tr>
+      <tr>
+          <td><code>username</code></td>
+          <td>—</td>
+          <td>PostgreSQL replication username. Overrides the URI user.</td>
+      </tr>
+      <tr>
+          <td><code>password</code></td>
+          <td>—</td>
+          <td>PostgreSQL password. Overrides the URI password.</td>
+      </tr>
+      <tr>
+          <td><code>pg_bin_dir</code></td>
+          <td>—</td>
+          <td>Directory containing the PostgreSQL client binaries (<code>pg_basebackup</code>, <code>psql</code>). When omitted, binaries are resolved via <code>$PATH</code>. Useful when multiple PostgreSQL versions are installed.</td>
+      </tr>
+      <tr>
+          <td><code>ssl_mode</code></td>
+          <td><code>prefer</code></td>
+          <td>SSL mode: <code>disable</code>, <code>allow</code>, <code>prefer</code>, <code>require</code>, <code>verify-ca</code>, or <code>verify-full</code>.</td>
+      </tr>
+      <tr>
+          <td><code>ssl_cert</code></td>
+          <td>—</td>
+          <td>Path to the client SSL certificate file (PEM).</td>
+      </tr>
+      <tr>
+          <td><code>ssl_key</code></td>
+          <td>—</td>
+          <td>Path to the client SSL private key file (PEM).</td>
+      </tr>
+      <tr>
+          <td><code>ssl_root_cert</code></td>
+          <td>—</td>
+          <td>Path to the root CA certificate used to verify the server (PEM).</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="snapshot-manifest">Snapshot manifest</h2>
+<p>Every snapshot includes a <code>/manifest.json</code> record written before the backup data. It captures the cluster state at the time of backup, including the same fields as logical backups (server version, roles, tablespaces, databases, and relation details) plus <code>pg_basebackup_version</code>.</p>
+<p>Metadata collection is best-effort: if a query fails, the affected field is omitted and the backup continues.</p>
+<h2 id="considerations">Considerations</h2>
+<h3 id="version-compatibility">Version compatibility</h3>
+<p>Physical backups must be restored with the same PostgreSQL major version. For cross-version restores, use a logical backup instead.</p>
+<h3 id="server-must-be-stopped-before-restore">Server must be stopped before restore</h3>
+<p>Do not restore into a data directory that is in use by a running PostgreSQL instance. Stop the server first, or restore to a fresh directory.</p>
 <h3 id="read-only-mounts">Read-only mounts</h3>
-<p>Plakar supports a FUSE filesystem that allows mounting a Kloset store as a read-only filesystem.</p>
-<p>PostgreSQL requires read-write access to its data directory, even for read-only operations. Therefore, it is not possible to run PostgreSQL directly from a read-only mount of a Kloset store.</p>
+<p>Plakar supports mounting a Kloset store as a read-only FUSE filesystem. PostgreSQL requires read-write access to its data directory, so it cannot run directly from a read-only mount. Always restore to a writable directory first.</p>
 <h3 id="kloset-store-location">Kloset store location</h3>
-<p>In the examples above, we used <code>/var/backups</code> as the Kloset store location.</p>
-<p>It is possible to use other store locations, for example to store the snapshots in a cloud storage bucket. Check the guide <a href="/docs/v1.1.0/guides/create-kloset-repository/">Create a Kloset store</a> for more information on setting up Kloset stores.</p>
+<p>The examples above use <code>/var/backups</code> as the Kloset store. Any supported store backend can be used instead. See <a href="/docs/v1.1.0/guides/create-kloset-repository/">Create a Kloset store</a> for details.</p>
+<h2 id="see-also">See also</h2>
+<ul>
+<li><a href="https://github.com/PlakarKorp/integration-postgresql/">PostgreSQL integration on GitHub</a></li>
+</ul>
 
                 </div>
             </div>

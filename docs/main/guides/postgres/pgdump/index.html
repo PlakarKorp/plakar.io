@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Logical backups with SQL dumps | Plakar | The Open Standard for Backup and Restore</title>
+<title>Logical backups with pg_dump | Plakar | The Open Standard for Backup and Restore</title>
 <meta name="author" content="Nestor">
 
 
@@ -24,19 +24,17 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Plakar | Logical backups with SQL dumps">
+<meta property="og:title" content="Plakar | Logical backups with pg_dump">
 <meta property="og:author" content="Nestor">
-<meta property="og:description" content="Back up PostgreSQL databases using pg_dump and restore from these backups.
-"><meta property="og:url" content="https://www.plakar.io/docs/main/guides/postgres/pgdump/">
+<meta property="og:description" content="Back up PostgreSQL databases using the Plakar PostgreSQL integration and restore them."><meta property="og:url" content="https://www.plakar.io/docs/main/guides/postgres/pgdump/">
 <meta property="og:image" content="https://www.plakar.io/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Plakar">
 
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Plakar | Logical backups with SQL dumps">
-<meta name="twitter:description" content="Back up PostgreSQL databases using pg_dump and restore from these backups.
-">
+<meta name="twitter:title" content="Plakar | Logical backups with pg_dump">
+<meta name="twitter:description" content="Back up PostgreSQL databases using the Plakar PostgreSQL integration and restore them.">
 <meta name="twitter:image" content="https://www.plakar.io/">
 
 
@@ -1914,7 +1912,7 @@ function siteSearch() {
                    class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
                    ml-4 pl-2 border-l border-neutral-300
                    text-primary-600 bg-neutral-200 font-semibold">
-                    Logical backups with SQL dumps
+                    Logical backups with pg_dump
                 </a>
             
         
@@ -4183,7 +4181,7 @@ function siteSearch() {
                    class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
                    ml-4 pl-2 border-l border-neutral-300
                    ">
-                    Logical backups with SQL dumps
+                    Logical backups with pg_dump
                 </a>
             
         
@@ -9716,16 +9714,27 @@ function siteSearch() {
             <nav id="TableOfContents">
   <ul>
     <li><a href="#overview">Overview</a></li>
-    <li><a href="#prerequisites">Prerequisites</a></li>
-    <li><a href="#back-up-single-database">Back Up Single Database</a></li>
-    <li><a href="#restore-single-database">Restore Single Database</a></li>
-    <li><a href="#back-up-entire-cluster">Back Up Entire Cluster</a></li>
-    <li><a href="#restore-entire-cluster">Restore Entire Cluster</a></li>
+    <li><a href="#requirements">Requirements</a>
+      <ul>
+        <li><a href="#install-the-package">Install the package</a></li>
+      </ul>
+    </li>
+    <li><a href="#what-gets-stored-in-a-snapshot">What gets stored in a snapshot</a></li>
+    <li><a href="#back-up-a-single-database">Back up a single database</a></li>
+    <li><a href="#back-up-all-databases">Back up all databases</a></li>
+    <li><a href="#restore-a-single-database">Restore a single database</a></li>
+    <li><a href="#restore-all-databases">Restore all databases</a></li>
+    <li><a href="#list-snapshots">List snapshots</a></li>
+    <li><a href="#source-options">Source options</a></li>
+    <li><a href="#destination-options">Destination options</a></li>
+    <li><a href="#snapshot-manifest">Snapshot manifest</a></li>
     <li><a href="#considerations">Considerations</a>
       <ul>
         <li><a href="#compression">Compression</a></li>
+        <li><a href="#kloset-store-location">Kloset store location</a></li>
       </ul>
     </li>
+    <li><a href="#see-also">See also</a></li>
   </ul>
 </nav>
         
@@ -9739,16 +9748,27 @@ function siteSearch() {
         <nav id="TableOfContents">
   <ul>
     <li><a href="#overview">Overview</a></li>
-    <li><a href="#prerequisites">Prerequisites</a></li>
-    <li><a href="#back-up-single-database">Back Up Single Database</a></li>
-    <li><a href="#restore-single-database">Restore Single Database</a></li>
-    <li><a href="#back-up-entire-cluster">Back Up Entire Cluster</a></li>
-    <li><a href="#restore-entire-cluster">Restore Entire Cluster</a></li>
+    <li><a href="#requirements">Requirements</a>
+      <ul>
+        <li><a href="#install-the-package">Install the package</a></li>
+      </ul>
+    </li>
+    <li><a href="#what-gets-stored-in-a-snapshot">What gets stored in a snapshot</a></li>
+    <li><a href="#back-up-a-single-database">Back up a single database</a></li>
+    <li><a href="#back-up-all-databases">Back up all databases</a></li>
+    <li><a href="#restore-a-single-database">Restore a single database</a></li>
+    <li><a href="#restore-all-databases">Restore all databases</a></li>
+    <li><a href="#list-snapshots">List snapshots</a></li>
+    <li><a href="#source-options">Source options</a></li>
+    <li><a href="#destination-options">Destination options</a></li>
+    <li><a href="#snapshot-manifest">Snapshot manifest</a></li>
     <li><a href="#considerations">Considerations</a>
       <ul>
         <li><a href="#compression">Compression</a></li>
+        <li><a href="#kloset-store-location">Kloset store location</a></li>
       </ul>
     </li>
+    <li><a href="#see-also">See also</a></li>
   </ul>
 </nav>
     </div>
@@ -10005,7 +10025,7 @@ function siteSearch() {
                 
 
                 <h1 class="font-prose font-bold leading-tight ~text-3xl/4xl">
-                    Logical backups with SQL dumps
+                    Logical backups with pg_dump
                 </h1>
             </div>
 
@@ -10013,55 +10033,280 @@ function siteSearch() {
                 
                 <div class="relative docs-content font-prose prose text-base w-full max-w-full ps-8 pe-2 md:pe-8">
                     <p><em>Last reviewed: 
-2026-01-05
+2026-04-08
  / Plakar 
-v1.0.6
+v1.1.0
 </em></p>
 <h2 id="overview">Overview</h2>
-<p>SQL dumps consist of a file containing SQL commands that can be fed back to a PostgreSQL server to recreate a database in the exact state it was in at the time the dump was taken.</p>
-<p>For a deeper understanding of SQL dumps and PostgreSQL backup strategies, we recommend reading the <a href="https://www.postgresql.org/docs/current/backup-dump.html">official PostgreSQL documentation on SQL dumps</a>.</p>
-<h2 id="prerequisites">Prerequisites</h2>
+<p>The Plakar PostgreSQL integration uses <code>pg_dump</code> and <code>pg_dumpall</code> to produce logical backups which are portable, version-independent SQL representations of your databases. Logical backups can be restored to a different PostgreSQL major version and allow selective restore of individual databases, namespaces, or tables.</p>
+<p>For a deeper understanding of SQL dumps and PostgreSQL backup strategies, refer to the <a href="https://www.postgresql.org/docs/current/backup-dump.html">official PostgreSQL documentation on SQL dumps</a>.</p>
+<h2 id="requirements">Requirements</h2>
 <ul>
-<li>Running PostgreSQL server</li>
-<li>Environment variables: <code>PGHOST</code>, <code>PGPORT</code>, <code>PGUSER</code>, <code>PGPASSWORD</code></li>
+<li>A running PostgreSQL server.</li>
+<li>A PostgreSQL superuser, or a user with sufficient privileges to run <code>pg_dump</code> and <code>pg_dumpall</code>.</li>
+<li>The following client tools available in <code>$PATH</code>: <code>pg_dump</code>, <code>pg_dumpall</code>, <code>pg_restore</code>, <code>psql</code>.</li>
 </ul>
-<h2 id="back-up-single-database">Back Up Single Database</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PGUSER</span><span class="o">=</span>xxx
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PGPORT</span><span class="o">=</span><span class="m">5432</span>
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PGHOST</span><span class="o">=</span>xxx
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PGPASSWORD</span><span class="o">=</span>xxx
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">pg_dump &lt;dbname&gt; <span class="p">|</span> plakar at /var/backups backup stdin:dump.sql
-</span></span></code></pre></div><h2 id="restore-single-database">Restore Single Database</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PGUSER</span><span class="o">=</span>xxx
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PGPORT</span><span class="o">=</span><span class="m">5432</span>
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PGHOST</span><span class="o">=</span>xxx
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PGPASSWORD</span><span class="o">=</span>xxx
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">plakar at /var/backups cat &lt;SNAPSHOT_ID&gt;:dump.sql <span class="p">|</span> psql -X &lt;dbname&gt;
-</span></span></code></pre></div><p>List snapshots:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">plakar at /var/backups ls
-</span></span></code></pre></div><h2 id="back-up-entire-cluster">Back Up Entire Cluster</h2>
-<p>Use <code>pg_dumpall</code> to include all databases, roles, and tablespaces:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PGUSER</span><span class="o">=</span>xxx
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PGPORT</span><span class="o">=</span><span class="m">5432</span>
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PGHOST</span><span class="o">=</span>xxx
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PGPASSWORD</span><span class="o">=</span>xxx
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">pg_dumpall <span class="p">|</span> plakar at /var/backups backup stdin:dump.sql
-</span></span></code></pre></div><h2 id="restore-entire-cluster">Restore Entire Cluster</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PGUSER</span><span class="o">=</span>xxx
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PGPORT</span><span class="o">=</span><span class="m">5432</span>
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PGHOST</span><span class="o">=</span>xxx
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PGPASSWORD</span><span class="o">=</span>xxx
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">plakar at /var/backups cat &lt;SNAPSHOT_ID&gt;:dump.sql <span class="p">|</span> psql -X
-</span></span></code></pre></div><h2 id="considerations">Considerations</h2>
-<h3 id="compression">Compression</h3>
+
+
+<details open class=" box cstyle notices info expand" style=";--VARIABLE-BOX-color: var(--BOX-INFO-color)">
+      <summary class="box-label">
+        <i class="expander-icon fa-fw fas fa-chevron-right"></i> 
+          <img src="/img/ri/information-line.svg" alt="" class="notice-icon" width="20" height="20"> 
+        Managed services (RDS, Cloud SQL, etc.)
+      </summary>
+          <div class="box-content">
+        <p>On managed services where the administrative user is a restricted superuser and cannot read <code>pg_authid</code>, the integration automatically falls back to <code>--no-role-passwords</code>. The dump is otherwise complete, but restored roles will have no password set.</p>
+          </div>
+    </details>
+<h3 id="install-the-package">Install the package</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar pkg add postgresql
+</span></span></code></pre></div><h2 id="what-gets-stored-in-a-snapshot">What gets stored in a snapshot</h2>
+<p><strong>Single database backup</strong> produces two records:</p>
 <ul>
-<li>Do not compress dumps manually</li>
-<li>Plakar automatically deduplicates and compresses data</li>
-<li>Pre-compressed dumps prevent effective deduplication</li>
+<li><code>/globals.sql</code> — roles and tablespaces from <code>pg_dumpall --globals-only</code>.</li>
+<li><code>/&lt;dbname&gt;.dump</code> — the database in <code>pg_dump</code> custom format (<code>-Fc</code>).</li>
+</ul>
+<p><strong>Full cluster backup</strong> produces one record:</p>
+<ul>
+<li><code>/all.sql</code> — all databases, roles, and tablespaces from <code>pg_dumpall</code>.</li>
+</ul>
+<p>Both backup types also include a <code>/manifest.json</code> record written before the dump data, containing cluster-level metadata: server version, roles, tablespaces, databases, schemas, and relation details. See <a href="/docs/main/guides/postgres/pgdump/#snapshot-manifest">Snapshot manifest</a> below.</p>
+<h2 id="back-up-a-single-database">Back up a single database</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add mypg postgres://postgres:secret@db.example.com/myapp
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups backup @mypg
+</span></span></code></pre></div><h2 id="back-up-all-databases">Back up all databases</h2>
+<p>Omit the database name to back up the entire cluster with <code>pg_dumpall</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add mypg postgres://postgres:secret@db.example.com/
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups backup @mypg
+</span></span></code></pre></div><h2 id="restore-a-single-database">Restore a single database</h2>
+<p>The target database must already exist:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar destination add mypgdst postgres://postgres:secret@db.example.com/myapp
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups restore -to @mypgdst &lt;snapshot_id&gt;
+</span></span></code></pre></div><p>To have Plakar create the database automatically, set <code>create_db=true</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar destination add mypgdst postgres://postgres:secret@db.example.com/myapp <span class="se">\
+</span></span></span><span class="line"><span class="cl">  <span class="nv">create_db</span><span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups restore -to @mypgdst &lt;snapshot_id&gt;
+</span></span></code></pre></div><h2 id="restore-all-databases">Restore all databases</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar destination add mypgdst postgres://postgres:secret@db.example.com/
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups restore -to @mypgdst &lt;snapshot_id&gt;
+</span></span></code></pre></div><h2 id="list-snapshots">List snapshots</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar at /var/backups ls
+</span></span></code></pre></div><h2 id="source-options">Source options</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Parameter</th>
+          <th>Default</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>location</code></td>
+          <td>—</td>
+          <td>Connection URI: <code>postgres://[user[:password]@]host[:port][/database]</code></td>
+      </tr>
+      <tr>
+          <td><code>host</code></td>
+          <td><code>localhost</code></td>
+          <td>Server hostname. Overrides the URI host.</td>
+      </tr>
+      <tr>
+          <td><code>port</code></td>
+          <td><code>5432</code></td>
+          <td>Server port. Overrides the URI port.</td>
+      </tr>
+      <tr>
+          <td><code>username</code></td>
+          <td>—</td>
+          <td>PostgreSQL username. Overrides the URI user.</td>
+      </tr>
+      <tr>
+          <td><code>password</code></td>
+          <td>—</td>
+          <td>PostgreSQL password. Overrides the URI password.</td>
+      </tr>
+      <tr>
+          <td><code>database</code></td>
+          <td>—</td>
+          <td>Database to back up. If omitted, all databases are backed up via <code>pg_dumpall</code>. Overrides the URI path. When set, a globals dump (<code>/globals.sql</code>) is also produced automatically.</td>
+      </tr>
+      <tr>
+          <td><code>compress</code></td>
+          <td><code>false</code></td>
+          <td>Enable <code>pg_dump</code> compression. Disabled by default so Plakar&rsquo;s own compression and deduplication are not degraded.</td>
+      </tr>
+      <tr>
+          <td><code>schema_only</code></td>
+          <td><code>false</code></td>
+          <td>Dump only the schema (no data). Mutually exclusive with <code>data_only</code>.</td>
+      </tr>
+      <tr>
+          <td><code>data_only</code></td>
+          <td><code>false</code></td>
+          <td>Dump only the data (no schema). Mutually exclusive with <code>schema_only</code>.</td>
+      </tr>
+      <tr>
+          <td><code>pg_bin_dir</code></td>
+          <td>—</td>
+          <td>Directory containing the PostgreSQL client binaries. When omitted, binaries are resolved via <code>$PATH</code>. Useful when multiple PostgreSQL versions are installed.</td>
+      </tr>
+      <tr>
+          <td><code>ssl_mode</code></td>
+          <td><code>prefer</code></td>
+          <td>SSL mode: <code>disable</code>, <code>allow</code>, <code>prefer</code>, <code>require</code>, <code>verify-ca</code>, or <code>verify-full</code>.</td>
+      </tr>
+      <tr>
+          <td><code>ssl_cert</code></td>
+          <td>—</td>
+          <td>Path to the client SSL certificate file (PEM).</td>
+      </tr>
+      <tr>
+          <td><code>ssl_key</code></td>
+          <td>—</td>
+          <td>Path to the client SSL private key file (PEM).</td>
+      </tr>
+      <tr>
+          <td><code>ssl_root_cert</code></td>
+          <td>—</td>
+          <td>Path to the root CA certificate used to verify the server (PEM).</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="destination-options">Destination options</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Parameter</th>
+          <th>Default</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>location</code></td>
+          <td>—</td>
+          <td>Connection URI: <code>postgres://[user[:password]@]host[:port][/database]</code></td>
+      </tr>
+      <tr>
+          <td><code>host</code></td>
+          <td><code>localhost</code></td>
+          <td>Server hostname. Overrides the URI host.</td>
+      </tr>
+      <tr>
+          <td><code>port</code></td>
+          <td><code>5432</code></td>
+          <td>Server port. Overrides the URI port.</td>
+      </tr>
+      <tr>
+          <td><code>username</code></td>
+          <td>—</td>
+          <td>PostgreSQL username. Overrides the URI user.</td>
+      </tr>
+      <tr>
+          <td><code>password</code></td>
+          <td>—</td>
+          <td>PostgreSQL password. Overrides the URI password.</td>
+      </tr>
+      <tr>
+          <td><code>database</code></td>
+          <td>—</td>
+          <td>Target database name. If omitted, inferred from the dump filename (e.g. <code>myapp.dump</code> → <code>myapp</code>).</td>
+      </tr>
+      <tr>
+          <td><code>create_db</code></td>
+          <td><code>false</code></td>
+          <td>When <code>true</code>, passes <code>-C</code> to <code>pg_restore</code> to create the database from the archive metadata. The <code>-d</code> parameter then names only the initial connection database (defaults to <code>postgres</code>).</td>
+      </tr>
+      <tr>
+          <td><code>restore_globals</code></td>
+          <td><code>false</code></td>
+          <td>When <code>true</code>, feeds <code>/globals.sql</code> to <code>psql</code> before restoring the database dump. Useful when restoring to a server where source roles do not exist. Not needed for <code>pg_dumpall</code> restores (<code>all.sql</code>).</td>
+      </tr>
+      <tr>
+          <td><code>no_owner</code></td>
+          <td><code>false</code></td>
+          <td>Pass <code>--no-owner</code> to <code>pg_restore</code>, skipping <code>ALTER OWNER</code> statements. Useful when roles from the source server do not exist on the target.</td>
+      </tr>
+      <tr>
+          <td><code>schema_only</code></td>
+          <td><code>false</code></td>
+          <td>Restore only the schema (no data). Mutually exclusive with <code>data_only</code>. Not applicable to <code>pg_dumpall</code> restores.</td>
+      </tr>
+      <tr>
+          <td><code>data_only</code></td>
+          <td><code>false</code></td>
+          <td>Restore only the data (no schema). Mutually exclusive with <code>schema_only</code>. Not applicable to <code>pg_dumpall</code> restores.</td>
+      </tr>
+      <tr>
+          <td><code>exit_on_error</code></td>
+          <td><code>false</code></td>
+          <td>Stop on the first restore error. Applies to both <code>pg_restore</code> and <code>psql</code>.</td>
+      </tr>
+      <tr>
+          <td><code>pg_bin_dir</code></td>
+          <td>—</td>
+          <td>Directory containing the PostgreSQL client binaries. When omitted, binaries are resolved via <code>$PATH</code>.</td>
+      </tr>
+      <tr>
+          <td><code>ssl_mode</code></td>
+          <td><code>prefer</code></td>
+          <td>SSL mode: <code>disable</code>, <code>allow</code>, <code>prefer</code>, <code>require</code>, <code>verify-ca</code>, or <code>verify-full</code>.</td>
+      </tr>
+      <tr>
+          <td><code>ssl_cert</code></td>
+          <td>—</td>
+          <td>Path to the client SSL certificate file (PEM).</td>
+      </tr>
+      <tr>
+          <td><code>ssl_key</code></td>
+          <td>—</td>
+          <td>Path to the client SSL private key file (PEM).</td>
+      </tr>
+      <tr>
+          <td><code>ssl_root_cert</code></td>
+          <td>—</td>
+          <td>Path to the root CA certificate used to verify the server (PEM).</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="snapshot-manifest">Snapshot manifest</h2>
+<p>Every snapshot includes a <code>/manifest.json</code> record written before the dump data. It captures the cluster state at the time of backup.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Field</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>cluster_config</code></td>
+          <td>Key server settings: <code>data_directory</code>, <code>timezone</code>, <code>max_connections</code>, <code>wal_level</code>, <code>server_encoding</code>, <code>data_checksums</code>, <code>block_size</code>, <code>wal_block_size</code>, <code>shared_preload_libraries</code>, <code>lc_collate</code>, <code>lc_ctype</code>, <code>archive_mode</code>, <code>archive_command_set</code> (boolean only — the command itself is not stored).</td>
+      </tr>
+      <tr>
+          <td><code>roles</code></td>
+          <td>All PostgreSQL roles with their attributes and role memberships.</td>
+      </tr>
+      <tr>
+          <td><code>tablespaces</code></td>
+          <td>All tablespaces with name, owner, filesystem location, and storage options.</td>
+      </tr>
+      <tr>
+          <td><code>databases</code></td>
+          <td>One entry per database: name, owner, encoding, collation, extensions, schemas, and a <code>relations</code> array covering tables, views, materialized views, sequences, and partitioned tables.</td>
+      </tr>
+  </tbody>
+</table>
+<p>Row counts in the manifest are estimates from <code>pg_class</code> and <code>pg_stat_user_tables</code>, not exact values. Metadata collection is best-effort: if a query fails, the affected field is omitted and the backup continues.</p>
+<h2 id="considerations">Considerations</h2>
+<h3 id="compression">Compression</h3>
+<p>Do not enable <code>compress=true</code> unless necessary. Plakar deduplicates and compresses data automatically. Pre-compressed dumps produce an incompressible stream that reduces deduplication effectiveness across snapshots.</p>
+<h3 id="kloset-store-location">Kloset store location</h3>
+<p>The examples above use <code>/var/backups</code> as the Kloset store. Any supported store backend can be used instead. See <a href="/docs/main/guides/create-kloset-repository/">Create a Kloset store</a> for details.</p>
+<h2 id="see-also">See also</h2>
+<ul>
+<li><a href="https://github.com/PlakarKorp/integration-postgresql/">PostgreSQL integration on GitHub</a></li>
 </ul>
 
                 </div>
