@@ -28,7 +28,7 @@ tags:
   - Scality
   - Wasabi
   - Scaleway
-  - Blackblaze
+  - Backblaze
   - OVH
   - Infomaniak
 
