@@ -8,7 +8,7 @@ summary: Install Plakar and verify your installation.
 Several installation methods are available depending on your operating system. Choose the method that best suits your environment.
 
 {{% notice style="info" title="Developer Version" expanded="true" %}}
-This the developer version of Plakar and it can only be installed from source. Only stable versions have distributed assests that can be installed using other OS specific methods
+This is the developer version of Plakar and it can only be installed from source. Only stable versions have distributed assets that can be installed using other OS specific methods
 {{% /notice %}}
 
 To build Plakar from source. You will need:
