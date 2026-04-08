@@ -55,11 +55,11 @@ linkStyle default stroke:#94a3b8,stroke-width:2px,stroke-dasharray:5 5
 
 ### Create bucket in Exoscale Portal
 1. In the Exoscale portal, navigate to **Storage**
-3. Click **Add** to create a new bucket
-4. Configure:
+2. Click **Add** to create a new bucket
+3. Configure:
     - Zone: Select region (note the name, it'll be used to connect to the container e.g `ch-dk-2`)
     - Name: `plakar-backups` (must be globally unique)
-5. Click **Add**
+4. Click **Add**
 
 ![Create Storage Bucket](./images/setup-storage-1.png)
 
