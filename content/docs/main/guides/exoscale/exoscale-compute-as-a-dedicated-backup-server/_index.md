@@ -157,7 +157,7 @@ Configuring the passphrase in the store enables automated backups without prompt
 
 ### Initialize Kloset Store
 ```bash
-plakar at "exoscale-sos-backups" create
+plakar at "@exoscale-sos-backups" create
 ```
 
 ## Configure SSH Access to Source Servers
