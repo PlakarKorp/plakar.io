@@ -115,7 +115,7 @@ For Rclone v1.72.1, the configuration flow is as follows:
 2. Name the remote (e.g., `mydrive`).
 3. Enter the number corresponding to "Microsoft OneDrive" from the list of supported storage providers.
 4. Leave client_id and client_secret empty to use Rclone's defaults, or provide your own if you have them.
-5. Select your region (usually "Microsoft Cloud Global")  .
+5. Select your region (usually "Microsoft Cloud Global").
 6. Enter service principal's tenant ID if applicable, or leave empty.
 7. Stay with the current settings, and do not edit advanced config.
 8. Choose to open the browser for authentication.
