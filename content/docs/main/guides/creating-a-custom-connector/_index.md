@@ -112,7 +112,7 @@ func (f *testConnector) Import(ctx context.Context, records chan<- *connectors.R
 }
 ```
 
-{{% notice style="warning" title="Writting to console" expanded="true" %}}
+{{% notice style="warning" title="Writing to console" expanded="true" %}}
 Never write to `os.Stdout`. Plakar communicates with the plugin over gRPC through stdin/stdout — any writes there corrupt the stream. Use `os.Stderr` for debug output instead.
 {{% /notice %}}
 
