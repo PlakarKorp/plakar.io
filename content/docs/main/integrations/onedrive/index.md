@@ -246,7 +246,7 @@ rclone config show | plakar source import -rclone mydrive
 # Back up the remote directory to the Kloset store on the filesystem
 $ plakar at /var/backups backup "@mydrive"
 
-# Or back up the remote directory to a Kloset store configure with "plakar store add"
+# Or back up the remote directory to a Kloset store configured with "plakar store add"
 $ plakar at "@store" backup "@mydrive"
 ```
 
