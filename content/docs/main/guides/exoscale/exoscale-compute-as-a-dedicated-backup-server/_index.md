@@ -65,7 +65,7 @@ linkStyle default stroke:#94a3b8,stroke-width:2px,stroke-dasharray:5 5
 
 ### Generate IAM API Keys
 1. In the Exoscale portal, navigate to **IAM** → **Keys**
-2. Click on **Add** to create new API keys then provide and role then click **Create**.
+2. Click on **Add** to create new API keys, then provide a name and role, then click **Create**.
 3. Copy the key and secret to a secure environment (you cannot see the secret once you leave the page)
 
 ![Create IAM API Key](./images/setup-iam-1.png)
