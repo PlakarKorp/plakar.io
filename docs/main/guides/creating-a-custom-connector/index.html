@@ -10082,7 +10082,7 @@ v1.1.0
       <summary class="box-label">
         <i class="expander-icon fa-fw fas fa-chevron-right"></i> 
           <img src="/img/ri/alert-line.svg" alt="" class="notice-icon" width="20" height="20"> 
-        Writting to console
+        Writing to console
       </summary>
           <div class="box-content">
         <p>Never write to <code>os.Stdout</code>. Plakar communicates with the plugin over gRPC through stdin/stdout — any writes there corrupt the stream. Use <code>os.Stderr</code> for debug output instead.</p>

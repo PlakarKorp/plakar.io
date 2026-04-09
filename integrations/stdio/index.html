@@ -2540,7 +2540,7 @@ Direct backups for data streams and command outputs via <span class="text-primar
                 
                 <div class="article-content prose max-w-full mb-20 w-full">
                     <h2 id="why-use-streams-instead-of-files">Why use Streams instead of Files?</h2>
-<p>Plakar’s Stdio integration can back up any data stream provided via stdin like database dumps, system logs, command output or custom scripts. Unlike workflows that first create an intermediate files, streaming data directly avoids several challenges:</p>
+<p>Plakar’s Stdio integration can back up any data stream provided via stdin like database dumps, system logs, command output or custom scripts. Unlike workflows that first create intermediate files, streaming data directly avoids several challenges:</p>
 <ul>
 <li><strong>Storage Waste</strong>: You need enough free space to hold the uncompressed export before it even gets to your backup tool.</li>
 <li><strong>Security Risks</strong>: Temporary files often sit on your disk unencrypted while waiting to be backed up.</li>
