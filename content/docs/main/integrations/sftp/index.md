@@ -267,9 +267,9 @@ $ plakar at "@sftp_store" restore -to "@sftp_dst" <snapshot_id>
 
 These options can be set when configuring the destination connector with `plakar destination add` or `plakar destination set`:
 
-| Option     | Purpose                                                             |
-| ---------- | ------------------------------------------------------------------- |
-| `location` | `sftp://[user@]host[:port]/path` of the remote directory to back up |
+| Option     | Purpose                                                              |
+| ---------- | -------------------------------------------------------------------- |
+| `location` | `sftp://[user@]host[:port]/path` of the remote directory to restore to |
 
 ---
 

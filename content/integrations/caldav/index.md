@@ -9,7 +9,7 @@ description: >
 technology_title: "CalDAV is a universal calendar infrastructure"
 
 technology_description: >
-  CalDAV (Calendaring Extensions to WebDAV) is an open standard protocol for accessing and managing calendar data on remote servers. It's supported by major providers including Nextcloud, Fastmail, iCloud, and Google Workspace (via gateways). CalDAV provides reliable synchronization across devices, but fails to provide immutability, versioning, or protection against accidental deletion of data or corruption. Plakar can backup and restore your calendar data from any CalDAV server, it also preserves complete event history and metadata.
+  CalDAV (Calendaring Extensions to WebDAV) is an open standard protocol for accessing and managing calendar data on remote servers. It's supported by major providers including Nextcloud, Fastmail, iCloud, and Google Workspace (via gateways). CalDAV provides reliable synchronization across devices, but fails to provide immutability, versioning, or protection against accidental deletion of data or corruption. Plakar can backup and restore your calendar data from any CalDAV server. It also preserves complete event history and metadata.
 
 categories:
   - source connector

@@ -55,17 +55,17 @@ linkStyle default stroke:#94a3b8,stroke-width:2px,stroke-dasharray:5 5
 
 ### Create bucket in Exoscale Portal
 1. In the Exoscale portal, navigate to **Storage**
-3. Click **Add** to create a new bucket
-4. Configure:
+2. Click **Add** to create a new bucket
+3. Configure:
     - Zone: Select region (note the name, it'll be used to connect to the container e.g `ch-dk-2`)
     - Name: `plakar-backups` (must be globally unique)
-5. Click **Add**
+4. Click **Add**
 
 ![Create Storage Bucket](./images/setup-storage-1.png)
 
 ### Generate IAM API Keys
 1. In the Exoscale portal, navigate to **IAM** → **Keys**
-2. Click on **Add** to create new API keys then provide and role then click **Create**.
+2. Click on **Add** to create new API keys, then provide a name and role, then click **Create**.
 3. Copy the key and secret to a secure environment (you cannot see the secret once you leave the page)
 
 ![Create IAM API Key](./images/setup-iam-1.png)
@@ -157,7 +157,7 @@ Configuring the passphrase in the store enables automated backups without prompt
 
 ### Initialize Kloset Store
 ```bash
-plakar at "exoscale-sos-backups" create
+plakar at "@exoscale-sos-backups" create
 ```
 
 ## Configure SSH Access to Source Servers
