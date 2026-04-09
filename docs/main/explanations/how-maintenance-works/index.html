@@ -10058,7 +10058,7 @@ class C1,C2,C3,C4 packfileBox
 <p>When you run <code>plakar rm</code>, Plakar records a new state where that snapshot no longer exists. The store reflects this immediately, the snapshot is gone from listings and cannot be restored. But the underlying chunks and packfiles remain untouched until maintenance determines whether they are still needed.</p>
 <h2 id="the-maintenance-process">The maintenance process</h2>
 <p>Running <code>plakar maintenance</code> is what actually reclaims storage. During a maintenance run, Plakar scans the store and identifies chunks that are no longer referenced by any snapshot. Those chunks are marked as candidates for deletion and held for a grace period before removal.</p>
-<p>Maintenance can be automated using the Plakar scheduler. See <a href="../../guides/scheduling">Scheduling tasks</a> for details.</p>
+<p>Maintenance can be automated using the Plakar scheduler. See <a href="/docs/main/guides/setup-scheduler-daily-backups/">Scheduling tasks</a> for details.</p>
 <h3 id="the-grace-period">The grace period</h3>
 <p>Marked chunks remain in the store for a grace period, currently set to 7 days. On the next maintenance run after that window, chunks that are still unreferenced become eligible for removal. If a chunk has since been referenced again by a new backup, the mark is removed and the chunk is kept.</p>
 <p>This delay exists to protect backups that are currently in progress. A long-running backup might write chunks that appear unreferenced to maintenance, because the snapshot that will reference them has not been committed yet.</p>
