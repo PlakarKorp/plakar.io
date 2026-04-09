@@ -65,7 +65,7 @@ When you run `plakar rm`, Plakar records a new state where that snapshot no long
 
 Running `plakar maintenance` is what actually reclaims storage. During a maintenance run, Plakar scans the store and identifies chunks that are no longer referenced by any snapshot. Those chunks are marked as candidates for deletion and held for a grace period before removal.
 
-Maintenance can be automated using the Plakar scheduler. See [Scheduling tasks](../../guides/scheduling) for details.
+Maintenance can be automated using the Plakar scheduler. See [Scheduling tasks](../../guides/setup-scheduler-daily-backups) for details.
 
 ### The grace period
 

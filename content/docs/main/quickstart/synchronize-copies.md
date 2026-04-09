@@ -19,7 +19,7 @@ This guide assumes that:
 
 ## Why create multiple copies?
 
-Keeping multiple backup copies dramatically reduces the risk of total data loss by **turning a realistic single-site failure into an extremely unlikely event when data is replicated across independent locations** (see the [Why should you keep several copies of your backups?](../guides/why-several-copies/_index.md) guide).
+Keeping multiple backup copies dramatically reduces the risk of total data loss by **turning a realistic single-site failure into an extremely unlikely event when data is replicated across independent locations** (see the [Why should you keep several copies of your backups?](../explanations/why-several-copies/_index.md) guide).
 
 **Plakar** is designed to make it easy to synchronize a Kloset Store to another location.
 
