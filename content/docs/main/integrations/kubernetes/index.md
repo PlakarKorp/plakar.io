@@ -4,23 +4,21 @@ summary: Back up and restore Kubernetes resources and persistent volumes with Pl
 date: "2026-04-02T00:00:00Z"
 ---
 
-The Kubernetes integration backs up clusters at three levels: etcd for disaster recovery, manifests for granular inspection and restore, and persistent volumes via CSI snapshots. Each level is handled by a dedicated package.
+The Kubernetes integration backs up cluster resources and persistent volumes. It provides two connectors accessible via two URI schemes:
 
-| Package  | What it backs up |
-| -------- | ---------------- |
-| `etcd`   | etcd cluster state — full disaster recovery. |
-| `k8s`    | Kubernetes manifests and resource state across namespaces. |
-| `k8s` (CSI) | Persistent volume contents via CSI driver snapshots. |
+| URI scheme   | What it backs up |
+| ------------ | ---------------- |
+| `k8s://`     | Kubernetes manifests and resource state across namespaces. |
+| `k8s+csi://` | Persistent volume contents via CSI driver snapshots. |
 
 **Requirements**
 
 * Plakar v1.1.0-beta or later.
-* `kubectl proxy` running and accessible for manifest and PVC backups.
+* `kubectl proxy` running and accessible.
 * A CSI driver with snapshot support and a configured `VolumeSnapshotClass` for CSI-based PVC backups.
 
 **Typical use cases**
 
-* Full cluster disaster recovery via etcd backup.
 * Namespace or resource-level restore from manifest snapshots.
 * Incident investigation by browsing cluster state at a point in time.
 * Persistent volume backup and cross-environment data portability.
@@ -32,12 +30,6 @@ The Kubernetes integration backs up clusters at three levels: etcd for disaster 
 {{< tabs name="Installation Methods" >}}
 {{% tab name="Pre-built package" %}}
 **Note:** Installing pre-built packages requires authentication with Plakar. See [Login to Plakar to unlock features](../../guides/what-is-plakar-login/).
-
-Install the etcd package:
-
-```bash
-$ plakar pkg add etcd
-```
 
 Install the Kubernetes package:
 
@@ -56,13 +48,6 @@ $ plakar pkg list
 **Prerequisites**
 
 * A working Go toolchain compatible with your version of Plakar.
-
-Build and install the etcd package:
-
-```bash
-$ plakar pkg build etcd
-$ plakar pkg add ./etcd_v1.1.0-beta_linux_amd64.ptar
-```
 
 Build and install the Kubernetes package:
 
@@ -88,7 +73,6 @@ $ plakar pkg list
 To upgrade, remove and reinstall:
 
 ```bash
-$ plakar pkg rm etcd && plakar pkg add etcd
 $ plakar pkg rm k8s && plakar pkg add k8s
 ```
 
@@ -98,51 +82,11 @@ Existing configurations are preserved during upgrade.
 
 ---
 
-## etcd backup
-
-etcd is the key-value store that holds all cluster state in Kubernetes. Losing etcd without a backup means losing the cluster. This integration provides a last-resort recovery path in the event of a wide node failure.
-
-{{< mermaid >}}
-flowchart LR
-
-subgraph Source[<b>etcd</b>]
-  db@{ shape: cyl, label: "Cluster state" }
-end
-
-subgraph Plakar[<b>Plakar</b>]
-  Connector@{ shape: rect, label: "<small>Retrieve snapshot via</small><br><b>etcd API</b>" }
-  Transform@{ shape: rect, label: "<small>Encrypt & deduplicate</small>" }
-  Connector --> Transform
-end
-
-Source --> Connector
-Store@{ shape: cyl, label: "Kloset Store" }
-Transform --> Store
-
-classDef sourceBox fill:#ffe4e6,stroke:#cad5e2,stroke-width:1px
-classDef brandBox fill:#524cff,color:#ffffff
-classDef storeBox fill:#dbeafe,stroke:#cad5e2,stroke-width:1px
-class Source sourceBox
-class Plakar brandBox
-class Store storeBox
-linkStyle default stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 25s linear infinite;
-{{< /mermaid >}}
-
-Back up an etcd node:
-
-```bash
-$ plakar backup etcd://node1:2379
-```
-
-{{% notice style="info" title="Restore scope" expanded="true" %}}
-etcd restore is an all-or-nothing operation. It is intended for full cluster recovery, not granular resource restores. For namespace or resource-level restores, use the manifest backup described below.
-{{% /notice %}}
-
----
-
 ## Manifest backup and restore
 
-The `k8s` package fetches all Kubernetes resources across the cluster and stores them as a Plakar snapshot. This enables browsing, diffing, and restoring cluster configuration at any level of granularity — full cluster, single namespace, or individual resource.
+The `k8s://` connector fetches all Kubernetes resources across the cluster and stores them as a Plakar snapshot. This enables browsing, diffing, and restoring cluster configuration at any level of granularity — full cluster, single namespace, or individual resource.
+
+Snapshots include resource status metadata, making them useful for incident investigation — you can browse the Plakar UI to inspect the state of deployments, nodes, and other resources at any point in time.
 
 {{< mermaid >}}
 flowchart LR
@@ -199,13 +143,11 @@ Restore all `StatefulSet` resources in the `foo` namespace:
 $ plakar restore -to k8s://localhost:8001 abcd:/foo/apps/StatefulSet
 ```
 
-Snapshots also include resource status metadata, making them useful for incident investigation — you can browse the Plakar UI to inspect the state of deployments, nodes, and other resources at any point in time.
-
 ---
 
 ## Persistent volume backup and restore (CSI)
 
-The CSI connector backs up the contents of persistent volumes by creating a `VolumeSnapshot`, mounting it in a temporary pod running a helper importer, and ingesting the data into a Kloset store. The snapshot is deleted from the cluster once ingestion completes.
+The `k8s+csi://` connector backs up the contents of persistent volumes by creating a `VolumeSnapshot`, mounting it in a temporary pod running a helper importer, and ingesting the data into a Kloset store. The snapshot is deleted from the cluster once ingestion completes.
 
 Restore works in reverse: data is written into a target PVC using the same helper pod mechanism. The target can be an existing PVC or a freshly created one.
 
@@ -238,8 +180,6 @@ linkStyle default stroke-dasharray: 9,5,stroke-dashoffset: 900,animation: dash 2
 {{< /mermaid >}}
 
 ### Back up a PVC
-
-Back up the PVC `my-pvc` in the `storage` namespace:
 
 ```bash
 $ plakar backup -o volume_snapshot_class=my-snapclass k8s+csi://localhost:8001/storage/my-pvc
@@ -275,19 +215,14 @@ Restore into an existing PVC by referencing it in the same way. The target PVC m
 | `volume_snapshot_class` | Yes      | Name of the `VolumeSnapshotClass` to use for CSI snapshots. |
 | `kubelet_image`         | No       | Container image for the helper pod. Defaults to a recent kubelet image. |
 
-{{% notice style="warning" title="CSI support required" expanded="true" %}}
-CSI-based PVC backups require a storage driver that supports the `VolumeSnapshot` API. Verify that your cluster has a compatible CSI driver and a configured `VolumeSnapshotClass` before using this connector.
-{{% /notice %}}
-
 ---
 
 ## Limitations and scope
 
 **What is captured**
 
-* Full etcd cluster state (etcd package).
-* All Kubernetes resource manifests and status metadata (k8s package).
-* Persistent volume contents for CSI-backed PVCs (k8s+csi connector).
+* All Kubernetes resource manifests and status metadata (`k8s://`).
+* Persistent volume contents for CSI-backed PVCs (`k8s+csi://`).
 
 **What is not captured**
 
@@ -304,5 +239,5 @@ Manifest snapshots reflect the state of the API server at the time of backup. Fo
 ## See also
 
 * [Kubernetes integration demo](https://www.youtube.com/watch?v=b8fOwCLSTiU)
-* [Kubernetes documentation - Volumes](https://kubernetes.io/docs/concepts/storage/volumes/)
-* [Kubernetes documentation - VolumeSnapshots](https://kubernetes.io/docs/concepts/storage/volume-snapshots/)
+* [etcd integration](/docs/main/integrations/etcd/)
+* [Kubernetes documentation — VolumeSnapshots](https://kubernetes.io/docs/concepts/storage/volume-snapshots/)
