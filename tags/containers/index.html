@@ -2378,6 +2378,16 @@ function siteSearch() {
   <h1>Containers</h1>
   
   
+    <h2><a href="/integrations/kubernetes/">Kubernetes</a></h2>
+    <h2 id="why-protecting-kubernetes-clusters-matters">Why protecting Kubernetes clusters matters</h2>
+<p>Kubernetes manages the full lifecycle of your workloads, but it does not protect the data that keeps those workloads running. Three distinct layers are at risk:</p>
+<ul>
+<li><strong>etcd</strong>: The key-value store that holds all cluster state. If too many nodes fail simultaneously, etcd cannot recover on its own. Without an independent backup, the cluster configuration is gone.</li>
+<li><strong>Manifests</strong>: Resource definitions, namespace configurations, and workload specs can be accidentally deleted, overwritten by bad deployments, or lost during a cluster migration. Kubernetes versioning does not give you a restore point.</li>
+<li><strong>Persistent Volumes</strong>: Stateful workloads store data in PVCs that live outside the cluster&rsquo;s built-in resilience model. A misconfigured storage class, a deleted PVC, or a failed migration can result in permanent data loss.</li>
+</ul>
+<p>Each layer requires a different backup strategy. Plakar handles all three.</p>
+  
     <h2><a href="/integrations/proxmox/">Proxmox</a></h2>
     <h2 id="why-protecting-proxmox-data-matters">Why protecting Proxmox data matters</h2>
 <p>Proxmox includes strong built-in backup capabilities, but backup archives stored on the same cluster or storage backend as your workloads are not truly independent. A single failure, misconfiguration, or attack can affect both your live machines and the backups protecting them.</p>

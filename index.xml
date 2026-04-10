@@ -163,6 +163,13 @@
       <description>We built a PostgreSQL integration for Plakar that covers both logical backups (pg_dump / pg_dumpall) and physical backups (pg_basebackup), making database backups as straightforward as any other Plakar backup: no scripts, no glue code.</description>
     </item>
     <item>
+      <title>Kubernetes</title>
+      <link>https://www.plakar.io/docs/main/integrations/kubernetes/</link>
+      <pubDate>Thu, 02 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.plakar.io/docs/main/integrations/kubernetes/</guid>
+      <description>Back up and restore Kubernetes resources and persistent volumes with Plakar.</description>
+    </item>
+    <item>
       <title>Proxmox</title>
       <link>https://www.plakar.io/docs/main/integrations/proxmox/</link>
       <pubDate>Mon, 30 Mar 2026 00:00:00 +0000</pubDate>
@@ -1330,6 +1337,13 @@
       <pubDate>Mon, 16 Mar 2026 15:00:00 +0100</pubDate>
       <guid>https://www.plakar.io/posts/2026-03-16/backing-up-proxmox-with-plakar-a-third-party-integration-built-in-a-few-days/</guid>
       <description>The team at FactorFX built a Proxmox integration for Plakar that wraps Proxmox’s native vzdump backups and stores them as deduplicated Plakar snapshots, making VM and container backups portable, encrypted, and easy to restore across clusters.</description>
+    </item>
+    <item>
+      <title>Kubernetes</title>
+      <link>https://www.plakar.io/integrations/kubernetes/</link>
+      <pubDate>Mon, 16 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.plakar.io/integrations/kubernetes/</guid>
+      <description>&lt;h2 id=&#34;why-protecting-kubernetes-clusters-matters&#34;&gt;Why protecting Kubernetes clusters matters&lt;/h2&gt;&#xA;&lt;p&gt;Kubernetes manages the full lifecycle of your workloads, but it does not protect the data that keeps those workloads running. Three distinct layers are at risk:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;etcd&lt;/strong&gt;: The key-value store that holds all cluster state. If too many nodes fail simultaneously, etcd cannot recover on its own. Without an independent backup, the cluster configuration is gone.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Manifests&lt;/strong&gt;: Resource definitions, namespace configurations, and workload specs can be accidentally deleted, overwritten by bad deployments, or lost during a cluster migration. Kubernetes versioning does not give you a restore point.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Persistent Volumes&lt;/strong&gt;: Stateful workloads store data in PVCs that live outside the cluster&amp;rsquo;s built-in resilience model. A misconfigured storage class, a deleted PVC, or a failed migration can result in permanent data loss.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Each layer requires a different backup strategy. Plakar handles all three.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Proxmox</title>
