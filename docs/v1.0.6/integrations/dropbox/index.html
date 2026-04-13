@@ -1478,6 +1478,10 @@ function siteSearch() {
         
     
         
+            
+        
+    
+        
     
         
     
@@ -1712,6 +1716,16 @@ function siteSearch() {
                     Logging In to Plakar
                 </a>
             
+        
+    
+        
+            
+            <a href="/docs/main/guides/managing-packages/"
+               class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+               ml-4 pl-2 border-l border-neutral-300
+               ">
+                Managing packages
+            </a>
         
     
         
@@ -3761,6 +3775,10 @@ function siteSearch() {
         
     
         
+            
+        
+    
+        
     
         
     
@@ -3995,6 +4013,16 @@ function siteSearch() {
                     Logging In to Plakar
                 </a>
             
+        
+    
+        
+            
+            <a href="/docs/v1.1.0/guides/managing-packages/"
+               class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+               ml-4 pl-2 border-l border-neutral-300
+               ">
+                Managing packages
+            </a>
         
     
         
@@ -6042,6 +6070,10 @@ function siteSearch() {
         
     
         
+            
+        
+    
+        
     
         
     
@@ -6252,6 +6284,16 @@ function siteSearch() {
                     Logging In to Plakar
                 </a>
             
+        
+    
+        
+            
+            <a href="/docs/v1.0.6/guides/managing-packages/"
+               class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+               ml-4 pl-2 border-l border-neutral-300
+               ">
+                Managing packages
+            </a>
         
     
         
@@ -8216,6 +8258,10 @@ function siteSearch() {
     
         
     
+        
+            
+        
+    
 
     
     
@@ -8391,6 +8437,16 @@ function siteSearch() {
                     Logging In to Plakar
                 </a>
             
+        
+    
+        
+            
+            <a href="/docs/v1.0.5/guides/managing-packages/"
+               class="block px-2 py-1 font-space-text ~text-sm text-neutral-700 hover:text-primary-500 hover:bg-neutral-200
+               ml-4 pl-2 border-l border-neutral-300
+               ">
+                Managing packages
+            </a>
         
     
 
@@ -10063,9 +10119,8 @@ function siteSearch() {
 <li>Long-term archiving and disaster recovery</li>
 <li>Portable export and vendor escape to other platforms</li>
 </ul>
-<hr>
 <h2 id="installation">Installation</h2>
-<p>To interact with Dropbox, you need to install the Rclone Plakar package. It can be installed either by downloading a pre-built package or by building it from source.</p>
+<p>To interact with Dropbox, you need to install the Rclone Plakar package.</p>
 <div id="installation-methods" class="content-tabs border rounded-xl mx-0 md:mx-6" data-tabs-root>
   
   <div class="grid grid-cols-1 sm:hidden relative">
@@ -10073,7 +10128,7 @@ function siteSearch() {
             class="col-start-1 row-start-1 w-full bg-neutral-50 py-2 pr-10 pl-3 text-base text-neutral-900
                    outline outline-1 outline-neutral-300 appearance-none
                    focus:outline-2 focus:-outline-offset-2 focus:outline-primary-600"
-            data-tabs-select><option value="installation-methods-0" selected>Pre-built package</option><option value="installation-methods-1" >Building from source</option><option value="installation-methods-2" >Reinstalling or upgrading</option></select>
+            data-tabs-select><option value="installation-methods-0" selected>Pre-built package</option><option value="installation-methods-1" >Building from source</option></select>
 
     
     <svg class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-neutral-500"
@@ -10111,19 +10166,6 @@ function siteSearch() {
                     data-[selected=true]:text-primary-600">
             
             <span>Building from source</span>
-          </button><button type="button"
-                  id="installation-methods-2-tab"
-                  data-target="installation-methods-2"
-                  aria-controls="installation-methods-2"
-                  aria-selected="false"
-                  role="tab"
-                  class="py-4 px-1 inline-flex items-center gap-x-2 border-b-2 border-transparent text-sm
-                    whitespace-nowrap text-neutral-500 hover:text-primary-600 focus:outline-hidden
-                    focus:text-primary-600 disabled:opacity-50 disabled:pointer-events-none
-                    data-[selected=true]:font-semibold data-[selected=true]:border-primary-600
-                    data-[selected=true]:text-primary-600">
-            
-            <span>Reinstalling or upgrading</span>
           </button></nav>
     </div>
   </div>
@@ -10157,17 +10199,6 @@ function siteSearch() {
 </span></span></code></pre></div><p>Verify the installation:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar pkg list
 </span></span></code></pre></div></div>
-      </div><div id="installation-methods-2"
-           role="tabpanel"
-           aria-labelledby="installation-methods-2-tab"
-           class="hidden prose max-w-none w-full">
-        <div class="prose max-w-none w-full prose-pre:max-w-none"><p>To check whether the Rclone package is already installed:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar pkg list
-</span></span></code></pre></div><p>To upgrade to the latest available version, remove the existing package and reinstall it:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar pkg rm rclone
-</span></span><span class="line"><span class="cl">$ plakar pkg add rclone
-</span></span></code></pre></div><p>This preserves existing store, source, and destination configurations.</p>
-</div>
       </div></div>
 </div>
 
@@ -10241,7 +10272,7 @@ function siteSearch() {
     });
   })();
 </script>
-<hr>
+<p>To list, upgrade, or remove the package, see <a href="../../guides/managing-packages/">managing packages guide</a>.</p>
 <h2 id="generate-rclone-configuration">Generate Rclone configuration</h2>
 <p>Install Rclone on your system by following the instructions at <a href="https://rclone.org/install/">https://rclone.org/install/</a>.</p>
 <p>Then, run the following command to configure Rclone with Dropbox:</p>
