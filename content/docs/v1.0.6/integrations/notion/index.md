@@ -21,8 +21,6 @@ The Notion integration package for Plakar provides two connectors:
 | ✅ **Source connector**      | Back up a Notion workspace into a Kloset store. |
 | ✅ **Destination connector** | Restore a Notion workspace from a Kloset store. |
 
----
-
 ## Installation
 
 The Notion Plakar package can be installed either by downloading a pre-built package or by building it from source.
@@ -72,26 +70,9 @@ Verify the installation:
 $ plakar pkg list
 ```
 {{< /tab >}}
-
-{{% tab name="Reinstalling or upgrading" %}}
-To check whether the Notion package is already installed:
-
-```bash
-$ plakar pkg list
-```
-
-To upgrade to the latest available version, remove the existing package and reinstall it:
-
-```bash
-$ plakar pkg rm notion
-$ plakar pkg add notion
-```
-
-This preserves existing store, source, and destination configurations.
-{{< /tab >}}
 {{< /tabs >}}
 
----
+To list, upgrade, or remove the package, see [managing packages guide](../../guides/managing-packages/).
 
 ## Connectors
 
