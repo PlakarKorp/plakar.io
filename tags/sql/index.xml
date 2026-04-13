@@ -9,6 +9,13 @@
     <lastBuildDate>Thu, 02 Apr 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.plakar.io/tags/sql/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>MySQL / MariaDB</title>
+      <link>https://www.plakar.io/integrations/mysql/</link>
+      <pubDate>Thu, 02 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.plakar.io/integrations/mysql/</guid>
+      <description>&lt;h2 id=&#34;why-protecting-mysql-and-mariadb-data-matters&#34;&gt;Why protecting MySQL and MariaDB data matters&lt;/h2&gt;&#xA;&lt;p&gt;MySQL and MariaDB handle storage-level durability well, but they offer no protection against the most common causes of real data loss:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Accidental deletion&lt;/strong&gt;: A &lt;code&gt;DROP TABLE&lt;/code&gt;, a bad migration, or a &lt;code&gt;DELETE&lt;/code&gt; without a &lt;code&gt;WHERE&lt;/code&gt; clause wipes data instantly. Replication ensures every replica reflects the same mistake just as quickly.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Corruption&lt;/strong&gt;: A failed upgrade, a misbehaving plugin, or a storage fault can corrupt a database in ways that are not immediately visible and this can also be replicated across replicas.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;No rollback&lt;/strong&gt;: Without snapshots, there is no way to return to an earlier known-good state. By the time a problem is noticed, the damage may already be replicated everywhere.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;For production databases, a backup stored independently of the database server is not optional.&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>PostgreSQL</title>
       <link>https://www.plakar.io/integrations/postgres/</link>
       <pubDate>Thu, 02 Apr 2026 00:00:00 +0000</pubDate>

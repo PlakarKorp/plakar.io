@@ -2378,6 +2378,16 @@ function siteSearch() {
   <h1>Managed Databases</h1>
   
   
+    <h2><a href="/integrations/mysql/">MySQL / MariaDB</a></h2>
+    <h2 id="why-protecting-mysql-and-mariadb-data-matters">Why protecting MySQL and MariaDB data matters</h2>
+<p>MySQL and MariaDB handle storage-level durability well, but they offer no protection against the most common causes of real data loss:</p>
+<ul>
+<li><strong>Accidental deletion</strong>: A <code>DROP TABLE</code>, a bad migration, or a <code>DELETE</code> without a <code>WHERE</code> clause wipes data instantly. Replication ensures every replica reflects the same mistake just as quickly.</li>
+<li><strong>Corruption</strong>: A failed upgrade, a misbehaving plugin, or a storage fault can corrupt a database in ways that are not immediately visible and this can also be replicated across replicas.</li>
+<li><strong>No rollback</strong>: Without snapshots, there is no way to return to an earlier known-good state. By the time a problem is noticed, the damage may already be replicated everywhere.</li>
+</ul>
+<p>For production databases, a backup stored independently of the database server is not optional.</p>
+  
     <h2><a href="/integrations/postgres/">PostgreSQL</a></h2>
     <h2 id="why-protecting-postgresql-data-matters">Why protecting PostgreSQL data matters</h2>
 <p>PostgreSQL handles data integrity well at the storage level, but it has no built-in protection against the most common causes of data loss:</p>

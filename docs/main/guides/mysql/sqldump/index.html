@@ -26,8 +26,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Plakar | Logical backups with SQL dumps">
 <meta property="og:author" content="Nestor">
-<meta property="og:description" content="Back up MySQL databases using mysqldump and restore from these backups.
-"><meta property="og:url" content="https://www.plakar.io/docs/main/guides/mysql/sqldump/">
+<meta property="og:description" content="Back up MySQL and MariaDB databases using the Plakar MySQL integration and restore them."><meta property="og:url" content="https://www.plakar.io/docs/main/guides/mysql/sqldump/">
 <meta property="og:image" content="https://www.plakar.io/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Plakar">
@@ -35,8 +34,7 @@
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Plakar | Logical backups with SQL dumps">
-<meta name="twitter:description" content="Back up MySQL databases using mysqldump and restore from these backups.
-">
+<meta name="twitter:description" content="Back up MySQL and MariaDB databases using the Plakar MySQL integration and restore them.">
 <meta name="twitter:image" content="https://www.plakar.io/">
 
 
@@ -9800,29 +9798,36 @@ function siteSearch() {
             <nav id="TableOfContents">
   <ul>
     <li><a href="#overview">Overview</a></li>
-    <li><a href="#prerequisites">Prerequisites</a></li>
-    <li><a href="#configure-credentials">Configure Credentials</a></li>
-    <li><a href="#back-up-single-database">Back Up Single Database</a>
+    <li><a href="#requirements">Requirements</a>
       <ul>
-        <li><a href="#basic-backup">Basic backup</a></li>
-        <li><a href="#innodb-with-all-objects-recommended">InnoDB with all objects (recommended)</a></li>
+        <li><a href="#install-the-package">Install the package</a></li>
       </ul>
     </li>
-    <li><a href="#back-up-all-databases">Back Up All Databases</a></li>
-    <li><a href="#restore-database">Restore Database</a>
+    <li><a href="#what-gets-stored-in-a-snapshot">What gets stored in a snapshot</a></li>
+    <li><a href="#back-up-a-single-database">Back up a single database</a></li>
+    <li><a href="#back-up-all-databases">Back up all databases</a></li>
+    <li><a href="#restore-a-single-database">Restore a single database</a></li>
+    <li><a href="#restore-all-databases">Restore all databases</a></li>
+    <li><a href="#list-snapshots">List snapshots</a></li>
+    <li><a href="#source-options">Source options</a></li>
+    <li><a href="#destination-options">Destination options</a></li>
+    <li><a href="#required-privileges">Required privileges</a>
       <ul>
-        <li><a href="#single-database">Single database</a></li>
-        <li><a href="#all-databases">All databases</a></li>
+        <li><a href="#single-database-backup">Single database backup</a></li>
+        <li><a href="#all-databases-backup">All-databases backup</a></li>
       </ul>
     </li>
-    <li><a href="#mixed-storage-engines">Mixed Storage Engines</a></li>
-    <li><a href="#best-practices">Best Practices</a>
+    <li><a href="#considerations">Considerations</a>
       <ul>
-        <li><a href="#credentials">Credentials</a></li>
+        <li><a href="#mysql-vs-mariadb-binaries">MySQL vs MariaDB binaries</a></li>
+        <li><a href="#innodb-and-myisam">InnoDB and MyISAM</a></li>
+        <li><a href="#gtids">GTIDs</a></li>
+        <li><a href="#user-and-grant-migration">User and grant migration</a></li>
         <li><a href="#compression">Compression</a></li>
-        <li><a href="#storage-engines">Storage Engines</a></li>
+        <li><a href="#kloset-store-location">Kloset store location</a></li>
       </ul>
     </li>
+    <li><a href="#see-also">See also</a></li>
   </ul>
 </nav>
         
@@ -9836,29 +9841,36 @@ function siteSearch() {
         <nav id="TableOfContents">
   <ul>
     <li><a href="#overview">Overview</a></li>
-    <li><a href="#prerequisites">Prerequisites</a></li>
-    <li><a href="#configure-credentials">Configure Credentials</a></li>
-    <li><a href="#back-up-single-database">Back Up Single Database</a>
+    <li><a href="#requirements">Requirements</a>
       <ul>
-        <li><a href="#basic-backup">Basic backup</a></li>
-        <li><a href="#innodb-with-all-objects-recommended">InnoDB with all objects (recommended)</a></li>
+        <li><a href="#install-the-package">Install the package</a></li>
       </ul>
     </li>
-    <li><a href="#back-up-all-databases">Back Up All Databases</a></li>
-    <li><a href="#restore-database">Restore Database</a>
+    <li><a href="#what-gets-stored-in-a-snapshot">What gets stored in a snapshot</a></li>
+    <li><a href="#back-up-a-single-database">Back up a single database</a></li>
+    <li><a href="#back-up-all-databases">Back up all databases</a></li>
+    <li><a href="#restore-a-single-database">Restore a single database</a></li>
+    <li><a href="#restore-all-databases">Restore all databases</a></li>
+    <li><a href="#list-snapshots">List snapshots</a></li>
+    <li><a href="#source-options">Source options</a></li>
+    <li><a href="#destination-options">Destination options</a></li>
+    <li><a href="#required-privileges">Required privileges</a>
       <ul>
-        <li><a href="#single-database">Single database</a></li>
-        <li><a href="#all-databases">All databases</a></li>
+        <li><a href="#single-database-backup">Single database backup</a></li>
+        <li><a href="#all-databases-backup">All-databases backup</a></li>
       </ul>
     </li>
-    <li><a href="#mixed-storage-engines">Mixed Storage Engines</a></li>
-    <li><a href="#best-practices">Best Practices</a>
+    <li><a href="#considerations">Considerations</a>
       <ul>
-        <li><a href="#credentials">Credentials</a></li>
+        <li><a href="#mysql-vs-mariadb-binaries">MySQL vs MariaDB binaries</a></li>
+        <li><a href="#innodb-and-myisam">InnoDB and MyISAM</a></li>
+        <li><a href="#gtids">GTIDs</a></li>
+        <li><a href="#user-and-grant-migration">User and grant migration</a></li>
         <li><a href="#compression">Compression</a></li>
-        <li><a href="#storage-engines">Storage Engines</a></li>
+        <li><a href="#kloset-store-location">Kloset store location</a></li>
       </ul>
     </li>
+    <li><a href="#see-also">See also</a></li>
   </ul>
 </nav>
     </div>
@@ -10123,78 +10135,334 @@ function siteSearch() {
                 
                 <div class="relative docs-content font-prose prose text-base w-full max-w-full ps-8 pe-2 md:pe-8">
                     <p><em>Last reviewed: 
-2026-02-11
+2026-04-13
  / Plakar 
 v1.1.0
 </em></p>
 <h2 id="overview">Overview</h2>
-<p>Logical backups export database structure (<code>CREATE DATABASE</code>, <code>CREATE TABLE</code>) and content (<code>INSERT</code> statements) using <code>mysqldump</code>. These backups are machine-independent and portable across MySQL versions and architectures.</p>
-<p>For a deeper understanding of logical backups and MySQL backup strategies, we recommend reading the <a href="https://dev.mysql.com/doc/refman/8.0/en/mysqldump.html">official MySQL documentation on mysqldump</a>.</p>
-<h2 id="prerequisites">Prerequisites</h2>
+<p>The Plakar MySQL integration uses <code>mysqldump</code> (MySQL) or <code>mariadb-dump</code> (MariaDB) to produce logical backups. These are standard SQL files that are portable, human-readable, and restorable without Plakar if needed.</p>
+<p>Two URI schemes map to independent sets of binaries:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Protocol</th>
+          <th>Target</th>
+          <th>Dump tool</th>
+          <th>Restore tool</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>mysql://</code></td>
+          <td>MySQL 5.7 / 8.x</td>
+          <td><code>mysqldump</code></td>
+          <td><code>mysql</code></td>
+      </tr>
+      <tr>
+          <td><code>mysql+mariadb://</code></td>
+          <td>MariaDB 10.x / 11.x</td>
+          <td><code>mariadb-dump</code></td>
+          <td><code>mariadb</code></td>
+      </tr>
+  </tbody>
+</table>
+<p>For a deeper understanding of logical backups and MySQL backup strategies, refer to the <a href="https://dev.mysql.com/doc/refman/8.0/en/mysqldump.html">official MySQL documentation on mysqldump</a>.</p>
+<h2 id="requirements">Requirements</h2>
 <ul>
-<li>Running MySQL server</li>
-<li>MySQL credentials with dump privileges</li>
-<li><code>mysqldump</code> and <code>mysql</code> utilities installed</li>
+<li>A running MySQL or MariaDB server.</li>
+<li>A database user with sufficient privileges (see <a href="/docs/main/guides/mysql/sqldump/#required-privileges">Required privileges</a>).</li>
+<li><code>mysqldump</code> and <code>mysql</code> in <code>$PATH</code> for MySQL, or <code>mariadb-dump</code> and <code>mariadb</code> for MariaDB.</li>
 </ul>
-<h2 id="configure-credentials">Configure Credentials</h2>
-<p>Set environment variables to avoid exposing credentials on command line:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">MYSQL_HOST</span><span class="o">=</span>xxxx
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">MYSQL_TCP_PORT</span><span class="o">=</span><span class="m">3306</span>
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">MYSQL_USER</span><span class="o">=</span>xxxx
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">MYSQL_PWD</span><span class="o">=</span>xxxx
-</span></span></code></pre></div><h2 id="back-up-single-database">Back Up Single Database</h2>
-<h3 id="basic-backup">Basic backup</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mysqldump &lt;dbname&gt; <span class="p">|</span> plakar at /var/backups backup stdin:dump.sql
-</span></span></code></pre></div><h3 id="innodb-with-all-objects-recommended">InnoDB with all objects (recommended)</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mysqldump --single-transaction <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --routines <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --triggers <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --events <span class="se">\
-</span></span></span><span class="line"><span class="cl">  &lt;dbname&gt; <span class="p">|</span> plakar at /var/backups backup stdin:dump.sql
-</span></span></code></pre></div><p>Options:</p>
-<ul>
-<li><code>--single-transaction</code>: Consistent snapshot without locking tables (InnoDB)</li>
-<li><code>--routines</code>: Include stored procedures and functions</li>
-<li><code>--triggers</code>: Include table triggers</li>
-<li><code>--events</code>: Include scheduled events</li>
-</ul>
-<h2 id="back-up-all-databases">Back Up All Databases</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mysqldump --all-databases <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --single-transaction <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --routines <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --triggers <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --events <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --set-gtid-purged<span class="o">=</span>OFF <span class="p">|</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl">  plakar at /var/backups backup stdin:all_databases.sql
-</span></span></code></pre></div><p>The <code>--set-gtid-purged=OFF</code> option improves portability across MySQL configurations.</p>
-<h2 id="restore-database">Restore Database</h2>
-<h3 id="single-database">Single database</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">plakar at /var/backups cat &lt;SNAPSHOT_ID&gt;:dump.sql <span class="p">|</span> mysql &lt;dbname&gt;
-</span></span></code></pre></div><h3 id="all-databases">All databases</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">plakar at /var/backups cat &lt;SNAPSHOT_ID&gt;:all_databases.sql <span class="p">|</span> mysql
-</span></span></code></pre></div><p>List snapshots:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">plakar at /var/backups ls
-</span></span></code></pre></div><h2 id="mixed-storage-engines">Mixed Storage Engines</h2>
-<p>For databases using both InnoDB and MyISAM, use <code>--lock-all-tables</code>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mysqldump --all-databases --lock-all-tables <span class="p">|</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl">  plakar at /var/backups backup stdin:dump.sql
-</span></span></code></pre></div><p>This blocks all write operations during the dump.</p>
-<h2 id="best-practices">Best Practices</h2>
-<h3 id="credentials">Credentials</h3>
-<ul>
-<li>Use environment variables or <code>~/.my.cnf</code></li>
-<li>Never pass passwords with <code>-p&lt;password&gt;</code> on command line (exposes in process listings)</li>
-</ul>
+<h3 id="install-the-package">Install the package</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar pkg add mysql
+</span></span></code></pre></div><h2 id="what-gets-stored-in-a-snapshot">What gets stored in a snapshot</h2>
+<table>
+  <thead>
+      <tr>
+          <th>File</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>/manifest.json</code></td>
+          <td>Server metadata: version, configuration, databases, tables, routines, triggers, events.</td>
+      </tr>
+      <tr>
+          <td><code>/&lt;database&gt;.sql</code></td>
+          <td>Single-database dump (when <code>database</code> is specified).</td>
+      </tr>
+      <tr>
+          <td><code>/all.sql</code></td>
+          <td>Full-server dump (when <code>database</code> is omitted).</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="back-up-a-single-database">Back up a single database</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># MySQL</span>
+</span></span><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add mydb mysql://dbuser:secret@db.example.com/mydb
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups backup @mydb
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># MariaDB</span>
+</span></span><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add mydb mysql+mariadb://dbuser:secret@db.example.com/mydb
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups backup @mydb
+</span></span></code></pre></div><h2 id="back-up-all-databases">Back up all databases</h2>
+<p>Omit the database name from the URI to use <code>--all-databases</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># MySQL</span>
+</span></span><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add alldb mysql://root:secret@db.example.com
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups backup @alldb
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># MariaDB</span>
+</span></span><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add alldb mysql+mariadb://root:secret@db.example.com
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups backup @alldb
+</span></span></code></pre></div><h2 id="restore-a-single-database">Restore a single database</h2>
+<p>The target database must already exist:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar destination add mydbdst mysql://dbuser:secret@target.example.com/mydb
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups restore -to @mydbdst &lt;snapshot_id&gt;
+</span></span></code></pre></div><p>To have Plakar create the database automatically, set <code>create_db=true</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar destination add mydbdst mysql://dbuser:secret@target.example.com/mydb <span class="se">\
+</span></span></span><span class="line"><span class="cl">    <span class="nv">create_db</span><span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups restore -to @mydbdst &lt;snapshot_id&gt;
+</span></span></code></pre></div><h2 id="restore-all-databases">Restore all databases</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar destination add mydbdst mysql://root:secret@target.example.com
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups restore -to @mydbdst &lt;snapshot_id&gt;
+</span></span></code></pre></div><h2 id="list-snapshots">List snapshots</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar at /var/backups ls
+</span></span></code></pre></div><h2 id="source-options">Source options</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Option</th>
+          <th>Default</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>location</code></td>
+          <td>—</td>
+          <td>Connection URI: <code>mysql://[user[:password]@]host[:port][/database]</code></td>
+      </tr>
+      <tr>
+          <td><code>host</code></td>
+          <td><code>127.0.0.1</code></td>
+          <td>Server hostname. Overrides the URI host.</td>
+      </tr>
+      <tr>
+          <td><code>port</code></td>
+          <td><code>3306</code></td>
+          <td>Server port. Overrides the URI port.</td>
+      </tr>
+      <tr>
+          <td><code>username</code></td>
+          <td>—</td>
+          <td>Username. Overrides the URI user.</td>
+      </tr>
+      <tr>
+          <td><code>password</code></td>
+          <td>—</td>
+          <td>Password. Overrides the URI password. Passed via <code>MYSQL_PWD</code>, never on the command line.</td>
+      </tr>
+      <tr>
+          <td><code>database</code></td>
+          <td>—</td>
+          <td>Database to back up. Overrides the URI path. If omitted, all databases are backed up.</td>
+      </tr>
+      <tr>
+          <td><code>single_transaction</code></td>
+          <td><code>true</code></td>
+          <td>Use <code>--single-transaction</code> for a lock-free InnoDB snapshot.</td>
+      </tr>
+      <tr>
+          <td><code>routines</code></td>
+          <td><code>true</code></td>
+          <td>Include stored procedures and functions.</td>
+      </tr>
+      <tr>
+          <td><code>events</code></td>
+          <td><code>true</code></td>
+          <td>Include event scheduler events.</td>
+      </tr>
+      <tr>
+          <td><code>triggers</code></td>
+          <td><code>true</code></td>
+          <td>Include triggers.</td>
+      </tr>
+      <tr>
+          <td><code>no_data</code></td>
+          <td><code>false</code></td>
+          <td>Dump schema only, no data.</td>
+      </tr>
+      <tr>
+          <td><code>no_create_info</code></td>
+          <td><code>false</code></td>
+          <td>Dump data only, no schema.</td>
+      </tr>
+      <tr>
+          <td><code>no_tablespaces</code></td>
+          <td><code>true</code></td>
+          <td>Suppress tablespace statements.</td>
+      </tr>
+      <tr>
+          <td><code>hex_blob</code></td>
+          <td><code>false</code></td>
+          <td>Encode BINARY/BLOB columns as hex.</td>
+      </tr>
+      <tr>
+          <td><code>ssl_mode</code></td>
+          <td>—</td>
+          <td>TLS mode: <code>disabled</code>, <code>preferred</code>, <code>required</code>, <code>verify_ca</code>, <code>verify_identity</code>.</td>
+      </tr>
+      <tr>
+          <td><code>ssl_cert</code></td>
+          <td>—</td>
+          <td>Path to the client SSL certificate (PEM).</td>
+      </tr>
+      <tr>
+          <td><code>ssl_key</code></td>
+          <td>—</td>
+          <td>Path to the client SSL private key (PEM).</td>
+      </tr>
+      <tr>
+          <td><code>ssl_ca</code></td>
+          <td>—</td>
+          <td>Path to the CA certificate (PEM).</td>
+      </tr>
+      <tr>
+          <td><code>mysql_bin_dir</code></td>
+          <td>—</td>
+          <td>Directory containing MySQL binaries. MySQL only.</td>
+      </tr>
+      <tr>
+          <td><code>column_statistics</code></td>
+          <td><code>true</code></td>
+          <td>Query <code>COLUMN_STATISTICS</code>. Set to <code>false</code> when using mysqldump 8.0 against MySQL 5.7. MySQL only.</td>
+      </tr>
+      <tr>
+          <td><code>set_gtid_purged</code></td>
+          <td><code>AUTO</code></td>
+          <td>GTID mode: <code>AUTO</code>, <code>ON</code>, or <code>OFF</code>. MySQL only.</td>
+      </tr>
+      <tr>
+          <td><code>mariadb_bin_dir</code></td>
+          <td>—</td>
+          <td>Directory containing MariaDB binaries. MariaDB only.</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="destination-options">Destination options</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Option</th>
+          <th>Default</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>location</code></td>
+          <td>—</td>
+          <td>Connection URI: <code>mysql://[user[:password]@]host[:port][/database]</code></td>
+      </tr>
+      <tr>
+          <td><code>host</code></td>
+          <td><code>127.0.0.1</code></td>
+          <td>Server hostname. Overrides the URI host.</td>
+      </tr>
+      <tr>
+          <td><code>port</code></td>
+          <td><code>3306</code></td>
+          <td>Server port. Overrides the URI port.</td>
+      </tr>
+      <tr>
+          <td><code>username</code></td>
+          <td>—</td>
+          <td>Username. Overrides the URI user.</td>
+      </tr>
+      <tr>
+          <td><code>password</code></td>
+          <td>—</td>
+          <td>Password. Overrides the URI password.</td>
+      </tr>
+      <tr>
+          <td><code>database</code></td>
+          <td>—</td>
+          <td>Target database. Inferred from the dump filename if omitted.</td>
+      </tr>
+      <tr>
+          <td><code>create_db</code></td>
+          <td><code>false</code></td>
+          <td>Issue <code>CREATE DATABASE IF NOT EXISTS</code> before restoring.</td>
+      </tr>
+      <tr>
+          <td><code>force</code></td>
+          <td><code>false</code></td>
+          <td>Continue on SQL errors during restore.</td>
+      </tr>
+      <tr>
+          <td><code>ssl_mode</code></td>
+          <td>—</td>
+          <td>TLS mode (same values as source).</td>
+      </tr>
+      <tr>
+          <td><code>ssl_cert</code></td>
+          <td>—</td>
+          <td>Path to the client SSL certificate (PEM).</td>
+      </tr>
+      <tr>
+          <td><code>ssl_key</code></td>
+          <td>—</td>
+          <td>Path to the client SSL private key (PEM).</td>
+      </tr>
+      <tr>
+          <td><code>ssl_ca</code></td>
+          <td>—</td>
+          <td>Path to the CA certificate (PEM).</td>
+      </tr>
+      <tr>
+          <td><code>mysql_bin_dir</code></td>
+          <td>—</td>
+          <td>Directory containing the <code>mysql</code> binary. MySQL only.</td>
+      </tr>
+      <tr>
+          <td><code>mariadb_bin_dir</code></td>
+          <td>—</td>
+          <td>Directory containing the <code>mariadb</code> binary. MariaDB only.</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="required-privileges">Required privileges</h2>
+<h3 id="single-database-backup">Single database backup</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="p">,</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="k">VIEW</span><span class="p">,</span><span class="w"> </span><span class="k">TRIGGER</span><span class="p">,</span><span class="w"> </span><span class="n">EVENT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">mydb</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;backup&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">GRANT</span><span class="w"> </span><span class="n">PROCESS</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;backup&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>With <code>single_transaction=true</code> (default), <code>LOCK TABLES</code> is not required for InnoDB tables.</p>
+<h3 id="all-databases-backup">All-databases backup</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="p">,</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="k">VIEW</span><span class="p">,</span><span class="w"> </span><span class="k">TRIGGER</span><span class="p">,</span><span class="w"> </span><span class="k">LOCK</span><span class="w"> </span><span class="n">TABLES</span><span class="p">,</span><span class="w"> </span><span class="n">EVENT</span><span class="p">,</span><span class="w"> </span><span class="n">RELOAD</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;backup&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">GRANT</span><span class="w"> </span><span class="n">PROCESS</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;backup&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><h2 id="considerations">Considerations</h2>
+<h3 id="mysql-vs-mariadb-binaries">MySQL vs MariaDB binaries</h3>
+<p>Always use binaries that match your server. On Debian and Ubuntu, <code>apt install default-mysql-client</code> installs MariaDB&rsquo;s <code>mysqldump</code> by default. MariaDB&rsquo;s <code>mysqldump</code> is not compatible with MySQL 8 for all-databases backups and will produce dumps that fail to restore.</p>
+<p>Verify you have the correct binary:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ mysqldump --version
+</span></span><span class="line"><span class="cl"><span class="c1"># MySQL:   mysqldump  Ver 8.x Distrib 8.x, for Linux (x86_64)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># MariaDB: mysqldump from 11.x.x-MariaDB ...</span>
+</span></span></code></pre></div><p>If both are installed, point the integration to the correct directory using <code>mysql_bin_dir</code>.</p>
+<h3 id="innodb-and-myisam">InnoDB and MyISAM</h3>
+<p><code>single_transaction</code> (enabled by default) produces a consistent InnoDB snapshot without locking tables. For databases with MyISAM tables, <code>single_transaction</code> does not prevent locks on those tables. If you need a consistent backup across MyISAM tables, set <code>single_transaction=false</code> to use <code>--lock-all-tables</code> instead, accepting write locks during the dump.</p>
+<h3 id="gtids">GTIDs</h3>
+<p>When the server has GTIDs enabled, the dump includes <code>SET @@GLOBAL.GTID_PURGED</code> statements that will cause restore to fail on a server that already has GTID history. Set <code>set_gtid_purged=OFF</code> on the source to omit GTID information, or run <code>RESET MASTER</code> on the target before restoring.</p>
+<h3 id="user-and-grant-migration">User and grant migration</h3>
+<p>Single-database backups do not include user accounts or grants. To migrate users, use an all-databases backup, export grants manually with a tool like <code>pt-show-grants</code>, or recreate accounts manually on the target.</p>
 <h3 id="compression">Compression</h3>
+<p>Do not enable compression at the dump level. Plakar deduplicates and compresses data automatically. Pre-compressed dumps reduce deduplication effectiveness across snapshots.</p>
+<h3 id="kloset-store-location">Kloset store location</h3>
+<p>The examples above use <code>/var/backups</code> as the Kloset store. Any supported store backend can be used instead. See <a href="/docs/main/guides/create-kloset-repository/">Create a Kloset store</a> for details.</p>
+<h2 id="see-also">See also</h2>
 <ul>
-<li>Do not compress dumps manually</li>
-<li>Plakar automatically deduplicates and compresses data</li>
-<li>Pre-compressed dumps prevent effective deduplication</li>
-</ul>
-<h3 id="storage-engines">Storage Engines</h3>
-<ul>
-<li>Use <code>--single-transaction</code> for InnoDB (default since MySQL 5.5)</li>
-<li>Use <code>--lock-all-tables</code> for mixed InnoDB/MyISAM environments</li>
+<li><a href="https://github.com/PlakarKorp/integration-mysql">MySQL integration on GitHub</a></li>
+<li><a href="https://dev.mysql.com/doc/refman/8.0/en/mysqldump.html">Official mysqldump documentation</a></li>
+<li><a href="https://mariadb.com/kb/en/mariadb-dump/">Official mariadb-dump documentation</a></li>
 </ul>
 
                 </div>
