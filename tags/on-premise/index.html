@@ -2378,6 +2378,16 @@ function siteSearch() {
   <h1>On-Premise</h1>
   
   
+    <h2><a href="/integrations/etcd/">etcd</a></h2>
+    <h2 id="why-protecting-etcd-matters">Why protecting etcd matters</h2>
+<p>etcd stores the entire state of a distributed system, e.g. in a Kubernetes cluster, that means every workload, configuration, secret, and policy. Its built-in replication handles partial failures well, but it has limits:</p>
+<ul>
+<li><strong>Quorum loss</strong>: If too many nodes fail at once, etcd cannot recover without external intervention. Without a snapshot, the cluster state is gone.</li>
+<li><strong>Logical corruption</strong>: A bad write, a botched upgrade, or a misconfigured operator can corrupt cluster state in ways that replication spreads rather than prevents.</li>
+<li><strong>No point-in-time recovery</strong>: etcd does not natively provide a way to roll back to an earlier known-good state. Without snapshots, there is no recovery point to return to.</li>
+</ul>
+<p>For any system that relies on etcd, an independent backup is the last line of defense.</p>
+  
     <h2><a href="/integrations/mysql/">MySQL / MariaDB</a></h2>
     <h2 id="why-protecting-mysql-and-mariadb-data-matters">Why protecting MySQL and MariaDB data matters</h2>
 <p>MySQL and MariaDB handle storage-level durability well, but they offer no protection against the most common causes of real data loss:</p>

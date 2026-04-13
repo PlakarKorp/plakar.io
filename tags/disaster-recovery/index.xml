@@ -6,8 +6,15 @@
     <description>Recent content in Disaster Recovery on Plakar | The Open Standard for Backup and Restore</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 30 Jul 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 02 Apr 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.plakar.io/tags/disaster-recovery/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>etcd</title>
+      <link>https://www.plakar.io/integrations/etcd/</link>
+      <pubDate>Thu, 02 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.plakar.io/integrations/etcd/</guid>
+      <description>&lt;h2 id=&#34;why-protecting-etcd-matters&#34;&gt;Why protecting etcd matters&lt;/h2&gt;&#xA;&lt;p&gt;etcd stores the entire state of a distributed system, e.g. in a Kubernetes cluster, that means every workload, configuration, secret, and policy. Its built-in replication handles partial failures well, but it has limits:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Quorum loss&lt;/strong&gt;: If too many nodes fail at once, etcd cannot recover without external intervention. Without a snapshot, the cluster state is gone.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Logical corruption&lt;/strong&gt;: A bad write, a botched upgrade, or a misconfigured operator can corrupt cluster state in ways that replication spreads rather than prevents.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;No point-in-time recovery&lt;/strong&gt;: etcd does not natively provide a way to roll back to an earlier known-good state. Without snapshots, there is no recovery point to return to.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;For any system that relies on etcd, an independent backup is the last line of defense.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>MinIO integration</title>
       <link>https://www.plakar.io/docs/v1.0.5/integrations/minio/</link>
