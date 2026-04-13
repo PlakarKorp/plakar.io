@@ -19,7 +19,17 @@ $ plakar pkg list
 
 ### Pre-built package
 
-Install a package by name from the official plugin registry, (e.g s3 integration):
+Pre-built packages are hosted on Plakar's infrastructure and require you to be logged in to download them. If you are not logged in, `plakar pkg add` will fail with an authentication error.
+
+To log in:
+
+```bash
+$ plakar login
+```
+
+For CI pipelines or automated environments where interactive login is not possible, see [Logging In to Plakar](../../guides/logging-in-to-plakar/#non-interactive-login).
+
+Once logged in, install a package by name from the official plugin registry (e.g. the S3 integration):
 
 ```bash
 $ plakar pkg add s3
@@ -31,17 +41,19 @@ To install a specific version:
 $ plakar pkg add s3@v1.0.0
 ```
 
-**Note:** Fetching pre-built packages requires a Plakar account. See [Logging In to Plakar](../../guides/logging-in-to-plakar/).
+### Building from source
 
-### Local archive
+If you are not logged in or prefer not to use pre-built packages, you can build packages locally with `plakar pkg build`. This does not require a Plakar account but does require a working Go toolchain and `make`.
 
-If you built the package from source or have a `.ptar` file on hand, pass the path directly:
+```bash
+$ plakar pkg build s3
+```
+
+On success, a `.ptar` archive is generated in the current directory. Install it with:
 
 ```bash
 $ plakar pkg add ./s3_v1.0.0_darwin_arm64.ptar
 ```
-
-This does not require a Plakar account.
 
 ## Upgrade a package
 

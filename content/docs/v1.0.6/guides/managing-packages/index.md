@@ -19,13 +19,21 @@ $ plakar pkg list
 
 ### Pre-built package
 
-Install a package by name from the official plugin registry, (e.g s3 integration):
+Pre-built packages are hosted on Plakar's infrastructure and require you to be logged in to download them. To log in:
+
+```bash
+$ plakar login
+```
+
+{{% notice style="warning" title="Passphrase" expanded="true" %}}
+In v1.0.6 and below, only interactive login is supported. Non-interactive and token-based login are available from v1.1.0 and above.
+{{% /notice %}}
+
+Once logged in, install a package by name from the official plugin registry (e.g. the S3 integration):
 
 ```bash
 $ plakar pkg add s3
 ```
-
-**Note:** Fetching pre-built packages requires a Plakar account. See [Logging In to Plakar](../../guides/logging-in-to-plakar/).
 
 ### Local archive
 
