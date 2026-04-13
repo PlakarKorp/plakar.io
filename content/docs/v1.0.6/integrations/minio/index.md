@@ -27,11 +27,9 @@ The S3 integration allows Plakar to interact with MinIO buckets through the stan
 * Replicating data between MinIO environments using `plakar sync`.
 * Migrating data between MinIO and other S3-compatible providers.
 
----
-
 ## Installation
 
-To interact with MinIO, you need to install the S3 Plakar package. It can be installed either by downloading a pre-built package or by building it from source.
+To interact with MinIO, you need to install the S3 Plakar package.
 
 {{< tabs name="Installation Methods" >}}
 {{% tab name="Pre-built package" %}}
@@ -79,26 +77,9 @@ Verify the installation:
 $ plakar pkg list
 ```
 {{< /tab >}}
-
-{{% tab name="Reinstalling or upgrading" %}}
-To check whether the S3 package is already installed:
-
-```bash
-$ plakar pkg list
-```
-
-To upgrade to the latest available version, remove the existing package and reinstall it:
-
-```bash
-$ plakar pkg rm s3
-$ plakar pkg add s3
-```
-
-This preserves existing store, source, and destination configurations.
-{{< /tab >}}
 {{< /tabs >}}
 
----
+To list, upgrade, or remove the package, see [managing packages guide](../../guides/managing-packages/).
 
 ## Connectors
 
