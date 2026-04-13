@@ -23,8 +23,6 @@ The Kubernetes integration backs up cluster resources and persistent volumes. It
 * Incident investigation by browsing cluster state at a point in time.
 * Persistent volume backup and cross-environment data portability.
 
----
-
 ## Installation
 
 {{< tabs name="Installation Methods" >}}
@@ -62,25 +60,9 @@ Verify the installation:
 $ plakar pkg list
 ```
 {{% /tab %}}
-
-{{% tab name="Reinstalling or upgrading" %}}
-To check installed packages:
-
-```bash
-$ plakar pkg list
-```
-
-To upgrade, remove and reinstall:
-
-```bash
-$ plakar pkg rm k8s && plakar pkg add k8s
-```
-
-Existing configurations are preserved during upgrade.
-{{% /tab %}}
 {{< /tabs >}}
 
----
+To list, upgrade, or remove the package, see [managing packages guide](../../guides/managing-packages/).
 
 ## Manifest backup and restore
 
