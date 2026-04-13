@@ -26,8 +26,6 @@ The Rclone integration package for Plakar provides three connectors:
 * Long-term archiving and disaster recovery
 * Portable export and vendor escape to other platforms
 
----
-
 ## Installation
 
 To interact with iCloud Drive, you need to install the Rclone Plakar package. It can be installed either by downloading a pre-built package or by building it from source.
@@ -77,26 +75,9 @@ Verify the installation:
 $ plakar pkg list
 ```
 {{< /tab >}}
-
-{{% tab name="Reinstalling or upgrading" %}}
-To check whether the Rclone package is already installed:
-
-```bash
-$ plakar pkg list
-```
-
-To upgrade to the latest available version, remove the existing package and reinstall it:
-
-```bash
-$ plakar pkg rm rclone
-$ plakar pkg add rclone
-```
-
-This preserves existing store, source, and destination configurations.
-{{< /tab >}}
 {{< /tabs >}}
 
----
+To list, upgrade, or remove the package, see [managing packages guide](../../guides/managing-packages/).
 
 ## Generate Rclone configuration
 

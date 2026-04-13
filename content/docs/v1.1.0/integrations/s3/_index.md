@@ -60,22 +60,9 @@ Verify installation:
 $ plakar pkg list
 ```
 {{< /tab >}}
-
-{{% tab name="Reinstalling or upgrading" %}}
-Check if the S3 package is installed:
-```bash
-$ plakar pkg list
-```
-
-To upgrade to the latest available version, remove the existing package and reinstall it:
-```bash
-$ plakar pkg rm s3
-$ plakar pkg add s3
-```
-
-Existing configurations (stores, sources, destinations) are preserved during upgrade.
-{{< /tab >}}
 {{< /tabs >}}
+
+To list, upgrade, or remove the package, see [managing packages guide](../../guides/managing-packages/).
 
 ## Configuration
 
