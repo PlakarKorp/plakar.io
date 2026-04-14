@@ -1,5 +1,8 @@
 <!-- JS: assets/js/docs/main.js -->
 
+{{ $isOSSDocs := strings.HasPrefix .RelPermalink "/docs" }}
+{{ $isEnterprise := strings.HasPrefix .RelPermalink "/enterprise-docs" }}
+
 {{ with .TableOfContents }}
   <nav class="toc docs-font sticky top-24 text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
@@ -11,7 +14,7 @@
       {{ with $.File }}
         <div class="border-t border-neutral-200 mt-4 pt-4">
           <a href="{{ $.Site.Params.docs.docsRepo }}/edit/main/content/{{ .Path }}" target="_blank"
-            class="flex items-center gap-2 text-xs text-neutral-400">
+            class="flex items-center gap-2 text-xs hover:underline">
             Edit this page on GitHub
             <span class="w-3 h-3 -mt-1 flex items-center justify-center">
               {{ partial "icon.html" "ri/external-link-line" }}
@@ -19,6 +22,26 @@
           </a>
         </div>
       {{ end }}
+    {{ end }}
+
+    {{ if or $isEnterprise $isOSSDocs }}
+      <div class="mt-3">
+        {{ if $isEnterprise }}
+          <a href="/docs" class="flex items-center gap-2 text-xs hover:underline">
+            Open Source docs
+            <span class="w-3 h-3 -mt-1 flex items-center justify-center">
+              {{ partial "icon.html" "ri/external-link-line" }}
+            </span>
+          </a>
+        {{ else }}
+          <a href="/enterprise-docs" class="flex items-center gap-2 text-xs hover:underline">
+            Enterprise docs
+            <span class="w-3 h-3 -mt-1 flex items-center justify-center">
+              {{ partial "icon.html" "ri/external-link-line" }}
+            </span>
+          </a>
+        {{ end }}
+      </div>
     {{ end }}
   </nav>
 {{ end }}
