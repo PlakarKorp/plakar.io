@@ -1,4 +1,4 @@
-{{ if strings.HasPrefix .RelPermalink "/docs" }}
+{{ if or (strings.HasPrefix .RelPermalink "/docs") (strings.HasPrefix .RelPermalink "/enterprise-docs") }}
   {{ partial "common/header/header-docs.html" . }}
 {{ else }}
   {{ partial "common/header/header-corporate.html" . }}

@@ -2,6 +2,13 @@
 
 {{ $logoDark := resources.Get "img/logos/plakar-logo-dark.svg" }}
 
+{{ $docsLabel := "" }}
+{{ if hasPrefix .RelPermalink "/enterprise-docs" }}
+  {{ $docsLabel = "Enterprise Docs" }}
+{{ else if hasPrefix .RelPermalink "/docs" }}
+  {{ $docsLabel = "OSS Docs" }}
+{{ end }}
+
 <header id="site-header" class="fixed flex px-2 py-2 md:px-4 top-0 inset-x-0 w-full z-50 bg-neutral-50 border-b border-neutral-300">
   <div class="flex mx-auto w-full max-w-350 justify-between relative px-2 md:px-6">
     <div class="flex items-center space-x-4">
@@ -11,7 +18,9 @@
       </a>
 
       <!-- Docs label -->
-      <span class="hidden sm:block text-sm text-neutral-400 font-medium border-l border-neutral-300 pl-4">OSS Docs</span>
+      {{ with $docsLabel }}
+        <span class="hidden sm:block text-sm text-neutral-400 font-medium border-l border-neutral-300 pl-4">{{ . }}</span>
+      {{ end }}
     </div>
 
     <div class="flex flex-row items-center space-x-2">
