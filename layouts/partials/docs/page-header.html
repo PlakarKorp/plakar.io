@@ -1,5 +1,7 @@
 <!-- JS: assets/js/docs/sidebar.js -->
 
+{{ $docsRoot := cond (strings.HasPrefix .RelPermalink "/enterprise-docs") "/enterprise-docs/" "/docs/" }}
+
 <header class="flex flex-col docs-font gap-4 mb-8">
   <div class="flex items-start gap-2">
 
@@ -11,7 +13,7 @@
     <!-- Breadcrumbs -->
     <nav class="flex items-center flex-wrap gap-1 text-sm text-neutral-400">
       {{ range .Ancestors.Reverse }}
-        {{ if and (ne .Kind "home") (ne .RelPermalink "/docs/") }}
+        {{ if and (ne .Kind "home") (ne .RelPermalink $docsRoot) }}
           <span class="inline-flex items-center gap-1">
             <a href="{{ .RelPermalink }}" class="hover:text-primary-500 transition-colors">
               {{ .Title }}
