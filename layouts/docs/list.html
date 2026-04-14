@@ -7,7 +7,7 @@
     <!-- Left sidebar (desktop) -->
     <aside class="hidden lg:block w-64 shrink-0">
       <div class="sticky top-24 overflow-y-auto max-h-[calc(100vh-6rem)]">
-        {{ partial "docs/sidebar.html" . }}
+        {{ partial "docs/sidebar.html" (dict "Page" . "docsRoot" "/docs") }}
       </div>
     </aside>
 
@@ -19,7 +19,7 @@
           <span class="w-4 h-4">{{ partial "icon.html" "ri/close-line" }}</span>
         </button>
       </div>
-      {{ partial "docs/sidebar.html" . }}
+      {{ partial "docs/sidebar.html" (dict "Page" . "docsRoot" "/docs") }}
     </aside>
 
     <!-- Main content -->

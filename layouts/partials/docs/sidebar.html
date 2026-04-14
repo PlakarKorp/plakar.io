@@ -1,7 +1,8 @@
 <!-- JS: assets/js/docs/sidebar.js -->
 
-{{ $currentPage := . }}
-{{ $docsSection := .Site.GetPage "section" "docs" }}
+{{ $currentPage := .Page }}
+{{ $docsRoot := .docsRoot | default "/docs" }}
+{{ $docsSection := .Page.Site.GetPage $docsRoot }}
 {{ $versions := $docsSection.Sections }}
 
 {{ $currentVersion := false }}
@@ -14,7 +15,7 @@
 <aside class="flex flex-col docs-font h-full gap-6">
 
   <!-- Version selector -->
-  {{ if gt (len $versions) 1 }}
+  {{ if $currentVersion }}
     <div class="relative version-selector">
       <button class="version-selector-btn w-full flex items-center justify-between px-3 py-2 border border-neutral-200 rounded-lg text-neutral-700 hover:border-neutral-300 bg-neutral-50">
         {{ if $currentVersion }}
