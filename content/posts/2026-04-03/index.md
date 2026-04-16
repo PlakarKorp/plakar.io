@@ -10,6 +10,8 @@ tags:
   - postgresql
   - database
 category: "technology"
+featured-scope:
+  - header
 ---
 
 **TL;DR:**
