@@ -29,7 +29,7 @@ The integration provides three connectors:
 
 ## Installation
 
-To interact with Dropbox, you need to install the Rclone Plakar package. It can be installed either by downloading a pre-built package or by building it from source.
+To interact with Dropbox, you need to install the Rclone Plakar package.
 
 {{< tabs >}}
   {{< tab label="Pre-built package" >}}
@@ -79,25 +79,9 @@ To interact with Dropbox, you need to install the Rclone Plakar package. It can 
   ```
   
   {{< /tab >}}
-  {{< tab label="Reinstalling or upgrading" >}}
-  
-  Check if the Rclone package is installed:
-  
-  ```bash
-  $ plakar pkg list
-  ```
-  
-  To upgrade to the latest available version, remove the existing package and reinstall it:
-  
-  ```bash
-  $ plakar pkg rm rclone
-  $ plakar pkg add rclone
-  ```
-  
-  Existing configurations (stores, sources, destinations) are preserved during upgrade.
-  
-  {{< /tab >}}
 {{< /tabs >}}
+
+To list, upgrade, or remove the package, see [managing packages guide](../../guides/managing-packages/).
 
 ## Generate Rclone configuration
 

@@ -31,7 +31,7 @@ The Rclone integration package for Plakar provides three connectors:
 
 ## Installation
 
-To interact with OneDrive, you need to install the Rclone Plakar package. It can be installed either by downloading a pre-built package or by building it from source.
+To interact with OneDrive, you need to install the Rclone Plakar package.
 
 {{< tabs >}}
   {{< tab label="Pre-built package" >}}
@@ -81,25 +81,9 @@ To interact with OneDrive, you need to install the Rclone Plakar package. It can
   ```
   
   {{< /tab >}}
-  {{< tab label="Reinstalling or upgrading" >}}
-  
-  Check if the Rclone package is installed:
-  
-  ```bash
-  $ plakar pkg list
-  ```
-  
-  To upgrade to the latest available version, remove the existing package and reinstall it:
-  
-  ```bash
-  $ plakar pkg rm rclone
-  $ plakar pkg add rclone
-  ```
-  
-  Existing configurations (stores, sources, destinations) are preserved during upgrade.
-  
-  {{< /tab >}}
 {{< /tabs >}}
+
+To list, upgrade, or remove the package, see [managing packages guide](../../guides/managing-packages/).
 
 ## Generate Rclone configuration
 
@@ -118,7 +102,7 @@ For Rclone v1.72.1, the configuration flow is as follows:
 2. Name the remote (e.g., `mydrive`).
 3. Enter the number corresponding to "Microsoft OneDrive" from the list of supported storage providers.
 4. Leave client_id and client_secret empty to use Rclone's defaults, or provide your own if you have them.
-5. Select your region (usually "Microsoft Cloud Global")  .
+5. Select your region (usually "Microsoft Cloud Global").
 6. Enter service principal's tenant ID if applicable, or leave empty.
 7. Stay with the current settings, and do not edit advanced config.
 8. Choose to open the browser for authentication.
@@ -227,7 +211,7 @@ $ rclone config show | plakar source import -rclone mydrive
 # Back up the remote directory to the Kloset store on the filesystem
 $ plakar at /var/backups backup "@mydrive"
 
-# Or back up the remote directory to a Kloset store configure with "plakar store add"
+# Or back up the remote directory to a Kloset store configured with "plakar store add"
 $ plakar at "@store" backup "@mydrive"
 ```
 

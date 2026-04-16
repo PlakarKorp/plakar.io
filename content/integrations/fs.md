@@ -13,7 +13,7 @@ technology_description: >
 
   Accidental deletions, disk failures, malware, and human error can permanently destroy data in seconds.
 
-  Plakar makes filesystems verifiable, immutable backup sources by creating encrypted point-in-time snapshots snapshots that provide a reliable recovery point in case of data loss or corruption.
+  Plakar makes filesystems verifiable, immutable backup sources by creating encrypted point-in-time snapshots that provide a reliable recovery point in case of data loss or corruption.
 
 categories:
   - source connector

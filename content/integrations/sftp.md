@@ -61,7 +61,7 @@ image: img/integrations/sftp.png
 
 SFTP is a standard for secure file transfers across Linux servers, BSD hosts, and NAS devices like Synology and QNAP. However, secure transfer is not the same as a backup strategy.
 
-While SFTP secures the data in transit, it does not protect the data once it arrives to where you want to store it. Standard SFTP setups face several risks:
+While SFTP secures the data in transit, it does not protect the data once it arrives where you want to store it. Standard SFTP setups face several risks:
 
 - **Lack of Versioning**: Files can be overwritten or deleted immediately after upload.
 - **No Immutability**: There are no permanent snapshots to revert to if a file is corrupted.
