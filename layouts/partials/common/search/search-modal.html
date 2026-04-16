@@ -8,7 +8,7 @@
 <div id="search-modal" class="hidden fixed inset-0 z-100" role="dialog" aria-modal="true" aria-label="Search site">
   <div id="search-backdrop" class="absolute inset-0 bg-neutral-900/30 backdrop-blur-[2px]"></div>
   <div class="relative z-10 flex items-start justify-center pt-[8vh] px-4 pointer-events-none">
-    <div id="search-panel" class="pointer-events-auto bg-white rounded-xl shadow-2xl w-full max-w-[680px] max-h-[75vh] flex flex-col overflow-hidden ring-1 ring-neutral-200">
+    <div id="search-panel" class="pointer-events-auto bg-white rounded-xl shadow-2xl w-full max-w-170 max-h-[75vh] flex flex-col overflow-hidden ring-1 ring-neutral-200">
 
       <div class="flex items-center gap-3 px-5 py-4 border-b border-neutral-200">
         <span class="w-5 h-5 text-neutral-400 shrink-0">{{ partial "icon.html" "ri/search-line" }}</span>
@@ -25,7 +25,6 @@
           <option value="Docs">Documentation</option>
           <option value="Blog">Blog</option>
           <option value="Integrations">Integrations</option>
-          <option value="Pages">Pages</option>
         </select>
 
         <div id="search-version-wrap" class="hidden items-center gap-2">
