@@ -73,25 +73,9 @@ The Notion package can be installed using pre-built binaries or compiled from so
   ```
   
   {{< /tab >}}
-  {{< tab label="Reinstalling or upgrading" >}}
-  
-  Check if the Notion package is installed:
-  
-  ```bash
-  $ plakar pkg list
-  ```
-  
-  To upgrade to the latest available version, remove the existing package and reinstall it:
-  
-  ```bash
-  $ plakar pkg rm notion
-  $ plakar pkg add notion
-  ```
-  
-  Existing configurations (stores, sources, destinations) are preserved during upgrade.
-  
-  {{< /tab >}}
 {{< /tabs >}}
+
+To list, upgrade, or remove the package, see [managing packages guide](../../guides/managing-packages/).
 
 ## Notion API Setup
 

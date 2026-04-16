@@ -31,7 +31,7 @@ The integration provides two connectors:
 
 ## Installation
 
-The Proxmox integration is distributed as a Plakar package. It can be installed either by downloading a pre-built package or by building it from source.
+The Proxmox integration is distributed as a Plakar package.
 
 {{< tabs >}}
   {{< tab label="Pre-built package" >}}
@@ -81,26 +81,9 @@ The Proxmox integration is distributed as a Plakar package. It can be installed 
   ```
   
   {{< /tab >}}
-  {{< tab label="Reinstalling or upgrading" >}}
-  
-  Check if the Proxmox package is installed:
-  
-  ```bash
-  $ plakar pkg list
-  ```
-  
-  To upgrade to the latest available version, remove the existing package and reinstall it:
-  
-  ```bash
-  $ plakar pkg rm proxmox
-  $ plakar pkg add proxmox
-  ```
-  
-  Existing configurations (stores, sources, destinations) are preserved during upgrade.
-  
-  {{< /tab >}}
 {{< /tabs >}}
 
+To list, upgrade, or remove the package, see [managing packages guide](../../guides/managing-packages/).
 
 ## Operating modes
 

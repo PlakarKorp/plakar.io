@@ -34,7 +34,7 @@ SFTP is a protocol for securely transferring files over SSH. The SFTP integratio
 
 ## Installation
 
-The SFTP integration is distributed as a Plakar package. It can be installed either by downloading a pre-built package or by building it from source.
+The SFTP integration is distributed as a Plakar package.
 
 {{< tabs >}}
   {{< tab label="Pre-built package" >}}
@@ -84,25 +84,9 @@ The SFTP integration is distributed as a Plakar package. It can be installed eit
   ```
   
   {{< /tab >}}
-  {{< tab label="Reinstalling or upgrading" >}}
-  
-  Check if the SFTP package is installed:
-  
-  ```bash
-  $ plakar pkg list
-  ```
-  
-  To upgrade to the latest available version, remove the existing package and reinstall it:
-  
-  ```bash
-  $ plakar pkg rm sftp
-  $ plakar pkg add sftp
-  ```
-  
-  Existing configurations (stores, sources, destinations) are preserved during upgrade.
-  
-  {{< /tab >}}
 {{< /tabs >}}
+
+To list, upgrade, or remove the package, see [managing packages guide](../../guides/managing-packages/).
 
 ## Connectors
 

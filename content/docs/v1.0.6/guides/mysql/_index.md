@@ -1,7 +1,7 @@
 ---
 title: "MySQL"
 date: "2026-03-18T00:00:00Z"
-weight: 8
+weight: 9
 summary: "Guides on backing up and restoring MySQL database"
 ---
 
