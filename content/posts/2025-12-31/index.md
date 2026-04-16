@@ -14,7 +14,6 @@ tags:
 category: "release-note"
 featured-scope:
   - hero-page
-  - header
 ---
 
 To celebrate this momentum on the final day of 2025, we are incredibly proud to announce the immediate availability of Plakar Enterprise for AWS. As the year draws to a close, the Plakar team looks back with immense pride on twelve months of exceptional velocity. In less than a year, we have transitioned from an ambitious vision to a proven technical reality.

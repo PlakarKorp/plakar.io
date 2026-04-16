@@ -9,6 +9,8 @@ tags:
   - integration
   - kubernetes
 category: "technology"
+featured-scope:
+  - header
 ---
 
 **TL;DR:**
