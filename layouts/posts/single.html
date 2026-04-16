@@ -97,8 +97,48 @@
         {{ .Content }}
       </div>
 
-    </article>
+      <!-- Share section -->
+      <div class="flex flex-col gap-4 border-t border-neutral-200 py-8">
+        <div class="flex flex-wrap items-center gap-3 mb-3">
+          <span class="text-base text-neutral-900">Share good vibes:</span>
+          <a href="https://bsky.app/intent/compose?text={{ .Title | urlize }}%20{{ .Permalink }}" target="_blank" class="w-7 h-7 text-primary-500">
+            {{ partial "icon.html" "bluesky" }}
+          </a>
+          <a href="https://reddit.com/submit?url={{ .Permalink }}&title={{ .Title | urlize }}" target="_blank" class="w-7 h-7 text-primary-500">
+            {{ partial "icon.html" "ri/reddit-line" }}
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ .Permalink }}" target="_blank" class="w-7 h-7 text-primary-500">
+            {{ partial "icon.html" "ri/linkedin-box-fill" }}
+          </a>
+          <a href="https://twitter.com/intent/tweet?url={{ .Permalink }}&text={{ .Title | urlize }}" target="_blank" class="w-7 h-7 text-primary-500">
+            {{ partial "icon.html" "ri/twitter-x-line" }}
+          </a>
+        </div>
 
+        <hr class="border-neutral-200">
+
+        <div class="flex flex-wrap gap-3">
+          {{ partial "components/buttons/base-button.html" (dict
+            "label" "Star us on GitHub"
+            "href" (printf "https://github.com/%s/%s" .Site.Params.github.organization .Site.Params.github.repository)
+            "target" "_blank"
+            "icon" "github"
+          ) }}
+          {{ partial "components/buttons/base-button.html" (dict
+            "label" "Join Discord"
+            "href" (printf "https://discord.gg/%s" .Site.Params.discord.inviteCode)
+            "target" "_blank"
+            "icon" "discord"
+          ) }}
+          {{ partial "components/buttons/base-button.html" (dict
+            "label" "Join Reddit"
+            "href" (printf .Site.Params.socials.reddit)
+            "target" "_blank"
+            "icon" "ri/reddit-line"
+          ) }}
+        </div>
+      </div>
+    </article>
   </div>
 </section>
 
