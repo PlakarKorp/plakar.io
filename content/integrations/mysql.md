@@ -49,8 +49,6 @@ resource_type: database
 image: img/integrations/mysql.png
 ---
 
-
-
 ## Why protecting MySQL and MariaDB data matters
 
 MySQL and MariaDB handle storage-level durability well, but they offer no protection against the most common causes of real data loss:
