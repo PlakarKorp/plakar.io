@@ -241,7 +241,7 @@ These options can be set when configuring the destination connector with `plakar
 
 | Option     | Purpose                                                             |
 | ---------- | ------------------------------------------------------------------- |
-| `location` | `sftp://[user@]host[:port]/path` of the remote directory to back up |
+| `location` | `sftp://[user@]host[:port]/path` of the remote directory to restore to |
 
 ## SSH best practices for reliability
 

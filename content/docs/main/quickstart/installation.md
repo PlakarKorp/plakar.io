@@ -9,7 +9,7 @@ summary: Install Plakar and verify your installation.
 
 > [!NOTE]+ Developer Version
 > This is the developer version of Plakar and it can only be installed from source. Only stable versions have distributed assets that can be installed using other OS specific methods
-  
+
 To build Plakar from source. You will need:
 - [Go (Golang)](https://go.dev/doc/install)
 - `make` (available by default on most Linux distributions; on macOS, install the Xcode command line tools with `xcode-select --install`; on Windows, use [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) or a tool like [GnuWin32 Make](https://gnuwin32.sourceforge.net/packages/make.htm))

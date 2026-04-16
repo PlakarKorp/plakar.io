@@ -53,7 +53,7 @@ Now, let's understand why CDC is important. In our video example, what would hap
 
 CDC stands for "Content Defined Chunking", and it is a technique that uses the content of the file to determine the size of the chunks. This means that if you add a single byte to the middle of a file, only the chunk containing that byte will be considered as changed, and only that chunk will be stored again. The rest of the file will remain unchanged. The "single byte change" in the middle of the file is obviously an example, and the same applies if you make larger changes to the file, such as adding or removing a few lines of text in a text file, or changing a few pixels in an image file.
 
-To get a better understanding of how CDC works and to know more about go-cdc-chunker, the library we open-sourced to implement CDC in Kloset, read the [go-cdc-chunker blog post](https://www.plakar.io/posts/2025-07-11/introducing-go-cdc-chunkers-chunk-and-deduplicate-everything/).
+To get a better understanding of how CDC works and to know more about go-cdc-chunker, the library we open-sourced to implement CDC in Kloset, read the [go-cdc-chunkers blog post](https://www.plakar.io/posts/2025-07-11/introducing-go-cdc-chunkers-chunk-and-deduplicate-everything/).
 
 ## Compression
 

@@ -8,7 +8,7 @@ summary: Install Plakar and verify your installation.
 # Installation
 
 > [!NOTE]+ Beta Version
-> Plakar v1.1.0 is still a beta release and it can only be installed from source. Only stable versions have distributed assests that can be installed using other OS specific methods
+> Plakar v1.1.0 is still a beta release and it can only be installed from source. Only stable versions have distributed assets that can be installed using other OS specific methods
 
 To build Plakar from source. You will need:
 - [Go (Golang)](https://go.dev/doc/install)

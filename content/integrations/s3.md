@@ -10,7 +10,7 @@ technology_title: S3 is the industry standard, but it isn't bulletproof
 
 technology_description: >
   S3-compatible storage is the backbone of the modern web, powering everything from media assets and log archives to mission-critical databases and AI training sets. While S3 offers high durability, it remains vulnerable to logical failures: accidental overwrites, compromised credentials, or misconfigured lifecycle policies. Plakar transforms S3 into a truly resilient backup ecosystem, adding a layer of 
-  cryptographic integrity, global deduplication, an independent immutability that standard object storage lacks.
+  cryptographic integrity, global deduplication, and independent immutability that standard object storage lacks.
 
 categories:
   - source connector
