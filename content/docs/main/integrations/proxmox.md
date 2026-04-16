@@ -7,7 +7,6 @@ summary: "Back up and restore Proxmox virtual machines and containers with Plaka
 
 # Proxmox
 
-
 The Proxmox integration wraps Proxmox's native `vzdump` tool to back up virtual machines and containers into a Kloset store. Plakar handles encryption, deduplication, and snapshot management on top of the archives that `vzdump` produces.
 
 The integration provides two connectors:
