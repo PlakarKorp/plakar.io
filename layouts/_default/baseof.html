@@ -23,7 +23,7 @@
   </head>
   <body>
     {{ partial "common/header/header.html" . }}
-    <main>
+    <main class="min-h-[calc(100dvh-18rem)]">
       {{ block "main" . }}{{ end }}
       <div>
         {{ partial "components/common/toast.html" . }}
