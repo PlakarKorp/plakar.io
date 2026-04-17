@@ -3,8 +3,8 @@
 {{ $logoDark := resources.Get "img/logos/plakar-logo-dark.svg" }}
 
 {{ $docsLabel := "" }}
-{{ if hasPrefix .RelPermalink "/enterprise-docs" }}
-  {{ $docsLabel = "Enterprise Docs" }}
+{{ if hasPrefix .RelPermalink "/control-plane-docs" }}
+  {{ $docsLabel = "Control Plane Docs" }}
 {{ else if hasPrefix .RelPermalink "/docs" }}
   {{ $docsLabel = "OSS Docs" }}
 {{ end }}

@@ -4,7 +4,7 @@
     <!-- Left sidebar (desktop) -->
     <aside class="hidden lg:block w-64 shrink-0">
       <div class="sticky top-24 overflow-y-auto max-h-[calc(100vh-6rem)]">
-        {{ partial "docs/sidebar.html" (dict "Page" . "docsRoot" "/enterprise-docs") }}
+        {{ partial "docs/sidebar.html" (dict "Page" . "docsRoot" "/control-plane-docs" "noVersioning" true) }}
       </div>
     </aside>
 
@@ -16,7 +16,7 @@
           <span class="w-4 h-4">{{ partial "icon.html" "ri/close-line" }}</span>
         </button>
       </div>
-      {{ partial "docs/sidebar.html" (dict "Page" . "docsRoot" "/enterprise-docs") }}
+      {{ partial "docs/sidebar.html" (dict "Page" . "docsRoot" "/control-plane-docs" "noVersioning" true) }}
     </aside>
 
     <!-- Main content -->
@@ -31,7 +31,9 @@
 
     <!-- Right TOC -->
     <aside class="hidden xl:block w-48 shrink-0">
-      {{ partial "docs/toc.html" . }}
+      <div class="sticky top-24">
+        {{ partial "docs/toc.html" . }}
+      </div>
     </aside>
 
   </div>
