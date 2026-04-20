@@ -21,4 +21,4 @@ Select your provider to continue with the installation:
 * [Installation on OVHcloud](#)
 * [Installation on Scaleway](#)
 
-Once installed, see [Enrollment and billing](#) to activate your instance.
+Once installed, see [Enrollment](../enrollment) to activate your instance.

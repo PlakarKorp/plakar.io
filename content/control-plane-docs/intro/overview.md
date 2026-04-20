@@ -34,4 +34,4 @@ When you first deploy, you go through an enrollment step that registers your ins
 ## What's next
 
 * [Installation](./installation)
-* [Enrollment and billing](#)
+* [Enrollment](./enrollment)
