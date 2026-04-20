@@ -2,14 +2,22 @@
 
 {{ $currentPage := .Page }}
 {{ $docsRoot := .docsRoot | default "/docs" }}
+{{ $noVersioning := .noVersioning | default false }}
 {{ $docsSection := .Page.Site.GetPage $docsRoot }}
 {{ $versions := $docsSection.Sections }}
 
 {{ $currentVersion := false }}
-{{ range $versions }}
-  {{ if or (.IsAncestor $currentPage) (eq .RelPermalink $currentPage.RelPermalink) }}
-    {{ $currentVersion = . }}
+{{ if not $noVersioning }}
+  {{ range $versions }}
+    {{ if or (.IsAncestor $currentPage) (eq .RelPermalink $currentPage.RelPermalink) }}
+      {{ $currentVersion = . }}
+    {{ end }}
   {{ end }}
+{{ end }}
+
+{{ $navRoot := $docsSection }}
+{{ if $currentVersion }}
+  {{ $navRoot = $currentVersion }}
 {{ end }}
 
 <aside class="flex flex-col docs-font h-full gap-6">
@@ -18,26 +26,20 @@
   {{ if $currentVersion }}
     <div class="relative version-selector">
       <button class="version-selector-btn w-full flex items-center justify-between px-3 py-2 border border-neutral-200 rounded-lg text-neutral-700 hover:border-neutral-300 bg-neutral-50">
-        {{ if $currentVersion }}
-          <span class="truncate text-sm">{{ $currentVersion.Title }}</span>
-        {{ else }}
-          <span class="truncate text-sm">Select version</span>
-        {{ end }}
+        <span class="truncate text-sm">{{ $currentVersion.Title }}</span>
         <span class="w-4 h-4 shrink-0 flex items-center justify-center">
           {{ partial "icon.html" "chevron-down" }}
         </span>
       </button>
       <div class="version-selector-menu hidden absolute top-full mt-1 w-full bg-neutral-50 border border-neutral-200 rounded-lg z-50 overflow-hidden">
-        {{ if $currentVersion }}
-          {{ range $versions }}
-            {{ $versionPath := .RelPermalink }}
-            {{ $samePage := replace $currentPage.RelPermalink $currentVersion.RelPermalink $versionPath }}
-            <a href="{{ $samePage }}"
-               class="version-selector-option block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500
-               {{ if eq .RelPermalink $currentVersion.RelPermalink }}text-primary-500 bg-neutral-100{{ end }}">
-              {{ .Title }}
-            </a>
-          {{ end }}
+        {{ range $versions }}
+          {{ $versionPath := .RelPermalink }}
+          {{ $samePage := replace $currentPage.RelPermalink $currentVersion.RelPermalink $versionPath }}
+          <a href="{{ $samePage }}"
+             class="version-selector-option block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500
+             {{ if eq .RelPermalink $currentVersion.RelPermalink }}text-primary-500 bg-neutral-100{{ end }}">
+            {{ .Title }}
+          </a>
         {{ end }}
       </div>
     </div>
@@ -45,9 +47,7 @@
 
   <!-- Nav tree -->
   <nav class="flex flex-col gap-0.5 flex-1 text-sm">
-    {{ if $currentVersion }}
-      {{ template "sidebar-section" (dict "section" $currentVersion "currentPage" $currentPage "depth" 0) }}
-    {{ end }}
+    {{ template "sidebar-section" (dict "section" $navRoot "currentPage" $currentPage "depth" 0) }}
   </nav>
 
 </aside>

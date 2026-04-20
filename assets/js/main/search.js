@@ -50,6 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Auto-select section filter based on current URL (mirrors original Alpine behaviour)
     const path = window.location.pathname;
     if (path.startsWith("/docs/")) sectionFilter.value = "Docs";
+    else if (path.startsWith("/control-plane-docs/")) sectionFilter.value = "Control Plane Docs";
     else if (path.startsWith("/posts/")) sectionFilter.value = "Blog";
     else sectionFilter.value = "";
     syncVersionWrap();
