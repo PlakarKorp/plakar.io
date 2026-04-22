@@ -10,11 +10,11 @@
 
 <!-- Hero -->
 <section class="section-light-2 grid-background px-4 pt-44 pb-7">
-  <div class="max-w-350 mx-auto flex flex-col items-center gap-6">
+  <div class="max-w-350 mx-auto flex flex-col items-center gap-10">
     <h1 class="text-center font-medium text-4xl lg:text-6xl">
       Plakar <span class="text-primary-500">Integrations</span>
     </h1>
-    <p class="text-center text-neutral-600 text-lg lg:text-xl max-w-2xl">
+    <p class="text-center text-neutral-600 text-lg lg:text-xl">
       Seamlessly backup and restore data from any source to any destination
       with our growing ecosystem of integrations.
     </p>
@@ -28,7 +28,7 @@
       <div class="absolute -bottom-10 md:-bottom-14 flex gap-4 items-center justify-center w-full">
 
         <!-- Card 1 -->
-        <div class="w-1/4 h-50 md:h-63 lg:h-75 shrink-0 p-2 md:p-6 bg-neutral-50/70 backdrop-blur-[17px] rounded-lg outline-8 outline-neutral-50/60 flex flex-col gap-4 shadow-xl rotate-[-8deg] items-center justify-center">
+        <div class="w-1/4 h-50 md:h-69 shrink-0 p-2 md:p-6 bg-neutral-50/70 backdrop-blur-[17px] rounded-lg outline-8 outline-neutral-50/60 flex flex-col gap-4 shadow-xl rotate-[-8deg] items-center justify-start">
           <div class="text-2xl lg:text-6xl font-bold text-neutral-900">
             {{ $connectors := union $sourceConnectors $destConnectors }}
             {{ len $connectors }}+
@@ -39,7 +39,7 @@
         </div>
 
         <!-- Card 2 -->
-        <div class="w-1/4 h-50 md:h-63 lg:h-75 shrink-0 p-2 md:p-6 bg-neutral-50/70 backdrop-blur-[17px] rounded-lg outline-8 outline-neutral-50/60 flex flex-col gap-4 shadow-xl z-10 -translate-y-4 items-center justify-center">
+        <div class="w-1/4 h-50 md:h-69 shrink-0 p-2 md:p-6 bg-neutral-50/70 backdrop-blur-[17px] rounded-lg outline-8 outline-neutral-50/60 flex flex-col gap-4 shadow-xl z-10 -translate-y-4 items-center justify-start">
           <div class="text-2xl lg:text-6xl font-bold text-neutral-900">100%</div>
           <div class="text-xs lg:text-2xl font-medium text-neutral-700 text-center">
             Open Source
@@ -47,7 +47,7 @@
         </div>
 
         <!-- Card 3 -->
-        <div class="w-1/4 h-50 md:h-63 lg:h-75 shrink-0 p-2 md:p-6 bg-neutral-50/70 backdrop-blur-[17px] rounded-lg outline-8 outline-neutral-50/60 flex flex-col gap-4 shadow-xl rotate-[8deg] items-center justify-center">
+        <div class="w-1/4 h-50 md:h-69 shrink-0 p-2 md:p-6 bg-neutral-50/70 backdrop-blur-[17px] rounded-lg outline-8 outline-neutral-50/60 flex flex-col gap-4 shadow-xl rotate-[8deg] items-center justify-start">
           <div class="text-2xl lg:text-6xl font-bold text-neutral-900">
             {{ len $storageConnectors }}+
           </div>
@@ -62,22 +62,22 @@
 </section>
 
 <!-- Category filter -->
-<section class="section-light-2 px-4 pt-12">
+<section class="section-light-2 px-4 pt-7">
   <div class="max-w-350 flex justify-center mx-auto">
-    <div class="inline-flex items-center gap-1 bg-neutral-50 border border-neutral-200 rounded-xl p-1" id="integrations-filter">
-      <a data-filter="all" class="filter-btn px-4 py-3 rounded-lg text-sm cursor-pointer font-medium transition-all duration-150 text-neutral-700">
+    <div class="inline-flex items-center gap-1 bg-neutral-50 rounded-xl p-2" id="integrations-filter">
+      <a data-filter="all" class="filter-btn px-2 py-4 rounded-lg text-sm cursor-pointer transition-all duration-150 text-neutral-700">
         All Integrations
       </a>
-      <a data-filter="source" class="filter-btn px-4 py-3 rounded-lg text-sm cursor-pointer font-medium transition-all duration-150 text-neutral-700">
+      <a data-filter="source" class="filter-btn px-2 py-4 rounded-lg text-sm cursor-pointer transition-all duration-150 text-neutral-700">
         Source
       </a>
-      <a data-filter="destination" class="filter-btn px-4 py-3 rounded-lg text-sm cursor-pointer font-medium transition-all duration-150 text-neutral-700">
+      <a data-filter="destination" class="filter-btn px-2 py-4 rounded-lg text-sm cursor-pointer transition-all duration-150 text-neutral-700">
         Destination
       </a>
-      <a data-filter="storage" class="filter-btn px-4 py-3 rounded-lg text-sm cursor-pointer font-medium transition-all duration-150 text-neutral-700">
+      <a data-filter="storage" class="filter-btn px-2 py-4 rounded-lg text-sm cursor-pointer transition-all duration-150 text-neutral-700">
         Storage
       </a>
-      <a data-filter="viewer" class="filter-btn px-4 py-3 rounded-lg text-sm cursor-pointer font-medium transition-all duration-150 text-neutral-700">
+      <a data-filter="viewer" class="filter-btn px-2 py-4 rounded-lg text-sm cursor-pointer transition-all duration-150 text-neutral-700">
         Viewer
       </a>
     </div>
@@ -87,7 +87,7 @@
 <!-- Integrations grid -->
 <section class="section-light-2 px-4 pb-16 pt-14">
   <div class="max-w-350 mx-auto">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="integrations-grid">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="integrations-grid">
       {{ range $allIntegrations }}
         {{ partial "integrations/integration-card.html" . }}
       {{ end }}
@@ -96,9 +96,9 @@
 </section>
 
 <!-- How it works -->
-<section class="section-light-2 py-14 lg:py-28">
+<section class="section-light-2 py-14 lg:pt-20 lg:pb-60">
   <div class="max-w-350 mx-auto px-4 flex flex-col gap-8">
-    <h2 class="font-medium text-4xl lg:text-6xl text-neutral-900 leading-tight text-center">
+    <h2 class="font-medium text-4xl lg:text-6xl text-neutral-900 leading-tighter text-center">
       How Plakar <span class="text-secondary-500">Integration Packages</span> and <span class="text-secondary-500">Connectors</span> work
     </h2>
     <div class="flex flex-col gap-6 text-neutral-600 text-lg lg:text-xl font-medium mx-auto">
