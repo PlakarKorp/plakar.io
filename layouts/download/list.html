@@ -26,9 +26,9 @@
 {{ $latestPage := index $versions 0 }}
 
 <!-- Rocket banner -->
-<section class="section-gradient-blue-1 pt-36">
+<section class="section-gradient-blue-1 pt-26">
   <div class="max-w-350 mx-auto flex justify-center items-end">
-    <img src="{{ $nestorRocket.RelPermalink }}" alt="Nestor rocket" class="w-full max-h-[200px] md:max-h-[400px] object-contain object-top">
+    <img src="{{ $nestorRocket.RelPermalink }}" alt="Nestor rocket" class="w-full max-h-50 md:max-h-112 object-contain object-top">
   </div>
 </section>
 
@@ -118,9 +118,9 @@
     <section class="section-light-1 py-12">
       <div class="max-w-350 mx-auto px-4">
         {{ if .Params.downloads }}
-          <h2 class="text-2xl lg:text-4xl font-bold text-neutral-900 mb-6">Direct downloads</h2>
+          <h2 class="text-2xl lg:text-3xl font-bold text-neutral-900 mb-6">Direct downloads</h2>
           <div class="overflow-x-auto rounded-lg mt-4">
-            <table class="w-full text-sm">
+            <table class="w-full">
               <thead class="border-b">
                 <tr>
                   <th class="text-left px-4 py-3 font-bold">Platform</th>
@@ -139,7 +139,7 @@
                     </td>
                     <td class="px-4 py-3">
                       <span class="inline-flex items-center gap-2">
-                        <code class="text-xs text-neutral-600">{{ substr .sha256 0 12 }}…</code>
+                        <code class="text-xs text-neutral-800">{{ substr .sha256 0 12 }}…</code>
                         <button class="sha-copy-btn text-xs px-2 py-1 border border-neutral-300 rounded hover:bg-neutral-100 transition-colors" data-sha="{{ .sha256 }}">
                           Copy
                         </button>
@@ -160,7 +160,7 @@
     </section>
 
     <section class="py-12">
-      <div class="max-w-350 mx-auto px-4 flex flex-col lg:flex-row justify-between items-start gap-6">
+      <div class="max-w-350 mx-auto px-4 flex flex-col lg:flex-row justify-between lg:items-baseline gap-6">
         <div class="flex flex-col gap-2">
           <h2 class="text-2xl font-medium text-neutral-900">Need help getting started?</h2>
           <p class="text-neutral-600">Check our documentation for installation guides, usage examples, and more.</p>

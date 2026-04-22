@@ -9,7 +9,7 @@
 <!-- Hero -->
 <section class="section-light-2 grid-background px-4 pt-32 pb-7">
   <div class="max-w-350 mx-auto flex flex-col items-center">
-    <div class="flex flex-col items-start gap-2 w-full max-w-[712px]">
+    <div class="flex flex-col items-start gap-2 w-full max-w-178">
 
       <h1 class="font-medium leading-tight text-2xl lg:text-5xl">
         {{ .Title | emojify }}
@@ -39,7 +39,7 @@
 <section class="section-light-2 grid-background">
   <div class="bg-gradient-section-light-1 px-4 py-2">
     <div class="max-w-350 mx-auto flex flex-col items-center">
-      <div class="w-full max-w-[712px] rounded-lg bg-neutral-50 border border-neutral-300">
+      <div class="w-full max-w-178 rounded-lg bg-neutral-50 border border-neutral-300">
         <div class="w-full h-7 px-4 flex items-center gap-2 border-b border-neutral-200">
           <div class="w-2 h-2 bg-neutral-300 rounded-full"></div>
           <div class="w-2 h-2 bg-neutral-300 rounded-full"></div>
@@ -60,13 +60,13 @@
   <div class="max-w-350 mx-auto flex flex-col xl:flex-row items-start gap-8">
 
     <!-- TOC sidebar -->
-    <aside class="hidden xl:block xl:sticky xl:top-28 w-[280px] shrink-0">
+    <aside class="hidden xl:block xl:sticky xl:top-28 w-70 shrink-0">
       {{ partial "docs/toc.html" . }}
       {{ partial "posts/toc-share.html" . }}
     </aside>
 
     <!-- Article content -->
-    <article class="w-full max-w-[712px] mx-auto xl:mx-0 flex flex-col gap-8">
+    <article class="w-full max-w-178 mx-auto xl:mx-0 flex flex-col gap-8">
 
       <!-- Author -->
       {{ range .GetTerms "authors" }}

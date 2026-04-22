@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
       btn.classList.toggle("bg-primary-500", isActive);
       btn.classList.toggle("text-neutral-50", isActive);
       btn.classList.toggle("text-neutral-700", !isActive);
+      btn.classList.toggle("hover:bg-neutral-100", !isActive);
     });
 
     cards.forEach((card) => {
