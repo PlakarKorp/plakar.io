@@ -138,18 +138,27 @@ Create `manifest.yaml`:
 
 ```yaml
 name: test
+display_name: Test
+description: A minimal importer connector that backs up a single file.
+homepage: https://github.com/yourorg/plakar-myimporter
+license: ISC
+api_version: v1.1.0
 version: v0.1.0
+tier: third-party
+contact: mailto:you@example.com
 
 connectors:
   - type: importer
     executable: test-importer
     protocols:
       - test
-    flags:
+    location_flags:
       - localfs
+    class: filesystem
+    subclass: test
 ```
 
-The `executable` value must match the binary name you produce in the build step. The `flags` list must reflect the `location.Flags` returned by your connector's `Flags()` method.
+The `executable` value must match the binary name you produce in the build step. The `location_flags` list must reflect the `location.Flags` returned by your connector's `Flags()` method. Set `class` and `subclass` to values that best describe your data source — for a connector that reads from a local filesystem path, `filesystem` and your protocol name are appropriate choices.
 
 ## 5. Build the plugin
 
