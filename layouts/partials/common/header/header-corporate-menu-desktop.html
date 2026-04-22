@@ -10,7 +10,7 @@
       <div class="relative dropdown-group">
 
         {{ if .HasChildren }}
-          <button class="dropdown-btn px-2 text-neutral-700 hover:text-primary-500 inline-flex items-center gap-1">
+          <button class="dropdown-btn px-2.5 text-lg text-neutral-700 hover:text-primary-500 inline-flex items-center gap-1">
             {{ .Name }}
             <span class="dropdown-chevron w-4 h-4 flex items-center justify-center">
               {{ partial "icon.html" "chevron-down" }}
@@ -18,7 +18,7 @@
           </button>
         {{ else }}
           <a href="{{ .URL | relLangURL }}" {{ with .Params.target }}target="{{ . }}"{{ end }}
-             class="px-2 text-neutral-700 hover:text-primary-500 inline-flex items-center">
+             class="px-2.5 text-lg text-neutral-700 hover:text-primary-500 inline-flex items-center">
             {{ .Name }}
           </a>
         {{ end }}
