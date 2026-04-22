@@ -491,26 +491,27 @@
 </section>
 
 <!-- Built on Kloset -->
-<section class="section-dark-1 py-14 lg:py-28 overflow-hidden">
+<section class="section-dark-1 py-14 lg:py-32 overflow-hidden">
   <div class="max-w-350 mx-auto px-4 flex flex-col gap-24">
 
     <!-- Title + description -->
     <div class="flex flex-col lg:flex-row justify-between items-start gap-10">
       <div class="flex flex-col gap-4 max-w-2xl">
-        <h2 class="text-4xl lg:text-6xl font-medium text-neutral-50 leading-tight">
+        <h2 class="text-4xl lg:text-6xl font-medium text-neutral-50 leading-tighter">
           Built on top of the powerful <span class="text-secondary-500">Kloset</span>
         </h2>
       </div>
-      <div class="flex flex-col gap-6 max-w-md">
+      <div class="flex flex-col gap-8 max-w-md">
         <p class="text-lg lg:text-2xl text-neutral-200">
           Powerful technology designed for developers who value <span class="font-semibold text-neutral-50">reliability</span>,
           <span class="font-semibold text-neutral-50">security</span> and <span class="font-semibold text-neutral-50">efficiency</span>.
         </p>
-        <div class="flex gap-4">
+        <div class="flex gap-8">
           {{ partial "components/buttons/base-button.html" (dict
             "label" "Learn more about Kloset"
             "labelShort" "More about Kloset"
             "href" "/posts/2025-04-29/kloset-the-immutable-data-store"
+            "class" "text-sm"
           ) }}
           {{ partial "components/buttons/base-button.html" (dict
             "label" "Technical docs"
@@ -519,6 +520,7 @@
             "textColor" "text-neutral-900"
             "bgColor" "bg-neutral-300"
             "bgHoverColor" "bg-neutral-100"
+            "class" "text-sm"
           ) }}
         </div>
       </div>
@@ -536,7 +538,7 @@
             <img src="{{ $klosetSchema.RelPermalink }}" alt="Kloset schema" class="w-full h-auto">
           </div>
 
-          <div class="z-10 lg:absolute lg:bottom-1 lg:translate-x-90 max-w-xs mx-auto mt-7 w-full p-5 bg-neutral-900/95 rounded-xl border border-neutral-700 flex flex-col gap-3 text-neutral-50 shadow-xl outline-8 outline-neutral-800/20 hover:shadow-none transition-all duration-300">
+          <div class="z-10 lg:absolute pb-10 lg:-bottom-4 lg:translate-x-90 max-w-xs mx-auto mt-7 w-full p-5 bg-neutral-900/95 rounded-xl border border-neutral-700 flex flex-col gap-3 text-neutral-50 shadow-xl outline-8 outline-neutral-800/20 hover:shadow-none transition-all duration-300">
             <div class="flex items-center gap-2 font-semibold text-base">
               <span class="w-5 h-5 text-neutral-50">{{ partial "icon.html" "ri/check-fill" }}</span>
               This is Kloset
@@ -552,50 +554,50 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-5">
 
         <div class="p-6 bg-neutral-800/70 rounded-lg flex flex-col gap-4">
-          <div class="flex items-center gap-3">
-            <span class="w-5 h-5 text-neutral-500">{{ partial "icon.html" "ri/menu-search-line" }}</span>
-            <h4 class="text-neutral-50 text-xl font-medium">Self-contained</h4>
+          <div class="flex items-center gap-4">
+            <span class="w-6 h-6 text-neutral-500">{{ partial "icon.html" "ri/menu-search-line" }}</span>
+            <h4 class="text-neutral-50">Self-contained</h4>
           </div>
-          <p class="text-neutral-200 text-lg">Everything your data needs travels with it. No external dependencies.</p>
+          <p class="text-neutral-200">Everything your data needs travels with it. No external dependencies.</p>
         </div>
 
         <div class="p-6 bg-neutral-800/70 rounded-lg flex flex-col gap-4">
-          <div class="flex items-center gap-3">
-            <span class="w-5 h-5 text-neutral-500">{{ partial "icon.html" "ri/shield-check-line" }}</span>
-            <h4 class="text-neutral-50 text-xl font-medium">Immutable</h4>
+          <div class="flex items-center gap-4">
+            <span class="w-6 h-6 text-neutral-500">{{ partial "icon.html" "ri/shield-check-line" }}</span>
+            <h4 class="text-neutral-50">Immutable</h4>
           </div>
-          <p class="text-neutral-200 text-lg">Once created, a Kloset never changes, ensuring data integrity and security.</p>
+          <p class="text-neutral-200">Once created, a Kloset never changes, ensuring data integrity and security.</p>
         </div>
 
         <div class="p-6 bg-neutral-800/70 rounded-lg flex flex-col gap-4">
-          <div class="flex items-center gap-3">
-            <span class="w-5 h-5 text-neutral-500">{{ partial "icon.html" "ri/database-line" }}</span>
-            <h4 class="text-neutral-50 text-xl font-medium">Queryable</h4>
+          <div class="flex items-center gap-4">
+            <span class="w-6 h-6 text-neutral-500">{{ partial "icon.html" "ri/database-line" }}</span>
+            <h4 class="text-neutral-50">Queryable</h4>
           </div>
-          <p class="text-neutral-200 text-lg">Inspect and query snapshots without restoration. Instant access.</p>
+          <p class="text-neutral-200">Inspect and query snapshots without restoration. Instant access.</p>
         </div>
 
         <div class="p-6 bg-neutral-800/70 rounded-lg flex flex-col gap-4">
-          <div class="flex items-center gap-3">
-            <span class="w-5 h-5 text-neutral-500">{{ partial "icon.html" "ri/list-view" }}</span>
-            <h4 class="text-neutral-50 text-xl font-medium">Portable</h4>
+          <div class="flex items-center gap-4">
+            <span class="w-6 h-6 text-neutral-500">{{ partial "icon.html" "ri/list-view" }}</span>
+            <h4 class="text-neutral-50">Portable</h4>
           </div>
-          <p class="text-neutral-200 text-lg">Move your Klosets anywhere. Same structure, everywhere.</p>
+          <p class="text-neutral-200">Move your Klosets anywhere. Same structure, everywhere.</p>
         </div>
 
       </div>
 
       <!-- Kloset vs Docker comparison -->
-      <div class="flex flex-col gap-8 text-center items-center mt-10">
+      <div class="flex flex-col gap-8 text-center items-center mt-16">
         <h3 class="text-2xl lg:text-4xl font-medium text-neutral-50">
           <span class="text-secondary-500">Kloset</span> does for data what <span class="text-secondary-500">Docker containers</span> did for compute
         </h3>
 
-        <div class="flex flex-col md:flex-row items-stretch max-w-5xl w-full mt-5 gap-0">
-          <div class="flex-1 bg-neutral-800/70 rounded-lg md:rounded-r-none flex flex-col gap-6 text-left p-8">
+        <div class="flex flex-col md:flex-row md:items-center items-stretch max-w-4xl w-full mt-5 gap-0">
+          <div class="flex-1 h-fit bg-neutral-800/70 rounded-lg flex flex-col gap-6 text-left p-8 md:py-16">
             <div class="flex items-center gap-3">
               <span class="w-6 h-6 text-neutral-500">{{ $nestor.Content | safeHTML }}</span>
-              <h4 class="text-neutral-50 text-xl font-medium">Kloset for Data</h4>
+              <h4 class="text-neutral-50">Kloset for Data</h4>
             </div>
             <ul class="flex flex-col gap-3 text-neutral-200 text-base">
               <li class="flex items-center gap-2">
@@ -617,10 +619,10 @@
             </ul>
           </div>
 
-          <div class="flex-1 border border-neutral-800/70 rounded-lg md:rounded-l-none flex flex-col gap-6 text-left p-8">
+          <div class="flex-1 h-fit border border-neutral-800/70 rounded-lg flex flex-col gap-6 text-left p-8">
             <div class="flex items-center gap-3">
               <span class="w-6 h-6 text-neutral-500">{{ partial "icon.html" "corporate/docker" }}</span>
-              <h4 class="text-neutral-50 text-xl font-medium">Docker for Applications</h4>
+              <h4 class="text-neutral-50">Docker for Applications</h4>
             </div>
             <ul class="flex flex-col gap-3 text-neutral-200 text-base">
               <li class="flex items-center gap-2">
@@ -654,18 +656,18 @@
   <div class="max-w-350 mx-auto px-4 flex flex-col lg:flex-row-reverse gap-16 items-start">
 
     <div class="lg:w-1/2 flex flex-col gap-8">
-      <h2 class="text-4xl lg:text-6xl font-medium leading-tight text-primary-900">
+      <h2 class="text-4xl lg:text-6xl font-medium leading-tighter text-primary-900">
         Stay ahead with Plakar updates
       </h2>
-      <p class="text-xl text-neutral-900 leading-normal">
+      <p class="text-neutral-900 leading-normal">
         Get exclusive insights, new features and expert tips on backup, storage and immutability.<br/> No spam, ever.
       </p>
     </div>
 
     <div class="lg:w-1/2 w-full bg-neutral-800 border border-neutral-700 rounded-2xl shadow-sm overflow-hidden">
       <div class="bg-primary-600 px-6 py-5">
-        <h3 class="text-xl text-neutral-50 font-semibold">Sign up with your email</h3>
-        <p class="text-sm text-neutral-50 opacity-80 mt-1">We'll send you major product updates, no noise.</p>
+        <h3 class="text-neutral-50 font-semibold">Sign up with your email</h3>
+        <p class="text-neutral-50 opacity-80 mt-1">We'll send you major product updates, no noise.</p>
       </div>
       <form id="newsletter-form-home" class="px-6 py-8 flex flex-col gap-6">
         <input type="email" name="email" placeholder="Your email address" required class="w-full border border-neutral-600 bg-neutral-50 text-neutral-900 placeholder-neutral-500 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary-400">
@@ -681,14 +683,14 @@
 </section>
 
 <!-- Community section -->
-<section class="section-light-2 py-14 lg:py-28">
+<section class="section-light-2 py-14 lg:pt-31">
   <div class="max-w-350 mx-auto px-4 flex flex-col gap-16">
 
-    <div class="flex flex-col items-center gap-6 text-center">
+    <div class="flex flex-col items-center gap-8 text-center">
       <h2 class="text-4xl lg:text-6xl font-medium text-neutral-900 leading-tight">
         Community <span class="text-secondary-500">powered</span>, trusted by teams
       </h2>
-      <p class="text-base lg:text-lg text-neutral-600 font-medium leading-snug max-w-2xl">
+      <p class="text-base lg:text-lg text-neutral-600 font-medium max-w-2xl">
         There must be a way to ensure backups remain accessible 10 or 30 years from now.
         Built with transparency, tested by the community and trusted for critical infrastructure.
       </p>
@@ -715,7 +717,7 @@
       <div class="flex lg:w-1/3 justify-center border border-neutral-300 bg-neutral-100 p-2 lg:p-3">
         <div class="w-full grid grid-cols-4 gap-1 lg:gap-3">
           {{ range $leftImages }}
-            <div class="aspect-square border border-dashed border-neutral-300 flex items-center justify-center overflow-hidden">
+            <div class="aspect-square p-1 border border-dashed border-neutral-300 flex items-center justify-center overflow-hidden">
               {{ if . }}
                 {{ with resources.Get . }}
                   <img src="{{ .RelPermalink }}" alt="Contributor" class="w-full h-full object-cover">
@@ -726,16 +728,16 @@
         </div>
       </div>
 
-      <div class="lg:w-1/3 flex flex-col relative justify-center px-4 py-12 bg-cover bg-center" style="background-image: url('{{ $gradientOrange.RelPermalink }}')">
-        <div class="flex flex-col items-center text-center gap-8 z-10">
-          <h2 class="text-3xl lg:text-5xl font-medium text-neutral-900 leading-tight">Open source</h2>
-          <p class="text-lg font-medium text-neutral-900 opacity-70 leading-relaxed">
+      <div class="lg:w-1/3 flex flex-col relative justify-start px-4 py-2 bg-cover bg-center" style="background-image: url('{{ $gradientOrange.RelPermalink }}')">
+        <div class="flex flex-col items-center text-center z-10">
+          <h2 class="text-3xl lg:text-5xl font-medium text-neutral-900 mt-6 leading-tight">Open source</h2>
+          <p class="text-lg font-medium text-neutral-900 opacity-70 mt-11 leading-relaxed">
             Plakar is built by a global community of engaged developers, SREs, sysadmins and platform engineers.
           </p>
-          <p class="text-lg font-medium text-neutral-900 opacity-70 leading-relaxed">
+          <p class="text-lg font-medium text-neutral-900 opacity-70 mt-12 leading-relaxed">
             Write your own plugins, contribute to the codebase or just help us.
           </p>
-          <div class="flex flex-col items-center sm:flex-row gap-4">
+          <div class="flex flex-col items-stretch sm:flex-row mt-12 gap-4">
             {{ partial "components/buttons/base-button.html" (dict
               "label" "Chat with us"
               "icon" "discord"
@@ -763,7 +765,7 @@
       <div class="flex lg:w-1/3 justify-center border border-neutral-300 bg-neutral-100 p-2 lg:p-3">
         <div class="w-full grid grid-cols-4 gap-1 lg:gap-3">
           {{ range $rightImages }}
-            <div class="aspect-square border border-dashed border-neutral-300 flex items-center justify-center overflow-hidden">
+            <div class="aspect-square p-1 border border-dashed border-neutral-300 flex items-center justify-center overflow-hidden">
               {{ if . }}
                 {{ with resources.Get . }}
                   <img src="{{ .RelPermalink }}" alt="Contributor" class="w-full h-full object-cover">
@@ -808,11 +810,11 @@
 </section>
 
 <!-- Blog preview -->
-<section class="section-light-2 bg-gradient-section py-14 lg:py-28">
+<section class="section-light-2 bg-gradient-section py-14 lg:py-40">
   <div class="max-w-350 mx-auto px-4 flex flex-col gap-12">
 
-    <div class="flex flex-col lg:flex-row justify-between items-start gap-8">
-      <div class="flex flex-col gap-4 max-w-4xl">
+    <div class="flex flex-col lg:flex-row justify-between items-baseline gap-8">
+      <div class="flex flex-col gap-2 max-w-4xl">
         <h2 class="text-4xl lg:text-7xl font-medium text-neutral-900 leading-tight">
           Plakar <span class="text-secondary-500">Blog</span>
         </h2>
