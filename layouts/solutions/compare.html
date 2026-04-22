@@ -1,17 +1,17 @@
 {{ define "main" }}
 
 <!-- Hero -->
-<section class="section-light-2 grid-background pt-36 pb-14">
+<section class="section-light-2 grid-background pt-44 pb-14">
   <div class="max-w-350 mx-auto px-4 flex flex-col items-center gap-12">
     <div class="text-center flex flex-col gap-6 max-w-5xl">
-      <h1 class="text-4xl lg:text-6xl font-medium text-neutral-900 leading-tight">
+      <h1 class="text-4xl lg:text-6xl font-medium text-neutral-900 leading-tighter">
         <span class="text-primary-500">Plakar Enterprise vs.</span><br/>
         Standard Backup Solutions
       </h1>
       <p class="text-primary-600 font-mono text-sm font-bold uppercase tracking-widest">
         The Open Standard for Zero-Trust Resilience
       </p>
-      <p class="text-neutral-600 text-lg lg:text-xl leading-relaxed max-w-3xl mx-auto">
+      <p class="text-neutral-600 text-lg lg:text-xl max-w-3xl mx-auto">
         Plakar brings mathematical rigor, visibility, and sovereignty to your data protection strategy. We decouple data from the infrastructure, allowing you to secure assets at the source and restore them anywhere. That's the difference between Plakar's open resilience standard and <strong>today's legacy black boxes</strong>.
       </p>
     </div>
@@ -63,7 +63,7 @@
     </div>
 
     <div class="overflow-x-auto rounded-2xl border border-neutral-200 shadow-sm bg-white">
-      <table class="w-full min-w-[1000px] border-collapse">
+      <table class="w-full min-w-250 border-collapse">
         <thead>
           <tr class="bg-neutral-50 border-b border-neutral-200">
             <th class="p-6 text-left w-1/4">
@@ -92,9 +92,9 @@
               <p class="text-xs text-neutral-500 font-normal mt-1">Guarantee long-term access without paying a ransom</p>
             </td>
             <td class="p-6 text-center bg-primary-50/30 border-x border-primary-100">
-              <div class="flex flex-col items-center gap-1 text-green-600 text-sm font-bold">
-                <span class="w-6 h-6">{{ partial "icon.html" "ri/open-source-line" }}</span>
-                Open Source
+              <div class="flex flex-row items-center justify-center gap-1 text-green-600 lg:bg-green-100 rounded-l-full rounded-r-full py-4 px-4 text-sm font-bold">
+                <span class="w-14 h-14">{{ partial "icon.html" "ri/open-source-line" }}</span>
+                Open Source <br />(No Vendor Lock)
               </div>
             </td>
             <td class="p-6 text-center"><div class="flex flex-col items-center gap-1 text-red-500 text-sm font-medium"><span class="w-5 h-5">{{ partial "icon.html" "ri/close-line" }}</span>Vendor Locked Format</div></td>
@@ -180,9 +180,9 @@
               <p class="text-xs text-neutral-500 font-normal mt-1">Outsource operations, keep full sovereignty</p>
             </td>
             <td class="p-6 text-center bg-primary-50/30 border-x border-primary-100">
-              <div class="flex flex-col items-center gap-1 text-green-600 text-sm font-bold">
-                <span class="w-6 h-6">{{ partial "icon.html" "ri/check-line" }}</span>
-                Native Protocol
+              <div class="flex flex-row justify-center items-center gap-1 text-green-600 bg-green-100 px-4 py-4 rounded-l-full roundedrf text-sm font-bold">
+                <span class="w-14 h-14">{{ partial "icon.html" "ri/check-line" }}</span>
+                Native <br /> Protocol
               </div>
             </td>
             <td class="p-6 text-center"><span class="flex justify-center text-red-400 w-6 h-6 mx-auto">{{ partial "icon.html" "ri/close-line" }}</span></td>
@@ -265,8 +265,8 @@
         </div>
         <h3 class="text-xl font-bold mb-4 text-white">End-to-End Encryption is Non-Negotiable</h3>
         <p class="text-neutral-400 leading-relaxed">
-          <strong class="text-neutral-300">The Others:</strong> To deduplicate data efficiently, legacy appliances often need to decrypt data at the gateway or storage level, exposing keys and plain text to the infrastructure.<br/><br/>
-          <strong class="text-neutral-300">Plakar:</strong> Solved the math. We deduplicate encrypted chunks against encrypted indexes. The infrastructure remains blind, always.
+          <strong class="text-neutral-400">The Others:</strong> To deduplicate data efficiently, legacy appliances often need to decrypt data at the gateway or storage level, exposing keys and plain text to the infrastructure.<br/><br/>
+          <strong class="text-neutral-400">Plakar:</strong> Solved the math. We deduplicate encrypted chunks against encrypted indexes. The infrastructure remains blind, always.
         </p>
       </div>
 
@@ -276,8 +276,8 @@
         </div>
         <h3 class="text-xl font-bold mb-4 text-white">Keep Your Data Free and Secured</h3>
         <p class="text-neutral-400 leading-relaxed">
-          <strong class="text-neutral-300">The Others:</strong> Store data in opaque blobs (<code>.vbk</code>). You trust their software blindly, even though they are rarely publicly audited.<br/><br/>
-          <strong class="text-neutral-300">Plakar:</strong> Open Source, no vendor lock-in. Our core cryptography and format are publicly audited by top security experts. You don't just "trust" us; you can verify.
+          <strong class="text-neutral-400">The Others:</strong> Store data in opaque blobs (`.vbk`). You trust their software blindly, even though they are rarely publicly audited.<br/><br/>
+          <strong class="text-neutral-400">Plakar:</strong> Open Source, no vendor lock-in. Our core cryptography and format are publicly audited by top security experts. You don't just "trust" us; you can verify.
         </p>
       </div>
 
@@ -287,8 +287,8 @@
         </div>
         <h3 class="text-xl font-bold mb-4 text-white">Peta-Scale Requires Fast, Scalable Indexes</h3>
         <p class="text-neutral-400 leading-relaxed">
-          <strong class="text-neutral-300">The Others:</strong> Rely on massive centralized databases (SQL) to map files. These databases choke under millions of inodes.<br/><br/>
-          <strong class="text-neutral-300">Plakar:</strong> Decoupled architecture. The index is split and stored <em>inside</em> each snapshot. Backing up the 1st Petabyte is as linearly fast and stable as the first Gigabyte.
+          <strong class="text-neutral-400">The Others:</strong> Rely on massive centralized databases (SQL) to map files. These databases choke under millions of inodes.<br/><br/>
+          <strong class="text-neutral-400">Plakar:</strong> Decoupled architecture. The index is split and stored <em>inside</em> each snapshot. Backing up the 1st Petabyte is as linearly fast and stable as the first Gigabyte.
         </p>
       </div>
 
@@ -298,7 +298,7 @@
 
 <!-- Built to Neutralize Modern Threats -->
 <section class="section-light-2 py-14 lg:py-20 border-y border-neutral-200">
-  <div class="max-w-350 mx-auto px-4 flex flex-col gap-10">
+  <div class="max-w-350 mx-auto px-4 flex flex-col gap-14">
 
     <div class="text-center max-w-3xl mx-auto">
       <h2 class="text-3xl lg:text-5xl font-medium text-neutral-900 mb-4">Built to Neutralize Modern Threats</h2>
@@ -310,7 +310,7 @@
       <div class="bg-white p-8 rounded-2xl border border-neutral-200 shadow-sm flex flex-col gap-4">
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 bg-red-50 text-red-500 rounded-lg flex items-center justify-center shrink-0">
-            <span class="w-5 h-5">{{ partial "icon.html" "ri/shield-check-line" }}</span>
+            <span class="w-6 h-6">{{ partial "icon.html" "ri/shield-check-line" }}</span>
           </div>
           <h3 class="text-lg font-bold text-neutral-900">Ransomware & Exfiltration</h3>
         </div>
@@ -321,7 +321,7 @@
       <div class="bg-white p-8 rounded-2xl border border-neutral-200 shadow-sm flex flex-col gap-4">
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 bg-neutral-100 text-neutral-600 rounded-lg flex items-center justify-center shrink-0">
-            <span class="w-5 h-5">{{ partial "icon.html" "ri/user-unfollow-line" }}</span>
+            <span class="w-6 h-6">{{ partial "icon.html" "ri/user-unfollow-line" }}</span>
           </div>
           <h3 class="text-lg font-bold text-neutral-900">Human Error</h3>
         </div>
@@ -332,7 +332,7 @@
       <div class="bg-white p-8 rounded-2xl border border-neutral-200 shadow-sm flex flex-col gap-4">
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 bg-primary-50 text-primary-500 rounded-lg flex items-center justify-center shrink-0">
-            <span class="w-5 h-5">{{ partial "icon.html" "ri/spy-line" }}</span>
+            <span class="w-6 h-6">{{ partial "icon.html" "ri/spy-line" }}</span>
           </div>
           <h3 class="text-lg font-bold text-neutral-900">Rogue Employees & Infiltration</h3>
         </div>
@@ -343,7 +343,7 @@
       <div class="bg-white p-8 rounded-2xl border border-neutral-200 shadow-sm flex flex-col gap-4">
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 bg-secondary-50 text-secondary-500 rounded-lg flex items-center justify-center shrink-0">
-            <span class="w-5 h-5">{{ partial "icon.html" "ri/global-line" }}</span>
+            <span class="w-6 h-6">{{ partial "icon.html" "ri/global-line" }}</span>
           </div>
           <h3 class="text-lg font-bold text-neutral-900">Cloud Outage or Account Deletion</h3>
         </div>
@@ -354,7 +354,7 @@
       <div class="bg-white p-8 rounded-2xl border border-neutral-200 shadow-sm flex flex-col gap-4">
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 bg-neutral-100 text-neutral-600 rounded-lg flex items-center justify-center shrink-0">
-            <span class="w-5 h-5">{{ partial "icon.html" "ri/cpu-line" }}</span>
+            <span class="w-6 h-6">{{ partial "icon.html" "ri/cpu-line" }}</span>
           </div>
           <h3 class="text-lg font-bold text-neutral-900">Non-Deterministic AI Workloads</h3>
         </div>
@@ -365,7 +365,7 @@
       <div class="bg-white p-8 rounded-2xl border border-neutral-200 shadow-sm flex flex-col gap-4">
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 bg-neutral-100 text-neutral-600 rounded-lg flex items-center justify-center shrink-0">
-            <span class="w-5 h-5">{{ partial "icon.html" "ri/lock-2-line" }}</span>
+            <span class="w-6 h-6">{{ partial "icon.html" "ri/lock-2-line" }}</span>
           </div>
           <h3 class="text-lg font-bold text-neutral-900">Post-Quantum Era</h3>
         </div>
@@ -379,7 +379,7 @@
 
 <!-- CTA -->
 <section class="section-light-2 grid-background py-24 relative overflow-hidden">
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-primary-500/10 blur-[120px] rounded-full pointer-events-none"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-100 bg-primary-500/10 blur-[120px] rounded-full pointer-events-none"></div>
   <div class="max-w-350 mx-auto px-4 text-center relative z-10">
     <div class="max-w-3xl mx-auto flex flex-col gap-6">
       <h2 class="text-3xl md:text-5xl font-medium text-neutral-900 leading-tight">
