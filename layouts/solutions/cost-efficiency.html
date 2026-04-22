@@ -1,18 +1,18 @@
 {{ define "main" }}
 
 <!-- Hero -->
-<section class="section-light-2 grid-background pt-36 pb-20 relative overflow-hidden">
+<section class="section-light-2 grid-background pt-48 pb-24 relative overflow-hidden">
   <div class="absolute top-0 right-0 p-64 bg-green-500/10 rounded-full blur-[120px] pointer-events-none"></div>
 
   <div class="max-w-350 mx-auto px-4 flex flex-col items-center text-center gap-8 relative z-10">
     <div class="max-w-5xl flex flex-col gap-4">
-      <h1 class="text-4xl lg:text-6xl font-medium text-neutral-900 leading-tight">
+      <h1 class="text-4xl lg:text-6xl font-medium text-neutral-900 leading-tighter">
         Slash Storage Footprint<br/>
         <span class="text-primary-500">Eliminate Egress Barriers</span>
       </h1>
     </div>
 
-    <p class="max-w-3xl text-neutral-600 text-lg lg:text-xl leading-relaxed">
+    <p class="max-w-3xl text-neutral-600 text-lg lg:text-xl">
       Legacy backup solutions tax you twice: once to store your data, and again to move it.<br/>
       <strong class="text-neutral-800">Plakar reverses the math.</strong> By deduplicating at the source, we collapse storage costs and make cross-cloud mobility financially realistic for the first time—without sacrificing security.
     </p>
@@ -28,7 +28,7 @@
 </section>
 
 <!-- Why is your cloud bill holding you hostage -->
-<section class="section-dark-1 py-14 lg:py-20">
+<section class="section-dark-1 py-14 lg:py-24">
   <div class="max-w-350 mx-auto px-4">
     <div class="text-center max-w-3xl mx-auto mb-16">
       <h2 class="text-3xl lg:text-5xl font-medium text-white mb-6">Why is your cloud bill holding you hostage</h2>
@@ -65,7 +65,7 @@
 
 <!-- Encryption vs. Efficiency Dilemma -->
 <section class="section-light-2 py-14 lg:py-28">
-  <div class="max-w-350 mx-auto px-4">
+  <div class="max-w-350 mx-auto px-4 mt-4">
 
     <div class="flex flex-col md:flex-row gap-12 items-center">
 
@@ -84,7 +84,7 @@
 
           <div class="flex items-center gap-4 p-4 rounded-xl bg-white border border-neutral-200 shadow-sm hover:border-primary-300 hover:shadow-md transition-all group">
             <div class="w-12 h-12 rounded-lg bg-primary-50 text-primary-600 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-              <span class="w-6 h-6">{{ partial "icon.html" "ri/check-line" }}</span>
+              <span class="w-8 h-8">{{ partial "icon.html" "ri/check-line" }}</span>
             </div>
             <div class="flex flex-col">
               <span class="font-bold text-lg text-neutral-900 leading-tight">90% reduction in storage volume</span>
@@ -94,7 +94,7 @@
 
           <div class="flex items-center gap-4 p-4 rounded-xl bg-white border border-neutral-200 shadow-sm hover:border-primary-300 hover:shadow-md transition-all group">
             <div class="w-12 h-12 rounded-lg bg-primary-50 text-primary-600 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-              <span class="w-6 h-6">{{ partial "icon.html" "ri/arrow-left-right-line" }}</span>
+              <span class="w-8 h-8">{{ partial "icon.html" "ri/arrow-left-right-line" }}</span>
             </div>
             <div class="flex flex-col">
               <span class="font-bold text-lg text-neutral-900 leading-tight">Unlocked Cross-Cloud Mobility</span>
@@ -104,7 +104,7 @@
 
           <div class="flex items-center gap-4 p-4 rounded-xl bg-white border border-neutral-200 shadow-sm hover:border-primary-300 hover:shadow-md transition-all group">
             <div class="w-12 h-12 rounded-lg bg-primary-50 text-primary-600 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-              <span class="w-6 h-6">{{ partial "icon.html" "ri/cpu-line" }}</span>
+              <span class="w-8 h-8">{{ partial "icon.html" "ri/cpu-line" }}</span>
             </div>
             <div class="flex flex-col">
               <span class="font-bold text-lg text-neutral-900 leading-tight">Runs on commodity hardware</span>
@@ -172,7 +172,7 @@
 
       <div class="flex flex-col gap-4 p-6 bg-white rounded-xl border border-neutral-200 hover:border-primary-300 transition-colors shadow-sm">
         <div class="w-10 h-10 bg-primary-50 text-primary-600 rounded flex items-center justify-center">
-          <span class="w-5 h-5">{{ partial "icon.html" "ri/time-line" }}</span>
+          <span class="w-8 h-8">{{ partial "icon.html" "ri/time-line" }}</span>
         </div>
         <h3 class="font-bold text-lg text-neutral-900">Frequency without Penalty</h3>
         <p class="text-neutral-600 text-sm leading-relaxed">Because we only store changes, <strong>backing up every hour costs the same as backing up every day.</strong> Drastically improve your RPO without increasing your storage bill.</p>
@@ -180,7 +180,7 @@
 
       <div class="flex flex-col gap-4 p-6 bg-white rounded-xl border border-neutral-200 hover:border-primary-300 transition-colors shadow-sm">
         <div class="w-10 h-10 bg-primary-50 text-primary-600 rounded flex items-center justify-center">
-          <span class="w-5 h-5">{{ partial "icon.html" "ri/arrow-left-right-line" }}</span>
+          <span class="w-8 h-8">{{ partial "icon.html" "ri/arrow-left-right-line" }}</span>
         </div>
         <h3 class="font-bold text-lg text-neutral-900">True Cross-Cloud Mobility</h3>
         <p class="text-neutral-600 text-sm leading-relaxed">Unlock real cross-provider backups. You pay an optimized egress fee on the first sync, then <strong>costs trend toward zero</strong> over time. Vendor lock-in is finally purely optional.</p>
@@ -188,7 +188,7 @@
 
       <div class="flex flex-col gap-4 p-6 bg-white rounded-xl border border-neutral-200 hover:border-primary-300 transition-colors shadow-sm">
         <div class="w-10 h-10 bg-primary-50 text-primary-600 rounded flex items-center justify-center">
-          <span class="w-5 h-5">{{ partial "icon.html" "ri/cpu-line" }}</span>
+          <span class="w-8 h-8">{{ partial "icon.html" "ri/cpu-line" }}</span>
         </div>
         <h3 class="font-bold text-lg text-neutral-900">No Hardware Lock-in</h3>
         <p class="text-neutral-600 text-sm leading-relaxed">Competitors require specific appliances to handle deduplication. Plakar's modern algorithmic approach runs on standard, cheap hardware or virtual machines.</p>
@@ -200,7 +200,7 @@
 
 <!-- CTA -->
 <section class="section-light-2 grid-background py-24 relative overflow-hidden border-t border-neutral-200">
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-primary-500/10 blur-[120px] rounded-full pointer-events-none"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-100 bg-primary-500/10 blur-[120px] rounded-full pointer-events-none"></div>
   <div class="max-w-350 mx-auto px-4 text-center relative z-10">
     <div class="max-w-3xl mx-auto flex flex-col gap-6">
       <h2 class="text-3xl md:text-5xl font-medium text-neutral-900 leading-tight">
