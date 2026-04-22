@@ -146,17 +146,20 @@ api_version: v1.1.0
 version: v0.1.0
 tier: third-party
 contact: mailto:you@example.com
-
+tags: [filesystem]
 connectors:
   - type: importer
     executable: test-importer
-    protocols:
-      - test
-    location_flags:
-      - localfs
+    protocols: [test]
+    location_flags: [localfs]
     class: filesystem
     subclass: test
+    validator: ./importer/schema.json
+    args: []
+    extra_files: []
 ```
+
+Not all fields are required for every integration. `tags` is optional metadata used for discovery. Under each connector, `validator` is only needed if your connector accepts a configuration schema; `args` and `extra_files` can be omitted entirely if you have no additional arguments to pass to the executable or no supplementary files to bundle. A minimal connector entry needs only `type`, `executable` and `protocols`.
 
 The `executable` value must match the binary name you produce in the build step. The `location_flags` list must reflect the `location.Flags` returned by your connector's `Flags()` method. Set `class` and `subclass` to values that best describe your data source — for a connector that reads from a local filesystem path, `filesystem` and your protocol name are appropriate choices.
 
