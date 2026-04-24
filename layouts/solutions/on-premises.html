@@ -4,19 +4,19 @@
 {{ $laptop := resources.Get "img/general/laptop-plakar-demo.png" }}
 
 <!-- Hero -->
-<section class="section-light-2 grid-background pt-36 pb-20 relative overflow-hidden">
+<section class="section-light-2 grid-background pt-48 pb-20 relative overflow-hidden">
   <div class="absolute top-0 right-0 p-64 bg-primary-900/10 rounded-full blur-[120px] pointer-events-none"></div>
 
   <div class="max-w-350 mx-auto px-4 flex flex-col items-center text-center gap-8 relative z-10">
     <div class="max-w-5xl flex flex-col gap-4">
       <h2 class="text-primary-600 font-mono text-sm font-bold uppercase tracking-widest">Plakar Enterprise On-Premises</h2>
-      <h1 class="font-medium text-4xl lg:text-6xl text-neutral-900 leading-tight">
+      <h1 class="font-medium text-4xl lg:text-6xl text-neutral-900 leading-tighter">
         Unified Resilience Control Plane<br/>
         <span class="text-primary-500">Hosted by You</span>
       </h1>
     </div>
 
-    <p class="max-w-2xl text-neutral-600 text-lg lg:text-xl leading-relaxed">
+    <p class="max-w-2xl text-neutral-600 text-lg lg:text-xl">
       Deploy the full power of Plakar Enterprise inside your perimeter.
       Keep absolute control over your resilience strategy while simplifying operations.
     </p>
@@ -38,7 +38,7 @@
 <section class="section-light-2 grid-background relative overflow-hidden">
   <div class="bg-gradient-section">
     <div class="max-w-350 mx-auto px-4 flex flex-col items-center text-center gap-8 relative z-10 pb-4">
-      <div class="mt-16 relative w-full max-w-5xl mx-auto">
+      <div class="mt-4 relative w-full max-w-5xl mx-auto">
         <div class="absolute inset-0 bg-primary-500/20 blur-3xl -z-10 rounded-full opacity-50"></div>
         <div class="rounded-xl border border-neutral-200 bg-white/80 backdrop-blur-sm shadow-2xl overflow-hidden">
           <div class="h-8 bg-neutral-100 border-b border-neutral-200 flex items-center px-4 gap-2">
@@ -57,12 +57,12 @@
 </section>
 
 <!-- Hardened Virtual Appliance -->
-<section class="section-dark-1 py-14 lg:py-20 border-y border-neutral-800 relative overflow-hidden">
-  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary-900/20 blur-[100px] rounded-full pointer-events-none"></div>
+<section class="section-dark-1 py-14 lg:py-24 border-y border-neutral-800 relative overflow-hidden">
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-150 h-75 bg-primary-900/20 blur-[100px] rounded-full pointer-events-none"></div>
 
   <div class="max-w-350 mx-auto px-4 relative z-10 flex flex-col gap-12">
     <div class="text-center max-w-4xl mx-auto space-y-4">
-      <h2 class="font-medium text-3xl lg:text-5xl text-white leading-tight">
+      <h2 class="font-medium text-3xl lg:text-5xl text-white leading-tighter">
         Shipped as a <span class="text-primary-500">Hardened Virtual Appliance</span>
       </h2>
       <p class="text-lg text-neutral-400 leading-relaxed">
@@ -112,12 +112,12 @@
 </section>
 
 <!-- Enterprise-Grade Management -->
-<section id="features" class="section-light-2 py-14 lg:py-28">
+<section id="features" class="section-light-2 py-14 lg:py-32">
   <div class="max-w-350 mx-auto px-4 flex flex-col gap-12">
 
     <div class="flex flex-col md:flex-row justify-between items-end gap-6 border-b border-neutral-200 pb-8">
       <div class="max-w-2xl">
-        <h2 class="text-3xl lg:text-5xl font-medium text-neutral-900 leading-tight">
+        <h2 class="text-3xl lg:text-5xl font-medium text-neutral-900 leading-tighter">
           Enterprise-Grade <span class="text-primary-500">Management</span>
         </h2>
         <p class="mt-4 text-lg text-neutral-600 leading-relaxed">
@@ -128,7 +128,7 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <div class="bg-white border border-neutral-200 p-8 rounded-2xl flex flex-col gap-4 shadow-sm hover:border-primary-200 transition-colors">
-        <div class="w-10 h-10 p-2 bg-primary-50 text-primary-600 rounded flex items-center justify-center">
+        <div class="w-10 h-10 p-1 bg-primary-50 text-primary-600 rounded flex items-center justify-center">
           {{ partial "icon.html" "ri/dashboard-3-line" }}
         </div>
         <h3 class="font-bold text-xl text-neutral-900">Unified Posture Dashboard</h3>
@@ -138,7 +138,7 @@
       </div>
 
       <div class="bg-white border border-neutral-200 p-8 rounded-2xl flex flex-col gap-4 shadow-sm hover:border-primary-200 transition-colors">
-        <div class="w-10 h-10 p-2 bg-primary-50 text-primary-600 rounded flex items-center justify-center">
+        <div class="w-10 h-10 p-1 bg-primary-50 text-primary-600 rounded flex items-center justify-center">
           {{ partial "icon.html" "ri/flow-chart" }}
         </div>
         <h3 class="font-bold text-xl text-neutral-900">Policy-Driven Orchestration</h3>
@@ -148,7 +148,7 @@
       </div>
 
       <div class="bg-white border border-neutral-200 p-8 rounded-2xl flex flex-col gap-4 shadow-sm hover:border-primary-200 transition-colors">
-        <div class="w-10 h-10 p-2 bg-primary-50 text-primary-600 rounded flex items-center justify-center">
+        <div class="w-10 h-10 p-1 bg-primary-50 text-primary-600 rounded flex items-center justify-center">
           {{ partial "icon.html" "ri/organization-chart" }}
         </div>
         <h3 class="font-bold text-xl text-neutral-900">Advanced RBAC &amp; Multi-Tenancy</h3>
@@ -158,7 +158,7 @@
       </div>
 
       <div class="bg-white border border-neutral-200 p-8 rounded-2xl flex flex-col gap-4 shadow-sm hover:border-primary-200 transition-colors">
-        <div class="w-10 h-10 p-2 bg-primary-50 text-primary-600 rounded flex items-center justify-center">
+        <div class="w-10 h-10 p-1 bg-primary-50 text-primary-600 rounded flex items-center justify-center">
           {{ partial "icon.html" "ri/shield-keyhole-line" }}
         </div>
         <h3 class="font-bold text-xl text-neutral-900">External Secrets Management</h3>
@@ -179,16 +179,16 @@
 </section>
 
 <!-- Delegate Resilience CTA -->
-<section class="section-dark-1 py-20 text-center">
-  <div class="max-w-350 mx-auto px-4 flex flex-col items-center gap-8">
-    <h2 class="font-medium text-3xl md:text-5xl text-white leading-tight">
+<section class="section-dark-1 py-24 text-center">
+  <div class="max-w-350 mx-auto px-4 flex flex-col items-center">
+    <h2 class="font-medium text-3xl md:text-5xl text-white">
       Secure From the Inside,<br/>
-      <span class="text-primary-500 text-2xl md:text-4xl">Delegate Resilience on Demand</span>
+      <span class="text-primary-500 text-2xl -mt-8 md:text-4xl">Delegate Resilience on Demand</span>
     </h2>
-    <p class="text-neutral-400 text-lg max-w-3xl">
+    <p class="text-neutral-400 text-lg max-w-3xl mt-8">
       Manage your control plane on-premises, but keep the flexibility to offload encrypted data retention to third-party providers without sharing your keys.
     </p>
-    <div class="flex flex-col sm:flex-row gap-4">
+    <div class="flex flex-col sm:flex-row gap-4 mt-8">
       {{ partial "components/buttons/base-button.html" (dict
         "label" "Book a demo"
         "labelShort" "Demo"
@@ -201,7 +201,7 @@
 <!-- Unified workflows -->
 <section class="section-light-1 py-14 lg:py-28">
   <div class="max-w-350 mx-auto px-4 flex flex-col gap-10">
-    <div class="text-left space-y-3">
+    <div class="text-left space-y-3 lg:px-4">
       <h2 class="text-4xl font-medium leading-tight text-neutral-900">
         Regroup all your data protection workflows under a single view
       </h2>
@@ -235,7 +235,7 @@
 
 <!-- Platform logos -->
 <section class="section-light-2 py-8 lg:py-12 border-y border-neutral-200">
-  <div class="max-w-350 mx-auto px-4">
+  <div class="max-w-350 mx-auto px-4 lg:px-8">
     <div class="flex flex-col md:flex-row justify-between items-center py-6 gap-10">
       <div class="text-2xl lg:text-4xl text-neutral-600 self-center text-left">
         Secure workloads <span class="text-primary-500 font-medium">across any environment</span>
@@ -259,14 +259,14 @@
 </section>
 
 <!-- Resource Usage -->
-<section class="section-dark-1 py-14 lg:py-28 relative overflow-hidden">
+<section class="section-dark-1 py-14 lg:py-32 relative overflow-hidden">
   <div class="absolute inset-0 pointer-events-none opacity-20">
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-linear-to-r from-primary-900 to-primary-700 blur-[100px] rounded-full"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-100 bg-linear-to-r from-primary-900 to-primary-700 blur-[100px] rounded-full"></div>
   </div>
 
   <div class="max-w-350 mx-auto px-4 relative z-10 flex flex-col gap-12">
     <div class="text-center max-w-3xl mx-auto space-y-4">
-      <h2 class="text-3xl lg:text-5xl font-medium text-white leading-tight">
+      <h2 class="text-3xl lg:text-5xl font-medium text-white leading-tighter">
         Drastically Reduce <span class="text-primary-500">Resource Usage</span>
       </h2>
       <p class="text-lg text-neutral-400">
@@ -276,11 +276,11 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 items-stretch">
       <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-8 flex flex-col gap-6 shadow-sm">
-        <div class="flex flex-col gap-3 text-primary-400">
-          <span class="w-16 h-16">{{ partial "icon.html" "ri/bar-chart-grouped-line" }}</span>
+        <div class="flex flex-col lg:flex-row lg:items-center gap-3 text-primary-400">
+          <span class="w-16 lg:w-120 h-16 lg:h-120">{{ partial "icon.html" "ri/bar-chart-grouped-line" }}</span>
           <h3 class="font-bold text-xl text-white">Network Bandwidth</h3>
         </div>
-        <p class="text-neutral-400 text-sm h-12">
+        <p class="text-neutral-400 text-sm h-12 -mt-24">
           Traditional backups resend data. Plakar agents only transmit unique, encrypted chunks.
         </p>
         <div class="flex items-end gap-8 h-48 mt-4 border-b border-neutral-700 pb-2 px-4">
@@ -306,11 +306,11 @@
       </div>
 
       <div class="bg-neutral-800 border border-neutral-700 rounded-2xl p-8 flex flex-col gap-6 shadow-sm">
-        <div class="flex flex-col gap-3 text-primary-400">
-          <span class="w-16 h-16">{{ partial "icon.html" "ri/hard-drive-2-line" }}</span>
+        <div class="flex flex-col lg:flex-row lg:items-center gap-3 text-primary-400">
+          <span class="w-16 lg:w-110 h-16 lg:h-110">{{ partial "icon.html" "ri/hard-drive-2-line" }}</span>
           <h3 class="font-bold text-xl text-white">Storage Footprint</h3>
         </div>
-        <p class="text-neutral-400 text-sm h-12">
+        <p class="text-neutral-400 text-sm h-12 -mt-12">
           High-density deduplication ensures you never store the same data twice, maximizing storage ROI.
         </p>
         <div class="flex items-end gap-8 h-48 mt-4 border-b border-neutral-700 pb-2 px-4">
@@ -375,7 +375,7 @@
           </li>
         </ul>
 
-        <blockquote class="border-l-4 border-primary-600 pl-6 py-2 italic text-neutral-600 text-lg bg-white rounded-r-lg border border-neutral-200">
+        <blockquote class="border-l-4 border-primary-600 pl-6 py-2 italic text-neutral-600 text-lg bg-white rounded-r-lg border">
           "You don't have to trust your storage provider."
         </blockquote>
       </div>
@@ -388,8 +388,8 @@
 </section>
 
 <!-- Modern Infrastructure -->
-<section class="section-light-1 py-14 lg:py-28">
-  <div class="max-w-350 mx-auto px-4 flex flex-col gap-10">
+<section class="section-light-1 py-14 lg:py-34">
+  <div class="max-w-350 mx-auto px-4 flex flex-col gap-14">
     <div class="flex flex-col items-end text-right space-y-6">
       <h2 class="text-2xl lg:text-4xl font-medium text-neutral-900">
         Designed for modern infrastructure
@@ -423,14 +423,14 @@
 </section>
 
 <!-- Architecture -->
-<section id="architecture" class="section-dark-1 py-14 lg:py-28 relative overflow-hidden">
+<section id="architecture" class="section-dark-1 py-14 lg:py-30 relative overflow-hidden">
   <div class="max-w-350 mx-auto px-4 flex flex-col gap-16 items-center">
 
     <div class="text-center max-w-3xl">
       <h2 class="font-medium text-3xl lg:text-5xl text-white leading-tight mb-6">
         Inside the Appliance: <span class="text-primary-500">The Stack</span>
       </h2>
-      <p class="text-neutral-400 text-lg">
+      <p class="text-neutral-400 text-lg -mt-2">
         A hardened stack designed for zero-trust operations.
       </p>
     </div>
@@ -500,7 +500,7 @@
 <section class="section-light-1 py-20 border-t border-neutral-200">
   <div class="max-w-350 mx-auto px-4 flex flex-col items-center text-center gap-12">
     <div class="flex flex-col gap-4 max-w-4xl mx-auto">
-      <h2 class="font-medium text-3xl lg:text-5xl text-neutral-900 leading-tight">
+      <h2 class="font-medium text-3xl lg:text-5xl text-neutral-900 leading-tighter">
         "60% of organizations don't trust their backups."
       </h2>
       <div class="text-neutral-500 text-xs font-mono uppercase tracking-widest">

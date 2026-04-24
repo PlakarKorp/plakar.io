@@ -4,7 +4,7 @@
 {{ $laptop := resources.Get "img/general/laptop-plakar-demo.png" }}
 
 <!-- Hero -->
-<section class="section-light-2 grid-background pt-36 pb-20 relative overflow-hidden">
+<section class="section-light-2 grid-background pt-38 pb-26 relative overflow-hidden">
   <div class="absolute top-0 right-0 p-96 bg-[#FF9900]/5 rounded-full blur-[150px] pointer-events-none"></div>
 
   <div class="max-w-350 mx-auto px-4 flex flex-col lg:flex-row items-center gap-8 relative z-10">
@@ -12,13 +12,13 @@
     <div class="flex-1 flex flex-col gap-8 text-left min-w-0">
       <div class="flex flex-col gap-4">
         <h2 class="text-primary-600 font-mono text-sm font-bold uppercase tracking-widest">Plakar for AWS</h2>
-        <h1 class="font-medium text-3xl lg:text-5xl text-neutral-900 leading-tight">
+        <h1 class="font-medium text-3xl lg:text-5xl text-neutral-900 leading-tighter">
           Cloud-Native Resilience<br/>
           <span class="text-primary-500 whitespace-nowrap">Agentless &amp; Zero-Trust</span>
         </h1>
       </div>
 
-      <p class="text-neutral-600 text-lg lg:text-xl leading-relaxed max-w-xl">
+      <p class="text-neutral-600 text-lg lg:text-xl max-w-xl">
         Protect your AWS buckets and resources without deploying agents.
         Manage your resilience from within your VPC, but keep the freedom to replicate copies <strong>outside of AWS</strong> for a bulletproof disaster recovery strategy.
       </p>
@@ -55,13 +55,13 @@
 </section>
 
 <!-- Hardened AMI -->
-<section class="section-dark-1 py-14 lg:py-20 border-y border-neutral-800 relative overflow-hidden">
-  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#FF9900]/10 blur-[100px] rounded-full pointer-events-none"></div>
+<section class="section-dark-1 py-14 lg:pt-20 lg:pb-24 border-y border-neutral-800 relative overflow-hidden">
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-150 h-75 bg-[#FF9900]/10 blur-[100px] rounded-full pointer-events-none"></div>
 
   <div class="max-w-350 mx-auto px-4 relative z-10 flex flex-col gap-12">
 
-    <div class="text-center max-w-4xl mx-auto space-y-4">
-      <h2 class="font-medium text-3xl lg:text-5xl text-white leading-tight">
+    <div class="text-center max-w-4xl mx-auto space-y-4 pt-5">
+      <h2 class="font-medium text-3xl lg:text-5xl text-white leading-tighter">
         Shipped as a <span class="text-primary-500">Hardened AMI</span>
       </h2>
       <p class="text-lg text-neutral-400 leading-relaxed">
@@ -112,10 +112,10 @@
 </section>
 
 <!-- Agentless -->
-<section class="section-light-1 py-14 lg:py-20 border-b border-neutral-200">
+<section class="section-light-1 py-14 lg:py-24 border-b border-neutral-200">
   <div class="max-w-350 mx-auto px-4 text-center flex flex-col gap-10">
 
-    <div class="flex flex-col gap-4 max-w-4xl mx-auto">
+    <div class="flex flex-col gap-4 mx-auto">
       <h2 class="font-medium text-3xl lg:text-5xl text-neutral-900">
         Stop Managing Backup Agents
       </h2>
@@ -154,12 +154,12 @@
 </section>
 
 <!-- Enterprise-Grade Management -->
-<section id="features" class="section-light-2 py-14 lg:py-28">
+<section id="features" class="section-light-2 py-14 lg:py-32">
   <div class="max-w-350 mx-auto px-4 flex flex-col gap-12">
 
     <div class="flex flex-col md:flex-row justify-between items-end gap-6 border-b border-neutral-200 pb-8">
       <div class="max-w-2xl">
-        <h2 class="text-3xl lg:text-5xl font-medium text-neutral-900 leading-tight">
+        <h2 class="text-3xl lg:text-5xl font-medium text-neutral-900 leading-tighter">
           Enterprise-Grade Management
         </h2>
         <p class="mt-4 text-lg text-neutral-600 leading-relaxed">
@@ -170,7 +170,7 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <div class="bg-white border border-neutral-200 p-8 rounded-2xl flex flex-col gap-4 shadow-sm hover:border-primary-500 transition-colors">
-        <div class="w-10 h-10 p-2 bg-primary-50 text-primary-600 rounded flex items-center justify-center">
+        <div class="w-10 h-10 p-1 bg-primary-50 text-primary-600 rounded flex items-center justify-center">
           {{ partial "icon.html" "ri/dashboard-3-line" }}
         </div>
         <h3 class="font-bold text-xl text-neutral-900">Unified Posture Dashboard</h3>
@@ -180,7 +180,7 @@
       </div>
 
       <div class="bg-white border border-neutral-200 p-8 rounded-2xl flex flex-col gap-4 shadow-sm hover:border-primary-500 transition-colors">
-        <div class="w-10 h-10 p-2 bg-primary-50 text-primary-600 rounded flex items-center justify-center">
+        <div class="w-10 h-10 p-1 bg-primary-50 text-primary-600 rounded flex items-center justify-center">
           {{ partial "icon.html" "ri/flow-chart" }}
         </div>
         <h3 class="font-bold text-xl text-neutral-900">Policy-Driven Orchestration</h3>
@@ -190,7 +190,7 @@
       </div>
 
       <div class="bg-white border border-neutral-200 p-8 rounded-2xl flex flex-col gap-4 shadow-sm hover:border-primary-500 transition-colors">
-        <div class="w-10 h-10 p-2 bg-primary-50 text-primary-600 rounded flex items-center justify-center">
+        <div class="w-10 h-10 p-1 bg-primary-50 text-primary-600 rounded flex items-center justify-center">
           {{ partial "icon.html" "ri/organization-chart" }}
         </div>
         <h3 class="font-bold text-xl text-neutral-900">Advanced RBAC &amp; Multi-Tenancy</h3>
@@ -200,7 +200,7 @@
       </div>
 
       <div class="bg-white border border-neutral-200 p-8 rounded-2xl flex flex-col gap-4 shadow-sm hover:border-primary-500 transition-colors">
-        <div class="w-10 h-10 p-2 bg-primary-50 text-primary-600 rounded flex items-center justify-center">
+        <div class="w-10 h-10 p-1 bg-primary-50 text-primary-600 rounded flex items-center justify-center">
           {{ partial "icon.html" "ri/shield-keyhole-line" }}
         </div>
         <h3 class="font-bold text-xl text-neutral-900">AWS Secrets Manager Ready</h3>
@@ -284,11 +284,11 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 items-stretch">
 
       <div class="bg-white border border-neutral-200 rounded-2xl p-8 flex flex-col gap-6 shadow-sm">
-        <div class="flex flex-col gap-3 text-primary-600">
-          <span class="w-16 h-16">{{ partial "icon.html" "ri/bar-chart-grouped-line" }}</span>
+        <div class="flex flex-col lg:flex-row lg:items-center gap-3 text-primary-600">
+          <span class="w-16 lg:w-120 h-16 lg:h-120">{{ partial "icon.html" "ri/bar-chart-grouped-line" }}</span>
           <h3 class="font-bold text-xl text-neutral-900">Network &amp; Egress Costs</h3>
         </div>
-        <p class="text-neutral-600 text-sm h-12">
+        <p class="text-neutral-600 text-sm h-12 -mt-24">
           Replicating backups to another region or cloud provider usually triggers massive Egress fees. Plakar sends only deduplicated chunks, reducing these costs by up to 90%.
         </p>
         <div class="flex items-end gap-8 h-48 mt-4 border-b border-neutral-200 pb-2 px-4">
@@ -314,11 +314,11 @@
       </div>
 
       <div class="bg-white border border-neutral-200 rounded-2xl p-8 flex flex-col gap-6 shadow-sm">
-        <div class="flex flex-col gap-3 text-primary-600">
-          <span class="w-16 h-16">{{ partial "icon.html" "ri/hard-drive-2-line" }}</span>
+        <div class="flex flex-col lg:flex-row lg:items-center gap-3 text-primary-600">
+          <span class="w-16 lg:w-110 h-16 lg:h-110">{{ partial "icon.html" "ri/hard-drive-2-line" }}</span>
           <h3 class="font-bold text-xl text-neutral-900">Direct-to-Glacier</h3>
         </div>
-        <p class="text-neutral-600 text-sm h-12">
+        <p class="text-neutral-600 text-sm h-12 -mt-12">
           Native snapshots often trap data in expensive tiers. Plakar writes directly to S3 Glacier Instant Retrieval or Deep Archive, bypassing standard storage costs.
         </p>
         <div class="flex items-end gap-8 h-48 mt-4 border-b border-neutral-200 pb-2 px-4">
@@ -348,8 +348,8 @@
 </section>
 
 <!-- Modern Cloud Infrastructure -->
-<section class="section-light-1 py-14 lg:py-28">
-  <div class="max-w-350 mx-auto px-4 flex flex-col gap-10">
+<section class="section-light-1 py-14 lg:py-32">
+  <div class="max-w-350 mx-auto px-4 flex flex-col gap-14">
 
     <div class="flex flex-col items-end text-right space-y-6">
       <h2 class="text-2xl lg:text-4xl font-medium text-neutral-900">
@@ -385,14 +385,14 @@
 </section>
 
 <!-- Architecture -->
-<section id="architecture" class="section-dark-1 py-14 lg:py-28 relative overflow-hidden">
+<section id="architecture" class="section-dark-1 py-14 lg:py-30 relative overflow-hidden">
   <div class="max-w-350 mx-auto px-4 flex flex-col gap-16 items-center">
 
     <div class="text-center max-w-3xl">
       <h2 class="font-medium text-3xl lg:text-5xl text-white leading-tight mb-6">
         Inside the AMI: <span class="text-primary-500">The Stack</span>
       </h2>
-      <p class="text-neutral-400 text-lg">
+      <p class="text-neutral-400 text-lg -mt-2">
         A hardened stack designed for cloud-native operations.
       </p>
     </div>
@@ -455,7 +455,7 @@
   <div class="max-w-350 mx-auto px-4 flex flex-col items-center text-center gap-12">
 
     <div class="flex flex-col gap-4 max-w-4xl mx-auto">
-      <h2 class="font-medium text-3xl lg:text-5xl text-neutral-900 leading-tight">
+      <h2 class="font-medium text-3xl lg:text-5xl text-neutral-900 leading-tighter">
         "60% of organizations don't trust their backups."
       </h2>
       <div class="text-neutral-500 text-xs font-mono uppercase tracking-widest">

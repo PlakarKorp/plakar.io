@@ -2,11 +2,11 @@
 
 {{ $logo := resources.Get .Site.Params.logos.dark }}
 
-<header id="site-header" class="fixed flex px-2 py-2 md:px-4 top-5 rounded-2xl mx-auto inset-x-4 md:inset-x-10 max-w-350 z-50 bg-neutral-50 border-b border-l border-r border-neutral-300">
+<header id="site-header" class="fixed flex px-2 py-2 md:py-3 top-5 rounded-2xl mx-auto inset-x-4 md:inset-x-10 max-w-350 z-50 bg-neutral-50 border-b border-l border-r border-neutral-300">
   <div class="flex mx-auto w-full justify-between relative">
     <div class="flex mx-auto items-center w-full space-x-2 xl:space-x-16">
       <!-- Logo -->
-      <a href="/" class="block md:w-32 w-28 pb-0.5">
+      <a href="/" class="block md:w-34 w-28 pb-0.5 md:pl-2">
         <span class="block">{{ $logo.Content | safeHTML }}</span>
       </a>
 
@@ -20,9 +20,9 @@
     <div class="flex flex-row items-center space-x-2 shrink-0 justify-end">
       <!-- Search trigger -->
       <button class="search-trigger group flex items-center gap-2 min-h-7 lg:min-h-12 px-2.5 border border-neutral-300 rounded-lg bg-neutral-50 text-neutral-400 hover:text-neutral-600 hover:border-neutral-400 transition-colors" aria-label="Open search">
-        <span class="w-4 h-4 shrink-0">{{ partial "icon.html" "ri/search-line" }}</span>
-        <span class="hidden md:inline text-sm">Search...</span>
-        <kbd class="hidden md:inline-flex items-center h-5 bg-white border border-neutral-200 rounded px-1.5 ml-1">
+        <span class="w-6 h-6 shrink-0">{{ partial "icon.html" "ri/search-line" }}</span>
+        <span class="hidden text-sm">Search...</span>
+        <kbd class="hidden items-center h-5 bg-white border border-neutral-200 rounded px-1.5 ml-1">
           <span class="text-[10px] text-neutral-400" id="search-kbd-hint"></span>
         </kbd>
       </button>

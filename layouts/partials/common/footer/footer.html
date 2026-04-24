@@ -1,14 +1,14 @@
 {{ $footerBanner := resources.Get "img/general/plakar-footer-banner.svg" }}
 
 <!-- Footer menu -->
-<section class="section-primary-1 pt-14">
-  <div class="max-w-350 mx-auto px-4">
+<section class="section-primary-1 pt-8">
+  <div class="max-w-350 mx-auto px-8">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-sm text-neutral-50">
 
       <!-- Pages -->
       <div class="flex flex-col gap-3">
         <h3 class="font-semibold text-base">Pages</h3>
-        <ul class="flex flex-col gap-2">
+        <ul class="flex flex-col gap-1">
           <li><a href="/" class="hover:underline opacity-80 hover:opacity-100">Home</a></li>
           <li><a href="/community/" class="hover:underline opacity-80 hover:opacity-100">Community</a></li>
           <li><a href="/branding/" class="hover:underline opacity-80 hover:opacity-100">Brand center</a></li>
@@ -19,7 +19,7 @@
       <!-- Solutions -->
       <div class="flex flex-col gap-3">
         <h3 class="font-semibold text-base">Solutions</h3>
-        <ul class="flex flex-col gap-2">
+        <ul class="flex flex-col gap-1">
           <li><a href="/solutions/on-premises/" class="hover:underline opacity-80 hover:opacity-100">On-premises</a></li>
           <li><a href="/solutions/aws/" class="hover:underline opacity-80 hover:opacity-100">Amazon Web Services</a></li>
           <li><a href="/solutions/compare/" class="hover:underline opacity-80 hover:opacity-100">Compare Plakar</a></li>
@@ -30,7 +30,7 @@
       <!-- Resources -->
       <div class="flex flex-col gap-3">
         <h3 class="font-semibold text-base">Resources</h3>
-        <ul class="flex flex-col gap-2">
+        <ul class="flex flex-col gap-1">
           <li><a href="/posts/?category=release-note" class="hover:underline opacity-80 hover:opacity-100">Release notes</a></li>
           <li><a href="/posts/?category=insights" class="hover:underline opacity-80 hover:opacity-100">Insights</a></li>
           <li><a href="/posts/?category=technology" class="hover:underline opacity-80 hover:opacity-100">Tech articles</a></li>
@@ -73,10 +73,10 @@
 </section>
 
 <!-- Footer bottom -->
-<footer class="bg-primary-500 text-neutral-100 -mt-1 pt-14">
+<footer class="bg-primary-500 text-neutral-50 -mt-1">
   <div class="max-w-350 mx-auto px-4 flex flex-col gap-6 pt-6">
 
-    <div class="flex flex-col md:flex-row justify-between gap-4 text-sm border-t border-primary-600 pt-6 opacity-80">
+    <div class="grid md:grid-cols-2 md:px-12 gap-4 text-sm border-t border-primary-600 pt-10 opacity-80">
       <div class="flex gap-4">
         <span>© Plakar 2025</span>
         <span>All rights reserved</span>
@@ -90,7 +90,7 @@
       </div>
     </div>
 
-    <div class="overflow-hidden">
+    <div class="overflow-hidden md:px-8">
       <img src="{{ $footerBanner.RelPermalink }}" alt="Footer banner" class="w-full h-auto object-contain">
     </div>
 
