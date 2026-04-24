@@ -1,7 +1,7 @@
 ---
 title: "OVHcloud"
 date: "2026-03-19T00:00:00Z"
-weight: 12
+weight: 13
 summary: "Guides on running backups in OVHcloud"
 ---
 
