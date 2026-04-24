@@ -50,6 +50,6 @@
 ## Development
 
 - Clone the repo or a fork of the repo including the submodules `git clone --recurse-submodules <url>`
-- CD into `/themes/blowfish` directory then run `npm install` to install blowfish dependencies
-- Now at the root of the repo run `npm run dev` to start the development server and watch for changes to the Tailwind CSS files
+- Run `npm install` at `themes/blowfish` and at the root of the repo to install blowfish dependencies and our dependencies
+- Run `npm run dev` at the root of the repo to start the development server and watch for changes to the Tailwind CSS files
 - To build the static site run `npm run build`
