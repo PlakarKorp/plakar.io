@@ -14,25 +14,27 @@ technology_description: >
   While Notion provides platform reliability and basic export functionality, it does not offer robust backup and recovery, or protection against accidental deletions and unauthorized changes. Plakar transforms your Notion workspace into a fully backed-up, verifiable system with cryptographic guarantees and flexible restoration options.
 
 categories:
-- source connector
+  - source connector
 
 tags:
-- SaaS
-- Workspace
-- Productivity
-- Collaboration
+  - Notion
+  - SaaS
+  - Workspace
+  - Productivity
+  - Collaboration
+  - Knowledge management
 
 seo_tags:
-- Notion backup
-- Notion disaster recovery
-- workspace backup
-- SaaS backup
-- Notion data protection
-- immutable snapshots
-- Notion API backup
-- encrypted Notion backup
-- Notion version control
-- collaborative workspace backup
+  - Notion backup
+  - Notion disaster recovery
+  - workspace backup
+  - SaaS backup
+  - Notion data protection
+  - immutable snapshots
+  - Notion API backup
+  - encrypted Notion backup
+  - Notion version control
+  - collaborative workspace backup
 
 technical_documentation_link: /docs/main/integrations/notion/
 

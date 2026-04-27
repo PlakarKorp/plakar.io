@@ -21,8 +21,11 @@ tags:
   - MySQL
   - MariaDB
   - Databases
+  - SQL
   - mysqldump
   - AWS RDS
+  - Managed Databases
+  - On-Premise
 
 seo_tags:
   - MySQL backup

@@ -18,9 +18,11 @@ categories:
   - destination connector
 
 tags:
+  - etcd
   - Containers
   - CSI
   - Persistent Volumes
+  - On-Premise
   - EKS
   - GKE
   - AKS

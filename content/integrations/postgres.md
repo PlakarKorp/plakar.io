@@ -17,13 +17,13 @@ categories:
   - source connector
   - destination connector
 
-
 tags:
   - Databases
   - pg_dump
   - pg_basebackup
   - SQL
   - AWS RDS
+  - Managed Databases
 
 seo_tags:
   - PostgreSQL backup
