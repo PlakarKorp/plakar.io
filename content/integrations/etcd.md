@@ -17,8 +17,12 @@ categories:
   - source connector
 
 tags:
+  - etcd
+  - Kubernetes
   - Distributed Systems
   - Key-Value Store
+  - Disaster Recovery
+  - On-Premise
   - Cloud Native
   - CNCF
 

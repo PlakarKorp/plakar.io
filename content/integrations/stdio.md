@@ -16,11 +16,13 @@ categories:
   - destination connector
   
 tags:
-- Stdio
-- Pipelines
-- Automation
-- Scripting
-- Unix
+  - Stdio
+  - Pipelines
+  - Automation
+  - Database Dumps
+  - Scripting
+  - Linux
+  - Unix
 
 seo_tags:
   - stdin backup

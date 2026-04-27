@@ -14,28 +14,28 @@ technology_description: >
   verifiable snapshots independent of your mail server's state.
 
 categories:
-- source connector
-- destination connector
+  - source connector
+  - destination connector
 
 tags:
-- Mail
-- IMAP
-- Email backup
-- Gmail
-- Exchange
-- Office 365
+  - Mail
+  - IMAP
+  - Email backup
+  - Gmail
+  - Exchange
+  - Office 365
 
 seo_tags:
-- IMAP backup
-- email backup
-- mailbox protection
-- encrypted email backup
-- immutable email snapshots
-- disaster recovery
-- email archival
-- compliance backup
-- Gmail backup
-- Exchange backup
+  - IMAP backup
+  - email backup
+  - mailbox protection
+  - encrypted email backup
+  - immutable email snapshots
+  - disaster recovery
+  - email archival
+  - compliance backup
+  - Gmail backup
+  - Exchange backup
 
 technical_documentation_link:
 

@@ -24,11 +24,13 @@ categories:
   - destination connector
 
 tags:
+  - Proxmox
   - Virtual Machines
   - Containers
   - KVM
   - LXC
   - vzdump
+  - Virtualization
 
 seo_tags:
   - Proxmox backup

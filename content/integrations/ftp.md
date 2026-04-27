@@ -20,20 +20,20 @@ categories:
   - viewer
 
 tags:
-- FTP
-- Public repositories
-- Network appliances
-- NAS
+  - FTP
+  - Public repositories
+  - Network appliances
+  - NAS
 
 seo_tags:
-- FTP backup
-- FTP server backup
-- encrypted FTP snapshots
-- FTP disaster recovery
-- public FTP mirror
-- NAS FTP backup
-- FTP versioning
-- immutable FTP backups
+  - FTP backup
+  - FTP server backup
+  - encrypted FTP snapshots
+  - FTP disaster recovery
+  - public FTP mirror
+  - NAS FTP backup
+  - FTP versioning
+  - immutable FTP backups
 
 technical_documentation_link:
 
