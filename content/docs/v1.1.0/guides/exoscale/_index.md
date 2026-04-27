@@ -1,7 +1,7 @@
 ---
 title: "Exoscale"
 date: "2026-03-19T00:00:00Z"
-weight: 13
+weight: 14
 summary: "Guides on running backups in Exoscale"
 ---
 
