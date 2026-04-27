@@ -53,3 +53,4 @@
 - Run `npm install` at `themes/blowfish` and at the root of the repo to install blowfish dependencies and our dependencies
 - Run `npm run dev` at the root of the repo to start the development server and watch for changes to the Tailwind CSS files
 - To build the static site run `npm run build`
+- You can test the CI locally with `act push`
