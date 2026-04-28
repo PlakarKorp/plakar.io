@@ -5,7 +5,7 @@
 // Elements: .dropdown-group, .dropdown-btn, .dropdown-menu, .dropdown-chevron
 // Elements: #menu-button, #menu-close-button, #menu-mobile
 // Elements: .accordion-item, .accordion-toggle, .accordion-content, .accordion-chevron
-// Elements: #search-kbd-hint
+// Elements: #search-kbd-hint, #logo-link, #logo-context-menu
 
 document.addEventListener("DOMContentLoaded", () => {
   const kbdHint = document.getElementById("search-kbd-hint");
@@ -80,6 +80,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setDropdownWidths();
   window.addEventListener("resize", setDropdownWidths);
+
+  // Logo right-click context menu
+  const logoLink = document.getElementById("logo-link");
+  const logoContextMenu = document.getElementById("logo-context-menu");
+  if (logoLink && logoContextMenu) {
+    logoLink.addEventListener("contextmenu", (e) => {
+      e.preventDefault();
+      logoContextMenu.classList.remove("hidden");
+      logoContextMenu.classList.add("flex");
+    });
+    document.addEventListener("click", (e) => {
+      if (!logoContextMenu.contains(e.target)) {
+        logoContextMenu.classList.add("hidden");
+        logoContextMenu.classList.remove("flex");
+      }
+    });
+    document.addEventListener("contextmenu", (e) => {
+      if (!logoLink.contains(e.target)) {
+        logoContextMenu.classList.add("hidden");
+        logoContextMenu.classList.remove("flex");
+      }
+    });
+  }
 
   // Mobile menu
   menuButton?.addEventListener("click", () => {
