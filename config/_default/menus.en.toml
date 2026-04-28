@@ -1,12 +1,11 @@
-# ----------- Top-level items -----------
-
+# Top level items
 [[main]]
 identifier = "solutions"
-name = "Solution"
+name = "Solutions"
 url = "#"
 weight = 10
 [[main.params]]
-    enabled = true
+  enabled = true
 
 [[main]]
 identifier = "engineering"
@@ -14,7 +13,7 @@ name = "Engineering"
 url = "#"
 weight = 20
 [[main.params]]
-    enabled = true
+  enabled = true
 
 [[main]]
 identifier = "integrations"
@@ -22,7 +21,7 @@ name = "Integrations"
 url = "/integrations/"
 weight = 30
 [[main.params]]
-    enabled = true
+  enabled = true
 
 [[main]]
 identifier = "download"
@@ -30,20 +29,9 @@ name = "Download"
 url = "/download/"
 weight = 40
 [[main.params]]
-    enabled = true
+  enabled = true
 
-[[main]]
-identifier = "pricing"
-name = "Pricing"
-url = "/pricing/"
-weight = 50
-[[main.params]]
-    enabled = false
-
-
-
-# ----------- Solutions > Platforms -----------
-
+# Solutions > Platforms
 [[main]]
 identifier = "solutions-onpremises-backup"
 name = "On-premises"
@@ -51,11 +39,11 @@ url = "/solutions/on-premises/"
 weight = 10
 parent = "solutions"
 [[main.params]]
-    description = "On your infrastructure"
-    enabled = true
-    section = "Platforms"
-    section_weight = 10
-    icon = "ri:refresh-line"
+  description = "On your infrastructure"
+  enabled = true
+  section = "Platforms"
+  section_weight = 10
+  icon = "ri/refresh-line"
 
 [[main]]
 identifier = "solutions-cloud-aws"
@@ -64,11 +52,11 @@ url = "/solutions/aws/"
 weight = 20
 parent = "solutions"
 [[main.params]]
-    description = "Inside your AWS account"
-    enabled = true
-    section = "Platforms"
-    section_weight = 10
-    icon = "AWS"
+  description = "Inside your AWS account"
+  enabled = true
+  section = "Platforms"
+  section_weight = 10
+  icon = "corporate/aws"
 
 [[main]]
 identifier = "solutions-cloud-gcp"
@@ -77,11 +65,11 @@ url = "#"
 weight = 30
 parent = "solutions"
 [[main.params]]
-    description = "Coming soon"
-    enabled = true
-    section = "Platforms"
-    section_weight = 10
-    icon = "Google-Cloud"
+  description = "Coming soon"
+  enabled = true
+  section = "Platforms"
+  section_weight = 10
+  icon = "corporate/google-cloud"
 
 [[main]]
 identifier = "solutions-cloud-azure"
@@ -90,12 +78,11 @@ url = "#"
 weight = 40
 parent = "solutions"
 [[main.params]]
-    description = "Coming soon"
-    enabled = true
-    section = "Platforms"
-    section_weight = 10
-    icon = "Microsoft-Azure"
-
+  description = "Coming soon"
+  enabled = true
+  section = "Platforms"
+  section_weight = 10
+  icon = "corporate/microsoft-azure"
 
 [[main]]
 identifier = "solutions-cloud-ovh"
@@ -104,55 +91,13 @@ url = "#"
 weight = 50
 parent = "solutions"
 [[main.params]]
-    description = "Coming soon"
-    enabled = true
-    section = "Platforms"
-    section_weight = 10
-    icon = "OVH"
+  description = "Coming soon"
+  enabled = true
+  section = "Platforms"
+  section_weight = 10
+  icon = "corporate/ovhcloud"
 
-# ----------- Solutions > Services -----------
-
-[[main]]
-identifier = "solutions-services-kubernetes"
-name = "Kubernetes"
-url = "/solutions/plakar-for-kubernetes/"
-weight = 10
-parent = "solutions"
-[[main.params]]
-    description = "Backup your clusters"
-    enabled = false
-    section = "Services"
-    section_weight = 20
-    icon = "Kubernetes"
-
-[[main]]
-identifier = "solutions-services-proxmox"
-name = "Proxmox"
-url = "/solutions/plakar-for-kubernetes/"
-weight = 20
-parent = "solutions"
-[[main.params]]
-    description = "Backup your VMs"
-    enabled = false
-    section = "Services"
-    section_weight = 20
-    icon = "Proxmox"
-
-[[main]]
-identifier = "solutions-services-notion"
-name = "Notion"
-url = "/solutions/plakar-for-notion/"
-weight = 30
-parent = "solutions"
-[[main.params]]
-    description = "Backup your workspace"
-    enabled = false
-    section = "Services"
-    section_weight = 20
-    icon = "Notion"
-
-# ----------- Solutions > Resources -----------
-
+# Solutions > Resources
 [[main]]
 identifier = "solutions-resources-compare"
 name = "Compare Plakar to Alternatives"
@@ -160,11 +105,11 @@ url = "/solutions/compare/"
 weight = 40
 parent = "solutions"
 [[main.params]]
-    description = "Discover Plakar strengths"
-    enabled = true
-    section = "Resources"
-    section_weight = 30
-    icon = "ri:arrow-left-right-line"
+  description = "Discover Plakar strengths"
+  enabled = true
+  section = "Resources"
+  section_weight = 30
+  icon = "ri/arrow-left-right-line"
 
 [[main]]
 identifier = "solutions-resources-reduce-costs"
@@ -173,54 +118,54 @@ url = "/solutions/cost-efficiency/"
 weight = 40
 parent = "solutions"
 [[main.params]]
-    description = "Slash storage & egress fees"
-    enabled = true
-    section = "Resources"
-    section_weight = 30
-    icon = "ri:arrow-left-right-line"
+  description = "Slash storage & egress fees"
+  enabled = true
+  section = "Resources"
+  section_weight = 30
+  icon = "ri/arrow-left-right-line"
 
-[[main]]
-identifier = "solutions-resources-review"
-name = "Product review"
-url = "#"
-weight = 50
-parent = "solutions"
-[[main.params]]
-    description = "Engineers feedback"
-    enabled = false
-    section = "Resources"
-    section_weight = 20
-    icon = "ri:chat-quote-line"
-
-# ----------- Engineering > Learn -----------
-
+# Engineering > Learn
 [[main]]
 identifier = "engineering-learn-quickstart"
 name = "Quick start"
-url = "/docs/LATEST_VERSION_PLACEHOLDER/quickstart/"
+url = "/docs/v1.0.6/quickstart/first-backup"
 weight = 10
 parent = "engineering"
 [[main.params]]
-    description = "Protect your data in a minute"
-    enabled = true
-    section = "Learn"
-    section_weight = 10
-    icon = "ri:rocket-2-line"
-    target = "_blank"
+  description = "Protect your data in a minute"
+  enabled = true
+  section = "Learn"
+  section_weight = 10
+  icon = "ri/rocket-2-line"
+  target = "_blank"
 
 [[main]]
 identifier = "engineering-learn-docs"
 name = "Documentation"
-url = "/docs/LATEST_VERSION_PLACEHOLDER/"
+url = "/docs"
 weight = 20
 parent = "engineering"
 [[main.params]]
-    description = "How to use Plakar?"
-    enabled = true
-    section = "Learn"
-    section_weight = 10
-    icon = "ri:book-open-line"
-    target = "_blank"
+  description = "How to use Plakar?"
+  enabled = true
+  section = "Learn"
+  section_weight = 10
+  icon = "ri/book-open-line"
+  target = "_blank"
+
+[[main]]
+identifier = "engineering-learn-control-plane-docs"
+name = "Control Plane Documentation"
+url = "/control-plane-docs/"
+weight = 30
+parent = "engineering"
+[[main.params]]
+  description = "Plakar Control Plane documentation"
+  enabled = true
+  section = "Learn"
+  section_weight = 10
+  icon = "ri/building-line"
+  target = "_blank"
 
 [[main]]
 identifier = "engineering-learn-blog"
@@ -229,14 +174,13 @@ url = "/posts/"
 weight = 30
 parent = "engineering"
 [[main.params]]
-    description = "Engineers thought & last news"
-    enabled = true
-    section = "Learn"
-    section_weight = 10
-    icon = "ri:article-line"
+  description = "Engineers thought & last news"
+  enabled = true
+  section = "Learn"
+  section_weight = 10
+  icon = "ri/article-line"
 
-# ----------- Engineering > Community -----------
-
+# Engineering > Community
 [[main]]
 identifier = "engineering-community-join"
 name = "Plakar community"
@@ -244,11 +188,11 @@ url = "community/"
 weight = 40
 parent = "engineering"
 [[main.params]]
-    description = "Open by default, join us!"
-    enabled = true
-    section = "Community"
-    section_weight = 20
-    icon = "ri:team-line"
+  description = "Open by default, join us!"
+  enabled = true
+  section = "Community"
+  section_weight = 20
+  icon = "ri/team-line"
 
 [[main]]
 identifier = "engineering-community-calendar"
@@ -257,11 +201,11 @@ url = "contact/#upcoming-events"
 weight = 40
 parent = "engineering"
 [[main.params]]
-    description = "Meet Plakar team"
-    enabled = true
-    section = "Community"
-    section_weight = 20
-    icon = "ri:calendar-event-line"
+  description = "Meet Plakar team"
+  enabled = true
+  section = "Community"
+  section_weight = 20
+  icon = "ri/calendar-event-line"
 
 [[main]]
 identifier = "contact-us"
@@ -270,24 +214,11 @@ url = "/contact/#email-contact"
 weight = 50
 parent = "engineering"
 [[main.params]]
-    description = "How to contact Plakar team?"
-    enabled = true
-    section = "Community"
-    section_weight = 20
-    icon = "ri:mail-line"
-
-[[main]]
-identifier = "engineering-community-events"
-name = "Incoming events"
-url = "#"
-weight = 50
-parent = "engineering"
-[[main.params]]
-    description = "Live events with Plakar team"
-    enabled = false
-    section = "Community"
-    section_weight = 20
-    icon = "ri:calendar-2-line"
+  description = "How to contact Plakar team?"
+  enabled = true
+  section = "Community"
+  section_weight = 20
+  icon = "ri/mail-line"
 
 [[main]]
 identifier = "engineering-community-newsletter"
@@ -296,8 +227,8 @@ url = "contact/#newsletter-signup"
 weight = 60
 parent = "engineering"
 [[main.params]]
-    description = "Receive our monthly newsletter"
-    enabled = true
-    section = "Community"
-    section_weight = 20
-    icon = "ri:mail-ai-line"
+  description = "Receive our monthly newsletter"
+  enabled = true
+  section = "Community"
+  section_weight = 20
+  icon = "ri/mail-ai-line"

@@ -1,9 +1,11 @@
 ---
 title: "Overview"
-date: "2025-12-15T00:00:00Z"
+date: "2026-03-11T00:00:00Z"
 weight: 1
 summary: "A powerful backup tool with deduplication, end-to-end encryption, and flexible integrations for most data sources."
 ---
+
+# Overview
 
 Plakar is a simple, powerful backup tool designed to protect your data without the complexity. Whether you're backing up your laptop or managing infrastructure backups, Plakar makes it straightforward.
 

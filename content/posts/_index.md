@@ -1,6 +1,6 @@
 ---
-title: Plakar Blog
-subtitle: Engineers thought and last news
-description: Read about data protection and Plakar latest development update.
-date: 2025-04-13
+title: "Plakar Blog"
+date: "2026-03-24T00:00:00Z"
+weight: 1
+summary: ""
 ---
