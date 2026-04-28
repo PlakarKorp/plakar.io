@@ -1,0 +1,43 @@
+{{ $description := .Description | default (cond .IsPage .Summary (.Site.Params.description | default "")) }}
+{{ $siteName := .Site.Params.siteName | default .Site.Title }}
+{{ $locale := .Site.Language.Params.locale | default "en_US" }}
+
+<meta property="og:title" content="{{ .Title }}" />
+<meta property="og:description" content="{{ $description }}" />
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
+<meta property="og:url" content="{{ .Permalink }}" />
+<meta property="og:site_name" content="{{ $siteName }}" />
+<meta property="og:locale" content="{{ $locale }}" />
+
+{{ with .Site.Params.Author.name }}
+<meta property="og:author" content="{{ . }}" />
+{{ end }}
+
+{{ with or .Params.images .Site.Params.images | first 6 }}
+  {{ range . }}
+    <meta property="og:image" content="{{ . | absURL }}" />
+  {{ end }}
+{{ else }}
+  {{ with .Resources.ByType "image" | first 6 }}
+    {{ range . }}
+      <meta property="og:image" content="{{ .Permalink }}" />
+    {{ end }}
+  {{ else }}
+    {{ with .Site.Params.defaultSocialImage }}
+      {{ $img := resources.Get . }}
+      {{ with $img -}}
+        <meta property="og:image" content="{{ .Permalink | absURL }}" />
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ if .IsPage }}
+  {{ $dateFormat := "2006-01-02T15:04:05-07:00" }}
+  <meta property="article:section" content="{{ .Section }}" />
+  {{ with .PublishDate }}<meta property="article:published_time" content="{{ .Format $dateFormat }}" />{{ end }}
+  {{ with .Lastmod }}<meta property="article:modified_time" content="{{ .Format $dateFormat }}" />{{ end }}
+  {{ range .GetTerms "tags" }}
+    <meta property="article:tag" content="{{ .LinkTitle }}" />
+  {{ end }}
+{{ end }}

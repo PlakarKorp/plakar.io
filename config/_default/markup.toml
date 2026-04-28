@@ -1,10 +1,26 @@
+# -- Markup --
+# These settings are required for the theme to function.
+
 [goldmark]
-[goldmark.renderer]
-  unsafe = true
+  [goldmark.parser]
+    wrapStandAloneImageWithinParagraph = false
+
+    [goldmark.parser.attribute]
+      block = true
+
+  [goldmark.renderer]
+    unsafe = true
+
+  [goldmark.extensions]
+    [goldmark.extensions.passthrough]
+      enable = true
+      [goldmark.extensions.passthrough.delimiters]
+        block = [['\[', '\]'], ['$$', '$$']]
+        inline = [['\(', '\)']]
 
 [highlight]
-  style = "monokai"
-  lineNos = false
-  lineNumbersInTable = false
   noClasses = false
-  tabWidth = 4
+
+[tableOfContents]
+  startLevel = 2
+  endLevel = 4

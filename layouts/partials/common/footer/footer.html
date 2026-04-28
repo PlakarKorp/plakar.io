@@ -1,0 +1,98 @@
+{{ $footerBanner := resources.Get "img/general/plakar-footer-banner.svg" }}
+
+<!-- Footer menu -->
+<section class="section-primary-1 pt-8">
+  <div class="max-w-350 mx-auto px-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-sm text-neutral-50">
+
+      <!-- Pages -->
+      <div class="flex flex-col gap-3">
+        <h3 class="font-semibold text-base">Pages</h3>
+        <ul class="flex flex-col gap-1">
+          <li><a href="/" class="hover:underline opacity-80 hover:opacity-100">Home</a></li>
+          <li><a href="/community/" class="hover:underline opacity-80 hover:opacity-100">Community</a></li>
+          <li><a href="/branding/" class="hover:underline opacity-80 hover:opacity-100">Brand center</a></li>
+          <li><a href="/contact/" class="hover:underline opacity-80 hover:opacity-100">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Solutions -->
+      <div class="flex flex-col gap-3">
+        <h3 class="font-semibold text-base">Solutions</h3>
+        <ul class="flex flex-col gap-1">
+          <li><a href="/solutions/on-premises/" class="hover:underline opacity-80 hover:opacity-100">On-premises</a></li>
+          <li><a href="/solutions/aws/" class="hover:underline opacity-80 hover:opacity-100">Amazon Web Services</a></li>
+          <li><a href="/solutions/compare/" class="hover:underline opacity-80 hover:opacity-100">Compare Plakar</a></li>
+          <li><a href="/solutions/cost-efficiency/" class="hover:underline opacity-80 hover:opacity-100">Cost Efficiency</a></li>
+        </ul>
+      </div>
+
+      <!-- Resources -->
+      <div class="flex flex-col gap-3">
+        <h3 class="font-semibold text-base">Resources</h3>
+        <ul class="flex flex-col gap-1">
+          <li><a href="/posts/?category=release-note" class="hover:underline opacity-80 hover:opacity-100">Release notes</a></li>
+          <li><a href="/posts/?category=insights" class="hover:underline opacity-80 hover:opacity-100">Insights</a></li>
+          <li><a href="/posts/?category=technology" class="hover:underline opacity-80 hover:opacity-100">Tech articles</a></li>
+          <li><a href="https://status.plakar.io" target="_blank" class="hover:underline opacity-80 hover:opacity-100">Service status</a></li>
+        </ul>
+      </div>
+
+      <!-- Newsletter + social -->
+      <div class="flex flex-col gap-3">
+        <h3 class="font-semibold text-base">Newsletter</h3>
+          <form id="newsletter-form-footer" class="relative">
+            <input type="email" name="email" placeholder="Your email..." required class="w-full p-4 pr-14 rounded-xl border border-transparent bg-neutral-50 text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary-400 transition">
+            <button type="submit" class="absolute top-1/2 right-4 -translate-y-1/2 text-neutral-500 hover:text-neutral-900 transition">
+              <span class="w-5 h-5 flex items-center justify-center">
+                {{ partial "icon.html" "ri/arrow-right-line" }}
+              </span>
+            </button>
+          </form>
+        <div class="flex flex-row gap-3 pt-2">
+          <a href="{{ .Site.Params.socials.linkedin | default "#" }}" target="_blank" class="w-7 h-7 text-neutral-50">
+            {{ partial "icon.html" "ri/linkedin-box-fill" }}
+          </a>
+          <a href="{{ .Site.Params.socials.bluesky | default "#" }}" target="_blank" class="w-6.5 h-6.5 mt-0.5 text-neutral-50">
+            {{ partial "icon.html" "bluesky" }}
+          </a>
+          <a href="{{ .Site.Params.socials.reddit | default "#" }}" target="_blank" class="w-7 h-7 text-neutral-50">
+            {{ partial "icon.html" "ri/reddit-line" }}
+          </a>
+          <a href="{{ .Site.Params.socials.x | default "#" }}" target="_blank" class="w-7 h-7 text-neutral-50">
+            {{ partial "icon.html" "ri/twitter-x-line" }}
+          </a>
+          <a href="https://discord.gg/{{ .Site.Params.discord.inviteCode | default "#" }}" target="_blank" class="w-7 h-7 mt-1 text-neutral-50">
+            {{ partial "icon.html" "discord" }}
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Footer bottom -->
+<footer class="bg-primary-500 text-neutral-50 -mt-1">
+  <div class="max-w-350 mx-auto px-4 flex flex-col gap-6 pt-6">
+
+    <div class="grid md:grid-cols-2 md:px-12 gap-4 text-sm border-t border-primary-600 pt-10 opacity-80">
+      <div class="flex gap-4">
+        <span>© Plakar 2025</span>
+        <span>All rights reserved</span>
+      </div>
+      <div class="flex gap-6">
+        {{ if .Site.Params.axeptio.enabled | default false }}
+          <a href="javascript:openAxeptioCookies();" class="hover:underline">Cookies</a>
+        {{ end }}
+        <a href="/legal-notice/" class="hover:underline">Legal notice</a>
+        <a href="/privacy-policy/" class="hover:underline">Privacy policy</a>
+      </div>
+    </div>
+
+    <div class="overflow-hidden md:px-8">
+      <img src="{{ $footerBanner.RelPermalink }}" alt="Footer banner" class="w-full h-auto object-contain">
+    </div>
+
+  </div>
+</footer>

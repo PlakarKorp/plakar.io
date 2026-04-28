@@ -1,12 +1,10 @@
 ---
 title: "Plakar: Developer branch"
-date: "2025-03-18T10:07:31Z"
+date: "2026-03-11T00:00:00Z"
 weight: 1
-chapter: false
-sort: "title"
-docsBase: "/docs/main"
-plakarVersion: "main"
 summary: "Plakar documentation hub, find guides, references, and resources for working with Plakar."
 ---
+
+# Plakar: Developer branch
 
 {{% children description="true" style="sections" %}}

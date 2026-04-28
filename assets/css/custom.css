@@ -1,0 +1,160 @@
+/* Space Grotesk - variable */
+@font-face {
+  font-family: "SpaceGrotesk";
+  src: url("/fonts/spacegrotesk-variable.ttf") format("truetype");
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+/* Inter - variable */
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter-variable.ttf") format("truetype");
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+html {
+  font-family: "SpaceGrotesk", sans-serif;
+}
+
+.docs-font {
+  font-family: "Inter", sans-serif;
+}
+
+.icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Docs TOC styles */
+.toc-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.toc-content ul ul {
+  padding-left: 0.75rem;
+  margin-top: 0.35rem;
+}
+
+.toc-content a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  line-height: 1.4;
+}
+
+.toc-content a:hover,
+.toc-content a.active {
+  color: rgb(var(--color-primary-500));
+}
+
+section.section-light-2 {
+  color: rgb(var(--color-neutral-900));
+  background-color: rgb(var(--color-neutral-100));
+}
+
+section.section-dark-1 {
+  color: rgb(var(--color-neutral-50));
+  background-color: rgb(var(--color-neutral-900));
+}
+
+section.section-primary-1 {
+  color: rgb(var(--color-neutral-50));
+  background-color: rgb(var(--color-primary-500));
+}
+
+section.section-light-1 {
+  color: rgb(var(--color-neutral-900));
+  background-color: rgb(var(--color-neutral-50));
+}
+
+section.section-secondary-1 {
+  color: rgb(var(--color-neutral-900));
+  background-color: rgb(var(--color-secondary-100));
+}
+
+.grid-background {
+  background-image:
+    linear-gradient(
+      to right,
+      rgb(var(--color-neutral-200)) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      rgb(var(--color-neutral-200)) 1px,
+      transparent 1px
+    );
+  background-size: 64px 64px;
+  background-repeat: repeat;
+  background-attachment: fixed;
+}
+
+.bg-gradient-section {
+  background-image: linear-gradient(
+    transparent 0%,
+    transparent 25%,
+    rgb(var(--color-primary-300)) 65%,
+    rgb(var(--color-primary-500)) 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+}
+
+.bg-gradient-section-light-1 {
+  background-image: linear-gradient(
+    transparent 0%,
+    transparent 25%,
+    rgb(var(--color-neutral-50)) 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+}
+
+.bg-gradient-section-light-2 {
+  background-image: linear-gradient(
+    transparent 0%,
+    transparent 25%,
+    rgb(var(--color-neutral-100)) 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-attachment: scroll;
+}
+
+section.section-gradient-primary-1,
+section.section-gradient-blue-1 {
+  color: rgb(var(--color-neutral-50));
+  background-image: url(/img/general/gradient-blue.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+section.section-gradient-secondary-1 {
+  color: rgb(var(--color-neutral-900));
+  background-image: url(/img/general/gradient-orange.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  scroll-margin-top: 6rem;
+}
+
+.text-xxs {
+  font-size: 0.65rem;
+  line-height: 0.85rem;
+}

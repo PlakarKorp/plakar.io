@@ -1,0 +1,50 @@
+<!-- JS: assets/js/main/header.js -->
+
+{{ $logoDark := resources.Get "img/logos/plakar-logo-dark.svg" }}
+
+{{ $docsLabel := "" }}
+{{ if hasPrefix .RelPermalink "/control-plane-docs" }}
+  {{ $docsLabel = "Control Plane Docs" }}
+{{ else if hasPrefix .RelPermalink "/docs" }}
+  {{ $docsLabel = "OSS Docs" }}
+{{ end }}
+
+<header id="site-header" class="fixed flex px-2 py-2 md:px-4 top-0 inset-x-0 w-full z-50 bg-neutral-50 border-b border-neutral-300">
+  <div class="flex mx-auto w-full max-w-350 justify-between relative px-2 md:px-6">
+    <div class="flex items-center space-x-4">
+      <!-- Logo -->
+      <a href="/" class="block md:w-32 w-28 pb-0.5">
+        <span class="block">{{ $logoDark.Content | safeHTML }}</span>
+      </a>
+
+      <!-- Docs label -->
+      {{ with $docsLabel }}
+        <span class="hidden sm:block text-sm text-neutral-400 font-medium border-l border-neutral-300 pl-4">{{ . }}</span>
+      {{ end }}
+    </div>
+
+    <div class="flex flex-row items-center space-x-2">
+      <!-- Search trigger -->
+      <button class="search-trigger group flex items-center gap-2 min-h-7 lg:min-h-12 px-2.5 border border-neutral-300 rounded-lg bg-neutral-50 text-neutral-400 hover:text-neutral-600 hover:border-neutral-400 transition-colors" aria-label="Open search">
+        <span class="w-4 h-4 shrink-0">{{ partial "icon.html" "ri/search-line" }}</span>
+        <span class="hidden lg:inline text-sm">Search docs...</span>
+        <kbd class="hidden lg:inline-flex items-center h-5 bg-white border border-neutral-200 rounded px-1.5 ml-1">
+          <span class="text-[10px] text-neutral-400" id="search-kbd-hint"></span>
+        </kbd>
+      </button>
+
+      <!-- GitHub badge -->
+      {{ partial "components/badges/github-badge.html" (dict
+        "format" "star_light"
+        "ctx" .
+      ) }}
+
+      <!-- Demo button -->
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "Book a demo"
+        "labelShort" "Demo"
+        "class" "book-a-demo-modal-open"
+      ) }}
+    </div>
+  </div>
+</header>
