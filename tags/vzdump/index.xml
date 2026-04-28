@@ -2,18 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Vzdump on Plakar | The Open Standard for Backup and Restore</title>
-    <link>https://www.plakar.io/tags/vzdump/</link>
+    <link>https://plakar.io/tags/vzdump/</link>
     <description>Recent content in Vzdump on Plakar | The Open Standard for Backup and Restore</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 16 Mar 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://www.plakar.io/tags/vzdump/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2026 PlakarKorp</copyright>
+    <lastBuildDate>Tue, 28 Apr 2026 23:37:33 +0200</lastBuildDate><atom:link href="https://plakar.io/tags/vzdump/index.xml" rel="self" type="application/rss+xml" />
+    
     <item>
       <title>Proxmox</title>
-      <link>https://www.plakar.io/integrations/proxmox/</link>
+      <link>https://plakar.io/integrations/proxmox/</link>
       <pubDate>Mon, 16 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://www.plakar.io/integrations/proxmox/</guid>
-      <description>&lt;h2 id=&#34;why-protecting-proxmox-data-matters&#34;&gt;Why protecting Proxmox data matters&lt;/h2&gt;&#xA;&lt;p&gt;Proxmox includes strong built-in backup capabilities, but backup archives stored on the same cluster or storage backend as your workloads are not truly independent. A single failure, misconfiguration, or attack can affect both your live machines and the backups protecting them.&lt;/p&gt;&#xA;&lt;p&gt;Common risks in Proxmox environments:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Single-cluster exposure&lt;/strong&gt;: Backups stored locally or on cluster-attached storage share the same failure domain as the machines they protect.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;No cross-environment portability&lt;/strong&gt;: Native Proxmox backups are tightly coupled to the cluster that created them, making restoration to a different environment difficult.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Storage misconfiguration&lt;/strong&gt;: Aggressive retention policies or accidental deletions can wipe backup archives before they are needed.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;No integrity verification&lt;/strong&gt;: Without cryptographic validation, there is no reliable way to confirm a backup is intact until you attempt a restore.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;For production workloads, compliance requirements, or multi-cluster environments, Proxmox needs an independent safety net beyond what vzdump provides on its own.&lt;/p&gt;</description>
+      
+      <guid>https://plakar.io/integrations/proxmox/</guid>
+      <description></description>
+      
     </item>
+    
   </channel>
 </rss>

@@ -1,0 +1,2587 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  
+    <meta http-equiv="content-language" content="en">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color">
+
+  
+  
+    <title>Understanding RTO and RPO in disaster recovery &middot; Plakar | The Open Standard for Backup and Restore</title>
+    <meta name="title" content="Understanding RTO and RPO in disaster recovery &middot; Plakar | The Open Standard for Backup and Restore">
+  
+
+  
+  
+    <meta name="description" content="Learn how RTO and RPO define recovery speed and data loss tolerance—essential metrics for building resilient disaster recovery strategies">
+  
+  
+    <meta name="keywords" content="plakar,backup,">
+  
+  
+  
+  <link rel="canonical" href="https://plakar.io/posts/2025-02-12/understanding-rto-and-rpo-in-disaster-recovery/">
+  
+  
+
+  
+  
+    <meta name="author" content="PlakarKorp">
+  
+  
+    
+      
+        
+          <link href="https://bsky.app/profile/plakar.bsky.social" rel="me">
+        
+      
+    
+      
+        
+          <link href="https://www.linkedin.com/company/plakarkorp" rel="me">
+        
+      
+    
+      
+        
+          <link href="https://reddit.com/r/plakar" rel="me">
+        
+      
+    
+      
+        
+          <link href="https://twitter.com/PlakarKorp" rel="me">
+        
+      
+    
+      
+        
+          <link href="https://twitter.com/PlakarKorp" rel="me">
+        
+      
+    
+      
+        
+          <link href="https://github.com/PlakarKorp" rel="me">
+        
+      
+    
+  
+
+  
+  <meta property="og:url" content="https://plakar.io/posts/2025-02-12/understanding-rto-and-rpo-in-disaster-recovery/">
+  <meta property="og:site_name" content="Plakar | The Open Standard for Backup and Restore">
+  <meta property="og:title" content="Understanding RTO and RPO in disaster recovery">
+  <meta property="og:description" content="Learn how RTO and RPO define recovery speed and data loss tolerance—essential metrics for building resilient disaster recovery strategies">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-02-12T02:11:00+01:00">
+    <meta property="article:modified_time" content="2026-04-28T23:37:33+02:00">
+    <meta property="article:tag" content="Plakar">
+    <meta property="article:tag" content="Backup">
+    <meta property="og:image" content="https://plakar.io/posts/2025-02-12/understanding-rto-and-rpo-in-disaster-recovery/featured.svg">
+
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://plakar.io/posts/2025-02-12/understanding-rto-and-rpo-in-disaster-recovery/featured.svg">
+  <meta name="twitter:title" content="Understanding RTO and RPO in disaster recovery">
+  <meta name="twitter:description" content="Learn how RTO and RPO define recovery speed and data loss tolerance—essential metrics for building resilient disaster recovery strategies">
+
+  
+  
+  
+  
+    
+      
+    
+  
+    
+  
+    
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/css/main.bundle.min.5739902d674a460b118dd577d8924aa6f1d70bca498801e4f81cabebd73142e9a1da5ae775270b1280467cf017591991eb2307c5684c3aac87927b009e6347c8.css"
+    integrity="sha512-VzmQLWdKRgsRjdV32JJKpvHXC8pJiAHk&#43;Byr69cxQumh2lrndScLEoBGfPAXWRmR6yMHxWhMOqyHknsAnmNHyA==">
+
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/appearance.min.6f41174b3a05b680820fe08cadbfa5fb7a7ca347b76a0955cdc68b9d8aca1ce24f0547e138cea33bcc7904d551a90afcb1cc7f2d9fe8557075d501419046c08c.js"
+    integrity="sha512-b0EXSzoFtoCCD&#43;CMrb&#43;l&#43;3p8o0e3aglVzcaLnYrKHOJPBUfhOM6jO8x5BNVRqQr8scx/LZ/oVXB11QFBkEbAjA=="></script>
+  
+  
+  
+  
+  
+  
+    
+    <script src="/lib/zoom/zoom.min.umd.a527109b68c082a70f3697716dd72a9d5aa8b545cf800cecbbc7399f2ca6f6e0ce3e431f2062b48bbfa47c9ea42822714060bef309be073f49b9c0e30d318d7b.js" integrity="sha512-pScQm2jAgqcPNpdxbdcqnVqotUXPgAzsu8c5nyym9uDOPkMfIGK0i7&#43;kfJ6kKCJxQGC&#43;8wm&#43;Bz9JucDjDTGNew=="></script>
+  
+
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+    
+    <script
+      defer
+      type="text/javascript"
+      id="script-bundle"
+      src="/js/main.bundle.min.0fa2a78284c4ed567ca02f5c37008b7b0127c3081f48b033f1c537c24766b8d57da49e0316c193c94bfd77da998acb9863844e045800340b2303522672e1ac79.js"
+      integrity="sha512-D6KngoTE7VZ8oC9cNwCLewEnwwgfSLAz8cU3wkdmuNV9pJ4DFsGTyUv9d9qZisuYY4ROBFgANAsjA1ImcuGseQ=="
+      data-copy="Copy"
+      data-copied="Copied"></script>
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="Plakar" />
+<link rel="manifest" href="/site.webmanifest" />
+
+  
+
+  
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Plakar Blog",
+    "name": "Understanding RTO and RPO in disaster recovery",
+    "headline": "Understanding RTO and RPO in disaster recovery",
+    
+    "inLanguage": "en",
+    "url" : "https://plakar.io/posts/2025-02-12/understanding-rto-and-rpo-in-disaster-recovery/",
+    "author" : {
+      "@type": "Person",
+      "name": "PlakarKorp"
+    },
+    "copyrightYear": "2025",
+    "dateCreated": "2025-02-12T02:11:00\u002b01:00",
+    "datePublished": "2025-02-12T02:11:00\u002b01:00",
+    
+    "dateModified": "2026-04-28T23:37:33\u002b02:00",
+    
+    "keywords": ["plakar","backup"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "1122"
+  }]
+  </script>
+
+
+
+  
+  
+    
+
+  <script
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=G-4EJ3HLL4HS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4EJ3HLL4HS');
+</script>
+
+
+
+
+
+  
+
+  
+  
+    
+  
+    <div id="axeptio-config" data-client-id="670b04f487d8b40de2e7f22c" data-cookies-version="plakar-fr-EU-2" hidden></div>
+  
+
+
+
+<script src="/js/compiled/bundle.min.a403124c6c80c3463bffc3c15b0d87e19e763daf9757b572212fcec7d6a4a9cb.js" defer></script>
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+</head>
+
+  <body>
+    
+  
+
+
+
+
+<header id="site-header" class="fixed flex px-2 py-2 md:py-3 top-5 rounded-2xl mx-auto inset-x-4 md:inset-x-10 max-w-350 z-50 bg-neutral-50 border-b border-l border-r border-neutral-300">
+  <div class="flex mx-auto w-full justify-between relative">
+    <div class="flex mx-auto items-center w-full space-x-2 xl:space-x-16">
+      
+      <a href="/" id="logo-link" class="block md:w-34 w-28 pb-0.5 md:pl-2 relative">
+        <span class="block"><svg viewBox="0 0 1270 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="25.2271" y="15.0121" width="286.976" height="286.976" rx="143.488" fill="black"/>
+<path d="M233.627 134.001C230.783 124.925 226.122 116.668 220.078 109.646C224.369 106.458 227.148 101.325 227.148 95.545C227.148 85.8665 219.358 78.026 209.758 78.026C201.889 78.026 195.246 83.2889 193.101 90.5047C185.425 87.5035 177.086 85.8593 168.362 85.8593C160.501 85.8593 152.946 87.2019 145.911 89.6574C143.509 82.8796 137.08 78.026 129.525 78.026C119.918 78.026 112.135 85.8736 112.135 95.545C112.135 100.636 114.287 105.216 117.73 108.419C111.158 115.692 106.112 124.387 103.097 133.993V134.008C77.3247 136.995 57.3112 159.044 57.3112 185.803C57.3112 214.602 80.4892 237.951 109.077 237.951C121.863 237.951 133.559 233.27 142.59 225.53L184.719 225.616L194.106 225.559C203.136 233.284 214.818 237.951 227.59 237.951C256.178 237.951 279.356 214.602 279.356 185.803C279.356 159.058 259.371 137.016 233.627 134.001ZM168.348 97.0312C173.166 97.0312 177.841 97.663 182.31 98.9123L173.729 132.766C173.472 133.785 172.646 134.482 171.691 134.467C169.83 134.438 166.787 134.446 164.927 134.474C163.972 134.489 163.145 133.792 162.881 132.773L154.357 98.9339C158.847 97.6702 163.523 97.0312 168.341 97.0312H168.348ZM177.421 158.563L171.819 163.56C169.83 165.334 166.83 165.334 164.841 163.56L159.239 158.563C155.611 155.325 157.885 149.294 162.731 149.294H173.936C178.782 149.294 181.049 155.332 177.428 158.563H177.421ZM145.02 131.078C148.969 131.078 152.169 135.444 152.169 140.836C152.169 146.228 148.969 150.593 145.02 150.593C141.072 150.593 137.871 146.228 137.871 140.836C137.871 135.444 141.072 131.078 145.02 131.078ZM195.289 194.462C197.698 196.925 197.677 200.888 195.232 203.315C194.02 204.521 192.445 205.117 190.863 205.117C189.281 205.117 187.656 204.493 186.437 203.251C183.151 199.898 180.899 195.224 179.908 189.925C175.796 190.801 171.598 191.246 167.4 191.246C163.808 191.246 160.216 190.923 156.68 190.277C155.661 195.425 153.43 199.969 150.223 203.251C149.004 204.493 147.401 205.117 145.797 205.117C144.193 205.117 142.64 204.514 141.428 203.315C138.983 200.888 138.955 196.918 141.371 194.462C143.067 192.732 144.878 189.02 144.878 183.793C144.878 179.37 143.445 175.127 141.235 172.995C138.755 170.604 138.677 166.64 141.05 164.142C143.424 161.643 147.365 161.564 149.838 163.955C153.245 167.243 155.647 172.083 156.702 177.518C164.107 179.227 171.911 179.133 179.274 177.231L180.037 177.037C181.141 171.795 183.493 167.15 186.8 163.955C189.281 161.564 193.215 161.643 195.588 164.142C197.962 166.64 197.883 170.604 195.403 172.995C193.187 175.134 191.761 179.37 191.761 183.793C191.761 189.02 193.571 192.732 195.275 194.462H195.289ZM191.647 150.586C187.698 150.586 184.498 146.221 184.498 140.829C184.498 135.436 187.698 131.071 191.647 131.071C195.596 131.071 198.796 135.436 198.796 140.829C198.796 146.221 195.596 150.586 191.647 150.586Z" fill="white"/>
+<path d="M391.379 233V83.9532H455.714C488.828 83.9532 511.024 104.913 511.024 136.644C511.024 168.738 488.245 188.752 454.259 188.752H431.843V233H391.379ZM431.843 157.312H446.108C460.299 157.312 468.814 149.38 468.814 136.644C468.814 123.835 460.299 116.266 446.108 116.266H431.843V157.312ZM525.871 233V83.9532H566.335V200.396H626.594V233H525.871ZM681.668 233H638.002L687.199 83.9532H742.509L791.706 233H748.04L739.452 204.472H690.255L681.668 233ZM699.425 174.196H730.283L715.436 124.999H714.272L699.425 174.196ZM806.061 233V83.9532H846.525V144.212H848.563L893.393 83.9532H940.553L890.191 150.326L941.717 233H893.393L859.916 177.107L846.525 194.574V233H806.061ZM991.278 233H947.612L996.809 83.9532H1052.12L1101.32 233H1057.65L1049.06 204.472H999.866L991.278 233ZM1009.04 174.196H1039.89L1025.05 124.999H1023.88L1009.04 174.196ZM1115.67 233V83.9532H1180.01C1213.12 83.9532 1235.32 102.875 1235.32 134.606C1235.32 155.274 1225.86 169.757 1209.99 177.399L1240.27 233H1196.31L1170.11 183.803H1156.14V233H1115.67ZM1156.14 152.363H1170.4C1184.59 152.363 1193.11 147.342 1193.11 134.606C1193.11 121.797 1184.59 116.266 1170.4 116.266H1156.14V152.363Z" fill="black"/>
+</svg>
+</span>
+        <div id="logo-context-menu"
+             class="hidden absolute top-full mt-2 left-0 bg-neutral-50 border border-neutral-300 rounded-lg shadow-lg z-50 w-56 flex-col">
+          <a href="/branding/" class="px-4 py-2 hover:bg-neutral-100 text-neutral-900 text-sm rounded-t-lg">
+            Brand Center
+          </a>
+          
+            <a href="/img/branding/logo.zip" download class="px-4 py-2 hover:bg-neutral-100 text-neutral-900 text-sm">
+              Download logo kit
+            </a>
+          
+          
+            <a href="/img/logos/plakar-logo-dark.svg" download class="px-4 py-2 hover:bg-neutral-100 text-neutral-900 text-sm rounded-b-lg">
+              Download this logo (svg)
+            </a>
+          
+        </div>
+      </a>
+
+      
+      
+
+
+
+
+
+<nav id="main-nav" class="hidden lg:flex relative items-center h-14">
+  
+    
+      <div class="relative dropdown-group">
+
+        
+          <button class="dropdown-btn px-2.5 text-lg text-neutral-700 hover:text-primary-500 inline-flex items-center gap-1">
+            Solutions
+            <span class="dropdown-chevron w-4 h-4 flex items-center justify-center">
+              <span class="relative block icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+</span>
+            </span>
+          </button>
+        
+
+        
+          
+          
+            
+              
+              
+                
+                
+                
+              
+            
+          
+            
+              
+              
+                
+                
+                
+              
+            
+          
+            
+              
+              
+                
+                
+                
+              
+            
+          
+            
+              
+              
+                
+                
+                
+              
+            
+          
+            
+              
+              
+                
+                
+                
+              
+            
+          
+            
+              
+              
+                
+                
+                
+              
+            
+          
+            
+              
+              
+                
+                
+                
+              
+            
+          
+
+          
+          
+            
+            
+          
+            
+            
+          
+
+          <div class="dropdown-menu absolute top-full mt-4 hidden z-50">
+            <div class="flex flex-wrap items-stretch py-8 px-4 bg-neutral-50 shadow-lg border border-neutral-200 rounded-2xl">
+              
+                <div class="w-1/2 lg:w-[30%] flex flex-col gap-6">
+                  <span class="text-primary-500 text-xs">Platforms</span>
+                  <div class="flex flex-col gap-2">
+                    
+                      <a href="/solutions/on-premises/" 
+                         class="group/link flex items-center gap-2 p-2 rounded-lg hover:bg-neutral-100">
+                        <div class="w-10 h-10 bg-neutral-100 text-neutral-600 p-2 group-hover/link:bg-neutral-50 group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
+                          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M5.46257 4.43262C7.21556 2.91688 9.5007 2 12 2C17.5228 2 22 6.47715 22 12C22 14.1361 21.3302 16.1158 20.1892 17.7406L17 12H20C20 7.58172 16.4183 4 12 4C9.84982 4 7.89777 4.84827 6.46023 6.22842L5.46257 4.43262ZM18.5374 19.5674C16.7844 21.0831 14.4993 22 12 22C6.47715 22 2 17.5228 2 12C2 9.86386 2.66979 7.88416 3.8108 6.25944L7 12H4C4 16.4183 7.58172 20 12 20C14.1502 20 16.1022 19.1517 17.5398 17.7716L18.5374 19.5674Z"></path></svg>
+</span>
+                        </div>
+                        <div class="flex-1">
+                          <div class="text-neutral-900 font-semibold">On-premises</div>
+                          
+                            <div class="text-neutral-400 text-xs">On your infrastructure</div>
+                          
+                        </div>
+                      </a>
+                    
+                      <a href="/solutions/aws/" 
+                         class="group/link flex items-center gap-2 p-2 rounded-lg hover:bg-neutral-100">
+                        <div class="w-10 h-10 bg-neutral-100 text-neutral-600 p-2 group-hover/link:bg-neutral-50 group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
+                          <span class="relative block icon"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	 viewBox="0 0 304 182" style="enable-background:new 0 0 304 182;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#252F3E;}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:#FF9900;}
+</style>
+<g>
+	<path class="st0" d="M86.4,66.4c0,3.7,0.4,6.7,1.1,8.9c0.8,2.2,1.8,4.6,3.2,7.2c0.5,0.8,0.7,1.6,0.7,2.3c0,1-0.6,2-1.9,3l-6.3,4.2
+		c-0.9,0.6-1.8,0.9-2.6,0.9c-1,0-2-0.5-3-1.4C76.2,90,75,88.4,74,86.8c-1-1.7-2-3.6-3.1-5.9c-7.8,9.2-17.6,13.8-29.4,13.8
+		c-8.4,0-15.1-2.4-20-7.2c-4.9-4.8-7.4-11.2-7.4-19.2c0-8.5,3-15.4,9.1-20.6c6.1-5.2,14.2-7.8,24.5-7.8c3.4,0,6.9,0.3,10.6,0.8
+		c3.7,0.5,7.5,1.3,11.5,2.2v-7.3c0-7.6-1.6-12.9-4.7-16c-3.2-3.1-8.6-4.6-16.3-4.6c-3.5,0-7.1,0.4-10.8,1.3c-3.7,0.9-7.3,2-10.8,3.4
+		c-1.6,0.7-2.8,1.1-3.5,1.3c-0.7,0.2-1.2,0.3-1.6,0.3c-1.4,0-2.1-1-2.1-3.1v-4.9c0-1.6,0.2-2.8,0.7-3.5c0.5-0.7,1.4-1.4,2.8-2.1
+		c3.5-1.8,7.7-3.3,12.6-4.5c4.9-1.3,10.1-1.9,15.6-1.9c11.9,0,20.6,2.7,26.2,8.1c5.5,5.4,8.3,13.6,8.3,24.6V66.4z M45.8,81.6
+		c3.3,0,6.7-0.6,10.3-1.8c3.6-1.2,6.8-3.4,9.5-6.4c1.6-1.9,2.8-4,3.4-6.4c0.6-2.4,1-5.3,1-8.7v-4.2c-2.9-0.7-6-1.3-9.2-1.7
+		c-3.2-0.4-6.3-0.6-9.4-0.6c-6.7,0-11.6,1.3-14.9,4c-3.3,2.7-4.9,6.5-4.9,11.5c0,4.7,1.2,8.2,3.7,10.6
+		C37.7,80.4,41.2,81.6,45.8,81.6z M126.1,92.4c-1.8,0-3-0.3-3.8-1c-0.8-0.6-1.5-2-2.1-3.9L96.7,10.2c-0.6-2-0.9-3.3-0.9-4
+		c0-1.6,0.8-2.5,2.4-2.5h9.8c1.9,0,3.2,0.3,3.9,1c0.8,0.6,1.4,2,2,3.9l16.8,66.2l15.6-66.2c0.5-2,1.1-3.3,1.9-3.9c0.8-0.6,2.2-1,4-1
+		h8c1.9,0,3.2,0.3,4,1c0.8,0.6,1.5,2,1.9,3.9l15.8,67l17.3-67c0.6-2,1.3-3.3,2-3.9c0.8-0.6,2.1-1,3.9-1h9.3c1.6,0,2.5,0.8,2.5,2.5
+		c0,0.5-0.1,1-0.2,1.6c-0.1,0.6-0.3,1.4-0.7,2.5l-24.1,77.3c-0.6,2-1.3,3.3-2.1,3.9c-0.8,0.6-2.1,1-3.8,1h-8.6c-1.9,0-3.2-0.3-4-1
+		c-0.8-0.7-1.5-2-1.9-4L156,23l-15.4,64.4c-0.5,2-1.1,3.3-1.9,4c-0.8,0.7-2.2,1-4,1H126.1z M254.6,95.1c-5.2,0-10.4-0.6-15.4-1.8
+		c-5-1.2-8.9-2.5-11.5-4c-1.6-0.9-2.7-1.9-3.1-2.8c-0.4-0.9-0.6-1.9-0.6-2.8v-5.1c0-2.1,0.8-3.1,2.3-3.1c0.6,0,1.2,0.1,1.8,0.3
+		c0.6,0.2,1.5,0.6,2.5,1c3.4,1.5,7.1,2.7,11,3.5c4,0.8,7.9,1.2,11.9,1.2c6.3,0,11.2-1.1,14.6-3.3c3.4-2.2,5.2-5.4,5.2-9.5
+		c0-2.8-0.9-5.1-2.7-7c-1.8-1.9-5.2-3.6-10.1-5.2L246,52c-7.3-2.3-12.7-5.7-16-10.2c-3.3-4.4-5-9.3-5-14.5c0-4.2,0.9-7.9,2.7-11.1
+		c1.8-3.2,4.2-6,7.2-8.2c3-2.3,6.4-4,10.4-5.2c4-1.2,8.2-1.7,12.6-1.7c2.2,0,4.5,0.1,6.7,0.4c2.3,0.3,4.4,0.7,6.5,1.1
+		c2,0.5,3.9,1,5.7,1.6c1.8,0.6,3.2,1.2,4.2,1.8c1.4,0.8,2.4,1.6,3,2.5c0.6,0.8,0.9,1.9,0.9,3.3v4.7c0,2.1-0.8,3.2-2.3,3.2
+		c-0.8,0-2.1-0.4-3.8-1.2c-5.7-2.6-12.1-3.9-19.2-3.9c-5.7,0-10.2,0.9-13.3,2.8c-3.1,1.9-4.7,4.8-4.7,8.9c0,2.8,1,5.2,3,7.1
+		c2,1.9,5.7,3.8,11,5.5l14.2,4.5c7.2,2.3,12.4,5.5,15.5,9.6c3.1,4.1,4.6,8.8,4.6,14c0,4.3-0.9,8.2-2.6,11.6
+		c-1.8,3.4-4.2,6.4-7.3,8.8c-3.1,2.5-6.8,4.3-11.1,5.6C264.4,94.4,259.7,95.1,254.6,95.1z"/>
+	<g>
+		<path class="st1" d="M273.5,143.7c-32.9,24.3-80.7,37.2-121.8,37.2c-57.6,0-109.5-21.3-148.7-56.7c-3.1-2.8-0.3-6.6,3.4-4.4
+			c42.4,24.6,94.7,39.5,148.8,39.5c36.5,0,76.6-7.6,113.5-23.2C274.2,133.6,278.9,139.7,273.5,143.7z"/>
+		<path class="st1" d="M287.2,128.1c-4.2-5.4-27.8-2.6-38.5-1.3c-3.2,0.4-3.7-2.4-0.8-4.5c18.8-13.2,49.7-9.4,53.3-5
+			c3.6,4.5-1,35.4-18.6,50.2c-2.7,2.3-5.3,1.1-4.1-1.9C282.5,155.7,291.4,133.4,287.2,128.1z"/>
+	</g>
+</g>
+</svg>
+</span>
+                        </div>
+                        <div class="flex-1">
+                          <div class="text-neutral-900 font-semibold">Amazon Web Services</div>
+                          
+                            <div class="text-neutral-400 text-xs">Inside your AWS account</div>
+                          
+                        </div>
+                      </a>
+                    
+                      <a href="/#" 
+                         class="group/link flex items-center gap-2 p-2 rounded-lg hover:bg-neutral-100">
+                        <div class="w-10 h-10 bg-neutral-100 text-neutral-600 p-2 group-hover/link:bg-neutral-50 group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
+                          <span class="relative block icon"><?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none"><path fill="#EA4335" d="M10.313 5.376l1.887-1.5-.332-.414a5.935 5.935 0 00-5.586-1.217 5.89 5.89 0 00-3.978 4.084c-.03.113.312-.098.463-.056l2.608-.428s.127-.124.201-.205c1.16-1.266 3.126-1.432 4.465-.354l.272.09z"/><path fill="#4285F4" d="M13.637 6.3a5.835 5.835 0 00-1.77-2.838l-1.83 1.82a3.226 3.226 0 011.193 2.564v.323c.9 0 1.63.725 1.63 1.62 0 .893-.73 1.619-1.63 1.619l-3.257-.003-.325.035v2.507l.325.053h3.257a4.234 4.234 0 004.08-2.962A4.199 4.199 0 0013.636 6.3z"/><path fill="#34A853" d="M4.711 13.999H7.97v-2.594H4.71c-.232 0-.461-.066-.672-.161l-.458.14-1.313 1.297-.114.447a4.254 4.254 0 002.557.87z"/><path fill="#FBBC05" d="M4.711 5.572A4.234 4.234 0 00.721 8.44a4.206 4.206 0 001.433 4.688l1.89-1.884a1.617 1.617 0 01.44-3.079 1.63 1.63 0 011.714.936l1.89-1.878A4.24 4.24 0 004.71 5.572z"/></svg>
+</span>
+                        </div>
+                        <div class="flex-1">
+                          <div class="text-neutral-900 font-semibold">Google Cloud</div>
+                          
+                            <div class="text-neutral-400 text-xs">Coming soon</div>
+                          
+                        </div>
+                      </a>
+                    
+                      <a href="/#" 
+                         class="group/link flex items-center gap-2 p-2 rounded-lg hover:bg-neutral-100">
+                        <div class="w-10 h-10 bg-neutral-100 text-neutral-600 p-2 group-hover/link:bg-neutral-50 group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
+                          <span class="relative block icon"><svg width="150" height="150" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="e399c19f-b68f-429d-b176-18c2117ff73c" x1="-1032.172" x2="-1059.213" y1="145.312" y2="65.426" gradientTransform="matrix(1 0 0 -1 1075 158)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#114a8b"/>
+            <stop offset="1" stop-color="#0669bc"/>
+        </linearGradient>
+        <linearGradient id="ac2a6fc2-ca48-4327-9a3c-d4dcc3256e15" x1="-1023.725" x2="-1029.98" y1="108.083" y2="105.968" gradientTransform="matrix(1 0 0 -1 1075 158)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-opacity=".3"/>
+            <stop offset=".071" stop-opacity=".2"/>
+            <stop offset=".321" stop-opacity=".1"/>
+            <stop offset=".623" stop-opacity=".05"/>
+            <stop offset="1" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="a7fee970-a784-4bb1-af8d-63d18e5f7db9" x1="-1027.165" x2="-997.482" y1="147.642" y2="68.561" gradientTransform="matrix(1 0 0 -1 1075 158)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#3ccbf4"/>
+            <stop offset="1" stop-color="#2892df"/>
+        </linearGradient>
+    </defs>
+    <path fill="url(#e399c19f-b68f-429d-b176-18c2117ff73c)" d="M33.338 6.544h26.038l-27.03 80.087a4.152 4.152 0 0 1-3.933 2.824H8.149a4.145 4.145 0 0 1-3.928-5.47L29.404 9.368a4.152 4.152 0 0 1 3.934-2.825z"/>
+    <path fill="#0078d4" d="M71.175 60.261h-41.29a1.911 1.911 0 0 0-1.305 3.309l26.532 24.764a4.171 4.171 0 0 0 2.846 1.121h23.38z"/>
+    <path fill="url(#ac2a6fc2-ca48-4327-9a3c-d4dcc3256e15)" d="M33.338 6.544a4.118 4.118 0 0 0-3.943 2.879L4.252 83.917a4.14 4.14 0 0 0 3.908 5.538h20.787a4.443 4.443 0 0 0 3.41-2.9l5.014-14.777 17.91 16.705a4.237 4.237 0 0 0 2.666.972H81.24L71.024 60.261l-29.781.007L59.47 6.544z"/>
+    <path fill="url(#a7fee970-a784-4bb1-af8d-63d18e5f7db9)" d="M66.595 9.364a4.145 4.145 0 0 0-3.928-2.82H33.648a4.146 4.146 0 0 1 3.928 2.82l25.184 74.62a4.146 4.146 0 0 1-3.928 5.472h29.02a4.146 4.146 0 0 0 3.927-5.472z"/>
+</svg>
+</span>
+                        </div>
+                        <div class="flex-1">
+                          <div class="text-neutral-900 font-semibold">Azure</div>
+                          
+                            <div class="text-neutral-400 text-xs">Coming soon</div>
+                          
+                        </div>
+                      </a>
+                    
+                      <a href="/#" 
+                         class="group/link flex items-center gap-2 p-2 rounded-lg hover:bg-neutral-100">
+                        <div class="w-10 h-10 bg-neutral-100 text-neutral-600 p-2 group-hover/link:bg-neutral-50 group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
+                          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1000"><path fill="#000e9c" fill-rule="evenodd" d="m1407.08 52.27-160.24 283.35h-168.16L880.85 684.34h168.16l-126.62 223.9h413.47c193.88-243.71 223.55-582.53 71.22-855.97M592.01 908.24 1116.27.76H673.13L372.42 523.85 99.41 50.29C-54.9 323.73-27.2 664.53 172.61 908.24z"/></svg>
+</span>
+                        </div>
+                        <div class="flex-1">
+                          <div class="text-neutral-900 font-semibold">OVHCloud</div>
+                          
+                            <div class="text-neutral-400 text-xs">Coming soon</div>
+                          
+                        </div>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+                <div class="w-1/2 lg:w-[30%] flex flex-col gap-6">
+                  <span class="text-primary-500 text-xs">Resources</span>
+                  <div class="flex flex-col gap-2">
+                    
+                      <a href="/solutions/compare/" 
+                         class="group/link flex items-center gap-2 p-2 rounded-lg hover:bg-neutral-100">
+                        <div class="w-10 h-10 bg-neutral-100 text-neutral-600 p-2 group-hover/link:bg-neutral-50 group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
+                          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.0503 12.0498L21 16.9996L16.0503 21.9493L14.636 20.5351L17.172 17.9988L4 17.9996V15.9996L17.172 15.9988L14.636 13.464L16.0503 12.0498ZM7.94975 2.0498L9.36396 3.46402L6.828 5.9988L20 5.99955V7.99955L6.828 7.9988L9.36396 10.5351L7.94975 11.9493L3 6.99955L7.94975 2.0498Z"></path></svg>
+</span>
+                        </div>
+                        <div class="flex-1">
+                          <div class="text-neutral-900 font-semibold">Compare Plakar to Alternatives</div>
+                          
+                            <div class="text-neutral-400 text-xs">Discover Plakar strengths</div>
+                          
+                        </div>
+                      </a>
+                    
+                      <a href="/solutions/cost-efficiency/" 
+                         class="group/link flex items-center gap-2 p-2 rounded-lg hover:bg-neutral-100">
+                        <div class="w-10 h-10 bg-neutral-100 text-neutral-600 p-2 group-hover/link:bg-neutral-50 group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
+                          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.0503 12.0498L21 16.9996L16.0503 21.9493L14.636 20.5351L17.172 17.9988L4 17.9996V15.9996L17.172 15.9988L14.636 13.464L16.0503 12.0498ZM7.94975 2.0498L9.36396 3.46402L6.828 5.9988L20 5.99955V7.99955L6.828 7.9988L9.36396 10.5351L7.94975 11.9493L3 6.99955L7.94975 2.0498Z"></path></svg>
+</span>
+                        </div>
+                        <div class="flex-1">
+                          <div class="text-neutral-900 font-semibold">Cost Efficiency</div>
+                          
+                            <div class="text-neutral-400 text-xs">Slash storage &amp; egress fees</div>
+                          
+                        </div>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+
+              
+
+
+
+
+
+  <div class="flex flex-col gap-3 border-l border-neutral-200 pl-6 ml-2">
+    <span class="text-primary-500 text-xs">Featured Blogs</span>
+    
+      
+      <a href="/posts/2026-04-03/backing-up-postgresql-with-plakar/" class="group/link flex items-stretch gap-3 rounded-lg border border-neutral-200 hover:bg-neutral-100 hover:border-neutral-300 p-3 no-underline">
+        
+          <img src="/posts/2026-04-03/backing-up-postgresql-with-plakar/featured.png" alt="Backing up PostgreSQL with Plakar" class="w-20 h-20 object-cover rounded-md shrink-0">
+        
+        <div class="flex flex-col gap-1 justify-center">
+          
+            <span class="text-xs text-primary-500 uppercase font-medium">technology</span>
+          
+          <span class="text-sm font-medium text-neutral-900 group-hover/link:text-primary-500 line-clamp-2 leading-snug">
+            Backing up PostgreSQL with Plakar
+          </span>
+        </div>
+      </a>
+    
+      
+      <a href="/posts/2026-02-18/backing-up-kubernetes-clusters-with-plakar/" class="group/link flex items-stretch gap-3 rounded-lg border border-neutral-200 hover:bg-neutral-100 hover:border-neutral-300 p-3 no-underline">
+        
+          <img src="/posts/2026-02-18/backing-up-kubernetes-clusters-with-plakar/featured.png" alt="Backing up kubernetes clusters with Plakar" class="w-20 h-20 object-cover rounded-md shrink-0">
+        
+        <div class="flex flex-col gap-1 justify-center">
+          
+            <span class="text-xs text-primary-500 uppercase font-medium">technology</span>
+          
+          <span class="text-sm font-medium text-neutral-900 group-hover/link:text-primary-500 line-clamp-2 leading-snug">
+            Backing up kubernetes clusters with Plakar
+          </span>
+        </div>
+      </a>
+    
+  </div>
+
+
+            </div>
+          </div>
+        
+
+      </div>
+    
+  
+    
+      <div class="relative dropdown-group">
+
+        
+          <button class="dropdown-btn px-2.5 text-lg text-neutral-700 hover:text-primary-500 inline-flex items-center gap-1">
+            Engineering
+            <span class="dropdown-chevron w-4 h-4 flex items-center justify-center">
+              <span class="relative block icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+</span>
+            </span>
+          </button>
+        
+
+        
+          
+          
+            
+              
+              
+                
+                
+                
+              
+            
+          
+            
+              
+              
+                
+                
+                
+              
+            
+          
+            
+              
+              
+                
+                
+                
+              
+            
+          
+            
+              
+              
+                
+                
+                
+              
+            
+          
+            
+              
+              
+                
+                
+                
+              
+            
+          
+            
+              
+              
+                
+                
+                
+              
+            
+          
+            
+              
+              
+                
+                
+                
+              
+            
+          
+            
+              
+              
+                
+                
+                
+              
+            
+          
+
+          
+          
+            
+            
+          
+            
+            
+          
+
+          <div class="dropdown-menu absolute top-full mt-4 hidden z-50">
+            <div class="flex flex-wrap items-stretch py-8 px-4 bg-neutral-50 shadow-lg border border-neutral-200 rounded-2xl">
+              
+                <div class="w-1/2 lg:w-[30%] flex flex-col gap-6">
+                  <span class="text-primary-500 text-xs">Learn</span>
+                  <div class="flex flex-col gap-2">
+                    
+                      <a href="/docs/v1.0.6/quickstart/first-backup" target="_blank"
+                         class="group/link flex items-center gap-2 p-2 rounded-lg hover:bg-neutral-100">
+                        <div class="w-10 h-10 bg-neutral-100 text-neutral-600 p-2 group-hover/link:bg-neutral-50 group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
+                          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M15.5018 20.0048C14.8432 21.5841 13.5794 22.848 12 23.5066C10.4206 22.848 9.15679 21.5841 8.49816 20.0048H10.7575C11.0838 20.4934 11.5051 20.9171 12 21.248C12.4949 20.9171 12.9162 20.4934 13.2425 20.0048H15.5018ZM18 14.8095L20 17.0777V19.0048H4V17.0777L6 14.8095V9.00478C6 5.52153 8.50442 2.55822 12 1.45999C15.4956 2.55822 18 5.52153 18 9.00478V14.8095ZM17.2692 17.0048L16 15.5653V9.00478C16 6.68694 14.4292 4.57431 12 3.58384C9.57078 4.57431 8 6.68694 8 9.00478V15.5653L6.73076 17.0048H17.2692ZM12 11.0048C10.8954 11.0048 10 10.1093 10 9.00478C10 7.90021 10.8954 7.00478 12 7.00478C13.1046 7.00478 14 7.90021 14 9.00478C14 10.1093 13.1046 11.0048 12 11.0048Z"></path></svg>
+</span>
+                        </div>
+                        <div class="flex-1">
+                          <div class="text-neutral-900 font-semibold">Quick start</div>
+                          
+                            <div class="text-neutral-400 text-xs">Protect your data in a minute</div>
+                          
+                        </div>
+                      </a>
+                    
+                      <a href="/docs" target="_blank"
+                         class="group/link flex items-center gap-2 p-2 rounded-lg hover:bg-neutral-100">
+                        <div class="w-10 h-10 bg-neutral-100 text-neutral-600 p-2 group-hover/link:bg-neutral-50 group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
+                          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13 21V23H11V21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3H9C10.1947 3 11.2671 3.52375 12 4.35418C12.7329 3.52375 13.8053 3 15 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H13ZM20 19V5H15C13.8954 5 13 5.89543 13 7V19H20ZM11 19V7C11 5.89543 10.1046 5 9 5H4V19H11Z"></path></svg>
+</span>
+                        </div>
+                        <div class="flex-1">
+                          <div class="text-neutral-900 font-semibold">Documentation</div>
+                          
+                            <div class="text-neutral-400 text-xs">How to use Plakar?</div>
+                          
+                        </div>
+                      </a>
+                    
+                      <a href="/control-plane-docs/" target="_blank"
+                         class="group/link flex items-center gap-2 p-2 rounded-lg hover:bg-neutral-100">
+                        <div class="w-10 h-10 bg-neutral-100 text-neutral-600 p-2 group-hover/link:bg-neutral-50 group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
+                          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M21 19H23V21H1V19H3V4C3 3.44772 3.44772 3 4 3H14C14.5523 3 15 3.44772 15 4V19H19V11H17V9H20C20.5523 9 21 9.44772 21 10V19ZM5 5V19H13V5H5ZM7 11H11V13H7V11ZM7 7H11V9H7V7Z"></path></svg>
+</span>
+                        </div>
+                        <div class="flex-1">
+                          <div class="text-neutral-900 font-semibold">Control Plane Documentation</div>
+                          
+                            <div class="text-neutral-400 text-xs">Plakar Control Plane documentation</div>
+                          
+                        </div>
+                      </a>
+                    
+                      <a href="/posts/" 
+                         class="group/link flex items-center gap-2 p-2 rounded-lg hover:bg-neutral-100">
+                        <div class="w-10 h-10 bg-neutral-100 text-neutral-600 p-2 group-hover/link:bg-neutral-50 group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
+                          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 22H4C3.44772 22 3 21.5523 3 21V3C3 2.44772 3.44772 2 4 2H20C20.5523 2 21 2.44772 21 3V21C21 21.5523 20.5523 22 20 22ZM19 20V4H5V20H19ZM7 6H11V10H7V6ZM7 12H17V14H7V12ZM7 16H17V18H7V16ZM13 7H17V9H13V7Z"></path></svg>
+</span>
+                        </div>
+                        <div class="flex-1">
+                          <div class="text-neutral-900 font-semibold">Plakar blog</div>
+                          
+                            <div class="text-neutral-400 text-xs">Engineers thought &amp; last news</div>
+                          
+                        </div>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+                <div class="w-1/2 lg:w-[30%] flex flex-col gap-6">
+                  <span class="text-primary-500 text-xs">Community</span>
+                  <div class="flex flex-col gap-2">
+                    
+                      <a href="/community/" 
+                         class="group/link flex items-center gap-2 p-2 rounded-lg hover:bg-neutral-100">
+                        <div class="w-10 h-10 bg-neutral-100 text-neutral-600 p-2 group-hover/link:bg-neutral-50 group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
+                          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 11C14.7614 11 17 13.2386 17 16V22H15V16C15 14.4023 13.7511 13.0963 12.1763 13.0051L12 13C10.4023 13 9.09634 14.2489 9.00509 15.8237L9 16V22H7V16C7 13.2386 9.23858 11 12 11ZM5.5 14C5.77885 14 6.05009 14.0326 6.3101 14.0942C6.14202 14.594 6.03873 15.122 6.00896 15.6693L6 16L6.0007 16.0856C5.88757 16.0456 5.76821 16.0187 5.64446 16.0069L5.5 16C4.7203 16 4.07955 16.5949 4.00687 17.3555L4 17.5V22H2V17.5C2 15.567 3.567 14 5.5 14ZM18.5 14C20.433 14 22 15.567 22 17.5V22H20V17.5C20 16.7203 19.4051 16.0796 18.6445 16.0069L18.5 16C18.3248 16 18.1566 16.03 18.0003 16.0852L18 16C18 15.3343 17.8916 14.694 17.6915 14.0956C17.9499 14.0326 18.2211 14 18.5 14ZM5.5 8C6.88071 8 8 9.11929 8 10.5C8 11.8807 6.88071 13 5.5 13C4.11929 13 3 11.8807 3 10.5C3 9.11929 4.11929 8 5.5 8ZM18.5 8C19.8807 8 21 9.11929 21 10.5C21 11.8807 19.8807 13 18.5 13C17.1193 13 16 11.8807 16 10.5C16 9.11929 17.1193 8 18.5 8ZM5.5 10C5.22386 10 5 10.2239 5 10.5C5 10.7761 5.22386 11 5.5 11C5.77614 11 6 10.7761 6 10.5C6 10.2239 5.77614 10 5.5 10ZM18.5 10C18.2239 10 18 10.2239 18 10.5C18 10.7761 18.2239 11 18.5 11C18.7761 11 19 10.7761 19 10.5C19 10.2239 18.7761 10 18.5 10ZM12 2C14.2091 2 16 3.79086 16 6C16 8.20914 14.2091 10 12 10C9.79086 10 8 8.20914 8 6C8 3.79086 9.79086 2 12 2ZM12 4C10.8954 4 10 4.89543 10 6C10 7.10457 10.8954 8 12 8C13.1046 8 14 7.10457 14 6C14 4.89543 13.1046 4 12 4Z"></path></svg>
+</span>
+                        </div>
+                        <div class="flex-1">
+                          <div class="text-neutral-900 font-semibold">Plakar community</div>
+                          
+                            <div class="text-neutral-400 text-xs">Open by default, join us!</div>
+                          
+                        </div>
+                      </a>
+                    
+                      <a href="/contact/#upcoming-events" 
+                         class="group/link flex items-center gap-2 p-2 rounded-lg hover:bg-neutral-100">
+                        <div class="w-10 h-10 bg-neutral-100 text-neutral-600 p-2 group-hover/link:bg-neutral-50 group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
+                          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9 1V3H15V1H17V3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3H7V1H9ZM20 11H4V19H20V11ZM11 13V17H6V13H11ZM7 5H4V9H20V5H17V7H15V5H9V7H7V5Z"></path></svg>
+</span>
+                        </div>
+                        <div class="flex-1">
+                          <div class="text-neutral-900 font-semibold">Upcoming events</div>
+                          
+                            <div class="text-neutral-400 text-xs">Meet Plakar team</div>
+                          
+                        </div>
+                      </a>
+                    
+                      <a href="/contact/#email-contact" 
+                         class="group/link flex items-center gap-2 p-2 rounded-lg hover:bg-neutral-100">
+                        <div class="w-10 h-10 bg-neutral-100 text-neutral-600 p-2 group-hover/link:bg-neutral-50 group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
+                          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM20 7.23792L12.0718 14.338L4 7.21594V19H20V7.23792ZM4.51146 5L12.0619 11.662L19.501 5H4.51146Z"></path></svg>
+</span>
+                        </div>
+                        <div class="flex-1">
+                          <div class="text-neutral-900 font-semibold">Contact us</div>
+                          
+                            <div class="text-neutral-400 text-xs">How to contact Plakar team?</div>
+                          
+                        </div>
+                      </a>
+                    
+                      <a href="/contact/#newsletter-signup" 
+                         class="group/link flex items-center gap-2 p-2 rounded-lg hover:bg-neutral-100">
+                        <div class="w-10 h-10 bg-neutral-100 text-neutral-600 p-2 group-hover/link:bg-neutral-50 group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
+                          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.7134 8.12811L20.4668 8.69379C20.2864 9.10792 19.7136 9.10792 19.5331 8.69379L19.2866 8.12811C18.8471 7.11947 18.0555 6.31641 17.0677 5.87708L16.308 5.53922C15.8973 5.35653 15.8973 4.75881 16.308 4.57612L17.0252 4.25714C18.0384 3.80651 18.8442 2.97373 19.2761 1.93083L19.5293 1.31953C19.7058 0.893489 20.2942 0.893489 20.4706 1.31953L20.7238 1.93083C21.1558 2.97373 21.9616 3.80651 22.9748 4.25714L23.6919 4.57612C24.1027 4.75881 24.1027 5.35653 23.6919 5.53922L22.9323 5.87708C21.9445 6.31641 21.1529 7.11947 20.7134 8.12811ZM2 4C2 3.44772 2.44772 3 3 3H14V5H4.5052L12 11.662L16.3981 7.75259L17.7269 9.24741L12 14.338L4 7.22684V19H20V11H22V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4Z"></path></svg>
+</span>
+                        </div>
+                        <div class="flex-1">
+                          <div class="text-neutral-900 font-semibold">Newsletter</div>
+                          
+                            <div class="text-neutral-400 text-xs">Receive our monthly newsletter</div>
+                          
+                        </div>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+
+              
+
+
+
+
+
+  <div class="flex flex-col gap-3 border-l border-neutral-200 pl-6 ml-2">
+    <span class="text-primary-500 text-xs">Featured Blogs</span>
+    
+      
+      <a href="/posts/2026-04-03/backing-up-postgresql-with-plakar/" class="group/link flex items-stretch gap-3 rounded-lg border border-neutral-200 hover:bg-neutral-100 hover:border-neutral-300 p-3 no-underline">
+        
+          <img src="/posts/2026-04-03/backing-up-postgresql-with-plakar/featured.png" alt="Backing up PostgreSQL with Plakar" class="w-20 h-20 object-cover rounded-md shrink-0">
+        
+        <div class="flex flex-col gap-1 justify-center">
+          
+            <span class="text-xs text-primary-500 uppercase font-medium">technology</span>
+          
+          <span class="text-sm font-medium text-neutral-900 group-hover/link:text-primary-500 line-clamp-2 leading-snug">
+            Backing up PostgreSQL with Plakar
+          </span>
+        </div>
+      </a>
+    
+      
+      <a href="/posts/2026-02-18/backing-up-kubernetes-clusters-with-plakar/" class="group/link flex items-stretch gap-3 rounded-lg border border-neutral-200 hover:bg-neutral-100 hover:border-neutral-300 p-3 no-underline">
+        
+          <img src="/posts/2026-02-18/backing-up-kubernetes-clusters-with-plakar/featured.png" alt="Backing up kubernetes clusters with Plakar" class="w-20 h-20 object-cover rounded-md shrink-0">
+        
+        <div class="flex flex-col gap-1 justify-center">
+          
+            <span class="text-xs text-primary-500 uppercase font-medium">technology</span>
+          
+          <span class="text-sm font-medium text-neutral-900 group-hover/link:text-primary-500 line-clamp-2 leading-snug">
+            Backing up kubernetes clusters with Plakar
+          </span>
+        </div>
+      </a>
+    
+  </div>
+
+
+            </div>
+          </div>
+        
+
+      </div>
+    
+  
+    
+      <div class="relative dropdown-group">
+
+        
+          <a href="/integrations/" 
+             class="px-2.5 text-lg text-neutral-700 hover:text-primary-500 inline-flex items-center">
+            Integrations
+          </a>
+        
+
+        
+
+      </div>
+    
+  
+    
+      <div class="relative dropdown-group">
+
+        
+          <a href="/download/" 
+             class="px-2.5 text-lg text-neutral-700 hover:text-primary-500 inline-flex items-center">
+            Download
+          </a>
+        
+
+        
+
+      </div>
+    
+  
+</nav>
+
+    </div>
+
+    <div class="flex flex-row items-center space-x-2 shrink-0 justify-end">
+      
+      <button class="search-trigger group flex items-center gap-2 min-h-7 lg:min-h-12 px-2.5 border border-neutral-300 rounded-lg bg-neutral-50 text-neutral-400 hover:text-neutral-600 hover:border-neutral-400 transition-colors" aria-label="Open search">
+        <span class="w-6 h-6 shrink-0"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18.031 16.6168L22.3137 20.8995L20.8995 22.3137L16.6168 18.031C15.0769 19.263 13.124 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2C15.968 2 20 6.032 20 11C20 13.124 19.263 15.0769 18.031 16.6168ZM16.0247 15.8748C17.2475 14.6146 18 12.8956 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18C12.8956 18 14.6146 17.2475 15.8748 16.0247L16.0247 15.8748Z"></path></svg>
+</span></span>
+        <span class="hidden text-sm">Search...</span>
+        <kbd class="hidden items-center h-5 bg-white border border-neutral-200 rounded px-1.5 ml-1">
+          <span class="text-[10px] text-neutral-400" id="search-kbd-hint"></span>
+        </kbd>
+      </button>
+
+      
+      
+
+
+
+
+
+  
+    
+
+    
+      <a href="https://discord.gg/uuegtnF2Q5" target="_blank"
+         class="hidden lg:flex items-stretch min-h-7 lg:min-h-12 border border-neutral-300 bg-neutral-50 rounded-lg overflow-hidden">
+        <div class="flex items-center justify-center px-3 bg-neutral-100 text-primary-500">
+          <span class="w-7 h-7 flex items-center justify-center">
+            <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M524.531,69.836a1.5,1.5,0,0,0-.764-.7A485.065,485.065,0,0,0,404.081,32.03a1.816,1.816,0,0,0-1.923.91,337.461,337.461,0,0,0-14.9,30.6,447.848,447.848,0,0,0-134.426,0,309.541,309.541,0,0,0-15.135-30.6,1.89,1.89,0,0,0-1.924-.91A483.689,483.689,0,0,0,116.085,69.137a1.712,1.712,0,0,0-.788.676C39.068,183.651,18.186,294.69,28.43,404.354a2.016,2.016,0,0,0,.765,1.375A487.666,487.666,0,0,0,176.02,479.918a1.9,1.9,0,0,0,2.063-.676A348.2,348.2,0,0,0,208.12,430.4a1.86,1.86,0,0,0-1.019-2.588,321.173,321.173,0,0,1-45.868-21.853,1.885,1.885,0,0,1-.185-3.126c3.082-2.309,6.166-4.711,9.109-7.137a1.819,1.819,0,0,1,1.9-.256c96.229,43.917,200.41,43.917,295.5,0a1.812,1.812,0,0,1,1.924.233c2.944,2.426,6.027,4.851,9.132,7.16a1.884,1.884,0,0,1-.162,3.126,301.407,301.407,0,0,1-45.89,21.83,1.875,1.875,0,0,0-1,2.611,391.055,391.055,0,0,0,30.014,48.815,1.864,1.864,0,0,0,2.063.7A486.048,486.048,0,0,0,610.7,405.729a1.882,1.882,0,0,0,.765-1.352C623.729,277.594,590.933,167.465,524.531,69.836ZM222.491,337.58c-28.972,0-52.844-26.587-52.844-59.239S193.056,219.1,222.491,219.1c29.665,0,53.306,26.82,52.843,59.239C275.334,310.993,251.924,337.58,222.491,337.58Zm195.38,0c-28.971,0-52.843-26.587-52.843-59.239S388.437,219.1,417.871,219.1c29.667,0,53.307,26.82,52.844,59.239C470.715,310.993,447.538,337.58,417.871,337.58Z"/></svg>
+</span>
+          </span>
+        </div>
+        <div class="flex items-center justify-center px-3 border-l border-neutral-300">
+          <span class="discord-members-count text-neutral-900" data-invite="uuegtnF2Q5"></span>
+        </div>
+      </a>
+
+    
+
+  
+
+
+
+      
+      
+
+
+
+
+
+  
+    
+
+    
+      <a href="https://github.com/PlakarKorp/plakar" target="_blank"
+         class="github-stars hidden lg:flex items-stretch min-h-7 lg:min-h-12 border border-neutral-300 bg-neutral-50 rounded-lg overflow-hidden">
+        <div class="flex items-center justify-center px-3 bg-neutral-100 text-primary-500">
+          <span class="w-6 h-6 flex items-center justify-center">
+            <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+</span>
+          </span>
+        </div>
+        <div class="flex items-center justify-center px-3 border-l border-neutral-300">
+          <span class="github-stars-count text-neutral-900" data-repo="PlakarKorp/plakar"></span>
+        </div>
+      </a>
+
+    
+
+  
+
+
+
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a href="#" target="_self" class="flex items-center book-a-demo-modal-open">
+  <div class="text-neutral-50   bg-primary-500 text-neutral-50 inline-flex relative
+    group overflow-hidden min-h-7 lg:min-h-12 px-4 pr-4 rounded-lg items-center gap-2 transition-all
+    duration-150 ease-out hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1 active:shadow-inner">
+
+    
+    <div class="absolute inset-0 bg-primary-600 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-0"></div>
+
+    
+    <div class="relative z-10 flex items-center gap-2">
+      <span class="w-5 h-5 flex items-center justify-center">
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4.99989 13.9999L4.99976 5L6.99976 4.99997L6.99986 11.9999L17.1717 12L13.222 8.05024L14.6362 6.63603L21.0001 13L14.6362 19.364L13.222 17.9497L17.1717 14L4.99989 13.9999Z"></path></svg>
+</span>
+      </span>
+      <span class="hidden xl:block">Book a demo</span>
+      <span class="block xl:hidden">Demo</span>
+    </div>
+  </div>
+</a>
+
+
+      
+      <button id="menu-button" class="lg:hidden min-h-7 aspect-square overflow-y-auto border border-neutral-300 rounded-lg text-neutral-900 focus:outline-none flex items-center justify-center">
+        <span class="w-4 h-4 flex items-center justify-center">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 4H21V6H3V4ZM3 11H21V13H3V11ZM3 18H21V20H3V18Z"></path></svg>
+</span>
+        </span>
+      </button>
+    </div>
+  </div>
+
+  
+  
+
+
+
+
+
+<div id="menu-mobile" class="absolute hidden left-0 right-0 w-full top-[calc(100%+8px)] bg-neutral-50 pb-6 z-50 max-h-[80vh] overflow-y-auto">
+  
+  <div class="flex justify-end px-4 pt-4">
+    <button id="menu-close-button" class="w-7 h-7 flex items-center justify-center border border-neutral-300 rounded-lg text-neutral-900">
+      <span class="w-4 h-4"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.9997 10.5865L16.9495 5.63672L18.3637 7.05093L13.4139 12.0007L18.3637 16.9504L16.9495 18.3646L11.9997 13.4149L7.04996 18.3646L5.63574 16.9504L10.5855 12.0007L5.63574 7.05093L7.04996 5.63672L11.9997 10.5865Z"></path></svg>
+</span></span>
+    </button>
+  </div>
+
+  
+  <nav class="mt-4 px-4 flex flex-col divide-y divide-neutral-200">
+    
+      
+        
+          <div class="accordion-item">
+            <button class="accordion-toggle w-full flex justify-between items-center py-3 text-neutral-700 hover:text-primary-500">
+              Solutions
+              <span class="accordion-chevron w-4 h-4 flex items-center justify-center">
+                <span class="relative block icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+</span>
+              </span>
+            </button>
+
+            
+            
+              
+                
+                
+                  
+                  
+                  
+                
+              
+            
+              
+                
+                
+                  
+                  
+                  
+                
+              
+            
+              
+                
+                
+                  
+                  
+                  
+                
+              
+            
+              
+                
+                
+                  
+                  
+                  
+                
+              
+            
+              
+                
+                
+                  
+                  
+                  
+                
+              
+            
+              
+                
+                
+                  
+                  
+                  
+                
+              
+            
+              
+                
+                
+                  
+                  
+                  
+                
+              
+            
+
+            
+            
+              
+              
+            
+              
+              
+            
+
+            <div class="accordion-content hidden flex-col pl-4 pb-4 gap-4">
+              
+                <div class="flex flex-col gap-1">
+                  <span class="text-primary-500 text-xs py-1">Platforms</span>
+                  
+                    <a href="/solutions/on-premises/" 
+                       class="group/link flex items-center gap-2 p-2 rounded-lg hover:bg-neutral-100">
+                      <div class="w-8 h-8 bg-neutral-100 text-neutral-600 group-hover/link:bg-neutral-50 group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
+                        <span class="w-4 h-4 flex items-center justify-center">
+                          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M5.46257 4.43262C7.21556 2.91688 9.5007 2 12 2C17.5228 2 22 6.47715 22 12C22 14.1361 21.3302 16.1158 20.1892 17.7406L17 12H20C20 7.58172 16.4183 4 12 4C9.84982 4 7.89777 4.84827 6.46023 6.22842L5.46257 4.43262ZM18.5374 19.5674C16.7844 21.0831 14.4993 22 12 22C6.47715 22 2 17.5228 2 12C2 9.86386 2.66979 7.88416 3.8108 6.25944L7 12H4C4 16.4183 7.58172 20 12 20C14.1502 20 16.1022 19.1517 17.5398 17.7716L18.5374 19.5674Z"></path></svg>
+</span>
+                        </span>
+                      </div>
+                      <div>
+                        <div class="text-neutral-900 font-semibold text-sm">On-premises</div>
+                        
+                          <div class="text-neutral-400 text-xs">On your infrastructure</div>
+                        
+                      </div>
+                    </a>
+                  
+                    <a href="/solutions/aws/" 
+                       class="group/link flex items-center gap-2 p-2 rounded-lg hover:bg-neutral-100">
+                      <div class="w-8 h-8 bg-neutral-100 text-neutral-600 group-hover/link:bg-neutral-50 group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
+                        <span class="w-4 h-4 flex items-center justify-center">
+                          <span class="relative block icon"><?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	 viewBox="0 0 304 182" style="enable-background:new 0 0 304 182;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#252F3E;}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:#FF9900;}
+</style>
+<g>
+	<path class="st0" d="M86.4,66.4c0,3.7,0.4,6.7,1.1,8.9c0.8,2.2,1.8,4.6,3.2,7.2c0.5,0.8,0.7,1.6,0.7,2.3c0,1-0.6,2-1.9,3l-6.3,4.2
+		c-0.9,0.6-1.8,0.9-2.6,0.9c-1,0-2-0.5-3-1.4C76.2,90,75,88.4,74,86.8c-1-1.7-2-3.6-3.1-5.9c-7.8,9.2-17.6,13.8-29.4,13.8
+		c-8.4,0-15.1-2.4-20-7.2c-4.9-4.8-7.4-11.2-7.4-19.2c0-8.5,3-15.4,9.1-20.6c6.1-5.2,14.2-7.8,24.5-7.8c3.4,0,6.9,0.3,10.6,0.8
+		c3.7,0.5,7.5,1.3,11.5,2.2v-7.3c0-7.6-1.6-12.9-4.7-16c-3.2-3.1-8.6-4.6-16.3-4.6c-3.5,0-7.1,0.4-10.8,1.3c-3.7,0.9-7.3,2-10.8,3.4
+		c-1.6,0.7-2.8,1.1-3.5,1.3c-0.7,0.2-1.2,0.3-1.6,0.3c-1.4,0-2.1-1-2.1-3.1v-4.9c0-1.6,0.2-2.8,0.7-3.5c0.5-0.7,1.4-1.4,2.8-2.1
+		c3.5-1.8,7.7-3.3,12.6-4.5c4.9-1.3,10.1-1.9,15.6-1.9c11.9,0,20.6,2.7,26.2,8.1c5.5,5.4,8.3,13.6,8.3,24.6V66.4z M45.8,81.6
+		c3.3,0,6.7-0.6,10.3-1.8c3.6-1.2,6.8-3.4,9.5-6.4c1.6-1.9,2.8-4,3.4-6.4c0.6-2.4,1-5.3,1-8.7v-4.2c-2.9-0.7-6-1.3-9.2-1.7
+		c-3.2-0.4-6.3-0.6-9.4-0.6c-6.7,0-11.6,1.3-14.9,4c-3.3,2.7-4.9,6.5-4.9,11.5c0,4.7,1.2,8.2,3.7,10.6
+		C37.7,80.4,41.2,81.6,45.8,81.6z M126.1,92.4c-1.8,0-3-0.3-3.8-1c-0.8-0.6-1.5-2-2.1-3.9L96.7,10.2c-0.6-2-0.9-3.3-0.9-4
+		c0-1.6,0.8-2.5,2.4-2.5h9.8c1.9,0,3.2,0.3,3.9,1c0.8,0.6,1.4,2,2,3.9l16.8,66.2l15.6-66.2c0.5-2,1.1-3.3,1.9-3.9c0.8-0.6,2.2-1,4-1
+		h8c1.9,0,3.2,0.3,4,1c0.8,0.6,1.5,2,1.9,3.9l15.8,67l17.3-67c0.6-2,1.3-3.3,2-3.9c0.8-0.6,2.1-1,3.9-1h9.3c1.6,0,2.5,0.8,2.5,2.5
+		c0,0.5-0.1,1-0.2,1.6c-0.1,0.6-0.3,1.4-0.7,2.5l-24.1,77.3c-0.6,2-1.3,3.3-2.1,3.9c-0.8,0.6-2.1,1-3.8,1h-8.6c-1.9,0-3.2-0.3-4-1
+		c-0.8-0.7-1.5-2-1.9-4L156,23l-15.4,64.4c-0.5,2-1.1,3.3-1.9,4c-0.8,0.7-2.2,1-4,1H126.1z M254.6,95.1c-5.2,0-10.4-0.6-15.4-1.8
+		c-5-1.2-8.9-2.5-11.5-4c-1.6-0.9-2.7-1.9-3.1-2.8c-0.4-0.9-0.6-1.9-0.6-2.8v-5.1c0-2.1,0.8-3.1,2.3-3.1c0.6,0,1.2,0.1,1.8,0.3
+		c0.6,0.2,1.5,0.6,2.5,1c3.4,1.5,7.1,2.7,11,3.5c4,0.8,7.9,1.2,11.9,1.2c6.3,0,11.2-1.1,14.6-3.3c3.4-2.2,5.2-5.4,5.2-9.5
+		c0-2.8-0.9-5.1-2.7-7c-1.8-1.9-5.2-3.6-10.1-5.2L246,52c-7.3-2.3-12.7-5.7-16-10.2c-3.3-4.4-5-9.3-5-14.5c0-4.2,0.9-7.9,2.7-11.1
+		c1.8-3.2,4.2-6,7.2-8.2c3-2.3,6.4-4,10.4-5.2c4-1.2,8.2-1.7,12.6-1.7c2.2,0,4.5,0.1,6.7,0.4c2.3,0.3,4.4,0.7,6.5,1.1
+		c2,0.5,3.9,1,5.7,1.6c1.8,0.6,3.2,1.2,4.2,1.8c1.4,0.8,2.4,1.6,3,2.5c0.6,0.8,0.9,1.9,0.9,3.3v4.7c0,2.1-0.8,3.2-2.3,3.2
+		c-0.8,0-2.1-0.4-3.8-1.2c-5.7-2.6-12.1-3.9-19.2-3.9c-5.7,0-10.2,0.9-13.3,2.8c-3.1,1.9-4.7,4.8-4.7,8.9c0,2.8,1,5.2,3,7.1
+		c2,1.9,5.7,3.8,11,5.5l14.2,4.5c7.2,2.3,12.4,5.5,15.5,9.6c3.1,4.1,4.6,8.8,4.6,14c0,4.3-0.9,8.2-2.6,11.6
+		c-1.8,3.4-4.2,6.4-7.3,8.8c-3.1,2.5-6.8,4.3-11.1,5.6C264.4,94.4,259.7,95.1,254.6,95.1z"/>
+	<g>
+		<path class="st1" d="M273.5,143.7c-32.9,24.3-80.7,37.2-121.8,37.2c-57.6,0-109.5-21.3-148.7-56.7c-3.1-2.8-0.3-6.6,3.4-4.4
+			c42.4,24.6,94.7,39.5,148.8,39.5c36.5,0,76.6-7.6,113.5-23.2C274.2,133.6,278.9,139.7,273.5,143.7z"/>
+		<path class="st1" d="M287.2,128.1c-4.2-5.4-27.8-2.6-38.5-1.3c-3.2,0.4-3.7-2.4-0.8-4.5c18.8-13.2,49.7-9.4,53.3-5
+			c3.6,4.5-1,35.4-18.6,50.2c-2.7,2.3-5.3,1.1-4.1-1.9C282.5,155.7,291.4,133.4,287.2,128.1z"/>
+	</g>
+</g>
+</svg>
+</span>
+                        </span>
+                      </div>
+                      <div>
+                        <div class="text-neutral-900 font-semibold text-sm">Amazon Web Services</div>
+                        
+                          <div class="text-neutral-400 text-xs">Inside your AWS account</div>
+                        
+                      </div>
+                    </a>
+                  
+                    <a href="/#" 
+                       class="group/link flex items-center gap-2 p-2 rounded-lg hover:bg-neutral-100">
+                      <div class="w-8 h-8 bg-neutral-100 text-neutral-600 group-hover/link:bg-neutral-50 group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
+                        <span class="w-4 h-4 flex items-center justify-center">
+                          <span class="relative block icon"><?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none"><path fill="#EA4335" d="M10.313 5.376l1.887-1.5-.332-.414a5.935 5.935 0 00-5.586-1.217 5.89 5.89 0 00-3.978 4.084c-.03.113.312-.098.463-.056l2.608-.428s.127-.124.201-.205c1.16-1.266 3.126-1.432 4.465-.354l.272.09z"/><path fill="#4285F4" d="M13.637 6.3a5.835 5.835 0 00-1.77-2.838l-1.83 1.82a3.226 3.226 0 011.193 2.564v.323c.9 0 1.63.725 1.63 1.62 0 .893-.73 1.619-1.63 1.619l-3.257-.003-.325.035v2.507l.325.053h3.257a4.234 4.234 0 004.08-2.962A4.199 4.199 0 0013.636 6.3z"/><path fill="#34A853" d="M4.711 13.999H7.97v-2.594H4.71c-.232 0-.461-.066-.672-.161l-.458.14-1.313 1.297-.114.447a4.254 4.254 0 002.557.87z"/><path fill="#FBBC05" d="M4.711 5.572A4.234 4.234 0 00.721 8.44a4.206 4.206 0 001.433 4.688l1.89-1.884a1.617 1.617 0 01.44-3.079 1.63 1.63 0 011.714.936l1.89-1.878A4.24 4.24 0 004.71 5.572z"/></svg>
+</span>
+                        </span>
+                      </div>
+                      <div>
+                        <div class="text-neutral-900 font-semibold text-sm">Google Cloud</div>
+                        
+                          <div class="text-neutral-400 text-xs">Coming soon</div>
+                        
+                      </div>
+                    </a>
+                  
+                    <a href="/#" 
+                       class="group/link flex items-center gap-2 p-2 rounded-lg hover:bg-neutral-100">
+                      <div class="w-8 h-8 bg-neutral-100 text-neutral-600 group-hover/link:bg-neutral-50 group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
+                        <span class="w-4 h-4 flex items-center justify-center">
+                          <span class="relative block icon"><svg width="150" height="150" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="e399c19f-b68f-429d-b176-18c2117ff73c" x1="-1032.172" x2="-1059.213" y1="145.312" y2="65.426" gradientTransform="matrix(1 0 0 -1 1075 158)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#114a8b"/>
+            <stop offset="1" stop-color="#0669bc"/>
+        </linearGradient>
+        <linearGradient id="ac2a6fc2-ca48-4327-9a3c-d4dcc3256e15" x1="-1023.725" x2="-1029.98" y1="108.083" y2="105.968" gradientTransform="matrix(1 0 0 -1 1075 158)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-opacity=".3"/>
+            <stop offset=".071" stop-opacity=".2"/>
+            <stop offset=".321" stop-opacity=".1"/>
+            <stop offset=".623" stop-opacity=".05"/>
+            <stop offset="1" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="a7fee970-a784-4bb1-af8d-63d18e5f7db9" x1="-1027.165" x2="-997.482" y1="147.642" y2="68.561" gradientTransform="matrix(1 0 0 -1 1075 158)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#3ccbf4"/>
+            <stop offset="1" stop-color="#2892df"/>
+        </linearGradient>
+    </defs>
+    <path fill="url(#e399c19f-b68f-429d-b176-18c2117ff73c)" d="M33.338 6.544h26.038l-27.03 80.087a4.152 4.152 0 0 1-3.933 2.824H8.149a4.145 4.145 0 0 1-3.928-5.47L29.404 9.368a4.152 4.152 0 0 1 3.934-2.825z"/>
+    <path fill="#0078d4" d="M71.175 60.261h-41.29a1.911 1.911 0 0 0-1.305 3.309l26.532 24.764a4.171 4.171 0 0 0 2.846 1.121h23.38z"/>
+    <path fill="url(#ac2a6fc2-ca48-4327-9a3c-d4dcc3256e15)" d="M33.338 6.544a4.118 4.118 0 0 0-3.943 2.879L4.252 83.917a4.14 4.14 0 0 0 3.908 5.538h20.787a4.443 4.443 0 0 0 3.41-2.9l5.014-14.777 17.91 16.705a4.237 4.237 0 0 0 2.666.972H81.24L71.024 60.261l-29.781.007L59.47 6.544z"/>
+    <path fill="url(#a7fee970-a784-4bb1-af8d-63d18e5f7db9)" d="M66.595 9.364a4.145 4.145 0 0 0-3.928-2.82H33.648a4.146 4.146 0 0 1 3.928 2.82l25.184 74.62a4.146 4.146 0 0 1-3.928 5.472h29.02a4.146 4.146 0 0 0 3.927-5.472z"/>
+</svg>
+</span>
+                        </span>
+                      </div>
+                      <div>
+                        <div class="text-neutral-900 font-semibold text-sm">Azure</div>
+                        
+                          <div class="text-neutral-400 text-xs">Coming soon</div>
+                        
+                      </div>
+                    </a>
+                  
+                    <a href="/#" 
+                       class="group/link flex items-center gap-2 p-2 rounded-lg hover:bg-neutral-100">
+                      <div class="w-8 h-8 bg-neutral-100 text-neutral-600 group-hover/link:bg-neutral-50 group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
+                        <span class="w-4 h-4 flex items-center justify-center">
+                          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1000"><path fill="#000e9c" fill-rule="evenodd" d="m1407.08 52.27-160.24 283.35h-168.16L880.85 684.34h168.16l-126.62 223.9h413.47c193.88-243.71 223.55-582.53 71.22-855.97M592.01 908.24 1116.27.76H673.13L372.42 523.85 99.41 50.29C-54.9 323.73-27.2 664.53 172.61 908.24z"/></svg>
+</span>
+                        </span>
+                      </div>
+                      <div>
+                        <div class="text-neutral-900 font-semibold text-sm">OVHCloud</div>
+                        
+                          <div class="text-neutral-400 text-xs">Coming soon</div>
+                        
+                      </div>
+                    </a>
+                  
+                </div>
+              
+                <div class="flex flex-col gap-1">
+                  <span class="text-primary-500 text-xs py-1">Resources</span>
+                  
+                    <a href="/solutions/compare/" 
+                       class="group/link flex items-center gap-2 p-2 rounded-lg hover:bg-neutral-100">
+                      <div class="w-8 h-8 bg-neutral-100 text-neutral-600 group-hover/link:bg-neutral-50 group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
+                        <span class="w-4 h-4 flex items-center justify-center">
+                          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.0503 12.0498L21 16.9996L16.0503 21.9493L14.636 20.5351L17.172 17.9988L4 17.9996V15.9996L17.172 15.9988L14.636 13.464L16.0503 12.0498ZM7.94975 2.0498L9.36396 3.46402L6.828 5.9988L20 5.99955V7.99955L6.828 7.9988L9.36396 10.5351L7.94975 11.9493L3 6.99955L7.94975 2.0498Z"></path></svg>
+</span>
+                        </span>
+                      </div>
+                      <div>
+                        <div class="text-neutral-900 font-semibold text-sm">Compare Plakar to Alternatives</div>
+                        
+                          <div class="text-neutral-400 text-xs">Discover Plakar strengths</div>
+                        
+                      </div>
+                    </a>
+                  
+                    <a href="/solutions/cost-efficiency/" 
+                       class="group/link flex items-center gap-2 p-2 rounded-lg hover:bg-neutral-100">
+                      <div class="w-8 h-8 bg-neutral-100 text-neutral-600 group-hover/link:bg-neutral-50 group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
+                        <span class="w-4 h-4 flex items-center justify-center">
+                          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.0503 12.0498L21 16.9996L16.0503 21.9493L14.636 20.5351L17.172 17.9988L4 17.9996V15.9996L17.172 15.9988L14.636 13.464L16.0503 12.0498ZM7.94975 2.0498L9.36396 3.46402L6.828 5.9988L20 5.99955V7.99955L6.828 7.9988L9.36396 10.5351L7.94975 11.9493L3 6.99955L7.94975 2.0498Z"></path></svg>
+</span>
+                        </span>
+                      </div>
+                      <div>
+                        <div class="text-neutral-900 font-semibold text-sm">Cost Efficiency</div>
+                        
+                          <div class="text-neutral-400 text-xs">Slash storage &amp; egress fees</div>
+                        
+                      </div>
+                    </a>
+                  
+                </div>
+              
+            </div>
+          </div>
+
+        
+      
+    
+      
+        
+          <div class="accordion-item">
+            <button class="accordion-toggle w-full flex justify-between items-center py-3 text-neutral-700 hover:text-primary-500">
+              Engineering
+              <span class="accordion-chevron w-4 h-4 flex items-center justify-center">
+                <span class="relative block icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+</span>
+              </span>
+            </button>
+
+            
+            
+              
+                
+                
+                  
+                  
+                  
+                
+              
+            
+              
+                
+                
+                  
+                  
+                  
+                
+              
+            
+              
+                
+                
+                  
+                  
+                  
+                
+              
+            
+              
+                
+                
+                  
+                  
+                  
+                
+              
+            
+              
+                
+                
+                  
+                  
+                  
+                
+              
+            
+              
+                
+                
+                  
+                  
+                  
+                
+              
+            
+              
+                
+                
+                  
+                  
+                  
+                
+              
+            
+              
+                
+                
+                  
+                  
+                  
+                
+              
+            
+
+            
+            
+              
+              
+            
+              
+              
+            
+
+            <div class="accordion-content hidden flex-col pl-4 pb-4 gap-4">
+              
+                <div class="flex flex-col gap-1">
+                  <span class="text-primary-500 text-xs py-1">Learn</span>
+                  
+                    <a href="/docs/v1.0.6/quickstart/first-backup" target="_blank"
+                       class="group/link flex items-center gap-2 p-2 rounded-lg hover:bg-neutral-100">
+                      <div class="w-8 h-8 bg-neutral-100 text-neutral-600 group-hover/link:bg-neutral-50 group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
+                        <span class="w-4 h-4 flex items-center justify-center">
+                          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M15.5018 20.0048C14.8432 21.5841 13.5794 22.848 12 23.5066C10.4206 22.848 9.15679 21.5841 8.49816 20.0048H10.7575C11.0838 20.4934 11.5051 20.9171 12 21.248C12.4949 20.9171 12.9162 20.4934 13.2425 20.0048H15.5018ZM18 14.8095L20 17.0777V19.0048H4V17.0777L6 14.8095V9.00478C6 5.52153 8.50442 2.55822 12 1.45999C15.4956 2.55822 18 5.52153 18 9.00478V14.8095ZM17.2692 17.0048L16 15.5653V9.00478C16 6.68694 14.4292 4.57431 12 3.58384C9.57078 4.57431 8 6.68694 8 9.00478V15.5653L6.73076 17.0048H17.2692ZM12 11.0048C10.8954 11.0048 10 10.1093 10 9.00478C10 7.90021 10.8954 7.00478 12 7.00478C13.1046 7.00478 14 7.90021 14 9.00478C14 10.1093 13.1046 11.0048 12 11.0048Z"></path></svg>
+</span>
+                        </span>
+                      </div>
+                      <div>
+                        <div class="text-neutral-900 font-semibold text-sm">Quick start</div>
+                        
+                          <div class="text-neutral-400 text-xs">Protect your data in a minute</div>
+                        
+                      </div>
+                    </a>
+                  
+                    <a href="/docs" target="_blank"
+                       class="group/link flex items-center gap-2 p-2 rounded-lg hover:bg-neutral-100">
+                      <div class="w-8 h-8 bg-neutral-100 text-neutral-600 group-hover/link:bg-neutral-50 group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
+                        <span class="w-4 h-4 flex items-center justify-center">
+                          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13 21V23H11V21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3H9C10.1947 3 11.2671 3.52375 12 4.35418C12.7329 3.52375 13.8053 3 15 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H13ZM20 19V5H15C13.8954 5 13 5.89543 13 7V19H20ZM11 19V7C11 5.89543 10.1046 5 9 5H4V19H11Z"></path></svg>
+</span>
+                        </span>
+                      </div>
+                      <div>
+                        <div class="text-neutral-900 font-semibold text-sm">Documentation</div>
+                        
+                          <div class="text-neutral-400 text-xs">How to use Plakar?</div>
+                        
+                      </div>
+                    </a>
+                  
+                    <a href="/control-plane-docs/" target="_blank"
+                       class="group/link flex items-center gap-2 p-2 rounded-lg hover:bg-neutral-100">
+                      <div class="w-8 h-8 bg-neutral-100 text-neutral-600 group-hover/link:bg-neutral-50 group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
+                        <span class="w-4 h-4 flex items-center justify-center">
+                          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M21 19H23V21H1V19H3V4C3 3.44772 3.44772 3 4 3H14C14.5523 3 15 3.44772 15 4V19H19V11H17V9H20C20.5523 9 21 9.44772 21 10V19ZM5 5V19H13V5H5ZM7 11H11V13H7V11ZM7 7H11V9H7V7Z"></path></svg>
+</span>
+                        </span>
+                      </div>
+                      <div>
+                        <div class="text-neutral-900 font-semibold text-sm">Control Plane Documentation</div>
+                        
+                          <div class="text-neutral-400 text-xs">Plakar Control Plane documentation</div>
+                        
+                      </div>
+                    </a>
+                  
+                    <a href="/posts/" 
+                       class="group/link flex items-center gap-2 p-2 rounded-lg hover:bg-neutral-100">
+                      <div class="w-8 h-8 bg-neutral-100 text-neutral-600 group-hover/link:bg-neutral-50 group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
+                        <span class="w-4 h-4 flex items-center justify-center">
+                          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 22H4C3.44772 22 3 21.5523 3 21V3C3 2.44772 3.44772 2 4 2H20C20.5523 2 21 2.44772 21 3V21C21 21.5523 20.5523 22 20 22ZM19 20V4H5V20H19ZM7 6H11V10H7V6ZM7 12H17V14H7V12ZM7 16H17V18H7V16ZM13 7H17V9H13V7Z"></path></svg>
+</span>
+                        </span>
+                      </div>
+                      <div>
+                        <div class="text-neutral-900 font-semibold text-sm">Plakar blog</div>
+                        
+                          <div class="text-neutral-400 text-xs">Engineers thought &amp; last news</div>
+                        
+                      </div>
+                    </a>
+                  
+                </div>
+              
+                <div class="flex flex-col gap-1">
+                  <span class="text-primary-500 text-xs py-1">Community</span>
+                  
+                    <a href="/community/" 
+                       class="group/link flex items-center gap-2 p-2 rounded-lg hover:bg-neutral-100">
+                      <div class="w-8 h-8 bg-neutral-100 text-neutral-600 group-hover/link:bg-neutral-50 group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
+                        <span class="w-4 h-4 flex items-center justify-center">
+                          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 11C14.7614 11 17 13.2386 17 16V22H15V16C15 14.4023 13.7511 13.0963 12.1763 13.0051L12 13C10.4023 13 9.09634 14.2489 9.00509 15.8237L9 16V22H7V16C7 13.2386 9.23858 11 12 11ZM5.5 14C5.77885 14 6.05009 14.0326 6.3101 14.0942C6.14202 14.594 6.03873 15.122 6.00896 15.6693L6 16L6.0007 16.0856C5.88757 16.0456 5.76821 16.0187 5.64446 16.0069L5.5 16C4.7203 16 4.07955 16.5949 4.00687 17.3555L4 17.5V22H2V17.5C2 15.567 3.567 14 5.5 14ZM18.5 14C20.433 14 22 15.567 22 17.5V22H20V17.5C20 16.7203 19.4051 16.0796 18.6445 16.0069L18.5 16C18.3248 16 18.1566 16.03 18.0003 16.0852L18 16C18 15.3343 17.8916 14.694 17.6915 14.0956C17.9499 14.0326 18.2211 14 18.5 14ZM5.5 8C6.88071 8 8 9.11929 8 10.5C8 11.8807 6.88071 13 5.5 13C4.11929 13 3 11.8807 3 10.5C3 9.11929 4.11929 8 5.5 8ZM18.5 8C19.8807 8 21 9.11929 21 10.5C21 11.8807 19.8807 13 18.5 13C17.1193 13 16 11.8807 16 10.5C16 9.11929 17.1193 8 18.5 8ZM5.5 10C5.22386 10 5 10.2239 5 10.5C5 10.7761 5.22386 11 5.5 11C5.77614 11 6 10.7761 6 10.5C6 10.2239 5.77614 10 5.5 10ZM18.5 10C18.2239 10 18 10.2239 18 10.5C18 10.7761 18.2239 11 18.5 11C18.7761 11 19 10.7761 19 10.5C19 10.2239 18.7761 10 18.5 10ZM12 2C14.2091 2 16 3.79086 16 6C16 8.20914 14.2091 10 12 10C9.79086 10 8 8.20914 8 6C8 3.79086 9.79086 2 12 2ZM12 4C10.8954 4 10 4.89543 10 6C10 7.10457 10.8954 8 12 8C13.1046 8 14 7.10457 14 6C14 4.89543 13.1046 4 12 4Z"></path></svg>
+</span>
+                        </span>
+                      </div>
+                      <div>
+                        <div class="text-neutral-900 font-semibold text-sm">Plakar community</div>
+                        
+                          <div class="text-neutral-400 text-xs">Open by default, join us!</div>
+                        
+                      </div>
+                    </a>
+                  
+                    <a href="/contact/#upcoming-events" 
+                       class="group/link flex items-center gap-2 p-2 rounded-lg hover:bg-neutral-100">
+                      <div class="w-8 h-8 bg-neutral-100 text-neutral-600 group-hover/link:bg-neutral-50 group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
+                        <span class="w-4 h-4 flex items-center justify-center">
+                          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9 1V3H15V1H17V3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3H7V1H9ZM20 11H4V19H20V11ZM11 13V17H6V13H11ZM7 5H4V9H20V5H17V7H15V5H9V7H7V5Z"></path></svg>
+</span>
+                        </span>
+                      </div>
+                      <div>
+                        <div class="text-neutral-900 font-semibold text-sm">Upcoming events</div>
+                        
+                          <div class="text-neutral-400 text-xs">Meet Plakar team</div>
+                        
+                      </div>
+                    </a>
+                  
+                    <a href="/contact/#email-contact" 
+                       class="group/link flex items-center gap-2 p-2 rounded-lg hover:bg-neutral-100">
+                      <div class="w-8 h-8 bg-neutral-100 text-neutral-600 group-hover/link:bg-neutral-50 group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
+                        <span class="w-4 h-4 flex items-center justify-center">
+                          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM20 7.23792L12.0718 14.338L4 7.21594V19H20V7.23792ZM4.51146 5L12.0619 11.662L19.501 5H4.51146Z"></path></svg>
+</span>
+                        </span>
+                      </div>
+                      <div>
+                        <div class="text-neutral-900 font-semibold text-sm">Contact us</div>
+                        
+                          <div class="text-neutral-400 text-xs">How to contact Plakar team?</div>
+                        
+                      </div>
+                    </a>
+                  
+                    <a href="/contact/#newsletter-signup" 
+                       class="group/link flex items-center gap-2 p-2 rounded-lg hover:bg-neutral-100">
+                      <div class="w-8 h-8 bg-neutral-100 text-neutral-600 group-hover/link:bg-neutral-50 group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
+                        <span class="w-4 h-4 flex items-center justify-center">
+                          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.7134 8.12811L20.4668 8.69379C20.2864 9.10792 19.7136 9.10792 19.5331 8.69379L19.2866 8.12811C18.8471 7.11947 18.0555 6.31641 17.0677 5.87708L16.308 5.53922C15.8973 5.35653 15.8973 4.75881 16.308 4.57612L17.0252 4.25714C18.0384 3.80651 18.8442 2.97373 19.2761 1.93083L19.5293 1.31953C19.7058 0.893489 20.2942 0.893489 20.4706 1.31953L20.7238 1.93083C21.1558 2.97373 21.9616 3.80651 22.9748 4.25714L23.6919 4.57612C24.1027 4.75881 24.1027 5.35653 23.6919 5.53922L22.9323 5.87708C21.9445 6.31641 21.1529 7.11947 20.7134 8.12811ZM2 4C2 3.44772 2.44772 3 3 3H14V5H4.5052L12 11.662L16.3981 7.75259L17.7269 9.24741L12 14.338L4 7.22684V19H20V11H22V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4Z"></path></svg>
+</span>
+                        </span>
+                      </div>
+                      <div>
+                        <div class="text-neutral-900 font-semibold text-sm">Newsletter</div>
+                        
+                          <div class="text-neutral-400 text-xs">Receive our monthly newsletter</div>
+                        
+                      </div>
+                    </a>
+                  
+                </div>
+              
+            </div>
+          </div>
+
+        
+      
+    
+      
+        
+          <a href="/integrations/" 
+             class="block py-3 text-neutral-700 hover:text-primary-500">
+            Integrations
+          </a>
+        
+      
+    
+      
+        
+          <a href="/download/" 
+             class="block py-3 text-neutral-700 hover:text-primary-500">
+            Download
+          </a>
+        
+      
+    
+  </nav>
+
+  
+  <div class="flex items-center justify-end gap-2 mt-6 px-4">
+    
+
+
+
+
+
+  
+    
+
+    
+      <a href="https://discord.gg/uuegtnF2Q5" target="_blank" aria-label="Join us on Discord"
+         class="hidden lg:flex items-center justify-center min-h-7 lg:min-h-12 aspect-square border border-neutral-300 bg-neutral-50 rounded-lg text-primary-500">
+        <span class="w-5 h-5 flex items-center justify-center">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M524.531,69.836a1.5,1.5,0,0,0-.764-.7A485.065,485.065,0,0,0,404.081,32.03a1.816,1.816,0,0,0-1.923.91,337.461,337.461,0,0,0-14.9,30.6,447.848,447.848,0,0,0-134.426,0,309.541,309.541,0,0,0-15.135-30.6,1.89,1.89,0,0,0-1.924-.91A483.689,483.689,0,0,0,116.085,69.137a1.712,1.712,0,0,0-.788.676C39.068,183.651,18.186,294.69,28.43,404.354a2.016,2.016,0,0,0,.765,1.375A487.666,487.666,0,0,0,176.02,479.918a1.9,1.9,0,0,0,2.063-.676A348.2,348.2,0,0,0,208.12,430.4a1.86,1.86,0,0,0-1.019-2.588,321.173,321.173,0,0,1-45.868-21.853,1.885,1.885,0,0,1-.185-3.126c3.082-2.309,6.166-4.711,9.109-7.137a1.819,1.819,0,0,1,1.9-.256c96.229,43.917,200.41,43.917,295.5,0a1.812,1.812,0,0,1,1.924.233c2.944,2.426,6.027,4.851,9.132,7.16a1.884,1.884,0,0,1-.162,3.126,301.407,301.407,0,0,1-45.89,21.83,1.875,1.875,0,0,0-1,2.611,391.055,391.055,0,0,0,30.014,48.815,1.864,1.864,0,0,0,2.063.7A486.048,486.048,0,0,0,610.7,405.729a1.882,1.882,0,0,0,.765-1.352C623.729,277.594,590.933,167.465,524.531,69.836ZM222.491,337.58c-28.972,0-52.844-26.587-52.844-59.239S193.056,219.1,222.491,219.1c29.665,0,53.306,26.82,52.843,59.239C275.334,310.993,251.924,337.58,222.491,337.58Zm195.38,0c-28.971,0-52.843-26.587-52.843-59.239S388.437,219.1,417.871,219.1c29.667,0,53.307,26.82,52.844,59.239C470.715,310.993,447.538,337.58,417.871,337.58Z"/></svg>
+</span>
+        </span>
+      </a>
+    
+
+  
+
+
+
+    
+
+
+
+
+
+  
+    
+
+    
+      <a href="https://github.com/PlakarKorp/plakar" target="_blank" aria-label="Visit us on Github"
+         class="github-stars hidden lg:flex items-center justify-center min-h-7 lg:min-h-12 aspect-square border border-neutral-300 bg-neutral-50 rounded-lg text-primary-500">
+        <span class="w-5 h-5 flex items-center justify-center">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+</span>
+        </span>
+      </a>
+    
+
+  
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a href="#" target="_self" class="flex items-center book-a-demo-modal-open">
+  <div class="text-neutral-50   bg-primary-500 text-neutral-50 inline-flex relative
+    group overflow-hidden min-h-7 lg:min-h-12 px-4 pr-4 rounded-lg items-center gap-2 transition-all
+    duration-150 ease-out hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1 active:shadow-inner">
+
+    
+    <div class="absolute inset-0 bg-primary-600 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-0"></div>
+
+    
+    <div class="relative z-10 flex items-center gap-2">
+      <span class="w-5 h-5 flex items-center justify-center">
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4.99989 13.9999L4.99976 5L6.99976 4.99997L6.99986 11.9999L17.1717 12L13.222 8.05024L14.6362 6.63603L21.0001 13L14.6362 19.364L13.222 17.9497L17.1717 14L4.99989 13.9999Z"></path></svg>
+</span>
+      </span>
+      <span class="hidden xl:block">Book a demo</span>
+      <span class="block xl:hidden">Demo</span>
+    </div>
+  </div>
+</a>
+
+  </div>
+
+</div>
+
+</header>
+
+
+
+    <main class="min-h-[calc(100dvh-18rem)]">
+      
+<div data-pagefind-filter="section:Blog" hidden></div>
+
+
+
+
+
+<section class="section-light-2 grid-background px-4 pt-32 pb-7">
+  <div class="max-w-350 mx-auto flex flex-col items-center">
+    <div class="flex flex-col items-start gap-2 w-full max-w-178">
+
+      <h1 class="font-medium leading-tight text-2xl lg:text-5xl">
+        Understanding RTO and RPO in disaster recovery
+      </h1>
+
+      <div class="flex flex-wrap items-center mt-2 gap-2 text-xs text-neutral-400 uppercase">
+        
+          
+          
+          
+            <span class="text-neutral-900 normal-case">Nestor</span>
+            <span>•</span>
+          
+        
+        <span>1122 words</span>
+        <span>•</span>
+        <span>February 12, 2025</span>
+        <span>•</span>
+        <span>6 min read</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<section class="section-light-2 grid-background">
+  <div class="bg-gradient-section-light-1 px-4 py-2">
+    <div class="max-w-350 mx-auto flex flex-col items-center">
+      <div class="w-full max-w-178 rounded-lg bg-neutral-50 border border-neutral-300">
+        <div class="w-full h-7 px-4 flex items-center gap-2 border-b border-neutral-200">
+          <div class="w-2 h-2 bg-neutral-300 rounded-full"></div>
+          <div class="w-2 h-2 bg-neutral-300 rounded-full"></div>
+          <div class="w-2 h-2 bg-neutral-300 rounded-full"></div>
+        </div>
+        <div class="p-4">
+          <div class="aspect-video overflow-hidden rounded-sm">
+            <img src="/posts/2025-02-12/understanding-rto-and-rpo-in-disaster-recovery/featured.svg" alt="Understanding RTO and RPO in disaster recovery" class="w-full h-full object-cover">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section-light-1 px-4 py-7">
+  <div class="max-w-350 mx-auto flex flex-col xl:flex-row items-start gap-8">
+
+    
+    <aside class="hidden xl:block xl:sticky xl:top-28 w-70 shrink-0">
+      
+
+
+
+
+
+  <nav class="toc docs-font text-sm">
+    <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
+    <div class="toc-content text-neutral-600">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-recovery-time-objective-rto">What is Recovery Time Objective (RTO)?</a>
+      <ul>
+        <li><a href="#definition-and-explanation">Definition and Explanation</a></li>
+        <li><a href="#factors-affecting-rto">Factors Affecting RTO</a></li>
+      </ul>
+    </li>
+    <li><a href="#what-is-recovery-point-objective-rpo">What is Recovery Point Objective (RPO)?</a>
+      <ul>
+        <li><a href="#definition-and-explanation-1">Definition and Explanation</a></li>
+        <li><a href="#factors-affecting-rpo">Factors Affecting RPO</a></li>
+      </ul>
+    </li>
+    <li><a href="#continuous-data-protection-cdp">Continuous Data Protection (CDP)</a></li>
+    <li><a href="#key-differences-between-rto-and-rpo">Key Differences Between RTO and RPO</a></li>
+    <li><a href="#impact-on-business-continuity-planning">Impact on Business Continuity Planning</a></li>
+    <li><a href="#setting-the-right-rto-and-rpo-for-your-business">Setting the Right RTO and RPO for Your Business</a>
+      <ul>
+        <li><a href="#analyzing-business-requirements">Analyzing Business Requirements</a></li>
+        <li><a href="#creating-a-disaster-recovery-plan">Creating a Disaster Recovery Plan</a></li>
+        <li><a href="#testing-and-validating-your-rto-and-rpo-goals">Testing and Validating Your RTO and RPO Goals</a></li>
+      </ul>
+    </li>
+    <li><a href="#key-takeaways">Key Takeaways</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+
+    
+      
+        <div class="border-t border-neutral-200 mt-4 pt-4">
+          <a href="https://github.com/PlakarKorp/plakar.io/edit/main/content/posts/2025-02-12/index.md" target="_blank"
+            class="flex items-center gap-2 text-xs hover:underline">
+            Edit this page on GitHub
+            <span class="w-3 h-3 -mt-1 flex items-center justify-center">
+              <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V11H19L18.9999 6.413L11.2071 14.2071L9.79289 12.7929L17.5849 5H13V3H21Z"></path></svg>
+</span>
+            </span>
+          </a>
+        </div>
+      
+    
+
+    
+  </nav>
+
+
+      
+
+<div class="mt-6 rounded-xl bg-primary-500 text-neutral-50 p-5 flex flex-col gap-4">
+
+  
+  <div class="flex flex-col items-center gap-3 text-center">
+    <span class="text-lg font-medium">You liked this article?</span>
+    
+      <img src="/img/nestor/dance.svg" alt="Nestor" class="w-26 h-26">
+    
+  </div>
+
+  
+  <div class="flex items-center justify-between border-t border-primary-400 pt-4">
+    <span class="text-base">Share it</span>
+    <div class="flex items-center gap-3">
+      <a href="https://bsky.app/intent/compose?text=understanding-rto-and-rpo-in-disaster-recovery%20https%3a%2f%2fplakar.io%2fposts%2f2025-02-12%2funderstanding-rto-and-rpo-in-disaster-recovery%2f" target="_blank" class="w-6 h-6 text-neutral-50">
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256,232.562c-21.183,-41.196 -78.868,-117.97 -132.503,-155.834c-51.378,-36.272 -70.978,-29.987 -83.828,-24.181c-14.872,6.72 -17.577,29.554 -17.577,42.988c0,13.433 7.365,110.138 12.169,126.281c15.873,53.336 72.376,71.358 124.413,65.574c2.66,-0.395 5.357,-0.759 8.089,-1.097c-2.68,0.429 -5.379,0.796 -8.089,1.097c-76.259,11.294 -143.984,39.085 -55.158,137.972c97.708,101.165 133.908,-21.692 152.484,-83.983c18.576,62.291 39.972,180.718 150.734,83.983c83.174,-83.983 22.851,-126.674 -53.408,-137.969c-2.71,-0.302 -5.409,-0.667 -8.089,-1.096c2.732,0.337 5.429,0.702 8.089,1.096c52.037,5.785 108.54,-12.239 124.413,-65.574c4.804,-16.142 12.169,-112.847 12.169,-126.281c-0,-13.434 -2.705,-36.267 -17.577,-42.988c-12.85,-5.806 -32.45,-12.09 -83.829,24.181c-53.634,37.864 -111.319,114.635 -132.502,155.831Z"/></svg></span>
+      </a>
+      <a href="https://reddit.com/submit?url=https%3a%2f%2fplakar.io%2fposts%2f2025-02-12%2funderstanding-rto-and-rpo-in-disaster-recovery%2f&title=understanding-rto-and-rpo-in-disaster-recovery" target="_blank" class="w-6 h-6 text-neutral-50">
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.0526 7.8154L11.8042 4.27941C12.0339 3.19898 13.0959 2.50929 14.1764 2.73894L17.3725 3.4183C17.8351 2.90546 18.5509 2.64644 19.275 2.80035C20.3554 3.03 21.0451 4.09204 20.8155 5.17247C20.5858 6.2529 19.5238 6.94259 18.4434 6.71294C17.7193 6.55903 17.1707 6.03124 16.9567 5.3746L13.7605 4.69523L13.0943 7.82978C14.8789 7.96683 16.6522 8.56079 18.2581 9.52961C19.0892 9.06763 20.0992 8.99337 21.007 9.36091C22.1731 9.833 22.9531 10.9459 22.9991 12.2031L22.9996 12.2241C23.0151 13.2277 22.559 14.1657 21.792 14.7742C21.7899 14.8178 21.7871 14.859 21.7836 14.8971C21.7836 18.8949 17.3341 21.9267 11.9852 21.9267C6.65232 21.9267 2.27693 18.9027 2.27987 14.9738C2.27523 14.9134 2.27162 14.853 2.26905 14.7926C1.46701 14.1873 0.984722 13.2277 1.00037 12.1962C1.01955 10.9317 1.78341 9.79777 2.94804 9.30491C3.85909 8.91936 4.881 8.98299 5.72371 9.44381C7.3578 8.46653 9.15777 7.91241 11.0526 7.8154ZM20.3385 13.341C20.7466 13.1382 21.003 12.7207 21.0001 12.2656C20.9789 11.8005 20.6887 11.3897 20.2565 11.2147C19.821 11.0384 19.3226 11.1343 18.9837 11.4597L18.3991 12.0207L17.729 11.5652C16.1137 10.4672 14.2771 9.8397 12.4995 9.80134L11.493 9.80123C9.61791 9.8295 7.84136 10.4002 6.25552 11.4757L5.59246 11.9254L5.00897 11.3764C4.66501 11.0528 4.16243 10.9627 3.7275 11.1468C3.29257 11.3308 3.0073 11.7543 3 12.2265C2.99298 12.6987 3.26526 13.1307 3.69441 13.3278L4.32738 13.6186L4.27399 14.3132C4.261 14.482 4.261 14.6516 4.27693 14.8971C4.27693 17.6071 7.63313 19.9267 11.9852 19.9267C16.3561 19.9267 19.7836 17.5913 19.7865 14.8205C19.7995 14.6516 19.7995 14.482 19.7865 14.3132L19.7348 13.6411L20.3385 13.341ZM6.95075 13.4999C6.95075 12.6715 7.62232 11.9999 8.45075 11.9999C9.27918 11.9999 9.95075 12.6715 9.95075 13.4999C9.95075 14.3283 9.27918 14.9999 8.45075 14.9999C8.05292 14.9999 7.67139 14.8419 7.39009 14.5606C7.10878 14.2793 6.95075 13.8977 6.95075 13.4999ZM13.9507 13.4999C13.9507 12.6715 14.6223 11.9999 15.4507 11.9999C16.2792 11.9999 16.9507 12.6715 16.9507 13.4999C16.9507 14.3283 16.2792 14.9999 15.4507 14.9999C15.0529 14.9999 14.6714 14.8419 14.3901 14.5606C14.1088 14.2793 13.9507 13.8977 13.9507 13.4999ZM11.9665 18.6028C10.5693 18.6028 9.19993 18.2329 8.08503 17.3928C7.94659 17.2241 7.95868 16.9779 8.11299 16.8236C8.2673 16.6693 8.51349 16.6572 8.68218 16.7956C9.62697 17.4886 10.805 17.7856 11.9507 17.7856C13.0965 17.7856 14.2813 17.5112 15.235 16.8271C15.3473 16.7176 15.5095 16.6763 15.6604 16.7188C15.8114 16.7613 15.9282 16.8811 15.9669 17.0331C16.0055 17.1851 15.9517 17.3346 15.8479 17.4556C15.1638 18.2531 13.3636 18.6028 11.9665 18.6028Z"></path></svg>
+</span>
+      </a>
+      <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fplakar.io%2fposts%2f2025-02-12%2funderstanding-rto-and-rpo-in-disaster-recovery%2f" target="_blank" class="w-6 h-6 text-neutral-50">
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18.3362 18.339H15.6707V14.1622C15.6707 13.1662 15.6505 11.8845 14.2817 11.8845C12.892 11.8845 12.6797 12.9683 12.6797 14.0887V18.339H10.0142V9.75H12.5747V10.9207H12.6092C12.967 10.2457 13.837 9.53325 15.1367 9.53325C17.8375 9.53325 18.337 11.3108 18.337 13.6245V18.339H18.3362ZM7.00373 8.57475C6.14573 8.57475 5.45648 7.88025 5.45648 7.026C5.45648 6.1725 6.14648 5.47875 7.00373 5.47875C7.85873 5.47875 8.55173 6.1725 8.55173 7.026C8.55173 7.88025 7.85798 8.57475 7.00373 8.57475ZM8.34023 18.339H5.66723V9.75H8.34023V18.339ZM19.6697 3H4.32923C3.59498 3 3.00098 3.5805 3.00098 4.29675V19.7033C3.00098 20.4202 3.59498 21 4.32923 21H19.6675C20.401 21 21.001 20.4202 21.001 19.7033V4.29675C21.001 3.5805 20.401 3 19.6675 3H19.6697Z"></path></svg>
+</span>
+      </a>
+      <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fplakar.io%2fposts%2f2025-02-12%2funderstanding-rto-and-rpo-in-disaster-recovery%2f&text=understanding-rto-and-rpo-in-disaster-recovery" target="_blank" class="w-6 h-6 text-neutral-50">
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M10.4883 14.651L15.25 21H22.25L14.3917 10.5223L20.9308 3H18.2808L13.1643 8.88578L8.75 3H1.75L9.26086 13.0145L2.31915 21H4.96917L10.4883 14.651ZM16.25 19L5.75 5H7.75L18.25 19H16.25Z"></path></svg>
+</span>
+      </a>
+    </div>
+  </div>
+
+  
+  <div class="flex items-center justify-between border-t border-primary-400 pt-4">
+    <span class="text-base">Join us</span>
+    <div class="flex items-center gap-3">
+      <a href="https://discord.gg/uuegtnF2Q5" target="_blank" class="w-6 h-6 translate-y-1 text-neutral-50">
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M524.531,69.836a1.5,1.5,0,0,0-.764-.7A485.065,485.065,0,0,0,404.081,32.03a1.816,1.816,0,0,0-1.923.91,337.461,337.461,0,0,0-14.9,30.6,447.848,447.848,0,0,0-134.426,0,309.541,309.541,0,0,0-15.135-30.6,1.89,1.89,0,0,0-1.924-.91A483.689,483.689,0,0,0,116.085,69.137a1.712,1.712,0,0,0-.788.676C39.068,183.651,18.186,294.69,28.43,404.354a2.016,2.016,0,0,0,.765,1.375A487.666,487.666,0,0,0,176.02,479.918a1.9,1.9,0,0,0,2.063-.676A348.2,348.2,0,0,0,208.12,430.4a1.86,1.86,0,0,0-1.019-2.588,321.173,321.173,0,0,1-45.868-21.853,1.885,1.885,0,0,1-.185-3.126c3.082-2.309,6.166-4.711,9.109-7.137a1.819,1.819,0,0,1,1.9-.256c96.229,43.917,200.41,43.917,295.5,0a1.812,1.812,0,0,1,1.924.233c2.944,2.426,6.027,4.851,9.132,7.16a1.884,1.884,0,0,1-.162,3.126,301.407,301.407,0,0,1-45.89,21.83,1.875,1.875,0,0,0-1,2.611,391.055,391.055,0,0,0,30.014,48.815,1.864,1.864,0,0,0,2.063.7A486.048,486.048,0,0,0,610.7,405.729a1.882,1.882,0,0,0,.765-1.352C623.729,277.594,590.933,167.465,524.531,69.836ZM222.491,337.58c-28.972,0-52.844-26.587-52.844-59.239S193.056,219.1,222.491,219.1c29.665,0,53.306,26.82,52.843,59.239C275.334,310.993,251.924,337.58,222.491,337.58Zm195.38,0c-28.971,0-52.843-26.587-52.843-59.239S388.437,219.1,417.871,219.1c29.667,0,53.307,26.82,52.844,59.239C470.715,310.993,447.538,337.58,417.871,337.58Z"/></svg>
+</span>
+      </a>
+      <a href="https://www.reddit.com/r/plakar" target="_blank" class="w-6 h-6 text-neutral-50">
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.0526 7.8154L11.8042 4.27941C12.0339 3.19898 13.0959 2.50929 14.1764 2.73894L17.3725 3.4183C17.8351 2.90546 18.5509 2.64644 19.275 2.80035C20.3554 3.03 21.0451 4.09204 20.8155 5.17247C20.5858 6.2529 19.5238 6.94259 18.4434 6.71294C17.7193 6.55903 17.1707 6.03124 16.9567 5.3746L13.7605 4.69523L13.0943 7.82978C14.8789 7.96683 16.6522 8.56079 18.2581 9.52961C19.0892 9.06763 20.0992 8.99337 21.007 9.36091C22.1731 9.833 22.9531 10.9459 22.9991 12.2031L22.9996 12.2241C23.0151 13.2277 22.559 14.1657 21.792 14.7742C21.7899 14.8178 21.7871 14.859 21.7836 14.8971C21.7836 18.8949 17.3341 21.9267 11.9852 21.9267C6.65232 21.9267 2.27693 18.9027 2.27987 14.9738C2.27523 14.9134 2.27162 14.853 2.26905 14.7926C1.46701 14.1873 0.984722 13.2277 1.00037 12.1962C1.01955 10.9317 1.78341 9.79777 2.94804 9.30491C3.85909 8.91936 4.881 8.98299 5.72371 9.44381C7.3578 8.46653 9.15777 7.91241 11.0526 7.8154ZM20.3385 13.341C20.7466 13.1382 21.003 12.7207 21.0001 12.2656C20.9789 11.8005 20.6887 11.3897 20.2565 11.2147C19.821 11.0384 19.3226 11.1343 18.9837 11.4597L18.3991 12.0207L17.729 11.5652C16.1137 10.4672 14.2771 9.8397 12.4995 9.80134L11.493 9.80123C9.61791 9.8295 7.84136 10.4002 6.25552 11.4757L5.59246 11.9254L5.00897 11.3764C4.66501 11.0528 4.16243 10.9627 3.7275 11.1468C3.29257 11.3308 3.0073 11.7543 3 12.2265C2.99298 12.6987 3.26526 13.1307 3.69441 13.3278L4.32738 13.6186L4.27399 14.3132C4.261 14.482 4.261 14.6516 4.27693 14.8971C4.27693 17.6071 7.63313 19.9267 11.9852 19.9267C16.3561 19.9267 19.7836 17.5913 19.7865 14.8205C19.7995 14.6516 19.7995 14.482 19.7865 14.3132L19.7348 13.6411L20.3385 13.341ZM6.95075 13.4999C6.95075 12.6715 7.62232 11.9999 8.45075 11.9999C9.27918 11.9999 9.95075 12.6715 9.95075 13.4999C9.95075 14.3283 9.27918 14.9999 8.45075 14.9999C8.05292 14.9999 7.67139 14.8419 7.39009 14.5606C7.10878 14.2793 6.95075 13.8977 6.95075 13.4999ZM13.9507 13.4999C13.9507 12.6715 14.6223 11.9999 15.4507 11.9999C16.2792 11.9999 16.9507 12.6715 16.9507 13.4999C16.9507 14.3283 16.2792 14.9999 15.4507 14.9999C15.0529 14.9999 14.6714 14.8419 14.3901 14.5606C14.1088 14.2793 13.9507 13.8977 13.9507 13.4999ZM11.9665 18.6028C10.5693 18.6028 9.19993 18.2329 8.08503 17.3928C7.94659 17.2241 7.95868 16.9779 8.11299 16.8236C8.2673 16.6693 8.51349 16.6572 8.68218 16.7956C9.62697 17.4886 10.805 17.7856 11.9507 17.7856C13.0965 17.7856 14.2813 17.5112 15.235 16.8271C15.3473 16.7176 15.5095 16.6763 15.6604 16.7188C15.8114 16.7613 15.9282 16.8811 15.9669 17.0331C16.0055 17.1851 15.9517 17.3346 15.8479 17.4556C15.1638 18.2531 13.3636 18.6028 11.9665 18.6028Z"></path></svg>
+</span>
+      </a>
+    </div>
+  </div>
+
+  
+  <div class="flex items-center justify-between border-t border-primary-400 pt-4">
+    <span class="text-base">Help us</span>
+    <div class="flex items-center gap-3">
+      <a href="https://github.com/PlakarKorp/plakar" target="_blank" class="w-5.5 h-5.5 text-neutral-50">
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+    </aside>
+
+    
+    <article class="w-full max-w-178 mx-auto xl:mx-0 flex flex-col gap-8">
+
+      
+      
+        
+        
+        
+          <div class="flex items-start gap-4">
+            
+            
+              <img src="/img/team/nestor.png" alt="Nestor"
+                   class="w-14 h-14 rounded-full shrink-0">
+            
+            <div class="flex flex-col gap-1">
+              <span class="text-sm font-semibold text-neutral-900">Nestor</span>
+              <span class="text-sm text-neutral-600">Official Mascot of Plakar.</span>
+            </div>
+          </div>
+        
+      
+
+      <hr class="border-neutral-200">
+
+      
+      <div class="prose docs-font max-w-full">
+        <p>In today’s digital landscape, where <strong>downtime can cost businesses thousands of dollars per minute</strong>, having a robust <strong>disaster recovery (DR) strategy</strong> is non-negotiable. Two fundamental metrics in any <strong>business continuity plan</strong> are <strong>recovery time objective (RTO)</strong> and <strong>recovery point objective (RPO)</strong>. These determine how quickly a system can recover after a failure and how much data a company is willing to lose in the process.</p>
+<p>A <strong>low RTO</strong> means your business aims for fast recovery, ensuring minimal service disruption, while a <strong>low RPO</strong> means you prioritize frequent backups to prevent significant data loss. Understanding these concepts is crucial for designing an <strong>effective backup strategy</strong> that aligns with your <strong>risk tolerance, budget, and operational needs</strong>.</p>
+<blockquote><p><strong>Note:</strong> Both <strong>RTO</strong> (and TSO, as it is sometimes referred) must be defined by the business considering business impact but taking also into account technical constraints, such as the ability to perform backups at any moment in production, as well as the capacity and cost associated with backup storage.</p>
+</blockquote>
+<div class="relative group">
+  <h2 id="what-is-recovery-time-objective-rto">What is Recovery Time Objective (RTO)?</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#what-is-recovery-time-objective-rto" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+
+<div class="relative group">
+  <h3 id="definition-and-explanation">Definition and Explanation</h3>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#definition-and-explanation" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p><strong>Recovery Time Objective (RTO)</strong> is the maximum acceptable amount of time that a system, application, or business process can be <strong>down after a failure</strong> before causing significant business disruption. For example, if a company sets an <strong>RTO of four hours</strong>, it means their systems must be back online within four hours of a disruption to minimize operational impact.</p>
+
+<div class="relative group">
+  <h3 id="factors-affecting-rto">Factors Affecting RTO</h3>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#factors-affecting-rto" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<ul>
+<li><strong>Business Impact Analysis (BIA):</strong> Identifying mission-critical applications and their required uptime.</li>
+<li><strong>System Redundancy:</strong> High-availability infrastructure can minimize recovery time.</li>
+<li><strong>Backup and Recovery Methods:</strong> Automated failover, manual recovery procedures, or real-time data replication.</li>
+<li><strong>Disaster Recovery Testing:</strong> Frequent testing ensures realistic RTO expectations.</li>
+<li><strong>Air Gap Quality:</strong> In extreme cases, the RTO depends on the quality of your air gap. For example, if the last magnetic tapes used for backup remain in the same data center during a fire, the RTO is significantly degraded.</li>
+</ul>
+
+<div class="relative group">
+  <h2 id="what-is-recovery-point-objective-rpo">What is Recovery Point Objective (RPO)?</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#what-is-recovery-point-objective-rpo" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+
+<div class="relative group">
+  <h3 id="definition-and-explanation-1">Definition and Explanation</h3>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#definition-and-explanation-1" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p><strong>Recovery Point Objective (RPO)</strong> defines the maximum acceptable data loss measured in time. It determines how frequently backups should be taken. For instance, an <strong>RPO of 15 minutes</strong> means that data backups occur every 15 minutes, ensuring minimal loss in the event of a failure.</p>
+
+<div class="relative group">
+  <h3 id="factors-affecting-rpo">Factors Affecting RPO</h3>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#factors-affecting-rpo" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<ul>
+<li><strong>Data Change Frequency:</strong> High-volume databases or rapidly changing data require a lower RPO.</li>
+<li><strong>Backup Strategy:</strong> The method chosen, such as scheduled backups or continuous replication, has a direct impact on the RPO.</li>
+<li><strong>Storage and Cost Constraints:</strong> Achieving a low RPO generally requires more frequent backups, increasing storage costs.</li>
+<li><strong>Technical Capabilities:</strong> The production environment’s ability to perform backups at any given moment is a critical factor.</li>
+</ul>
+
+<div class="relative group">
+  <h2 id="continuous-data-protection-cdp">Continuous Data Protection (CDP)</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#continuous-data-protection-cdp" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>While <strong>Continuous Data Protection (CDP)</strong> is often touted for achieving near-zero RPO through real-time data replication, it is important to note that CDP does not replace traditional backups. In incidents where the replicated data itself becomes compromised, traditional backups are essential. However, CDP can contribute to an improved RTO by allowing quicker recovery of the most recent data state.</p>
+
+<div class="relative group">
+  <h2 id="key-differences-between-rto-and-rpo">Key Differences Between RTO and RPO</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#key-differences-between-rto-and-rpo" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<table>
+  <thead>
+      <tr>
+          <th>Feature</th>
+          <th>Recovery Time Objective (RTO)</th>
+          <th>Recovery Point Objective (RPO)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Definition</td>
+          <td>Maximum allowable downtime</td>
+          <td>Maximum acceptable data loss</td>
+      </tr>
+      <tr>
+          <td>Measured in</td>
+          <td>Time (minutes, hours)</td>
+          <td>Time (minutes, hours)</td>
+      </tr>
+      <tr>
+          <td>Business Impact</td>
+          <td>Determines system recovery speed</td>
+          <td>Defines backup frequency</td>
+      </tr>
+      <tr>
+          <td>Example</td>
+          <td>A four-hour RTO means systems must be restored within four hours</td>
+          <td>A 15-minute RPO means backups occur every 15 minutes</td>
+      </tr>
+      <tr>
+          <td>Cost Factor</td>
+          <td>Lower RTO generally requires higher infrastructure costs</td>
+          <td>Lower RPO generally demands more frequent backups and greater storage costs</td>
+      </tr>
+  </tbody>
+</table>
+
+<div class="relative group">
+  <h2 id="impact-on-business-continuity-planning">Impact on Business Continuity Planning</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#impact-on-business-continuity-planning" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>Both <strong>RTO and RPO</strong> must be carefully aligned with a company’s risk assessment and financial constraints. Achieving shorter RTO and RPO targets requires:</p>
+<ul>
+<li><strong>Faster Recovery Solutions:</strong> Such as hot standby systems or real-time replication, keeping in mind that these solutions must be supported by the production environment’s backup capacity.</li>
+<li><strong>Frequent Data Backups:</strong> To reduce the window of potential data loss, balanced with the cost and storage implications.</li>
+<li><strong>Attention to Air Gap Integrity:</strong> Ensuring that backups are stored securely, preferably isolated from the primary data center, to protect against disasters like fires or other site-specific incidents.</li>
+</ul>
+
+<div class="relative group">
+  <h2 id="setting-the-right-rto-and-rpo-for-your-business">Setting the Right RTO and RPO for Your Business</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#setting-the-right-rto-and-rpo-for-your-business" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+
+<div class="relative group">
+  <h3 id="analyzing-business-requirements">Analyzing Business Requirements</h3>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#analyzing-business-requirements" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<ul>
+<li><strong>Identify Mission-Critical Applications:</strong> Determine which applications, databases, and customer portals are essential.</li>
+<li><strong>Perform a Risk Assessment:</strong> Define acceptable levels of downtime and data loss, taking into account both business impact and technical capabilities.</li>
+<li><strong>Consider Technical Constraints:</strong> The ability to perform backups at any moment and the costs involved in maintaining backup storage are key factors.</li>
+</ul>
+
+<div class="relative group">
+  <h3 id="creating-a-disaster-recovery-plan">Creating a Disaster Recovery Plan</h3>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#creating-a-disaster-recovery-plan" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<ul>
+<li><strong>Align Backup Frequency with RPO:</strong> Ensure that the backup schedule meets the desired RPO.</li>
+<li><strong>Implement Automated Failover Strategies:</strong> To support a lower RTO, while being aware of the limitations of replication solutions.</li>
+<li><strong>Ensure Robust Air Gap Practices:</strong> Avoid storing critical backup media, such as magnetic tapes, in the same data center where they might be exposed to the same risk, for example during a fire.</li>
+</ul>
+
+<div class="relative group">
+  <h3 id="testing-and-validating-your-rto-and-rpo-goals">Testing and Validating Your RTO and RPO Goals</h3>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#testing-and-validating-your-rto-and-rpo-goals" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<ul>
+<li><strong>Conduct Regular Disaster Recovery Drills:</strong> To verify that the systems can meet the defined RTO and RPO.</li>
+<li><strong>Measure Recovery Time Performance:</strong> Compare actual recovery times against your predefined objectives.</li>
+<li><strong>Adjust Backup Strategies as Needed:</strong> Based on test results and evolving technical capabilities or business requirements.</li>
+</ul>
+
+<div class="relative group">
+  <h2 id="key-takeaways">Key Takeaways</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#key-takeaways" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<ul>
+<li><strong>RTO defines how quickly you recover; RPO defines how much data you lose.</strong></li>
+<li><strong>Shorter RTO and RPO targets require more advanced backup solutions and robust technical capabilities.</strong></li>
+<li><strong>The business must define RTO (and TSO) in conjunction with technical constraints, including the ability to perform immediate backups and the associated storage costs.</strong></li>
+<li><strong>Continuous Data Protection (CDP) supports improved RTO but does not replace traditional backups.</strong></li>
+<li><strong>The quality of your air gap is crucial; for example, if backup media remain in a compromised data center, your RTO can be severely impacted.</strong></li>
+<li><strong>Regular testing and validation are essential to ensure that recovery goals are achievable.</strong></li>
+</ul>
+
+<div class="relative group">
+  <h2 id="conclusion">Conclusion</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#conclusion" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>Understanding <strong>RTO and RPO</strong> is essential for designing an effective <strong>business continuity plan</strong>. By carefully defining these objectives, businesses can minimize downtime, reduce data loss, and maintain customer trust. It is vital that organizations evaluate not only their risk tolerance and budget constraints but also the technical capabilities of their production environments, such as the ability to perform continuous backups and the costs of backup storage.</p>
+<p>Investing in the right backup strategies and ensuring robust practices like maintaining an effective air gap are key to achieving your recovery objectives. Remember, while <strong>Continuous Data Protection (CDP)</strong> can enhance recovery times, it must be integrated with traditional backup solutions to ensure comprehensive protection against data loss and system downtime.</p>
+<p>A proactive disaster recovery plan is the cornerstone of long-term business stability and operational success.</p>
+
+      </div>
+
+      
+      <div class="flex flex-col gap-4 border-t border-neutral-200 py-8">
+        <div class="flex flex-wrap items-center gap-3 mb-3">
+          <span class="text-base text-neutral-900">Share good vibes:</span>
+          <a href="https://bsky.app/intent/compose?text=understanding-rto-and-rpo-in-disaster-recovery%20https%3a%2f%2fplakar.io%2fposts%2f2025-02-12%2funderstanding-rto-and-rpo-in-disaster-recovery%2f" target="_blank" class="w-7 h-7 text-primary-500">
+            <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256,232.562c-21.183,-41.196 -78.868,-117.97 -132.503,-155.834c-51.378,-36.272 -70.978,-29.987 -83.828,-24.181c-14.872,6.72 -17.577,29.554 -17.577,42.988c0,13.433 7.365,110.138 12.169,126.281c15.873,53.336 72.376,71.358 124.413,65.574c2.66,-0.395 5.357,-0.759 8.089,-1.097c-2.68,0.429 -5.379,0.796 -8.089,1.097c-76.259,11.294 -143.984,39.085 -55.158,137.972c97.708,101.165 133.908,-21.692 152.484,-83.983c18.576,62.291 39.972,180.718 150.734,83.983c83.174,-83.983 22.851,-126.674 -53.408,-137.969c-2.71,-0.302 -5.409,-0.667 -8.089,-1.096c2.732,0.337 5.429,0.702 8.089,1.096c52.037,5.785 108.54,-12.239 124.413,-65.574c4.804,-16.142 12.169,-112.847 12.169,-126.281c-0,-13.434 -2.705,-36.267 -17.577,-42.988c-12.85,-5.806 -32.45,-12.09 -83.829,24.181c-53.634,37.864 -111.319,114.635 -132.502,155.831Z"/></svg></span>
+          </a>
+          <a href="https://reddit.com/submit?url=https%3a%2f%2fplakar.io%2fposts%2f2025-02-12%2funderstanding-rto-and-rpo-in-disaster-recovery%2f&title=understanding-rto-and-rpo-in-disaster-recovery" target="_blank" class="w-7 h-7 text-primary-500">
+            <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.0526 7.8154L11.8042 4.27941C12.0339 3.19898 13.0959 2.50929 14.1764 2.73894L17.3725 3.4183C17.8351 2.90546 18.5509 2.64644 19.275 2.80035C20.3554 3.03 21.0451 4.09204 20.8155 5.17247C20.5858 6.2529 19.5238 6.94259 18.4434 6.71294C17.7193 6.55903 17.1707 6.03124 16.9567 5.3746L13.7605 4.69523L13.0943 7.82978C14.8789 7.96683 16.6522 8.56079 18.2581 9.52961C19.0892 9.06763 20.0992 8.99337 21.007 9.36091C22.1731 9.833 22.9531 10.9459 22.9991 12.2031L22.9996 12.2241C23.0151 13.2277 22.559 14.1657 21.792 14.7742C21.7899 14.8178 21.7871 14.859 21.7836 14.8971C21.7836 18.8949 17.3341 21.9267 11.9852 21.9267C6.65232 21.9267 2.27693 18.9027 2.27987 14.9738C2.27523 14.9134 2.27162 14.853 2.26905 14.7926C1.46701 14.1873 0.984722 13.2277 1.00037 12.1962C1.01955 10.9317 1.78341 9.79777 2.94804 9.30491C3.85909 8.91936 4.881 8.98299 5.72371 9.44381C7.3578 8.46653 9.15777 7.91241 11.0526 7.8154ZM20.3385 13.341C20.7466 13.1382 21.003 12.7207 21.0001 12.2656C20.9789 11.8005 20.6887 11.3897 20.2565 11.2147C19.821 11.0384 19.3226 11.1343 18.9837 11.4597L18.3991 12.0207L17.729 11.5652C16.1137 10.4672 14.2771 9.8397 12.4995 9.80134L11.493 9.80123C9.61791 9.8295 7.84136 10.4002 6.25552 11.4757L5.59246 11.9254L5.00897 11.3764C4.66501 11.0528 4.16243 10.9627 3.7275 11.1468C3.29257 11.3308 3.0073 11.7543 3 12.2265C2.99298 12.6987 3.26526 13.1307 3.69441 13.3278L4.32738 13.6186L4.27399 14.3132C4.261 14.482 4.261 14.6516 4.27693 14.8971C4.27693 17.6071 7.63313 19.9267 11.9852 19.9267C16.3561 19.9267 19.7836 17.5913 19.7865 14.8205C19.7995 14.6516 19.7995 14.482 19.7865 14.3132L19.7348 13.6411L20.3385 13.341ZM6.95075 13.4999C6.95075 12.6715 7.62232 11.9999 8.45075 11.9999C9.27918 11.9999 9.95075 12.6715 9.95075 13.4999C9.95075 14.3283 9.27918 14.9999 8.45075 14.9999C8.05292 14.9999 7.67139 14.8419 7.39009 14.5606C7.10878 14.2793 6.95075 13.8977 6.95075 13.4999ZM13.9507 13.4999C13.9507 12.6715 14.6223 11.9999 15.4507 11.9999C16.2792 11.9999 16.9507 12.6715 16.9507 13.4999C16.9507 14.3283 16.2792 14.9999 15.4507 14.9999C15.0529 14.9999 14.6714 14.8419 14.3901 14.5606C14.1088 14.2793 13.9507 13.8977 13.9507 13.4999ZM11.9665 18.6028C10.5693 18.6028 9.19993 18.2329 8.08503 17.3928C7.94659 17.2241 7.95868 16.9779 8.11299 16.8236C8.2673 16.6693 8.51349 16.6572 8.68218 16.7956C9.62697 17.4886 10.805 17.7856 11.9507 17.7856C13.0965 17.7856 14.2813 17.5112 15.235 16.8271C15.3473 16.7176 15.5095 16.6763 15.6604 16.7188C15.8114 16.7613 15.9282 16.8811 15.9669 17.0331C16.0055 17.1851 15.9517 17.3346 15.8479 17.4556C15.1638 18.2531 13.3636 18.6028 11.9665 18.6028Z"></path></svg>
+</span>
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fplakar.io%2fposts%2f2025-02-12%2funderstanding-rto-and-rpo-in-disaster-recovery%2f" target="_blank" class="w-7 h-7 text-primary-500">
+            <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18.3362 18.339H15.6707V14.1622C15.6707 13.1662 15.6505 11.8845 14.2817 11.8845C12.892 11.8845 12.6797 12.9683 12.6797 14.0887V18.339H10.0142V9.75H12.5747V10.9207H12.6092C12.967 10.2457 13.837 9.53325 15.1367 9.53325C17.8375 9.53325 18.337 11.3108 18.337 13.6245V18.339H18.3362ZM7.00373 8.57475C6.14573 8.57475 5.45648 7.88025 5.45648 7.026C5.45648 6.1725 6.14648 5.47875 7.00373 5.47875C7.85873 5.47875 8.55173 6.1725 8.55173 7.026C8.55173 7.88025 7.85798 8.57475 7.00373 8.57475ZM8.34023 18.339H5.66723V9.75H8.34023V18.339ZM19.6697 3H4.32923C3.59498 3 3.00098 3.5805 3.00098 4.29675V19.7033C3.00098 20.4202 3.59498 21 4.32923 21H19.6675C20.401 21 21.001 20.4202 21.001 19.7033V4.29675C21.001 3.5805 20.401 3 19.6675 3H19.6697Z"></path></svg>
+</span>
+          </a>
+          <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fplakar.io%2fposts%2f2025-02-12%2funderstanding-rto-and-rpo-in-disaster-recovery%2f&text=understanding-rto-and-rpo-in-disaster-recovery" target="_blank" class="w-7 h-7 text-primary-500">
+            <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M10.4883 14.651L15.25 21H22.25L14.3917 10.5223L20.9308 3H18.2808L13.1643 8.88578L8.75 3H1.75L9.26086 13.0145L2.31915 21H4.96917L10.4883 14.651ZM16.25 19L5.75 5H7.75L18.25 19H16.25Z"></path></svg>
+</span>
+          </a>
+        </div>
+
+        <hr class="border-neutral-200">
+
+        <div class="flex flex-wrap gap-3">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a href="https://github.com/PlakarKorp/plakar" target="_blank" class="flex items-center ">
+  <div class="text-neutral-50   bg-primary-500 text-neutral-50 inline-flex relative
+    group overflow-hidden min-h-7 lg:min-h-12 px-4 pr-4 rounded-lg items-center gap-2 transition-all
+    duration-150 ease-out hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1 active:shadow-inner">
+
+    
+    <div class="absolute inset-0 bg-primary-600 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-0"></div>
+
+    
+    <div class="relative z-10 flex items-center gap-2">
+      <span class="w-5 h-5 flex items-center justify-center">
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+</span>
+      </span>
+      <span class="hidden xl:block">Star us on GitHub</span>
+      <span class="block xl:hidden">Star us on GitHub</span>
+    </div>
+  </div>
+</a>
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a href="https://discord.gg/uuegtnF2Q5" target="_blank" class="flex items-center ">
+  <div class="text-neutral-50   bg-primary-500 text-neutral-50 inline-flex relative
+    group overflow-hidden min-h-7 lg:min-h-12 px-4 pr-4 rounded-lg items-center gap-2 transition-all
+    duration-150 ease-out hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1 active:shadow-inner">
+
+    
+    <div class="absolute inset-0 bg-primary-600 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-0"></div>
+
+    
+    <div class="relative z-10 flex items-center gap-2">
+      <span class="w-5 h-5 flex items-center justify-center">
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M524.531,69.836a1.5,1.5,0,0,0-.764-.7A485.065,485.065,0,0,0,404.081,32.03a1.816,1.816,0,0,0-1.923.91,337.461,337.461,0,0,0-14.9,30.6,447.848,447.848,0,0,0-134.426,0,309.541,309.541,0,0,0-15.135-30.6,1.89,1.89,0,0,0-1.924-.91A483.689,483.689,0,0,0,116.085,69.137a1.712,1.712,0,0,0-.788.676C39.068,183.651,18.186,294.69,28.43,404.354a2.016,2.016,0,0,0,.765,1.375A487.666,487.666,0,0,0,176.02,479.918a1.9,1.9,0,0,0,2.063-.676A348.2,348.2,0,0,0,208.12,430.4a1.86,1.86,0,0,0-1.019-2.588,321.173,321.173,0,0,1-45.868-21.853,1.885,1.885,0,0,1-.185-3.126c3.082-2.309,6.166-4.711,9.109-7.137a1.819,1.819,0,0,1,1.9-.256c96.229,43.917,200.41,43.917,295.5,0a1.812,1.812,0,0,1,1.924.233c2.944,2.426,6.027,4.851,9.132,7.16a1.884,1.884,0,0,1-.162,3.126,301.407,301.407,0,0,1-45.89,21.83,1.875,1.875,0,0,0-1,2.611,391.055,391.055,0,0,0,30.014,48.815,1.864,1.864,0,0,0,2.063.7A486.048,486.048,0,0,0,610.7,405.729a1.882,1.882,0,0,0,.765-1.352C623.729,277.594,590.933,167.465,524.531,69.836ZM222.491,337.58c-28.972,0-52.844-26.587-52.844-59.239S193.056,219.1,222.491,219.1c29.665,0,53.306,26.82,52.843,59.239C275.334,310.993,251.924,337.58,222.491,337.58Zm195.38,0c-28.971,0-52.843-26.587-52.843-59.239S388.437,219.1,417.871,219.1c29.667,0,53.307,26.82,52.844,59.239C470.715,310.993,447.538,337.58,417.871,337.58Z"/></svg>
+</span>
+      </span>
+      <span class="hidden xl:block">Join Discord</span>
+      <span class="block xl:hidden">Join Discord</span>
+    </div>
+  </div>
+</a>
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a href="https://www.reddit.com/r/plakar" target="_blank" class="flex items-center ">
+  <div class="text-neutral-50   bg-primary-500 text-neutral-50 inline-flex relative
+    group overflow-hidden min-h-7 lg:min-h-12 px-4 pr-4 rounded-lg items-center gap-2 transition-all
+    duration-150 ease-out hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1 active:shadow-inner">
+
+    
+    <div class="absolute inset-0 bg-primary-600 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-0"></div>
+
+    
+    <div class="relative z-10 flex items-center gap-2">
+      <span class="w-5 h-5 flex items-center justify-center">
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.0526 7.8154L11.8042 4.27941C12.0339 3.19898 13.0959 2.50929 14.1764 2.73894L17.3725 3.4183C17.8351 2.90546 18.5509 2.64644 19.275 2.80035C20.3554 3.03 21.0451 4.09204 20.8155 5.17247C20.5858 6.2529 19.5238 6.94259 18.4434 6.71294C17.7193 6.55903 17.1707 6.03124 16.9567 5.3746L13.7605 4.69523L13.0943 7.82978C14.8789 7.96683 16.6522 8.56079 18.2581 9.52961C19.0892 9.06763 20.0992 8.99337 21.007 9.36091C22.1731 9.833 22.9531 10.9459 22.9991 12.2031L22.9996 12.2241C23.0151 13.2277 22.559 14.1657 21.792 14.7742C21.7899 14.8178 21.7871 14.859 21.7836 14.8971C21.7836 18.8949 17.3341 21.9267 11.9852 21.9267C6.65232 21.9267 2.27693 18.9027 2.27987 14.9738C2.27523 14.9134 2.27162 14.853 2.26905 14.7926C1.46701 14.1873 0.984722 13.2277 1.00037 12.1962C1.01955 10.9317 1.78341 9.79777 2.94804 9.30491C3.85909 8.91936 4.881 8.98299 5.72371 9.44381C7.3578 8.46653 9.15777 7.91241 11.0526 7.8154ZM20.3385 13.341C20.7466 13.1382 21.003 12.7207 21.0001 12.2656C20.9789 11.8005 20.6887 11.3897 20.2565 11.2147C19.821 11.0384 19.3226 11.1343 18.9837 11.4597L18.3991 12.0207L17.729 11.5652C16.1137 10.4672 14.2771 9.8397 12.4995 9.80134L11.493 9.80123C9.61791 9.8295 7.84136 10.4002 6.25552 11.4757L5.59246 11.9254L5.00897 11.3764C4.66501 11.0528 4.16243 10.9627 3.7275 11.1468C3.29257 11.3308 3.0073 11.7543 3 12.2265C2.99298 12.6987 3.26526 13.1307 3.69441 13.3278L4.32738 13.6186L4.27399 14.3132C4.261 14.482 4.261 14.6516 4.27693 14.8971C4.27693 17.6071 7.63313 19.9267 11.9852 19.9267C16.3561 19.9267 19.7836 17.5913 19.7865 14.8205C19.7995 14.6516 19.7995 14.482 19.7865 14.3132L19.7348 13.6411L20.3385 13.341ZM6.95075 13.4999C6.95075 12.6715 7.62232 11.9999 8.45075 11.9999C9.27918 11.9999 9.95075 12.6715 9.95075 13.4999C9.95075 14.3283 9.27918 14.9999 8.45075 14.9999C8.05292 14.9999 7.67139 14.8419 7.39009 14.5606C7.10878 14.2793 6.95075 13.8977 6.95075 13.4999ZM13.9507 13.4999C13.9507 12.6715 14.6223 11.9999 15.4507 11.9999C16.2792 11.9999 16.9507 12.6715 16.9507 13.4999C16.9507 14.3283 16.2792 14.9999 15.4507 14.9999C15.0529 14.9999 14.6714 14.8419 14.3901 14.5606C14.1088 14.2793 13.9507 13.8977 13.9507 13.4999ZM11.9665 18.6028C10.5693 18.6028 9.19993 18.2329 8.08503 17.3928C7.94659 17.2241 7.95868 16.9779 8.11299 16.8236C8.2673 16.6693 8.51349 16.6572 8.68218 16.7956C9.62697 17.4886 10.805 17.7856 11.9507 17.7856C13.0965 17.7856 14.2813 17.5112 15.235 16.8271C15.3473 16.7176 15.5095 16.6763 15.6604 16.7188C15.8114 16.7613 15.9282 16.8811 15.9669 17.0331C16.0055 17.1851 15.9517 17.3346 15.8479 17.4556C15.1638 18.2531 13.3636 18.6028 11.9665 18.6028Z"></path></svg>
+</span>
+      </span>
+      <span class="hidden xl:block">Join Reddit</span>
+      <span class="block xl:hidden">Join Reddit</span>
+    </div>
+  </div>
+</a>
+
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+
+      <div>
+        
+
+<div id="toast-container" aria-live="assertive" class="pointer-events-none fixed inset-0 flex items-end px-4 py-6 sm:items-start sm:pt-16 z-50">
+  <div class="flex w-full flex-col items-center gap-3 sm:items-end"></div>
+</div>
+
+        
+
+<div id="demo-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-neutral-900/60 p-4">
+  <div id="demo-modal-box" class="bg-neutral-50 rounded-lg p-6 w-full max-w-xl shadow-xl flex flex-col gap-6 relative">
+
+    
+    <button id="demo-modal-close" class="absolute top-4 right-4 w-7 h-7 flex items-center justify-center border border-neutral-200 rounded-lg text-neutral-500 hover:text-neutral-900 transition">
+      <span class="w-4 h-4"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.9997 10.5865L16.9495 5.63672L18.3637 7.05093L13.4139 12.0007L18.3637 16.9504L16.9495 18.3646L11.9997 13.4149L7.04996 18.3646L5.63574 16.9504L10.5855 12.0007L5.63574 7.05093L7.04996 5.63672L11.9997 10.5865Z"></path></svg>
+</span></span>
+    </button>
+
+    
+    <div class="flex flex-col gap-1">
+      <h2 class="text-2xl lg:text-4xl font-medium text-neutral-900">Book a demo</h2>
+      <p class="text-sm text-neutral-600">A Plakar team member will contact you shortly to organize the demo.</p>
+    </div>
+
+    
+    <form id="demo-form" class="flex flex-col gap-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <input type="text" name="first_name" placeholder="First Name" required class="w-full border border-neutral-300 rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary-400">
+        <input type="text" name="last_name" placeholder="Last Name" required class="w-full border border-neutral-300 rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary-400">
+        <input type="email" name="email" placeholder="Work email" required class="w-full border border-neutral-300 rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary-400 md:col-span-2">
+        <textarea name="context" required placeholder="Context" class="w-full border border-neutral-300 rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary-400 md:col-span-2 h-24 resize-none"></textarea>
+      </div>
+
+      <div class="flex flex-col items-end justify-between gap-4 mt-2">
+        <p class="text-xs text-neutral-400">
+          By submitting you agree to our
+          <a href="/privacy-policy/" class="text-primary-500 hover:underline">Privacy Policy</a>.
+        </p>
+        <button type="submit" class="bg-primary-500 hover:bg-primary-600 text-neutral-50 px-6 py-2 rounded-lg text-sm font-medium transition shrink-0">
+          Submit
+        </button>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+        
+
+
+
+<template id="search-icon-file"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M21 8V20.9932C21 21.5501 20.5552 22 20.0066 22H3.9934C3.44495 22 3 21.556 3 21.0082V2.9918C3 2.45531 3.4487 2 4.00221 2H14.9968L21 8ZM19 9H14V4H5V20H19V9ZM8 7H11V9H8V7ZM8 11H16V13H8V11ZM8 15H16V17H8V15Z"></path></svg>
+</span></template>
+
+
+<div id="search-modal" class="hidden fixed inset-0 z-100" role="dialog" aria-modal="true" aria-label="Search site">
+  <div id="search-backdrop" class="absolute inset-0 bg-neutral-900/30 backdrop-blur-[2px]"></div>
+  <div class="relative z-10 flex items-start justify-center pt-[8vh] px-4 pointer-events-none">
+    <div id="search-panel" class="pointer-events-auto bg-white rounded-xl shadow-2xl w-full max-w-170 max-h-[75vh] flex flex-col overflow-hidden ring-1 ring-neutral-200">
+
+      <div class="flex items-center gap-3 px-5 py-4 border-b border-neutral-200">
+        <span class="w-5 h-5 text-neutral-400 shrink-0"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18.031 16.6168L22.3137 20.8995L20.8995 22.3137L16.6168 18.031C15.0769 19.263 13.124 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2C15.968 2 20 6.032 20 11C20 13.124 19.263 15.0769 18.031 16.6168ZM16.0247 15.8748C17.2475 14.6146 18 12.8956 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18C12.8956 18 14.6146 17.2475 15.8748 16.0247L16.0247 15.8748Z"></path></svg>
+</span></span>
+        <input id="search-input" type="text" placeholder="Search..." aria-label="Search site" autocomplete="off" class="flex-1 bg-transparent text-neutral-900 placeholder-neutral-400 text-base outline-none border-none focus:ring-0 p-0">
+        <button id="search-close" aria-label="Close search" class="text-neutral-400 hover:text-neutral-600 shrink-0 transition-colors">
+          <span class="w-5 h-5 block"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.9997 10.5865L16.9495 5.63672L18.3637 7.05093L13.4139 12.0007L18.3637 16.9504L16.9495 18.3646L11.9997 13.4149L7.04996 18.3646L5.63574 16.9504L10.5855 12.0007L5.63574 7.05093L7.04996 5.63672L11.9997 10.5865Z"></path></svg>
+</span></span>
+        </button>
+      </div>
+
+      <div class="flex items-center gap-3 px-5 py-2.5 border-b border-neutral-200 bg-white flex-wrap">
+        <span class="text-sm text-neutral-500">Section:</span>
+        <select id="search-section-filter" aria-label="Filter by section" class="text-sm bg-white border border-neutral-300 rounded-md pl-2.5 pr-8 py-1 text-neutral-700 outline-none cursor-pointer">
+          <option value="">All sections</option>
+          <option value="Docs">Documentation</option>
+          <option value="Control Plane Docs">Control Plane Docs</option>
+          <option value="Blog">Blog</option>
+          <option value="Integrations">Integrations</option>
+        </select>
+
+        <div id="search-version-wrap" class="hidden items-center gap-2">
+          <span class="text-sm text-neutral-500">Version:</span>
+          <select id="search-version-filter" aria-label="Filter by version" class="text-sm bg-white border border-neutral-300 rounded-md pl-2.5 pr-8 py-1 text-neutral-700 outline-none cursor-pointer">
+            <option value="">All versions</option>
+            
+              
+                <option value="Plakar: Developer branch">Plakar: Developer branch</option>
+              
+                <option value="Plakar: v1.1.0 (beta)">Plakar: v1.1.0 (beta)</option>
+              
+                <option value="Plakar: v1.0.6">Plakar: v1.0.6</option>
+              
+                <option value="Plakar: v1.0.5">Plakar: v1.0.5</option>
+              
+            
+          </select>
+        </div>
+      </div>
+
+      <div id="search-status" class="hidden px-5 py-2 text-sm border-b border-neutral-100">
+        <span id="search-status-loading" class="hidden text-neutral-400">Searching...</span>
+        <span id="search-status-count" class="hidden text-neutral-500"></span>
+        <span id="search-status-empty" class="hidden text-neutral-400">No results found.</span>
+      </div>
+
+      <div id="search-results" class="overflow-y-auto flex-1">
+        <div id="search-empty-state" class="px-5 py-10 text-center text-neutral-400 text-sm">
+          Start typing to search.
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2 px-5 py-2.5 border-t border-neutral-200 bg-neutral-50">
+        <kbd class="inline-flex items-center justify-center h-5 bg-neutral-100 border border-neutral-200 rounded px-1.5 text-neutral-400">
+          <span class="text-[10px]">ESC</span>
+        </kbd>
+        <span class="text-xs text-neutral-400">close</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </div>
+    </main>
+    
+
+
+<section class="section-primary-1 pt-8">
+  <div class="max-w-350 mx-auto px-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-sm text-neutral-50">
+
+      
+      <div class="flex flex-col gap-3">
+        <h3 class="font-semibold text-base">Pages</h3>
+        <ul class="flex flex-col gap-1">
+          <li><a href="/" class="hover:underline opacity-80 hover:opacity-100">Home</a></li>
+          <li><a href="/community/" class="hover:underline opacity-80 hover:opacity-100">Community</a></li>
+          <li><a href="/branding/" class="hover:underline opacity-80 hover:opacity-100">Brand center</a></li>
+          <li><a href="/contact/" class="hover:underline opacity-80 hover:opacity-100">Contact</a></li>
+        </ul>
+      </div>
+
+      
+      <div class="flex flex-col gap-3">
+        <h3 class="font-semibold text-base">Solutions</h3>
+        <ul class="flex flex-col gap-1">
+          <li><a href="/solutions/on-premises/" class="hover:underline opacity-80 hover:opacity-100">On-premises</a></li>
+          <li><a href="/solutions/aws/" class="hover:underline opacity-80 hover:opacity-100">Amazon Web Services</a></li>
+          <li><a href="/solutions/compare/" class="hover:underline opacity-80 hover:opacity-100">Compare Plakar</a></li>
+          <li><a href="/solutions/cost-efficiency/" class="hover:underline opacity-80 hover:opacity-100">Cost Efficiency</a></li>
+        </ul>
+      </div>
+
+      
+      <div class="flex flex-col gap-3">
+        <h3 class="font-semibold text-base">Resources</h3>
+        <ul class="flex flex-col gap-1">
+          <li><a href="/posts/?category=release-note" class="hover:underline opacity-80 hover:opacity-100">Release notes</a></li>
+          <li><a href="/posts/?category=insights" class="hover:underline opacity-80 hover:opacity-100">Insights</a></li>
+          <li><a href="/posts/?category=technology" class="hover:underline opacity-80 hover:opacity-100">Tech articles</a></li>
+          <li><a href="https://status.plakar.io" target="_blank" class="hover:underline opacity-80 hover:opacity-100">Service status</a></li>
+        </ul>
+      </div>
+
+      
+      <div class="flex flex-col gap-3">
+        <h3 class="font-semibold text-base">Newsletter</h3>
+          <form id="newsletter-form-footer" class="relative">
+            <input type="email" name="email" placeholder="Your email..." required class="w-full p-4 pr-14 rounded-xl border border-transparent bg-neutral-50 text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary-400 transition">
+            <button type="submit" class="absolute top-1/2 right-4 -translate-y-1/2 text-neutral-500 hover:text-neutral-900 transition">
+              <span class="w-5 h-5 flex items-center justify-center">
+                <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
+</span>
+              </span>
+            </button>
+          </form>
+        <div class="flex flex-row gap-3 pt-2">
+          <a href="https://www.linkedin.com/company/plakarkorp" target="_blank" class="w-7 h-7 text-neutral-50">
+            <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18.3362 18.339H15.6707V14.1622C15.6707 13.1662 15.6505 11.8845 14.2817 11.8845C12.892 11.8845 12.6797 12.9683 12.6797 14.0887V18.339H10.0142V9.75H12.5747V10.9207H12.6092C12.967 10.2457 13.837 9.53325 15.1367 9.53325C17.8375 9.53325 18.337 11.3108 18.337 13.6245V18.339H18.3362ZM7.00373 8.57475C6.14573 8.57475 5.45648 7.88025 5.45648 7.026C5.45648 6.1725 6.14648 5.47875 7.00373 5.47875C7.85873 5.47875 8.55173 6.1725 8.55173 7.026C8.55173 7.88025 7.85798 8.57475 7.00373 8.57475ZM8.34023 18.339H5.66723V9.75H8.34023V18.339ZM19.6697 3H4.32923C3.59498 3 3.00098 3.5805 3.00098 4.29675V19.7033C3.00098 20.4202 3.59498 21 4.32923 21H19.6675C20.401 21 21.001 20.4202 21.001 19.7033V4.29675C21.001 3.5805 20.401 3 19.6675 3H19.6697Z"></path></svg>
+</span>
+          </a>
+          <a href="https://bsky.app/profile/plakar.bsky.social" target="_blank" class="w-6.5 h-6.5 mt-0.5 text-neutral-50">
+            <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256,232.562c-21.183,-41.196 -78.868,-117.97 -132.503,-155.834c-51.378,-36.272 -70.978,-29.987 -83.828,-24.181c-14.872,6.72 -17.577,29.554 -17.577,42.988c0,13.433 7.365,110.138 12.169,126.281c15.873,53.336 72.376,71.358 124.413,65.574c2.66,-0.395 5.357,-0.759 8.089,-1.097c-2.68,0.429 -5.379,0.796 -8.089,1.097c-76.259,11.294 -143.984,39.085 -55.158,137.972c97.708,101.165 133.908,-21.692 152.484,-83.983c18.576,62.291 39.972,180.718 150.734,83.983c83.174,-83.983 22.851,-126.674 -53.408,-137.969c-2.71,-0.302 -5.409,-0.667 -8.089,-1.096c2.732,0.337 5.429,0.702 8.089,1.096c52.037,5.785 108.54,-12.239 124.413,-65.574c4.804,-16.142 12.169,-112.847 12.169,-126.281c-0,-13.434 -2.705,-36.267 -17.577,-42.988c-12.85,-5.806 -32.45,-12.09 -83.829,24.181c-53.634,37.864 -111.319,114.635 -132.502,155.831Z"/></svg></span>
+          </a>
+          <a href="https://www.reddit.com/r/plakar" target="_blank" class="w-7 h-7 text-neutral-50">
+            <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.0526 7.8154L11.8042 4.27941C12.0339 3.19898 13.0959 2.50929 14.1764 2.73894L17.3725 3.4183C17.8351 2.90546 18.5509 2.64644 19.275 2.80035C20.3554 3.03 21.0451 4.09204 20.8155 5.17247C20.5858 6.2529 19.5238 6.94259 18.4434 6.71294C17.7193 6.55903 17.1707 6.03124 16.9567 5.3746L13.7605 4.69523L13.0943 7.82978C14.8789 7.96683 16.6522 8.56079 18.2581 9.52961C19.0892 9.06763 20.0992 8.99337 21.007 9.36091C22.1731 9.833 22.9531 10.9459 22.9991 12.2031L22.9996 12.2241C23.0151 13.2277 22.559 14.1657 21.792 14.7742C21.7899 14.8178 21.7871 14.859 21.7836 14.8971C21.7836 18.8949 17.3341 21.9267 11.9852 21.9267C6.65232 21.9267 2.27693 18.9027 2.27987 14.9738C2.27523 14.9134 2.27162 14.853 2.26905 14.7926C1.46701 14.1873 0.984722 13.2277 1.00037 12.1962C1.01955 10.9317 1.78341 9.79777 2.94804 9.30491C3.85909 8.91936 4.881 8.98299 5.72371 9.44381C7.3578 8.46653 9.15777 7.91241 11.0526 7.8154ZM20.3385 13.341C20.7466 13.1382 21.003 12.7207 21.0001 12.2656C20.9789 11.8005 20.6887 11.3897 20.2565 11.2147C19.821 11.0384 19.3226 11.1343 18.9837 11.4597L18.3991 12.0207L17.729 11.5652C16.1137 10.4672 14.2771 9.8397 12.4995 9.80134L11.493 9.80123C9.61791 9.8295 7.84136 10.4002 6.25552 11.4757L5.59246 11.9254L5.00897 11.3764C4.66501 11.0528 4.16243 10.9627 3.7275 11.1468C3.29257 11.3308 3.0073 11.7543 3 12.2265C2.99298 12.6987 3.26526 13.1307 3.69441 13.3278L4.32738 13.6186L4.27399 14.3132C4.261 14.482 4.261 14.6516 4.27693 14.8971C4.27693 17.6071 7.63313 19.9267 11.9852 19.9267C16.3561 19.9267 19.7836 17.5913 19.7865 14.8205C19.7995 14.6516 19.7995 14.482 19.7865 14.3132L19.7348 13.6411L20.3385 13.341ZM6.95075 13.4999C6.95075 12.6715 7.62232 11.9999 8.45075 11.9999C9.27918 11.9999 9.95075 12.6715 9.95075 13.4999C9.95075 14.3283 9.27918 14.9999 8.45075 14.9999C8.05292 14.9999 7.67139 14.8419 7.39009 14.5606C7.10878 14.2793 6.95075 13.8977 6.95075 13.4999ZM13.9507 13.4999C13.9507 12.6715 14.6223 11.9999 15.4507 11.9999C16.2792 11.9999 16.9507 12.6715 16.9507 13.4999C16.9507 14.3283 16.2792 14.9999 15.4507 14.9999C15.0529 14.9999 14.6714 14.8419 14.3901 14.5606C14.1088 14.2793 13.9507 13.8977 13.9507 13.4999ZM11.9665 18.6028C10.5693 18.6028 9.19993 18.2329 8.08503 17.3928C7.94659 17.2241 7.95868 16.9779 8.11299 16.8236C8.2673 16.6693 8.51349 16.6572 8.68218 16.7956C9.62697 17.4886 10.805 17.7856 11.9507 17.7856C13.0965 17.7856 14.2813 17.5112 15.235 16.8271C15.3473 16.7176 15.5095 16.6763 15.6604 16.7188C15.8114 16.7613 15.9282 16.8811 15.9669 17.0331C16.0055 17.1851 15.9517 17.3346 15.8479 17.4556C15.1638 18.2531 13.3636 18.6028 11.9665 18.6028Z"></path></svg>
+</span>
+          </a>
+          <a href="https://x.com/PlakarKorp" target="_blank" class="w-7 h-7 text-neutral-50">
+            <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M10.4883 14.651L15.25 21H22.25L14.3917 10.5223L20.9308 3H18.2808L13.1643 8.88578L8.75 3H1.75L9.26086 13.0145L2.31915 21H4.96917L10.4883 14.651ZM16.25 19L5.75 5H7.75L18.25 19H16.25Z"></path></svg>
+</span>
+          </a>
+          <a href="https://discord.gg/uuegtnF2Q5" target="_blank" class="w-7 h-7 mt-1 text-neutral-50">
+            <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M524.531,69.836a1.5,1.5,0,0,0-.764-.7A485.065,485.065,0,0,0,404.081,32.03a1.816,1.816,0,0,0-1.923.91,337.461,337.461,0,0,0-14.9,30.6,447.848,447.848,0,0,0-134.426,0,309.541,309.541,0,0,0-15.135-30.6,1.89,1.89,0,0,0-1.924-.91A483.689,483.689,0,0,0,116.085,69.137a1.712,1.712,0,0,0-.788.676C39.068,183.651,18.186,294.69,28.43,404.354a2.016,2.016,0,0,0,.765,1.375A487.666,487.666,0,0,0,176.02,479.918a1.9,1.9,0,0,0,2.063-.676A348.2,348.2,0,0,0,208.12,430.4a1.86,1.86,0,0,0-1.019-2.588,321.173,321.173,0,0,1-45.868-21.853,1.885,1.885,0,0,1-.185-3.126c3.082-2.309,6.166-4.711,9.109-7.137a1.819,1.819,0,0,1,1.9-.256c96.229,43.917,200.41,43.917,295.5,0a1.812,1.812,0,0,1,1.924.233c2.944,2.426,6.027,4.851,9.132,7.16a1.884,1.884,0,0,1-.162,3.126,301.407,301.407,0,0,1-45.89,21.83,1.875,1.875,0,0,0-1,2.611,391.055,391.055,0,0,0,30.014,48.815,1.864,1.864,0,0,0,2.063.7A486.048,486.048,0,0,0,610.7,405.729a1.882,1.882,0,0,0,.765-1.352C623.729,277.594,590.933,167.465,524.531,69.836ZM222.491,337.58c-28.972,0-52.844-26.587-52.844-59.239S193.056,219.1,222.491,219.1c29.665,0,53.306,26.82,52.843,59.239C275.334,310.993,251.924,337.58,222.491,337.58Zm195.38,0c-28.971,0-52.843-26.587-52.843-59.239S388.437,219.1,417.871,219.1c29.667,0,53.307,26.82,52.844,59.239C470.715,310.993,447.538,337.58,417.871,337.58Z"/></svg>
+</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<footer class="bg-primary-500 text-neutral-50 -mt-1">
+  <div class="max-w-350 mx-auto px-4 flex flex-col gap-6 pt-6">
+
+    <div class="grid md:grid-cols-2 md:px-12 gap-4 text-sm border-t border-primary-600 pt-10 opacity-80">
+      <div class="flex gap-4">
+        <span>© Plakar 2025</span>
+        <span>All rights reserved</span>
+      </div>
+      <div class="flex gap-6">
+        
+          <a href="javascript:openAxeptioCookies();" class="hover:underline">Cookies</a>
+        
+        <a href="/legal-notice/" class="hover:underline">Legal notice</a>
+        <a href="/privacy-policy/" class="hover:underline">Privacy policy</a>
+      </div>
+    </div>
+
+    <div class="overflow-hidden md:px-8">
+      <img src="/img/general/plakar-footer-banner.svg" alt="Footer banner" class="w-full h-auto object-contain">
+    </div>
+
+  </div>
+</footer>
+
+    
+  
+  <script src="/js/docs/main.min.2d3e6ba3dae8ddc4c79ea067ad0f9b2e8ac549479c4e6295abe9b946688fc99c.js" defer></script>
+
+  </body>
+</html>

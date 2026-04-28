@@ -2,18 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Distributed Systems on Plakar | The Open Standard for Backup and Restore</title>
-    <link>https://www.plakar.io/tags/distributed-systems/</link>
+    <link>https://plakar.io/tags/distributed-systems/</link>
     <description>Recent content in Distributed Systems on Plakar | The Open Standard for Backup and Restore</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 02 Apr 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://www.plakar.io/tags/distributed-systems/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2026 PlakarKorp</copyright>
+    <lastBuildDate>Tue, 28 Apr 2026 23:37:33 +0200</lastBuildDate><atom:link href="https://plakar.io/tags/distributed-systems/index.xml" rel="self" type="application/rss+xml" />
+    
     <item>
       <title>etcd</title>
-      <link>https://www.plakar.io/integrations/etcd/</link>
+      <link>https://plakar.io/integrations/etcd/</link>
       <pubDate>Thu, 02 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://www.plakar.io/integrations/etcd/</guid>
-      <description>&lt;h2 id=&#34;why-protecting-etcd-matters&#34;&gt;Why protecting etcd matters&lt;/h2&gt;&#xA;&lt;p&gt;etcd stores the entire state of a distributed system, e.g. in a Kubernetes cluster, that means every workload, configuration, secret, and policy. Its built-in replication handles partial failures well, but it has limits:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Quorum loss&lt;/strong&gt;: If too many nodes fail at once, etcd cannot recover without external intervention. Without a snapshot, the cluster state is gone.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Logical corruption&lt;/strong&gt;: A bad write, a botched upgrade, or a misconfigured operator can corrupt cluster state in ways that replication spreads rather than prevents.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;No point-in-time recovery&lt;/strong&gt;: etcd does not natively provide a way to roll back to an earlier known-good state. Without snapshots, there is no recovery point to return to.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;For any system that relies on etcd, an independent backup is the last line of defense.&lt;/p&gt;</description>
+      
+      <guid>https://plakar.io/integrations/etcd/</guid>
+      <description></description>
+      
     </item>
+    
   </channel>
 </rss>
