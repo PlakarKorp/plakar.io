@@ -5,7 +5,7 @@
     "dev": "npm-run-all --parallel dev:*",
     "dev:hugo": "hugo server",
     "dev:tailwind": "NODE_ENV=development ./themes/blowfish/node_modules/@tailwindcss/cli/dist/index.mjs -c ./themes/blowfish/tailwind.config.js -i ./themes/blowfish/assets/css/main.css -o ./assets/css/compiled/main.css --jit -w",
-    "build": "npm-run-all build:*",
+    "build": "npm-run-all build:tailwind build:hugo build:pagefind",
     "build:hugo": "hugo",
     "build:tailwind": "NODE_ENV=production ./themes/blowfish/node_modules/@tailwindcss/cli/dist/index.mjs -c ./themes/blowfish/tailwind.config.js -i ./themes/blowfish/assets/css/main.css -o ./assets/css/compiled/main.css --jit",
     "build:pagefind": "npx -y pagefind --site public"
