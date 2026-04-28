@@ -2,32 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Unix on Plakar | The Open Standard for Backup and Restore</title>
-    <link>https://plakar.io/tags/unix/</link>
+    <link>https://www.plakar.io/tags/unix/</link>
     <description>Recent content in Unix on Plakar | The Open Standard for Backup and Restore</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <copyright>© 2026 PlakarKorp</copyright>
-    <lastBuildDate>Tue, 28 Apr 2026 15:37:52 +0200</lastBuildDate><atom:link href="https://plakar.io/tags/unix/index.xml" rel="self" type="application/rss+xml" />
-    
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 13 May 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.plakar.io/tags/unix/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Stdio</title>
-      <link>https://plakar.io/integrations/stdio/</link>
-      <pubDate>Mon, 23 Mar 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://plakar.io/integrations/stdio/</guid>
-      <description></description>
-      
+      <link>https://www.plakar.io/integrations/stdio/</link>
+      <pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate>
+      <guid>https://www.plakar.io/integrations/stdio/</guid>
+      <description>&lt;h2 id=&#34;why-use-streams-instead-of-files&#34;&gt;Why use Streams instead of Files?&lt;/h2&gt;&#xA;&lt;p&gt;Plakar’s Stdio integration can back up any data stream provided via stdin like database dumps, system logs, command output or custom scripts. Unlike workflows that first create intermediate files, streaming data directly avoids several challenges:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Storage Waste&lt;/strong&gt;: You need enough free space to hold the uncompressed export before it even gets to your backup tool.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Security Risks&lt;/strong&gt;: Temporary files often sit on your disk unencrypted while waiting to be backed up.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Complexity&lt;/strong&gt;: You have to manage the creation and deletion of these intermediate files.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;With the Stdio integration, Plakar reads data as it’s generated, encrypts and deduplicates it, and streams it straight to your Kloset Store without creating any intermediate files on disk.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Tar</title>
-      <link>https://plakar.io/integrations/tar/</link>
-      <pubDate>Mon, 23 Mar 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://plakar.io/integrations/tar/</guid>
-      <description></description>
-      
+      <link>https://www.plakar.io/integrations/tar/</link>
+      <pubDate>Tue, 13 May 2025 00:00:00 +0000</pubDate>
+      <guid>https://www.plakar.io/integrations/tar/</guid>
+      <description>&lt;h2 id=&#34;using-tar-archives-with-plakar&#34;&gt;Using tar archives with Plakar&lt;/h2&gt;&#xA;&lt;p&gt;Tar has been a standard Unix archive format for decades, commonly used to bundle files for distribution, transfer, and simple backups. It is widely supported and highly portable.&lt;/p&gt;&#xA;&lt;p&gt;Tar archives themselves do not provide backup semantics such as deduplication, version tracking, or built-in encryption. Managing backups as collections of independent tar files becomes difficult as data evolves over time.&lt;/p&gt;&#xA;&lt;p&gt;Tar archives are imported into Plakar, which handles storage, deduplication, and verification.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>
