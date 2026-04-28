@@ -1,0 +1,33 @@
+<!-- JS: assets/js/bundle/discord.js -->
+
+{{ $site := .ctx.Site }}
+{{ $format := .format | default "star_light" }}
+
+{{ with $site.Params.discord }}
+  {{ if .enabled }}
+    {{ $href := printf "https://discord.gg/%s" .inviteCode }}
+
+    {{ if eq $format "star_light" }}
+      <a href="{{ $href }}" target="_blank"
+         class="hidden lg:flex items-stretch min-h-7 lg:min-h-12 border border-neutral-300 bg-neutral-50 rounded-lg overflow-hidden">
+        <div class="flex items-center justify-center px-3 bg-neutral-100 text-primary-500">
+          <span class="w-7 h-7 flex items-center justify-center">
+            {{ partial "icon.html" "discord" }}
+          </span>
+        </div>
+        <div class="flex items-center justify-center px-3 border-l border-neutral-300">
+          <span class="discord-members-count text-neutral-900" data-invite="{{ .inviteCode }}"></span>
+        </div>
+      </a>
+
+    {{ else if eq $format "icon" }}
+      <a href="{{ $href }}" target="_blank" aria-label="Join us on Discord"
+         class="hidden lg:flex items-center justify-center min-h-7 lg:min-h-12 aspect-square border border-neutral-300 bg-neutral-50 rounded-lg text-primary-500">
+        <span class="w-5 h-5 flex items-center justify-center">
+          {{ partial "icon.html" "discord" }}
+        </span>
+      </a>
+    {{ end }}
+
+  {{ end }}
+{{ end }}

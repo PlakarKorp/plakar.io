@@ -1,0 +1,4 @@
+{{ with .Params.og_image }}
+  <meta property="og:image" content="{{ . | absURL }}">
+  <meta name="twitter:image" content="{{ . | absURL }}">
+{{ end }}
