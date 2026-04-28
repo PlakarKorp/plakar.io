@@ -2,32 +2,42 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>On-Premise on Plakar | The Open Standard for Backup and Restore</title>
-    <link>https://www.plakar.io/tags/on-premise/</link>
+    <link>https://plakar.io/tags/on-premise/</link>
     <description>Recent content in On-Premise on Plakar | The Open Standard for Backup and Restore</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 02 Apr 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://www.plakar.io/tags/on-premise/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2026 PlakarKorp</copyright>
+    <lastBuildDate>Tue, 28 Apr 2026 15:26:49 +0200</lastBuildDate><atom:link href="https://plakar.io/tags/on-premise/index.xml" rel="self" type="application/rss+xml" />
+    
     <item>
       <title>etcd</title>
-      <link>https://www.plakar.io/integrations/etcd/</link>
+      <link>https://plakar.io/integrations/etcd/</link>
       <pubDate>Thu, 02 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://www.plakar.io/integrations/etcd/</guid>
-      <description>&lt;h2 id=&#34;why-protecting-etcd-matters&#34;&gt;Why protecting etcd matters&lt;/h2&gt;&#xA;&lt;p&gt;etcd stores the entire state of a distributed system, e.g. in a Kubernetes cluster, that means every workload, configuration, secret, and policy. Its built-in replication handles partial failures well, but it has limits:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Quorum loss&lt;/strong&gt;: If too many nodes fail at once, etcd cannot recover without external intervention. Without a snapshot, the cluster state is gone.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Logical corruption&lt;/strong&gt;: A bad write, a botched upgrade, or a misconfigured operator can corrupt cluster state in ways that replication spreads rather than prevents.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;No point-in-time recovery&lt;/strong&gt;: etcd does not natively provide a way to roll back to an earlier known-good state. Without snapshots, there is no recovery point to return to.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;For any system that relies on etcd, an independent backup is the last line of defense.&lt;/p&gt;</description>
+      
+      <guid>https://plakar.io/integrations/etcd/</guid>
+      <description></description>
+      
     </item>
+    
     <item>
       <title>MySQL / MariaDB</title>
-      <link>https://www.plakar.io/integrations/mysql/</link>
+      <link>https://plakar.io/integrations/mysql/</link>
       <pubDate>Thu, 02 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://www.plakar.io/integrations/mysql/</guid>
-      <description>&lt;h2 id=&#34;why-protecting-mysql-and-mariadb-data-matters&#34;&gt;Why protecting MySQL and MariaDB data matters&lt;/h2&gt;&#xA;&lt;p&gt;MySQL and MariaDB handle storage-level durability well, but they offer no protection against the most common causes of real data loss:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Accidental deletion&lt;/strong&gt;: A &lt;code&gt;DROP TABLE&lt;/code&gt;, a bad migration, or a &lt;code&gt;DELETE&lt;/code&gt; without a &lt;code&gt;WHERE&lt;/code&gt; clause wipes data instantly. Replication ensures every replica reflects the same mistake just as quickly.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Corruption&lt;/strong&gt;: A failed upgrade, a misbehaving plugin, or a storage fault can corrupt a database in ways that are not immediately visible and this can also be replicated across replicas.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;No rollback&lt;/strong&gt;: Without snapshots, there is no way to return to an earlier known-good state. By the time a problem is noticed, the damage may already be replicated everywhere.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;For production databases, a backup stored independently of the database server is not optional.&lt;/p&gt;</description>
+      
+      <guid>https://plakar.io/integrations/mysql/</guid>
+      <description></description>
+      
     </item>
+    
     <item>
       <title>Kubernetes</title>
-      <link>https://www.plakar.io/integrations/kubernetes/</link>
+      <link>https://plakar.io/integrations/kubernetes/</link>
       <pubDate>Mon, 16 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://www.plakar.io/integrations/kubernetes/</guid>
-      <description>&lt;h2 id=&#34;why-protecting-kubernetes-clusters-matters&#34;&gt;Why protecting Kubernetes clusters matters&lt;/h2&gt;&#xA;&lt;p&gt;Kubernetes manages the full lifecycle of your workloads, but it does not protect the data that keeps those workloads running. Three distinct layers are at risk:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;etcd&lt;/strong&gt;: The key-value store that holds all cluster state. If too many nodes fail simultaneously, etcd cannot recover on its own. Without an independent backup, the cluster configuration is gone.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Manifests&lt;/strong&gt;: Resource definitions, namespace configurations, and workload specs can be accidentally deleted, overwritten by bad deployments, or lost during a cluster migration. Kubernetes versioning does not give you a restore point.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Persistent Volumes&lt;/strong&gt;: Stateful workloads store data in PVCs that live outside the cluster&amp;rsquo;s built-in resilience model. A misconfigured storage class, a deleted PVC, or a failed migration can result in permanent data loss.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Each layer requires a different backup strategy. Plakar handles all three.&lt;/p&gt;</description>
+      
+      <guid>https://plakar.io/integrations/kubernetes/</guid>
+      <description></description>
+      
     </item>
+    
   </channel>
 </rss>

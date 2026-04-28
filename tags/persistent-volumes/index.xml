@@ -2,18 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Persistent Volumes on Plakar | The Open Standard for Backup and Restore</title>
-    <link>https://www.plakar.io/tags/persistent-volumes/</link>
+    <link>https://plakar.io/tags/persistent-volumes/</link>
     <description>Recent content in Persistent Volumes on Plakar | The Open Standard for Backup and Restore</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 16 Mar 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://www.plakar.io/tags/persistent-volumes/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2026 PlakarKorp</copyright>
+    <lastBuildDate>Tue, 28 Apr 2026 15:26:49 +0200</lastBuildDate><atom:link href="https://plakar.io/tags/persistent-volumes/index.xml" rel="self" type="application/rss+xml" />
+    
     <item>
       <title>Kubernetes</title>
-      <link>https://www.plakar.io/integrations/kubernetes/</link>
+      <link>https://plakar.io/integrations/kubernetes/</link>
       <pubDate>Mon, 16 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://www.plakar.io/integrations/kubernetes/</guid>
-      <description>&lt;h2 id=&#34;why-protecting-kubernetes-clusters-matters&#34;&gt;Why protecting Kubernetes clusters matters&lt;/h2&gt;&#xA;&lt;p&gt;Kubernetes manages the full lifecycle of your workloads, but it does not protect the data that keeps those workloads running. Three distinct layers are at risk:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;etcd&lt;/strong&gt;: The key-value store that holds all cluster state. If too many nodes fail simultaneously, etcd cannot recover on its own. Without an independent backup, the cluster configuration is gone.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Manifests&lt;/strong&gt;: Resource definitions, namespace configurations, and workload specs can be accidentally deleted, overwritten by bad deployments, or lost during a cluster migration. Kubernetes versioning does not give you a restore point.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Persistent Volumes&lt;/strong&gt;: Stateful workloads store data in PVCs that live outside the cluster&amp;rsquo;s built-in resilience model. A misconfigured storage class, a deleted PVC, or a failed migration can result in permanent data loss.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Each layer requires a different backup strategy. Plakar handles all three.&lt;/p&gt;</description>
+      
+      <guid>https://plakar.io/integrations/kubernetes/</guid>
+      <description></description>
+      
     </item>
+    
   </channel>
 </rss>
