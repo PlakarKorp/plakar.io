@@ -1,0 +1,16 @@
+{{ $text := .text }}
+{{ $word := .word | default "" }}
+{{ $class := .class | default "" }}
+{{ $color := .color | default "" }}
+{{ $replacement := "" }}
+
+{{ if and $word (or $class $color) (in (lower $text) (lower $word)) }}
+    {{ if $class }}
+        {{ $replacement = printf "<span class=\"%s\">%s</span>" $class $word }}
+    {{ else if $color }}
+        {{ $replacement = printf "<span style=\"color: %s\">%s</span>" $color $word }}
+    {{ end }}
+    {{ $pattern := printf "(?i)%s" $word }}
+    {{ $text = replaceRE $pattern $replacement $text | safeHTML }}
+{{ end }}
+{{ $text }}

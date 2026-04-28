@@ -1,71 +1,77 @@
-# -- Site Configuration --
-# Refer to the theme docs for more details about each of these parameters.
-# https://blowfish.page/docs/getting-started/
+baseURL = 'https://www.plakar.io/'
+languageCode = 'en-us'
+theme = "plakarium"
+title = "Plakar | The Open Standard for Backup and Restore"
 
-theme = "blowfish"
-baseURL = "https://plakar.io/"
-defaultContentLanguage = "en"
-enableRobotsTXT = true
-enableGitInfo = true
-summaryLength = 0
-buildDrafts = false
-buildFuture = false
-enableEmoji = true
-googleAnalytics = "G-4EJ3HLL4HS"
+
+ignoreFiles = ["content/templates/.*"]
+
+[Params]
+latest = 'v1.0.6'
+description =  "Enterprise ready backups with developer friendly tooling. Encrypted, deduplicated snapshots, instant browsing and restore, and zero knowledge workflows across clouds and on-prem."
+author = "Nestor"
+
+[module]
+  [[module.imports]]
+    path = 'github.com/hugomods/katex'
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[markup.goldmark.extensions.passthrough]
+  enable = true
+
+[markup.goldmark.extensions.passthrough.delimiters]
+  block = [['$$', '$$']]
+  inline = [['\\(', '\\)']]
+
+[highlight]
+  noClasses = false
+
 
 [permalinks]
-  [permalinks.page]
-    posts = "/posts/:year-:month-:day/:slug/"
-
-[frontmatter]
-lastmod = [":git", "lastmod", "date", "publishDate"]
-
-[pagination]
-  pagerSize = 100
-
-[imaging]
-  anchor = 'Center'
+posts = "/posts/:year-:month-:day/:slug"
 
 [taxonomies]
-  tag = "tags"
-  category = "categories"
-  author = "authors"
-  series = "series"
+author = "authors"
+category = "categories"
+tag = "tags"
+series = "series"
 
-[sitemap]
-  changefreq = 'daily'
-  filename = 'sitemap.xml'
-  priority = 0.5
+[Params.github]
+enabled = true
+organization = "PlakarKorp"
+repository = "plakar"
 
-[outputs]
-  home = ["HTML", "RSS", "JSON"]
+[Params.discord]
+enabled = true
+inviteCode = "uuegtnF2Q5"
+serverID = "1281181647005421589"
 
-[related]
-  threshold = 0
-  toLower = false
+[Params.reddit]
+enabled = true
+communityName = "plakar"
 
-    [[related.indices]]
-      name = "tags"
-      weight = 100
+[Params.bluesky]
+enabled = true
+account = "plakar.bsky.social"
 
-    [[related.indices]]
-      name = "categories"
-      weight = 100
+[Params.X]
+enabled = true
+account = "PlakarKorp"
 
-    [[related.indices]]
-      name = "series"
-      weight = 50
+[Params.linkedin]
+enabled = true
+companyID = "plakarkorp"
 
-    [[related.indices]]
-      name = "authors"
-      weight = 20
+[Params.axeptio]
+enabled = true
+clientId = "670b04f487d8b40de2e7f22c"
+cookiesVersion = "plakar-fr-EU-2"
 
-    [[related.indices]]
-      name = "date"
-      weight = 10
+[Params.googleAnalytics]
+enabled = true
+id = "G-4EJ3HLL4HS"
 
-    [[related.indices]]
-      applyFilter = false
-      name = 'fragmentrefs'
-      type = 'fragments'
-      weight = 10
+[Params.katex]
+  enable = true

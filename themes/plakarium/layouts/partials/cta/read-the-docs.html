@@ -1,0 +1,16 @@
+{{ $riCornerDownRightLine := resources.Get "img/ri/corner-down-right-line.svg" }}
+
+{{ partial "cta/based-button.html" (dict
+        "href" (or .href "")
+        "target" "_blank"
+        "label" (or .label "Start contributing")
+        "labelShort" (or .labelShort "Start contributing")
+        "icon" $riCornerDownRightLine
+        "bgHoverColor" "bg-neutral-50"
+        "textHoverColor" "text-neutral-900"
+        "bgColor" "bg-neutral-900"
+        "border" "border"
+        "borderColor" "border-neutral-900"
+        "textColor" "text-neutral-50"
+        "flex" "flex w-full"
+        ) }}

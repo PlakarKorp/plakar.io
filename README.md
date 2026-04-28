@@ -2,6 +2,8 @@
 
 <div align="center">
 
+<img src="./assets/img/logo/Plakar_Effortless_Backup_Logo_Icon.svg" alt="Plakar Logo" width="200"/>
+
 [![Join our Discord community](https://img.shields.io/badge/Discord-Join%20Us-purple?logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/A2yvjS6r2C)
 [![Subscribe on YouTube](https://img.shields.io/badge/YouTube-Subscribe-red?logo=youtube&logoColor=white&style=for-the-badge)](https://www.youtube.com/@PlakarKorp)
 [![Join our Subreddit](https://img.shields.io/badge/Reddit-Join%20r%2Fplakar-orange?logo=reddit&logoColor=white&style=for-the-badge)](https://www.reddit.com/r/plakar/)
@@ -49,9 +51,24 @@
 
 ## Development
 
-- Clone the repo or a fork of the repo including the submodules `git clone --recurse-submodules git@github.com:PlakarKorp/plakar.io.git`
-- If you have clones the repo but the submodules folder is empty or missing, you can pull them with `git submodule update --init --recursive`
-- Run `npm install` at `themes/blowfish` and at the root of the repo to install blowfish dependencies and our dependencies
-- Run `npm run dev` at the root of the repo to start the development server and watch for changes to the Tailwind CSS files
-- To build the static site run `npm run build`
-- You can test the CI locally with `act push`
+* **Start Hugo server**:
+  ```bash
+  hugo server --logLevel debug --disableFastRender --ignoreCache --noHTTPCache --templateMetrics
+  ```
+
+* **React dev**:
+  - Go to: themes/plakarium/assets/react
+  - Run: `npm run watch`
+
+* **Compile Tailwind CSS**
+  ```bash
+  npx tailwindcss -c ./themes/plakarium/tailwind.config.js -i ./themes/plakarium/assets/css/main.css -o ./themes/plakarium/assets/css/main-compiled.css --watch
+  ```
+
+* **Autoreload when layout changes**
+  - (requires to `brew install fswatch` on MacOS)
+  - `./scripts/watch-layouts-changes.sh`
+
+* **Change code highlight style**
+  - `hugo gen chromastyles --style=monokailight > ./themes/plakarium/assets/css/chroma.css`
+  - `hugo gen chromastyles --style=native > ./themes/plakarium/assets/css/native.css`

@@ -1,0 +1,107 @@
+{{ $ctx := .context }}
+{{ $menu := .menu | default "main" }}
+{{ $menuItems := index .context.Site.Menus $menu | default slice }}
+{{ $topLevelItems := where $menuItems "Parent" "" }}
+
+{{ $riGithubFill := resources.Get "img/ri/github-fill.svg" }}
+{{ $riCornerDownRightLine := resources.Get "img/ri/corner-down-right-line.svg" }}
+
+
+<div id="menu-mobile"
+     class="absolute hidden md:hidden left-0 right-0 w-full top-full bg-neutral-100 border-t border-b border-neutral-300 pt-4 pb-6">
+    <div class="space-y-3 items-end text-right pr-4">
+        <button id="menu-close-button" class="top-4 right-4 text-2xl font-bold text-neutral-900">&times;</button>
+    </div>
+
+    <nav class="mt-6 px-4 flex flex-col text-left divide-y divide-neutral-300">
+        {{ range $topLevelItems }}
+            {{ if eq .Params.enabled true }}
+                {{ if .HasChildren }}
+                    <div class="accordion-item">
+                        <button class="accordion-toggle w-full flex justify-between items-center py-3 text-gray-700 font-space-text hover:text-primary-500">
+                            {{ .Name }}
+                            <svg class="w-4 h-4 transform transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 14L6 8H18L12 14Z"/>
+                            </svg>
+                        </button>
+
+                        {{ $grouped := dict }}
+                        {{ range .Children }}
+                            {{ if eq .Params.enabled true }}
+                                {{ $child := . }}
+                                {{ with .Params.section }}
+                                    {{ $section := printf "%s" . }}
+                                    {{ $entries := index $grouped $section | default (slice) }}
+                                    {{ $entries = $entries | append $child }}
+                                    {{ $grouped = merge $grouped (dict $section $entries) }}
+                                {{ end }}
+                            {{ end }}
+                        {{ end }}
+
+                        {{ $sections := slice }}
+                        {{ range $k, $v := $grouped }}
+                            {{ $weight := (index $v 0).Params.section_weight | default 0 }}
+                            {{ $sections = $sections | append (dict "name" $k "weight" $weight "items" $v) }}
+                        {{ end }}
+
+                        <div class="accordion-content hidden flex-col pl-4 space-y-4 py-2 text-sm">
+                            {{ range sort $sections "weight" }}
+                                <div>
+                                    <div class="text-primary-500 font-space-text text-xs mb-1">{{ .name }}</div>
+                                    {{ range sort .items "Weight" }}
+                                        <a href="{{ partial "menu-link.html" (dict "url" .URL "context" $ctx) | relLangURL }}" {{ with .Params.target }}target="{{ . }}"{{ end }} class="group flex gap-2 items-start p-2 rounded-lg hover:bg-violet-50">
+                                            <div class="w-5 h-5 mt-1">
+                                                {{ with .Params.icon }}
+                                                    {{ $icon := printf "img/ri/%s.svg" . }}
+                                                    {{ with resources.Get $icon }}
+                                                        <span class="w-5 h-5">{{ .Content | safeHTML }}</span>
+                                                    {{ end }}
+                                                {{ end }}
+                                            </div>
+                                            <div>
+                                                <div class="text-zinc-900 font-semibold font-space-text">{{ .Name }}</div>
+                                                {{ with .Params.description }}
+                                                    <div class="text-neutral-400 text-xs font-medium font-space-text">{{ . }}</div>
+                                                {{ end }}
+                                            </div>
+                                        </a>
+                                    {{ end }}
+                                </div>
+                            {{ end }}
+                        </div>
+                    </div>
+                {{ else }}
+                    <a href="{{ partial "menu-link.html" (dict "url" .URL "context" $ctx) | relLangURL }}" class="block py-3 text-gray-700 font-space-text hover:text-primary-500">
+                        {{ .Name }}
+                    </a>
+                {{ end }}
+            {{ end }}
+        {{ end }}
+    </nav>
+
+    <div class="flex flex-line mt-6 px-2 justify-end gap-1 text-right text-sm">
+
+        <!-- Discord link -->
+        <div class="flex max-h-[32px] items-stretch gap-2 pr-2 p-[1px] border border-neutral-300 bg-neutral-50 rounded-lg font-space-text">
+            {{ partial "social/discord-badge.html" (dict
+                    "badgeSize" "7"
+                    "format" "star_light"
+                    "context" $ctx
+                    ) }}
+        </div>
+
+        <div class="flex max-h-[32px] items-stretch gap-2 pr-2 p-[1px] border border-neutral-300 bg-neutral-50 rounded-lg font-space-text">
+            {{ partial "social/github-badge.html" (dict
+                    "badgeSize" "7"
+                    "format" "star_light"
+                    "ctx" $ctx
+                    ) }}
+        </div>
+        <a href="https://docs.plakar.io/en/quickstart/index.html" target="_blank" class="mt-0">
+            <div class="flex max-h-[32px] items-center gap-2 border border-neutral-900 px-1 py-2 rounded-lg">
+                <span class="w-5 h-5">{{ $riCornerDownRightLine.Content | safeHTML }}</span>
+                <span class="font-space-grotesk text-xs">Get started</span>
+            </div>
+        </a>
+    </div>
+</div>

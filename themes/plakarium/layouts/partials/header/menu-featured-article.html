@@ -1,0 +1,47 @@
+{{ $allNews := where .Site.RegularPages "Section" "posts" }}
+{{ $visibleNews := where $allNews "Params.hidden" "ne" true }}
+{{ $featured := first 1 (where $visibleNews "Params.featured" true) }}
+{{ if not (gt (len $featured) 0) }}
+    {{ $featured = first 1 (sort $visibleNews "Date" "desc") }}
+{{ end }}
+
+{{ with index $featured 0 }}
+    {{ $image := or (.Resources.GetMatch "featured.webp") (index (.Resources.Match "featured.*") 0) }}
+    {{ if not $image }}
+        {{ $image = resources.Get "img/placeholder-400x254.png" }}
+    {{ end }}
+
+    <a href="{{ .RelPermalink }}" class="group/link xl:ml-auto mt-4 h-auto border border-neutral-200 rounded-sm overflow-hidden hover:bg-neutral-100 flex items-stretch max-w-1/4 no-underline">
+        <!-- Image -->
+        <div class="shrink-0">
+            <img src="{{ $image.RelPermalink }}" alt="{{ .Title }}" class="object-cover w-[200px] max-h-[200px] h-full">
+        </div>
+
+        <!-- Text content -->
+        <div class="px-4 py-2 flex flex-col gap-2">
+            <!-- Categories -->
+            {{ $categories := .Params.categories }}
+            {{ if gt (len $categories) 0 }}
+                <div class="text-primary-500 font-dm-mono uppercase text-xs">
+                    {{ range $i, $cat := $categories }}
+                        {{ if gt $i 0 }} · {{ end }}{{ $cat }}
+                    {{ end }}
+                </div>
+            {{ end }}
+
+            <!-- Title -->
+            <div class="font-space-grotesk text-neutral-900 text-base font-medium ">
+                {{ $words := split .Title " " }}
+                {{ range $i, $word := $words }}
+                    {{ if ne $i 0 }}{{ if modBool $i 4 }}<br>{{ else }} {{ end }}{{ end }}{{ $word }}
+                {{ end }}
+            </div>
+
+            <!-- Read more -->
+            <span
+               class="flex items-center gap-1 uppercase text-neutral-900 font-dm-mono text-xs hover:underline group-hover/link:text-primary-500">
+                Read more
+            </span>
+        </div>
+    </a>
+{{ end }}

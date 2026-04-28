@@ -1,0 +1,22 @@
+{{- $page := .Page -}}
+{{- if $page.Params.docsBase -}}
+    {{- $page.Params.docsBase -}}
+{{- else if $page.Parent -}}
+    {{- $site := $page.Site -}}
+    {{- $parent := $page.Parent -}}
+    {{- $parent.Scratch.Set "current" $parent -}}
+    {{- range $index, $element := (seq 1 10) -}}
+        {{- $current := $parent.Scratch.Get "current" -}}
+        {{- if $current.Params.docsBase -}}
+            {{- $current.Params.docsBase -}}
+            {{- break -}}
+        {{- else if $current.Parent -}}
+            {{- $parent.Scratch.Set "current" $current.Parent -}}
+        {{- else -}}
+            {{- "" -}}
+            {{- break -}}
+        {{- end -}}
+    {{- end -}}
+{{- else -}}
+    {{- "" -}}
+{{- end -}}

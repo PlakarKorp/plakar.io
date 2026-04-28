@@ -1,0 +1,97 @@
+{{ $logoDark := resources.Get .Site.Params.logoDark }}
+{{ $riSearchLine := resources.Get "img/ri/search-line.svg" }}
+
+<!-- Fixed Navbar -->
+<header id="site-header"
+        class="fixed flex px-2 py-2 md:px-4 top-5 rounded-2xl mx-auto inset-x-4 md:inset-x-10 max-w-[1400px] z-50 bg-neutral-50 border-b border-l border-r border-neutral-300">
+    <div class="flex mx-auto w-full justify-between relative">
+        <div class="flex mx-auto items-center w-full space-x-2 xl:space-x-16">
+            <!-- Logo -->
+            <a href="/" id="logo-link" class="block md:w-32 w-28 pb-[2px] relative group">
+                <span class="block">
+                    {{ $logoDark.Content | safeHTML }}
+                </span>
+                <!-- Context menu shown on right-click -->
+                <div id="logo-context-menu"
+                     class="hidden absolute top-full mt-2 left-0 bg-neutral-50 border border-neutral-300 rounded-lg shadow-lg z-50 w-56 flex flex-col">
+                    <a href="/branding/" class="px-4 py-2 hover:bg-neutral-100 text-neutral-900 font-space-text ~text-base">
+                        Brand Center
+                    </a>
+                    {{ $brandKit := resources.Get "distributed/logo.zip" }}
+                    <a href="{{ $brandKit.RelPermalink }}" download class="px-4 py-2 hover:bg-neutral-100 text-neutral-900 font-space-text ~text-base">
+                        Download logo kit
+                    </a>
+                    {{ $brandKit := resources.Get "/distributed/logo-plakar-mascot-circle.svg" }}
+                    <a href="{{ $brandKit.RelPermalink }}" download class="px-4 py-2 hover:bg-neutral-100 text-neutral-900 font-space-text ~text-base">
+                        Download this logo (svg)
+                    </a>
+                </div>
+            </a>
+
+            {{ partial "header/menu-desktop.html" (dict "menu" "main" "context" .) }}
+
+        </div>
+
+        <!-- Right-side buttons (Search + GitHub + Actions) -->
+        <div class="flex flex-row items-center space-x-2 w-full justify-end">
+            <!-- Search trigger -->
+            <button x-on:click="$dispatch('open-search')"
+                    aria-label="Open search"
+                    class="flex items-center justify-center w-[28px] h-[28px] md:w-[48px] md:h-[48px] border border-neutral-300 rounded-lg text-neutral-500 bg-neutral-50 text-sm">
+                <span class="w-4 h-4 md:w-[22px] md:h-[22px] -mt-0.5 md:mt-0">{{ $riSearchLine.Content | safeHTML }}</span>
+            </button>
+            <!-- Discord link -->
+            <div class="hidden min-h-[24px] xl:min-h-[48px] items-stretch lg:flex gap-2 pr-4 p-[1px] border border-neutral-300 bg-neutral-50 rounded-lg font-space-text">
+                {{ partial "social/discord-badge.html" (dict
+                        "badgeSize" "8"
+                        "format" "star_light"
+                        "context" .
+                        ) }}
+            </div>
+            <!-- GitHub link -->
+            <div class="hidden min-h-[24px] xl:min-h-[48px] items-stretch lg:flex gap-2 pr-4 p-[1px] border border-neutral-300 bg-neutral-50 rounded-lg font-space-text">
+                {{ partial "social/github-badge.html" (dict
+                        "badgeSize" "8"
+                        "format" "star_light"
+                        "ctx" .
+                        ) }}
+            </div>
+            {{ partial "cta/book-a-demo-button.html" . }}
+            <!-- Mobile menu icon -->
+            <button id="menu-button"
+                    class="min-h-[24px] md:hidden border border-neutral-900 rounded-lg text-neutral-900 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+                     viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile dropdown menu -->
+    {{ partial "header/menu-mobile.html" (dict "menu" "main" "context" .) }}
+</header>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const logoLink = document.getElementById("logo-link");
+        const menu = document.getElementById("logo-context-menu");
+
+        // Hide the menu if the user clicks anywhere outside
+        document.addEventListener("click", function(e) {
+            if (!menu.contains(e.target) && !logoLink.contains(e.target)) {
+                menu.classList.add("hidden");
+            }
+        });
+
+        // Show the custom context menu on right-click
+        logoLink.addEventListener("contextmenu", function(e) {
+            e.preventDefault();
+            // Hide any other open menus
+            document.querySelectorAll("#logo-context-menu").forEach(m => m.classList.add("hidden"));
+            // Show this menu
+            menu.classList.remove("hidden");
+        });
+    });
+</script>

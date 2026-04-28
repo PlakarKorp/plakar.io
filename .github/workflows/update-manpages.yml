@@ -1,0 +1,40 @@
+name: Update manpages
+
+on:
+  workflow_dispatch:
+    inputs:
+      plakar-ref:
+        description: Git ref for plakar (branch or tag)
+        required: true
+        default: main
+
+jobs:
+  update-man:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: update
+        run: |
+          sudo apt install mandoc
+          ./update-doc.sh ${{ github.event.inputs.plakar-ref }}
+          git add content
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          base: main
+          branch: update-doc/from-${{ github.event.inputs.plakar-ref }}
+          delete-branch: true
+          author: "Plakup <noreply@plakar.io>"
+          committer: "Plakup <noreply@plakar.io>"
+          title: "Update Plakar doc from ${{ github.event.inputs.plakar-ref }}"
+          body: |
+            Update plakar doc from ${{ github.event.inputs.plakar-ui-ref }}
+          commit-message: |
+            Update plakar doc from ${{ github.event.inputs.plakar-ui-ref }}

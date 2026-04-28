@@ -1,5 +1,0 @@
-{{ if or (strings.HasPrefix .RelPermalink "/docs") (strings.HasPrefix .RelPermalink "/control-plane-docs") }}
-  {{ partial "common/header/header-docs.html" . }}
-{{ else }}
-  {{ partial "common/header/header-corporate.html" . }}
-{{ end }}

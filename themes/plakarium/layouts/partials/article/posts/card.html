@@ -1,0 +1,62 @@
+{{ $context := . }}
+{{ with $context }}
+    {{ $riCornerDownRightLine := resources.Get "img/ri/corner-down-right-line.svg" }}
+
+    <!-- Article card -->
+{{/*    <div class="bg-white border border-neutral-300 p-4 flex flex-col gap-4 hover:shadow-md transition-all duration-200 outline outline-8 outline-neutral-400/20 shadow-xl rounded-lg">*/}}
+        <a href="{{ .Permalink }}" class="bg-white border border-neutral-300 p-4 flex flex-col gap-4 hover:shadow-md transition-all duration-200 outline outline-8 outline-neutral-400/20 shadow-xl rounded-lg no-underline hover:bg-neutral-50 group/card">
+
+        <!-- Image -->
+        <div class="relative h-[230px] bg-neutral-50 rounded-sm overflow-hidden">
+            {{ $image := or (.Resources.GetMatch "featured.webp") (index (.Resources.Match "featured.*") 0) }}
+            {{ if $image }}
+                <img src="{{ $image.RelPermalink }}" alt="Article preview" class="w-full h-full object-cover rounded-lg" />
+            {{ else }}
+                {{ $placeholder := resources.Get "img/placeholder-400x254.png" }}
+                <img src="{{ $placeholder.RelPermalink }}" alt="Placeholder" class="w-full h-full object-cover rounded-lg" />
+            {{ end }}
+        </div>
+
+        <!-- Category -->
+        {{ $categories := .GetTerms "categories" }}
+        {{ if gt (len $categories) 0 }}
+            <div class="text-primary-500 text-sm font-space-grotesk font-medium">
+               {{ (index $categories 0).LinkTitle }}
+            </div>
+        {{ end }}
+
+        <!-- Title & Excerpt -->
+        <div class="flex flex-col gap-3">
+            <h3 class="text-[24px] leading-[1.25] font-space-grotesk font-medium text-neutral-900">
+                <span class="hover:text-primary-500 transition-colors">
+                    {{ .Title | emojify }}
+                </span>
+            </h3>
+            <p class="text-base text-neutral-600 font-space-text font-medium leading-snug">
+                {{ .Summary | plainify }}
+            </p>
+        </div>
+
+        <!-- Metadata -->
+        <div class="flex flex-wrap items-center gap-2 text-xs font-space-grotesk font-medium text-neutral-500">
+            {{ range .GetTerms "authors" }}
+                {{ $authorKey := . | urlize | strings.TrimPrefix "/authors/" }}
+                {{ $authorData := index site.Data.authors $authorKey }}
+                <span class="text-neutral-900">{{ $authorData.name }}</span>
+            {{ end }}
+            <span>•</span>
+            <span>{{ partial "functions/date.html" .Lastmod }}</span>
+            <span>•</span>
+            <span>{{ i18n "article.reading_time" .ReadingTime | markdownify | emojify }}</span>
+        </div>
+
+        <!-- CTA -->
+        <span class="inline-flex items-center gap-2 text-sm font-space-grotesk font-medium text-neutral-900 hover:text-primary-500 transition-colors">
+            <span class="w-[20px] h-[20px]">
+              {{ $riCornerDownRightLine.Content | safeHTML }}
+            </span>
+            Read more
+        </span>
+    </a>
+
+{{end}}

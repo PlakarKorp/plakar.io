@@ -1,0 +1,88 @@
+{{ $context := . }}
+{{ with $context }}
+    {{ $riCornerDownRightLine := resources.Get "img/ri/corner-down-right-line.svg" }}
+        <div class="border border-neutral-300 items-start justify-between p-4 flex flex-col gap-4 hover:shadow-md transition-all duration-200 outline outline-8 outline-neutral-400/20 shadow-xl rounded-lg">
+            <div>
+                <!-- Image -->
+                <div class="flex flex-row justify-between">
+                    <div class="relative h-16 w-16 rounded-sm overflow-hidden">
+                        <a href="{{ .Permalink }}" class="block">
+                            {{ $image := or (.Resources.GetMatch "featured.webp") (index (.Resources.Match "featured.*") 0) }}
+                            {{ if $image }}
+                                <img src="{{ $image.RelPermalink }}" alt="Integration preview"
+                                     class="w-full h-full object-cover rounded-lg"/>
+                            {{ else }}
+                                {{ $placeholder := resources.Get "img/placeholder-400x254.png" }}
+                                <img src="{{ $placeholder.RelPermalink }}" alt="Placeholder"
+                                     class="w-full h-full object-cover rounded-lg"/>
+                            {{ end }}
+                        </a>
+                    </div>
+                    <div>
+                        {{ $stageColor := dict "stable" "text-green-800 bg-green-50" "test" "text-amber-800 bg-amber-50" "coming soon" "text-blue-800 bg-blue-50" }}
+                        {{ $defaultColor := "text-neutral-800 bg-neutral-50" }}
+                        {{ $colorClasses := or (index $stageColor (lower .Params.stage)) $defaultColor }}
+
+                        <span class="inline-flex items-center rounded-xl px-3 py-2 text-center text-sm font-medium {{ $colorClasses }} uppercase">
+                            {{ .Params.stage }}
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Title & Optional description -->
+                <div class="flex flex-col gap-2">
+                    <h3 class="text-[24px] leading-[1.25] font-space-grotesk font-medium text-neutral-900">
+                        <a href="{{ .Permalink }}" class="hover:text-primary-500 transition-colors">
+                            <a href="{{ .Permalink }}" class="block">
+                            {{ .Title | emojify }}
+                            </a>
+                        </a>
+                    </h3>
+                    <!-- Category -->
+                    {{ $categories := .GetTerms "categories" }}
+                    {{ if gt (len $categories) 0 }}
+                        <div class="text-primary-500 text-xs font-space-grotesk font-medium">
+                            {{ range $index, $category := $categories }}
+                                {{ if gt $index 0 }} / {{ end }}
+                                {{ replace $category.LinkTitle " Connector" "" }}
+                            {{ end }}
+                        </div>
+                    {{ end }}
+                    <a href="{{ .Permalink }}" class="block">
+                        {{ with .Params.description }}
+                            <p class="text-base text-neutral-600 font-space-text font-medium leading-snug">
+                                {{ . | plainify }}
+                            </p>
+                        {{ end }}
+                    </a>
+                </div>
+
+
+                <!-- Tags section -->
+                {{ with .Params.tags }}
+                    <p><br /></p>
+                    {{ if (reflect.IsSlice .) }}
+                        <div class="flex flex-wrap gap-2 mt-1 mb-1">
+                            {{ range . }}
+                                <span class="h-8 px-3 bg-[#E8E8F5] rounded-[2px] flex items-center text-[#524CFF] text-[14px] font-space-text font-medium leading-[18.48px]">
+                                  {{ . }}
+                                </span>
+                            {{ end }}
+                        </div>
+                    {{ end }}
+                {{ end }}
+
+            </div>
+            <div class="">
+                <!-- CTA -->
+                <a href="{{ .Permalink }}"
+                   class="inline-flex items-start gap-2 text-sm font-space-grotesk font-medium text-neutral-900 hover:text-primary-500 transition-colors">
+              <span class="w-[20px] h-[20px]">
+                {{ $riCornerDownRightLine.Content | safeHTML }}
+              </span>
+                    Read more
+                </a>
+            </div>
+
+        </div>
+{{ end }}

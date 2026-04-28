@@ -1,0 +1,75 @@
+{{/*
+  Shortcode: sha
+  Usage:
+    {{< sha "38649b2a1f2aa9cd97ffe97c8e7ae4b69069e12d6d78692adb54784e5d778a2d" >}}
+    {{< sha value="38649b2a1f2aa9cd97ffe97c8e7ae4b69069e12d6d78692adb54784e5d778a2d" short="12" >}}
+
+  Params:
+    - value (string, required)   : the full SHA string (positional or named)
+    - short (int, optional)      : visible prefix length (default 12)
+
+  Renders:
+    - a monospace truncated hash like "38649b2a1f2a…"
+    - a copy button that copies the FULL hash
+*/}}
+
+{{ $value := "" }}
+{{ if .IsNamedParams }}
+  {{ $value = .Get "value" }}
+{{ else }}
+  {{ $value = .Get 0 }}
+{{ end }}
+{{ if not $value }}{{ errorf "sha shortcode requires a hash value" }}{{ end }}
+
+{{ $short := 12 }}
+{{ with .Get "short" }}{{ $short = int . }}{{ end }}
+
+{{ $id := printf "sha-%d" now.UnixNano }}
+<span class="inline-flex items-center gap-2">
+  <code id="{{ $id }}-short" class="font-mono text-sm text-neutral-800">
+    {{ truncate (add $short 1) $value }}…
+  </code>
+  <button
+          type="button"
+          class="inline-flex items-center rounded-sm border border-neutral-300 bg-white px-2 py-1 text-xs text-neutral-800 hover:border-neutral-400"
+          data-sha-full="{{ $value }}"
+          aria-label="Copy full SHA"
+  >
+    Copy
+  </button>
+</span>
+
+<script>
+  (function(){
+    if (window.__plakarShaCopyInit) return;
+    window.__plakarShaCopyInit = true;
+
+    document.addEventListener('click', async function(e){
+      const btn = e.target.closest('button[data-sha-full]');
+      if (!btn) return;
+      const full = btn.getAttribute('data-sha-full');
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(full);
+        } else {
+          const ta = document.createElement('textarea');
+          ta.value = full;
+          ta.style.position = 'fixed';
+          ta.style.top = '-9999px';
+          document.body.appendChild(ta);
+          ta.focus();
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+        }
+        const original = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(()=>{ btn.textContent = original; }, 1500);
+      } catch (err) {
+        const original = btn.textContent;
+        btn.textContent = 'Failed';
+        setTimeout(()=>{ btn.textContent = original; }, 1500);
+      }
+    }, { passive: true });
+  })();
+</script>

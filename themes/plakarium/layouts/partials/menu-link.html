@@ -1,0 +1,7 @@
+{{ $url := .url }}
+{{ $context := .context }}
+{{ $replacements := $context.Scratch.Get "menu_replacements" }}
+{{ range $placeholder, $value := $replacements }}
+    {{ $url = replace $url $placeholder $value }}
+{{ end }}
+{{ return $url }}

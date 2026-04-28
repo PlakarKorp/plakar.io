@@ -1,0 +1,23 @@
+{{ if .Site.Params.github.enabled | default false }}
+    <!-- for tailwind safelist -->
+    <span class="hover:text-neutral-900"></span>
+
+    {{ $riGithubFill := resources.Get "img/ri/github-fill.svg" }}
+    {{ $githubOrganization := .Site.Params.github.organization | default "" }}
+    {{ $githubRepository := .Site.Params.github.repository | default "" }}
+
+    {{ partial "cta/based-button.html" (dict
+            "href" (print "https://github.com/" $githubOrganization "/" $githubRepository)
+            "target" "_blank"
+            "label" "Star us on GitHub"
+            "labelShort" "Star us"
+            "icon" $riGithubFill
+            "bgHoverColor" "bg-neutral-50"
+            "textHoverColor" "text-neutral-900"
+            "bgColor" "bg-neutral-900"
+            "border" "border"
+            "borderColor" "border-neutral-900"
+            "textColor" "text-neutral-50"
+            ) }}
+{{ end }}
+

@@ -1,0 +1,25 @@
+{{ define "main" }}
+
+  <!-- Navbar placeholder -->
+  <section class="section-light-2 grid-background">
+    <div class="content md:px-12 h-[67px] md:h-[98px] ">
+    </div>
+  </section>
+
+  <section class="section-light-2 grid-background  ">
+    <div class="bg-gradient-section-light-2 pt-28 lg:pt-40 pb-7 lg:pb-14 p-4">
+      <div class="content flex flex-col justify-center gap-8 h-full p-8">
+        <h1 class="~text-4xl/6xl text-neutral-900 ">{{ .Title }}</h1>
+      </div>
+    </div>
+  </section>
+  <section class="section-light-2 pb-14 lg:pb-28">
+    <div class="content flex flex-col item-start gap-8 p-4" data-pagefind-body>
+      <span data-pagefind-filter="section" class="hidden">Pages</span>
+      <div class="prose p-8">
+        {{ .Content }}
+      </div>
+      {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+    </div>
+  </section>
+{{ end }}

@@ -1,0 +1,172 @@
+{{ $ctx := .context }}
+{{ $menu := .menu | default "main" }}
+{{ $menuItems := index .context.Site.Menus $menu | default slice }}
+{{ $topLevelItems := where $menuItems "Parent" "" }}
+
+
+<nav id="main-nav" class="hidden md:flex relative items-center h-[62px]">
+
+    {{ range $topLevelItems }}
+        {{ if eq .Params.enabled true }}
+            {{ $top := . }}
+            <div class="group/btn relative dropdown-group">
+                {{  if  .HasChildren  }}
+                <button class="dropdown-btn px-2 text-gray-700 font-space-text hover:text-primary-500 inline-flex items-center gap-1 ~text-sm/lg">
+                    {{ .Name }}
+                    <span class="dropdown-chevron">
+                        <svg class="w-4 h-4 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"></path>
+                        </svg>
+                    </span>
+                </button>
+                {{ else }}
+                    <a href="{{ partial "menu-link.html" (dict "url" .URL "context" $ctx) | relLangURL }}" {{ with .Params.target }}target="{{ . }}" {{end}} class="group/link flex items-center gap-2 p-2 rounded-lg">                    <button class="dropdown-btn px-2 text-gray-700 font-space-text hover:text-primary-500 inline-flex items-center gap-1 ~text-sm/lg">
+                        {{ .Name }}
+                    </button>
+                </a>
+                {{ end }}
+
+                {{ $groupedChildren := dict }}
+                {{ range .Children }}
+                    {{ if eq .Params.enabled true }}
+                        {{ $dhild := . }}
+                        {{ with .Params.section }}
+                            {{ $section := printf "%s" . }}
+                            {{ $entries := index $groupedChildren $section | default (slice) }}
+                            {{ $entries = $entries | append $dhild }}
+                            {{ $groupedChildren = merge $groupedChildren (dict $section $entries) }}
+                        {{ end }}
+                    {{ end }}
+                {{ end }}
+
+                {{ $sections := slice }}
+                {{ range $section, $items := $groupedChildren }}
+                    {{ $weight := (index $items 0).Params.section_weight | default 0 }}
+                    {{ $sections = $sections | append (dict "name" $section "weight" $weight "items" $items) }}
+                {{ end }}
+
+                {{  if  .HasChildren  }}
+                    <div class="dropdown-menu absolute top-full mt-4 pt-2 hidden z-50">
+                        <div class="flex flex-wrap items-stretch
+                         py-8 px-4 bg-white shadow-lg border border-neutral-200 rounded-2xl ~text-sm/base">
+                            {{ range sort $sections "weight" }}
+                                <div class="w-1/2 lg:w-[30%] flex flex-col gap-6">
+                                    <div class="flex gap-1 text-primary-500 font-space-text ~text-xs/base">
+                                        <span>{{ .name }}</span>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        {{ range sort .items "Weight" }}
+                                            <a href="{{ partial "menu-link.html" (dict "url" .URL "context" $ctx) | relLangURL }}" {{ with .Params.target }}target="{{ . }}" {{end}} class="group/link flex items-center gap-2 p-2 rounded-lg hover:bg-neutral-100">
+                                                <div class="w-10 h-10 bg-neutral-100 text-neutral-600 group-hover/link:bg-white group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
+                                                    {{ partial "icon.html" (dict "name" .Params.icon "class" "w-6 h-6 flex items-center justify-center") }}
+                                                </div>
+                                                <div class="flex-1">
+                                                    <div class="text-neutral-900 font-space-text font-semibold">{{ .Name }}</div>
+                                                    {{ with .Params.description }}
+                                                        <div class="text-neutral-400 font-space-text ~text-xs/sm">{{ . }}</div>
+                                                    {{ end }}
+                                                </div>
+                                            </a>
+                                        {{ end }}
+                                    </div>
+                                </div>
+                            {{ end }}
+                            <div class="flex flex-1 items-end">
+                                {{ partial "header/menu-featured-article.html" $ctx }}
+                            </div>
+                        </div>
+                    </div>
+                {{ end }}
+            </div>
+        {{ end }}
+    {{ end }}
+</nav>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const dropdownGroups = document.querySelectorAll('.dropdown-group');
+        const chevronDown = `<svg class="w-4 h-4 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"></path></svg>`;
+        const chevronUp = `<svg class="w-4 h-4 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.9999 10.8284L7.0502 15.7782L5.63599 14.364L11.9999 8L18.3639 14.364L16.9497 15.7782L11.9999 10.8284Z"></path></svg>`;
+
+        // Helper: close all dropdowns
+        const closeAllDropdowns = () => {
+            dropdownGroups.forEach(group => {
+                const menu = group.querySelector('.dropdown-menu');
+                const chevron = group.querySelector('.dropdown-chevron');
+                if (menu) menu.classList.add('hidden');
+                if (chevron) chevron.innerHTML = chevronDown;
+            });
+        };
+
+        dropdownGroups.forEach(group => {
+            const button = group.querySelector('.dropdown-btn');
+            const menu = group.querySelector('.dropdown-menu');
+            const chevron = group.querySelector('.dropdown-chevron');
+            const header = document.getElementById('site-header');
+
+            // Toggle dropdown on button click
+            button.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isVisible = !menu.classList.contains('hidden');
+                closeAllDropdowns();
+                if (!isVisible) {
+                    menu.classList.remove('hidden');
+                    if (chevron) chevron.innerHTML = chevronUp;
+                }
+            });
+
+            // Close when mouse leaves the whole group or the header
+            group.addEventListener('mouseleave', (e) => {
+                const to = e.relatedTarget;
+                if (!group.contains(to) && !(header?.contains(to))) {
+                    closeAllDropdowns();
+                }
+            });
+            header.addEventListener('mouseleave', (e) => {
+                const to = e.relatedTarget;
+                if (!group.contains(to) && !(header?.contains(to))) {
+                    closeAllDropdowns();
+                }
+            });
+        });
+
+        // Global click: close if clicked outside any dropdown
+        document.addEventListener('click', (e) => {
+            const isLink = e.target.closest('a');
+            if (
+                ![...dropdownGroups].some(group => group.contains(e.target))
+                || isLink
+            ) {
+                closeAllDropdowns();
+            }
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const header = document.getElementById('site-header');
+        const dropdownMenus = document.querySelectorAll('.dropdown-menu');
+        const nav = document.getElementById('main-nav');
+
+
+        const setDropdownWidths = () => {
+            const headerRect = header.getBoundingClientRect();
+            const navRect = nav.getBoundingClientRect();
+            const headerWidth = header.getBoundingClientRect().width;
+
+            dropdownMenus.forEach(menu => {
+                const dropdownGroup = menu.closest('.dropdown-group');
+                const triggerButton = dropdownGroup.querySelector('.dropdown-btn');
+                const buttonRect = triggerButton.getBoundingClientRect();
+
+                const offsetFromNav = buttonRect.left - headerRect.left;
+                menu.style.left = `${-offsetFromNav}px`;
+                menu.style.width = `${headerWidth}px`;
+            });
+        };
+
+        setDropdownWidths();
+        window.addEventListener('resize', setDropdownWidths);
+    });
+</script>

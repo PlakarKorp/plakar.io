@@ -1,5 +1,7 @@
 ---
 title: "Download Plakar"
-date: "2026-04-03T00:00:00Z"
-summary: "Select a Plakar version to view its download links and integrity checks. This page redirects to the latest release."
+type: "download"
+layout: "list"
+description: "Landing page for Plakar download. Select a version to view platform packages, checksums, and installation guidance."
+summary: "Select a Plakar version to view its download links, integrity checks, and install instructions. This page redirects to the latest release."
 ---

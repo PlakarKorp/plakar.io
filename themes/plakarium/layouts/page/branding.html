@@ -1,0 +1,281 @@
+
+{{ define "main" }}
+    {{ $logoCircle := resources.Get "img/branding/logo-circle-white.svg" }}
+    {{ $logoMascotBW := resources.Get "img/branding/logo-mascot-bw.svg" }}
+    {{ $logoMascotColor := resources.Get "img/branding/logo-mascot-color.svg" }}
+
+    {{ $brandKit := resources.Get "distributed/logo.zip" }}
+
+    <!-- Navbar placeholder -->
+    <section class="section-light-2 grid-background">
+        <div class="content md:px-12 h-[67px] md:h-[98px] ">
+        </div>
+    </section>
+
+    <!-- Title -->
+    <section class="section-light-2 grid-background px-4 pt-20 pb-7">
+        <div class="content flex flex-col justify-between items-end gap-10">
+
+            <div class="w-full flex flex-col items-start gap-6 px-4">
+                <h1 class="self-stretch text-center justify-start font-medium ~text-4xl/6xl">
+                    Welcome to our <span class="text-primary-500">Brand Center</span>
+                </h1>
+            </div>
+            <div class="self-stretch text-center justify-start text-neutral-600 ~text-base/xl">
+                Whether you are a business, a systems administrator, a software developer, or a technology educator, Plakar provides clear guidance on how and when you can use our logo, product icons, and other brand assets in your projects and communications.
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Brand Assets -->
+    <section class="section-light-2 grid-background">
+        <div class="bg-gradient-section font-space-grotesk">
+            <div class="w-full max-w-6xl mx-auto px-4 py-12 bg-neutral-50/70 rounded-lg outline outline-1 outline-neutral-300 backdrop-blur-lg flex flex-col gap-8">
+                <div class="flex flex-col lg:flex-row gap-8">
+                    <!-- Left Text Block -->
+                    <div class="flex-1 flex flex-col gap-6">
+                        <div class="flex flex-col gap-4">
+                            <p class="text-neutral-900 ~text-lg/2xl font-medium font-space-text">
+                                Plakar logos are being used to brand and identify official Plakar projects and content.
+                            </p>
+                            <p class="text-neutral-900 ~text-lg/2xl font-medium font-space-text">
+                                Third parties can only use them to provide credit for Plakar products or to link to plakar.io.
+                            </p>
+                        </div>
+                        <div>
+                            <a href="#usage-guidelines" class="text-primary-500 underline ~text-sm/lg font-medium font-space-grotesk">
+                                For usage guidelines, scroll down.
+                            </a>
+                        </div>
+                        <a href="{{ $brandKit.RelPermalink }}" download class="flex items-center">
+                            <div class="text-neutral-50 bg-primary-500 hover:text-neutral-50 inline-flex
+  relative group overflow-hidden min-h-[48px] px-4 pr-4
+  rounded-lg items-center gap-2 font-space-grotesk
+  transition-all duration-150 ease-out hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1 active:shadow-inner">
+
+                                <!-- Background hover fill -->
+                                <div class="absolute inset-0 bg-primary-600 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-0"></div>
+
+                                <!-- Content -->
+                                <div class="relative z-10 flex items-center gap-2">
+                                    <!-- Icon -->
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M4 4h16v2H4V4zm0 6h16v2H4v-2zm0 6h16v2H4v-2z"/>
+                                    </svg>
+                                    <span class="hidden lg:block">Download logo kit</span>
+                                    <span class="block lg:hidden">Download</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Logo Preview Block -->
+                    <div class="flex-1 p-6 bg-neutral-50 rounded-md outline outline-1 outline-neutral-200 flex flex-col gap-6 items-center">
+                        <div class="flex items-center gap-4">
+                            <img src="{{ $logoCircle.RelPermalink }}" alt="Plakar Logo">
+                        </div>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full">
+                            <!-- Orange -->
+                            <div class="flex-1 p-2 bg-neutral-50 rounded-lg outline outline-1 outline-offset-[-1px] outline-neutral-300 flex flex-col justify-center items-start gap-3">
+                                <div class="self-stretch h-20 p-2 bg-[#FF8547] rounded-md flex justify-start items-end">
+                                    <div class="text-neutral-900 text-sm font-medium font-dm-mono uppercase leading-tight">Orange</div>
+                                </div>
+                                <div class="self-stretch text-neutral-900 text-sm font-medium font-dm-mono uppercase leading-tight">#FF8547</div>
+                            </div>
+                            <!-- Primary Blue -->
+                            <div class="flex-1 p-2 bg-neutral-50 rounded-lg outline outline-1 outline-offset-[-1px] outline-neutral-300 flex flex-col justify-center items-start gap-3">
+                                <div class="self-stretch h-20 p-2 bg-primary-500 rounded-md flex justify-start items-end">
+                                    <div class="text-neutral-50 text-sm font-medium font-dm-mono uppercase leading-tight">Primary</div>
+                                </div>
+                                <div class="self-stretch text-neutral-900 text-sm font-medium font-dm-mono uppercase leading-tight">#524CFF</div>
+                            </div>
+                            <!-- Neutral Dark -->
+                            <div class="flex-1 p-2 bg-neutral-50 rounded-lg outline outline-1 outline-offset-[-1px] outline-neutral-300 flex flex-col justify-center items-start gap-3">
+                                <div class="self-stretch h-20 p-2 bg-neutral-900 rounded-md flex justify-start items-end">
+                                    <div class="text-neutral-50 text-sm font-medium font-dm-mono uppercase leading-tight">Black</div>
+                                </div>
+                                <div class="self-stretch text-neutral-900 text-sm font-medium font-dm-mono uppercase leading-tight">#1C1C1E</div>
+                            </div>
+                            <!-- Neutral White -->
+                            <div class="flex-1 p-2 bg-neutral-50 rounded-lg outline outline-1 outline-offset-[-1px] outline-neutral-300 flex flex-col justify-center items-start gap-3">
+                                <div class="self-stretch h-20 p-2 bg-white rounded-md outline outline-1 outline-offset-[-1px] outline-neutral-200 flex justify-start items-end">
+                                    <div class="text-neutral-900 text-sm font-medium font-dm-mono uppercase leading-tight">White</div>
+                                </div>
+                                <div class="self-stretch text-neutral-900 text-sm font-medium font-dm-mono uppercase leading-tight">#FFFFFF</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Additional Logo Variants -->
+                <div class="flex flex-col gap-4">
+                    <p class="text-neutral-900 ~text-lg/2xl font-medium font-space-text">
+                        These variations of the logo can be used when the background is simple or plain color.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <!-- Variant 1 -->
+                        <div class="p-6 bg-neutral-50 rounded-md outline outline-1 outline-neutral-200 flex flex-col items-center gap-4">
+                            <img src="{{ $logoMascotBW.RelPermalink }}" alt="Mascot Black & White">
+                        </div>
+                        <!-- Variant 2 -->
+                        <div class="p-6 bg-neutral-50 rounded-md outline outline-1 outline-neutral-200 flex flex-col items-center gap-4">
+                            <img src="{{ $logoMascotColor.RelPermalink }}" alt="Mascot Color">
+                        </div>
+                        <!-- Variant 3 -->
+                        <div class="p-6 bg-neutral-50 rounded-md outline outline-1 outline-neutral-200 flex flex-col items-center gap-4">
+                            <img src="{{ $logoCircle.RelPermalink }}" alt="Circle White Logo">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="usage-guidelines" class="section-light-1 px-4 py-20 border-t border-b border-neutral-300">
+        <div class="content flex flex-col gap-16 items-center">
+            <!-- Title -->
+            <h2 class="text-center font-space-grotesk font-medium ~text-4xl/6xl">
+                Usage <span class="text-primary-500">Guidelines</span>
+            </h2>
+
+            <!-- Intro -->
+            <div class="flex flex-col gap-6 max-w-3xl text-neutral-900 ~text-base/xl font-medium font-space-text">
+                <p>
+                    Plakar is a registered trademark (®) of Plakar in EU and USA. The Plakar logo itself is property of the Plakar company. The logo and the brand name “Plakar” are not part of the ISC License, and can only be used commercially by Plakar on products, websites, and publications.
+                </p>
+                <p>
+                    Third parties may use the Plakar logo, provided all of the following conditions are met:
+                </p>
+            </div>
+
+            <!-- Guidelines Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+                <!-- Rule -->
+                <div class="flex gap-4 p-4 bg-neutral-50 rounded-lg outline outline-1 outline-neutral-200">
+                    <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-primary-500 text-neutral-50 font-bold font-space-grotesk">
+                        1
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <h3 class="font-medium font-space-grotesk text-neutral-900 ~text-lg/2xl">
+                            General Usage
+                        </h3>
+                        <p class="text-neutral-600 ~text-base/lg font-space-text">
+                            The Plakar name and logo can only be used to point to the product Plakar or to give credit. When used with a link on a web page, it should point to the URL <a href="https://www.plakar.io" class="underline text-primary-500">plakar.io</a>.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Rule -->
+                <div class="flex gap-4 p-4 bg-neutral-50 rounded-lg outline outline-1 outline-neutral-200">
+                    <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-primary-500 text-neutral-50 font-bold font-space-grotesk">
+                        2
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <h3 class="font-medium font-space-grotesk text-neutral-900 ~text-lg/2xl">
+                            Prominence
+                        </h3>
+                        <p class="text-neutral-600 ~text-base/lg font-space-text">
+                            You must visualize and promote your own branding more prominently than you use the Plakar logo or name. It must be clear for an average viewer that this is not an official Plakar product or Plakar website, publication or product. Do not use the Plakar name or logo as your own logo or name.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Rule -->
+                <div class="flex gap-4 p-4 bg-neutral-50 rounded-lg outline outline-1 outline-neutral-200">
+                    <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-primary-500 text-neutral-50 font-bold font-space-grotesk">
+                        3
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <h3 class="font-medium font-space-grotesk text-neutral-900 ~text-lg/2xl">
+                            Products
+                        </h3>
+                        <p class="text-neutral-600 ~text-base/lg font-space-text">
+                            You can use the Plakar name or logo on promotional products, such as T-shirts for events or trade show booths, provided it is a secondary brand as described in point 2.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Rule -->
+                <div class="flex gap-4 p-4 bg-neutral-50 rounded-lg outline outline-1 outline-neutral-200">
+                    <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-primary-500 text-neutral-50 font-bold font-space-grotesk">
+                        4
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <h3 class="font-medium font-space-grotesk text-neutral-900 ~text-lg/2xl">
+                            Modification
+                        </h3>
+                        <p class="text-neutral-600 ~text-base/lg font-space-text">
+                            The logo must be used unaltered, without enhancements, in original colors, original typography, and always complete (logo + text Plakar).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Rule -->
+                <div class="flex gap-4 p-4 bg-neutral-50 rounded-lg outline outline-1 outline-neutral-200">
+                    <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-primary-500 text-neutral-50 font-bold font-space-grotesk">
+                        5
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <h3 class="font-medium font-space-grotesk text-neutral-900 ~text-lg/2xl">
+                            Commercial Use
+                        </h3>
+                        <p class="text-neutral-600 ~text-base/lg font-space-text">
+                            Only in exceptional cases will permission be granted to use the logo on commercial products. You must contact us with a picture of how it will be used and ask for explicit permission.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Rule -->
+                <div class="flex gap-4 p-4 bg-neutral-50 rounded-lg outline outline-1 outline-neutral-200">
+                    <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-primary-500 text-neutral-50 font-bold font-space-grotesk">
+                        6
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <h3 class="font-medium font-space-grotesk text-neutral-900 ~text-lg/2xl">
+                            Endorsement and Affiliation
+                        </h3>
+                        <p class="text-neutral-600 ~text-base/lg font-space-text">
+                            The Plakar name and logo may not be used in a way that implies any official endorsement, partnership, affiliation, or certification of third-party products or services, including but not limited to cloud-based distributions, orchestration platforms, or managed services, unless explicit written permission has been granted by Plakar. This applies in particular to any usage within commercial marketplaces, product interfaces, marketing materials, or service listings.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conclusion -->
+            <p class="max-w-3xl text-neutral-900 ~text-base/xl font-medium font-space-text text-center">
+                If you have further questions or doubts, do not hesitate to contact us.
+            </p>
+        </div>
+    </section>
+
+    <section class="section-light-2 px-4 py-20 border-t border-neutral-300">
+        <div class="content flex flex-col gap-12 items-center">
+            <!-- Title -->
+            <h2 class="text-center font-space-grotesk font-medium ~text-4xl/6xl">
+                Community <span class="text-secondary-500">websites</span>
+            </h2>
+
+            <!-- Content -->
+            <div class="flex flex-col gap-6 max-w-3xl text-neutral-900 ~text-base/xl font-medium font-space-text text-left">
+                <p>
+                    Plakar’s logo has not yet been widely adopted or reused by third parties. Nevertheless, we wish to clarify our position early to avoid confusion in the future. These guidelines are not intended to prohibit or discourage legitimate community uses that show support for Plakar.
+                </p>
+                <p>
+                    The purpose of this policy is mainly to prevent misuse of the Plakar name and logo in a way that could be unfair, misleading, or intended to take advantage of Plakar’s reputation and community for commercial gain without authorization.
+                </p>
+                <p>
+                    In particular, we want to ensure that the Plakar brand is not used to promote commercial services or products that may suggest an official partnership or endorsement, or that could create confusion among users about whether an offering is operated by Plakar or by independent third parties.
+                </p>
+                <p>
+                    If you are unsure whether your use of the Plakar name or logo is appropriate, feel free to contact us. We are committed to supporting genuine community initiatives and will do our best to provide guidance.
+
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+{{ end }}
+

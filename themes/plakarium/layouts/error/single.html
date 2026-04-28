@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>404 – Page Not Found</title>
+  <style>
+    /* Reset & basics */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body, html { height: 100%; font-family: sans-serif; color: #333; }
+    a { text-decoration: none; color: inherit; }
+
+    /* Container centering */
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 100%;
+      padding: 1rem;
+    }
+
+    /* Mascot & icon */
+    .icon-close {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      width: 2rem;
+      opacity: 0.6;
+      transition: opacity 0.2s;
+    }
+    .icon-close:hover { opacity: 1; }
+
+    .mascot {
+      width: 200px;
+      animation: tailwag 1s ease-in-out infinite alternate;
+    }
+
+    @keyframes tailwag {
+      from { transform: translateX(0); }
+      to   { transform: translateX(4px); }
+    }
+
+    /* Headline & copy */
+    h1 {
+      margin-top: 1.5rem;
+      font-size: 2rem;
+      color: #e07a5f;
+    }
+    p {
+      margin: 0.75rem 0 1.5rem;
+      font-size: 1rem;
+      max-width: 320px;
+      line-height: 1.4;
+    }
+
+    /* Buttons */
+    .btn, .link {
+      display: inline-block;
+      margin: 0.5rem 0.75rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      border: 2px solid #81b29a;
+      font-weight: bold;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn {
+      background: #81b29a;
+      color: white;
+    }
+    .btn:hover {
+      background: white;
+      color: #81b29a;
+    }
+    .link {
+      background: transparent;
+      color: #81b29a;
+    }
+    .link:hover {
+      background: #81b29a;
+      color: white;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 400px) {
+      .mascot { width: 140px; }
+      h1 { font-size: 1.5rem; }
+      .btn, .link { width: 100%; max-width: 240px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img class="mascot" src="https://github.com/PlakarKorp/assets/blob/main/images/nestor/nestor-failure.png?raw=true" alt="Sad mascot" aria-hidden="true" />
+    <h1>Well, nuts! Page not found.</h1>
+    <p>
+        <br />Broken links ahead
+        <br />Lost amid dead wood of links
+        <br />Nestor guides you home.
+        <br />
+        <br />-- Haiku by Nestor
+    </p>
+    <a href="/" class="btn">Take me home</a>
+  </div>
+</body>
+</html>
