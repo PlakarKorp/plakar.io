@@ -1,3 +1,24 @@
-{{ if .Params.axeptio.enabled | default false }}
- <div id="axeptio-config" data-client-id="{{ .Params.axeptio.clientId }}" data-cookies-version="{{ .Params.axeptio.cookiesVersion }}" hidden></div>
+{{ with .Params.axeptio }}
+  {{ if .enabled }}
+    <div id="axeptio-config" data-client-id="{{ .clientId }}" data-cookies-version="{{ .cookiesVersion }}" hidden></div>
+  {{ end }}
 {{ end }}
+
+{{ $js := slice
+  (resources.Get "js/main/github.js")
+  (resources.Get "js/main/discord.js")
+  (resources.Get "js/main/header.js")
+  (resources.Get "js/main/home-scroll.js")
+  (resources.Get "js/main/toast.js")
+  (resources.Get "js/main/newsletter.js")
+  (resources.Get "js/main/download.js")
+  (resources.Get "js/main/contact.js")
+  (resources.Get "js/main/integrations-filter.js")
+  (resources.Get "js/main/posts-filter.js")
+  (resources.Get "js/main/book-demo-modal.js")
+  (resources.Get "js/main/axeptio.js")
+  (resources.Get "js/main/search.js")
+  | resources.Concat "js/compiled/bundle.js"
+  | minify | fingerprint
+}}
+<script src="{{ $js.RelPermalink }}" defer></script>
