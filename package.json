@@ -1,16 +1,21 @@
 {
-  "name": "plakar.io",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "npm-run-all --parallel dev:*",
-    "dev:hugo": "hugo server",
-    "dev:tailwind": "NODE_ENV=development ./themes/blowfish/node_modules/@tailwindcss/cli/dist/index.mjs -c ./themes/blowfish/tailwind.config.js -i ./themes/blowfish/assets/css/main.css -o ./assets/css/compiled/main.css --jit -w",
-    "build": "npm-run-all build:*",
-    "build:hugo": "hugo",
-    "build:tailwind": "NODE_ENV=production ./themes/blowfish/node_modules/@tailwindcss/cli/dist/index.mjs -c ./themes/blowfish/tailwind.config.js -i ./themes/blowfish/assets/css/main.css -o ./assets/css/compiled/main.css --jit",
-    "build:pagefind": "npx -y pagefind --site public"
-  },
   "devDependencies": {
-    "npm-run-all": "^4.1.5"
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/typography": "^0.5.16",
+    "autoprefixer": "^10.4.21",
+    "fluid-tailwind": "^1.0.4",
+    "postcss-load-config": "^6.0.1",
+    "tailwind-scrollbar": "^3.0.5",
+    "tailwind-scrollbar-hide": "^2.0.0",
+    "tailwindcss": "^3.4.17",
+    "tailwindcss-rtl": "^0.9.0"
+  },
+  "scripts": {
+    "dev:css": "tailwindcss -c tailwind.config.js -i themes/plakarium/assets/css/main.css -o themes/plakarium/assets/css/main-compiled.css --watch",
+    "pagefind:index": "npx -y pagefind --site public"
+  },
+  "dependencies": {
+    "basiclightbox": "^5.0.4",
+    "lenis": "^1.2.3"
   }
 }

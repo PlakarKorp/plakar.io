@@ -1,14 +1,11 @@
 ---
 title: "Integrations"
-date: "2026-03-19T00:00:00Z"
+date: "2025-06-30T18:16:35Z"
 weight: 3
-summary: ""
+chapter: false
+pre: "<b>3. </b>"
+sort: "title"
+summary: "Discover how to extend Plakar with integrations. This section covers supported integrations, configuration, and usage examples."
 ---
 
-# Integrations
-
-Plakar can be extended through integrations that enable storing backups or backing up and restoring data from external services. Each integration may act as a store, a source, a destination, or any combination of these roles, depending on its capabilities.
-
-Below is a list of links to the documentation for each supported integration.
-
-{{% children description="true" %}}
+{{%children description="true"%}}

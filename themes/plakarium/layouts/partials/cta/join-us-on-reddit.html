@@ -1,0 +1,25 @@
+{{ $label := "Join Reddit" }}
+{{ if (isset . "label") }}
+    {{ $label = .label }}
+{{ end }}
+
+{{ $site := .Site }}
+{{ if isset . "ctx" }}
+    {{ $site = .ctx.Site }}
+{{ end }}
+
+{{ if $site.Params.reddit.enabled | default false }}
+    {{ $redditCommunityName := $site.Params.reddit.communityName | default "" }}
+    {{ $riRedditFill := resources.Get "img/ri/reddit-fill.svg" }}
+
+    <!-- for tailwind safelist -->
+    <span class="hover:text-neutral-50 hidden"></span>
+
+    {{ partial "cta/based-button.html" (dict
+            "href" (print "https://www.reddit.com/r/" $redditCommunityName)
+            "target" "_blank"
+            "label" $label
+            "icon" $riRedditFill
+            "border" "border"
+            ) }}
+{{ end }}

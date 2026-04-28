@@ -1,11 +1,9 @@
 ---
 title: "MySQL"
-date: "2026-03-18T00:00:00Z"
-weight: 10
-summary: "Guides on backing up and restoring MySQL database"
+date: "2026-01-05T00:00:00Z"
+weight: 9
+summary: "Guides on backing up and restoring MySQL databases"
 ---
-
-# MySQL
 
 MySQL offers flexible backup strategies to suit different requirements. The most common approach uses `mysqldump` to create logical backups - SQL dumps that can be easily restored across different MySQL versions and platforms.
 

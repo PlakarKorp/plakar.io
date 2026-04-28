@@ -1,0 +1,2 @@
+{{ $latest := .Site.Params.latest }}
+{{ $.Scratch.Set "menu_replacements" (dict "latest_version_placeholder" $latest) }}

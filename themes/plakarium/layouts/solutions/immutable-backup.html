@@ -1,0 +1,191 @@
+{{ define "main" }}
+    {{ $riCornerDownRightLine := resources.Get "img/ri/corner-down-right-line.svg" }}
+    <!-- Hero -->
+    <section class="section-wrapper bg-neutral-100">
+        <div class="section-decorated mx-auto max-w-[1400px] text-neutral-900">
+            <div class="content px-10 md:px-16 py-20 flex flex-col gap-6 text-left">
+                <div class="text-primary-500 text-sm font-dm-mono uppercase flex gap-2">
+                    <span>//</span><span>Immutability at every layer</span>
+                </div>
+                <h1 class="~text-3xl/6xl font-medium font-space-grotesk max-w-4xl">
+                    Make backups untouchable <br />
+                    On cloud, on-prem, or on tape
+                </h1>
+                <p class="text-neutral-600 ~text-lg/2xl font-space-text max-w-2xl">
+                    With Plakar, immutability extends to Glacier and offline tape archives.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Stats -->
+    <section class="section-wrapper bg-neutral-900"
+             style="--pattern-fg: var(--color-neutral-700); --border-color: var(--color-neutral-700);">
+        <div class="section-decorated text-neutral-100 mx-auto max-w-[1400px]">
+            <div class="content px-10 md:px-16 py-20 grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+                <div>
+                    <h3 class="~text-3xl/5xl font-bold text-primary-500">23–28%</h3>
+                    <p class="text-neutral-300">Average revenue loss after ransomware attack<sup>1</sup></p>
+                </div>
+                <div>
+                    <h3 class="~text-3xl/5xl font-bold text-primary-500">49%</h3>
+                    <p class="text-neutral-300">Organizations now take extra steps for backup immutability<sup>2</sup></p>
+                </div>
+                <div>
+                    <h3 class="~text-3xl/5xl font-bold text-primary-500">80%</h3>
+                    <p class="text-neutral-300">Say backup is a top IT priority<sup>3</sup></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kloset Core -->
+    <section class="section-wrapper bg-neutral-100">
+        <div class="section-decorated mx-auto max-w-[1400px] text-neutral-900">
+            <div class="content px-6 md:px-12 py-20 flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/2 space-y-6 p-4">
+                    <div class="text-primary-500 text-sm font-dm-mono uppercase flex gap-2">
+                        <span>//</span><span>Kloset, the core of Plakar</span>
+                    </div>
+                    <h2 class="~text-2xl/4xl font-medium font-space-grotesk">
+                        Immutable by design. Portable by default.
+                    </h2>
+                    <p class="text-neutral-700 font-space-text ~text-base/xl">
+                        Every snapshot is encrypted, self-contained and verifiable. Kloset makes backups ready for cold storage and hardened environments.
+                    </p>
+                    <ul class="list-icon-check space-y-3 text-neutral-800 font-space-text">
+                        <li>Versioned & encrypted snapshots</li>
+                        <li>Full context remain available: file tree, metadata, audit trail</li>
+                        <li>Zero modification risk thanks to immutable logical storage layer</li>
+                    </ul>
+                </div>
+                <div class="lg:w-1/2">
+{{/*                    {{ $kloset := resources.Get "img/kloset-architecture.png" }}
+                    <img src="{{ $kloset.RelPermalink }}" alt="Kloset diagram" class="w-full rounded-sm">*/}}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-wrapper bg-neutral-100">
+        <section class="section-decorated text-neutral-900 mx-auto max-w-[1400px]">
+            <div class="content py-16 px-6 md:px-12 flex flex-col lg:flex-row gap-12 items-start">
+
+                <!-- Left Content -->
+                <div class="lg:w-1/2 space-y-6">
+                    <div class="text-primary-500 text-sm font-medium font-dm-mono uppercase flex items-center gap-2">
+                        <span>//</span><span>Cold storage & long-term protection</span>
+                    </div>
+                    <h2 class="~text-2xl/4xl font-medium font-space-grotesk">
+                        Immutable backups, even on tape.
+                    </h2>
+                    <p class="~text-base/xl font-space-text text-neutral-700 leading-relaxed">
+                        Plakar supports ultra-durable long-term storage strategies, including S3 Glacier and magnetic tape systems.<br />
+                        Thanks to <strong>ptar</strong>, Plakar can export snapshots as TAR files preserving the same properties as Kloset — including <em>immutability, integrity metadata, and full context.</em>
+                    </p>
+
+                    <ul class="list-icon-check text-neutral-800 font-space-text space-y-3">
+                        <li>Use Glacier for air-gapped, low-cost, immutable storage</li>
+                        <li>Export snapshots to tape without losing metadata or verifiability</li>
+                        <li>Browse or validate archives before restoring, even offline</li>
+                    </ul>
+
+                    <blockquote class="border-l-4 border-primary-500 pl-4 italic text-neutral-500 ~text-base/xl font-space-text">
+                        “With ptar, every backup becomes a self-contained, verifiable archive — perfect for tape, vaults, and legal hold.”
+                    </blockquote>
+                </div>
+
+                <!-- Right Illustration -->
+                <div class="lg:w-1/2 flex justify-center items-center">
+
+{{/*                    {{ $coldStorage := resources.Get "img/plakar-glacier-or-tape.png" }}
+                    <img src="{{ $coldStorage.RelPermalink }}" alt="Plakar Cold Storage" class="w-full max-w-[480px] rounded-sm shadow-sm">*/}}
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <section class="section-wrapper bg-neutral-900"
+             style="--pattern-fg: var(--color-neutral-700); --border-color: var(--color-neutral-700);">
+        <div class="section-decorated text-neutral-100 mx-auto max-w-[1400px]">
+            <div class="content px-6 md:px-12 py-20 flex flex-col items-center text-center gap-8">
+                <div class="text-primary-500 uppercase font-dm-mono text-sm flex items-center gap-2">
+                    <span>//</span><span>Ready to go immutable?</span>
+                </div>
+                <h2 class="~text-2xl/5xl font-medium font-space-grotesk max-w-3xl">
+                    Book your demo or try ptar in minutes.
+                </h2>
+                <p class="~text-base/xl text-neutral-300 font-space-text max-w-2xl leading-relaxed">
+                    Zero effort. Zero trust. Zero risk.<br />
+                    Just immutable, verifiable backups — wherever you need them.
+                </p>
+                <a href="#"
+                   class="inline-flex items-center gap-3 ~px-3/6 ~py-2/4 bg-primary-500 text-neutral-100 rounded-sm font-dm-mono uppercase ~text-sm/md">
+                    <span class="w-[20px] h-[20px]">{{ $riCornerDownRightLine.Content | safeHTML }}</span>
+                    <span>Book your demo</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-wrapper bg-neutral-100">
+        <div class="section-decorated max-w-[1400px] mx-auto text-neutral-900">
+            <div class="content px-6 md:px-12 py-20 space-y-10">
+                <div class="text-primary-500 text-sm font-dm-mono uppercase flex gap-2">
+                    <span>//</span><span>Security & resilience stack</span>
+                </div>
+                <h2 class="~text-2xl/4xl font-space-grotesk font-medium">Built for trustless, hostile environments</h2>
+
+                <div class="grid md:grid-cols-2 gap-6 ~text-base/xl font-space-text text-neutral-700">
+                    <ul class="list-icon-check space-y-3">
+                        <li>End-to-end encryption with quantum-ready algorithms</li>
+                        <li>Immutable append-only write layer</li>
+                        <li>Granular, instant restore without full extraction</li>
+                    </ul>
+                    <ul class="list-icon-check space-y-3">
+                        <li>Verifiable proof of existence & integrity</li>
+                        <li>Rootless, minimal, portable binary</li>
+                        <li>Integration with Glacier, S3, magnetic tape</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- CTA: Book a demo (dark version) -->
+    <div class="section-wrapper bg-neutral-900"
+         style="--pattern-fg: var(--color-neutral-700); --border-color: var(--color-neutral-700);">
+        <section class="section-decorated bg-neutral-900 text-neutral-100 mx-auto max-w-[1400px]">
+            <div class="content px-6 md:px-12 py-20 flex flex-col items-center text-center gap-8">
+
+                <!-- Badge -->
+                <div class="text-primary-500 uppercase font-dm-mono text-sm flex items-center gap-2">
+                    <span>//</span>
+                    <span>Ready to start?</span>
+                </div>
+
+                <!-- Title -->
+                <h2 class="~text-2xl/5xl font-medium font-space-grotesk text-neutral-50 max-w-3xl">
+                    Book your own demo or join one of our community calls
+                </h2>
+
+                <!-- Text -->
+                <p class="~text-base/xl text-neutral-300 opacity-80 font-space-text max-w-2xl leading-relaxed">
+                <span class="block font-medium text-neutral-100">
+                    No edge case. No effort. No “backup project”.
+                </span>
+                    Just peace of mind, every day.<br/>
+                    Plakar eliminates the mental load of backups while protecting what matters.
+                </p>
+
+                <!-- Button -->
+                <a href="#"
+                   class="inline-flex items-center gap-3 ~px-3/6 ~py-2/4 bg-primary-500 text-neutral-100 rounded-sm font-dm-mono uppercase ~text-sm/md">
+                    <span class="w-[20px] h-[20px]">{{ $riCornerDownRightLine.Content | safeHTML }}</span>
+                    <span>Book your demo</span>
+                </a>
+            </div>
+        </section>
+    </div>
+{{ end }}

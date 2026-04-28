@@ -1,0 +1,27 @@
+{{ $badgeSize := .badgeSize | default "5" }}
+{{ $format := .format | default "star_light" }}
+{{ $ctx := .ctx | default . }}
+
+
+{{ if $ctx.Site.Params.github.enabled | default false }}
+    {{ $riGithubFill := resources.Get "img/ri/github-fill.svg" }}
+    {{ $githubOrganization := $ctx.Site.Params.github.organization | default "" }}
+    {{ $githubRepository := $ctx.Site.Params.github.repository | default "" }}
+    {{ if eq $format "star_light" }}
+        <a class="github-stars flex space-x-2 " href="https://github.com/{{$githubOrganization}}/{{$githubRepository}}"
+       target="_blank" aria-label="Visit usNon, mais le paramètre est bien mis. Le même code appelé en desktop génère du code.  on Github">
+            <div class="flex items-center gap-1 px-2 pr-2  bg-[#F5F4FB] text-primary-500 rounded-lg">
+                <span class="w-{{ $badgeSize }} h-{{ $badgeSize }}">{{ $riGithubFill.Content | safeHTML }}</span>
+            </div>
+            <div class="flex items-center">
+                <span id="github-stars-count" class="inline-block min-w-[4ch] text-right"></span>
+            </div>
+        </a>
+    {{ else if eq $format "icon" }}
+        <a class="github-stars flex items-center flex-1 space-x-2" href="https://github.com/{{$githubOrganization}}/{{$githubRepository}}"
+           target="_blank" aria-label="Visit us on Github">
+            <span class="w-{{ $badgeSize }} h-{{ $badgeSize }}">{{ $riGithubFill.Content | safeHTML }}</span>
+        </a>
+    {{ end }}
+
+{{ end }}

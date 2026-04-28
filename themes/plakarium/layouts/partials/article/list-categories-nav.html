@@ -1,0 +1,86 @@
+{{ $debug := false }}
+
+
+<!-- Article categories navigation -->
+
+    {{ $currentSection := "unknown" }}
+    {{ $currentCategory := "unknown" }}
+    {{ $categories := slice }}
+
+    {{ if eq .Section "categories" }}
+        <!-- We are in a taxonomy / category page -->
+        {{ $allPages := .Site.RegularPages }}
+
+        {{ $postPages := where $allPages "Section" "posts" }}
+        {{ $integrationPages := where $allPages "Section" "integrations" }}
+
+        {{ $postCategories := slice }}
+        {{ range $postPages }}
+            {{ range .Params.categories }}
+                {{ if not (in $postCategories (. | urlize)) }}
+                    {{ $postCategories = $postCategories | append (. | urlize)  }}
+                {{ end }}
+            {{ end }}
+        {{ end }}
+
+        {{ $integrationCategories := slice }}
+        {{ range $integrationPages }}
+            {{ range .Params.categories }}
+                {{ if not (in $integrationCategories (. | urlize)) }}
+                    {{ $integrationCategories = $integrationCategories | append (. | urlize)  }}
+                {{ end }}
+            {{ end }}
+        {{ end }}
+
+        {{ $currentCategory  = .Title | lower | urlize }}
+
+        {{ if in $postCategories $currentCategory  }}
+            {{ $currentSection = "posts" }}
+            {{ $categories = uniq $postCategories }}
+        {{ else if in $integrationCategories $currentCategory  }}
+            {{ $currentSection = "integrations" }}
+            {{ $categories = uniq $integrationCategories }}
+        {{ else }}
+            <!-- Did you add a new section ? -->
+        {{ end }}
+    {{ if eq $debug true }}
+        <p>$postCategories: {{ uniq $postCategories}}</p>
+        <p>$integrationCategories: {{ uniq $integrationCategories }}</p>
+    {{ end }}
+    {{ else }}
+        <!-- We are in a section page -->
+        {{ $currentCategory := .Page.Title | lower | urlize }}
+        {{ $currentSection := .Section }}
+        {{ $pages := where .Site.RegularPages "Section" $currentSection }}
+        {{ range $pages }}
+            {{ range .Params.categories }}
+                {{ if not (in $categories (. | urlize)) }}
+                    {{ $categories = $categories | append (. | urlize)}}
+                {{ end }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
+
+
+    {{ if eq $debug true }}
+        <p>$currentCategory: {{$currentCategory}}</p>
+        <p>$currentSection: {{$currentSection}}</p>
+        <p>$categories: {{$categories}}</p>
+    {{ end }}
+
+<section id="categories" class="section-light-2 py-7 px-4 scroll-mt-20">
+    <div class="content flex flex-row items-center justify-between ">
+            <div class="px-2 py-2 bg-neutral-50 flex flex-wrap items-center gap-3 rounded-lg mx-auto ">
+                <a href="/{{ $currentSection }}/#categories">
+                    <button class="px-2 py-2 md:py-4 {{ if eq .Kind "section" }}bg-primary-500 text-white {{ else }} hover:bg-neutral-300 transition {{ end }}  text-sm font-space-grotesk rounded-lg items-center">
+                        All articles
+                    </button>
+                </a>
+                {{ range $name := $categories }}
+                    <a href="/categories/{{ $name | urlize }}/#categories">
+                        <button class="px-2 py-2 md:py-4 {{ if eq $name $currentCategory }}bg-primary-500 text-white{{ else }} hover:bg-neutral-300 transition {{ end }} text-sm font-space-grotesk rounded-lg items-center">{{ $name | humanize | replaceRE "(?i)connector(s)?" "" | strings.TrimSpace }}</button>
+                    </a>
+                {{ end }}
+            </div>
+        </div>
+    </section>

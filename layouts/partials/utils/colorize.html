@@ -1,4 +1,0 @@
-{{- $text := .text -}}
-{{- $word := .word -}}
-{{- $colored := printf "<span class=\"text-primary-500\">%s</span>" $word -}}
-{{- $text | replaceRE (printf "(?i)%s" $word) $colored | safeHTML -}}

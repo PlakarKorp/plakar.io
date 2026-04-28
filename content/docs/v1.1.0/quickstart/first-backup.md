@@ -1,23 +1,21 @@
 ---
 title: "Quickstart"
-date: "2026-03-11T00:00:00Z"
+date: "2025-12-15T00:00:00Z"
 weight: 3
 summary: "Get started with plakar: create your first backup, verify integrity, restore, and use the UI."
 aliases:
   - /docs/v1.1.0/quickstart/quickstart
 ---
 
-# Quickstart
-
 This guide gets you started in minutes. You'll create your first backup snapshot, verify it's secure, and learn how to restore your files.
 
-**Plakar** makes backups simple and secure by default. Every backup is end-to-end encrypted, deduplicated to save space, and stored as an independent snapshot you can restore at any time without depending on previous backups.
+**Plakar** makes backups simple and secure by default. Every backup is end-to-end encrypted, deduplicated to save space, and stored as an independent snapshot you can restore at any time—without depending on previous backups.
 
 If you've used traditional backup tools, here's what's different: instead of incremental archives that chain together, Plakar creates self-contained snapshots. You can delete old snapshots without breaking newer ones, compare any two snapshots directly, and trust that your data is tamper-evident and encrypted before it ever leaves your machine.
 
 ## Requirements
 
-Make sure **Plakar** is installed on your system. If you haven't done this yet, please refer to the [installation guide](../installation) for detailed instructions.
+Make sure **plakar** is installed on your system. If you haven't done this yet, please refer to the [Installation guide](./installation.md) for detailed instructions.
 
 ## Create a Kloset Store
 
@@ -26,31 +24,34 @@ Before we can back up any data, we need to define where the backup will go. In *
 For our first backup, we will create a local Kloset Store on the filesystem of the host OS. In a real backup scenario you would want to store backups on a different physical device, so substitute in a better location if you have one.
 
 In your terminal, run the following command:
-
 ```bash
 $ plakar at $HOME/backups create
 ```
 
-> [!WARNING]+ Don't Lose or Forget your Passphrase
-> Be extra careful when choosing the passphrase. People with access to the Kloset Store and knowledge of the passphrase can read your backups.
->
-> By default **Plakar** will enforce rules on your choice of passphrase to make sure it is complex enough to be secure. To add complexity, use a mixture of upper and lower case characters, numbers and symbols.
->
-> Your passphrase is not stored anywhere and **cannot** be recovered in case of loss. A lost passphrase means the data within the repository can no longer be accessed or recovered.
+**plakar** will then ask you to enter a passphrase, and repeat it to confirm.
+
+{{% notice style="warning" title="Your passphrase is important!" expanded="true" %}}
+
+Be extra careful when choosing the passphrase:
+People with access to the Kloset Store and knowledge of the passphrase can read your backups.
+
+By default **plakar** will enforce rules on your choice of passphrase to make sure it is complex enough to be secure. To add complexity, use a mixture of upper and lower case characters, numbers and symbols.
+
+**DO NOT LOSE OR FORGET THE PASSPHRASE:**
+it is not stored anywhere and **cannot** be recovered in case of loss. A lost passphrase means the data within the repository can no longer be accessed or recovered.
+{{% /notice %}}
 
 ## Create your first backup
 
-Now that we have created the Kloset Store where data will be stored, we can use it to create our first backup. **Plakar** uses the `at` keyword to specify the Kloset Store to use.
+Now that we have created the Kloset Store where data will be stored, we can use it to create our first backup. **plakar** uses the `at` keyword to specify the Kloset Store to use.
 
 To create a simple example backup, try running:
-
 ```bash
 $ plakar at $HOME/backups backup $HOME/Documents
 ```
-
 This backs up your Documents folder into the `$HOME/backups`. Replace the paths with any folder or storage location you prefer to do plakar operations on.
 
-**Plakar** will process the files it finds at that location (in this case the Documents folder) and pass them to the Kloset where they will be chunked and encrypted.
+**plakar** will process the files it finds at that location (in this case the Documents folder) and pass them to the Kloset where they will be chunked and encrypted.
 
 The output will indicate the progress:
 ```bash
@@ -65,10 +66,11 @@ dd62691d: OK ✓ /
 info: backup: created unsigned snapshot dd62691d of size 6.4 KiB in 125.317267ms (wrote 577 KiB)
 ```
 
-The output lists the short form of the snapshot ID. This is used to identify a particular snapshot and is also how you identify the snapshot to use for various **Plakar** commands.
+The output lists the short form of the snapshot ID. This is used to identify a particular snapshot and is also how you identify the snapshot to use for various **plakar** commands.
 
-> [!NOTE]+ The help command
-> Learning new tools can be confusing. To make things easier, **Plakar** includes built-in help for all commands. Just use `plakar help` and then the command you need help with for a full list of options and examples. For example, if you forget what the options are for restoring files from a snapshot: `plakar help restore`
+{{% notice style="info" title="Command help" expanded="true" %}}
+Learning new tools can be confusing. To make things easier, **plakar** includes built-in help for all commands. Just use `plakar help` and then the command you need help with for a full list of options and examples. For example, if you forget what the options are for restoring files from a snapshot: `plakar help restore`
+{{% /notice %}}
 
 ## List snapshots
 
@@ -155,10 +157,10 @@ You have successfully:
  - restored files
  - used the graphical UI
 
-How long did it take? This is how easy **Plakar** is for simple, secure backups.
+How long did it take? This is how easy **plakar** is for simple, secure backups.
 
 ## Next steps
 
 Having a backup on the filesystem is a start, but to improve the durability of your backups, you should consider hosting multiple copies in different locations.
 
-Continue to the [Part 2 of the Quickstart](../synchronize-copies) to create multiple copies of your backups.
+Continue to the [Part 2 of the Quickstart](./synchronize-copies.md) to create multiple copies of your backups.

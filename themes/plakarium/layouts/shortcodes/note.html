@@ -1,0 +1,104 @@
+{{- /* Alert shortcode
+     Params:
+       - color: "info" | "success" | "warning" | "danger" (default "info")
+       - title: optional string (heading)
+       - icon: "auto" | "none" (default "auto")
+     Usage:
+       {{< alert color="warning" title="Heads up!" >}}Content...{{< /alert >}}
+*/ -}}
+
+{{- $_hugo_config := `{ "version": 1 }` -}}
+{{- $color  := .Get "color"  | default "info" -}}
+{{- $title  := .Get "title"  | default "" -}}
+{{- $icon   := .Get "icon"   | default "auto" -}}
+
+{{- /* Variant -> class maps */ -}}
+{{- $wrap := dict
+  "info"    "border-primary-300 bg-primary-50 text-primary-900"
+  "success" "border-green-300  bg-green-50  text-green-900"
+  "warning" "border-amber-300  bg-amber-50  text-amber-900"
+  "danger"  "border-red-300    bg-red-50    text-red-900"
+-}}
+
+{{- $titleCls := dict
+  "info"    "text-primary-900"
+  "success" "text-green-900"
+  "warning" "text-amber-900"
+  "danger"  "text-red-900"
+-}}
+
+{{- $iconCls := dict
+  "info"    "text-primary-600"
+  "success" "text-green-600"
+  "warning" "text-amber-600"
+  "danger"  "text-red-600"
+-}}
+
+{{- $ringFocus := dict
+  "info"    "focus-visible:ring-primary-300"
+  "success" "focus-visible:ring-green-300"
+  "warning" "focus-visible:ring-amber-300"
+  "danger"  "focus-visible:ring-red-300"
+-}}
+
+{{- $wrapClasses  := index $wrap $color | default (index $wrap "info") -}}
+{{- $titleClasses := index $titleCls $color | default (index $titleCls "info") -}}
+{{- $iconClasses  := index $iconCls $color | default (index $iconCls "info") -}}
+{{- $ringClasses  := index $ringFocus $color | default (index $ringFocus "info") -}}
+
+<div class="not-prose w-full">
+  <div role="status"
+       class="group relative w-full rounded-md border {{ $wrapClasses }} px-4 py-3 ~text-base
+              shadow-[inset_0_1px_0_theme(colors.white/40%)]">
+    <div class="flex items-start gap-3">
+
+      {{- /* Icon (auto) */ -}}
+      {{- if ne $icon "none" -}}
+        <span class="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center {{ $iconClasses }}" aria-hidden="true">
+          {{- if eq $color "success" -}}
+            <!-- check-circle -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="h-5 w-5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"/>
+              <path d="M8 12l2.5 2.5L16 9"/>
+            </svg>
+          {{- else if eq $color "warning" -}}
+            <!-- alert-triangle -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="h-5 w-5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+              <path d="M12 9v4M12 17h.01"/>
+            </svg>
+          {{- else if eq $color "danger" -}}
+            <!-- alert-octagon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="h-5 w-5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7.86 2h8.28L22 7.86v8.28L16.14 22H7.86L2 16.14V7.86z"/>
+              <path d="M12 8v5M12 16h.01"/>
+            </svg>
+          {{- else -}}
+            <!-- info -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="h-5 w-5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"/>
+              <path d="M12 8h.01M11 12h2v4h-2z"/>
+            </svg>
+          {{- end -}}
+        </span>
+      {{- end -}}
+
+      <div class="min-w-0 flex-1">
+        {{- if $title }}
+          <h4 class="mb-1 ~text-base font-semibold leading-6 {{ $titleClasses }}">{{- $title -}}</h4>
+        {{- end }}
+
+        <div class="prose prose-p:my-2 max-w-none ~text-base">
+          {{- if eq .Page.File.Ext "md" -}}
+            {{- .Inner | markdownify -}}
+          {{- else -}}
+            {{- .Inner | htmlUnescape | safeHTML -}}
+          {{- end -}}
+        </div>
+      </div>
+
+      {{- /* Optional: anchorable focus target for a11y (no button/dismiss here) */ -}}
+      <span tabindex="0" class="sr-only focus-visible:outline-none {{ $ringClasses }} rounded-md"></span>
+    </div>
+  </div>
+</div>

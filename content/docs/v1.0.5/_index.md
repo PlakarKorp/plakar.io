@@ -1,10 +1,12 @@
 ---
-title: "Plakar: v1.0.5"
-date: "2026-03-18T00:00:00Z"
+title: "Plakar v1.0.5"
+date: "2025-10-15T12:00:00Z"
 weight: 4
-summary: "Plakar documentation hub, find guides, references, and resources for working with Plakar."
+chapter: false
+sort: "title"
+docsBase: "/docs/main"
+plakarVersion: "v1.0.5"
+summary: "Main documentation hub for the developer branch of Plakar. Find guides, references, and resources for developers working with Plakar."
 ---
-
-# Plakar: v1.0.5
 
 {{% children description="true" style="sections" %}}

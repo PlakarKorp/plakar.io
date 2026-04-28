@@ -1,0 +1,366 @@
+{{ define "main" }}
+    {{ $riCornerDownRightLine := resources.Get "img/ri/corner-down-right-line.svg" }}
+
+    <!-- Navbar placeholder -->
+    <section class="section-secondary-1">
+        <div class="content md:px-12 h-[67px] md:h-[98px] ">
+        </div>
+    </section>
+
+    <section class="section-secondary-1  pt-20 lg:pt-28">
+        <div class="content flex flex-col items-center text-center gap-6">
+            <h1 class="~text-3xl/5xl font-medium font-space-grotesk leading-tight">
+                <span class="text-secondary-500">Engineered</span> by dreamers, <br/><span class="md:ml-28">powered </span><span class="text-secondary-500">by community</span>.
+            </h1>
+        </div>
+    </section>
+
+    <section class="section-gradient-secondary-1">
+                <div class="content flex flex-col">
+                    <div class="flex flex-col pt-16 text-left pl-4 items-center">
+                        <p class="~text-base/2xl  text-neutral-900 max-w-6xl text-center">
+                            Our mission is to set a <span class="text-secondary-500 font-bold">new open-source standard for data protection</span>.
+                            Achieving it depends on the strength and engagement of our community.
+                            This page outlines our community guidelines and defines the boundaries of our open-source project.</p>
+                    </div>
+
+                    {{ $lfLogo := resources.Get "img/community/LF_MemberLevel_silver.svg" }} {{ $cncfLogo := resources.Get "img/community/cncf-member-silver-color.svg" }} <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12 py-8 opacity-90">
+                    {{ if $lfLogo }}
+                    <img src="{{ $lfLogo.RelPermalink }}" alt="Linux Foundation Silver Member" class="h-12 md:h-16 w-auto" />
+                    {{ end }}
+
+                    {{ if $cncfLogo }}
+                    <img src="{{ $cncfLogo.RelPermalink }}" alt="CNCF Silver Member" class="h-10 md:h-14 w-auto" /> {{ end }}
+                </div>
+                <div class="flex flex-col items-center py-16">
+                    {{ partial "cta/join-us-on-discord.html" (dict "label" "Join Plakar community on Discord" "ctx" . ) }}
+                </div>
+                {{ $discord := resources.Get "img/community/discord-screenshot.png" }}
+                <div class="w-full flex justify-center items-end">
+                    <div class="w-1/4 flex justify-end items-end aspect-square">
+                        {{ $backupDone := resources.Get "img/Nestor/backup-done.svg" }}
+                        <img src="{{ $backupDone.RelPermalink }}" alt="Backup done" class="h-2/3 object-contain" />
+                    </div>
+                    <div class="w-1/2 overflow-hidden aspect-[2/1] flex items-end">
+                        <img src="{{ $discord.RelPermalink }}" alt="Discord screenshot" class="w-full h-full object-cover object-top rounded-lg" />
+                    </div>
+                    <div class="w-1/4 flex justify-start items-end aspect-square">
+                        {{ $nestorDanse := resources.Get "img/Nestor/danse.svg" }}
+                        <img src="{{ $nestorDanse.RelPermalink }}" alt="Backup done" class="h-2/3 object-contain" />
+                    </div>
+                </div>
+            </div>
+    </section>
+
+
+
+    <!-- Build in public section -->
+    <section class="section-light-2 py-14 lg:py-28">
+        <div class="content flex flex-col gap-12 items-center px-4 text-center">
+            <h2 class="~text-3xl/5xl font-space-grotesk font-medium leading-tight text-neutral-900">
+                Built <span class="text-secondary-500">in public</span>
+            </h2>
+            <p class="~text-lg/2xl text-neutral-700 max-w-4xl">
+                At Plakar, transparency is part of our DNA. Most of our meetings are open to the public, anyone can join, listen, and learn.
+                Every morning starts with a short briefing on what we’ve done and what’s next.
+            </p>
+            <div class="grid md:grid-cols-2 gap-8 text-left max-w-5xl">
+                <div class="p-6 bg-neutral-50 border border-neutral-300 rounded-lg shadow-sm">
+                    <h3 class="font-space-grotesk ~text-xl/2xl text-secondary-500 mb-2">Daily Briefings</h3>
+                    <p class="text-neutral-600 ~text-base/lg">
+                        Start the day with our engineering updates: what we accomplished, what’s in progress, and what’s next.
+                    </p>
+                </div>
+                <div class="p-6 bg-neutral-50 border border-neutral-300 rounded-lg shadow-sm">
+                    <h3 class="font-space-grotesk ~text-xl/2xl text-secondary-500 mb-2">Hackrooms</h3>
+                    <p class="text-neutral-600 ~text-base/lg">
+                        Watch and listen developers code live in hackrooms. Speaking is limited to team and contributors to stay focused, but questions are welcome in our text channels.
+                    </p>
+                </div>
+                <div class="p-6 bg-neutral-50 border border-neutral-300 rounded-lg shadow-sm">
+                    <h3 class="font-space-grotesk ~text-xl/2xl text-secondary-500 mb-2">Weekly Community Calls</h3>
+                    <p class="text-neutral-600 ~text-base/lg">
+                        Join our weekly calls to discover the latest Plakar advancements and ask questions directly to the team.
+                    </p>
+                </div>
+                <div class="p-6 bg-neutral-50 border border-neutral-300 rounded-lg shadow-sm">
+                    <h3 class="font-space-grotesk ~text-xl/2xl text-secondary-500 mb-2">Early Preview Releases</h3>
+                    <p class="text-neutral-600 ~text-base/lg">
+                        Get access to developer preview releases to test cutting-edge features before they land in stable.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Involvement Section -->
+    <section class="section-gradient-secondary-1 py-14 lg:py-28">
+        <div class="content flex flex-col gap-16 items-center px-4 text-neutral-900">
+
+            <!-- Title -->
+            <div class="w-full flex flex-col items-start text-start md:px-20">
+                <h2 class="~text-3xl/5xl font-space-grotesk font-medium">
+                    We <span class="text-secondary-500">Need</span> You
+                </h2>
+                <p class="~text-lg/2xl max-w-4xl mt-4">
+                    Plakar is an open-source project built by and for its community.
+                    Your ideas, energy, and skills can help us grow faster and reach more people.
+                    Here are some of the ways you can make a difference.
+                </p>
+            </div>
+
+            <!-- Block 1 -->
+            <div class="flex flex-col md:flex-row items-center gap-8 max-w-6xl">
+                <div class="w-full md:w-1/3 flex justify-center">
+                    {{ $nestorMeetup := resources.Get "img/Nestor/nestor-speaker.png" }}
+                    <div class="bg-neutral-50 border border-neutral-300 rounded-lg p-4 aspect-square flex items-center justify-center shadow-md">
+                        <img src="{{ $nestorMeetup.RelPermalink }}" alt="Organize Meetups" class="object-contain w-full h-full" />
+                    </div>
+                </div>
+                <div class="w-full md:w-2/3">
+                    <div class="bg-neutral-50 border border-neutral-300 rounded-lg p-6 shadow-md">
+                        <h3 class="font-space-grotesk ~text-xl/3xl text-secondary-500 mb-3">Organize Meetups</h3>
+                        <p class="text-neutral-700 ~text-base/lg">
+                            Help us bring the Plakar community together in person or online.
+                            Whether small local gatherings or larger events, meetups are a great way to share ideas and build connections.
+                            We can support you with content, presentation materials, and even Plakar goodies to give away.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Block 2 -->
+            <div class="flex flex-col md:flex-row-reverse items-center gap-8 max-w-6xl">
+                <div class="w-full md:w-1/3 flex justify-center">
+                    {{ $nestorSpread := resources.Get "img/Nestor/nestor-podcaster.png" }}
+                    <div class="bg-neutral-50 border border-neutral-300 rounded-lg p-4 aspect-square flex items-center justify-center shadow-md">
+                        <img src="{{ $nestorSpread.RelPermalink }}" alt="Spread the Word" class="object-contain w-full h-full" />
+                    </div>
+                </div>
+                <div class="w-full md:w-2/3">
+                    <div class="bg-neutral-50 border border-neutral-300 rounded-lg p-6 shadow-md">
+                        <h3 class="font-space-grotesk ~text-xl/3xl text-secondary-500 mb-3">Spread the Word</h3>
+                        <p class="text-neutral-700 ~text-base/lg">
+                            Share Plakar’s story through blog posts, podcasts, videos, and social media.
+                            Every piece of content helps more people discover and join our mission.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Block 3 -->
+            <div class="flex flex-col md:flex-row items-center gap-8 max-w-6xl">
+                <div class="w-full md:w-1/3 flex justify-center">
+                    {{ $nestorDocs := resources.Get "img/Nestor/nestor-content-writer.png" }}
+                    <div class="bg-neutral-50 border border-neutral-300 rounded-lg p-4 aspect-square flex items-center justify-center shadow-md">
+                        <img src="{{ $nestorDocs.RelPermalink }}" alt="Improve Documentation" class="object-contain w-full h-full" />
+                    </div>
+                </div>
+                <div class="w-full md:w-2/3">
+                    <div class="bg-neutral-50 border border-neutral-300 rounded-lg p-6 shadow-md">
+                        <h3 class="font-space-grotesk ~text-xl/3xl text-secondary-500 mb-3">Improve Documentation</h3>
+                        <p class="text-neutral-700 ~text-base/lg">
+                            Help us make Plakar easier to use by writing or improving tutorials, guides, and examples in different formats: written, video, or interactive.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Code of conduct section -->
+    <section class="section-light-1 py-14 lg:py-28">
+        <div class="content flex flex-col gap-12 items-center px-4 text-center">
+            <h2 class="~text-3xl/5xl font-space-grotesk font-medium leading-tight text-neutral-900">
+                Plakar <span class="text-secondary-500">Open Source</span> Community Code of Conduct
+            </h2>
+            <p class="~text-lg/2xl text-neutral-700 max-w-4xl">
+                The Plakar community is committed to providing a welcoming, respectful, and inclusive environment for everyone.
+                We value contributions from all members of the community and are dedicated to ensuring that every participant can collaborate openly and effectively.
+                This Code of Conduct outlines our expectations for behavior and guides our commitment to an open, collaborative, and respectful space.
+            </p>
+            <p class="~text-base text-neutral-600 max-w-4xl">
+                You can read the full, detailed version of this Code of Conduct on our
+                <a href="https://github.com/PlakarKorp/plakar/blob/main/CODE_OF_CONDUCT.md"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="text-secondary-500 underline font-medium">
+                    GitHub repository
+                </a>.
+            </p>
+            <div class="grid md:grid-cols-2 gap-8 text-left max-w-5xl">
+                <div class="p-6 bg-neutral-50 border border-neutral-300 rounded-lg shadow-sm">
+                    <h3 class="font-space-grotesk ~text-xl text-neutral-900 mb-2">Our Standards</h3>
+                    <ul class="list-disc pl-5 text-neutral-600 ~text-base space-y-1">
+                        <li><strong>Be Respectful:</strong> Treat others with kindness, empathy, and respect.</li>
+                        <li><strong>Be Constructive:</strong> Provide helpful feedback, avoid personal attacks.</li>
+                        <li><strong>Focus on Technical Merit:</strong> Evaluate based on project goals, not bias.</li>
+                        <li><strong>Communicate Clearly:</strong> Use clear language, disclose conflicts of interest.</li>
+                        <li><strong>Foster a Welcoming Environment:</strong> Include and support newcomers.</li>
+                        <li><strong>Respect Personal Boundaries:</strong> Avoid unwelcome or inappropriate behavior.</li>
+                        <li><strong>Keep It Professional:</strong> No offensive or discriminatory language or imagery.</li>
+                        <li><strong>Accept Responsibility:</strong> Apologize sincerely and learn from mistakes.</li>
+                    </ul>
+                </div>
+                <div class="p-6 bg-neutral-50 border border-neutral-300 rounded-lg shadow-sm">
+                    <h3 class="font-space-grotesk ~text-xl text-neutral-900 mb-2">Unacceptable Behavior</h3>
+                    <ul class="list-disc pl-5 text-neutral-600 ~text-base space-y-1">
+                        <li>Harassment, bullying, or discrimination.</li>
+                        <li>Insults, threats, or personal attacks.</li>
+                        <li>Unsolicited sexual attention or advances.</li>
+                        <li>Trolling, spamming, or disruptive behavior.</li>
+                        <li>Publishing private information without consent.</li>
+                        <li>Making false accusations or misleading statements.</li>
+                    </ul>
+                    <h3 class="font-space-grotesk ~text-xl text-neutral-900 mt-6 mb-2">Reporting & Enforcement</h3>
+                    <p class="text-neutral-600 ~text-base">
+                        Report violations confidentially to <a href="mailto:conduct@plakar.io" class="text-secondary-500 underline">conduct@plakar.io</a>.
+                        Consequences may include warnings, temporary or permanent suspension, or bans from all project spaces.
+                    </p>
+                    <h3 class="font-space-grotesk ~text-xl text-neutral-900 mt-6 mb-2">Scope</h3>
+                    <p class="text-neutral-600 ~text-base">
+                        This Code applies to all project spaces, both online and offline, including issue trackers, mailing lists, code repositories, and events.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Contributing section -->
+    <section class="section-light-2 py-14 lg:py-28">
+        <div class="content flex flex-col gap-12 items-center px-4 text-center">
+            <h2 class="~text-3xl/5xl font-space-grotesk font-medium leading-tight text-neutral-900">
+                Contributing to <span class="text-secondary-500">Plakar</span>
+            </h2>
+            <p class="~text-lg/2xl text-neutral-700 max-w-4xl">
+                We welcome contributions of all kinds from new features and bug fixes to documentation improvements.
+                Your input helps Plakar grow and improve for the entire community.
+                Below is a quick overview of how to get involved.
+                For full details, please read our
+                <a href="https://github.com/PlakarKorp/plakar/blob/main/CONTRIBUTING.md"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="text-secondary-500 underline font-medium">
+                    Contributing Guide
+                </a>.
+            </p>
+            <div class="grid md:grid-cols-2 gap-8 text-left max-w-5xl">
+                <div class="p-6 bg-neutral-50 border border-neutral-300 rounded-lg shadow-sm">
+                    <h3 class="font-space-grotesk ~text-xl text-neutral-900 mb-2">Ways to Contribute</h3>
+                    <ul class="list-disc pl-5 text-neutral-600 ~text-base space-y-1">
+                        <li>Report bugs or suggest improvements by opening an issue on GitHub.</li>
+                        <li>Propose and discuss new features before starting development.</li>
+                        <li>Submit code changes via pull requests, following our coding style and review process.</li>
+                        <li>Improve or expand the documentation for users and developers.</li>
+                    </ul>
+                </div>
+                <div class="p-6 bg-neutral-50 border border-neutral-300 rounded-lg shadow-sm">
+                    <h3 class="font-space-grotesk ~text-xl text-neutral-900 mb-2">Best Practices</h3>
+                    <ul class="list-disc pl-5 text-neutral-600 ~text-base space-y-1">
+                        <li>Fork the repository and work on a dedicated feature branch.</li>
+                        <li>Write clear commit messages and include relevant tests when applicable.</li>
+                        <li>Run tests and linters before submitting your changes.</li>
+                        <li>Respect our <a href="https://github.com/PlakarKorp/plakar/blob/main/CODE_OF_CONDUCT.md"
+                                           target="_blank"
+                                           rel="noopener noreferrer"
+                                           class="text-secondary-500 underline">Code of Conduct</a> in all interactions.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community vs Enterprise section -->
+    <section class="section-light-1 py-14 lg:py-28">
+        <div class="content flex flex-col gap-12 items-center px-4 text-center">
+            <!-- Title -->
+            <h2 class="~text-3xl/5xl font-space-grotesk font-medium leading-tight text-neutral-900">
+                <span class="text-secondary-500">Community</span> vs <span class="text-primary-500">Enterprise</span>
+            </h2>
+
+            <!-- Intro -->
+            <div class="max-w-5xl text-neutral-700 ~text-lg/xl space-y-4 text-left">
+                <p>
+                    To fulfill our mission of setting a <span class="text-secondary-500 font-semibold">new open-source standard for data protection</span>,
+                    Plakar must ensure the means to develop, maintain, and improve this standard, and the tools that go with it, over time.
+                    Securing sustainable funding for the project and our development team is an essential part of that mission and the purpose of Plakar Korp.
+                </p>
+
+                <p>
+                    <strong>Plakar Community Edition</strong> will continue to be actively developed and maintained to meet the needs of:
+                </p>
+                <ul class="list-disc pl-5">
+                    <li>Individuals using Plakar for personal purposes</li>
+                    <li>Small organizations with simple backup and restore requirements</li>
+                </ul>
+
+                <p>
+                    <strong>Plakar Enterprise Edition</strong> provides advanced capabilities and will remain freely available for:
+                </p>
+                <ul class="list-disc pl-5">
+                    <li>Non-profit organizations</li>
+                    <li>Startups under 3 years old and pre‑Series A</li>
+                    <li>Organizations operating in war zones that require assistance</li>
+                </ul>
+
+                <p>
+                    The main focus of the <strong>Enterprise Edition</strong> is on <em>control plane</em> features, including:
+                    multi‑Kloset management with fine‑grained access rights, integration with KMS (Key Management Systems),
+                    consolidated reports and statistics on backup and restore operations, compliance tools,
+                    and collaborative backup management for multiple users within the same entity.
+                </p>
+
+                <p>
+                    Core components such as <strong>Ptar</strong>, <strong>Plakar agent</strong>, and <strong>Kloset</strong> are and will remain licensed under the <strong>ISC license</strong>.
+                    The Plakar UI, while part of the Enterprise Edition, will continue to be distributed with the agent and will remain free to use for managing a single Kloset.                </p>
+                <p>
+                    Our commitment is to maintain accessibility for small organizations, while ensuring a sustainable business model
+                    that balances Plakar Korp’s need for profitability with our mission to keep the solution open and widely available.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join the Community -->
+    <section class="section-gradient-secondary-1 py-14 lg:py-20">
+        <div class="content flex flex-col gap-10 items-center text-center text-neutral-900">
+
+            <!-- Title -->
+            <h2 class="~text-3xl/5xl font-space-grotesk font-medium leading-tight">
+                All the ways to <span class="text-secondary-500">join</span> the Community
+            </h2>
+            <p class="~text-lg/2xl max-w-4xl">
+                Connect with Plakar, follow our updates, and take part in discussions through our different community channels.
+            </p>
+
+            <!-- Join us on Discord -->
+            <div class="flex flex-row items-center gap-4">
+                {{ partial "cta/join-us-on-discord.html" (dict "label" "Join us on Discord" "ctx" . ) }}
+                {{ partial "cta/join-us-on-reddit.html" (dict "label" "Join us on Reddit" "ctx" . ) }}
+
+            </div>
+
+            <!-- Follow us -->
+            <div class="bg-neutral-50 border border-neutral-300 rounded-lg shadow-sm px-6 py-5 flex flex-col items-center gap-4">
+                <div class="flex flex-wrap justify-center gap-3 lg:gap-4">
+                    <span class="~text-lg/xl font-space-grotesk font-medium text-secondary-500">Follow us on : </span>
+                    {{ partial "social/x-badge.html" (dict "badgeSize" "8" "context" .) }}
+                    {{ partial "social/bluesky-badge.html" (dict "badgeSize" "8" "context" .) }}
+                    {{ partial "social/linkedin-badge.html" (dict "badgeSize" "8" "context" .) }}
+                    {{ partial "social/github-badge.html" (dict "badgeSize" "8" "format" "icon" "ctx" .) }}
+                </div>
+            </div>
+
+
+
+            <!-- Mascot -->
+            {{ $danseSvg := resources.Get "img/Nestor/danse.svg" }}
+            {{ if $danseSvg }}
+                <img src="{{ $danseSvg.RelPermalink }}" alt="Nestor danse" class="w-32 h-32 mt-8">
+            {{ end }}
+        </div>
+    </section>
+
+{{ end }}

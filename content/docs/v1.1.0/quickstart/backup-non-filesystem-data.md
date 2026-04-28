@@ -1,26 +1,24 @@
 ---
 title: "Backup non-filesystem data"
-date: "2026-03-11T00:00:00Z"
+date: "2025-12-15T00:00:00Z"
 weight: 5
 summary: "Create a backup for your non-filesystem data. In this guide, we will back up an S3 bucket but this logic applies to any connector supported by plakar."
 aliases:
   - /docs/v1.1.0/quickstart/quickstart-3
 ---
 
-# Backup non-filesystem data
-
 Modern infrastructures are not limited to files stored on traditional filesystems. Your data may reside in various services, databases, or cloud storage solutions.
 
-In the first two parts of this quickstart, we [created a Kloset Store and performed a backup of local filesystem data](../first-backup), and then [synchronized that Kloset Store to a second location](../synchronize-copies) to improve durability.
+In the first two parts of this quickstart, we [created a Kloset Store and performed a backup of local filesystem data](./first-backup.md), and then [synchronized that Kloset Store to a second location](./synchronize-copies.md) to improve durability.
 
-In this guide, we will create a backup of an S3 bucket using **Plakar**. The same logic applies to any other data source supported by **Plakar** through its various connectors.
+In this guide, we will create a backup of an S3 bucket using **plakar**. The same logic applies to any other data source supported by **plakar** through its various connectors.
 
 ## Requirements
 
 After following the previous parts of this quickstart, you should have:
-- **Plakar** is installed on your system (see the [installation guide](../installation)).
-- A Kloset Store on your local filesystem at `$HOME/backups`.
-- A S3-compatible storage location configured in your **Plakar** configuration file under the name `s3-backups` (see [Part 2 of this quickstart](../synchronize-copies)).
+* **plakar** is installed on your system (see the [Installation guide](./installation.md)).
+* A Kloset Store on your local filesystem at `$HOME/backups`.
+* A S3-compatible storage location configured in your **plakar** configuration file under the name `s3-backups` (see [Part 2 of this quickstart](./synchronize-copies.md)).
 
 ## Initialize the S3 bucket with some data
 
@@ -40,16 +38,16 @@ Then, click on the "Upload" button, and upload a few files of your choice to the
 
 ## Configure the S3 source in plakar
 
-Similarly to how we configured the S3 store in [Part 2 of this quickstart](../synchronize-copies), we need to let **Plakar** know about the S3 source we want to back up.
+Similarly to how we configured the S3 store in [Part 2 of this quickstart](./synchronize-copies.md), we need to let **plakar** know about the S3 source we want to back up.
 
 Run the following command to create the new **source**:
 
 ```bash
-$ plakar source add mydata \
-  location=s3://localhost:9000/mydata \
-  access_key=minioadmin \
-  secret_access_key=minioadmin \
-  use_tls=false
+plakar source add mydata \
+    location=s3://localhost:9000/mydata \
+    access_key=minioadmin \
+    secret_access_key=minioadmin \
+    use_tls=false
 ```
 
 This command creates a new source named `mydata` that points to the `mydata` bucket on the MinIO server running at `localhost:9000`. It uses the access key and secret key provided above. The `use_tls=false` option is specified because we are connecting to a local server without TLS.
@@ -83,11 +81,11 @@ It is also possible to restore a snapshot directly to an S3 location.
 To do so, first configure a new **destination**:
 
 ```bash
-$ plakar destination add mydata \
-  location=s3://localhost:9000/mydata \
-  access_key=minioadmin \
-  secret_access_key=minioadmin \
-  use_tls=false
+plakar destination add mydata \
+    location=s3://localhost:9000/mydata \
+    access_key=minioadmin \
+    secret_access_key=minioadmin \
+    use_tls=false
 ```
 
 *`use_tls` should be omitted or set to `true` when connecting to production S3-compatible services that use TLS.*
@@ -95,7 +93,7 @@ $ plakar destination add mydata \
 And then, restore the snapshot to that destination:
 
 ```bash
-$ plakar at $HOME/backups restore -to "@mydata" 842de8b1
+plakar at $HOME/backups restore -to "@mydata" 842de8b1
 repository passphrase:
 info: 842de8b1: OK ✓ /
 info: 842de8b1: OK ✓ /Makefile
@@ -106,14 +104,14 @@ For the `restore` command, we used the alias again with `@mydata` which referenc
 
 ## Congratulations!
 
-You have successfully created a backup of an S3 bucket using **Plakar**, and restored it back to the S3 location.
+You have successfully created a backup of an S3 bucket using **plakar**, and restored it back to the S3 location.
 
-This guide demonstrated how to back up non-filesystem data using **Plakar**. The same principles apply to any other data source supported by **Plakar** through its various connectors.
+This guide demonstrated how to back up non-filesystem data using **plakar**. The same principles apply to any other data source supported by **plakar** through its various connectors.
 
 ## Next steps
 
-There is plenty more to discover about **Plakar**. Here are our suggestions on what to try next:
+There is plenty more to discover about **plakar**. Here are our suggestions on what to try next:
 
-- Learn more about the [core concepts behind Plakar](../../explanations/how-plakar-works).
-- Create a [schedule for your backups](../../guides/setup-scheduler-daily-backups)
-- Discover more about the [Plakar command line syntax](../../references/command-line-syntax)
+- Learn more about the [core concepts behind Plakar](../explanations/how-plakar-works).
+- Create a [schedule for your backups](../guides/setup-scheduler-daily-backups)
+- Discover more about the [Plakar command line syntax](../references/command-line-syntax)

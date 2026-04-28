@@ -1,0 +1,12 @@
+global:
+  language: "EN"
+
+article:
+  date: "{{ .Date }}"
+  table_of_contents: "Table of Contents"
+  reading_time:
+    one: "{{ .Count }} min"
+    other: "{{ .Count }} mins"
+  word_count:
+    one: "{{ .Count }} word"
+    other: "{{ .Count }} words"

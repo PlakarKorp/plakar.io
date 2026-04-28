@@ -1,0 +1,218 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
+<meta name="author" content="{{ with .Params.author }}{{ . }}{{ else }}{{ .Site.Params.author }}{{ end }}">
+<!--main-compiled.css -->
+{{ partialCached "head/css.html" . }}
+{{ partialCached "head/js.html" . }}
+
+<!-- Favicons -->
+<link rel="apple-touch-icon" sizes="180x180" href="{{ "apple-touch-icon.png" | relURL }}" />
+<link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon-32x32.png" | relURL }}" />
+<link rel="icon" type="image/png" sizes="16x16" href="{{ "favicon-16x16.png" | relURL }}" />
+
+
+<!-- Open Graph data -->
+{{- $isArticle := or (eq .Section "posts") (eq .Type "post") -}}
+<meta property="og:type" content="{{ if $isArticle }}article{{ else }}website{{ end }}">
+<meta property="og:title" content="Plakar | {{ .Title }}">
+<meta property="og:author" content="{{ with .Params.author }}{{ . }}{{ else }}{{ .Site.Params.author }}{{ end }}">
+<meta property="og:description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+
+
+{{- if $isArticle -}}
+{{- $pub := .PublishDate -}}
+{{- if $pub.IsZero }}{{ $pub = .Date }}{{ end -}}
+{{- if $pub.IsZero }}{{ $pub = now }}{{ end -}}
+{{- $mod := .Lastmod -}}
+{{- if $mod.IsZero }}{{ $mod = $pub }}{{ end -}}
+{{- $isoPub := $pub.Format "2006-01-02T15:04:05Z07:00" -}}
+{{- $isoMod := $mod.Format "2006-01-02T15:04:05Z07:00" -}}
+
+<meta property="article:published_time" content="{{ $isoPub }}">
+<meta property="article:modified_time"  content="{{ $isoMod }}">
+<meta property="og:updated_time"        content="{{ $isoMod }}">
+{{- end -}}
+
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:image" content="{{
+        with .Params.og_image
+}}{{ . | absURL }}{{
+else
+}}{{ with (or (.Resources.GetMatch "featured.*") (index (.Resources.Match "featured.*") 0))
+}}{{ .Permalink }}{{
+else
+}}{{ .Site.Params.default_og_image | absURL }}{{
+        end
+}}{{ end }}">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Plakar">
+
+<!-- Twitter Card (optional) -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Plakar | {{ .Title }}">
+<meta name="twitter:description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+<meta name="twitter:image" content="{{
+        with .Params.og_image
+}}{{ . | absURL }}{{
+else
+}}{{ with (or (.Resources.GetMatch "featured.*") (index (.Resources.Match "featured.*") 0))
+}}{{ .Permalink }}{{
+else
+}}{{ .Site.Params.default_og_image | absURL }}{{
+        end
+}}{{ end }}">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@studio-freight/lenis"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<link href="/fonts/remixicon/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="/vendor/basiclightbox/basicLightbox.min.css">
+<script src="/vendor/basiclightbox/basicLightbox.min.js"></script>
+
+<style>
+    [x-cloak] { display: none !important; }
+</style>
+
+{{ if .HasShortcode "mermaid" }}{{ partial "mermaid.html" . }}{{ end }}
+
+{{ if .Site.Params.github.enabled | default false }}
+    {{ $githubOrganization := .Site.Params.github.organization | default "" }}
+    {{ $githubRepository := .Site.Params.github.repository | default "" }}
+
+    <script>
+        async function fetchGitHubStars() {
+            const url = `https://api.github.com/repos/{{$githubOrganization}}/{{$githubRepository}}`;
+
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error("GitHub API request failed");
+                }
+                const data = await response.json();
+                document.querySelectorAll(`#github-stars-count`)
+                    .forEach((element) => {
+                        element.textContent = data.stargazers_count;
+                    });
+            } catch (error) {
+                console.error("Error fetching GitHub data:", error);
+            }
+        }
+
+        fetchGitHubStars();
+    </script>
+{{ end }}
+
+{{ if .Site.Params.discord.enabled | default false }}
+    <script>
+        async function fetchDiscordMembers() {
+            const inviteCode = "{{ .Site.Params.discord.inviteCode }}"; // example: uuegtnF2Q5
+            const url = `https://discord.com/api/invites/${inviteCode}?with_counts=true`;
+
+            try {
+                const res = await fetch(url);
+                if (!res.ok) throw new Error("API error");
+
+                const data = await res.json();
+                const count = data.approximate_member_count;
+
+                document.querySelectorAll('#discord-members-count').forEach(el => {
+                    el.textContent = new Intl.NumberFormat().format(count);
+                });
+            } catch (err) {
+                console.error("Failed to fetch Discord count:", err);
+                document.querySelectorAll('#discord-members-count').forEach(el => {
+                    el.textContent = "...";
+                });
+            }
+        }
+
+        fetchDiscordMembers();
+    </script>
+{{ end }}
+
+{{ if .Site.Params.GoogleAnalytics.enabled | default false }}
+    {{ partial "analytics/ga.html" . }}
+{{ end }}
+{{ if .Site.Params.axeptio.enabled | default false }}
+    <script>
+        window.axeptioSettings = {
+            clientId: "{{ .Site.Params.axeptio.clientId | default "" }}",
+            cookiesVersion: "{{ .Site.Params.axeptio.cookiesVersion | default "" }}",
+            googleConsentMode: {
+                default: {
+                    analytics_storage: "denied",
+                    ad_storage: "denied",
+                    ad_user_data: "denied",
+                    ad_personalization: "denied",
+                    wait_for_update: 500
+                }
+            }
+        };
+
+        (function(d, s) {
+            var t = d.getElementsByTagName(s)[0], e = d.createElement(s);
+            e.async = true; e.src = "//static.axept.io/sdk.js";
+            t.parentNode.insertBefore(e, t);
+        })(document, "script");
+    </script>
+{{ end }}
+
+<!-- Newsletter Subscription Forms -->
+<script>
+    const handleSubmit = async function (formId, portalId, hubspotFormId) {
+        const form = document.getElementById(formId);
+        form.addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            const email = form.email.value.trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailRegex.test(email)) {
+                addToast({ title: "Error!", message: "Please enter a valid email address.", duration: 5000 });
+                return;
+            }
+
+            const url = `https://api.hsforms.com/submissions/v3/integration/submit/${portalId}/${hubspotFormId}`;
+            const payload = { fields: [{ name: "email", value: email }] };
+
+            try {
+                const response = await fetch(url, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+
+                if (response.ok) {
+                    addToast({ title: "Success!", message: "You're now subscribed.", duration: 5000 });
+                    form.reset();
+                } else {
+                    throw new Error("Subscription failed.");
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                addToast({ title: "Error!", message: "Something went wrong. Please try again later.", duration: 5000 });
+            }
+        });
+    }
+</script>
+
+<!-- PromptWatch Integration -->
+<script>
+    (function() {
+        var script = document.createElement('script');
+        script.setAttribute('data-project-id', 'ab415e83-1a84-4508-ab98-efd861517895');
+        script.src = 'https://ingest.promptwatch.com/js/client.min.js';
+        document.head.appendChild(script);
+    })();
+</script>
+
+{{ if site.Params.katex.enable }}
+  {{ partial "katex/assets/css" . }}
+  {{ partial "katex/assets/js" . }}
+{{ end }}

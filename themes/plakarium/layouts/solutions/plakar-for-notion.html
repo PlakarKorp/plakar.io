@@ -1,0 +1,233 @@
+{{ define "main" }}
+    {{ $riCornerDownRightLine := resources.Get "img/ri/corner-down-right-line.svg" }}
+
+    <!-- Spacer for navbar -->
+    <section class="section-light-2 grid-background">
+        <div class="content md:px-12 h-[67px] md:h-[98px]"></div>
+    </section>
+
+    <!-- Hero -->
+    <section class="section-light-2 grid-background">
+        <div class="bg-gradient-section-light-1 px-4 py-14 lg:py-28">
+            <div class="content">
+                <div class="flex flex-col gap-4 text-left pl-4 items-center">
+                    <h1 class="text-4xl md:text-5xl font-medium font-space-grotesk text-neutral-900 leading-tight">
+                        Plakar for <span class="text-primary-500">Notion</span>
+                    </h1>
+
+                    <div class="flex flex-col sm:flex-row items-center ~text-3xl/4xl">
+                        <span class="text-primary-500  mr-2">Bulletproof backup</span> for your workspace
+                    </div>
+
+                    <p class="text-lg text-neutral-600 max-w-2xl text-center">
+                        Automatically back up every page, database, media file and comment in your Notion workspace to the cloud you choose and restore to the same or another workspace. Secure and encrypted storage.
+                    </p>
+                    <div class="mt-6 flex items-center gap-4">
+                        {{ partial "cta/based-button.html" (dict
+                                "href" "/docs/main/integrations/notion"
+                                "label" "Backup Notion now"
+                                "labelShort" "Backup Notion"
+                                "icon" (resources.Get "img/ri/corner-down-right-line.svg")
+                                ) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Importance of Backups -->
+    <section class="section-light-2 py-14 lg:py-28">
+        <div class="content space-y-8 px-4">
+            <div class="flex flex-col space-y-6 pl-4">
+                <h2 class="~text-2xl/4xl font-medium font-space-grotesk text-neutral-900">Why <span class="text-primary-500">backing up</span> Notion is <span class="text-primary-500">your responsibility</span></h2>
+                <p class="text-neutral-600 max-w-3xl">
+                    Notion guarantees platform availability and security but does not provide full backups of your workspace content. Any accidental deletion, API glitch or malicious change becomes permanent without a user-managed backup.
+                </p>
+                <p class="text-neutral-600 max-w-3xl">
+                    As a Notion user, it is up to you to protect your own data. Failing to back up can result in irretrievable loss of critical pages, databases, media files and comments.
+                </p>
+
+            <h3 class="~text-xl/3xl font-semibold font-space-grotesk text-secondary-500">Your backup duties</h3>
+            <ul class="list-icon-check space-y-2 font-space-text text-neutral-900">
+                <li>Schedule automatic backups of all pages, databases, media and comments</li>
+                <li>Select and configure your preferred storage destination</li>
+                <li>Set retention periods and rotate old backups regularly</li>
+                <li>Secure your backups with strong credentials and encryption</li>
+                <li>Restore content to the same or another workspace whenever needed</li>
+            </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Highlights -->
+    <section class="section-light-1 py-14 lg:py-28">
+        <div class="content space-y-10 p-4 flex flex-col gap-6">
+            <div class="flex flex-col items-end text-right space-y-6 pl-4">
+                <h2 class="~text-2xl/4xl font-medium font-space-grotesk text-primary-500">Why choose Plakar for Notion?</h2>
+                <p class="text-lg text-neutral-600 max-w-3xl">
+                    A purpose-built solution to fill Notion’s data-protection gaps.
+                </p>
+            </div>
+
+            <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="text-center md:text-left space-y-2 bg-neutral-100 border border-primary-500 rounded-2xl p-4">
+                    <h3 class="~text-lg/2xl font-semibold text-primary-500">Complete Data Coverage</h3>
+                    <p class="text-neutral-700 font-space-text ~text-base/lg">
+                        Back up all pages, sub-pages, databases, media and comments not covered by Notion’s exports
+                    </p>
+                </div>
+
+                <div class="text-center md:text-left space-y-2 bg-neutral-100 border border-primary-500 rounded-2xl p-4">
+                    <h3 class="~text-lg/2xl font-semibold text-primary-500">Flexible Retention & Rotation</h3>
+                    <p class="text-neutral-700 font-space-text ~text-base/lg">
+                        Automate old backup removal after 2-12 weeks or keep weekly, monthly and yearly snapshots
+                    </p>
+                </div>
+
+                <div class="text-center md:text-left space-y-2 bg-neutral-100 border border-primary-500 rounded-2xl p-4">
+                    <h3 class="~text-lg/2xl font-semibold text-primary-500">Enterprise-Grade Encryption</h3>
+                    <p class="text-neutral-700 font-space-text ~text-base/lg">
+                        End-to-end encryption ensures only you can access your Notion data
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Fact -->
+    <section class="section-primary-1 py-14 lg:py-28">
+        <div class="content text-neutral-50">
+            <div class="flex flex-col items-center py-10 px-8 gap-3">
+                <div class="~text-2xl/4xl text-primary-100 text-center">
+                    90% of Notion users experience data loss at least once
+                </div>
+                <div class="text-[0.6rem] text-neutral-200">API glitches, accidental deletes or malicious edits can wipe out hours of work</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problems → Solutions -->
+    <section class="section-light-1 px-4 py-14 lg:py-28">
+        <div class="content flex flex-col gap-10 items-center">
+            <div class="w-full md:w-4/6 bg-neutral-50 p-6 md:p-8 rounded-sm border border-neutral-300 space-y-6">
+                <h2 class="~text-xl/3xl font-medium font-space-grotesk text-primary-500">What puts your Notion at risk?</h2>
+                <ul class="space-y-3 font-space-text list-icon-x text-neutral-900">
+                    <li>Accidental deletes or edits</li>
+                    <li>Platform outages and API limits</li>
+                    <li>Unauthorized changes by other users</li>
+                    <li>Ransomware attacks on synced files</li>
+                </ul>
+            </div>
+
+            <svg class="w-8 h-8 md:w-24 md:h-24 text-primary-500 rotate-90" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+            </svg>
+
+            <div class="w-full md:w-4/6 bg-neutral-50 p-6 md:p-8 rounded-sm border border-neutral-300 space-y-6">
+                <h2 class="~text-xl/3xl font-medium font-space-grotesk text-secondary-500">How Plakar fills the gap</h2>
+                <ul class="space-y-3 font-space-text list-icon-check text-neutral-900">
+                    <li>Scheduled daily backups with on-demand snapshots</li>
+                    <li>All-notion-data coverage: pages, databases, media and comments</li>
+                    <li>Encrypted end-to-end</li>
+                    <li>Restore to the same or another workspace without losing existing content</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security first -->
+    <section class="section-dark-1 py-14 lg:py-28">
+        <div class="content">
+            <div class="pl4 flex flex-col md:flex-row w-full">
+                <div class="w-full md:w-1/2 p-5 space-y-10 pl-4 ~text-base/xl">
+                    <div class="text-left space-y-3 pl-4">
+                        <h2 class="~text-2xl/4xl font-medium font-space-grotesk text-center md:text-left">
+                            Security by design
+                        </h2>
+                        <p class="text-lg text-neutral-600 max-w-3xl">
+                            Reduce your attack surface by keeping encryption keys out of storage. With true end-to-end encryption, your data is protected before it leaves the source and remains unreadable even to your storage provider.
+                        </p>
+                    </div>
+                    <ul class="space-y-3 list-icon-check font-space-text text-neutral-50">
+                        <li>End-to-end encryption with modern crypto (no compromise on "at-rest/in-transit")</li>
+                        <li>Immutable snapshots with verifiable integrity</li>
+                        <li>Tamper-proof metadata and audit logs</li>
+                        <li>Zero-trust-friendly architecture</li>
+                    </ul>
+
+                    <blockquote class="border-l-4 border-primary-500 pl-4 italic text-neutral-300 ~text-base/xl font-space-text relative">
+                        <svg class="w-6 h-6 absolute -left-3 -top-2 text-primary-500" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M7.17 4C5.5 4 4 5.5 4 7.17V11h5V7.17C9 5.5 7.5 4 7.17 4zM13.17 4C11.5 4 10 5.5 10 7.17V11h5V7.17C15 5.5 13.5 4 13.17 4z"/>
+                        </svg>
+                        "You don’t have to trust your storage provider."
+                    </blockquote>
+                </div>
+                <!-- Illustration -->
+                <div class="w-full md:w-1/2 flex items-center justify-end pt-4 md:pt-0">
+                    {{ $security := resources.Get "img/security-first.png" }}
+                    {{ $laptop := resources.Get "img/laptop-plakar-demo.png" }}
+                    <img src="{{ $laptop.RelPermalink }}" alt="Placeholder"
+                         class="w-full h-auto object-contain rounded-sm">
+                </div>
+            </div>
+        </div>
+    </section>
+    </div>
+
+    <!-- Resilience Everywhere Section -->
+    <section class="section-light-2 py-14 lg:py-28">
+        <div class="content px-4 space-y-10">
+            <!-- Intro -->
+            <div class="text-left space-y-3 pl-4">
+                <h2 class="text-4xl font-medium font-space-grotesk leading-tight">Regroup all your data protection workflows in one platform</h2>
+                <p class="text-lg text-neutral-600 max-w-3xl">
+                    From edge devices to SaaS platforms and hybrid clouds, Plakar keeps your data safe, synced, and instantly restorable: all from one unified tool.
+                </p>
+            </div>
+
+            <!-- Use cases -->
+            <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-10 ">
+                <!-- Block 1 -->
+                <div class="text-center md:text-left space-y-2 bg-neutral-100 border border-primary-500 rounded-2xl p-4">
+                    <h3 class="text-xl font-semibold text-primary-500 mb-2">For SaaS, endpoints & edge</h3>
+                    <p class="text-neutral-700">
+                        Whether you're backing up remote laptops, on-premise servers or third-party SaaS data, Plakar gives you full control. Immutable backups, minimal storage, full flexibility. Even in disconnected environments.
+                    </p>
+                </div>
+                <!-- Block 2 -->
+                <div class="text-center md:text-left space-y-2 bg-neutral-100 border border-primary-500 rounded-2xl p-4">
+                    <h3 class="text-xl font-semibold text-primary-500 mb-2">In your data center</h3>
+                    <p class="text-neutral-700">
+                        Legacy systems or critical data. All backed up with the same simplicity. Plakar integrates directly into your infrastructure with powerful CLI, orchestration support, and instant recovery.
+                    </p>
+                </div>
+                <!-- Block 3     -->
+                <div class="text-center md:text-left space-y-2 bg-neutral-100 border border-primary-500 rounded-2xl p-4">
+                    <h3 class="text-xl font-semibold text-primary-500 mb-2">Across clouds</h3>
+                    <p class="text-neutral-700">
+                        Cloud-native or multi-cloud? No problem. Plakar works seamlessly with object storage, S3-compatible services, and hybrid environments, without locking you in or slowing you down.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    </div>
+
+    <!-- CTA -->
+    <section class="section-dark-1 bg-neutral-900 py-14 lg:py-28">
+        <div class="content px-6 flex flex-col items-center text-center gap-8">
+            <h2 class="~text-2xl/5xl font-medium font-space-grotesk text-neutral-100 max-w-3xl">Ready to protect your Notion data?</h2>
+            <p class="~text-base/xl text-neutral-300 opacity-80 font-space-text max-w-2xl">
+                Get started in minutes no credit card required
+            </p>
+            <div class="flex gap-4">
+                {{ partial "cta/based-button.html" (dict
+                        "href" "/docs/main/integrations/notion"
+                        "label" "Backup Notion now"
+                        "labelShort" "Backup Notion"
+                        "icon" (resources.Get "img/ri/corner-down-right-line.svg")
+                        ) }}
+            </div>
+        </div>
+    </section>
+{{ end }}

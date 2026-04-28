@@ -1,0 +1,27 @@
+{{ $label := "Join Discord" }}
+{{ if (isset . "label") }}
+    {{ $label = .label }}
+{{ end }}
+
+{{ $site := .Site }}
+{{ if isset . "ctx" }}
+    {{ $site = .ctx.Site }}
+{{ end }}
+
+
+{{ if $site.Params.discord.enabled | default false }}
+    {{ $discordInviteCode := $site.Params.discord.inviteCode | default "" }}
+    {{ $riDiscordFill := resources.Get "img/ri/discord-fill.svg" }}
+
+    <!-- for tailwind safelist -->
+    <span class="hover:text-neutral-50 hidden"></span>
+
+    {{ partial "cta/based-button.html" (dict
+            "href" (print "https://discord.gg/" $discordInviteCode)
+            "target" "_blank"
+            "label" $label
+            "icon" $riDiscordFill
+            "border" "border"
+            ) }}
+{{ end }}
+

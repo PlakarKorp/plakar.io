@@ -1,0 +1,3 @@
+{{ $title := .title }}
+{{ $index := .index }}
+{{ return (replace (printf "root-%s-%d" $title $index) " " "_" | lower) }}

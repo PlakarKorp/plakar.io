@@ -1,33 +1,31 @@
 ---
 title: "Synchronize multiple copies"
-date: "2026-03-11T00:00:00Z"
+date: "2025-12-15T00:00:00Z"
 weight: 4
 summary: "Create a second copy of your Kloset Store to improve the durability of your backups."
 aliases:
   - /docs/main/quickstart/quickstart-2
 ---
 
-# Synchronize multiple copies
+In this guide, we will create a second copy of the Kloset Store created in [Part 1 of the Quickstart](./first-backup.md).
 
-In this guide, we will create a second copy of the Kloset Store created in [Part 1 of the Quickstart](../first-backup).
-
-This second copy will be stored on a S3-compatible storage service, but the same logic applies to any other storage location supported by **Plakar**.
+This second copy will be stored on a S3-compatible storage service, but the same logic applies to any other storage location supported by **plakar**.
 
 ## Requirements
 
 This guide assumes that:
-- **Plakar** is installed on your system (see the [Installation guide](../installation)).
-- A Kloset Store exists on your local filesystem at `$HOME/backups` with at least one snapshot (see [Part 1 of the Quickstart](../first-backup)).
+* **plakar** is installed on your system (see the [Installation guide](./installation.md)).
+* A Kloset Store exists on your local filesystem at `$HOME/backups` with at least one snapshot (see [Part 1 of the Quickstart](./first-backup.md)).
 
 ## Why create multiple copies?
 
-Keeping multiple backup copies dramatically reduces the risk of total data loss by **turning a realistic single-site failure into an extremely unlikely event when data is replicated across independent locations** (see the [why should you keep several copies of your backups](../../explanations/why-several-copies) guide).
+Keeping multiple backup copies dramatically reduces the risk of total data loss by **turning a realistic single-site failure into an extremely unlikely event when data is replicated across independent locations** (see the [Why should you keep several copies of your backups?](../explanations/why-several-copies/_index.md) guide).
 
 **Plakar** is designed to make it easy to synchronize a Kloset Store to another location.
 
 ## Login to install pre-built integrations
 
-By default, **Plakar** works without requiring you to create an account or log in. You can back up and restore your data with just a few commands, with no external services involved.
+By default, **plakar** works without requiring you to create an account or log in. You can back up and restore your data with just a few commands, with no external services involved.
 
 However, logging in unlocks optional features that improve usability and monitoring. Among these features, it adds the ability to install the pre-built integrations hosted on our infrastructure.
 
@@ -35,40 +33,41 @@ In this quickstart, we will use the S3 integration, which requires the integrati
 
 You can log in through the CLI:
 
-{{< tabs >}}
-  {{< tab label="With Email" >}}
-  
-  ```bash
-  plakar login -email <youremailaddress@example.com>
-  ```
+{{< tabs name="To log in using the CLI" >}}
+{{% tab name="With email" %}}
+```bash
+plakar login -email <youremailaddress@example.com>
+```
 
-  Substitute in your own email address and follow the prompt. You can then check your email and follow the link sent from [plakar.io](/).
-  
-  {{< /tab >}}
-  {{< tab label="With GitHub" >}}
-  
-  ```bash
-  plakar login -github
-  ```
+Substitute in your own email address and follow the prompt. You can then check your email and follow the link sent from plakar.io.
+{{< /tab >}}
+{{% tab name="With GitHub" %}}
+```bash
+plakar login -github
+```
 
-  Your default browser will open a new tab where you can authorize plakar to use your GitHub account for authentication. Follow the prompts to complete the login.
-
-  {{< /tab >}}
+Your default browser will open a new tab where you can authorize plakar to use your GitHub account for authentication. Follow the prompts to complete the login.
+{{< /tab >}}
 {{< /tabs >}}
+
+To check that you are now logged in, you can run:
+```bash
+plakar login -status
+```
 
 ## Install the S3 integration
 
 Run the following command to install the S3 integration:
 
 ```bash
-$ plakar pkg add s3
+plakar pkg add s3
 ```
 
 If you already have the S3 integration installed and want to update it, remove the existing version first and then install the latest one:
 
 ```bash
-$ plakar pkg rm s3
-$ plakar pkg add s3
+plakar pkg rm s3
+plakar pkg add s3
 ```
 
 You can list all installed integrations to confirm the S3 integration was installed successfully:
@@ -85,23 +84,23 @@ For this quickstart, we will use a local MinIO instance as our S3-compatible sto
 Run the following command to start a MinIO instance using Docker:
 
 ```bash
-$ docker run -d --name minio -p 9000:9000 -p 9001:9001 quay.io/minio/minio server /data --console-address ":9001"
+docker run -d --name minio -p 9000:9000 -p 9001:9001 quay.io/minio/minio server /data --console-address ":9001"
 ```
 
 This command starts a MinIO server accessible at `http://localhost:9000`, with a web interface available at `http://localhost:9001`. The default access key is `minioadmin` and the secret key is also `minioadmin`.
 
 ## Configure Plakar
 
-To let **Plakar** know about the S3 storage, we need to configure a new store. We will call this store `s3-backups`.
+To let **plakar** know about the S3 storage, we need to configure a new store. We will call this store `s3-backups`.
 
 Run the following command to create the new store:
 
 ```bash
-$ plakar store add s3-backups \
-  location=s3://localhost:9000/mybucket \
-  access_key=minioadmin \
-  secret_access_key=minioadmin \
-  use_tls=false
+plakar store add s3-backups \
+    location=s3://localhost:9000/mybucket \
+    access_key=minioadmin \
+    secret_access_key=minioadmin \
+    use_tls=false
 ```
 
 This command creates a new store named `s3-backups` that points to the `mybucket` bucket on the MinIO server running at `localhost:9000`. It uses the access key and secret key provided above. The `use_tls=false` option is specified because we are connecting to a local server without TLS.
@@ -113,15 +112,16 @@ This command creates a new store named `s3-backups` that points to the `mybucket
 For now, the Kloset Store points to a bucket that does not exist yet. We need to create it by initializing the store:
 
 ```bash
-$ plakar at "@s3-backups" create
+plakar at "@s3-backups" create
 ```
 
 This command initializes the Kloset Store at the S3 location, creating the necessary bucket and structure to hold the backups.
 
-Note the `@` symbol before the store name. This is an alias, which indicates that we are referencing a Kloset Store from the configuration. Without the `@`, **Plakar** would interpret `s3-backups` as a filesystem path.
+Note the `@` symbol before the store name. This is an alias, which indicates that we are referencing a Kloset Store from the configuration. Without the `@`, **plakar** would interpret `s3-backups` as a filesystem path.
 
-> [!NOTE]+ Escaping on Windows
-> On Windows, make sure to use double quotes (`"`) around the store name to avoid issues with the `@` symbol being interpreted by the shell. On Unix-like systems, quotes are often unnecessary.
+{{% notice style="info" title="Escaping on Windows" expanded="true" %}}
+On Windows, make sure to use double quotes (`"`) around the store name to avoid issues with the `@` symbol being interpreted by the shell. On Unix-like systems, quotes are often unnecessary.
+{{% /notice %}}
 
 The passphrase prompt will appear: **you do not have to enter the same passphrase** as the local Kloset Store, but you can if you want to.
 
@@ -173,11 +173,12 @@ In production, you would typically run this command periodically to ensure that 
 
 As a side note, you can use the remote Kloset Store just as you would use the local one:
 
-- to run the UI, `plakar at "@s3-backups" ui`
-- to verify integrity, `plakar at "@s3-backups" check`
-- to restore files, `plakar at "@s3-backups" restore -to /tmp/restore <snapshot-id>`
+* to run the UI, `plakar at "@s3-backups" ui`
+* to verify integrity, `plakar at "@s3-backups" check`
+* to restore files, `plakar at "@s3-backups" restore -to /tmp/restore <snapshot-id>`
 
 Check `plakar help` to see all the available commands.
+
 
 ## Congratulations!
 
@@ -185,10 +186,10 @@ You have successfully created a second copy of your Kloset Store on S3-compatibl
 
 In this example, we used a local MinIO instance for demonstration purposes. In a real-world scenario, you would use a reliable S3-compatible service to have your backups stored offsite.
 
-With **Plakar**, hosting your backups on S3 is as easy as hosting them locally. In addition, many more [store integrations](/integrations/) are available for hosting your backups in other locations.
+With **plakar**, hosting your backups on S3 is as easy as hosting them locally. In addition, many more [store integrations](/categories/storage-connector/#categories/) are available for hosting your backups in other locations.
 
 ## Next steps
 
 Modern infrastructure involves more than just filesystems. In the next part of this Quickstart, we will see how to back up an S3 bucket using **plakar**.
 
-- Continue to [Part 3 of the Quickstart](../backup-non-filesystem-data) to create a backup for your non-filesystem data.
+- Continue to [Part 3 of the Quickstart](./backup-non-filesystem-data.md) to create a backup for your non-filesystem data.

@@ -1,0 +1,1 @@
+themes/plakarium/tailwind.config.js

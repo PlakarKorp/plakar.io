@@ -1,0 +1,45 @@
+{{ define "main" }}
+    {{ $currentSection := "unknown" }}
+    {{ $currentCategory := "unknown" }}
+    {{ $categories := slice }}
+
+    {{ $allPages := .Site.RegularPages }}
+
+    {{ $postPages := where $allPages "Section" "posts" }}
+    {{ $integrationPages := where $allPages "Section" "integrations" }}
+
+    {{ $postCategories := slice }}
+    {{ range $postPages }}
+        {{ range .Params.categories }}
+            {{ if not (in $postCategories .) }}
+                {{ $postCategories = $postCategories | append (. | urlize) }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
+
+    {{ $integrationCategories := slice }}
+    {{ range $integrationPages }}
+        {{ range .Params.categories }}
+            {{ if not (in $integrationCategories .) }}
+                {{ $integrationCategories = $integrationCategories | append (. | urlize) }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
+
+    {{ $currentCategory = .Title | lower | urlize }}
+
+    {{ if in $postCategories $currentCategory }}
+        {{ $currentSection = "posts" }}
+        {{ $categories = uniq $postCategories }}
+    {{ else if in $integrationCategories $currentCategory }}
+        {{ $currentSection = "integrations" }}
+        {{ $categories = uniq $integrationCategories }}
+    {{ else }}
+        <!-- Did you add a new section ? -->
+    {{ end }}
+    {{ if eq $currentSection "posts" }}
+        {{ partial "category/category-posts.html" . }}
+    {{ else }}
+        {{ partial "category/category-integrations.html" . }}
+    {{ end }}
+{{ end }}

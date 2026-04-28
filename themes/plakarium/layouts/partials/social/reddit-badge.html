@@ -1,0 +1,38 @@
+{{ $ctx := . }}
+{{ with .context }}{{ $ctx = . }}{{ end }}
+
+{{ $badgeSize := 5 }}
+{{ if isset . "badgeSize" }}{{ $badgeSize = $.badgeSize }}{{ end }}
+
+{{ $shareText := "" }}
+{{ if isset . "shareText" }}{{ $shareText = $.shareText }}{{ end }}
+
+{{ $shareURL := "" }}
+{{ if isset . "shareURL" }}{{ $shareURL = $.shareURL }}{{ end }}
+
+{{ if $ctx.Site.Params.reddit.enabled | default false }}
+    {{ $riRedditLine := resources.Get "img/ri/reddit-line.svg" }}
+    {{ $sub := $ctx.Site.Params.reddit.communityName | default "" }}
+
+    {{/* Determine the href */}}
+    {{ $href := "" }}
+    {{ if and $shareText $shareURL }}
+        {{/* Création d'un post lien avec titre et URL */}}
+        {{ $encodedTitle := $shareText | urlquery }}
+        {{ $encodedURL := $shareURL | urlquery }}
+        {{ $href = printf "https://www.reddit.com/submit?title=%s&url=%s" $encodedTitle $encodedURL }}
+    {{ else }}
+        {{/* Fallback: direct link to the subreddit */}}
+        {{ $href = printf "https://www.reddit.com/r/%s" $sub }}
+    {{ end }}
+
+    <a class="flex items-center space-x-2"
+       href="{{ $href }}"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="Share on Reddit">
+    <span class="w-{{ $badgeSize }} h-{{ $badgeSize }}">
+      {{ $riRedditLine.Content | safeHTML }}
+    </span>
+    </a>
+{{ end }}

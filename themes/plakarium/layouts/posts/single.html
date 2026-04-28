@@ -1,0 +1,138 @@
+{{ define "main" }}
+    {{ $riCornerDownRightLine := resources.Get "img/ri/corner-down-right-line.svg" }}
+    {{ $riGithubFill := resources.Get "img/ri/github-fill.svg" }}
+    {{ $riLinkedInBoxFill := resources.Get "img/ri/linkedin-box-fill.svg" }}
+    {{ $riDiscordFill := resources.Get "img/ri/discord-fill.svg" }}
+
+    <!-- Navbar placeholder -->
+    <section class="section-light-2 grid-background">
+        <div class="content md:px-12 h-[67px] md:h-[98px] ">
+        </div>
+    </section>
+
+    <!-- Title -->
+    <section class="section-light-2 grid-background px-4 pt-10 pb-7">
+            <div class="content flex flex-col items-center gap-2 text-center ">
+                <div class="flex flex-col items-start text-start gap-2 max-w-[calc(680px+32px)]">
+                    <!-- Title -->
+                    <h1 class="font-space-grotesk font-medium leading-tight ~text-2xl/5xl">
+                        {{ .Title | emojify }}
+                    </h1>
+
+                    <!-- Metadata -->
+                    <div class="flex flex-wrap justify-center items-center gap-2 font-dm-mono uppercase text-neutral-400 ~text-xs/sm">
+                        <!-- Category -->
+                        <div class="inline-flex items-center gap-2 text-primary-500 font-dm-mono capitalize ~text-xs/sm">
+                                <span>    {{ $categories := .GetTerms "categories" }}
+                                    {{ range $i, $category := $categories }}
+                                        {{ if eq $i 0 }}{{ end }}{{ $category.LinkTitle }}{{ if lt $i (sub (len $categories) 1) }} {{ end }}
+                                    {{ end }}
+                                </span>
+                        </div>
+                        <span>{{ partial "functions/date.html" .Lastmod }}</span>
+                        <span>•</span>
+                        <span>{{- i18n "article.word_count" .WordCount | markdownify -}}</span>
+                        <span>•</span>
+                        <span>{{- i18n "article.reading_time" .ReadingTime | markdownify | emojify -}}</span>
+                    </div>
+                </div>
+            </div>
+    </section>
+    </div>
+
+
+    <!-- Illustration -->
+    <section class="section-light-2 grid-background  ">
+        <div class="bg-gradient-section-light-1 px-4 py-2">
+
+        <div class="content flex flex-col items-center gap-8 text-center">
+                <div class="max-w-[calc(680px+32px)] rounded-lg bg-white border border-neutral-300 relative">
+                    <!-- Top bar with dots -->
+                    <div class="w-full h-7 px-4 flex items-center gap-2 border-b border-neutral-200">
+                        <div class="w-2 h-2 bg-neutral-300 rounded-full"></div>
+                        <div class="w-2 h-2 bg-neutral-300 rounded-full"></div>
+                        <div class="w-2 h-2 bg-neutral-300 rounded-full"></div>
+                    </div>
+
+                    <!-- Image -->
+                    <div class="p-4">
+                        {{ $image := or (.Resources.GetMatch "featured.webp") (index (.Resources.Match "featured.*") 0) }}
+                        <img class="h-auto object-cover rounded-sm max-h-[300px]"
+                             src="{{ or $image.RelPermalink (resources.Get "img/placeholder-1600x1200.png").RelPermalink }}"
+                             alt="Article image">
+                    </div>
+                </div>
+        </div>
+
+        </div>
+    </section>
+
+    <section class="section-light-1 px-4 py-7">
+        <div class="content flex flex-col xl:flex-row items-start">
+                <!-- Sidebar (left) -->
+                <aside class="xl:left-0 xl:sticky w-full h-full xl:w-[340px] max-w-[calc(680px+32px)] xl:max-w-[calc((100%-680px-32px)/2)] pb-4 2xl:pe-4 lg:top-28 flex flex-col  mx-auto xl:mx-0">
+                    <div class="~text-xs/lg font-prose flex flex-col gap-6 p-2 2xl:p-4 bg-neutral-50 xl:border-r border-dotted ">
+                        {{ partial "toc.html" . }}
+                    </div>
+                </aside>
+
+                <!-- Article content (right)  -->
+                <article class="mx-auto xl:mx-0 max-w-full md:max-w-[calc(680px+32px)] p-4 gap-16 bg-neutral-50 overflow-hidden" data-pagefind-body>
+                    <span data-pagefind-filter="section" class="hidden">Blog</span>
+
+                    {{ range .GetTerms "authors" }}
+                        {{ $authorKey := . | urlize | strings.TrimPrefix "/authors/" }}
+                        {{ $authorData := index site.Data.authors $authorKey }}
+
+                        <!-- Author & intro -->
+                        <div class="flex gap-4 items-start pb-2">
+                            <img class="w-14 h-14 rounded-full"
+                                 src="{{ or (resources.Get $authorData.image).RelPermalink (resources.Get "img/placeholder-56x56.png").RelPermalink }}"
+                                 alt="Author picture"/>
+                            <div class="flex flex-col gap-1">
+                                <div class="font-dm-mono uppercase text-sm text-neutral-900">{{ $authorData.name }}</div>
+                                <div class="font-space-text text-sm text-neutral-600">{{ $authorData.bio }}</div>
+                            </div>
+                        </div>
+                    {{ end }}
+                    <p>
+                        <br />
+                        <hr />
+                        <br />
+                    </p>
+
+                    <!-- Content blocks -->
+                    <div class="article-content font-prose prose ~text-base/lg">
+                        <p></p>
+                        {{ .Content }}
+                        <p></p>
+                    </div>
+                    <div class="mt-4 flex flex-wrap gap-2 items-center border-t border-b pt-8 pb-8 text-primary-500">
+                        <span class="font-space-grotesk text-base text-neutral-900">Share good vibes:</span>
+                        {{ partial "social/bluesky-badge.html" (dict "badgeSize" "7" "shareText" .Title "shareURL" .Permalink "context" .) }}
+                        {{ partial "social/reddit-badge.html" (dict "badgeSize" "7" "shareText" .Title "shareURL" .Permalink "context" .) }}
+                        {{ partial "social/linkedin-badge.html" (dict "badgeSize" "7" "shareText" .Title "shareURL" .Permalink "context" .) }}
+                        {{ partial "social/x-badge.html" (dict "badgeSize" "7" "shareText" .Title "shareURL" .Permalink "context" .) }}
+                    </div>
+                    <div class="flex flex-row flex-wrap items-start justify-start gap-2 pt-4 text-base">
+                        <div class="flex flex-wrap gap-2">
+                            {{ partial "cta/star-us-on-github.html" . }}
+                            {{ partial "cta/join-us-on-discord.html" . }}
+                            {{ partial "cta/join-us-on-reddit.html" . }}
+                        </div>
+
+                    </div>
+
+                </article>
+
+        </div>
+    </section>
+
+    <script>
+        document.querySelectorAll('.article-content img').forEach(img => {
+            img.addEventListener('click', () => {
+                basicLightbox.create(`<img src="${img.src}" />`).show();
+            });
+        });
+    </script>
+{{ end }}
