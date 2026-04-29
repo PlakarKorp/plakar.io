@@ -42,6 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
       } catch (_) {}
     })
     .catch(() => {
-      els.forEach((el) => (el.textContent = "0"));
+      els.forEach((el) => (el.textContent = cached?.value ?? "0"));
     });
 });
