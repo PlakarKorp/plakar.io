@@ -9,6 +9,10 @@ summary: "How to install, upgrade, and remove Plakar integration packages."
 
 Integration packages extend Plakar with connectors for cloud storage providers, databases, and other systems. This guide covers the full lifecycle of a package: installing, listing, upgrading, and removing.
 
+Plakar ships intentionally clean with only base connectors such as the filesystem connector. Plakar can be extended using integrations such as S3, SFTP, PostgreSQL, or any other integration only when you need it, keeping the base install small and dependency-free.
+
+Integrations are also versioned independently from Plakar itself, so you can pin a connector to a specific version or upgrade it without touching the rest of your setup.
+
 ## List installed packages
 
 To see which packages are currently installed:

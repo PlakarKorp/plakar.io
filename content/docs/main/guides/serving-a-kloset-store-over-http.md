@@ -11,6 +11,8 @@ aliases:
 
 Plakar can expose a Kloset Store over HTTP using the `plakar server` command. This allows other machines to access the store remotely.
 
+By default, a Kloset store is only accessed locally. Serving it over HTTP lets other machines back up to or restore from the same store without copying data around. This is useful when the store lives on a NAS, a dedicated backup server, or any machine you want to treat as a central backup target.
+
 This guide shows how to start an HTTP server for a Kloset Store and access it from another Plakar client.
 
 ## Starting an HTTP server

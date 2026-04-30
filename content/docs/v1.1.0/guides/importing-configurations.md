@@ -11,6 +11,14 @@ The commands `plakar store`, `plakar source` and `plakar destination` configure 
 
 Each command includes an import subcommand for importing configurations from different sources.
 
+## Why you'd need to import configurations
+
+Plakar stores, sources, and destinations each require configuration data such as credentials, locations and passphrases that you'd otherwise have to re-enter manually on every machine.
+
+Importing lets you replicate a working setup across servers, share configurations across a team, migrate from one machine to another, or bootstrap a new installation from a backup of your config.
+
+It also lets you bring in configurations from other tools directly: if you already have rclone remotes configured, you can import them as Plakar stores without duplicating the credentials by hand.
+
 ## Basic Usage
 
 The import subcommand can read configuration data from:

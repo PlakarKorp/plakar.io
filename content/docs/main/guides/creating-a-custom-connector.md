@@ -9,6 +9,10 @@ summary: "Step-by-step guide to implement and install your own Plakar connector 
 
 This guide shows how to create a custom Plakar **Importer** connector in Go, build it, package it, and install it using the `plakar` CLI.
 
+## Why write a custom connector?
+
+Plakar ships with connectors for common sources and storage backends. When you need to back up something that isn't supported out of the box such as an internal database thats not commonly used or a custom data source, you can write your own connector in Go and install it like any other package.
+
 ## What you will build
 
 A minimal Importer connector that backs up a single hardcoded file. This is the simplest possible integration — once you understand the pattern, you can extend it to walk directories, read from APIs, or consume any other data source.

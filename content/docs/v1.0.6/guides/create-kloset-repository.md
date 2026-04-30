@@ -9,6 +9,10 @@ summary: "Create a Kloset Store on the filesystem using Plakar."
 
 A Kloset store is Plakar's immutable storage backend for backup data. This guide covers filesystem-based store creation. You can learn more in the [Kloset deep dive article](https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/)
 
+## Why you need a Kloset store
+
+Before you can run any backup, you'll need to create a Kloset store to store the data. It can be hosted anywhere that Plakar has an integration with a [storage connector](/integrations/?category=storage) for e.g a local filesystem path, a remote S3 bucket, another server via SFTP, or other supported backends.
+
 ## Create Store with Path
 
 ```bash

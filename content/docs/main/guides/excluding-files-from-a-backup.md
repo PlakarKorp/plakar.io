@@ -9,6 +9,12 @@ summary: "Learn how to exclude files from a backup in Plakar"
 
 This guide shows how to exclude files and directories from a backup using ignore patterns.
 
+## Why you'd need to exclude files from a backup
+
+When backing up a source directory, not all files are worth preserving. Some are large and easily regenerated (build artifacts, dependency directories like `node_modules` or `vendor`), some are temporary (cache files, lock files, log files), and some are sensitive and should not be stored in a backup repository (secrets, local environment files).
+
+Excluding these from your backups reduces storage usage, speeds up backup and restore operations, and keeps your snapshots focused on only the important files.
+
 The `plakar backup` command supports the `-ignore` and `-ignore-file` options to exclude files from a backup. These options use patterns with a syntax similar to `.gitignore` files.
 
 ## Examples

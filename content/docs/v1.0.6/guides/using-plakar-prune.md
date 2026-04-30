@@ -9,6 +9,10 @@ summary: "Remove old snapshots from a Kloset store using age, tags, or retention
 
 `plakar prune` removes snapshots from a Kloset store. Snapshots can be selected for removal by age, tag, or retention policy.
 
+Every backup you run creates a new snapshot in your Kloset store. If its feft unchecked, snapshots can accumulate indefinitely.
+
+Pruning lets you define how much history you actually need such as keeping hourly snapshots for the past week, daily ones for the past month, monthly ones for the past year and discard everything else. This keeps your store from growing without bound while preserving important recovery points.
+
 By default, `plakar prune` runs in dry-run mode and makes no changes, you'll need to pass `-apply` to execute the operation.
 
 On this guide, we will use a Kloset store is located at `$HOME/backups`, but your store can be located anywhere else:
