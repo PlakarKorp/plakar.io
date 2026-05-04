@@ -81,7 +81,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-04-10T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-05-04T16:22:52+02:00">
+    <meta property="article:modified_time" content="2026-05-04T17:16:45+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -264,12 +264,12 @@
     "dateCreated": "2026-04-10T00:00:00\u002b00:00",
     "datePublished": "2026-04-10T00:00:00\u002b00:00",
     
-    "dateModified": "2026-05-04T16:22:52\u002b02:00",
+    "dateModified": "2026-05-04T17:16:45\u002b02:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "196"
+    "wordCount": "264"
   }]
   </script>
 
@@ -3038,6 +3038,8 @@
   
 </div>
 <p>Integration packages extend Plakar with connectors for cloud storage providers, databases, and other systems. This guide covers the full lifecycle of a package: installing, listing, upgrading, and removing.</p>
+<p>Plakar ships intentionally clean with only base connectors such as the filesystem connector. Plakar can be extended using integrations such as S3, SFTP, PostgreSQL, or any other integration only when you need it, keeping the base install small and dependency-free.</p>
+<p>Integrations are also versioned independently from Plakar itself, so you can pin a connector to a specific version or upgrade it without touching the rest of your setup.</p>
 
 <div class="relative group">
   <h2 id="list-installed-packages">List installed packages</h2>

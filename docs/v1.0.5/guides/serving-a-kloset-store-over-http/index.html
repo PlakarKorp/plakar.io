@@ -81,7 +81,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-03-16T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-05-04T16:22:52+02:00">
+    <meta property="article:modified_time" content="2026-05-04T17:16:45+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -264,12 +264,12 @@
     "dateCreated": "2026-03-16T00:00:00\u002b00:00",
     "datePublished": "2026-03-16T00:00:00\u002b00:00",
     
-    "dateModified": "2026-05-04T16:22:52\u002b02:00",
+    "dateModified": "2026-05-04T17:16:45\u002b02:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "255"
+    "wordCount": "310"
   }]
   </script>
 
@@ -3038,6 +3038,7 @@
   
 </div>
 <p>Plakar can expose a Kloset Store over HTTP using the <code>plakar server</code> command. This allows other machines to access the store remotely.</p>
+<p>By default, a Kloset store is only accessed locally. Serving it over HTTP lets other machines back up to or restore from the same store without copying data around. This is useful when the store lives on a NAS, a dedicated backup server, or any machine you want to treat as a central backup target.</p>
 <p>This guide shows how to start an HTTP server for a Kloset Store and access it from another Plakar client.</p>
 
 <div class="relative group">

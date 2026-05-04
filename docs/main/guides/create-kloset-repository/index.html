@@ -81,7 +81,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-03-16T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-05-04T16:22:52+02:00">
+    <meta property="article:modified_time" content="2026-05-04T17:16:45+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -264,12 +264,12 @@
     "dateCreated": "2026-03-16T00:00:00\u002b00:00",
     "datePublished": "2026-03-16T00:00:00\u002b00:00",
     
-    "dateModified": "2026-05-04T16:22:52\u002b02:00",
+    "dateModified": "2026-05-04T17:16:45\u002b02:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "166"
+    "wordCount": "222"
   }]
   </script>
 
@@ -3888,6 +3888,16 @@
 <p>A Kloset store is Plakar&rsquo;s immutable storage backend for backup data. This guide covers filesystem-based store creation. You can learn more in the <a href="https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/"  target="_blank" rel="noreferrer">Kloset deep dive article</a></p>
 
 <div class="relative group">
+  <h2 id="why-you-need-a-kloset-store">Why you need a Kloset store</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#why-you-need-a-kloset-store" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>Before you can run any backup, you&rsquo;ll need to create a Kloset store to store the data. It can be hosted anywhere that Plakar has an integration with a <a href="/integrations/?category=storage" >storage connector</a> for e.g a local filesystem path, a remote S3 bucket, another server via SFTP, or other supported backends.</p>
+
+<div class="relative group">
   <h2 id="create-store-with-path">Create Store with Path</h2>
   
   <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
@@ -4074,6 +4084,7 @@
     <div class="toc-content text-neutral-600">
       <nav id="TableOfContents">
   <ul>
+    <li><a href="#why-you-need-a-kloset-store">Why you need a Kloset store</a></li>
     <li><a href="#create-store-with-path">Create Store with Path</a></li>
     <li><a href="#create-store-with-alias">Create Store with Alias</a></li>
     <li><a href="#update-store-configuration">Update store configuration</a></li>

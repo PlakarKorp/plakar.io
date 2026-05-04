@@ -81,7 +81,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-04-24T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-05-04T16:22:52+02:00">
+    <meta property="article:modified_time" content="2026-05-04T17:16:45+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -264,12 +264,12 @@
     "dateCreated": "2026-04-24T00:00:00\u002b00:00",
     "datePublished": "2026-04-24T00:00:00\u002b00:00",
     
-    "dateModified": "2026-05-04T16:22:52\u002b02:00",
+    "dateModified": "2026-05-04T17:16:45\u002b02:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "509"
+    "wordCount": "577"
   }]
   </script>
 
@@ -3820,6 +3820,8 @@
   
 </div>
 <p><code>plakar prune</code> removes snapshots from a Kloset store. Snapshots can be selected for removal by age, tag, or retention policy.</p>
+<p>Every backup you run creates a new snapshot in your Kloset store. If its feft unchecked, snapshots can accumulate indefinitely.</p>
+<p>Pruning lets you define how much history you actually need such as keeping hourly snapshots for the past week, daily ones for the past month, monthly ones for the past year and discard everything else. This keeps your store from growing without bound while preserving important recovery points.</p>
 <p>By default, <code>plakar prune</code> runs in dry-run mode and makes no changes, you&rsquo;ll need to pass <code>-apply</code> to execute the operation.</p>
 <p>On this guide, we will use a Kloset store is located at <code>$HOME/backups</code>, but your store can be located anywhere else:</p>
 

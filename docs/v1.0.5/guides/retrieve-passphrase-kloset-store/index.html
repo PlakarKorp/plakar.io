@@ -81,7 +81,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-03-16T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-05-04T16:22:52+02:00">
+    <meta property="article:modified_time" content="2026-05-04T17:16:45+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -264,12 +264,12 @@
     "dateCreated": "2026-03-16T00:00:00\u002b00:00",
     "datePublished": "2026-03-16T00:00:00\u002b00:00",
     
-    "dateModified": "2026-05-04T16:22:52\u002b02:00",
+    "dateModified": "2026-05-04T17:16:45\u002b02:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "234"
+    "wordCount": "323"
   }]
   </script>
 
@@ -3040,6 +3040,17 @@
 <p>Plakar can retrieve a Kloset Store passphrase by executing an external command. The command must write the passphrase to standard output. This lets you integrate password managers or secret stores instead of keeping the passphrase in plain text in the Plakar configuration.</p>
 
 <div class="relative group">
+  <h2 id="why-youd-use-an-external-command-to-retrieve-passphrases">Why you&rsquo;d use an external command to retrieve passphrases</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#why-youd-use-an-external-command-to-retrieve-passphrases" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>By default, Plakar prompts for the store passphrase on every command where an action is done to the store. You can avoid this by storing it in the configuration, but that keeps it in plain text on disk.</p>
+<p>For better security, you can delegate passphrase retrieval to an external secret manager such as 1Password, gopass, or HashiCorp Vault so the passphrase is never stored in plain text and access can be audited or revoked through the secret manager itself.</p>
+
+<div class="relative group">
   <h2 id="setting-the-command">Setting the command</h2>
   
   <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
@@ -3206,6 +3217,7 @@
     <div class="toc-content text-neutral-600">
       <nav id="TableOfContents">
   <ul>
+    <li><a href="#why-youd-use-an-external-command-to-retrieve-passphrases">Why you&rsquo;d use an external command to retrieve passphrases</a></li>
     <li><a href="#setting-the-command">Setting the command</a></li>
     <li><a href="#examples">Examples</a>
       <ul>

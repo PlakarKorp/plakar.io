@@ -81,7 +81,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-03-16T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-05-04T16:22:52+02:00">
+    <meta property="article:modified_time" content="2026-05-04T17:16:45+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -264,12 +264,12 @@
     "dateCreated": "2026-03-16T00:00:00\u002b00:00",
     "datePublished": "2026-03-16T00:00:00\u002b00:00",
     
-    "dateModified": "2026-05-04T16:22:52\u002b02:00",
+    "dateModified": "2026-05-04T17:16:45\u002b02:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "593"
+    "wordCount": "687"
   }]
   </script>
 
@@ -3823,6 +3823,18 @@
 <p>Each command includes an import subcommand for importing configurations from different sources.</p>
 
 <div class="relative group">
+  <h2 id="why-youd-need-to-import-configurations">Why you&rsquo;d need to import configurations</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#why-youd-need-to-import-configurations" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>Plakar stores, sources, and destinations each require configuration data such as credentials, locations and passphrases that you&rsquo;d otherwise have to re-enter manually on every machine.</p>
+<p>Importing lets you replicate a working setup across servers, share configurations across a team, migrate from one machine to another, or bootstrap a new installation from a backup of your config.</p>
+<p>It also lets you bring in configurations from other tools directly: if you already have rclone remotes configured, you can import them as Plakar stores without duplicating the credentials by hand.</p>
+
+<div class="relative group">
   <h2 id="basic-usage">Basic Usage</h2>
   
   <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
@@ -4152,6 +4164,7 @@
     <div class="toc-content text-neutral-600">
       <nav id="TableOfContents">
   <ul>
+    <li><a href="#why-youd-need-to-import-configurations">Why you&rsquo;d need to import configurations</a></li>
     <li><a href="#basic-usage">Basic Usage</a>
       <ul>
         <li><a href="#importing-from-a-configuration-file">Importing from a Configuration File</a></li>
