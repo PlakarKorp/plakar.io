@@ -7,7 +7,11 @@ summary: "Learn how to configure and run the Plakar scheduler to automate backup
 
 # Scheduling Tasks
 
-Plakar includes a scheduler that can run backups as well as tasks like restoring files, synchronizing Kloset stores, and verifying backup integrity. In this guide, we will show how to set up the scheduler to run backups every day.
+Plakar includes a scheduler that can run backups as well as tasks like restoring files, synchronizing Kloset stores, and verifying backup integrity. 
+
+Backups only protect you if they run regularly. Without automation, it's easy to forget to run a backup. The backup you didn't run is the one you'll wish you had when something goes wrong. The Plakar scheduler lets you define tasks that run automatically at a given interval, so your backups happen consistently on a schedule.
+
+In this guide, we will show how to set up the scheduler to run backups every day.
 
 ## Requirements
 

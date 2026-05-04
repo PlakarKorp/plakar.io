@@ -9,6 +9,12 @@ summary: "The passphrase for accessing an encrypted Kloset Store can be stored i
 
 Plakar can retrieve a Kloset Store passphrase by executing an external command. The command must write the passphrase to standard output. This lets you integrate password managers or secret stores instead of keeping the passphrase in plain text in the Plakar configuration.
 
+## Why you'd use an external command to retrieve passphrases
+
+By default, Plakar prompts for the store passphrase on every command where an action is done to the store. You can avoid this by storing it in the configuration, but that keeps it in plain text on disk.
+
+For better security, you can delegate passphrase retrieval to an external secret manager such as 1Password, gopass, or HashiCorp Vault so the passphrase is never stored in plain text and access can be audited or revoked through the secret manager itself.
+
 ## Setting the command
 
 Pass `passphrase_cmd` when adding the store:

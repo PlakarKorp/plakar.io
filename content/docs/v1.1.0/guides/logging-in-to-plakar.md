@@ -9,7 +9,7 @@ aliases:
 
 # Logging In to Plakar
 
-Plakar works without an account by default. Logging in is optional and unlocks additional features such as pre-built package installation and alerting.
+Plakar works without an account by default. Logging in is optional but it unlocks additional features such as installing pre-built packages hosted on Plakar's servers (so you don't have to build them from source) and alerting service which can notify you by email on important issues like when a backup fail.
 
 ## Logging In
 
