@@ -17,6 +17,7 @@ Once connected, Plakar Control Plane discovers all resources in your AWS account
 | ------------ | ------ | ----- | ----------- |
 | S3 Bucket    | Yes    | Yes   | Yes         |
 | EC2 Instance | Yes    | No    | Yes         |
+| PostgreSQL(RDS)| Yes  | No    | Yes         |
 
 ## Authentication
 
@@ -236,6 +237,33 @@ The following IAM policy defines the required permissions for discovering resour
 | `ebs:CompleteSnapshot` | Finalizes the snapshot after writing |
 | `ec2:CreateVolume` | Creates a volume from a snapshot |
 | `ec2:AttachVolume` | Attaches the restored volume to an instance |
+
+### Managing PostgreSQL
+
+The following IAM policy defines the required permissions for connecting to PostgreSQL databases hosted on Amazon RDS using IAM authentication.
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "PlakarRDSConnect",
+      "Effect": "Allow",
+      "Action": "rds-db:connect",
+      "Resource": "arn:aws:rds-db:REGION:ACCOUNT_ID:dbuser:DB_RESOURCE_ID/DB_USER"
+    }
+  ]
+}
+```
+
+> [!TIP]+ TIPS
+> The `Resource` value must match the RDS instance and database user you intend to connect to.
+
+#### Permission details
+
+| Permission | Description |
+| - | - |
+| `rds-db:connect` | Allows authentication to an RDS database using IAM |
 
 ## Adding the AWS Inventory
 
