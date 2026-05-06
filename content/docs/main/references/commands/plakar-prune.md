@@ -1,26 +1,24 @@
 ---
-date: "2026-03-24T09:40:29Z"
+date: "2026-05-06T10:34:26Z"
 title: prune
 summary: "Prune snapshots according to a policy"
 aliases:
   - /docs/main/commands/plakar-prune/
 ---
 
-<table class="head">
-  <tr>
-    <td class="head-ltitle">PLAKAR-PRUNE(1)</td>
-    <td class="head-vol">General Commands Manual</td>
-    <td class="head-rtitle">PLAKAR-PRUNE(1)</td>
-  </tr>
-</table>
-<div class="manual-text">
+<div class="head" role="doc-pageheader" aria-label="Manual header
+  line"><span class="head-ltitle">PLAKAR-PRUNE(1)</span>
+  <span class="head-vol">General Commands Manual</span>
+  <span class="head-rtitle">PLAKAR-PRUNE(1)</span></div>
+<main class="manual-text">
 <section class="Sh">
-<h1 class="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h1>
+<h2 class="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h2>
 <p class="Pp"><code class="Nm">plakar-prune</code> &#x2014;
-    <span class="Nd">Prune snapshots according to a policy</span></p>
+    <span class="Nd" role="doc-subtitle">Prune snapshots according to a
+    policy</span></p>
 </section>
 <section class="Sh">
-<h1 class="Sh" id="SYNOPSIS"><a class="permalink" href="#SYNOPSIS">SYNOPSIS</a></h1>
+<h2 class="Sh" id="SYNOPSIS"><a class="permalink" href="#SYNOPSIS">SYNOPSIS</a></h2>
 <table class="Nm">
   <tr>
     <td><code class="Nm">plakar prune</code></td>
@@ -30,7 +28,7 @@ aliases:
 </table>
 </section>
 <section class="Sh">
-<h1 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h1>
+<h2 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h2>
 <p class="Pp">The <code class="Nm">plakar prune</code> command deletes snapshots
     from a Plakar repository. Snapshots can be filtered for deletion by age, by
     tag, or by specifying the snapshot IDs to remove. If no
@@ -38,8 +36,9 @@ aliases:
     <code class="Fl">-older</code> or <code class="Fl">-tag</code> must be
     specified to filter the snapshots to delete.</p>
 <p class="Pp"><code class="Nm">plakar prune</code> supports the location flags
-    documented in <a class="Xr" href="../plakar-query/">plakar-query(7)</a> to
-    precisely select snapshots.</p>
+    documented in
+    <a class="Xr" href="../plakar-query/" aria-label="plakar-query, section
+    7">plakar-query(7)</a> to precisely select snapshots.</p>
 <p class="Pp">The arguments are as follows:</p>
 <dl class="Bl-tag">
   <dt id="apply"><a class="permalink" href="#apply"><code class="Fl">-apply</code></a></dt>
@@ -48,12 +47,18 @@ aliases:
   <dt id="policy"><a class="permalink" href="#policy"><code class="Fl">-policy</code></a>
     <var class="Ar">name</var></dt>
   <dd>Use the given policy. See
-      <a class="Xr" href="../plakar-policy/">plakar-policy(1)</a> for how
-      policies are managed.</dd>
+      <a class="Xr" href="../plakar-policy/" aria-label="plakar-policy, section
+      1">plakar-policy(1)</a> for how policies are managed.</dd>
 </dl>
 </section>
 <section class="Sh">
-<h1 class="Sh" id="EXAMPLES"><a class="permalink" href="#EXAMPLES">EXAMPLES</a></h1>
+<h2 class="Sh" id="EXIT_STATUS"><a class="permalink" href="#EXIT_STATUS">EXIT
+  STATUS</a></h2>
+<p class="Pp">The <code class="Nm">plakar-prune</code> utility exits&#x00A0;0 on
+    success, and&#x00A0;&gt;0 if an error occurs.</p>
+</section>
+<section class="Sh">
+<h2 class="Sh" id="EXAMPLES"><a class="permalink" href="#EXAMPLES">EXAMPLES</a></h2>
 <p class="Pp">Remove a specific snapshot by ID:</p>
 <div class="Bd Pp Bd-indent Li">
 <pre>$ plakar prune abc123</pre>
@@ -72,29 +77,18 @@ aliases:
 </div>
 </section>
 <section class="Sh">
-<h1 class="Sh" id="DIAGNOSTICS"><a class="permalink" href="#DIAGNOSTICS">DIAGNOSTICS</a></h1>
-<p class="Pp">The <code class="Nm">plakar-prune</code> utility exits&#x00A0;0 on
-    success, and&#x00A0;&gt;0 if an error occurs.</p>
-<dl class="Bl-tag">
-  <dt>0</dt>
-  <dd>Command completed successfully.</dd>
-  <dt>&gt;0</dt>
-  <dd>An error occurred, such as invalid date format or failure to delete a
-      snapshot.</dd>
-</dl>
+<h2 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
+  ALSO</a></h2>
+<p class="Pp"><a class="Xr" href="../plakar/" aria-label="plakar, section
+    1">plakar(1)</a>,
+    <a class="Xr" href="../plakar-backup/" aria-label="plakar-backup, section
+    1">plakar-backup(1)</a>,
+    <a class="Xr" href="../plakar-policy/" aria-label="plakar-policy, section
+    1">plakar-policy(1)</a>,
+    <a class="Xr" href="../plakar-query/" aria-label="plakar-query, section
+    7">plakar-query(7)</a></p>
 </section>
-<section class="Sh">
-<h1 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
-  ALSO</a></h1>
-<p class="Pp"><a class="Xr" href="../plakar/">plakar(1)</a>,
-    <a class="Xr" href="../plakar-backup/">plakar-backup(1)</a>,
-    <a class="Xr" href="../plakar-policy/">plakar-policy(1)</a>,
-    <a class="Xr" href="../plakar-query/">plakar-query(7)</a></p>
-</section>
-</div>
-<table class="foot">
-  <tr>
-    <td class="foot-date">September 10, 2025</td>
-    <td class="foot-os">Plakar</td>
-  </tr>
-</table>
+</main>
+<div class="foot" role="doc-pagefooter" aria-label="Manual footer
+  line"><span class="foot-left">Plakar</span> <span class="foot-date">May 5,
+  2026</span> <span class="foot-right">PLAKAR-PRUNE(1)</span></div>
