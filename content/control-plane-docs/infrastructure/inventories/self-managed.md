@@ -46,7 +46,7 @@ Class;Name;URN;Hostname
 
 ## Managing resources
 
-Resources can be edited by selecting them in the inventory table. A configuration panel will open on the right, allowing you to update resource details. 
+Resources can be edited by selecting them in the inventory table. A configuration side panel will open, allowing you to update resource details. 
 
 All fields can be modified except the **URN**, which is immutable. Resources can also be deleted from this panel.
 

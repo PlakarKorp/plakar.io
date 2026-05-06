@@ -290,3 +290,13 @@ All other discovered resources are marked as **unclassified** and are hidden fro
 ![](../images/aws-inventory.png)
 
 All configuration details provided during inventory creation can be updated later in the **Settings** tab. The inventory can also be deleted entirely from this tab if no longer needed.
+
+## Managing Resources
+
+Resources in an AWS inventory are automatically discovered and synchronized. They are managed by the inventory and cannot be manually created or deleted.
+
+You can select a resource to open its details in the side panel. The only configurable option is backup coverage, which can be enabled or disabled per resource.
+
+Backup coverage tracks how many of your resources are protected by backups. If a resource does not need to be backed up (for example, a test database), you can exclude it from coverage. Excluded resources are omitted from protection status and coverage reporting.
+
+![](../images/manage-aws-inventory-resource.png)
