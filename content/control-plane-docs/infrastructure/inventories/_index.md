@@ -40,4 +40,4 @@ Self-managed inventories allow you to add resources manually, either individuall
 * [OVHcloud](#)
 * [Scaleway](#)
 * [Google Cloud](#)
-* [Self-managed](#)
+* [Self-managed](./self-managed)
