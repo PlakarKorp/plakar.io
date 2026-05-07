@@ -7,7 +7,7 @@ summary: "Understand how inventories work in Plakar Control Plane and how to use
 
 # Inventories
 
-An inventory connects Plakar Control Plane to a provider and exposes a list of resources available for management. Resources are the individual entities you can back up, use as storage, or restore to—for example, EC2 instances, S3 buckets, and their equivalents across other supported cloud providers.
+An inventory connects Plakar Control Plane to a provider and exposes a list of resources available for management. Resources are the individual entities you can back up, use as storage, or restore to, for example, EC2 instances, S3 buckets, and their equivalents across other supported cloud providers.
 
 Once an inventory is connected, you can attach connectors to each resource. Plakar Control Plane supports three connector types:
 * **Source** - the resource being backed up

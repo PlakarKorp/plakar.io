@@ -73,16 +73,6 @@ When adding a resource, you select a class and optionally a subclass to describe
 | Security | |
 | Service | FTP, IMAP, SFTP |
 
-## Connecting resources
-
-Once a resource is added, you can attach connectors to it. Plakar Control Plane will prompt you for configuration based on the connector type and how the resource is used.
-
-For managed inventories (such as AWS), credentials and permissions may already be available at the inventory level. In this case, additional credentials are not required when connecting supported resources.
-
-If the required permissions are not available, or when using a self-managed inventory, you will be prompted to provide the necessary credentials during connector setup.
-
-See the [Connectors](#) section for more details.
-
 ## Backup Coverage
 
 By default, all resources in a self-managed inventory and all classified resources in a managed inventory are included in backup coverage reporting.
