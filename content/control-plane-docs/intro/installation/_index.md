@@ -1,7 +1,7 @@
 ---
 title: "Installation"
 date: "2026-04-20T00:00:00Z"
-weight: 4
+weight: 2
 summary: "How to deploy Plakar Control Plane as a virtual appliance on your infrastructure."
 ---
 
