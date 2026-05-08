@@ -41,6 +41,8 @@ technical_documentation_link:
 
 stage: beta
 
+new: true
+
 date: 2026-04-02
 
 resource: PostgreSQL

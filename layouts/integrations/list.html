@@ -61,9 +61,9 @@
   </div>
 </section>
 
-<!-- Category filter -->
+<!-- Category filter + Sort -->
 <section class="section-light-2 px-4 pt-7">
-  <div class="max-w-350 flex justify-center mx-auto">
+  <div class="max-w-350 flex flex-wrap items-center justify-between gap-4 mx-auto">
     <div class="inline-flex items-center gap-1 bg-neutral-50 rounded-xl p-2" id="integrations-filter">
       <a data-filter="all" class="filter-btn px-2 py-4 rounded-lg text-sm cursor-pointer transition-all duration-150 text-neutral-700">
         All Integrations
@@ -80,6 +80,17 @@
       <a data-filter="viewer" class="filter-btn px-2 py-4 rounded-lg text-sm cursor-pointer transition-all duration-150 text-neutral-700">
         Viewer
       </a>
+    </div>
+    <div class="inline-flex items-center gap-2" id="integrations-sort">
+      <span class="text-sm text-neutral-500 font-medium">Sort by</span>
+      <div class="inline-flex items-center gap-1 bg-neutral-50 rounded-xl p-2">
+        <a data-sort="name" class="sort-btn px-3 py-2 rounded-lg text-sm cursor-pointer transition-all duration-150 text-neutral-700">
+          Name
+        </a>
+        <a data-sort="date" class="sort-btn px-3 py-2 rounded-lg text-sm cursor-pointer transition-all duration-150 text-neutral-700">
+          Date
+        </a>
+      </div>
     </div>
   </div>
 </section>

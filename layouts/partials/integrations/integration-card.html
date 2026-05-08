@@ -9,7 +9,7 @@
 {{ $image := resources.Get $p.Params.image }}
 {{ $stageClass := index $stageColors (lower $p.Params.stage) | default "text-neutral-600 bg-neutral-100" }}
 
-<a href="{{ $p.Permalink }}" data-categories="{{ delimit $p.Params.categories "," }}" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
+<a href="{{ $p.Permalink }}" data-categories="{{ delimit $p.Params.categories "," }}" data-name="{{ lower $p.Title }}" data-date="{{ $p.Date.Unix }}" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
   <div class="flex items-start justify-between gap-3">
     <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 bg-neutral-100 flex items-center justify-center">
       {{ if $image }}
@@ -27,9 +27,14 @@
 
   <!-- Title -->
   <div class="flex flex-col gap-1">
-    <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
-      {{ $p.Title }}
-    </h3>
+    <div class="flex items-center gap-2">
+      <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
+        {{ $p.Title }}
+      </h3>
+      {{ if $p.Params.new }}
+        <span class="text-xxs font-semibold px-2 py-0.5 rounded-full text-neutral-50 bg-primary-500 uppercase tracking-wide shrink-0">New</span>
+      {{ end }}
+    </div>
 
     <!-- Categories -->
     {{ $categories := $p.GetTerms "categories" }}

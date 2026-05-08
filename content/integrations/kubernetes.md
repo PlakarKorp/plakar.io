@@ -43,6 +43,8 @@ technical_documentation_link: /docs/main/integrations/kubernetes/
 
 stage: beta
 
+new: true
+
 date: 2026-03-16
 
 resource: Kubernetes
