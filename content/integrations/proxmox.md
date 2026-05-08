@@ -49,6 +49,8 @@ technical_documentation_link: /docs/main/integrations/proxmox/
 
 stage: beta
 
+new: true
+
 date: 2026-03-16
 
 resource: Proxmox
