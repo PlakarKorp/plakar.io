@@ -1,37 +1,32 @@
 ---
-date: "2026-03-24T09:40:29Z"
+date: "2026-05-06T10:34:26Z"
 title: restore
 summary: "Restore files from a Plakar snapshot"
 aliases:
   - /docs/main/commands/plakar-restore/
 ---
 
-<table class="head">
-  <tr>
-    <td class="head-ltitle">PLAKAR-RESTORE(1)</td>
-    <td class="head-vol">General Commands Manual</td>
-    <td class="head-rtitle">PLAKAR-RESTORE(1)</td>
-  </tr>
-</table>
-<div class="manual-text">
+<div class="head" role="doc-pageheader" aria-label="Manual header
+  line"><span class="head-ltitle">PLAKAR-RESTORE(1)</span>
+  <span class="head-vol">General Commands Manual</span>
+  <span class="head-rtitle">PLAKAR-RESTORE(1)</span></div>
+<main class="manual-text">
 <section class="Sh">
-<h1 class="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h1>
+<h2 class="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h2>
 <p class="Pp"><code class="Nm">plakar-restore</code> &#x2014;
-    <span class="Nd">Restore files from a Plakar snapshot</span></p>
+    <span class="Nd" role="doc-subtitle">Restore files from a Plakar
+    snapshot</span></p>
 </section>
 <section class="Sh">
-<h1 class="Sh" id="SYNOPSIS"><a class="permalink" href="#SYNOPSIS">SYNOPSIS</a></h1>
+<h2 class="Sh" id="SYNOPSIS"><a class="permalink" href="#SYNOPSIS">SYNOPSIS</a></h2>
 <table class="Nm">
   <tr>
     <td><code class="Nm">plakar restore</code></td>
-    <td>[<code class="Fl">-before</code> <var class="Ar">date</var>]
-      [<code class="Fl">-category</code> <var class="Ar">category</var>]
+    <td>[<code class="Fl">-category</code> <var class="Ar">category</var>]
       [<code class="Fl">-environment</code> <var class="Ar">environment</var>]
       [<code class="Fl">-job</code> <var class="Ar">job</var>]
-      [<code class="Fl">-latest</code>] [<code class="Fl">-name</code>
-      <var class="Ar">name</var>] [<code class="Fl">-perimeter</code>
-      <var class="Ar">perimeter</var>] [<code class="Fl">-quiet</code>]
-      [<code class="Fl">-since</code> <var class="Ar">date</var>]
+      [<code class="Fl">-name</code> <var class="Ar">name</var>]
+      [<code class="Fl">-perimeter</code> <var class="Ar">perimeter</var>]
       [<code class="Fl">-skip-permissions</code>] [<code class="Fl">-tag</code>
       <var class="Ar">tag</var>] [<code class="Fl">-to</code>
       <var class="Ar">directory</var>] [<code class="Fl">-o</code>
@@ -41,7 +36,7 @@ aliases:
 </table>
 </section>
 <section class="Sh">
-<h1 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h1>
+<h2 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h2>
 <p class="Pp">The <code class="Nm">plakar restore</code> command is used to
     restore files and directories at <var class="Ar">path</var> from a specified
     Plakar snapshot to the local file system. If <var class="Ar">path</var> is
@@ -85,12 +80,16 @@ aliases:
   <dd>Can be used to pass extra arguments to the destination connector. The
       given <var class="Ar">option</var> takes precedence over the configuration
       file.</dd>
-  <dt id="quiet"><a class="permalink" href="#quiet"><code class="Fl">-quiet</code></a></dt>
-  <dd>Suppress output to standard input, only logging errors and warnings.</dd>
 </dl>
 </section>
 <section class="Sh">
-<h1 class="Sh" id="EXAMPLES"><a class="permalink" href="#EXAMPLES">EXAMPLES</a></h1>
+<h2 class="Sh" id="EXIT_STATUS"><a class="permalink" href="#EXIT_STATUS">EXIT
+  STATUS</a></h2>
+<p class="Pp">The <code class="Nm">plakar-restore</code> utility exits&#x00A0;0
+    on success, and&#x00A0;&gt;0 if an error occurs.</p>
+</section>
+<section class="Sh">
+<h2 class="Sh" id="EXAMPLES"><a class="permalink" href="#EXAMPLES">EXAMPLES</a></h2>
 <p class="Pp">Restore all files from a specific snapshot to the current
     directory:</p>
 <div class="Bd Pp Bd-indent Li">
@@ -99,10 +98,6 @@ aliases:
 <p class="Pp">Restore to a specific directory:</p>
 <div class="Bd Pp Bd-indent Li">
 <pre>$ plakar restore -to /mnt/ abc123</pre>
-</div>
-<p class="Pp">Restore latest snapshot to a specific directory:</p>
-<div class="Bd Pp Bd-indent Li">
-<pre>$ plakar restore -latest -to /mnt/ abc123</pre>
 </div>
 <p class="Pp">Restore specific path to a specific directory:</p>
 <div class="Bd Pp Bd-indent Li">
@@ -118,27 +113,14 @@ aliases:
 </div>
 </section>
 <section class="Sh">
-<h1 class="Sh" id="DIAGNOSTICS"><a class="permalink" href="#DIAGNOSTICS">DIAGNOSTICS</a></h1>
-<p class="Pp">The <code class="Nm">plakar-restore</code> utility exits&#x00A0;0
-    on success, and&#x00A0;&gt;0 if an error occurs.</p>
-<dl class="Bl-tag">
-  <dt>0</dt>
-  <dd>Command completed successfully.</dd>
-  <dt>&gt;0</dt>
-  <dd>An error occurred, such as a failure to locate the snapshot or a
-      destination directory issue.</dd>
-</dl>
+<h2 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
+  ALSO</a></h2>
+<p class="Pp"><a class="Xr" href="../plakar/" aria-label="plakar, section
+    1">plakar(1)</a>,
+    <a class="Xr" href="../plakar-backup/" aria-label="plakar-backup, section
+    1">plakar-backup(1)</a></p>
 </section>
-<section class="Sh">
-<h1 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
-  ALSO</a></h1>
-<p class="Pp"><a class="Xr" href="../plakar/">plakar(1)</a>,
-    <a class="Xr" href="../plakar-backup/">plakar-backup(1)</a></p>
-</section>
-</div>
-<table class="foot">
-  <tr>
-    <td class="foot-date">July 3, 2025</td>
-    <td class="foot-os">Plakar</td>
-  </tr>
-</table>
+</main>
+<div class="foot" role="doc-pagefooter" aria-label="Manual footer
+  line"><span class="foot-left">Plakar</span> <span class="foot-date">May 5,
+  2026</span> <span class="foot-right">PLAKAR-RESTORE(1)</span></div>

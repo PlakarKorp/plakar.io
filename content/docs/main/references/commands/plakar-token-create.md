@@ -1,40 +1,49 @@
 ---
 date: "2026-05-06T10:34:26Z"
-title: logout
-summary: "Log out from Plakar services"
+title: token-create
+summary: "Create a token to authenticate to Plakar services"
 aliases:
-  - /docs/main/commands/plakar-logout/
+  - /docs/main/commands/plakar-token-create/
 ---
 
 <div class="head" role="doc-pageheader" aria-label="Manual header
-  line"><span class="head-ltitle">PLAKAR-LOGOUT(1)</span>
+  line"><span class="head-ltitle">PLAKAR-TOKEN-CREATE(1)</span>
   <span class="head-vol">General Commands Manual</span>
-  <span class="head-rtitle">PLAKAR-LOGOUT(1)</span></div>
+  <span class="head-rtitle">PLAKAR-TOKEN-CREATE(1)</span></div>
 <main class="manual-text">
 <section class="Sh">
 <h2 class="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h2>
-<p class="Pp"><code class="Nm">plakar-logout</code> &#x2014;
-    <span class="Nd" role="doc-subtitle">Log out from Plakar services</span></p>
+<p class="Pp"><code class="Nm">plakar-token-create</code> &#x2014;
+    <span class="Nd" role="doc-subtitle">Create a token to authenticate to
+    Plakar services</span></p>
 </section>
 <section class="Sh">
 <h2 class="Sh" id="SYNOPSIS"><a class="permalink" href="#SYNOPSIS">SYNOPSIS</a></h2>
 <table class="Nm">
   <tr>
-    <td><code class="Nm">plakar logout</code></td>
+    <td><code class="Nm">plakar token create</code></td>
     <td></td>
   </tr>
 </table>
 </section>
 <section class="Sh">
 <h2 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h2>
-<p class="Pp">The <code class="Nm">plakar logout</code> command logs out an
-    authenticated session with the Plakar platform.</p>
+<p class="Pp">The <code class="Nm">plakar token create</code> command generates
+    a token that can be used to authenticate with
+    <a class="Xr" href="../plakar-login/" aria-label="plakar-login, section
+    1">plakar-login(1)</a>.</p>
 </section>
 <section class="Sh">
 <h2 class="Sh" id="EXAMPLES"><a class="permalink" href="#EXAMPLES">EXAMPLES</a></h2>
-<p class="Pp">Log out from the current session:</p>
+<p class="Pp">Generate a token:</p>
 <div class="Bd Pp Bd-indent Li">
-<pre>$ plakar logout</pre>
+<pre>$ plakar token create</pre>
+</div>
+<p class="Pp">and then use it on a different machine to log in
+  automatically:</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>$ export PLAKAR_TOKEN=...
+$ plakar login -env</pre>
 </div>
 </section>
 <section class="Sh">
@@ -49,5 +58,5 @@ aliases:
 </section>
 </main>
 <div class="foot" role="doc-pagefooter" aria-label="Manual footer
-  line"><span class="foot-left">Plakar</span> <span class="foot-date">July 8,
-  2025</span> <span class="foot-right">PLAKAR-LOGOUT(1)</span></div>
+  line"><span class="foot-left">Plakar</span> <span class="foot-date">May 5,
+  2026</span> <span class="foot-right">PLAKAR-TOKEN-CREATE(1)</span></div>
