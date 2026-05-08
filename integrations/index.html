@@ -264,7 +264,7 @@
     "dateCreated": "2026-03-20T00:00:00\u002b00:00",
     "datePublished": "2026-03-20T00:00:00\u002b00:00",
     
-    "dateModified": "2026-05-08T13:55:36\u002b02:00",
+    "dateModified": "2026-05-08T13:56:39\u002b02:00",
     
     
     
@@ -305,7 +305,7 @@
 
 
 
-<script src="/js/compiled/bundle.min.80602f216bdd5502d94e8ca6b69310e14c516208d11d51ce637c1aa45c0c3207.js" defer></script>
+<script src="/js/compiled/bundle.min.6bdb06b4000aa3ba175878ebe6af4c24652d5006df3d09b807f73fdc69c319f8.js" defer></script>
 
   
 
@@ -1862,7 +1862,7 @@
 
 
 <section class="section-light-2 px-4 pt-7">
-  <div class="max-w-350 flex justify-center mx-auto">
+  <div class="max-w-350 flex flex-wrap items-center justify-between gap-4 mx-auto">
     <div class="inline-flex items-center gap-1 bg-neutral-50 rounded-xl p-2" id="integrations-filter">
       <a data-filter="all" class="filter-btn px-2 py-4 rounded-lg text-sm cursor-pointer transition-all duration-150 text-neutral-700">
         All Integrations
@@ -1880,6 +1880,17 @@
         Viewer
       </a>
     </div>
+    <div class="inline-flex items-center gap-2" id="integrations-sort">
+      <span class="text-sm text-neutral-500 font-medium">Sort by</span>
+      <div class="inline-flex items-center gap-1 bg-neutral-50 rounded-xl p-2">
+        <a data-sort="name" class="sort-btn px-3 py-2 rounded-lg text-sm cursor-pointer transition-all duration-150 text-neutral-700">
+          Name
+        </a>
+        <a data-sort="date" class="sort-btn px-3 py-2 rounded-lg text-sm cursor-pointer transition-all duration-150 text-neutral-700">
+          Date
+        </a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1895,7 +1906,7 @@
 
 
 
-<a href="https://plakar.io/integrations/etcd/" data-categories="source connector" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
+<a href="https://plakar.io/integrations/etcd/" data-categories="source connector" data-name="etcd" data-date="1775088000" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
   <div class="flex items-start justify-between gap-3">
     <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 bg-neutral-100 flex items-center justify-center">
       
@@ -1911,9 +1922,12 @@
 
   
   <div class="flex flex-col gap-1">
-    <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
-      etcd
-    </h3>
+    <div class="flex items-center gap-2">
+      <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
+        etcd
+      </h3>
+      
+    </div>
 
     
     
@@ -1986,7 +2000,7 @@
 
 
 
-<a href="https://plakar.io/integrations/mysql/" data-categories="source connector,destination connector" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
+<a href="https://plakar.io/integrations/mysql/" data-categories="source connector,destination connector" data-name="mysql / mariadb" data-date="1775088000" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
   <div class="flex items-start justify-between gap-3">
     <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 bg-neutral-100 flex items-center justify-center">
       
@@ -2002,9 +2016,14 @@
 
   
   <div class="flex flex-col gap-1">
-    <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
-      MySQL / MariaDB
-    </h3>
+    <div class="flex items-center gap-2">
+      <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
+        MySQL / MariaDB
+      </h3>
+      
+        <span class="text-xxs font-semibold px-2 py-0.5 rounded-full text-neutral-50 bg-primary-500 uppercase tracking-wide shrink-0">New</span>
+      
+    </div>
 
     
     
@@ -2079,7 +2098,7 @@
 
 
 
-<a href="https://plakar.io/integrations/postgres/" data-categories="source connector,destination connector" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
+<a href="https://plakar.io/integrations/postgres/" data-categories="source connector,destination connector" data-name="postgresql" data-date="1775088000" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
   <div class="flex items-start justify-between gap-3">
     <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 bg-neutral-100 flex items-center justify-center">
       
@@ -2095,9 +2114,14 @@
 
   
   <div class="flex flex-col gap-1">
-    <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
-      PostgreSQL
-    </h3>
+    <div class="flex items-center gap-2">
+      <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
+        PostgreSQL
+      </h3>
+      
+        <span class="text-xxs font-semibold px-2 py-0.5 rounded-full text-neutral-50 bg-primary-500 uppercase tracking-wide shrink-0">New</span>
+      
+    </div>
 
     
     
@@ -2164,7 +2188,7 @@
 
 
 
-<a href="https://plakar.io/integrations/caldav/" data-categories="source connector,destination connector" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
+<a href="https://plakar.io/integrations/caldav/" data-categories="source connector,destination connector" data-name="caldav" data-date="1774224000" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
   <div class="flex items-start justify-between gap-3">
     <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 bg-neutral-100 flex items-center justify-center">
       
@@ -2180,9 +2204,12 @@
 
   
   <div class="flex flex-col gap-1">
-    <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
-      CalDAV
-    </h3>
+    <div class="flex items-center gap-2">
+      <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
+        CalDAV
+      </h3>
+      
+    </div>
 
     
     
@@ -2245,7 +2272,7 @@
 
 
 
-<a href="https://plakar.io/integrations/dropbox/" data-categories="source connector,destination connector,storage connector" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
+<a href="https://plakar.io/integrations/dropbox/" data-categories="source connector,destination connector,storage connector" data-name="dropbox" data-date="1774224000" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
   <div class="flex items-start justify-between gap-3">
     <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 bg-neutral-100 flex items-center justify-center">
       
@@ -2261,9 +2288,12 @@
 
   
   <div class="flex flex-col gap-1">
-    <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
-      Dropbox
-    </h3>
+    <div class="flex items-center gap-2">
+      <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
+        Dropbox
+      </h3>
+      
+    </div>
 
     
     
@@ -2316,7 +2346,7 @@
 
 
 
-<a href="https://plakar.io/integrations/fs/" data-categories="source connector,destination connector,viewer,storage connector" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
+<a href="https://plakar.io/integrations/fs/" data-categories="source connector,destination connector,viewer,storage connector" data-name="filesystem" data-date="1774224000" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
   <div class="flex items-start justify-between gap-3">
     <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 bg-neutral-100 flex items-center justify-center">
       
@@ -2332,9 +2362,12 @@
 
   
   <div class="flex flex-col gap-1">
-    <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
-      Filesystem
-    </h3>
+    <div class="flex items-center gap-2">
+      <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
+        Filesystem
+      </h3>
+      
+    </div>
 
     
     
@@ -2409,7 +2442,7 @@
 
 
 
-<a href="https://plakar.io/integrations/ftp/" data-categories="source connector,destination connector,viewer" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
+<a href="https://plakar.io/integrations/ftp/" data-categories="source connector,destination connector,viewer" data-name="ftp" data-date="1774224000" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
   <div class="flex items-start justify-between gap-3">
     <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 bg-neutral-100 flex items-center justify-center">
       
@@ -2425,9 +2458,12 @@
 
   
   <div class="flex flex-col gap-1">
-    <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
-      FTP
-    </h3>
+    <div class="flex items-center gap-2">
+      <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
+        FTP
+      </h3>
+      
+    </div>
 
     
     
@@ -2488,7 +2524,7 @@
 
 
 
-<a href="https://plakar.io/integrations/googledrive/" data-categories="source connector,destination connector,storage connector" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
+<a href="https://plakar.io/integrations/googledrive/" data-categories="source connector,destination connector,storage connector" data-name="google drive" data-date="1774224000" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
   <div class="flex items-start justify-between gap-3">
     <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 bg-neutral-100 flex items-center justify-center">
       
@@ -2504,9 +2540,12 @@
 
   
   <div class="flex flex-col gap-1">
-    <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
-      Google Drive
-    </h3>
+    <div class="flex items-center gap-2">
+      <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
+        Google Drive
+      </h3>
+      
+    </div>
 
     
     
@@ -2559,7 +2598,7 @@
 
 
 
-<a href="https://plakar.io/integrations/iclouddrive/" data-categories="source connector,destination connector,storage connector,viewer" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
+<a href="https://plakar.io/integrations/iclouddrive/" data-categories="source connector,destination connector,storage connector,viewer" data-name="icloud drive" data-date="1774224000" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
   <div class="flex items-start justify-between gap-3">
     <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 bg-neutral-100 flex items-center justify-center">
       
@@ -2575,9 +2614,12 @@
 
   
   <div class="flex flex-col gap-1">
-    <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
-      iCloud Drive
-    </h3>
+    <div class="flex items-center gap-2">
+      <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
+        iCloud Drive
+      </h3>
+      
+    </div>
 
     
     
@@ -2640,7 +2682,7 @@
 
 
 
-<a href="https://plakar.io/integrations/imap/" data-categories="source connector,destination connector" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
+<a href="https://plakar.io/integrations/imap/" data-categories="source connector,destination connector" data-name="imap" data-date="1774224000" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
   <div class="flex items-start justify-between gap-3">
     <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 bg-neutral-100 flex items-center justify-center">
       
@@ -2656,9 +2698,12 @@
 
   
   <div class="flex flex-col gap-1">
-    <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
-      IMAP
-    </h3>
+    <div class="flex items-center gap-2">
+      <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
+        IMAP
+      </h3>
+      
+    </div>
 
     
     
@@ -2725,7 +2770,7 @@
 
 
 
-<a href="https://plakar.io/integrations/koofr/" data-categories="source connector,destination connector,storage connector" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
+<a href="https://plakar.io/integrations/koofr/" data-categories="source connector,destination connector,storage connector" data-name="koofr" data-date="1774224000" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
   <div class="flex items-start justify-between gap-3">
     <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 bg-neutral-100 flex items-center justify-center">
       
@@ -2741,9 +2786,12 @@
 
   
   <div class="flex flex-col gap-1">
-    <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
-      Koofr
-    </h3>
+    <div class="flex items-center gap-2">
+      <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
+        Koofr
+      </h3>
+      
+    </div>
 
     
     
@@ -2800,7 +2848,7 @@
 
 
 
-<a href="https://plakar.io/integrations/minio/" data-categories="source connector,destination connector,storage connector,viewer" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
+<a href="https://plakar.io/integrations/minio/" data-categories="source connector,destination connector,storage connector,viewer" data-name="minio" data-date="1774224000" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
   <div class="flex items-start justify-between gap-3">
     <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 bg-neutral-100 flex items-center justify-center">
       
@@ -2816,9 +2864,12 @@
 
   
   <div class="flex flex-col gap-1">
-    <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
-      MinIO
-    </h3>
+    <div class="flex items-center gap-2">
+      <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
+        MinIO
+      </h3>
+      
+    </div>
 
     
     
@@ -2873,7 +2924,7 @@
 
 
 
-<a href="https://plakar.io/integrations/notion/" data-categories="source connector" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
+<a href="https://plakar.io/integrations/notion/" data-categories="source connector" data-name="notion" data-date="1774224000" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
   <div class="flex items-start justify-between gap-3">
     <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 bg-neutral-100 flex items-center justify-center">
       
@@ -2889,9 +2940,12 @@
 
   
   <div class="flex flex-col gap-1">
-    <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
-      Notion
-    </h3>
+    <div class="flex items-center gap-2">
+      <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
+        Notion
+      </h3>
+      
+    </div>
 
     
     
@@ -2956,7 +3010,7 @@
 
 
 
-<a href="https://plakar.io/integrations/onedrive/" data-categories="source connector,destination connector,storage connector" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
+<a href="https://plakar.io/integrations/onedrive/" data-categories="source connector,destination connector,storage connector" data-name="onedrive" data-date="1774224000" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
   <div class="flex items-start justify-between gap-3">
     <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 bg-neutral-100 flex items-center justify-center">
       
@@ -2972,9 +3026,12 @@
 
   
   <div class="flex flex-col gap-1">
-    <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
-      OneDrive
-    </h3>
+    <div class="flex items-center gap-2">
+      <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
+        OneDrive
+      </h3>
+      
+    </div>
 
     
     
@@ -3031,7 +3088,7 @@
 
 
 
-<a href="https://plakar.io/integrations/opendrive/" data-categories="source connector,destination connector,storage connector" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
+<a href="https://plakar.io/integrations/opendrive/" data-categories="source connector,destination connector,storage connector" data-name="opendrive" data-date="1774224000" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
   <div class="flex items-start justify-between gap-3">
     <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 bg-neutral-100 flex items-center justify-center">
       
@@ -3047,9 +3104,12 @@
 
   
   <div class="flex flex-col gap-1">
-    <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
-      OpenDrive
-    </h3>
+    <div class="flex items-center gap-2">
+      <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
+        OpenDrive
+      </h3>
+      
+    </div>
 
     
     
@@ -3102,7 +3162,7 @@
 
 
 
-<a href="https://plakar.io/integrations/protondrive/" data-categories="source connector,destination connector,storage connector" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
+<a href="https://plakar.io/integrations/protondrive/" data-categories="source connector,destination connector,storage connector" data-name="proton drive" data-date="1774224000" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
   <div class="flex items-start justify-between gap-3">
     <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 bg-neutral-100 flex items-center justify-center">
       
@@ -3118,9 +3178,12 @@
 
   
   <div class="flex flex-col gap-1">
-    <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
-      Proton Drive
-    </h3>
+    <div class="flex items-center gap-2">
+      <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
+        Proton Drive
+      </h3>
+      
+    </div>
 
     
     
@@ -3173,7 +3236,7 @@
 
 
 
-<a href="https://plakar.io/integrations/s3/" data-categories="source connector,destination connector,storage connector,viewer" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
+<a href="https://plakar.io/integrations/s3/" data-categories="source connector,destination connector,storage connector,viewer" data-name="s3" data-date="1774224000" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
   <div class="flex items-start justify-between gap-3">
     <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 bg-neutral-100 flex items-center justify-center">
       
@@ -3189,9 +3252,12 @@
 
   
   <div class="flex flex-col gap-1">
-    <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
-      S3
-    </h3>
+    <div class="flex items-center gap-2">
+      <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
+        S3
+      </h3>
+      
+    </div>
 
     
     
@@ -3286,7 +3352,7 @@
 
 
 
-<a href="https://plakar.io/integrations/sftp/" data-categories="source connector,destination connector,storage connector,viewer" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
+<a href="https://plakar.io/integrations/sftp/" data-categories="source connector,destination connector,storage connector,viewer" data-name="sftp" data-date="1774224000" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
   <div class="flex items-start justify-between gap-3">
     <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 bg-neutral-100 flex items-center justify-center">
       
@@ -3302,9 +3368,12 @@
 
   
   <div class="flex flex-col gap-1">
-    <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
-      SFTP
-    </h3>
+    <div class="flex items-center gap-2">
+      <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
+        SFTP
+      </h3>
+      
+    </div>
 
     
     
@@ -3375,7 +3444,7 @@
 
 
 
-<a href="https://plakar.io/integrations/stdio/" data-categories="source connector,destination connector" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
+<a href="https://plakar.io/integrations/stdio/" data-categories="source connector,destination connector" data-name="stdio" data-date="1774224000" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
   <div class="flex items-start justify-between gap-3">
     <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 bg-neutral-100 flex items-center justify-center">
       
@@ -3391,9 +3460,12 @@
 
   
   <div class="flex flex-col gap-1">
-    <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
-      Stdio
-    </h3>
+    <div class="flex items-center gap-2">
+      <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
+        Stdio
+      </h3>
+      
+    </div>
 
     
     
@@ -3464,7 +3536,7 @@
 
 
 
-<a href="https://plakar.io/integrations/tar/" data-categories="source connector,viewer" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
+<a href="https://plakar.io/integrations/tar/" data-categories="source connector,viewer" data-name="tar" data-date="1774224000" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
   <div class="flex items-start justify-between gap-3">
     <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 bg-neutral-100 flex items-center justify-center">
       
@@ -3480,9 +3552,12 @@
 
   
   <div class="flex flex-col gap-1">
-    <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
-      Tar
-    </h3>
+    <div class="flex items-center gap-2">
+      <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
+        Tar
+      </h3>
+      
+    </div>
 
     
     
@@ -3549,7 +3624,7 @@
 
 
 
-<a href="https://plakar.io/integrations/kubernetes/" data-categories="source connector,destination connector" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
+<a href="https://plakar.io/integrations/kubernetes/" data-categories="source connector,destination connector" data-name="kubernetes" data-date="1773619200" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
   <div class="flex items-start justify-between gap-3">
     <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 bg-neutral-100 flex items-center justify-center">
       
@@ -3565,9 +3640,14 @@
 
   
   <div class="flex flex-col gap-1">
-    <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
-      Kubernetes
-    </h3>
+    <div class="flex items-center gap-2">
+      <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
+        Kubernetes
+      </h3>
+      
+        <span class="text-xxs font-semibold px-2 py-0.5 rounded-full text-neutral-50 bg-primary-500 uppercase tracking-wide shrink-0">New</span>
+      
+    </div>
 
     
     
@@ -3642,7 +3722,7 @@
 
 
 
-<a href="https://plakar.io/integrations/proxmox/" data-categories="source connector,destination connector" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
+<a href="https://plakar.io/integrations/proxmox/" data-categories="source connector,destination connector" data-name="proxmox" data-date="1773619200" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
   <div class="flex items-start justify-between gap-3">
     <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 bg-neutral-100 flex items-center justify-center">
       
@@ -3658,9 +3738,14 @@
 
   
   <div class="flex flex-col gap-1">
-    <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
-      Proxmox
-    </h3>
+    <div class="flex items-center gap-2">
+      <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
+        Proxmox
+      </h3>
+      
+        <span class="text-xxs font-semibold px-2 py-0.5 rounded-full text-neutral-50 bg-primary-500 uppercase tracking-wide shrink-0">New</span>
+      
+    </div>
 
     
     
