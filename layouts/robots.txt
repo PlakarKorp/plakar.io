@@ -1,0 +1,53 @@
+{{/*
+  Plakar.io robots.txt template.
+
+  Emits Content-Signal directives per the IETF AI Preferences draft
+  (https://contentsignals.org/, draft-romm-aipref-contentsignals).
+
+  Site stance:
+    - search=yes        — let traditional crawlers index us (SEO)
+    - ai-input=yes      — let AI assistants ground retrieval-augmented
+                          answers in our content (GEO)
+    - ai-train=no       — disallow training-corpus inclusion
+*/ -}}
+User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+Allow: /
+
+# Sitemap (Hugo-generated)
+Sitemap: {{ "sitemap.xml" | absURL }}
+
+# ---------------------------------------------------------------------------
+# Per-bot overrides. Keep the global rule above as the floor; tighten here
+# for crawlers that have separate training vs. search identities.
+# ---------------------------------------------------------------------------
+
+# Google's training crawler (separate from Googlebot, which keeps default).
+User-agent: Google-Extended
+Content-Signal: ai-train=no
+Disallow: /
+
+# OpenAI training crawler.
+User-agent: GPTBot
+Content-Signal: ai-train=no
+Disallow: /
+
+# OpenAI search crawler (retrieval for ChatGPT search) — keep open.
+User-agent: OAI-SearchBot
+Content-Signal: search=yes, ai-input=yes
+Allow: /
+
+# Anthropic training crawler.
+User-agent: ClaudeBot
+Content-Signal: ai-train=no
+Disallow: /
+
+# Anthropic user-fetch crawler (Claude grounding) — keep open.
+User-agent: Claude-User
+Content-Signal: ai-input=yes
+Allow: /
+
+# Perplexity (retrieval-augmented answers).
+User-agent: PerplexityBot
+Content-Signal: search=yes, ai-input=yes
+Allow: /
