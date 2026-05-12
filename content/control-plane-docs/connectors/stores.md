@@ -28,12 +28,28 @@ Once a store has been initialized, additional operations become available from t
 ![](../images/store-connector-2.png)
 
 > [!NOTE]+
-> All operations in Plakar Control Plane are currently scheduled as jobs. One-off job execution support is planned for a future release.
+> Operations in Plakar Control Plane can be executed either as one-off job or through scheduled tasks.
+
+## Browsing Snapshots
+
+![](../images/view-snapshots.png)
+
+You can view all backup snapshots stored in this store from the **Browse** tab. From there, you can inspect the files contained in each snapshot and download individual files without performing a full restore.
+
+![](../images/browse-snapshots.png)
+
+## Scheduling Tasks
+
+Backup, restore, sync, and integrity check operations can be configured as recurring scheduled tasks. See the [scheduling documentation](#) for details on creating and managing schedules.
+
+The **Dashboard** tab displays recent jobs that have run on the store, along with upcoming scheduled jobs.
+
+![](../images/upcoming-jobs.png)
+
+The **Schedules** tab displays all scheduled operations associated with the store connector.
+
+![](../images/scheduling-tasks.png)
+
+## Settings
 
 The **Settings** tab allows connector configuration to be updated and the connector to be deleted.
-
-## Scheduling operations
-
-Backup, restore, synchronization, and integrity check operations are managed through the scheduling system.
-
-See the [scheduling documentation](#) for more details.
