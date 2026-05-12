@@ -142,8 +142,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.5739902d674a460b118dd577d8924aa6f1d70bca498801e4f81cabebd73142e9a1da5ae775270b1280467cf017591991eb2307c5684c3aac87927b009e6347c8.css"
-    integrity="sha512-VzmQLWdKRgsRjdV32JJKpvHXC8pJiAHk&#43;Byr69cxQumh2lrndScLEoBGfPAXWRmR6yMHxWhMOqyHknsAnmNHyA==">
+    href="/css/main.bundle.min.523c171b3e0d02a3b719010b0caa7fb3a097f7ad767b0d2f91504c165171fc36badb772c207f8472bb0313ea4c1c032e0d0a950b1b0a6e27928c34282ca7c624.css"
+    integrity="sha512-UjwXGz4NAqO3GQELDKp/s6CX9612ew0vkVBMFlFx/Da623csIH&#43;EcrsDE&#43;pMHAMuDQqVCxsKbieSjDQoLKfGJA==">
 
   
   
@@ -264,7 +264,7 @@
     "dateCreated": "2026-03-20T00:00:00\u002b00:00",
     "datePublished": "2026-03-20T00:00:00\u002b00:00",
     
-    "dateModified": "2026-05-08T13:56:39\u002b02:00",
+    "dateModified": "2026-05-12T17:11:11\u002b02:00",
     
     
     
@@ -305,7 +305,7 @@
 
 
 
-<script src="/js/compiled/bundle.min.6bdb06b4000aa3ba175878ebe6af4c24652d5006df3d09b807f73fdc69c319f8.js" defer></script>
+<script src="/js/compiled/bundle.min.8546be2dda5ddcf787a6e8c88311ad2a976c8248e8f41213e7e3a536fd95e437.js" defer></script>
 
   
 
@@ -1863,7 +1863,34 @@
 
 <section class="section-light-2 px-4 pt-7">
   <div class="max-w-350 flex flex-wrap items-center justify-between gap-4 mx-auto">
-    <div class="inline-flex items-center gap-1 bg-neutral-50 rounded-xl p-2" id="integrations-filter">
+    <div class="relative integrations-filter-dropdown w-full sm:hidden">
+      <button class="integrations-filter-dropdown-btn w-full flex items-center justify-between px-3 py-2.5 border border-neutral-200 rounded-lg text-neutral-700 hover:border-neutral-300 bg-neutral-50">
+        <span class="integrations-filter-dropdown-label truncate text-sm">All Integrations</span>
+        <span class="w-4 h-4 shrink-0 flex items-center justify-center">
+          <span class="relative block icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+</span>
+        </span>
+      </button>
+      <div class="integrations-filter-dropdown-menu hidden absolute top-full mt-1 w-full bg-neutral-50 border border-neutral-200 rounded-lg z-50 overflow-hidden shadow-lg">
+        <a data-filter="all" class="filter-dropdown-option block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 cursor-pointer">All Integrations</a>
+        <a data-filter="source" class="filter-dropdown-option block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 cursor-pointer">Source</a>
+        <a data-filter="destination" class="filter-dropdown-option block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 cursor-pointer">Destination</a>
+        <a data-filter="storage" class="filter-dropdown-option block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 cursor-pointer">Storage</a>
+        <a data-filter="viewer" class="filter-dropdown-option block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 cursor-pointer">Viewer</a>
+      </div>
+    </div>
+    <div class="hidden sm:inline-flex items-center gap-1 bg-neutral-50 rounded-xl p-2" id="integrations-filter">
       <a data-filter="all" class="filter-btn px-2 py-4 rounded-lg text-sm cursor-pointer transition-all duration-150 text-neutral-700">
         All Integrations
       </a>
@@ -1880,7 +1907,7 @@
         Viewer
       </a>
     </div>
-    <div class="inline-flex items-center gap-2" id="integrations-sort">
+    <div class="inline-flex items-center gap-2 ml-auto" id="integrations-sort">
       <span class="text-sm text-neutral-500 font-medium">Sort by</span>
       <div class="inline-flex items-center gap-1 bg-neutral-50 rounded-xl p-2">
         <a data-sort="name" class="sort-btn px-3 py-2 rounded-lg text-sm cursor-pointer transition-all duration-150 text-neutral-700">
