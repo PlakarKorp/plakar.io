@@ -17,7 +17,7 @@ If you operate in an air-gapped or PCI-DSS environment and need a full offline m
 
 Select your provider to continue with the installation:
 
-* [Installation on AWS](#)
+* [Installation on AWS](./aws)
 * [Installation on OVHcloud](#)
 * [Installation on Scaleway](#)
 
