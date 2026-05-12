@@ -48,7 +48,7 @@ The **Dashboard** tab displays recent jobs that have run on the store, along wit
 
 The **Schedules** tab displays all scheduled operations associated with the store connector.
 
-![](../images/scheduling-tasks.png)
+![](../images/scheduling-tasks-on-store.png)
 
 ## Settings
 
