@@ -45,6 +45,9 @@ Once configured, click **Launch** to create the EC2 instance. After the instance
 ## Security Groups
 
 By default, the instance will not be accessible from a web browser because the default security group does not allow inbound HTTP traffic.To allow access to the Plakar Control Plane web interface:
+
+![](../images/aws-ec2-1.png)
+
 1. Select the Plakar Control Plane instance
 2. Open `Actions -> Security -> Change security groups`
 3. Attach a security group that allows inbound TCP traffic on port `80`
