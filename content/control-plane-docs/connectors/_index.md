@@ -63,8 +63,6 @@ When creating a connector from the resource panel, the inventory and resource ar
 
 ## Managing connectors
 
-Once a connector is created, clicking it opens its management page. From there, you can update its configuration, test connectivity, schedule backups, checks, syncs, restores, or delete the connector.
+The following pages provide detailed configuration and management information for each connector type.
 
-The **Dashboard** tab includes a **Test Connection** action that verifies the provided credentials and configuration before the connector is used in a backup workflow.
-
-![](../images/manage-connector.png)
+{{% children description="true" %}}
