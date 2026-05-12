@@ -64,7 +64,22 @@
 <!-- Category filter + Sort -->
 <section class="section-light-2 px-4 pt-7">
   <div class="max-w-350 flex flex-wrap items-center justify-between gap-4 mx-auto">
-    <div class="inline-flex items-center gap-1 bg-neutral-50 rounded-xl p-2" id="integrations-filter">
+    <div class="relative integrations-filter-dropdown w-full sm:hidden">
+      <button class="integrations-filter-dropdown-btn w-full flex items-center justify-between px-3 py-2.5 border border-neutral-200 rounded-lg text-neutral-700 hover:border-neutral-300 bg-neutral-50">
+        <span class="integrations-filter-dropdown-label truncate text-sm">All Integrations</span>
+        <span class="w-4 h-4 shrink-0 flex items-center justify-center">
+          {{ partial "icon.html" "chevron-down" }}
+        </span>
+      </button>
+      <div class="integrations-filter-dropdown-menu hidden absolute top-full mt-1 w-full bg-neutral-50 border border-neutral-200 rounded-lg z-50 overflow-hidden shadow-lg">
+        <a data-filter="all" class="filter-dropdown-option block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 cursor-pointer">All Integrations</a>
+        <a data-filter="source" class="filter-dropdown-option block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 cursor-pointer">Source</a>
+        <a data-filter="destination" class="filter-dropdown-option block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 cursor-pointer">Destination</a>
+        <a data-filter="storage" class="filter-dropdown-option block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 cursor-pointer">Storage</a>
+        <a data-filter="viewer" class="filter-dropdown-option block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 cursor-pointer">Viewer</a>
+      </div>
+    </div>
+    <div class="hidden sm:inline-flex items-center gap-1 bg-neutral-50 rounded-xl p-2" id="integrations-filter">
       <a data-filter="all" class="filter-btn px-2 py-4 rounded-lg text-sm cursor-pointer transition-all duration-150 text-neutral-700">
         All Integrations
       </a>
@@ -81,7 +96,7 @@
         Viewer
       </a>
     </div>
-    <div class="inline-flex items-center gap-2" id="integrations-sort">
+    <div class="inline-flex items-center gap-2 ml-auto" id="integrations-sort">
       <span class="text-sm text-neutral-500 font-medium">Sort by</span>
       <div class="inline-flex items-center gap-1 bg-neutral-50 rounded-xl p-2">
         <a data-sort="name" class="sort-btn px-3 py-2 rounded-lg text-sm cursor-pointer transition-all duration-150 text-neutral-700">
