@@ -18,8 +18,6 @@ If the connection test fails, verify the provided configuration and credentials,
 Once the connection test succeeds, additional actions become available from the dashboard:
 * **Create Backup** - schedule backups for the source connector
 
-![](../images/source-connector-2.png)
-
 > [!NOTE]+
 > Operations in Plakar Control Plane can be executed either as one-off job or through scheduled tasks.
 
@@ -29,7 +27,7 @@ Backup, restore, sync, and integrity check operations can be configured as recur
 
 The **Dashboard** tab displays recent jobs that have run on the store, along with upcoming scheduled jobs.
 
-![](../images/upcoming-jobs.png)
+![](../images/source-connector-2.png)
 
 The **Schedules** tab displays all scheduled operations associated with the store connector.
 

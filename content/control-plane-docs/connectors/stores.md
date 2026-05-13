@@ -25,8 +25,6 @@ Once a store has been initialized, additional operations become available from t
 * **Sync Store** - schedule synchronization to another store
 * **Restore Data** - schedule a restore operation from the store
 
-![](../images/store-connector-2.png)
-
 > [!NOTE]+
 > Operations in Plakar Control Plane can be executed either as one-off job or through scheduled tasks.
 
@@ -44,7 +42,7 @@ Backup, restore, sync, and integrity check operations can be configured as recur
 
 The **Dashboard** tab displays recent jobs that have run on the store, along with upcoming scheduled jobs.
 
-![](../images/upcoming-jobs.png)
+![](../images/store-connector-2.png)
 
 The **Schedules** tab displays all scheduled operations associated with the store connector.
 
