@@ -65,7 +65,7 @@ For testing purposes, you can temporarily use `0.0.0.0/0`
 
 Plakar Control Plane requires AWS permissions to discover and classify resources in your AWS account so they can be used in backup workflows.
 
-This is covered in detail in the [AWS Inventory](../../../infrastructure/inventories/aws) documentation.
+This is covered in detail in the [AWS Inventory](../../../infrastructure/inventories/aws#required-permissions) documentation.
 
 ## Accessing Plakar Control Plane
 
