@@ -17,16 +17,14 @@ If the selected store has already been initialized by Plakar Control Plane and c
 
 If the store is in a new location (for example, a new S3 bucket that has never been used by Plakar before), you must use the **Initialize Store** action before the store can receive backups. This prepares the store with the metadata and structure required so it is ready to receive backup data.
 
-If the connection test fails, verify the provided configuration and credentials, then test the connection again.
-
-Once a store has been initialized, additional operations become available from the dashboard:
+If the connection test fails, verify the provided configuration and credentials, then test the connection again. Once a store has been initialized, additional operations become available from the dashboard:
 * **Check Store** - schedule an integrity check for the Kloset store
 * **Create Backup** - schedule a backup to the store
 * **Sync Store** - schedule synchronization to another store
 * **Restore Data** - schedule a restore operation from the store
 
 > [!NOTE]+
-> Operations in Plakar Control Plane can be executed either as one-off job or through scheduled tasks.
+> Operations in Plakar Control Plane can be executed either as one-off job or through scheduled tasks. Currently Plakar Control Plane only supports scheduled tasks.
 
 ## Browsing Snapshots
 
