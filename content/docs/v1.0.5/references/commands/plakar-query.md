@@ -1,29 +1,27 @@
 ---
-date: "2026-03-24T10:10:09Z"
+date: "2026-05-13T08:34:19Z"
 title: query
 summary: "query flags shared among many Plakar subcommands"
 aliases:
   - /docs/v1.0.5/commands/plakar-query/
 ---
 
-<table class="head">
-  <tr>
-    <td class="head-ltitle">PLAKAR-QUERY(7)</td>
-    <td class="head-vol">Miscellaneous Information Manual</td>
-    <td class="head-rtitle">PLAKAR-QUERY(7)</td>
-  </tr>
-</table>
-<div class="manual-text">
+<div class="head" role="doc-pageheader" aria-label="Manual header
+  line"><span class="head-ltitle">PLAKAR-QUERY(7)</span>
+  <span class="head-vol">Miscellaneous Information Manual</span>
+  <span class="head-rtitle">PLAKAR-QUERY(7)</span></div>
+<main class="manual-text">
 <section class="Sh">
-<h1 class="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h1>
+<h2 class="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h2>
 <p class="Pp"><code class="Nm">plakar-query</code> &#x2014;
-    <span class="Nd">query flags shared among many Plakar subcommands</span></p>
+    <span class="Nd" role="doc-subtitle">query flags shared among many Plakar
+    subcommands</span></p>
 </section>
 <section class="Sh">
-<h1 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h1>
+<h2 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h2>
 <p class="Pp">What follows is a set of command line arguments that many
-    <a class="Xr" href="../plakar/">plakar(1)</a> subcommands provide to filter
-    snapshots.</p>
+    <a class="Xr" href="../plakar/" aria-label="plakar, section 1">plakar(1)</a>
+    subcommands provide to filter snapshots.</p>
 <p class="Pp">There are two kind of flags:</p>
 <dl class="Bl-tag">
   <dt>matchers</dt>
@@ -194,10 +192,7 @@ aliases:
       comma-separated.</dd>
 </dl>
 </section>
-</div>
-<table class="foot">
-  <tr>
-    <td class="foot-date">September 10, 2025</td>
-    <td class="foot-os">Plakar</td>
-  </tr>
-</table>
+</main>
+<div class="foot" role="doc-pagefooter" aria-label="Manual footer
+  line"><span class="foot-left">Plakar</span> <span class="foot-date">September
+  10, 2025</span> <span class="foot-right">PLAKAR-QUERY(7)</span></div>
