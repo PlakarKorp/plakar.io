@@ -80,8 +80,8 @@
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
-    <meta property="article:published_time" content="2026-04-02T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-05-12T17:11:11+02:00">
+    <meta property="article:published_time" content="2026-05-13T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-05-14T10:02:10+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -276,15 +276,15 @@
       "name": "PlakarKorp"
     },
     "copyrightYear": "2026",
-    "dateCreated": "2026-04-02T00:00:00\u002b00:00",
-    "datePublished": "2026-04-02T00:00:00\u002b00:00",
+    "dateCreated": "2026-05-13T00:00:00\u002b00:00",
+    "datePublished": "2026-05-13T00:00:00\u002b00:00",
     
-    "dateModified": "2026-05-12T17:11:11\u002b02:00",
+    "dateModified": "2026-05-14T10:02:10\u002b02:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "673"
+    "wordCount": "765"
   }]
   </script>
 
@@ -3915,15 +3915,18 @@
       </tr>
       <tr>
           <td><code>k8s+csi://</code></td>
-          <td>Persistent volume contents via CSI driver snapshots.</td>
+          <td>Persistent volume contents via CSI VolumeSnapshot.</td>
+      </tr>
+      <tr>
+          <td><code>k8s+pvc://</code></td>
+          <td>Persistent volume contents witohut a VolumeSnapshot.</td>
       </tr>
   </tbody>
 </table>
 <p><strong>Requirements</strong></p>
 <ul>
 <li>Plakar v1.1.0-beta or later.</li>
-<li><code>kubectl proxy</code> running and accessible.</li>
-<li>A CSI driver with snapshot support and a configured <code>VolumeSnapshotClass</code> for CSI-based PVC backups.</li>
+<li>A Kubernetes cluster accessible</li>
 </ul>
 <p><strong>Typical use cases</strong></p>
 <ul>
@@ -4006,9 +4009,9 @@
 </ul>
 <p>Build the package:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar pkg build k8s</span></span></code></pre></div></div>
-<p>A package archive will be created in the current directory (e.g., <code>k8s_v1.1.0-rc.1_darwin_arm64.ptar</code>).</p>
+<p>A package archive will be created in the current directory (e.g., <code>k8s_v1.1.0-beta.6_darwin_arm64.ptar</code>).</p>
 <p>Install the package:</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar pkg add ./k8s_v1.0.0_darwin_arm64.ptar</span></span></code></pre></div></div>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar pkg add ./k8s_v1.1.0-beta.6_darwin_arm64.ptar</span></span></code></pre></div></div>
 <p>Verify installation:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar pkg list</span></span></code></pre></div></div>
 
@@ -4045,9 +4048,6 @@ Store["Kloset Store"]
 API --> Via --> Plakar --> Transform --> Store
 </pre>
 
-<p>Start a proxy to the cluster:</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ kubectl proxy
-</span></span><span class="line"><span class="cl">Starting to serve on 127.0.0.1:8001</span></span></code></pre></div></div>
 
 <div class="relative group">
   <h3 id="back-up-manifests">Back up manifests</h3>
@@ -4057,10 +4057,13 @@ API --> Via --> Plakar --> Transform --> Store
   </span>
   
 </div>
+<p>By default, the integration will use the default context defined at
+<code>~/.kube/config</code>.  Use the <code>kubeconfig_file</code> option to point at a
+different kube config or <code>kubeconfig</code> to provide a configuration in-line.</p>
 <p>Back up all resources across the entire cluster:</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar backup k8s://localhost:8001</span></span></code></pre></div></div>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar backup k8s:/</span></span></code></pre></div></div>
 <p>Back up resources in a specific namespace:</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar backup k8s://localhost:8001/foo</span></span></code></pre></div></div>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar backup k8s:/foo</span></span></code></pre></div></div>
 
 <div class="relative group">
   <h3 id="restore-manifests">Restore manifests</h3>
@@ -4071,18 +4074,27 @@ API --> Via --> Plakar --> Transform --> Store
   
 </div>
 <p>Restore all <code>StatefulSet</code> resources in the <code>foo</code> namespace:</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar restore -to k8s://localhost:8001 abcd:/foo/apps/StatefulSet</span></span></code></pre></div></div>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar restore -to k8s: abcd:/foo/apps/StatefulSet</span></span></code></pre></div></div>
 
 <div class="relative group">
-  <h2 id="persistent-volume-backup-and-restore-csi">Persistent volume backup and restore (CSI)</h2>
+  <h2 id="persistent-volume-backup-and-restore">Persistent volume backup and restore</h2>
   
   <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#persistent-volume-backup-and-restore-csi" aria-label="Anchor">#</a>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#persistent-volume-backup-and-restore" aria-label="Anchor">#</a>
   </span>
   
 </div>
-<p>The <code>k8s+csi://</code> connector backs up the contents of persistent volumes by creating a <code>VolumeSnapshot</code>, mounting it in a temporary pod running a helper importer, and ingesting the data into a Kloset store. The snapshot is deleted from the cluster once ingestion completes.</p>
-<p>Restore works in reverse: data is written into a target PVC using the same helper pod mechanism. The target can be an existing PVC or a freshly created one.</p>
+<p>The <code>k8s+csi://</code> connector backs up the contents of persistent volumes
+by creating a <code>VolumeSnapshot</code>, mounting it in a temporary pod running a
+helper importer, and ingesting the data into a Kloset store. The snapshot
+is deleted from the cluster once ingestion completes.</p>
+<p>Otherwise, PVCs can be backed up without a VolumeSnapshot with the
+<code>k8s+pvc://</code> connector. The PVC access mode is critical in this case
+though; for example, ReadWriteOnce does not permit concurrent backups
+of an already mounted PVC.</p>
+<p>Restore works in reverse: data is written into a target PVC using the
+same helper pod mechanism. The target can be an existing PVC or a freshly
+created one.</p>
 <pre class="not-prose mermaid">
 flowchart LR
 
@@ -4112,7 +4124,10 @@ Snap --> Via --> Plakar --> Transform --> Store
   </span>
   
 </div>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar backup -o <span class="nv">volume_snapshot_class</span><span class="o">=</span>my-snapclass k8s+csi://localhost:8001/storage/my-pvc</span></span></code></pre></div></div>
+<p>A VolumeSnapshotClass is required for CSI-based backups.  Depending on
+the provider, one may already be available, or it may need to be created
+explicitly.</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar backup -o <span class="nv">volume_snapshot_class</span><span class="o">=</span>my-snapclass k8s+csi:/storage/my-pvc</span></span></code></pre></div></div>
 
 <div class="relative group">
   <h3 id="restore-a-pvc">Restore a PVC</h3>
@@ -4136,7 +4151,7 @@ Snap --> Via --> Plakar --> Transform --> Store
 </span></span><span class="line"><span class="cl">  accessModes:
 </span></span><span class="line"><span class="cl">    - ReadWriteOnce
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">$ plakar restore -to k8s+csi://localhost:8001/storage/pristine abcdef:</span></span></code></pre></div></div>
+</span></span><span class="line"><span class="cl">$ plakar restore -to k8s+pvc:/storage/pristine abcdef:</span></span></code></pre></div></div>
 <p>Restore into an existing PVC by referencing it in the same way. The target PVC must have sufficient capacity.</p>
 
 <div class="relative group">
@@ -4157,14 +4172,29 @@ Snap --> Via --> Plakar --> Transform --> Store
   </thead>
   <tbody>
       <tr>
-          <td><code>volume_snapshot_class</code></td>
-          <td>Yes</td>
-          <td>Name of the <code>VolumeSnapshotClass</code> to use for CSI snapshots.</td>
+          <td><code>kubeconfig_file</code></td>
+          <td>No</td>
+          <td>Path to a kube config file, defaults to <code>~/.kube/config</code></td>
+      </tr>
+      <tr>
+          <td><code>kubecnofig</code></td>
+          <td>No</td>
+          <td>Content of a kube config file passed inline</td>
       </tr>
       <tr>
           <td><code>kubelet_image</code></td>
           <td>No</td>
           <td>Container image for the helper pod. Defaults to a recent kubelet image.</td>
+      </tr>
+      <tr>
+          <td><code>labels</code></td>
+          <td>No</td>
+          <td>Limits the manifests to bac up to the ones matching the given labels</td>
+      </tr>
+      <tr>
+          <td><code>volume_snapshot_class</code></td>
+          <td>Yes</td>
+          <td>Name of the <code>VolumeSnapshotClass</code> to use for CSI snapshots.</td>
       </tr>
   </tbody>
 </table>
@@ -4180,11 +4210,10 @@ Snap --> Via --> Plakar --> Transform --> Store
 <p><strong>What is captured</strong></p>
 <ul>
 <li>All Kubernetes resource manifests and status metadata (<code>k8s://</code>).</li>
-<li>Persistent volume contents for CSI-backed PVCs (<code>k8s+csi://</code>).</li>
+<li>Persistent volume contents (<code>k8s+csi://</code> and <code>k8s+pvc://</code>).</li>
 </ul>
 <p><strong>What is not captured</strong></p>
 <ul>
-<li>Non-CSI volumes are not yet supported for PVC backups.</li>
 <li>Node-level configuration (OS, kubelet config, network setup).</li>
 <li>In-flight workload state (open connections, in-memory data).</li>
 </ul>
@@ -4276,7 +4305,7 @@ Snap --> Via --> Plakar --> Transform --> Store
   
   <div class="flex items-center justify-between text-xs text-neutral-400">
     
-      <span>Last updated: May 12, 2026</span>
+      <span>Last updated: May 14, 2026</span>
     
     
       <a href="https://github.com/PlakarKorp/plakar.io/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">
@@ -4310,7 +4339,7 @@ Snap --> Via --> Plakar --> Transform --> Store
         <li><a href="#restore-manifests">Restore manifests</a></li>
       </ul>
     </li>
-    <li><a href="#persistent-volume-backup-and-restore-csi">Persistent volume backup and restore (CSI)</a>
+    <li><a href="#persistent-volume-backup-and-restore">Persistent volume backup and restore</a>
       <ul>
         <li><a href="#back-up-a-pvc">Back up a PVC</a></li>
         <li><a href="#restore-a-pvc">Restore a PVC</a></li>
