@@ -80,8 +80,8 @@
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
-    <meta property="article:published_time" content="2026-03-24T10:10:51+00:00">
-    <meta property="article:modified_time" content="2026-05-14T10:02:10+02:00">
+    <meta property="article:published_time" content="2026-05-13T08:33:29+00:00">
+    <meta property="article:modified_time" content="2026-05-14T13:44:22+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -142,8 +142,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.523c171b3e0d02a3b719010b0caa7fb3a097f7ad767b0d2f91504c165171fc36badb772c207f8472bb0313ea4c1c032e0d0a950b1b0a6e27928c34282ca7c624.css"
-    integrity="sha512-UjwXGz4NAqO3GQELDKp/s6CX9612ew0vkVBMFlFx/Da623csIH&#43;EcrsDE&#43;pMHAMuDQqVCxsKbieSjDQoLKfGJA==">
+    href="/css/main.bundle.min.191662a94c76e8e9a34196b1e3f762052ca33a71b63ec3496b24decc4b348cffd150f8f31eb185e77af1723b5014c22114681e8ce4ab03a279ca5a5fca6e53ae.css"
+    integrity="sha512-GRZiqUx26OmjQZax4/diBSyjOnG2PsNJayTezEs0jP/RUPjzHrGF53rxcjtQFMIhFGgejOSrA6J5ylpfym5Trg==">
 
   
   
@@ -261,15 +261,15 @@
       "name": "PlakarKorp"
     },
     "copyrightYear": "2026",
-    "dateCreated": "2026-03-24T10:10:51\u002b00:00",
-    "datePublished": "2026-03-24T10:10:51\u002b00:00",
+    "dateCreated": "2026-05-13T08:33:29\u002b00:00",
+    "datePublished": "2026-05-13T08:33:29\u002b00:00",
     
-    "dateModified": "2026-05-14T10:02:10\u002b02:00",
+    "dateModified": "2026-05-14T13:44:22\u002b02:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "649"
+    "wordCount": "650"
   }]
   </script>
 
@@ -506,7 +506,7 @@
           <a href="/docs/v1.1.0/references/commands/plakar/"
              class="version-selector-option block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500
              ">
-            Plakar: v1.1.0 (beta)
+            Plakar: v1.1.0 (RC)
           </a>
         
           
@@ -2165,7 +2165,7 @@
           <a href="/docs/v1.1.0/references/commands/plakar/"
              class="version-selector-option block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500
              ">
-            Plakar: v1.1.0 (beta)
+            Plakar: v1.1.0 (RC)
           </a>
         
           
@@ -3822,21 +3822,18 @@
 </header>
 
       <article class="docs-font prose dark:prose-invert max-w-none mt-8">
-        <table class="head">
-  <tr>
-    <td class="head-ltitle">PLAKAR(1)</td>
-    <td class="head-vol">General Commands Manual</td>
-    <td class="head-rtitle">PLAKAR(1)</td>
-  </tr>
-</table>
-<div class="manual-text">
+        <div class="head" role="doc-pageheader" aria-label="Manual header
+  line"><span class="head-ltitle">PLAKAR(1)</span>
+  <span class="head-vol">General Commands Manual</span>
+  <span class="head-rtitle">PLAKAR(1)</span></div>
+<main class="manual-text">
 <section class="Sh">
-<h1 class="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h1>
+<h2 class="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h2>
 <p class="Pp"><code class="Nm">plakar</code> &#x2014;
-    <span class="Nd">effortless backups</span></p>
+    <span class="Nd" role="doc-subtitle">effortless backups</span></p>
 </section>
 <section class="Sh">
-<h1 class="Sh" id="SYNOPSIS"><a class="permalink" href="#SYNOPSIS">SYNOPSIS</a></h1>
+<h2 class="Sh" id="SYNOPSIS"><a class="permalink" href="#SYNOPSIS">SYNOPSIS</a></h2>
 <table class="Nm">
   <tr>
     <td><code class="Nm">plakar</code></td>
@@ -3851,7 +3848,7 @@
 </table>
 </section>
 <section class="Sh">
-<h1 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h1>
+<h2 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h2>
 <p class="Pp"><code class="Nm">plakar</code> is a tool to create distributed,
     versioned backups with compression, encryption, and data deduplication.</p>
 <p class="Pp">By default, <code class="Nm">plakar</code> operates on the Kloset
@@ -3890,109 +3887,139 @@
       path, an URI, or a label in the form
       &#x201C;@<var class="Ar">name</var>&#x201D; to reference a configuration
       created with
-    <a class="Xr" href="../plakar-store/">plakar-store(1)</a>.</dd>
+      <a class="Xr" href="../plakar-store/" aria-label="plakar-store, section
+      1">plakar-store(1)</a>.</dd>
 </dl>
 <p class="Pp">The following commands are available:</p>
 <p class="Pp"></p>
 <dl class="Bl-tag Bl-compact">
   <dt id="agent"><a class="permalink" href="#agent"><code class="Cm">agent</code></a></dt>
   <dd>Run the plakar agent and configure scheduled tasks, documented in
-      <a class="Xr" href="../plakar-agent/">plakar-agent(1)</a>.</dd>
+      <a class="Xr" href="../plakar-agent/" aria-label="plakar-agent, section
+      1">plakar-agent(1)</a>.</dd>
   <dt id="archive"><a class="permalink" href="#archive"><code class="Cm">archive</code></a></dt>
   <dd>Create an archive from a Kloset snapshot, documented in
-      <a class="Xr" href="../plakar-archive/">plakar-archive(1)</a>.</dd>
+      <a class="Xr" href="../plakar-archive/" aria-label="plakar-archive,
+      section 1">plakar-archive(1)</a>.</dd>
   <dt id="backup"><a class="permalink" href="#backup"><code class="Cm">backup</code></a></dt>
   <dd>Create a new Kloset snapshot, documented in
-      <a class="Xr" href="../plakar-backup/">plakar-backup(1)</a>.</dd>
+      <a class="Xr" href="../plakar-backup/" aria-label="plakar-backup, section
+      1">plakar-backup(1)</a>.</dd>
   <dt id="cat"><a class="permalink" href="#cat"><code class="Cm">cat</code></a></dt>
   <dd>Display file contents from a Kloset snapshot, documented in
-      <a class="Xr" href="../plakar-cat/">plakar-cat(1)</a>.</dd>
+      <a class="Xr" href="../plakar-cat/" aria-label="plakar-cat, section
+      1">plakar-cat(1)</a>.</dd>
   <dt id="check"><a class="permalink" href="#check"><code class="Cm">check</code></a></dt>
   <dd>Check data integrity in a Kloset store, documented in
-      <a class="Xr" href="../plakar-check/">plakar-check(1)</a>.</dd>
+      <a class="Xr" href="../plakar-check/" aria-label="plakar-check, section
+      1">plakar-check(1)</a>.</dd>
   <dt id="clone"><a class="permalink" href="#clone"><code class="Cm">clone</code></a></dt>
   <dd>Clone a Kloset store to a new location, documented in
-      <a class="Xr" href="../plakar-clone/">plakar-clone(1)</a>.</dd>
+      <a class="Xr" href="../plakar-clone/" aria-label="plakar-clone, section
+      1">plakar-clone(1)</a>.</dd>
   <dt id="create"><a class="permalink" href="#create"><code class="Cm">create</code></a></dt>
   <dd>Create a new Kloset store, documented in
-      <a class="Xr" href="../plakar-create/">plakar-create(1)</a>.</dd>
+      <a class="Xr" href="../plakar-create/" aria-label="plakar-create, section
+      1">plakar-create(1)</a>.</dd>
   <dt id="destination"><a class="permalink" href="#destination"><code class="Cm">destination</code></a></dt>
   <dd>Manage configurations for the destination connectors, documented in
-      <a class="Xr" href="../plakar-destination/">plakar-destination(1)</a>.</dd>
+      <a class="Xr" href="../plakar-destination/" aria-label="plakar-destination,
+      section 1">plakar-destination(1)</a>.</dd>
   <dt id="diff"><a class="permalink" href="#diff"><code class="Cm">diff</code></a></dt>
   <dd>Show differences between files in a Kloset snapshot, documented in
-      <a class="Xr" href="../plakar-diff/">plakar-diff(1)</a>.</dd>
+      <a class="Xr" href="../plakar-diff/" aria-label="plakar-diff, section
+      1">plakar-diff(1)</a>.</dd>
   <dt id="digest"><a class="permalink" href="#digest"><code class="Cm">digest</code></a></dt>
   <dd>Compute digests for files in a Kloset snapshot, documented in
-      <a class="Xr" href="../plakar-digest/">plakar-digest(1)</a>.</dd>
+      <a class="Xr" href="../plakar-digest/" aria-label="plakar-digest, section
+      1">plakar-digest(1)</a>.</dd>
   <dt id="help"><a class="permalink" href="#help"><code class="Cm">help</code></a></dt>
   <dd>Show this manpage and the ones for the subcommands.</dd>
   <dt id="info"><a class="permalink" href="#info"><code class="Cm">info</code></a></dt>
   <dd>Display detailed information about internal structures, documented in
-      <a class="Xr" href="../plakar-info/">plakar-info(1)</a>.</dd>
+      <a class="Xr" href="../plakar-info/" aria-label="plakar-info, section
+      1">plakar-info(1)</a>.</dd>
   <dt id="locate"><a class="permalink" href="#locate"><code class="Cm">locate</code></a></dt>
   <dd>Find filenames in a Kloset snapshot, documented in
-      <a class="Xr" href="../plakar-locate/">plakar-locate(1)</a>.</dd>
+      <a class="Xr" href="../plakar-locate/" aria-label="plakar-locate, section
+      1">plakar-locate(1)</a>.</dd>
   <dt id="ls"><a class="permalink" href="#ls"><code class="Cm">ls</code></a></dt>
   <dd>List snapshots and their contents in a Kloset store, documented in
-      <a class="Xr" href="../plakar-ls/">plakar-ls(1)</a>.</dd>
+      <a class="Xr" href="../plakar-ls/" aria-label="plakar-ls, section
+      1">plakar-ls(1)</a>.</dd>
   <dt id="maintenance"><a class="permalink" href="#maintenance"><code class="Cm">maintenance</code></a></dt>
   <dd>Remove unused data from a Kloset store, documented in
-      <a class="Xr" href="../plakar-maintenance/">plakar-maintenance(1)</a>.</dd>
+      <a class="Xr" href="../plakar-maintenance/" aria-label="plakar-maintenance,
+      section 1">plakar-maintenance(1)</a>.</dd>
   <dt id="mount"><a class="permalink" href="#mount"><code class="Cm">mount</code></a></dt>
   <dd>Mount Kloset snapshots as a read-only filesystem, documented in
-      <a class="Xr" href="../plakar-mount/">plakar-mount(1)</a>.</dd>
+      <a class="Xr" href="../plakar-mount/" aria-label="plakar-mount, section
+      1">plakar-mount(1)</a>.</dd>
   <dt id="ptar"><a class="permalink" href="#ptar"><code class="Cm">ptar</code></a></dt>
   <dd>Create a .ptar archive, documented in
-      <a class="Xr" href="../plakar-ptar/">plakar-ptar(1)</a>.</dd>
+      <a class="Xr" href="../plakar-ptar/" aria-label="plakar-ptar, section
+      1">plakar-ptar(1)</a>.</dd>
   <dt id="pkg"><a class="permalink" href="#pkg"><code class="Cm">pkg
     show</code></a></dt>
   <dd>List installed plugins, documented in
-      <a class="Xr" href="../plakar-pkg-show/">plakar-pkg-show(1)</a>.</dd>
+      <a class="Xr" href="../plakar-pkg-show/" aria-label="plakar-pkg-show,
+      section 1">plakar-pkg-show(1)</a>.</dd>
   <dt id="pkg~2"><a class="permalink" href="#pkg~2"><code class="Cm">pkg
     add</code></a></dt>
   <dd>Install a plugin, documented in
-      <a class="Xr" href="../plakar-pkg-add/">plakar-pkg-add(1)</a>.</dd>
+      <a class="Xr" href="../plakar-pkg-add/" aria-label="plakar-pkg-add,
+      section 1">plakar-pkg-add(1)</a>.</dd>
   <dt id="pkg~3"><a class="permalink" href="#pkg~3"><code class="Cm">pkg
     build</code></a></dt>
   <dd>Build a plugin from source, documented in
-      <a class="Xr" href="../plakar-pkg-build/">plakar-pkg-build(1)</a>.</dd>
+      <a class="Xr" href="../plakar-pkg-build/" aria-label="plakar-pkg-build,
+      section 1">plakar-pkg-build(1)</a>.</dd>
   <dt id="pkg~4"><a class="permalink" href="#pkg~4"><code class="Cm">pkg
     create</code></a></dt>
   <dd>Package a plugin, documented in
-      <a class="Xr" href="../plakar-pkg-create/">plakar-pkg-create(1)</a>.</dd>
+      <a class="Xr" href="../plakar-pkg-create/" aria-label="plakar-pkg-create,
+      section 1">plakar-pkg-create(1)</a>.</dd>
   <dt id="pkg~5"><a class="permalink" href="#pkg~5"><code class="Cm">pkg
     rm</code></a></dt>
   <dd>Uninstall a plugin, documented in
-      <a class="Xr" href="../plakar-pkg-rm/">plakar-pkg-rm(1)</a>.</dd>
+      <a class="Xr" href="../plakar-pkg-rm/" aria-label="plakar-pkg-rm, section
+      1">plakar-pkg-rm(1)</a>.</dd>
   <dt id="restore"><a class="permalink" href="#restore"><code class="Cm">restore</code></a></dt>
   <dd>Restore files from a Kloset snapshot, documented in
-      <a class="Xr" href="../plakar-restore/">plakar-restore(1)</a>.</dd>
+      <a class="Xr" href="../plakar-restore/" aria-label="plakar-restore,
+      section 1">plakar-restore(1)</a>.</dd>
   <dt id="rm"><a class="permalink" href="#rm"><code class="Cm">rm</code></a></dt>
   <dd>Remove snapshots from a Kloset store, documented in
-      <a class="Xr" href="../plakar-rm/">plakar-rm(1)</a>.</dd>
+      <a class="Xr" href="../plakar-rm/" aria-label="plakar-rm, section
+      1">plakar-rm(1)</a>.</dd>
   <dt id="server"><a class="permalink" href="#server"><code class="Cm">server</code></a></dt>
   <dd>Start a Plakar server, documented in
-      <a class="Xr" href="../plakar-server/">plakar-server(1)</a>.</dd>
+      <a class="Xr" href="../plakar-server/" aria-label="plakar-server, section
+      1">plakar-server(1)</a>.</dd>
   <dt id="source"><a class="permalink" href="#source"><code class="Cm">source</code></a></dt>
   <dd>Manage configurations for the source connectors, documented in
-      <a class="Xr" href="../plakar-source/">plakar-source(1)</a>.</dd>
+      <a class="Xr" href="../plakar-source/" aria-label="plakar-source, section
+      1">plakar-source(1)</a>.</dd>
   <dt id="store"><a class="permalink" href="#store"><code class="Cm">store</code></a></dt>
   <dd>Manage configurations for storage connectors, documented in
-      <a class="Xr" href="../plakar-store/">plakar-store(1)</a>.</dd>
+      <a class="Xr" href="../plakar-store/" aria-label="plakar-store, section
+      1">plakar-store(1)</a>.</dd>
   <dt id="sync"><a class="permalink" href="#sync"><code class="Cm">sync</code></a></dt>
   <dd>Synchronize snapshots between Kloset stores, documented in
-      <a class="Xr" href="../plakar-sync/">plakar-sync(1)</a>.</dd>
+      <a class="Xr" href="../plakar-sync/" aria-label="plakar-sync, section
+      1">plakar-sync(1)</a>.</dd>
   <dt id="ui"><a class="permalink" href="#ui"><code class="Cm">ui</code></a></dt>
   <dd>Serve the Plakar web user interface, documented in
-      <a class="Xr" href="../plakar-ui/">plakar-ui(1)</a>.</dd>
+      <a class="Xr" href="../plakar-ui/" aria-label="plakar-ui, section
+      1">plakar-ui(1)</a>.</dd>
   <dt id="version"><a class="permalink" href="#version"><code class="Cm">version</code></a></dt>
   <dd>Display the current Plakar version, documented in
-      <a class="Xr" href="../plakar-version/">plakar-version(1)</a>.</dd>
+      <a class="Xr" href="../plakar-version/" aria-label="plakar-version,
+      section 1">plakar-version(1)</a>.</dd>
 </dl>
 </section>
 <section class="Sh">
-<h1 class="Sh" id="ENVIRONMENT"><a class="permalink" href="#ENVIRONMENT">ENVIRONMENT</a></h1>
+<h2 class="Sh" id="ENVIRONMENT"><a class="permalink" href="#ENVIRONMENT">ENVIRONMENT</a></h2>
 <dl class="Bl-tag">
   <dt id="PLAKAR_PASSPHRASE"><a class="permalink" href="#PLAKAR_PASSPHRASE"><code class="Ev">PLAKAR_PASSPHRASE</code></a></dt>
   <dd>Passphrase to unlock the Kloset store; overrides the one from the
@@ -4004,7 +4031,7 @@
 </dl>
 </section>
 <section class="Sh">
-<h1 class="Sh" id="FILES"><a class="permalink" href="#FILES">FILES</a></h1>
+<h2 class="Sh" id="FILES"><a class="permalink" href="#FILES">FILES</a></h2>
 <dl class="Bl-tag">
   <dt><span class="Pa">~/.cache/plakar</span> <span class="No">and</span>
     <span class="Pa">~/.cache/plakar-agentless</span></dt>
@@ -4020,7 +4047,7 @@
 </dl>
 </section>
 <section class="Sh">
-<h1 class="Sh" id="EXAMPLES"><a class="permalink" href="#EXAMPLES">EXAMPLES</a></h1>
+<h2 class="Sh" id="EXAMPLES"><a class="permalink" href="#EXAMPLES">EXAMPLES</a></h2>
 <p class="Pp">Create an encrypted Kloset store at the default location:</p>
 <div class="Bd Pp Bd-indent Li">
 <pre>$ plakar create</pre>
@@ -4052,13 +4079,10 @@ $ plakar at @mys3bucket create</pre>
 <pre>$ plakar rm -before 30d</pre>
 </div>
 </section>
-</div>
-<table class="foot">
-  <tr>
-    <td class="foot-date">September 9, 2025</td>
-    <td class="foot-os">Plakar</td>
-  </tr>
-</table>
+</main>
+<div class="foot" role="doc-pagefooter" aria-label="Manual footer
+  line"><span class="foot-left">Plakar</span> <span class="foot-date">September
+  9, 2025</span> <span class="foot-right">PLAKAR(1)</span></div>
 
       </article>
       <footer class="mt-12 flex flex-col gap-6 docs-font border-t border-neutral-200 pt-6">
@@ -4341,7 +4365,7 @@ $ plakar at @mys3bucket create</pre>
               
                 <option value="Plakar: Developer branch">Plakar: Developer branch</option>
               
-                <option value="Plakar: v1.1.0 (beta)">Plakar: v1.1.0 (beta)</option>
+                <option value="Plakar: v1.1.0 (RC)">Plakar: v1.1.0 (RC)</option>
               
                 <option value="Plakar: v1.0.6">Plakar: v1.0.6</option>
               
