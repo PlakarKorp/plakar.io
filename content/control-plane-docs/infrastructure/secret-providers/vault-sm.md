@@ -1,7 +1,7 @@
 ---
 title: "HashiCorp Vault"
 date: "2026-04-24T00:00:00Z"
-weight: 1
+weight: 2
 summary: "How to configure and use HashiCorp Vault as a secret provider in Plakar Control Plane."
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Installation"
 date: "2026-04-20T00:00:00Z"
-weight: 4
+weight: 2
 summary: "How to deploy Plakar Control Plane as a virtual appliance on your infrastructure."
 ---
 
@@ -17,7 +17,7 @@ If you operate in an air-gapped or PCI-DSS environment and need a full offline m
 
 Select your provider to continue with the installation:
 
-* [Installation on AWS](#)
+* [Installation on AWS](./aws)
 * [Installation on OVHcloud](#)
 * [Installation on Scaleway](#)
 

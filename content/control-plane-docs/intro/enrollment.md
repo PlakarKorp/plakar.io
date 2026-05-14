@@ -1,7 +1,7 @@
 ---
 title: "Enrollment"
 date: "2026-04-20T00:00:00Z"
-weight: 2
+weight: 3
 summary: "How to enroll your Plakar Control Plane instance on first setup."
 ---
 
