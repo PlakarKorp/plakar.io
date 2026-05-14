@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes"
-date: "2026-04-02T00:00:00Z"
+date: "2026-05-13T00:00:00Z"
 weight: 12
 summary: "Back up and restore Kubernetes resources and persistent volumes with Plakar."
 ---
@@ -12,13 +12,13 @@ The Kubernetes integration backs up cluster resources and persistent volumes. It
 | URI scheme   | What it backs up |
 | ------------ | ---------------- |
 | `k8s://`     | Kubernetes manifests and resource state across namespaces. |
-| `k8s+csi://` | Persistent volume contents via CSI driver snapshots. |
+| `k8s+csi://` | Persistent volume contents via CSI VolumeSnapshot. |
+| `k8s+pvc://` | Persistent volume contents witohut a VolumeSnapshot. |
 
 **Requirements**
 
 * Plakar v1.1.0-beta or later.
-* `kubectl proxy` running and accessible.
-* A CSI driver with snapshot support and a configured `VolumeSnapshotClass` for CSI-based PVC backups.
+* A Kubernetes cluster accessible
 
 **Typical use cases**
 
@@ -30,51 +30,51 @@ The Kubernetes integration backs up cluster resources and persistent volumes. It
 
 {{< tabs >}}
   {{< tab label="Pre-built package" >}}
-  
+
   Pre-compiled packages are available for common platforms and provide the simplest installation method.
-  
+
   > [!NOTE]+ Logging In
   > Pre-built packages require Plakar authentication. See [Logging in to Plakar](../../guides/logging-in-to-plakar) for details.
-  
+
   Install the Kubernetes package:
-  
+
   ```bash
   $ plakar pkg add k8s
   ```
 
   Verify installation:
-  
+
   ```bash
   $ plakar pkg list
   ```
-  
+
   {{< /tab >}}
   {{< tab label="Building from source" >}}
-  
+
   Source builds are useful when pre-built packages are unavailable or when customization is required.
 
   **Prerequisites:**
   - Go toolchain compatible with your **Plakar** version
-  
+
   Build the package:
-  
+
   ```bash
   $ plakar pkg build k8s
   ```
-  
-  A package archive will be created in the current directory (e.g., `k8s_v1.1.0-rc.1_darwin_arm64.ptar`).
-  
+
+  A package archive will be created in the current directory (e.g., `k8s_v1.1.0-beta.6_darwin_arm64.ptar`).
+
   Install the package:
-  
+
   ```bash
-  $ plakar pkg add ./k8s_v1.0.0_darwin_arm64.ptar
+  $ plakar pkg add ./k8s_v1.1.0-beta.6_darwin_arm64.ptar
   ```
-  
+
   Verify installation:
   ```bash
   $ plakar pkg list
   ```
-  
+
   {{< /tab >}}
 {{< /tabs >}}
 
@@ -104,25 +104,22 @@ Store["Kloset Store"]
 API --> Via --> Plakar --> Transform --> Store
 {{< /mermaid >}}
 
-Start a proxy to the cluster:
-
-```bash
-$ kubectl proxy
-Starting to serve on 127.0.0.1:8001
-```
-
 ### Back up manifests
+
+By default, the integration will use the default context defined at
+`~/.kube/config`.  Use the `kubeconfig_file` option to point at a
+different kube config or `kubeconfig` to provide a configuration in-line.
 
 Back up all resources across the entire cluster:
 
 ```bash
-$ plakar backup k8s://localhost:8001
+$ plakar backup k8s:/
 ```
 
 Back up resources in a specific namespace:
 
 ```bash
-$ plakar backup k8s://localhost:8001/foo
+$ plakar backup k8s:/foo
 ```
 
 ### Restore manifests
@@ -130,14 +127,24 @@ $ plakar backup k8s://localhost:8001/foo
 Restore all `StatefulSet` resources in the `foo` namespace:
 
 ```bash
-$ plakar restore -to k8s://localhost:8001 abcd:/foo/apps/StatefulSet
+$ plakar restore -to k8s: abcd:/foo/apps/StatefulSet
 ```
 
-## Persistent volume backup and restore (CSI)
+## Persistent volume backup and restore
 
-The `k8s+csi://` connector backs up the contents of persistent volumes by creating a `VolumeSnapshot`, mounting it in a temporary pod running a helper importer, and ingesting the data into a Kloset store. The snapshot is deleted from the cluster once ingestion completes.
+The `k8s+csi://` connector backs up the contents of persistent volumes
+by creating a `VolumeSnapshot`, mounting it in a temporary pod running a
+helper importer, and ingesting the data into a Kloset store. The snapshot
+is deleted from the cluster once ingestion completes.
 
-Restore works in reverse: data is written into a target PVC using the same helper pod mechanism. The target can be an existing PVC or a freshly created one.
+Otherwise, PVCs can be backed up without a VolumeSnapshot with the
+`k8s+pvc://` connector. The PVC access mode is critical in this case
+though; for example, ReadWriteOnce does not permit concurrent backups
+of an already mounted PVC.
+
+Restore works in reverse: data is written into a target PVC using the
+same helper pod mechanism. The target can be an existing PVC or a freshly
+created one.
 
 {{< mermaid >}}
 flowchart LR
@@ -161,9 +168,14 @@ Snap --> Via --> Plakar --> Transform --> Store
 
 ### Back up a PVC
 
+A VolumeSnapshotClass is required for CSI-based backups.  Depending on
+the provider, one may already be available, or it may need to be created
+explicitly.
+
 ```bash
-$ plakar backup -o volume_snapshot_class=my-snapclass k8s+csi://localhost:8001/storage/my-pvc
+$ plakar backup -o volume_snapshot_class=my-snapclass k8s+csi:/storage/my-pvc
 ```
+
 
 ### Restore a PVC
 
@@ -183,7 +195,7 @@ spec:
   accessModes:
     - ReadWriteOnce
 
-$ plakar restore -to k8s+csi://localhost:8001/storage/pristine abcdef:
+$ plakar restore -to k8s+pvc:/storage/pristine abcdef:
 ```
 
 Restore into an existing PVC by referencing it in the same way. The target PVC must have sufficient capacity.
@@ -192,19 +204,21 @@ Restore into an existing PVC by referencing it in the same way. The target PVC m
 
 | Option                  | Required | Description |
 | ----------------------- | -------- | ----------- |
-| `volume_snapshot_class` | Yes      | Name of the `VolumeSnapshotClass` to use for CSI snapshots. |
+| `kubeconfig_file`       | No       | Path to a kube config file, defaults to `~/.kube/config` |
+| `kubecnofig`            | No       | Content of a kube config file passed inline |
 | `kubelet_image`         | No       | Container image for the helper pod. Defaults to a recent kubelet image. |
+| `labels`                | No       | Limits the manifests to bac up to the ones matching the given labels |
+| `volume_snapshot_class` | Yes      | Name of the `VolumeSnapshotClass` to use for CSI snapshots. |
 
 ## Limitations and scope
 
 **What is captured**
 
 * All Kubernetes resource manifests and status metadata (`k8s://`).
-* Persistent volume contents for CSI-backed PVCs (`k8s+csi://`).
+* Persistent volume contents (`k8s+csi://` and `k8s+pvc://`).
 
 **What is not captured**
 
-* Non-CSI volumes are not yet supported for PVC backups.
 * Node-level configuration (OS, kubelet config, network setup).
 * In-flight workload state (open connections, in-memory data).
 
