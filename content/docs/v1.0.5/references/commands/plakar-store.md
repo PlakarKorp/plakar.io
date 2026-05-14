@@ -1,26 +1,24 @@
 ---
-date: "2026-03-24T10:10:09Z"
+date: "2026-05-13T08:34:19Z"
 title: store
 summary: "Manage Plakar store configurations"
 aliases:
   - /docs/v1.0.5/commands/plakar-store/
 ---
 
-<table class="head">
-  <tr>
-    <td class="head-ltitle">PLAKAR-STORE(1)</td>
-    <td class="head-vol">General Commands Manual</td>
-    <td class="head-rtitle">PLAKAR-STORE(1)</td>
-  </tr>
-</table>
-<div class="manual-text">
+<div class="head" role="doc-pageheader" aria-label="Manual header
+  line"><span class="head-ltitle">PLAKAR-STORE(1)</span>
+  <span class="head-vol">General Commands Manual</span>
+  <span class="head-rtitle">PLAKAR-STORE(1)</span></div>
+<main class="manual-text">
 <section class="Sh">
-<h1 class="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h1>
+<h2 class="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h2>
 <p class="Pp"><code class="Nm">plakar-store</code> &#x2014;
-    <span class="Nd">Manage Plakar store configurations</span></p>
+    <span class="Nd" role="doc-subtitle">Manage Plakar store
+    configurations</span></p>
 </section>
 <section class="Sh">
-<h1 class="Sh" id="SYNOPSIS"><a class="permalink" href="#SYNOPSIS">SYNOPSIS</a></h1>
+<h2 class="Sh" id="SYNOPSIS"><a class="permalink" href="#SYNOPSIS">SYNOPSIS</a></h2>
 <table class="Nm">
   <tr>
     <td><code class="Nm">plakar store</code></td>
@@ -29,7 +27,7 @@ aliases:
 </table>
 </section>
 <section class="Sh">
-<h1 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h1>
+<h2 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h2>
 <p class="Pp">The <code class="Nm">plakar store</code> command manages the
     Plakar store configurations.</p>
 <p class="Pp">The configuration consists in a set of named entries, each of them
@@ -100,19 +98,17 @@ aliases:
 </dl>
 </section>
 <section class="Sh">
-<h1 class="Sh" id="DIAGNOSTICS"><a class="permalink" href="#DIAGNOSTICS">DIAGNOSTICS</a></h1>
+<h2 class="Sh" id="DIAGNOSTICS"><a class="permalink" href="#DIAGNOSTICS">DIAGNOSTICS</a></h2>
 <p class="Pp">The <code class="Nm">plakar-store</code> utility exits&#x00A0;0 on
     success, and&#x00A0;&gt;0 if an error occurs.</p>
 </section>
 <section class="Sh">
-<h1 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
-  ALSO</a></h1>
-<p class="Pp"><a class="Xr" href="../plakar/">plakar(1)</a></p>
+<h2 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
+  ALSO</a></h2>
+<p class="Pp"><a class="Xr" href="../plakar/" aria-label="plakar, section
+    1">plakar(1)</a></p>
 </section>
-</div>
-<table class="foot">
-  <tr>
-    <td class="foot-date">September 11, 2025</td>
-    <td class="foot-os">Plakar</td>
-  </tr>
-</table>
+</main>
+<div class="foot" role="doc-pagefooter" aria-label="Manual footer
+  line"><span class="foot-left">Plakar</span> <span class="foot-date">September
+  11, 2025</span> <span class="foot-right">PLAKAR-STORE(1)</span></div>

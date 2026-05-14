@@ -1,5 +1,5 @@
 ---
-date: "2026-05-06T10:34:26Z"
+date: "2026-05-13T08:38:47Z"
 title: ui
 summary: "Serve the Plakar web user interface"
 aliases:
@@ -24,9 +24,9 @@ aliases:
     <td><code class="Nm">plakar ui</code></td>
     <td>[<code class="Fl">-addr</code> <var class="Ar">address</var>]
       [<code class="Fl">-cors</code>] [<code class="Fl">-no-auth</code>]
-      [<code class="Fl">-no-spawn</code>] [<code class="Fl">-cert</code>
-      <var class="Ar">path</var>] [<code class="Fl">-key</code>
-      <var class="Ar">path</var>]</td>
+      [<code class="Fl">-no-refresh</code>] [<code class="Fl">-no-spawn</code>]
+      [<code class="Fl">-cert</code> <var class="Ar">path</var>]
+      [<code class="Fl">-key</code> <var class="Ar">path</var>]</td>
   </tr>
 </table>
 </section>
@@ -47,6 +47,9 @@ aliases:
   <dt id="no-auth"><a class="permalink" href="#no-auth"><code class="Fl">-no-auth</code></a></dt>
   <dd>Disable the authentication token that otherwise is needed to consume the
       exposed HTTP APIs.</dd>
+  <dt id="no-refresh"><a class="permalink" href="#no-refresh"><code class="Fl">-no-refresh</code></a></dt>
+  <dd>Do not refresh the local state from the store on API calls. Useful when
+      you want to share a common cache between multiple UIs.</dd>
   <dt id="no-spawn"><a class="permalink" href="#no-spawn"><code class="Fl">-no-spawn</code></a></dt>
   <dd>Do not automatically open the web browser.</dd>
   <dt id="cert"><a class="permalink" href="#cert"><code class="Fl">-cert</code></a>

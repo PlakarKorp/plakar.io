@@ -1,31 +1,29 @@
 ---
-date: "2026-03-24T09:48:35Z"
+date: "2026-05-13T08:36:24Z"
 title: sync
 summary: "Synchronize snapshots between Plakar repositories"
 aliases:
   - /docs/v1.1.0/commands/plakar-sync/
 ---
 
-<table class="head">
-  <tr>
-    <td class="head-ltitle">PLAKAR-SYNC(1)</td>
-    <td class="head-vol">General Commands Manual</td>
-    <td class="head-rtitle">PLAKAR-SYNC(1)</td>
-  </tr>
-</table>
-<div class="manual-text">
+<div class="head" role="doc-pageheader" aria-label="Manual header
+  line"><span class="head-ltitle">PLAKAR-SYNC(1)</span>
+  <span class="head-vol">General Commands Manual</span>
+  <span class="head-rtitle">PLAKAR-SYNC(1)</span></div>
+<main class="manual-text">
 <section class="Sh">
-<h1 class="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h1>
+<h2 class="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h2>
 <p class="Pp"><code class="Nm">plakar-sync</code> &#x2014;
-    <span class="Nd">Synchronize snapshots between Plakar
-  repositories</span></p>
+    <span class="Nd" role="doc-subtitle">Synchronize snapshots between Plakar
+    repositories</span></p>
 </section>
 <section class="Sh">
-<h1 class="Sh" id="SYNOPSIS"><a class="permalink" href="#SYNOPSIS">SYNOPSIS</a></h1>
+<h2 class="Sh" id="SYNOPSIS"><a class="permalink" href="#SYNOPSIS">SYNOPSIS</a></h2>
 <table class="Nm">
   <tr>
     <td><code class="Nm">plakar sync</code></td>
-    <td>[<code class="Fl">-packfiles</code> <var class="Ar">path</var>]
+    <td>[<code class="Fl">-cache</code> <var class="Ar">path</var>]
+      [<code class="Fl">-packfiles</code> <var class="Ar">path</var>]
       [<var class="Ar">snapshotID</var>] <code class="Cm">to</code> |
       <code class="Cm">from</code> | <code class="Cm">with</code>
       <var class="Ar">repository</var></td>
@@ -33,15 +31,21 @@ aliases:
 </table>
 </section>
 <section class="Sh">
-<h1 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h1>
+<h2 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h2>
 <p class="Pp">The <code class="Nm">plakar sync</code> command synchronize
     snapshots between two Plakar repositories. If a specific snapshot ID is
     provided, only snapshots with matching IDs will be synchronized.</p>
 <p class="Pp"><code class="Nm">plakar sync</code> supports the location flags
-    documented in <a class="Xr" href="../plakar-query/">plakar-query(7)</a> to
-    precisely select snapshots.</p>
+    documented in
+    <a class="Xr" href="../plakar-query/" aria-label="plakar-query, section
+    7">plakar-query(7)</a> to precisely select snapshots.</p>
 <p class="Pp">The options are as follows:</p>
 <dl class="Bl-tag">
+  <dt id="cache"><a class="permalink" href="#cache"><code class="Fl">-cache</code></a>
+    <var class="Ar">path</var></dt>
+  <dd>Specify a path to store the vfs cache. Use the special value
+      &#x2018;no&#x2019; to disable caching. Use the special value
+      &#x2018;vfs&#x2019; to use the in-memory vfs cache (the default).</dd>
   <dt id="packfiles"><a class="permalink" href="#packfiles"><code class="Fl">-packfiles</code></a>
     <var class="Ar">path</var></dt>
   <dd>Path where to put the temporary packfiles instead of building them in the
@@ -72,7 +76,13 @@ aliases:
 </dl>
 </section>
 <section class="Sh">
-<h1 class="Sh" id="EXAMPLES"><a class="permalink" href="#EXAMPLES">EXAMPLES</a></h1>
+<h2 class="Sh" id="EXIT_STATUS"><a class="permalink" href="#EXIT_STATUS">EXIT
+  STATUS</a></h2>
+<p class="Pp">The <code class="Nm">plakar-sync</code> utility exits&#x00A0;0 on
+    success, and&#x00A0;&gt;0 if an error occurs.</p>
+</section>
+<section class="Sh">
+<h2 class="Sh" id="EXAMPLES"><a class="permalink" href="#EXAMPLES">EXAMPLES</a></h2>
 <p class="Pp">Synchronize the snapshot &#x2018;abcd&#x2019; with a peer
     repository:</p>
 <div class="Bd Pp Bd-indent Li">
@@ -89,27 +99,14 @@ aliases:
 </div>
 </section>
 <section class="Sh">
-<h1 class="Sh" id="DIAGNOSTICS"><a class="permalink" href="#DIAGNOSTICS">DIAGNOSTICS</a></h1>
-<p class="Pp">The <code class="Nm">plakar-sync</code> utility exits&#x00A0;0 on
-    success, and&#x00A0;&gt;0 if an error occurs.</p>
-<dl class="Bl-tag">
-  <dt>0</dt>
-  <dd>Command completed successfully.</dd>
-  <dt>&gt;0</dt>
-  <dd>General failure occurred, such as an invalid repository path, snapshot ID
-      mismatch, or network error.</dd>
-</dl>
+<h2 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
+  ALSO</a></h2>
+<p class="Pp"><a class="Xr" href="../plakar/" aria-label="plakar, section
+    1">plakar(1)</a>,
+    <a class="Xr" href="../plakar-query/" aria-label="plakar-query, section
+    7">plakar-query(7)</a></p>
 </section>
-<section class="Sh">
-<h1 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
-  ALSO</a></h1>
-<p class="Pp"><a class="Xr" href="../plakar/">plakar(1)</a>,
-    <a class="Xr" href="../plakar-query/">plakar-query(7)</a></p>
-</section>
-</div>
-<table class="foot">
-  <tr>
-    <td class="foot-date">September 10, 2025</td>
-    <td class="foot-os">Plakar</td>
-  </tr>
-</table>
+</main>
+<div class="foot" role="doc-pagefooter" aria-label="Manual footer
+  line"><span class="foot-left">Plakar</span> <span class="foot-date">May 5,
+  2026</span> <span class="foot-right">PLAKAR-SYNC(1)</span></div>
