@@ -1,0 +1,31 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "publisher": {
+    "name": "PlakarKorp",
+    "url": "https://plakar.io/",
+    "contact": "support@plakar.io"
+  },
+  "skills": [
+    {
+      "name": "install-plakar",
+      "type": "skill-md",
+      "description": "Install the Plakar CLI on Linux, macOS, or Windows and verify the install with a local Kloset.",
+      "url": "https://plakar.io/.well-known/agent-skills/install-plakar/SKILL.md",
+      "digest": "sha256:9a32d52802af2dc5ac9a6d52c84d8663591e6015a3eb80fb47135f81c9794a50"
+    },
+    {
+      "name": "backup-postgres",
+      "type": "skill-md",
+      "description": "Take a consistent, encrypted, deduplicated backup of a PostgreSQL database into a Plakar Kloset.",
+      "url": "https://plakar.io/.well-known/agent-skills/backup-postgres/SKILL.md",
+      "digest": "sha256:00b76e8e085f0410babfaf7e2fe1dc73da1efa49174ca06f8bdcb357c3215d0c"
+    },
+    {
+      "name": "restore-snapshot",
+      "type": "skill-md",
+      "description": "Restore files from a Plakar snapshot, or mount the snapshot read-only via FUSE/WinFsp for partial recovery.",
+      "url": "https://plakar.io/.well-known/agent-skills/restore-snapshot/SKILL.md",
+      "digest": "sha256:5c841a7fe5eaaaca268e99bcf8b21f2aa09b71d0e7b0abc4c5f6d250f1993609"
+    }
+  ]
+}
