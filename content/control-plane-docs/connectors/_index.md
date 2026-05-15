@@ -25,10 +25,6 @@ Once the integration is selected, you must provide the configuration and credent
 * The selected integration
 * The inventory type managing the resource
 
-For managed inventories (such as AWS), credentials and permissions may already be available at the inventory level. In this case, additional credentials are not required when connecting supported resources.
-
-If the required permissions are not available, or when using a self-managed inventory, you will be prompted to provide the necessary credentials during connector setup.
-
 After configuration, you can test the connector directly from the UI to verify that Plakar Control Plane can successfully reach and authenticate with the resource before using it in a backup job.
 
 When configuring a source connector, additional SLA-related metadata is required:
