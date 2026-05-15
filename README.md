@@ -50,7 +50,7 @@
 ## Development
 
 - Clone the repo or a fork of the repo including the submodules `git clone --recurse-submodules git@github.com:PlakarKorp/plakar.io.git`
-- If you have clones the repo but the submodules folder is empty or missing, you can pull them with `git submodule update --init --recursive`
+- If you have cloned the repo but the submodules folder is empty or missing, you can pull them with `git submodule update --init --recursive`
 - Run `npm install` at `themes/blowfish` and at the root of the repo to install blowfish dependencies and our dependencies
 - Run `npm run dev` at the root of the repo to start the development server and watch for changes to the Tailwind CSS files
 - To build the static site run `npm run build`

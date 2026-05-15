@@ -20,7 +20,4 @@ Using a secret provider is recommended if your organization already manages cred
 
 Before you can use a secret provider, you need to configure one. See the provider-specific instructions for your secret manager:
 
-* [AWS Secrets Manager](./aws-sm)
-* [HashiCorp Vault](./vault-sm)
-* [Scaleway Secret Manager](#)
-* [GCP Secret Manager](#)
+{{< children description="true" >}}

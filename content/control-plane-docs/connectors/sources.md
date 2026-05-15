@@ -30,7 +30,3 @@ The **Dashboard** tab displays recent jobs that have run on the store, along wit
 The **Schedules** tab displays all scheduled operations associated with the store connector.
 
 ![](../images/scheduling-tasks-on-source.png)
-
-## Settings
-
-The **Settings** tab allows connector configuration to be updated and the connector to be deleted.
