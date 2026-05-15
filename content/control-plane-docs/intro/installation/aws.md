@@ -2,7 +2,7 @@
 title: "AWS"
 date: "2026-05-12T00:00:00Z"
 weight: 1
-summary: "How to install the Plakar AMI on AWS"
+summary: "How to install Plakar Control Plane on AWS"
 ---
 
 # AWS Installation
@@ -44,7 +44,15 @@ Once configured, click **Launch** to create the EC2 instance. After the instance
 
 ## Security Groups
 
-By default, the instance will not be accessible from a web browser because the default security group does not allow inbound HTTP traffic.To allow access to the Plakar Control Plane web interface:
+The networking configuration shown below is intended for a basic deployment setup.
+
+In production environments, networking and access control should be adapted to match your infrastructure and security requirements. For example:
+* Exposing Plakar Control Plane through a load balancer with HTTPS/TLS certificates
+* Restricting access through a VPN or private network
+* Limiting inbound traffic to trusted IP ranges
+* Using internal-only networking
+
+By default, the instance will not be accessible from a web browser because the default security group does not allow inbound HTTP traffic. To allow access to the Plakar Control Plane web interface:
 
 ![](../images/aws-ec2-1.png)
 

@@ -9,17 +9,17 @@ summary: "How to configure and use AWS Secrets Manager as a secret provider in P
 
 AWS Secrets Manager can be added as a secret provider in Plakar Control Plane by selecting `aws-sm` as the integration type when creating a new secret provider.
 
-Currently, AWS Secrets Manager is only supported for Plakar Control Plane deployments running on AWS using an attached IAM role. Access key authentication for AWS Secrets Manager is not currently supported.
+Currently, AWS Secrets Manager is only supported when Plakar Control Plane is running on AWS and authenticated using an attached IAM role. Deployments hosted outside AWS are not currently supported because access key authentication for AWS Secrets Manager is not currently supported.
 
 When adding the secret provider, you must provide:
 * A name for the secret provider
 * The AWS region where your secrets are stored
 
-Plakar Control Plane will use the IAM role attached to the EC2 instance to authenticate against AWS Secrets Manager.
+Plakar Control Plane uses the permissions granted to the IAM role attached to the EC2 instance to authenticate and read secrets from AWS Secrets Manager.
 
 ## Required Permissions
 
-To allow Plakar Control Plane to read secrets from AWS Secrets Manager, the IAM role attached to the instance must include the following permissions as well. This is added on top of the resource discovery permissions needed already and mention in the [aws-inventory](../../inventories/aws/#required-permissions) documentation:
+To allow Plakar Control Plane to read secrets from AWS Secrets Manager, the IAM role attached to the instance must include the following permissions as well. This is added on top of the resource discovery permissions needed already and mentioned in the [aws-inventory](../../inventories/aws/#required-permissions) documentation:
 
 ```json
 {
@@ -65,6 +65,6 @@ This would retrieve the value stored under the `access_key` field inside the `st
 
 ## Using Secrets in Plakar Control Plane
 
-Once AWS Secret Manager is configured as a secret provider, you can use it in any form field that requires a credential. Switch the field from direct value to secret provider, select your Vault instance from the dropdown, and enter the path to the secret you want to use.
+Once AWS Secrets Manager is configured as a secret provider, you can use it in any form field that requires a credential. Switch the field from direct value to secret provider, select your Vault instance from the dropdown, and enter the path to the secret you want to use.
 
 ![](../images/aws1.png)

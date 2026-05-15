@@ -2,7 +2,7 @@
 title: "AWS"
 date: "2026-05-03T00:00:00Z"
 weight: 1
-summary: "How to connect and manage an AWS inventory to Plakar Control Plane."
+summary: "How to connect and manage AWS inventory in Plakar Control Plane."
 ---
 
 # AWS Inventory
