@@ -17,8 +17,6 @@ If you operate in an air-gapped or PCI-DSS environment and need a full offline m
 
 Select your provider to continue with the installation:
 
-* [Installation on AWS](./aws)
-* [Installation on OVHcloud](#)
-* [Installation on Scaleway](#)
+{{< children description="true" >}}
 
-Once installed, see [Enrollment](../enrollment) to activate your instance.
+Once installed, check out the [enrollment documentation](../enrollment) on how to activate your instance.

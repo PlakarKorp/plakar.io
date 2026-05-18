@@ -13,7 +13,7 @@ A backup policy defines a set of backup requirements such as frequency, retentio
 
 Backing up your resources is only half the story. Without a way to verify that those backups meet a defined standard, it is easy to end up in a situation where a critical database is being backed up less frequently than required, or where backups are being kept for too short a period to meet regulatory requirements and you may not know about it until it is too late.
 
-Policies give you a compliance layer on top of your backup schedules. You define what **good** looks like for a given type of data and environment, scope the policy to the sources it should apply to, and Plakar Control Plane continuously checks whether those sources are meeting the requirements. Sources that are not compliant are surfaced so you can act on them.
+Policies give you a compliance layer on top of your backup schedules. You define what **good** looks like for a given type of data and environment, scope the policy to the environments and data classes it should apply to, and Plakar Control Plane continuously checks whether matching sources are meeting the requirements. Sources that are not compliant are surfaced so you can act on them.
 
 Because policies use environment and data class scoping rather than targeting individual resources, a single policy can cover hundreds of sources at once. When you add a new source and assign it the right environment and data class, it is automatically picked up by any matching policies.
 
@@ -61,22 +61,7 @@ For example, a policy scoped to **production** and **database** will apply to al
 A source connector can be covered by multiple policies if multiple policies have overlapping scopes. This allows policies to be layered. For example, you may have a general policy covering all production sources, and a stricter policy specifically covering production databases.
 
 > [!WARNING]+ CURRENT LIMITATIONS
-> SLA policy scoping currently has some limitations:
->
-> * A policy scope can currently target only a single data class
-> * A single source connector should not match multiple policies targeting the same environment and data class combination
->
-> For example, you should avoid creating two different policies both scoped to:
-> * Environment: `production`
-> * Data Class: `database`
->
-> This limitation exists because the source scheduling UI currently supports displaying only a single violated SLA policy at a time for a source connector.
->
-> A source connector with scheduling issues will display an orange **Retention** badge in the scheduling tab. Hovering the badge shows the violated SLA requirements, but currently only one violated policy can be displayed in the popup even if multiple policies are violated.
->
-> If multiple SLA policies are being violated, you can work through them incrementally. After adjusting the backup schedules to satisfy the currently displayed violation, the next violated SLA will then appear in the popup.
->
-> Support for overlapping SLA visualization and multi-policy violations will be improved in a future release.
+> SLA policy scope can currently target only a single data class
 
 ![](../images/scoping-a-policy.png)
 

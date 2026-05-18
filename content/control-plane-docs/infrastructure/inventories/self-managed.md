@@ -1,8 +1,8 @@
 ---
 title: "Self Managed"
 date: "2026-05-06T00:00:00Z"
-weight: 2
-summary: "How to connect and manage a Self Managed inventory to Plakar Control Plane."
+weight: 5
+summary: "How to connect and manage a Self Managed inventory in Plakar Control Plane."
 ---
 
 # Self-Managed Inventory
