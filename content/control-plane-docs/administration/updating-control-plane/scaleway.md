@@ -45,6 +45,12 @@ Locate the attached `1024GB` Block Storage volume and detach it from the stopped
 
 Before detaching the volume, note down the volume name because the same volume will later be attached to the new instance.
 
+Also note down any instance-specific configuration that may need to be reapplied later, including:
+* Security groups
+* Public IPv4 and IPv6 assignments
+* DNS configuration
+* Monitoring or automation integrations
+
 ![](../images/update-scaleway-qcow-1.png)
 
 ## 5. Create a new instance
@@ -70,13 +76,21 @@ Open the detached Block Storage volume from the previous deployment and attach i
 
 ![](../images/update-scaleway-qcow-2.png)
 
-## 8. Start the new instance
+## 8. Reconfigure instance settings
+
+Reapply any configuration that existed on the previous instance. This may include:
+* Security groups
+* Public IPv4 and IPv6 assignments
+* DNS configuration
+* Monitoring or automation integrations
+
+## 9. Start the new instance
 
 Start the new Scaleway instance.
 
 Once the instance is running, Plakar Control Plane should resume normally using the existing persistent data volume. All inventories, schedules, policies, configuration, and other data should remain intact.
 
-## 9. Cleanup
+## 10. Cleanup
 
 After confirming the new deployment is working correctly, you can safely remove unused resources:
 * Delete the old Scaleway instance
