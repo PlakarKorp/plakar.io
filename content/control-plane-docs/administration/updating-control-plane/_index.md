@@ -44,6 +44,6 @@ Occasionally, infrastructure-level updates may also be required depending on the
 For example, on AWS, Plakar Control Plane is distributed as an AMI through AWS Marketplace. Most application updates can be installed directly from the Settings page without replacing the EC2 instance or updating the AMI.
 
 Platform-specific infrastructure update procedures are documented separately:
-* [Updating AWS deployments](#)
+* [Updating AWS deployments](./aws)
 * [Updating OVHcloud deployments](#)
 * [Updating Scaleway deployments](#)
