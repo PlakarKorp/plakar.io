@@ -129,7 +129,8 @@ Welcome to **Plakar** - easy, secure and efficient backups for people who value 
   This produces a `plakar` binary in the current directory. To build a specific release version, check out the corresponding tag before running `make`:
 
   ```bash
-  $ git checkout v1.0.5
+  $ git fetch --tags
+  $ git checkout tags/v1.0.5
   $ make
   ```
 

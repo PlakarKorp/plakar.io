@@ -25,7 +25,8 @@ $ make
 This produces a `plakar` binary in the current directory. To build a specific release version, check out the corresponding tag before running `make`:
 
 ```bash
-$ git checkout v1.1.0
+$ git fetch --tags
+$ git checkout tags/v1.1.0-rc.1
 $ make
 ```
 
