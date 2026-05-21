@@ -30,7 +30,7 @@ By default, `plakar server` listens on `http://localhost:9876`.
 
 ## Accessing the store over HTTP
 
-In Plakar `v1.0.6` and earlier, the HTTP integration must be installed for you to be able to access stores over the network. See the [HTTP integration page](../../integrations) for installation instructions.
+In Plakar `v1.0.6` and earlier, the HTTP integration must be installed for you to be able to access stores over the network. See the [HTTP integration page](../../integrations/http) for installation instructions.
 
 Once installed, you can access the store through the network address:
 
