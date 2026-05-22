@@ -46,4 +46,4 @@ For example, on AWS, Plakar Control Plane is distributed as an AMI through AWS M
 Platform-specific infrastructure update procedures are documented separately:
 * [Updating AWS deployments](#)
 * [Updating OVHcloud deployments](#)
-* [Updating Scaleway deployments](#)
+* [Updating Scaleway deployments](./scaleway)
