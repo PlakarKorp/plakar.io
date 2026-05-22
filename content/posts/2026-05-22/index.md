@@ -20,6 +20,8 @@ category: "insights"
 > Kloset store. The final snapshots represented around 1.35 TB of logical data,
 > while the repository itself only occupied 463 GB on disk.
 
+At Plakar, we like to experiment on projects for the sake of technical fun.
+
 Wikipedia publishes public dumps of its data, making it possible to preserve
 independent copies of the encyclopedia.
 
