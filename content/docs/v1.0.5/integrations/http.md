@@ -7,12 +7,12 @@ summary: "Install and configure the HTTP integration for Plakar."
 
 # HTTP
 
-The HTTP integration allows Plakar to use an HTTP endpoint as a Kloset store backend. This is useful when storage is only accessible over HTTP, for example, a NAS or self-hosted object store exposed over HTTP, or when using `plakar server` to expose a Kloset store over the network.
+The HTTP integration allows Plakar to use an HTTP endpoint as a Kloset store backend. Its used to connect to a Kloset store exposed by `plakar server`.
 
 The HTTP integration provides one connector:
 
-| Connector type | Description |
-| -------------- | ----------- |
+| Connector type    | Description                                         |
+| ----------------- | --------------------------------------------------- |
 | Storage connector | Host a Kloset store on any HTTP accessible endpoint |
 
 ## Installation
@@ -20,53 +20,55 @@ The HTTP integration provides one connector:
 In Plakar `v1.0.5` and earlier, the HTTP integration must be installed before HTTP stores can be accessed.
 
 {{< tabs >}}
-  {{< tab label="Pre-built package" >}}
+{{< tab label="Pre-built package" >}}
 
-  Pre-compiled packages are available for common platforms and provide the simplest installation method.
+Pre-compiled packages are available for common platforms and provide the simplest installation method.
 
-  > [!NOTE]+ Logging In
-  > Pre-built packages require Plakar authentication. See [Logging in to Plakar](../../guides/logging-in-to-plakar) for details.
+> [!NOTE]+ Logging In
+> Pre-built packages require Plakar authentication. See [Logging in to Plakar](../../guides/logging-in-to-plakar) for details.
 
-  Install the SFTP package:
+Install the SFTP package:
 
-  ```bash
-  $ plakar pkg add http
-  ```
+```bash
+$ plakar pkg add http
+```
 
-  Verify installation:
+Verify installation:
 
-  ```bash
-  $ plakar pkg list
-  ```
+```bash
+$ plakar pkg list
+```
 
-  {{< /tab >}}
-  {{< tab label="Building from source" >}}
+{{< /tab >}}
+{{< tab label="Building from source" >}}
 
-  Source builds are useful when pre-built packages are unavailable or when customization is required.
+Source builds are useful when pre-built packages are unavailable or when customization is required.
 
-  **Prerequisites:**
-  - Go toolchain compatible with your **Plakar** version
+**Prerequisites:**
 
-  Build the package:
+- Go toolchain compatible with your **Plakar** version
 
-  ```bash
-  $ plakar pkg build http
-  ```
+Build the package:
 
-  A package archive will be created in the current directory (e.g., `http_v1.0.0_darwin_arm64.ptar`).
+```bash
+$ plakar pkg build http
+```
 
-  Install the package:
+A package archive will be created in the current directory (e.g., `http_v1.0.0_darwin_arm64.ptar`).
 
-  ```bash
-  $ plakar pkg add ./http_v1.0.0_darwin_arm64.ptar
-  ```
+Install the package:
 
-  Verify installation:
-  ```bash
-  $ plakar pkg list
-  ```
+```bash
+$ plakar pkg add ./http_v1.0.0_darwin_arm64.ptar
+```
 
-  {{< /tab >}}
+Verify installation:
+
+```bash
+$ plakar pkg list
+```
+
+{{< /tab >}}
 {{< /tabs >}}
 
 To list, upgrade, or remove the package, see [managing packages guide](../../guides/managing-packages/).
@@ -92,10 +94,10 @@ $ plakar at http://example.com/data ls
 
 #### Options
 
-| Option | Required | Description |
-|---|---|---|
-| `location` | Yes | URL of the HTTP endpoint, for example `http://example.com/data` |
+| Option     | Required | Description                                                     |
+| ---------- | -------- | --------------------------------------------------------------- |
+| `location` | Yes      | URL of the HTTP endpoint, for example `http://example.com/data` |
 
 ## See also
 
-* [Serving a Kloset Store over the Network](../guides/serving-a-kloset-store-over-the-network)
+- [Serving a Kloset Store over the Network](../guides/serving-a-kloset-store-over-the-network)
