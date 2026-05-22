@@ -11,8 +11,8 @@
 
   
   
-    <title>Serving a Kloset Store over HTTP &middot; Plakar | The Open Standard for Backup and Restore</title>
-    <meta name="title" content="Serving a Kloset Store over HTTP &middot; Plakar | The Open Standard for Backup and Restore">
+    <title>Serving a Kloset Store over the Network &middot; Plakar | The Open Standard for Backup and Restore</title>
+    <meta name="title" content="Serving a Kloset Store over the Network &middot; Plakar | The Open Standard for Backup and Restore">
   
 
   
@@ -75,17 +75,17 @@
   
   <meta property="og:url" content="https://plakar.io/docs/v1.0.5/guides/serving-a-kloset-store-over-the-network/">
   <meta property="og:site_name" content="Plakar | The Open Standard for Backup and Restore">
-  <meta property="og:title" content="Serving a Kloset Store over HTTP">
+  <meta property="og:title" content="Serving a Kloset Store over the Network">
   <meta property="og:description" content="Expose a Kloset Store over HTTP using the plakar server command.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-03-16T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-05-20T19:08:22+03:00">
+    <meta property="article:modified_time" content="2026-05-22T09:21:39+02:00">
 
   
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Serving a Kloset Store over HTTP">
+  <meta name="twitter:title" content="Serving a Kloset Store over the Network">
   <meta name="twitter:description" content="Expose a Kloset Store over HTTP using the plakar server command.">
 
   
@@ -251,8 +251,8 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "Docs",
-    "name": "Serving a Kloset Store over HTTP",
-    "headline": "Serving a Kloset Store over HTTP",
+    "name": "Serving a Kloset Store over the Network",
+    "headline": "Serving a Kloset Store over the Network",
     
     "inLanguage": "en",
     "url" : "https://plakar.io/docs/v1.0.5/guides/serving-a-kloset-store-over-the-network/",
@@ -264,12 +264,12 @@
     "dateCreated": "2026-03-16T00:00:00\u002b00:00",
     "datePublished": "2026-03-16T00:00:00\u002b00:00",
     
-    "dateModified": "2026-05-20T19:08:22\u002b03:00",
+    "dateModified": "2026-05-22T09:21:39\u002b02:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "512"
+    "wordCount": "375"
   }]
   </script>
 
@@ -741,7 +741,7 @@
       <a href="/docs/v1.0.5/guides/serving-a-kloset-store-over-the-network/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          text-primary-500 bg-neutral-100 font-medium">
-        Serving a Kloset Store over HTTP
+        Serving a Kloset Store over the Network
       </a>
     
   
@@ -2009,7 +2009,7 @@
       <a href="/docs/v1.0.5/guides/serving-a-kloset-store-over-the-network/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          text-primary-500 bg-neutral-100 font-medium">
-        Serving a Kloset Store over HTTP
+        Serving a Kloset Store over the Network
       </a>
     
   
@@ -3038,7 +3038,7 @@
           </span>
         
       
-      <span class="text-neutral-900 font-medium">Serving a Kloset Store over HTTP</span>
+      <span class="text-neutral-900 font-medium">Serving a Kloset Store over the Network</span>
     </nav>
 
   </div>
@@ -3054,9 +3054,13 @@
   </span>
   
 </div>
-<p>Plakar can expose a Kloset Store over HTTP using the <code>plakar server</code> command. This allows other machines to access the store remotely over the network.</p>
-<p>By default, a Kloset Store is only accessed locally. Serving it over HTTP lets other machines back up to or restore from the same store without copying data around. This is useful when the store lives on a NAS, a dedicated backup server, or any machine you want to use as a centralized backup target.</p>
-<p>This guide shows how to start an HTTP server for a Kloset Store and access it from another Plakar client.</p>
+<p>Plakar can expose a Kloset Store over HTTP using the <code>plakar server</code> command. This allows other machines to access the store over the network.</p>
+<p>There are two main reasons to use <code>plakar server</code>:</p>
+<ul>
+<li><strong>Accessing a store over HTTP.</strong> Some environments only expose storage over HTTP. For example, a NAS that is reachable over HTTP but not over SSH. In these cases, <code>plakar server</code> lets you bridge the gap by re-exposing a store through HTTP.</li>
+<li><strong>Protection against snapshot deletion.</strong> By default, <code>plakar server</code> refuses delete operations. This is useful when multiple machines push backups to a shared store. If one of those machines is compromised, an attacker cannot use it to delete snapshots.</li>
+</ul>
+<p>In all cases, clients still need the repository passphrase to access the store, and all snapshot data remains fully encrypted in transit.</p>
 
 <div class="relative group">
   <h2 id="starting-an-http-server">Starting an HTTP server</h2>
@@ -3066,10 +3070,9 @@
   </span>
   
 </div>
-<p>Assume you have a Kloset Store located at <code>/var/backups</code>. You can interact with it locally using commands like:</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar at /var/backups ls</span></span></code></pre></div></div>
-<p>By default, plakar server listens on <code>http://localhost:9876</code>. To expose this store over HTTP, start the server by running:</p>
+<p>Assume you have a Kloset Store located at <code>/var/backups</code>. To expose it over HTTP, run:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar at /var/backups server</span></span></code></pre></div></div>
+<p>By default, <code>plakar server</code> listens on <code>http://localhost:9876</code>.</p>
 
 <div class="relative group">
   <h2 id="accessing-the-store-over-http">Accessing the store over HTTP</h2>
@@ -3079,12 +3082,9 @@
   </span>
   
 </div>
-<p>In Plakar <code>v1.0.6</code> and earlier, the HTTP integration must first be installed before HTTP stores can be accessed.</p>
-<p>Install the HTTP integration using:</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar pkg add http</span></span></code></pre></div></div>
-<p>You can now access the store through its HTTP address:</p>
+<p>In Plakar <code>v1.0.6</code> and earlier, the HTTP integration must be installed for you to be able to access stores over the network. See the <a href="../../integrations/http" >HTTP integration page</a> for installation instructions.</p>
+<p>Once installed, you can access the store through the network address:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar at http://localhost:9876 ls</span></span></code></pre></div></div>
-<p>All standard read operations work exactly as they do with a local store.</p>
 
 <div class="relative group">
   <h2 id="listening-on-a-different-address">Listening on a different address</h2>
@@ -3094,15 +3094,12 @@
   </span>
   
 </div>
-<p>The <code>-listen</code> flag can be used to change the listening address and port. For example, to listen on all network interfaces on port <code>12345</code>:</p>
+<p>Use the <code>-listen</code> flag to change the listening address and port. To listen on all interfaces on port <code>12345</code>:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar at /var/backups server -listen :12345</span></span></code></pre></div></div>
-<p>To listen on a specific address and port. In this example, the local machine IP address is <code>192.168.1.10</code>:</p>
+<p>To listen on a specific address, for example <code>192.168.1.10</code>:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar at /var/backups server -listen 192.168.1.10:12345</span></span></code></pre></div></div>
-<p>Local clients can access the store using:</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar at http://localhost:12345 ls</span></span></code></pre></div></div>
-<p>Remote clients on the same network can access the store using:</p>
+<p>Remote clients on the same network can then reach the store using:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar at http://192.168.1.10:12345 ls</span></span></code></pre></div></div>
-<p>You can determine your local IP address using standard operating system networking tools such as <code>ip addr</code>, <code>ifconfig</code>, or <code>ipconfig</code>.</p>
 
 <div class="relative group">
   <h2 id="enabling-delete-operations">Enabling delete operations</h2>
@@ -3112,7 +3109,7 @@
   </span>
   
 </div>
-<p>For safety, delete operations are disabled by default when serving a store over HTTP. If you explicitly want to allow deletions, start the server with:</p>
+<p>Delete operations are disabled by default. To allow them explicitly:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar at /var/backups server -allow-delete</span></span></code></pre></div></div>
 
 <div class="relative group">
@@ -3123,26 +3120,9 @@
   </span>
   
 </div>
-<p><code>plakar server</code> can also expose non-local stores. For example, to expose an SFTP-backed store over HTTP:</p>
+<p><code>plakar server</code> can also expose non-local stores. For example, to expose an
+SFTP-backed store over HTTP:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar at sftp://example.org server</span></span></code></pre></div></div>
-<p>This can be useful for bridging environments or re-exposing stores through a different transport layer.</p>
-
-<div class="relative group">
-  <h2 id="typical-use-cases">Typical use cases</h2>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#typical-use-cases" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<p>Serving a Kloset Store over HTTP is useful when:</p>
-<ul>
-<li>Exposing a store hosted on a NAS to other machines</li>
-<li>Accessing a local store from remote systems</li>
-<li>Centralizing backups for multiple clients</li>
-<li>Bridging environments without copying data</li>
-<li>Re-exposing remote stores through HTTP</li>
-</ul>
 
 <div class="relative group">
   <h2 id="limitations">Limitations</h2>
@@ -3153,9 +3133,7 @@
   
 </div>
 <ul>
-<li>The server exposes only the encrypted store. Clients must still provide the correct passphrase when accessing it.</li>
-<li>Native HTTPS support is not available in Plakar v1.0.6 and earlier. If encryption in transit is required, use a reverse proxy such as Nginx.</li>
-<li>When a hostname resolves to multiple IP addresses, <code>plakar server</code> only binds to one of them, preferably IPv4.</li>
+<li>Native HTTPS support is not available in Plakar <code>v1.0.6</code> and earlier. If encryption in transit is required, use a reverse proxy such as Nginx. Note that snapshot data transiting through <code>plakar server</code> is always fully encrypted regardless.</li>
 </ul>
 
       </article>
@@ -3221,7 +3199,7 @@
   
   <div class="flex items-center justify-between text-xs text-neutral-400">
     
-      <span>Last updated: May 20, 2026</span>
+      <span>Last updated: May 22, 2026</span>
     
     
       <a href="https://github.com/PlakarKorp/plakar.io/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">
@@ -3253,7 +3231,6 @@
     <li><a href="#listening-on-a-different-address">Listening on a different address</a></li>
     <li><a href="#enabling-delete-operations">Enabling delete operations</a></li>
     <li><a href="#serving-remote-stores">Serving remote stores</a></li>
-    <li><a href="#typical-use-cases">Typical use cases</a></li>
     <li><a href="#limitations">Limitations</a></li>
   </ul>
 </nav>
