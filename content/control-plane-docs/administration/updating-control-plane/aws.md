@@ -9,7 +9,7 @@ summary: "How to update Plakar Control Plane AMI on AWS."
 
 Plakar Control Plane is distributed on AWS as an Amazon Machine Image (AMI) through AWS Marketplace.
 
-Most Plakar Control Plane updates can be installed directly page without replacing the EC2 instance. However, in rare cases, the underlying AMI also needs to be updated. This usually happens when infrastructure-level changes are required.
+Most Plakar Control Plane updates can be installed directly from the settings page without replacing the EC2 instance. However, in rare cases, the underlying AMI also needs to be updated. This usually happens when infrastructure-level changes are required.
 
 ## Deployment layout
 
@@ -34,6 +34,13 @@ Stop the currently running Plakar Control Plane EC2 instance before making any s
 
 Locate the larger attached data volume (`1TB`) and detach it from the stopped instance. Before detaching the volume, note down the volume ID because the same volume will later be attached to the new instance.
 
+Also note down any instance-specific configuration that may need to be reapplied later, including:
+* IAM roles
+* Security groups
+* Elastic IP assignments
+* DNS configuration
+* Monitoring or automation integrations
+
 > [!IMPORTANT]+ Volume ID
 > Make sure you detach the larger data volume and not the root volume.
 
@@ -42,6 +49,10 @@ Locate the larger attached data volume (`1TB`) and detach it from the stopped in
 ### 3. Launch a new Plakar Control Plane instance
 
 Deploy a new Plakar Control Plane instance from AWS Marketplace using the newer AMI. Follow the standard deployment process documented in the [AWS installation](../../intro/installation/aws) guide.
+
+Due to an AWS limitation, it is not possible to attach an existing EBS volume during the initial EC2 instance deployment process. AWS will always provision the instance with a new empty data volume.
+
+As a workaround, the new instance must first be created normally, then stopped so the empty volume can be replaced with the original data volume from the previous deployment.
 
 The new instance will be provisioned with:
 * A new root volume
