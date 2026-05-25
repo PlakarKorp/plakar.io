@@ -59,3 +59,7 @@ However, Plakar may process personal data for purposes such as processing an ord
 Cookies are text files stored on your computer, tablet, or phone when you visit a website or application.
 When visiting the Website, Plakar uses Google Analytics cookies to understand how users arrive at, navigate, and interact with the Website to improve its services.
 These cookies collect information in a manner that does not directly identify the user or their device, nor do they track browsing activity across other websites. They are also automatically deleted when the user closes their browser.
+
+## Feature and Bug Bounty Program
+
+Plakar operates a dedicated Feature and Bug Bounty Program to safely collaborate with independent security researchers and open-source developers. This program governs the submission of critical software vulnerabilities and specific roadmap development contributions. The complete program policy, including terms of participation, validation workflows, financial reward grids, and legal safe harbor provisions, can be accessed directly at [https://plakar.io/legal-notice/bounty-policy/](/legal-notice/bounty-policy/).
