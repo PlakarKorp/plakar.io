@@ -1,7 +1,7 @@
 ---
 title: "Google Drive"
 date: "2026-03-20T00:00:00Z"
-weight: 7
+weight: 8
 summary: "Back up and restore your Google Drive with Plakar, and host Kloset stores in Google Drive."
 ---
 

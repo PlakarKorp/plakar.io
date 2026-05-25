@@ -1,7 +1,7 @@
 ---
 title: "etcd"
 date: "2026-04-02T00:00:00Z"
-weight: 13
+weight: 14
 summary: "Back up etcd clusters with Plakar."
 ---
 
