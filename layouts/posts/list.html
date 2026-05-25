@@ -27,12 +27,13 @@
 {{ with index $featured 0 }}
   {{ $image := or (.Resources.GetMatch "featured.webp") (index (.Resources.Match "featured.*") 0) }}
   {{ if not $image }}
-    {{ $image = resources.Get "img/placeholder-400x254.png" }}
+    {{ with resources.Get "img/placeholder-400x254.png" }}{{ $image = . }}{{ end }}
   {{ end }}
 
   <section class="section-light-2 py-7 px-4">
     <div class="max-w-350 mx-auto flex flex-col xl:flex-row items-center xl:items-stretch gap-6">
 
+      {{ if $image }}
       <!-- Image -->
       <div class="w-full max-w-lg xl:max-w-none xl:w-1/2 shrink-0 rounded-lg bg-neutral-50 border border-neutral-300">
         <div class="w-full h-7 px-4 flex items-center gap-2 border-b border-neutral-200">
@@ -44,6 +45,7 @@
           <img src="{{ $image.RelPermalink }}" alt="Article preview" class="w-full h-auto object-cover rounded-sm">
         </div>
       </div>
+      {{ end }}
 
       <!-- Content -->
       <div class="w-full max-w-lg xl:max-w-none bg-neutral-100 flex flex-1 flex-col gap-4 items-start justify-center px-4 xl:px-8 py-4 rounded-lg">
