@@ -3,7 +3,7 @@
 
 {{ $image := or (.Resources.GetMatch "featured.webp") (index (.Resources.Match "featured.*") 0) }}
 {{ if not $image }}
-  {{ $image = resources.Get "img/placeholder-1600x1200.png" }}
+  {{ with resources.Get "img/placeholder-1600x1200.png" }}{{ $image = . }}{{ end }}
 {{ end }}
 
 <!-- Hero -->
@@ -35,6 +35,7 @@
   </div>
 </section>
 
+{{ if $image }}
 <!-- Featured image -->
 <section class="section-light-2 grid-background">
   <div class="bg-gradient-section-light-1 px-4 py-2">
@@ -54,6 +55,7 @@
     </div>
   </div>
 </section>
+{{ end }}
 
 <!-- Article -->
 <section class="section-light-1 px-4 py-7">
