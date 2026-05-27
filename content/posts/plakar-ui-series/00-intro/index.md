@@ -1,6 +1,6 @@
 ---
-title: "Plakar UI Explained to My Backend Colleagues: Introduction"
-summary: "Why this series exists, who it's for, and what it covers — a high-level guide to the Plakar UI stack written by the UI team for everyone else at Plakar."
+title: "The Plakar UI, Explained for Backend Developers: An Introduction"
+summary: "Why this series exists, who it's for, and what it covers: a high-level guide to the Plakar UI stack written by the UI team for the rest of Plakar."
 slug: "plakar-ui-series-intro"
 date: 2026-05-25T13:00:00+0000
 authors:
@@ -9,49 +9,47 @@ tags:
   - plakar-ui
   - frontend
 category: "technology"
-series: ["Plakar UI Explained to My Backend Colleagues"]
+series: ["Plakar UI, Explained for Backend Developers"]
 series_order: 0
 ---
 
-At Plakar, work is loosely split across three areas. The **core team** works on Plakar and Kloset — the backup engine, the storage layer, the protocols. The **plugin team** builds the connectors and integrations that extend what Plakar can talk to. And the **UI team** builds the web interfaces: the open-source UI and the Control Plane.
+At Plakar, work is roughly split across a few teams. Core works on Kloset and the backup engine. The API team owns the control plane. Integrations builds the connectors. And then there's us, the UI team.
 
-These boundaries are not rigid. Someone from the core team will sometimes open a PR on the UI. Someone from the UI team will sometimes need to understand a backend detail to make something work. But day to day, each area lives in a different world — different tools, different mental models, different problems.
+In practice, the boundaries are loose. Everyone touches a bit of everything. But most of the time, each team lives in a different world. The core and API teams live in Go. We live in TypeScript.
 
-This series is an attempt to bridge that gap, in one specific direction: from the UI team outward.
+That difference is bigger than it sounds. Go and modern frontend development don't share much mental real estate. If you've ever opened `plakar-ui` and seen `pnpm-workspace.yaml`, `turbo.json`, twelve `package.json` files, and enough `node_modules` to make `du -sh` cry — you know what I mean. Maybe you quietly closed the tab and went back to the thing you actually needed to fix.
+
+That's fine. That's why we're writing this.
 
 ## Who this is for
 
-If you work on the core or the plugin side and have ever opened the `plakar-ui` repository, you've probably seen `pnpm-workspace.yaml`, `turbo.json`, a `tsconfig.json` for each package, and enough `node_modules` folders to fill a small country. Maybe you quietly closed the tab. That's fair. Modern frontend development has a reputation — partly deserved, partly not — for being opaque to people who didn't grow up with it.
+Developers at Plakar who work outside the UI. If you know Go, understand systems, and haven't spent much time on the frontend, this series is for you.
 
-This series is for you.
+We're not going to explain what a variable is. We're going to explain why the repo is structured the way it is, what each piece of the stack is actually solving, and why we made the choices we did.
 
-More specifically, it's written for **developers who know Go and understand systems** but haven't spent much time on the frontend. We're not going to explain what a variable is. We're going to explain why we have twelve `package.json` files, what TanStack Query is actually solving, and why we reach for Zod on every API call.
-
-It's also intended as a reference for **people joining the UI team**. When you come on board, we'd like you to be able to read through this series and come away with a clear picture of not just *what* the stack is, but *why* it is the way it is. Decisions that might look arbitrary usually have a reason — this is where we've written those reasons down.
+We also realized, while writing this, that the frontend-backend gap isn't unique to us. Lots of teams end up with a similar split. So we decided to publish the series publicly. We're already building open-source software. Writing down the reasoning behind our decisions seemed like the obvious next step.
 
 ## What we cover
 
-The series walks through the tools and libraries that make up the Plakar UI, one at a time:
+One piece at a time:
 
-- **pnpm and Turborepo** — how the monorepo is structured, why we chose pnpm over npm, and how Turborepo keeps builds fast
-- **React** — why the component model exists and what problems it actually solves
-- **TypeScript** — the two features that make it genuinely worth using, explained to a Go developer
-- **Zod** — why TypeScript alone isn't enough, and how we validate data at API boundaries
-- **TanStack Query** — how we manage server state, caching, and the full lifecycle of every HTTP request
-- **TanStack Form** — how we handle forms without drowning in boilerplate
-- **React Aria Components** — the accessibility layer under our component library, and why building it from scratch would be a mistake
-- **TanStack Table** — headless data tables with sorting, filtering, and pagination
-- **TanStack Router** — type-safe routing that catches broken links at compile time
-- **Storybook** — how we develop and document components in isolation
-- **Testing strategy** — what we test, how, and where we draw the line
-- **The build process** — how the code goes from source to something a browser can run
+- **pnpm and Turborepo** — how the monorepo is structured and how builds stay fast
+- **React** — what the component model is actually solving
+- **TypeScript** — the two things that make it worth using, explained from a Go angle
+- **Zod** — why TypeScript alone isn't enough at API boundaries
+- **TanStack Query** — server state, caching, and request lifecycle management
+- **TanStack Form** — forms without the boilerplate
+- **React Aria Components** — the accessibility layer under our component library
+- **TanStack Table** — headless tables with sorting, filtering, and pagination
+- **TanStack Router** — type-safe routing with compile-time link checking
+- **Storybook** — developing and documenting components in isolation
+- **Testing strategy** — what we test, how, and where we stop
+- **Build process** — from TypeScript source to something a browser can actually run
 
 ## What this is not
 
-This is not a tutorial. We're not going to walk you through building your first React app or setting up a new TypeScript project from scratch. There are excellent resources for that online.
+Not a tutorial. We're not walking you through setting up your first React project.
 
-What we're trying to do is explain how *we* work — the specific patterns we've settled on, the tradeoffs we've made, and the problems we've run into. The goal is not to teach you React in general, but to give you enough context to understand what's happening in *our* codebase specifically.
+We're explaining how *we* work — the patterns, the tradeoffs, the things we tried before settling on what's in the repo now. If you want to go deeper on any of it, the docs for every tool in this stack are genuinely good. Think of this as the "why we use it" layer, sitting on top of the "how it works" layer they already provide.
 
-If after reading this you find yourself curious and want to go deeper on any of the tools, the official documentation for all of them is excellent. Consider this series the "why we use it" companion to their "how it works" docs.
-
-Ready to dive in? Start with [pnpm and Turborepo](/posts/2026-05-25/plakar-ui-pnpm-turborepo/).
+Ready? Start with [pnpm and Turborepo](/posts/2026-05-25/plakar-ui-pnpm-turborepo/).
