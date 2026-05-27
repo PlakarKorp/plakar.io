@@ -30,9 +30,9 @@ AWS service you want Plakar to use.
 
 The exact permissions depend on the feature you are configuring. For example,
 the [AWS inventory](../../../infrastructure/inventories/aws) documentation lists
-the permissions required to discover AWS resources, while the [S3 resource](#)
-documentation lists the permissions required to use an S3 bucket as a source,
-store, or destination.
+the permissions required to discover AWS resources, while the
+[S3 resource](../../../resources/object-storage/s3) documentation lists the
+permissions required to use an S3 bucket as a source, store, or destination.
 
 You can define the permissions using either the JSON editor or the visual policy
 editor. After adding the required permissions, provide a name for the policy and
