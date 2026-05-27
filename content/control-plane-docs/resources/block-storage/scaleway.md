@@ -1,6 +1,6 @@
 ---
 title: "Scaleway Block Storage"
-date: "2026-05-19T00:00:00Z"
+date: "2026-05-27T00:00:00Z"
 weight: 1
 summary: "How to configure a Scaleway block storage resource in Plakar Control Plane."
 ---

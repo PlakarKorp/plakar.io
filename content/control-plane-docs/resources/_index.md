@@ -17,7 +17,7 @@ The class describes the general category the resource belongs to, while the subc
 
 - [Analytics]()
 - [Block Storage](./block-storage) - [Scaleway Block Storage](./block-storage/scaleway), [PVC]()
-- [Compute]()
+- [Compute](./compute) - [Scaleway Compute](./compute/scaleway)
 - [Database]() - [PostgreSQL](), [MySQL](), [MongoDB](), [Redis]()
 - [File Storage]()
 - [Hypervisor]() - [Proxmox]()
