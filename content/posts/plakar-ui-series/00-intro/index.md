@@ -13,43 +13,39 @@ series: ["Plakar UI, Explained for Backend Developers"]
 series_order: 0
 ---
 
-At Plakar, work is roughly split across a few teams. Core works on Kloset and the backup engine. The API team owns the control plane. Integrations builds the connectors. And then there's us, the UI team.
+The command `plakar ui` spawns your browser and displays a nice interface to list your backups, view their content, and download them. The commercial version of Plakar, that we call Plakar Control Plane which is targeting enterprise customers, has a more complex UI that also includes user management, multi-stores management, inventories of Cloud resources, and so on.
 
-In practice, the boundaries are loose. Everyone touches a bit of everything. But most of the time, each team lives in a different world. The core and API teams live in Go. We live in TypeScript.
+Behind the scenes, the UI is a React application written in TypeScript.
 
-That difference is bigger than it sounds. Go and modern frontend development don't share much mental real estate. If you've ever opened `plakar-ui` and seen `pnpm-workspace.yaml`, `turbo.json`, twelve `package.json` files, and enough `node_modules` to make `du -sh` cry — you know what I mean. Maybe you quietly closed the tab and went back to the thing you actually needed to fix.
+When backend developers at Plakar open the `plakar-ui` GitHub repository for the first time, they might be surprised by the complexity of the frontend codebase. They might see a `pnpm-workspace.yaml`, a `turbo.json`, seven `package.json` files, and a `node_modules` folder big enough to make `find` overflow their terminal scrollback.
 
-That's fine. That's why we're writing this.
+That's the reason why I decided to write a few lines about the Plakar UI stack: to explain the rationale behind our choices, why we do things the way we do, what our dependencies are, and how they fit together.
 
-## Who this is for
+## A few lines… turned into a series
 
-Developers at Plakar who work outside the UI. If you know Go, understand systems, and haven't spent much time on the frontend, this series is for you.
+Alright, I might have lied a bit in the previous sentence… "A few lines" turned into a whole series of articles. Each article will cover a specific aspect of our frontend stack.
 
-We're not going to explain what a variable is. We're going to explain why the repo is structured the way it is, what each piece of the stack is actually solving, and why we made the choices we did.
+Here's the list of topics we will cover:
 
-We also realized, while writing this, that the frontend-backend gap isn't unique to us. Lots of teams end up with a similar split. So we decided to publish the series publicly. We're already building open-source software. Writing down the reasoning behind our decisions seemed like the obvious next step.
+- **pnpm and Turborepo** — why the monorepo is split the way it is, and how Turborepo keeps `pnpm build` from taking ten minutes
+- **React** — for a backend developer, React might be like a unicorn: people talk about it all the time, but you've never actually seen one. We'll explain briefly why React changed the frontend landscape
+- **TypeScript** — I know that most developers are allergic to anything related to frontend, but I'll try to convince you that TypeScript is a real game-changer in the way we write code
+- **Zod** — TypeScript will lie to you at API boundaries: Zod is how we deal with that
+- **TanStack Query** — probably the most important library we use. It's a server-state synchronization layer, and it's insanely cool
+- **TanStack Form** — forms are at the heart of any application UI. Tanstack Form is what we use to build them, and it's a joy to work with
+- **React Aria Components** — have you ever realized Plakar UI is accessible using your keyboard? That's thanks to React Aria, a library of accessible components that we use as building blocks for our UI
+- **TanStack Table** — tables are nothing more than a `<table>` element, right? Lol. You bet.
+- **TanStack Router** — how do we avoid having a 404 when we change the URL?
+- **Storybook** — this article explains how we build our UI components in isolation, using Storybook as a playground and a documentation tool
+- **Testing strategy** — let's explain how we test our UI, and why we don't try to achieve 100% test coverage… quite the opposite, actually
+- **Build process** — this final article will explain how the code is shipped to production
 
-## What we cover
+## Who is this for?
 
-One piece at a time:
+This series was originally written for the backend developers at Plakar, to help them understand the frontend codebase. Quickly, I realized that it could be useful for people outside of Plakar as well: don't tell me you've always been in situations where there's no gap in knowledge between your frontend and backend teams.
 
-- **pnpm and Turborepo** — how the monorepo is structured and how builds stay fast
-- **React** — what the component model is actually solving
-- **TypeScript** — the two things that make it worth using, explained from a Go angle
-- **Zod** — why TypeScript alone isn't enough at API boundaries
-- **TanStack Query** — server state, caching, and request lifecycle management
-- **TanStack Form** — forms without the boilerplate
-- **React Aria Components** — the accessibility layer under our component library
-- **TanStack Table** — headless tables with sorting, filtering, and pagination
-- **TanStack Router** — type-safe routing with compile-time link checking
-- **Storybook** — developing and documenting components in isolation
-- **Testing strategy** — what we test, how, and where we stop
-- **Build process** — from TypeScript source to something a browser can actually run
+## A word from a recovering backend developer
 
-## What this is not
+I'm originally mostly a backend/systems developer and a system administrator. For years, I thought that the complexity comes from the backend, that frontend development is the "easy part" of a project, and something I would try to avoid as much as possible. I was wrong, and I think that if you share these feelings I had and accept to be open-minded, you might change your mind and discover that frontend development comes with its own set of challenges — and not only related to the color of a button or the layout of a page.
 
-Not a tutorial. We're not walking you through setting up your first React project.
-
-We're explaining how *we* work — the patterns, the tradeoffs, the things we tried before settling on what's in the repo now. If you want to go deeper on any of it, the docs for every tool in this stack are genuinely good. Think of this as the "why we use it" layer, sitting on top of the "how it works" layer they already provide.
-
-Ready? Start with [pnpm and Turborepo](/posts/2026-05-25/plakar-ui-pnpm-turborepo/).
+[Let's start with pnpm and Turborepo](/posts/2026-05-25/plakar-ui-pnpm-turborepo/)
