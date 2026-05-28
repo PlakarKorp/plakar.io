@@ -40,7 +40,9 @@ The generated secret key can then be used when configuring the secret provider
 in Plakar Control Plane.
 
 A more detailed guide on configuring Scaleway IAM permissions and generating API
-keys is available [here](#).
+keys is available in the
+[Managing IAM Policies and API Keys on Scaleway](../../../guides/scaleway/iam-and-api-keys)
+documentation.
 
 ## Creating Secrets
 
