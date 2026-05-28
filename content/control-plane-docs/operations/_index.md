@@ -1,7 +1,7 @@
 ---
 title: "Operations"
 date: "2026-05-13T00:00:00Z"
-weight: 4
+weight: 5
 summary: "Manage scheduling and policies in Plakar Control Plane."
 ---
 
