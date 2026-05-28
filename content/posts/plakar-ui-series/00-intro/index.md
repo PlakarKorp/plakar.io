@@ -1,6 +1,6 @@
 ---
-title: "The Plakar UI, Explained for Backend Developers: An Introduction"
-summary: "Why this series exists, who it's for, and what it covers: a high-level guide to the Plakar UI stack written by the UI team for the rest of Plakar."
+title: "I used to think frontend was easy"
+summary: "I'm a backend developer who ended up building a frontend. This series explains the Plakar UI stack — what's in it, why it's structured the way it is, and why it's not as scary as the node_modules folder suggests."
 slug: "plakar-ui-series-intro"
 date: 2026-05-25T13:00:00+0000
 authors:
@@ -9,7 +9,7 @@ tags:
   - plakar-ui
   - frontend
 category: "technology"
-series: ["Plakar UI, Explained for Backend Developers"]
+series: ["The Plakar Frontend, Explained"]
 series_order: 0
 ---
 

@@ -10,7 +10,7 @@ tags:
   - react
   - plakar-ui
 category: "technology"
-series: ["Plakar UI Explained to My Backend Colleagues"]
+series: ["The Plakar Frontend, Explained"]
 series_order: 9
 ---
 

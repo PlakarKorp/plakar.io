@@ -9,7 +9,7 @@ tags:
   - plakar-ui
   - frontend
 category: "technology"
-series: ["Plakar UI Explained to My Backend Colleagues"]
+series: ["The Plakar Frontend, Explained"]
 series_order: 13
 ---
 
