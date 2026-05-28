@@ -16,8 +16,8 @@ Each resource is assigned a `class` and `subclass` that describe what kind of in
 The class describes the general category the resource belongs to, while the subclass identifies the specific implementation or provider. Plakar Control Plane uses this classification to determine which integrations are compatible with a resource.
 
 - [Analytics]()
-- [Block Storage]() - [PVC]()
-- [Compute]()
+- [Block Storage](./block-storage) - [Scaleway Block Storage](./block-storage/scaleway), [PVC]()
+- [Compute](./compute) - [Scaleway Compute](./compute/scaleway)
 - [Database]() - [PostgreSQL](), [MySQL](), [MongoDB](), [Redis]()
 - [File Storage]()
 - [Hypervisor]() - [Proxmox]()
