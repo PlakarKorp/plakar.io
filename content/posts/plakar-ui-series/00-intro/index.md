@@ -13,9 +13,15 @@ series: ["The Plakar Frontend, Explained"]
 series_order: 0
 ---
 
-The command `plakar ui` spawns your browser and displays a nice interface to list your backups, view their content, and download them. The commercial version of Plakar, that we call Plakar Control Plane which is targeting enterprise customers, has a more complex UI that also includes user management, multi-stores management, inventories of Cloud resources, and so on.
+The command `plakar ui` spawns your browser and displays a nice interface to list your backups, view their content, and download them.
 
-Behind the scenes, the UI is a React application written in TypeScript.
+![Plakar UI, the open-source version](./ui-oss.png)
+
+The commercial version of Plakar, that we call Plakar Control Plane which is targeting enterprise customers, has a more complex UI that also includes user management, multi-stores management, inventories of Cloud resources, and so on.
+
+![Plakar Control Plane](./ui-pcp.png)
+
+Behind the scenes, both are React applications written in TypeScript.
 
 When backend developers at Plakar open the `plakar-ui` GitHub repository for the first time, they might be surprised by the complexity of the frontend codebase. They might see a `pnpm-workspace.yaml`, a `turbo.json`, seven `package.json` files, and a `node_modules` folder big enough to make `find` overflow their terminal scrollback.
 
@@ -46,6 +52,10 @@ This series was originally written for the backend developers at Plakar, to help
 
 ## A word from a recovering backend developer
 
-I'm originally mostly a backend/systems developer and a system administrator. For years, I thought that the complexity comes from the backend, that frontend development is the "easy part" of a project, and something I would try to avoid as much as possible. I was wrong, and I think that if you share these feelings I had and accept to be open-minded, you might change your mind and discover that frontend development comes with its own set of challenges — and not only related to the color of a button or the layout of a page.
+I'm originally mostly a backend/systems developer and a system administrator.
+
+For years, I thought that the complexity comes from the backend, that frontend development is the "easy part" of a project, and something I would try to avoid as much as possible.
+
+**I was wrong**, and I think that if you share these feelings I had and accept to be open-minded, you might change your mind and discover that frontend development comes with its own set of challenges — and not only related to the color of a button or the layout of a page.
 
 [Let's start with pnpm and Turborepo](/posts/2026-05-25/plakar-ui-pnpm-turborepo/)
