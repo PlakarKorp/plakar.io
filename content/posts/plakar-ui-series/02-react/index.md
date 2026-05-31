@@ -72,6 +72,8 @@ function Alert({ variant = "default", title, children, actions, size = "md" }) {
 }
 ```
 
+![The Alert component in its different variants](./alert.png)
+
 A few things to notice. The structure, the logic, and the styles all live together. There's no separate `.css` file that might drift out of sync. The icon is derived from the variant — no need to pass it manually, the component figures it out. And if you change something here, every place using `Alert` gets the update.
 
 Under the hood, JSX compiles down to regular JavaScript function calls. `<Alert variant="error" title="Connection failed" />` becomes something like `Alert({ variant: "error", title: "Connection failed" })`. No magic, just syntax.

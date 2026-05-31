@@ -136,6 +136,8 @@ function printEntityInfo(entity: Entity) {
 }
 ```
 
+![TypeScript narrowing Entity to User in the editor](./editor.png)
+
 When we say "Error" in those comments, we mean that TypeScript gives you a **compile-time error** if you try to access a property that isn't guaranteed to exist on the type. Your editor shows a red underline. The `tsc` check fails. You catch the bug before it ships.
 
 And here is the key insight: after the `if (entity.type === "user")` check, TypeScript **automatically narrows** the type. Inside that branch, `entity` is no longer of type `Entity` — it's of type `User`. TypeScript tracks this statically, without any explicit cast or assertion on your part. It just works.
