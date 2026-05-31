@@ -14,152 +14,91 @@ series: ["The Plakar Frontend, Explained"]
 series_order: 2
 ---
 
-The goal of this article is not to give you a complete React tutorial — there are thousands of those on the internet. The goal is to explain, to a developer who knows Go and has a basic understanding of HTML and CSS, _why_ React exists and what problems it actually solves. Because once you understand the problems, the solution feels obvious.
+When I started building websites in the early 2000s, the model was simple: HTML for the structure, CSS for the style, PHP for the backend, and a sprinkle of JavaScript for interactivity. Pre-Web 2.0, JavaScript wasn't used that much, and that was fine.
 
-## In the beginning, there was HTML and CSS
+The prevailing wisdom back then was clean separation of concerns: your HTML would only contain semantics, and your CSS would define how things looked. In theory, you could swap out `style.css` for a completely different stylesheet and the site would look entirely different while the HTML stayed untouched. Elegant idea.
 
-When I started building my first websites in the early 2000s, the model was simple: the backend generates an HTML page, the browser renders it, done. If you needed interactivity, you sprinkled a bit of JavaScript on top.
+In practice, you spent hours trying to find the right name for your classes and ended up with something like `.alert-container-inner-title-too-long-classname-who-reads-this-anyway`. And of course the CSS was deeply coupled to the HTML anyway: your `.alert-container` selector assumed a very specific DOM structure, so changing one silently broke the other. The "separation" was an illusion. The files were separate, but the concerns weren't.
 
-The prevailing wisdom at the time was **separation of concerns**: put your HTML in one file, your CSS in another. The HTML is the structure and content, the CSS is the presentation. Change the look of your site? Just edit the CSS, and since it's shared across all pages, every page updates at once. Elegant in theory.
+When I discovered React a few years ago, it was a relief. Yes, you still suffer from the JavaScript ecosystem (`ETOOMANY` dependencies). But React offers a genuinely different way to think about UI, one that maps surprisingly well to how backend developers already think.
 
-In practice, it was a mess.
+We use React specifically rather than Vue or Svelte — both are solid alternatives — mostly because it's what the team already knew, and the ecosystem around it (TanStack Query, TanStack Router, React Aria) is well-matched to what we needed. There's no deep technical reason React is better for our use case. Most of what we cover in this series would look similar in either framework.
 
-## The separation of concerns myth
+A React component is a function. It takes inputs (props from its parent, and state it manages itself) and returns a description of what the UI should look like. Same inputs, same output. When the inputs change, React re-runs the function and updates the DOM.
 
-CSS and HTML are not actually separated, even when they're in different files. They're intimately coupled through selectors. Your CSS rule `.container .header h2 { font-size: 1.5rem; }` depends entirely on your HTML having a specific structure. Change `h2` to `h3`, move the heading outside of `.header`, rename `.container` to `.wrapper` — any of these breaks your CSS silently. You don't get an error; the styles just stop applying.
-
-This is not separation of concerns. It's just the _illusion_ of separation.
-
-## The naming problem
-
-HTML is structured, but CSS is flat. You have one global namespace for all your class names, across your entire application. This leads to a very common failure mode: increasingly long, descriptive class names.
-
-Say you have an alert box with a title and an icon in the title. You might start with:
-
-```css
-.alert { ... }
-.alert-title { ... }
-.alert-title-icon { ... }
+```ts
+UI = f(state, props)
 ```
 
-Fine. But then you add a "small" variant of the icon. And then someone else adds a "secondary" alert. And then there's a "dismissible" alert. A few months later you're staring at class names like `.alert-secondary-title-icon-small-inline` and you have no idea what page they belong to, what they look like, or whether removing them would break anything. The only way to find out is to grep across your entire codebase.
+If you've written HTTP handlers, you already know this pattern. A handler takes a request and returns a response; given the same request and the same application state, it always returns the same thing. A React component is the same idea, applied to the DOM.
 
-## The shared CSS problem
-
-Because CSS is global, every style rule you write potentially affects every page in your application. This makes even minor changes risky.
-
-Suppose you have a `.button` class used on dozens of pages. You need to change the border radius on the checkout button. Do you add a more specific rule that only applies on checkout? Do you add a `.button-checkout` variant? Do you change the base `.button` and accept that every button everywhere will now look slightly different?
-
-All of these options have downsides, and they all require you to hold the entire application in your head while making a two-line change. As a project grows, this becomes the main source of bugs and the main reason teams are afraid to touch the CSS.
-
-## The component problem
-
-The hardest problem with the HTML + CSS model is reusability. Let's say you've built a beautiful "user card" component: it's a div with a particular layout, a class, some font styles, and a hover effect. You want to reuse it in three different places in your application.
-
-How do you do that? You copy the HTML. Now you have three copies of the same HTML structure. When you need to change the user card — say, add a verified badge — you have to remember to change all three copies. You might remember two and forget the third. The shared CSS helps a little: if you change `.user-card`, all three update. But the HTML structure still has to be manually kept in sync.
-
-This is a "component" in name only. It doesn't truly exist as a unit you can work with independently. It's just a shared CSS class and a convention.
-
-## What React does differently
-
-React is built on a simple but radical idea: **the component is the unit of composition**. A component is a function that returns a description of what the UI should look like. It owns its own structure _and_ its own styles, bundled together.
-
-Here's the Alert component from our `packages/ui` library:
+**In practice, this means you stop thinking "when the user clicks this button, disable it and show a spinner" and start thinking "when `isLoading` is true, the button looks like this."** You describe the relationship between state and UI, and React handles the rest.
 
 ```jsx
-function Alert({ title, message }) {
+function SubmitButton({ isLoading, onClick }) {
   return (
-    <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
-      <h4 className="font-bold">{title}</h4>
-      <p className="text-red-700">{message}</p>
+    <button disabled={isLoading} onClick={onClick}>
+      {isLoading ? <Spinner /> : "Submit"}
+    </button>
+  );
+}
+```
+
+When `isLoading` changes, React re-renders this component and figures out what changed. You don't touch the DOM directly. You just describe what the button looks like in each state.
+
+## What is a component?
+
+A component is a function that returns a description of some UI. That description is written in JSX — HTML-ish syntax inside JavaScript.
+
+JSX is like your first glass of whisky. At first you look at it and think "beuuurkkk, what is this, why would anyone mix HTML with JavaScript." Then you get used to it, and after a while you can't imagine going back. Here's a real component from our `packages/ui` library, the `Alert`:
+
+```jsx
+function Alert({ variant = "default", title, children, actions, size = "md" }) {
+  const icon = {
+    default: "info-circle",
+    success: "success-circle",
+    warning: "warning-triangle",
+    error: "error-circle",
+  }[variant];
+
+  return (
+    <div className={clsx("border-1 flex flex-wrap items-center ...", variantClasses[variant])}>
+      <Icon type={icon} size="md" />
+      <Typography weight="medium">{title}</Typography>
+      <div>{children}</div>
+      {actions && <div>{actions}</div>}
     </div>
   );
 }
 ```
 
-A few things to notice:
+A few things to notice. The structure, the logic, and the styles all live together. There's no separate `.css` file that might drift out of sync. The icon is derived from the variant — no need to pass it manually, the component figures it out. And if you change something here, every place using `Alert` gets the update.
 
-**The HTML and the styles live together.** We're using Tailwind CSS, which provides utility classes (`bg-red-100`, `font-bold`, `rounded`, etc.) that map directly to CSS properties. The styling is declared right where the element is, not in a separate file that might get out of sync.
+Under the hood, JSX compiles down to regular JavaScript function calls. `<Alert variant="error" title="Connection failed" />` becomes something like `Alert({ variant: "error", title: "Connection failed" })`. No magic, just syntax.
 
-**There are no class naming problems.** We don't need to invent class names at all. `bg-red-100` means "red background at shade 100". There's no ambiguity, no global namespace collision, no guessing.
+This is what the HTML/CSS separation promise could never actually deliver. The structure and the presentation were always coupled — JSX just makes that honest.
 
-**If we change the style of this component, we change it in exactly one place.** Change `text-red-700` to `text-red-500`? It only affects `Alert`. Every page that uses `Alert` gets the update, and no page that doesn't use `Alert` is affected. This is real isolation, not the illusion of it.
-
-The syntax — HTML-ish tags mixed with JavaScript — is called **JSX**. It might look odd at first, but it's just JavaScript under the hood. React compiles JSX down to function calls.
-
-## Props: making components configurable
-
-Components would be useless if they were completely static. You need to pass data into them. In React, you do this with **props** — short for properties.
-
-The `{ title, message }` in the function signature above are props. When you use the `Alert` component, you pass the values:
+You use a component by passing it props — function arguments, essentially. The caller decides what values to pass; the component decides how to render them:
 
 ```jsx
-function App() {
-  return (
-    <div>
-      <Alert title="Error" message="Something went wrong" />
-      <Alert title="Warning" message="Your session will expire soon" />
-    </div>
-  );
-}
+<Alert variant="error" title="Connection failed">
+  Could not reach the Plakar API. Check your network settings.
+</Alert>
+
+<Alert variant="warning" title="Storage almost full" size="sm">
+  You have used 90% of your storage quota.
+</Alert>
 ```
 
-This is just a function call. `<Alert title="Error" message="Something went wrong" />` compiles to something like `Alert({ title: "Error", message: "Something went wrong" })`. If you're a Go developer, think of props like a struct being passed to a function.
+You can pass any JavaScript value as a prop: strings, numbers, arrays, objects, other components, even functions. Passing a function is how you handle events — a button takes an `onClick` prop, and the parent decides what happens when it's clicked. If you're used to Go, think of props as a struct passed to a function.
 
-You can pass any JavaScript value as a prop: strings, numbers, arrays, objects, other components, even functions. This last one is particularly powerful — passing a function as a prop is how you handle events like button clicks.
+## State
 
-## Composition: components all the way down
-
-Components can use other components. This is called composition, and it's how you build complex UIs from simple pieces.
-
-```jsx
-function AlertWithIcon({ title, message, icon }) {
-  return (
-    <Alert
-      title={
-        <span className="flex items-center gap-2">
-          <Icon name={icon} />
-          {title}
-        </span>
-      }
-      message={message}
-    />
-  );
-}
-```
-
-You can build an entire page this way. A `Page` component contains a `Layout` which contains a `Header` and a `Content`. The `Content` contains a `DataTable` which contains many `Row` components. Each component is responsible for only its own piece of the UI and is completely unaware of its ancestors.
-
-In Go terms, this is like composing structs: a large struct might embed smaller structs, and each nested struct only knows about its own fields.
-
-## State: when UIs need to react
-
-So far the components we've seen are purely presentational — given the same props, they always produce the same output. But real UIs need to change over time in response to user interactions. A dropdown needs to open and close. A form field needs to track what the user has typed. A notification needs to disappear after a few seconds.
-
-This is where **state** comes in. State is data that belongs to a component and can change over time. When state changes, React automatically re-renders the component with the new state.
-
-Here's the classic counter example:
+Props come from outside the component. State lives inside it. State is data that belongs to a component and can change over time.
 
 ```jsx
 import { useState } from "react";
 
-function Counter() {
-  const [count, setCount] = useState(0);
-
-  return (
-    <div>
-      <p>You clicked {count} times</p>
-      <button onClick={() => setCount(count + 1)}>Click me</button>
-    </div>
-  );
-}
-```
-
-`useState(0)` declares a piece of state initialized to `0`. It returns the current value (`count`) and a setter function (`setCount`). When `setCount` is called with a new value, React re-runs the component function with the new state and updates the DOM.
-
-A slightly more realistic example: a toggle button that shows or hides a detail panel:
-
-```jsx
 function CollapsiblePanel({ title, children }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -174,34 +113,44 @@ function CollapsiblePanel({ title, children }) {
 }
 ```
 
-`{isOpen && <div ...>}` is a JavaScript expression: if `isOpen` is `false`, nothing is rendered; if it's `true`, the div is rendered. React handles adding and removing the element from the DOM.
+`useState(false)` declares a piece of state initialized to `false`. It returns the current value and a setter. Call the setter with a new value, React re-renders the component with that new state. `{isOpen && <div>...</div>}` is just a JavaScript expression: render the div if `isOpen` is true, render nothing otherwise.
 
-## The mental model shift: UI is a function of state
+The component doesn't touch the DOM directly. It just describes what it looks like given the current `isOpen`, and React takes care of the rest.
 
-The deepest shift React asks you to make is in how you think about UIs.
+## Composition
 
-In the traditional model, you think imperatively: "When the user clicks this button, add a class to this div. When the request completes, remove the spinner and show the data. When the user types in this input, update this other element." You're constantly manipulating the DOM step by step.
+Components can render other components. This is how you build complex UIs from simple pieces — and where the component model really pays off.
 
-React asks you to think declaratively: "Given this state, what should the UI look like?" You describe the relationship between state and UI, and React handles all the DOM manipulation.
+Here's how our `Modal` component is used in the codebase:
 
-In code, this means your component is a pure function of its state and props:
-
+```jsx
+<Modal>
+  <Modal.Dialog>
+    <Modal.Header
+      title="Delete backup"
+      description="This action cannot be undone."
+    />
+    <Modal.Content>
+      Are you sure you want to delete this backup?
+    </Modal.Content>
+    <Modal.Footer>
+      <Button variant="secondary">Cancel</Button>
+      <Button variant="error">Delete</Button>
+    </Modal.Footer>
+  </Modal.Dialog>
+</Modal>
 ```
-UI = f(state, props)
-```
 
-When the user clicks a button, you don't say "add a spinner to the DOM". You say "set `isLoading` to `true`". Your component already knows that when `isLoading` is `true`, it should render a spinner. React sees the state change, re-runs the function, and updates the DOM accordingly.
+`Modal`, `Modal.Dialog`, `Modal.Header`, `Modal.Content`, `Modal.Footer` — each is a separate component that owns its own piece of the layout. The header handles the title, description, and close button. The footer handles the action area. None of them need to know about each other or about what's above them in the tree.
 
-For a backend developer, this is actually a familiar concept. Your HTTP handler is also a function: given a request (input), produce a response (output). State in a database is just state. The difference is that in React, the "database" is component state, the "request" is a user interaction, and the "response" is a DOM update — and everything happens in milliseconds.
+This is how every page in Plakar UI is built: a tree of components, each responsible for its own piece, none aware of its ancestors. When we fix a bug in `Modal.Header`, every modal in both apps gets the fix. When we add an animation to `Modal`, it applies everywhere.
 
-## Why this matters for real projects
+Compare this to the old model: a shared CSS class, a convention, and three copies of the same HTML structure that you hoped stayed in sync. The component is the actual unit of reuse, not an approximation of one.
 
-Let's bring this back to Plakar. Our `packages/ui` library has around 50+ components: buttons, inputs, selects, modals, data tables, date pickers, badges, tooltips, and more. Every single one is a React component that owns its structure and its styles.
+One thing worth noting: even something as "simple" as a button is more complex than it looks. Our `Button` component has 8 variants (`primary`, `secondary`, `tertiary`, `error`, and a few more), two sizes, optional left and right icons, a loading state with an integrated spinner, a tooltip, and it can render as either a `<button>` or an `<a>` link depending on whether you pass an `href`. That's before you factor in keyboard navigation and accessibility. The component handles all of it. The caller just writes `<Button variant="error" isPending={isDeleting}>Delete</Button>` and moves on.
 
-When we need to tweak the padding on all our card components, we change it in one place. When we fix a keyboard navigation bug in our dropdown, both `apps/oss` and `apps/plakman` benefit without any extra work. When we add a new variant to our button component, every place that uses the button immediately has access to the new variant — and if they try to use it incorrectly, TypeScript (more on that in the next article) tells them before the code even runs.
-
-This is the promise of React: not just "you can build UIs", but "you can build UIs that you can actually maintain, refactor, and improve without being afraid".
+This is the thing I got wrong about frontend development for years. I thought the complexity was in making things look nice. The actual complexity is managing state, composing behaviours, and keeping ten different things in sync on the same page — forms, API calls, loading states, error states, real-time updates. It's no longer "one page = one action." Modern UIs are closer to distributed systems than to static documents.
 
 ---
 
-Next up: TypeScript. Because React components without types are just functions with a prayer — and we like certainty.
+Next: TypeScript. Because a component that accepts `any` props with no validation is a bug waiting to happen.
