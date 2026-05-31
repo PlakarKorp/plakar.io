@@ -14,11 +14,11 @@ series: ["The Plakar Frontend, Explained"]
 series_order: 3
 ---
 
-Let me address the elephant in the room first: I know most Go developers are allergic to TypeScript. But if you're honest with yourself, the allergy is usually not about TypeScript itself — it's about the ecosystem around it. npm with its thousands of transitive dependencies. The famous `node_modules` folder that weighs more than a black hole. JavaScript's history of chaotic, footgun-rich behavior. That feeling of dread when you open a JavaScript codebase and find `any` everywhere and nothing makes sense.
+I know most Go developers are allergic to TypeScript. But if you're honest about it, the allergy is usually not about TypeScript itself — it's about the ecosystem around it. npm and its thousands of transitive dependencies. `node_modules` weighing more than a black hole. JavaScript's history of footguns. That feeling of dread when you open a JavaScript codebase and find `any` everywhere and nothing makes sense.
 
-Those are legitimate complaints. But TypeScript is not JavaScript. TypeScript is a language that compiles to JavaScript, and it brings with it a type system that is — genuinely, I'm not being promotional — one of the most expressive type systems available in any mainstream language.
+Those are legitimate complaints. But TypeScript is not JavaScript. TypeScript is a language that compiles to JavaScript, and its type system is genuinely one of the most expressive in any mainstream language — more so than Go's in some ways that actually matter for UI code.
 
-In this article, I want to highlight just two things about TypeScript that I think would surprise and impress most Go developers. Not a full language tour, just two ideas.
+I'm not going to give you a full tour. I want to highlight two things that I think will change how you see TypeScript.
 
 ## 1. You don't need everything to compile in order to keep working
 
@@ -142,6 +142,29 @@ And here is the key insight: after the `if (entity.type === "user")` check, Type
 
 This is much closer to Go option 2 (the interface + two structs approach) in terms of correctness and precision, but with far less boilerplate. No interface to implement, no type assertions, no boilerplate methods — just a type definition and an `if` statement.
 
+There's one more thing discriminated unions give you: exhaustive checking. Our codebase has a small utility called `assertNever`:
+
+```ts
+function assertNever(x: never): never {
+  throw new Error(`Unexpected value: ${x}`);
+}
+```
+
+Used in a switch statement, it forces TypeScript to verify you've handled every case:
+
+```ts
+function getStatusLabel(status: InstallationStatus): string {
+  switch (status) {
+    case "installed":     return "Installed";
+    case "not-installed": return "Not installed";
+    case "built-in":      return "Built-in";
+    default:              return assertNever(status);
+  }
+}
+```
+
+If someone later adds `"pending"` to `InstallationStatus`, TypeScript will error at `assertNever(status)` because `status` is no longer `never` in the default branch — it's `"pending"`, which means you haven't handled it. You can't miss it. This is the equivalent of Go's exhaustive switch checks, except the compiler enforces it for you without any extra tooling.
+
 **One more clarification about "Error" vs "runtime error"**
 
 When TypeScript tells you `entity.age` is an error because `entity` might be an `Organization`, it means the TypeScript compiler rejects that code. But because TypeScript compiles to JavaScript, and JavaScript has no type system at runtime, if you suppress the error and run the code anyway, you won't get a crash — you'll get `undefined`. TypeScript's job is to make sure you never get to that situation by catching it at compile time.
@@ -150,11 +173,26 @@ This is also why the incremental refactoring workflow from point 1 is safe: a Ty
 
 ## How we use this in Plakar UI
 
-Discriminated unions show up constantly in our codebase. API responses often have this shape — a response can be a success or an error, and each has different fields. Events in our UI can be different types with different payloads. Query states (loading, success, error) are naturally modeled as discriminated unions.
+Discriminated unions are everywhere in the codebase. Some are simple — an integration can be `"installed"`, `"not-installed"`, or `"built-in"`, and every component that renders an integration card uses that type directly rather than a raw string. The type tells you what values are valid; TypeScript tells you if you use the wrong one.
 
-Instead of scattering `if (type === "x")` checks everywhere with no type safety, we model these shapes precisely and let TypeScript do the narrowing. The result is that our code is not just more readable — it's verifiably correct. If we add a new case to a union and forget to handle it somewhere, TypeScript will tell us.
+Some are more involved. The file preview component in the snapshot browser needs to handle text, JSON, images, PDFs, videos, and audio files differently. Each has a different set of available actions and a different renderer. Instead of a chain of `if (type === "text" || type === "json")` checks with no type safety, the resolved file type flows as a union through the component tree, and TypeScript narrows it at each branch:
 
-We have a rule in this project: never use `any` or `unknown`. This isn't just aesthetic. It's a guarantee: every piece of data flowing through the application is fully typed, which means TypeScript's analysis is meaningful. There are no holes where data can slip through unexamined.
+```ts
+if (data.type.resolved === "text" || data.type.resolved === "json") {
+  return <FilePreviewText ... />;
+} else if (data.type.resolved === "image") {
+  return <FilePreviewImage ... />;
+} else if (data.type.resolved === "pdf") {
+  return <FilePreviewPDF ... />;
+  // ...
+} else {
+  return <FilePreviewError>Unknown file type: {data.type.raw}</FilePreviewError>;
+}
+```
+
+Add a new file type to the union and forget to handle it, and TypeScript will flag it.
+
+One rule we enforce in this codebase: no `any`, avoid `unknown`. It's not aesthetic. If you punch a hole in the type system with `any`, TypeScript's analysis stops being meaningful at that boundary. Every piece of data has a type, which means the compiler's guarantees hold end to end.
 
 ---
 
