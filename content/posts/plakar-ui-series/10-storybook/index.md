@@ -14,7 +14,9 @@ series: ["The Plakar Frontend, Explained"]
 series_order: 10
 ---
 
-So far in this series we've talked about React, TypeScript, TanStack Query, forms, routing, and tables. The through-line in all of those articles was: here's how we build things. This article is about something slightly different — it's about how we work while building things.
+In progress. Check back soon for the full article!
+
+<!-- So far in this series we've talked about React, TypeScript, TanStack Query, forms, routing, and tables. The through-line in all of those articles was: here's how we build things. This article is about something slightly different — it's about how we work while building things.
 
 Specifically, it's about how you develop a UI component without losing your mind.
 
@@ -201,4 +203,4 @@ The second is catching regressions. TypeScript catches type errors. Tests catch 
 
 ---
 
-Next up: if you've made it this far in the series, you know what our components look like, how they're built, and how they're developed. The last piece of the puzzle is where these components come from — the design system and the decisions behind it.
+Next up: if you've made it this far in the series, you know what our components look like, how they're built, and how they're developed. The last piece of the puzzle is where these components come from — the design system and the decisions behind it. -->

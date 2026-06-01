@@ -14,7 +14,9 @@ series: ["The Plakar Frontend, Explained"]
 series_order: 11
 ---
 
-If you come from a Go background, tests are a given. The `testing` package is in the standard library. You write tests alongside your code. Running `go test ./...` is part of the ritual. Coverage reports feel like a measure of professional responsibility.
+In progress. Check back soon for the full article!
+
+<!-- If you come from a Go background, tests are a given. The `testing` package is in the standard library. You write tests alongside your code. Running `go test ./...` is part of the ritual. Coverage reports feel like a measure of professional responsibility.
 
 So when you first look at the Plakar UI codebase and notice a test suite that is deliberately narrow, the instinct is to read it as neglect. It isn't. It's a considered choice — one I want to explain clearly, because the reasoning matters more than the conclusion.
 
@@ -106,4 +108,4 @@ That's the line. It's not coverage metrics. It's: does this test do real work th
 
 ---
 
-Next up: the build process — how the compiled assets end up inside the Go repositories and get shipped with the binary.
+Next up: the build process — how the compiled assets end up inside the Go repositories and get shipped with the binary. -->

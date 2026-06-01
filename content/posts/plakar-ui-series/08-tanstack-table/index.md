@@ -14,7 +14,9 @@ series: ["The Plakar Frontend, Explained"]
 series_order: 8
 ---
 
-When a backend developer needs to display a list of things in a UI, the first instinct is reasonable: "I'll use an HTML `<table>`." And honestly? It works. For a read-only display of twenty rows, a plain `<table>` with a couple of `<tr>` and `<td>` elements is perfectly fine.
+In progress. Check back soon for the full article!
+
+<!-- When a backend developer needs to display a list of things in a UI, the first instinct is reasonable: "I'll use an HTML `<table>`." And honestly? It works. For a read-only display of twenty rows, a plain `<table>` with a couple of `<tr>` and `<td>` elements is perfectly fine.
 
 The problems start when the requirements grow. And in our experience, the requirements always grow.
 
@@ -367,4 +369,4 @@ A plain `<table>` is a perfectly valid starting point. But the moment your table
 
 The headless design means our tables look exactly like the rest of the Plakar UI — same typography, same border radius, same hover states — because we write the HTML. TanStack Table gives us the logic, and we bring the design.
 
-We've never hit a table requirement that made us wish we'd used a different library.
+We've never hit a table requirement that made us wish we'd used a different library. -->

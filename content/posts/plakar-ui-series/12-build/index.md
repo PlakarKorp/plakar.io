@@ -15,7 +15,9 @@ series: ["The Plakar Frontend, Explained"]
 series_order: 12
 ---
 
-Throughout this series we've talked about what happens at runtime: how React renders components, how TanStack Query fetches data, how TanStack Router navigates between pages. But before any of that can happen, the source code — TypeScript, JSX, Tailwind CSS — has to be transformed into something a browser can actually run. That transformation is the build process.
+In progress. Check back soon for the full article!
+
+<!-- Throughout this series we've talked about what happens at runtime: how React renders components, how TanStack Query fetches data, how TanStack Router navigates between pages. But before any of that can happen, the source code — TypeScript, JSX, Tailwind CSS — has to be transformed into something a browser can actually run. That transformation is the build process.
 
 ## What the browser actually needs
 
@@ -160,4 +162,4 @@ The full pipeline from source to production looks like this:
 
 ---
 
-That's the complete picture of how we build and ship Plakar's UI. From monorepo setup (article 1) through every library in the stack, to the build process that turns it all into something a browser can run and a Go binary can serve. We hope this series has given you a useful window into how modern frontend development works — and why, despite its complexity, the tooling genuinely makes building and maintaining a large UI more tractable than it used to be.
+That's the complete picture of how we build and ship Plakar's UI. From monorepo setup (article 1) through every library in the stack, to the build process that turns it all into something a browser can run and a Go binary can serve. We hope this series has given you a useful window into how modern frontend development works — and why, despite its complexity, the tooling genuinely makes building and maintaining a large UI more tractable than it used to be. -->

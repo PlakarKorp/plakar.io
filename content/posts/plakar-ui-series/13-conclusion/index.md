@@ -13,7 +13,9 @@ series: ["The Plakar Frontend, Explained"]
 series_order: 13
 ---
 
-Thirteen articles later, we've covered a lot of ground.
+In progress. Check back soon for the full article!
+
+<!-- Thirteen articles later, we've covered a lot of ground.
 
 We started with the monorepo setup — pnpm keeping dependencies honest, Turborepo making builds fast. We looked at React and why the component model is a genuine improvement over the HTML + CSS model it replaced. We covered TypeScript's type system and Zod's runtime validation, and how the two together close a gap that neither can close alone. We went through the TanStack family — Query for server state, Form for forms, Table for data grids, Router for type-safe navigation. We looked at React Aria Components as the accessibility foundation for the component library, Storybook as the development environment for components in isolation, the testing strategy, and finally the build pipeline that turns all of it into something a Go binary can embed and serve.
 
@@ -37,4 +39,4 @@ If something in the stack changes significantly, we'll update the relevant artic
 
 If you've read this far and something is still unclear — a decision that seems wrong, a tool you think we should be using, a concept that wasn't explained well — reach out. The goal of this series was to make the UI less opaque, not to have the last word.
 
-And if you're joining the UI team: welcome. We hope this series gave you a useful starting point. The rest is in the code.
+And if you're joining the UI team: welcome. We hope this series gave you a useful starting point. The rest is in the code. -->

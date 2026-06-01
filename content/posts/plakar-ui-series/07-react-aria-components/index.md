@@ -15,7 +15,9 @@ series: ["The Plakar Frontend, Explained"]
 series_order: 7
 ---
 
-When you think about a UI component library, you probably picture something visual: buttons, dropdowns, date pickers. What you might not immediately think about is everything that has to work *beneath* the visual surface for those components to be usable by everyone — keyboard navigation, screen reader announcements, focus management, ARIA attributes. This is a massive, thankless amount of work that most developers never think about until an accessibility audit lands on their desk.
+In progress. Check back soon for the full article!
+
+<!-- When you think about a UI component library, you probably picture something visual: buttons, dropdowns, date pickers. What you might not immediately think about is everything that has to work *beneath* the visual surface for those components to be usable by everyone — keyboard navigation, screen reader announcements, focus management, ARIA attributes. This is a massive, thankless amount of work that most developers never think about until an accessibility audit lands on their desk.
 
 Let me explain how we got to React Aria Components, and why it's one of the best decisions we made.
 
@@ -219,4 +221,4 @@ The verbose composable API pays off when you need to deviate from a standard pat
 
 Compare this to a traditional component library where you'd be passing `showSelectAll={true}` as a prop and hoping the library supports exactly the variant you need. With React Aria, you compose it.
 
-This is the same philosophy as TanStack Form's field components or TanStack Table's headless approach: the library handles the hard invisible stuff, and you retain full control over the rendering.
+This is the same philosophy as TanStack Form's field components or TanStack Table's headless approach: the library handles the hard invisible stuff, and you retain full control over the rendering. -->

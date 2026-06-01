@@ -14,7 +14,9 @@ series: ["The Plakar Frontend, Explained"]
 series_order: 9
 ---
 
-If you've only built backend services in Go, you've used routers — something like `net/http.ServeMux` or a third-party library like `chi` or `gin`. The concept is the same on the frontend, but the mechanics are different in ways that take some getting used to.
+In progress. Check back soon for the full article!
+
+<!-- If you've only built backend services in Go, you've used routers — something like `net/http.ServeMux` or a third-party library like `chi` or `gin`. The concept is the same on the frontend, but the mechanics are different in ways that take some getting used to.
 
 Let's start from the beginning.
 
@@ -302,4 +304,4 @@ We chose TanStack Router because it takes the same approach to routing that TanS
 
 It might seem like a minor quality-of-life improvement, but over the lifecycle of a growing application, it's the difference between confidently refactoring the routing structure and nervously hoping you caught every reference. That confidence compounds. It makes us faster, and it makes our users see fewer broken experiences.
 
-Every piece of the TanStack ecosystem we've covered in this series — Query, Form, Table, Router — is built on the same principle: make the invisible things safe, so you can focus on the visible ones.
+Every piece of the TanStack ecosystem we've covered in this series — Query, Form, Table, Router — is built on the same principle: make the invisible things safe, so you can focus on the visible ones. -->
