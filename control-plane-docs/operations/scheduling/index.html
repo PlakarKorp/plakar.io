@@ -17,7 +17,7 @@
 
   
   
-    <meta name="description" content="How to create and manage task schedules in Plakar Control Plane.">
+    <meta name="description" content="How to create and manage scheduled tasks in Plakar Control Plane.">
   
   
     <meta name="keywords" content="backup,open-source,deduplication,encryption,plakar,cloud backup,database backup,">
@@ -76,17 +76,17 @@
   <meta property="og:url" content="https://plakar.io/control-plane-docs/operations/scheduling/">
   <meta property="og:site_name" content="Plakar | The Open Standard for Backup and Restore">
   <meta property="og:title" content="Scheduling">
-  <meta property="og:description" content="How to create and manage task schedules in Plakar Control Plane.">
+  <meta property="og:description" content="How to create and manage scheduled tasks in Plakar Control Plane.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="control-plane-docs">
     <meta property="article:published_time" content="2026-05-15T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-06-01T15:27:23+02:00">
+    <meta property="article:modified_time" content="2026-06-01T15:31:11+02:00">
 
   
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Scheduling">
-  <meta name="twitter:description" content="How to create and manage task schedules in Plakar Control Plane.">
+  <meta name="twitter:description" content="How to create and manage scheduled tasks in Plakar Control Plane.">
 
   
   
@@ -264,12 +264,12 @@
     "dateCreated": "2026-05-15T00:00:00\u002b00:00",
     "datePublished": "2026-05-15T00:00:00\u002b00:00",
     
-    "dateModified": "2026-06-01T15:27:23\u002b02:00",
+    "dateModified": "2026-06-01T15:31:11\u002b02:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "30"
+    "wordCount": "768"
   }]
   </script>
 
@@ -3195,15 +3195,294 @@
   </span>
   
 </div>
-<div class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm" data-type="note">
-      <div class="flex items-center gap-2 font-semibold text-inherit">
-        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"/></svg>
-</span></div>
-        <div class="grow">
-          Note
-        </div>
-      </div><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>This documentation is currently being worked on. If you need assistance in the meantime, you can reach out in the Plakar Discord community.</p>
-<p><a href="https://discord.gg/uuegtnF2Q5"  target="_blank" rel="noreferrer">Join the Discord server</a></p></div></div>
+<p>Plakar Control Plane uses a scheduler to run backup, restore, sync, and check
+operations. A task can be run once as a one-off operation, attached to a
+schedule so that it repeats automatically, or both.</p>
+<p>You can create scheduled tasks from two places: the <strong>Operations &gt; Scheduling</strong>
+section in the sidebar, or directly from a connector&rsquo;s dashboard. Both lead to
+the same task configuration.</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../images/create-schedule.png"
+    ></figure>
+
+<div class="relative group">
+  <h2 id="creating-a-task">Creating a Task</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#creating-a-task" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+
+<div class="relative group">
+  <h3 id="task-type">Task Type</h3>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#task-type" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>Start by selecting the type of task you want to run:</p>
+<ul>
+<li><strong>Backup</strong> - back up a source connector to a store connector</li>
+<li><strong>Restore</strong> - restore data from a store connector to a destination connector</li>
+<li><strong>Sync</strong> - copy backup data from one store connector to another</li>
+<li><strong>Check</strong> - verify the integrity of data in a store connector</li>
+</ul>
+
+<div class="relative group">
+  <h3 id="connector-selection">Connector Selection</h3>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#connector-selection" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>The connectors required depend on the task type:</p>
+<ul>
+<li><strong>Backup</strong> - select a source connector and a store connector</li>
+<li><strong>Restore</strong> - select a store connector and a destination connector</li>
+<li><strong>Sync</strong> - select a source store connector and a destination store connector</li>
+<li><strong>Check</strong> - select a store connector</li>
+</ul>
+
+<div class="relative group">
+  <h3 id="label">Label</h3>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#label" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>Each task has an optional label field. Labels are tags that exist on snapshots
+themselves. When a task specifies a label, only snapshots carrying that label
+are considered. If multiple labels are specified, only snapshots that carry all
+of them are included.</p>
+<p>For restore tasks, this means Plakar Control Plane restores the latest snapshot
+that matches the label filter. Without a label, it restores the latest snapshot
+regardless of labels.</p>
+
+<div class="relative group">
+  <h3 id="options">Options</h3>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#options" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+
+<div class="relative group">
+  <h4 id="restore-snapshot-selection">Restore: Snapshot Selection</h4>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#restore-snapshot-selection" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>When creating a restore task, you can select a specific snapshot to restore. If
+no snapshot is selected, Plakar Control Plane restores the latest available
+snapshot.</p>
+
+<div class="relative group">
+  <h3 id="advanced-options">Advanced Options</h3>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#advanced-options" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+
+<div class="relative group">
+  <h4 id="concurrency">Concurrency</h4>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#concurrency" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>All task types expose a concurrency override under advanced options. This
+controls how many operations the task runs in parallel. Plakar Control Plane
+automatically sets a recommended concurrency for each operation its doing. Only
+change this if you have a specific reason to do so.</p>
+
+<div class="relative group">
+  <h4 id="check-check-window">Check: Check Window</h4>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#check-check-window" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>The check window limits which snapshots the check task inspects. Only snapshots
+created within the selected duration before the job runs will be checked. Leave
+the field empty to check all snapshots.</p>
+
+<div class="relative group">
+  <h4 id="sync-sync-window">Sync: Sync Window</h4>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#sync-sync-window" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>The sync window limits which snapshots the sync task copies. Only snapshots
+created within the selected duration before the job runs will be synced. Leave
+the field empty to sync all snapshots.</p>
+
+<div class="relative group">
+  <h2 id="attaching-schedules">Attaching Schedules</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#attaching-schedules" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>Once the task is configured, you can run it immediately as a one-off operation
+by saving it without attaching any schedules. To run it on a recurring basis,
+attach one or more schedules. A task can have any number of schedules, each
+configured independently with the following fields.</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../images/attach-schedule.png"
+    ></figure>
+
+<div class="relative group">
+  <h3 id="recurrence">Recurrence</h3>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#recurrence" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>How often the schedule runs. Available options: twice daily, daily, weekly,
+every 30 days, or custom. For a custom recurrence, enter the interval in days,
+hours, and/or minutes.</p>
+
+<div class="relative group">
+  <h3 id="start-time-utc">Start Time (UTC)</h3>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#start-time-utc" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>The date and time at which the schedule first runs, specified in UTC down to the
+minute. If left empty, the schedule starts immediately.</p>
+
+<div class="relative group">
+  <h3 id="journalised">Journalised</h3>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#journalised" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>When journalised mode is enabled, each execution is scheduled relative to the
+previous one. When disabled, the schedule resets its reference point after a
+Plakar Control Plane restart.</p>
+
+<div class="relative group">
+  <h3 id="enable">Enable</h3>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#enable" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>Schedules can be enabled or disabled independently. Disabling a schedule pauses
+it without deleting it.</p>
+
+<div class="relative group">
+  <h2 id="job-history">Job History</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#job-history" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>The <strong>Operations &gt; Scheduling</strong> section includes a <strong>Job History</strong> tab that
+lists all jobs that have run, whether they succeeded or failed, along with any
+jobs that are currently running.</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../images/job-history.png"
+    ></figure>
+
+<div class="relative group">
+  <h3 id="viewing-job-details">Viewing Job Details</h3>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#viewing-job-details" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>Each job has a details popup with the following information:</p>
+<ul>
+<li><strong>Job ID</strong> - a unique identifier for the job</li>
+<li><strong>Status</strong> - the outcome of the job: succeeded, failed, or running</li>
+<li><strong>Snapshot</strong> - a link to browse the snapshot produced by the job, where
+applicable</li>
+<li><strong>Progress</strong> - the current progress of the job</li>
+<li><strong>Output</strong> - the full log output for the job, useful for diagnosing failures</li>
+</ul>
+<p>If a job is currently running, the output updates in real time and a <strong>Cancel</strong>
+button is available to stop the job.</p>
+
+<figure>
+      <img class="my-0 rounded-md max-w-100 mx-auto" src="../images/job-info.png" alt="" />
+  
+  
+  </figure>
+
+<div class="relative group">
+  <h2 id="jobs-and-schedules-on-connectors">Jobs and Schedules on Connectors</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#jobs-and-schedules-on-connectors" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>Each connector also surfaces scheduling information on its own details page:</p>
+<ul>
+<li>The <strong>Dashboard</strong> tab lists all past and upcoming jobs involving that
+connector, scoped to that connector only.</li>
+<li>The <strong>Scheduling</strong> tab lists all schedules that involve that connector, so you
+can see at a glance what is configured to run and when.</li>
+</ul>
+<p>This makes it easy to check the backup history or scheduled operations for a
+specific source, store, or destination without going through the global job
+history.</p>
+<p><figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../images/connector-jobs-1.png"
+    ></figure>
+ <figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../images/connector-jobs-2.png"
+    ></figure>
+</p>
+
       </article>
       <footer class="mt-12 flex flex-col gap-6 docs-font border-t border-neutral-200 pt-6">
 
@@ -3269,7 +3548,43 @@
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <nav id="TableOfContents"></nav>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#creating-a-task">Creating a Task</a>
+      <ul>
+        <li><a href="#task-type">Task Type</a></li>
+        <li><a href="#connector-selection">Connector Selection</a></li>
+        <li><a href="#label">Label</a></li>
+        <li><a href="#options">Options</a>
+          <ul>
+            <li><a href="#restore-snapshot-selection">Restore: Snapshot Selection</a></li>
+          </ul>
+        </li>
+        <li><a href="#advanced-options">Advanced Options</a>
+          <ul>
+            <li><a href="#concurrency">Concurrency</a></li>
+            <li><a href="#check-check-window">Check: Check Window</a></li>
+            <li><a href="#sync-sync-window">Sync: Sync Window</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#attaching-schedules">Attaching Schedules</a>
+      <ul>
+        <li><a href="#recurrence">Recurrence</a></li>
+        <li><a href="#start-time-utc">Start Time (UTC)</a></li>
+        <li><a href="#journalised">Journalised</a></li>
+        <li><a href="#enable">Enable</a></li>
+      </ul>
+    </li>
+    <li><a href="#job-history">Job History</a>
+      <ul>
+        <li><a href="#viewing-job-details">Viewing Job Details</a></li>
+      </ul>
+    </li>
+    <li><a href="#jobs-and-schedules-on-connectors">Jobs and Schedules on Connectors</a></li>
+  </ul>
+</nav>
     </div>
 
     
