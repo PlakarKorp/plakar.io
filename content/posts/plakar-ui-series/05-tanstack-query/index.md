@@ -14,201 +14,221 @@ series: ["The Plakar Frontend, Explained"]
 series_order: 5
 ---
 
-We need to talk about TanStack.
+On my previous React projects I used SWR: it came up first in my searches, it was simple, it did the job. When I started Plakar UI, I'd read enough good things about TanStack Query that I decided to give it a shot instead.
 
-TanStack is a collection of open-source libraries built and maintained by the same team, all sharing the same philosophy: fully type-safe, framework-agnostic, and built for real production needs. We use TanStack Query, TanStack Router, TanStack Table, and TanStack Form throughout Plakar UI. If we had to score how much we enjoy working with TanStack on a scale of 0 to 100, the honest answer is over 9000.
+That turned out to be a gateway drug. TanStack Query led me to TanStack Router, which led to TanStack Form, which led to TanStack Table. Every library in the suite is built on the same philosophy: fully type-safe, framework-agnostic, and designed for real production use rather than demos. We now use all four in Plakar UI. This is the first article in the series that covers a TanStack library, but definitely not the last.
 
-In this article we'll focus on **TanStack Query**, the library that handles all our HTTP requests and server state. It's probably the most immediately impactful library in our stack, and the one whose value is easiest to explain.
+**I'll say this plainly: if you're building any kind of UI and you haven't looked at TanStack, stop reading this and go look.** The learning curve is steep. Their APIs are thorough and they don't hide the complexity. But every hour you put in pays back. We love every single line of code they publish.
 
-## Plakar UI is fundamentally an API client
+OK. Back to Query.
 
-Before we dive in, it's worth stating the obvious: Plakar UI has no meaningful logic of its own. It doesn't store data, it doesn't process data, it doesn't make business decisions. It's a client for the Plakar API. Its entire purpose is to fetch data, display it, and send user actions back to the API.
+## Guess what's wrong?
 
-This means HTTP requests are not an occasional concern — they're the core of what the application does. Every page loads some data. Every form submits it. Every table needs to be refreshed. How we manage these requests has a huge impact on the quality of the user experience and the reliability of the code.
-
-## The naive approach: `fetch` directly
-
-When a new frontend developer encounters this problem, the first instinct is to use `fetch` directly. The browser has `fetch` built in; it returns a promise; you `await` it. Simple.
+Let's play a game. Here's a component:
 
 ```tsx
-function UsersList() {
-  const [users, setUsers] = useState([]);
+function SnapshotsList() {
+  const [snapshots, setSnapshots] = useState([]);
 
   useEffect(() => {
-    fetch("/api/users")
+    fetch("/api/snapshots")
       .then((res) => res.json())
-      .then((data) => setUsers(data));
+      .then((data) => setSnapshots(data.items));
   }, []);
 
-  return <ul>{users.map((u) => <li key={u.id}>{u.name}</li>)}</ul>;
-}
-```
-
-This works for a demo. It falls apart in production. Let's walk through the failure modes one by one.
-
-**No loading state.** The data isn't there instantly — there's a network round trip. During that time, your UI shows nothing, or shows stale data, or renders in a broken intermediate state. You need a `isLoading` boolean, but now you have to manage it manually: set it to `true` before the fetch, set it to `false` after. Don't forget the error case.
-
-**No error handling.** What if the server returns a 500? What if the network is offline? The code above silently does nothing. You need a separate `error` state variable, and you need to remember to handle it everywhere.
-
-**No caching.** Every time this component mounts — say, every time the user navigates to this page — it fires a new HTTP request. If the user clicks back and forth between pages, they're fetching the same data over and over again. For slow APIs or slow networks, this makes the UI feel sluggish.
-
-**No automatic retry.** If a request fails due to a momentary network hiccup, `fetch` won't try again. The user sees an error and has to refresh the page. You could add retry logic yourself, but now you're writing infrastructure code instead of UI code.
-
-**No refetch when the tab regains focus.** If a user leaves your app open in a background tab for 10 minutes and then comes back, the data they see might be 10 minutes stale. A good UI would automatically re-fetch in the background when the tab becomes active again. With raw `fetch`, you have to wire up `visibilitychange` event listeners yourself.
-
-**Race conditions.** This one is subtle but nasty. Suppose the user types in a search box, triggering a fetch for each keystroke. Requests `A`, `B`, `C` go out in order. But `C` comes back before `B`. If you're not careful, `B`'s result will overwrite `C`'s, and the user sees results for their second-to-last keystroke instead of their most recent one. Handling this correctly with raw `fetch` requires abort controllers and careful state management.
-
-**Duplicate requests.** If two components on the same page both need the same data — say, a header showing the current user and a sidebar also showing the current user — each will fire its own request. You've made two identical HTTP calls when one would do.
-
-Each of these problems is solvable individually. But solving all of them, correctly, in every place in your application where you fetch data? That's what TanStack Query does for you, out of the box.
-
-## How TanStack Query works
-
-The core concept in TanStack Query is the **query key**. Every piece of server state is identified by a key, which is an array of values. The simplest example:
-
-```tsx
-import { useQuery } from "@tanstack/react-query";
-
-function UsersList() {
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["users"],
-    queryFn: () => fetch("/api/users").then((res) => res.json()),
-  });
-
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
-
-  return <ul>{data.map((u) => <li key={u.id}>{u.name}</li>)}</ul>;
-}
-```
-
-`useQuery` takes a `queryKey` and a `queryFn`. The `queryFn` is the function that actually fetches the data. TanStack Query calls it when needed, caches the result under the key `["users"]`, and returns the current state of the query (`data`, `isLoading`, `error`).
-
-**Deduplication is automatic.** If 10 components on the same page call `useQuery({ queryKey: ["users"], ... })`, TanStack Query fires exactly one HTTP request and distributes the result to all 10 components.
-
-**Caching is automatic.** Once the data is fetched, it stays in the cache. If the user navigates away and comes back, TanStack Query serves the cached data immediately while re-fetching in the background to check for updates. The UI is responsive while still staying fresh.
-
-Keys can be parameterized, which is how you handle dynamic data:
-
-```tsx
-function UserProfile({ userId }: { userId: string }) {
-  const { data: user } = useQuery({
-    queryKey: ["users", userId],
-    queryFn: () => fetch(`/api/users/${userId}`).then((res) => res.json()),
-  });
-  // ...
-}
-```
-
-The query for user `"abc123"` is cached separately from the query for user `"def456"`. If you navigate between two users' profiles, TanStack Query manages a separate cache entry for each.
-
-## Mutations and cache invalidation
-
-Fetching data is one half of the problem. The other half is sending changes back to the API — creating, updating, or deleting data. TanStack Query handles this with `useMutation`.
-
-The interesting part isn't the mutation itself; it's what happens to the cache afterward. When you add a user, the cached list of users is now stale. You want TanStack Query to re-fetch the list so the UI reflects the new state. This is called **cache invalidation**.
-
-Here's a complete example with a users list and an "add user" form:
-
-```tsx
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-
-function UsersPage() {
-  const queryClient = useQueryClient();
-
-  // Fetch the list of users
-  const { data: users, isLoading } = useQuery({
-    queryKey: ["users"],
-    queryFn: () => fetch("/api/users").then((res) => res.json()),
-  });
-
-  // Mutation to add a new user
-  const addUserMutation = useMutation({
-    mutationFn: (newUser: { name: string; email: string }) =>
-      fetch("/api/users", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newUser),
-      }).then((res) => res.json()),
-
-    onSuccess: () => {
-      // Invalidate the users list so it re-fetches
-      queryClient.invalidateQueries({ queryKey: ["users"] });
-    },
-  });
-
-  if (isLoading) return <p>Loading...</p>;
-
   return (
-    <div>
-      <ul>
-        {users.map((u) => (
-          <li key={u.id}>{u.name}</li>
-        ))}
-      </ul>
-
-      <button
-        onClick={() =>
-          addUserMutation.mutate({ name: "Alice", email: "alice@example.com" })
-        }
-        disabled={addUserMutation.isPending}
-      >
-        {addUserMutation.isPending ? "Adding..." : "Add User"}
-      </button>
-    </div>
+    <ul>
+      {snapshots.map((s) => <li key={s.snapshot_id}>{s.snapshot_id}</li>)}
+    </ul>
   );
 }
 ```
 
-When `addUserMutation.mutate(...)` is called:
+What's wrong with this?
 
-1. TanStack Query calls the `mutationFn`, which sends the POST request.
-2. While the request is in flight, `addUserMutation.isPending` is `true`, so the button shows "Adding..." and is disabled (preventing double-submits).
-3. When the request succeeds, `onSuccess` is called. We call `queryClient.invalidateQueries({ queryKey: ["users"] })`.
-4. This marks the `["users"]` cache entry as stale.
-5. TanStack Query immediately re-fetches the users list.
-6. The users list component re-renders with the updated data, including the new user.
+…
 
-This pattern — mutate, then invalidate — is the backbone of how Plakar UI handles all write operations. It keeps the UI in sync with the server without you having to manually manage the relationship between mutations and the data they affect.
+… Don't cheat! try to find the problem yourself before reading on.
 
-You can also invalidate multiple queries at once. `invalidateQueries({ queryKey: ["users"] })` will actually invalidate all queries whose key _starts with_ `["users"]` — so both `["users"]` (the list) and `["users", "abc123"]` (a specific user profile) would be invalidated.
+…
 
-## What you get for free
+…
 
-Beyond the basics, TanStack Query ships a lot of behaviors that would take serious effort to implement correctly yourself:
+No loading state. While the fetch is in flight, `snapshots` is an empty array, so the list appears out of nowhere when the data arrives. Not great.
 
-**Automatic retry.** If a request fails due to a network error, TanStack Query retries it automatically with exponential backoff. We configure it to not retry on 4xx errors (since a 404 or 403 is not a transient error), but network failures are handled without any code from us.
-
-**Refetch on window focus.** When a user switches back to a tab after being away, TanStack Query checks if any cached data is stale and re-fetches it in the background. The user sees the current data without having to manually refresh.
-
-**Background refetching.** When serving data from cache while re-fetching, TanStack Query doesn't show a loading spinner — it keeps displaying the old data while the new data loads, then updates the UI. No flash of blank content.
-
-**Stale time.** You can configure how long data is considered "fresh" before TanStack Query considers it stale and eligible for re-fetching. We set a default `staleTime` of 5 seconds across our entire application. This means that if a component mounts and the data was already fetched less than 5 seconds ago, TanStack Query serves the cache without making a new request. This significantly reduces the number of requests on pages with multiple components fetching overlapping data.
+OK, round 2. We fix that:
 
 ```tsx
-// In our main.tsx
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 5 * 1000, // 5 seconds
-      retry: (failureCount, error) => {
-        // Don't retry on 4xx errors
-        if (error instanceof APIError && error.status >= 400 && error.status < 500) {
-          return false;
-        }
-        return failureCount < 3;
-      },
-    },
-  },
-});
+function SnapshotsList() {
+  const [snapshots, setSnapshots] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/snapshots")
+      .then((res) => res.json())
+      .then((data) => {
+        setSnapshots(data.items);
+        setIsLoading(false);
+      });
+  }, []);
+
+  if (isLoading) return <SnapshotsSkeleton />;
+
+  return (
+    <ul>
+      {snapshots.map((s) => <li key={s.snapshot_id}>{s.snapshot_id}</li>)}
+    </ul>
+  );
+}
 ```
 
-**TanStack Query Devtools.** In development mode, you can enable the TanStack Query Devtools panel, which shows you every query in the cache, its current state (fresh, stale, fetching, error), and lets you manually invalidate queries. This is invaluable for debugging.
+What's wrong now?
 
-## What this means for us
+…
 
-Every HTTP request in Plakar UI goes through TanStack Query. The caching, the deduplication, the automatic retries, the background refetching — these are not nice-to-haves. They're the difference between an application that feels polished and one that feels flaky.
+…
+
+Silent failure. If the fetch throws, the `.then` chain never runs. `isLoading` stays `true` forever and the skeleton never goes away. The user is stuck staring at a loading indicator with no idea what happened. We need an error state.
+
+Round 3:
+
+```tsx
+function SnapshotsList() {
+  const [snapshots, setSnapshots] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetch("/api/snapshots")
+      .then((res) => res.json())
+      .then((data) => {
+        setSnapshots(data.items);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setError(err);
+        setIsLoading(false);
+      });
+  }, []);
+
+  if (isLoading) return <SnapshotsSkeleton />;
+  if (error) return <ErrorMessage error={error} />;
+
+  return (
+    <ul>
+      {snapshots.map((s) => <li key={s.snapshot_id}>{s.snapshot_id}</li>)}
+    </ul>
+  );
+}
+```
+
+What's wrong now?
+
+…
+
+…
+
+No caching. Every time this component mounts, it fires a fresh request. Navigate away and back: another request. Two components on the same page that need this data: two requests.
+
+Each fix exposed another problem. And I stopped at three, but the full list is longer: no deduplication, no automatic retry on failure, no background refresh when the tab regains focus, race conditions when responses arrive out of order.
+
+Every one of these is solvable with raw `fetch`. None of them are hard in isolation. But solving all of them, in every place in your app that fetches data, and getting it right every time: that's the part that turns into infrastructure code nobody wants to maintain.
+
+TanStack Query solves all of it, out of the box, with sensible defaults you can override per-query when you need to.
+
+## How TanStack Query works
+
+Here's the dashboard component that loads the latest snapshots:
+
+```tsx
+// apps/oss/src/components/dashboard/latest-snapshots.tsx
+export function CardLatestSnapshots() {
+  const { api, repository } = useKlosetAPI();
+  const { data, isPending, isError, refetch, error } = useQuery(
+    RepositorySnapshotsQueryOptions(api, {
+      repository,
+      pagination: { page: 0, perPage: PER_PAGE },
+    })
+  );
+
+  return (
+    <Card>
+      <Card.Header title="Latest snapshots" buttonProps={button} />
+      <Card.Content noPaddingY>
+        {isPending ? (
+          <Snapshots>
+            {[...Array(PER_PAGE).keys()].map((i) => (
+              <Snapshots.RowSkeleton key={i} withSources withSize />
+            ))}
+          </Snapshots>
+        ) : isError ? (
+          <EmptyList
+            illustrationType="sad"
+            title="Unable to load the latest snapshots"
+            description={error.message}
+            actions={[{ children: "Retry", onPress: () => refetch() }]}
+          />
+        ) : (
+          <Snapshots>
+            {data.items.map((snapshot) => (
+              <Snapshots.Row key={snapshot.identifier.Value} ... />
+            ))}
+          </Snapshots>
+        )}
+      </Card.Content>
+    </Card>
+  );
+}
+```
+
+The three problems from our game map directly to `isPending`, `isError`, and `data`. No loading state? `isPending`. Silent failure? `isError`. No caching? Gone. The skeleton, the error state with a retry button, the actual content: each branch is one line. Caching, deduplication, background refetching are handled without any code from us.
+
+We define query options (the key and the fetch function) separately from components, in files next to the API code. Any component that needs the same data imports the same options object. TanStack Query sees the same key, hits the cache, and makes sure only one request goes out regardless of how many components ask for it.
+
+## Mutations and cache invalidation
+
+Everything above is about reading data. Writes are the other half of the problem, and the trickier one: a successful write means some of your cached data is now wrong.
+
+Here's the real `useRemoveConnector` from Plakman:
+
+```tsx
+// apps/plakman/src/api/connectors/mutations.ts
+export const useRemoveConnector = ({ urnId }: { urnId: string | null }) => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (id: string) => deleteConnector(id),
+    onSuccess: () => {
+      if (urnId) {
+        queryClient.invalidateQueries({
+          queryKey: resourceKeys.detail(urnId),
+        });
+      }
+      queryClient.invalidateQueries({
+        queryKey: resourceKeys.lists(),
+      });
+    },
+  });
+};
+```
+
+When the DELETE request succeeds, `invalidateQueries` marks those cache entries stale and triggers a refetch. `resourceKeys.lists()` uses prefix matching. It invalidates every query whose key starts with that prefix, so paginated list pages, filtered views, all of it refreshes. One `onSuccess` callback cleans up all the relevant state.
+
+If you've run the development version of Plakar and noticed something odd, for example you edit a connector and the list doesn't update, or you remove one and it still shows up, that's almost always a cache invalidation bug. The mutation succeeded, the API updated its state, but the `onSuccess` callback either didn't invalidate the right key or missed one. The fix is always the same: find the query key that's still serving stale data and add it to the invalidation list.
+
+## This isn't a tutorial
+
+Everything above covers why we use TanStack Query. It's not a complete picture of what it can do.
+
+In Plakar UI we also use:
+
+- `useInfiniteQuery` for data that loads incrementally. The snapshot file browser uses it to load directory contents page by page as you scroll
+- A global `staleTime` of 5 seconds so parent and child components mounting together don't each fire their own request for the same data
+- Per-query retry logic that distinguishes transient network failures (retry) from Zod parse errors or 4xx responses (don't bother)
+- `throwOnError` to route 401s to a React error boundary instead of handling them in every component
+- The TanStack Query Devtools in development: a live panel showing every query in the cache, its current state, and a button to manually invalidate it; the first place to look when cache invalidation isn't behaving as expected
+
+The TanStack Query docs cover all of this in depth and are among the best library docs I've read. If you want the full picture, that's where to go. The goal here was just to show why a data-fetching library is necessary and why this one in particular.
 
 ---
 
-That's TanStack Query. In future articles in this series, we'll cover TanStack Form (handling forms and validation), TanStack Table (sortable, filterable, paginated data tables), and TanStack Router (type-safe routing that catches broken links at compile time). The theme is consistent: let the library solve the hard general problem so we can focus on what's specific to Plakar.
+Next up: TanStack Form. Same ecosystem, same philosophy, applied to form state.
