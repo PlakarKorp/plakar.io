@@ -11,8 +11,8 @@
 
   
   
-    <title>Source connector &middot; Plakar | The Open Standard for Backup and Restore</title>
-    <meta name="title" content="Source connector &middot; Plakar | The Open Standard for Backup and Restore">
+    <title>Source Connector &middot; Plakar | The Open Standard for Backup and Restore</title>
+    <meta name="title" content="Source Connector &middot; Plakar | The Open Standard for Backup and Restore">
   
 
   
@@ -75,17 +75,17 @@
   
   <meta property="og:url" content="https://plakar.io/control-plane-docs/connectors/sources/">
   <meta property="og:site_name" content="Plakar | The Open Standard for Backup and Restore">
-  <meta property="og:title" content="Source connector">
+  <meta property="og:title" content="Source Connector">
   <meta property="og:description" content="How source connectors work in Plakar Control Plane.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="control-plane-docs">
     <meta property="article:published_time" content="2026-05-11T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-06-01T15:31:11+02:00">
+    <meta property="article:modified_time" content="2026-06-01T15:32:27+02:00">
 
   
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Source connector">
+  <meta name="twitter:title" content="Source Connector">
   <meta name="twitter:description" content="How source connectors work in Plakar Control Plane.">
 
   
@@ -251,8 +251,8 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "Control Plane Docs",
-    "name": "Source connector",
-    "headline": "Source connector",
+    "name": "Source Connector",
+    "headline": "Source Connector",
     
     "inLanguage": "en",
     "url" : "https://plakar.io/control-plane-docs/connectors/sources/",
@@ -264,12 +264,12 @@
     "dateCreated": "2026-05-11T00:00:00\u002b00:00",
     "datePublished": "2026-05-11T00:00:00\u002b00:00",
     
-    "dateModified": "2026-06-01T15:31:11\u002b02:00",
+    "dateModified": "2026-06-01T15:32:27\u002b02:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "170"
+    "wordCount": "330"
   }]
   </script>
 
@@ -1033,7 +1033,7 @@
       <a href="/control-plane-docs/connectors/sources/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          text-primary-500 bg-neutral-100 font-medium">
-        Source connector
+        Source Connector
       </a>
     
   
@@ -1042,7 +1042,7 @@
       <a href="/control-plane-docs/connectors/stores/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Store connector
+        Store Connector
       </a>
     
   
@@ -1051,7 +1051,7 @@
       <a href="/control-plane-docs/connectors/destinations/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Destination connector
+        Destination Connector
       </a>
     
   
@@ -2378,7 +2378,7 @@
       <a href="/control-plane-docs/connectors/sources/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          text-primary-500 bg-neutral-100 font-medium">
-        Source connector
+        Source Connector
       </a>
     
   
@@ -2387,7 +2387,7 @@
       <a href="/control-plane-docs/connectors/stores/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Store connector
+        Store Connector
       </a>
     
   
@@ -2396,7 +2396,7 @@
       <a href="/control-plane-docs/connectors/destinations/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Destination connector
+        Destination Connector
       </a>
     
   
@@ -3179,7 +3179,7 @@
           </span>
         
       
-      <span class="text-neutral-900 font-medium">Source connector</span>
+      <span class="text-neutral-900 font-medium">Source Connector</span>
     </nav>
 
   </div>
@@ -3195,8 +3195,11 @@
   </span>
   
 </div>
-<p>When a new source connector is added, the connector details page provides a <strong>Dashboard</strong> tab with a <strong>Test Connection</strong> action.</p>
-<p>It is recommended to first use the <strong>Test Connection</strong> action to verify that Plakar Control Plane can successfully connect to the source using the provided configuration and credentials.</p>
+<p>A source connector defines a resource that Plakar Control Plane can back up.
+Once a source connector is created, its details page provides a <strong>Dashboard</strong>
+tab with a <strong>Test Connection</strong> action.</p>
+<p>Use <strong>Test Connection</strong> to verify that Plakar Control Plane can connect to the
+source using the provided configuration and credentials.</p>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
@@ -3205,45 +3208,55 @@
     alt=""
     src="../images/source-connector-1.png"
     ></figure>
-<p>If the connection test fails, verify the provided configuration and credentials, then test the connection again. Once the connection test succeeds, additional actions become available from the dashboard:</p>
-<ul>
-<li><strong>Create Backup</strong> - schedule backups for the source connector</li>
-</ul>
-<details
-      class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
-      data-type="note"
-      open>
-      <summary class="flex items-center gap-2 font-semibold text-inherit cursor-pointer">
-        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"/></svg>
-</span></div>
-        <div class="grow">
-          Note
-        </div>
-        <div
-          class="ms-auto flex h-5 w-5 items-center justify-center transition-transform ease-in-out -rotate-90 group-open:rotate-0 print:hidden"><span class="relative block icon"><svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 20 20"
-  fill="currentColor"
-  aria-hidden="true"
->
-  <path
-    fill-rule="evenodd"
-    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-    clip-rule="evenodd"
-  />
-</svg>
-</span></div>
-      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Operations in Plakar Control Plane can be executed either as one-off job or through scheduled tasks. Currently Plakar Control Plane only supports scheduled tasks.</p></div></details>
+<p>If the connection test fails, check the connector configuration and credentials,
+then run the test again. Once the connection test succeeds, backup actions
+become available from the dashboard.</p>
+<p>From the source connector dashboard, you can create a backup task for the
+connector. This can be done as a one-off task or as a recurring scheduled task.</p>
+
 <div class="relative group">
-  <h2 id="scheduling-tasks">Scheduling Tasks</h2>
+  <h2 id="tasks-and-schedules">Tasks and Schedules</h2>
   
   <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#scheduling-tasks" aria-label="Anchor">#</a>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#tasks-and-schedules" aria-label="Anchor">#</a>
   </span>
   
 </div>
-<p>Backup, restore, sync, and integrity check operations can be configured as recurring scheduled tasks. See the <a href="" >scheduling documentation</a> for details on creating and managing schedules.</p>
-<p>The <strong>Dashboard</strong> tab displays recent jobs that have run on the store, along with upcoming scheduled jobs.</p>
+<p>Operations in Plakar Control Plane are managed by the scheduler. A task can be
+created as a one-off operation or attached to a schedule so that it runs
+repeatedly.</p>
+<p>One-off tasks are useful when you want to run an operation immediately and do
+not need it to repeat. Scheduled tasks are useful when you want Plakar Control
+Plane to run an operation on a regular basis.</p>
+<p>See the <a href="../../operations/scheduling" >scheduling documentation</a> for details on
+creating and managing schedules.</p>
+
+<div class="relative group">
+  <h2 id="one-off-tasks-on-the-source">One-off Tasks on the Source</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#one-off-tasks-on-the-source" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+
+<div class="relative group">
+  <h3 id="backup-task">Backup Task</h3>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#backup-task" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>After the source connector has been verified with <strong>Test Connection</strong>, you can
+create a backup task from the backup card on the dashboard.</p>
+<p>A backup task requires a <a href="../stores" >store connector</a>. The store connector
+defines where the backup data will be stored, so it must already be configured
+before creating the backup task.</p>
+<p>You can also add a label to the task. See the
+<a href="../../operations/scheduling" >scheduling documentation</a> for more details on
+using labels. A backup task can be started immediately as a one-off task, or
+attached to a schedule if you want the backup to run repeatedly.</p>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
@@ -3252,15 +3265,9 @@
     alt=""
     src="../images/source-connector-2.png"
     ></figure>
-<p>The <strong>Schedules</strong> tab displays all scheduled operations associated with the store connector.</p>
-<figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="low"
-    alt=""
-    src="../images/scheduling-tasks-on-source.png"
-    ></figure>
+<p>Once the task has been created, you can follow its progress from the jobs
+history page. This page shows the task status and progress, and also allows you
+to cancel a running task when needed.</p>
 
       </article>
       <footer class="mt-12 flex flex-col gap-6 docs-font border-t border-neutral-200 pt-6">
@@ -3291,7 +3298,7 @@
           <a href="/control-plane-docs/connectors/stores/" class="group w-full flex flex-col gap-1 p-3 rounded-lg border border-neutral-200 bg-neutral-50 hover:border-primary-200 hover:bg-primary-50 transition-all duration-150">
             <span class="text-xs text-neutral-400 text-right block">Next</span>
             <span class="text-sm font-medium text-neutral-700 group-hover:text-primary-500 text-right transition-colors flex items-center justify-end gap-2">
-              Store connector
+              Store Connector
               <span class="w-3 h-3"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
 </span></span>
             </span>
@@ -3331,7 +3338,12 @@
     <div class="toc-content text-neutral-600">
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#scheduling-tasks">Scheduling Tasks</a></li>
+    <li><a href="#tasks-and-schedules">Tasks and Schedules</a></li>
+    <li><a href="#one-off-tasks-on-the-source">One-off Tasks on the Source</a>
+      <ul>
+        <li><a href="#backup-task">Backup Task</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
     </div>

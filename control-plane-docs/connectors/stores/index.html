@@ -11,8 +11,8 @@
 
   
   
-    <title>Store connector &middot; Plakar | The Open Standard for Backup and Restore</title>
-    <meta name="title" content="Store connector &middot; Plakar | The Open Standard for Backup and Restore">
+    <title>Store Connector &middot; Plakar | The Open Standard for Backup and Restore</title>
+    <meta name="title" content="Store Connector &middot; Plakar | The Open Standard for Backup and Restore">
   
 
   
@@ -75,17 +75,17 @@
   
   <meta property="og:url" content="https://plakar.io/control-plane-docs/connectors/stores/">
   <meta property="og:site_name" content="Plakar | The Open Standard for Backup and Restore">
-  <meta property="og:title" content="Store connector">
+  <meta property="og:title" content="Store Connector">
   <meta property="og:description" content="How store connectors work in Plakar Control Plane.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="control-plane-docs">
     <meta property="article:published_time" content="2026-05-11T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-06-01T15:31:11+02:00">
+    <meta property="article:modified_time" content="2026-06-01T15:32:27+02:00">
 
   
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Store connector">
+  <meta name="twitter:title" content="Store Connector">
   <meta name="twitter:description" content="How store connectors work in Plakar Control Plane.">
 
   
@@ -251,8 +251,8 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "Control Plane Docs",
-    "name": "Store connector",
-    "headline": "Store connector",
+    "name": "Store Connector",
+    "headline": "Store Connector",
     
     "inLanguage": "en",
     "url" : "https://plakar.io/control-plane-docs/connectors/stores/",
@@ -264,12 +264,12 @@
     "dateCreated": "2026-05-11T00:00:00\u002b00:00",
     "datePublished": "2026-05-11T00:00:00\u002b00:00",
     
-    "dateModified": "2026-06-01T15:31:11\u002b02:00",
+    "dateModified": "2026-06-01T15:32:27\u002b02:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "324"
+    "wordCount": "805"
   }]
   </script>
 
@@ -1033,7 +1033,7 @@
       <a href="/control-plane-docs/connectors/sources/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Source connector
+        Source Connector
       </a>
     
   
@@ -1042,7 +1042,7 @@
       <a href="/control-plane-docs/connectors/stores/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          text-primary-500 bg-neutral-100 font-medium">
-        Store connector
+        Store Connector
       </a>
     
   
@@ -1051,7 +1051,7 @@
       <a href="/control-plane-docs/connectors/destinations/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Destination connector
+        Destination Connector
       </a>
     
   
@@ -2378,7 +2378,7 @@
       <a href="/control-plane-docs/connectors/sources/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Source connector
+        Source Connector
       </a>
     
   
@@ -2387,7 +2387,7 @@
       <a href="/control-plane-docs/connectors/stores/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          text-primary-500 bg-neutral-100 font-medium">
-        Store connector
+        Store Connector
       </a>
     
   
@@ -2396,7 +2396,7 @@
       <a href="/control-plane-docs/connectors/destinations/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Destination connector
+        Destination Connector
       </a>
     
   
@@ -3179,7 +3179,7 @@
           </span>
         
       
-      <span class="text-neutral-900 font-medium">Store connector</span>
+      <span class="text-neutral-900 font-medium">Store Connector</span>
     </nav>
 
   </div>
@@ -3195,8 +3195,11 @@
   </span>
   
 </div>
-<p>When a new store connector is added, the connector details page provides a <strong>Dashboard</strong> tab with actions for testing and initializing the store.</p>
-<p>It is recommended to first use the <strong>Test Connection</strong> action to verify that Plakar Control Plane can successfully connect to the store using the provided configuration and credentials.</p>
+<p>A store connector defines where Plakar Control Plane stores backup data. Once a
+store connector is created, its details page provides a <strong>Dashboard</strong> tab with
+actions for testing and initializing the store.</p>
+<p>Use <strong>Test Connection</strong> to verify that Plakar Control Plane can connect to the
+store using the provided configuration and credentials.</p>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
@@ -3205,40 +3208,23 @@
     alt=""
     src="../images/store-connector-1.png"
     ></figure>
-<p>If the selected store has already been initialized by Plakar Control Plane and contains an existing Kloset store, the connection test will detect it automatically and no additional initialization is required.</p>
-<p>If the store is in a new location (for example, a new S3 bucket that has never been used by Plakar before), you must use the <strong>Initialize Store</strong> action before the store can receive backups. This prepares the store with the metadata and structure required so it is ready to receive backup data.</p>
-<p>If the connection test fails, verify the provided configuration and credentials, then test the connection again. Once a store has been initialized, additional operations become available from the dashboard:</p>
+<p>If the selected store has already been initialized by Plakar Control Plane and
+contains an existing Kloset store, the connection test detects it automatically
+and no additional initialization is required.</p>
+<p>If the store is in a new location, such as a new S3 bucket that has never been
+used by Plakar before, you must use the <strong>Initialize Store</strong> action before the
+store can receive backups. This prepares the store with the metadata and
+structure required to receive backup data.</p>
+<p>If the connection test fails, check the connector configuration and credentials,
+then run the test again. Once the store has been initialized, additional actions
+become available from the dashboard:</p>
 <ul>
-<li><strong>Check Store</strong> - schedule an integrity check for the Kloset store</li>
-<li><strong>Create Backup</strong> - schedule a backup to the store</li>
-<li><strong>Sync Store</strong> - schedule synchronization to another store</li>
-<li><strong>Restore Data</strong> - schedule a restore operation from the store</li>
+<li><strong>Check Store</strong> - create an integrity check task for the Kloset store</li>
+<li><strong>Create Backup</strong> - create a backup task to the store</li>
+<li><strong>Sync Store</strong> - create a synchronization task to another store</li>
+<li><strong>Restore Data</strong> - create a restore task from the store</li>
 </ul>
-<details
-      class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
-      data-type="note"
-      open>
-      <summary class="flex items-center gap-2 font-semibold text-inherit cursor-pointer">
-        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"/></svg>
-</span></div>
-        <div class="grow">
-          Note
-        </div>
-        <div
-          class="ms-auto flex h-5 w-5 items-center justify-center transition-transform ease-in-out -rotate-90 group-open:rotate-0 print:hidden"><span class="relative block icon"><svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 20 20"
-  fill="currentColor"
-  aria-hidden="true"
->
-  <path
-    fill-rule="evenodd"
-    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-    clip-rule="evenodd"
-  />
-</svg>
-</span></div>
-      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Operations in Plakar Control Plane can be executed either as one-off job or through scheduled tasks. Currently Plakar Control Plane only supports scheduled tasks.</p></div></details>
+
 <div class="relative group">
   <h2 id="browsing-snapshots">Browsing Snapshots</h2>
   
@@ -3247,6 +3233,7 @@
   </span>
   
 </div>
+<p>You can view all backup snapshots stored in this store from the <strong>Browse</strong> tab.</p>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
@@ -3255,7 +3242,8 @@
     alt=""
     src="../images/view-snapshots.png"
     ></figure>
-<p>You can view all backup snapshots stored in this store from the <strong>Browse</strong> tab. From there, you can inspect the files contained in each snapshot and download individual files without performing a full restore.</p>
+<p>From there, you can inspect the files contained in each snapshot and download
+individual files without performing a full restore.</p>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
@@ -3266,15 +3254,46 @@
     ></figure>
 
 <div class="relative group">
-  <h2 id="scheduling-tasks">Scheduling Tasks</h2>
+  <h2 id="tasks-and-schedules">Tasks and Schedules</h2>
   
   <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#scheduling-tasks" aria-label="Anchor">#</a>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#tasks-and-schedules" aria-label="Anchor">#</a>
   </span>
   
 </div>
-<p>Backup, restore, sync, and integrity check operations can be configured as recurring scheduled tasks. See the <a href="" >scheduling documentation</a> for details on creating and managing schedules.</p>
-<p>The <strong>Dashboard</strong> tab displays recent jobs that have run on the store, along with upcoming scheduled jobs.</p>
+<p>Operations in Plakar Control Plane are managed by the scheduler. A task can be
+created as a one-off operation or attached to a schedule so that it runs
+repeatedly.</p>
+<p>One-off tasks are useful when you want to run an operation immediately and do
+not need it to repeat. Scheduled tasks are useful when you want Plakar Control
+Plane to run an operation on a regular basis.</p>
+<p>See the <a href="../../operations/scheduling" >scheduling documentation</a> for details on
+creating and managing schedules.</p>
+
+<div class="relative group">
+  <h2 id="one-off-tasks-on-the-store">One-off Tasks on the Store</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#one-off-tasks-on-the-store" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+
+<div class="relative group">
+  <h3 id="check-task">Check Task</h3>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#check-task" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>A check task verifies the integrity of data in the store. It checks that the
+backup data can be read correctly and validates file MACs to make sure no
+corruption has occurred.</p>
+<p>You can also add a label to the task. See the
+<a href="../../operations/scheduling" >scheduling documentation</a> for more details on
+using labels. A check store task can be started immediately as a one-off task,
+or attached to a schedule if you want the check to run repeatedly.</p>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
@@ -3283,15 +3302,92 @@
     alt=""
     src="../images/store-connector-2.png"
     ></figure>
-<p>The <strong>Schedules</strong> tab displays all scheduled operations associated with the store connector.</p>
+<p>Once the task has been created, you can follow its progress from the jobs
+history page. This page shows the task status and progress, and also allows you
+to cancel a running task when needed.</p>
+
+<div class="relative group">
+  <h3 id="backup-task">Backup Task</h3>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#backup-task" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>A backup task stores backup data from a source connector into this store. When
+creating a backup task from the store connector, you must select the
+<a href="../source" >source connector</a> that should be backed up.</p>
+<p>You can also add a label to the task. See the
+<a href="../../operations/scheduling" >scheduling documentation</a> for more details on
+using labels. A backup task can be started immediately as a one-off task, or
+attached to a schedule if you want the backup to run repeatedly.</p>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
     decoding="async"
     fetchpriority="low"
     alt=""
-    src="../images/scheduling-tasks-on-store.png"
+    src="../images/store-connector-3.png"
     ></figure>
+<p>Once the task has been created, you can follow its progress from the jobs
+history page. This page shows the task status and progress, and also allows you
+to cancel a running task when needed.</p>
+
+<div class="relative group">
+  <h3 id="sync-store-task">Sync Store Task</h3>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#sync-store-task" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>A sync store task copies backup data from this store to another store connector.
+When creating a sync task, you must select the other store connector that this
+store should be synchronized to.</p>
+<p>You can also add a label to the task. See the
+<a href="../../operations/scheduling" >scheduling documentation</a> for more details on
+using labels. A sync store task can be started immediately as a one-off task, or
+attached to a schedule if you want the sync to run repeatedly.</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../images/store-connector-4.png"
+    ></figure>
+<p>Once the task has been created, you can follow its progress from the jobs
+history page. This page shows the task status and progress, and also allows you
+to cancel a running task when needed.</p>
+
+<div class="relative group">
+  <h3 id="restore-task">Restore Task</h3>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#restore-task" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>A restore task restores data from this store to a destination connector. When
+creating a restore task, you must select the
+<a href="../destination" >destination connector</a> where the data should be restored. You
+can also select the snapshot to restore. If no snapshot is selected, Plakar
+Control Plane will restore the latest available snapshot.</p>
+<p>You can also add a label to the task. See the
+<a href="../../operations/scheduling" >scheduling documentation</a> for more details on
+using labels. A restore task can be started immediately as a one-off task, or
+attached to a schedule if you want the restore to run repeatedly.</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="../images/store-connector-5.png"
+    ></figure>
+<p>Once the task has been created, you can follow its progress from the jobs
+history page. This page shows the task status and progress, and also allows you
+to cancel a running task when needed.</p>
 
       </article>
       <footer class="mt-12 flex flex-col gap-6 docs-font border-t border-neutral-200 pt-6">
@@ -3321,7 +3417,7 @@
             <span class="text-sm font-medium text-neutral-700 group-hover:text-primary-500 text-left transition-colors flex items-center gap-2">
               <span class="w-3 h-3"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M7.82843 10.9999H20V12.9999H7.82843L13.1924 18.3638L11.7782 19.778L4 11.9999L11.7782 4.22168L13.1924 5.63589L7.82843 10.9999Z"></path></svg>
 </span></span>
-              Source connector
+              Source Connector
             </span>
           </a>
         
@@ -3331,7 +3427,7 @@
           <a href="/control-plane-docs/connectors/destinations/" class="group w-full flex flex-col gap-1 p-3 rounded-lg border border-neutral-200 bg-neutral-50 hover:border-primary-200 hover:bg-primary-50 transition-all duration-150">
             <span class="text-xs text-neutral-400 text-right block">Next</span>
             <span class="text-sm font-medium text-neutral-700 group-hover:text-primary-500 text-right transition-colors flex items-center justify-end gap-2">
-              Destination connector
+              Destination Connector
               <span class="w-3 h-3"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
 </span></span>
             </span>
@@ -3372,7 +3468,15 @@
       <nav id="TableOfContents">
   <ul>
     <li><a href="#browsing-snapshots">Browsing Snapshots</a></li>
-    <li><a href="#scheduling-tasks">Scheduling Tasks</a></li>
+    <li><a href="#tasks-and-schedules">Tasks and Schedules</a></li>
+    <li><a href="#one-off-tasks-on-the-store">One-off Tasks on the Store</a>
+      <ul>
+        <li><a href="#check-task">Check Task</a></li>
+        <li><a href="#backup-task">Backup Task</a></li>
+        <li><a href="#sync-store-task">Sync Store Task</a></li>
+        <li><a href="#restore-task">Restore Task</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
     </div>

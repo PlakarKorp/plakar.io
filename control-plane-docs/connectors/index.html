@@ -264,7 +264,7 @@
     "dateCreated": "2026-05-07T00:00:00\u002b00:00",
     "datePublished": "2026-05-07T00:00:00\u002b00:00",
     
-    "dateModified": "2026-06-01T15:31:11\u002b02:00",
+    "dateModified": "2026-06-01T15:32:27\u002b02:00",
     
     
     
@@ -1033,7 +1033,7 @@
       <a href="/control-plane-docs/connectors/sources/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Source connector
+        Source Connector
       </a>
     
   
@@ -1042,7 +1042,7 @@
       <a href="/control-plane-docs/connectors/stores/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Store connector
+        Store Connector
       </a>
     
   
@@ -1051,7 +1051,7 @@
       <a href="/control-plane-docs/connectors/destinations/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Destination connector
+        Destination Connector
       </a>
     
   
@@ -2378,7 +2378,7 @@
       <a href="/control-plane-docs/connectors/sources/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Source connector
+        Source Connector
       </a>
     
   
@@ -2387,7 +2387,7 @@
       <a href="/control-plane-docs/connectors/stores/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Store connector
+        Store Connector
       </a>
     
   
@@ -2396,7 +2396,7 @@
       <a href="/control-plane-docs/connectors/destinations/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Destination connector
+        Destination Connector
       </a>
     
   
@@ -3183,7 +3183,10 @@
   </span>
   
 </div>
-<p>A connector links a resource in your inventory to Plakar Control Plane so it can be used as part of a backup workflow. A resource can have multiple connectors, and each connector belongs to a single resource. The connector type is selected during connector setup.</p>
+<p>A connector links a resource in your inventory to Plakar Control Plane so it can
+be used as part of a backup workflow. A resource can have multiple connectors,
+and each connector belongs to a single resource. The connector type is selected
+during connector setup.</p>
 <p>Plakar Control Plane supports three connector types:</p>
 <ul>
 <li><strong>Source</strong> - the resource being backed up</li>
@@ -3199,21 +3202,36 @@
   </span>
   
 </div>
-<p>When attaching a connector to a resource, Plakar Control Plane uses the resource <code>class</code> and <code>subclass</code> to determine which integrations are compatible with that resource. For example, a resource with a class of <code>Object Storage</code> and a subclass of <code>S3</code> will automatically match compatible integrations, in this case just the S3 integration.</p>
-<p>In most cases, the integration is selected automatically. If multiple compatible integrations are available, you can choose the integration manually from the integration list.</p>
-<p>Once the integration is selected, you must provide the configuration and credentials required for that integration. The required configuration depends on:</p>
+<p>When attaching a connector to a resource, Plakar Control Plane uses the resource
+<code>class</code> and <code>subclass</code> to determine which integrations are compatible with that
+resource. For example, a resource with a class of <code>Object Storage</code> and a
+subclass of <code>S3</code> will automatically match compatible integrations, in this case
+just the S3 integration.</p>
+<p>In most cases, the integration is selected automatically. If multiple compatible
+integrations are available, you can choose the integration manually from the
+integration list.</p>
+<p>Once the integration is selected, you must provide the configuration and
+credentials required for that integration. The required configuration depends
+on:</p>
 <ul>
 <li>The connector type</li>
 <li>The selected integration</li>
 <li>The inventory type managing the resource</li>
 </ul>
-<p>After configuration, you can test the connector directly from the UI to verify that Plakar Control Plane can successfully reach and authenticate with the resource before using it in a backup job.</p>
-<p>When configuring a source connector, additional SLA-related metadata is required:</p>
+<p>After configuration, you can test the connector directly from the UI to verify
+that Plakar Control Plane can successfully reach and authenticate with the
+resource before using it in a backup job.</p>
+<p>When configuring a source connector, additional SLA-related metadata is
+required:</p>
 <ul>
-<li><strong>Environment</strong> - the environment the resource belongs to, such as production, development, or testing</li>
-<li><strong>Data Class</strong> - the type of data stored in the resource, such as critical, database, financial records, PII, etc</li>
+<li><strong>Environment</strong> - the environment the resource belongs to, such as production,
+development, or testing</li>
+<li><strong>Data Class</strong> - the type of data stored in the resource, such as critical,
+database, financial records, PII, etc</li>
 </ul>
-<p>These values are used by the policies and SLA system to determine backup requirements and protection rules. See the <a href="" >policies</a> documentation for more details.</p>
+<p>These values are used by the policies and SLA system to determine backup
+requirements and protection rules. See the
+<a href="/control-plane-docs/operations/policies/" >policies documentation</a> for more details.</p>
 
 <div class="relative group">
   <h2 id="adding-a-connector-to-a-resource">Adding a connector to a resource</h2>
@@ -3223,7 +3241,8 @@
   </span>
   
 </div>
-<p>Connectors can be added either from the <strong>Connectors</strong> section in the sidebar or directly from a resource inside an inventory.</p>
+<p>Connectors can be added either from the <strong>Connectors</strong> section in the sidebar or
+directly from a resource inside an inventory.</p>
 
 <div class="relative group">
   <h3 id="adding-from-the-connectors-section">Adding from the Connectors section</h3>
@@ -3233,10 +3252,18 @@
   </span>
   
 </div>
-<p>The connectors section contains sub-sections for <strong>Sources</strong>, <strong>Stores</strong>, and <strong>Destinations</strong>. Selecting one of these sections displays all connectors of that type and allows you to create a new connector.</p>
-<p>When creating a connector, you first select an inventory and then a resource from that inventory. You must also provide a connector name, select an integration, and fill in any integration-specific configuration fields required for the selected resource.</p>
-<p>Compatible integrations are automatically filtered based on the selected resource class and subclass. In most cases, the correct integration is automatically preselected.</p>
-<p>For source connectors, additional SLA-related fields for the environment and data class are required.</p>
+<p>The connectors section contains sub-sections for <strong>Sources</strong>, <strong>Stores</strong>, and
+<strong>Destinations</strong>. Selecting one of these sections displays all connectors of
+that type and allows you to create a new connector.</p>
+<p>When creating a connector, you first select an inventory and then a resource
+from that inventory. You must also provide a connector name, select an
+integration, and fill in any integration-specific configuration fields required
+for the selected resource.</p>
+<p>Compatible integrations are automatically filtered based on the selected
+resource class and subclass. In most cases, the correct integration is
+automatically preselected.</p>
+<p>For source connectors, additional SLA-related fields for the environment and
+data class are required.</p>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
@@ -3254,8 +3281,16 @@
   </span>
   
 </div>
-<p>Connectors can also be added directly from a resource inside an inventory. Selecting a resource opens a side panel containing a <strong>Connectors</strong> tab and a <strong>Settings</strong> tab. The settings tab is used to manage the resource itself, while the connectors tab displays all connectors attached to the resource and allows additional connectors to be assigned.</p>
-<p>When creating a connector from the resource panel, the inventory and resource are derived from the selected resource and are not configurable, so only the connector type, integration, credentials, and integration-specific configuration need to be provided. For source connectors, the environment and data class fields are also required.</p>
+<p>Connectors can also be added directly from a resource inside an inventory.
+Selecting a resource opens a side panel containing a <strong>Connectors</strong> tab and a
+<strong>Settings</strong> tab. The settings tab is used to manage the resource itself, while
+the connectors tab displays all connectors attached to the resource and allows
+additional connectors to be assigned.</p>
+<p>When creating a connector from the resource panel, the inventory and resource
+are derived from the selected resource and are not configurable, so only the
+connector type, integration, credentials, and integration-specific configuration
+need to be provided. For source connectors, the environment and data class
+fields are also required.</p>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
@@ -3273,12 +3308,13 @@
   </span>
   
 </div>
-<p>The following pages provide detailed configuration and management information for each connector type.</p>
+<p>The following pages provide detailed configuration and management information
+for each connector type.</p>
   <div class="not-prose section-index mt-6">
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <a href="/control-plane-docs/connectors/sources/" class="group/card flex flex-col justify-between rounded-lg border border-neutral-200 bg-neutral-50 p-4 no-underline hover:border-primary-200 hover:bg-primary-50 transition-all duration-150">
           <div class="flex items-start justify-between gap-2">
-            <span class="text-base font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors truncate">Source connector</span>
+            <span class="text-base font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors truncate">Source Connector</span>
             <span class="w-4 h-4 shrink-0 mt-0.5 text-neutral-300 group-hover/card:text-primary-500 group-hover/card:translate-x-0.5 transition-all duration-150">
               <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
 </span>
@@ -3288,7 +3324,7 @@
         </a>
         <a href="/control-plane-docs/connectors/stores/" class="group/card flex flex-col justify-between rounded-lg border border-neutral-200 bg-neutral-50 p-4 no-underline hover:border-primary-200 hover:bg-primary-50 transition-all duration-150">
           <div class="flex items-start justify-between gap-2">
-            <span class="text-base font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors truncate">Store connector</span>
+            <span class="text-base font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors truncate">Store Connector</span>
             <span class="w-4 h-4 shrink-0 mt-0.5 text-neutral-300 group-hover/card:text-primary-500 group-hover/card:translate-x-0.5 transition-all duration-150">
               <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
 </span>
@@ -3298,7 +3334,7 @@
         </a>
         <a href="/control-plane-docs/connectors/destinations/" class="group/card flex flex-col justify-between rounded-lg border border-neutral-200 bg-neutral-50 p-4 no-underline hover:border-primary-200 hover:bg-primary-50 transition-all duration-150">
           <div class="flex items-start justify-between gap-2">
-            <span class="text-base font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors truncate">Destination connector</span>
+            <span class="text-base font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors truncate">Destination Connector</span>
             <span class="w-4 h-4 shrink-0 mt-0.5 text-neutral-300 group-hover/card:text-primary-500 group-hover/card:translate-x-0.5 transition-all duration-150">
               <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
 </span>
