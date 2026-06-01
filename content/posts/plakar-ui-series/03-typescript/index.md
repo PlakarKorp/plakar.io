@@ -14,11 +14,16 @@ series: ["The Plakar Frontend, Explained"]
 series_order: 3
 ---
 
-I know most Go developers are allergic to TypeScript. But if you're honest about it, the allergy is usually not about TypeScript itself — it's about the ecosystem around it. npm and its thousands of transitive dependencies. `node_modules` weighing more than a black hole. JavaScript's history of footguns. That feeling of dread when you open a JavaScript codebase and find `any` everywhere and nothing makes sense.
+I know most Go developers are allergic to TypeScript. But if you're honest about it, the allergy is usually not about TypeScript itself. It's about the ecosystem around it:
+
+- `npm` and its thousands of transitive dependencies.
+- `node_modules` weighing more than a black hole.
+- [JavaScript's history of footguns](https://www.destroyallsoftware.com/talks/wat) *(watch this video, it's hilarious)*.
+- That feeling of dread when you open a JavaScript codebase and find `any` everywhere and nothing makes sense.
 
 Those are legitimate complaints. But TypeScript is not JavaScript. TypeScript is a language that compiles to JavaScript, and its type system is genuinely one of the most expressive in any mainstream language — more so than Go's in some ways that actually matter for UI code.
 
-I'm not going to give you a full tour. I want to highlight two things that I think will change how you see TypeScript.
+I'm not going to give you a full tour of the language. Instead, I want to highlight two things that I really, really, really love about TS.
 
 ## 1. You don't need everything to compile in order to keep working
 
