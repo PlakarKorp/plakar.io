@@ -94,13 +94,24 @@ export type SourceSnapshot = z.infer<typeof SourceSnapshotSchema>;
 
 Notice the `.transform()` on `creation_time`. Zod doesn't just validate — it can transform data as it parses. The API sends a date as a string (as JSON requires), and Zod converts it into a real JavaScript `Date` object on the way in. From that point on, everywhere in the UI, `snapshot.creation_time` is a `Date`. No component ever has to remember to call `new Date(snapshot.creation_time)` — that conversion already happened, once, at the boundary.
 
-The actual call site uses `.parse()` on the raw response. From that line forward, TypeScript has full, accurate knowledge of the shape. No casts, no assertions, no wishful thinking.
+## We want it to blow up
+
+This is the part that might surprise you.
+
+The Plakar UI is shipped alongside the API. They are not separate products with independent release cycles. When the API changes, the UI changes at the same time. There's no version mismatch to worry about.
+
+That means when we get unexpected data, we *want* the parse to throw. Not degrade gracefully. Blow up.
+
+Take the integration list. Every integration has a version. If the API stopped returning `version` for some reason, we could write lenient code that just hides it when it's missing. The UI would keep running. Nobody would immediately notice.
+
+But that's a bug, not a feature. Integrations always have a version. If `version` is missing, something is wrong and we want to know about it immediately, not discover it two weeks later when someone asks why versions disappeared from the UI.
+
+With Zod, the parse fails the moment `version` is absent. You can't miss it. And because that failure happens at the boundary, everything downstream is guaranteed: no component in the UI ever needs to handle "what if version is missing", because that case is impossible by the time the data reaches them. Entire categories of defensive code disappear.
+
 
 ## What happens when the API changes
 
-This is where the real value becomes apparent.
-
-Without Zod, your TypeScript types and the actual API can drift silently. A backend developer renames `creation_time` to `created_at`. They update the Go struct, update the API handler, run the backend tests — everything passes on their side. Meanwhile, the frontend keeps compiling without errors because the TypeScript type still says `creation_time`. But now `snapshot.creation_time` is `undefined` at runtime, and somewhere in the UI a date renders as "Invalid Date" or nothing at all. You spend an afternoon figuring out why.
+Without Zod, your TypeScript types and the actual API can drift silently. A backend developer renames `creation_time` to `created_at`. They update the Go struct, the API handler, run the backend tests — everything passes on their side. The frontend keeps compiling cleanly because the TypeScript type still says `creation_time`. But now `snapshot.creation_time` is `undefined` at runtime, a date renders as "Invalid Date" somewhere in the UI, and you spend an afternoon tracing back where the data went wrong.
 
 With Zod, the parse throws immediately:
 
@@ -108,19 +119,11 @@ With Zod, the parse throws immediately:
 ZodError: Expected string, received undefined at path: creation_time
 ```
 
-You know instantly that the field is missing, what it was called, and that the breakage is at the API boundary — not buried in a component somewhere. Fix the schema (or the API), and you're done.
+![A Zod error in the browser console](./zod-error.png)
 
-This is especially valuable in a project like Plakar where the backend and frontend are developed in parallel. The schema is a contract. When the contract is violated, Zod tells you at the first possible moment.
+You know what broke, where it broke, and that the problem is at the API boundary, not buried three components deep. Fix the schema to match the new field name, and you're done.
 
-## Beyond validation: strict types everywhere
-
-The validation itself is useful, but it's almost a side benefit. The real payoff is what happens downstream.
-
-Because `SourceSnapshot` is inferred from the schema — not hand-written — it's always accurate. Every component that receives a `SourceSnapshot` gets full TypeScript coverage based on what the schema actually says. If a component tries to access `snapshot.created_at` (the wrong field name), TypeScript gives a compile error. Not a runtime error in production. A compile error, in your editor, before you even save the file.
-
-The pattern throughout Plakar UI is: parse once at the API boundary, use typed objects everywhere else. Components never touch raw JSON. They receive typed objects and TypeScript keeps them honest about every field access, every method call, every assumption they make about the data.
-
-These two rules — all API responses validated with Zod, never use `any` or `unknown` — together close the gap that TypeScript's compile-time analysis can't cover on its own. The compiler protects your own code; Zod protects you from the outside world.
+Parse once at the boundary, use typed objects everywhere. Components never touch raw JSON. TypeScript keeps them honest about every field, every method call, every assumption they make about the data. Combined with the no-`any` rule from the previous article, this closes the gap that compile-time analysis alone can't cover: the compiler protects your own code, Zod protects you from the outside world.
 
 ---
 
