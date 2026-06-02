@@ -23,7 +23,7 @@ This version sets the stage for smoother integrations, better developer ergonomi
 
 ## Get it now !
 
-Instructions on how to download and install are available in the [Download](/download/v1.0.5/) section !
+Instructions on how to download and install are available in the [Download](/download/?version=v1.0.5) section !
 
 ---
 
