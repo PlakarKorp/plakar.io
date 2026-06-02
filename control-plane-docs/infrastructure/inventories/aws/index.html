@@ -81,7 +81,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="control-plane-docs">
     <meta property="article:published_time" content="2026-05-03T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-06-02T09:33:12+02:00">
+    <meta property="article:modified_time" content="2026-06-02T21:13:07+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -264,12 +264,12 @@
     "dateCreated": "2026-05-03T00:00:00\u002b00:00",
     "datePublished": "2026-05-03T00:00:00\u002b00:00",
     
-    "dateModified": "2026-06-02T09:33:12\u002b02:00",
+    "dateModified": "2026-06-02T21:13:07\u002b02:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "708"
+    "wordCount": "652"
   }]
   </script>
 
@@ -3435,25 +3435,9 @@ provided directly or loaded via a secret provider (see
 <p>After creating the inventory, you must trigger a <strong>synchronization</strong> to discover
 and load resources. You can run synchronization at any time to refresh the
 inventory, for example after adding new resources to your AWS account.</p>
-
-<div class="relative group">
-  <h3 id="resource-visibility">Resource Visibility</h3>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#resource-visibility" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<p>By default, the inventory table displays only resources that Plakar Control
-Plane supports:</p>
-<ul>
-<li>Object storage resources (S3 buckets)</li>
-<li>Compute resources (EC2 instances)</li>
-<li>Database resources (PostgreSQL RDS instances)</li>
-</ul>
-<p>All other discovered resources are marked as <strong>unclassified</strong> and are hidden
-from the table by default. To view all discovered resources, enable the
-<strong>Include unclassified</strong> toggle.</p>
+<p>All configuration details provided during inventory creation can be updated
+later in the <strong>Settings</strong> tab. The inventory can also be deleted entirely from
+this tab if no longer needed.</p>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
@@ -3462,9 +3446,6 @@ from the table by default. To view all discovered resources, enable the
     alt=""
     src="../images/aws-inventory.png"
     ></figure>
-<p>All configuration details provided during inventory creation can be updated
-later in the <strong>Settings</strong> tab. The inventory can also be deleted entirely from
-this tab if no longer needed.</p>
 
 <div class="relative group">
   <h2 id="managing-resources">Managing Resources</h2>
@@ -3573,11 +3554,7 @@ and coverage reporting.</p>
         <li><a href="#permission-details">Permission Details</a></li>
       </ul>
     </li>
-    <li><a href="#adding-the-aws-inventory">Adding the AWS Inventory</a>
-      <ul>
-        <li><a href="#resource-visibility">Resource Visibility</a></li>
-      </ul>
-    </li>
+    <li><a href="#adding-the-aws-inventory">Adding the AWS Inventory</a></li>
     <li><a href="#managing-resources">Managing Resources</a></li>
   </ul>
 </nav>
