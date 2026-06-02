@@ -4,6 +4,18 @@
   {{ end }}
 {{ end }}
 
+{{ with .Params.hubspot }}
+  {{ if .enabled }}
+    <div id="hubspot-config" data-portal-id="{{ .portalId }}" hidden></div>
+  {{ end }}
+{{ end }}
+
+{{ with .Params.promptwatch }}
+  {{ if .enabled }}
+    <div id="promptwatch-config" data-project-id="{{ .projectId }}" hidden></div>
+  {{ end }}
+{{ end }}
+
 {{ $js := slice
   (resources.Get "js/main/github.js")
   (resources.Get "js/main/discord.js")
@@ -17,6 +29,8 @@
   (resources.Get "js/main/posts-filter.js")
   (resources.Get "js/main/book-demo-modal.js")
   (resources.Get "js/main/axeptio.js")
+  (resources.Get "js/main/hubspot.js")
+  (resources.Get "js/main/promptwatch.js")
   (resources.Get "js/main/search.js")
   | resources.Concat "js/compiled/bundle.js"
   | minify | fingerprint

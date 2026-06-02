@@ -5,9 +5,9 @@
 {{ $latest := .Site.Params.docs.latestVersion }}
 {{ $nestorRocket := resources.Get "img/nestor/nestor-rocket.png" }}
 
+{{/* --- OSS Plakar versions --- */}}
 {{ $raw := where site.RegularPages "Section" "download" }}
 {{ $raw = where $raw "Params.version" "!=" nil }}
-
 {{ $packed := slice }}
 {{ range $raw }}
   {{ $v := replace .Params.version "v" "" }}
@@ -22,8 +22,10 @@
 {{ range sort $packed "score" "desc" }}
   {{ $versions = $versions | append .page }}
 {{ end }}
-
 {{ $latestPage := index $versions 0 }}
+
+{{/* --- Control Plane --- */}}
+{{ $cpPage := site.GetPage "/control-plane-download" }}
 
 <!-- Rocket banner -->
 <section class="section-gradient-blue-1 pt-26">
@@ -35,30 +37,25 @@
 <!-- Header -->
 <section class="section-light-1 py-12">
   <div class="max-w-350 mx-auto px-4">
-    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-      <div class="flex flex-col gap-2">
-        <h1 class="text-4xl font-medium text-neutral-900">Download Plakar</h1>
-        <p class="text-lg text-neutral-600">Select a version to download binaries for your platform</p>
-      </div>
-
-      <div class="flex flex-row gap-4">
-        {{ with $latestPage.Params.release_notes_url }}
-          <a id="release-notes-link" href="{{ . }}" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-neutral-100 hover:bg-neutral-200 text-neutral-900 rounded-lg transition-colors">
-            <span>Release Notes</span>
-            <span class="w-4 h-4">{{ partial "icon.html" "ri/external-link-line" }}</span>
-          </a>
-        {{ end }}
-
-        {{ with $latestPage.Params.tests_status_url }}
-          <a href="{{ . }}" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-neutral-100 hover:bg-neutral-200 text-neutral-900 rounded-lg transition-colors">
-            <span>Tests Status</span>
-            <span class="w-4 h-4">{{ partial "icon.html" "ri/external-link-line" }}</span>
-          </a>
-        {{ end }}
-      </div>
+    <div class="flex flex-col gap-2">
+      <h1 class="text-4xl font-medium text-neutral-900">Downloads</h1>
+      <p class="text-lg text-neutral-600">Open source and Control Plane enterprise edition</p>
     </div>
   </div>
 </section>
+
+<!-- Product tabs -->
+<section class="section-light-2 border-b border-neutral-200">
+  <div class="max-w-350 mx-auto px-4">
+    <div class="flex" role="tablist" aria-label="Product">
+      <button id="tab-plakar" role="tab" aria-selected="true" aria-controls="panel-plakar" class="download-tab px-6 py-3 text-sm font-medium border-b-2 -mb-px border-primary-500 text-primary-600">Plakar</button>
+      <button id="tab-controlplane" role="tab" aria-selected="false" aria-controls="panel-controlplane" class="download-tab px-6 py-3 text-sm font-medium border-b-2 -mb-px border-transparent text-neutral-500 hover:text-neutral-700">Control Plane</button>
+    </div>
+  </div>
+</section>
+
+<!-- PLAKAR TAB -->
+<div id="panel-plakar" role="tabpanel" aria-labelledby="tab-plakar">
 
 <!-- Version Selector -->
 <section class="section-light-2 py-8 border-t border-b border-neutral-200">
@@ -70,21 +67,37 @@
           Current version: <span id="current-version-display" class="text-primary-500">{{ $latest }}</span>
         </h2>
 
-        <div class="relative">
-          <button id="version-dropdown-btn" class="inline-flex items-center gap-2 px-4 py-2 bg-primary-100 hover:bg-primary-200 text-primary-900 rounded-lg transition-colors">
-            <span class="hidden md:block">Change version</span>
-            <span class="block md:hidden">Version</span>
-            <span class="w-4 h-4">{{ partial "icon.html" "chevron-down" }}</span>
-          </button>
-          <div id="version-dropdown-menu" class="hidden absolute right-0 mt-2 w-48 rounded-lg shadow-lg bg-neutral-50 border border-neutral-200 z-10 max-h-96 overflow-y-auto">
-            {{ range $versions }}
-              <button class="version-option w-full flex items-center justify-between px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100 text-left" data-version="{{ .Params.version }}" data-release-notes-url="{{ .Params.release_notes_url }}">
-                {{ .Params.version }}
-                {{ if eq .Params.version $latest }}
-                  <span class="text-xs bg-green-100 text-green-800 px-2 py-0.5 rounded-full font-medium">Latest</span>
-                {{ end }}
-              </button>
-            {{ end }}
+        <div class="flex flex-row gap-4 items-center">
+          {{ with $latestPage.Params.release_notes_url }}
+            <a id="release-notes-link" href="{{ . }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-neutral-100 hover:bg-neutral-200 text-neutral-900 rounded-lg transition-colors">
+              <span>Release Notes</span>
+              <span class="w-4 h-4">{{ partial "icon.html" "ri/external-link-line" }}</span>
+            </a>
+          {{ end }}
+
+          {{ with $latestPage.Params.tests_status_url }}
+            <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-neutral-100 hover:bg-neutral-200 text-neutral-900 rounded-lg transition-colors">
+              <span>Tests Status</span>
+              <span class="w-4 h-4">{{ partial "icon.html" "ri/external-link-line" }}</span>
+            </a>
+          {{ end }}
+
+          <div class="relative">
+            <button id="version-dropdown-btn" class="inline-flex items-center gap-2 px-4 py-2 bg-primary-100 hover:bg-primary-200 text-primary-900 rounded-lg transition-colors">
+              <span class="hidden md:block">Change version</span>
+              <span class="block md:hidden">Version</span>
+              <span class="w-4 h-4">{{ partial "icon.html" "chevron-down" }}</span>
+            </button>
+            <div id="version-dropdown-menu" class="hidden absolute right-0 mt-2 w-48 rounded-lg shadow-lg bg-neutral-50 border border-neutral-200 z-10 max-h-96 overflow-y-auto">
+              {{ range $versions }}
+                <button class="version-option w-full flex items-center justify-between px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100 text-left" data-version="{{ .Params.version }}" data-release-notes-url="{{ .Params.release_notes_url }}">
+                  {{ .Params.version }}
+                  {{ if eq .Params.version $latest }}
+                    <span class="text-xs bg-green-100 text-green-800 px-2 py-0.5 rounded-full font-medium">Latest</span>
+                  {{ end }}
+                </button>
+              {{ end }}
+            </div>
           </div>
         </div>
       </div>
@@ -184,5 +197,78 @@
 
   </div>
 {{ end }}
+</div>
 
+<!-- CONTROL PLANE TAB -->
+<div id="panel-controlplane" role="tabpanel" aria-labelledby="tab-controlplane" style="display:none;">
+
+{{ with $cpPage }}
+  <section class="section-light-1 py-12">
+    <div class="max-w-350 mx-auto px-4">
+      {{ if .Params.images }}
+        <h2 class="text-2xl lg:text-3xl font-bold text-neutral-900 mb-6">Virtual appliance images</h2>
+        <div class="overflow-x-auto rounded-lg mt-4">
+          <table class="w-full">
+            <thead class="border-b">
+              <tr>
+                <th class="text-left px-4 py-3 font-bold">Provider</th>
+                <th class="text-left px-4 py-3 font-bold">Format</th>
+                <th class="text-left px-4 py-3 font-bold">Download</th>
+                <th class="text-left px-4 py-3 font-bold">Docs</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-neutral-200">
+              {{ range .Params.images }}
+                <tr class="hover:bg-neutral-50">
+                  <td class="px-4 py-3 text-neutral-700">{{ .provider }}</td>
+                  <td class="px-4 py-3 text-neutral-600 text-sm">{{ .format }}</td>
+                  <td class="px-4 py-3">
+                    {{ if .marketplace_url }}
+                      <a href="{{ .marketplace_url }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-primary-500 hover:underline">
+                        View on Marketplace
+                        <span class="w-3 h-3">{{ partial "icon.html" "ri/external-link-line" }}</span>
+                      </a>
+                    {{ else if .download_url }}
+                      <a href="{{ .download_url }}" class="text-primary-500 hover:underline">download</a>
+                    {{ end }}
+                  </td>
+                  <td class="px-4 py-3">
+                    {{ with .docs_url }}
+                      <a href="{{ . }}" class="text-primary-500 hover:underline">Installation guide</a>
+                    {{ end }}
+                  </td>
+                </tr>
+              {{ end }}
+            </tbody>
+          </table>
+        </div>
+      {{ end }}
+    </div>
+  </section>
+
+  <section class="py-12">
+    <div class="max-w-350 mx-auto px-4 flex flex-col lg:flex-row justify-between lg:items-baseline gap-6">
+      <div class="flex flex-col gap-2">
+        <h2 class="text-2xl font-medium text-neutral-900">Need help getting started?</h2>
+        <p class="text-neutral-600">Check our documentation for deployment guides and configuration references.</p>
+      </div>
+      <div class="flex gap-3 shrink-0">
+        {{ partial "components/buttons/base-button.html" (dict
+          "label" "Installation Guide"
+          "href" "/control-plane-docs/intro/installation/"
+        ) }}
+        {{ partial "components/buttons/base-button.html" (dict
+          "label" "Documentation"
+          "href" "/control-plane-docs"
+          "bgColor" "bg-neutral-900"
+          "bgHoverColor" "bg-neutral-50"
+          "textColor" "text-neutral-50"
+          "textHoverColor" "hover:text-neutral-900"
+        ) }}
+      </div>
+    </div>
+  </section>
+  {{ end }}
+
+</div>
 {{ end }}
