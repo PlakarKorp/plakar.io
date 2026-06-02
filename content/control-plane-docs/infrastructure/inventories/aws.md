@@ -123,24 +123,11 @@ After creating the inventory, you must trigger a **synchronization** to discover
 and load resources. You can run synchronization at any time to refresh the
 inventory, for example after adding new resources to your AWS account.
 
-### Resource Visibility
-
-By default, the inventory table displays only resources that Plakar Control
-Plane supports:
-
-- Object storage resources (S3 buckets)
-- Compute resources (EC2 instances)
-- Database resources (PostgreSQL RDS instances)
-
-All other discovered resources are marked as **unclassified** and are hidden
-from the table by default. To view all discovered resources, enable the
-**Include unclassified** toggle.
-
-![](../images/aws-inventory.png)
-
 All configuration details provided during inventory creation can be updated
 later in the **Settings** tab. The inventory can also be deleted entirely from
 this tab if no longer needed.
+
+![](../images/aws-inventory.png)
 
 ## Managing Resources
 
