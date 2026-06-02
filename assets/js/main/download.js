@@ -1,13 +1,39 @@
 // Targets: layouts/download/list.html
+// Elements: #tab-plakar, #tab-controlplane, #panel-plakar, #panel-controlplane
 // Elements: #version-dropdown-btn, #version-dropdown-menu, #current-version-display
 // Elements: #release-notes-link, .version-option, .version-panel, .version-badge, .sha-copy-btn
 
 document.addEventListener("DOMContentLoaded", () => {
+  // ---- Tab switching ----
+  const tabPlakar = document.getElementById("tab-plakar");
+  const tabCP = document.getElementById("tab-controlplane");
+  const panelPlakar = document.getElementById("panel-plakar");
+  const panelCP = document.getElementById("panel-controlplane");
+
+  const showTab = (tab) => {
+    const isPlakar = tab === "plakar";
+    if (panelPlakar) panelPlakar.style.display = isPlakar ? "" : "none";
+    if (panelCP) panelCP.style.display = isPlakar ? "none" : "";
+    tabPlakar?.classList.toggle("border-primary-500", isPlakar);
+    tabPlakar?.classList.toggle("text-primary-600", isPlakar);
+    tabPlakar?.classList.toggle("border-transparent", !isPlakar);
+    tabPlakar?.classList.toggle("text-neutral-500", !isPlakar);
+    tabCP?.classList.toggle("border-primary-500", !isPlakar);
+    tabCP?.classList.toggle("text-primary-600", !isPlakar);
+    tabCP?.classList.toggle("border-transparent", isPlakar);
+    tabCP?.classList.toggle("text-neutral-500", isPlakar);
+    const url = new URL(window.location);
+    url.searchParams.set("product", tab);
+    history.replaceState({}, "", url);
+  };
+
+  tabPlakar?.addEventListener("click", () => showTab("plakar"));
+  tabCP?.addEventListener("click", () => showTab("controlplane"));
+
+  // ---- OSS Plakar version selector ----
   const btn = document.getElementById("version-dropdown-btn");
   const menu = document.getElementById("version-dropdown-menu");
-  const currentVersionDisplay = document.getElementById(
-    "current-version-display",
-  );
+  const currentVersionDisplay = document.getElementById("current-version-display");
   const releaseNotesLink = document.getElementById("release-notes-link");
   const panels = document.querySelectorAll(".version-panel");
   const badges = document.querySelectorAll(".version-badge");
@@ -15,15 +41,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const showVersion = (version) => {
     if (currentVersionDisplay) currentVersionDisplay.textContent = version;
-
     panels.forEach((p) => {
       p.style.display = p.dataset.version === version ? "" : "none";
     });
-
     badges.forEach((b) => {
       b.style.display = b.dataset.version === version ? "" : "none";
     });
-
     options.forEach((o) => {
       const active = o.dataset.version === version;
       o.classList.toggle("bg-primary-50", active);
@@ -33,11 +56,9 @@ document.addEventListener("DOMContentLoaded", () => {
         releaseNotesLink.href = o.dataset.releaseNotesUrl;
       }
     });
-
     const url = new URL(window.location);
     url.searchParams.set("version", version);
-    history.pushState({}, "", url);
-
+    history.replaceState({}, "", url);
     menu?.classList.add("hidden");
   };
 
@@ -46,6 +67,11 @@ document.addEventListener("DOMContentLoaded", () => {
     menu?.classList.toggle("hidden");
   });
 
+  options.forEach((o) => {
+    o.addEventListener("click", () => showVersion(o.dataset.version));
+  });
+
+  // ---- Close dropdown on outside click ----
   document.addEventListener("click", (e) => {
     if (
       !e.target.closest("#version-dropdown-btn") &&
@@ -55,15 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  options.forEach((o) => {
-    o.addEventListener("click", () => showVersion(o.dataset.version));
-  });
-
-  const params = new URLSearchParams(window.location.search);
-  const firstPanel = panels[0];
-  const version = params.get("version") || firstPanel?.dataset.version;
-  if (version) showVersion(version);
-
+  // ---- SHA copy buttons ----
   document.querySelectorAll(".sha-copy-btn").forEach((btn) => {
     btn.addEventListener("click", async () => {
       const sha = btn.dataset.sha;
@@ -79,4 +97,14 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 1500);
     });
   });
+
+  // ---- Init ----
+  const params = new URLSearchParams(window.location.search);
+
+  const product = params.get("product") || "plakar";
+  showTab(product);
+
+  const firstPanel = panels[0];
+  const version = params.get("version") || firstPanel?.dataset.version;
+  if (version) showVersion(version);
 });
