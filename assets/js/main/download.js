@@ -22,6 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
     tabCP?.classList.toggle("text-primary-600", !isPlakar);
     tabCP?.classList.toggle("border-transparent", isPlakar);
     tabCP?.classList.toggle("text-neutral-500", isPlakar);
+    tabPlakar?.setAttribute("aria-selected", isPlakar ? "true" : "false");
+    tabCP?.setAttribute("aria-selected", isPlakar ? "false" : "true");
     const url = new URL(window.location);
     url.searchParams.set("product", tab);
     history.replaceState({}, "", url);

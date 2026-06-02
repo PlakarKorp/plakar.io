@@ -47,15 +47,15 @@
 <!-- Product tabs -->
 <section class="section-light-2 border-b border-neutral-200">
   <div class="max-w-350 mx-auto px-4">
-    <div class="flex">
-      <button id="tab-plakar" class="download-tab px-6 py-3 text-sm font-medium border-b-2 -mb-px border-primary-500 text-primary-600">Plakar</button>
-      <button id="tab-controlplane" class="download-tab px-6 py-3 text-sm font-medium border-b-2 -mb-px border-transparent text-neutral-500 hover:text-neutral-700">Control Plane</button>
+    <div class="flex" role="tablist" aria-label="Product">
+      <button id="tab-plakar" role="tab" aria-selected="true" aria-controls="panel-plakar" class="download-tab px-6 py-3 text-sm font-medium border-b-2 -mb-px border-primary-500 text-primary-600">Plakar</button>
+      <button id="tab-controlplane" role="tab" aria-selected="false" aria-controls="panel-controlplane" class="download-tab px-6 py-3 text-sm font-medium border-b-2 -mb-px border-transparent text-neutral-500 hover:text-neutral-700">Control Plane</button>
     </div>
   </div>
 </section>
 
 <!-- PLAKAR TAB -->
-<div id="panel-plakar">
+<div id="panel-plakar" role="tabpanel" aria-labelledby="tab-plakar">
 
 <!-- Version Selector -->
 <section class="section-light-2 py-8 border-t border-b border-neutral-200">
@@ -200,7 +200,7 @@
 </div>
 
 <!-- CONTROL PLANE TAB -->
-<div id="panel-controlplane" style="display:none;">
+<div id="panel-controlplane" role="tabpanel" aria-labelledby="tab-controlplane" style="display:none;">
 
 {{ with $cpPage }}
   <section class="section-light-1 py-12">
