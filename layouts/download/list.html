@@ -69,14 +69,14 @@
 
         <div class="flex flex-row gap-4 items-center">
           {{ with $latestPage.Params.release_notes_url }}
-            <a id="release-notes-link" href="{{ . }}" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-neutral-100 hover:bg-neutral-200 text-neutral-900 rounded-lg transition-colors">
+            <a id="release-notes-link" href="{{ . }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-neutral-100 hover:bg-neutral-200 text-neutral-900 rounded-lg transition-colors">
               <span>Release Notes</span>
               <span class="w-4 h-4">{{ partial "icon.html" "ri/external-link-line" }}</span>
             </a>
           {{ end }}
 
           {{ with $latestPage.Params.tests_status_url }}
-            <a href="{{ . }}" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-neutral-100 hover:bg-neutral-200 text-neutral-900 rounded-lg transition-colors">
+            <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-neutral-100 hover:bg-neutral-200 text-neutral-900 rounded-lg transition-colors">
               <span>Tests Status</span>
               <span class="w-4 h-4">{{ partial "icon.html" "ri/external-link-line" }}</span>
             </a>
@@ -224,7 +224,7 @@
                   <td class="px-4 py-3 text-neutral-600 text-sm">{{ .format }}</td>
                   <td class="px-4 py-3">
                     {{ if .marketplace_url }}
-                      <a href="{{ .marketplace_url }}" target="_blank" class="inline-flex items-center gap-1 text-primary-500 hover:underline">
+                      <a href="{{ .marketplace_url }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-primary-500 hover:underline">
                         View on Marketplace
                         <span class="w-3 h-3">{{ partial "icon.html" "ri/external-link-line" }}</span>
                       </a>
