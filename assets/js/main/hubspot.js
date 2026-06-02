@@ -12,6 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
   script.id = "hs-script-loader";
   script.async = true;
   script.defer = true;
-  script.src = `//js.hs-scripts.com/${portalId}.js`;
+  script.src = `https://js.hs-scripts.com/${portalId}.js`;
   document.head.appendChild(script);
 });
