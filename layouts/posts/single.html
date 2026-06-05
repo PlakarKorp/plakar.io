@@ -62,7 +62,7 @@
   <div class="max-w-350 mx-auto flex flex-col xl:flex-row items-start gap-8">
 
     <!-- TOC sidebar -->
-    <aside class="hidden xl:block xl:sticky xl:top-28 w-70 shrink-0">
+    <aside class="hidden xl:block xl:sticky xl:top-28 w-70 shrink-0 docs-font">
       {{ partial "series/series.html" . }}
       {{ partial "docs/toc.html" . }}
       {{ partial "posts/toc-share.html" . }}
@@ -94,9 +94,9 @@
       {{ end }}
 
       {{ if .Params.series }}
-      <details class="xl:hidden overflow-hidden rounded-lg ps-5">
-        {{ partial "series/series_base.html" . }}
-      </details>
+        <div class="xl:hidden overflow-hidden rounded-lg ps-5 docs-font">
+          {{ partial "series/series_base.html" . }}
+        </div>
       {{ end }}
 
       <hr class="border-neutral-200">
