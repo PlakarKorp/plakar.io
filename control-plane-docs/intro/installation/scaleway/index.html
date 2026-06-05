@@ -81,7 +81,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="control-plane-docs">
     <meta property="article:published_time" content="2026-05-15T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-06-03T00:52:58+02:00">
+    <meta property="article:modified_time" content="2026-06-05T10:30:23+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -264,7 +264,7 @@
     "dateCreated": "2026-05-15T00:00:00\u002b00:00",
     "datePublished": "2026-05-15T00:00:00\u002b00:00",
     
-    "dateModified": "2026-06-03T00:52:58\u002b02:00",
+    "dateModified": "2026-06-05T10:30:23\u002b02:00",
     
     
     
@@ -3202,7 +3202,8 @@
   </span>
   
 </div>
-<p>Plakar Control Plane is distributed for Scaleway as a QCOW2 virtual machine image. The official QCOW2 image for Scaleway can be downloaded from:</p>
+<p>Plakar Control Plane is distributed for Scaleway as a QCOW2 virtual machine
+image. The official QCOW2 image for Scaleway can be downloaded from:</p>
 <ul>
 <li><a href="https://www.plakar.io/dist/releases/plakar/control-plane/appliance/plakar-appliance_v1.1.0_efi.qcow2"  target="_blank" rel="noreferrer">Plakar Control Plane QCOW2 Image</a></li>
 </ul>
@@ -3215,8 +3216,13 @@
   </span>
   
 </div>
-<p>Unlike marketplace-based deployments such as AWS AMIs, Scaleway instances cannot boot directly from an uploaded QCOW2 image. The image must first be imported into Scaleway Block Storage as a snapshot, which can then be attached as the boot volume for the instance.</p>
-<p>Before importing the image as a snapshot, the QCOW2 file must first be uploaded to Scaleway Object Storage. Create an Object Storage bucket, then upload the QCOW2 image to the bucket.</p>
+<p>Unlike marketplace-based deployments such as AWS AMIs, Scaleway instances cannot
+boot directly from an uploaded QCOW2 image. The image must first be imported
+into Scaleway Block Storage as a snapshot, which can then be attached as the
+boot volume for the instance.</p>
+<p>Before importing the image as a snapshot, the QCOW2 file must first be uploaded
+to Scaleway Object Storage. Create an Object Storage bucket, then upload the
+QCOW2 image to the bucket.</p>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
@@ -3234,8 +3240,10 @@
   </span>
   
 </div>
-<p>Once the QCOW2 image has been uploaded, open the bucket <strong>Files</strong> page and select <strong>Import as snapshot</strong> from the object actions menu.</p>
-<p>Scaleway will convert the QCOW2 image into a Block Storage snapshot that can later be attached as the root volume for the instance.</p>
+<p>Once the QCOW2 image has been uploaded, open the bucket <strong>Files</strong> page and
+select <strong>Import as snapshot</strong> from the object actions menu.</p>
+<p>Scaleway will convert the QCOW2 image into a Block Storage snapshot that can
+later be attached as the root volume for the instance.</p>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
@@ -3280,7 +3288,8 @@
 </svg>
 </span></div>
       </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Scaleway instances can only attach block storage volumes from the same zone.</p>
-<p>The Object Storage bucket, Block Storage volumes, snapshots, and compute instance should also belong to the same Scaleway project.</p></div></details>
+<p>The Object Storage bucket, Block Storage volumes, snapshots, and compute
+instance should also belong to the same Scaleway project.</p></div></details>
 <div class="relative group">
   <h2 id="creating-the-scaleway-instance">Creating the Scaleway instance</h2>
   
@@ -3289,8 +3298,10 @@
   </span>
   
 </div>
-<p>Create a new Scaleway compute instance using the Block Storage snapshot as the boot source.</p>
-<p>The instance must be created in the same Scaleway zone as the snapshot, otherwise the snapshot will not be available for attachment as the root volume.</p>
+<p>Create a new Scaleway compute instance using the Block Storage snapshot as the
+boot source.</p>
+<p>The instance must be created in the same Scaleway zone as the snapshot,
+otherwise the snapshot will not be available for attachment as the root volume.</p>
 <p>Plakar Control Plane is recommended to run on a machine with:</p>
 <ul>
 <li><strong>8 vCPUs</strong></li>
@@ -3305,7 +3316,8 @@
     alt=""
     src="../images/create-scaleway-cpu-instance.png"
     ></figure>
-<p>Select the Scaleway zone where the instance should be created, then continue to the instance configuration step.</p>
+<p>Select the Scaleway zone where the instance should be created, then continue to
+the instance configuration step.</p>
 <p>For the instance boot image:</p>
 <ol>
 <li>Open the <strong>My snapshots</strong> section</li>
@@ -3319,7 +3331,9 @@
     alt=""
     src="../images/configure-scaleway-cpu-instance.png"
     ></figure>
-<p>The Block Storage Snapshot volume is used only as the operating system boot disk. Plakar Control Plane requires an additional persistent data volume for internal application data.</p>
+<p>The Block Storage Snapshot volume is used only as the operating system boot
+disk. Plakar Control Plane requires an additional persistent data volume for
+internal application data.</p>
 <p>Attach an additional Block Storage volume with a recommended size of <code>1024 GB</code>.</p>
 
 <div class="relative group">
@@ -3331,16 +3345,21 @@
   
 </div>
 <p>The networking configuration below is intended for a basic deployment setup.</p>
-<p>In production environments, networking and access control should be adapted to match your infrastructure and security requirements. For example:</p>
+<p>In production environments, networking and access control should be adapted to
+match your infrastructure and security requirements. For example:</p>
 <ul>
-<li>Exposing Plakar Control Plane through a load balancer with HTTPS/TLS certificates</li>
+<li>Exposing Plakar Control Plane through a load balancer with HTTPS/TLS
+certificates</li>
 <li>Restricting access through a VPN or private network</li>
 <li>Limiting inbound traffic to trusted IP ranges</li>
 <li>Using internal-only networking</li>
 </ul>
 <p>You&rsquo;ll need to assign both an IPv4 and IPv6 address to the instance.</p>
-<p>When the instance is created, Scaleway automatically attaches the default security group. Once the instance is running, open the instances page and go to the <strong>Security Group</strong> tab.</p>
-<p>Under the inbound rules configuration, set the default inbound policy to <strong>drop all</strong>, then add a rule allowing inbound TCP traffic on port <code>80</code>.</p>
+<p>When the instance is created, Scaleway automatically attaches the default
+security group. Once the instance is running, open the instances page and go to
+the <strong>Security Group</strong> tab.</p>
+<p>Under the inbound rules configuration, set the default inbound policy to <strong>drop
+all</strong>, then add a rule allowing inbound TCP traffic on port <code>80</code>.</p>
 <p>The allowed source can be:</p>
 <ul>
 <li>Your public IP address</li>
@@ -3371,7 +3390,8 @@
   />
 </svg>
 </span></div>
-      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Using <code>0.0.0.0/0</code> allows access from any IP address and should only be used for testing or temporary deployments.</p></div></details>
+      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Using <code>0.0.0.0/0</code> allows access from any IP address and should only be used
+for testing or temporary deployments.</p></div></details>
 <div class="relative group">
   <h2 id="accessing-plakar-control-plane">Accessing Plakar Control Plane</h2>
   
@@ -3380,9 +3400,12 @@
   </span>
   
 </div>
-<p>After the instance has started and the security group has been configured, Plakar Control Plane can be accessed from your browser using:</p>
+<p>After the instance has started and the security group has been configured,
+Plakar Control Plane can be accessed from your browser using:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">http://&lt;public-ipv4-address&gt;</span></span></code></pre></div></div>
-<p>Where <code>&lt;public-ipv4-address&gt;</code> is the public IPv4 address assigned to the instance. For first-time installations, you will be guided through the enrollment process to:</p>
+<p>Where <code>&lt;public-ipv4-address&gt;</code> is the public IPv4 address assigned to the
+instance. For first-time installations, you will be guided through the
+enrollment process to:</p>
 <ul>
 <li>Register the instance with Plakar services for licensing and billing</li>
 <li>Create the initial administrator account</li>
@@ -3431,7 +3454,7 @@
   
   <div class="flex items-center justify-between text-xs text-neutral-400">
     
-      <span>Last updated: June 3, 2026</span>
+      <span>Last updated: June 5, 2026</span>
     
     
       <a href="https://github.com/PlakarKorp/plakar.io/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">
