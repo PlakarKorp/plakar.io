@@ -85,8 +85,10 @@ The source can be:
 
 For testing purposes, you can temporarily use `0.0.0.0/0`
 
-> [!WARNING]+ Using `0.0.0.0/0` allows access from any IP address and should
-> only be used for testing or temporary deployments.
+> [!WARNING]+
+>
+> Using `0.0.0.0/0` allows access from any IP address and should only be used
+> for testing or temporary deployments.
 
 ## Assigning an IAM Role
 
