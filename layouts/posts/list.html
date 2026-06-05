@@ -92,10 +92,15 @@
 {{ end }}
 
 <!-- Category filter -->
-{{ $categoryLabels := dict "announcement" "Announcement" "release-note" "Release Notes" "community" "Community" "insights" "Insights" "technology" "Technology" }}
-{{ $categoryOrder := slice "announcement" "release-note" "community" "insights" "technology" }}
+{{ $categories := slice
+  (dict "key" "announcement" "label" "Announcement")
+  (dict "key" "release-note" "label" "Release Notes")
+  (dict "key" "community" "label" "Community")
+  (dict "key" "insights" "label" "Insights")
+  (dict "key" "technology" "label" "Technology")
+}}
 {{ $usedCategories := slice }}
-{{ range (where .Pages "Params.hidden" "ne" true) }}
+{{ range $allVisible }}
   {{ with .Params.category }}
     {{ if not (in $usedCategories .) }}
       {{ $usedCategories = $usedCategories | append . }}
@@ -115,18 +120,18 @@
       </button>
       <div class="posts-filter-dropdown-menu hidden absolute top-full mt-1 w-full bg-neutral-50 border border-neutral-200 rounded-lg z-50 overflow-hidden shadow-lg">
         <a data-filter="all" class="filter-dropdown-option block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 cursor-pointer">All Posts</a>
-        {{ range $categoryOrder }}
-          {{ if in $usedCategories . }}
-            <a data-filter="{{ . }}" class="filter-dropdown-option block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 cursor-pointer">{{ index $categoryLabels . }}</a>
+        {{ range $categories }}
+          {{ if in $usedCategories .key }}
+            <a data-filter="{{ .key }}" class="filter-dropdown-option block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 cursor-pointer">{{ .label }}</a>
           {{ end }}
         {{ end }}
       </div>
     </div>
     <div class="hidden sm:inline-flex items-center gap-1 bg-neutral-50 rounded-xl p-2" id="posts-filter">
       <a data-filter="all" class="filter-btn px-4 py-3 rounded-lg text-sm cursor-pointer font-medium transition-all duration-150 text-neutral-700">All Posts</a>
-      {{ range $categoryOrder }}
-        {{ if in $usedCategories . }}
-          <a data-filter="{{ . }}" class="filter-btn px-2 py-4 rounded-lg text-sm cursor-pointer font-medium transition-all duration-150 text-neutral-700">{{ index $categoryLabels . }}</a>
+      {{ range $categories }}
+        {{ if in $usedCategories .key }}
+          <a data-filter="{{ .key }}" class="filter-btn px-2 py-4 rounded-lg text-sm cursor-pointer font-medium transition-all duration-150 text-neutral-700">{{ .label }}</a>
         {{ end }}
       {{ end }}
     </div>
@@ -137,7 +142,6 @@
 <!-- Posts grid -->
 <section id="posts-grid" class="section-light-2 px-4 py-12">
   <div class="max-w-350 mx-auto">
-    {{ $allVisible := where .Pages "Params.hidden" "ne" true }}
     {{ $rest := after 1 (sort $allVisible "Date" "desc") }}
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {{ range $rest }}
