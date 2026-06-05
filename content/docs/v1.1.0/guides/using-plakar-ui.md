@@ -91,6 +91,12 @@ Installing integrations from the UI and alerting require the user to be logged
 in. You can log in directly from the UI either using your email and receiving a
 magic link or with your GitHub account.
 
+Plakar provides pre-built integration packages as a convenience. Login is
+required to prevent abuse on our servers. If you prefer not to log in, you can
+build and install integration packages locally from source. See the
+[Managing packages](../managing-packages/) and
+[Logging in to Plakar](../logging-in-to-plakar/) guides for more details.
+
 ![](../images/login-with-plakar-ui.png)
 
 ### Managing integrations
@@ -110,5 +116,4 @@ tasks.
 
 ## See also
 
-- [Logging in to Plakar](../logging-in-to-plakar)
 - [plakar ui](../references/commands/plakar-ui)
