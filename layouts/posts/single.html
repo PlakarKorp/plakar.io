@@ -93,11 +93,9 @@
         {{ end }}
       {{ end }}
 
-      {{ if .Params.series }}
-        <div class="xl:hidden overflow-hidden rounded-lg ps-5 docs-font">
-          {{ partial "series/series_base.html" . }}
-        </div>
-      {{ end }}
+      <div class="xl:hidden overflow-hidden rounded-lg ps-5 docs-font">
+        {{ partial "series/series_base.html" . }}
+      </div>
 
       <hr class="border-neutral-200">
 
