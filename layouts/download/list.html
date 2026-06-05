@@ -39,35 +39,81 @@
   <div class="max-w-350 mx-auto px-4">
     <div class="flex flex-col gap-2">
       <h1 class="text-4xl font-medium text-neutral-900">Downloads</h1>
-      <p class="text-lg text-neutral-600">Open source and Control Plane enterprise edition</p>
+      <p class="text-lg text-neutral-600">Open source and Control Plane enterprise versions</p>
     </div>
   </div>
 </section>
 
-<!-- Product tabs -->
-<section class="section-light-2 border-b border-neutral-200">
-  <div class="max-w-350 mx-auto px-4">
-    <div class="flex" role="tablist" aria-label="Product">
-      <button id="tab-plakar" role="tab" aria-selected="true" aria-controls="panel-plakar" class="download-tab px-6 py-3 text-sm font-medium border-b-2 -mb-px border-primary-500 text-primary-600">Plakar</button>
-      <button id="tab-controlplane" role="tab" aria-selected="false" aria-controls="panel-controlplane" class="download-tab px-6 py-3 text-sm font-medium border-b-2 -mb-px border-transparent text-neutral-500 hover:text-neutral-700">Control Plane</button>
+<!-- CONTROL PLANE SECTION -->
+<section class="section-light-2 py-12 border-t border-neutral-200">
+  <div class="max-w-350 mx-auto px-4 flex flex-col gap-6">
+    <div class="flex flex-col gap-2">
+      <h2 class="text-3xl font-medium text-neutral-900">Plakar Control Plane</h2>
+      <p class="text-neutral-600 max-w-2xl">
+        Plakar Control Plane is the enterprise version of Plakar. It is delivered as a virtual appliance and provides a web-based management interface for centralized backup management for your infrastructure.
+      </p>
     </div>
+
+    {{ with $cpPage }}
+      {{ if .Params.images }}
+        <div class="overflow-x-auto rounded-lg">
+          <table class="w-full">
+            <thead class="border-b">
+              <tr>
+                <th class="text-left px-4 py-3 font-bold">Provider</th>
+                <th class="text-left px-4 py-3 font-bold">Format</th>
+                <th class="text-left px-4 py-3 font-bold">Download</th>
+                <th class="text-left px-4 py-3 font-bold">Docs</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-neutral-200">
+              {{ range .Params.images }}
+                <tr>
+                  <td class="px-4 py-3 text-neutral-700">{{ .provider }}</td>
+                  <td class="px-4 py-3 text-neutral-600 text-sm">{{ .format }}</td>
+                  <td class="px-4 py-3">
+                    {{ if .marketplace_url }}
+                      <a href="{{ .marketplace_url }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-primary-500 hover:underline">
+                        View on Marketplace
+                        <span class="w-3 h-3">{{ partial "icon.html" "ri/external-link-line" }}</span>
+                      </a>
+                    {{ else if .download_url }}
+                      <a href="{{ .download_url }}" class="text-primary-500 hover:underline">download</a>
+                    {{ end }}
+                  </td>
+                  <td class="px-4 py-3">
+                    {{ with .docs_url }}
+                      <a href="{{ . }}" class="text-primary-500 hover:underline">Installation guide</a>
+                    {{ end }}
+                  </td>
+                </tr>
+              {{ end }}
+            </tbody>
+          </table>
+        </div>
+      {{ end }}
+    {{ end }}
   </div>
 </section>
 
-<!-- PLAKAR TAB -->
-<div id="panel-plakar" role="tabpanel" aria-labelledby="tab-plakar">
+<!-- PLAKAR OSS SECTION -->
+<section class="section-light-1 py-12 border-t border-neutral-200">
+  <div class="max-w-350 mx-auto px-4 flex flex-col gap-6">
+    <div class="flex flex-col gap-2">
+      <h2 class="text-3xl font-medium text-neutral-900">Plakar</h2>
+      <p class="text-neutral-600 max-w-2xl">
+        Plakar is the open source backup tool. It supports multiple <a href="/integrations" class="text-primary-500 hover:underline">integrations</a>, end-to-end encryption, deduplication, and is available as pre-built binaries for all major platforms.
+      </p>
+    </div>
 
-<!-- Version Selector -->
-<section class="section-light-2 py-8 border-t border-b border-neutral-200">
-  <div class="max-w-350 mx-auto px-4">
-    <div class="flex flex-col gap-4">
-
-      <div class="flex items-center justify-between">
-        <h2 class="text-xl font-medium text-neutral-900">
+    <!-- Version Selector -->
+    <div class="flex flex-col gap-4 p-6 bg-neutral-50 rounded-xl border border-neutral-200">
+      <div class="flex items-center justify-between flex-wrap gap-4">
+        <h3 class="text-lg font-medium text-neutral-900">
           Current version: <span id="current-version-display" class="text-primary-500">{{ $latest }}</span>
-        </h2>
+        </h3>
 
-        <div class="flex flex-row gap-4 items-center">
+        <div class="flex flex-row gap-3 items-center flex-wrap">
           {{ with $latestPage.Params.release_notes_url }}
             <a id="release-notes-link" href="{{ . }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-neutral-100 hover:bg-neutral-200 text-neutral-900 rounded-lg transition-colors">
               <span>Release Notes</span>
@@ -119,20 +165,14 @@
           {{ end }}
         </div>
       {{ end }}
-
     </div>
-  </div>
-</section>
 
-{{ range $versions }}
-  {{ $version := .Params.version }}
-  <div class="version-panel" data-version="{{ $version }}" style="display:none;">
-
-    <section class="section-light-1 py-12">
-      <div class="max-w-350 mx-auto px-4">
+    <!-- Per-version download panels -->
+    {{ range $versions }}
+      {{ $version := .Params.version }}
+      <div class="version-panel" data-version="{{ $version }}" style="display:none;">
         {{ if .Params.downloads }}
-          <h2 class="text-2xl lg:text-3xl font-bold text-neutral-900 mb-6">Direct downloads</h2>
-          <div class="overflow-x-auto rounded-lg mt-4">
+          <div class="overflow-x-auto rounded-lg">
             <table class="w-full">
               <thead class="border-b">
                 <tr>
@@ -168,107 +208,37 @@
         {{ with .Content }}
           <div class="prose max-w-none mt-8">{{ . }}</div>
         {{ end }}
-
       </div>
-    </section>
+    {{ end }}
+  </div>
+</section>
 
-    <section class="py-12">
-      <div class="max-w-350 mx-auto px-4 flex flex-col lg:flex-row justify-between lg:items-baseline gap-6">
-        <div class="flex flex-col gap-2">
-          <h2 class="text-2xl font-medium text-neutral-900">Need help getting started?</h2>
-          <p class="text-neutral-600">Check our documentation for installation guides, usage examples, and more.</p>
-        </div>
-        <div class="flex gap-3 shrink-0">
+<section class="py-12">
+  <div class="max-w-350 mx-auto px-4 flex flex-col lg:flex-row justify-between lg:items-baseline gap-6">
+    <div class="flex flex-col gap-2">
+      <h2 class="text-2xl font-medium text-neutral-900">Need help getting started?</h2>
+      <p class="text-neutral-600">Check our documentation for installation guides, usage examples, and more.</p>
+    </div>
+    <div class="flex gap-3 shrink-0">
+      {{ range $versions }}
+        {{ $version := .Params.version }}
+        <div class="version-panel" data-version="{{ $version }}" style="display:none;">
           {{ partial "components/buttons/base-button.html" (dict
             "label" "Installation Guide"
             "href" (printf "/docs/%s/quickstart/installation/" $version)
           ) }}
-          {{ partial "components/buttons/base-button.html" (dict
-            "label" "Documentation"
-            "href" "/docs"
-            "bgColor" "bg-neutral-900"
-            "bgHoverColor" "bg-neutral-50"
-            "textColor" "text-neutral-50"
-            "textHoverColor" "hover:text-neutral-900"
-          ) }}
-        </div>
-      </div>
-    </section>
-
-  </div>
-{{ end }}
-</div>
-
-<!-- CONTROL PLANE TAB -->
-<div id="panel-controlplane" role="tabpanel" aria-labelledby="tab-controlplane" style="display:none;">
-
-{{ with $cpPage }}
-  <section class="section-light-1 py-12">
-    <div class="max-w-350 mx-auto px-4">
-      {{ if .Params.images }}
-        <h2 class="text-2xl lg:text-3xl font-bold text-neutral-900 mb-6">Virtual appliance images</h2>
-        <div class="overflow-x-auto rounded-lg mt-4">
-          <table class="w-full">
-            <thead class="border-b">
-              <tr>
-                <th class="text-left px-4 py-3 font-bold">Provider</th>
-                <th class="text-left px-4 py-3 font-bold">Format</th>
-                <th class="text-left px-4 py-3 font-bold">Download</th>
-                <th class="text-left px-4 py-3 font-bold">Docs</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-neutral-200">
-              {{ range .Params.images }}
-                <tr class="hover:bg-neutral-50">
-                  <td class="px-4 py-3 text-neutral-700">{{ .provider }}</td>
-                  <td class="px-4 py-3 text-neutral-600 text-sm">{{ .format }}</td>
-                  <td class="px-4 py-3">
-                    {{ if .marketplace_url }}
-                      <a href="{{ .marketplace_url }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-primary-500 hover:underline">
-                        View on Marketplace
-                        <span class="w-3 h-3">{{ partial "icon.html" "ri/external-link-line" }}</span>
-                      </a>
-                    {{ else if .download_url }}
-                      <a href="{{ .download_url }}" class="text-primary-500 hover:underline">download</a>
-                    {{ end }}
-                  </td>
-                  <td class="px-4 py-3">
-                    {{ with .docs_url }}
-                      <a href="{{ . }}" class="text-primary-500 hover:underline">Installation guide</a>
-                    {{ end }}
-                  </td>
-                </tr>
-              {{ end }}
-            </tbody>
-          </table>
         </div>
       {{ end }}
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "Documentation"
+        "href" "/docs"
+        "bgColor" "bg-neutral-900"
+        "bgHoverColor" "bg-neutral-50"
+        "textColor" "text-neutral-50"
+        "textHoverColor" "hover:text-neutral-900"
+      ) }}
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="py-12">
-    <div class="max-w-350 mx-auto px-4 flex flex-col lg:flex-row justify-between lg:items-baseline gap-6">
-      <div class="flex flex-col gap-2">
-        <h2 class="text-2xl font-medium text-neutral-900">Need help getting started?</h2>
-        <p class="text-neutral-600">Check our documentation for deployment guides and configuration references.</p>
-      </div>
-      <div class="flex gap-3 shrink-0">
-        {{ partial "components/buttons/base-button.html" (dict
-          "label" "Installation Guide"
-          "href" "/control-plane-docs/intro/installation/"
-        ) }}
-        {{ partial "components/buttons/base-button.html" (dict
-          "label" "Documentation"
-          "href" "/control-plane-docs"
-          "bgColor" "bg-neutral-900"
-          "bgHoverColor" "bg-neutral-50"
-          "textColor" "text-neutral-50"
-          "textHoverColor" "hover:text-neutral-900"
-        ) }}
-      </div>
-    </div>
-  </section>
-  {{ end }}
-
-</div>
 {{ end }}
