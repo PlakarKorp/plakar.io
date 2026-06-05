@@ -142,8 +142,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.95ddcd13b636743fc649d480e61d248678641e89a110124795b35af34f7c4230ef11613c4b0cb6f08feec2cb0c94bd0c7847a40b88130b5548dff42682f62f44.css"
-    integrity="sha512-ld3NE7Y2dD/GSdSA5h0khnhkHomhEBJHlbNa8098QjDvEWE8Swy28I/uwssMlL0MeEekC4gTC1VI3/QmgvYvRA==">
+    href="/css/main.bundle.min.27254615f150a316f4fd6aa5b99e479e8e555c4334ba5b67a6a93b0f26b90d4ab7ed64f32c5102f1017ad1ccb2bb5a07e5be836b9df8c43c0ccac35ac9a697d4.css"
+    integrity="sha512-JyVGFfFQoxb0/WqluZ5Hno5VXEM0ultnpqk7Dya5DUq37WTzLFEC8QF60cyyu1oH5b6Da534xDwMysNayaaX1A==">
 
   
   
@@ -264,7 +264,7 @@
     "dateCreated": "2026-04-03T00:00:00\u002b00:00",
     "datePublished": "2026-04-03T00:00:00\u002b00:00",
     
-    "dateModified": "2026-06-05T11:34:15\u002b02:00",
+    "dateModified": "2026-06-05T11:34:40\u002b02:00",
     
     
     
@@ -317,7 +317,7 @@
 
 
 
-<script src="/js/compiled/bundle.min.cfb7b2939d56e51e42e032c09c062e53e03369be2fc8f94ba40539dd3e9cbef0.js" defer></script>
+<script src="/js/compiled/bundle.min.e667ec08128bbb510d4139763ef3034c64228b9ce7caf7c64205245517042059.js" defer></script>
 
   
 
@@ -1870,35 +1870,125 @@
   <div class="max-w-350 mx-auto px-4">
     <div class="flex flex-col gap-2">
       <h1 class="text-4xl font-medium text-neutral-900">Downloads</h1>
-      <p class="text-lg text-neutral-600">Open source and Control Plane enterprise edition</p>
+      <p class="text-lg text-neutral-600">Open source and Control Plane enterprise versions</p>
     </div>
   </div>
 </section>
 
 
-<section class="section-light-2 border-b border-neutral-200">
-  <div class="max-w-350 mx-auto px-4">
-    <div class="flex" role="tablist" aria-label="Product">
-      <button id="tab-plakar" role="tab" aria-selected="true" aria-controls="panel-plakar" class="download-tab px-6 py-3 text-sm font-medium border-b-2 -mb-px border-primary-500 text-primary-600">Plakar</button>
-      <button id="tab-controlplane" role="tab" aria-selected="false" aria-controls="panel-controlplane" class="download-tab px-6 py-3 text-sm font-medium border-b-2 -mb-px border-transparent text-neutral-500 hover:text-neutral-700">Control Plane</button>
+<section class="section-light-2 py-12 border-t border-neutral-200">
+  <div class="max-w-350 mx-auto px-4 flex flex-col gap-6">
+    <div class="flex flex-col gap-2">
+      <h2 class="text-3xl font-medium text-neutral-900">Plakar Control Plane</h2>
+      <p class="text-neutral-600 max-w-2xl">
+        Plakar Control Plane is the enterprise version of Plakar. It is delivered as a virtual appliance and provides a web-based management interface for centralized backup management for your infrastructure.
+      </p>
     </div>
+
+    
+      
+        <div class="overflow-x-auto rounded-lg">
+          <table class="w-full">
+            <thead class="border-b">
+              <tr>
+                <th class="text-left px-4 py-3 font-bold">Provider</th>
+                <th class="text-left px-4 py-3 font-bold">Format</th>
+                <th class="text-left px-4 py-3 font-bold">Download</th>
+                <th class="text-left px-4 py-3 font-bold">Docs</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-neutral-200">
+              
+                <tr>
+                  <td class="px-4 py-3 text-neutral-700">AWS</td>
+                  <td class="px-4 py-3 text-neutral-600 text-sm">AMI</td>
+                  <td class="px-4 py-3">
+                    
+                      <a href="https://aws.amazon.com/marketplace/pp/prodview-n3wsyckyby6vq" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-primary-500 hover:underline">
+                        View on Marketplace
+                        <span class="w-3 h-3"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V11H19L18.9999 6.413L11.2071 14.2071L9.79289 12.7929L17.5849 5H13V3H21Z"></path></svg>
+</span></span>
+                      </a>
+                    
+                  </td>
+                  <td class="px-4 py-3">
+                    
+                      <a href="/control-plane-docs/intro/installation/aws/" class="text-primary-500 hover:underline">Installation guide</a>
+                    
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td class="px-4 py-3 text-neutral-700">Scaleway</td>
+                  <td class="px-4 py-3 text-neutral-600 text-sm">QCOW2</td>
+                  <td class="px-4 py-3">
+                    
+                      <a href="https://www.plakar.io/dist/releases/plakar/control-plane/appliance/plakar-appliance_v1.1.0_efi.qcow2" class="text-primary-500 hover:underline">download</a>
+                    
+                  </td>
+                  <td class="px-4 py-3">
+                    
+                      <a href="/control-plane-docs/intro/installation/scaleway/" class="text-primary-500 hover:underline">Installation guide</a>
+                    
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td class="px-4 py-3 text-neutral-700">VMware</td>
+                  <td class="px-4 py-3 text-neutral-600 text-sm">OVA</td>
+                  <td class="px-4 py-3">
+                    
+                      <a href="https://www.plakar.io/dist/releases/plakar/control-plane/appliance/plakar-appliance_v1.1.0_efi.ova" class="text-primary-500 hover:underline">download</a>
+                    
+                  </td>
+                  <td class="px-4 py-3">
+                    
+                      <a href="/control-plane-docs/intro/installation/" class="text-primary-500 hover:underline">Installation guide</a>
+                    
+                  </td>
+                </tr>
+              
+                <tr>
+                  <td class="px-4 py-3 text-neutral-700">Other Hypervisors</td>
+                  <td class="px-4 py-3 text-neutral-600 text-sm">ISO</td>
+                  <td class="px-4 py-3">
+                    
+                      <a href="https://www.plakar.io/dist/releases/plakar/control-plane/appliance/plakar-appliance_v1.1.0_efi.iso.gz" class="text-primary-500 hover:underline">download</a>
+                    
+                  </td>
+                  <td class="px-4 py-3">
+                    
+                      <a href="/control-plane-docs/intro/installation/" class="text-primary-500 hover:underline">Installation guide</a>
+                    
+                  </td>
+                </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      
+    
   </div>
 </section>
 
 
-<div id="panel-plakar" role="tabpanel" aria-labelledby="tab-plakar">
+<section class="section-light-1 py-12 border-t border-neutral-200">
+  <div class="max-w-350 mx-auto px-4 flex flex-col gap-6">
+    <div class="flex flex-col gap-2">
+      <h2 class="text-3xl font-medium text-neutral-900">Plakar</h2>
+      <p class="text-neutral-600 max-w-2xl">
+        Plakar is the open source backup tool. It supports multiple <a href="/integrations" class="text-primary-500 hover:underline">integrations</a>, end-to-end encryption, deduplication, and is available as pre-built binaries for all major platforms.
+      </p>
+    </div>
 
-
-<section class="section-light-2 py-8 border-t border-b border-neutral-200">
-  <div class="max-w-350 mx-auto px-4">
-    <div class="flex flex-col gap-4">
-
-      <div class="flex items-center justify-between">
-        <h2 class="text-xl font-medium text-neutral-900">
+    
+    <div class="flex flex-col gap-4 p-6 bg-neutral-50 rounded-xl border border-neutral-200">
+      <div class="flex items-center justify-between flex-wrap gap-4">
+        <h3 class="text-lg font-medium text-neutral-900">
           Current version: <span id="current-version-display" class="text-primary-500">v1.0.6</span>
-        </h2>
+        </h3>
 
-        <div class="flex flex-row gap-4 items-center">
+        <div class="flex flex-row gap-3 items-center flex-wrap">
           
             <a id="release-notes-link" href="https://github.com/PlakarKorp/plakar/releases/tag/v1.0.6" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-neutral-100 hover:bg-neutral-200 text-neutral-900 rounded-lg transition-colors">
               <span>Release Notes</span>
@@ -1992,20 +2082,14 @@
           
         </div>
       
-
     </div>
-  </div>
-</section>
 
-
-  
-  <div class="version-panel" data-version="v1.0.6" style="display:none;">
-
-    <section class="section-light-1 py-12">
-      <div class="max-w-350 mx-auto px-4">
+    
+    
+      
+      <div class="version-panel" data-version="v1.0.6" style="display:none;">
         
-          <h2 class="text-2xl lg:text-3xl font-bold text-neutral-900 mb-6">Direct downloads</h2>
-          <div class="overflow-x-auto rounded-lg mt-4">
+          <div class="overflow-x-auto rounded-lg">
             <table class="w-full">
               <thead class="border-b">
                 <tr>
@@ -2311,99 +2395,12 @@
         
 
         
-
       </div>
-    </section>
-
-    <section class="py-12">
-      <div class="max-w-350 mx-auto px-4 flex flex-col lg:flex-row justify-between lg:items-baseline gap-6">
-        <div class="flex flex-col gap-2">
-          <h2 class="text-2xl font-medium text-neutral-900">Need help getting started?</h2>
-          <p class="text-neutral-600">Check our documentation for installation guides, usage examples, and more.</p>
-        </div>
-        <div class="flex gap-3 shrink-0">
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a href="/docs/v1.0.6/quickstart/installation/" target="_self" class="flex items-center ">
-  <div class="text-neutral-50   bg-primary-500 text-neutral-50 inline-flex relative
-    group overflow-hidden min-h-7 lg:min-h-12 px-4 pr-4 rounded-lg items-center gap-2 transition-all
-    duration-150 ease-out hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1 active:shadow-inner">
-
     
-    <div class="absolute inset-0 bg-primary-600 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-0"></div>
-
-    
-    <div class="relative z-10 flex items-center gap-2">
-      <span class="w-5 h-5 flex items-center justify-center">
-        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4.99989 13.9999L4.99976 5L6.99976 4.99997L6.99986 11.9999L17.1717 12L13.222 8.05024L14.6362 6.63603L21.0001 13L14.6362 19.364L13.222 17.9497L17.1717 14L4.99989 13.9999Z"></path></svg>
-</span>
-      </span>
-      <span class="hidden xl:block">Installation Guide</span>
-      <span class="block xl:hidden">Installation Guide</span>
-    </div>
-  </div>
-</a>
-
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a href="/docs" target="_self" class="flex items-center ">
-  <div class="text-neutral-50   bg-neutral-900 hover:text-neutral-900 inline-flex relative
-    group overflow-hidden min-h-7 lg:min-h-12 px-4 pr-4 rounded-lg items-center gap-2 transition-all
-    duration-150 ease-out hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1 active:shadow-inner">
-
-    
-    <div class="absolute inset-0 bg-neutral-50 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-0"></div>
-
-    
-    <div class="relative z-10 flex items-center gap-2">
-      <span class="w-5 h-5 flex items-center justify-center">
-        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4.99989 13.9999L4.99976 5L6.99976 4.99997L6.99986 11.9999L17.1717 12L13.222 8.05024L14.6362 6.63603L21.0001 13L14.6362 19.364L13.222 17.9497L17.1717 14L4.99989 13.9999Z"></path></svg>
-</span>
-      </span>
-      <span class="hidden xl:block">Documentation</span>
-      <span class="block xl:hidden">Documentation</span>
-    </div>
-  </div>
-</a>
-
-        </div>
-      </div>
-    </section>
-
-  </div>
-
-  
-  <div class="version-panel" data-version="v1.0.5" style="display:none;">
-
-    <section class="section-light-1 py-12">
-      <div class="max-w-350 mx-auto px-4">
+      
+      <div class="version-panel" data-version="v1.0.5" style="display:none;">
         
-          <h2 class="text-2xl lg:text-3xl font-bold text-neutral-900 mb-6">Direct downloads</h2>
-          <div class="overflow-x-auto rounded-lg mt-4">
+          <div class="overflow-x-auto rounded-lg">
             <table class="w-full">
               <thead class="border-b">
                 <tr>
@@ -2709,99 +2706,12 @@
         
 
         
-
       </div>
-    </section>
-
-    <section class="py-12">
-      <div class="max-w-350 mx-auto px-4 flex flex-col lg:flex-row justify-between lg:items-baseline gap-6">
-        <div class="flex flex-col gap-2">
-          <h2 class="text-2xl font-medium text-neutral-900">Need help getting started?</h2>
-          <p class="text-neutral-600">Check our documentation for installation guides, usage examples, and more.</p>
-        </div>
-        <div class="flex gap-3 shrink-0">
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a href="/docs/v1.0.5/quickstart/installation/" target="_self" class="flex items-center ">
-  <div class="text-neutral-50   bg-primary-500 text-neutral-50 inline-flex relative
-    group overflow-hidden min-h-7 lg:min-h-12 px-4 pr-4 rounded-lg items-center gap-2 transition-all
-    duration-150 ease-out hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1 active:shadow-inner">
-
     
-    <div class="absolute inset-0 bg-primary-600 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-0"></div>
-
-    
-    <div class="relative z-10 flex items-center gap-2">
-      <span class="w-5 h-5 flex items-center justify-center">
-        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4.99989 13.9999L4.99976 5L6.99976 4.99997L6.99986 11.9999L17.1717 12L13.222 8.05024L14.6362 6.63603L21.0001 13L14.6362 19.364L13.222 17.9497L17.1717 14L4.99989 13.9999Z"></path></svg>
-</span>
-      </span>
-      <span class="hidden xl:block">Installation Guide</span>
-      <span class="block xl:hidden">Installation Guide</span>
-    </div>
-  </div>
-</a>
-
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a href="/docs" target="_self" class="flex items-center ">
-  <div class="text-neutral-50   bg-neutral-900 hover:text-neutral-900 inline-flex relative
-    group overflow-hidden min-h-7 lg:min-h-12 px-4 pr-4 rounded-lg items-center gap-2 transition-all
-    duration-150 ease-out hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1 active:shadow-inner">
-
-    
-    <div class="absolute inset-0 bg-neutral-50 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-0"></div>
-
-    
-    <div class="relative z-10 flex items-center gap-2">
-      <span class="w-5 h-5 flex items-center justify-center">
-        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4.99989 13.9999L4.99976 5L6.99976 4.99997L6.99986 11.9999L17.1717 12L13.222 8.05024L14.6362 6.63603L21.0001 13L14.6362 19.364L13.222 17.9497L17.1717 14L4.99989 13.9999Z"></path></svg>
-</span>
-      </span>
-      <span class="hidden xl:block">Documentation</span>
-      <span class="block xl:hidden">Documentation</span>
-    </div>
-  </div>
-</a>
-
-        </div>
-      </div>
-    </section>
-
-  </div>
-
-  
-  <div class="version-panel" data-version="v1.0.4" style="display:none;">
-
-    <section class="section-light-1 py-12">
-      <div class="max-w-350 mx-auto px-4">
+      
+      <div class="version-panel" data-version="v1.0.4" style="display:none;">
         
-          <h2 class="text-2xl lg:text-3xl font-bold text-neutral-900 mb-6">Direct downloads</h2>
-          <div class="overflow-x-auto rounded-lg mt-4">
+          <div class="overflow-x-auto rounded-lg">
             <table class="w-full">
               <thead class="border-b">
                 <tr>
@@ -3139,17 +3049,97 @@
         
 
         
-
       </div>
-    </section>
+    
+  </div>
+</section>
 
-    <section class="py-12">
-      <div class="max-w-350 mx-auto px-4 flex flex-col lg:flex-row justify-between lg:items-baseline gap-6">
-        <div class="flex flex-col gap-2">
-          <h2 class="text-2xl font-medium text-neutral-900">Need help getting started?</h2>
-          <p class="text-neutral-600">Check our documentation for installation guides, usage examples, and more.</p>
+<section class="py-12">
+  <div class="max-w-350 mx-auto px-4 flex flex-col lg:flex-row justify-between lg:items-baseline gap-6">
+    <div class="flex flex-col gap-2">
+      <h2 class="text-2xl font-medium text-neutral-900">Need help getting started?</h2>
+      <p class="text-neutral-600">Check our documentation for installation guides, usage examples, and more.</p>
+    </div>
+    <div class="flex gap-3 shrink-0">
+      
+        
+        <div class="version-panel" data-version="v1.0.6" style="display:none;">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a href="/docs/v1.0.6/quickstart/installation/" target="_self" class="flex items-center ">
+  <div class="text-neutral-50   bg-primary-500 text-neutral-50 inline-flex relative
+    group overflow-hidden min-h-7 lg:min-h-12 px-4 pr-4 rounded-lg items-center gap-2 transition-all
+    duration-150 ease-out hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1 active:shadow-inner">
+
+    
+    <div class="absolute inset-0 bg-primary-600 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-0"></div>
+
+    
+    <div class="relative z-10 flex items-center gap-2">
+      <span class="w-5 h-5 flex items-center justify-center">
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4.99989 13.9999L4.99976 5L6.99976 4.99997L6.99986 11.9999L17.1717 12L13.222 8.05024L14.6362 6.63603L21.0001 13L14.6362 19.364L13.222 17.9497L17.1717 14L4.99989 13.9999Z"></path></svg>
+</span>
+      </span>
+      <span class="hidden xl:block">Installation Guide</span>
+      <span class="block xl:hidden">Installation Guide</span>
+    </div>
+  </div>
+</a>
+
         </div>
-        <div class="flex gap-3 shrink-0">
+      
+        
+        <div class="version-panel" data-version="v1.0.5" style="display:none;">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a href="/docs/v1.0.5/quickstart/installation/" target="_self" class="flex items-center ">
+  <div class="text-neutral-50   bg-primary-500 text-neutral-50 inline-flex relative
+    group overflow-hidden min-h-7 lg:min-h-12 px-4 pr-4 rounded-lg items-center gap-2 transition-all
+    duration-150 ease-out hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1 active:shadow-inner">
+
+    
+    <div class="absolute inset-0 bg-primary-600 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-0"></div>
+
+    
+    <div class="relative z-10 flex items-center gap-2">
+      <span class="w-5 h-5 flex items-center justify-center">
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4.99989 13.9999L4.99976 5L6.99976 4.99997L6.99986 11.9999L17.1717 12L13.222 8.05024L14.6362 6.63603L21.0001 13L14.6362 19.364L13.222 17.9497L17.1717 14L4.99989 13.9999Z"></path></svg>
+</span>
+      </span>
+      <span class="hidden xl:block">Installation Guide</span>
+      <span class="block xl:hidden">Installation Guide</span>
+    </div>
+  </div>
+</a>
+
+        </div>
+      
+        
+        <div class="version-panel" data-version="v1.0.4" style="display:none;">
           
 
 
@@ -3184,7 +3174,9 @@
   </div>
 </a>
 
-          
+        </div>
+      
+      
 
 
 
@@ -3218,156 +3210,10 @@
   </div>
 </a>
 
-        </div>
-      </div>
-    </section>
-
-  </div>
-
-</div>
-
-
-<div id="panel-controlplane" role="tabpanel" aria-labelledby="tab-controlplane" style="display:none;">
-
-
-  <section class="section-light-1 py-12">
-    <div class="max-w-350 mx-auto px-4">
-      
-        <h2 class="text-2xl lg:text-3xl font-bold text-neutral-900 mb-6">Virtual appliance images</h2>
-        <div class="overflow-x-auto rounded-lg mt-4">
-          <table class="w-full">
-            <thead class="border-b">
-              <tr>
-                <th class="text-left px-4 py-3 font-bold">Provider</th>
-                <th class="text-left px-4 py-3 font-bold">Format</th>
-                <th class="text-left px-4 py-3 font-bold">Download</th>
-                <th class="text-left px-4 py-3 font-bold">Docs</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-neutral-200">
-              
-                <tr class="hover:bg-neutral-50">
-                  <td class="px-4 py-3 text-neutral-700">AWS</td>
-                  <td class="px-4 py-3 text-neutral-600 text-sm">AMI</td>
-                  <td class="px-4 py-3">
-                    
-                      <a href="https://aws.amazon.com/marketplace/pp/prodview-n3wsyckyby6vq" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-primary-500 hover:underline">
-                        View on Marketplace
-                        <span class="w-3 h-3"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V11H19L18.9999 6.413L11.2071 14.2071L9.79289 12.7929L17.5849 5H13V3H21Z"></path></svg>
-</span></span>
-                      </a>
-                    
-                  </td>
-                  <td class="px-4 py-3">
-                    
-                      <a href="/control-plane-docs/intro/installation/aws/" class="text-primary-500 hover:underline">Installation guide</a>
-                    
-                  </td>
-                </tr>
-              
-                <tr class="hover:bg-neutral-50">
-                  <td class="px-4 py-3 text-neutral-700">Scaleway</td>
-                  <td class="px-4 py-3 text-neutral-600 text-sm">QCOW2</td>
-                  <td class="px-4 py-3">
-                    
-                      <a href="https://www.plakar.io/dist/releases/plakar/control-plane/appliance/plakar-appliance_v1.1.0_efi.qcow2" class="text-primary-500 hover:underline">download</a>
-                    
-                  </td>
-                  <td class="px-4 py-3">
-                    
-                      <a href="/control-plane-docs/intro/installation/scaleway/" class="text-primary-500 hover:underline">Installation guide</a>
-                    
-                  </td>
-                </tr>
-              
-            </tbody>
-          </table>
-        </div>
-      
-    </div>
-  </section>
-
-  <section class="py-12">
-    <div class="max-w-350 mx-auto px-4 flex flex-col lg:flex-row justify-between lg:items-baseline gap-6">
-      <div class="flex flex-col gap-2">
-        <h2 class="text-2xl font-medium text-neutral-900">Need help getting started?</h2>
-        <p class="text-neutral-600">Check our documentation for deployment guides and configuration references.</p>
-      </div>
-      <div class="flex gap-3 shrink-0">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a href="/control-plane-docs/intro/installation/" target="_self" class="flex items-center ">
-  <div class="text-neutral-50   bg-primary-500 text-neutral-50 inline-flex relative
-    group overflow-hidden min-h-7 lg:min-h-12 px-4 pr-4 rounded-lg items-center gap-2 transition-all
-    duration-150 ease-out hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1 active:shadow-inner">
-
-    
-    <div class="absolute inset-0 bg-primary-600 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-0"></div>
-
-    
-    <div class="relative z-10 flex items-center gap-2">
-      <span class="w-5 h-5 flex items-center justify-center">
-        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4.99989 13.9999L4.99976 5L6.99976 4.99997L6.99986 11.9999L17.1717 12L13.222 8.05024L14.6362 6.63603L21.0001 13L14.6362 19.364L13.222 17.9497L17.1717 14L4.99989 13.9999Z"></path></svg>
-</span>
-      </span>
-      <span class="hidden xl:block">Installation Guide</span>
-      <span class="block xl:hidden">Installation Guide</span>
     </div>
   </div>
-</a>
+</section>
 
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a href="/control-plane-docs" target="_self" class="flex items-center ">
-  <div class="text-neutral-50   bg-neutral-900 hover:text-neutral-900 inline-flex relative
-    group overflow-hidden min-h-7 lg:min-h-12 px-4 pr-4 rounded-lg items-center gap-2 transition-all
-    duration-150 ease-out hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1 active:shadow-inner">
-
-    
-    <div class="absolute inset-0 bg-neutral-50 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-0"></div>
-
-    
-    <div class="relative z-10 flex items-center gap-2">
-      <span class="w-5 h-5 flex items-center justify-center">
-        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4.99989 13.9999L4.99976 5L6.99976 4.99997L6.99986 11.9999L17.1717 12L13.222 8.05024L14.6362 6.63603L21.0001 13L14.6362 19.364L13.222 17.9497L17.1717 14L4.99989 13.9999Z"></path></svg>
-</span>
-      </span>
-      <span class="hidden xl:block">Documentation</span>
-      <span class="block xl:hidden">Documentation</span>
-    </div>
-  </div>
-</a>
-
-      </div>
-    </div>
-  </section>
-  
-
-</div>
 
       <div>
         
