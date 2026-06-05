@@ -1,7 +1,7 @@
 ---
 title: "Scaleway"
 date: "2026-05-26T00:00:00Z"
-weight: 1
+weight: 2
 summary: "Guides and tutorials for configuring Scaleway services with Plakar."
 ---
 
