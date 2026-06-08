@@ -1,5 +1,5 @@
 ---
-date: "2026-05-13T08:36:24Z"
+date: "2026-06-08T12:47:36Z"
 title: pkg-manifest.yaml
 summary: "Manifest for plugin assemblation"
 aliases:
@@ -83,7 +83,7 @@ aliases:
 name: fs
 display_name: file system connector
 description: file storage but as external plugin
-homepage: https://github.com/PlakarKorp/integration-fs
+homepage: https://github.com/PlakarKorp/integrations/fs
 license: ISC
 tags: [ fs, filesystem, &quot;local files&quot; ]
 api_version: 1.0.0

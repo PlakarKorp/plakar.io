@@ -1,5 +1,5 @@
 ---
-date: "2026-05-13T08:36:24Z"
+date: "2026-06-08T12:47:36Z"
 title: prune
 summary: "Prune snapshots according to a policy"
 aliases:

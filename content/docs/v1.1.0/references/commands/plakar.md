@@ -1,5 +1,5 @@
 ---
-date: "2026-05-13T08:36:24Z"
+date: "2026-06-08T12:47:36Z"
 title: plakar
 summary: "effortless backups"
 aliases:
@@ -22,7 +22,9 @@ aliases:
   <tr>
     <td><code class="Nm">plakar</code></td>
     <td>[<code class="Fl">-concurrency</code> <var class="Ar">number</var>]
-      [<code class="Fl">-config</code> <var class="Ar">dir</var>]
+      [<code class="Fl">-configdir</code> <var class="Ar">dir</var>]
+      [<code class="Fl">-cachedir</code> <var class="Ar">dir</var>]
+      [<code class="Fl">-datadir</code> <var class="Ar">dir</var>]
       [<code class="Fl">-cpu</code> <var class="Ar">number</var>]
       [<code class="Fl">-json</code>] [<code class="Fl">-keyfile</code>
       <var class="Ar">path</var>] [<code class="Fl">-quiet</code>]
@@ -46,10 +48,18 @@ aliases:
     <var class="Ar">number</var></dt>
   <dd>Set the maximum number of parallel tasks for faster processing. Defaults
       to the CPU count.</dd>
-  <dt id="config"><a class="permalink" href="#config"><code class="Fl">-config</code></a>
+  <dt id="configdir"><a class="permalink" href="#configdir"><code class="Fl">-configdir</code></a>
     <var class="Ar">dir</var></dt>
   <dd>Specify an alternate configuration directory. Defaults to
       <span class="Pa">~/.config/plakar</span>.</dd>
+  <dt id="cachedir"><a class="permalink" href="#cachedir"><code class="Fl">-cachedir</code></a>
+    <var class="Ar">dir</var></dt>
+  <dd>Specify an alternate cache directory. Defaults to
+      <span class="Pa">~/.cache/plakar</span>.</dd>
+  <dt id="datadir"><a class="permalink" href="#datadir"><code class="Fl">-datadir</code></a>
+    <var class="Ar">dir</var></dt>
+  <dd>Specify an alternate data directory. Defaults to
+      <span class="Pa">~/.local/share/plakar</span>.</dd>
   <dt id="cpu"><a class="permalink" href="#cpu"><code class="Fl">-cpu</code></a>
     <var class="Ar">number</var></dt>
   <dd>Limit the number of parallel workers <code class="Nm">plakar</code> uses

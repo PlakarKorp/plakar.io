@@ -1,5 +1,5 @@
 ---
-date: "2026-05-13T08:36:24Z"
+date: "2026-06-08T12:47:36Z"
 title: query
 summary: "query flags shared among many Plakar subcommands"
 aliases:
@@ -165,6 +165,21 @@ aliases:
   <dt id="environment"><a class="permalink" href="#environment"><code class="Fl">-environment</code></a>
     <var class="Ar">name</var></dt>
   <dd>Select snapshot whose environment is <var class="Ar">name</var>.</dd>
+  <dt id="group-by"><a class="permalink" href="#group-by"><code class="Fl">-group-by</code></a>
+    <var class="Ar">key</var></dt>
+  <dd>Partition the filtered snapshots by <var class="Ar">key</var> and apply
+      retention matchers (<code class="Fl">-days</code>,
+      <code class="Fl">-per-day</code>, <span class="No">...</span>)
+      independently within each group instead of across the whole result set.
+      <var class="Ar">key</var> must be one of <code class="Cm">name</code>,
+      <code class="Cm">category</code>, <code class="Cm">environment</code>,
+      <code class="Cm">perimeter</code>, <code class="Cm">job</code>,
+      <code class="Cm">tag</code>, <code class="Cm">origin</code>,
+      <code class="Cm">type</code> or <code class="Cm">root</code>. Multi-valued
+      keys (<code class="Cm">tag</code>, <code class="Cm">origin</code>,
+      <code class="Cm">type</code>, <code class="Cm">root</code>) fan out: a
+      snapshot participates in every group it belongs to and is kept in the
+      result if any group keeps it.</dd>
   <dt id="job"><a class="permalink" href="#job"><code class="Fl">-job</code></a>
     <var class="Ar">name</var></dt>
   <dd>Select snapshot whose job is <var class="Ar">name</var>.</dd>

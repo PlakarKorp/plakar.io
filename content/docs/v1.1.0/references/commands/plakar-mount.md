@@ -1,5 +1,5 @@
 ---
-date: "2026-05-13T08:36:24Z"
+date: "2026-06-08T12:47:36Z"
 title: mount
 summary: "Mount Plakar snapshots as read-only filesystem"
 aliases:
@@ -22,8 +22,8 @@ aliases:
 <table class="Nm">
   <tr>
     <td><code class="Nm">plakar mount</code></td>
-    <td>[<code class="Fl">-to</code> <var class="Ar">mountpoint</var>]
-      [<var class="Ar">snapshotID</var>]</td>
+    <td>[<code class="Fl">-allow-others</code>] [<code class="Fl">-to</code>
+      <var class="Ar">mountpoint</var>] [<var class="Ar">snapshotID</var>]</td>
   </tr>
 </table>
 </section>
@@ -41,6 +41,8 @@ aliases:
     7">plakar-query(7)</a> to precisely select snapshots.</p>
 <p class="Pp">The options are as follows:</p>
 <dl class="Bl-tag">
+  <dt id="allow-others"><a class="permalink" href="#allow-others"><code class="Fl">-allow-others</code></a></dt>
+  <dd>Allow other users to access the mounted filesystem.</dd>
   <dt id="to"><a class="permalink" href="#to"><code class="Fl">-to</code></a>
     <var class="Ar">mountpoint</var></dt>
   <dd>Specify the mount location. The <var class="Ar">mountpoint</var> can
@@ -77,6 +79,10 @@ aliases:
 <div class="Bd Pp Bd-indent Li">
 <pre>$ plakar mount -to ~/mnt abc123</pre>
 </div>
+<p class="Pp">Mount all snapshots allowing access by other users:</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>$ plakar mount -allow-others -to ~/mnt</pre>
+</div>
 <p class="Pp">Mount snapshots matching a filter (e.g., snapshots with tag
     &quot;daily-backup&quot;):</p>
 <div class="Bd Pp Bd-indent Li">
@@ -101,5 +107,5 @@ aliases:
 </section>
 </main>
 <div class="foot" role="doc-pagefooter" aria-label="Manual footer
-  line"><span class="foot-left">Plakar</span> <span class="foot-date">May 5,
+  line"><span class="foot-left">Plakar</span> <span class="foot-date">May 29,
   2026</span> <span class="foot-right">PLAKAR-MOUNT(1)</span></div>
