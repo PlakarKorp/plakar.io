@@ -61,3 +61,27 @@ Plakar Community version is open-source and free to use. Documentation is versio
 - [Why Several Copies](https://www.plakar.io/docs/v1.1.0/explanations/why-several-copies): Why multiple backup copies matter and the 3-2-1 backup strategy.
 - [Why Should I Back Up My SaaS](https://www.plakar.io/docs/v1.1.0/explanations/why-should-i-backup-my-saas): Why SaaS availability is not the same as data protection, and why independent backups are necessary under the shared responsibility model.
 - [How Maintenance Works](https://www.plakar.io/docs/v1.1.0/explanations/how-maintenance-works): How Plakar reclaims storage after snapshot deletion: chunking, packfiles, garbage collection, and the grace period.
+
+### Integrations
+
+- [S3](https://www.plakar.io/docs/v1.1.0/integrations/s3): Back up to, from, and restore to any S3-compatible object storage
+- [SFTP](https://www.plakar.io/docs/v1.1.0/integrations/sftp): Back up remote hosts over SSH/SFTP.
+
+### Integrations
+
+Each integration tells Plakar how to interact with a specific storage system in up to three ways: as a **source** (read data to back up), as a **store** (host a Kloset store), or as a **destination** (restore data back to that system).
+
+- [S3](https://www.plakar.io/docs/v1.1.0/integrations/s3): S3-compatible object storage (store, source, destination).
+- [SFTP](https://www.plakar.io/docs/v1.1.0/integrations/sftp): SFTP/SSH-accessible servers (store, source, destination).
+- [HTTP(S)](https://www.plakar.io/docs/v1.1.0/integrations/https): HTTP/HTTPS endpoint for stores exposed by `plakar server` (store).
+- [Notion](https://www.plakar.io/docs/v1.1.0/integrations/notion): Notion workspace via the Notion API (source, destination).
+- [Dropbox](https://www.plakar.io/docs/v1.1.0/integrations/dropbox): Dropbox via Rclone (store, source, destination).
+- [iCloud Drive](https://www.plakar.io/docs/v1.1.0/integrations/icloud-drive): iCloud Drive via Rclone (store, source, destination).
+- [Koofr](https://www.plakar.io/docs/v1.1.0/integrations/koofr): Koofr via Rclone (store, source, destination).
+- [Google Drive](https://www.plakar.io/docs/v1.1.0/integrations/google-drive): Google Drive via Rclone (store, source, destination).
+- [OneDrive](https://www.plakar.io/docs/v1.1.0/integrations/onedrive): OneDrive via Rclone (store, source, destination).
+- [OpenDrive](https://www.plakar.io/docs/v1.1.0/integrations/opendrive): OpenDrive via Rclone (store, source, destination).
+- [Proton Drive](https://www.plakar.io/docs/v1.1.0/integrations/proton-drive): Proton Drive via Rclone (store, source, destination).
+- [Proxmox](https://www.plakar.io/docs/v1.1.0/integrations/proxmox): Proxmox VMs and containers via vzdump (source, destination).
+- [Kubernetes](https://www.plakar.io/docs/v1.1.0/integrations/kubernetes): Kubernetes cluster resources, manifests, and persistent volumes (source).
+- [etcd](https://www.plakar.io/docs/v1.1.0/integrations/etcd): etcd cluster snapshots (source).
