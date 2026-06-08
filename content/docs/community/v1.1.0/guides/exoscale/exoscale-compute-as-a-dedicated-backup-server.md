@@ -41,7 +41,6 @@ Server1 -->|SSH/SFTP| BackupCompute
 Server2 -->|SSH/SFTP| BackupCompute
 ServerN -->|SSH/SFTP| BackupCompute
 BackupCompute -->|Store Snapshots| Kloset
-
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
@@ -171,8 +170,10 @@ Replace:
 - `<YOUR_ACCESS_KEY>` and `<YOUR_SECRET_KEY>`: From bucket API credentials
 - `<YOUR_SECURE_PASSPHRASE>`: Strong passphrase for encryption
 
-> [!NOTE]+ Passphrase Configuring the passphrase in the store enables automated
-> backups without prompts.
+> [!NOTE]+
+>
+> Passphrase Configuring the passphrase in the store enables automated backups
+> without prompts.
 
 ### Initialize Kloset Store
 
