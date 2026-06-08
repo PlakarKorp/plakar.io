@@ -80,8 +80,8 @@
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
-    <meta property="article:published_time" content="2026-05-13T08:36:24+00:00">
-    <meta property="article:modified_time" content="2026-06-05T11:35:06+02:00">
+    <meta property="article:published_time" content="2026-06-08T12:47:36+00:00">
+    <meta property="article:modified_time" content="2026-06-08T16:03:50+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -261,15 +261,15 @@
       "name": "PlakarKorp"
     },
     "copyrightYear": "2026",
-    "dateCreated": "2026-05-13T08:36:24\u002b00:00",
-    "datePublished": "2026-05-13T08:36:24\u002b00:00",
+    "dateCreated": "2026-06-08T12:47:36\u002b00:00",
+    "datePublished": "2026-06-08T12:47:36\u002b00:00",
     
-    "dateModified": "2026-06-05T11:35:06\u002b02:00",
+    "dateModified": "2026-06-08T16:03:50\u002b02:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "220"
+    "wordCount": "246"
   }]
   </script>
 
@@ -2028,15 +2028,6 @@
   
     
     
-      <a href="/docs/v1.1.0/references/commands/plakar-scheduler/"
-         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
-         ">
-        scheduler
-      </a>
-    
-  
-    
-    
       <a href="/docs/v1.1.0/references/commands/plakar-server/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
@@ -2077,6 +2068,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         sync
+      </a>
+    
+  
+    
+    
+      <a href="/docs/v1.1.0/references/commands/plakar-token-create/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        token-create
       </a>
     
   
@@ -3731,15 +3731,6 @@
   
     
     
-      <a href="/docs/v1.1.0/references/commands/plakar-scheduler/"
-         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
-         ">
-        scheduler
-      </a>
-    
-  
-    
-    
       <a href="/docs/v1.1.0/references/commands/plakar-server/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
@@ -3780,6 +3771,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         sync
+      </a>
+    
+  
+    
+    
+      <a href="/docs/v1.1.0/references/commands/plakar-token-create/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        token-create
       </a>
     
   
@@ -3940,9 +3940,9 @@
     <td><code class="Nm">plakar ui</code></td>
     <td>[<code class="Fl">-addr</code> <var class="Ar">address</var>]
       [<code class="Fl">-cors</code>] [<code class="Fl">-no-auth</code>]
-      [<code class="Fl">-no-spawn</code>] [<code class="Fl">-cert</code>
-      <var class="Ar">path</var>] [<code class="Fl">-key</code>
-      <var class="Ar">path</var>]</td>
+      [<code class="Fl">-no-refresh</code>] [<code class="Fl">-no-spawn</code>]
+      [<code class="Fl">-cert</code> <var class="Ar">path</var>]
+      [<code class="Fl">-key</code> <var class="Ar">path</var>]</td>
   </tr>
 </table>
 </section>
@@ -3963,6 +3963,9 @@
   <dt id="no-auth"><a class="permalink" href="#no-auth"><code class="Fl">-no-auth</code></a></dt>
   <dd>Disable the authentication token that otherwise is needed to consume the
       exposed HTTP APIs.</dd>
+  <dt id="no-refresh"><a class="permalink" href="#no-refresh"><code class="Fl">-no-refresh</code></a></dt>
+  <dd>Do not refresh the local state from the store on API calls. Useful when
+      you want to share a common cache between multiple UIs.</dd>
   <dt id="no-spawn"><a class="permalink" href="#no-spawn"><code class="Fl">-no-spawn</code></a></dt>
   <dd>Do not automatically open the web browser.</dd>
   <dt id="cert"><a class="permalink" href="#cert"><code class="Fl">-cert</code></a>
@@ -4100,12 +4103,12 @@ Create a https server with a custom certificate:
     <div class="flex flex-col sm:flex-row gap-4">
       <div class="flex-1">
         
-          <a href="/docs/v1.1.0/references/commands/plakar-sync/" class="group w-full flex flex-col gap-1 p-3 rounded-lg border border-neutral-200 bg-neutral-50 hover:border-primary-200 hover:bg-primary-50 transition-all duration-150">
+          <a href="/docs/v1.1.0/references/commands/plakar-token-create/" class="group w-full flex flex-col gap-1 p-3 rounded-lg border border-neutral-200 bg-neutral-50 hover:border-primary-200 hover:bg-primary-50 transition-all duration-150">
             <span class="text-xs text-neutral-400">Previous</span>
             <span class="text-sm font-medium text-neutral-700 group-hover:text-primary-500 text-left transition-colors flex items-center gap-2">
               <span class="w-3 h-3"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M7.82843 10.9999H20V12.9999H7.82843L13.1924 18.3638L11.7782 19.778L4 11.9999L11.7782 4.22168L13.1924 5.63589L7.82843 10.9999Z"></path></svg>
 </span></span>
-              sync
+              token-create
             </span>
           </a>
         
@@ -4128,7 +4131,7 @@ Create a https server with a custom certificate:
   
   <div class="flex items-center justify-between text-xs text-neutral-400">
     
-      <span>Last updated: June 5, 2026</span>
+      <span>Last updated: June 8, 2026</span>
     
     
       <a href="https://github.com/PlakarKorp/plakar.io/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">

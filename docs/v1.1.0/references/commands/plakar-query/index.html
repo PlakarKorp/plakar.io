@@ -80,8 +80,8 @@
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
-    <meta property="article:published_time" content="2026-05-13T08:36:24+00:00">
-    <meta property="article:modified_time" content="2026-06-05T11:35:06+02:00">
+    <meta property="article:published_time" content="2026-06-08T12:47:36+00:00">
+    <meta property="article:modified_time" content="2026-06-08T16:03:50+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -261,15 +261,15 @@
       "name": "PlakarKorp"
     },
     "copyrightYear": "2026",
-    "dateCreated": "2026-05-13T08:36:24\u002b00:00",
-    "datePublished": "2026-05-13T08:36:24\u002b00:00",
+    "dateCreated": "2026-06-08T12:47:36\u002b00:00",
+    "datePublished": "2026-06-08T12:47:36\u002b00:00",
     
-    "dateModified": "2026-06-05T11:35:06\u002b02:00",
+    "dateModified": "2026-06-08T16:03:50\u002b02:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "431"
+    "wordCount": "500"
   }]
   </script>
 
@@ -2028,15 +2028,6 @@
   
     
     
-      <a href="/docs/v1.1.0/references/commands/plakar-scheduler/"
-         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
-         ">
-        scheduler
-      </a>
-    
-  
-    
-    
       <a href="/docs/v1.1.0/references/commands/plakar-server/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
@@ -2077,6 +2068,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         sync
+      </a>
+    
+  
+    
+    
+      <a href="/docs/v1.1.0/references/commands/plakar-token-create/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        token-create
       </a>
     
   
@@ -3731,15 +3731,6 @@
   
     
     
-      <a href="/docs/v1.1.0/references/commands/plakar-scheduler/"
-         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
-         ">
-        scheduler
-      </a>
-    
-  
-    
-    
       <a href="/docs/v1.1.0/references/commands/plakar-server/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
@@ -3780,6 +3771,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         sync
+      </a>
+    
+  
+    
+    
+      <a href="/docs/v1.1.0/references/commands/plakar-token-create/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        token-create
       </a>
     
   
@@ -4081,6 +4081,21 @@
   <dt id="environment"><a class="permalink" href="#environment"><code class="Fl">-environment</code></a>
     <var class="Ar">name</var></dt>
   <dd>Select snapshot whose environment is <var class="Ar">name</var>.</dd>
+  <dt id="group-by"><a class="permalink" href="#group-by"><code class="Fl">-group-by</code></a>
+    <var class="Ar">key</var></dt>
+  <dd>Partition the filtered snapshots by <var class="Ar">key</var> and apply
+      retention matchers (<code class="Fl">-days</code>,
+      <code class="Fl">-per-day</code>, <span class="No">...</span>)
+      independently within each group instead of across the whole result set.
+      <var class="Ar">key</var> must be one of <code class="Cm">name</code>,
+      <code class="Cm">category</code>, <code class="Cm">environment</code>,
+      <code class="Cm">perimeter</code>, <code class="Cm">job</code>,
+      <code class="Cm">tag</code>, <code class="Cm">origin</code>,
+      <code class="Cm">type</code> or <code class="Cm">root</code>. Multi-valued
+      keys (<code class="Cm">tag</code>, <code class="Cm">origin</code>,
+      <code class="Cm">type</code>, <code class="Cm">root</code>) fan out: a
+      snapshot participates in every group it belongs to and is kept in the
+      result if any group keeps it.</dd>
   <dt id="job"><a class="permalink" href="#job"><code class="Fl">-job</code></a>
     <var class="Ar">name</var></dt>
   <dd>Select snapshot whose job is <var class="Ar">name</var>.</dd>
@@ -4238,7 +4253,7 @@
   
   <div class="flex items-center justify-between text-xs text-neutral-400">
     
-      <span>Last updated: June 5, 2026</span>
+      <span>Last updated: June 8, 2026</span>
     
     
       <a href="https://github.com/PlakarKorp/plakar.io/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">
