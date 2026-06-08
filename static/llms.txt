@@ -1,0 +1,63 @@
+# Plakar
+
+> Plakar is an open-source backup tool that provides end-to-end encrypted,
+> deduplicated backups. It is powered by Kloset, an immutable data store engine
+> that handles chunking, deduplication, compression, and encryption, and
+> represents all backed-up data internally as a virtual filesystem. Plakar's
+> integration model allows any data source, storage backend, or restore
+> destination to be supported through pluggable connectors, making it adaptable
+> to files, databases, object storage, SaaS, and more. It is designed for a
+> minimal memory footprint and scales to petabyte-scale infrastructure. Plakar
+> Control Plane (PCP) is the enterprise product built on top of Plakar.
+
+## Overview
+
+- [Quick Start](https://www.plakar.io/docs/v1.1.0/quickstart/first-backup): Quick introduction to installing Plakar and running your first backup.
+- [How Plakar Works](https://www.plakar.io/docs/v1.1.0/explanations/how-plakar-works): Architectural overview of Plakar and Kloset.
+- [What is Kloset](https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store): Kloset's immutable storage model, chunking, encryption, and snapshot architecture.
+- [What is Plakar Control Plane](https://www.plakar.io/control-plane-docs/intro/overview): Overview of PCP, the enterprise product built on top of Plakar.
+
+## Plakar Community Docs
+
+Plakar Community version is open-source and free to use. Documentation is versioned to match releases. Replace the version segment in any `/docs/` URL to switch versions. Only use these four version identifiers — no others exist.
+
+- [main (development)](https://www.plakar.io/docs/main): Bleeding-edge branch, may be unstable.
+- [v1.1.0 (latest stable)](https://www.plakar.io/docs/v1.1.0): Latest stable release, recommended for all users.
+- [v1.0.6](https://www.plakar.io/docs/v1.0.6): Previous stable release.
+- [v1.0.5](https://www.plakar.io/docs/v1.0.5): Previous stable release.
+
+### Getting Started
+
+- [Installation](https://www.plakar.io/docs/v1.1.0/quickstart/installation): How to install Plakar on your system.
+- [First Backup](https://www.plakar.io/docs/v1.1.0/quickstart/first-backup): End-to-end walkthrough: create a Kloset store, run a backup, list snapshots, verify integrity, and restore.
+- [Synchronize Kloset stores](https://www.plakar.io/docs/v1.1.0/quickstart/synchronize-copies): Duplicate a Kloset store to another location using `plakar sync`.
+- [Backup Non-Filesystem Data](https://www.plakar.io/docs/v1.1.0/quickstart/backup-non-filesystem): Back up an S3 bucket using a configured source, and restore it to an S3 destination.
+
+### Guides
+
+- [Create a Kloset Repository](https://www.plakar.io/docs/v1.1.0/guides/create-kloset-repository): Creating and configuring a Kloset store.
+- [Importing Configurations](https://www.plakar.io/docs/v1.1.0/guides/importing-configurations): How to import configurations for stores, sources, and destinations in Plakar.
+- [Serve a Kloset Store Over the Network](https://www.plakar.io/docs/v1.1.0/guides/serving-a-kloset-store-over-the-network): Expose a Kloset store over the network to allow access from other machines.
+- [Exclude Files from a Backup](https://www.plakar.io/docs/v1.1.0/guides/excluding-files-from-a-backup): Use exclusion patterns to skip files or directories during backup.
+- [Retrieve Passphrase via External Command](https://www.plakar.io/docs/v1.1.0/guides/retrieve-passphrase-kloset-store): Delegate Kloset store passphrase retrieval to an external command or secret manager.
+- [Creating a Custom Connector](https://www.plakar.io/docs/v1.1.0/guides/creating-a-custom-connector): Build and package your own data source connector (integration).
+- [Log In to Plakar](https://www.plakar.io/docs/v1.1.0/guides/logging-in-to-plakar): Log in to unlock pre-built integration packages and alerts.
+- [Managing Packages](https://www.plakar.io/docs/v1.1.0/guides/managing-packages): Install, build, update and remove Plakar integrations.
+- [Using Plakar Prune](https://www.plakar.io/docs/v1.1.0/guides/using-plakar-prune): Remove old snapshots and reclaim storage space.
+- [Using Plakar UI](https://www.plakar.io/docs/v1.1.0/guides/using-plakar-ui): Using the web interface to browse snapshots, restore files, install integrations, etc.
+- [MySQL: Physical Backups](https://www.plakar.io/docs/v1.1.0/guides/mysql/physical-backups): Back up raw MySQL data directories using physical backup method.
+- [MySQL: SQL Dump](https://www.plakar.io/docs/v1.1.0/guides/mysql/sqldump): Logical SQL dump backup for MySQL and MariaDB using the MySQL integration.
+- [PostgreSQL: pg_basebackup](https://www.plakar.io/docs/v1.1.0/guides/postgres/pg-base-backup): Full physical cluster backup for PostgreSQL using the PostgreSQL integration.
+- [PostgreSQL: pg_dump](https://www.plakar.io/docs/v1.1.0/guides/postgres/pgdump): Logical SQL dump backup for PostgreSQL using the PostgreSQL integration.
+- [Exoscale: Backup Managed MySQL](https://www.plakar.io/docs/v1.1.0/guides/exoscale/backup-exoscale-managed-mysql): Back up a MySQL database hosted on Exoscale.
+- [Exoscale: Dedicated Backup Server](https://www.plakar.io/docs/v1.1.0/guides/exoscale/exoscale-compute-as-a-dedicated-backup-server): Use an Exoscale compute as a centralized backup server.
+- [OVHcloud: Backup Managed PostgreSQL](https://www.plakar.io/docs/v1.1.0/guides/ovhcloud/backup-ovhcloud-managed-postgres): Back up a PostgreSQL database hosted on OVHcloud.
+- [OVHcloud: Dedicated Backup Server](https://www.plakar.io/docs/v1.1.0/guides/ovhcloud/ovhcloud-as-a-dedicated-backup-server): Use an OVHcloud VPS as a centralized backup server.
+
+### Explanations
+
+- [Should You Pull or Push Backups](https://www.plakar.io/docs/v1.1.0/explanations/should-you-pull-or-push-backups): How to decide between push and pull backup architectures, and how Plakar supports both.
+- [How Many Kloset Stores Should I Have](https://www.plakar.io/docs/v1.1.0/explanations/how-many-kloset-stores): How to decide between a single shared store or multiple stores based on deduplication boundaries, encryption scope, and operational needs.
+- [Why Several Copies](https://www.plakar.io/docs/v1.1.0/explanations/why-several-copies): Why multiple backup copies matter and the 3-2-1 backup strategy.
+- [Why Should I Back Up My SaaS](https://www.plakar.io/docs/v1.1.0/explanations/why-should-i-backup-my-saas): Why SaaS availability is not the same as data protection, and why independent backups are necessary under the shared responsibility model.
+- [How Maintenance Works](https://www.plakar.io/docs/v1.1.0/explanations/how-maintenance-works): How Plakar reclaims storage after snapshot deletion: chunking, packfiles, garbage collection, and the grace period.
