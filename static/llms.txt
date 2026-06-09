@@ -12,117 +12,117 @@
 
 ## Overview
 
-- [Quick Start](https://www.plakar.io/docs/v1.1.0/quickstart/first-backup): Quick introduction to installing Plakar and running your first backup.
-- [How Plakar Works](https://www.plakar.io/docs/v1.1.0/explanations/how-plakar-works): Architectural overview of Plakar and Kloset.
-- [What is Kloset](https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store): Kloset's immutable storage model, chunking, encryption, and snapshot architecture.
-- [What is Plakar Control Plane](https://www.plakar.io/control-plane-docs/intro/overview): Overview of PCP, the enterprise product built on top of Plakar.
+- [Quick Start](https://www.plakar.io/docs/v1.1.0/quickstart/first-backup/index.md): Quick introduction to installing Plakar and running your first backup.
+- [How Plakar Works](https://www.plakar.io/docs/v1.1.0/explanations/how-plakar-works/index.md): Architectural overview of Plakar and Kloset.
+- [What is Kloset](https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/index.md): Kloset's immutable storage model, chunking, encryption, and snapshot architecture.
+- [What is Plakar Control Plane](https://www.plakar.io/control-plane-docs/intro/overview/index.md): Overview of PCP, the enterprise product built on top of Plakar.
 
 ## Plakar Community Docs
 
 Plakar Community version is open-source and free to use. Documentation is versioned to match releases. Replace the version segment in any `/docs/` URL to switch versions. Only use these four version identifiers — no others exist.
 
-- [main (development)](https://www.plakar.io/docs/main): Bleeding-edge branch, may be unstable.
-- [v1.1.0 (latest stable)](https://www.plakar.io/docs/v1.1.0): Latest stable release, recommended for all users.
-- [v1.0.6](https://www.plakar.io/docs/v1.0.6): Previous stable release.
-- [v1.0.5](https://www.plakar.io/docs/v1.0.5): Previous stable release.
+- [main (development)](https://www.plakar.io/docs/main/index.md): Bleeding-edge branch, may be unstable.
+- [v1.1.0 (latest stable)](https://www.plakar.io/docs/v1.1.0/index.md): Latest stable release, recommended for all users.
+- [v1.0.6](https://www.plakar.io/docs/v1.0.6/index.md): Previous stable release.
+- [v1.0.5](https://www.plakar.io/docs/v1.0.5/index.md): Previous stable release.
 
 ### Getting Started
 
-- [Installation](https://www.plakar.io/docs/v1.1.0/quickstart/installation): How to install Plakar on your system.
-- [First Backup](https://www.plakar.io/docs/v1.1.0/quickstart/first-backup): End-to-end walkthrough: create a Kloset store, run a backup, list snapshots, verify integrity, and restore.
-- [Synchronize Kloset stores](https://www.plakar.io/docs/v1.1.0/quickstart/synchronize-copies): Duplicate a Kloset store to another location using `plakar sync`.
-- [Backup Non-Filesystem Data](https://www.plakar.io/docs/v1.1.0/quickstart/backup-non-filesystem): Back up an S3 bucket using a configured source, and restore it to an S3 destination.
+- [Installation](https://www.plakar.io/docs/v1.1.0/quickstart/installation/index.md): How to install Plakar on your system.
+- [First Backup](https://www.plakar.io/docs/v1.1.0/quickstart/first-backup/index.md): End-to-end walkthrough: create a Kloset store, run a backup, list snapshots, verify integrity, and restore.
+- [Synchronize Kloset stores](https://www.plakar.io/docs/v1.1.0/quickstart/synchronize-copies/index.md): Duplicate a Kloset store to another location using `plakar sync`.
+- [Backup Non-Filesystem Data](https://www.plakar.io/docs/v1.1.0/quickstart/backup-non-filesystem/index.md): Back up an S3 bucket using a configured source, and restore it to an S3 destination.
 
 ### Guides
 
-- [Create a Kloset Repository](https://www.plakar.io/docs/v1.1.0/guides/create-kloset-repository): Creating and configuring a Kloset store.
-- [Importing Configurations](https://www.plakar.io/docs/v1.1.0/guides/importing-configurations): How to import configurations for stores, sources, and destinations in Plakar.
-- [Serve a Kloset Store Over the Network](https://www.plakar.io/docs/v1.1.0/guides/serving-a-kloset-store-over-the-network): Expose a Kloset store over the network to allow access from other machines.
-- [Exclude Files from a Backup](https://www.plakar.io/docs/v1.1.0/guides/excluding-files-from-a-backup): Use exclusion patterns to skip files or directories during backup.
-- [Retrieve Passphrase via External Command](https://www.plakar.io/docs/v1.1.0/guides/retrieve-passphrase-kloset-store): Delegate Kloset store passphrase retrieval to an external command or secret manager.
-- [Creating a Custom Connector](https://www.plakar.io/docs/v1.1.0/guides/creating-a-custom-connector): Build and package your own data source connector (integration).
-- [Log In to Plakar](https://www.plakar.io/docs/v1.1.0/guides/logging-in-to-plakar): Log in to unlock pre-built integration packages and alerts.
-- [Managing Packages](https://www.plakar.io/docs/v1.1.0/guides/managing-packages): Install, build, update and remove Plakar integrations.
-- [Using Plakar Prune](https://www.plakar.io/docs/v1.1.0/guides/using-plakar-prune): Remove old snapshots and reclaim storage space.
-- [Using Plakar UI](https://www.plakar.io/docs/v1.1.0/guides/using-plakar-ui): Using the web interface to browse snapshots, restore files, install integrations, etc.
-- [MySQL: Physical Backups](https://www.plakar.io/docs/v1.1.0/guides/mysql/physical-backups): Back up raw MySQL data directories using physical backup method.
-- [MySQL: SQL Dump](https://www.plakar.io/docs/v1.1.0/guides/mysql/sqldump): Logical SQL dump backup for MySQL and MariaDB using the MySQL integration.
-- [PostgreSQL: pg_basebackup](https://www.plakar.io/docs/v1.1.0/guides/postgres/pg-base-backup): Full physical cluster backup for PostgreSQL using the PostgreSQL integration.
-- [PostgreSQL: pg_dump](https://www.plakar.io/docs/v1.1.0/guides/postgres/pgdump): Logical SQL dump backup for PostgreSQL using the PostgreSQL integration.
-- [Exoscale: Backup Managed MySQL](https://www.plakar.io/docs/v1.1.0/guides/exoscale/backup-exoscale-managed-mysql): Back up a MySQL database hosted on Exoscale.
-- [Exoscale: Dedicated Backup Server](https://www.plakar.io/docs/v1.1.0/guides/exoscale/exoscale-compute-as-a-dedicated-backup-server): Use an Exoscale compute as a centralized backup server.
-- [OVHcloud: Backup Managed PostgreSQL](https://www.plakar.io/docs/v1.1.0/guides/ovhcloud/backup-ovhcloud-managed-postgres): Back up a PostgreSQL database hosted on OVHcloud.
-- [OVHcloud: Dedicated Backup Server](https://www.plakar.io/docs/v1.1.0/guides/ovhcloud/ovhcloud-as-a-dedicated-backup-server): Use an OVHcloud VPS as a centralized backup server.
+- [Create a Kloset Repository](https://www.plakar.io/docs/v1.1.0/guides/create-kloset-repository/index.md): Creating and configuring a Kloset store.
+- [Importing Configurations](https://www.plakar.io/docs/v1.1.0/guides/importing-configurations/index.md): How to import configurations for stores, sources, and destinations in Plakar.
+- [Serve a Kloset Store Over the Network](https://www.plakar.io/docs/v1.1.0/guides/serving-a-kloset-store-over-the-network/index.md): Expose a Kloset store over the network to allow access from other machines.
+- [Exclude Files from a Backup](https://www.plakar.io/docs/v1.1.0/guides/excluding-files-from-a-backup/index.md): Use exclusion patterns to skip files or directories during backup.
+- [Retrieve Passphrase via External Command](https://www.plakar.io/docs/v1.1.0/guides/retrieve-passphrase-kloset-store/index.md): Delegate Kloset store passphrase retrieval to an external command or secret manager.
+- [Creating a Custom Connector](https://www.plakar.io/docs/v1.1.0/guides/creating-a-custom-connector/index.md): Build and package your own data source connector (integration).
+- [Log In to Plakar](https://www.plakar.io/docs/v1.1.0/guides/logging-in-to-plakar/index.md): Log in to unlock pre-built integration packages and alerts.
+- [Managing Packages](https://www.plakar.io/docs/v1.1.0/guides/managing-packages/index.md): Install, build, update and remove Plakar integrations.
+- [Using Plakar Prune](https://www.plakar.io/docs/v1.1.0/guides/using-plakar-prune/index.md): Remove old snapshots and reclaim storage space.
+- [Using Plakar UI](https://www.plakar.io/docs/v1.1.0/guides/using-plakar-ui/index.md): Using the web interface to browse snapshots, restore files, install integrations, etc.
+- [MySQL: Physical Backups](https://www.plakar.io/docs/v1.1.0/guides/mysql/physical-backups/index.md): Back up raw MySQL data directories using physical backup method.
+- [MySQL: SQL Dump](https://www.plakar.io/docs/v1.1.0/guides/mysql/sqldump/index.md): Logical SQL dump backup for MySQL and MariaDB using the MySQL integration.
+- [PostgreSQL: pg_basebackup](https://www.plakar.io/docs/v1.1.0/guides/postgres/pg-base-backup/index.md): Full physical cluster backup for PostgreSQL using the PostgreSQL integration.
+- [PostgreSQL: pg_dump](https://www.plakar.io/docs/v1.1.0/guides/postgres/pgdump/index.md): Logical SQL dump backup for PostgreSQL using the PostgreSQL integration.
+- [Exoscale: Backup Managed MySQL](https://www.plakar.io/docs/v1.1.0/guides/exoscale/backup-exoscale-managed-mysql/index.md): Back up a MySQL database hosted on Exoscale.
+- [Exoscale: Dedicated Backup Server](https://www.plakar.io/docs/v1.1.0/guides/exoscale/exoscale-compute-as-a-dedicated-backup-server/index.md): Use an Exoscale compute as a centralized backup server.
+- [OVHcloud: Backup Managed PostgreSQL](https://www.plakar.io/docs/v1.1.0/guides/ovhcloud/backup-ovhcloud-managed-postgres/index.md): Back up a PostgreSQL database hosted on OVHcloud.
+- [OVHcloud: Dedicated Backup Server](https://www.plakar.io/docs/v1.1.0/guides/ovhcloud/ovhcloud-as-a-dedicated-backup-server/index.md): Use an OVHcloud VPS as a centralized backup server.
 
 ### Explanations
 
-- [Should You Pull or Push Backups](https://www.plakar.io/docs/v1.1.0/explanations/should-you-pull-or-push-backups): How to decide between push and pull backup architectures, and how Plakar supports both.
-- [How Many Kloset Stores Should I Have](https://www.plakar.io/docs/v1.1.0/explanations/how-many-kloset-stores): How to decide between a single shared store or multiple stores based on deduplication boundaries, encryption scope, and operational needs.
-- [Why Several Copies](https://www.plakar.io/docs/v1.1.0/explanations/why-several-copies): Why multiple backup copies matter and the 3-2-1 backup strategy.
-- [Why Should I Back Up My SaaS](https://www.plakar.io/docs/v1.1.0/explanations/why-should-i-backup-my-saas): Why SaaS availability is not the same as data protection, and why independent backups are necessary under the shared responsibility model.
-- [How Maintenance Works](https://www.plakar.io/docs/v1.1.0/explanations/how-maintenance-works): How Plakar reclaims storage after snapshot deletion: chunking, packfiles, garbage collection, and the grace period.
+- [Should You Pull or Push Backups](https://www.plakar.io/docs/v1.1.0/explanations/should-you-pull-or-push-backups/index.md): How to decide between push and pull backup architectures, and how Plakar supports both.
+- [How Many Kloset Stores Should I Have](https://www.plakar.io/docs/v1.1.0/explanations/how-many-kloset-stores/index.md): How to decide between a single shared store or multiple stores based on deduplication boundaries, encryption scope, and operational needs.
+- [Why Several Copies](https://www.plakar.io/docs/v1.1.0/explanations/why-several-copies/index.md): Why multiple backup copies matter and the 3-2-1 backup strategy.
+- [Why Should I Back Up My SaaS](https://www.plakar.io/docs/v1.1.0/explanations/why-should-i-backup-my-saas/index.md): Why SaaS availability is not the same as data protection, and why independent backups are necessary under the shared responsibility model.
+- [How Maintenance Works](https://www.plakar.io/docs/v1.1.0/explanations/how-maintenance-works/index.md): How Plakar reclaims storage after snapshot deletion: chunking, packfiles, garbage collection, and the grace period.
 
 ### Integrations
 
-- [S3](https://www.plakar.io/docs/v1.1.0/integrations/s3): Back up to, from, and restore to any S3-compatible object storage
-- [SFTP](https://www.plakar.io/docs/v1.1.0/integrations/sftp): Back up remote hosts over SSH/SFTP.
+- [S3](https://www.plakar.io/docs/v1.1.0/integrations/s3/index.md): Back up to, from, and restore to any S3-compatible object storage
+- [SFTP](https://www.plakar.io/docs/v1.1.0/integrations/sftp/index.md): Back up remote hosts over SSH/SFTP.
 
 ### Integrations
 
 Each integration tells Plakar how to interact with a specific storage system in up to three ways: as a **source** (read data to back up), as a **store** (host a Kloset store), or as a **destination** (restore data back to that system).
 
-- [S3](https://www.plakar.io/docs/v1.1.0/integrations/s3): S3-compatible object storage (store, source, destination).
-- [SFTP](https://www.plakar.io/docs/v1.1.0/integrations/sftp): SFTP/SSH-accessible servers (store, source, destination).
-- [HTTP(S)](https://www.plakar.io/docs/v1.1.0/integrations/https): HTTP/HTTPS endpoint for stores exposed by `plakar server` (store).
-- [Notion](https://www.plakar.io/docs/v1.1.0/integrations/notion): Notion workspace via the Notion API (source, destination).
-- [Dropbox](https://www.plakar.io/docs/v1.1.0/integrations/dropbox): Dropbox via Rclone (store, source, destination).
-- [iCloud Drive](https://www.plakar.io/docs/v1.1.0/integrations/icloud-drive): iCloud Drive via Rclone (store, source, destination).
-- [Koofr](https://www.plakar.io/docs/v1.1.0/integrations/koofr): Koofr via Rclone (store, source, destination).
-- [Google Drive](https://www.plakar.io/docs/v1.1.0/integrations/google-drive): Google Drive via Rclone (store, source, destination).
-- [OneDrive](https://www.plakar.io/docs/v1.1.0/integrations/onedrive): OneDrive via Rclone (store, source, destination).
-- [OpenDrive](https://www.plakar.io/docs/v1.1.0/integrations/opendrive): OpenDrive via Rclone (store, source, destination).
-- [Proton Drive](https://www.plakar.io/docs/v1.1.0/integrations/proton-drive): Proton Drive via Rclone (store, source, destination).
-- [Proxmox](https://www.plakar.io/docs/v1.1.0/integrations/proxmox): Proxmox VMs and containers via vzdump (source, destination).
-- [Kubernetes](https://www.plakar.io/docs/v1.1.0/integrations/kubernetes): Kubernetes cluster resources, manifests, and persistent volumes (source).
-- [etcd](https://www.plakar.io/docs/v1.1.0/integrations/etcd): etcd cluster snapshots (source).
+- [S3](https://www.plakar.io/docs/v1.1.0/integrations/s3/index.md): S3-compatible object storage (store, source, destination).
+- [SFTP](https://www.plakar.io/docs/v1.1.0/integrations/sftp/index.md): SFTP/SSH-accessible servers (store, source, destination).
+- [HTTP(S)](https://www.plakar.io/docs/v1.1.0/integrations/https/index.md): HTTP/HTTPS endpoint for stores exposed by `plakar server` (store).
+- [Notion](https://www.plakar.io/docs/v1.1.0/integrations/notion/index.md): Notion workspace via the Notion API (source, destination).
+- [Dropbox](https://www.plakar.io/docs/v1.1.0/integrations/dropbox/index.md): Dropbox via Rclone (store, source, destination).
+- [iCloud Drive](https://www.plakar.io/docs/v1.1.0/integrations/icloud-drive/index.md): iCloud Drive via Rclone (store, source, destination).
+- [Koofr](https://www.plakar.io/docs/v1.1.0/integrations/koofr/index.md): Koofr via Rclone (store, source, destination).
+- [Google Drive](https://www.plakar.io/docs/v1.1.0/integrations/google-drive/index.md): Google Drive via Rclone (store, source, destination).
+- [OneDrive](https://www.plakar.io/docs/v1.1.0/integrations/onedrive/index.md): OneDrive via Rclone (store, source, destination).
+- [OpenDrive](https://www.plakar.io/docs/v1.1.0/integrations/opendrive/index.md): OpenDrive via Rclone (store, source, destination).
+- [Proton Drive](https://www.plakar.io/docs/v1.1.0/integrations/proton-drive/index.md): Proton Drive via Rclone (store, source, destination).
+- [Proxmox](https://www.plakar.io/docs/v1.1.0/integrations/proxmox/index.md): Proxmox VMs and containers via vzdump (source, destination).
+- [Kubernetes](https://www.plakar.io/docs/v1.1.0/integrations/kubernetes/index.md): Kubernetes cluster resources, manifests, and persistent volumes (source).
+- [etcd](https://www.plakar.io/docs/v1.1.0/integrations/etcd/index.md): etcd cluster snapshots (source).
 
 ### Commands
 
-- [plakar archive](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-archive): Create an archive from a Plakar snapshot.
-- [plakar backup](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-backup): Create a new snapshot in a Kloset store.
-- [plakar cat](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-cat): Display file contents from a Plakar snapshot.
-- [plakar check](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-check): Check data integrity in a Kloset repository.
-- [plakar create](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-create): Create a new Kloset repository.
-- [plakar destination](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-destination): Manage Plakar restore destination configuration.
-- [plakar diag](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-diag): Display detailed information about Plakar internal structures.
-- [plakar diff](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-diff): Show differences between files in a Plakar snapshots.
-- [plakar digest](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-digest): Compute digests for files in a Plakar snapshot.
-- [plakar dup](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-dup): Duplicates an existing snapshot with a different ID.
-- [plakar info](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-info): Display detailed information about internal structures.
-- [plakar locate](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-locate): Find filenames in a Plakar snapshot.
-- [plakar login](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-login): Authenticate to Plakar services.
-- [plakar logout](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-logout): Log out from Plakar services.
-- [plakar ls](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-ls): List snapshots and their contents in a Kloset repository.
-- [plakar maintenance](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-maintenance): Remove unused data from a Plakar repository.
-- [plakar mount](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-mount): Mount Plakar snapshots as read-only filesystem.
-- [plakar pkg add](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-pkg-add): Install Plakar plugins.
-- [plakar pkg build](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-pkg-build): Build Plakar plugins from source.
-- [plakar pkg create](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-pkg-create): Package a plugin.
-- [plakar pkg manifest](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-pkg-manifest): Manifest for plugin assemblation.
-- [plakar pkg recipe](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-pkg-recipe): Recipe to build Plakar plugins from source.
-- [plakar pkg rm](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-pkg-rm): Uninstall Plakar plugins.
-- [plakar pkg show](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-pkg-show): Show installed Plakar plugins.
-- [plakar policy](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-policy): Manage Plakar retention policies.
-- [plakar prune](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-prune): Prune snapshots according to a policy.
-- [plakar ptar](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-ptar): Generate a self-contained Kloset archive (.ptar).
-- [plakar query](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-query): Query flags shared among many Plakar subcommands.
-- [plakar restore](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-restore): Restore files from a Plakar snapshot.
-- [plakar rm](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-rm): Remove snapshots from a Plakar repository.
-- [plakar server](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-server): Start a Plakar server.
-- [plakar server](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-server): Manage optional Plakar-connected services.
-- [plakar source](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-source): Manage Plakar backup source configurationn.
-- [plakar store](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-store): Manage Plakar store configurations.
-- [plakar sync](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-sync): Synchronize snapshots between Plakar repositories.
-- [plakar token create](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-token-create): Create a token to authenticate to Plakar services.
-- [plakar ui](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-ui): Serve the Plakar web user interface.
-- [plakar version](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-version): Display the current Plakar version.
+- [plakar archive](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-archive/index.md): Create an archive from a Plakar snapshot.
+- [plakar backup](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-backup/index.md): Create a new snapshot in a Kloset store.
+- [plakar cat](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-cat/index.md): Display file contents from a Plakar snapshot.
+- [plakar check](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-check/index.md): Check data integrity in a Kloset repository.
+- [plakar create](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-create/index.md): Create a new Kloset repository.
+- [plakar destination](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-destination/index.md): Manage Plakar restore destination configuration.
+- [plakar diag](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-diag/index.md): Display detailed information about Plakar internal structures.
+- [plakar diff](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-diff/index.md): Show differences between files in a Plakar snapshots.
+- [plakar digest](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-digest/index.md): Compute digests for files in a Plakar snapshot.
+- [plakar dup](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-dup/index.md): Duplicates an existing snapshot with a different ID.
+- [plakar info](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-info/index.md): Display detailed information about internal structures.
+- [plakar locate](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-locate/index.md): Find filenames in a Plakar snapshot.
+- [plakar login](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-login/index.md): Authenticate to Plakar services.
+- [plakar logout](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-logout/index.md): Log out from Plakar services.
+- [plakar ls](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-ls/index.md): List snapshots and their contents in a Kloset repository.
+- [plakar maintenance](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-maintenance/index.md): Remove unused data from a Plakar repository.
+- [plakar mount](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-mount/index.md): Mount Plakar snapshots as read-only filesystem.
+- [plakar pkg add](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-pkg-add/index.md): Install Plakar plugins.
+- [plakar pkg build](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-pkg-build/index.md): Build Plakar plugins from source.
+- [plakar pkg create](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-pkg-create/index.md): Package a plugin.
+- [plakar pkg manifest](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-pkg-manifest/index.md): Manifest for plugin assemblation.
+- [plakar pkg recipe](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-pkg-recipe/index.md): Recipe to build Plakar plugins from source.
+- [plakar pkg rm](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-pkg-rm/index.md): Uninstall Plakar plugins.
+- [plakar pkg show](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-pkg-show/index.md): Show installed Plakar plugins.
+- [plakar policy](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-policy/index.md): Manage Plakar retention policies.
+- [plakar prune](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-prune/index.md): Prune snapshots according to a policy.
+- [plakar ptar](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-ptar/index.md): Generate a self-contained Kloset archive (.ptar).
+- [plakar query](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-query/index.md): Query flags shared among many Plakar subcommands.
+- [plakar restore](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-restore/index.md): Restore files from a Plakar snapshot.
+- [plakar rm](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-rm/index.md): Remove snapshots from a Plakar repository.
+- [plakar server](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-server/index.md): Start a Plakar server.
+- [plakar server](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-server/index.md): Manage optional Plakar-connected services.
+- [plakar source](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-source/index.md): Manage Plakar backup source configurationn.
+- [plakar store](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-store/index.md): Manage Plakar store configurations.
+- [plakar sync](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-sync/index.md): Synchronize snapshots between Plakar repositories.
+- [plakar token create](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-token-create/index.md): Create a token to authenticate to Plakar services.
+- [plakar ui](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-ui/index.md): Serve the Plakar web user interface.
+- [plakar version](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-version/index.md): Display the current Plakar version.
