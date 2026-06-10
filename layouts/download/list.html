@@ -219,7 +219,7 @@
       <h2 class="text-2xl font-medium text-neutral-900">Need help getting started?</h2>
       <p class="text-neutral-600">Check our documentation for installation guides, usage examples, and more.</p>
     </div>
-    <div class="flex gap-3 shrink-0">
+    <div class="flex flex-col sm:flex-row gap-3 shrink-0">
       {{ range $versions }}
         {{ $version := .Params.version }}
         <div class="version-panel" data-version="{{ $version }}" style="display:none;">
