@@ -86,6 +86,12 @@ Each integration tells Plakar how to interact with a specific storage system in 
 - [Kubernetes](https://www.plakar.io/docs/v1.1.0/integrations/kubernetes/index.md): Kubernetes cluster resources, manifests, and persistent volumes (source).
 - [etcd](https://www.plakar.io/docs/v1.1.0/integrations/etcd/index.md): etcd cluster snapshots (source).
 
+### References
+
+- [Command-Line Syntax](https://www.plakar.io/docs/v1.1.0/references/command-line-syntax/index.md): Global flags, environment variables, and output formats.
+- [PTAR Format Reference](https://www.plakar.io/docs/v1.1.0/references/ptar/index.md): Reference for the `.ptar` portable archive format: creation, inspection, integrity verification, and restore.
+- [Go Kloset SDK](https://www.plakar.io/docs/main/references/sdk/index.md): Reference for the Go Kloset SDK used to build custom Plakar integrations: importer, exporter, and storage connector interfaces.
+
 ### Commands
 
 - [plakar archive](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-archive/index.md): Create an archive from a Plakar snapshot.
@@ -126,3 +132,60 @@ Each integration tells Plakar how to interact with a specific storage system in 
 - [plakar token create](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-token-create/index.md): Create a token to authenticate to Plakar services.
 - [plakar ui](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-ui/index.md): Serve the Plakar web user interface.
 - [plakar version](https://www.plakar.io/docs/v1.1.0/references/commands/plakar-version/index.md): Display the current Plakar version.
+
+## Plakar Control Plane Docs
+
+Plakar Control Plane is a self-hosted backup management system built on top of Plakar. It adds a web interface, centralized scheduling, SLA, inventory management to Plakar and deployed as a virtual appliance in your own infrastructure.
+
+### Getting Started
+
+- [Control Plane Overview](https://www.plakar.io/control-plane-docs/intro/overview/index.md): What's the Control Plane, who is for and how it works.
+- [Enrollment](https://www.plakar.io/control-plane-docs/intro/enrollment/index.md): One-time setup that registers your PCP instance with plakar.io to retrieve your license and enable billing reporting.
+- [Billing & Plans](https://www.plakar.io/control-plane-docs/intro/billing/index.md): Available plans and pricing for Plakar Control Plane.
+
+### Installation
+
+- [AWS](https://www.plakar.io/control-plane-docs/intro/installation/aws/index.md): How to install Control Plane on AWS from AWS marketplace AMI.
+- [Scaleway](https://www.plakar.io/control-plane-docs/intro/installation/scaleway/index.md): How to install Control Plane on Scaleway using a QCOW2 image.
+- [VMware vSphere](https://www.plakar.io/control-plane-docs/intro/installation/virtual-machines/ovhcloud/index.md): How to install Control Plane on OVHcloud VMware vSphere from either an OVA or an ISO.
+
+### Infrastructure
+
+- [Secret Providers](https://www.plakar.io/control-plane-docs/infrastructure/secret-providers/index.md): How to use secret providers to feed secrets into Control Plane.
+- [Secret Provider: AWS Secrets Manager](https://www.plakar.io/control-plane-docs/infrastructure/secret-providers/aws/index.md): How to setup AWS Secrets Manager on Control Plane and use it as a secret provider.
+- [Secret Provider: HashiCorp Vault](https://www.plakar.io/control-plane-docs/infrastructure/secret-providers/vault/index.md): How to setup HashiCorp Vault on Control Plane and use it as a secret provider.
+- [Secret Provider: Scaleway Secret Manager](https://www.plakar.io/control-plane-docs/infrastructure/secret-providers/scaleway/index.md): How to setup Scaleway Secret Manager on Control Plane and use it as a secret provider.
+- [Inventories](https://www.plakar.io/control-plane-docs/infrastructure/inventories/index.md): What are inventories and how they are used in Control Plane.
+- [Inventory: AWS](https://www.plakar.io/control-plane-docs/infrastructure/inventories/aws/index.md): How to setup AWS inventory and use it in Control Plane.
+- [Inventory: Scaleway](https://www.plakar.io/control-plane-docs/infrastructure/inventories/scaleway/index.md): How to setup Scaleway inventory and use it in Control Plane.
+- [Inventory: Self-managed](https://www.plakar.io/control-plane-docs/infrastructure/inventories/self-managed/index.md): How to setup a Self-managed inventory and use it in Control Plane.
+
+### Connectors
+
+- [Overview](https://www.plakar.io/control-plane-docs/connectors/index.md): What are connectors in Plakar Control Plane and how to set up a connector.
+- [Source Connector](https://www.plakar.io/control-plane-docs/connectors/sources/index.md): How to configure and use a source connector.
+- [Store Connector](https://www.plakar.io/control-plane-docs/connectors/stores/index.md): How to configure and use a store connector.
+- [Destination Connector](https://www.plakar.io/control-plane-docs/connectors/destinations/index.md): How to configure and use a destination connector.
+
+### Resources
+
+- [Object Storage: S3](https://www.plakar.io/control-plane-docs/resources/object-storage/s3/index.md): Provision and manage S3-compatible object storage resources including AWS S3, Scaleway, MinIO, etc.
+- [Block Storage: Scaleway](https://www.plakar.io/control-plane-docs/resources/block-storage/scaleway/index.md): Back up Scaleway block volumes.
+- [Compute: Scaleway](https://www.plakar.io/control-plane-docs/resources/compute/scaleway/index.md): Back up and restore Scaleway compute instances.
+
+### Operations
+
+- [Policies](https://www.plakar.io/control-plane-docs/operations/policies/index.md): Define backup SLA requirements (frequency, retention, storage tier) and monitor source compliance against them.
+- [Scheduling](https://www.plakar.io/control-plane-docs/operations/scheduling/index.md): Configure one-off and recurring backup, restore, sync, and check tasks using the built-in scheduler.
+
+### Administration
+
+- [Updating Control Plane](https://www.plakar.io/control-plane-docs/administration/updating-control-plane/index.md): How to update your Plakar Control plane from the settings page.
+- [Updating Control Plane AMI on AWS](https://www.plakar.io/control-plane-docs/administration/updating-control-plane/aws/index.md): How to update the Control Plane AMI on AWS from AWS marketplace.
+- [Updating Control Plane QCOW2 on Scaleway](https://www.plakar.io/control-plane-docs/administration/updating-control-plane/scaleway/index.md): How to update Control Plane installations on Scaleway to a new version of the QCWO2.
+
+### General guides for Control Plane
+
+- [Managing Passphrases](https://www.plakar.io/control-plane-docs/guides/managing-passphrases/index.md): How passphrases are use in Control Plane, how to update a passphrase and what happens when you forget your passphrase.
+- [AWS: IAM Users, Roles & Access Keys](https://www.plakar.io/control-plane-docs/guides/aws/iam-users-roles-and-access-keys/index.md): Configure AWS IAM for the Control Plane.
+- [Scaleway: IAM & API Keys](https://www.plakar.io/control-plane-docs/guides/scaleway/iam-and-api-keys/index.md): Configure Scaleway IAM for the Control Plane.
