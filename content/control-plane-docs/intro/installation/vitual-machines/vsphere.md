@@ -1,16 +1,15 @@
 ---
-title: "OVHcloud"
+title: "VMware vSphere"
 date: "2026-06-09T00:00:00Z"
 weight: 1
 summary:
-  "How to install Plakar Control Plane on OVHcloud Managed VMware using vSphere
-  HTML Client"
+  "How to install Plakar Control Plane on vCenter using vSphere HTML Client"
 ---
 
-# OVHcloud Installation
+# VMware vSphere Installation
 
-Plakar Control Plane can be deployed on OVHcloud Managed VMware using the
-vSphere HTML Client. Two deployment methods are supported:
+Plakar Control Plane can be deployed on vCenter using the vSphere HTML Client.
+Two deployment methods are supported:
 
 - **OVA**: imports a pre-built appliance with the recommended virtual machine
   configuration already defined, including CPU and memory settings
@@ -54,8 +53,8 @@ location.
 
 ### Select a compute resource
 
-Select the destination compute resource for the datacenter. In your OVHcloud
-tenant this will typically be your cluster, for example `Cluster1`.
+Select the destination compute resource for the datacenter. This will typically
+be your cluster, for example `Cluster1`.
 
 ![](../images/ovhcloud-ova-4.png)
 
@@ -87,7 +86,7 @@ files.
 ### Select networks
 
 Map the source network to the destination network segment you have prepared in
-your OVHcloud environment. If your tenant uses an NSX-backed network segment,
+your vCenter environment. If your environment uses an NSX-backed network segment,
 select it as the destination network, for example `plakar-network`.
 
 ![](../images/ovhcloud-ova-7.png)
@@ -143,8 +142,8 @@ location.
 
 ### Select a compute resource
 
-Select the destination compute resource for the datacenter. In your OVHcloud
-tenant this will typically be your cluster, for example `Cluster1`.
+Select the destination compute resource for the datacenter. This will typically
+be your cluster, for example `Cluster1`.
 
 ### Select storage
 
@@ -163,7 +162,7 @@ files.
 The compatibility setting determines the virtual hardware version available to
 the virtual machine. Leave this at the default, **ESXi 8.0 U2 and later**
 (hardware version 21), which provides the best performance and access to the
-latest features supported by your OVHcloud environment. Click **Next**.
+latest features supported by your vCenter environment. Click **Next**.
 
 ![](../images/ovhcloud-iso-2.png)
 
@@ -189,8 +188,8 @@ On** so that the virtual machine boots from the ISO when it starts.
 
 Attach the network adapter to the network segment you prepared for the
 appliance, such as your NSX-backed segment or another destination network in
-your OVHcloud environment. Select **Browse** then select your network, in our
-case, we are on the `plakar-network`.
+your vCenter environment. Select **Browse** then select your network, for
+example `plakar-network`.
 
 Other hardware settings can be left at their default values.
 
@@ -215,7 +214,8 @@ disk from the **Virtual Hardware** tab by clicking on **Add New Device**, select
 ### Add Advanced Configuration Parameters
 
 You can setup the parameters from the **Advanced Parameters** tab and set the
-following information.
+following information. You'll need to add this setup to both ISO and OVA
+installation methods.
 
 | Parameter                  | Description                                      |
 | -------------------------- | ------------------------------------------------ |
