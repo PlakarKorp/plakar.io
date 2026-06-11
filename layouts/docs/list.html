@@ -1,13 +1,21 @@
 {{ define "main" }}
-<div data-pagefind-filter="section:Docs" hidden></div>
-{{ range .Ancestors }}{{ if and .Parent (eq .Parent.RelPermalink "/docs/") }}<div data-pagefind-filter="version:{{ .Title }}" hidden></div>{{ end }}{{ end }}
-{{ if and .Parent (eq .Parent.RelPermalink "/docs/") }}<div data-pagefind-filter="version:{{ .Title }}" hidden></div>{{ end }}
+{{ $isCommunity := strings.HasPrefix .RelPermalink "/docs/community" }}
+{{ $isControlPlane := strings.HasPrefix .RelPermalink "/docs/control-plane" }}
+{{ $docsRoot := cond $isCommunity "/docs/community" "/docs/control-plane" }}
+{{ $noVersioning := not $isCommunity }}
+{{ if $isCommunity }}
+  <div data-pagefind-filter="section:Community Docs" hidden></div>
+  {{ range .Ancestors }}{{ if and .Parent (eq .Parent.RelPermalink "/docs/community/") }}<div data-pagefind-filter="version:{{ path.Base .RelPermalink }}" hidden></div>{{ end }}{{ end }}
+  {{ if and .Parent (eq .Parent.RelPermalink "/docs/community/") }}<div data-pagefind-filter="version:{{ path.Base .RelPermalink }}" hidden></div>{{ end }}
+{{ else if $isControlPlane }}
+  <div data-pagefind-filter="section:Control Plane Docs" hidden></div>
+{{ end }}
   <div class="flex mt-12 gap-8 px-3 lg:px-6 py-8 max-w-350 mx-auto">
 
     <!-- Left sidebar (desktop) -->
     <aside class="hidden lg:block w-64 shrink-0">
       <div class="sticky top-24 overflow-y-auto max-h-[calc(100vh-6rem)]">
-        {{ partial "docs/sidebar.html" (dict "Page" . "docsRoot" "/docs") }}
+        {{ partial "docs/sidebar.html" (dict "Page" . "docsRoot" $docsRoot "noVersioning" $noVersioning) }}
       </div>
     </aside>
 
@@ -19,7 +27,7 @@
           <span class="w-4 h-4">{{ partial "icon.html" "ri/close-line" }}</span>
         </button>
       </div>
-      {{ partial "docs/sidebar.html" (dict "Page" . "docsRoot" "/docs") }}
+      {{ partial "docs/sidebar.html" (dict "Page" . "docsRoot" $docsRoot "noVersioning" $noVersioning) }}
     </aside>
 
     <!-- Main content -->

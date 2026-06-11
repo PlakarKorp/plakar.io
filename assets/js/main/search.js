@@ -49,11 +49,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Auto-select section filter based on current URL (mirrors original Alpine behaviour)
     const path = window.location.pathname;
-    if (path.startsWith("/docs/")) sectionFilter.value = "Docs";
-    else if (path.startsWith("/control-plane-docs/")) sectionFilter.value = "Control Plane Docs";
-    else if (path.startsWith("/posts/")) sectionFilter.value = "Blog";
-    else sectionFilter.value = "";
-    syncVersionWrap();
+    if (path.startsWith("/docs/community")) {
+      sectionFilter.value = "Community Docs";
+      syncVersionWrap();
+      const version = path.slice("/docs/community/".length).split("/")[0];
+      if (version) versionFilter.value = version;
+    } else if (path.startsWith("/docs/control-plane")) {
+      sectionFilter.value = "Control Plane Docs";
+      syncVersionWrap();
+    } else if (path.startsWith("/posts/")) {
+      sectionFilter.value = "Blog";
+      syncVersionWrap();
+    } else {
+      sectionFilter.value = "";
+      syncVersionWrap();
+    }
 
     await ensurePagefind();
     input?.focus();
@@ -66,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Filters
   const syncVersionWrap = () => {
-    const isDocsSelected = sectionFilter.value === "Docs";
+    const isDocsSelected = sectionFilter.value === "Community Docs";
     versionWrap.classList.toggle("hidden", !isDocsSelected);
     versionWrap.classList.toggle("flex", isDocsSelected);
     if (!isDocsSelected) versionFilter.value = "";
@@ -229,7 +239,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const filters = {};
     if (sectionFilter.value) filters.section = sectionFilter.value;
-    if (versionFilter.value && sectionFilter.value === "Docs")
+    if (versionFilter.value && sectionFilter.value === "Community Docs")
       filters.version = versionFilter.value;
 
     const options = Object.keys(filters).length > 0 ? { filters } : {};

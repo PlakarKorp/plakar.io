@@ -1,6 +1,6 @@
 <!-- JS: assets/js/main/search.js -->
 
-{{ $docsSection := .Site.GetPage "section" "docs" }}
+{{ $docsSection := .Site.GetPage "/docs/community" }}
 
 <template id="search-icon-file">{{ partial "icon.html" "ri/file-text-line" }}</template>
 
@@ -22,9 +22,9 @@
         <span class="text-sm text-neutral-500">Section:</span>
         <select id="search-section-filter" aria-label="Filter by section" class="text-sm bg-white border border-neutral-300 rounded-md pl-2.5 pr-8 py-1 text-neutral-700 outline-none cursor-pointer">
           <option value="">All sections</option>
-          <option value="Docs">Documentation</option>
+          <option value="Community Docs">Community Docs</option>
           <option value="Control Plane Docs">Control Plane Docs</option>
-          <option value="Blog">Blog</option>
+          <option value="Blog">Blogs</option>
           <option value="Integrations">Integrations</option>
         </select>
 
@@ -34,7 +34,7 @@
             <option value="">All versions</option>
             {{ with $docsSection }}
               {{ range .Sections }}
-                <option value="{{ .Title }}">{{ .Title }}</option>
+                <option value="{{ path.Base .RelPermalink }}">{{ .Title }}</option>
               {{ end }}
             {{ end }}
           </select>
