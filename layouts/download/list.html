@@ -225,13 +225,13 @@
         <div class="version-panel" data-version="{{ $version }}" style="display:none;">
           {{ partial "components/buttons/base-button.html" (dict
             "label" "Installation Guide"
-            "href" (printf "/docs/%s/quickstart/installation/" $version)
+            "href" (printf "/docs/community/%s/quickstart/installation/" $version)
           ) }}
         </div>
       {{ end }}
       {{ partial "components/buttons/base-button.html" (dict
         "label" "Documentation"
-        "href" "/docs"
+        "href" "/docs/community"
         "bgColor" "bg-neutral-900"
         "bgHoverColor" "bg-neutral-50"
         "textColor" "text-neutral-50"

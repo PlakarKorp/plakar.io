@@ -2,14 +2,19 @@
 title: "Using Exoscale Compute as a Dedicated Backup Server"
 date: "2026-03-19T00:00:00Z"
 weight: 1
-summary: "Back up Exoscale compute servers to Exoscale Object Storage using a dedicated compute instance."
+summary:
+  "Back up Exoscale compute servers to Exoscale Object Storage using a dedicated
+  compute instance."
 aliases:
   - /docs/v1.0.6/guides/exoscale/exoscale-compute-as-a-dedicated-backup-server/
 ---
 
 # Using Exoscale Compute as a Dedicated Backup Server
 
-This guide configures an Exoscale Compute instance to automatically back up your servers to Exoscale Object Storage (SOS). The setup uses Plakar to create encrypted, deduplicated snapshots on a scheduled interval with web UI monitoring.
+This guide configures an Exoscale Compute instance to automatically back up your
+servers to Exoscale Object Storage (SOS). The setup uses Plakar to create
+encrypted, deduplicated snapshots on a scheduled interval with web UI
+monitoring.
 
 ## Architecture
 
@@ -17,6 +22,7 @@ This guide configures an Exoscale Compute instance to automatically back up your
 - **Source servers**: Exoscale servers to back up
 - **Exoscale Object Storage (SOS)**: Stores encrypted backups
 
+<!-- prettier-ignore-start -->
 {{< mermaid >}}
 flowchart TB
 subgraph Sources["Source Servers"]
@@ -37,6 +43,7 @@ ServerN -->|SSH/SFTP| BackupCompute
 BackupCompute -->|Store Snapshots| Kloset
 
 {{< /mermaid >}}
+<!-- prettier-ignore-end -->
 
 ## Prerequisites
 
@@ -52,8 +59,9 @@ BackupCompute -->|Store Snapshots| Kloset
 1. In the Exoscale portal, navigate to **Storage**
 2. Click **Add** to create a new bucket
 3. Configure:
-    - Zone: Select region (note the name, it'll be used to connect to the container e.g `ch-dk-2`)
-    - Name: `plakar-backups` (must be globally unique)
+   - Zone: Select region (note the name, it'll be used to connect to the
+     container e.g `ch-dk-2`)
+   - Name: `plakar-backups` (must be globally unique)
 4. Click **Add**
 
 ![Create Storage Bucket](../images/setup-storage-1.png)
@@ -61,8 +69,10 @@ BackupCompute -->|Store Snapshots| Kloset
 ### Generate IAM API Keys
 
 1. In the Exoscale portal, navigate to **IAM** → **Keys**
-2. Click on **Add** to create new API keys, then provide a name and role, then click **Create**.
-3. Copy the key and secret to a secure environment (you cannot see the secret once you leave the page)
+2. Click on **Add** to create new API keys, then provide a name and role, then
+   click **Create**.
+3. Copy the key and secret to a secure environment (you cannot see the secret
+   once you leave the page)
 
 ![Create IAM API Key](../images/setup-iam-1.png)
 ![Create IAM API Key](../images/setup-iam-2.png)
@@ -71,13 +81,14 @@ BackupCompute -->|Store Snapshots| Kloset
 
 1. Generate SSH key locally and copy the public key:
 
-  ```bash
-  $ ssh-keygen -t ed25519 -f ~/.ssh/id_exoscale -C "exoscale-backup"
-  $ cat ~/.ssh/id_exoscale.pub
-  ```
+```bash
+$ ssh-keygen -t ed25519 -f ~/.ssh/id_exoscale -C "exoscale-backup"
+$ cat ~/.ssh/id_exoscale.pub
+```
 
 2. In the Exoscale portal, navigate to **Compute** → **SSH Keys**
-3. Click on **Add** then enter a name for the SSH Key and paste in the public key then click **Import**.
+3. Click on **Add** then enter a name for the SSH Key and paste in the public
+   key then click **Import**.
 
 ![Setup SSH Keys](../images/setup-ssh-1.png)
 ![Setup SSH Keys](../images/setup-ssh-2.png)
@@ -85,14 +96,15 @@ BackupCompute -->|Store Snapshots| Kloset
 ## Provision Backup Compute Instance
 
 ### Create compute instance
+
 1. In the Exoscale Portal, navigate to **Compute** → **Instances**
 2. Click **Add**
 3. Configure:
-    - Name: `plakar-backup`
-    - Template: Ubuntu 24.04 LTS
-    - Zone: Same as Object Storage bucket (recommended for better performance)
-    - Instance Type: Small (2 vCPUs, 2 GB RAM) or any other you prefer
-    - SSH Key: Select the SSH key we created before from the dropdown
+   - Name: `plakar-backup`
+   - Template: Ubuntu 24.04 LTS
+   - Zone: Same as Object Storage bucket (recommended for better performance)
+   - Instance Type: Small (2 vCPUs, 2 GB RAM) or any other you prefer
+   - SSH Key: Select the SSH key we created before from the dropdown
 4. Click **Add** to provision your compute
 
 ![Provision compute instance](../images/setup-compute-instance-1.png)
@@ -101,16 +113,19 @@ BackupCompute -->|Store Snapshots| Kloset
 
 ### Setup security group rules
 
-1. Once the compute is provisioned, navigate to **Compute** → **Security Groups**
-2. By default the compute will be assigned the `default` security group, click on the actions on default then click on **Details**
+1. Once the compute is provisioned, navigate to **Compute** → **Security
+   Groups**
+2. By default the compute will be assigned the `default` security group, click
+   on the actions on default then click on **Details**
 3. On the next page click on **Add Rule**
 4. Configure:
-    - Flow direction: Ingress
-    - Protocol: TCP
-    - Source Type: CIDR
-    - Sources: `0.0.0.0/0` allows SSH from anywhere (for better security use your IP Address here)
-    - Start & End port: 22
-    - A description for the rule e.g. SSH Access
+   - Flow direction: Ingress
+   - Protocol: TCP
+   - Source Type: CIDR
+   - Sources: `0.0.0.0/0` allows SSH from anywhere (for better security use your
+     IP Address here)
+   - Start & End port: 22
+   - A description for the rule e.g. SSH Access
 5. Click on **Create**
 
 ![Setup security group rules](../images/setup-security-rules.png)
@@ -125,7 +140,8 @@ $ ssh ubuntu@<instance-ip>
 
 ## Install Plakar
 
-Install Plakar on the instance using the [Plakar Installation Guide](../../../../../docs/main/quickstart/installation/)
+Install Plakar on the instance using the
+[Plakar Installation Guide](../../../../../docs/community/main/quickstart/installation/)
 
 ## Configure Object Storage
 
@@ -148,13 +164,17 @@ $ plakar store add exoscale-sos-backups \
 ```
 
 Replace:
-- `<SOS_ENDPOINT>`: using the format `sos-{zone}.exo.io` where zone is one we selected for the bucket e.g `sos-ch-dk-2.exo.io`
+
+- `<SOS_ENDPOINT>`: using the format `sos-{zone}.exo.io` where zone is one we
+  selected for the bucket e.g `sos-ch-dk-2.exo.io`
 - `<BUCKET_NAME>`: e.g., `plakar-backups`
 - `<YOUR_ACCESS_KEY>` and `<YOUR_SECRET_KEY>`: From bucket API credentials
 - `<YOUR_SECURE_PASSPHRASE>`: Strong passphrase for encryption
 
-> [!NOTE]+ Passphrase
-> Configuring the passphrase in the store enables automated backups without prompts.
+> [!NOTE]+
+>
+> Passphrase Configuring the passphrase in the store enables automated backups
+> without prompts.
 
 ### Initialize Kloset Store
 
@@ -216,6 +236,7 @@ $ ssh source-1 'echo "Alias works"'
 ```
 
 ## Configure Backup Sources
+
 Add source connectors for each server:
 
 ```bash
@@ -249,28 +270,39 @@ $ plakar at "@exoscale-sos-backups" ls
 
 ## Schedule Automatic Backups
 
-For scheduler configuration and systemd service setup, follow the same steps as the [OVHcloud backup server guide](../../ovhcloud/ovhcloud-as-a-dedicated-backup-server/#schedule-automatic-backups), replacing:
+For scheduler configuration and systemd service setup, follow the same steps as
+the
+[OVHcloud backup server guide](../../ovhcloud/ovhcloud-as-a-dedicated-backup-server/#schedule-automatic-backups),
+replacing:
+
 - `@ovhcloud-s3-backups` with `@exoscale-sos-backups`
 - `ubuntu` with your actual username if different
 
-The scheduler configuration, systemd services, and web UI setup are identical on any Linux machine.
+The scheduler configuration, systemd services, and web UI setup are identical on
+any Linux machine.
 
 ## Troubleshooting
 
 **Authentication errors**
+
 - Verify SSH keys and user permissions on source servers
 
 **Can't connect to Object Storage**
+
 - Check S3 credentials and endpoint URL
 - Verify passphrase: `plakar store show exoscale-sos-backups`
 - Confirm bucket name and zone endpoint match
 
 **Permission denied**
+
 - Ensure SSH user has read access to backup directories
 
 **Services won't start**
+
 - Check status: `systemctl status plakar-scheduler`
 - View logs: `journalctl -u plakar-scheduler` or `journalctl -u plakar-ui`
 
 **Alternative UI access**
-- Install Plakar locally and configure the same store with Exoscale SOS credentials to access backups without compute instance connection
+
+- Install Plakar locally and configure the same store with Exoscale SOS
+  credentials to access backups without compute instance connection

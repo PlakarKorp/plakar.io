@@ -2,20 +2,25 @@
 title: "Using OVHcloud VPS as a Dedicated Backup Server"
 date: "2026-03-19T00:00:00Z"
 weight: 1
-summary: "Automate backups of OVHcloud servers to Object Storage using a dedicated VPS."
+summary:
+  "Automate backups of OVHcloud servers to Object Storage using a dedicated VPS."
 aliases:
   - /docs/v1.0.6/guides/ovhcloud/ovhcloud-as-a-dedicated-backup-server/
 ---
 
 # Using OVHcloud VPS as a Dedicated Backup Server
 
-This guide configures an OVHcloud VPS to automatically back up your servers to Object Storage. The setup uses Plakar to create encrypted, deduplicated snapshots on a scheduled interval with web UI monitoring.
+This guide configures an OVHcloud VPS to automatically back up your servers to
+Object Storage. The setup uses Plakar to create encrypted, deduplicated
+snapshots on a scheduled interval with web UI monitoring.
 
 ## Architecture
+
 - **Backup VPS**: Runs Plakar and schedules backups
 - **Source servers**: OVHcloud servers to back up
 - **OVHcloud Object Storage**: Stores encrypted backups
 
+<!-- prettier-ignore-start -->
 {{< mermaid >}}
 flowchart TB
 subgraph Sources["Source Servers"]
@@ -36,8 +41,10 @@ ServerN -->|SSH/SFTP| BackupVPS
 BackupVPS -->|Store Snapshots| Kloset
 
 {{< /mermaid >}}
+<!-- prettier-ignore-end -->
 
 ## Prerequisites
+
 - OVHcloud account with billing configured
 - SSH access to source servers
 - Basic familiarity with Plakar commands
@@ -45,8 +52,10 @@ BackupVPS -->|Store Snapshots| Kloset
 ## Create Object Storage
 
 ### Create storage user
+
 1. Log in to OVHcloud Control Panel
-2. Navigate to **Public Cloud** → **Storage & Backup** → **Object Storage** → **Users**
+2. Navigate to **Public Cloud** → **Storage & Backup** → **Object Storage** →
+   **Users**
 3. Click **Create User**
 4. Enter description and click **Create**
 5. Download and store credentials securely
@@ -59,28 +68,30 @@ BackupVPS -->|Store Snapshots| Kloset
 1. Navigate to **Public Cloud** → **Storage & Backup** → **Object Storage**
 2. Click **Create an Object Storage** container
 3. Configure:
-    - Name: `plakar-backups`
-    - Container API: S3-compatible API
-    - User: Select the user created above
-    - Deployment: Choose 3-AZ (high availability) or 1-AZ (cost efficient)
-    - Region: Select location closest to your servers
+   - Name: `plakar-backups`
+   - Container API: S3-compatible API
+   - User: Select the user created above
+   - Deployment: Choose 3-AZ (high availability) or 1-AZ (cost efficient)
+   - Region: Select location closest to your servers
 4. Click **Create**
 
 ![Create a new object storage](../images/create-object-storage-1.png)
 ![Create a new object storage](../images/create-object-storage-2.png)
 
-Reference: [OVHcloud S3 Object Storage documentation](https://help.ovhcloud.com/csm/fr-documentation-public-cloud-storage-object-storage-s3?id=kb_browse_cat&kb_id=574a8325551974502d4c6e78b7421938&kb_category=8eaef5882c21fe144a4e082b79ed2fb9&spa=1)
+Reference:
+[OVHcloud S3 Object Storage documentation](https://help.ovhcloud.com/csm/fr-documentation-public-cloud-storage-object-storage-s3?id=kb_browse_cat&kb_id=574a8325551974502d4c6e78b7421938&kb_category=8eaef5882c21fe144a4e082b79ed2fb9&spa=1)
 
 ## Provision Backup VPS
 
 ### Order VPS
 
-1. Go to **Bare Metal Cloud** → **Dedicated and Virtual Servers** → **Virtual Private Servers**
+1. Go to **Bare Metal Cloud** → **Dedicated and Virtual Servers** → **Virtual
+   Private Servers**
 2. Click **Order** → **Configure your VPS**
 3. Select configuration:
-    - Model: VPS-1 (2 vCores, 8 GB RAM, 75GB Storage) or larger
-    - Region: Same as Object Storage
-    - Image: Ubuntu 25.04
+   - Model: VPS-1 (2 vCores, 8 GB RAM, 75GB Storage) or larger
+   - Region: Same as Object Storage
+   - Image: Ubuntu 25.04
 4. Complete order
 
 ![Order VPS from OVHcloud](../images/order-vps.png)
@@ -96,16 +107,19 @@ ssh ubuntu@your_vps_ip
 
 Change the temporary password when prompted, then reconnect.
 
-Reference: [OVHcloud VPS Getting Started guide](https://help.ovhcloud.com/csm/fr-vps-getting-started?id=kb_article_view&sysparm_article=KB0047736)
+Reference:
+[OVHcloud VPS Getting Started guide](https://help.ovhcloud.com/csm/fr-vps-getting-started?id=kb_article_view&sysparm_article=KB0047736)
 
 ## Install Plakar
+
 SSH to the backup VPS and install Plakar:
 
 ```bash
 ssh ubuntu@your-vps-ip
 ```
 
-Follow the [Plakar Installation Guide](../../../../../docs/main/quickstart/installation/)
+Follow the
+[Plakar Installation Guide](../../../../../docs/community/main/quickstart/installation/)
 
 ## Configure Object Storage
 
@@ -127,13 +141,16 @@ $ plakar store add ovhcloud-s3-backups \
 ```
 
 Replace:
+
 - `<S3_ENDPOINT>`: e.g., `s3.eu-west-par.io.cloud.ovh.net`
 - `<BUCKET_NAME>`: e.g., `plakar-backups`
 - `<YOUR_ACCESS_KEY_ID>` and `<YOUR_SECRET_ACCESS_KEY>`: From Step 1
 - `<YOUR_SECURE_PASSPHRASE>`: Strong passphrase for encryption
 
-> [!NOTE]+ Passphrase
-> Configuring the passphrase in the store enables automated backups without prompts.
+> [!NOTE]+
+>
+> Passphrase Configuring the passphrase in the store enables automated backups
+> without prompts.
 
 ### Initialize Kloset Store
 
@@ -251,8 +268,9 @@ agent:
 EOF
 ```
 
-> [!NOTE]+ Scheduler
-> The scheduler is basic and will be improved in future versions.
+> [!NOTE]+
+>
+> Scheduler The scheduler is basic and will be improved in future versions.
 
 ### Start scheduler
 
@@ -260,7 +278,9 @@ EOF
 $ plakar scheduler start -tasks ~/scheduler.yaml
 ```
 
-See [Scheduler Documentation](../../../../../docs/main/guides/setup-scheduler-daily-backups/) for more scheduling options.
+See
+[Scheduler Documentation](../../../../../docs/community/main/guides/setup-scheduler-daily-backups/)
+for more scheduling options.
 
 ## Configure Systemd Services
 
@@ -305,8 +325,10 @@ WantedBy=multi-user.target
 EOF
 ```
 
-> [!NOTE]+ Installation Path
-> If Plakar is installed elsewhere, update the path. Use `which plakar` to find it.
+> [!NOTE]+
+>
+> Installation Path If Plakar is installed elsewhere, update the path. Use
+> `which plakar` to find it.
 
 ### Enable and start services
 
@@ -325,7 +347,8 @@ $ sudo systemctl status plakar-ui
 
 ## Access Web UI
 
-When the UI service starts, Plakar automatically generates an access token. Retrieve it from the service logs:
+When the UI service starts, Plakar automatically generates an access token.
+Retrieve it from the service logs:
 
 ```bash
 $ sudo journalctl -u plakar-ui -n 100 --no-pager | grep -i token
@@ -337,29 +360,41 @@ You should see output similar to:
 launching webUI at http://:8080?plakar_token=d9fccdbd-77a3-41a0-8657-24d77a6d00ac
 ```
 
-Copy the `plakar_token` value from the URL and use it to access the UI: `http://your-vps-ip:8080?plakar_token=<token>`
+Copy the `plakar_token` value from the URL and use it to access the UI:
+`http://your-vps-ip:8080?plakar_token=<token>`
 
-> [!NOTE]+ Custom UI Token
-> From v1.1.0 onwards, you can set a custom token via the `PLAKAR_UI_TOKEN` environment variable instead of retrieving it from the logs. See the [v1.1.0 version of this guide](/docs/v1.1.0/guides/ovhcloud/ovhcloud-as-a-dedicated-backup-server/#access-web-ui) for details.
+> [!NOTE]+
+>
+> Custom UI Token From v1.1.0 onwards, you can set a custom token via the
+> `PLAKAR_UI_TOKEN` environment variable instead of retrieving it from the logs.
+> See the
+> [v1.1.0 version of this guide](/docs/community/v1.1.0/guides/ovhcloud/ovhcloud-as-a-dedicated-backup-server/#access-web-ui)
+> for details.
 
-> [!WARNING]+ Security
-> Configure firewall to restrict port 8080 access or use a reverse proxy with SSL.
+> [!WARNING]+ Security Configure firewall to restrict port 8080 access or use a
+> reverse proxy with SSL.
 
 ## Troubleshooting
 
 **Authentication errors**
+
 - Verify SSH keys and user permissions on source servers
 
 **Can't connect to Object Storage**
+
 - Check S3 credentials and endpoint URL
 - Verify passphrase: `plakar store show ovhcloud-s3-backups`
 
 **Permission denied**
+
 - Ensure SSH user has read access to backup directories
 
 **Services won't start**
+
 - Check status: `systemctl status plakar-scheduler`
 - View logs: `journalctl -u plakar-scheduler` or `journalctl -u plakar-ui`
 
 **Alternative UI access**
-- Install Plakar locally and configure the same store with OVHcloud S3 credentials to access backups without VPS connection
+
+- Install Plakar locally and configure the same store with OVHcloud S3
+  credentials to access backups without VPS connection

@@ -68,7 +68,7 @@ aliases:
     <p class="Pp">Sections can be renamed during import by appending
         <code class="Cm">:</code><var class="Ar">newname</var>.</p>
     <p class="Pp">For detailed examples and usage patterns, see the
-        <a class="Lk" href="https://plakar.io/docs/v1.0.6/guides/importing-configurations/">https://plakar.io/docs/v1.0.6/guides/importing-configurations/</a>
+        <a class="Lk" href="https://plakar.io/docs/community/v1.0.6/guides/importing-configurations/">https://plakar.io/docs/v1.0.6/guides/importing-configurations/</a>
         Importing Configurations guide.</p>
   </dd>
   <dt id="ping"><a class="permalink" href="#ping"><code class="Cm">ping</code></a>
