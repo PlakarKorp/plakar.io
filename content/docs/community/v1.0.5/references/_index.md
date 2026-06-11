@@ -3,6 +3,8 @@ title: "References"
 date: "2026-03-18T00:00:00Z"
 weight: 5
 summary: "Reference docs for Plakar"
+aliases:
+  - /docs/v1.0.5/references/
 ---
 
 # References

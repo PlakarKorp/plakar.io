@@ -3,6 +3,8 @@ title: "Billing & Plans"
 date: "2026-04-29T00:00:00Z"
 weight: 4
 summary: "Plakar Control Plane plans and how to manage your license."
+aliases:
+  - /control-plane-docs/intro/billing/
 ---
 
 # Billing

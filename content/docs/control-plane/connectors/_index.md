@@ -4,6 +4,8 @@ date: "2026-05-07T00:00:00Z"
 weight: 3
 summary:
   "How connectors work in Plakar Control Plane and how to configure them."
+aliases:
+  - /control-plane-docs/connectors/
 ---
 
 # Connectors

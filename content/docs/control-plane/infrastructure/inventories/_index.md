@@ -3,6 +3,8 @@ title: "Inventories"
 date: "2026-05-03T00:00:00Z"
 weight: 2
 summary: "Understand how inventories work in Plakar Control Plane and how to use them."
+aliases:
+  - /control-plane-docs/infrastructure/inventories/
 ---
 
 # Inventories

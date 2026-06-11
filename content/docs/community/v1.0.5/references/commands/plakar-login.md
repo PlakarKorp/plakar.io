@@ -3,6 +3,7 @@ date: "2026-05-13T08:34:18Z"
 title: login
 summary: "Authenticate to Plakar services"
 aliases:
+  - /docs/v1.0.5/references/commands/plakar-login/
   - /docs/v1.0.5/commands/plakar-login/
 ---
 

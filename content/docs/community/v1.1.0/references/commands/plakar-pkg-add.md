@@ -3,6 +3,7 @@ date: "2026-06-08T12:47:36Z"
 title: pkg-add
 summary: "Install Plakar plugins"
 aliases:
+  - /docs/v1.1.0/references/commands/plakar-pkg-add/
   - /docs/v1.1.0/commands/plakar-pkg-add/
 ---
 

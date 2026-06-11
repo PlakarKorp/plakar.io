@@ -3,6 +3,8 @@ title: "Importing Configurations"
 date: "2026-03-16T00:00:00Z"
 weight: 2
 summary: "Learn how to import configurations for stores, sources, and destinations in Plakar using the import command."
+aliases:
+  - /docs/v1.0.5/guides/importing-configurations/
 ---
 
 # Importing Configurations

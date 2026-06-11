@@ -3,6 +3,8 @@ title: "Logical backups with SQL dumps"
 date: "2026-03-18T00:00:00Z"
 weight: 1
 summary: Back up MySQL and MariaDB databases using the Plakar MySQL integration and restore them.
+aliases:
+  - /docs/main/guides/mysql/sqldump/
 ---
 
 # Logical backups with SQL dumps

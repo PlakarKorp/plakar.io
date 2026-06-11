@@ -3,6 +3,8 @@ title: "Dropbox"
 date: "2026-03-20T00:00:00Z"
 weight: 5
 summary: "Back up and restore your Dropbox with Plakar, and host Kloset stores in Dropbox."
+aliases:
+  - /docs/v1.0.5/integrations/dropbox/
 ---
 
 # Dropbox

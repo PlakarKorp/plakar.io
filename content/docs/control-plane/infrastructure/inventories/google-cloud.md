@@ -3,6 +3,8 @@ title: "Google Cloud"
 date: "2026-05-15T00:00:00Z"
 weight: 4
 summary: "How to connect and manage Google Cloud inventory in Plakar Control Plane."
+aliases:
+  - /control-plane-docs/infrastructure/inventories/google-cloud/
 ---
 
 # Google Cloud Inventory

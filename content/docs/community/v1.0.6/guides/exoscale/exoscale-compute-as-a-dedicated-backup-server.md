@@ -3,6 +3,8 @@ title: "Using Exoscale Compute as a Dedicated Backup Server"
 date: "2026-03-19T00:00:00Z"
 weight: 1
 summary: "Back up Exoscale compute servers to Exoscale Object Storage using a dedicated compute instance."
+aliases:
+  - /docs/v1.0.6/guides/exoscale/exoscale-compute-as-a-dedicated-backup-server/
 ---
 
 # Using Exoscale Compute as a Dedicated Backup Server

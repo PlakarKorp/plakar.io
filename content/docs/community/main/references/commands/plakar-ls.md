@@ -3,6 +3,7 @@ date: "2026-05-13T08:38:47Z"
 title: ls
 summary: "List snapshots and their contents in a Plakar repository"
 aliases:
+  - /docs/main/references/commands/plakar-ls/
   - /docs/main/commands/plakar-ls/
 ---
 

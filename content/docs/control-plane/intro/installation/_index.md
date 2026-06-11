@@ -5,6 +5,8 @@ weight: 2
 summary:
   "How to deploy Plakar Control Plane as a virtual appliance on your
   infrastructure."
+aliases:
+  - /control-plane-docs/intro/installation/
 ---
 
 # Installation

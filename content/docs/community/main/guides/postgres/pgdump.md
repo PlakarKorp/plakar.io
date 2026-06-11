@@ -4,6 +4,7 @@ date: "2026-03-19T00:00:00Z"
 weight: 1
 summary: "Back up PostgreSQL databases using the Plakar PostgreSQL integration and restore them."
 aliases:
+  - /docs/main/guides/postgres/pgdump/
   - /docs/main/guides/postgresql/pgdump
 ---
 

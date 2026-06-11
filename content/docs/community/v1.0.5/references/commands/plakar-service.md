@@ -3,6 +3,7 @@ date: "2026-05-13T08:34:19Z"
 title: service
 summary: "Manage optional Plakar-connected services"
 aliases:
+  - /docs/v1.0.5/references/commands/plakar-service/
   - /docs/v1.0.5/commands/plakar-service/
 ---
 

@@ -3,6 +3,8 @@ title: "Pruning snapshots"
 date: "2026-04-24T00:00:00Z"
 weight: 9
 summary: "Remove old snapshots from a Kloset store using age, tags, or retention policies."
+aliases:
+  - /docs/v1.0.5/guides/using-plakar-prune/
 ---
 
 # Pruning Snapshots

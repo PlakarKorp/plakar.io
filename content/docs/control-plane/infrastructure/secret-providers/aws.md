@@ -6,6 +6,7 @@ summary:
   "How to configure and use AWS Secrets Manager as a secret provider in Plakar
   Control Plane."
 aliases:
+  - /control-plane-docs/infrastructure/secret-providers/aws/
   - /control-plane-docs/infrastructure/secret-providers/aws-sm
 ---
 

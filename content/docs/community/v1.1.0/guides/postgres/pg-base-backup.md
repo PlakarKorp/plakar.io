@@ -4,6 +4,7 @@ date: "2026-03-19T00:00:00Z"
 weight: 2
 summary: "Back up a PostgreSQL cluster using the Plakar PostgreSQL integration and restore it."
 aliases:
+  - /docs/v1.1.0/guides/postgres/pg-base-backup/
   - /docs/v1.1.0/guides/postgresql/pg_base_backup
 ---
 

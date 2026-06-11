@@ -2,6 +2,8 @@
 title: "Guides"
 date: "2026-03-16T00:00:00Z"
 weight: 2
+aliases:
+  - /docs/v1.0.6/guides/
 ---
 
 # Guides

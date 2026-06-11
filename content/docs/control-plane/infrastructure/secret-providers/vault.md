@@ -6,6 +6,7 @@ summary:
   "How to configure and use HashiCorp Vault as a secret provider in Plakar
   Control Plane."
 aliases:
+  - /control-plane-docs/infrastructure/secret-providers/vault/
   - /control-plane-docs/infrastructure/secret-providers/vault-sm
 ---
 

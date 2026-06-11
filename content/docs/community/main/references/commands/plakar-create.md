@@ -3,6 +3,7 @@ date: "2026-05-13T08:38:47Z"
 title: create
 summary: "Create a new Plakar repository"
 aliases:
+  - /docs/main/references/commands/plakar-create/
   - /docs/main/commands/plakar-create/
 ---
 

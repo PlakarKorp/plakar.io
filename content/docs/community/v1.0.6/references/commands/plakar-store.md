@@ -3,6 +3,7 @@ date: "2026-05-13T08:33:29Z"
 title: store
 summary: "Manage Plakar store configurations"
 aliases:
+  - /docs/v1.0.6/references/commands/plakar-store/
   - /docs/v1.0.6/commands/plakar-store/
 ---
 

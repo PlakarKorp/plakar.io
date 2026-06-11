@@ -3,6 +3,7 @@ date: "2026-05-13T08:33:29Z"
 title: prune
 summary: "Prune snapshots according to a policy"
 aliases:
+  - /docs/v1.0.6/references/commands/plakar-prune/
   - /docs/v1.0.6/commands/plakar-prune/
 ---
 

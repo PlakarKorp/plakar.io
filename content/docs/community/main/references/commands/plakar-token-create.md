@@ -3,6 +3,7 @@ date: "2026-05-13T08:38:47Z"
 title: token-create
 summary: "Create a token to authenticate to Plakar services"
 aliases:
+  - /docs/main/references/commands/plakar-token-create/
   - /docs/main/commands/plakar-token-create/
 ---
 

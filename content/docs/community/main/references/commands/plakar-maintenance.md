@@ -3,6 +3,7 @@ date: "2026-05-13T08:38:47Z"
 title: maintenance
 summary: "Remove unused data from a Plakar repository"
 aliases:
+  - /docs/main/references/commands/plakar-maintenance/
   - /docs/main/commands/plakar-maintenance/
 ---
 

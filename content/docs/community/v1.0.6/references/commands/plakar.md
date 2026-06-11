@@ -3,6 +3,7 @@ date: "2026-05-13T08:33:29Z"
 title: plakar
 summary: "effortless backups"
 aliases:
+  - /docs/v1.0.6/references/commands/plakar/
   - /docs/v1.0.6/commands/plakar/
 ---
 

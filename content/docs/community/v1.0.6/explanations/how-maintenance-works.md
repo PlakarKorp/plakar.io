@@ -3,6 +3,8 @@ title: "How Maintenance Works"
 date: "2026-03-19T00:00:00Z"
 weight: 6
 summary: "Understand how Plakar stores backup data in chunks and packfiles, why deleting a snapshot does not immediately free space, and how the maintenance process safely reclaims unused storage."
+aliases:
+  - /docs/v1.0.6/explanations/how-maintenance-works/
 ---
 
 # How Maintenance Works

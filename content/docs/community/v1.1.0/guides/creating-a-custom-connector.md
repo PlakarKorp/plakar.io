@@ -3,6 +3,8 @@ title: "Creating a custom connector"
 date: "2026-04-16T00:00:00Z"
 weight: 7
 summary: "Step-by-step guide to implement and install your own Plakar connector (importer) in Go."
+aliases:
+  - /docs/v1.1.0/guides/creating-a-custom-connector/
 ---
 
 # Creating a custom connector

@@ -3,6 +3,8 @@ title: "Physical backups"
 date: "2026-03-18T00:00:00Z"
 weight: 2
 summary: "Perform physical backups of MySQL databases using file copy or Percona XtraBackup with Plakar."
+aliases:
+  - /docs/v1.1.0/guides/mysql/physical-backups/
 ---
 
 # Physical backups

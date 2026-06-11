@@ -4,6 +4,7 @@ date: "2026-03-19T00:00:00Z"
 weight: 2
 summary: "How to perform physical backups of a PostgreSQL cluster using pg_basebackup, and store them with Plakar."
 aliases:
+  - /docs/v1.0.6/guides/postgres/pg-base-backup/
   - /docs/v1.0.6/guides/postgresql/pg_base_backup
 ---
 

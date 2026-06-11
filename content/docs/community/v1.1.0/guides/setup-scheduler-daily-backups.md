@@ -3,6 +3,8 @@ title: "Scheduling Tasks"
 date: "2026-03-16T00:00:00Z"
 weight: 1
 summary: "Learn how to configure and run the Plakar scheduler to automate backups."
+aliases:
+  - /docs/v1.1.0/guides/setup-scheduler-daily-backups/
 ---
 
 # Scheduling Tasks

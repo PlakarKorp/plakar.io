@@ -3,6 +3,8 @@ title: "Getting Started"
 date: "2026-03-18T00:00:00Z"
 weight: 1
 summary: ""
+aliases:
+  - /docs/v1.0.5/quickstart/
 ---
 
 # Getting Started

@@ -3,6 +3,7 @@ date: "2026-05-13T08:34:19Z"
 title: token
 summary: "Manage Plakar tokens"
 aliases:
+  - /docs/v1.0.5/references/commands/plakar-token/
   - /docs/v1.0.5/commands/plakar-token/
 ---
 

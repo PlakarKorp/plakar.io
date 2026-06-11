@@ -3,6 +3,8 @@ title: "Using OVHcloud VPS as a Dedicated Backup Server"
 date: "2026-03-19T00:00:00Z"
 weight: 1
 summary: "Automate backups of OVHcloud servers to Object Storage using a dedicated VPS."
+aliases:
+  - /docs/main/guides/ovhcloud/ovhcloud-as-a-dedicated-backup-server/
 ---
 
 # Using OVHcloud VPS as a Dedicated Backup Server

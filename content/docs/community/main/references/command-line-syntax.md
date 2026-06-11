@@ -4,6 +4,7 @@ date: "2026-03-19T00:00:00Z"
 weight: 2
 summary: "How Plakar commands are structured, why flag order matters, and how to get help from the CLI."
 aliases:
+  - /docs/main/references/command-line-syntax/
   - /docs/main/guides/plakar-command-line-syntax
 ---
 

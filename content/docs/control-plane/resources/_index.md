@@ -3,6 +3,8 @@ title: "Resources"
 date: "2026-05-19T00:00:00Z"
 weight: 4
 summary: ""
+aliases:
+  - /control-plane-docs/resources/
 ---
 
 # Resources

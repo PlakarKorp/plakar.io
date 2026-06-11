@@ -3,6 +3,8 @@ title: "Scaleway"
 date: "2026-05-15T00:00:00Z"
 weight: 3
 summary: "How to install Plakar Control Plane on Scaleway"
+aliases:
+  - /control-plane-docs/intro/installation/scaleway/
 ---
 
 # Scaleway Installation

@@ -3,6 +3,8 @@ title: "Scaleway"
 date: "2026-05-15T00:00:00Z"
 weight: 3
 summary: "How to connect and manage Scaleway inventory in Plakar Control Plane."
+aliases:
+  - /control-plane-docs/infrastructure/inventories/scaleway/
 ---
 
 # Scaleway Inventory

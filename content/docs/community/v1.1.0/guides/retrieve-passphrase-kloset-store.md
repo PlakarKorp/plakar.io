@@ -3,6 +3,8 @@ title: "Retrieving secrets via external command"
 date: "2026-03-16T00:00:00Z"
 weight: 6
 summary: "The passphrase for accessing an encrypted Kloset Store can be stored in the environment, a file, or in the configuration. It can also be retrieved via an external command, for example your password manager."
+aliases:
+  - /docs/v1.1.0/guides/retrieve-passphrase-kloset-store/
 ---
 
 # Retrieving secrets via external command

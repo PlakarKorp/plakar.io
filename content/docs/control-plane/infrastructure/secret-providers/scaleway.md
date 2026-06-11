@@ -6,6 +6,7 @@ summary:
   "How to configure and use Scaleway Secret Manager as a secret provider in
   Plakar Control Plane."
 aliases:
+  - /control-plane-docs/infrastructure/secret-providers/scaleway/
   - /control-plane-docs/infrastructure/secret-providers/scaleway-sm
 ---
 

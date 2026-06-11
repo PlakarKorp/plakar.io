@@ -3,6 +3,8 @@ title: "Updating AWS AMI"
 date: "2026-05-15T00:00:00Z"
 weight: 1
 summary: "How to update Plakar Control Plane AMI on AWS."
+aliases:
+  - /control-plane-docs/administration/updating-control-plane/aws/
 ---
 
 # Updating AWS AMI for Plakar Control Plane

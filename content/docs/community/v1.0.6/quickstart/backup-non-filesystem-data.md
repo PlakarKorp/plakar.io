@@ -4,6 +4,7 @@ date: "2026-03-11T00:00:00Z"
 weight: 5
 summary: "Create a backup for your non-filesystem data. In this guide, we will back up an S3 bucket but this logic applies to any connector supported by plakar."
 aliases:
+  - /docs/v1.0.6/quickstart/backup-non-filesystem-data/
   - /docs/v1.0.6/quickstart/quickstart-3
 ---
 

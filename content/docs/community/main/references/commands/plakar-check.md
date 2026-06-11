@@ -3,6 +3,7 @@ date: "2026-05-13T08:38:47Z"
 title: check
 summary: "Check data integrity in a Plakar repository"
 aliases:
+  - /docs/main/references/commands/plakar-check/
   - /docs/main/commands/plakar-check/
 ---
 

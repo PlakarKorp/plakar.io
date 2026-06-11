@@ -4,6 +4,7 @@ date: "2026-03-19T00:00:00Z"
 weight: 1
 summary: "Understand the core architecture and data processing pipeline behind Plakar, including Kloset stores, chunking, deduplication, compression, encryption, and snapshot management"
 aliases:
+  - /docs/v1.1.0/explanations/how-plakar-works/
   - /docs/v1.1.0/quickstart/concepts
 ---
 

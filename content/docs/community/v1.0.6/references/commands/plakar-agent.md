@@ -3,6 +3,7 @@ date: "2026-05-13T08:33:29Z"
 title: agent
 summary: "Run the Plakar agent"
 aliases:
+  - /docs/v1.0.6/references/commands/plakar-agent/
   - /docs/v1.0.6/commands/plakar-agent/
 ---
 

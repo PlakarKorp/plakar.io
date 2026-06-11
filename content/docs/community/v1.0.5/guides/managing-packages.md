@@ -3,6 +3,8 @@ title: "Managing packages"
 date: "2026-04-10T00:00:00Z"
 weight: 8
 summary: "How to install, upgrade, and remove Plakar integration packages."
+aliases:
+  - /docs/v1.0.5/guides/managing-packages/
 ---
 
 # Managing packages

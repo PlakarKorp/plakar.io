@@ -3,6 +3,7 @@ date: "2026-05-13T08:38:47Z"
 title: cat
 summary: "Display file contents from a Plakar snapshot"
 aliases:
+  - /docs/main/references/commands/plakar-cat/
   - /docs/main/commands/plakar-cat/
 ---
 

@@ -6,6 +6,7 @@ summary:
   "How to create Scaleway IAM policies, applications, and API keys for use with
   Plakar Control Plane."
 aliases:
+  - /control-plane-docs/guides/scaleway/iam-and-api-keys/
   - /control-plane-docs/guides/scaleway/scaleway-iam-api-keys
 ---
 

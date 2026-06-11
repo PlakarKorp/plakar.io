@@ -3,6 +3,7 @@ date: "2026-06-08T12:47:36Z"
 title: logout
 summary: "Log out from Plakar services"
 aliases:
+  - /docs/v1.1.0/references/commands/plakar-logout/
   - /docs/v1.1.0/commands/plakar-logout/
 ---
 

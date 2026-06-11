@@ -3,6 +3,8 @@ title: "Installation"
 date: "2026-03-11T00:00:00Z"
 weight: 2
 summary: Install Plakar and verify your installation.
+aliases:
+  - /docs/v1.1.0/quickstart/installation/
 ---
 
 # Installation

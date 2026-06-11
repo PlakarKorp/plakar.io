@@ -4,6 +4,7 @@ date: "2026-03-18T00:00:00Z"
 weight: 1
 summary: "Get started with plakar: installation, creating your first backup, verifying, restoring, and using the UI. This guide helps you quickly set up plakar and perform essential backup operations."
 aliases:
+  - /docs/v1.0.5/quickstart/quickstart/
   - /docs/v1.0.5/quickstart/
   - /docs/v1.0.5/quickstart/overview/
   - /docs/v1.0.5/quickstart/installation/

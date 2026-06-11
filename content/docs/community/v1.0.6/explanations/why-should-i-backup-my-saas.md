@@ -3,6 +3,8 @@ title: "Why you need to backup your SaaS"
 date: "2026-03-19T00:00:00Z"
 weight: 5
 summary: "Understand why cloud services do not replace backups, and why SaaS data requires independent protection."
+aliases:
+  - /docs/v1.0.6/explanations/why-should-i-backup-my-saas/
 ---
 
 # Why you need to backup your SaaS

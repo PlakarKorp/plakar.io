@@ -3,6 +3,7 @@ date: "2026-05-13T08:34:18Z"
 title: digest
 summary: "Compute digests for files in a Plakar snapshot"
 aliases:
+  - /docs/v1.0.5/references/commands/plakar-digest/
   - /docs/v1.0.5/commands/plakar-digest/
 ---
 

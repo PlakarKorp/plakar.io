@@ -3,6 +3,7 @@ date: "2026-05-13T08:38:47Z"
 title: pkg-show
 summary: "Show installed Plakar plugins"
 aliases:
+  - /docs/main/references/commands/plakar-pkg-show/
   - /docs/main/commands/plakar-pkg-show/
 ---
 

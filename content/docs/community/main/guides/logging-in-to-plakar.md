@@ -4,6 +4,7 @@ date: "2026-03-18T00:00:00Z"
 weight: 8
 summary: "Log in to unlock optional features like pre-built package installation and alerting."
 aliases:
+  - /docs/main/guides/logging-in-to-plakar/
   - /docs/main/guides/what-is-plakar-login
 ---
 

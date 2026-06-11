@@ -3,6 +3,8 @@ title: "Notion"
 date: "2026-03-20T00:00:00Z"
 weight: 4
 summary: "Back up and restore your Notion workspace with Plakar."
+aliases:
+  - /docs/v1.0.5/integrations/notion/
 ---
 
 # Notion

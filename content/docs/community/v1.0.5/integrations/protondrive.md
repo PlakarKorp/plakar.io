@@ -3,6 +3,8 @@ title: "Proton Drive"
 date: "2026-03-20T00:00:00Z"
 weight: 11
 summary: "Back up and restore your Proton Drive with Plakar, and host Kloset stores in Proton Drive."
+aliases:
+  - /docs/v1.0.5/integrations/protondrive/
 ---
 
 # Proton Drive

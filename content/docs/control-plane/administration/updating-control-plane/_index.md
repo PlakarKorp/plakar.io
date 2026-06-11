@@ -3,6 +3,8 @@ title: "Updating Control Plane"
 date: "2026-05-13T00:00:00Z"
 weight: 1
 summary: "How to update Plakar Control Plane and its underlying deployment infrastructure."
+aliases:
+  - /control-plane-docs/administration/updating-control-plane/
 ---
 
 # Updating Plakar Control Plane

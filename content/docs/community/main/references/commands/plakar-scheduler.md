@@ -3,6 +3,7 @@ date: "2026-05-13T08:38:47Z"
 title: scheduler
 summary: "Run the Plakar scheduler"
 aliases:
+  - /docs/main/references/commands/plakar-scheduler/
   - /docs/main/commands/plakar-scheduler/
 ---
 

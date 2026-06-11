@@ -5,6 +5,8 @@ weight: 1
 summary:
   "An introduction to Plakar Control Plane, its core concepts, and how to get
   started."
+aliases:
+  - /control-plane-docs/intro/overview/
 ---
 
 # Overview

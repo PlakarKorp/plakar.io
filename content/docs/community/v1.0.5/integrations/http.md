@@ -3,6 +3,8 @@ title: "HTTP"
 date: "2026-03-21T00:00:00Z"
 weight: 3
 summary: "Install and configure the HTTP integration for Plakar."
+aliases:
+  - /docs/v1.0.5/integrations/http/
 ---
 
 # HTTP

@@ -3,6 +3,7 @@ date: "2026-05-13T08:34:18Z"
 title: dup
 summary: "Duplicates an existing snapshot with a different ID"
 aliases:
+  - /docs/v1.0.5/references/commands/plakar-dup/
   - /docs/v1.0.5/commands/plakar-dup/
 ---
 

@@ -3,6 +3,8 @@ title: "Scaleway Compute"
 date: "2026-05-19T00:00:00Z"
 weight: 1
 summary: "How to configure a Scaleway compute resource in Plakar Control Plane."
+aliases:
+  - /control-plane-docs/resources/compute/scaleway/
 ---
 
 # Scaleway Compute

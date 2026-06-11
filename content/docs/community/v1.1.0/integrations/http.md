@@ -3,6 +3,8 @@ title: "HTTP(S)"
 date: "2026-05-21T00:00:00Z"
 weight: 3
 summary: "Install and configure the HTTP(S) integration for Plakar."
+aliases:
+  - /docs/v1.1.0/integrations/http/
 ---
 
 # HTTP(S)

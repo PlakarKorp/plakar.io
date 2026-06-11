@@ -4,6 +4,7 @@ date: "2026-03-19T00:00:00Z"
 weight: 1
 summary: "Back up PostgreSQL databases using pg_dump and restore from these backups."
 aliases:
+  - /docs/v1.0.6/guides/postgres/pgdump/
   - /docs/v1.0.6/guides/postgresql/pgdump
 ---
 

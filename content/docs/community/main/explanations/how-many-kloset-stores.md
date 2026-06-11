@@ -4,6 +4,7 @@ date: "2026-03-19T00:00:00Z"
 weight: 3
 summary: "Understand how deduplication, data similarity, and security requirements affect the number of Kloset Stores you should use."
 aliases:
+  - /docs/main/explanations/how-many-kloset-stores/
   - /docs/main/guides/how-many-kloset-stores
 ---
 

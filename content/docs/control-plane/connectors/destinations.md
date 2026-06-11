@@ -3,6 +3,8 @@ title: "Destination Connector"
 date: "2026-05-11T00:00:00Z"
 weight: 3
 summary: "How destination connectors work in Plakar Control Plane."
+aliases:
+  - /control-plane-docs/connectors/destinations/
 ---
 
 # Destination Connector

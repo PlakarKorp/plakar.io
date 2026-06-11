@@ -3,6 +3,7 @@ date: "2026-05-13T08:34:19Z"
 title: server
 summary: "Start a Plakar server"
 aliases:
+  - /docs/v1.0.5/references/commands/plakar-server/
   - /docs/v1.0.5/commands/plakar-server/
 ---
 

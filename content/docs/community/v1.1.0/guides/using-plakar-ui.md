@@ -5,6 +5,8 @@ weight: 11
 summary:
   "Learn how to start and use the Plakar UI to browse snapshots, restore files,
   manage integrations, and view alerts."
+aliases:
+  - /docs/v1.1.0/guides/using-plakar-ui/
 ---
 
 # Using Plakar UI

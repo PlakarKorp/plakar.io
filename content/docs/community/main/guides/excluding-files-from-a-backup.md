@@ -3,6 +3,8 @@ title: "Excluding files from a backup"
 date: "2026-03-16T00:00:00Z"
 weight: 5
 summary: "Learn how to exclude files from a backup in Plakar"
+aliases:
+  - /docs/main/guides/excluding-files-from-a-backup/
 ---
 
 # Excluding files from a backup

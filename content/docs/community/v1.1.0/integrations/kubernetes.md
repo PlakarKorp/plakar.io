@@ -3,6 +3,8 @@ title: "Kubernetes"
 date: "2026-05-13T00:00:00Z"
 weight: 13
 summary: "Back up and restore Kubernetes resources and persistent volumes with Plakar."
+aliases:
+  - /docs/v1.1.0/integrations/kubernetes/
 ---
 
 # Kubernetes

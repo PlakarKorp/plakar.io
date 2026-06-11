@@ -3,6 +3,8 @@ title: "Source Connector"
 date: "2026-05-11T00:00:00Z"
 weight: 1
 summary: "How source connectors work in Plakar Control Plane."
+aliases:
+  - /control-plane-docs/connectors/sources/
 ---
 
 # Source Connector

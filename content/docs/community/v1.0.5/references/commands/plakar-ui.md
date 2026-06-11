@@ -3,6 +3,7 @@ date: "2026-05-13T08:34:19Z"
 title: ui
 summary: "Serve the Plakar web user interface"
 aliases:
+  - /docs/v1.0.5/references/commands/plakar-ui/
   - /docs/v1.0.5/commands/plakar-ui/
 ---
 

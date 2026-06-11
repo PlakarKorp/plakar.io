@@ -3,6 +3,8 @@ title: "Backing Up an OVHcloud Managed PostgreSQL Database"
 date: "2026-03-19T00:00:00Z"
 weight: 2
 summary: "Backing up an OVHcloud Managed PostgreSQL database to Object Storage using pg_dump and Plakar."
+aliases:
+  - /docs/v1.0.6/guides/ovhcloud/backup-ovhcloud-managed-postgres/
 ---
 
 # Backing Up an OVHcloud Managed PostgreSQL Database

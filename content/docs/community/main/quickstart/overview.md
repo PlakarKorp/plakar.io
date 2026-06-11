@@ -3,6 +3,8 @@ title: "Overview"
 date: "2026-03-11T00:00:00Z"
 weight: 1
 summary: "A powerful backup tool with deduplication, end-to-end encryption, and flexible integrations for most data sources."
+aliases:
+  - /docs/main/quickstart/overview/
 ---
 
 # Overview

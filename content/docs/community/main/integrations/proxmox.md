@@ -3,6 +3,8 @@ title: "Proxmox"
 date: "2026-03-30T00:00:00Z"
 weight: 12
 summary: "Back up and restore Proxmox virtual machines and containers with Plakar."
+aliases:
+  - /docs/main/integrations/proxmox/
 ---
 
 # Proxmox

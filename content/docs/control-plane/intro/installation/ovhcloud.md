@@ -3,6 +3,8 @@ title: "OVHcloud"
 date: "2026-05-15T00:00:00Z"
 weight: 2
 summary: "How to install Plakar Control Plane on OVHcloud"
+aliases:
+  - /control-plane-docs/intro/installation/ovhcloud/
 ---
 
 # OVHcloud Installation

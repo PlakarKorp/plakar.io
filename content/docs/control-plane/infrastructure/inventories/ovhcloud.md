@@ -3,6 +3,8 @@ title: "OVHcloud"
 date: "2026-05-15T00:00:00Z"
 weight: 2
 summary: "How to connect and manage OVHcloud inventory in Plakar Control Plane."
+aliases:
+  - /control-plane-docs/infrastructure/inventories/ovhcloud/
 ---
 
 # OVHcloud Inventory

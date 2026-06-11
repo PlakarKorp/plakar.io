@@ -3,6 +3,8 @@ title: "Logical backups with SQL dumps"
 date: "2026-03-18T00:00:00Z"
 weight: 1
 summary: "Back up MySQL databases using mysqldump and restore from these backups."
+aliases:
+  - /docs/v1.0.6/guides/mysql/sqldump/
 ---
 
 # Logical backups with SQL dumps

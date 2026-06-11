@@ -3,6 +3,8 @@ title: "Creating a Kloset Store"
 date: "2026-03-16T00:00:00Z"
 weight: 3
 summary: "Create a Kloset Store on the filesystem using Plakar."
+aliases:
+  - /docs/main/guides/create-kloset-repository/
 ---
 
 # Creating a Kloset Store

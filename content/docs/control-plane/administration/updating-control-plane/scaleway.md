@@ -3,6 +3,8 @@ title: "Updating Scaleway"
 date: "2026-05-18T00:00:00Z"
 weight: 2
 summary: "How to update the Plakar Control Plane Scaleway installation image."
+aliases:
+  - /control-plane-docs/administration/updating-control-plane/scaleway/
 ---
 
 # Updating Scaleway QCOW2 image for Control Plane

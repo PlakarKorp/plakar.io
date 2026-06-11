@@ -3,6 +3,7 @@ date: "2026-05-13T08:38:47Z"
 title: destination
 summary: "Manage Plakar restore destination configuration"
 aliases:
+  - /docs/main/references/commands/plakar-destination/
   - /docs/main/commands/plakar-destination/
 ---
 

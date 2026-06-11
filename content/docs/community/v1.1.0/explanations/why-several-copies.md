@@ -4,6 +4,7 @@ date: "2026-03-19T00:00:00Z"
 weight: 4
 summary: "Understand why multiple backup copies drastically reduce the risk of data loss, and how this leads to the 3‑2‑1 backup strategy."
 aliases:
+  - /docs/v1.1.0/explanations/why-several-copies/
   - /docs/v1.1.0/guides/why-several-copies
 ---
 

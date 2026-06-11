@@ -3,6 +3,7 @@ date: "2026-05-13T08:38:47Z"
 title: backup
 summary: "Create a new snapshot in a Kloset store"
 aliases:
+  - /docs/main/references/commands/plakar-backup/
   - /docs/main/commands/plakar-backup/
 ---
 

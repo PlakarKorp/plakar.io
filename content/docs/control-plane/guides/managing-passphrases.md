@@ -5,6 +5,8 @@ weight: 1
 summary:
   "How store passphrases work in Plakar Control Plane and how to change the
   passphrase used by a store."
+aliases:
+  - /control-plane-docs/guides/managing-passphrases/
 ---
 
 # Managing passphrases

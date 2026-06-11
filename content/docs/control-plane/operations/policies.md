@@ -3,6 +3,8 @@ title: "Policies"
 date: "2026-05-13T00:00:00Z"
 weight: 1
 summary: "How to create and manage backup policies in Plakar Control Plane."
+aliases:
+  - /control-plane-docs/operations/policies/
 ---
 
 # Policies

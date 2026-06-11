@@ -4,6 +4,7 @@ date: "2026-03-16T00:00:00Z"
 weight: 4
 summary: "Expose a Kloset Store over HTTP using the plakar server command."
 aliases:
+  - /docs/main/guides/serving-a-kloset-store-over-the-network/
   - /docs/main/guides/what-is-plakar-server
   - /docs/main/guides/serving-a-kloset-store-over-http
 ---

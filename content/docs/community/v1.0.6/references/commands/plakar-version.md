@@ -3,6 +3,7 @@ date: "2026-05-13T08:33:29Z"
 title: version
 summary: "Display the current Plakar version"
 aliases:
+  - /docs/v1.0.6/references/commands/plakar-version/
   - /docs/v1.0.6/commands/plakar-version/
 ---
 

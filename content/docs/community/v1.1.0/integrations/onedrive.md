@@ -3,6 +3,8 @@ title: "OneDrive"
 date: "2026-03-20T00:00:00Z"
 weight: 9
 summary: "Back up and restore your OneDrive with Plakar, and host Kloset stores in OneDrive."
+aliases:
+  - /docs/v1.1.0/integrations/onedrive/
 ---
 
 # OneDrive

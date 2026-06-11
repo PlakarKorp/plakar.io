@@ -4,6 +4,7 @@ date: "2026-03-19T00:00:00Z"
 weight: 2
 summary: "Understand the difference between push and pull backup models, and how Plakar supports both."
 aliases:
+  - /docs/v1.0.5/explanations/should-you-pull-or-push-backups/
   - /docs/v1.0.5/guides/backups-push-or-pull
 ---
 

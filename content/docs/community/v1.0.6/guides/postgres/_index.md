@@ -4,6 +4,7 @@ date: "2026-03-19T00:00:00Z"
 weight: 12
 summary: "Guides on backing up and restoring PostgreSQL databases"
 aliases:
+  - /docs/v1.0.6/guides/postgres/
   - /docs/v1.0.6/guides/postgresql
 ---
 

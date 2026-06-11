@@ -3,6 +3,8 @@ title: "SFTP / SSH"
 date: "2026-03-19T00:00:00Z"
 weight: 2
 summary: "Back up and restore remote directories over SFTP/SSH, and host Kloset stores on remote SFTP servers."
+aliases:
+  - /docs/v1.1.0/integrations/sftp/
 ---
 
 # SFTP / SSH

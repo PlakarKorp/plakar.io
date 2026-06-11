@@ -5,6 +5,8 @@ weight: 1
 summary:
   "How to create AWS IAM roles, users, policies, and access keys for use with
   Plakar."
+aliases:
+  - /control-plane-docs/guides/aws/iam-users-roles-and-access-keys/
 ---
 
 # Managing IAM Roles, Users, and Access Keys

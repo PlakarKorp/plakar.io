@@ -3,6 +3,8 @@ title: "Plakar Ptar"
 date: "2026-03-19T00:00:00Z"
 weight: 1
 summary: "Command reference for creating and accessing Ptar archives: syntax, options, and examples for plakar ptar and related commands."
+aliases:
+  - /docs/v1.0.6/references/ptar/
 ---
 
 # Plakar Ptar

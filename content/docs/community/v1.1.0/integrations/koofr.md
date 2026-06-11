@@ -3,6 +3,8 @@ title: "Koofr"
 date: "2026-03-20T00:00:00Z"
 weight: 7
 summary: "Back up and restore your Koofr with Plakar, and host Kloset stores in Koofr."
+aliases:
+  - /docs/v1.1.0/integrations/koofr/
 ---
 
 # Koofr

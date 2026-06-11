@@ -3,6 +3,7 @@ date: "2026-05-13T08:33:29Z"
 title: query
 summary: "query flags shared among many Plakar subcommands"
 aliases:
+  - /docs/v1.0.6/references/commands/plakar-query/
   - /docs/v1.0.6/commands/plakar-query/
 ---
 

@@ -3,6 +3,8 @@ title: "Community"
 date: "2026-03-20T00:00:00Z"
 weight: 6
 summary: "How to engage with the Plakar community: where to talk, collaborate, follow updates, and read the rules."
+aliases:
+  - /docs/main/community/
 ---
 
 # Community

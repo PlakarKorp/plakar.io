@@ -3,6 +3,8 @@ title: "Back Up an Exoscale Managed MySQL Database"
 date: "2026-03-19T00:00:00Z"
 weight: 2
 summary: "Back up an Exoscale Managed MySQL database to Exoscale Object Storage using mysqldump and Plakar"
+aliases:
+  - /docs/main/guides/exoscale/backup-exoscale-managed-mysql/
 ---
 
 # Back Up an Exoscale Managed MySQL Database

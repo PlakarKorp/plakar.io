@@ -3,6 +3,7 @@ date: "2026-06-08T12:47:36Z"
 title: diag
 summary: "Display detailed information about Plakar internal structures"
 aliases:
+  - /docs/v1.1.0/references/commands/plakar-diag/
   - /docs/v1.1.0/commands/plakar-diag/
 ---
 
