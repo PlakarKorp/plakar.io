@@ -24,18 +24,26 @@ mode** without completing the initial setup wizard. Refer to the
 [installation guide](../../../intro/installation) for platform-specific
 instructions on deploying the appliance.
 
+> [!NOTE]+
+>
+> The virtual appliance image must be the same version as the one that was
+> running at the time the backup was taken. Once the restore is complete, you
+> can [upgrade the appliance](../../updating-control-plane) to a newer version.
+
 ## Step 2 — Verify SSH access
 
 Confirm that you can connect to the new appliance over SSH using the `plakar`
 user:
 
 ```bash
-ssh plakar@<appliance-address>
+export APPLIANCE_ADDRESS=<appliance-address>
+
+ssh plakar@$APPLIANCE_ADDRESS
 ```
 
 ## Step 3 — Install Plakar OSS and configure the store
 
-On the new appliance, install the Plakar OSS client. Refer to the
+On your local machine, install the Plakar OSS client. Refer to the
 [installation guide](/docs/community/main/quickstart/installation) for
 instructions.
 
@@ -55,31 +63,75 @@ Replace `<store>` with the store URI and `<snapshot_id>` with the identifier of
 the snapshot you want to restore. This produces a `pcp.tar.gz` file in the
 current directory.
 
-## Step 5 — Copy the data into the running container
+## Step 5 — Upload the archive to the appliance
 
-> [!NOTE]+ This section is in progress and will be updated soon.
-
-<!-- Once the snapshot is extracted locally, copy its contents into the appropriate container using `ctr`. The containerd namespace for Plakar Control Plane services is `services.linuxkit`.
+Pipe the archive directly into the `orkestrator` container using the `$APPLIANCE_ADDRESS` set in step 2:
 
 ```bash
-ssh user@host \
-  'ctr -n services.linuxkit tasks exec --exec-id copy <container-id> tar cf - -C /target/path .' \
-  | tar xf - -C ./local-dir
-``` -->
+cat pcp.tar.gz | ssh plakar@$APPLIANCE_ADDRESS sudo ctr -n services.linuxkit task exec --exec-id upload-pcp orkestrator sh -c '"mkdir -p /data/tmp-restore-pcp && cat > /data/tmp-restore-pcp/pcp.tar.gz"'
+```
 
-<!-- Replace `<container-id>` with the ID of the Plakar Control Plane container, `/target/path` with the path inside the container where the data should land, and `./local-dir` with the local directory containing the restored snapshot data. -->
+This places the archive at `/data/tmp-restore-pcp/pcp.tar.gz` inside the container.
 
 ## Step 6 — Run the restore commands
 
-> [!NOTE]+
->
-> This section is in progress and will be updated soon.
+Connect to the `orkestrator` container and run the restore commands:
+
+```bash
+ssh -t plakar@${APPLIANCE_ADDRESS} sudo ctr -n services.linuxkit task exec -t --exec-id restore-pcp orkestrator bash
+```
+
+From the container shell, run the following commands:
+
+```bash
+# Extract the archive in a docker container because busybox tar is limited and cannot handle the archive produced by plakar
+docker run --rm -i -v /data/tmp-restore-pcp:/app -w /app ubuntu tar -zxvf ./pcp.tar.gz
+
+# Remove the current database to prepare for the restore
+docker-compose -f /data/plakman/run/database.yaml kill postgres
+rm -rf /data/database_runtime/*
+
+# Create a temporary database container to run the restore commands
+docker network create restore-net
+docker run -d --rm -ti -v /data/database_runtime:/var/lib/postgresql/data -e POSTGRES_PASSWORD=postgres --name restore-db --network restore-net postgres:16
+
+sleep 5 # wait for the database to start
+
+# Restore the database dumps in the correct order
+## Globals
+docker run --rm -i -e PGPASSWORD=postgres --network restore-net postgres:17 psql -h restore-db -U postgres -d postgres < /data/tmp-restore-pcp/db/00000-globals.sql
+## Postgres database
+docker run --rm -i -e PGPASSWORD=postgres --network restore-net postgres:17 pg_restore -h restore-db -U postgres --clean -d postgres < /data/tmp-restore-pcp/db/00002-postgres.dump
+## Plakar Control Plane database
+docker run --rm -i -e PGPASSWORD=postgres --network restore-net postgres:17 dropdb --if-exists -h restore-db -U postgres plakman-db
+docker run --rm -i -e PGPASSWORD=postgres --network restore-net postgres:17 createdb -h restore-db -U postgres plakman-db
+docker run --rm -i -e PGPASSWORD=postgres --network restore-net postgres:17 pg_restore -h restore-db -U postgres -f - < /data/tmp-restore-pcp/db/00001-plakman-db.dump | sed "s/SELECT pg_catalog.set_config('search_path', '', false);/SELECT pg_catalog.set_config('search_path', 'public', false);/" | docker run --rm -i -e PGPASSWORD=postgres --network restore-net postgres:17 psql -h restore-db -U postgres -d plakman-db
+
+# Clean up database restore artifacts
+docker rm -f restore-db
+docker network rm restore-net
+
+# Restore files
+rm -rf /data/secrets/* && cp -r /data/tmp-restore-pcp/fs/appliance_data/secrets/* /data/secrets/
+rm -rf /data/ssh/* && cp -r /data/tmp-restore-pcp/fs/appliance_data/ssh/* /data/ssh/
+rm -rf /data/plakman_runtime/* && cp -r /data/tmp-restore-pcp/fs/appliance_data/plakman_runtime/* /data/plakman_runtime/
+rm -rf /data/plakman/* && cp -r /data/tmp-restore-pcp/fs/appliance_data/plakman/* /data/plakman/
+
+# Clean up
+rm -rf /data/tmp-restore-pcp
+```
 
 ## Step 7 — Reboot
 
-Reboot the appliance to apply all changes and start Plakar Control Plane with
-the restored configuration:
+Reboot the appliance from your provider's management console. For example on AWS, select the instance and click **Reboot**.
 
-```bash
-sudo reboot
-```
+## Post-restore: verify provider-side configuration
+
+Once the appliance is back online, the instance is fully restored. However, depending on your deployment environment, you may also need to verify that the new instance has the same provider-side configuration as the original.
+
+For example, on AWS, ensure that the new EC2 instance has:
+- The same IAM role and permissions attached
+- The same security group rules and network restrictions
+- The same VPC and subnet placement if applicable
+
+Refer to the [installation guide](../../../intro/installation) for your platform for details on the required provider-side configuration.
