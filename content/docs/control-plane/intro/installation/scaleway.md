@@ -12,7 +12,7 @@ aliases:
 Plakar Control Plane is distributed for Scaleway as a QCOW2 virtual machine
 image. The official QCOW2 image for Scaleway can be downloaded from:
 
-- [Plakar Control Plane QCOW2 Image](https://www.plakar.io/dist/releases/plakar/control-plane/appliance/plakar-appliance_v1.1.0_efi.qcow2)
+- [Plakar Control Plane Downloads Page](https://www.plakar.io/download)
 
 ## Uploading the QCOW2 image to Scaleway Object Storage
 
