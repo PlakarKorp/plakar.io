@@ -11,54 +11,6 @@ Below is the complete list of commands. Select any command to view its detailed 
 
 
 
-## [plakar](https://plakar.io/docs/community/main/references/commands/plakar/index.md)
-
-
-
-## [ui](https://plakar.io/docs/community/main/references/commands/plakar-ui/index.md)
-
-
-
-## [version](https://plakar.io/docs/community/main/references/commands/plakar-version/index.md)
-
-
-
-## [archive](https://plakar.io/docs/community/main/references/commands/plakar-archive/index.md)
-
-
-
-## [backup](https://plakar.io/docs/community/main/references/commands/plakar-backup/index.md)
-
-
-
-## [cat](https://plakar.io/docs/community/main/references/commands/plakar-cat/index.md)
-
-
-
-## [check](https://plakar.io/docs/community/main/references/commands/plakar-check/index.md)
-
-
-
-## [create](https://plakar.io/docs/community/main/references/commands/plakar-create/index.md)
-
-
-
-## [destination](https://plakar.io/docs/community/main/references/commands/plakar-destination/index.md)
-
-
-
-## [diag](https://plakar.io/docs/community/main/references/commands/plakar-diag/index.md)
-
-
-
-## [diff](https://plakar.io/docs/community/main/references/commands/plakar-diff/index.md)
-
-
-
-## [digest](https://plakar.io/docs/community/main/references/commands/plakar-digest/index.md)
-
-
-
 ## [dup](https://plakar.io/docs/community/main/references/commands/plakar-dup/index.md)
 
 
@@ -119,6 +71,10 @@ Below is the complete list of commands. Select any command to view its detailed 
 
 
 
+## [plakar](https://plakar.io/docs/community/main/references/commands/plakar/index.md)
+
+
+
 ## [policy](https://plakar.io/docs/community/main/references/commands/plakar-policy/index.md)
 
 
@@ -164,6 +120,50 @@ Below is the complete list of commands. Select any command to view its detailed 
 
 
 ## [token-create](https://plakar.io/docs/community/main/references/commands/plakar-token-create/index.md)
+
+
+
+## [ui](https://plakar.io/docs/community/main/references/commands/plakar-ui/index.md)
+
+
+
+## [version](https://plakar.io/docs/community/main/references/commands/plakar-version/index.md)
+
+
+
+## [archive](https://plakar.io/docs/community/main/references/commands/plakar-archive/index.md)
+
+
+
+## [backup](https://plakar.io/docs/community/main/references/commands/plakar-backup/index.md)
+
+
+
+## [cat](https://plakar.io/docs/community/main/references/commands/plakar-cat/index.md)
+
+
+
+## [check](https://plakar.io/docs/community/main/references/commands/plakar-check/index.md)
+
+
+
+## [create](https://plakar.io/docs/community/main/references/commands/plakar-create/index.md)
+
+
+
+## [destination](https://plakar.io/docs/community/main/references/commands/plakar-destination/index.md)
+
+
+
+## [diag](https://plakar.io/docs/community/main/references/commands/plakar-diag/index.md)
+
+
+
+## [diff](https://plakar.io/docs/community/main/references/commands/plakar-diff/index.md)
+
+
+
+## [digest](https://plakar.io/docs/community/main/references/commands/plakar-digest/index.md)
 
 
 
