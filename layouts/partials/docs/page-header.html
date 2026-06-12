@@ -31,7 +31,7 @@
     <!-- Copy Markdown -->
     <button
       id="copy-markdown-btn"
-      data-md-url="{{ .Permalink }}index.md"
+      data-md-url="{{ .RelPermalink }}index.md"
       class="flex items-center gap-1.5 text-sm text-neutral-500 hover:text-neutral-800 border border-neutral-200 rounded-lg px-3 py-1.5 transition-colors"
     >
       <span id="copy-md-icon" class="w-4 h-4">{{ partial "icon.html" "ri/file-copy-line" }}</span>
