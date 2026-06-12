@@ -78,5 +78,10 @@ aliases:
 
 EOF
   mandoc -I os=Plakar -Thtml -Ofragment,man=../%N/ "$man" >> "$dest"
-  sed -i '' "s|https://docs\.plakar\.io/en/guides/importing-configurations/|https://plakar.io/docs/community/${VERSION}/guides/importing-configurations/|g" "$dest"
+
+  case $(uname) in
+  Darwin|FreeBSD) i='-i ""' ;;
+  *)              i='-i'    ;;
+  esac
+  sed $i "s|https://docs\.plakar\.io/en/guides/importing-configurations/|https://plakar.io/docs/community/${VERSION}/guides/importing-configurations/|g" "$dest"
 done
