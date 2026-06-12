@@ -1,5 +1,5 @@
 ---
-date: "2026-05-13T08:38:47Z"
+date: "2026-06-12T09:07:15Z"
 title: mount
 summary: "Mount Plakar snapshots as read-only filesystem"
 aliases:
@@ -7,29 +7,31 @@ aliases:
   - /docs/main/commands/plakar-mount/
 ---
 
-<div class="head" role="doc-pageheader" aria-label="Manual header
-  line"><span class="head-ltitle">PLAKAR-MOUNT(1)</span>
-  <span class="head-vol">General Commands Manual</span>
-  <span class="head-rtitle">PLAKAR-MOUNT(1)</span></div>
-<main class="manual-text">
+<table class="head">
+  <tr>
+    <td class="head-ltitle">PLAKAR-MOUNT(1)</td>
+    <td class="head-vol">General Commands Manual</td>
+    <td class="head-rtitle">PLAKAR-MOUNT(1)</td>
+  </tr>
+</table>
+<div class="manual-text">
 <section class="Sh">
-<h2 class="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h2>
+<h1 class="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h1>
 <p class="Pp"><code class="Nm">plakar-mount</code> &#x2014;
-    <span class="Nd" role="doc-subtitle">Mount Plakar snapshots as read-only
-    filesystem</span></p>
+    <span class="Nd">Mount Plakar snapshots as read-only filesystem</span></p>
 </section>
 <section class="Sh">
-<h2 class="Sh" id="SYNOPSIS"><a class="permalink" href="#SYNOPSIS">SYNOPSIS</a></h2>
+<h1 class="Sh" id="SYNOPSIS"><a class="permalink" href="#SYNOPSIS">SYNOPSIS</a></h1>
 <table class="Nm">
   <tr>
     <td><code class="Nm">plakar mount</code></td>
-    <td>[<code class="Fl">-to</code> <var class="Ar">mountpoint</var>]
-      [<var class="Ar">snapshotID</var>]</td>
+    <td>[<code class="Fl">-allow-others</code>] [<code class="Fl">-to</code>
+      <var class="Ar">mountpoint</var>] [<var class="Ar">snapshotID</var>]</td>
   </tr>
 </table>
 </section>
 <section class="Sh">
-<h2 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h2>
+<h1 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h1>
 <p class="Pp">The <code class="Nm">plakar mount</code> command mounts a Plakar
     repository snapshot as a read-only filesystem at the specified
     <var class="Ar">mountpoint</var>. This allows users to access snapshot
@@ -38,10 +40,12 @@ aliases:
     This command may not work on all Operating Systems.</p>
 <p class="Pp">In addition to the flags described below, <code class="Nm">plakar
     mount</code> supports the location flags documented in
-    <a class="Xr" href="../plakar-query/" aria-label="plakar-query, section
-    7">plakar-query(7)</a> to precisely select snapshots.</p>
+    <a class="Xr" href="../plakar-query/">plakar-query(7)</a> to precisely
+    select snapshots.</p>
 <p class="Pp">The options are as follows:</p>
 <dl class="Bl-tag">
+  <dt id="allow-others"><a class="permalink" href="#allow-others"><code class="Fl">-allow-others</code></a></dt>
+  <dd>Allow other users to access the mounted filesystem.</dd>
   <dt id="to"><a class="permalink" href="#to"><code class="Fl">-to</code></a>
     <var class="Ar">mountpoint</var></dt>
   <dd>Specify the mount location. The <var class="Ar">mountpoint</var> can
@@ -59,13 +63,13 @@ aliases:
 </dl>
 </section>
 <section class="Sh">
-<h2 class="Sh" id="EXIT_STATUS"><a class="permalink" href="#EXIT_STATUS">EXIT
-  STATUS</a></h2>
+<h1 class="Sh" id="EXIT_STATUS"><a class="permalink" href="#EXIT_STATUS">EXIT
+  STATUS</a></h1>
 <p class="Pp">The <code class="Nm">plakar-mount</code> utility exits&#x00A0;0 on
     success, and&#x00A0;&gt;0 if an error occurs.</p>
 </section>
 <section class="Sh">
-<h2 class="Sh" id="EXAMPLES"><a class="permalink" href="#EXAMPLES">EXAMPLES</a></h2>
+<h1 class="Sh" id="EXAMPLES"><a class="permalink" href="#EXAMPLES">EXAMPLES</a></h1>
 <p class="Pp">Mount all snapshots to a local directory:</p>
 <div class="Bd Pp Bd-indent Li">
 <pre>$ plakar mount -to ~/mnt</pre>
@@ -77,6 +81,10 @@ aliases:
 <p class="Pp">Mount a specific snapshot by ID to a directory:</p>
 <div class="Bd Pp Bd-indent Li">
 <pre>$ plakar mount -to ~/mnt abc123</pre>
+</div>
+<p class="Pp">Mount all snapshots allowing access by other users:</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>$ plakar mount -allow-others -to ~/mnt</pre>
 </div>
 <p class="Pp">Mount snapshots matching a filter (e.g., snapshots with tag
     &quot;daily-backup&quot;):</p>
@@ -93,14 +101,15 @@ aliases:
 </div>
 </section>
 <section class="Sh">
-<h2 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
-  ALSO</a></h2>
-<p class="Pp"><a class="Xr" href="../plakar/" aria-label="plakar, section
-    1">plakar(1)</a>,
-    <a class="Xr" href="../plakar-query/" aria-label="plakar-query, section
-    7">plakar-query(7)</a></p>
+<h1 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
+  ALSO</a></h1>
+<p class="Pp"><a class="Xr" href="../plakar/">plakar(1)</a>,
+    <a class="Xr" href="../plakar-query/">plakar-query(7)</a></p>
 </section>
-</main>
-<div class="foot" role="doc-pagefooter" aria-label="Manual footer
-  line"><span class="foot-left">Plakar</span> <span class="foot-date">May 5,
-  2026</span> <span class="foot-right">PLAKAR-MOUNT(1)</span></div>
+</div>
+<table class="foot">
+  <tr>
+    <td class="foot-date">May 29, 2026</td>
+    <td class="foot-os">Plakar</td>
+  </tr>
+</table>
