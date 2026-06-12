@@ -81,7 +81,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-06-04T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-06-12T21:42:00+03:00">
+    <meta property="article:modified_time" content="2026-06-12T21:46:59+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -264,12 +264,12 @@
     "dateCreated": "2026-06-04T00:00:00\u002b00:00",
     "datePublished": "2026-06-04T00:00:00\u002b00:00",
     
-    "dateModified": "2026-06-12T21:42:00\u002b03:00",
+    "dateModified": "2026-06-12T21:46:59\u002b03:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "513"
+    "wordCount": "829"
   }]
   </script>
 
@@ -3620,8 +3620,9 @@
 </div>
 <p>Plakar Control Plane provides end-to-end encryption for backups. When a
 passphrase is configured on a store, it becomes part of the encryption process
-for that store and is tied to the data already in it. If the wrong passphrase is
-provided, the store cannot be opened and the backup data cannot be read.</p>
+for that store and is tied to the data already stored in it.</p>
+<p>If the wrong passphrase is provided, Plakar Control Plane cannot open the store
+and the backup data cannot be read.</p>
 
 <div class="relative group">
   <h2 id="changing-the-passphrase-of-a-store">Changing the passphrase of a store</h2>
@@ -3631,17 +3632,21 @@ provided, the store cannot be opened and the backup data cannot be read.</p>
   </span>
   
 </div>
-<p>A store passphrase cannot be changed directly. To use a new passphrase, create a
-new store with the new passphrase and run a sync task from the old store to the
-new one. Once the sync completes, the new store holds the backup data protected
-by the new passphrase.</p>
-<p>The general flow is:</p>
+<p>A store passphrase cannot be changed directly.</p>
+<p>To use a new passphrase, you need to create a new store using the new
+passphrase, then synchronize the data from the old store to the new one. This
+creates a new encrypted store containing the same backup data, protected with
+the new passphrase.</p>
+<p>The general workflow is:</p>
 <ol>
-<li>Create a new store with the new passphrase.</li>
+<li>Create a new store connector with the new passphrase.</li>
 <li>Run a sync task from the old store to the new store.</li>
-<li>Verify that the sync completed successfully.</li>
-<li>Update all tasks (backups, checks, and so on) to use the new store.</li>
-<li>Delete the old store only when it is no longer needed.</li>
+<li>Verify that the sync job completed successfully.</li>
+<li>Update backup, restore, check, and sync tasks to use the new store.</li>
+<li>Update SLA policies that target the old store to target the new store, if
+any.</li>
+<li>Keep the old store until you are sure it is no longer needed.</li>
+<li>Remove the old store only after validation.</li>
 </ol>
 <details
       class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
@@ -3666,9 +3671,122 @@ by the new passphrase.</p>
   />
 </svg>
 </span></div>
-      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Do not delete the old store until you have confirmed that the sync completed
-successfully and that the new store can be used for future backup and restore
-operations.</p></div></details>
+      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Do not delete the old store immediately. Keep it until you have confirmed that
+the sync completed successfully.</p></div></details>
+<div class="relative group">
+  <h2 id="step-1-create-a-new-store">Step 1: Create a new store</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#step-1-create-a-new-store" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>First, create a new store connector. This store must use the new passphrase. See
+the <a href="/docs/control-plane/connectors/" >connectors documentation</a> for the full procedure.</p>
+<p>When creating the new store:</p>
+<ul>
+<li>Set up the new store with a new passphrase.</li>
+<li>Test the connection before using the store in a sync task.</li>
+</ul>
+<details
+      class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
+      data-type="note"
+      open>
+      <summary class="flex items-center gap-2 font-semibold text-inherit cursor-pointer">
+        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"/></svg>
+</span></div>
+        <div class="grow">
+          Note
+        </div>
+        <div
+          class="ms-auto flex h-5 w-5 items-center justify-center transition-transform ease-in-out -rotate-90 group-open:rotate-0 print:hidden"><span class="relative block icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+</span></div>
+      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>The new store should be separate from the old one. Do not point both store
+connectors to the same resource. Read the
+<a href="/docs/control-plane/resources/" >resources documentation</a> for more information about resources.</p></div></details>
+<div class="relative group">
+  <h2 id="step-2-sync-the-old-store-to-the-new-store">Step 2: Sync the old store to the new store</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#step-2-sync-the-old-store-to-the-new-store" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>After the new store has been created, create a sync task from the old store to
+the new store. The old store is used as the source. The new store is used as the
+destination. See the
+<a href="/docs/control-plane/connectors/stores/#sync-store-task" >sync task documentation</a> for details on
+creating and running scheduled tasks. When configuring the sync task:</p>
+<ul>
+<li>Select the old store as the source store.</li>
+<li>Select the new store as the destination store.</li>
+<li>Run the task.</li>
+<li>Wait for the job to complete successfully.</li>
+</ul>
+<p>The sync operation copies the backup data into the new store. Since the new
+store uses a different passphrase, the synchronized data is protected by the new
+passphrase.</p>
+
+<div class="relative group">
+  <h2 id="step-3-verify-the-sync">Step 3: Verify the sync</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#step-3-verify-the-sync" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>Once the sync job has completed, verify that the new store can be used. Check
+that:</p>
+<ul>
+<li>The sync job completed successfully.</li>
+<li>The new store contains the expected snapshots.</li>
+<li>A check task can run successfully on the new store to verify data integrity.</li>
+</ul>
+
+<div class="relative group">
+  <h2 id="step-4-update-existing-tasks-and-policies">Step 4: Update existing tasks and policies</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#step-4-update-existing-tasks-and-policies" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>After the new store has been validated, update existing tasks and policies so
+they use the new store. This may include:</p>
+<ul>
+<li>Backup tasks</li>
+<li>Restore tasks</li>
+<li>Sync tasks</li>
+<li>Check tasks</li>
+<li>SLA policies that target the old store</li>
+</ul>
+
+<div class="relative group">
+  <h2 id="step-5-remove-the-old-store-when-safe">Step 5: Remove the old store when safe</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#step-5-remove-the-old-store-when-safe" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>Only remove the old store after you have confirmed that:</p>
+<ul>
+<li>The new store contains the expected backup data.</li>
+<li>The new passphrase is stored securely.</li>
+<li>Backup and restore workflows use the new store.</li>
+</ul>
+
 <div class="relative group">
   <h2 id="why-passphrase-rotation-is-not-supported">Why passphrase rotation is not supported</h2>
   
@@ -3678,34 +3796,19 @@ operations.</p></div></details>
   
 </div>
 <p>Many encrypted systems use the passphrase only to protect a randomly generated
-master key, which in turn encrypts all data. With that design, rotating a
+master key, which then encrypts the actual data. With that design, rotating a
 passphrase is cheap: decrypt the master key with the old passphrase, re-encrypt
-it with the new one, done. The backup data is never touched.</p>
-<p>This is convenient, but it does not solve the problem that most passphrase
-changes are actually trying to solve: a suspected compromise.</p>
-<p>If an attacker has enough access to obtain the current passphrase, they can also
-read and keep a copy of the master key. Changing the passphrase afterwards
-prevents future access to the encrypted master key, but it does nothing for a
-master key that has already been stolen. The attacker retains the ability to
-decrypt all existing data indefinitely, and the passphrase change creates a
-false sense of security.</p>
-<p>The only way to genuinely rotate the encryption is to re-encrypt the data itself
-under a new key. In Plakar Control Plane, that is what the sync-to-new-store
-workflow achieves.</p>
-
-<div class="relative group">
-  <h2 id="using-the-new-store">Using the new store</h2>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#using-the-new-store" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<p>Once synchronized, the new store should replace the old one for all backup
-tasks. Keeping both stores active makes it harder to know which one holds the
-latest data.</p>
-<p>After you have confirmed that the new store works as expected, the old store can
-be removed according to your retention and operational requirements.</p>
+it with the new one, and leave the backup data untouched.</p>
+<p>This is convenient, but it does not fully solve the problem that most passphrase
+changes are meant to address: a suspected compromise.</p>
+<p>If an attacker has enough access to obtain the current passphrase, they may also
+have enough access to read or keep a copy of the encryption material it
+protects. Changing the passphrase afterwards may prevent future access through
+the old passphrase, but it does not protect data that could already be
+decryptable by a copied key.</p>
+<p>The only way to genuinely rotate the encryption is to write the data again under
+new encryption material. In Plakar Control Plane, this is done by syncing the
+old store into a new store configured with a new passphrase.</p>
 
 <div class="relative group">
   <h2 id="losing-a-passphrase">Losing a passphrase</h2>
@@ -3716,10 +3819,14 @@ be removed according to your retention and operational requirements.</p>
   
 </div>
 <p>If the passphrase for an encrypted store is lost, the data in that store cannot
-be recovered. Plakar Control Plane provides end-to-end encryption, and the
-passphrase is required to open the store — there is no recovery mechanism.</p>
+be recovered.</p>
+<p>Plakar Control Plane provides end-to-end encryption, and the passphrase is
+required to open the store. There is no recovery mechanism for a lost
+passphrase.</p>
 <p>Store passphrases should be kept in a secure password manager or secret
 management system used by your organization.</p>
+<p>See the <a href="/docs/control-plane/infrastructure/secret-providers/" >Secret Providers documentation</a> for
+details on using secrets from a secret manager inside Plakar Control Plane.</p>
 <details
       class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
       data-type="warning"
@@ -3755,7 +3862,9 @@ cannot be decrypted.</p></div></details>
   
 </div>
 <ul>
-<li><a href="/docs/control-plane/connectors/stores/" >Store Connector</a></li>
+<li><a href="/docs/control-plane/connectors/stores/" >Store connectors</a></li>
+<li><a href="/docs/control-plane/operations/scheduling/" >Scheduling tasks</a></li>
+<li><a href="/docs/control-plane/infrastructure/secret-providers/" >Secret Providers</a></li>
 </ul>
 
       </article>
@@ -3825,8 +3934,12 @@ cannot be decrypted.</p></div></details>
       <nav id="TableOfContents">
   <ul>
     <li><a href="#changing-the-passphrase-of-a-store">Changing the passphrase of a store</a></li>
+    <li><a href="#step-1-create-a-new-store">Step 1: Create a new store</a></li>
+    <li><a href="#step-2-sync-the-old-store-to-the-new-store">Step 2: Sync the old store to the new store</a></li>
+    <li><a href="#step-3-verify-the-sync">Step 3: Verify the sync</a></li>
+    <li><a href="#step-4-update-existing-tasks-and-policies">Step 4: Update existing tasks and policies</a></li>
+    <li><a href="#step-5-remove-the-old-store-when-safe">Step 5: Remove the old store when safe</a></li>
     <li><a href="#why-passphrase-rotation-is-not-supported">Why passphrase rotation is not supported</a></li>
-    <li><a href="#using-the-new-store">Using the new store</a></li>
     <li><a href="#losing-a-passphrase">Losing a passphrase</a></li>
     <li><a href="#see-also">See also</a></li>
   </ul>
