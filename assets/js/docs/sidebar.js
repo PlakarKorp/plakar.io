@@ -19,6 +19,25 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // Section switcher
+  document.querySelectorAll(".section-switcher-btn").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const menu = btn
+        .closest(".section-switcher")
+        .querySelector(".section-switcher-menu");
+      menu?.classList.toggle("hidden");
+    });
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".section-switcher")) {
+      document
+        .querySelectorAll(".section-switcher-menu")
+        .forEach((m) => m.classList.add("hidden"));
+    }
+  });
+
   // Version selector
   document.querySelectorAll(".version-selector-btn").forEach((btn) => {
     btn.addEventListener("click", (e) => {

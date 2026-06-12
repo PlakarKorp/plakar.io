@@ -1,10 +1,13 @@
 <!-- JS: assets/js/docs/sidebar.js -->
 
 {{ $currentPage := .Page }}
-{{ $docsRoot := .docsRoot | default "/docs" }}
+{{ $docsRoot := .docsRoot | default "/docs/community" }}
 {{ $noVersioning := .noVersioning | default false }}
 {{ $docsSection := .Page.Site.GetPage $docsRoot }}
 {{ $versions := $docsSection.Sections }}
+
+{{ $isCommunity := strings.HasPrefix $currentPage.RelPermalink "/docs/community" }}
+{{ $isControlPlane := strings.HasPrefix $currentPage.RelPermalink "/docs/control-plane" }}
 
 {{ $currentVersion := false }}
 {{ if not $noVersioning }}
@@ -20,7 +23,29 @@
   {{ $navRoot = $currentVersion }}
 {{ end }}
 
-<aside class="flex flex-col docs-font h-full gap-6">
+<aside class="flex flex-col docs-font h-full gap-4">
+
+  <!-- Section switcher -->
+  <div class="relative section-switcher">
+    <button class="section-switcher-btn w-full flex items-center justify-between px-3 py-2 border border-neutral-200 rounded-lg text-neutral-700 hover:border-neutral-300 bg-neutral-50">
+      <span class="truncate text-sm font-medium">{{ if $isControlPlane }}Control Plane{{ else }}Community{{ end }}</span>
+      <span class="w-4 h-4 shrink-0 flex items-center justify-center">
+        {{ partial "icon.html" "chevron-down" }}
+      </span>
+    </button>
+    <div class="section-switcher-menu hidden absolute top-full mt-1 w-full bg-neutral-50 border border-neutral-200 rounded-lg z-50 overflow-hidden">
+      <a href="/docs/community/"
+         class="block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500
+         {{ if $isCommunity }}text-primary-500 bg-neutral-100{{ end }}">
+        Community
+      </a>
+      <a href="/docs/control-plane/"
+         class="block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500
+         {{ if $isControlPlane }}text-primary-500 bg-neutral-100{{ end }}">
+        Control Plane
+      </a>
+    </div>
+  </div>
 
   <!-- Version selector -->
   {{ if $currentVersion }}

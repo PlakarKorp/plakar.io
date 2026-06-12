@@ -3,10 +3,10 @@
 {{ $logoDark := resources.Get "img/logos/plakar-logo-dark.svg" }}
 
 {{ $docsLabel := "" }}
-{{ if hasPrefix .RelPermalink "/control-plane-docs" }}
-  {{ $docsLabel = "Control Plane Docs" }}
-{{ else if hasPrefix .RelPermalink "/docs" }}
-  {{ $docsLabel = "OSS Docs" }}
+{{ if strings.HasPrefix .RelPermalink "/docs/control-plane" }}
+  {{ $docsLabel = "Control Plane" }}
+{{ else if strings.HasPrefix .RelPermalink "/docs/community" }}
+  {{ $docsLabel = "Community" }}
 {{ end }}
 
 <header id="site-header" class="fixed flex px-2 py-2 md:px-4 top-0 inset-x-0 w-full z-50 bg-neutral-50 border-b border-neutral-300">
