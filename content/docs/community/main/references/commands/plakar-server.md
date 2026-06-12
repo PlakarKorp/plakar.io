@@ -1,5 +1,5 @@
 ---
-date: "2026-05-13T08:38:47Z"
+date: "2026-06-12T09:07:15Z"
 title: server
 summary: "Start a Plakar server"
 aliases:
@@ -7,18 +7,21 @@ aliases:
   - /docs/main/commands/plakar-server/
 ---
 
-<div class="head" role="doc-pageheader" aria-label="Manual header
-  line"><span class="head-ltitle">PLAKAR-SERVER(1)</span>
-  <span class="head-vol">General Commands Manual</span>
-  <span class="head-rtitle">PLAKAR-SERVER(1)</span></div>
-<main class="manual-text">
+<table class="head">
+  <tr>
+    <td class="head-ltitle">PLAKAR-SERVER(1)</td>
+    <td class="head-vol">General Commands Manual</td>
+    <td class="head-rtitle">PLAKAR-SERVER(1)</td>
+  </tr>
+</table>
+<div class="manual-text">
 <section class="Sh">
-<h2 class="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h2>
+<h1 class="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h1>
 <p class="Pp"><code class="Nm">plakar-server</code> &#x2014;
-    <span class="Nd" role="doc-subtitle">Start a Plakar server</span></p>
+    <span class="Nd">Start a Plakar server</span></p>
 </section>
 <section class="Sh">
-<h2 class="Sh" id="SYNOPSIS"><a class="permalink" href="#SYNOPSIS">SYNOPSIS</a></h2>
+<h1 class="Sh" id="SYNOPSIS"><a class="permalink" href="#SYNOPSIS">SYNOPSIS</a></h1>
 <table class="Nm">
   <tr>
     <td><code class="Nm">plakar server</code></td>
@@ -30,7 +33,7 @@ aliases:
 </table>
 </section>
 <section class="Sh">
-<h2 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h2>
+<h1 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h1>
 <p class="Pp">The <code class="Nm">plakar server</code> command starts a Plakar
     server instance at the provided <var class="Ar">address</var>, allowing
     remote interaction with a Kloset store over a network.</p>
@@ -57,13 +60,13 @@ aliases:
 </dl>
 </section>
 <section class="Sh">
-<h2 class="Sh" id="EXIT_STATUS"><a class="permalink" href="#EXIT_STATUS">EXIT
-  STATUS</a></h2>
+<h1 class="Sh" id="EXIT_STATUS"><a class="permalink" href="#EXIT_STATUS">EXIT
+  STATUS</a></h1>
 <p class="Pp">The <code class="Nm">plakar-server</code> utility exits&#x00A0;0
     on success, and&#x00A0;&gt;0 if an error occurs.</p>
 </section>
 <section class="Sh">
-<h2 class="Sh" id="EXAMPLES"><a class="permalink" href="#EXAMPLES">EXAMPLES</a></h2>
+<h1 class="Sh" id="EXAMPLES"><a class="permalink" href="#EXAMPLES">EXAMPLES</a></h1>
 <p class="Pp">Start a plakar server on the local store:</p>
 <div class="Bd Pp Bd-indent Li">
 <pre>$ plakar server</pre>
@@ -82,18 +85,20 @@ aliases:
 </div>
 </section>
 <section class="Sh">
-<h2 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
-  ALSO</a></h2>
-<p class="Pp"><a class="Xr" href="../plakar/" aria-label="plakar, section
-    1">plakar(1)</a></p>
+<h1 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
+  ALSO</a></h1>
+<p class="Pp"><a class="Xr" href="../plakar/">plakar(1)</a></p>
 </section>
 <section class="Sh">
-<h2 class="Sh" id="CAVEATS"><a class="permalink" href="#CAVEATS">CAVEATS</a></h2>
+<h1 class="Sh" id="CAVEATS"><a class="permalink" href="#CAVEATS">CAVEATS</a></h1>
 <p class="Pp">When a host name is provided, <code class="Nm">plakar
     server</code> uses only one of the IP addresses it resolves to, preferably
     IPv4 .</p>
 </section>
-</main>
-<div class="foot" role="doc-pagefooter" aria-label="Manual footer
-  line"><span class="foot-left">Plakar</span> <span class="foot-date">May 5,
-  2026</span> <span class="foot-right">PLAKAR-SERVER(1)</span></div>
+</div>
+<table class="foot">
+  <tr>
+    <td class="foot-date">May 5, 2026</td>
+    <td class="foot-os">Plakar</td>
+  </tr>
+</table>

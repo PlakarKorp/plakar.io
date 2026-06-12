@@ -1,5 +1,5 @@
 ---
-date: "2026-05-13T08:38:47Z"
+date: "2026-06-12T09:07:15Z"
 title: query
 summary: "query flags shared among many Plakar subcommands"
 aliases:
@@ -7,22 +7,24 @@ aliases:
   - /docs/main/commands/plakar-query/
 ---
 
-<div class="head" role="doc-pageheader" aria-label="Manual header
-  line"><span class="head-ltitle">PLAKAR-QUERY(7)</span>
-  <span class="head-vol">Miscellaneous Information Manual</span>
-  <span class="head-rtitle">PLAKAR-QUERY(7)</span></div>
-<main class="manual-text">
+<table class="head">
+  <tr>
+    <td class="head-ltitle">PLAKAR-QUERY(7)</td>
+    <td class="head-vol">Miscellaneous Information Manual</td>
+    <td class="head-rtitle">PLAKAR-QUERY(7)</td>
+  </tr>
+</table>
+<div class="manual-text">
 <section class="Sh">
-<h2 class="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h2>
+<h1 class="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h1>
 <p class="Pp"><code class="Nm">plakar-query</code> &#x2014;
-    <span class="Nd" role="doc-subtitle">query flags shared among many Plakar
-    subcommands</span></p>
+    <span class="Nd">query flags shared among many Plakar subcommands</span></p>
 </section>
 <section class="Sh">
-<h2 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h2>
+<h1 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h1>
 <p class="Pp">What follows is a set of command line arguments that many
-    <a class="Xr" href="../plakar/" aria-label="plakar, section 1">plakar(1)</a>
-    subcommands provide to filter snapshots.</p>
+    <a class="Xr" href="../plakar/">plakar(1)</a> subcommands provide to filter
+    snapshots.</p>
 <p class="Pp">There are two kind of flags:</p>
 <dl class="Bl-tag">
   <dt>matchers</dt>
@@ -166,6 +168,21 @@ aliases:
   <dt id="environment"><a class="permalink" href="#environment"><code class="Fl">-environment</code></a>
     <var class="Ar">name</var></dt>
   <dd>Select snapshot whose environment is <var class="Ar">name</var>.</dd>
+  <dt id="group-by"><a class="permalink" href="#group-by"><code class="Fl">-group-by</code></a>
+    <var class="Ar">key</var></dt>
+  <dd>Partition the filtered snapshots by <var class="Ar">key</var> and apply
+      retention matchers (<code class="Fl">-days</code>,
+      <code class="Fl">-per-day</code>, <span class="No">...</span>)
+      independently within each group instead of across the whole result set.
+      <var class="Ar">key</var> must be one of <code class="Cm">name</code>,
+      <code class="Cm">category</code>, <code class="Cm">environment</code>,
+      <code class="Cm">perimeter</code>, <code class="Cm">job</code>,
+      <code class="Cm">tag</code>, <code class="Cm">origin</code>,
+      <code class="Cm">type</code> or <code class="Cm">root</code>. Multi-valued
+      keys (<code class="Cm">tag</code>, <code class="Cm">origin</code>,
+      <code class="Cm">type</code>, <code class="Cm">root</code>) fan out: a
+      snapshot participates in every group it belongs to and is kept in the
+      result if any group keeps it.</dd>
   <dt id="job"><a class="permalink" href="#job"><code class="Fl">-job</code></a>
     <var class="Ar">name</var></dt>
   <dd>Select snapshot whose job is <var class="Ar">name</var>.</dd>
@@ -195,7 +212,10 @@ aliases:
       it contains said tag.</dd>
 </dl>
 </section>
-</main>
-<div class="foot" role="doc-pagefooter" aria-label="Manual footer
-  line"><span class="foot-left">Plakar</span> <span class="foot-date">November
-  28, 2025</span> <span class="foot-right">PLAKAR-QUERY(7)</span></div>
+</div>
+<table class="foot">
+  <tr>
+    <td class="foot-date">November 28, 2025</td>
+    <td class="foot-os">Plakar</td>
+  </tr>
+</table>
