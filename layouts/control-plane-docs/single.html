@@ -43,6 +43,7 @@
 {{ define "scripts" }}
   {{ $js := slice
     (resources.Get "js/docs/main.js")
+    (resources.Get "js/docs/header.js")
     (resources.Get "js/docs/sidebar.js")
     | resources.Concat "js/docs-bundle.js"
     | minify | fingerprint

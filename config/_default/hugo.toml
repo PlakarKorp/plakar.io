@@ -38,7 +38,15 @@ googleAnalytics = "G-4EJ3HLL4HS"
   priority = 0.5
 
 [outputs]
-  home = ["HTML", "RSS", "JSON"]
+  home = ["HTML", "RSS", "JSON", "Markdown"]
+  page = ["HTML", "Markdown"]
+  section = ["HTML", "RSS", "Markdown"]
+
+[outputFormats.markdown]
+  name = "Markdown"
+  baseName = "index"
+  mediaType = "text/markdown"
+  isPlainText = true
 
 [related]
   threshold = 0
