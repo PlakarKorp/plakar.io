@@ -81,7 +81,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-03-19T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-06-12T17:18:16+02:00">
+    <meta property="article:modified_time" content="2026-06-12T21:35:28+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -264,12 +264,12 @@
     "dateCreated": "2026-03-19T00:00:00\u002b00:00",
     "datePublished": "2026-03-19T00:00:00\u002b00:00",
     
-    "dateModified": "2026-06-12T17:18:16\u002b02:00",
+    "dateModified": "2026-06-12T21:35:28\u002b03:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "464"
+    "wordCount": "412"
   }]
   </script>
 
@@ -4018,7 +4018,9 @@
   </span>
   
 </div>
-<p>Global options appear before the <code>at</code> clause and apply to every command. Options that come after the command are command-specific and are documented in each <a href="../commands" >command reference page</a>.</p>
+<p>Global options appear before the <code>at</code> clause and apply to every command. Options
+that come after the command are command-specific and are documented in each
+<a href="../commands" >command reference page</a>.</p>
 <table>
   <thead>
       <tr>
@@ -4027,10 +4029,6 @@
       </tr>
   </thead>
   <tbody>
-      <tr>
-          <td><code>-concurrency int</code></td>
-          <td>Limit the number of concurrent operations (default: -1)</td>
-      </tr>
       <tr>
           <td><code>-config string</code></td>
           <td>Configuration directory (default: <code>~/.config/plakar</code>)</td>
@@ -4090,14 +4088,16 @@
   </span>
   
 </div>
-<p>Options must appear in the correct position. Global options go before <code>at</code>, command options go after the command.</p>
+<p>Options must appear in the correct position. Global options go before <code>at</code>,
+command options go after the command.</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Correct: -tag is a command option for ls</span>
 </span></span><span class="line"><span class="cl">$ plakar -time at /backup ls -tag daily-backups
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># Wrong: -tag is placed before the command, plakar sees it as the command name</span>
 </span></span><span class="line"><span class="cl">$ plakar -time at /backup -tag daily-backups ls
 </span></span><span class="line"><span class="cl"><span class="c1"># command not found: -tag</span></span></span></code></pre></div></div>
-<p>A misplaced option will either be ignored or cause an error. When something doesn&rsquo;t work as expected, check option placement first.</p>
+<p>A misplaced option will either be ignored or cause an error. When something
+doesn&rsquo;t work as expected, check option placement first.</p>
 
 <div class="relative group">
   <h2 id="getting-help">Getting help</h2>
@@ -4114,7 +4114,9 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># Show the manual page for a specific command</span>
 </span></span><span class="line"><span class="cl">$ plakar <span class="nb">help</span> &lt;command&gt;</span></span></code></pre></div></div>
-<p>The built-in help is always in sync with the version of Plakar you have installed, making it the most reliable reference for available options and commands.</p>
+<p>The built-in help is always in sync with the version of Plakar you have
+installed, making it the most reliable reference for available options and
+commands.</p>
 
 <div class="relative group">
   <h2 id="environment-variables">Environment variables</h2>
@@ -4134,34 +4136,14 @@
   <tbody>
       <tr>
           <td><code>PLAKAR_PASSPHRASE</code></td>
-          <td>Supply the encryption passphrase non-interactively</td>
+          <td>Supply the encryption passphrase non-interactively, useful in scripts, CI pipelines, or other non-interactive contexts</td>
       </tr>
       <tr>
           <td><code>PLAKAR_REPOSITORY</code></td>
-          <td>Set the default repository path</td>
+          <td>Set the default repository path, avoiding the need to specify <code>at REPOSITORY</code> on every command (falls back to <code>~/.plakar</code> if unset)</td>
       </tr>
   </tbody>
 </table>
-
-<div class="relative group">
-  <h3 id="plakar_passphrase"><code>PLAKAR_PASSPHRASE</code></h3>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#plakar_passphrase" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<p>When creating or opening an encrypted repository, Plakar prompts for a passphrase. Setting <code>PLAKAR_PASSPHRASE</code> provides it automatically, which is useful in scripts, CI pipelines, or any non-interactive context where a terminal prompt isn&rsquo;t available.</p>
-
-<div class="relative group">
-  <h3 id="plakar_repository"><code>PLAKAR_REPOSITORY</code></h3>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#plakar_repository" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<p>Sets the default repository location so you don&rsquo;t need to specify <code>at REPOSITORY</code> on every command. When omitted and no <code>at</code> clause is provided, Plakar falls back to <code>~/.plakar</code>.</p>
 
       </article>
       <footer class="mt-12 flex flex-col gap-6 docs-font border-t border-neutral-200 pt-6">
@@ -4241,12 +4223,7 @@
     <li><a href="#global-options">Global options</a></li>
     <li><a href="#option-order-matters">Option order matters</a></li>
     <li><a href="#getting-help">Getting help</a></li>
-    <li><a href="#environment-variables">Environment variables</a>
-      <ul>
-        <li><a href="#plakar_passphrase"><code>PLAKAR_PASSPHRASE</code></a></li>
-        <li><a href="#plakar_repository"><code>PLAKAR_REPOSITORY</code></a></li>
-      </ul>
-    </li>
+    <li><a href="#environment-variables">Environment variables</a></li>
   </ul>
 </nav>
     </div>
