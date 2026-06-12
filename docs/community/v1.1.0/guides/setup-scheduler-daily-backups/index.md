@@ -1,0 +1,60 @@
+
+# Scheduling Tasks
+
+Plakar includes a scheduler that can run backups as well as tasks like restoring files, synchronizing Kloset stores, and verifying backup integrity. 
+
+Backups only protect you if they run regularly. Without automation, it's easy to forget to run a backup. The backup you didn't run is the one you'll wish you had when something goes wrong. The Plakar scheduler lets you define tasks that run automatically at a given interval, so your backups happen consistently on a schedule.
+
+In this guide, we will show how to set up the scheduler to run backups every day.
+
+## Requirements
+
+Create a configuration for your Kloset store. This ensures the scheduler can later retrieve the store passphrase:
+
+```bash
+$ plakar store add mybackups /var/backups passphrase=mysuperpassphrase
+```
+
+Then, create the store referencing the configuration:
+
+```bash
+$ plakar at "@mybackups" create
+```
+
+## Configuration
+
+Create the configuration file `scheduler.yaml` for the scheduler in your current directory with the following content:
+
+```yaml
+agent:
+  tasks:
+    - name: backup Plakar source code
+      repository: "@mybackups"
+
+      backup:
+        path: /Users/niluje/dev/plakar/plakar
+        interval: 24h
+        check: true
+```
+
+This configuration file defines a task for the Plakar scheduler, where:
+
+- `name` is the task label, displayed in the UI.
+- `repository` refers to the Kloset store. The syntax `@mystore` corresponds to the store previously configured with `plakar store add mystore`.
+- `backup` is the task type. In this case, we back up the Plakar source code at the given path every 24 hours.
+- `check` runs a verification after the backup is created.
+
+## Running the scheduler
+
+You can start the scheduler by running:
+
+```bash
+$ plakar scheduler start -tasks ./scheduler.yaml
+```
+
+The scheduler runs in the background. To stop it, run:
+
+```bash
+$ plakar scheduler stop
+```
+
