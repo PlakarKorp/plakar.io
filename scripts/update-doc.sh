@@ -16,9 +16,11 @@ onexit() {
 }
 trap 'onexit' EXIT INT TERM
 
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+
 git clone --depth 1 https://github.com/PlakarKorp/plakar.git -b "${TAG}" "${TMPDIR}" || { echo "Clone failed for tag '${TAG}'"; exit 1; }
 
-OUTDIR="../content/docs/community/${VERSION}/references/commands"
+OUTDIR="${SCRIPT_DIR}/../content/docs/community/${VERSION}/references/commands"
 rm -rf "${OUTDIR}"
 mkdir -p "${OUTDIR}"
 
@@ -35,6 +37,8 @@ title: "Commands"
 date: "$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 weight: 5
 summary: "Reference for all Plakar commands. Browse detailed documentation for each command, including usage, options, and examples. Access help online or directly from your terminal."
+aliases:
+  - /docs/${VERSION}/references/commands/
 ---
 
 # Commands
@@ -74,5 +78,5 @@ aliases:
 
 EOF
   mandoc -I os=Plakar -Thtml -Ofragment,man=../%N/ "$man" >> "$dest"
-  sed -i "s|https://docs\.plakar\.io/en/guides/importing-configurations/|https://plakar.io/docs/community/${VERSION}/guides/importing-configurations/|g" "$dest"
+  sed -i '' "s|https://docs\.plakar\.io/en/guides/importing-configurations/|https://plakar.io/docs/community/${VERSION}/guides/importing-configurations/|g" "$dest"
 done
