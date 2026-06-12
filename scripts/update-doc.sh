@@ -18,7 +18,7 @@ trap 'onexit' EXIT INT TERM
 
 git clone --depth 1 https://github.com/PlakarKorp/plakar.git -b "${TAG}" "${TMPDIR}" || { echo "Clone failed for tag '${TAG}'"; exit 1; }
 
-OUTDIR="../content/docs/${VERSION}/references/commands"
+OUTDIR="../content/docs/community/${VERSION}/references/commands"
 rm -rf "${OUTDIR}"
 mkdir -p "${OUTDIR}"
 
@@ -68,10 +68,11 @@ date: "$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 title: ${name##plakar-}
 summary: "${summary}"
 aliases:
+  - /docs/${VERSION}/references/commands/${name}/
   - /docs/${VERSION}/commands/${name}/
 ---
 
 EOF
   mandoc -I os=Plakar -Thtml -Ofragment,man=../%N/ "$man" >> "$dest"
-  sed -i "s|https://docs\.plakar\.io/en/guides/importing-configurations/|https://plakar.io/docs/${VERSION}/guides/importing-configurations/|g" "$dest"
+  sed -i "s|https://docs\.plakar\.io/en/guides/importing-configurations/|https://plakar.io/docs/community/${VERSION}/guides/importing-configurations/|g" "$dest"
 done
