@@ -4,6 +4,10 @@
 
 
 
+## [go-cdc-chunkers v1.1.0: faster, leaner, and provably correct](https://plakar.io/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/index.md)
+
+
+
 ## [The Plakar Frontend, Explained](https://plakar.io/posts/plakar-ui-series/index.md)
 
 - [I used to think frontend was easy](https://plakar.io/posts/2026-05-25/plakar-ui-series-intro/index.md): I&rsquo;m a backend developer who ended up building a frontend. This series explains the Plakar UI stack — what&rsquo;s in it, why it&rsquo;s structured the way it is, and why it&rsquo;s not as scary as the node_modules folder suggests.

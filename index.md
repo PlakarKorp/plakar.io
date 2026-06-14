@@ -6,6 +6,7 @@
 
 ## [Plakar Blog](https://plakar.io/posts/index.md)
 
+- [go-cdc-chunkers v1.1.0: faster, leaner, and provably correct](https://plakar.io/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/index.md): go-cdc-chunkers v1.1.0 lands with a new spec-faithful JC variant topping the benchmarks at 3.7 GB/s, a caller-owned buffer API that cuts peak memory by a third and allocations by ~100×, 100% test coverage, fuzzing, and cross-language conformance vectors. Here is what changed and why it matters for Plakar.
 - [The Plakar Frontend, Explained](https://plakar.io/posts/plakar-ui-series/index.md): A series for backend developers exploring the Plakar UI tech stack: pnpm, Turborepo, React, TypeScript, Zod, TanStack Query/Form/Table/Router, React Aria Components, Storybook, testing, and the frontend build pipeline.
 - [Backing Up 12 Months of Wikipedia Data with Plakar](https://plakar.io/posts/2026-05-22/backing-up-12-months-of-wikipedia-with-plakar/index.md): We backed up 12 months of English Wikipedia dumps into a single Kloset store, using deduplication and content-defined chunking to drastically reduce storage usage.
 - [Backing up PostgreSQL with Plakar](https://plakar.io/posts/2026-04-03/backing-up-postgresql-with-plakar/index.md): We built a PostgreSQL integration for Plakar that covers both logical backups (pg_dump / pg_dumpall) and physical backups (pg_basebackup), making database backups as straightforward as any other Plakar backup: no scripts, no glue code.
