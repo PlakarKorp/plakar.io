@@ -18,7 +18,7 @@
 ## [Community Docs](https://plakar.io/docs/community/index.md)
 
 - [Plakar: Developer branch](https://plakar.io/docs/community/main/index.md): Plakar documentation hub, find guides, references, and resources for working with Plakar.
-- [Plakar: v1.1.0 (RC)](https://plakar.io/docs/community/v1.1.0/index.md): Plakar documentation hub, find guides, references, and resources for working with Plakar.
+- [Plakar: v1.1.0](https://plakar.io/docs/community/v1.1.0/index.md): Plakar documentation hub, find guides, references, and resources for working with Plakar.
 - [Plakar: v1.0.6](https://plakar.io/docs/community/v1.0.6/index.md): Plakar documentation hub, find guides, references, and resources for working with Plakar.
 - [Plakar: v1.0.5](https://plakar.io/docs/community/v1.0.5/index.md): Plakar documentation hub, find guides, references, and resources for working with Plakar.
 

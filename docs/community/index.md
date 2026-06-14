@@ -14,7 +14,7 @@
 - [Community](https://plakar.io/docs/community/main/community/index.md): How to engage with the Plakar community: where to talk, collaborate, follow updates, and read the rules.
 
 
-## [Plakar: v1.1.0 (RC)](https://plakar.io/docs/community/v1.1.0/index.md)
+## [Plakar: v1.1.0](https://plakar.io/docs/community/v1.1.0/index.md)
 
 - [Getting Started](https://plakar.io/docs/community/v1.1.0/quickstart/index.md)
 - [Guides](https://plakar.io/docs/community/v1.1.0/guides/index.md)
