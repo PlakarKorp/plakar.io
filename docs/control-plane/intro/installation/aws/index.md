@@ -46,7 +46,7 @@ Once configured, click **Launch** to create the EC2 instance. After the instance
 has been launched successfully, you can view and manage it from the **EC2
 Instances** page in the AWS Console.
 
-![](../images/aws-launch-instance-1.png)
+![](../images/aws-launch-instance.png)
 
 ## Security Groups
 
