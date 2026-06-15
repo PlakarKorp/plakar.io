@@ -84,7 +84,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-03-19T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-06-15T01:01:04+02:00">
+    <meta property="article:modified_time" content="2026-06-15T14:39:16+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -267,12 +267,12 @@
     "dateCreated": "2026-03-19T00:00:00\u002b00:00",
     "datePublished": "2026-03-19T00:00:00\u002b00:00",
     
-    "dateModified": "2026-06-15T01:01:04\u002b02:00",
+    "dateModified": "2026-06-15T14:39:16\u002b02:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "681"
+    "wordCount": "376"
   }]
   </script>
 
@@ -1314,6 +1314,10 @@
   
     
   
+    
+  
+    
+  
   
 
   
@@ -1444,6 +1448,24 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         Notion
+      </a>
+    
+  
+    
+    
+      <a href="/docs/community/main/integrations/postgres/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        PostgreSQL
+      </a>
+    
+  
+    
+    
+      <a href="/docs/community/main/integrations/mysql/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        MySQL / MariaDB
       </a>
     
   
@@ -3054,6 +3076,10 @@
   
     
   
+    
+  
+    
+  
   
 
   
@@ -3184,6 +3210,24 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         Notion
+      </a>
+    
+  
+    
+    
+      <a href="/docs/community/main/integrations/postgres/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        PostgreSQL
+      </a>
+    
+  
+    
+    
+      <a href="/docs/community/main/integrations/mysql/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        MySQL / MariaDB
       </a>
     
   
@@ -4083,58 +4127,45 @@
   </span>
   
 </div>
-<p>The Plakar PostgreSQL integration uses <code>pg_basebackup</code> to perform physical backups of a PostgreSQL cluster. A physical backup captures the entire data directory (all databases, configuration files, and WAL segments) and stores each file as an individual record in the snapshot.</p>
-<p>Physical backups are faster to restore than logical dumps but are version-locked: the backup must be restored with the same PostgreSQL major version that produced it. Selective restore of a single database or table is not possible.</p>
-<p>For a deeper understanding of physical backups and base backups, refer to the <a href="https://www.postgresql.org/docs/current/app-pgbasebackup.html"  target="_blank" rel="noreferrer">official PostgreSQL documentation on pg_basebackup</a>.</p>
+<p>This guide shows how to back up and restore a PostgreSQL cluster using the
+<code>postgres+bin://</code> connector. Physical backups capture the entire data directory
+via <code>pg_basebackup</code> and are faster to restore than logical dumps. They are
+version-locked (the backup must be restored with the same PostgreSQL major
+version) and do not support selective restore of individual databases or tables.</p>
+<p>For full reference on all options and snapshot layout see the
+<a href="/docs/community/main/integrations/postgres/" >PostgreSQL integration reference</a>.</p>
 
 <div class="relative group">
-  <h2 id="requirements">Requirements</h2>
+  <h2 id="before-you-begin">Before you begin</h2>
   
   <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#requirements" aria-label="Anchor">#</a>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#before-you-begin" aria-label="Anchor">#</a>
   </span>
   
 </div>
 <ul>
-<li>A running PostgreSQL server with <code>wal_level = replica</code> or higher in <code>postgresql.conf</code>.</li>
+<li>A running PostgreSQL server with <code>wal_level = replica</code> or higher in
+<code>postgresql.conf</code>.</li>
 <li>A PostgreSQL user with the <code>REPLICATION</code> privilege, or a superuser.</li>
 <li><code>pg_hba.conf</code> allowing a replication connection from the backup host.</li>
 <li><code>pg_basebackup</code> available in <code>$PATH</code>.</li>
 </ul>
-
-<div class="relative group">
-  <h3 id="install-the-package">Install the package</h3>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#install-the-package" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
+<p>Install the PostgreSQL package:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar pkg add postgresql</span></span></code></pre></div></div>
 
 <div class="relative group">
-  <h3 id="pg_hbaconf-configuration">pg_hba.conf configuration</h3>
+  <h3 id="configure-pg_hbaconf">Configure pg_hba.conf</h3>
   
   <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#pg_hbaconf-configuration" aria-label="Anchor">#</a>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#configure-pg_hbaconf" aria-label="Anchor">#</a>
   </span>
   
 </div>
-<p>Ensure <code>pg_hba.conf</code> includes an entry allowing replication connections from the backup host. For example, to allow local replication without a password:</p>
+<p>Ensure <code>pg_hba.conf</code> includes an entry allowing replication connections from the
+backup host. For example, to allow local replication without a password:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl"># TYPE  DATABASE        USER            ADDRESS                 METHOD
 </span></span><span class="line"><span class="cl">local   replication     all                                     trust</span></span></code></pre></div></div>
-<p>Adapt this to your environment and restart PostgreSQL after making changes.</p>
-
-<div class="relative group">
-  <h2 id="what-gets-stored-in-a-snapshot">What gets stored in a snapshot</h2>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#what-gets-stored-in-a-snapshot" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<p>Each file from the PostgreSQL data directory is stored as an individual record in the snapshot, preserving paths, permissions, and timestamps. A subpath cannot be specified in the URI — <code>pg_basebackup</code> always backs up the entire cluster.</p>
-<p>A <code>/manifest.json</code> record is also written before the backup data, containing cluster-level metadata. See <a href="/docs/community/main/guides/postgres/pg-base-backup/#snapshot-manifest" >Snapshot manifest</a> below.</p>
+<p>Restart PostgreSQL after making changes.</p>
 
 <div class="relative group">
   <h2 id="back-up-the-cluster">Back up the cluster</h2>
@@ -4148,25 +4179,6 @@
 </span></span><span class="line"><span class="cl">$ plakar at /var/backups backup @mypg</span></span></code></pre></div></div>
 
 <div class="relative group">
-  <h2 id="restore-the-cluster">Restore the cluster</h2>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#restore-the-cluster" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<p>There is no dedicated destination connector for physical backups. Because the snapshot contains plain files, restore them to a local directory using the standard filesystem restore:</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar at /var/backups restore -to ./pgdata &lt;snapshot_id&gt;</span></span></code></pre></div></div>
-<p>Then start PostgreSQL against the restored directory:</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ docker run --rm <span class="se">\
-</span></span></span><span class="line"><span class="cl">  -v <span class="s2">&#34;</span><span class="nv">$PWD</span><span class="s2">/pgdata:/var/lib/postgresql/data&#34;</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl">  postgres:&lt;version&gt;</span></span></code></pre></div></div>
-<p>Replace <code>&lt;version&gt;</code> with the same major PostgreSQL version that was running when the backup was taken.</p>
-<p>To restore directly to a remote host, use an SFTP destination:</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar restore -to sftp://user@host/var/lib/postgresql/data &lt;snapshot_id&gt;
-</span></span><span class="line"><span class="cl"><span class="c1"># then on the remote host: pg_ctl -D /var/lib/postgresql/data start</span></span></span></code></pre></div></div>
-
-<div class="relative group">
   <h2 id="list-snapshots">List snapshots</h2>
   
   <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
@@ -4177,85 +4189,26 @@
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar at /var/backups ls</span></span></code></pre></div></div>
 
 <div class="relative group">
-  <h2 id="source-options">Source options</h2>
+  <h2 id="restore-the-cluster">Restore the cluster</h2>
   
   <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#source-options" aria-label="Anchor">#</a>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#restore-the-cluster" aria-label="Anchor">#</a>
   </span>
   
 </div>
-<table>
-  <thead>
-      <tr>
-          <th>Parameter</th>
-          <th>Default</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>location</code></td>
-          <td>—</td>
-          <td>Connection URI: <code>postgres+bin://[user[:password]@]host[:port]</code>. A subpath is not allowed.</td>
-      </tr>
-      <tr>
-          <td><code>host</code></td>
-          <td><code>localhost</code></td>
-          <td>Server hostname. Overrides the URI host.</td>
-      </tr>
-      <tr>
-          <td><code>port</code></td>
-          <td><code>5432</code></td>
-          <td>Server port. Overrides the URI port.</td>
-      </tr>
-      <tr>
-          <td><code>username</code></td>
-          <td>—</td>
-          <td>PostgreSQL replication username. Overrides the URI user.</td>
-      </tr>
-      <tr>
-          <td><code>password</code></td>
-          <td>—</td>
-          <td>PostgreSQL password. Overrides the URI password.</td>
-      </tr>
-      <tr>
-          <td><code>pg_bin_dir</code></td>
-          <td>—</td>
-          <td>Directory containing the PostgreSQL client binaries (<code>pg_basebackup</code>, <code>psql</code>). When omitted, binaries are resolved via <code>$PATH</code>. Useful when multiple PostgreSQL versions are installed.</td>
-      </tr>
-      <tr>
-          <td><code>ssl_mode</code></td>
-          <td><code>prefer</code></td>
-          <td>SSL mode: <code>disable</code>, <code>allow</code>, <code>prefer</code>, <code>require</code>, <code>verify-ca</code>, or <code>verify-full</code>.</td>
-      </tr>
-      <tr>
-          <td><code>ssl_cert</code></td>
-          <td>—</td>
-          <td>Path to the client SSL certificate file (PEM).</td>
-      </tr>
-      <tr>
-          <td><code>ssl_key</code></td>
-          <td>—</td>
-          <td>Path to the client SSL private key file (PEM).</td>
-      </tr>
-      <tr>
-          <td><code>ssl_root_cert</code></td>
-          <td>—</td>
-          <td>Path to the root CA certificate used to verify the server (PEM).</td>
-      </tr>
-  </tbody>
-</table>
-
-<div class="relative group">
-  <h2 id="snapshot-manifest">Snapshot manifest</h2>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#snapshot-manifest" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<p>Every snapshot includes a <code>/manifest.json</code> record written before the backup data. It captures the cluster state at the time of backup, including the same fields as logical backups (server version, roles, tablespaces, databases, and relation details) plus <code>pg_basebackup_version</code>.</p>
-<p>Metadata collection is best-effort: if a query fails, the affected field is omitted and the backup continues.</p>
+<p>There is no dedicated destination connector for physical backups. Restore the
+files to a local directory using the standard filesystem restore, then start
+PostgreSQL against it:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar at /var/backups restore -to ./pgdata &lt;snapshot_id&gt;
+</span></span><span class="line"><span class="cl">$ docker run --rm <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -v <span class="s2">&#34;</span><span class="nv">$PWD</span><span class="s2">/pgdata:/var/lib/postgresql/data&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  postgres:&lt;version&gt;</span></span></code></pre></div></div>
+<p>Replace <code>&lt;version&gt;</code> with the same major PostgreSQL version that was running when
+the backup was taken.</p>
+<p>To restore directly to a remote host via SFTP:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar at /var/backups restore -to sftp://user@host/var/lib/postgresql/data &lt;snapshot_id&gt;
+</span></span><span class="line"><span class="cl"><span class="c1"># then on the remote host:</span>
+</span></span><span class="line"><span class="cl">$ pg_ctl -D /var/lib/postgresql/data start</span></span></code></pre></div></div>
 
 <div class="relative group">
   <h2 id="considerations">Considerations</h2>
@@ -4274,37 +4227,31 @@
   </span>
   
 </div>
-<p>Physical backups must be restored with the same PostgreSQL major version. For cross-version restores, use a logical backup instead.</p>
+<p>Physical backups must be restored with the same PostgreSQL major version. For
+cross-version restores, use a <a href="/docs/community/main/guides/postgres/pgdump/" >logical backup</a> instead.</p>
 
 <div class="relative group">
-  <h3 id="server-must-be-stopped-before-restore">Server must be stopped before restore</h3>
+  <h3 id="stop-the-server-before-restoring">Stop the server before restoring</h3>
   
   <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#server-must-be-stopped-before-restore" aria-label="Anchor">#</a>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#stop-the-server-before-restoring" aria-label="Anchor">#</a>
   </span>
   
 </div>
-<p>Do not restore into a data directory that is in use by a running PostgreSQL instance. Stop the server first, or restore to a fresh directory.</p>
+<p>Do not restore into a data directory that is in use by a running PostgreSQL
+instance. Stop the server first, or restore to a fresh directory.</p>
 
 <div class="relative group">
-  <h3 id="read-only-mounts">Read-only mounts</h3>
+  <h3 id="kloset-store">Kloset store</h3>
   
   <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#read-only-mounts" aria-label="Anchor">#</a>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#kloset-store" aria-label="Anchor">#</a>
   </span>
   
 </div>
-<p>Plakar supports mounting a Kloset store as a read-only FUSE filesystem. PostgreSQL requires read-write access to its data directory, so it cannot run directly from a read-only mount. Always restore to a writable directory first.</p>
-
-<div class="relative group">
-  <h3 id="kloset-store-location">Kloset store location</h3>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#kloset-store-location" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<p>The examples above use <code>/var/backups</code> as the Kloset store. Any supported store backend can be used instead. See <a href="../../create-kloset-repository" >Create a Kloset store</a> for details.</p>
+<p>The examples above use <code>/var/backups</code> as the Kloset store. Any supported store
+backend can be used instead. See
+<a href="../../create-kloset-repository" >Create a Kloset store</a> for details.</p>
 
 <div class="relative group">
   <h2 id="see-also">See also</h2>
@@ -4315,7 +4262,9 @@
   
 </div>
 <ul>
-<li><a href="https://github.com/PlakarKorp/integration-postgresql/"  target="_blank" rel="noreferrer">PostgreSQL integration on GitHub</a></li>
+<li><a href="/docs/community/main/integrations/postgres/" >PostgreSQL integration reference</a></li>
+<li><a href="https://github.com/PlakarKorp/integrations/tree/main/postgresql"  target="_blank" rel="noreferrer">PostgreSQL integration GitHub</a></li>
+<li><a href="https://www.postgresql.org/docs/current/app-pgbasebackup.html"  target="_blank" rel="noreferrer">PostgreSQL documentation on pg_basebackup</a></li>
 </ul>
 
       </article>
@@ -4382,24 +4331,19 @@
     <div class="toc-content text-neutral-600">
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#requirements">Requirements</a>
+    <li><a href="#before-you-begin">Before you begin</a>
       <ul>
-        <li><a href="#install-the-package">Install the package</a></li>
-        <li><a href="#pg_hbaconf-configuration">pg_hba.conf configuration</a></li>
+        <li><a href="#configure-pg_hbaconf">Configure pg_hba.conf</a></li>
       </ul>
     </li>
-    <li><a href="#what-gets-stored-in-a-snapshot">What gets stored in a snapshot</a></li>
     <li><a href="#back-up-the-cluster">Back up the cluster</a></li>
-    <li><a href="#restore-the-cluster">Restore the cluster</a></li>
     <li><a href="#list-snapshots">List snapshots</a></li>
-    <li><a href="#source-options">Source options</a></li>
-    <li><a href="#snapshot-manifest">Snapshot manifest</a></li>
+    <li><a href="#restore-the-cluster">Restore the cluster</a></li>
     <li><a href="#considerations">Considerations</a>
       <ul>
         <li><a href="#version-compatibility">Version compatibility</a></li>
-        <li><a href="#server-must-be-stopped-before-restore">Server must be stopped before restore</a></li>
-        <li><a href="#read-only-mounts">Read-only mounts</a></li>
-        <li><a href="#kloset-store-location">Kloset store location</a></li>
+        <li><a href="#stop-the-server-before-restoring">Stop the server before restoring</a></li>
+        <li><a href="#kloset-store">Kloset store</a></li>
       </ul>
     </li>
     <li><a href="#see-also">See also</a></li>

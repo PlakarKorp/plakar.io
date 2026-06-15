@@ -51,6 +51,8 @@
 - [Proxmox](https://plakar.io/docs/community/v1.1.0/integrations/proxmox/index.md): Back up and restore Proxmox virtual machines and containers with Plakar.
 - [Kubernetes](https://plakar.io/docs/community/v1.1.0/integrations/kubernetes/index.md): Back up and restore Kubernetes resources and persistent volumes with Plakar.
 - [etcd](https://plakar.io/docs/community/v1.1.0/integrations/etcd/index.md): Back up etcd clusters with Plakar.
+- [PostgreSQL](https://plakar.io/docs/community/v1.1.0/integrations/postgres/index.md): Back up and restore PostgreSQL databases with Plakar — logical dumps, AWS IAM authentication, and physical base backups.
+- [MySQL / MariaDB](https://plakar.io/docs/community/v1.1.0/integrations/mysql/index.md): Back up and restore MySQL and MariaDB databases with Plakar — logical dumps via mysqldump and mariadb-dump, with Google Cloud SQL support.
 
 
 ## [Explanations](https://plakar.io/docs/community/v1.1.0/explanations/index.md)

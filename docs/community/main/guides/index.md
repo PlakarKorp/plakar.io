@@ -56,7 +56,7 @@ This page gathers a collection of practical guides to help you use Plakar effect
 ## [MySQL](https://plakar.io/docs/community/main/guides/mysql/index.md)
 
 - [Logical backups with SQL dumps](https://plakar.io/docs/community/main/guides/mysql/sqldump/index.md): Back up MySQL and MariaDB databases using the Plakar MySQL integration and restore them.
-- [Physical backups](https://plakar.io/docs/community/main/guides/mysql/physical-backups/index.md): Perform physical backups of MySQL databases using file copy or Percona XtraBackup with Plakar.
+- [Physical backups](https://plakar.io/docs/community/main/guides/mysql/physical-backups/index.md): Perform physical backups of MySQL databases using Plakar&rsquo;s filesystem backup.
 
 
 ## [PostgreSQL](https://plakar.io/docs/community/main/guides/postgres/index.md)

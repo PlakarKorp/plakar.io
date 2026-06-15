@@ -51,6 +51,8 @@
 - [Kubernetes](https://plakar.io/docs/community/main/integrations/kubernetes/index.md): Back up and restore Kubernetes resources and persistent volumes with Plakar.
 - [etcd](https://plakar.io/docs/community/main/integrations/etcd/index.md): Back up etcd clusters with Plakar.
 - [Notion](https://plakar.io/docs/community/main/integrations/notion/index.md): Back up and restore your Notion workspace with Plakar.
+- [PostgreSQL](https://plakar.io/docs/community/main/integrations/postgres/index.md): Back up and restore PostgreSQL databases with Plakar — logical dumps, AWS IAM authentication, and physical base backups.
+- [MySQL / MariaDB](https://plakar.io/docs/community/main/integrations/mysql/index.md): Back up and restore MySQL and MariaDB databases with Plakar — logical dumps via mysqldump and mariadb-dump, with Google Cloud SQL support.
 
 
 ## [Explanations](https://plakar.io/docs/community/main/explanations/index.md)

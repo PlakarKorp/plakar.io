@@ -84,7 +84,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-03-18T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-06-15T01:01:04+02:00">
+    <meta property="article:modified_time" content="2026-06-15T14:39:16+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -267,12 +267,12 @@
     "dateCreated": "2026-03-18T00:00:00\u002b00:00",
     "datePublished": "2026-03-18T00:00:00\u002b00:00",
     
-    "dateModified": "2026-06-15T01:01:04\u002b02:00",
+    "dateModified": "2026-06-15T14:39:16\u002b02:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "962"
+    "wordCount": "376"
   }]
   </script>
 
@@ -1314,6 +1314,10 @@
   
     
   
+    
+  
+    
+  
   
 
   
@@ -1444,6 +1448,24 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         etcd
+      </a>
+    
+  
+    
+    
+      <a href="/docs/community/v1.1.0/integrations/postgres/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        PostgreSQL
+      </a>
+    
+  
+    
+    
+      <a href="/docs/community/v1.1.0/integrations/mysql/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        MySQL / MariaDB
       </a>
     
   
@@ -3054,6 +3076,10 @@
   
     
   
+    
+  
+    
+  
   
 
   
@@ -3184,6 +3210,24 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         etcd
+      </a>
+    
+  
+    
+    
+      <a href="/docs/community/v1.1.0/integrations/postgres/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        PostgreSQL
+      </a>
+    
+  
+    
+    
+      <a href="/docs/community/v1.1.0/integrations/mysql/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        MySQL / MariaDB
       </a>
     
   
@@ -4083,88 +4127,32 @@
   </span>
   
 </div>
-<p>The Plakar MySQL integration uses <code>mysqldump</code> (MySQL) or <code>mariadb-dump</code> (MariaDB) to produce logical backups. These are standard SQL files that are portable, human-readable, and restorable without Plakar if needed.</p>
-<p>Two URI schemes map to independent sets of binaries:</p>
-<table>
-  <thead>
-      <tr>
-          <th>Protocol</th>
-          <th>Target</th>
-          <th>Dump tool</th>
-          <th>Restore tool</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>mysql://</code></td>
-          <td>MySQL 5.7 / 8.x</td>
-          <td><code>mysqldump</code></td>
-          <td><code>mysql</code></td>
-      </tr>
-      <tr>
-          <td><code>mysql+mariadb://</code></td>
-          <td>MariaDB 10.x / 11.x</td>
-          <td><code>mariadb-dump</code></td>
-          <td><code>mariadb</code></td>
-      </tr>
-  </tbody>
-</table>
-<p>For a deeper understanding of logical backups and MySQL backup strategies, refer to the <a href="https://dev.mysql.com/doc/refman/8.0/en/mysqldump.html"  target="_blank" rel="noreferrer">official MySQL documentation on mysqldump</a>.</p>
+<p>This guide shows how to back up and restore MySQL and MariaDB databases using
+the <code>mysql://</code> and <code>mysql+mariadb://</code> connectors. Backups produce standard SQL
+files via <code>mysqldump</code> or <code>mariadb-dump</code> that are portable and can be restored
+without Plakar if needed.</p>
+<p>For full reference on all options, snapshot layout, Google Cloud SQL, and
+MySQL-specific considerations, see the
+<a href="/docs/community/v1.1.0/integrations/mysql/" >MySQL / MariaDB integration reference</a>.</p>
 
 <div class="relative group">
-  <h2 id="requirements">Requirements</h2>
+  <h2 id="before-you-begin">Before you begin</h2>
   
   <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#requirements" aria-label="Anchor">#</a>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#before-you-begin" aria-label="Anchor">#</a>
   </span>
   
 </div>
 <ul>
 <li>A running MySQL or MariaDB server.</li>
-<li>A database user with sufficient privileges (see <a href="/docs/community/v1.1.0/guides/mysql/sqldump/#required-privileges" >Required privileges</a>).</li>
-<li><code>mysqldump</code> and <code>mysql</code> in <code>$PATH</code> for MySQL, or <code>mariadb-dump</code> and <code>mariadb</code> for MariaDB.</li>
+<li>A database user with sufficient privileges (see
+<a href="/docs/community/v1.1.0/integrations/mysql/#prerequisites" >Required privileges</a> in the
+integration reference).</li>
+<li><code>mysqldump</code> and <code>mysql</code> in <code>$PATH</code> for MySQL, or <code>mariadb-dump</code> and <code>mariadb</code>
+for MariaDB.</li>
 </ul>
-
-<div class="relative group">
-  <h3 id="install-the-package">Install the package</h3>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#install-the-package" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
+<p>Install the MySQL package:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar pkg add mysql</span></span></code></pre></div></div>
-
-<div class="relative group">
-  <h2 id="what-gets-stored-in-a-snapshot">What gets stored in a snapshot</h2>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#what-gets-stored-in-a-snapshot" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<table>
-  <thead>
-      <tr>
-          <th>File</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>/manifest.json</code></td>
-          <td>Server metadata: version, configuration, databases, tables, routines, triggers, events.</td>
-      </tr>
-      <tr>
-          <td><code>/&lt;database&gt;.sql</code></td>
-          <td>Single-database dump (when <code>database</code> is specified).</td>
-      </tr>
-      <tr>
-          <td><code>/all.sql</code></td>
-          <td>Full-server dump (when <code>database</code> is omitted).</td>
-      </tr>
-  </tbody>
-</table>
 
 <div class="relative group">
   <h2 id="back-up-a-single-database">Back up a single database</h2>
@@ -4200,6 +4188,16 @@
 </span></span><span class="line"><span class="cl">$ plakar at /var/backups backup @alldb</span></span></code></pre></div></div>
 
 <div class="relative group">
+  <h2 id="list-snapshots">List snapshots</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#list-snapshots" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar at /var/backups ls</span></span></code></pre></div></div>
+
+<div class="relative group">
   <h2 id="restore-a-single-database">Restore a single database</h2>
   
   <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
@@ -4210,7 +4208,7 @@
 <p>The target database must already exist:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar destination add mydbdst mysql://dbuser:secret@target.example.com/mydb
 </span></span><span class="line"><span class="cl">$ plakar at /var/backups restore -to @mydbdst &lt;snapshot_id&gt;</span></span></code></pre></div></div>
-<p>To have Plakar create the database automatically, set <code>create_db=true</code>:</p>
+<p>To have Plakar create the database automatically:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar destination add mydbdst mysql://dbuser:secret@target.example.com/mydb <span class="se">\
 </span></span></span><span class="line"><span class="cl">  <span class="nv">create_db</span><span class="o">=</span><span class="nb">true</span>
 </span></span><span class="line"><span class="cl">$ plakar at /var/backups restore -to @mydbdst &lt;snapshot_id&gt;</span></span></code></pre></div></div>
@@ -4225,268 +4223,6 @@
 </div>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar destination add mydbdst mysql://root:secret@target.example.com
 </span></span><span class="line"><span class="cl">$ plakar at /var/backups restore -to @mydbdst &lt;snapshot_id&gt;</span></span></code></pre></div></div>
-
-<div class="relative group">
-  <h2 id="list-snapshots">List snapshots</h2>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#list-snapshots" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar at /var/backups ls</span></span></code></pre></div></div>
-
-<div class="relative group">
-  <h2 id="source-options">Source options</h2>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#source-options" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Default</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>location</code></td>
-          <td>—</td>
-          <td>Connection URI: <code>mysql://[user[:password]@]host[:port][/database]</code></td>
-      </tr>
-      <tr>
-          <td><code>host</code></td>
-          <td><code>127.0.0.1</code></td>
-          <td>Server hostname. Overrides the URI host.</td>
-      </tr>
-      <tr>
-          <td><code>port</code></td>
-          <td><code>3306</code></td>
-          <td>Server port. Overrides the URI port.</td>
-      </tr>
-      <tr>
-          <td><code>username</code></td>
-          <td>—</td>
-          <td>Username. Overrides the URI user.</td>
-      </tr>
-      <tr>
-          <td><code>password</code></td>
-          <td>—</td>
-          <td>Password. Overrides the URI password. Passed via <code>MYSQL_PWD</code>, never on the command line.</td>
-      </tr>
-      <tr>
-          <td><code>database</code></td>
-          <td>—</td>
-          <td>Database to back up. Overrides the URI path. If omitted, all databases are backed up.</td>
-      </tr>
-      <tr>
-          <td><code>single_transaction</code></td>
-          <td><code>true</code></td>
-          <td>Use <code>--single-transaction</code> for a lock-free InnoDB snapshot.</td>
-      </tr>
-      <tr>
-          <td><code>routines</code></td>
-          <td><code>true</code></td>
-          <td>Include stored procedures and functions.</td>
-      </tr>
-      <tr>
-          <td><code>events</code></td>
-          <td><code>true</code></td>
-          <td>Include event scheduler events.</td>
-      </tr>
-      <tr>
-          <td><code>triggers</code></td>
-          <td><code>true</code></td>
-          <td>Include triggers.</td>
-      </tr>
-      <tr>
-          <td><code>no_data</code></td>
-          <td><code>false</code></td>
-          <td>Dump schema only, no data.</td>
-      </tr>
-      <tr>
-          <td><code>no_create_info</code></td>
-          <td><code>false</code></td>
-          <td>Dump data only, no schema.</td>
-      </tr>
-      <tr>
-          <td><code>no_tablespaces</code></td>
-          <td><code>true</code></td>
-          <td>Suppress tablespace statements.</td>
-      </tr>
-      <tr>
-          <td><code>hex_blob</code></td>
-          <td><code>false</code></td>
-          <td>Encode BINARY/BLOB columns as hex.</td>
-      </tr>
-      <tr>
-          <td><code>ssl_mode</code></td>
-          <td>—</td>
-          <td>TLS mode: <code>disabled</code>, <code>preferred</code>, <code>required</code>, <code>verify_ca</code>, <code>verify_identity</code>.</td>
-      </tr>
-      <tr>
-          <td><code>ssl_cert</code></td>
-          <td>—</td>
-          <td>Path to the client SSL certificate (PEM).</td>
-      </tr>
-      <tr>
-          <td><code>ssl_key</code></td>
-          <td>—</td>
-          <td>Path to the client SSL private key (PEM).</td>
-      </tr>
-      <tr>
-          <td><code>ssl_ca</code></td>
-          <td>—</td>
-          <td>Path to the CA certificate (PEM).</td>
-      </tr>
-      <tr>
-          <td><code>mysql_bin_dir</code></td>
-          <td>—</td>
-          <td>Directory containing MySQL binaries. MySQL only.</td>
-      </tr>
-      <tr>
-          <td><code>column_statistics</code></td>
-          <td><code>true</code></td>
-          <td>Query <code>COLUMN_STATISTICS</code>. Set to <code>false</code> when using mysqldump 8.0 against MySQL 5.7. MySQL only.</td>
-      </tr>
-      <tr>
-          <td><code>set_gtid_purged</code></td>
-          <td><code>AUTO</code></td>
-          <td>GTID mode: <code>AUTO</code>, <code>ON</code>, or <code>OFF</code>. MySQL only.</td>
-      </tr>
-      <tr>
-          <td><code>mariadb_bin_dir</code></td>
-          <td>—</td>
-          <td>Directory containing MariaDB binaries. MariaDB only.</td>
-      </tr>
-  </tbody>
-</table>
-
-<div class="relative group">
-  <h2 id="destination-options">Destination options</h2>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#destination-options" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Default</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>location</code></td>
-          <td>—</td>
-          <td>Connection URI: <code>mysql://[user[:password]@]host[:port][/database]</code></td>
-      </tr>
-      <tr>
-          <td><code>host</code></td>
-          <td><code>127.0.0.1</code></td>
-          <td>Server hostname. Overrides the URI host.</td>
-      </tr>
-      <tr>
-          <td><code>port</code></td>
-          <td><code>3306</code></td>
-          <td>Server port. Overrides the URI port.</td>
-      </tr>
-      <tr>
-          <td><code>username</code></td>
-          <td>—</td>
-          <td>Username. Overrides the URI user.</td>
-      </tr>
-      <tr>
-          <td><code>password</code></td>
-          <td>—</td>
-          <td>Password. Overrides the URI password.</td>
-      </tr>
-      <tr>
-          <td><code>database</code></td>
-          <td>—</td>
-          <td>Target database. Inferred from the dump filename if omitted.</td>
-      </tr>
-      <tr>
-          <td><code>create_db</code></td>
-          <td><code>false</code></td>
-          <td>Issue <code>CREATE DATABASE IF NOT EXISTS</code> before restoring.</td>
-      </tr>
-      <tr>
-          <td><code>force</code></td>
-          <td><code>false</code></td>
-          <td>Continue on SQL errors during restore.</td>
-      </tr>
-      <tr>
-          <td><code>ssl_mode</code></td>
-          <td>—</td>
-          <td>TLS mode (same values as source).</td>
-      </tr>
-      <tr>
-          <td><code>ssl_cert</code></td>
-          <td>—</td>
-          <td>Path to the client SSL certificate (PEM).</td>
-      </tr>
-      <tr>
-          <td><code>ssl_key</code></td>
-          <td>—</td>
-          <td>Path to the client SSL private key (PEM).</td>
-      </tr>
-      <tr>
-          <td><code>ssl_ca</code></td>
-          <td>—</td>
-          <td>Path to the CA certificate (PEM).</td>
-      </tr>
-      <tr>
-          <td><code>mysql_bin_dir</code></td>
-          <td>—</td>
-          <td>Directory containing the <code>mysql</code> binary. MySQL only.</td>
-      </tr>
-      <tr>
-          <td><code>mariadb_bin_dir</code></td>
-          <td>—</td>
-          <td>Directory containing the <code>mariadb</code> binary. MariaDB only.</td>
-      </tr>
-  </tbody>
-</table>
-
-<div class="relative group">
-  <h2 id="required-privileges">Required privileges</h2>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#required-privileges" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-
-<div class="relative group">
-  <h3 id="single-database-backup">Single database backup</h3>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#single-database-backup" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="p">,</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="k">VIEW</span><span class="p">,</span><span class="w"> </span><span class="k">TRIGGER</span><span class="p">,</span><span class="w"> </span><span class="n">EVENT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">mydb</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;backup&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="k">GRANT</span><span class="w"> </span><span class="n">PROCESS</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;backup&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="p">;</span></span></span></code></pre></div></div>
-<p>With <code>single_transaction=true</code> (default), <code>LOCK TABLES</code> is not required for InnoDB tables.</p>
-
-<div class="relative group">
-  <h3 id="all-databases-backup">All-databases backup</h3>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#all-databases-backup" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="p">,</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="k">VIEW</span><span class="p">,</span><span class="w"> </span><span class="k">TRIGGER</span><span class="p">,</span><span class="w"> </span><span class="k">LOCK</span><span class="w"> </span><span class="n">TABLES</span><span class="p">,</span><span class="w"> </span><span class="n">EVENT</span><span class="p">,</span><span class="w"> </span><span class="n">RELOAD</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;backup&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="k">GRANT</span><span class="w"> </span><span class="n">PROCESS</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;backup&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="p">;</span></span></span></code></pre></div></div>
 
 <div class="relative group">
   <h2 id="considerations">Considerations</h2>
@@ -4505,62 +4241,27 @@
   </span>
   
 </div>
-<p>Always use binaries that match your server. On Debian and Ubuntu, <code>apt install default-mysql-client</code> installs MariaDB&rsquo;s <code>mysqldump</code> by default. MariaDB&rsquo;s <code>mysqldump</code> is not compatible with MySQL 8 for all-databases backups and will produce dumps that fail to restore.</p>
-<p>Verify you have the correct binary:</p>
+<p>Always use binaries that match your server. On Debian and Ubuntu,
+<code>apt install default-mysql-client</code> installs MariaDB&rsquo;s <code>mysqldump</code> by default,
+which is not compatible with MySQL 8 for all-databases backups. Verify you have
+the correct binary:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ mysqldump --version
 </span></span><span class="line"><span class="cl"><span class="c1"># MySQL:   mysqldump  Ver 8.x Distrib 8.x, for Linux (x86_64)</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># MariaDB: mysqldump from 11.x.x-MariaDB ...</span></span></span></code></pre></div></div>
-<p>If both are installed, point the integration to the correct directory using <code>mysql_bin_dir</code>.</p>
+<p>Use <code>mysql_bin_dir</code> to point to the correct binary directory if both are
+installed.</p>
 
 <div class="relative group">
-  <h3 id="innodb-and-myisam">InnoDB and MyISAM</h3>
+  <h3 id="kloset-store">Kloset store</h3>
   
   <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#innodb-and-myisam" aria-label="Anchor">#</a>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#kloset-store" aria-label="Anchor">#</a>
   </span>
   
 </div>
-<p><code>single_transaction</code> (enabled by default) produces a consistent InnoDB snapshot without locking tables. For databases with MyISAM tables, <code>single_transaction</code> does not prevent locks on those tables. If you need a consistent backup across MyISAM tables, set <code>single_transaction=false</code> to use <code>--lock-all-tables</code> instead, accepting write locks during the dump.</p>
-
-<div class="relative group">
-  <h3 id="gtids">GTIDs</h3>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#gtids" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<p>When the server has GTIDs enabled, the dump includes <code>SET @@GLOBAL.GTID_PURGED</code> statements that will cause restore to fail on a server that already has GTID history. Set <code>set_gtid_purged=OFF</code> on the source to omit GTID information, or run <code>RESET MASTER</code> on the target before restoring.</p>
-
-<div class="relative group">
-  <h3 id="user-and-grant-migration">User and grant migration</h3>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#user-and-grant-migration" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<p>Single-database backups do not include user accounts or grants. To migrate users, use an all-databases backup, export grants manually with a tool like <code>pt-show-grants</code>, or recreate accounts manually on the target.</p>
-
-<div class="relative group">
-  <h3 id="compression">Compression</h3>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#compression" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<p>Do not enable compression at the dump level. Plakar deduplicates and compresses data automatically. Pre-compressed dumps reduce deduplication effectiveness across snapshots.</p>
-
-<div class="relative group">
-  <h3 id="kloset-store-location">Kloset store location</h3>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#kloset-store-location" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<p>The examples above use <code>/var/backups</code> as the Kloset store. Any supported store backend can be used instead. See <a href="../../create-kloset-repository" >Create a Kloset store</a> for details.</p>
+<p>The examples above use <code>/var/backups</code> as the Kloset store. Any supported store
+backend can be used instead. See
+<a href="../../create-kloset-repository" >Create a Kloset store</a> for details.</p>
 
 <div class="relative group">
   <h2 id="see-also">See also</h2>
@@ -4571,9 +4272,9 @@
   
 </div>
 <ul>
-<li><a href="https://github.com/PlakarKorp/integration-mysql"  target="_blank" rel="noreferrer">MySQL integration on GitHub</a></li>
-<li><a href="https://dev.mysql.com/doc/refman/8.0/en/mysqldump.html"  target="_blank" rel="noreferrer">Official mysqldump documentation</a></li>
-<li><a href="https://mariadb.com/kb/en/mariadb-dump/"  target="_blank" rel="noreferrer">Official mariadb-dump documentation</a></li>
+<li><a href="/docs/community/v1.1.0/integrations/mysql/" >MySQL / MariaDB integration reference</a></li>
+<li><a href="https://github.com/PlakarKorp/integrations/tree/main/mysql"  target="_blank" rel="noreferrer">MySQL integration GitHub</a></li>
+<li><a href="https://dev.mysql.com/doc/refman/8.0/en/mysqldump.html"  target="_blank" rel="noreferrer">mysqldump documentation</a></li>
 </ul>
 
       </article>
@@ -4640,33 +4341,16 @@
     <div class="toc-content text-neutral-600">
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#requirements">Requirements</a>
-      <ul>
-        <li><a href="#install-the-package">Install the package</a></li>
-      </ul>
-    </li>
-    <li><a href="#what-gets-stored-in-a-snapshot">What gets stored in a snapshot</a></li>
+    <li><a href="#before-you-begin">Before you begin</a></li>
     <li><a href="#back-up-a-single-database">Back up a single database</a></li>
     <li><a href="#back-up-all-databases">Back up all databases</a></li>
+    <li><a href="#list-snapshots">List snapshots</a></li>
     <li><a href="#restore-a-single-database">Restore a single database</a></li>
     <li><a href="#restore-all-databases">Restore all databases</a></li>
-    <li><a href="#list-snapshots">List snapshots</a></li>
-    <li><a href="#source-options">Source options</a></li>
-    <li><a href="#destination-options">Destination options</a></li>
-    <li><a href="#required-privileges">Required privileges</a>
-      <ul>
-        <li><a href="#single-database-backup">Single database backup</a></li>
-        <li><a href="#all-databases-backup">All-databases backup</a></li>
-      </ul>
-    </li>
     <li><a href="#considerations">Considerations</a>
       <ul>
         <li><a href="#mysql-vs-mariadb-binaries">MySQL vs MariaDB binaries</a></li>
-        <li><a href="#innodb-and-myisam">InnoDB and MyISAM</a></li>
-        <li><a href="#gtids">GTIDs</a></li>
-        <li><a href="#user-and-grant-migration">User and grant migration</a></li>
-        <li><a href="#compression">Compression</a></li>
-        <li><a href="#kloset-store-location">Kloset store location</a></li>
+        <li><a href="#kloset-store">Kloset store</a></li>
       </ul>
     </li>
     <li><a href="#see-also">See also</a></li>

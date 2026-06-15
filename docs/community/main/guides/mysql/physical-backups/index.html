@@ -17,7 +17,7 @@
 
   
   
-    <meta name="description" content="Perform physical backups of MySQL databases using file copy or Percona XtraBackup with Plakar.">
+    <meta name="description" content="Perform physical backups of MySQL databases using Plakar&#39;s filesystem backup.">
   
   
     <meta name="keywords" content="backup,open-source,deduplication,encryption,plakar,cloud backup,database backup,">
@@ -79,17 +79,17 @@
   <meta property="og:url" content="https://plakar.io/docs/community/main/guides/mysql/physical-backups/">
   <meta property="og:site_name" content="Plakar | The Open Standard for Backup and Restore">
   <meta property="og:title" content="Physical backups">
-  <meta property="og:description" content="Perform physical backups of MySQL databases using file copy or Percona XtraBackup with Plakar.">
+  <meta property="og:description" content="Perform physical backups of MySQL databases using Plakar’s filesystem backup.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-03-18T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-06-15T01:01:04+02:00">
+    <meta property="article:modified_time" content="2026-06-15T14:39:16+02:00">
 
   
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Physical backups">
-  <meta name="twitter:description" content="Perform physical backups of MySQL databases using file copy or Percona XtraBackup with Plakar.">
+  <meta name="twitter:description" content="Perform physical backups of MySQL databases using Plakar’s filesystem backup.">
 
   
   
@@ -267,12 +267,12 @@
     "dateCreated": "2026-03-18T00:00:00\u002b00:00",
     "datePublished": "2026-03-18T00:00:00\u002b00:00",
     
-    "dateModified": "2026-06-15T01:01:04\u002b02:00",
+    "dateModified": "2026-06-15T14:39:16\u002b02:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "478"
+    "wordCount": "412"
   }]
   </script>
 
@@ -1314,6 +1314,10 @@
   
     
   
+    
+  
+    
+  
   
 
   
@@ -1444,6 +1448,24 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         Notion
+      </a>
+    
+  
+    
+    
+      <a href="/docs/community/main/integrations/postgres/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        PostgreSQL
+      </a>
+    
+  
+    
+    
+      <a href="/docs/community/main/integrations/mysql/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        MySQL / MariaDB
       </a>
     
   
@@ -3054,6 +3076,10 @@
   
     
   
+    
+  
+    
+  
   
 
   
@@ -3184,6 +3210,24 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         Notion
+      </a>
+    
+  
+    
+    
+      <a href="/docs/community/main/integrations/postgres/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        PostgreSQL
+      </a>
+    
+  
+    
+    
+      <a href="/docs/community/main/integrations/mysql/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        MySQL / MariaDB
       </a>
     
   
@@ -4083,209 +4127,99 @@
   </span>
   
 </div>
-<p>Physical backups copy raw database directories and files directly from the MySQL data directory. This approach is faster than logical backups and produces more compact output, but requires MySQL to be stopped or locked during backup.</p>
-<p>For a deeper understanding of physical backups and backup methods, refer to the <a href="https://dev.mysql.com/doc/refman/8.0/en/backup-methods.html"  target="_blank" rel="noreferrer">official MySQL documentation on backup methods</a>.</p>
+<p>The MySQL / MariaDB integration only supports logical dumps. Physical backups
+are done by stopping the server and backing up the data directory directly with
+Plakar&rsquo;s built-in filesystem connector.</p>
+<p>Physical backups are faster to restore than logical dumps and capture
+everything: all databases, configuration files, and InnoDB redo logs. They are
+version-locked: the backup must be restored with the same MySQL major version.</p>
+<p>For logical dumps using <code>mysqldump</code> or <code>mariadb-dump</code>, see
+<a href="/docs/community/main/guides/mysql/sqldump/" >Logical backups with SQL dumps</a>.</p>
 
 <div class="relative group">
-  <h2 id="prerequisites">Prerequisites</h2>
+  <h2 id="before-you-begin">Before you begin</h2>
   
   <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#prerequisites" aria-label="Anchor">#</a>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#before-you-begin" aria-label="Anchor">#</a>
   </span>
   
 </div>
 <ul>
-<li>Running MySQL server with accessible data directory</li>
-<li>Root or mysql user privileges</li>
-<li>MySQL server stopped or ability to apply read locks</li>
+<li>Root or <code>mysql</code> system user access on the backup host.</li>
+<li>The MySQL data directory location (default <code>/var/lib/mysql</code>, check <code>datadir</code>
+in <code>my.cnf</code> if it differs).</li>
 </ul>
-<details
-      class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
-      data-type="warning"
-      open>
-      <summary class="flex items-center gap-2 font-semibold text-inherit cursor-pointer">
-        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"/></svg>
-</span></div>
-        <div class="grow">
-          Data Consistency
-        </div>
-        <div
-          class="ms-auto flex h-5 w-5 items-center justify-center transition-transform ease-in-out -rotate-90 group-open:rotate-0 print:hidden"><span class="relative block icon"><svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 20 20"
-  fill="currentColor"
-  aria-hidden="true"
->
-  <path
-    fill-rule="evenodd"
-    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-    clip-rule="evenodd"
-  />
-</svg>
-</span></div>
-      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Copying the data directory while MySQL is running without proper locking produces inconsistent backups.</p></div></details>
+
 <div class="relative group">
-  <h2 id="back-up-with-mysql-stopped">Back Up with MySQL Stopped</h2>
+  <h2 id="back-up-with-mysql-stopped">Back up with MySQL stopped</h2>
   
   <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
     <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#back-up-with-mysql-stopped" aria-label="Anchor">#</a>
   </span>
   
 </div>
-<p>Stop MySQL, back up the data directory, then restart:</p>
+<p>The safest method. Stop MySQL, back up the data directory, then restart:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo systemctl stop mysql.service
 </span></span><span class="line"><span class="cl">$ sudo plakar at /var/backups backup /var/lib/mysql
 </span></span><span class="line"><span class="cl">$ sudo systemctl start mysql.service</span></span></code></pre></div></div>
-<details
-      class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
-      data-type="note"
-      open>
-      <summary class="flex items-center gap-2 font-semibold text-inherit cursor-pointer">
-        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"/></svg>
-</span></div>
-        <div class="grow">
-          Data Directory Location
-        </div>
-        <div
-          class="ms-auto flex h-5 w-5 items-center justify-center transition-transform ease-in-out -rotate-90 group-open:rotate-0 print:hidden"><span class="relative block icon"><svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 20 20"
-  fill="currentColor"
-  aria-hidden="true"
->
-  <path
-    fill-rule="evenodd"
-    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-    clip-rule="evenodd"
-  />
-</svg>
-</span></div>
-      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Check <code>datadir</code> in <code>/etc/mysql/my.cnf</code> or <code>/etc/my.cnf</code> if your data directory differs.</p></div></details>
+
 <div class="relative group">
-  <h2 id="back-up-with-read-lock">Back Up with Read Lock</h2>
+  <h2 id="back-up-with-a-read-lock">Back up with a read lock</h2>
   
   <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#back-up-with-read-lock" aria-label="Anchor">#</a>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#back-up-with-a-read-lock" aria-label="Anchor">#</a>
   </span>
   
 </div>
-<p>Minimize downtime using <code>FLUSH TABLES WITH READ LOCK</code>:</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ mysql -u root -p <span class="s">&lt;&lt; EOF
+<p>Minimize downtime using <code>FLUSH TABLES WITH READ LOCK</code>. All writes are blocked
+for the duration:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ mysql -u root -p <span class="s">&lt;&lt; &#39;EOF&#39;
 </span></span></span><span class="line"><span class="cl"><span class="s">FLUSH TABLES WITH READ LOCK;
 </span></span></span><span class="line"><span class="cl"><span class="s">SYSTEM sudo plakar at /var/backups backup /var/lib/mysql
 </span></span></span><span class="line"><span class="cl"><span class="s">UNLOCK TABLES;
 </span></span></span><span class="line"><span class="cl"><span class="s">EOF</span></span></span></code></pre></div></div>
-<details
-      class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
-      data-type="warning"
-      open>
-      <summary class="flex items-center gap-2 font-semibold text-inherit cursor-pointer">
-        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"/></svg>
-</span></div>
-        <div class="grow">
-          Write Operations Blocked
-        </div>
-        <div
-          class="ms-auto flex h-5 w-5 items-center justify-center transition-transform ease-in-out -rotate-90 group-open:rotate-0 print:hidden"><span class="relative block icon"><svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 20 20"
-  fill="currentColor"
-  aria-hidden="true"
->
-  <path
-    fill-rule="evenodd"
-    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-    clip-rule="evenodd"
-  />
-</svg>
-</span></div>
-      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>All write operations are blocked during backup. Lock releases automatically if connection drops.</p></div></details>
-<div class="relative group">
-  <h2 id="back-up-specific-databases">Back Up Specific Databases</h2>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#back-up-specific-databases" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<p>Back up individual database directories:</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo systemctl stop mysql.service
-</span></span><span class="line"><span class="cl">$ sudo plakar at /var/backups backup /var/lib/mysql/&lt;dbname&gt;
-</span></span><span class="line"><span class="cl">$ sudo systemctl start mysql.service</span></span></code></pre></div></div>
-<p>Replace <code>&lt;dbname&gt;</code> with the target database name.</p>
 
 <div class="relative group">
-  <h2 id="restore-physical-backup">Restore Physical Backup</h2>
+  <h2 id="list-snapshots">List snapshots</h2>
   
   <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#restore-physical-backup" aria-label="Anchor">#</a>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#list-snapshots" aria-label="Anchor">#</a>
   </span>
   
 </div>
-<details
-      class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
-      data-type="warning"
-      open>
-      <summary class="flex items-center gap-2 font-semibold text-inherit cursor-pointer">
-        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"/></svg>
-</span></div>
-        <div class="grow">
-          Before Restoring
-        </div>
-        <div
-          class="ms-auto flex h-5 w-5 items-center justify-center transition-transform ease-in-out -rotate-90 group-open:rotate-0 print:hidden"><span class="relative block icon"><svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 20 20"
-  fill="currentColor"
-  aria-hidden="true"
->
-  <path
-    fill-rule="evenodd"
-    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-    clip-rule="evenodd"
-  />
-</svg>
-</span></div>
-      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Stop MySQL and back up or move the current data directory.</p></div></details><p>List snapshots:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar at /var/backups ls</span></span></code></pre></div></div>
-<p>Restore:</p>
+
+<div class="relative group">
+  <h2 id="restore-the-data-directory">Restore the data directory</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#restore-the-data-directory" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>Stop MySQL, move aside the existing data directory, restore, fix permissions,
+and restart:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo systemctl stop mysql.service
 </span></span><span class="line"><span class="cl">$ sudo mv /var/lib/mysql /var/lib/mysql.old
-</span></span><span class="line"><span class="cl">$ sudo plakar at /var/backups restore -to /var/lib/mysql &lt;SNAPSHOT_ID&gt;
+</span></span><span class="line"><span class="cl">$ sudo plakar at /var/backups restore -to /var/lib/mysql &lt;snapshot_id&gt;
 </span></span><span class="line"><span class="cl">$ sudo chown -R mysql:mysql /var/lib/mysql
 </span></span><span class="line"><span class="cl">$ sudo systemctl start mysql.service</span></span></code></pre></div></div>
 
 <div class="relative group">
-  <h2 id="restore-specific-databases">Restore Specific Databases</h2>
+  <h2 id="restore-and-run-with-docker">Restore and run with Docker</h2>
   
   <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#restore-specific-databases" aria-label="Anchor">#</a>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#restore-and-run-with-docker" aria-label="Anchor">#</a>
   </span>
   
 </div>
-<p>Restore individual database directories:</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo systemctl stop mysql.service
-</span></span><span class="line"><span class="cl">$ sudo rm -rf /var/lib/mysql/&lt;dbname&gt;
-</span></span><span class="line"><span class="cl">$ sudo plakar at /var/backups restore -to /var/lib/mysql/&lt;dbname&gt; &lt;SNAPSHOT_ID&gt;
-</span></span><span class="line"><span class="cl">$ sudo chown -R mysql:mysql /var/lib/mysql/&lt;dbname&gt;
-</span></span><span class="line"><span class="cl">$ sudo systemctl start mysql.service</span></span></code></pre></div></div>
-
-<div class="relative group">
-  <h2 id="run-mysql-in-docker-from-backup">Run MySQL in Docker from Backup</h2>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#run-mysql-in-docker-from-backup" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<p>Restore backup and run MySQL in Docker (requires matching MySQL version):</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar at /var/backups restore -to ./mydb &lt;SNAPSHOT_ID&gt;
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar at /var/backups restore -to ./mydb &lt;snapshot_id&gt;
 </span></span><span class="line"><span class="cl">$ sudo chown -R 999:999 ./mydb
-</span></span><span class="line"><span class="cl">$ docker run --rm -ti --name mysql <span class="se">\
+</span></span><span class="line"><span class="cl">$ docker run --rm -ti <span class="se">\
 </span></span></span><span class="line"><span class="cl">  -v ./mydb:/var/lib/mysql <span class="se">\
-</span></span></span><span class="line"><span class="cl">  mysql:8.0</span></span></code></pre></div></div>
-<p>Connect:</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ docker <span class="nb">exec</span> -ti mysql mysql -u root -p -e <span class="s1">&#39;SHOW DATABASES;&#39;</span></span></span></code></pre></div></div>
+</span></span></span><span class="line"><span class="cl">  mysql:&lt;version&gt;</span></span></code></pre></div></div>
+<p>Replace <code>&lt;version&gt;</code> with the same MySQL major version that was running when the
+backup was taken.</p>
 
 <div class="relative group">
   <h2 id="considerations">Considerations</h2>
@@ -4297,57 +4231,63 @@
 </div>
 
 <div class="relative group">
-  <h3 id="physical-vs-logical-backups">Physical vs Logical Backups</h3>
+  <h3 id="version-compatibility">Version compatibility</h3>
   
   <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#physical-vs-logical-backups" aria-label="Anchor">#</a>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#version-compatibility" aria-label="Anchor">#</a>
   </span>
   
 </div>
-<ul>
-<li><strong>Logical backups</strong> (<code>mysqldump</code>): Machine-independent, portable across MySQL versions and architectures</li>
-<li><strong>Physical backups</strong>: Faster backup/restore, more compact, but require identical hardware and MySQL version</li>
-</ul>
+<p>Physical backups must be restored with the same MySQL major version. For
+cross-version restores, use a <a href="/docs/community/main/guides/mysql/sqldump/" >logical backup</a> instead.</p>
 
 <div class="relative group">
-  <h3 id="innodb-consistency">InnoDB Consistency</h3>
+  <h3 id="innodb-consistency">InnoDB consistency</h3>
   
   <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
     <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#innodb-consistency" aria-label="Anchor">#</a>
   </span>
   
 </div>
-<p>Ensure backups include all InnoDB files:</p>
-<ul>
-<li><code>ibdata*</code></li>
-<li><code>ib_logfile*</code> (or <code>#ib_redo*</code> in MySQL 8.0.30+)</li>
-<li>Individual <code>.ibd</code> files</li>
-</ul>
-<p>InnoDB performs automatic crash recovery on startup if backup was consistent.</p>
+<p>Ensure the backup includes all InnoDB files: <code>ibdata*</code>, <code>ib_logfile*</code> (or
+<code>#ib_redo*</code> on MySQL 8.0.30+), and individual <code>.ibd</code> files. InnoDB performs
+crash recovery automatically on startup.</p>
 
 <div class="relative group">
-  <h3 id="memory-tables">MEMORY Tables</h3>
+  <h3 id="memory-tables">MEMORY tables</h3>
   
   <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
     <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#memory-tables" aria-label="Anchor">#</a>
   </span>
   
 </div>
-<p>MEMORY tables are not stored on disk and will be empty after physical backup restoration. Use <code>mysqldump</code> for MEMORY tables.</p>
+<p>MEMORY tables are not stored on disk and will be empty after a physical restore.
+Use a <a href="/docs/community/main/guides/mysql/sqldump/" >logical backup</a> if you need to preserve their contents.</p>
 
 <div class="relative group">
-  <h2 id="references">References</h2>
+  <h3 id="kloset-store">Kloset store</h3>
   
   <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#references" aria-label="Anchor">#</a>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#kloset-store" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>The examples above use <code>/var/backups</code> as the Kloset store. Any supported store
+backend can be used instead. See
+<a href="../../create-kloset-repository" >Create a Kloset store</a> for details.</p>
+
+<div class="relative group">
+  <h2 id="see-also">See also</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#see-also" aria-label="Anchor">#</a>
   </span>
   
 </div>
 <ul>
-<li><a href="https://dev.mysql.com/doc/refman/8.0/en/backup-and-recovery.html"  target="_blank" rel="noreferrer">MySQL Backup and Recovery</a></li>
-<li><a href="https://dev.mysql.com/doc/refman/8.0/en/backup-methods.html"  target="_blank" rel="noreferrer">MySQL Backup Methods</a></li>
-<li><a href="https://dev.mysql.com/doc/refman/8.0/en/flush.html"  target="_blank" rel="noreferrer">MySQL FLUSH Statement</a></li>
-<li><a href="https://dev.mysql.com/doc/refman/8.0/en/innodb-storage-engine.html"  target="_blank" rel="noreferrer">MySQL InnoDB Storage Engine</a></li>
+<li><a href="/docs/community/main/guides/mysql/sqldump/" >Logical backups with SQL dumps</a></li>
+<li><a href="/docs/community/main/integrations/mysql/" >MySQL / MariaDB integration reference</a></li>
+<li><a href="https://dev.mysql.com/doc/refman/8.0/en/backup-methods.html"  target="_blank" rel="noreferrer">MySQL backup methods</a></li>
 </ul>
 
       </article>
@@ -4414,21 +4354,21 @@
     <div class="toc-content text-neutral-600">
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#prerequisites">Prerequisites</a></li>
-    <li><a href="#back-up-with-mysql-stopped">Back Up with MySQL Stopped</a></li>
-    <li><a href="#back-up-with-read-lock">Back Up with Read Lock</a></li>
-    <li><a href="#back-up-specific-databases">Back Up Specific Databases</a></li>
-    <li><a href="#restore-physical-backup">Restore Physical Backup</a></li>
-    <li><a href="#restore-specific-databases">Restore Specific Databases</a></li>
-    <li><a href="#run-mysql-in-docker-from-backup">Run MySQL in Docker from Backup</a></li>
+    <li><a href="#before-you-begin">Before you begin</a></li>
+    <li><a href="#back-up-with-mysql-stopped">Back up with MySQL stopped</a></li>
+    <li><a href="#back-up-with-a-read-lock">Back up with a read lock</a></li>
+    <li><a href="#list-snapshots">List snapshots</a></li>
+    <li><a href="#restore-the-data-directory">Restore the data directory</a></li>
+    <li><a href="#restore-and-run-with-docker">Restore and run with Docker</a></li>
     <li><a href="#considerations">Considerations</a>
       <ul>
-        <li><a href="#physical-vs-logical-backups">Physical vs Logical Backups</a></li>
-        <li><a href="#innodb-consistency">InnoDB Consistency</a></li>
-        <li><a href="#memory-tables">MEMORY Tables</a></li>
+        <li><a href="#version-compatibility">Version compatibility</a></li>
+        <li><a href="#innodb-consistency">InnoDB consistency</a></li>
+        <li><a href="#memory-tables">MEMORY tables</a></li>
+        <li><a href="#kloset-store">Kloset store</a></li>
       </ul>
     </li>
-    <li><a href="#references">References</a></li>
+    <li><a href="#see-also">See also</a></li>
   </ul>
 </nav>
     </div>

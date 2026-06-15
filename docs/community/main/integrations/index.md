@@ -67,4 +67,12 @@ Below is a list of links to the documentation for each supported integration.
 
 
 
+## [PostgreSQL](https://plakar.io/docs/community/main/integrations/postgres/index.md)
+
+
+
+## [MySQL / MariaDB](https://plakar.io/docs/community/main/integrations/mysql/index.md)
+
+
+
 
