@@ -84,7 +84,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-06-11T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-06-15T14:39:16+02:00">
+    <meta property="article:modified_time" content="2026-06-15T16:18:13+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -267,12 +267,12 @@
     "dateCreated": "2026-06-11T00:00:00\u002b00:00",
     "datePublished": "2026-06-11T00:00:00\u002b00:00",
     
-    "dateModified": "2026-06-15T14:39:16\u002b02:00",
+    "dateModified": "2026-06-15T16:18:13\u002b02:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "276"
+    "wordCount": "736"
   }]
   </script>
 
@@ -3730,97 +3730,6 @@ appliance.</p>
 mode</strong> without completing the initial setup wizard. Refer to the
 <a href="../../../intro/installation" >installation guide</a> for platform-specific
 instructions on deploying the appliance.</p>
-
-<div class="relative group">
-  <h2 id="step-2--verify-ssh-access">Step 2 — Verify SSH access</h2>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#step-2--verify-ssh-access" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<p>Confirm that you can connect to the new appliance over SSH using the <code>plakar</code>
-user:</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ssh plakar@&lt;appliance-address&gt;</span></span></code></pre></div></div>
-
-<div class="relative group">
-  <h2 id="step-3--install-plakar-oss-and-configure-the-store">Step 3 — Install Plakar OSS and configure the store</h2>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#step-3--install-plakar-oss-and-configure-the-store" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<p>On the new appliance, install the Plakar OSS client. Refer to the
-<a href="/docs/community/main/quickstart/installation/" >installation guide</a> for
-instructions.</p>
-<p>Once installed, configure the store where your backup snapshot is hosted. Refer
-to the <a href="/docs/community/main/quickstart/first-backup/" >quickstart guide</a> for
-store configuration instructions.</p>
-
-<div class="relative group">
-  <h2 id="step-4--archive-the-snapshot-to-a-local-file">Step 4 — Archive the snapshot to a local file</h2>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#step-4--archive-the-snapshot-to-a-local-file" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<p>Use the <code>plakar</code> CLI to export the backup snapshot as a compressed archive:</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">plakar -stdio at &lt;store&gt; archive -output pcp.tar.gz &lt;snapshot_id&gt;</span></span></code></pre></div></div>
-<p>Replace <code>&lt;store&gt;</code> with the store URI and <code>&lt;snapshot_id&gt;</code> with the identifier of
-the snapshot you want to restore. This produces a <code>pcp.tar.gz</code> file in the
-current directory.</p>
-
-<div class="relative group">
-  <h2 id="step-5--copy-the-data-into-the-running-container">Step 5 — Copy the data into the running container</h2>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#step-5--copy-the-data-into-the-running-container" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<details
-      class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
-      data-type="note"
-      open>
-      <summary class="flex items-center gap-2 font-semibold text-inherit cursor-pointer">
-        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"/></svg>
-</span></div>
-        <div class="grow">
-          This section is in progress and will be updated soon.
-        </div>
-        <div
-          class="ms-auto flex h-5 w-5 items-center justify-center transition-transform ease-in-out -rotate-90 group-open:rotate-0 print:hidden"><span class="relative block icon"><svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 20 20"
-  fill="currentColor"
-  aria-hidden="true"
->
-  <path
-    fill-rule="evenodd"
-    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-    clip-rule="evenodd"
-  />
-</svg>
-</span></div>
-      </summary></details><!-- Once the snapshot is extracted locally, copy its contents into the appropriate container using `ctr`. The containerd namespace for Plakar Control Plane services is `services.linuxkit`.
-
-```bash
-ssh user@host \
-  'ctr -n services.linuxkit tasks exec --exec-id copy <container-id> tar cf - -C /target/path .' \
-  | tar xf - -C ./local-dir
-``` -->
-<!-- Replace `<container-id>` with the ID of the Plakar Control Plane container, `/target/path` with the path inside the container where the data should land, and `./local-dir` with the local directory containing the restored snapshot data. -->
-
-<div class="relative group">
-  <h2 id="step-6--run-the-restore-commands">Step 6 — Run the restore commands</h2>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#step-6--run-the-restore-commands" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
 <details
       class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
       data-type="note"
@@ -3845,7 +3754,111 @@ ssh user@host \
   />
 </svg>
 </span></div>
-      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>This section is in progress and will be updated soon.</p></div></details>
+      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>The virtual appliance image must be the same version as the one that was
+running at the time the backup was taken. Once the restore is complete, you
+can <a href="../../updating-control-plane" >upgrade the appliance</a> to a newer version.</p></div></details>
+<div class="relative group">
+  <h2 id="step-2--verify-ssh-access">Step 2 — Verify SSH access</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#step-2--verify-ssh-access" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>Confirm that you can connect to the new appliance over SSH using the <code>plakar</code>
+user:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">APPLIANCE_ADDRESS</span><span class="o">=</span>&lt;appliance-address&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ssh plakar@<span class="nv">$APPLIANCE_ADDRESS</span></span></span></code></pre></div></div>
+
+<div class="relative group">
+  <h2 id="step-3--install-plakar-oss-and-configure-the-store">Step 3 — Install Plakar OSS and configure the store</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#step-3--install-plakar-oss-and-configure-the-store" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>On your local machine, install the Plakar OSS client. Refer to the
+<a href="/docs/community/main/quickstart/installation/" >installation guide</a> for
+instructions.</p>
+<p>Once installed, configure the store where your backup snapshot is hosted. Refer
+to the <a href="/docs/community/main/quickstart/first-backup/" >quickstart guide</a> for
+store configuration instructions.</p>
+
+<div class="relative group">
+  <h2 id="step-4--archive-the-snapshot-to-a-local-file">Step 4 — Archive the snapshot to a local file</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#step-4--archive-the-snapshot-to-a-local-file" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>Use the <code>plakar</code> CLI to export the backup snapshot as a compressed archive:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">plakar -stdio at &lt;store&gt; archive -output pcp.tar.gz &lt;snapshot_id&gt;</span></span></code></pre></div></div>
+<p>Replace <code>&lt;store&gt;</code> with the store URI and <code>&lt;snapshot_id&gt;</code> with the identifier of
+the snapshot you want to restore. This produces a <code>pcp.tar.gz</code> file in the
+current directory.</p>
+
+<div class="relative group">
+  <h2 id="step-5--upload-the-archive-to-the-appliance">Step 5 — Upload the archive to the appliance</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#step-5--upload-the-archive-to-the-appliance" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>Pipe the archive directly into the <code>orkestrator</code> container using the <code>$APPLIANCE_ADDRESS</code> set in step 2:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat pcp.tar.gz <span class="p">|</span> ssh plakar@<span class="nv">$APPLIANCE_ADDRESS</span> sudo ctr -n services.linuxkit task <span class="nb">exec</span> --exec-id upload-pcp orkestrator sh -c <span class="s1">&#39;&#34;mkdir -p /data/tmp-restore-pcp &amp;&amp; cat &gt; /data/tmp-restore-pcp/pcp.tar.gz&#34;&#39;</span></span></span></code></pre></div></div>
+<p>This places the archive at <code>/data/tmp-restore-pcp/pcp.tar.gz</code> inside the container.</p>
+
+<div class="relative group">
+  <h2 id="step-6--run-the-restore-commands">Step 6 — Run the restore commands</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#step-6--run-the-restore-commands" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>Connect to the <code>orkestrator</code> container and run the restore commands:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ssh -t plakar@<span class="si">${</span><span class="nv">APPLIANCE_ADDRESS</span><span class="si">}</span> sudo ctr -n services.linuxkit task <span class="nb">exec</span> -t --exec-id restore-pcp orkestrator bash</span></span></code></pre></div></div>
+<p>From the container shell, run the following commands:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Extract the archive in a docker container because busybox tar is limited and cannot handle the archive produced by plakar</span>
+</span></span><span class="line"><span class="cl">docker run --rm -i -v /data/tmp-restore-pcp:/app -w /app ubuntu tar -zxvf ./pcp.tar.gz
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Remove the current database to prepare for the restore</span>
+</span></span><span class="line"><span class="cl">docker-compose -f /data/plakman/run/database.yaml <span class="nb">kill</span> postgres
+</span></span><span class="line"><span class="cl">rm -rf /data/database_runtime/*
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Create a temporary database container to run the restore commands</span>
+</span></span><span class="line"><span class="cl">docker network create restore-net
+</span></span><span class="line"><span class="cl">docker run -d --rm -ti -v /data/database_runtime:/var/lib/postgresql/data -e <span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span>postgres --name restore-db --network restore-net postgres:16
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sleep <span class="m">5</span> <span class="c1"># wait for the database to start</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Restore the database dumps in the correct order</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## Globals</span>
+</span></span><span class="line"><span class="cl">docker run --rm -i -e <span class="nv">PGPASSWORD</span><span class="o">=</span>postgres --network restore-net postgres:17 psql -h restore-db -U postgres -d postgres &lt; /data/tmp-restore-pcp/db/00000-globals.sql
+</span></span><span class="line"><span class="cl"><span class="c1">## Postgres database</span>
+</span></span><span class="line"><span class="cl">docker run --rm -i -e <span class="nv">PGPASSWORD</span><span class="o">=</span>postgres --network restore-net postgres:17 pg_restore -h restore-db -U postgres --clean -d postgres &lt; /data/tmp-restore-pcp/db/00002-postgres.dump
+</span></span><span class="line"><span class="cl"><span class="c1">## Plakar Control Plane database</span>
+</span></span><span class="line"><span class="cl">docker run --rm -i -e <span class="nv">PGPASSWORD</span><span class="o">=</span>postgres --network restore-net postgres:17 dropdb --if-exists -h restore-db -U postgres plakman-db
+</span></span><span class="line"><span class="cl">docker run --rm -i -e <span class="nv">PGPASSWORD</span><span class="o">=</span>postgres --network restore-net postgres:17 createdb -h restore-db -U postgres plakman-db
+</span></span><span class="line"><span class="cl">docker run --rm -i -e <span class="nv">PGPASSWORD</span><span class="o">=</span>postgres --network restore-net postgres:17 pg_restore -h restore-db -U postgres -f - &lt; /data/tmp-restore-pcp/db/00001-plakman-db.dump <span class="p">|</span> sed <span class="s2">&#34;s/SELECT pg_catalog.set_config(&#39;search_path&#39;, &#39;&#39;, false);/SELECT pg_catalog.set_config(&#39;search_path&#39;, &#39;public&#39;, false);/&#34;</span> <span class="p">|</span> docker run --rm -i -e <span class="nv">PGPASSWORD</span><span class="o">=</span>postgres --network restore-net postgres:17 psql -h restore-db -U postgres -d plakman-db
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Clean up database restore artifacts</span>
+</span></span><span class="line"><span class="cl">docker rm -f restore-db
+</span></span><span class="line"><span class="cl">docker network rm restore-net
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Restore files</span>
+</span></span><span class="line"><span class="cl">rm -rf /data/secrets/* <span class="o">&amp;&amp;</span> cp -r /data/tmp-restore-pcp/fs/appliance_data/secrets/* /data/secrets/
+</span></span><span class="line"><span class="cl">rm -rf /data/ssh/* <span class="o">&amp;&amp;</span> cp -r /data/tmp-restore-pcp/fs/appliance_data/ssh/* /data/ssh/
+</span></span><span class="line"><span class="cl">rm -rf /data/plakman_runtime/* <span class="o">&amp;&amp;</span> cp -r /data/tmp-restore-pcp/fs/appliance_data/plakman_runtime/* /data/plakman_runtime/
+</span></span><span class="line"><span class="cl">rm -rf /data/plakman/* <span class="o">&amp;&amp;</span> cp -r /data/tmp-restore-pcp/fs/appliance_data/plakman/* /data/plakman/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Clean up</span>
+</span></span><span class="line"><span class="cl">rm -rf /data/tmp-restore-pcp</span></span></code></pre></div></div>
+
 <div class="relative group">
   <h2 id="step-7--reboot">Step 7 — Reboot</h2>
   
@@ -3854,9 +3867,24 @@ ssh user@host \
   </span>
   
 </div>
-<p>Reboot the appliance to apply all changes and start Plakar Control Plane with
-the restored configuration:</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo reboot</span></span></code></pre></div></div>
+<p>Reboot the appliance from your provider&rsquo;s management console. For example on AWS, select the instance and click <strong>Reboot</strong>.</p>
+
+<div class="relative group">
+  <h2 id="post-restore-verify-provider-side-configuration">Post-restore: verify provider-side configuration</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#post-restore-verify-provider-side-configuration" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>Once the appliance is back online, the instance is fully restored. However, depending on your deployment environment, you may also need to verify that the new instance has the same provider-side configuration as the original.</p>
+<p>For example, on AWS, ensure that the new EC2 instance has:</p>
+<ul>
+<li>The same IAM role and permissions attached</li>
+<li>The same security group rules and network restrictions</li>
+<li>The same VPC and subnet placement if applicable</li>
+</ul>
+<p>Refer to the <a href="../../../intro/installation" >installation guide</a> for your platform for details on the required provider-side configuration.</p>
 
       </article>
       <footer class="mt-12 flex flex-col gap-6 docs-font border-t border-neutral-200 pt-6">
@@ -3926,9 +3954,10 @@ the restored configuration:</p>
     <li><a href="#step-2--verify-ssh-access">Step 2 — Verify SSH access</a></li>
     <li><a href="#step-3--install-plakar-oss-and-configure-the-store">Step 3 — Install Plakar OSS and configure the store</a></li>
     <li><a href="#step-4--archive-the-snapshot-to-a-local-file">Step 4 — Archive the snapshot to a local file</a></li>
-    <li><a href="#step-5--copy-the-data-into-the-running-container">Step 5 — Copy the data into the running container</a></li>
+    <li><a href="#step-5--upload-the-archive-to-the-appliance">Step 5 — Upload the archive to the appliance</a></li>
     <li><a href="#step-6--run-the-restore-commands">Step 6 — Run the restore commands</a></li>
     <li><a href="#step-7--reboot">Step 7 — Reboot</a></li>
+    <li><a href="#post-restore-verify-provider-side-configuration">Post-restore: verify provider-side configuration</a></li>
   </ul>
 </nav>
     </div>
