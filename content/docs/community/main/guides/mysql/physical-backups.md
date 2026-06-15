@@ -2,29 +2,34 @@
 title: "Physical backups"
 date: "2026-03-18T00:00:00Z"
 weight: 2
-summary: "Perform physical backups of MySQL databases using file copy or Percona XtraBackup with Plakar."
+summary:
+  "Perform physical backups of MySQL databases using Plakar's filesystem backup."
 aliases:
   - /docs/main/guides/mysql/physical-backups/
 ---
 
 # Physical backups
 
-Physical backups copy raw database directories and files directly from the MySQL data directory. This approach is faster than logical backups and produces more compact output, but requires MySQL to be stopped or locked during backup.
+The MySQL / MariaDB integration only supports logical dumps. Physical backups
+are done by stopping the server and backing up the data directory directly with
+Plakar's built-in filesystem connector.
 
-For a deeper understanding of physical backups and backup methods, refer to the [official MySQL documentation on backup methods](https://dev.mysql.com/doc/refman/8.0/en/backup-methods.html).
+Physical backups are faster to restore than logical dumps and capture
+everything: all databases, configuration files, and InnoDB redo logs. They are
+version-locked: the backup must be restored with the same MySQL major version.
 
-## Prerequisites
+For logical dumps using `mysqldump` or `mariadb-dump`, see
+[Logical backups with SQL dumps](./sqldump/).
 
-- Running MySQL server with accessible data directory
-- Root or mysql user privileges
-- MySQL server stopped or ability to apply read locks
+## Before you begin
 
-> [!WARNING]+ Data Consistency
-> Copying the data directory while MySQL is running without proper locking produces inconsistent backups.
+- Root or `mysql` system user access on the backup host.
+- The MySQL data directory location (default `/var/lib/mysql`, check `datadir`
+  in `my.cnf` if it differs).
 
-## Back Up with MySQL Stopped
+## Back up with MySQL stopped
 
-Stop MySQL, back up the data directory, then restart:
+The safest method. Stop MySQL, back up the data directory, then restart:
 
 ```bash
 $ sudo systemctl stop mysql.service
@@ -32,107 +37,77 @@ $ sudo plakar at /var/backups backup /var/lib/mysql
 $ sudo systemctl start mysql.service
 ```
 
-> [!NOTE]+ Data Directory Location
-> Check `datadir` in `/etc/mysql/my.cnf` or `/etc/my.cnf` if your data directory differs.
+## Back up with a read lock
 
-## Back Up with Read Lock
-
-Minimize downtime using `FLUSH TABLES WITH READ LOCK`:
+Minimize downtime using `FLUSH TABLES WITH READ LOCK`. All writes are blocked
+for the duration:
 
 ```bash
-$ mysql -u root -p << EOF
+$ mysql -u root -p << 'EOF'
 FLUSH TABLES WITH READ LOCK;
 SYSTEM sudo plakar at /var/backups backup /var/lib/mysql
 UNLOCK TABLES;
 EOF
 ```
 
-> [!WARNING]+ Write Operations Blocked
-> All write operations are blocked during backup. Lock releases automatically if connection drops.
+## List snapshots
 
-## Back Up Specific Databases
-
-Back up individual database directories:
-
-```bash
-$ sudo systemctl stop mysql.service
-$ sudo plakar at /var/backups backup /var/lib/mysql/<dbname>
-$ sudo systemctl start mysql.service
-```
-
-Replace `<dbname>` with the target database name.
-
-## Restore Physical Backup
-
-> [!WARNING]+ Before Restoring
-> Stop MySQL and back up or move the current data directory.
-
-List snapshots:
 ```bash
 $ plakar at /var/backups ls
 ```
 
-Restore:
+## Restore the data directory
+
+Stop MySQL, move aside the existing data directory, restore, fix permissions,
+and restart:
+
 ```bash
 $ sudo systemctl stop mysql.service
 $ sudo mv /var/lib/mysql /var/lib/mysql.old
-$ sudo plakar at /var/backups restore -to /var/lib/mysql <SNAPSHOT_ID>
+$ sudo plakar at /var/backups restore -to /var/lib/mysql <snapshot_id>
 $ sudo chown -R mysql:mysql /var/lib/mysql
 $ sudo systemctl start mysql.service
 ```
 
-## Restore Specific Databases
-
-Restore individual database directories:
+## Restore and run with Docker
 
 ```bash
-$ sudo systemctl stop mysql.service
-$ sudo rm -rf /var/lib/mysql/<dbname>
-$ sudo plakar at /var/backups restore -to /var/lib/mysql/<dbname> <SNAPSHOT_ID>
-$ sudo chown -R mysql:mysql /var/lib/mysql/<dbname>
-$ sudo systemctl start mysql.service
-```
-
-## Run MySQL in Docker from Backup
-
-Restore backup and run MySQL in Docker (requires matching MySQL version):
-
-```bash
-$ plakar at /var/backups restore -to ./mydb <SNAPSHOT_ID>
+$ plakar at /var/backups restore -to ./mydb <snapshot_id>
 $ sudo chown -R 999:999 ./mydb
-$ docker run --rm -ti --name mysql \
+$ docker run --rm -ti \
   -v ./mydb:/var/lib/mysql \
-  mysql:8.0
+  mysql:<version>
 ```
 
-Connect:
-```bash
-$ docker exec -ti mysql mysql -u root -p -e 'SHOW DATABASES;'
-```
+Replace `<version>` with the same MySQL major version that was running when the
+backup was taken.
 
 ## Considerations
 
-### Physical vs Logical Backups
+### Version compatibility
 
-- **Logical backups** (`mysqldump`): Machine-independent, portable across MySQL versions and architectures
-- **Physical backups**: Faster backup/restore, more compact, but require identical hardware and MySQL version
+Physical backups must be restored with the same MySQL major version. For
+cross-version restores, use a [logical backup](./sqldump/) instead.
 
-### InnoDB Consistency
+### InnoDB consistency
 
-Ensure backups include all InnoDB files:
-- `ibdata*`
-- `ib_logfile*` (or `#ib_redo*` in MySQL 8.0.30+)
-- Individual `.ibd` files
+Ensure the backup includes all InnoDB files: `ibdata*`, `ib_logfile*` (or
+`#ib_redo*` on MySQL 8.0.30+), and individual `.ibd` files. InnoDB performs
+crash recovery automatically on startup.
 
-InnoDB performs automatic crash recovery on startup if backup was consistent.
+### MEMORY tables
 
-### MEMORY Tables
+MEMORY tables are not stored on disk and will be empty after a physical restore.
+Use a [logical backup](./sqldump/) if you need to preserve their contents.
 
-MEMORY tables are not stored on disk and will be empty after physical backup restoration. Use `mysqldump` for MEMORY tables.
+### Kloset store
 
-## References
+The examples above use `/var/backups` as the Kloset store. Any supported store
+backend can be used instead. See
+[Create a Kloset store](../../create-kloset-repository) for details.
 
-- [MySQL Backup and Recovery](https://dev.mysql.com/doc/refman/8.0/en/backup-and-recovery.html)
-- [MySQL Backup Methods](https://dev.mysql.com/doc/refman/8.0/en/backup-methods.html)
-- [MySQL FLUSH Statement](https://dev.mysql.com/doc/refman/8.0/en/flush.html)
-- [MySQL InnoDB Storage Engine](https://dev.mysql.com/doc/refman/8.0/en/innodb-storage-engine.html)
+## See also
+
+- [Logical backups with SQL dumps](./sqldump/)
+- [MySQL / MariaDB integration reference](../../integrations/mysql/)
+- [MySQL backup methods](https://dev.mysql.com/doc/refman/8.0/en/backup-methods.html)
