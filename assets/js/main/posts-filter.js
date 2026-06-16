@@ -1,5 +1,5 @@
 // Targets: layouts/posts/list.html
-// Elements: #posts-filter, .filter-btn, #posts-grid, [data-category], .posts-filter-dropdown
+// Elements: #posts-filter, .filter-btn, #posts-grid, [data-categories], .posts-filter-dropdown
 
 document.addEventListener("DOMContentLoaded", () => {
   const filter = document.getElementById("posts-filter");
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!grid || (!filter && !filterDropdown)) return;
 
   const buttons = filter ? filter.querySelectorAll(".filter-btn") : [];
-  const cards = grid.querySelectorAll("[data-category]");
+  const cards = grid.querySelectorAll("[data-categories]");
 
   const filterLabels = {
     all: "All Posts",
@@ -45,7 +45,8 @@ document.addEventListener("DOMContentLoaded", () => {
         card.style.display = "";
         return;
       }
-      card.style.display = card.dataset.category === category ? "" : "none";
+      const cardCategories = (card.dataset.categories || "").split(" ").filter(Boolean);
+      card.style.display = cardCategories.includes(category) ? "" : "none";
     });
 
     const url = new URL(window.location);

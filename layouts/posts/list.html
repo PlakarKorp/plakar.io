@@ -101,7 +101,13 @@
 }}
 {{ $usedCategories := slice }}
 {{ range $allVisible }}
-  {{ with .Params.category }}
+  {{ $cats := slice }}
+  {{ if .Params.categories }}
+    {{ $cats = .Params.categories }}
+  {{ else if .Params.category }}
+    {{ $cats = slice .Params.category }}
+  {{ end }}
+  {{ range $cats }}
     {{ if not (in $usedCategories .) }}
       {{ $usedCategories = $usedCategories | append . }}
     {{ end }}
