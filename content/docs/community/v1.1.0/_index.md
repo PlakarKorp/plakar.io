@@ -1,5 +1,5 @@
 ---
-title: "Plakar: v1.1.0"
+title: "Plakar: v1.1.3"
 date: "2026-03-11T00:00:00Z"
 weight: 2
 summary:
@@ -9,6 +9,6 @@ aliases:
   - /docs/v1.1.0/
 ---
 
-# Plakar: v1.1.0
+# Plakar: v1.1.3
 
 {{% children description="true" style="sections" %}}
