@@ -833,8 +833,9 @@
       ) }}
     </div>
 
-    {{ $allPosts := where .Site.RegularPages "Section" "posts" }}
-    {{ $posts := where $allPosts "Params.featured-scope" "intersect" (slice "hero-page") }}
+    {{ $allPosts := where (where .Site.RegularPages "Section" "posts") "Params.hidden" "ne" true }}
+    {{ $heroPosts := where $allPosts "Params.featured-scope" "intersect" (slice "hero-page") }}
+    {{ $posts := first 3 (sort $heroPosts "Date" "desc") }}
     {{ if not $posts }}
       {{ $posts = first 3 (sort $allPosts "Date" "desc") }}
     {{ end }}
