@@ -1,9 +1,9 @@
 ---
-title: "Plakar v1.1.2 is here"
+title: "Plakar v1.1.3 is here"
 date: 2026-06-05T10:00:00+0100
 authors:
   - "gilles"
-summary: "After a long beta and three release candidates, plakar v1.1.2 is finally out. It is the biggest release we have shipped so far: faster restores, much lower memory usage, a smaller cache footprint, a brand new terminal UI, better mounting, a new package manager, simpler integration interfaces, and a far more reliable execution model now that the agent is gone and cached has taken its place. It is stable, fully backward compatible, and ready for production."
+summary: "After a long beta and three release candidates, plakar v1.1.3 is finally out. It is the biggest release we have shipped so far: faster restores, much lower memory usage, a smaller cache footprint, a brand new terminal UI, better mounting, a new package manager, simpler integration interfaces, and a far more reliable execution model now that the agent is gone and cached has taken its place. It is stable, fully backward compatible, and ready for production."
 categories:
   - announcement
   - release-notes
@@ -19,11 +19,12 @@ tags:
 Back in January, we shipped **v1.1.0-beta** and called it "the foundation for what's next".
 A long beta, three release candidates, and several thousand more snapshots later, that foundation is now done.
 
-**plakar v1.1.2 is officially out.**
+**plakar v1.1.3 is officially out.**
 
-You read that right: we jumped straight to v1.1.2.
-We were so eager to get this one into your hands that we skipped right past v1.1.0 and v1.1.1, two whole versions, in our hurry to ship.
-(Alright, the honest version is that we cut a couple of quick follow-ups on the way out the door and v1.1.2 is the one you actually want. But "too eager to release" is a much better story, so let's go with that.)
+You read that right: we jumped straight to v1.1.3.
+We were so eager to get this one into your hands that we skipped right past v1.1.0, v1.1.1, and v1.1.2, three whole versions, in our hurry to ship.
+(Alright, the honest version is that we cut a few quick follow-ups on the way out the door and v1.1.3 is the one you actually want. But "too eager to release" is a much better story, so let's go with that.)
+More seriously: during this release we moved our integrations to a monorepo workflow, and we are still getting used to it, a few of those extra version bumps are simply us finding our footing with the new process.
 
 It is, without contest, the largest release we have ever published.
 If you want the full story behind the headline features, the [v1.1.0-beta announcement](/posts/2026-01_09_plakar_1_1_0_beta/) still holds up and goes into much more detail than I will here, this post is the victory lap rather than the deep dive.
@@ -31,7 +32,7 @@ But since a lot of you discovered the v1.1.0 branch through that beta and then p
 
 ## TL;DR
 
-* **v1.1.2 is final, stable, and fully backward compatible.** You can upgrade in place, no migration, no surprises.
+* **v1.1.3 is final, stable, and backward compatible.** The binary keeps reading your existing stores, but to get the most out of this release you will want to create a fresh store and sync your old one into it (more on that below).
 * The big features from the beta all made it: **new terminal UI**, **multi-directory backups** (single source), **rewritten FUSE mounting** (plus HTTP mounts), a **brand new package manager**, and **much simpler integration interfaces**.
 * **Reliability:** the old agent is gone for good. A tiny background service called **cached** now handles shared cache and locking, while commands run directly in the CLI.
 * **Performance:** restores are roughly **95% faster** in our Korpus tests, and most of the backup optimizations we held back during the beta have now landed too.
@@ -66,7 +67,7 @@ If you have been following along, you already know all of this. If you skipped t
 plakar used to be *very* talkative.
 Lots of information, but hard to follow during a long backup or restore.
 
-v1.1.2 reworks terminal output around a proper rendering interface, with an `stdio` renderer that keeps the old behaviour exactly as it was, and a new `tui` renderer that gives you a clean, dedicated view of what plakar is actually doing.
+v1.1.3 reworks terminal output around a proper rendering interface, with an `stdio` renderer that keeps the old behaviour exactly as it was, and a new `tui` renderer that gives you a clean, dedicated view of what plakar is actually doing.
 It is available on `backup` and `restore` today, and we will progressively bring it to more commands like `check` and `sync`.
 
 The result is a quieter, more readable terminal, without losing any of the detail when you actually want it.
@@ -89,7 +90,7 @@ More mount protocols, including S3, are on the way.
 ### A new package manager
 
 The plugin system shipped in v1.0.0, but the package manager around it was... let's say it had room to grow.
-v1.1.2 ships a brand new one, simpler, cleaner, and able to **update** integrations, which is the thing we were sorely missing.
+v1.1.3 ships a brand new one, simpler, cleaner, and able to **update** integrations, which is the thing we were sorely missing.
 
 ### Simpler integration interfaces
 
@@ -107,7 +108,7 @@ This is the change I am happiest about.
 In v1.0.0 we introduced an *agent* process that executed commands on behalf of the CLI, which meant it always had to be running.
 v1.0.4 made it auto-spawn and auto-teardown, but the agent stayed on the critical path: every command went through it, which made interactive prompts hard, turned a single failure into an agent-wide failure, and piled execution, coordination, and caching into one process.
 
-In v1.1.2 the agent is gone.
+In v1.1.3 the agent is gone.
 It is replaced by **cached**, a lightweight, auto-managed process that does nothing but shared cache maintenance and locking.
 It starts when needed, stops when it is not, and otherwise stays out of your way.
 Commands now run directly in the CLI.
@@ -121,7 +122,7 @@ Many of them have now landed.
 
 Here is where we stand against v1.0.6, measured with **Korpus**, our assorted collection of low- and high-entropy files of every size and type laid out across a very large, deep directory tree:
 
-| Op        | Items     | v1.0.6      | v1.1.2                 |
+| Op        | Items     | v1.0.6      | v1.1.3                 |
 |-----------|-----------|-------------|------------------------|
 | Backup    | 1.000.000 | ~3 minutes  | ~2 minutes **(-33%)**  |
 | Sync      | 1.000.000 | ~5 minutes  | ~4 minutes **(-20%)**  |
@@ -135,7 +136,7 @@ It comes from a better restore algorithm, smarter parallelism, better use of our
 
 Memory usage is down across the board too, after fixing a gRPC-level leak that affected long-running backups over SFTP and S3, reworking the caching subsystem, and defaulting to spilling temporary data to disk rather than holding it all in RAM:
 
-|           | v1.0.6     | v1.1.2                |
+|           | v1.0.6     | v1.1.3                |
 |-----------|------------|-----------------------|
 | Backup    | ~3.0 GiB   | ~1.3 GiB **(-43%)**   |
 | Sync      | ~3.6 GiB   | ~1.7 GiB **(-52%)**   |
@@ -146,7 +147,7 @@ Memory usage is down across the board too, after fixing a gRPC-level leak that a
 
 And the default on-disk cache footprint is much smaller, since we removed the on-disk VFS cache and now query the store instead, trading a little bandwidth for a lot of local disk:
 
-|     Items | v1.0.6 |          v1.1.2    |
+|     Items | v1.0.6 |          v1.1.3    |
 | --------: | -----: | -----------------: |
 | 1,000,000 |  4 GiB | 1.8 GiB **(-55%)** |
 
@@ -156,10 +157,18 @@ If you would rather keep the bandwidth and pay in disk, the flag to opt back int
 ## Get it now
 
 ```terminal
-$ go install github.com/PlakarKorp/plakar@v1.1.2
+$ go install github.com/PlakarKorp/plakar@v1.1.3
 ```
 
-Upgrading from a v1.0.x install is seamless: v1.1.2 is fully backward compatible, so you can update in place and keep using your existing stores.
+A note on upgrading: many of the improvements in this release rely on changes to the on-disk store format.
+The binary is backward compatible and will keep reading your existing v1.0.x stores, but to actually benefit from the new format you should **create a fresh store and sync your old one into it** rather than upgrading the store in place.
+
+```terminal
+$ plakar at /path/to/new-store create
+$ plakar at /path/to/new-store sync from /path/to/old-store
+```
+
+Once everything has synced across, point your backups at the new store and keep the old one around until you are confident.
 
 If you use third-party integrations such as SFTP or S3, this is also a good moment to refresh them so they link against the latest SDK:
 
@@ -173,15 +182,15 @@ $ plakar pkg add s3
 This release exists in the shape it does because a lot of people pushed on it.
 
 Thank you to everyone who installed a beta or an RC, ran it against real data, and told us what broke.
-That feedback is exactly what turns "very stable" into "stable", and it is the reason we are comfortable calling v1.1.2 production-ready today.
+That feedback is exactly what turns "very stable" into "stable", and it is the reason we are comfortable calling v1.1.3 production-ready today.
 
 And thank you to the team.
-Between v1.0.6 and v1.1.2 there have been hundreds of commits to Kloset, hundreds more to plakar itself, and dozens across the integrations, thousands of lines of peer-reviewed change spread across nearly every subsystem we maintain.
+Between v1.0.6 and v1.1.3 there have been hundreds of commits to Kloset, hundreds more to plakar itself, and dozens across the integrations, thousands of lines of peer-reviewed change spread across nearly every subsystem we maintain.
 I keep saying it because it keeps being true: I am incredibly proud to work with people who move this fast without ever letting go of quality.
 
 ## What's next
 
-With v1.1.2 out the door, the foundation we talked about in January is now load-bearing.
+With v1.1.3 out the door, the foundation we talked about in January is now load-bearing.
 A lot of the prerequisite groundwork for our next milestones already shipped as part of this cycle, and several of them already have active branches:
 
 * **Multi-source snapshots**, so a single snapshot can span multiple data sources.
