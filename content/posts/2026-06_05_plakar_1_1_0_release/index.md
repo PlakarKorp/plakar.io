@@ -27,6 +27,21 @@ We were so eager to get this one into your hands that we skipped right past v1.1
 More seriously: during this release we moved our integrations to a monorepo workflow, and we are still getting used to it, a few of those extra version bumps are simply us finding our footing with the new process.
 
 It is, without contest, the largest release we have ever published.
+That is not just a feeling, the numbers back it up.
+Here is what went in across our core repositories since **v1.0.6** (roughly six months of work, from late November to early June):
+
+| Repository         | Commits | Pull requests |
+|--------------------|--------:|--------------:|
+| plakar             |     421 |           250 |
+| kloset             |     599 |           274 |
+| integration-grpc   |      55 |            19 |
+| go-kloset-sdk      |       9 |             4 |
+| integrations¹      |   1,026 |           183 |
+
+<small>Commit counts exclude merge commits; pull-request counts are approximated by merge commits.<br />¹ The integrations monorepo was created during this cycle by consolidating our previously separate integration repositories, so its history includes work imported from those repos.</small>
+
+That is well over **2,000 commits** and several hundred reviewed pull requests, spread across plakar, Kloset, the gRPC bridge, the SDK, and our 25 built-in integrations.
+
 If you want the full story behind the headline features, the [v1.1.0-beta announcement](/posts/2026-01_09_plakar_1_1_0_beta/) still holds up and goes into much more detail than I will here, this post is the victory lap rather than the deep dive.
 But since a lot of you discovered the v1.1.0 branch through that beta and then patiently helped us harden it, I want to recap what landed, what changed since the beta, and what comes next.
 
@@ -189,7 +204,7 @@ Thank you to everyone who installed a beta or an RC, ran it against real data, a
 That feedback is exactly what turns "very stable" into "stable", and it is the reason we are comfortable calling v1.1.3 production-ready today.
 
 And thank you to the team.
-Between v1.0.6 and v1.1.3 there have been hundreds of commits to Kloset, hundreds more to plakar itself, and dozens across the integrations, thousands of lines of peer-reviewed change spread across nearly every subsystem we maintain.
+Those numbers up top, the two-thousand-plus commits and the hundreds of reviewed pull requests, are not an accident of activity: every one of them was written, reviewed, and approved by people who refused to trade quality for speed.
 I keep saying it because it keeps being true: I am incredibly proud to work with people who move this fast without ever letting go of quality.
 
 ## What's next
