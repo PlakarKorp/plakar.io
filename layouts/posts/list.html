@@ -101,15 +101,16 @@
 }}
 {{ $usedCategories := slice }}
 {{ range $allVisible }}
-  {{ $cats := slice }}
+  {{ $rawCats := slice }}
   {{ if .Params.categories }}
-    {{ $cats = .Params.categories }}
+    {{ $rawCats = .Params.categories }}
   {{ else if .Params.category }}
-    {{ $cats = slice .Params.category }}
+    {{ $rawCats = slice .Params.category }}
   {{ end }}
-  {{ range $cats }}
-    {{ if not (in $usedCategories .) }}
-      {{ $usedCategories = $usedCategories | append . }}
+  {{ range $rawCats }}
+    {{ $c := replace (replace . "release-notes" "release-note") "announcements" "announcement" }}
+    {{ if not (in $usedCategories $c) }}
+      {{ $usedCategories = $usedCategories | append $c }}
     {{ end }}
   {{ end }}
 {{ end }}

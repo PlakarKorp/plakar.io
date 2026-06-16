@@ -2,16 +2,19 @@
 {{ $image := or ($p.Resources.GetMatch "featured.webp") (index ($p.Resources.Match "featured.*") 0) }}
 
 {{ $valid := slice "announcement" "release-note" "community" "insights" "technology" }}
-{{ $cats := slice }}
+{{ $rawCats := slice }}
 {{ if $p.Params.categories }}
-  {{ $cats = $p.Params.categories }}
+  {{ $rawCats = $p.Params.categories }}
 {{ else if $p.Params.category }}
-  {{ $cats = slice $p.Params.category }}
+  {{ $rawCats = slice $p.Params.category }}
 {{ end }}
-{{ range $cats }}
-  {{ if not (in $valid .) }}
+{{ $cats := slice }}
+{{ range $rawCats }}
+  {{ $c := replace (replace . "release-notes" "release-note") "announcements" "announcement" }}
+  {{ if not (in $valid $c) }}
     {{ errorf "Invalid category '%s' in %s. Must be one of: %s" . $p.File.Path (delimit $valid ", ") }}
   {{ end }}
+  {{ $cats = $cats | append $c }}
 {{ end }}
 
 <a href="{{ $p.RelPermalink }}" data-categories="{{ delimit $cats " " }}" class="group/card flex flex-col rounded-lg border border-neutral-200 bg-neutral-50 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-shadow duration-300 no-underline overflow-hidden">
