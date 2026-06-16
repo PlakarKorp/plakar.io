@@ -22,6 +22,68 @@ A dedicated Scaleway Object Storage bucket is required for this process. We
 recommend using the same dedicated bucket used for other Scaleway resources such
 as block storage.
 
+## Backup flow
+
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+flowchart TD
+  subgraph Scaleway["Scaleway Project"]
+    Instance["Compute Instance"]
+    Volumes["Attached Block Volumes"]
+
+    Bucket["Object Storage Bucket<br/>Staging area"]
+    Images["Exported QCOW2 images"]
+  end
+
+  subgraph Plakar["Plakar Control Plane"]
+    Source["Scaleway Compute<br/>Source connector"]
+    Backup["Backup process<br/>Encrypt & deduplicate"]
+  end
+
+  Store["Kloset Store"]
+
+  Source -->|"exports instance <br> and volumes"| Instance
+  Instance --> Volumes
+  Instance -->|"QCOW2 export"| Images
+  Volumes -->|"QCOW2 export"| Images
+
+  Images --> Bucket
+  Bucket -->|"read exported images"| Backup
+  Backup --> Store
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
+
+## Restore flow
+
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+flowchart TD
+  Store["Kloset Store"]
+
+  subgraph Plakar["Plakar Control Plane"]
+    Destination["Scaleway Compute<br/>Destination connector"]
+    Restore["Restore process"]
+  end
+
+  subgraph Scaleway["Scaleway Project"]
+    Bucket["Object Storage Bucket<br/>Staging area"]
+    Images["Uploaded QCOW2 images"]
+    Instance["Restored Compute Instance"]
+    Volumes["Recreated Block Volumes"]
+  end
+
+  Store --> Restore
+  Destination --> Restore
+
+  Restore -->|"uploads QCOW2 images"| Bucket
+  Bucket --> Images
+
+  Images -->|"restore instance snapshot"| Instance
+  Images -->|"recreate volumes"| Volumes
+  Volumes -->|"attach"| Instance
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
+
 ## Configuration
 
 Scaleway compute resources can be configured as a source or destination
