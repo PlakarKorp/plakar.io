@@ -51,8 +51,10 @@
         {{ end }}
       {{ end }}
       <span>{{ $p.Date.Format "Jan 2, 2006" }}</span>
-      <span>·</span>
-      <span>{{ $p.ReadingTime }} min read</span>
+      {{ if gt $p.ReadingTime 0 }}
+        <span>·</span>
+        <span>{{ $p.ReadingTime }} min read</span>
+      {{ end }}
     </div>
     <div class="flex items-center gap-1 mt-1 group-hover/card:text-primary-500">
       <div class="w-5 h-5">{{ partial "icon.html" "ri/corner-down-right-line" }}</div>
