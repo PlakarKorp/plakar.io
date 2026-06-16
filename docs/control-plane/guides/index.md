@@ -17,6 +17,7 @@ tutorials related to Plakar and supported platforms.
 ## [Scaleway](https://plakar.io/docs/control-plane/guides/scaleway/index.md)
 
 - [Managing IAM Policies and API Keys](https://plakar.io/docs/control-plane/guides/scaleway/iam-and-api-keys/index.md): How to create Scaleway IAM policies, applications, and API keys for use with Plakar Control Plane.
+- [Setting up HTTPS access to Plakar Control Plane on a Scaleway Private Network](https://plakar.io/docs/control-plane/guides/scaleway/https-access-to-a-private-network/index.md): Learn how to deploy Plakar Control Plane on a Scaleway Private Network and expose it securely over HTTPS using a Scaleway Load Balancer with a SSL certificate.
 
 
 ## [AWS](https://plakar.io/docs/control-plane/guides/aws/index.md)

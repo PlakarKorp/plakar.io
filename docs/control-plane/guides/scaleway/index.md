@@ -14,4 +14,8 @@ services with Plakar.
 
 
 
+## [Setting up HTTPS access to Plakar Control Plane on a Scaleway Private Network](https://plakar.io/docs/control-plane/guides/scaleway/https-access-to-a-private-network/index.md)
+
+
+
 
