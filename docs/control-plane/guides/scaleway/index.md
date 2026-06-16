@@ -18,4 +18,8 @@ services with Plakar.
 
 
 
+## [Access Plakar Control Plane via SSH Bastion](https://plakar.io/docs/control-plane/guides/scaleway/ssh-bastion-access/index.md)
+
+
+
 

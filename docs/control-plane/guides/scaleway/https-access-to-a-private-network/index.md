@@ -88,6 +88,11 @@ attachment:
 
 {{< figure src="../images/attach-scaleway-gateway-to-private-network.png" class="mx-auto max-w-130" >}}
 
+If you ever replace this gateway with a new one, make sure **Advertise default
+route** is enabled on the new gateway's attachment to the Private Network.
+Resources on the network learn the default route via DHCP, so after switching
+gateways, reboot the PCP instance to pick up the new route.
+
 ## Step 3: Attach the PCP instance to the Private Network
 
 If you have not yet created your PCP instance, follow the
@@ -206,9 +211,9 @@ through the Load Balancer.
 ![](../images/create-lb-frontend.png)
 
 If you prefer to keep your Load Balancer off the public internet entirely, see
-[Setting up HTTPS access to Plakar Control Plane on a Private Load Balancer]()
-for an approach using a private Load Balancer with access via VPN, SSH bastion,
-or both.
+[Access Plakar Control Plane via SSH Bastion](./ssh-bastion-access) for an
+approach using SSH port forwarding through a bastion, with no public-facing load
+balancer.
 
 ## What you have built
 
