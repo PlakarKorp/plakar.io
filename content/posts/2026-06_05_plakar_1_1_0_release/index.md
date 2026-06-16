@@ -32,7 +32,7 @@ But since a lot of you discovered the v1.1.0 branch through that beta and then p
 
 ## TL;DR
 
-* **v1.1.3 is final, stable, and backward compatible.** The binary keeps reading your existing stores, but to get the most out of this release you will want to create a fresh store and sync your old one into it (more on that below).
+* **v1.1.3 is final, stable, and fully backward compatible.** Your existing stores keep working as-is; creating a fresh store and syncing into it is optional and only needed to unlock the new-format optimizations (more on that below).
 * The big features from the beta all made it: **new terminal UI**, **multi-directory backups** (single source), **rewritten FUSE mounting** (plus HTTP mounts), a **brand new package manager**, and **much simpler integration interfaces**.
 * **Reliability:** the old agent is gone for good. A tiny background service called **cached** now handles shared cache and locking, while commands run directly in the CLI.
 * **Performance:** restores are roughly **95% faster** in our Korpus tests, and most of the backup optimizations we held back during the beta have now landed too.
@@ -160,8 +160,11 @@ If you would rather keep the bandwidth and pay in disk, the flag to opt back int
 $ go install github.com/PlakarKorp/plakar@v1.1.3
 ```
 
-A note on upgrading: many of the improvements in this release rely on changes to the on-disk store format.
-The binary is backward compatible and will keep reading your existing v1.0.x stores, but to actually benefit from the new format you should **create a fresh store and sync your old one into it** rather than upgrading the store in place.
+A note on upgrading: your existing stores keep working exactly as before.
+The binary is fully backward compatible and will happily read and write the stores you already have, so there is nothing you *need* to do.
+
+That said, several of this release's optimizations come from changes to the on-disk store format, and an existing store won't pick those up on its own.
+If you want the full benefit, the simplest path is to **create a fresh store and sync your old one into it**:
 
 ```terminal
 $ plakar at /path/to/new-store create
@@ -169,6 +172,7 @@ $ plakar at /path/to/new-store sync from /path/to/old-store
 ```
 
 Once everything has synced across, point your backups at the new store and keep the old one around until you are confident.
+There is no rush, and no penalty for staying on your current store, you simply won't see the new-format gains until you move.
 
 If you use third-party integrations such as SFTP or S3, this is also a good moment to refresh them so they link against the latest SDK:
 
