@@ -4,11 +4,11 @@
 
 
 
+## [Plakar v1.1.3 is here](https://plakar.io/posts/2026-06-16/plakar-v1.1.3-is-here/index.md)
+
+
+
 ## [go-cdc-chunkers v1.1.0: faster, leaner, and provably correct](https://plakar.io/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/index.md)
-
-
-
-## [Plakar v1.1.3 is here](https://plakar.io/posts/2026-06-05/plakar-v1.1.3-is-here/index.md)
 
 
 
