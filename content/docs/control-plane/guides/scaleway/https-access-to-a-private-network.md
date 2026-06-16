@@ -29,6 +29,39 @@ Network and expose it securely over HTTPS. To do so, we will:
 5. Configure the Load Balancer to route traffic to PCP
 6. Generate and attach an SSL certificate to the Load Balancer
 
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+flowchart TD
+  User["User / Browser"]
+  DNS["Domain name"]
+
+  subgraph Scaleway["Scaleway"]
+    LBFrontend["Load Balancer Frontend<br/>HTTPS :443<br/>SSL certificate"]
+
+    subgraph VPC["VPC"]
+      subgraph PN["Private Network"]
+        LBBackend["Load Balancer Backend<br/>HTTP :80"]
+        PCP["PCP Instance<br/>No public IP"]
+        Gateway["Public Gateway<br/>Outbound internet access"]
+      end
+    end
+
+    Internet["Internet<br/>Updates, external services"]
+  end
+
+  User --> DNS
+  DNS --> LBFrontend
+
+  LBFrontend --> LBBackend
+  LBBackend --> PCP
+
+  PCP --> Gateway
+  Gateway --> Internet
+
+  LBBackend -. "Health check<br/>GET /login<br/>Expected 200" .-> PCP
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
+
 ## Step 1: Create a VPC and a Private Network
 
 In the Scaleway console, navigate to **Network** > **VPC** in the left sidebar.
