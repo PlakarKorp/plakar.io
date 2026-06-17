@@ -27,8 +27,10 @@
         <span>{{ .WordCount }} words</span>
         <span>•</span>
         <span>{{ .Date.Format "January 2, 2006" }}</span>
-        <span>•</span>
-        <span>{{ .ReadingTime }} min read</span>
+        {{ if gt .ReadingTime 0 }}
+          <span>•</span>
+          <span>{{ .ReadingTime }} min read</span>
+        {{ end }}
       </div>
 
     </div>

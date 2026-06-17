@@ -63,8 +63,10 @@
           <span>{{ .WordCount }} words</span>
           <span>•</span>
           <span>{{ .Date.Format "January 2, 2006" }}</span>
-          <span>•</span>
-          <span>{{ .ReadingTime }} min read</span>
+          {{ if gt .ReadingTime 0 }}
+            <span>•</span>
+            <span>{{ .ReadingTime }} min read</span>
+          {{ end }}
         </div>
 
         <!-- Title + summary -->
@@ -101,9 +103,16 @@
 }}
 {{ $usedCategories := slice }}
 {{ range $allVisible }}
-  {{ with .Params.category }}
-    {{ if not (in $usedCategories .) }}
-      {{ $usedCategories = $usedCategories | append . }}
+  {{ $rawCats := slice }}
+  {{ if .Params.categories }}
+    {{ $rawCats = .Params.categories }}
+  {{ else if .Params.category }}
+    {{ $rawCats = slice .Params.category }}
+  {{ end }}
+  {{ range $rawCats }}
+    {{ $c := replace (replace . "release-notes" "release-note") "announcements" "announcement" }}
+    {{ if not (in $usedCategories $c) }}
+      {{ $usedCategories = $usedCategories | append $c }}
     {{ end }}
   {{ end }}
 {{ end }}
