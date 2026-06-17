@@ -46,7 +46,7 @@ $ plakar pkg add etcd
 $ plakar backup etcd://node1:2379
 ```
 
-[etcd-integration]: https://github.com/PlakarKorp/integration-etcd
+[etcd-integration]: https://github.com/PlakarKorp/integrations/tree/main/etcd
 
 Unfortunately, due to how _etcd_ restore works, it's difficult to do so in a granular way, so this is really about the last line of defense in case of a wide cluster disruption.
 
@@ -64,7 +64,7 @@ At this layer, it's easier to browse the content of the backups, investigate the
 
 This is part of what the [kubernetes integration][k8s-integration] does: fetches all the manifests, the resources, present on the cluster for archival with Plakar.
 
-[k8s-integration]: https://github.com/PlakarKorp/integration-k8s
+[k8s-integration]: https://github.com/PlakarKorp/integrations/tree/main/k8s
 
 ```bash
 $ plakar pkg add k8s
