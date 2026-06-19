@@ -2,7 +2,7 @@
 title: "Resources"
 date: "2026-05-19T00:00:00Z"
 weight: 4
-summary: ""
+summary: "Defines the resources that Plakar Control Plane manages — such as S3 buckets, databases, VMs, and filesystems — and explains how each resource is classified by class and subclass to determine integration compatibility."
 aliases:
   - /control-plane-docs/resources/
 ---
