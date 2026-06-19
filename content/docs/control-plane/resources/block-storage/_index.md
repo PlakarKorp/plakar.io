@@ -9,6 +9,7 @@ aliases:
 
 # Block Storage
 
-Block storage resources represent persistent volumes attached to compute instances. Plakar Control Plane supports the following block storage resources:
+Block storage resources represent persistent volumes attached to compute
+instances. Plakar Control Plane supports the following block storage resources:
 
-- [Scaleway Block Storage](./scaleway)
+{{% children description="true" %}}
