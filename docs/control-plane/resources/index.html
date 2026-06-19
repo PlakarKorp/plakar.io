@@ -267,12 +267,12 @@
     "dateCreated": "2026-05-19T00:00:00\u002b00:00",
     "datePublished": "2026-05-19T00:00:00\u002b00:00",
     
-    "dateModified": "2026-06-17T14:46:11\u002b02:00",
+    "dateModified": "2026-06-19T21:45:38\u002b02:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "130"
+    "wordCount": "100"
   }]
   </script>
 
@@ -3710,7 +3710,10 @@
   </span>
   
 </div>
-<p>Resources are the individual systems, services, or storage targets that Plakar Control Plane manages as part of a backup workflow. Examples of resources include S3 buckets, EC2 instances, PostgreSQL databases, virtual machines, and filesystems.</p>
+<p>Resources are the individual systems, services, or storage targets that Plakar
+Control Plane manages as part of a backup workflow. Examples of resources
+include S3 buckets, EC2 instances, PostgreSQL databases, virtual machines, and
+filesystems.</p>
 
 <div class="relative group">
   <h2 id="resource-classification">Resource classification</h2>
@@ -3720,24 +3723,70 @@
   </span>
   
 </div>
-<p>Each resource is assigned a <code>class</code> and <code>subclass</code> that describe what kind of infrastructure it is.</p>
-<p>The class describes the general category the resource belongs to, while the subclass identifies the specific implementation or provider. Plakar Control Plane uses this classification to determine which integrations are compatible with a resource.</p>
-<ul>
-<li><a href="" >Analytics</a></li>
-<li><a href="/docs/control-plane/resources/block-storage/" >Block Storage</a> - <a href="/docs/control-plane/resources/block-storage/scaleway/" >Scaleway Block Storage</a>, <a href="" >PVC</a></li>
-<li><a href="/docs/control-plane/resources/compute/" >Compute</a> - <a href="/docs/control-plane/resources/compute/scaleway/" >Scaleway Compute</a></li>
-<li><a href="" >Database</a> - <a href="" >PostgreSQL</a>, <a href="" >MySQL</a>, <a href="" >MongoDB</a>, <a href="" >Redis</a></li>
-<li><a href="" >File Storage</a></li>
-<li><a href="" >Hypervisor</a> - <a href="" >Proxmox</a></li>
-<li><a href="" >Identity</a></li>
-<li><a href="" >Messaging</a></li>
-<li><a href="" >Network</a></li>
-<li><a href="/docs/control-plane/resources/object-storage/" >Object Storage</a> - <a href="" >GCS</a>, <a href="/docs/control-plane/resources/object-storage/s3/" >S3</a>, <a href="" >Azure Blob</a></li>
-<li><a href="" >Observability</a></li>
-<li><a href="" >Registry</a></li>
-<li><a href="" >Security</a></li>
-<li><a href="" >Service</a> - <a href="" >FTP</a>, <a href="" >IMAP</a>, <a href="" >SFTP</a></li>
-</ul>
+<p>Each resource is assigned a <code>class</code> and <code>subclass</code> that describe what kind of
+infrastructure it is.</p>
+<p>The class describes the general category the resource belongs to, while the
+subclass identifies the specific implementation or provider. Plakar Control
+Plane uses this classification to determine which integrations are compatible
+with a resource.</p>
+  <div class="not-prose section-index mt-6">
+      <div class="mt-8">
+        <h3 class="text-xl font-semibold mt-0 mb-3">
+            <a href="/docs/control-plane/resources/object-storage/" class="text-neutral-900 no-underline hover:text-primary-500">Object Storage</a>
+        </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <a href="/docs/control-plane/resources/object-storage/s3/" class="group/card flex items-center justify-between rounded-lg border border-neutral-200 bg-neutral-50 px-4 py-3 no-underline hover:border-primary-200 hover:bg-primary-50 transition-all duration-150">
+                <span class="text-sm font-medium text-neutral-900 group-hover/card:text-primary-500 transition-colors truncate">S3</span>
+                <span class="w-4 h-4 shrink-0 text-neutral-300 group-hover/card:text-primary-500 group-hover/card:translate-x-0.5 transition-all duration-150">
+                  <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
+</span>
+                </span>
+              </a>
+          </div>
+      </div>
+      <div class="mt-8">
+        <h3 class="text-xl font-semibold mt-0 mb-3">
+            <a href="/docs/control-plane/resources/block-storage/" class="text-neutral-900 no-underline hover:text-primary-500">Block Storage</a>
+        </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <a href="/docs/control-plane/resources/block-storage/scaleway/" class="group/card flex items-center justify-between rounded-lg border border-neutral-200 bg-neutral-50 px-4 py-3 no-underline hover:border-primary-200 hover:bg-primary-50 transition-all duration-150">
+                <span class="text-sm font-medium text-neutral-900 group-hover/card:text-primary-500 transition-colors truncate">Scaleway Block Storage</span>
+                <span class="w-4 h-4 shrink-0 text-neutral-300 group-hover/card:text-primary-500 group-hover/card:translate-x-0.5 transition-all duration-150">
+                  <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
+</span>
+                </span>
+              </a>
+          </div>
+      </div>
+      <div class="mt-8">
+        <h3 class="text-xl font-semibold mt-0 mb-3">
+            <a href="/docs/control-plane/resources/compute/" class="text-neutral-900 no-underline hover:text-primary-500">Compute</a>
+        </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <a href="/docs/control-plane/resources/compute/scaleway/" class="group/card flex items-center justify-between rounded-lg border border-neutral-200 bg-neutral-50 px-4 py-3 no-underline hover:border-primary-200 hover:bg-primary-50 transition-all duration-150">
+                <span class="text-sm font-medium text-neutral-900 group-hover/card:text-primary-500 transition-colors truncate">Scaleway Compute</span>
+                <span class="w-4 h-4 shrink-0 text-neutral-300 group-hover/card:text-primary-500 group-hover/card:translate-x-0.5 transition-all duration-150">
+                  <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
+</span>
+                </span>
+              </a>
+          </div>
+      </div>
+  </div>
+<!--- [Analytics]()
+- [Block Storage](./block-storage) - [Scaleway Block Storage](./block-storage/scaleway), [PVC]()
+- [Compute](./compute) - [Scaleway Compute](./compute/scaleway)
+- [Database]() - [PostgreSQL](), [MySQL](), [MongoDB](), [Redis]()
+- [File Storage]()
+- [Hypervisor]() - [Proxmox]()
+- [Identity]()
+- [Messaging]()
+- [Network]()
+- [Object Storage](./object-storage) - [GCS](), [S3](./object-storage/s3), [Azure Blob]()
+- [Observability]()
+- [Registry]()
+- [Security]()
+- [Service]() - [FTP](), [IMAP](), [SFTP]()-->
 
       </article>
       <footer class="mt-12 flex flex-col gap-6 docs-font border-t border-neutral-200 pt-6">
@@ -3758,7 +3807,7 @@
   
   <div class="flex items-center justify-between text-xs text-neutral-400">
     
-      <span>Last updated: June 17, 2026</span>
+      <span>Last updated: June 19, 2026</span>
     
     
       <a href="https://github.com/PlakarKorp/plakar.io/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">

@@ -2,15 +2,23 @@
 
 # Resources
 
-Resources are the individual systems, services, or storage targets that Plakar Control Plane manages as part of a backup workflow. Examples of resources include S3 buckets, EC2 instances, PostgreSQL databases, virtual machines, and filesystems.
+Resources are the individual systems, services, or storage targets that Plakar
+Control Plane manages as part of a backup workflow. Examples of resources
+include S3 buckets, EC2 instances, PostgreSQL databases, virtual machines, and
+filesystems.
 
 ## Resource classification
 
-Each resource is assigned a `class` and `subclass` that describe what kind of infrastructure it is.
+Each resource is assigned a `class` and `subclass` that describe what kind of
+infrastructure it is.
 
-The class describes the general category the resource belongs to, while the subclass identifies the specific implementation or provider. Plakar Control Plane uses this classification to determine which integrations are compatible with a resource.
+The class describes the general category the resource belongs to, while the
+subclass identifies the specific implementation or provider. Plakar Control
+Plane uses this classification to determine which integrations are compatible
+with a resource.
 
-- [Analytics]()
+
+<!--- [Analytics]()
 - [Block Storage](./block-storage) - [Scaleway Block Storage](./block-storage/scaleway), [PVC]()
 - [Compute](./compute) - [Scaleway Compute](./compute/scaleway)
 - [Database]() - [PostgreSQL](), [MySQL](), [MongoDB](), [Redis]()
@@ -23,7 +31,7 @@ The class describes the general category the resource belongs to, while the subc
 - [Observability]()
 - [Registry]()
 - [Security]()
-- [Service]() - [FTP](), [IMAP](), [SFTP]()
+- [Service]() - [FTP](), [IMAP](), [SFTP]()-->
 
 
 

@@ -84,7 +84,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-05-19T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-06-17T14:46:11+02:00">
+    <meta property="article:modified_time" content="2026-06-19T21:45:38+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -192,6 +192,16 @@
   
   
 
+  
+  
+  
+  
+  <script
+    defer
+    type="text/javascript"
+    src="/js/mermaid.bundle.fbd117b974ae2784c64dabbeb75fd4af8985e21012349d79ef3bce3076a0e9c6b39e08c5b62e273deb50a520411e4bf5f58385cea7abd2492f4ef21480167677.js"
+    integrity="sha512-&#43;9EXuXSuJ4TGTau&#43;t1/Ur4mF4hASNJ157zvOMHag6cazngjFti4nPetQpSBBHkv19YOFzqer0kkvTvIUgBZ2dw=="></script>
+
 
 
 
@@ -267,12 +277,12 @@
     "dateCreated": "2026-05-19T00:00:00\u002b00:00",
     "datePublished": "2026-05-19T00:00:00\u002b00:00",
     
-    "dateModified": "2026-06-17T14:46:11\u002b02:00",
+    "dateModified": "2026-06-19T21:45:38\u002b02:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "490"
+    "wordCount": "613"
   }]
   </script>
 
@@ -3746,6 +3756,82 @@ recommend using the same dedicated bucket used for other Scaleway resources such
 as block storage.</p>
 
 <div class="relative group">
+  <h2 id="backup-flow">Backup flow</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#backup-flow" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<!-- prettier-ignore-start -->
+<pre class="not-prose mermaid">
+flowchart TD
+  subgraph Scaleway["Scaleway Project"]
+    Instance["Compute Instance"]
+    Volumes["Attached Block Volumes"]
+
+    Bucket["Object Storage Bucket<br/>Staging area"]
+    Images["Exported QCOW2 images"]
+  end
+
+  subgraph Plakar["Plakar Control Plane"]
+    Source["Scaleway Compute<br/>Source connector"]
+    Backup["Backup process<br/>Encrypt & deduplicate"]
+  end
+
+  Store["Kloset Store"]
+
+  Source -->|"exports instance <br> and volumes"| Instance
+  Instance --> Volumes
+  Instance -->|"QCOW2 export"| Images
+  Volumes -->|"QCOW2 export"| Images
+
+  Images --> Bucket
+  Bucket -->|"read exported images"| Backup
+  Backup --> Store
+</pre>
+
+<!-- prettier-ignore-end -->
+
+<div class="relative group">
+  <h2 id="restore-flow">Restore flow</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#restore-flow" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<!-- prettier-ignore-start -->
+<pre class="not-prose mermaid">
+flowchart TD
+  Store["Kloset Store"]
+
+  subgraph Plakar["Plakar Control Plane"]
+    Destination["Scaleway Compute<br/>Destination connector"]
+    Restore["Restore process"]
+  end
+
+  subgraph Scaleway["Scaleway Project"]
+    Bucket["Object Storage Bucket<br/>Staging area"]
+    Images["Uploaded QCOW2 images"]
+    Instance["Restored Compute Instance"]
+    Volumes["Recreated Block Volumes"]
+  end
+
+  Store --> Restore
+  Destination --> Restore
+
+  Restore -->|"uploads QCOW2 images"| Bucket
+  Bucket --> Images
+
+  Images -->|"restore instance snapshot"| Instance
+  Images -->|"recreate volumes"| Volumes
+  Volumes -->|"attach"| Instance
+</pre>
+
+<!-- prettier-ignore-end -->
+
+<div class="relative group">
   <h2 id="configuration">Configuration</h2>
   
   <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
@@ -3944,7 +4030,7 @@ secret key.</p>
   
   <div class="flex items-center justify-between text-xs text-neutral-400">
     
-      <span>Last updated: June 17, 2026</span>
+      <span>Last updated: June 19, 2026</span>
     
     
       <a href="https://github.com/PlakarKorp/plakar.io/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">
@@ -3968,6 +4054,8 @@ secret key.</p>
     <div class="toc-content text-neutral-600">
       <nav id="TableOfContents">
   <ul>
+    <li><a href="#backup-flow">Backup flow</a></li>
+    <li><a href="#restore-flow">Restore flow</a></li>
     <li><a href="#configuration">Configuration</a>
       <ul>
         <li><a href="#integration">Integration</a></li>

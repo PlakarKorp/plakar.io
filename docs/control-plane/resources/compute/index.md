@@ -2,9 +2,9 @@
 
 # Compute
 
-Compute resources represent virtual machines and cloud instances. Plakar Control Plane supports the following compute resources:
+Compute resources represent virtual machines and cloud instances. Plakar Control
+Plane supports the following compute resources:
 
-- [Scaleway Compute](./scaleway)
 
 
 
