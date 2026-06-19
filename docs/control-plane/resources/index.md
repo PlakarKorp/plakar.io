@@ -51,6 +51,7 @@ with a resource.
 ## [Compute](https://plakar.io/docs/control-plane/resources/compute/index.md)
 
 - [Scaleway Compute](https://plakar.io/docs/control-plane/resources/compute/scaleway/index.md): How to configure a Scaleway compute resource in Plakar Control Plane.
+- [SFTP](https://plakar.io/docs/control-plane/resources/compute/sftp/index.md): How to configure an SFTP resource in Plakar Control Plane.
 
 
 

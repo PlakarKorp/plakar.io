@@ -14,4 +14,8 @@ Plane supports the following compute resources:
 
 
 
+## [SFTP](https://plakar.io/docs/control-plane/resources/compute/sftp/index.md)
+
+
+
 
