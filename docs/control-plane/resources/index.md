@@ -40,6 +40,7 @@ with a resource.
 ## [Object Storage](https://plakar.io/docs/control-plane/resources/object-storage/index.md)
 
 - [S3](https://plakar.io/docs/control-plane/resources/object-storage/s3/index.md): How to configure an S3 resource in Plakar Control Plane.
+- [Azure Blob Storage](https://plakar.io/docs/control-plane/resources/object-storage/azblob/index.md): How to configure Azure Azblob resource in Plakar Control Plane.
 
 
 ## [Block Storage](https://plakar.io/docs/control-plane/resources/block-storage/index.md)

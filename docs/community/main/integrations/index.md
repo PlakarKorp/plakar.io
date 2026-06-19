@@ -75,4 +75,8 @@ Below is a list of links to the documentation for each supported integration.
 
 
 
+## [Azure Blob Storage](https://plakar.io/docs/community/main/integrations/azblob/index.md)
+
+
+
 

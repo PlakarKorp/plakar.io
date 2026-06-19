@@ -22,4 +22,8 @@ Plakar Control Plane supports the following object storages:
 
 
 
+## [Azure Blob Storage](https://plakar.io/docs/control-plane/resources/object-storage/azblob/index.md)
+
+
+
 

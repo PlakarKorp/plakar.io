@@ -4,6 +4,10 @@
 
 
 
+## [Azure Blob Storage](https://plakar.io/integrations/azblob/index.md)
+
+
+
 ## [etcd](https://plakar.io/integrations/etcd/index.md)
 
 

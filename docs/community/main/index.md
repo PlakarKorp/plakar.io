@@ -53,6 +53,7 @@
 - [Notion](https://plakar.io/docs/community/main/integrations/notion/index.md): Back up and restore your Notion workspace with Plakar.
 - [PostgreSQL](https://plakar.io/docs/community/main/integrations/postgres/index.md): Back up and restore PostgreSQL databases with Plakar — logical dumps, AWS IAM authentication, and physical base backups.
 - [MySQL / MariaDB](https://plakar.io/docs/community/main/integrations/mysql/index.md): Back up and restore MySQL and MariaDB databases with Plakar — logical dumps via mysqldump and mariadb-dump, with Google Cloud SQL support.
+- [Azure Blob Storage](https://plakar.io/docs/community/main/integrations/azblob/index.md): Back up and restore Azure Blob Storage containers with Plakar.
 
 
 ## [Explanations](https://plakar.io/docs/community/main/explanations/index.md)
