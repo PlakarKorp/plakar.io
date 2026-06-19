@@ -1,7 +1,8 @@
 
 # Go Kloset SDK
 
-The Go Kloset SDK enables building Plakar integrations as standalone plugins. Plugins communicate with Plakar over gRPC through stdin/stdout and can provide:
+The Go Kloset SDK enables building Plakar integrations as standalone plugins.
+Plugins communicate with Plakar over gRPC through stdin/stdout and can provide:
 
 - **Importers** - Read data from sources (used during backup)
 - **Exporters** - Write data to destinations (used during restore)
@@ -117,6 +118,7 @@ type Constructor func(
 ```
 
 **Parameters:**
+
 - `ctx` - Context for cancellation
 - `opts` - Configuration options (excludes, hostname, max concurrency)
 - `proto` - Protocol name
@@ -168,6 +170,7 @@ Tests source connectivity before import begins.
 Main import function. Sends file records through channel.
 
 **Important:**
+
 - Always `defer close(records)` at start
 - Ignore `results` unless `FLAG_NEEDACK` is set
 
@@ -240,6 +243,7 @@ Methods are identical to Importer except for `Export()`.
 Receives records from channel and processes them.
 
 **Important:**
+
 - Always `defer close(results)` at start
 - Send result for each record: `record.Ok()` or `record.Error(err)`
 - `record.Ok()` and `record.Error()` close the reader automatically
@@ -292,19 +296,19 @@ type Store interface {
   Create(ctx context.Context, config []byte) error
   Open(ctx context.Context) ([]byte, error)
   Ping(ctx context.Context) error
-  
+
   Origin() string
   Type() string
   Root() string
   Flags() location.Flags
-  
+
   Mode(ctx context.Context) (Mode, error)
   Size(ctx context.Context) (int64, error)
   List(ctx context.Context, StorageResource) ([]objects.MAC, error)
   Put(ctx context.Context, StorageResource, objects.MAC, io.Reader) (int64, error)
   Get(ctx context.Context, StorageResource, objects.MAC, *Range) (io.ReadCloser, error)
   Delete(ctx context.Context, StorageResource, objects.MAC) error
-  
+
   Close(ctx context.Context) error
 }
 ```
@@ -328,6 +332,7 @@ Returns total storage size in bytes.
 #### List
 
 Lists objects of a given resource type:
+
 - `storage.StorageResourcePackfile`
 - `storage.StorageResourceState`
 - `storage.StorageResourceLock`
@@ -371,6 +376,7 @@ func NewRecord(
 Creates a file record with lazy-loading content reader.
 
 **Parameters:**
+
 - `pathname` - Full file path
 - `target` - Symlink target (empty for regular files)
 - `fi` - File metadata
@@ -393,7 +399,8 @@ type FileInfo struct {
 
 ### Do Not Write to Stdout
 
-Plugins communicate via gRPC over stdin/stdout. Writing to `os.Stdout` corrupts the stream. Always use `os.Stderr` for logging:
+Plugins communicate via gRPC over stdin/stdout. Writing to `os.Stdout` corrupts
+the stream. Always use `os.Stderr` for logging:
 
 ```go
 fmt.Fprintf(os.Stderr, "debug: %s\n", msg)
@@ -403,14 +410,17 @@ fmt.Fprintf(os.Stderr, "debug: %s\n", msg)
 
 Set flags in both code (registration and `Flags()` method) and manifest:
 
-| Flag | Manifest | Description |
-|------|----------|-------------|
+| Flag                    | Manifest  | Description            |
+| ----------------------- | --------- | ---------------------- |
 | `location.FLAG_LOCALFS` | `localfs` | Local filesystem paths |
-| `location.FLAG_FILE` | `file` | Single-file storage |
-| `location.FLAG_STREAM` | `stream` | Single-use import |
-| `location.FLAG_NEEDACK` | `needack` | Reads results channel |
+| `location.FLAG_FILE`    | `file`    | Single-file storage    |
+| `location.FLAG_STREAM`  | `stream`  | Single-use import      |
+| `location.FLAG_NEEDACK` | `needack` | Reads results channel  |
 
 ## Complete Example
 
-See the [integration example repository](https://github.com/PlakarKorp/integration-example) for an integration implementation with importer, exporter, and storage connectors.
+See the
+[integration example repository](https://github.com/PlakarKorp/integrations/tree/main/example)
+for an integration implementation with importer, exporter, and storage
+connectors.
 

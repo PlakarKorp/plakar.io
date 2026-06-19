@@ -84,7 +84,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-03-19T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-06-19T21:47:10+02:00">
+    <meta property="article:modified_time" content="2026-06-19T21:48:29+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -267,7 +267,7 @@
     "dateCreated": "2026-03-19T00:00:00\u002b00:00",
     "datePublished": "2026-03-19T00:00:00\u002b00:00",
     
-    "dateModified": "2026-06-19T21:47:10\u002b02:00",
+    "dateModified": "2026-06-19T21:48:29\u002b02:00",
     
     
     
@@ -4149,7 +4149,8 @@
   </span>
   
 </div>
-<p>The Go Kloset SDK enables building Plakar integrations as standalone plugins. Plugins communicate with Plakar over gRPC through stdin/stdout and can provide:</p>
+<p>The Go Kloset SDK enables building Plakar integrations as standalone plugins.
+Plugins communicate with Plakar over gRPC through stdin/stdout and can provide:</p>
 <ul>
 <li><strong>Importers</strong> - Read data from sources (used during backup)</li>
 <li><strong>Exporters</strong> - Write data to destinations (used during restore)</li>
@@ -4541,19 +4542,19 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nf">Create</span><span class="p">(</span><span class="nx">ctx</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span><span class="w"> </span><span class="nx">config</span><span class="w"> </span><span class="p">[]</span><span class="kt">byte</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nf">Open</span><span class="p">(</span><span class="nx">ctx</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span><span class="w"> </span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nf">Ping</span><span class="p">(</span><span class="nx">ctx</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nf">Origin</span><span class="p">()</span><span class="w"> </span><span class="kt">string</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nf">Type</span><span class="p">()</span><span class="w"> </span><span class="kt">string</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nf">Root</span><span class="p">()</span><span class="w"> </span><span class="kt">string</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nf">Flags</span><span class="p">()</span><span class="w"> </span><span class="nx">location</span><span class="p">.</span><span class="nx">Flags</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nf">Mode</span><span class="p">(</span><span class="nx">ctx</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nx">Mode</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nf">Size</span><span class="p">(</span><span class="nx">ctx</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="kt">int64</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nf">List</span><span class="p">(</span><span class="nx">ctx</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span><span class="w"> </span><span class="nx">StorageResource</span><span class="p">)</span><span class="w"> </span><span class="p">([]</span><span class="nx">objects</span><span class="p">.</span><span class="nx">MAC</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nf">Put</span><span class="p">(</span><span class="nx">ctx</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span><span class="w"> </span><span class="nx">StorageResource</span><span class="p">,</span><span class="w"> </span><span class="nx">objects</span><span class="p">.</span><span class="nx">MAC</span><span class="p">,</span><span class="w"> </span><span class="nx">io</span><span class="p">.</span><span class="nx">Reader</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="kt">int64</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nf">Get</span><span class="p">(</span><span class="nx">ctx</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span><span class="w"> </span><span class="nx">StorageResource</span><span class="p">,</span><span class="w"> </span><span class="nx">objects</span><span class="p">.</span><span class="nx">MAC</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="nx">Range</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nx">io</span><span class="p">.</span><span class="nx">ReadCloser</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nf">Delete</span><span class="p">(</span><span class="nx">ctx</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span><span class="w"> </span><span class="nx">StorageResource</span><span class="p">,</span><span class="w"> </span><span class="nx">objects</span><span class="p">.</span><span class="nx">MAC</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nf">Close</span><span class="p">(</span><span class="nx">ctx</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 
@@ -4723,7 +4724,8 @@
   </span>
   
 </div>
-<p>Plugins communicate via gRPC over stdin/stdout. Writing to <code>os.Stdout</code> corrupts the stream. Always use <code>os.Stderr</code> for logging:</p>
+<p>Plugins communicate via gRPC over stdin/stdout. Writing to <code>os.Stdout</code> corrupts
+the stream. Always use <code>os.Stderr</code> for logging:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintf</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;debug: %s\n&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">msg</span><span class="p">)</span></span></span></code></pre></div></div>
 
 <div class="relative group">
@@ -4775,7 +4777,10 @@
   </span>
   
 </div>
-<p>See the <a href="https://github.com/PlakarKorp/integration-example"  target="_blank" rel="noreferrer">integration example repository</a> for an integration implementation with importer, exporter, and storage connectors.</p>
+<p>See the
+<a href="https://github.com/PlakarKorp/integrations/tree/main/example"  target="_blank" rel="noreferrer">integration example repository</a>
+for an integration implementation with importer, exporter, and storage
+connectors.</p>
 
       </article>
       <footer class="mt-12 flex flex-col gap-6 docs-font border-t border-neutral-200 pt-6">

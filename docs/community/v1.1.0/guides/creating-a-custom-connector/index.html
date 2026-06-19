@@ -84,7 +84,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-04-16T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-06-19T21:47:10+02:00">
+    <meta property="article:modified_time" content="2026-06-19T21:48:29+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -267,12 +267,12 @@
     "dateCreated": "2026-04-16T00:00:00\u002b00:00",
     "datePublished": "2026-04-16T00:00:00\u002b00:00",
     
-    "dateModified": "2026-06-19T21:47:10\u002b02:00",
+    "dateModified": "2026-06-19T21:48:29\u002b02:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "819"
+    "wordCount": "864"
   }]
   </script>
 
@@ -4149,7 +4149,8 @@
   </span>
   
 </div>
-<p>This guide shows how to create a custom Plakar <strong>Importer</strong> connector in Go, build it, package it, and install it using the <code>plakar</code> CLI.</p>
+<p>This guide shows how to create a custom Plakar <strong>Importer</strong> connector in Go,
+build it, package it, and install it using the <code>plakar</code> CLI.</p>
 
 <div class="relative group">
   <h2 id="why-write-a-custom-connector">Why write a custom connector?</h2>
@@ -4159,7 +4160,10 @@
   </span>
   
 </div>
-<p>Plakar ships with connectors for common sources and storage backends. When you need to back up something that isn&rsquo;t supported out of the box such as an internal database thats not commonly used or a custom data source, you can write your own connector in Go and install it like any other package.</p>
+<p>Plakar ships with connectors for common sources and storage backends. When you
+need to back up something that isn&rsquo;t supported out of the box such as an
+internal database thats not commonly used or a custom data source, you can write
+your own connector in Go and install it like any other package.</p>
 
 <div class="relative group">
   <h2 id="what-you-will-build">What you will build</h2>
@@ -4169,7 +4173,9 @@
   </span>
   
 </div>
-<p>A minimal Importer connector that backs up a single hardcoded file. This is the simplest possible integration — once you understand the pattern, you can extend it to walk directories, read from APIs, or consume any other data source.</p>
+<p>A minimal Importer connector that backs up a single hardcoded file. This is the
+simplest possible integration — once you understand the pattern, you can extend
+it to walk directories, read from APIs, or consume any other data source.</p>
 
 <div class="relative group">
   <h2 id="prerequisites">Prerequisites</h2>
@@ -4200,12 +4206,17 @@
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">go get github.com/PlakarKorp/kloset
 </span></span><span class="line"><span class="cl">go get github.com/PlakarKorp/go-kloset-sdk</span></span></code></pre></div></div>
 <p>Create the project structure:</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">plakar-myimporter/
-</span></span><span class="line"><span class="cl">├── connector.go
-</span></span><span class="line"><span class="cl">├── importer/
-</span></span><span class="line"><span class="cl">│   └── main.go
-</span></span><span class="line"><span class="cl">├── manifest.yaml
-</span></span><span class="line"><span class="cl">├── Makefile
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">.
+</span></span><span class="line"><span class="cl">├── connector.go        # Shared connector logic and interface implementations
+</span></span><span class="line"><span class="cl">├── plugin/
+</span></span><span class="line"><span class="cl">│   ├── importer/
+</span></span><span class="line"><span class="cl">│   │   └── main.go     # Importer entrypoint
+</span></span><span class="line"><span class="cl">│   ├── exporter/
+</span></span><span class="line"><span class="cl">│   │   └── main.go     # Exporter entrypoint
+</span></span><span class="line"><span class="cl">│   └── storage/
+</span></span><span class="line"><span class="cl">│       └── main.go     # Storage entrypoint
+</span></span><span class="line"><span class="cl">├── manifest.yaml       # Plugin manifest describing the connectors
+</span></span><span class="line"><span class="cl">├── Makefile            # Build and packaging targets
 </span></span><span class="line"><span class="cl">├── go.mod
 </span></span><span class="line"><span class="cl">└── go.sum</span></span></code></pre></div></div>
 
@@ -4235,7 +4246,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="kd">const</span><span class="w"> </span><span class="nx">FILE</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#34;/home/user/Documents/notes.md&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="nf">init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">importer</span><span class="p">.</span><span class="nf">Register</span><span class="p">(</span><span class="s">&#34;test&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">location</span><span class="p">.</span><span class="nx">FLAG_LOCALFS</span><span class="p">,</span><span class="w"> </span><span class="nx">NewImporter</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">importer</span><span class="p">.</span><span class="nf">Register</span><span class="p">(</span><span class="s">&#34;example&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">location</span><span class="p">.</span><span class="nx">FLAG_LOCALFS</span><span class="p">,</span><span class="w"> </span><span class="nx">NewImporter</span><span class="p">)</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="kd">type</span><span class="w"> </span><span class="nx">testConnector</span><span class="w"> </span><span class="kd">struct</span><span class="p">{}</span><span class="w">
@@ -4246,7 +4257,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">f</span><span class="w"> </span><span class="o">*</span><span class="nx">testConnector</span><span class="p">)</span><span class="w"> </span><span class="nf">Root</span><span class="p">()</span><span class="w"> </span><span class="kt">string</span><span class="w">              </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nx">filepath</span><span class="p">.</span><span class="nf">Dir</span><span class="p">(</span><span class="nx">FILE</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">f</span><span class="w"> </span><span class="o">*</span><span class="nx">testConnector</span><span class="p">)</span><span class="w"> </span><span class="nf">Origin</span><span class="p">()</span><span class="w"> </span><span class="kt">string</span><span class="w">            </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s">&#34;localhost&#34;</span><span class="w"> </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">f</span><span class="w"> </span><span class="o">*</span><span class="nx">testConnector</span><span class="p">)</span><span class="w"> </span><span class="nf">Type</span><span class="p">()</span><span class="w"> </span><span class="kt">string</span><span class="w">              </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s">&#34;test&#34;</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">f</span><span class="w"> </span><span class="o">*</span><span class="nx">testConnector</span><span class="p">)</span><span class="w"> </span><span class="nf">Type</span><span class="p">()</span><span class="w"> </span><span class="kt">string</span><span class="w">              </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s">&#34;example&#34;</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">f</span><span class="w"> </span><span class="o">*</span><span class="nx">testConnector</span><span class="p">)</span><span class="w"> </span><span class="nf">Flags</span><span class="p">()</span><span class="w"> </span><span class="nx">location</span><span class="p">.</span><span class="nx">Flags</span><span class="w">     </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nx">location</span><span class="p">.</span><span class="nx">FLAG_LOCALFS</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">f</span><span class="w"> </span><span class="o">*</span><span class="nx">testConnector</span><span class="p">)</span><span class="w"> </span><span class="nf">Ping</span><span class="p">(</span><span class="nx">_</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">f</span><span class="w"> </span><span class="o">*</span><span class="nx">testConnector</span><span class="p">)</span><span class="w"> </span><span class="nf">Close</span><span class="p">(</span><span class="nx">_</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">}</span><span class="w">
@@ -4281,7 +4292,7 @@
         <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"/></svg>
 </span></div>
         <div class="grow">
-          Writing to console
+          Warning
         </div>
         <div
           class="ms-auto flex h-5 w-5 items-center justify-center transition-transform ease-in-out -rotate-90 group-open:rotate-0 print:hidden"><span class="relative block icon"><svg
@@ -4297,7 +4308,9 @@
   />
 </svg>
 </span></div>
-      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Never write to <code>os.Stdout</code>. Plakar communicates with the plugin over gRPC through stdin/stdout — any writes there corrupt the stream. Use <code>os.Stderr</code> for debug output instead.</p></div></details>
+      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Writing to console Never write to <code>os.Stdout</code>. Plakar communicates with the
+plugin over gRPC through stdin/stdout — any writes there corrupt the stream.
+Use <code>os.Stderr</code> for debug output instead.</p></div></details>
 <div class="relative group">
   <h2 id="3-create-the-entrypoint">3. Create the entrypoint</h2>
   
@@ -4329,8 +4342,8 @@
   
 </div>
 <p>Create <code>manifest.yaml</code>:</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">test</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="nt">display_name</span><span class="p">:</span><span class="w"> </span><span class="l">Test</span><span class="w">
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">example</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">display_name</span><span class="p">:</span><span class="w"> </span><span class="l">Example</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l">A minimal importer connector that backs up a single file.</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="nt">homepage</span><span class="p">:</span><span class="w"> </span><span class="l">https://github.com/yourorg/plakar-myimporter</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="nt">license</span><span class="p">:</span><span class="w"> </span><span class="l">ISC</span><span class="w">
@@ -4341,16 +4354,25 @@
 </span></span></span><span class="line"><span class="cl"><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">filesystem]</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="nt">connectors</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">importer</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">executable</span><span class="p">:</span><span class="w"> </span><span class="l">test-importer</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">protocols</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">test]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">executable</span><span class="p">:</span><span class="w"> </span><span class="l">example-importer</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">protocols</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">example]</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">location_flags</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">localfs]</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">class</span><span class="p">:</span><span class="w"> </span><span class="l">filesystem</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">subclass</span><span class="p">:</span><span class="w"> </span><span class="l">test</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">subclass</span><span class="p">:</span><span class="w"> </span><span class="l">example</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">validator</span><span class="p">:</span><span class="w"> </span><span class="l">./importer/schema.json</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">extra_files</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span></span></span></code></pre></div></div>
-<p>Not all fields are required for every integration. <code>tags</code> is optional metadata used for discovery. Under each connector, <code>validator</code> is only needed if your connector accepts a configuration schema; <code>args</code> and <code>extra_files</code> can be omitted entirely if you have no additional arguments to pass to the executable or no supplementary files to bundle. A minimal connector entry needs only <code>type</code>, <code>executable</code> and <code>protocols</code>.</p>
-<p>The <code>executable</code> value must match the binary name you produce in the build step. The <code>location_flags</code> list must reflect the <code>location.Flags</code> returned by your connector&rsquo;s <code>Flags()</code> method. Set <code>class</code> and <code>subclass</code> to values that best describe your data source — for a connector that reads from a local filesystem path, <code>filesystem</code> and your protocol name are appropriate choices.</p>
+<p>Not all fields are required for every integration. <code>tags</code> is optional metadata
+used for discovery. Under each connector, <code>validator</code> is only needed if your
+connector accepts a configuration schema; <code>args</code> and <code>extra_files</code> can be
+omitted entirely if you have no additional arguments to pass to the executable
+or no supplementary files to bundle. A minimal connector entry needs only
+<code>type</code>, <code>executable</code> and <code>protocols</code>.</p>
+<p>The <code>executable</code> value must match the binary name you produce in the build step.
+The <code>location_flags</code> list must reflect the <code>location.Flags</code> returned by your
+connector&rsquo;s <code>Flags()</code> method. Set <code>class</code> and <code>subclass</code> to values that best
+describe your data source — for a connector that reads from a local filesystem
+path, <code>filesystem</code> and your protocol name are appropriate choices.</p>
 
 <div class="relative group">
   <h2 id="5-build-the-plugin">5. Build the plugin</h2>
@@ -4362,7 +4384,7 @@
 </div>
 <p>Create a <code>Makefile</code>:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="nf">build</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">	go build -o test-importer ./importer
+</span></span><span class="line"><span class="cl">	go build -o example-importer ./importer
 </span></span></code></pre></div></div>
 <p>Then build:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">make build</span></span></code></pre></div></div>
@@ -4378,10 +4400,10 @@
 <p>Package the plugin into a <code>.ptar</code> file:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">plakar pkg create</span></span></code></pre></div></div>
 <p>Install it:</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">plakar pkg add test-v0.1.0.ptar</span></span></code></pre></div></div>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">plakar pkg add example-v0.1.0.ptar</span></span></code></pre></div></div>
 <p>Verify the installation:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">plakar pkg show</span></span></code></pre></div></div>
-<p>You should see <code>test</code> listed.</p>
+<p>You should see <code>example</code> listed.</p>
 
 <div class="relative group">
   <h2 id="7-use-the-connector">7. Use the connector</h2>
@@ -4392,8 +4414,10 @@
   
 </div>
 <p>Back up using your new importer:</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">plakar at /var/backups backup test://</span></span></code></pre></div></div>
-<p>Because this connector uses a hardcoded file path, the location after <code>test://</code> is ignored — the importer always reads from <code>/home/user/Documents/notes.md</code>.</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">plakar at /var/backups backup example://</span></span></code></pre></div></div>
+<p>Because this connector uses a hardcoded file path, the location after
+<code>example://</code> is ignored — the importer always reads from
+<code>/home/user/Documents/notes.md</code>.</p>
 
 <div class="relative group">
   <h2 id="next-steps">Next steps</h2>
@@ -4403,11 +4427,21 @@
   </span>
   
 </div>
-<p><strong>Walking a directory</strong> — instead of a hardcoded path, parse the location from the <code>config</code> map (<code>strings.TrimPrefix(config[&quot;location&quot;], proto+&quot;://&quot;)</code>) and use <code>filepath.WalkDir</code> to send a record for each file.</p>
-<p><strong>Remote sources</strong> — for connectors that talk to an API, use <code>0</code> as the flags value instead of <code>location.FLAG_LOCALFS</code>, and parse credentials and endpoints from the <code>config</code> map passed to your constructor.</p>
-<p><strong>Streaming imports</strong> — if your source cannot be replayed (e.g. reading from a pipe or tarball), add <code>location.FLAG_STREAM</code> to your flags. Plakar will disable the progress bar and call <code>Import</code> only once.</p>
-<p><strong>Adding an Exporter or Storage backend</strong> — implement the <code>Exporter</code> or <code>Store</code> interface, register it in <code>init()</code>, add a corresponding entrypoint directory, and add an entry to <code>manifest.yaml</code>.</p>
-<p>See the <a href="../../references/sdk" >SDK reference</a> and the <a href="https://github.com/PlakarKorp/integration-example"  target="_blank" rel="noreferrer">integration example repository</a> for the full interface definitions and a complete working implementation.</p>
+<p><strong>Walking a directory</strong> — instead of a hardcoded path, parse the location from
+the <code>config</code> map (<code>strings.TrimPrefix(config[&quot;location&quot;], proto+&quot;://&quot;)</code>) and use
+<code>filepath.WalkDir</code> to send a record for each file.</p>
+<p><strong>Remote sources</strong> — for connectors that talk to an API, use <code>0</code> as the flags
+value instead of <code>location.FLAG_LOCALFS</code>, and parse credentials and endpoints
+from the <code>config</code> map passed to your constructor.</p>
+<p><strong>Streaming imports</strong> — if your source cannot be replayed (e.g. reading from a
+pipe or tarball), add <code>location.FLAG_STREAM</code> to your flags. Plakar will disable
+the progress bar and call <code>Import</code> only once.</p>
+<p><strong>Adding an Exporter or Storage backend</strong> — implement the <code>Exporter</code> or <code>Store</code>
+interface, register it in <code>init()</code>, add a corresponding entrypoint directory,
+and add an entry to <code>manifest.yaml</code>.</p>
+<p>See the <a href="../../references/sdk" >SDK reference</a> and the
+<a href="https://github.com/PlakarKorp/integrations/tree/main/example"  target="_blank" rel="noreferrer">integration example repository</a>
+for the full interface definitions and a complete working implementation.</p>
 
       </article>
       <footer class="mt-12 flex flex-col gap-6 docs-font border-t border-neutral-200 pt-6">
