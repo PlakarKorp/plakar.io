@@ -84,7 +84,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-05-15T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-06-19T21:45:38+02:00">
+    <meta property="article:modified_time" content="2026-06-19T21:46:09+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -145,8 +145,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.751536629e510aaaf2c1f7c57a61304d9115990de835762efd783f531cdbdfca81d54b01effe3e48b21b5be4f92ea36cfbed173a17ffd08b09cf38d11efe5bac.css"
-    integrity="sha512-dRU2Yp5RCqrywffFemEwTZEVmQ3oNXYu/Xg/Uxzb38qB1UsB7/4&#43;SLIbW&#43;T5LqNs&#43;&#43;0XOhf/0IsJzzjRHv5brA==">
+    href="/css/main.bundle.min.4f8a8794e5ca5a47090db02c9c8c64c96139cea858c5b644fd77cff5de963c9b68a8efc09691a9f51b03f8ef962d8ba4764e361528f5e8796944d9fbc45f5a82.css"
+    integrity="sha512-T4qHlOXKWkcJDbAsnIxkyWE5zqhYxbZE/XfP9d6WPJtoqO/AlpGp9RsD&#43;O&#43;WLYukdk42FSj16HlpRNn7xF9agg==">
 
   
   
@@ -267,12 +267,12 @@
     "dateCreated": "2026-05-15T00:00:00\u002b00:00",
     "datePublished": "2026-05-15T00:00:00\u002b00:00",
     
-    "dateModified": "2026-06-19T21:45:38\u002b02:00",
+    "dateModified": "2026-06-19T21:46:09\u002b02:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "607"
+    "wordCount": "639"
   }]
   </script>
 
@@ -3599,6 +3599,8 @@
 
       
 
+      
+
 
 <header class="flex flex-col docs-font gap-4 mb-8">
   <div class="flex items-start gap-2">
@@ -3836,10 +3838,12 @@ boot source.</p>
 otherwise the snapshot will not be available for attachment as the root volume.</p>
 <p>Plakar Control Plane is recommended to run on a machine with:</p>
 <ul>
-<li><strong>8 vCPUs</strong></li>
+<li><strong>4 vCPUs</strong></li>
 <li><strong>16 GB RAM</strong></li>
 </ul>
-<p>A configuration such as <code>BASIC3-X8C-16G</code> is suitable for most deployments.</p>
+<p>A configuration such as <code>BASIC3-X4C-16G</code> is suitable for most deployments.</p>
+<p>These are recommendations for a production deployment. For evaluation or
+testing, you can reduce CPU, RAM, and storage.</p>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
@@ -3864,9 +3868,10 @@ the instance configuration step.</p>
     src="../images/configure-scaleway-cpu-instance.png"
     ></figure>
 <p>The Block Storage Snapshot volume is used only as the operating system boot
-disk. Plakar Control Plane requires an additional persistent data volume for
-internal application data.</p>
-<p>Attach an additional Block Storage volume with a recommended size of <code>1024 GB</code>.</p>
+disk. Plakar Control Plane requires an additional persistent data volume that
+stores the database, logs, and all Plakar state.</p>
+<p>Attach an additional Block Storage volume with a recommended size of <code>1024 GB</code>.
+Backups themselves are stored wherever you configure using connectors.</p>
 
 <div class="relative group">
   <h2 id="networking-and-security-groups">Networking and Security Groups</h2>

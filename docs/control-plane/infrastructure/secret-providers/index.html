@@ -145,8 +145,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.751536629e510aaaf2c1f7c57a61304d9115990de835762efd783f531cdbdfca81d54b01effe3e48b21b5be4f92ea36cfbed173a17ffd08b09cf38d11efe5bac.css"
-    integrity="sha512-dRU2Yp5RCqrywffFemEwTZEVmQ3oNXYu/Xg/Uxzb38qB1UsB7/4&#43;SLIbW&#43;T5LqNs&#43;&#43;0XOhf/0IsJzzjRHv5brA==">
+    href="/css/main.bundle.min.4f8a8794e5ca5a47090db02c9c8c64c96139cea858c5b644fd77cff5de963c9b68a8efc09691a9f51b03f8ef962d8ba4764e361528f5e8796944d9fbc45f5a82.css"
+    integrity="sha512-T4qHlOXKWkcJDbAsnIxkyWE5zqhYxbZE/XfP9d6WPJtoqO/AlpGp9RsD&#43;O&#43;WLYukdk42FSj16HlpRNn7xF9agg==">
 
   
   
@@ -267,7 +267,7 @@
     "dateCreated": "2026-04-23T00:00:00\u002b00:00",
     "datePublished": "2026-04-23T00:00:00\u002b00:00",
     
-    "dateModified": "2026-06-19T21:45:38\u002b02:00",
+    "dateModified": "2026-06-19T21:46:09\u002b02:00",
     
     
     
@@ -3599,6 +3599,8 @@
 
       
 
+      
+
 
 <header class="flex flex-col docs-font gap-4 mb-8">
   <div class="flex items-start gap-2">
@@ -3722,10 +3724,16 @@
   </span>
   
 </div>
-<p>Plakar Control Plane handles sensitive credentials like tokens, passwords, and more. When configuring a connector, inventory, or any other resource that requires a credential, Plakar Control Plane gives you two options.</p>
+<p>Plakar Control Plane handles sensitive credentials like tokens, passwords, and
+more. When configuring a connector, inventory, or any other resource that
+requires a credential, Plakar Control Plane gives you two options.</p>
 <ul>
-<li><strong>Direct value:</strong> stores the credential directly in the Plakar Control Plane database. This is the simplest option and works well for most setups.</li>
-<li><strong>Secret provider:</strong> delegates the credential resolution to an external secret manager. Instead of storing the value itself, Plakar Control Plane stores a path that points to the secret in your secret manager, and resolves it at runtime.</li>
+<li><strong>Direct value:</strong> stores the credential directly in the Plakar Control Plane
+database. This is the simplest option and works well for most setups.</li>
+<li><strong>Secret provider:</strong> delegates the credential resolution to an external secret
+manager. Instead of storing the value itself, Plakar Control Plane stores a
+path that points to the secret in your secret manager, and resolves it at
+runtime.</li>
 </ul>
 <figure><img
     class="my-0 rounded-md"
@@ -3733,9 +3741,11 @@
     decoding="async"
     fetchpriority="low"
     alt=""
-    src="../images/secrets1.png"
+    src="./images/secrets1.png"
     ></figure>
-<p>Using a secret provider is recommended if your organization already manages credentials centrally, or if you want to avoid storing sensitive values in the database.</p>
+<p>Using a secret provider is recommended if your organization already manages
+credentials centrally, or if you want to avoid storing sensitive values in the
+database.</p>
 
 <div class="relative group">
   <h2 id="setting-up-a-secret-provider">Setting up a secret provider</h2>
@@ -3745,7 +3755,8 @@
   </span>
   
 </div>
-<p>Before you can use a secret provider, you need to configure one. See the provider-specific instructions for your secret manager:</p>
+<p>Before you can use a secret provider, you need to configure one. See the
+provider-specific instructions for your secret manager:</p>
 
   <div class="not-prose section-index mt-6">
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">

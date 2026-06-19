@@ -29,6 +29,11 @@ Plakar Control Plane requires the following recommended setup:
 - At least **16 GiB RAM**
 - At least **1 TB of EBS storage**
 
+These are recommendations for a production deployment. For evaluation or
+testing, you can reduce CPU, RAM, and storage. The data volume stores the
+database, logs, and all Plakar state. Backups themselves are stored wherever
+you configure using connectors.
+
 The default marketplace configuration already selects a compatible instance type
 and storage configuration.
 

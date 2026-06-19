@@ -145,8 +145,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.751536629e510aaaf2c1f7c57a61304d9115990de835762efd783f531cdbdfca81d54b01effe3e48b21b5be4f92ea36cfbed173a17ffd08b09cf38d11efe5bac.css"
-    integrity="sha512-dRU2Yp5RCqrywffFemEwTZEVmQ3oNXYu/Xg/Uxzb38qB1UsB7/4&#43;SLIbW&#43;T5LqNs&#43;&#43;0XOhf/0IsJzzjRHv5brA==">
+    href="/css/main.bundle.min.4f8a8794e5ca5a47090db02c9c8c64c96139cea858c5b644fd77cff5de963c9b68a8efc09691a9f51b03f8ef962d8ba4764e361528f5e8796944d9fbc45f5a82.css"
+    integrity="sha512-T4qHlOXKWkcJDbAsnIxkyWE5zqhYxbZE/XfP9d6WPJtoqO/AlpGp9RsD&#43;O&#43;WLYukdk42FSj16HlpRNn7xF9agg==">
 
   
   
@@ -267,12 +267,12 @@
     "dateCreated": "2026-05-03T00:00:00\u002b00:00",
     "datePublished": "2026-05-03T00:00:00\u002b00:00",
     
-    "dateModified": "2026-06-19T21:45:38\u002b02:00",
+    "dateModified": "2026-06-19T21:46:09\u002b02:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "253"
+    "wordCount": "255"
   }]
   </script>
 
@@ -3599,6 +3599,8 @@
 
       
 
+      
+
 
 <header class="flex flex-col docs-font gap-4 mb-8">
   <div class="flex items-start gap-2">
@@ -3722,8 +3724,12 @@
   </span>
   
 </div>
-<p>An inventory connects Plakar Control Plane to a provider and exposes a list of resources available for management. Resources are the individual entities you can back up, use as storage, or restore to, for example, EC2 instances, S3 buckets, and their equivalents across other supported cloud providers.</p>
-<p>Once an inventory is connected, you can attach connectors to each resource. Plakar Control Plane supports three connector types:</p>
+<p>An inventory connects Plakar Control Plane to a provider and exposes a list of
+resources available for management. Resources are the individual entities you
+can back up, use as storage, or restore to, for example, EC2 instances, S3
+buckets, and their equivalents across other supported cloud providers.</p>
+<p>Once an inventory is connected, you can attach connectors to each resource.
+Plakar Control Plane supports three connector types:</p>
 <ul>
 <li><strong>Source</strong> - the resource being backed up</li>
 <li><strong>Store</strong> - where backups are stored</li>
@@ -3738,7 +3744,8 @@
   </span>
   
 </div>
-<p>Managed inventories connect to a provider using credentials. Plakar Control Plane automatically discovers and classifies resources in your account.</p>
+<p>Managed inventories connect to a provider using credentials. Plakar Control
+Plane then automatically discovers and classifies resources in your account.</p>
 <p>For example, in an AWS inventory:</p>
 <ul>
 <li>EC2 instances are classified as compute resources</li>
@@ -3750,6 +3757,7 @@
 <li>OVHcloud</li>
 <li>Scaleway</li>
 <li>Google Cloud</li>
+<li>VMware</li>
 </ul>
 
 <div class="relative group">
@@ -3760,9 +3768,11 @@
   </span>
   
 </div>
-<p>Self-managed inventories allow you to add resources manually, either individually or in bulk. This approach is useful when:</p>
+<p>Self-managed inventories allow you to add resources manually, either
+individually or in bulk. This approach is useful when:</p>
 <ul>
-<li>The infrastructure is not supported by managed inventories (e.g., a local MinIO instance)</li>
+<li>The infrastructure is not supported by managed inventories (e.g., a local
+MinIO instance)</li>
 <li>You require full control over how resources are defined and managed</li>
 </ul>
 

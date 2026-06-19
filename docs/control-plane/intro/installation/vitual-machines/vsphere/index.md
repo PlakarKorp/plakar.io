@@ -175,6 +175,11 @@ Configure the virtual machine with the recommended Plakar Control Plane sizing:
 - Memory: 16 GB
 - Hard disk: 1 TB
 
+These are recommendations for a production deployment. For evaluation or
+testing, you can reduce CPU, RAM, and storage. The data disk stores the
+database, logs, and all Plakar state. Backups themselves are stored wherever
+you configure using connectors.
+
 For the **CD/DVD Drive**, select **Datastore ISO File**, then browse to the
 Plakar Control Plane ISO that you uploaded earlier. Enable **Connect At Power
 On** so that the virtual machine boots from the ISO when it starts.
