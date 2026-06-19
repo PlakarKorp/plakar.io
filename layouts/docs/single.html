@@ -32,6 +32,7 @@
     <!-- Main content -->
     <main class="flex-1 min-w-0 px-3 lg:px-12">
 
+      {{ partial "docs/pcp-notice.html" . }}
       {{ partial "docs/page-header.html" . }}
       <article class="docs-font prose dark:prose-invert max-w-none mt-8">
         {{ .Content | safeHTML }}

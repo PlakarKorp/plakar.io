@@ -1,0 +1,10 @@
+{{ if strings.HasPrefix .RelPermalink "/docs/community" }}
+<div class="mb-5 flex items-start gap-3 border-l-4 border-primary-400 bg-primary-50 rounded-r-xl px-5 py-4 text-sm docs-font">
+  <span class="mt-0.5 w-4.5 h-4.5 shrink-0 text-primary-500">{{ partial "icon.html" "ri/information-line" }}</span>
+  <p class="text-neutral-700">
+    You're reading the open-source <strong class="text-neutral-900">Community</strong> docs.
+    Plakar also offers <strong class="text-neutral-900">Control Plane</strong>, the enterprise version. It's a virtual appliance with a web-based interface for centralized backup management across your infrastructure.
+    <a href="/docs/control-plane/" class="font-medium text-primary-500 hover:underline">View Control Plane docs →</a>
+  </p>
+</div>
+{{ end }}
