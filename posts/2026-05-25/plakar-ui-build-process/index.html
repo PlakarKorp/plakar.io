@@ -17,7 +17,7 @@
 
   
   
-    <meta name="description" content="How we bundle and ship the Plakar UI — Vite, code splitting, environment configs, and what happens between writing code and serving it to users.">
+    <meta name="description" content="How we bundle and ship the Plakar UI: Vite, code splitting, and how the compiled assets end up embedded in the Go binary.">
   
   
     <meta name="keywords" content="vite,build,frontend,plakar-ui,">
@@ -79,16 +79,17 @@
   <meta property="og:url" content="https://plakar.io/posts/2026-05-25/plakar-ui-build-process/">
   <meta property="og:site_name" content="Plakar | The Open Standard for Backup and Restore">
   <meta property="og:title" content="Plakar UI #12: The Build Process">
-  <meta property="og:description" content="How we bundle and ship the Plakar UI — Vite, code splitting, environment configs, and what happens between writing code and serving it to users.">
+  <meta property="og:description" content="How we bundle and ship the Plakar UI: Vite, code splitting, and how the compiled assets end up embedded in the Go binary.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2026-05-25T01:00:00+00:00">
-    <meta property="article:modified_time" content="2026-06-19T21:49:14+02:00">
+    <meta property="article:modified_time" content="2026-06-20T02:22:57+02:00">
     <meta property="article:tag" content="Vite">
     <meta property="article:tag" content="Build">
     <meta property="article:tag" content="Frontend">
     <meta property="article:tag" content="Plakar-Ui">
+    <meta property="og:image" content="https://plakar.io/posts/2026-05-25/plakar-ui-build-process/featured.png">
       <meta property="og:see_also" content="https://plakar.io/posts/2026-05-25/plakar-ui-series-intro/">
       <meta property="og:see_also" content="https://plakar.io/posts/2026-05-25/plakar-ui-pnpm-turborepo/">
       <meta property="og:see_also" content="https://plakar.io/posts/2026-05-25/plakar-ui-react/">
@@ -98,9 +99,10 @@
       <meta property="og:see_also" content="https://plakar.io/posts/2026-05-25/plakar-ui-tanstack-form/">
 
   
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://plakar.io/posts/2026-05-25/plakar-ui-build-process/featured.png">
   <meta name="twitter:title" content="Plakar UI #12: The Build Process">
-  <meta name="twitter:description" content="How we bundle and ship the Plakar UI — Vite, code splitting, environment configs, and what happens between writing code and serving it to users.">
+  <meta name="twitter:description" content="How we bundle and ship the Plakar UI: Vite, code splitting, and how the compiled assets end up embedded in the Go binary.">
 
   
   
@@ -111,24 +113,9 @@
     
   
     
-      
-    
   
     
-      
-    
   
-  
-    
-      
-      
-        
-      
-      
-        <meta name="twitter:image" content="https://plakar.io/img/general/featured.png">
-        <meta property="og:image" content="https://plakar.io/img/general/featured.png">
-      
-    
   
 
   
@@ -156,8 +143,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.4f8a8794e5ca5a47090db02c9c8c64c96139cea858c5b644fd77cff5de963c9b68a8efc09691a9f51b03f8ef962d8ba4764e361528f5e8796944d9fbc45f5a82.css"
-    integrity="sha512-T4qHlOXKWkcJDbAsnIxkyWE5zqhYxbZE/XfP9d6WPJtoqO/AlpGp9RsD&#43;O&#43;WLYukdk42FSj16HlpRNn7xF9agg==">
+    href="/css/main.bundle.min.577c047f75802b5d99b666918a24190f6fea077ddd2db15983f9e4c9e6ae44936217cd9535a6a4ee8ec3367165bf5bcc79e7398c98ed04650d50981b923f0667.css"
+    integrity="sha512-V3wEf3WAK12ZtmaRiiQZD2/qB33dLbFZg/nkyeauRJNiF82VNaak7o7DNnFlv1vMeec5jJjtBGUNUJgbkj8GZw==">
 
   
   
@@ -278,12 +265,12 @@
     "dateCreated": "2026-05-25T01:00:00\u002b00:00",
     "datePublished": "2026-05-25T01:00:00\u002b00:00",
     
-    "dateModified": "2026-06-19T21:49:14\u002b02:00",
+    "dateModified": "2026-06-20T02:22:57\u002b02:00",
     
     "keywords": ["vite","build","frontend","plakar-ui"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "9"
+    "wordCount": "661"
   }]
   </script>
 
@@ -1852,8 +1839,6 @@
 
 
 
-  
-
 
 
 <section class="section-light-2 grid-background px-4 pt-32 pb-7">
@@ -1873,12 +1858,12 @@
             <span>•</span>
           
         
-        <span>9 words</span>
+        <span>661 words</span>
         <span>•</span>
         <span>May 25, 2026</span>
         
           <span>•</span>
-          <span>1 min read</span>
+          <span>4 min read</span>
         
       </div>
 
@@ -1886,6 +1871,26 @@
   </div>
 </section>
 
+
+
+<section class="section-light-2 grid-background">
+  <div class="bg-gradient-section-light-1 px-4 py-2">
+    <div class="max-w-350 mx-auto flex flex-col items-center">
+      <div class="w-full max-w-178 rounded-lg bg-neutral-50 border border-neutral-300">
+        <div class="w-full h-7 px-4 flex items-center gap-2 border-b border-neutral-200">
+          <div class="w-2 h-2 bg-neutral-300 rounded-full"></div>
+          <div class="w-2 h-2 bg-neutral-300 rounded-full"></div>
+          <div class="w-2 h-2 bg-neutral-300 rounded-full"></div>
+        </div>
+        <div class="p-4">
+          <div class="aspect-video overflow-hidden rounded-sm">
+            <img src="/posts/2026-05-25/plakar-ui-build-process/featured.png" alt="Plakar UI #12: The Build Process" class="w-full h-full object-cover">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 
 
@@ -2055,7 +2060,15 @@
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <nav id="TableOfContents"></nav>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-the-browser-actually-needs">What the browser actually needs</a></li>
+    <li><a href="#vite-the-build-tool">Vite: the build tool</a></li>
+    <li><a href="#code-splitting">Code splitting</a></li>
+    <li><a href="#how-the-ui-ships-with-plakar">How the UI ships with Plakar</a></li>
+    <li><a href="#putting-it-all-together">Putting it all together</a></li>
+  </ul>
+</nav>
     </div>
 
     
@@ -2314,153 +2327,94 @@
 
       
       <div class="prose docs-font max-w-full">
-        <p>In progress. Check back soon for the full article!</p>
-<!-- Throughout this series we've talked about what happens at runtime: how React renders components, how TanStack Query fetches data, how TanStack Router navigates between pages. But before any of that can happen, the source code — TypeScript, JSX, Tailwind CSS — has to be transformed into something a browser can actually run. That transformation is the build process.
+        <p>Before any of the runtime machinery can run, the source code has to be transformed into something a browser can actually understand. That transformation is the build process.</p>
+<p>This is part of an ongoing series. The <a href="../plakar-ui-testing-strategy" >previous article</a> covered our testing strategy.</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt="The Vite build output showing bundle sizes and chunk filenames"
+    src="./build-output.png"
+    ></figure>
 
-## What the browser actually needs
+<div class="relative group">
+  <h2 id="what-the-browser-actually-needs">What the browser actually needs</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#what-the-browser-actually-needs" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>Browsers don&rsquo;t understand TypeScript. They don&rsquo;t understand JSX. They don&rsquo;t understand <code>import</code> statements that reference local workspace packages like <code>@plakar-ui/ui</code>. They need plain JavaScript, plain CSS, and assets, all served from a URL.</p>
+<p>The build process takes everything we&rsquo;ve written and produces exactly that: a <code>dist/</code> folder of static files that a backend can serve. For the OSS version of Plakar, those files are embedded directly in the Go binary and served by <code>plakar ui</code>. There is no separate frontend deployment. The UI ships with the backend.</p>
 
-Browsers don't understand TypeScript. They don't understand JSX. They don't understand `import` statements that reference local workspace packages like `@plakar-ui/ui`. They need plain JavaScript, plain CSS, and assets — all served from a URL.
+<div class="relative group">
+  <h2 id="vite-the-build-tool">Vite: the build tool</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#vite-the-build-tool" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>We use <a href="https://vite.dev"  target="_blank" rel="noreferrer">Vite</a> as our build tool. In development, it runs a local server with hot module replacement: save a file and the browser updates in under a second, no full reload. TypeScript and JSX are transpiled on demand. In production, <code>vite build</code> bundles the entire application into optimized static files: TypeScript is stripped, JSX is compiled to <code>React.createElement</code> calls, and all imports are resolved and bundled together.</p>
+<p>The build command for each app is:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tsc -b <span class="o">&amp;&amp;</span> vite build</span></span></code></pre></div></div>
+<p><code>tsc -b</code> runs the TypeScript compiler first, type-checking the entire project. If there are type errors, the build fails before Vite even starts. You cannot ship a build with type errors.</p>
+<p>Then Vite takes over to produce the actual bundle.</p>
 
-The build process takes everything we've written and produces exactly that: a `dist/` folder of static files that a backend can serve. For the OSS version of Plakar, those files are embedded directly in the Go binary and served by `plakar ui`. There is no separate frontend deployment — the UI ships with the backend.
+<div class="relative group">
+  <h2 id="code-splitting">Code splitting</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#code-splitting" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>A naive bundler would produce one enormous JavaScript file containing the entire application. The browser would have to download all of it before rendering anything. With a UI that has dozens of routes, most of which a user will never visit in a single session, that&rsquo;s wasteful.</p>
+<p>Vite splits the bundle automatically. TanStack Router&rsquo;s Vite plugin, configured with <code>autoCodeSplitting: true</code>, makes each route its own chunk. When a user navigates to <code>/scheduling</code>, the browser downloads only the code for that route, not the code for <code>/inventories</code> or <code>/sources</code> or any other route they haven&rsquo;t visited. The initial bundle is small; additional chunks are fetched on demand as the user navigates.</p>
 
-## Vite: the build tool
+<div class="relative group">
+  <h2 id="how-the-ui-ships-with-plakar">How the UI ships with Plakar</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#how-the-ui-ships-with-plakar" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>When a user runs <code>plakar ui</code>, Plakar starts an HTTP server and serves the UI directly from the binary. The compiled HTML, JavaScript chunks, CSS, and assets are all embedded in the Go binary using Go&rsquo;s <code>embed</code> package. There is no CDN, no separate frontend server, no deployment step on the user&rsquo;s side. It just works out of the box.</p>
+<p>To keep the embedded assets up to date, the Plakar repository has a GitHub Action that runs automatically. When triggered, it:</p>
+<ol>
+<li>Checks out the <code>plakar-ui</code> repository</li>
+<li>Runs <code>pnpm run build</code> to compile the OSS app</li>
+<li>Copies the resulting <code>dist/</code> files into the appropriate directory in the Plakar Go repository</li>
+<li>Opens a pull request with the updated compiled assets</li>
+</ol>
+<p>A Plakar maintainer reviews and merges the PR. The next release of the Plakar binary automatically includes the latest UI. From a user&rsquo;s perspective, updating Plakar is enough. There is nothing frontend-specific to install or deploy.</p>
+<p>This model is possible precisely because the output of the build is just static files. No server-side rendering, no Node.js runtime, no process to keep alive. The Go binary serves <code>index.html</code> for any route, and the browser takes it from there.</p>
 
-We use [Vite](https://vite.dev) as our build tool. Vite handles two things:
-
-- **Development:** a dev server with hot module replacement (HMR). When you save a file, the browser updates in under a second without a full reload. TypeScript and JSX are transpiled on demand.
-- **Production build:** `vite build` bundles the entire application into optimized static files. TypeScript is stripped, JSX is compiled to `React.createElement` calls, and all imports are resolved and bundled together.
-
-The build command for each app is:
-
-```bash
-tsc -b && vite build
-```
-
-`tsc -b` runs the TypeScript compiler first — type-checking the entire project. If there are type errors, the build fails before Vite even starts. This is the gate: you cannot ship a build with type errors.
-
-Then Vite takes over to produce the actual bundle.
-
-## TypeScript: strict by default
-
-Our shared TypeScript configuration enforces a strict set of rules across all packages:
-
-```json
-{
-  "compilerOptions": {
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
-  }
-}
-```
-
-`strict: true` enables a collection of checks including `strictNullChecks` (you can't use a value that might be `null` without checking it first), `strictFunctionTypes`, and others. `noUnusedLocals` and `noUnusedParameters` mean that dead code is a compile error, not just a lint warning. These aren't optional — they apply to every package in the monorepo through the shared config in `packages/config/`.
-
-## Code splitting
-
-A naive bundler would produce one enormous JavaScript file containing the entire application. The browser would have to download all of it before rendering anything. With a UI that has dozens of routes, most of which a user will never visit in a single session, that's wasteful.
-
-Vite splits the bundle automatically. TanStack Router's Vite plugin handles route-level code splitting:
-
-```ts
-tanstackRouter({
-  target: "react",
-  autoCodeSplitting: true,
-})
-```
-
-With `autoCodeSplitting: true`, each route becomes its own chunk. When a user navigates to `/scheduling`, the browser downloads only the code for that route — not the code for `/inventories` or `/sources` or any other route they haven't visited. The initial bundle is small; additional chunks are fetched on demand as the user navigates.
-
-## Tailwind CSS
-
-Tailwind is integrated via its own Vite plugin:
-
-```ts
-import tailwindcss from "@tailwindcss/vite";
-// ...
-plugins: [tailwindcss()]
-```
-
-During development, Tailwind generates CSS on demand for whatever classes appear in the source files. In production, it scans all source files, collects every class that's actually used, and generates a single optimized CSS file containing only those classes. Unused utility classes are not included. The resulting CSS file is typically just a few kilobytes.
-
-## Bundle analysis
-
-One of the most useful things in the Vite config is a plugin that most people overlook:
-
-```ts
-import { visualizer } from "rollup-plugin-visualizer";
-
-visualizer({
-  filename: "stats.html",
-  template: "flamegraph",
-  gzipSize: true,
-})
-```
-
-After every production build, Vite generates a `stats.html` file. Open it in a browser and you get an interactive flamegraph showing exactly which packages make up the bundle, how large each one is, and what percentage of the total they occupy. When the bundle grows unexpectedly, this is the first place to look. It's immediately clear if a dependency is pulling in something huge that shouldn't be there.
-
-## The single-page application bootstrap
-
-The entire application bootstraps from a single HTML file:
-
-```html
-<!doctype html>
-<html lang="en" class="h-full">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Plakar Control Plane</title>
-  </head>
-  <body class="h-full">
-    <div id="root" class="h-full"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
-```
-
-This is the entry point. The browser loads this HTML, which loads `main.tsx`, which sets up the QueryClient, the router, and mounts the React application into the `<div id="root">`. From that point on, navigation is handled entirely client-side — the server never needs to render anything.
-
-In `main.tsx`, everything covered in this series comes together: the QueryClient is created with its retry and staleness policies, the router is created with the generated route tree and its context (queryClient, kloset API), and the root React component is rendered. It's about 100 lines of setup code that wires all the pieces together.
-
-## How the UI ships with Plakar
-
-When a user runs `plakar ui`, Plakar starts an HTTP server and serves the UI directly from the binary. The compiled HTML, JavaScript chunks, CSS, and assets are all embedded in the Go binary using Go's `embed` package. There is no CDN, no separate frontend server, no deployment step on the user's side — it just works out of the box.
-
-To keep the embedded assets up to date, the Plakar repository has a GitHub Action that runs automatically. When triggered, it:
-
-1. Checks out the `plakar-ui` repository
-2. Runs `pnpm run build` to compile the OSS app
-3. Copies the resulting `dist/` files into the appropriate directory in the Plakar Go repository
-4. Opens a pull request with the updated compiled assets
-
-A Plakar maintainer reviews and merges the PR. The next release of the Plakar binary automatically includes the latest UI. From a user's perspective, updating Plakar is enough — there is nothing frontend-specific to install or deploy.
-
-This model is possible precisely because the output of the build is just static files. No server-side rendering, no Node.js runtime, no process to keep alive. The Go binary serves `index.html` for any route, and the browser takes it from there.
-
-## Putting it all together
-
-The full pipeline from source to production looks like this:
-
-```
-[plakar-ui repo] pnpm run build
-  └── turbo build (for each package and the oss app)
-        └── tsc -b          # type-check everything; fail fast on errors
-        └── vite build      # bundle, split, optimize
-              ├── TypeScript transpilation
-              ├── JSX → React.createElement
-              ├── Tailwind → optimized CSS
-              ├── Route-level code splitting
-              └── stats.html (bundle analysis)
-
-[GitHub Action] copies dist/ → plakar repo, opens PR
-
-[plakar repo] Go embeds the files → plakar ui serves them
-```
-
----
-
-That's the complete picture of how we build and ship Plakar's UI. From monorepo setup (article 1) through every library in the stack, to the build process that turns it all into something a browser can run and a Go binary can serve. We hope this series has given you a useful window into how modern frontend development works — and why, despite its complexity, the tooling genuinely makes building and maintaining a large UI more tractable than it used to be. -->
+<div class="relative group">
+  <h2 id="putting-it-all-together">Putting it all together</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#putting-it-all-together" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>The full pipeline from source to production looks like this:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">[plakar-ui repo] pnpm run build
+</span></span><span class="line"><span class="cl">  └── turbo build (for each package and the oss app)
+</span></span><span class="line"><span class="cl">        └── tsc -b          # type-check everything; fail fast on errors
+</span></span><span class="line"><span class="cl">        └── vite build      # bundle, split, optimize
+</span></span><span class="line"><span class="cl">              ├── TypeScript transpilation
+</span></span><span class="line"><span class="cl">              ├── JSX → React.createElement
+</span></span><span class="line"><span class="cl">              ├── Tailwind → optimized CSS
+</span></span><span class="line"><span class="cl">              └── Route-level code splitting
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[GitHub Action] copies dist/ → plakar repo, opens PR
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[plakar repo] Go embeds the files → plakar ui serves them</span></span></code></pre></div></div>
+<p>Next up: <a href="../plakar-ui-series-conclusion" >Conclusion</a>.</p>
 
       </div>
 

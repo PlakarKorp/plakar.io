@@ -84,10 +84,11 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2026-05-25T05:00:00+00:00">
-    <meta property="article:modified_time" content="2026-06-19T21:49:14+02:00">
+    <meta property="article:modified_time" content="2026-06-20T02:22:57+02:00">
     <meta property="article:tag" content="Tanstack-Table">
     <meta property="article:tag" content="React">
     <meta property="article:tag" content="Plakar-Ui">
+    <meta property="og:image" content="https://plakar.io/posts/2026-05-25/plakar-ui-tanstack-table/featured.png">
       <meta property="og:see_also" content="https://plakar.io/posts/2026-05-25/plakar-ui-series-intro/">
       <meta property="og:see_also" content="https://plakar.io/posts/2026-05-25/plakar-ui-pnpm-turborepo/">
       <meta property="og:see_also" content="https://plakar.io/posts/2026-05-25/plakar-ui-react/">
@@ -97,7 +98,8 @@
       <meta property="og:see_also" content="https://plakar.io/posts/2026-05-25/plakar-ui-tanstack-form/">
 
   
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://plakar.io/posts/2026-05-25/plakar-ui-tanstack-table/featured.png">
   <meta name="twitter:title" content="Plakar UI #8: TanStack Table">
   <meta name="twitter:description" content="How TanStack Table gives us a headless, fully type-safe data grid — with sorting, filtering, and pagination — without dictating how anything looks.">
 
@@ -110,24 +112,9 @@
     
   
     
-      
-    
   
     
-      
-    
   
-  
-    
-      
-      
-        
-      
-      
-        <meta name="twitter:image" content="https://plakar.io/img/general/featured.png">
-        <meta property="og:image" content="https://plakar.io/img/general/featured.png">
-      
-    
   
 
   
@@ -155,8 +142,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.4f8a8794e5ca5a47090db02c9c8c64c96139cea858c5b644fd77cff5de963c9b68a8efc09691a9f51b03f8ef962d8ba4764e361528f5e8796944d9fbc45f5a82.css"
-    integrity="sha512-T4qHlOXKWkcJDbAsnIxkyWE5zqhYxbZE/XfP9d6WPJtoqO/AlpGp9RsD&#43;O&#43;WLYukdk42FSj16HlpRNn7xF9agg==">
+    href="/css/main.bundle.min.577c047f75802b5d99b666918a24190f6fea077ddd2db15983f9e4c9e6ae44936217cd9535a6a4ee8ec3367165bf5bcc79e7398c98ed04650d50981b923f0667.css"
+    integrity="sha512-V3wEf3WAK12ZtmaRiiQZD2/qB33dLbFZg/nkyeauRJNiF82VNaak7o7DNnFlv1vMeec5jJjtBGUNUJgbkj8GZw==">
 
   
   
@@ -277,12 +264,12 @@
     "dateCreated": "2026-05-25T05:00:00\u002b00:00",
     "datePublished": "2026-05-25T05:00:00\u002b00:00",
     
-    "dateModified": "2026-06-19T21:49:14\u002b02:00",
+    "dateModified": "2026-06-20T02:22:57\u002b02:00",
     
     "keywords": ["tanstack-table","react","plakar-ui"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "9"
+    "wordCount": "1026"
   }]
   </script>
 
@@ -1851,8 +1838,6 @@
 
 
 
-  
-
 
 
 <section class="section-light-2 grid-background px-4 pt-32 pb-7">
@@ -1872,12 +1857,12 @@
             <span>•</span>
           
         
-        <span>9 words</span>
+        <span>1026 words</span>
         <span>•</span>
         <span>May 25, 2026</span>
         
           <span>•</span>
-          <span>1 min read</span>
+          <span>5 min read</span>
         
       </div>
 
@@ -1885,6 +1870,26 @@
   </div>
 </section>
 
+
+
+<section class="section-light-2 grid-background">
+  <div class="bg-gradient-section-light-1 px-4 py-2">
+    <div class="max-w-350 mx-auto flex flex-col items-center">
+      <div class="w-full max-w-178 rounded-lg bg-neutral-50 border border-neutral-300">
+        <div class="w-full h-7 px-4 flex items-center gap-2 border-b border-neutral-200">
+          <div class="w-2 h-2 bg-neutral-300 rounded-full"></div>
+          <div class="w-2 h-2 bg-neutral-300 rounded-full"></div>
+          <div class="w-2 h-2 bg-neutral-300 rounded-full"></div>
+        </div>
+        <div class="p-4">
+          <div class="aspect-video overflow-hidden rounded-sm">
+            <img src="/posts/2026-05-25/plakar-ui-tanstack-table/featured.png" alt="Plakar UI #8: TanStack Table" class="w-full h-full object-cover">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 
 
@@ -2054,7 +2059,14 @@
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <nav id="TableOfContents"></nav>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-headless-model">The headless model</a></li>
+    <li><a href="#how-it-works">How it works</a></li>
+    <li><a href="#a-real-example-from-plakar">A real example from Plakar</a></li>
+    <li><a href="#where-it-scales">Where it scales</a></li>
+  </ul>
+</nav>
     </div>
 
     
@@ -2313,361 +2325,144 @@
 
       
       <div class="prose docs-font max-w-full">
-        <p>In progress. Check back soon for the full article!</p>
-<!-- When a backend developer needs to display a list of things in a UI, the first instinct is reasonable: "I'll use an HTML `<table>`." And honestly? It works. For a read-only display of twenty rows, a plain `<table>` with a couple of `<tr>` and `<td>` elements is perfectly fine.
+        <p>When a backend developer needs to display a list of things in a UI, the first instinct is reasonable: &ldquo;I&rsquo;ll use an HTML <code>&lt;table&gt;</code>.&rdquo; And honestly? It works. For a read-only display of twenty rows, a plain <code>&lt;table&gt;</code> with a couple of <code>&lt;tr&gt;</code> and <code>&lt;td&gt;</code> elements is perfectly fine.</p>
+<p>The problems start when the requirements grow. And in our experience, the requirements always grow.</p>
+<p>First you need filtering. Then pagination, because there are ten thousand rows and you&rsquo;re not rendering all of them at once. Then sorting. Then a search box. Then someone asks if columns can be reordered, or resized. Then the design calls for a sticky header that stays visible while scrolling. Then expandable rows for nested data. Then row selection with a &ldquo;delete selected&rdquo; bulk action. Then virtual scrolling, because rendering tens of thousands of rows will kill the browser.</p>
+<p>You could implement all of this yourself. It would take weeks, and the result would be a custom table library that only your team understands, with edge cases you discover in production.</p>
+<p>Or you could use TanStack Table.</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt="A Plakar table in context &ndash; the inventories view with pagination controls"
+    src="./table-overview.png"
+    ></figure>
+<p>In the <a href="../plakar-ui-react-aria-components" >previous article</a> we covered how React Aria Components handles interaction logic. Now it&rsquo;s time to put some data in those components.</p>
 
-The problems start when the requirements grow. And in our experience, the requirements always grow.
-
-First you need filtering. Then pagination, because there are ten thousand rows and you're not rendering all of them at once. Then sorting — the product manager wants to be able to click a column header. Then a search box. Then someone asks if columns can be reordered, or resized. Then the design calls for a sticky header that stays visible while scrolling. Then expandable rows for nested data. Then row selection with a "delete selected" bulk action. Then — and this is when most handmade table implementations collapse — virtual scrolling, because you need to render only the visible rows for performance with large datasets.
-
-You could implement all of this yourself. It would take weeks, and the result would be a custom table library that only your team understands, with edge cases you discover in production.
-
-Or you could use TanStack Table.
-
-## What TanStack Table Is
-
-TanStack Table is a headless table library. That second word matters: *headless* means it provides the logic, the state management, and the column/row model — but absolutely nothing about how the table looks. You write all the HTML and all the CSS yourself. This gives you complete control over the visual result, and it means TanStack Table integrates cleanly with any design system.
-
-You own the `<table>`, the `<thead>`, the `<tr>`, the `<td>`. TanStack Table tells you what to put in them.
-
-Like everything else in the TanStack family, it is fully type-safe. The column definitions know the shape of your data. The cell render functions get the correct row type inferred automatically.
-
-## Building a Basic Table
-
-Let's start with the simplest case: a table of users with three columns — ID, name, and email.
-
-First, define your data type and create a column helper:
-
-```tsx
-import { createColumnHelper, getCoreRowModel, useReactTable } from "@tanstack/react-table";
-
-type User = {
-  id: string;
-  name: string;
-  email: string;
-};
-
-const columnHelper = createColumnHelper<User>();
-
-const columns = [
-  columnHelper.accessor("id", {
-    header: "ID",
-    cell: (info) => (
-      <span className="font-mono text-xs text-gray-500">{info.getValue()}</span>
-    ),
-  }),
-  columnHelper.accessor("name", {
-    header: "Name",
-    cell: (info) => (
-      <span className="font-medium text-gray-900">{info.getValue()}</span>
-    ),
-  }),
-  columnHelper.accessor("email", {
-    header: "Email",
-    cell: (info) => (
-      <a href={`mailto:${info.getValue()}`} className="text-blue-600 hover:underline">
-        {info.getValue()}
-      </a>
-    ),
-  }),
-];
-```
-
-Notice `columnHelper.accessor("name", ...)` — the `"name"` string is typed against the `User` type. If you try `columnHelper.accessor("username", ...)`, TypeScript will reject it because `User` has no `username` field.
-
-Now create the table instance and render it:
-
-```tsx
-function UsersTable({ users }: { users: User[] }) {
-  const table = useReactTable({
-    data: users,
-    columns,
-    getCoreRowModel: getCoreRowModel(),
-  });
-
-  return (
-    <table className="w-full border-collapse text-sm">
-      <thead>
-        {table.getHeaderGroups().map((headerGroup) => (
-          <tr key={headerGroup.id} className="border-b border-gray-200">
-            {headerGroup.headers.map((header) => (
-              <th
-                key={header.id}
-                className="px-4 py-3 text-left font-medium text-gray-500"
-              >
-                {header.isPlaceholder
-                  ? null
-                  : flexRender(header.column.columnDef.header, header.getContext())}
-              </th>
-            ))}
-          </tr>
-        ))}
-      </thead>
-      <tbody>
-        {table.getRowModel().rows.map((row) => (
-          <tr
-            key={row.id}
-            className="border-b border-gray-100 hover:bg-gray-50"
-          >
-            {row.getVisibleCells().map((cell) => (
-              <td key={cell.id} className="px-4 py-3">
-                {flexRender(cell.column.columnDef.cell, cell.getContext())}
-              </td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  );
-}
-```
-
-The rendering loop iterates over `table.getHeaderGroups()` for the header, and `table.getRowModel().rows` for the body. You write the `<table>` structure; TanStack Table provides the data and metadata.
-
-`flexRender` is a helper that calls either a JSX component or a plain function, depending on how you defined your columns. It's how TanStack Table bridges the column definition to actual rendered output.
-
-This is about as much boilerplate as a hand-rolled table — but now you have a foundation that scales.
-
-## Adding Pagination
-
-The table above loads all data at once and renders everything. With a hundred rows that's fine; with ten thousand it's not. Pagination solves this, either on the client (TanStack Table slices the data) or on the server (you fetch the right page from the API).
-
-In Plakar we use server-side pagination, because our data sets can be very large. Here's how it works:
-
-```tsx
-function UsersTable() {
-  const [pagination, setPagination] = useState({
-    pageIndex: 0,
-    pageSize: 50,
-  });
-
-  // Fetch only the current page from the API
-  const query = useQuery(
-    listUsersQueryOptions({
-      page: pagination.pageIndex,
-      perPage: pagination.pageSize,
-    })
-  );
-
-  const table = useReactTable({
-    data: query.data?.items ?? [],
-    rowCount: query.data?.total, // total number of rows across all pages
-    columns,
-    state: {
-      pagination,
-    },
-    onPaginationChange: setPagination,
-    manualPagination: true,   // tell TanStack Table we handle pagination ourselves
-    getCoreRowModel: getCoreRowModel(),
-  });
-
-  return (
-    <div className="flex flex-col gap-4">
-      <table className="w-full border-collapse text-sm">
-        {/* ...same header and body rendering as before */}
-      </table>
-
-      {/* Page controls */}
-      <div className="flex items-center justify-between">
-        <span className="text-sm text-gray-500">
-          Page {table.getState().pagination.pageIndex + 1} of{" "}
-          {table.getPageCount()}
-        </span>
-
-        <div className="flex gap-2">
-          <button
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
-            className="rounded border px-3 py-1 text-sm disabled:opacity-50"
-          >
-            Previous
-          </button>
-          <button
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
-            className="rounded border px-3 py-1 text-sm disabled:opacity-50"
-          >
-            Next
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-```
-
-The key setting is `manualPagination: true`. This tells TanStack Table: "I'm fetching exactly the rows for the current page — don't try to slice the data array yourself." You pass `rowCount` (the total count from your API response) so TanStack Table can compute the total number of pages and tell you whether `getCanNextPage()` should return true.
-
-When the user clicks "Next", `onPaginationChange` fires, the `pagination` state updates, the query re-runs with the new page parameters, and the table re-renders with the new rows. Clean, three-way binding between the URL/state, the query, and the table.
-
-## Adding Column Filtering
-
-Client-side filtering is almost embarrassingly easy:
-
-```tsx
-import { getFilteredRowModel } from "@tanstack/react-table";
-
-const table = useReactTable({
-  data: users,
-  columns,
-  getCoreRowModel: getCoreRowModel(),
-  getFilteredRowModel: getFilteredRowModel(), // add this
-});
-```
-
-Now each column can have a filter value. Add a filter input above or below the header:
-
-```tsx
-// In your table header rendering loop:
-{headerGroup.headers.map((header) => (
-  <th key={header.id} className="px-4 py-3">
-    <div className="flex flex-col gap-1">
-      <span className="text-left font-medium text-gray-500">
-        {flexRender(header.column.columnDef.header, header.getContext())}
-      </span>
-      {header.column.getCanFilter() && (
-        <input
-          value={(header.column.getFilterValue() as string) ?? ""}
-          onChange={(e) => header.column.setFilterValue(e.target.value)}
-          placeholder="Filter..."
-          className="rounded border border-gray-200 px-2 py-0.5 text-xs font-normal"
-        />
-      )}
-    </div>
-  </th>
-))}
-```
-
-`header.column.setFilterValue(value)` updates the filter for that column, `getFilteredRowModel` recomputes the visible rows, and the table re-renders. That's it. The filter input and the table are automatically in sync.
-
-For server-side filtering (which is what we do in Plakar), you'd follow the same pattern as pagination: set `manualFiltering: true`, store the filter values in state, pass them to the API query, and let TanStack Query handle refetching when they change.
-
-## Sorting
-
-Sorting follows the exact same pattern. One line to enable it:
-
-```tsx
-import { getSortedRowModel } from "@tanstack/react-table";
-
-const table = useReactTable({
-  data: users,
-  columns,
-  getCoreRowModel: getCoreRowModel(),
-  getSortedRowModel: getSortedRowModel(),
-});
-```
-
-Then make the column headers clickable:
-
-```tsx
-<th
-  key={header.id}
-  onClick={header.column.getToggleSortingHandler()}
-  className={clsx(
-    "cursor-pointer px-4 py-3 text-left",
-    header.column.getCanSort() && "select-none"
-  )}
->
-  <span className="flex items-center gap-1">
-    {flexRender(header.column.columnDef.header, header.getContext())}
-    {{
-      asc: " ↑",
-      desc: " ↓",
-    }[header.column.getIsSorted() as string] ?? null}
+<div class="relative group">
+  <h2 id="the-headless-model">The headless model</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#the-headless-model" aria-label="Anchor">#</a>
   </span>
-</th>
-```
+  
+</div>
+<p>TanStack Table is a headless table library. Headless means it provides the logic, the state management, and the column/row model, but nothing about how the table looks. You write all the HTML and all the CSS yourself. This gives you complete control over the visual result, and it means TanStack Table integrates cleanly with any design system.</p>
+<p>You own the <code>&lt;table&gt;</code>, the <code>&lt;thead&gt;</code>, the <code>&lt;tr&gt;</code>, the <code>&lt;td&gt;</code>. TanStack Table tells you what to put in them.</p>
+<p>The column definitions know the shape of your data, and the cell render functions get the correct row type inferred automatically. If you rename a field in your data type, TypeScript will catch every column definition that breaks.</p>
 
-Click a header: it sorts ascending. Click again: descending. Click again: unsorted. The visual indicator updates automatically through `header.column.getIsSorted()`. You wrote no sorting algorithm — TanStack Table handled it.
+<div class="relative group">
+  <h2 id="how-it-works">How it works</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#how-it-works" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>You start by defining your columns. Each column maps to a field in your data type, and that mapping is type-checked: if you rename a field in your data model, TypeScript will flag every column that references the old name. You also define how each cell renders — a plain string, a formatted date, a link, a badge, whatever fits.</p>
+<p>From there, you create a table instance by passing your data and your columns. What you get back is not a component. It&rsquo;s an object with methods: <code>getHeaderGroups()</code> to iterate over header rows, <code>getRowModel().rows</code> to iterate over data rows, <code>getVisibleCells()</code> for each row&rsquo;s cells. You call those methods in your own JSX, inside your own <code>&lt;table&gt;</code>, your own <code>&lt;tr&gt;</code>, your own <code>&lt;td&gt;</code>. TanStack Table never touches the DOM.</p>
+<p>Pagination, filtering, and sorting all follow the same model: you pass a flag to opt in (<code>manualPagination: true</code>, <code>getSortedRowModel()</code>, <code>getFilteredRowModel()</code>), and the table instance exposes the state and the handlers. For server-side features (which is what we use, because our datasets can be large), you pass <code>manualPagination: true</code>, wire the page state to your API query, and TanStack Table computes page counts and navigation from the total row count your API returns. Sorting and filtering work the same way: the library owns the state, you pass it to the query, TanStack Query handles the refetch.</p>
 
-## A Real Example from Plakar
+<div class="relative group">
+  <h2 id="a-real-example-from-plakar">A real example from Plakar</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#a-real-example-from-plakar" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>Here&rsquo;s a simplified version of the inventories table we use in the Plakar Control Plane, showing how everything comes together with server-side pagination:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="cl"><span class="c1">// apps/plakman/src/routes/_layout/inventories.index.tsx
+</span></span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">Route</span> <span class="o">=</span> <span class="nx">createFileRoute</span><span class="p">(</span><span class="s2">&#34;/_layout/inventories/&#34;</span><span class="p">)({</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">validateSearch</span>: <span class="kt">zodValidator</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">z</span><span class="p">.</span><span class="kt">object</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">page</span>: <span class="kt">z.coerce.number</span><span class="p">().</span><span class="nx">nonnegative</span><span class="p">().</span><span class="k">catch</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="k">default</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">per_page</span>: <span class="kt">z.coerce.number</span><span class="p">().</span><span class="nx">nonnegative</span><span class="p">().</span><span class="k">catch</span><span class="p">(</span><span class="mi">50</span><span class="p">).</span><span class="k">default</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">search</span>: <span class="kt">z.string</span><span class="p">().</span><span class="k">catch</span><span class="p">(</span><span class="s2">&#34;&#34;</span><span class="p">).</span><span class="k">default</span><span class="p">(</span><span class="s2">&#34;&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">loader</span>: <span class="kt">async</span> <span class="p">({</span> <span class="nx">context</span><span class="p">,</span> <span class="nx">deps</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">context</span><span class="p">.</span><span class="nx">queryClient</span><span class="p">.</span><span class="nx">prefetchQuery</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">listInventoriesQueryOptions</span><span class="p">({</span> <span class="nx">page</span>: <span class="kt">deps.page</span><span class="p">,</span> <span class="nx">perPage</span>: <span class="kt">deps.per_page</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">component</span>: <span class="kt">RouteComponent</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">RouteComponent() {</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="p">{</span> <span class="nx">page</span><span class="p">,</span> <span class="nx">per_page</span><span class="p">,</span> <span class="nx">search</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">Route</span><span class="p">.</span><span class="nx">useSearch</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">navigate</span> <span class="o">=</span> <span class="nx">Route</span><span class="p">.</span><span class="nx">useNavigate</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">query</span> <span class="o">=</span> <span class="nx">useQuery</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">listInventoriesQueryOptions</span><span class="p">({</span> <span class="nx">page</span><span class="p">,</span> <span class="nx">perPage</span>: <span class="kt">per_page</span><span class="p">,</span> <span class="nx">search</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">columns</span> <span class="o">=</span> <span class="nx">useMemo</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nx">getInventoryColumns</span><span class="p">(</span><span class="nx">search</span><span class="p">),</span> <span class="p">[</span><span class="nx">search</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">table</span> <span class="o">=</span> <span class="nx">useReactTable</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">data</span>: <span class="kt">query.data?.items</span> <span class="o">??</span> <span class="p">[],</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">rowCount</span>: <span class="kt">query.data?.total</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">columns</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">state</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">pagination</span><span class="o">:</span> <span class="p">{</span> <span class="nx">pageIndex</span>: <span class="kt">page</span><span class="p">,</span> <span class="nx">pageSize</span>: <span class="kt">per_page</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">getRowId</span><span class="o">:</span> <span class="p">(</span><span class="nx">row</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">row</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">manualPagination</span>: <span class="kt">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">onPaginationChange</span><span class="o">:</span> <span class="p">(</span><span class="nx">updater</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kr">const</span> <span class="nx">state</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">        <span class="k">typeof</span> <span class="nx">updater</span> <span class="o">===</span> <span class="s2">&#34;function&#34;</span>
+</span></span><span class="line"><span class="cl">          <span class="o">?</span> <span class="nx">updater</span><span class="p">({</span> <span class="nx">pageIndex</span>: <span class="kt">page</span><span class="p">,</span> <span class="nx">pageSize</span>: <span class="kt">per_page</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl">          <span class="o">:</span> <span class="nx">updater</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">navigate</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">search</span><span class="o">:</span> <span class="p">(</span><span class="nx">prev</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">({</span>
+</span></span><span class="line"><span class="cl">          <span class="p">...</span><span class="nx">prev</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">page</span>: <span class="kt">prev.per_page</span> <span class="o">!==</span> <span class="nx">state</span><span class="p">.</span><span class="nx">pageSize</span> <span class="o">?</span> <span class="nx">0</span> : <span class="kt">state.pageIndex</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">per_page</span>: <span class="kt">state.pageSize</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">      <span class="p">});</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">getCoreRowModel</span>: <span class="kt">getCoreRowModel</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">  <span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">&lt;</span><span class="nt">PaginatedTable</span> <span class="na">table</span><span class="o">=</span><span class="p">{</span><span class="nx">table</span><span class="p">}</span> <span class="na">query</span><span class="o">=</span><span class="p">{</span><span class="nx">query</span><span class="p">}</span> <span class="na">ariaLabel</span><span class="o">=</span><span class="s">&#34;Inventories&#34;</span> <span class="p">/&gt;;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<p>Note how the pagination state is stored in the URL search params (via TanStack Router, which we&rsquo;ll cover in the next article). This means that if you share the URL with someone, they land on the same page with the same filters. Refreshing the page preserves your position. The browser back button works. This is the correct behavior, and it falls naturally out of combining TanStack Router, TanStack Query, and TanStack Table.</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt="The inventories table in the Plakar Control Plane"
+    src="./table-inventories.png"
+    ></figure>
 
-Here's a simplified version of the inventories table we use in the Plakar Control Plane, showing how everything comes together with server-side pagination:
-
-```tsx
-// apps/plakman/src/routes/_layout/inventories.index.tsx
-export const Route = createFileRoute("/_layout/inventories/")({
-  validateSearch: zodValidator(
-    z.object({
-      page: z.coerce.number().nonnegative().catch(0).default(0),
-      per_page: z.coerce.number().nonnegative().catch(50).default(50),
-      search: z.string().catch("").default(""),
-    })
-  ),
-  loader: async ({ context, deps }) => {
-    context.queryClient.prefetchQuery(
-      listInventoriesQueryOptions({ page: deps.page, perPage: deps.per_page })
-    );
-  },
-  component: RouteComponent,
-});
-
-function RouteComponent() {
-  const { page, per_page, search } = Route.useSearch();
-  const navigate = Route.useNavigate();
-
-  const query = useQuery(
-    listInventoriesQueryOptions({ page, perPage: per_page, search })
-  );
-
-  const columns = useMemo(() => getInventoryColumns(search), [search]);
-
-  const table = useReactTable({
-    data: query.data?.items ?? [],
-    rowCount: query.data?.total,
-    columns,
-    state: {
-      pagination: { pageIndex: page, pageSize: per_page },
-    },
-    getRowId: (row) => row.id,
-    manualPagination: true,
-    onPaginationChange: (updater) => {
-      const state =
-        typeof updater === "function"
-          ? updater({ pageIndex: page, pageSize: per_page })
-          : updater;
-      navigate({
-        search: (prev) => ({
-          ...prev,
-          page: prev.per_page !== state.pageSize ? 0 : state.pageIndex,
-          per_page: state.pageSize,
-        }),
-      });
-    },
-    getCoreRowModel: getCoreRowModel(),
-  });
-
-  return <PaginatedTable table={table} query={query} ariaLabel="Inventories" />;
-}
-```
-
-Note how the pagination state is stored in the URL search params (via TanStack Router, which we'll cover in the next article). This means that if you share the URL with someone, they land on the same page with the same filters. Refreshing the page preserves your position. The browser back button works. This is the correct behavior, and it falls naturally out of combining TanStack Router, TanStack Query, and TanStack Table.
-
-## What Else Is There
-
-We've covered the basics — pagination, filtering, sorting. TanStack Table supports much more without requiring a different approach:
-
-**Row selection** — pass `enableRowSelection: true` and a `rowSelection` state, and each row gets a checkbox. `table.getSelectedRowModel()` gives you the selected rows for bulk operations.
-
-**Expandable rows** — define a `getSubRows` function, and nested data becomes automatically hierarchical with expand/collapse controls.
-
-**Column resizing** — `enableColumnResizing: true` and a few event handlers let users drag column borders.
-
-**Column visibility** — toggle columns on or off dynamically. Useful for letting users customize their view.
-
-**Virtual scrolling** — combine TanStack Table with TanStack Virtual (another library from the same team) to render only the visible rows for datasets with hundreds of thousands of entries.
-
-**Pinned columns** — columns that stay in place when scrolling horizontally.
-
-The point isn't to use all of these features on every table. It's that when the requirement arrives — and it will — you don't need to swap libraries or rebuild from scratch. You enable one flag and add a few lines of rendering code.
-
-## Conclusion
-
-A plain `<table>` is a perfectly valid starting point. But the moment your table needs to do more than display static data, you're building infrastructure. TanStack Table is that infrastructure: thoughtfully designed, headless, type-safe, and composable with the rest of the TanStack ecosystem.
-
-The headless design means our tables look exactly like the rest of the Plakar UI — same typography, same border radius, same hover states — because we write the HTML. TanStack Table gives us the logic, and we bring the design.
-
-We've never hit a table requirement that made us wish we'd used a different library. -->
+<div class="relative group">
+  <h2 id="where-it-scales">Where it scales</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#where-it-scales" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>We&rsquo;ve covered the basics — pagination, filtering, sorting. TanStack Table supports much more without requiring a different approach.</p>
+<p><strong>Row selection</strong> — pass <code>enableRowSelection: true</code> and a <code>rowSelection</code> state, and each row gets a checkbox. <code>table.getSelectedRowModel()</code> gives you the selected rows for bulk operations.</p>
+<p><strong>Expandable rows</strong> — define a <code>getSubRows</code> function, and nested data becomes automatically hierarchical with expand/collapse controls.</p>
+<p><strong>Column resizing</strong> — <code>enableColumnResizing: true</code> and a few event handlers let users drag column borders.</p>
+<p><strong>Column visibility</strong> — toggle columns on or off dynamically. Useful for letting users customize their view.</p>
+<p><strong>Virtual scrolling</strong> — combine TanStack Table with TanStack Virtual (another library from the same team) to render only the visible rows for datasets with hundreds of thousands of entries.</p>
+<p><strong>Pinned columns</strong> — columns that stay in place when scrolling horizontally.</p>
+<p>The point isn&rsquo;t to use all of these on every table. It&rsquo;s that when the requirement arrives — and it will — you don&rsquo;t need to swap libraries or rebuild from scratch. You enable one flag and add a few lines of rendering code.</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt="Row selection with bulk actions in a Plakar table"
+    src="./table-row-selection.png"
+    ></figure>
+<p>Because we write the HTML ourselves, our tables look exactly like the rest of Plakar UI — same typography, same border radius, same hover states. TanStack Table gives us the logic and stays out of the way of the design.</p>
+<p>Next up: <a href="../plakar-ui-tanstack-router" >TanStack Router</a>, and why the URL is state too.</p>
 
       </div>
 

@@ -1,179 +1,75 @@
 
-In progress. Check back soon for the full article!
+When you think about a UI component library, you probably picture something visual: buttons, dropdowns, date pickers. What you might not immediately think about is everything that has to work beneath the visual surface for those components to be truly usable. The select component has to fetch the list of options using an API call, and fetch the next page as the user scrolls. The date picker has to manage focus correctly so navigating with a keyboard is possible. You expect the popover to work on mobile, and the tooltip must be clickable on touch devices. All of this is invisible to the user, but it's what separates a component that looks right from one that actually works.
 
-<!-- When you think about a UI component library, you probably picture something visual: buttons, dropdowns, date pickers. What you might not immediately think about is everything that has to work *beneath* the visual surface for those components to be usable by everyone — keyboard navigation, screen reader announcements, focus management, ARIA attributes. This is a massive, thankless amount of work that most developers never think about until an accessibility audit lands on their desk.
+## Why rolling your own is harder than it looks
 
-Let me explain how we got to React Aria Components, and why it's one of the best decisions we made.
+A `<button>` and a `<select>` in plain HTML get you somewhere. But the moment you build anything slightly more complex, a combobox with filtering, a multi-select with tags, a date range picker, you're on your own.
 
-## Why Plain HTML Inputs Fall Short
+Take a custom dropdown. It's usually a `<div>` with a click handler that toggles a list. Looks fine on screen. But there's no keyboard navigation, no focus management, no touch handling on mobile, no correct behavior when the popover needs to reposition near the edge of the viewport. None of that comes for free. Implementing it correctly for a single component takes days. Doing it for a full suite of components takes months, and you'll still hit edge cases you didn't anticipate.
 
-A `<button>` and a `<select>` in plain HTML come with some accessibility baked in. But the moment you build anything slightly more complex — a combobox with filtering, a multi-select with tags, a date range picker — you're on your own.
+At some point, you either accept that your components will be half-broken, or you reach for a library that has already paid that cost.
 
-Take a custom dropdown: it's usually a `<div>` with a click handler that toggles some list. Looks fine on screen. But:
+## We considered MUI, and decided against it
 
-- Keyboard users can't open it with `Enter` or `Space`
-- There's no way to navigate the options with arrow keys
-- Screen readers don't know it's a listbox — they'll just read out a bunch of divs
-- The focus management is wrong: when the dropdown closes, focus doesn't return to the trigger
-- On mobile, there's no native touch handling for the popup
+Material UI (MUI) is one of the most popular React component libraries out there. It gives you a full set of production-ready components -- buttons, forms, tables, dialogs, date pickers -- all styled according to Google's Material Design guidelines. The components look polished out of the box. The problem is, they look like MUI. That aesthetic is immediately recognizable, and once you've seen it you can't unsee it.
 
-Fixing all of this from scratch, correctly, for every component type, is a months-long project. And it's not glamorous work — there's no visible result, and you'll always miss edge cases.
+When we started building Plakar UI, it was the obvious candidate. It's comprehensive, battle-tested, and has a massive community. We spent some time seriously considering it.
 
-## Styled Libraries: Accessible but Rigid
+But we were working with [Pelostudio](https://pelo.studio/) on our visual identity. They helped us define our fonts, our colors, our mascot, the whole design system. Shipping a product that looks like every other MUI app on the internet was not an option. We wanted something that looks like Plakar, and that meant picking a library that stays out of the way visually.
 
-Libraries like Material UI (MUI) or Ant Design solve the accessibility problem. Their components are well-tested and handle all the keyboard and ARIA concerns. But they bring their own design system. You get MUI components that look and feel like MUI, and deviating from that requires fighting the library's opinionated CSS.
+![Plakar UI -- the design system defined with Pelostudio](./plakar-ui-design.png)
 
-For a product that has its own visual identity, this is a non-starter. We don't want to ship an app that looks like every other MUI app on the internet.
+## We started with Headless UI
 
-## Unstyled Libraries: The Best of Both Worlds
+Unstyled component libraries separate interaction logic from visual design. You style everything yourself; the library handles the behavior.
 
-The insight behind unstyled component libraries is simple: separate the accessibility logic from the visual design. You get all the keyboard navigation, focus management, ARIA attributes, and screen reader support — but you style everything yourself.
+The first version of Plakar UI was built on [Headless UI](https://headlessui.com/). If you use Tailwind, it's almost the natural choice: Tailwind's own documentation and code examples use Headless UI throughout, so you end up reaching for it without much deliberation. It worked well for what it offered, but the catalog was limited, around a dozen components. There was no date picker, no combobox with filtering, a fairly basic select. For anything beyond those primitives, you were back to building from scratch. We also hit a few frustrating bugs that we never fully tracked down. Nothing catastrophic, but enough friction that we started looking at alternatives.
 
-The first version of Plakar UI was built on [Headless UI](https://headlessui.com/), which was an early, popular option in this space. It worked well for what it provided, but the component set was limited. There was no date picker, no combobox with filtering, a fairly basic select, and a handful of other primitives. For anything beyond the basics, you were back to building from scratch.
+The real push was component breadth. We needed more, and Headless UI wasn't going to get us there.
 
 ## Enter React Aria Components
 
-[React Aria Components](https://react-spectrum.adobe.com/react-aria/components.html) is Adobe's take on unstyled accessible components. It's part of the React Spectrum family, which powers Adobe's own products. The library is extraordinarily thorough.
+[React Aria Components](https://react-spectrum.adobe.com/react-aria/components.html) is Adobe's take on unstyled interactive components. It's part of the React Spectrum family, which powers Adobe's own products, and the depth of the catalog reflects that.
 
-The component catalog covers everything you'd expect: Button, Checkbox, ComboBox, DatePicker, DateRangePicker, Dialog, ListBox, Menu, NumberField, Popover, RadioGroup, RangeCalendar, SearchField, Select, Slider, Switch, Table, Tabs, TagGroup, TextField, ToggleButton, Tooltip — and more. Every single one handles keyboard navigation, screen readers, and mobile touch correctly, across all major browsers and assistive technologies.
+Where Headless UI offers around a dozen components, React Aria ships over forty. Every component ships with correct keyboard navigation, focus management, touch support, and proper behavior across browsers. A few of the less obvious ones that we actually use: DateRangePicker, RangeCalendar, TagGroup, Slider. The work has been done; you just compose and style.
 
-The learning curve is real. React Aria Components doesn't give you a single monolithic `<Select />` with twenty props. Instead, it gives you building blocks: `Select`, `SelectValue`, `ListBox`, `ListBoxItem`, `Popover`, `Button`. You compose them yourself. This feels verbose at first, but it's also what makes the library so flexible.
+The learning curve is real. React Aria doesn't give you a single `<Select />` with twenty props. Instead it gives you building blocks, `Select`, `SelectValue`, `ListBox`, `ListBoxItem`, `Popover`, `Button`, that you assemble yourself. This feels verbose at first, but it's exactly what makes the library so flexible.
 
-## A Concrete Example: Multi-Select with Search
+## A concrete example: multi-select with search
 
-Let's look at how we build a multi-select component — one that lets users pick multiple options from a searchable dropdown list. This is the kind of component that would take days to build correctly from scratch.
+Here's how we build a multi-select component in Plakar UI, one that lets users pick multiple options from a searchable dropdown list. This is the kind of component that would take days to implement correctly from scratch.
 
-With React Aria, you compose it from primitives:
+With React Aria, you assemble it from primitives:
 
 ```tsx
-import {
-  Autocomplete,
-  ListBox,
-  Popover,
-  Select,
-  SelectValue,
-  SearchField,
-} from "react-aria-components";
-import clsx from "clsx";
-
-type Option = {
-  id: string;
-  name: string;
-};
-
-type MultiSelectProps = {
-  label?: string;
-  options: Option[];
-  selectedKeys?: Set<string>;
-  onSelectionChange?: (keys: Set<string>) => void;
-};
-
-export function MultiSelect({
-  label,
-  options,
-  selectedKeys,
-  onSelectionChange,
-}: MultiSelectProps) {
-  return (
-    <Select
-      selectionMode="multiple"
-      selectedKeys={selectedKeys}
-      onSelectionChange={onSelectionChange}
-      className="group flex flex-col gap-1"
-    >
-      {label && (
-        <label className="text-sm font-medium text-gray-700">{label}</label>
-      )}
-
-      {/* The trigger button */}
-      <div className="flex items-center justify-between rounded-lg border border-gray-300 px-3 py-2 group-data-open:border-blue-500">
-        <SelectValue<Option>>
-          {({ selectedItems }) => (
-            <div className="flex flex-wrap gap-1">
-              {selectedItems.length === 0 ? (
-                <span className="text-sm text-gray-400">Select options...</span>
-              ) : (
-                selectedItems.map((item) => (
-                  <span
-                    key={item.id}
-                    className="rounded bg-blue-100 px-2 py-0.5 text-xs text-blue-800"
-                  >
-                    {item.name}
-                  </span>
-                ))
-              )}
-            </div>
-          )}
-        </SelectValue>
-        <span aria-hidden="true" className="text-gray-400">▼</span>
-      </div>
-
-      {/* The dropdown */}
-      <Popover
-        offset={4}
-        className="flex max-h-72 w-[var(--trigger-width)] flex-col rounded-lg border border-gray-200 bg-white shadow-lg"
-      >
-        <Autocomplete>
-          <SearchField aria-label="Search options" autoFocus className="group">
-            <input
-              placeholder="Search..."
-              className="w-full border-b border-gray-100 px-3 py-2 text-sm outline-none"
-            />
-          </SearchField>
-
-          <ListBox
-            items={options}
-            className="flex flex-col gap-0.5 overflow-auto p-1 outline-none"
-          >
-            {(option) => (
-              <ListBoxItem
-                id={option.id}
-                textValue={option.name}
-                className={clsx(
-                  "cursor-pointer rounded px-2 py-1.5 text-sm outline-none",
-                  "data-focused:bg-gray-100",
-                  "data-selected:bg-blue-50 data-selected:text-blue-700",
-                  "data-focused:data-selected:bg-blue-100"
-                )}
-              >
-                {option.name}
-              </ListBoxItem>
-            )}
-          </ListBox>
-        </Autocomplete>
-      </Popover>
-    </Select>
-  );
-}
+<Select selectionMode="multiple">
+  <SelectValue />
+  <Popover>
+    <Autocomplete>
+      <SearchField />
+      <ListBox>
+        {(option) => <ListBoxItem>{option.name}</ListBoxItem>}
+      </ListBox>
+    </Autocomplete>
+  </Popover>
+</Select>
 ```
 
-There's quite a bit going on here, but each piece has a clear responsibility:
+Each component has a single job. `Select` owns the selection state. `SelectValue` renders what's currently selected. `Popover` handles the dropdown positioning and dismissal. `Autocomplete` wires the search field to the list so filtering works. `SearchField` is the input. `ListBox` and `ListBoxItem` are the actual options.
 
-- `Select` — manages the overall selection state, keyboard interactions, and ARIA roles
-- `SelectValue` — renders the current selection (we render tags here)
-- `Popover` — handles the positioning, animation, and dismissal of the dropdown
-- `Autocomplete` — wraps the search field and list box to connect filtering behavior
-- `SearchField` — provides a keyboard-accessible search input
-- `ListBox` — the actual list of options with proper ARIA roles
-- `ListBoxItem` — each option, with keyboard focus and selection state management
+You didn't write any of that interaction logic. You just described the structure, and React Aria filled in the behavior.
 
-You didn't write any of that interaction logic. You didn't manage focus, you didn't wire up arrow key navigation, you didn't add `role="listbox"` and `aria-selected` manually. React Aria did all of it.
+![MultiSelect with the dropdown open, search field focused, and selected items shown as tags](./multi-select.png)
 
-### Tailwind State Variants
-
-React Aria applies `data-*` attributes to elements based on their state — `data-focused`, `data-selected`, `data-disabled`, `data-hovered`, `data-pressed`, and so on. Tailwind's arbitrary variant syntax lets you target these directly:
+React Aria applies `data-*` attributes to elements based on their state: `data-focused`, `data-selected`, `data-disabled`, `data-hovered`, `data-pressed`, and so on. Tailwind's arbitrary variant syntax lets you target these directly:
 
 ```tsx
 <ListBoxItem
   className={clsx(
     "rounded px-2 py-1.5 text-sm",
-    // Applied when the item has keyboard focus
     "data-focused:bg-gray-100",
-    // Applied when the item is selected
     "data-selected:bg-blue-50 data-selected:font-medium",
-    // Applied when focused AND selected simultaneously
     "data-focused:data-selected:bg-blue-100",
-    // Applied when the item is disabled
     "data-disabled:cursor-not-allowed data-disabled:opacity-50"
   )}
 >
@@ -181,29 +77,68 @@ React Aria applies `data-*` attributes to elements based on their state — `dat
 </ListBoxItem>
 ```
 
-This means your hover and focus styles are driven by React Aria's state machine rather than CSS pseudo-classes, which gives you more accurate behavior (especially important for keyboard navigation, where `:hover` wouldn't apply at all). The component knows whether it has keyboard focus; a CSS `:focus` pseudo-class often doesn't.
+Your hover and focus styles are driven by React Aria's state machine rather than CSS pseudo-classes. This matters because `:hover` doesn't apply during keyboard navigation, but React Aria's `data-focused` does.
 
-## What You Get for Free
+## Async data out of the box
 
-Out of every React Aria component, you get this without writing a line of interaction code:
+Multi-select with local options is useful, but a lot of what we build in Plakar UI needs to fetch data from an API. React Aria ships with `useAsyncList` from `react-stately`, and this is where the library earns its place most clearly.
 
-**Keyboard navigation:** Arrow keys move focus through options, `Enter` and `Space` select, `Escape` closes overlays, `Tab` moves between interactive elements in the correct order.
+Here's a resource picker that fetches from an API and filters results as the user types:
 
-**Screen reader support:** Every component has the correct ARIA roles and live announcements. When you select an item in a multi-select, a screen reader announces it. When a dialog opens, focus moves to it and the page behind is marked as inert.
+```tsx
+import {
+  ComboBox,
+  Input,
+  ListBox,
+  ListBoxItem,
+  Popover,
+} from "react-aria-components";
+import { useAsyncList } from "react-stately";
 
-**Mobile/touch support:** Popovers and overlays work correctly on touch devices. Long press on mobile triggers the correct behavior.
+type Resource = { id: string; name: string };
 
-**RTL layout:** Right-to-left text directions work correctly, including flipped arrow key directions.
+export function ResourcePicker() {
+  const list = useAsyncList<Resource>({
+    async load({ signal, filterText }) {
+      const res = await fetch(`/api/resources?q=${filterText ?? ""}`, { signal });
+      const items = await res.json();
+      return { items };
+    },
+  });
 
-**High contrast mode:** Components respond correctly to Windows high contrast mode and forced colors.
+  return (
+    <ComboBox
+      items={list.items}
+      inputValue={list.filterText}
+      onInputChange={list.setFilterText}
+      isLoading={list.isLoading}
+    >
+      <Input placeholder="Search resources..." />
+      <Popover>
+        <ListBox>
+          {(item) => <ListBoxItem id={item.id}>{item.name}</ListBoxItem>}
+        </ListBox>
+      </Popover>
+    </ComboBox>
+  );
+}
+```
 
-This is the kind of thing that Adobe, with teams of engineers dedicated to accessibility, has been refining for years across their own products. We get it for free.
+About twenty lines of code. In-flight requests are cancelled automatically via `AbortSignal`, so there's no debouncing to wire up and no stale responses landing out of order. The loading state is tracked and exposed through `isLoading` so you can show a spinner without any extra flags. If your API returns a `cursor` from `load`, pagination just works. And there's no `useEffect` anywhere in this; no manual loading flag, no request cancellation on unmount. All of that is inside `useAsyncList`.
 
-## The Composability Payoff
+![ResourcePicker: loading state on the left, filtered results on the right](./resource-picker.png)
 
-The verbose composable API pays off when you need to deviate from a standard pattern. Want to add a "Select all" button at the top of your list? Add a `Button` above the `ListBox`. Want to group options under headers? Use `ListBoxSection` and `Header` inside `ListBox`. Want a loading spinner instead of options while fetching? Replace the `ListBox` children with a spinner. React Aria doesn't lock you into a specific structure — you assemble the pieces you need.
+## The composability payoff
 
-Compare this to a traditional component library where you'd be passing `showSelectAll={true}` as a prop and hoping the library supports exactly the variant you need. With React Aria, you compose it.
+The verbose composable API pays off when you need to deviate from a standard pattern. Want a "Select all" button at the top of the list? Add a `Button` above the `ListBox`. Want to group options under section headers? Use `ListBoxSection` and `Header` inside `ListBox`. Want a loading spinner instead of options while fetching? Replace the `ListBox` children with a spinner. React Aria doesn't lock you into a specific structure.
 
-This is the same philosophy as TanStack Form's field components or TanStack Table's headless approach: the library handles the hard invisible stuff, and you retain full control over the rendering. -->
+Compare this to passing `showSelectAll={true}` as a prop and hoping the library supports exactly the variant you need. With React Aria, you compose it.
+
+This is the same philosophy as TanStack Form's field components or TanStack Table's headless approach: the library handles the hard invisible stuff, and you retain full control over the rendering.
+
+## Accessibility comes along for the ride
+
+We didn't choose React Aria primarily for accessibility. We chose it for the breadth of components and the quality of their interaction logic. But accessibility comes along for the ride. Every component ships with correct ARIA roles, keyboard navigation, screen reader announcements, and mobile touch support. We get that from Adobe's years of refinement across their own products, without having to think about it ourselves.
+
+Next up: [TanStack Table](../plakar-ui-tanstack-table), and the discovery that a `<table>` element is not actually the whole story.
 

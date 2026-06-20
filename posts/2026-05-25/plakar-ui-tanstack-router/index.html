@@ -84,10 +84,11 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2026-05-25T04:00:00+00:00">
-    <meta property="article:modified_time" content="2026-06-19T21:49:14+02:00">
+    <meta property="article:modified_time" content="2026-06-20T02:22:57+02:00">
     <meta property="article:tag" content="Tanstack-Router">
     <meta property="article:tag" content="React">
     <meta property="article:tag" content="Plakar-Ui">
+    <meta property="og:image" content="https://plakar.io/posts/2026-05-25/plakar-ui-tanstack-router/featured.png">
       <meta property="og:see_also" content="https://plakar.io/posts/2026-05-25/plakar-ui-series-intro/">
       <meta property="og:see_also" content="https://plakar.io/posts/2026-05-25/plakar-ui-pnpm-turborepo/">
       <meta property="og:see_also" content="https://plakar.io/posts/2026-05-25/plakar-ui-react/">
@@ -97,7 +98,8 @@
       <meta property="og:see_also" content="https://plakar.io/posts/2026-05-25/plakar-ui-tanstack-form/">
 
   
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://plakar.io/posts/2026-05-25/plakar-ui-tanstack-router/featured.png">
   <meta name="twitter:title" content="Plakar UI #9: TanStack Router">
   <meta name="twitter:description" content="How TanStack Router brings compile-time safety to client-side routing — broken links, missing params, and wrong search params are all caught before the code ships.">
 
@@ -110,24 +112,9 @@
     
   
     
-      
-    
   
     
-      
-    
   
-  
-    
-      
-      
-        
-      
-      
-        <meta name="twitter:image" content="https://plakar.io/img/general/featured.png">
-        <meta property="og:image" content="https://plakar.io/img/general/featured.png">
-      
-    
   
 
   
@@ -155,8 +142,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.4f8a8794e5ca5a47090db02c9c8c64c96139cea858c5b644fd77cff5de963c9b68a8efc09691a9f51b03f8ef962d8ba4764e361528f5e8796944d9fbc45f5a82.css"
-    integrity="sha512-T4qHlOXKWkcJDbAsnIxkyWE5zqhYxbZE/XfP9d6WPJtoqO/AlpGp9RsD&#43;O&#43;WLYukdk42FSj16HlpRNn7xF9agg==">
+    href="/css/main.bundle.min.577c047f75802b5d99b666918a24190f6fea077ddd2db15983f9e4c9e6ae44936217cd9535a6a4ee8ec3367165bf5bcc79e7398c98ed04650d50981b923f0667.css"
+    integrity="sha512-V3wEf3WAK12ZtmaRiiQZD2/qB33dLbFZg/nkyeauRJNiF82VNaak7o7DNnFlv1vMeec5jJjtBGUNUJgbkj8GZw==">
 
   
   
@@ -277,12 +264,12 @@
     "dateCreated": "2026-05-25T04:00:00\u002b00:00",
     "datePublished": "2026-05-25T04:00:00\u002b00:00",
     
-    "dateModified": "2026-06-19T21:49:14\u002b02:00",
+    "dateModified": "2026-06-20T02:22:57\u002b02:00",
     
     "keywords": ["tanstack-router","react","plakar-ui"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "9"
+    "wordCount": "835"
   }]
   </script>
 
@@ -1851,8 +1838,6 @@
 
 
 
-  
-
 
 
 <section class="section-light-2 grid-background px-4 pt-32 pb-7">
@@ -1872,12 +1857,12 @@
             <span>•</span>
           
         
-        <span>9 words</span>
+        <span>835 words</span>
         <span>•</span>
         <span>May 25, 2026</span>
         
           <span>•</span>
-          <span>1 min read</span>
+          <span>4 min read</span>
         
       </div>
 
@@ -1885,6 +1870,26 @@
   </div>
 </section>
 
+
+
+<section class="section-light-2 grid-background">
+  <div class="bg-gradient-section-light-1 px-4 py-2">
+    <div class="max-w-350 mx-auto flex flex-col items-center">
+      <div class="w-full max-w-178 rounded-lg bg-neutral-50 border border-neutral-300">
+        <div class="w-full h-7 px-4 flex items-center gap-2 border-b border-neutral-200">
+          <div class="w-2 h-2 bg-neutral-300 rounded-full"></div>
+          <div class="w-2 h-2 bg-neutral-300 rounded-full"></div>
+          <div class="w-2 h-2 bg-neutral-300 rounded-full"></div>
+        </div>
+        <div class="p-4">
+          <div class="aspect-video overflow-hidden rounded-sm">
+            <img src="/posts/2026-05-25/plakar-ui-tanstack-router/featured.png" alt="Plakar UI #9: TanStack Router" class="w-full h-full object-cover">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 
 
@@ -2054,7 +2059,14 @@
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <nav id="TableOfContents"></nav>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-a-frontend-router-does">What a frontend router does</a></li>
+    <li><a href="#why-tanstack-router">Why TanStack Router</a></li>
+    <li><a href="#what-that-looks-like-in-practice">What that looks like in practice</a></li>
+    <li><a href="#a-real-example-auth-redirects">A real example: auth redirects</a></li>
+  </ul>
+</nav>
     </div>
 
     
@@ -2313,296 +2325,109 @@
 
       
       <div class="prose docs-font max-w-full">
-        <p>In progress. Check back soon for the full article!</p>
-<!-- If you've only built backend services in Go, you've used routers — something like `net/http.ServeMux` or a third-party library like `chi` or `gin`. The concept is the same on the frontend, but the mechanics are different in ways that take some getting used to.
-
-Let's start from the beginning.
-
-## What Is a Router and Why Does a Frontend App Need One?
-
-In a traditional server-rendered web application, the URL is a direct instruction to the server. When you visit `https://myapp.com/users/42`, the server receives a request for that path, runs the appropriate handler, fetches user 42 from the database, renders an HTML page, and sends it back. The browser displays the result. Simple.
-
-In a Single Page Application (SPA), none of that happens. The entire application — all the JavaScript, all the routing logic — is delivered to the browser in a single bundle. The server returns one HTML file with a `<script>` tag, and after that, everything runs client-side. When you navigate from `/users` to `/users/42`, there's no server request. The JavaScript intercepts the URL change and renders a different component.
-
-Without a router, this breaks in ways that feel subtle but are deeply annoying to users:
-
-- The back button doesn't work — it would navigate *out* of the app, back to wherever the user came from
-- Links are meaningless — you can't bookmark `/users/42` and come back to it, because the app doesn't know how to render it on initial load
-- Sharing a URL is broken — if you paste `https://myapp.com/users/42` into a chat, the recipient will land on the app's blank state, not on user 42
-- Refresh is broken — same problem as above
-
-A router solves this by maintaining a mapping between URL patterns and the components that should render for each. It intercepts URL changes (from `<a>` clicks, browser history navigation, programmatic redirects) and renders the right components without a server round-trip. It also handles the initial load, so that if someone lands directly on `/users/42`, the correct component renders.
-
-Every serious SPA has a router. The question is which one, and why.
-
-## Why TanStack Router
-
-There are several mature router options for React. The most widely used is React Router (now React Router v7 / Remix). It works fine. But we chose TanStack Router for one reason above all others: it is fully type-safe.
-
-When you create a link to a route with TanStack Router, TypeScript knows whether that route exists. It knows what path parameters the route expects. It knows what search parameters are valid. If you rename a route's path, every link to it that uses the old path becomes a compile error.
-
-This might sound like a minor convenience. It isn't. In a large application where routes get renamed, paths get restructured, and parameters get added or removed, having TypeScript enforce consistency across the entire routing tree catches bugs before they reach anyone. We've experienced the alternative — a rename that missed a few link destinations, discovered three days later by a user reporting a 404 — and we don't miss it.
-
-## File-Based Routing
-
-TanStack Router supports file-based routing, which is the pattern we use. Route files live in `src/routes/`, and the route tree is generated automatically from the file structure. You never write the route tree manually.
-
-The naming conventions are:
-- `src/routes/index.tsx` → `/`
-- `src/routes/login.tsx` → `/login`
-- `src/routes/_layout/users.index.tsx` → `/users`
-- `src/routes/_layout/users.$id.tsx` → `/users/:id`
-- `src/routes/_layout/users.$id.settings.tsx` → `/users/:id/settings`
-
-The `_layout` prefix creates a layout route — a component that wraps a group of routes with shared UI (sidebar, navigation, breadcrumbs). The `$` prefix in filenames marks dynamic segments (URL parameters).
-
-The generated `routeTree.gen.ts` file stitches everything together. You never edit it manually — the CLI regenerates it whenever route files change.
-
-## Creating a Route
-
-Here's a realistic route file — the login page from Plakar:
-
-```tsx
-// src/routes/login.tsx
-import { createFileRoute, useRouter } from "@tanstack/react-router";
-import { zodValidator } from "@tanstack/zod-adapter";
-import z from "zod";
-
-export const Route = createFileRoute("/login")({
-  validateSearch: zodValidator(
-    z.object({
-      redirect: z.string().catch("").default("/"),
-    })
-  ),
-  component: RouteComponent,
-});
-
-function RouteComponent() {
-  const router = useRouter();
-  const search = Route.useSearch(); // { redirect: string }
-
-  return (
-    <div>
-      <h1>Sign in</h1>
-      {/* form that calls router.history.push(search.redirect) on success */}
-    </div>
-  );
-}
-```
-
-The `createFileRoute("/login")` call binds this file to the `/login` path and returns a typed route object. That string is validated at compile time — if the file's path and the route string disagree, you get an error.
-
-`Route.useSearch()` returns the search params with the shape defined in `validateSearch`. If the URL is `/login?redirect=/dashboard`, then `search.redirect` is `"/dashboard"`. If the URL is `/login`, `search.redirect` defaults to `"/"` because we called `.default("/")` in the Zod schema.
-
-## Type-Safe Links
-
-Creating a link to this route looks like this:
-
-```tsx
-import { Link } from "@tanstack/react-router";
-
-// TypeScript knows this route exists and that `redirect` is a valid search param
-<Link to="/login" search={{ redirect: "/settings" }}>
-  Sign in
-</Link>
-```
-
-If you change the login route's path from `/login` to `/auth/login`, this link becomes a type error because `/login` no longer exists in the route tree. TypeScript will tell you every component that needs updating.
-
-For routes with URL parameters:
-
-```tsx
-// Linking to /users/$id/settings
-<Link
-  to="/users/$id/settings"
-  params={{ id: user.id }}
->
-  Edit settings
-</Link>
-```
-
-TypeScript knows that `/users/$id/settings` requires a `params` object with an `id` field. If you omit it, the code won't compile.
-
-Here's a real example from Plakar — a link to a source connector's detail page:
-
-```tsx
-<Link
-  to="/sources/$id"
-  params={{ id: connector.id }}
-  className="font-medium hover:underline"
->
-  {connector.name}
-</Link>
-```
-
-And a programmatic navigation with search params:
-
-```tsx
-const navigate = Route.useNavigate();
-
-navigate({
-  search: (prev) => ({
-    ...prev,
-    page: 0,
-    per_page: 50,
-  }),
-});
-```
-
-## Data Loading with Loaders
-
-One common pattern in SPAs is the "loading spinner inside the component" approach: the component renders, immediately sees it has no data, shows a spinner, fires a fetch, and re-renders when the data arrives. This works, but it leads to cascading loading states and a choppy experience.
-
-TanStack Router's solution is route loaders — functions that run *before* the component renders. When you navigate to a route, the router calls the loader, waits for it to complete (or at least start prefetching), and only then renders the component. The component can assume data is available.
-
-In practice, we integrate this with TanStack Query:
-
-```tsx
-// src/routes/_layout/users.$id.tsx
-export const Route = createFileRoute("/_layout/users/$id")({
-  loader: async ({ context: { queryClient }, params: { id } }) => {
-    // Prefetch the user data. The component will use the cached result.
-    await queryClient.ensureQueryData(getUserQueryOptions(id));
-  },
-  component: RouteComponent,
-});
-
-function RouteComponent() {
-  const { id } = Route.useParams();
-
-  // By the time this runs, the data is already in the query cache.
-  const { data } = useSuspenseQuery(getUserQueryOptions(id));
-
-  return (
-    <div>
-      <h1>{data.name}</h1>
-    </div>
-  );
-}
-```
-
-The loader prefetches data into the TanStack Query cache. When the component mounts and calls `useSuspenseQuery`, the data is already there — no spinner. This is a much better user experience and it keeps the component clean.
-
-## Search Params Validation
-
-We mentioned this in the table article, but it's worth calling out explicitly. TanStack Router validates search params using Zod. This means:
-
-- `?page=abc` won't silently become `NaN` — the Zod schema catches it and falls back to the default
-- `?provider=unknown_type` won't pass validation if your schema restricts the values
-- Every component that reads search params has the correct TypeScript types — no casting
-
-Here's the search param schema from the inventories route:
-
-```tsx
-validateSearch: zodValidator(
-  z.object({
-    page: z.coerce.number().nonnegative().catch(0).default(0),
-    per_page: z.coerce
-      .number()
-      .nonnegative()
-      .catch(50)
-      .default(50)
-      .transform((n) => (n > 500 ? 500 : n)),
-    search: z.string().catch("").default(""),
-    provider: z.enum(InventoryTypes).optional().catch(undefined),
-  })
-),
-```
-
-`z.coerce.number()` converts the string `"42"` to the number `42`. `.catch(0)` means if the coercion fails (because the user typed `?page=abc`), fall back to `0` silently. `.transform((n) => (n > 500 ? 500 : n))` caps the page size at 500 to protect against absurd API requests.
-
-`Route.useSearch()` returns an object typed according to this schema. The rest of the component just reads `page` as a number and `provider` as `InventoryTypes | undefined`.
-
-## Error Handling
-
-Routes can define an `errorComponent` — a component that renders if anything in the route's loader or component throws an error. This is the React equivalent of Go's `defer recover()`, but more structured.
-
-Here's the pattern we use for authentication errors. In Plakar, if the API returns HTTP 401 Unauthorized, our API client throws an `APIResponseUnauthorizedError`. Rather than catching this in every component, we handle it once at the route level:
-
-```tsx
-// src/routes/__root.tsx
-export const Route = createRootRouteWithContext<{
-  queryClient: QueryClient;
-}>()({
-  beforeLoad: async ({ context: { queryClient }, matches }) => {
-    try {
-      await queryClient.ensureQueryData(getApiInfoQueryOptions());
-    } catch (error) {
-      if (error instanceof APIResponseUnauthorizedError) {
-        // Don't throw — let the route render normally.
-        // The login redirect is handled by the error component.
-        return;
-      }
-      throw error;
-    }
-  },
-  component: Component,
-});
-```
-
-And for a route that should redirect to login on unauthorized access:
-
-```tsx
-import { createFileRoute, redirect } from "@tanstack/react-router";
-
-export const Route = createFileRoute("/_layout")({
-  beforeLoad: async ({ context: { queryClient }, location }) => {
-    try {
-      await queryClient.ensureQueryData(getMeQueryOptions());
-    } catch (error) {
-      if (error instanceof APIResponseUnauthorizedError) {
-        throw redirect({
-          to: "/login",
-          search: {
-            redirect: location.pathname,
-          },
-        });
-      }
-      throw error;
-    }
-  },
-  component: LayoutComponent,
-});
-```
-
-When any API call under the `/_layout` route throws `APIResponseUnauthorizedError`, this `beforeLoad` catches it and redirects to `/login` with the current path as the `redirect` param. After a successful login, the user lands back where they were.
-
-This is declared once. Every route nested under `/_layout` inherits this behavior automatically. You don't scatter `if (error instanceof APIResponseUnauthorizedError)` checks across every component.
-
-For other types of errors — network failures, unexpected API shapes, server errors — you can define an `errorComponent` on specific routes:
-
-```tsx
-export const Route = createFileRoute("/_layout/users/$id")({
-  loader: async ({ context: { queryClient }, params }) => {
-    await queryClient.ensureQueryData(getUserQueryOptions(params.id));
-  },
-  errorComponent: ({ error }) => {
-    if (error instanceof APIResponseNotFoundError) {
-      return (
-        <div className="flex flex-col items-center gap-4 py-16">
-          <h2 className="text-lg font-medium">User not found</h2>
-          <Link to="/users">Back to users</Link>
-        </div>
-      );
-    }
-    // Re-throw anything else to propagate up the error boundary chain
-    throw error;
-  },
-  component: RouteComponent,
-});
-```
-
-The error boundary pattern means your component code stays clean. It only handles the happy path. Errors are handled declaratively at the route level.
-
-## Conclusion
-
-A router is non-negotiable in an SPA — without one, the fundamental contract of the web (URLs identify pages, the back button works, links can be shared) breaks down.
-
-We chose TanStack Router because it takes the same approach to routing that TanStack Query takes to data fetching and TanStack Form takes to forms: full type safety, with the compiler catching mistakes rather than users. Rename a route and you get a compile error. Reference a search param by the wrong name and you get a compile error. Pass the wrong type for a URL parameter and you get a compile error.
-
-It might seem like a minor quality-of-life improvement, but over the lifecycle of a growing application, it's the difference between confidently refactoring the routing structure and nervously hoping you caught every reference. That confidence compounds. It makes us faster, and it makes our users see fewer broken experiences.
-
-Every piece of the TanStack ecosystem we've covered in this series — Query, Form, Table, Router — is built on the same principle: make the invisible things safe, so you can focus on the visible ones. -->
+        <p>If you&rsquo;ve only built backend services in Go, you&rsquo;ve used routers: something like <code>net/http.ServeMux</code> or a third-party library like <code>chi</code> or <code>gin</code>. The concept is the same on the frontend, but the mechanics are different in ways that take some getting used to.</p>
+<p>In the <a href="../plakar-ui-tanstack-table" >previous article</a> we saw how TanStack Table stores pagination state in the URL. TanStack Router is the piece that makes that possible.</p>
+
+<div class="relative group">
+  <h2 id="what-a-frontend-router-does">What a frontend router does</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#what-a-frontend-router-does" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>In a traditional server-rendered web application, the URL is a direct instruction to the server. When you visit <code>https://myapp.com/users/42</code>, the server receives a request for that path, runs the appropriate handler, fetches user 42 from the database, renders an HTML page, and sends it back. The browser displays the result. Simple.</p>
+<p>In a Single Page Application (SPA), none of that happens. The entire application is delivered to the browser in a single bundle. The server returns one HTML file with a <code>&lt;script&gt;</code> tag, and after that, everything runs client-side. When you navigate from <code>/users</code> to <code>/users/42</code>, there&rsquo;s no server request. The JavaScript intercepts the URL change and renders a different component.</p>
+<p>Without a router, this breaks in ways that feel subtle but are deeply annoying to users:</p>
+<ul>
+<li>The back button doesn&rsquo;t work: it navigates <em>out</em> of the app, back to wherever the user came from</li>
+<li>Links are meaningless: you can&rsquo;t bookmark <code>/users/42</code> and come back to it, because the app doesn&rsquo;t know how to render it on initial load</li>
+<li>Sharing a URL is broken: if you paste <code>https://myapp.com/users/42</code> into a chat, the recipient lands on the app&rsquo;s blank state, not on user 42</li>
+<li>Refresh is broken: same problem as above</li>
+</ul>
+<p>A router solves this by maintaining a mapping between URL patterns and the components that should render for each. It intercepts URL changes (from <code>&lt;a&gt;</code> clicks, browser history navigation, programmatic redirects) and renders the right components without a server round-trip. It also handles the initial load, so that if someone lands directly on <code>/users/42</code>, the correct component renders.</p>
+<p>Every serious SPA has a router.</p>
+
+<div class="relative group">
+  <h2 id="why-tanstack-router">Why TanStack Router</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#why-tanstack-router" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>There are several mature router options for React. The most widely used is React Router (now React Router v7 / Remix). It works fine. But we chose TanStack Router for one reason above all others: it is fully type-safe.</p>
+<p>When you create a link to a route with TanStack Router, TypeScript knows whether that route exists. It knows what path parameters the route expects. It knows what search parameters are valid. If you rename a route&rsquo;s path, every link to it that uses the old path becomes a compile error.</p>
+<p>This might sound like a minor convenience. It isn&rsquo;t. In a large application where routes get renamed, paths get restructured, and parameters get added or removed, having TypeScript enforce consistency across the entire routing tree catches bugs before they reach anyone. We&rsquo;ve experienced the alternative: a rename that missed a few link destinations, discovered three days later by a user reporting a 404. We don&rsquo;t miss it.</p>
+
+<div class="relative group">
+  <h2 id="what-that-looks-like-in-practice">What that looks like in practice</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#what-that-looks-like-in-practice" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>Routes live in files whose names define the URL structure. <code>users.$id.tsx</code> becomes <code>/users/:id</code>. <code>users.$id.settings.tsx</code> becomes <code>/users/:id/settings</code>. A CLI tool watches the <code>src/routes/</code> directory and regenerates a <code>routeTree.gen.ts</code> file whenever route files change. You never hand-write a routing config. The generated tree is what TypeScript types everything against.</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt="The route file structure in the Plakar codebase"
+    src="./router-files.png"
+    ></figure>
+<p>Every route, link, and navigation call is typed against that generated tree. Here&rsquo;s a real example from Plakar, a link to a source connector&rsquo;s detail page:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">Link</span>
+</span></span><span class="line"><span class="cl">  <span class="na">to</span><span class="o">=</span><span class="s">&#34;/sources/$id&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">params</span><span class="o">=</span><span class="p">{{</span> <span class="nx">id</span>: <span class="kt">connector.id</span> <span class="p">}}</span>
+</span></span><span class="line"><span class="cl">  <span class="na">className</span><span class="o">=</span><span class="s">&#34;font-medium hover:underline&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span><span class="nx">connector</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">Link</span><span class="p">&gt;</span></span></span></code></pre></div></div>
+<p>TypeScript knows this route exists and that it takes an <code>id</code> param. Rename the route file, and every link that references the old path becomes a compile error. Omit the <code>params</code> prop, and it won&rsquo;t compile either.</p>
+<p>The same applies to search params. They&rsquo;re declared with a Zod schema on the route, so <code>Route.useSearch()</code> returns a properly typed object. <code>?page=abc</code> falls back to the default instead of becoming <code>NaN</code> silently. <code>?provider=unknown_type</code> fails validation if the schema restricts the values. The component just reads <code>page</code> as a number and moves on.</p>
+
+<div class="relative group">
+  <h2 id="a-real-example-auth-redirects">A real example: auth redirects</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#a-real-example-auth-redirects" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>The routing layer is also where you handle cross-cutting concerns like auth. In Plakar, if the API returns HTTP 401, our API client throws an <code>APIResponseUnauthorizedError</code>. The check lives in the <code>/_layout</code> <code>beforeLoad</code>:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">createFileRoute</span><span class="p">,</span> <span class="nx">redirect</span> <span class="p">}</span> <span class="kr">from</span> <span class="s2">&#34;@tanstack/react-router&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">Route</span> <span class="o">=</span> <span class="nx">createFileRoute</span><span class="p">(</span><span class="s2">&#34;/_layout&#34;</span><span class="p">)({</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">beforeLoad</span>: <span class="kt">async</span> <span class="p">({</span> <span class="nx">context</span><span class="o">:</span> <span class="p">{</span> <span class="nx">queryClient</span> <span class="p">},</span> <span class="nx">location</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">await</span> <span class="nx">queryClient</span><span class="p">.</span><span class="nx">ensureQueryData</span><span class="p">(</span><span class="nx">getMeQueryOptions</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="nx">error</span> <span class="k">instanceof</span> <span class="nx">APIResponseUnauthorizedError</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="nx">redirect</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">to</span><span class="o">:</span> <span class="s2">&#34;/login&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">search</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">redirect</span>: <span class="kt">location.pathname</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">});</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="k">throw</span> <span class="nx">error</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">component</span>: <span class="kt">LayoutComponent</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span></span></span></code></pre></div></div>
+<p>This is declared once. Every route nested under <code>/_layout</code> inherits this behavior automatically. You don&rsquo;t scatter <code>if (error instanceof APIResponseUnauthorizedError)</code> checks across every component.</p>
+<p>The routing layer is where you handle cross-cutting concerns: auth, redirects, prefetching. Because it&rsquo;s all typed, a mistake in wiring it up is caught before it ships.</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt="The login redirect flow in Plakar"
+    src="./router-auth.png"
+    ></figure>
+<p>Next up: <a href="../plakar-ui-storybook" >Storybook</a>, and how we document and test components in isolation.</p>
 
       </div>
 
