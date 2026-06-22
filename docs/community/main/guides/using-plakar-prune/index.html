@@ -84,7 +84,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-04-24T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-06-22T23:31:33+02:00">
+    <meta property="article:modified_time" content="2026-06-22T23:32:13+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -267,12 +267,12 @@
     "dateCreated": "2026-04-24T00:00:00\u002b00:00",
     "datePublished": "2026-04-24T00:00:00\u002b00:00",
     
-    "dateModified": "2026-06-22T23:31:33\u002b02:00",
+    "dateModified": "2026-06-22T23:32:13\u002b02:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "577"
+    "wordCount": "867"
   }]
   </script>
 
@@ -4149,11 +4149,18 @@
   </span>
   
 </div>
-<p><code>plakar prune</code> removes snapshots from a Kloset store. Snapshots can be selected for removal by age, tag, or retention policy.</p>
-<p>Every backup you run creates a new snapshot in your Kloset store. If its feft unchecked, snapshots can accumulate indefinitely.</p>
-<p>Pruning lets you define how much history you actually need such as keeping hourly snapshots for the past week, daily ones for the past month, monthly ones for the past year and discard everything else. This keeps your store from growing without bound while preserving important recovery points.</p>
-<p>By default, <code>plakar prune</code> runs in dry-run mode and makes no changes, you&rsquo;ll need to pass <code>-apply</code> to execute the operation.</p>
-<p>On this guide, we will use a Kloset store is located at <code>$HOME/backups</code>, but your store can be located anywhere else:</p>
+<p><code>plakar prune</code> removes snapshots from a Kloset store. Snapshots can be selected
+for removal by age, tag, or retention policy.</p>
+<p>Every backup you run creates a new snapshot in your Kloset store. If left
+unchecked, snapshots can accumulate indefinitely.</p>
+<p>Pruning lets you define how much history you actually need — such as keeping
+hourly snapshots for the past week, daily ones for the past month, monthly ones
+for the past year — and discard everything else. This keeps your store from
+growing without bound while preserving important recovery points.</p>
+<p>By default, <code>plakar prune</code> runs in dry-run mode and makes no changes. You&rsquo;ll
+need to pass <code>-apply</code> to execute the operation.</p>
+<p>In this guide, we will use a Kloset store located at <code>$HOME/backups</code>, but your
+store can be located anywhere else.</p>
 
 <div class="relative group">
   <h2 id="previewing-what-would-be-pruned">Previewing what would be pruned</h2>
@@ -4165,7 +4172,8 @@
 </div>
 <p>Before removing anything, check which snapshots would be affected:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ plakar at <span class="nv">$HOME</span>/backups prune -days <span class="m">30</span></span></span></code></pre></div></div>
-<p>No snapshots are deleted without <code>-apply</code>. The output shows what <em>would</em> be removed.</p>
+<p>No snapshots are deleted without <code>-apply</code>. The output shows what <em>would</em> be
+removed.</p>
 
 <div class="relative group">
   <h2 id="removing-snapshots-by-age">Removing snapshots by age</h2>
@@ -4199,7 +4207,9 @@
   </span>
   
 </div>
-<p>A retention policy keeps a defined number of snapshots across different time windows and deletes everything else. This is the most common way to keep a store bounded over time.</p>
+<p>A retention policy keeps a defined number of snapshots across different time
+windows and deletes everything else. This is the most common way to keep a store
+bounded over time.</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ plakar at <span class="nv">$HOME</span>/backups prune <span class="se">\
 </span></span></span><span class="line"><span class="cl">  -days <span class="m">1</span> -per-day <span class="m">7</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl">  -weeks <span class="m">4</span> -per-week <span class="m">1</span> <span class="se">\
@@ -4208,12 +4218,127 @@
 </span></span></span><span class="line"><span class="cl">  -apply</span></span></code></pre></div></div>
 <p>This can be broken down as:</p>
 <ul>
-<li><code>-days 1 -per-day 7</code> — For the past day, keep up to 7 snapshots. This preserves frequent checkpoints in the most recent period.</li>
-<li><code>-weeks 4 -per-week 1</code> — For the past 4 weeks, keep 1 snapshot per week. Older intra-day snapshots are pruned down to a single representative per week.</li>
+<li><code>-days 1 -per-day 7</code> — For the past day, keep up to 7 snapshots. This
+preserves frequent checkpoints in the most recent period.</li>
+<li><code>-weeks 4 -per-week 1</code> — For the past 4 weeks, keep 1 snapshot per week. Older
+intra-day snapshots are pruned down to a single representative per week.</li>
 <li><code>-months 12 -per-month 1</code> — For the past 12 months, keep 1 snapshot per month.</li>
 <li><code>-years 5 -per-year 1</code> — For the past 5 years, keep 1 snapshot per year.</li>
 </ul>
 <p>Everything outside those windows is deleted.</p>
+
+<div class="relative group">
+  <h2 id="grouping-snapshots-before-applying-retention">Grouping snapshots before applying retention</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#grouping-snapshots-before-applying-retention" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>By default, retention rules apply across the entire result set as a whole. The
+<code>-group-by</code> flag partitions snapshots by a metadata key first, then applies
+retention rules independently within each group.</p>
+<p>This matters when your store contains snapshots from multiple sources. Without
+grouping, <code>-per-day 1</code> keeps a single snapshot for the day regardless of which
+machine or job it came from. With <code>-group-by name</code>, it keeps the newest snapshot
+<em>per name</em> for the day.</p>
+<p>The general form is:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ plakar at <span class="nv">$HOME</span>/backups prune -days <span class="m">30</span> -per-day <span class="m">1</span> -group-by &lt;key&gt; -apply</span></span></code></pre></div></div>
+<p>Supported keys:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Key</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>name</code></td>
+          <td>Snapshot name</td>
+      </tr>
+      <tr>
+          <td><code>category</code></td>
+          <td>Snapshot category</td>
+      </tr>
+      <tr>
+          <td><code>environment</code></td>
+          <td>Environment label (e.g. <code>production</code>, <code>staging</code>)</td>
+      </tr>
+      <tr>
+          <td><code>perimeter</code></td>
+          <td>Perimeter label</td>
+      </tr>
+      <tr>
+          <td><code>job</code></td>
+          <td>Job name</td>
+      </tr>
+      <tr>
+          <td><code>dataset</code></td>
+          <td>Dataset name</td>
+      </tr>
+      <tr>
+          <td><code>data-class</code></td>
+          <td>Data classification label</td>
+      </tr>
+      <tr>
+          <td><code>tag</code></td>
+          <td>Snapshot tag</td>
+      </tr>
+      <tr>
+          <td><code>origin</code></td>
+          <td>Origin identifier</td>
+      </tr>
+      <tr>
+          <td><code>type</code></td>
+          <td>Snapshot type</td>
+      </tr>
+      <tr>
+          <td><code>root</code></td>
+          <td>Backup root path</td>
+      </tr>
+  </tbody>
+</table>
+<p>Keys like <code>tag</code>, <code>origin</code>, <code>type</code>, <code>root</code>, and <code>data-class</code> are multi-valued: a
+snapshot can belong to more than one group. In that case, the snapshot
+participates in retention evaluation for each group it belongs to, and a keep
+decision in any group takes precedence over delete.</p>
+
+<div class="relative group">
+  <h3 id="example-per-name-retention">Example: per-name retention</h3>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#example-per-name-retention" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>A store holds snapshots from several different backup jobs, each identified by a
+distinct name. To keep the most recent snapshot per name for the last 30 days:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ plakar at <span class="nv">$HOME</span>/backups prune -days <span class="m">30</span> -per-day <span class="m">1</span> -group-by name -apply</span></span></code></pre></div></div>
+<p>Without <code>-group-by name</code>, only a single snapshot across all jobs would be kept
+per day.</p>
+
+<div class="relative group">
+  <h3 id="example-per-environment-retention">Example: per-environment retention</h3>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#example-per-environment-retention" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>To apply the same per-week retention independently to each environment:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ plakar at <span class="nv">$HOME</span>/backups prune -weeks <span class="m">4</span> -per-week <span class="m">1</span> -group-by environment -apply</span></span></code></pre></div></div>
+
+<div class="relative group">
+  <h3 id="using--group-by-with-a-named-policy">Using <code>-group-by</code> with a named policy</h3>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#using--group-by-with-a-named-policy" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p><code>-group-by</code> composes naturally with <code>-policy</code>:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ plakar at <span class="nv">$HOME</span>/backups prune -policy weekly -group-by name -apply</span></span></code></pre></div></div>
 
 <div class="relative group">
   <h2 id="using-a-named-policy">Using a named policy</h2>
@@ -4223,7 +4348,8 @@
   </span>
   
 </div>
-<p>Rather than specifying retention parameters on the command line each time, a named policy can be defined once and reused.</p>
+<p>Rather than specifying retention parameters on the command line each time, a
+named policy can be defined once and reused.</p>
 <p>You can create a policy and configure its retention parameters:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ plakar policy add weekly
 </span></span><span class="line"><span class="cl">$ plakar policy <span class="nb">set</span> weekly <span class="nv">since</span><span class="o">=</span><span class="s1">&#39;3 months&#39;</span>
@@ -4254,7 +4380,10 @@
   </span>
   
 </div>
-<p>Pruning removes snapshots, but does not immediately free storage. Because Plakar deduplicates data across snapshots, the underlying chunks and packfiles remain until <code>plakar maintenance</code> runs (also consider the maintenance <a href="../../explanations/how-maintenance-works/#the-grace-period" >grace period</a>).</p>
+<p>Pruning removes snapshots, but does not immediately free storage. Because Plakar
+deduplicates data across snapshots, the underlying chunks and packfiles remain
+until <code>plakar maintenance</code> runs (also consider the maintenance
+<a href="../../explanations/how-maintenance-works/#the-grace-period" >grace period</a>).</p>
 <p>After pruning, run <code>plakar maintenance</code> to reclaim the freed space:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ plakar maintenance</span></span></code></pre></div></div>
 
@@ -4374,6 +4503,13 @@
     <li><a href="#removing-snapshots-by-age">Removing snapshots by age</a></li>
     <li><a href="#removing-snapshots-by-tag">Removing snapshots by tag</a></li>
     <li><a href="#applying-a-retention-policy">Applying a retention policy</a></li>
+    <li><a href="#grouping-snapshots-before-applying-retention">Grouping snapshots before applying retention</a>
+      <ul>
+        <li><a href="#example-per-name-retention">Example: per-name retention</a></li>
+        <li><a href="#example-per-environment-retention">Example: per-environment retention</a></li>
+        <li><a href="#using--group-by-with-a-named-policy">Using <code>-group-by</code> with a named policy</a></li>
+      </ul>
+    </li>
     <li><a href="#using-a-named-policy">Using a named policy</a>
       <ul>
         <li><a href="#managing-policies">Managing policies</a></li>
