@@ -84,7 +84,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-03-11T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-06-22T23:30:33+02:00">
+    <meta property="article:modified_time" content="2026-06-22T23:31:33+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -267,12 +267,12 @@
     "dateCreated": "2026-03-11T00:00:00\u002b00:00",
     "datePublished": "2026-03-11T00:00:00\u002b00:00",
     
-    "dateModified": "2026-06-22T23:30:33\u002b02:00",
+    "dateModified": "2026-06-22T23:31:33\u002b02:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "245"
+    "wordCount": "244"
   }]
   </script>
 
@@ -4157,7 +4157,7 @@
         <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"/></svg>
 </span></div>
         <div class="grow">
-          Developer Version
+          Note
         </div>
         <div
           class="ms-auto flex h-5 w-5 items-center justify-center transition-transform ease-in-out -rotate-90 group-open:rotate-0 print:hidden"><span class="relative block icon"><svg
@@ -4173,18 +4173,24 @@
   />
 </svg>
 </span></div>
-      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>This is the developer version of Plakar and it can only be installed from source. Only stable versions have distributed assets that can be installed using other OS specific methods</p></div></details><p>To build Plakar from source. You will need:</p>
+      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Developer Version This is the developer version of Plakar and it can only be
+installed from source. Only stable versions have distributed assets that can
+be installed using other OS specific methods</p></div></details><p>To build Plakar from source. You will need:</p>
 <ul>
 <li><a href="https://go.dev/doc/install"  target="_blank" rel="noreferrer">Go (Golang)</a></li>
-<li><code>make</code> (available by default on most Linux distributions; on macOS, install the Xcode command line tools with <code>xcode-select --install</code>; on Windows, use <a href="https://learn.microsoft.com/en-us/windows/wsl/install"  target="_blank" rel="noreferrer">WSL</a> or a tool like <a href="https://gnuwin32.sourceforge.net/packages/make.htm"  target="_blank" rel="noreferrer">GnuWin32 Make</a>)</li>
+<li><code>make</code> (available by default on most Linux distributions; on macOS, install
+the Xcode command line tools with <code>xcode-select --install</code>; on Windows, use
+<a href="https://learn.microsoft.com/en-us/windows/wsl/install"  target="_blank" rel="noreferrer">WSL</a> or a tool like
+<a href="https://gnuwin32.sourceforge.net/packages/make.htm"  target="_blank" rel="noreferrer">GnuWin32 Make</a>)</li>
 </ul>
 <p>Clone the repository and run <code>make</code>:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git clone https://github.com/PlakarKorp/plakar.git
 </span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> plakar
 </span></span><span class="line"><span class="cl">$ make</span></span></code></pre></div></div>
-<p>This produces a <code>plakar</code> binary in the current directory. To build a specific release version, check out the corresponding tag before running <code>make</code>:</p>
+<p>This produces a <code>plakar</code> binary in the current directory. To build a specific
+release version, check out the corresponding tag before running <code>make</code>:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git fetch --tags
-</span></span><span class="line"><span class="cl">$ git checkout tags/v1.1.0-rc.1
+</span></span><span class="line"><span class="cl">$ git checkout tags/v1.1.3
 </span></span><span class="line"><span class="cl">$ make</span></span></code></pre></div></div>
 
 <div class="relative group">
@@ -4197,7 +4203,7 @@
 </div>
 <p>Verify the installation by running:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar version</span></span></code></pre></div></div>
-<p>This should return the expected version number, for example <code>plakar/v1.1.0</code>.</p>
+<p>This should return the expected version number, for example <code>plakar/v1.1.3</code>.</p>
 
 <div class="relative group">
   <h2 id="downloading-specific-versions">Downloading Specific Versions</h2>
@@ -4207,8 +4213,11 @@
   </span>
   
 </div>
-<p>All release versions of <strong>Plakar</strong> are available directly from GitHub on the project&rsquo;s <a href="/download/" >release page</a>.</p>
-<p>For each release, check under the &ldquo;Assets&rdquo; section for a list of pre-built packages. They follow the naming convention <code>plakar_&lt;version&gt;_&lt;os&gt;_&lt;arch&gt;.&lt;format&gt;</code>.</p>
+<p>All release versions of <strong>Plakar</strong> are available directly from GitHub on the
+project&rsquo;s <a href="/download/" >release page</a>.</p>
+<p>For each release, check under the &ldquo;Assets&rdquo; section for a list of pre-built
+packages. They follow the naming convention
+<code>plakar_&lt;version&gt;_&lt;os&gt;_&lt;arch&gt;.&lt;format&gt;</code>.</p>
 
 <div class="relative group">
   <h2 id="installation-troubleshooting">Installation Troubleshooting</h2>
@@ -4218,10 +4227,12 @@
   </span>
   
 </div>
-<p>If you encounter any issues during installation, or notice that this documentation is out of date:</p>
+<p>If you encounter any issues during installation:</p>
 <ul>
 <li>Ensure you are following the instructions for the correct version of plakar.</li>
-<li>Open an issue on the <a href="https://github.com/PlakarKorp/plakar/issues"  target="_blank" rel="noreferrer">GitHub issue tracker</a>.</li>
+<li>Open an issue on the
+<a href="https://github.com/PlakarKorp/plakar/issues"  target="_blank" rel="noreferrer">GitHub issue tracker</a>.</li>
+<li>Ask for help on the <a href="https://discord.gg/uuegtnF2Q5"  target="_blank" rel="noreferrer">Discord server</a>.</li>
 </ul>
 
 <div class="relative group">
@@ -4232,7 +4243,8 @@
   </span>
   
 </div>
-<p>Now that you have plakar installed, we recommend proceeding to the <a href="../first-backup" >Quickstart guide</a> to set up your first backup.</p>
+<p>Now that you have plakar installed, we recommend proceeding to the
+<a href="../first-backup" >Quickstart guide</a> to set up your first backup.</p>
 
       </article>
       <footer class="mt-12 flex flex-col gap-6 docs-font border-t border-neutral-200 pt-6">
