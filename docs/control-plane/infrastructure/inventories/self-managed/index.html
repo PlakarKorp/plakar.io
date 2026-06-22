@@ -84,7 +84,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-05-06T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-06-22T17:50:10+03:00">
+    <meta property="article:modified_time" content="2026-06-22T23:30:33+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -267,12 +267,12 @@
     "dateCreated": "2026-05-06T00:00:00\u002b00:00",
     "datePublished": "2026-05-06T00:00:00\u002b00:00",
     
-    "dateModified": "2026-06-22T17:50:10\u002b03:00",
+    "dateModified": "2026-06-22T23:30:33\u002b02:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "465"
+    "wordCount": "463"
   }]
   </script>
 
@@ -3780,7 +3780,11 @@
   </span>
   
 </div>
-<p>A self-managed inventory is a manually maintained inventory that acts as a container for resources you define yourself. It is useful when your infrastructure is not covered by a managed inventory, such as a local MinIO instance, a self-hosted PostgreSQL database, or any other resource supported by Plakar integrations.</p>
+<p>A self-managed inventory is a manually maintained inventory that acts as a
+container for resources you define yourself. It is useful when your
+infrastructure is not covered by a managed inventory, such as a local MinIO
+instance, a self-hosted PostgreSQL database, or any other resource supported by
+Plakar integrations.</p>
 
 <div class="relative group">
   <h2 id="creating-a-self-managed-inventory">Creating a self-managed inventory</h2>
@@ -3790,7 +3794,10 @@
   </span>
   
 </div>
-<p>To create a self-managed inventory, you only need to provide a name. Once created, you can start adding resources to it. The inventory name can be edited later in the <strong>Settings</strong> tab. The inventory can also be deleted entirely from this tab if no longer needed.</p>
+<p>To create a self-managed inventory, you only need to provide a name. Once
+created, you can start adding resources to it. The inventory name can be edited
+later by clicking the settings icon in the top right of the inventory page,
+which opens a settings popup.</p>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
@@ -3822,10 +3829,14 @@
 <ul>
 <li><strong>Name</strong> - a display name for the resource</li>
 <li><strong>URN</strong> - a unique identifier for the resource</li>
-<li><strong>Class</strong> - the type of resource. See <a href="/docs/control-plane/infrastructure/inventories/self-managed/#resource-classes" >Resource classes</a> for the full list</li>
-<li><strong>Subclass</strong> - a more specific type within the class. See <a href="/docs/control-plane/infrastructure/inventories/self-managed/#resource-classes" >Resource classes</a></li>
-<li><strong>Hostname</strong> - the address used to reach the resource (hostname or IP address). A resource can have multiple hostnames.</li>
-<li><strong>Exclude from backup coverage</strong> - optionally exclude the resource from backup coverage reporting (see <a href="/docs/control-plane/infrastructure/inventories/self-managed/#backup-coverage" >Backup Coverage</a>)</li>
+<li><strong>Class</strong> - the type of resource. See <a href="/docs/control-plane/infrastructure/inventories/self-managed/#resource-classes" >Resource classes</a>
+for the full list</li>
+<li><strong>Subclass</strong> - a more specific type within the class. See
+<a href="/docs/control-plane/infrastructure/inventories/self-managed/#resource-classes" >Resource classes</a></li>
+<li><strong>Hostname</strong> - the address used to reach the resource (hostname or IP
+address). A resource can have multiple hostnames.</li>
+<li><strong>Exclude from backup coverage</strong> - optionally exclude the resource from backup
+coverage reporting (see <a href="/docs/control-plane/infrastructure/inventories/self-managed/#backup-coverage" >Backup Coverage</a>)</li>
 </ul>
 <figure><img
     class="my-0 rounded-md"
@@ -3833,7 +3844,7 @@
     decoding="async"
     fetchpriority="low"
     alt=""
-    src="../images/create-self-managed-inventory.png"
+    src="../images/add-resource-to-self-managed-inventory.png"
     ></figure>
 
 <div class="relative group">
@@ -3844,7 +3855,9 @@
   </span>
   
 </div>
-<p>To add multiple resources at once, you can import a CSV file. Each row should represent one resource in the following format. If a resource has multiple hostnames, they can be specified by separating them with commas.</p>
+<p>To add multiple resources at once, you can import a CSV file. Each row should
+represent one resource in the following format. If a resource has multiple
+hostnames, they can be specified by separating them with commas.</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">Class;Name;URN;Hostname</span></span></code></pre></div></div>
 <details
       class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
@@ -3870,13 +3883,14 @@
   />
 </svg>
 </span></div>
-      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Importing a CSV file replaces all existing resources in the inventory. Make sure to include both existing and new resources in the file.</p></div></details><figure><img
+      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Importing a CSV file replaces all existing resources in the inventory. Make
+sure to include both existing and new resources in the file.</p></div></details><figure><img
     class="my-0 rounded-md"
     loading="lazy"
     decoding="async"
     fetchpriority="low"
     alt=""
-    src="../images/create-self-managed-inventory-bulk.png"
+    src="../images/add-resources-to-self-managed-inventory-in-bulk.png"
     ></figure>
 
 <div class="relative group">
@@ -3887,8 +3901,15 @@
   </span>
   
 </div>
-<p>Resources can be edited by selecting them in the inventory table. A configuration side panel will open, allowing you to update resource details.</p>
-<p>All fields can be modified except the <strong>URN</strong>, which is immutable. Resources can also be deleted from this panel.</p>
+<p>You can expand a resource row to view its details. Each row expands to show
+three tabs:</p>
+<ul>
+<li><strong>Snapshots</strong> - lists backups taken for this resource</li>
+<li><strong>Connectors</strong> - shows connectors associated with this resource</li>
+<li><strong>Settings</strong> - edit resource details and configure backup coverage</li>
+</ul>
+<p>All fields can be modified in the <strong>Settings</strong> tab except the <strong>URN</strong>, which is
+immutable.</p>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
@@ -3899,80 +3920,17 @@
     ></figure>
 
 <div class="relative group">
-  <h2 id="resource-classes">Resource classes</h2>
+  <h2 id="resource-class-and-sub-class">Resource class and sub-class</h2>
   
   <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#resource-classes" aria-label="Anchor">#</a>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#resource-class-and-sub-class" aria-label="Anchor">#</a>
   </span>
   
 </div>
-<p>When adding a resource, you select a class and optionally a subclass to describe the type of resource. The table below lists all supported classes and their subclasses.</p>
-<table>
-  <thead>
-      <tr>
-          <th>Class</th>
-          <th>Subclasses</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Analytics</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td>Block Storage</td>
-          <td>PVC</td>
-      </tr>
-      <tr>
-          <td>Compute</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td>Database</td>
-          <td>PostgreSQL, MySQL, MongoDB, Redis</td>
-      </tr>
-      <tr>
-          <td>File Storage</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td>Hypervisor</td>
-          <td>Proxmox</td>
-      </tr>
-      <tr>
-          <td>Identity</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td>Messaging</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td>Network</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td>Object Storage</td>
-          <td>GCS, S3, Azure Blob</td>
-      </tr>
-      <tr>
-          <td>Observability</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td>Registry</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td>Security</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td>Service</td>
-          <td>FTP, IMAP, SFTP</td>
-      </tr>
-  </tbody>
-</table>
+<p>When adding a resource, you select a class and optionally a subclass to describe
+the type of resource. The table below lists all supported classes and their
+subclasses. All resources managed by Plakar Control Plane are documented in the
+<a href="/docs/control-plane/resources/" >resources documentation</a></p>
 
 <div class="relative group">
   <h2 id="backup-coverage">Backup Coverage</h2>
@@ -3982,9 +3940,13 @@
   </span>
   
 </div>
-<p>By default, all resources in a self-managed inventory and all classified resources in a managed inventory are included in backup coverage reporting.</p>
-<p>Backup coverage tracks how many of your resources are protected by backups. If a resource does not need to be backed up (for example, a test database), you can exclude it from coverage. Excluded resources are omitted from protection status and coverage reporting.</p>
-<p>This option can be configured when creating or editing a resource.</p>
+<p>By default, all resources in a self-managed inventory and all classified
+resources in a managed inventory are included in backup coverage reporting.</p>
+<p>Backup coverage tracks how many of your resources are protected by backups. If a
+resource does not need to be backed up (for example, a test database), you can
+exclude it from coverage. Excluded resources are omitted from protection status
+and coverage reporting. This option can be configured when creating or editing a
+resource.</p>
 
       </article>
       <footer class="mt-12 flex flex-col gap-6 docs-font border-t border-neutral-200 pt-6">
@@ -4064,7 +4026,7 @@
       </ul>
     </li>
     <li><a href="#managing-resources">Managing resources</a></li>
-    <li><a href="#resource-classes">Resource classes</a></li>
+    <li><a href="#resource-class-and-sub-class">Resource class and sub-class</a></li>
     <li><a href="#backup-coverage">Backup Coverage</a></li>
   </ul>
 </nav>

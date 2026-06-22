@@ -84,7 +84,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-05-03T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-06-22T17:50:10+03:00">
+    <meta property="article:modified_time" content="2026-06-22T23:30:33+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -267,12 +267,12 @@
     "dateCreated": "2026-05-03T00:00:00\u002b00:00",
     "datePublished": "2026-05-03T00:00:00\u002b00:00",
     
-    "dateModified": "2026-06-22T17:50:10\u002b03:00",
+    "dateModified": "2026-06-22T23:30:33\u002b02:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "652"
+    "wordCount": "676"
   }]
   </script>
 
@@ -3876,7 +3876,7 @@ the required permissions and generate an access key for that user.</p>
         <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"/></svg>
 </span></div>
         <div class="grow">
-          SECRET KEYS The secret access key is only displayed once by AWS.
+          SECRET KEYS
         </div>
         <div
           class="ms-auto flex h-5 w-5 items-center justify-center transition-transform ease-in-out -rotate-90 group-open:rotate-0 print:hidden"><span class="relative block icon"><svg
@@ -3892,7 +3892,8 @@ the required permissions and generate an access key for that user.</p>
   />
 </svg>
 </span></div>
-      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Make sure to store it securely or use a secret provider.</p></div></details>
+      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>The secret access key is only displayed once by AWS. Make sure to store it
+securely or use a secret provider.</p></div></details>
 <div class="relative group">
   <h2 id="required-permissions">Required Permissions</h2>
   
@@ -4009,8 +4010,8 @@ provided directly or loaded via a secret provider (see
 and load resources. You can run synchronization at any time to refresh the
 inventory, for example after adding new resources to your AWS account.</p>
 <p>All configuration details provided during inventory creation can be updated
-later in the <strong>Settings</strong> tab. The inventory can also be deleted entirely from
-this tab if no longer needed.</p>
+later by clicking the settings icon in the top right of the inventory page,
+which opens a settings popup.</p>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
@@ -4030,13 +4031,18 @@ this tab if no longer needed.</p>
 </div>
 <p>Resources in an AWS inventory are automatically discovered and synchronized.
 They are managed by the inventory and cannot be manually created or deleted.</p>
-<p>You can select a resource to open its details in the side panel. The only
-configurable option is backup coverage, which can be enabled or disabled per
-resource.</p>
+<p>You can expand a resource row to view its details. Each row expands to show
+three tabs:</p>
+<ul>
+<li><strong>Snapshots</strong> - lists backups taken for this resource</li>
+<li><strong>Connectors</strong> - shows connectors associated with this resource</li>
+<li><strong>Settings</strong> - configure the resource, including backup coverage</li>
+</ul>
 <p>Backup coverage tracks how many of your resources are protected by backups. If a
 resource does not need to be backed up (for example, a test database), you can
-exclude it from coverage. Excluded resources are omitted from protection status
-and coverage reporting.</p>
+exclude it from coverage using the <strong>Exclude from backup coverage</strong> option in
+the <strong>Settings</strong> tab. Excluded resources are omitted from protection status and
+coverage reporting.</p>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
