@@ -13,8 +13,9 @@ Plakar Control Plane requires permissions to access Google Cloud services in
 different situations. For example, when using Google Cloud Storage, Plakar
 Control Plane needs permission to read from and write to buckets. Credentials
 are also used by
-[Google Cloud Inventory](../../../infrastructure/inventories/gcp) to discover
-resources in your project, and by integrations to manage different resources.
+[Google Cloud Inventory](../../../infrastructure/inventories/google-cloud) to
+discover resources in your project, and by integrations to manage different
+resources.
 
 In Google Cloud, access is managed through IAM roles assigned to service
 accounts. A custom role defines the exact permissions granted, and a service
@@ -31,7 +32,7 @@ The first step is to create a custom IAM role with the permissions required by
 the Google Cloud service you want Plakar to use.
 
 The exact permissions depend on the feature you are configuring. For example,
-the [Google Cloud inventory](../../../infrastructure/inventories/gcp)
+the [Google Cloud inventory](../../../infrastructure/inventories/google-cloud)
 documentation lists the permissions required to discover Google Cloud resources,
 while the [GCS resource](../../../resources/object-storage/gcs) documentation
 lists the permissions required to use a Cloud Storage bucket as a source, store,
@@ -41,10 +42,10 @@ To create a custom role, open **IAM & Admin > Roles** in the Google Cloud
 Console and click **Create Custom Role** under the **Custom** roles tab. Provide
 a name and description for the role. You'll also need to select a role launch
 stage. The launch stage indicates the maturity of the role and is for
-organizational tracking purposes only — it does not affect what the role can
-do. For a role used with Plakar Control Plane, select **General Availability**.
-Then add the required permissions. You can search for permissions by name to
-find the ones you need.
+organizational tracking purposes only — it does not affect what the role can do.
+For a role used with Plakar Control Plane, select **General Availability**. Then
+add the required permissions. You can search for permissions by name to find the
+ones you need.
 
 After adding the required permissions, click **Create** to save the role.
 

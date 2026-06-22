@@ -10,8 +10,8 @@ summary:
 
 Google Cloud Storage resources represent bucket-based object storage hosted on
 Google Cloud. GCS buckets can be automatically discovered through a
-[Google Cloud inventory](../../../infrastructure/inventories/gcp), or added
-manually using a
+[Google Cloud inventory](../../../infrastructure/inventories/google-cloud), or
+added manually using a
 [self-managed inventory](../../infrastructure/inventories/self-managed).
 
 ## Setting up with a Google Cloud inventory
