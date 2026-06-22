@@ -183,12 +183,14 @@ packages. They follow the naming convention
 
 ## Upgrading
 
-Plakar is fully backward compatible. The updated binary reads and writes your
-existing stores without any changes required on your part.
+If you have Kloset stores created with an older version of Plakar, the updated
+binary is fully backward compatible and will read and write them without any
+changes required on your part.
 
-Some improvements in this release depend on a new on-disk store format, and
-existing stores are not migrated automatically. To take advantage of those
-improvements, create a new store and copy your data into it:
+That said, some improvements in this release depend on a new on-disk store
+format. Existing Kloset stores are not migrated automatically, so to take
+advantage of those improvements you will need to create a new store and sync
+your data into it:
 
 ```bash
 $ plakar at /path/to/new-store create
