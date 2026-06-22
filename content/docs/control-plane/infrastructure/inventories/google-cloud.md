@@ -18,10 +18,10 @@ and makes them available for management directly within Plakar Control Plane.
 
 ## Supported Resources
 
-| Resource      | Source | Store | Destination |
-| ------------- | ------ | ----- | ----------- |
-| Cloud Storage | Yes    | Yes   | Yes         |
-| CloudSQL      | Yes    | No    | Yes         |
+| Resource           | Source | Store | Destination |
+| ------------------ | ------ | ----- | ----------- |
+| Cloud Storage      | Yes    | Yes   | Yes         |
+| CloudSQL (MySQL)   | Yes    | No    | Yes         |
 
 ## Authentication
 
