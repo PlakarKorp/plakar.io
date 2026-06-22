@@ -2,18 +2,26 @@
 title: "Self Managed"
 date: "2026-05-06T00:00:00Z"
 weight: 5
-summary: "How to connect and manage a Self Managed inventory in Plakar Control Plane."
+summary:
+  "How to connect and manage a Self Managed inventory in Plakar Control Plane."
 aliases:
   - /control-plane-docs/infrastructure/inventories/self-managed/
 ---
 
 # Self-Managed Inventory
 
-A self-managed inventory is a manually maintained inventory that acts as a container for resources you define yourself. It is useful when your infrastructure is not covered by a managed inventory, such as a local MinIO instance, a self-hosted PostgreSQL database, or any other resource supported by Plakar integrations.
+A self-managed inventory is a manually maintained inventory that acts as a
+container for resources you define yourself. It is useful when your
+infrastructure is not covered by a managed inventory, such as a local MinIO
+instance, a self-hosted PostgreSQL database, or any other resource supported by
+Plakar integrations.
 
 ## Creating a self-managed inventory
 
-To create a self-managed inventory, you only need to provide a name. Once created, you can start adding resources to it. The inventory name can be edited later in the **Settings** tab. The inventory can also be deleted entirely from this tab if no longer needed.
+To create a self-managed inventory, you only need to provide a name. Once
+created, you can start adding resources to it. The inventory name can be edited
+later by clicking the settings icon in the top right of the inventory page,
+which opens a settings popup.
 
 ![](../images/self-managed-inventory.png)
 
@@ -24,61 +32,65 @@ Resources can be added individually or imported in bulk using a CSV file.
 ### 1. Adding a resource manually
 
 When adding a resource manually, you need to provide:
-* **Name** - a display name for the resource
-* **URN** - a unique identifier for the resource
-* **Class** - the type of resource. See [Resource classes](#resource-classes) for the full list
-* **Subclass** - a more specific type within the class. See [Resource classes](#resource-classes)
-* **Hostname** - the address used to reach the resource (hostname or IP address). A resource can have multiple hostnames.
-* **Exclude from backup coverage** - optionally exclude the resource from backup coverage reporting (see [Backup Coverage](#backup-coverage))
 
-![](../images/create-self-managed-inventory.png)
+- **Name** - a display name for the resource
+- **URN** - a unique identifier for the resource
+- **Class** - the type of resource. See [Resource classes](#resource-classes)
+  for the full list
+- **Subclass** - a more specific type within the class. See
+  [Resource classes](#resource-classes)
+- **Hostname** - the address used to reach the resource (hostname or IP
+  address). A resource can have multiple hostnames.
+- **Exclude from backup coverage** - optionally exclude the resource from backup
+  coverage reporting (see [Backup Coverage](#backup-coverage))
+
+![](../images/add-resource-to-self-managed-inventory.png)
 
 ### 2. Importing resources via CSV
 
-To add multiple resources at once, you can import a CSV file. Each row should represent one resource in the following format. If a resource has multiple hostnames, they can be specified by separating them with commas.
+To add multiple resources at once, you can import a CSV file. Each row should
+represent one resource in the following format. If a resource has multiple
+hostnames, they can be specified by separating them with commas.
 
 ```txt
 Class;Name;URN;Hostname
 ```
 
 > [!WARNING]+
-> Importing a CSV file replaces all existing resources in the inventory. Make sure to include both existing and new resources in the file.
+>
+> Importing a CSV file replaces all existing resources in the inventory. Make
+> sure to include both existing and new resources in the file.
 
-![](../images/create-self-managed-inventory-bulk.png)
+![](../images/add-resources-to-self-managed-inventory-in-bulk.png)
 
 ## Managing resources
 
-Resources can be edited by selecting them in the inventory table. A configuration side panel will open, allowing you to update resource details. 
+You can expand a resource row to view its details. Each row expands to show
+three tabs:
 
-All fields can be modified except the **URN**, which is immutable. Resources can also be deleted from this panel.
+- **Snapshots** - lists backups taken for this resource
+- **Connectors** - shows connectors associated with this resource
+- **Settings** - edit resource details and configure backup coverage
+
+All fields can be modified in the **Settings** tab except the **URN**, which is
+immutable.
 
 ![](../images/manage-self-managed-inventory-resource.png)
 
-## Resource classes
+## Resource class and sub-class
 
-When adding a resource, you select a class and optionally a subclass to describe the type of resource. The table below lists all supported classes and their subclasses.
-
-| Class | Subclasses |
-|---|---|
-| Analytics | |
-| Block Storage | PVC |
-| Compute | |
-| Database | PostgreSQL, MySQL, MongoDB, Redis |
-| File Storage | |
-| Hypervisor | Proxmox |
-| Identity | |
-| Messaging | |
-| Network | |
-| Object Storage | GCS, S3, Azure Blob |
-| Observability | |
-| Registry | |
-| Security | |
-| Service | FTP, IMAP, SFTP |
+When adding a resource, you select a class and optionally a subclass to describe
+the type of resource. The table below lists all supported classes and their
+subclasses. All resources managed by Plakar Control Plane are documented in the
+[resources documentation](../../resources)
 
 ## Backup Coverage
 
-By default, all resources in a self-managed inventory and all classified resources in a managed inventory are included in backup coverage reporting.
+By default, all resources in a self-managed inventory and all classified
+resources in a managed inventory are included in backup coverage reporting.
 
-Backup coverage tracks how many of your resources are protected by backups. If a resource does not need to be backed up (for example, a test database), you can exclude it from coverage. Excluded resources are omitted from protection status and coverage reporting.
-
-This option can be configured when creating or editing a resource.
+Backup coverage tracks how many of your resources are protected by backups. If a
+resource does not need to be backed up (for example, a test database), you can
+exclude it from coverage. Excluded resources are omitted from protection status
+and coverage reporting. This option can be configured when creating or editing a
+resource.
