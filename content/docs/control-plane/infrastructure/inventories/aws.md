@@ -58,8 +58,10 @@ Access keys consist of:
 - Access key ID
 - Secret access key
 
-> [!WARNING]+ SECRET KEYS The secret access key is only displayed once by AWS.
-> Make sure to store it securely or use a secret provider.
+> [!WARNING]+ SECRET KEYS
+>
+> The secret access key is only displayed once by AWS. Make sure to store it
+> securely or use a secret provider.
 
 ## Required Permissions
 
@@ -126,8 +128,8 @@ and load resources. You can run synchronization at any time to refresh the
 inventory, for example after adding new resources to your AWS account.
 
 All configuration details provided during inventory creation can be updated
-later in the **Settings** tab. The inventory can also be deleted entirely from
-this tab if no longer needed.
+later by clicking the settings icon in the top right of the inventory page,
+which opens a settings popup.
 
 ![](../images/aws-inventory.png)
 
@@ -136,13 +138,17 @@ this tab if no longer needed.
 Resources in an AWS inventory are automatically discovered and synchronized.
 They are managed by the inventory and cannot be manually created or deleted.
 
-You can select a resource to open its details in the side panel. The only
-configurable option is backup coverage, which can be enabled or disabled per
-resource.
+You can expand a resource row to view its details. Each row expands to show
+three tabs:
+
+- **Snapshots** - lists backups taken for this resource
+- **Connectors** - shows connectors associated with this resource
+- **Settings** - configure the resource, including backup coverage
 
 Backup coverage tracks how many of your resources are protected by backups. If a
 resource does not need to be backed up (for example, a test database), you can
-exclude it from coverage. Excluded resources are omitted from protection status
-and coverage reporting.
+exclude it from coverage using the **Exclude from backup coverage** option in
+the **Settings** tab. Excluded resources are omitted from protection status and
+coverage reporting.
 
 ![](../images/manage-aws-inventory-resource.png)

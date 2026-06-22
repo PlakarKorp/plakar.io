@@ -17,15 +17,12 @@ makes them available for management directly within Plakar Control Plane.
 
 ## Supported Resources
 
-| Resource                             | Source | Store | Destination |
-| ------------------------------------ | ------ | ----- | ----------- |
-| Object Storage                       | Yes    | Yes   | Yes         |
-| Instance with attached Block Storage | Yes    | No    | Yes         |
-| Block Storage Volume                 | Yes    | No    | Yes         |
-
-The Scaleway inventory can classify Object Storage, Compute, Block Storage, and
-Network resources. Network resources can be discovered and classified, but they
-cannot be used as backup sources, stores, or destinations.
+| Resource                                 | Source | Store | Destination |
+| ---------------------------------------- | ------ | ----- | ----------- |
+| Object Storage                           | Yes    | Yes   | Yes         |
+| Instances (with attached Block Storages) | Yes    | No    | Yes         |
+| Block Storage Volume                     | Yes    | No    | Yes         |
+| Secret Manager                           | Yes    | No    | Yes         |
 
 ## Authentication
 
@@ -79,16 +76,18 @@ an IAM application scoped only to the matching project.
 When creating a new Scaleway inventory, provide the inventory name, project ID,
 access key, and secret key.
 
+![](../images/create-scaleway-inventory.png)
+
 After creating the inventory, trigger a synchronization to discover and load
 resources from the configured Scaleway project. You can run synchronization
 again at any time to refresh the inventory, for example after creating new
 Object Storage buckets, Instances, or Block Storage volumes in Scaleway.
 
 All configuration details provided during inventory creation can be updated
-later in the **Settings** tab. The inventory can also be deleted entirely from
-this tab if no longer needed.
+later by clicking the settings icon in the top right of the inventory page,
+which opens a settings popup.
 
-![](../images/create-scaleway-inventory.png)
+![](../images/scaleway-inventory.png)
 
 ## Managing Resources
 
@@ -96,13 +95,17 @@ Resources in a Scaleway inventory are automatically discovered and synchronized.
 They are managed by the inventory and cannot be manually created or deleted from
 Plakar Control Plane.
 
-You can select a resource to open its details in the side panel. The only
-configurable option is backup coverage, which can be enabled or disabled per
-resource.
+You can expand a resource row to view its details. Each row expands to show
+three tabs:
+
+- **Snapshots** - lists backups taken for this resource
+- **Connectors** - shows connectors associated with this resource
+- **Settings** - configure the resource, including backup coverage
 
 Backup coverage tracks how many of your resources are protected by backups. If a
 resource does not need to be backed up, for example a test Instance or temporary
-bucket, you can exclude it from coverage. Excluded resources are omitted from
+bucket, you can exclude it from coverage using the **Exclude from backup
+coverage** option in the **Settings** tab. Excluded resources are omitted from
 protection status and coverage reporting.
 
 ![](../images/manage-scaleway-inventory-resource.png)
