@@ -103,7 +103,7 @@ To install using the Go toolchain, use `go install` with the version you want to
 install, or `latest`:
 
 ```bash
-$ go install "github.com/PlakarKorp/plakar@v1.1.0"
+$ go install "github.com/PlakarKorp/plakar@v1.1.3"
 ```
 
 This will install the binary into your `$GOPATH/bin` directory, which you may
@@ -145,7 +145,7 @@ release version, check out the corresponding tag before running `make`:
 
 ```bash
 $ git fetch --tags
-$ git checkout tags/v1.1.0
+$ git checkout tags/v1.1.3
 $ make
 ```
 
@@ -170,7 +170,7 @@ Verify the installation by running:
 $ plakar version
 ```
 
-This should return the expected version number, for example `plakar/v1.1.0`.
+This should return the expected version number, for example `plakar/v1.1.3`.
 
 ## Downloading Specific Versions
 
@@ -181,16 +181,54 @@ For each release, check under the "Assets" section for a list of pre-built
 packages. They follow the naming convention
 `plakar_<version>_<os>_<arch>.<format>`.
 
+## Upgrading
+
+If you have Kloset stores created with an older version of Plakar, the updated
+binary is fully backward compatible and will read and write them without any
+changes required on your part.
+
+That said, some improvements in this release depend on a new on-disk store
+format. Existing Kloset stores are not migrated automatically, so to take
+advantage of those improvements you will need to create a new store and sync
+your data into it:
+
+```bash
+$ plakar at /path/to/new-store create
+$ plakar at /path/to/new-store sync from /path/to/old-store
+```
+
+Once the sync is complete, update your backup configuration to point at the new
+store. Keep the old store until you are satisfied everything is in order.
+Migration is optional and your existing store will continue to work normally.
+
+### Upgrading packages
+
+If you use integrations such as SFTP or S3, upgrade them to link against the
+latest SDK. To upgrade a specific package:
+
+```bash
+$ plakar pkg add -u s3
+```
+
+To upgrade all installed packages at once:
+
+```bash
+$ plakar pkg add -u
+```
+
+Package upgrades preserve existing store, source, and destination
+configurations.
+
 ## Installation Troubleshooting
 
-If you encounter any issues during installation, or notice that this
-documentation is out of date:
+If you encounter any issues during installation:
 
 - Ensure you are following the instructions for the correct version of plakar.
 - Open an issue on the
   [GitHub issue tracker](https://github.com/PlakarKorp/plakar/issues).
+- Ask for help on the [Discord server](https://discord.gg/uuegtnF2Q5).
 
 ## Next Steps: Getting Started
 
-Now that you have plakar installed, we recommend proceeding to the
+Now that you have Plakar installed, we recommend proceeding to the
 [Quickstart guide](../first-backup) to set up your first backup.

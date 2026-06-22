@@ -9,12 +9,19 @@ aliases:
 
 # Installation
 
-> [!NOTE]+ Developer Version
-> This is the developer version of Plakar and it can only be installed from source. Only stable versions have distributed assets that can be installed using other OS specific methods
+> [!NOTE]+
+>
+> Developer Version This is the developer version of Plakar and it can only be
+> installed from source. Only stable versions have distributed assets that can
+> be installed using other OS specific methods
 
 To build Plakar from source. You will need:
+
 - [Go (Golang)](https://go.dev/doc/install)
-- `make` (available by default on most Linux distributions; on macOS, install the Xcode command line tools with `xcode-select --install`; on Windows, use [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) or a tool like [GnuWin32 Make](https://gnuwin32.sourceforge.net/packages/make.htm))
+- `make` (available by default on most Linux distributions; on macOS, install
+  the Xcode command line tools with `xcode-select --install`; on Windows, use
+  [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) or a tool like
+  [GnuWin32 Make](https://gnuwin32.sourceforge.net/packages/make.htm))
 
 Clone the repository and run `make`:
 
@@ -24,11 +31,12 @@ $ cd plakar
 $ make
 ```
 
-This produces a `plakar` binary in the current directory. To build a specific release version, check out the corresponding tag before running `make`:
+This produces a `plakar` binary in the current directory. To build a specific
+release version, check out the corresponding tag before running `make`:
 
 ```bash
 $ git fetch --tags
-$ git checkout tags/v1.1.0-rc.1
+$ git checkout tags/v1.1.3
 $ make
 ```
 
@@ -40,20 +48,27 @@ Verify the installation by running:
 $ plakar version
 ```
 
-This should return the expected version number, for example `plakar/v1.1.0`.
+This should return the expected version number, for example `plakar/v1.1.3`.
 
 ## Downloading Specific Versions
 
-All release versions of **Plakar** are available directly from GitHub on the project's [release page](/download).
+All release versions of **Plakar** are available directly from GitHub on the
+project's [release page](/download).
 
-For each release, check under the "Assets" section for a list of pre-built packages. They follow the naming convention `plakar_<version>_<os>_<arch>.<format>`.
+For each release, check under the "Assets" section for a list of pre-built
+packages. They follow the naming convention
+`plakar_<version>_<os>_<arch>.<format>`.
 
 ## Installation Troubleshooting
 
-If you encounter any issues during installation, or notice that this documentation is out of date:
+If you encounter any issues during installation:
+
 - Ensure you are following the instructions for the correct version of plakar.
-- Open an issue on the [GitHub issue tracker](https://github.com/PlakarKorp/plakar/issues).
+- Open an issue on the
+  [GitHub issue tracker](https://github.com/PlakarKorp/plakar/issues).
+- Ask for help on the [Discord server](https://discord.gg/uuegtnF2Q5).
 
 ## Next Steps: Getting Started
 
-Now that you have plakar installed, we recommend proceeding to the [Quickstart guide](../first-backup) to set up your first backup.
+Now that you have plakar installed, we recommend proceeding to the
+[Quickstart guide](../first-backup) to set up your first backup.
