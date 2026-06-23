@@ -52,6 +52,7 @@
 - [Managing passphrases](https://plakar.io/docs/control-plane/guides/managing-passphrases/index.md): How store passphrases work in Plakar Control Plane and how to change the passphrase used by a store.
 - [Scaleway](https://plakar.io/docs/control-plane/guides/scaleway/index.md): Guides and tutorials for configuring Scaleway services with Plakar.
 - [AWS](https://plakar.io/docs/control-plane/guides/aws/index.md): Guides and tutorials for configuring AWS services with Plakar.
+- [Google Cloud](https://plakar.io/docs/control-plane/guides/google-cloud/index.md): Guides and tutorials for configuring Google Cloud services with Plakar.
 
 
 

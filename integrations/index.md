@@ -8,6 +8,10 @@
 
 
 
+## [Google Cloud Storage](https://plakar.io/integrations/gcs/index.md)
+
+
+
 ## [etcd](https://plakar.io/integrations/etcd/index.md)
 
 

@@ -26,4 +26,8 @@ Plakar Control Plane supports the following object storages:
 
 
 
+## [Google Cloud Storage](https://plakar.io/docs/control-plane/resources/object-storage/gcs/index.md)
+
+
+
 

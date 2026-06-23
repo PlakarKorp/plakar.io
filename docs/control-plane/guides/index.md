@@ -26,4 +26,9 @@ tutorials related to Plakar and supported platforms.
 - [Managing IAM Roles, Users, and Access Keys](https://plakar.io/docs/control-plane/guides/aws/iam-users-roles-and-access-keys/index.md): How to create AWS IAM roles, users, policies, and access keys for use with Plakar.
 
 
+## [Google Cloud](https://plakar.io/docs/control-plane/guides/google-cloud/index.md)
+
+- [Managing IAM Roles and Service Accounts](https://plakar.io/docs/control-plane/guides/google-cloud/iam-roles-and-service-accounts/index.md): How to create Google Cloud IAM custom roles, service accounts, and service account keys for use with Plakar Control Plane.
+
+
 

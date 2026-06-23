@@ -41,6 +41,7 @@ with a resource.
 
 - [S3](https://plakar.io/docs/control-plane/resources/object-storage/s3/index.md): How to configure an S3 resource in Plakar Control Plane.
 - [Azure Blob Storage](https://plakar.io/docs/control-plane/resources/object-storage/azblob/index.md): How to configure Azure Azblob resource in Plakar Control Plane.
+- [Google Cloud Storage](https://plakar.io/docs/control-plane/resources/object-storage/gcs/index.md): How to configure a Google Cloud Storage resource in Plakar Control Plane.
 
 
 ## [Block Storage](https://plakar.io/docs/control-plane/resources/block-storage/index.md)

@@ -79,4 +79,8 @@ Below is a list of links to the documentation for each supported integration.
 
 
 
+## [Google Cloud Storage](https://plakar.io/docs/community/v1.1.0/integrations/gcs/index.md)
+
+
+
 
