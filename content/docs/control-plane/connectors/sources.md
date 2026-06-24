@@ -65,7 +65,7 @@ If the connection test fails, check the connector configuration and credentials,
 then run the test again. Once the store has been initialized, additional actions
 become available from the dashboard:
 
-- Create Backup - create a backup task from this source
+- **Create Backup** - create a backup task from this source
 
 ![](../images/source-connector-2.png)
 
