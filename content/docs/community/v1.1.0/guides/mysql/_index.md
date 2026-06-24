@@ -1,7 +1,7 @@
 ---
 title: "MySQL"
 date: "2026-03-18T00:00:00Z"
-weight: 12
+weight: 13
 summary: "Guides on backing up and restoring MySQL database"
 aliases:
   - /docs/v1.1.0/guides/mysql/
