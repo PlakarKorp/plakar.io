@@ -16,7 +16,9 @@ A store connector defines where Plakar Control Plane stores backup data.
 To create a store connector, open the **Inventories** page and click on the
 inventory that contains the resource you want to use as a store. From the
 inventory details page, click **Add Store** and select the resource to use as
-the store. Provide a name for the connector.
+the store. Provide a name for the connector. The name is used to distinguish
+this connector when multiple connectors of the same type are configured for the
+same resource.
 
 ![](../images/inventory-details.png)
 
