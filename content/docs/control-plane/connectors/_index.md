@@ -43,7 +43,7 @@ connector directly from the UI to verify that Plakar Control Plane can
 successfully reach and authenticate with the resource before using it in a
 backup workflow.
 
-## Store connectors
+### Store connectors
 
 When configuring a store connector, you must select a **Storage Type** in
 addition to the integration credentials:
@@ -58,9 +58,9 @@ store. This setting does not affect the underlying storage itself.
 
 ![](./images/store-connector-storage-type.png)
 
-## Source and destination connectors
+### Source connectors
 
-When configuring a source or destination connector, you must also provide:
+When configuring a source connector, you must also provide:
 
 - **Environment** - the environment the resource belongs to, such as production,
   development, or testing
@@ -68,15 +68,21 @@ When configuring a source or destination connector, you must also provide:
   database, financial records, or PII. Multiple data classes can be selected if
   the resource contains more than one type of data.
 
-![](./images/source-and-destination-connector-environment-and-data-class.png)
+![](./images/source-connector-environment-and-data-class.png)
 
 These values tie directly into the policies and SLA system. Policies define
 backup requirements based on environment and data class combinations. For
 example, a policy might require that all production sources tagged as critical
-are backed up every hour and retained for 90 days. When a source connector is
-assigned an environment and data class, the policies engine uses those values to
-determine which policies apply to it and what protection rules are enforced. See
-the [policies documentation](../operations/policies) for more details.
+are backed up every hour and retained for 90 days. The policies engine uses
+these values to determine which policies apply to the source and what protection
+rules are enforced. See the [policies documentation](../operations/policies) for
+more details.
+
+### Destination connectors
+
+Destination connectors only require the integration configuration and
+credentials. No additional fields are needed beyond what is described in
+[How connectors work](#how-connectors-work).
 
 ## Managing connectors
 
