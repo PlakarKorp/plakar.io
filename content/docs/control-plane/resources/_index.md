@@ -2,7 +2,10 @@
 title: "Resources"
 date: "2026-05-19T00:00:00Z"
 weight: 4
-summary: "Defines the resources that Plakar Control Plane manages — such as S3 buckets, databases, VMs, and filesystems — and explains how each resource is classified by class and subclass to determine integration compatibility."
+summary:
+  "Resources are the systems and storage targets that Plakar Control Plane backs
+  up, stores data in, or restores to. Learn how to configure each resource type
+  and manage resource settings."
 aliases:
   - /control-plane-docs/resources/
 ---
@@ -14,29 +17,41 @@ Control Plane manages as part of a backup workflow. Examples of resources
 include S3 buckets, EC2 instances, PostgreSQL databases, virtual machines, and
 filesystems.
 
+All resources discovered across all inventories are available under
+**Infrastructure -> Resources**. From here a resouce can be assigned to either a
+[source](../connectors/sources) or a [destination](../connectors/destinations)
+app. You can also filter resources by inventories or by resource class.
+
+![](./images/view-resources.png)
+
+## Resource settings
+
+Resource settings can be updated from the **Settings** tab under each resource.
+For managed inventories, most settings are read-only since the resource is
+managed by the inventory. For self-managed inventories, all settings can be
+modified. Backup coverage can be modified for any resource regardless of
+inventory type.
+
+Backup coverage tracks how many of your resources are protected by backups. If a
+resource does not need to be backed up (for example, a test database), you can
+exclude it from coverage using the **Exclude from backup coverage**. Excluded
+resources are omitted from protection status and coverage reporting.
+
+![](./images/resource-settings.png)
+
 ## Resource classification
 
 Each resource is assigned a `class` and `subclass` that describe what kind of
 infrastructure it is.
 
-The class describes the general category the resource belongs to, while the
-subclass identifies the specific implementation or provider. Plakar Control
+The `class` describes the general category the resource belongs to, while the
+`subclass` identifies the specific implementation or provider. Plakar Control
 Plane uses this classification to determine which integrations are compatible
 with a resource.
 
-{{% children description="true" style="sections" %}}
+## Supported resources
 
-<!--- [Analytics]()
-- [Block Storage](./block-storage) - [Scaleway Block Storage](./block-storage/scaleway), [PVC]()
-- [Compute](./compute) - [Scaleway Compute](./compute/scaleway)
-- [Database]() - [PostgreSQL](), [MySQL](), [MongoDB](), [Redis]()
-- [File Storage]()
-- [Hypervisor]() - [Proxmox]()
-- [Identity]()
-- [Messaging]()
-- [Network]()
-- [Object Storage](./object-storage) - [GCS](), [S3](./object-storage/s3), [Azure Blob]()
-- [Observability]()
-- [Registry]()
-- [Security]()
-- [Service]() - [FTP](), [IMAP](), [SFTP]()-->
+The following pages document the supported resource types and the configuration
+required to use each one as a source, store, or destination.
+
+{{% children description="true" style="sections" %}}
