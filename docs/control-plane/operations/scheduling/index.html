@@ -17,7 +17,7 @@
 
   
   
-    <meta name="description" content="How to create and manage scheduled tasks in Plakar Control Plane.">
+    <meta name="description" content="How to create and manage tasks and schedules in Plakar Control Plane.">
   
   
     <meta name="keywords" content="backup,open-source,deduplication,encryption,plakar,cloud backup,database backup,">
@@ -26,6 +26,9 @@
   
   <link rel="canonical" href="https://plakar.io/docs/control-plane/operations/scheduling/">
   
+  
+    
+      <link rel="alternate" type="application/rss+xml" href="/docs/control-plane/operations/scheduling/index.xml" title="Plakar | The Open Standard for Backup and Restore" />
   
     
       <link rel="alternate" type="text/markdown" href="/docs/control-plane/operations/scheduling/index.md" title="Plakar | The Open Standard for Backup and Restore" />
@@ -79,17 +82,14 @@
   <meta property="og:url" content="https://plakar.io/docs/control-plane/operations/scheduling/">
   <meta property="og:site_name" content="Plakar | The Open Standard for Backup and Restore">
   <meta property="og:title" content="Scheduling">
-  <meta property="og:description" content="How to create and manage scheduled tasks in Plakar Control Plane.">
+  <meta property="og:description" content="How to create and manage tasks and schedules in Plakar Control Plane.">
   <meta property="og:locale" content="en">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="docs">
-    <meta property="article:published_time" content="2026-05-15T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-06-25T18:22:12+02:00">
+  <meta property="og:type" content="website">
 
   
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Scheduling">
-  <meta name="twitter:description" content="How to create and manage scheduled tasks in Plakar Control Plane.">
+  <meta name="twitter:description" content="How to create and manage tasks and schedules in Plakar Control Plane.">
 
   
   
@@ -145,8 +145,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.577c047f75802b5d99b666918a24190f6fea077ddd2db15983f9e4c9e6ae44936217cd9535a6a4ee8ec3367165bf5bcc79e7398c98ed04650d50981b923f0667.css"
-    integrity="sha512-V3wEf3WAK12ZtmaRiiQZD2/qB33dLbFZg/nkyeauRJNiF82VNaak7o7DNnFlv1vMeec5jJjtBGUNUJgbkj8GZw==">
+    href="/css/main.bundle.min.bb19befc06ff04b52768bc85b99ee3d4945a92cf7cea154bd741dfd477b907985bf03169d476c17135c16c271fd1573c79c0d28fe78cb3141836664bdf2b20b3.css"
+    integrity="sha512-uxm&#43;/Ab/BLUnaLyFuZ7j1JRaks986hVL10Hf1He5B5hb8DFp1HbBcTXBbCcf0Vc8ecDSj&#43;eMsxQYNmZL3ysgsw==">
 
   
   
@@ -264,15 +264,15 @@
       "name": "PlakarKorp"
     },
     "copyrightYear": "2026",
-    "dateCreated": "2026-05-15T00:00:00\u002b00:00",
-    "datePublished": "2026-05-15T00:00:00\u002b00:00",
+    "dateCreated": "2026-06-25T00:00:00\u002b00:00",
+    "datePublished": "2026-06-25T00:00:00\u002b00:00",
     
-    "dateModified": "2026-06-25T18:22:12\u002b02:00",
+    "dateModified": "2026-06-25T18:24:14\u002b02:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "768"
+    "wordCount": "155"
   }]
   </script>
 
@@ -1556,11 +1556,117 @@
   
     
     
-      <a href="/docs/control-plane/operations/scheduling/"
+      
+      
+
+      
+        <div class="sidebar-accordion open">
+          <div class="flex items-center rounded-lg hover:bg-neutral-100 bg-neutral-50">
+            <a href="/docs/control-plane/operations/scheduling/"
+               class="flex-1 px-2 py-1.5 font-medium text-neutral-700 hover:text-primary-500
+               text-primary-500">
+              Scheduling
+            </a>
+            <button class="sidebar-accordion-btn px-2 py-1.5 shrink-0 text-neutral-400 hover:text-neutral-700">
+              <span class="sidebar-accordion-chevron w-4 h-4 flex items-center justify-center transition-transform duration-200 rotate-180">
+                <span class="relative block icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+</span>
+              </span>
+            </button>
+          </div>
+          <div class="sidebar-accordion-content ">
+            
+  
+  
+  
+  
+
+  
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+  
+
+  
+    <div class="border-l border-neutral-200 ml-3 pl-1 flex flex-col gap-0.5">
+  
+
+  
+    
+    
+      <a href="/docs/control-plane/operations/scheduling/tasks/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
-         text-primary-500 bg-neutral-100 font-medium">
-        Scheduling
+         ">
+        Scheduled Tasks
       </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/operations/scheduling/one-off-tasks/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        One-off Tasks
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/operations/scheduling/manual-scheduler/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Manual Scheduler
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/operations/scheduling/policy-scheduler/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Policy Scheduler
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/operations/scheduling/job-history/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Job History
+      </a>
+    
+  
+
+  
+    </div>
+  
+
+
+          </div>
+        </div>
+
+      
+
     
   
 
@@ -3234,11 +3340,117 @@
   
     
     
-      <a href="/docs/control-plane/operations/scheduling/"
+      
+      
+
+      
+        <div class="sidebar-accordion open">
+          <div class="flex items-center rounded-lg hover:bg-neutral-100 bg-neutral-50">
+            <a href="/docs/control-plane/operations/scheduling/"
+               class="flex-1 px-2 py-1.5 font-medium text-neutral-700 hover:text-primary-500
+               text-primary-500">
+              Scheduling
+            </a>
+            <button class="sidebar-accordion-btn px-2 py-1.5 shrink-0 text-neutral-400 hover:text-neutral-700">
+              <span class="sidebar-accordion-chevron w-4 h-4 flex items-center justify-center transition-transform duration-200 rotate-180">
+                <span class="relative block icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+</span>
+              </span>
+            </button>
+          </div>
+          <div class="sidebar-accordion-content ">
+            
+  
+  
+  
+  
+
+  
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+  
+
+  
+    <div class="border-l border-neutral-200 ml-3 pl-1 flex flex-col gap-0.5">
+  
+
+  
+    
+    
+      <a href="/docs/control-plane/operations/scheduling/tasks/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
-         text-primary-500 bg-neutral-100 font-medium">
-        Scheduling
+         ">
+        Scheduled Tasks
       </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/operations/scheduling/one-off-tasks/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        One-off Tasks
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/operations/scheduling/manual-scheduler/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Manual Scheduler
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/operations/scheduling/policy-scheduler/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Policy Scheduler
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/operations/scheduling/job-history/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Job History
+      </a>
+    
+  
+
+  
+    </div>
+  
+
+
+          </div>
+        </div>
+
+      
+
     
   
 
@@ -3936,293 +4148,73 @@
   </span>
   
 </div>
-<p>Plakar Control Plane uses a scheduler to run backup, restore, sync, and check
-operations. A task can be run once as a one-off operation, attached to a
-schedule so that it repeats automatically, or both.</p>
-<p>You can create scheduled tasks from two places: the <strong>Operations &gt; Scheduling</strong>
-section in the sidebar, or directly from a connector&rsquo;s dashboard. Both lead to
-the same task configuration.</p>
-<figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="low"
-    alt=""
-    src="../images/create-schedule.png"
-    ></figure>
-
-<div class="relative group">
-  <h2 id="creating-a-task">Creating a Task</h2>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#creating-a-task" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-
-<div class="relative group">
-  <h3 id="task-type">Task Type</h3>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#task-type" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<p>Start by selecting the type of task you want to run:</p>
+<p>Plakar Control Plane supports two ways to schedule backup operations:</p>
 <ul>
-<li><strong>Backup</strong> - back up a source connector to a store connector</li>
-<li><strong>Restore</strong> - restore data from a store connector to a destination connector</li>
-<li><strong>Sync</strong> - copy backup data from one store connector to another</li>
-<li><strong>Check</strong> - verify the integrity of data in a store connector</li>
+<li><strong>Manual scheduler</strong> - create tasks manually and attach one or more schedules
+to run them on a recurring basis</li>
+<li><strong>Policy scheduler</strong> - policies automatically schedule tasks based on SLA
+rules defined for your sources</li>
 </ul>
+<p>Both schedulers can trigger the same types of tasks. The
+<a href="../manual-scheduler" >manual scheduler</a> gives you direct control over when and
+how tasks run, while the <a href="../policy-scheduler" >policy scheduler</a> automates
+scheduling based on the protection requirements defined in your policies.</p>
 
-<div class="relative group">
-  <h3 id="connector-selection">Connector Selection</h3>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#connector-selection" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<p>The connectors required depend on the task type:</p>
-<ul>
-<li><strong>Backup</strong> - select a source connector and a store connector</li>
-<li><strong>Restore</strong> - select a store connector and a destination connector</li>
-<li><strong>Sync</strong> - select a source store connector and a destination store connector</li>
-<li><strong>Check</strong> - select a store connector</li>
-</ul>
+  <div class="not-prose section-index mt-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <a href="/docs/control-plane/operations/scheduling/tasks/" class="group/card flex flex-col justify-between rounded-lg border border-neutral-200 bg-neutral-50 p-4 no-underline hover:border-primary-200 hover:bg-primary-50 transition-all duration-150">
+          <div class="flex items-start justify-between gap-2">
+            <span class="text-base font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors truncate">Scheduled Tasks</span>
+            <span class="w-4 h-4 shrink-0 mt-0.5 text-neutral-300 group-hover/card:text-primary-500 group-hover/card:translate-x-0.5 transition-all duration-150">
+              <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
+</span>
+            </span>
+          </div>
+              <p class="mt-2 text-xs text-neutral-500 leading-snug line-clamp-2">The different types of tasks you can run in Plakar Control Plane.</p>
+        </a>
+        <a href="/docs/control-plane/operations/scheduling/one-off-tasks/" class="group/card flex flex-col justify-between rounded-lg border border-neutral-200 bg-neutral-50 p-4 no-underline hover:border-primary-200 hover:bg-primary-50 transition-all duration-150">
+          <div class="flex items-start justify-between gap-2">
+            <span class="text-base font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors truncate">One-off Tasks</span>
+            <span class="w-4 h-4 shrink-0 mt-0.5 text-neutral-300 group-hover/card:text-primary-500 group-hover/card:translate-x-0.5 transition-all duration-150">
+              <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
+</span>
+            </span>
+          </div>
+              <p class="mt-2 text-xs text-neutral-500 leading-snug line-clamp-2">How to run a task immediately as a one-off operation in Plakar Control Plane.</p>
+        </a>
+        <a href="/docs/control-plane/operations/scheduling/manual-scheduler/" class="group/card flex flex-col justify-between rounded-lg border border-neutral-200 bg-neutral-50 p-4 no-underline hover:border-primary-200 hover:bg-primary-50 transition-all duration-150">
+          <div class="flex items-start justify-between gap-2">
+            <span class="text-base font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors truncate">Manual Scheduler</span>
+            <span class="w-4 h-4 shrink-0 mt-0.5 text-neutral-300 group-hover/card:text-primary-500 group-hover/card:translate-x-0.5 transition-all duration-150">
+              <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
+</span>
+            </span>
+          </div>
+              <p class="mt-2 text-xs text-neutral-500 leading-snug line-clamp-2">How to attach schedules to tasks and monitor job history in Plakar Control Plane.</p>
+        </a>
+        <a href="/docs/control-plane/operations/scheduling/policy-scheduler/" class="group/card flex flex-col justify-between rounded-lg border border-neutral-200 bg-neutral-50 p-4 no-underline hover:border-primary-200 hover:bg-primary-50 transition-all duration-150">
+          <div class="flex items-start justify-between gap-2">
+            <span class="text-base font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors truncate">Policy Scheduler</span>
+            <span class="w-4 h-4 shrink-0 mt-0.5 text-neutral-300 group-hover/card:text-primary-500 group-hover/card:translate-x-0.5 transition-all duration-150">
+              <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
+</span>
+            </span>
+          </div>
+              <p class="mt-2 text-xs text-neutral-500 leading-snug line-clamp-2">How policies automatically schedule tasks in Plakar Control Plane.</p>
+        </a>
+        <a href="/docs/control-plane/operations/scheduling/job-history/" class="group/card flex flex-col justify-between rounded-lg border border-neutral-200 bg-neutral-50 p-4 no-underline hover:border-primary-200 hover:bg-primary-50 transition-all duration-150">
+          <div class="flex items-start justify-between gap-2">
+            <span class="text-base font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors truncate">Job History</span>
+            <span class="w-4 h-4 shrink-0 mt-0.5 text-neutral-300 group-hover/card:text-primary-500 group-hover/card:translate-x-0.5 transition-all duration-150">
+              <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
+</span>
+            </span>
+          </div>
+              <p class="mt-2 text-xs text-neutral-500 leading-snug line-clamp-2">How to monitor job history and view job details in Plakar Control Plane.</p>
+        </a>
+    </div>
+  </div>
 
-<div class="relative group">
-  <h3 id="label">Label</h3>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#label" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<p>Each task has an optional label field. Labels are tags that exist on snapshots
-themselves. When a task specifies a label, only snapshots carrying that label
-are considered. If multiple labels are specified, only snapshots that carry all
-of them are included.</p>
-<p>For restore tasks, this means Plakar Control Plane restores the latest snapshot
-that matches the label filter. Without a label, it restores the latest snapshot
-regardless of labels.</p>
-
-<div class="relative group">
-  <h3 id="options">Options</h3>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#options" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-
-<div class="relative group">
-  <h4 id="restore-snapshot-selection">Restore: Snapshot Selection</h4>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#restore-snapshot-selection" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<p>When creating a restore task, you can select a specific snapshot to restore. If
-no snapshot is selected, Plakar Control Plane restores the latest available
-snapshot.</p>
-
-<div class="relative group">
-  <h3 id="advanced-options">Advanced Options</h3>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#advanced-options" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-
-<div class="relative group">
-  <h4 id="concurrency">Concurrency</h4>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#concurrency" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<p>All task types expose a concurrency override under advanced options. This
-controls how many operations the task runs in parallel. Plakar Control Plane
-automatically sets a recommended concurrency for each operation its doing. Only
-change this if you have a specific reason to do so.</p>
-
-<div class="relative group">
-  <h4 id="check-check-window">Check: Check Window</h4>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#check-check-window" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<p>The check window limits which snapshots the check task inspects. Only snapshots
-created within the selected duration before the job runs will be checked. Leave
-the field empty to check all snapshots.</p>
-
-<div class="relative group">
-  <h4 id="sync-sync-window">Sync: Sync Window</h4>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#sync-sync-window" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<p>The sync window limits which snapshots the sync task copies. Only snapshots
-created within the selected duration before the job runs will be synced. Leave
-the field empty to sync all snapshots.</p>
-
-<div class="relative group">
-  <h2 id="attaching-schedules">Attaching Schedules</h2>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#attaching-schedules" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<p>Once the task is configured, you can run it immediately as a one-off operation
-by saving it without attaching any schedules. To run it on a recurring basis,
-attach one or more schedules. A task can have any number of schedules, each
-configured independently with the following fields.</p>
-<figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="low"
-    alt=""
-    src="../images/attach-schedule.png"
-    ></figure>
-
-<div class="relative group">
-  <h3 id="recurrence">Recurrence</h3>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#recurrence" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<p>How often the schedule runs. Available options: twice daily, daily, weekly,
-every 30 days, or custom. For a custom recurrence, enter the interval in days,
-hours, and/or minutes.</p>
-
-<div class="relative group">
-  <h3 id="start-time-utc">Start Time (UTC)</h3>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#start-time-utc" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<p>The date and time at which the schedule first runs, specified in UTC down to the
-minute. If left empty, the schedule starts immediately.</p>
-
-<div class="relative group">
-  <h3 id="journalised">Journalised</h3>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#journalised" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<p>When journalised mode is enabled, each execution is scheduled relative to the
-previous one. When disabled, the schedule resets its reference point after a
-Plakar Control Plane restart.</p>
-
-<div class="relative group">
-  <h3 id="enable">Enable</h3>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#enable" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<p>Schedules can be enabled or disabled independently. Disabling a schedule pauses
-it without deleting it.</p>
-
-<div class="relative group">
-  <h2 id="job-history">Job History</h2>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#job-history" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<p>The <strong>Operations &gt; Scheduling</strong> section includes a <strong>Job History</strong> tab that
-lists all jobs that have run, whether they succeeded or failed, along with any
-jobs that are currently running.</p>
-<figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="low"
-    alt=""
-    src="../images/job-history.png"
-    ></figure>
-
-<div class="relative group">
-  <h3 id="viewing-job-details">Viewing Job Details</h3>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#viewing-job-details" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<p>Each job has a details popup with the following information:</p>
-<ul>
-<li><strong>Job ID</strong> - a unique identifier for the job</li>
-<li><strong>Status</strong> - the outcome of the job: succeeded, failed, or running</li>
-<li><strong>Snapshot</strong> - a link to browse the snapshot produced by the job, where
-applicable</li>
-<li><strong>Progress</strong> - the current progress of the job</li>
-<li><strong>Output</strong> - the full log output for the job, useful for diagnosing failures</li>
-</ul>
-<p>If a job is currently running, the output updates in real time and a <strong>Cancel</strong>
-button is available to stop the job.</p>
-
-<figure>
-      <img class="my-0 rounded-md max-w-100 mx-auto" src="../images/job-info.png" alt="" />
-  
-  
-  </figure>
-
-<div class="relative group">
-  <h2 id="jobs-and-schedules-on-connectors">Jobs and Schedules on Connectors</h2>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#jobs-and-schedules-on-connectors" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<p>Each connector also surfaces scheduling information on its own details page:</p>
-<ul>
-<li>The <strong>Dashboard</strong> tab lists all past and upcoming jobs involving that
-connector, scoped to that connector only.</li>
-<li>The <strong>Scheduling</strong> tab lists all schedules that involve that connector, so you
-can see at a glance what is configured to run and when.</li>
-</ul>
-<p>This makes it easy to check the backup history or scheduled operations for a
-specific source, store, or destination without going through the global job
-history.</p>
-<p><figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="low"
-    alt=""
-    src="../images/connector-jobs-1.png"
-    ></figure>
- <figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="low"
-    alt=""
-    src="../images/connector-jobs-2.png"
-    ></figure>
-</p>
 
       </article>
       <footer class="mt-12 flex flex-col gap-6 docs-font border-t border-neutral-200 pt-6">
@@ -4234,31 +4226,14 @@ history.</p>
     
   
     
-      
+  
+    
+  
+    
+  
     
   
 
-  
-    
-    
-
-    <div class="flex flex-col sm:flex-row gap-4">
-      <div class="flex-1">
-        
-          <a href="/docs/control-plane/operations/policies/" class="group w-full flex flex-col gap-1 p-3 rounded-lg border border-neutral-200 bg-neutral-50 hover:border-primary-200 hover:bg-primary-50 transition-all duration-150">
-            <span class="text-xs text-neutral-400">Previous</span>
-            <span class="text-sm font-medium text-neutral-700 group-hover:text-primary-500 text-left transition-colors flex items-center gap-2">
-              <span class="w-3 h-3"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M7.82843 10.9999H20V12.9999H7.82843L13.1924 18.3638L11.7782 19.778L4 11.9999L11.7782 4.22168L13.1924 5.63589L7.82843 10.9999Z"></path></svg>
-</span></span>
-              Policies
-            </span>
-          </a>
-        
-      </div>
-      <div class="flex-1">
-        
-      </div>
-    </div>
   
 
   
@@ -4286,49 +4261,13 @@ history.</p>
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <nav id="TableOfContents">
-  <ul>
-    <li><a href="#creating-a-task">Creating a Task</a>
-      <ul>
-        <li><a href="#task-type">Task Type</a></li>
-        <li><a href="#connector-selection">Connector Selection</a></li>
-        <li><a href="#label">Label</a></li>
-        <li><a href="#options">Options</a>
-          <ul>
-            <li><a href="#restore-snapshot-selection">Restore: Snapshot Selection</a></li>
-          </ul>
-        </li>
-        <li><a href="#advanced-options">Advanced Options</a>
-          <ul>
-            <li><a href="#concurrency">Concurrency</a></li>
-            <li><a href="#check-check-window">Check: Check Window</a></li>
-            <li><a href="#sync-sync-window">Sync: Sync Window</a></li>
-          </ul>
-        </li>
-      </ul>
-    </li>
-    <li><a href="#attaching-schedules">Attaching Schedules</a>
-      <ul>
-        <li><a href="#recurrence">Recurrence</a></li>
-        <li><a href="#start-time-utc">Start Time (UTC)</a></li>
-        <li><a href="#journalised">Journalised</a></li>
-        <li><a href="#enable">Enable</a></li>
-      </ul>
-    </li>
-    <li><a href="#job-history">Job History</a>
-      <ul>
-        <li><a href="#viewing-job-details">Viewing Job Details</a></li>
-      </ul>
-    </li>
-    <li><a href="#jobs-and-schedules-on-connectors">Jobs and Schedules on Connectors</a></li>
-  </ul>
-</nav>
+      <nav id="TableOfContents"></nav>
     </div>
 
     
       
         <div class="border-t border-neutral-200 mt-4 pt-4">
-          <a href="https://github.com/PlakarKorp/plakar.io/edit/main/content/docs/control-plane/operations/scheduling.md" target="_blank"
+          <a href="https://github.com/PlakarKorp/plakar.io/edit/main/content/docs/control-plane/operations/scheduling/_index.md" target="_blank"
             class="flex items-center gap-2 text-xs hover:underline">
             Edit this page on GitHub
             <span class="w-3 h-3 -mt-1 flex items-center justify-center">

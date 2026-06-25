@@ -3,9 +3,8 @@
 # Connectors
 
 A connector links a resource in your inventory to Plakar Control Plane so it can
-be used as part of a backup workflow. A resource can have multiple connectors,
-and each connector belongs to a single resource. The connector type is selected
-during connector setup.
+be used as part of a backup workflow. A resource can have multiple connectors.
+The connector type is selected during connector setup.
 
 Plakar Control Plane supports three connector types:
 
@@ -15,80 +14,67 @@ Plakar Control Plane supports three connector types:
 
 ## How connectors work
 
-When attaching a connector to a resource, Plakar Control Plane uses the resource
-`class` and `subclass` to determine which integrations are compatible with that
-resource. For example, a resource with a class of `Object Storage` and a
-subclass of `S3` will automatically match compatible integrations, in this case
-just the S3 integration.
+Each resource has a `class` and `subclass` that describe what kind of resource
+it is. For managed inventories, these are set automatically when resources are
+discovered. For self-managed inventories, you set them yourself when adding a
+resource. This is configured at the [resource](../resources) level, not on the
+connector.
+
+Plakar Control Plane uses the resource `class` and `subclass` to determine which
+integrations are compatible when attaching a connector. For example, a resource
+with a class of `Object Storage` and a subclass of `S3` will automatically match
+compatible integrations, in this case just the S3 integration.
 
 In most cases, the integration is selected automatically. If multiple compatible
 integrations are available, you can choose the integration manually from the
 integration list.
 
 Once the integration is selected, you must provide the configuration and
-credentials required for that integration. The required configuration depends
-on:
+credentials required for that integration. After configuration, you can test the
+connector directly from the UI to verify that Plakar Control Plane can
+successfully reach and authenticate with the resource before using it in a
+backup workflow.
 
-- The connector type
-- The selected integration
-- The inventory type managing the resource
+### Store connectors
 
-After configuration, you can test the connector directly from the UI to verify
-that Plakar Control Plane can successfully reach and authenticate with the
-resource before using it in a backup job.
+When configuring a store connector, you must select a **Storage Type** in
+addition to the integration credentials:
 
-When configuring a source connector, additional SLA-related metadata is
-required:
+- **Standard** - the store is available at all times and can be written to or
+  read from immediately
+- **Cold** - the store uses archival storage where data must be retrieved before
+  it can be accessed, such as Amazon S3 Glacier
+
+The storage type is used by the policies engine to infer the nature of the
+store. This setting does not affect the underlying storage itself.
+
+![](./images/store-connector-storage-type.png)
+
+### Source connectors
+
+When configuring a source connector, you must also provide:
 
 - **Environment** - the environment the resource belongs to, such as production,
   development, or testing
 - **Data Class** - the type of data stored in the resource, such as critical,
-  database, financial records, PII, etc
+  database, financial records, or PII. Multiple data classes can be selected if
+  the resource contains more than one type of data.
 
-These values are used by the policies and SLA system to determine backup
-requirements and protection rules. See the
-[policies documentation](../operations/policies) for more details.
+![](./images/source-connector-environment-and-data-class.png)
 
-## Adding a connector to a resource
+These values tie directly into the policies and SLA system. Policies define
+backup requirements based on environment and data class combinations. For
+example, a policy might require that all production sources tagged as critical
+are backed up every hour and retained for 90 days. The policies engine uses
+these values to determine which policies apply to the source and what protection
+rules are enforced. See the [policies documentation](../operations/policies) for
+more details.
 
-Connectors can be added either from the **Connectors** section in the sidebar or
-directly from a resource inside an inventory.
+### Destination connectors
 
-### Adding from the Connectors section
-
-The connectors section contains sub-sections for **Sources**, **Stores**, and
-**Destinations**. Selecting one of these sections displays all connectors of
-that type and allows you to create a new connector.
-
-When creating a connector, you first select an inventory and then a resource
-from that inventory. You must also provide a connector name, select an
-integration, and fill in any integration-specific configuration fields required
-for the selected resource.
-
-Compatible integrations are automatically filtered based on the selected
-resource class and subclass. In most cases, the correct integration is
-automatically preselected.
-
-For source connectors, additional SLA-related fields for the environment and
-data class are required.
-
-![](../images/create-connector-1.png)
-
-### Adding from an inventory resource
-
-Connectors can also be added directly from a resource inside an inventory.
-Selecting a resource opens a side panel containing a **Connectors** tab and a
-**Settings** tab. The settings tab is used to manage the resource itself, while
-the connectors tab displays all connectors attached to the resource and allows
-additional connectors to be assigned.
-
-When creating a connector from the resource panel, the inventory and resource
-are derived from the selected resource and are not configurable, so only the
-connector type, integration, credentials, and integration-specific configuration
-need to be provided. For source connectors, the environment and data class
-fields are also required.
-
-![](../images/create-connector-2.png)
+Destination connectors only require the integration configuration and
+credentials. No additional fields are needed beyond what is described in
+[How connectors work](#how-connectors-work).
 
 ## Managing connectors
 
