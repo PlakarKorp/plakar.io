@@ -17,7 +17,7 @@
 
   
   
-    <meta name="description" content="Defines the resources that Plakar Control Plane manages — such as S3 buckets, databases, VMs, and filesystems — and explains how each resource is classified by class and subclass to determine integration compatibility.">
+    <meta name="description" content="Resources are the systems and storage targets that Plakar Control Plane backs up, stores data in, or restores to. Learn how to configure each resource type and manage resource settings.">
   
   
     <meta name="keywords" content="backup,open-source,deduplication,encryption,plakar,cloud backup,database backup,">
@@ -82,14 +82,14 @@
   <meta property="og:url" content="https://plakar.io/docs/control-plane/resources/">
   <meta property="og:site_name" content="Plakar | The Open Standard for Backup and Restore">
   <meta property="og:title" content="Resources">
-  <meta property="og:description" content="Defines the resources that Plakar Control Plane manages — such as S3 buckets, databases, VMs, and filesystems — and explains how each resource is classified by class and subclass to determine integration compatibility.">
+  <meta property="og:description" content="Resources are the systems and storage targets that Plakar Control Plane backs up, stores data in, or restores to. Learn how to configure each resource type and manage resource settings.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="website">
 
   
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Resources">
-  <meta name="twitter:description" content="Defines the resources that Plakar Control Plane manages — such as S3 buckets, databases, VMs, and filesystems — and explains how each resource is classified by class and subclass to determine integration compatibility.">
+  <meta name="twitter:description" content="Resources are the systems and storage targets that Plakar Control Plane backs up, stores data in, or restores to. Learn how to configure each resource type and manage resource settings.">
 
   
   
@@ -267,12 +267,12 @@
     "dateCreated": "2026-05-19T00:00:00\u002b00:00",
     "datePublished": "2026-05-19T00:00:00\u002b00:00",
     
-    "dateModified": "2026-06-23T22:10:23\u002b02:00",
+    "dateModified": "2026-06-25T18:22:12\u002b02:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "107"
+    "wordCount": "269"
   }]
   </script>
 
@@ -3928,6 +3928,44 @@
 Control Plane manages as part of a backup workflow. Examples of resources
 include S3 buckets, EC2 instances, PostgreSQL databases, virtual machines, and
 filesystems.</p>
+<p>All resources discovered across all inventories are available under
+<strong>Infrastructure -&gt; Resources</strong>. From here a resouce can be assigned to either a
+<a href="/docs/control-plane/connectors/sources/" >source</a> or a <a href="/docs/control-plane/connectors/destinations/" >destination</a>
+app. You can also filter resources by inventories or by resource class.</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="./images/view-resources.png"
+    ></figure>
+
+<div class="relative group">
+  <h2 id="resource-settings">Resource settings</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#resource-settings" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>Resource settings can be updated from the <strong>Settings</strong> tab under each resource.
+For managed inventories, most settings are read-only since the resource is
+managed by the inventory. For self-managed inventories, all settings can be
+modified. Backup coverage can be modified for any resource regardless of
+inventory type.</p>
+<p>Backup coverage tracks how many of your resources are protected by backups. If a
+resource does not need to be backed up (for example, a test database), you can
+exclude it from coverage using the <strong>Exclude from backup coverage</strong>. Excluded
+resources are omitted from protection status and coverage reporting.</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt=""
+    src="./images/resource-settings.png"
+    ></figure>
 
 <div class="relative group">
   <h2 id="resource-classification">Resource classification</h2>
@@ -3939,10 +3977,21 @@ filesystems.</p>
 </div>
 <p>Each resource is assigned a <code>class</code> and <code>subclass</code> that describe what kind of
 infrastructure it is.</p>
-<p>The class describes the general category the resource belongs to, while the
-subclass identifies the specific implementation or provider. Plakar Control
+<p>The <code>class</code> describes the general category the resource belongs to, while the
+<code>subclass</code> identifies the specific implementation or provider. Plakar Control
 Plane uses this classification to determine which integrations are compatible
 with a resource.</p>
+
+<div class="relative group">
+  <h2 id="supported-resources">Supported resources</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#supported-resources" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>The following pages document the supported resource types and the configuration
+required to use each one as a source, store, or destination.</p>
   <div class="not-prose section-index mt-6">
       <div class="mt-8">
         <h3 class="text-xl font-semibold mt-0 mb-3">
@@ -4008,20 +4057,6 @@ with a resource.</p>
           </div>
       </div>
   </div>
-<!--- [Analytics]()
-- [Block Storage](./block-storage) - [Scaleway Block Storage](./block-storage/scaleway), [PVC]()
-- [Compute](./compute) - [Scaleway Compute](./compute/scaleway)
-- [Database]() - [PostgreSQL](), [MySQL](), [MongoDB](), [Redis]()
-- [File Storage]()
-- [Hypervisor]() - [Proxmox]()
-- [Identity]()
-- [Messaging]()
-- [Network]()
-- [Object Storage](./object-storage) - [GCS](), [S3](./object-storage/s3), [Azure Blob]()
-- [Observability]()
-- [Registry]()
-- [Security]()
-- [Service]() - [FTP](), [IMAP](), [SFTP]()-->
 
       </article>
       <footer class="mt-12 flex flex-col gap-6 docs-font border-t border-neutral-200 pt-6">
@@ -4042,7 +4077,7 @@ with a resource.</p>
   
   <div class="flex items-center justify-between text-xs text-neutral-400">
     
-      <span>Last updated: June 23, 2026</span>
+      <span>Last updated: June 25, 2026</span>
     
     
       <a href="https://github.com/PlakarKorp/plakar.io/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">
@@ -4066,7 +4101,9 @@ with a resource.</p>
     <div class="toc-content text-neutral-600">
       <nav id="TableOfContents">
   <ul>
+    <li><a href="#resource-settings">Resource settings</a></li>
     <li><a href="#resource-classification">Resource classification</a></li>
+    <li><a href="#supported-resources">Supported resources</a></li>
   </ul>
 </nav>
     </div>
