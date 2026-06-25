@@ -69,6 +69,14 @@ become available from the dashboard:
 
 ![](../images/source-connector-2.png)
 
+## Browsing Snapshots
+
+You can view all backup snapshots stored on a store from the **Snapshots** tab.
+From there, you can view the files contained in each snapshot and download
+individual files without performing a full restore.
+
+![](../images/view-source-snapshots.png)
+
 ## Tasks and Schedules
 
 Tasks can be created directly from the source connector dashboard or from the
