@@ -32,7 +32,7 @@ When journalised mode is enabled, each execution is scheduled relative to the
 previous one. When disabled, the schedule resets its reference point after a
 Plakar Control Plane restart.
 
-## Enable
+## Enabled
 
 Schedules can be enabled or disabled independently. Disabling a schedule pauses
 it without deleting it.
