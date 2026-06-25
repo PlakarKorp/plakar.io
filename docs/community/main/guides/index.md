@@ -53,6 +53,10 @@ This page gathers a collection of practical guides to help you use Plakar effect
 
 
 
+## [Managing passphrases](https://plakar.io/docs/community/main/guides/managing-passphrases/index.md)
+
+
+
 ## [MySQL](https://plakar.io/docs/community/main/guides/mysql/index.md)
 
 - [Logical backups with SQL dumps](https://plakar.io/docs/community/main/guides/mysql/sqldump/index.md): Back up MySQL and MariaDB databases using the Plakar MySQL integration and restore them.

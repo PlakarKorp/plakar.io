@@ -28,6 +28,7 @@
 - [Managing packages](https://plakar.io/docs/community/v1.0.6/guides/managing-packages/index.md): How to install, upgrade, and remove Plakar integration packages.
 - [Pruning snapshots](https://plakar.io/docs/community/v1.0.6/guides/using-plakar-prune/index.md): Remove old snapshots from a Kloset store using age, tags, or retention policies.
 - [Using Plakar UI](https://plakar.io/docs/community/v1.0.6/guides/using-plakar-ui/index.md): Learn how to start and use the Plakar UI to browse snapshots, restore files, manage integrations, and view alerts.
+- [Managing passphrases](https://plakar.io/docs/community/v1.0.6/guides/managing-passphrases/index.md): How Kloset store passphrases work in Plakar and how to change the passphrase used by a Kloset store.
 - [MySQL](https://plakar.io/docs/community/v1.0.6/guides/mysql/index.md): Guides on backing up and restoring MySQL database
 - [PostgreSQL](https://plakar.io/docs/community/v1.0.6/guides/postgres/index.md): Guides on backing up and restoring PostgreSQL databases
 - [OVHcloud](https://plakar.io/docs/community/v1.0.6/guides/ovhcloud/index.md): Guides on running backups in OVHcloud
