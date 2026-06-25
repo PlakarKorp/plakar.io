@@ -9,7 +9,7 @@ Operations cover backup scheduling and SLA policy management in Plakar Control P
 
 
 
-## [Policies](https://plakar.io/docs/control-plane/operations/policies/index.md)
+## [SLA Policies](https://plakar.io/docs/control-plane/operations/policies/index.md)
 
 
 

@@ -11,13 +11,13 @@
 
   
   
-    <title>Policies &middot; Plakar | The Open Standard for Backup and Restore</title>
-    <meta name="title" content="Policies &middot; Plakar | The Open Standard for Backup and Restore">
+    <title>SLA Policies &middot; Plakar | The Open Standard for Backup and Restore</title>
+    <meta name="title" content="SLA Policies &middot; Plakar | The Open Standard for Backup and Restore">
   
 
   
   
-    <meta name="description" content="How to create and manage backup policies in Plakar Control Plane.">
+    <meta name="description" content="How to create and manage SLA policies in Plakar Control Plane.">
   
   
     <meta name="keywords" content="backup,open-source,deduplication,encryption,plakar,cloud backup,database backup,">
@@ -78,18 +78,18 @@
   
   <meta property="og:url" content="https://plakar.io/docs/control-plane/operations/policies/">
   <meta property="og:site_name" content="Plakar | The Open Standard for Backup and Restore">
-  <meta property="og:title" content="Policies">
-  <meta property="og:description" content="How to create and manage backup policies in Plakar Control Plane.">
+  <meta property="og:title" content="SLA Policies">
+  <meta property="og:description" content="How to create and manage SLA policies in Plakar Control Plane.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-05-13T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-06-25T18:26:43+02:00">
+    <meta property="article:modified_time" content="2026-06-25T18:27:55+02:00">
 
   
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Policies">
-  <meta name="twitter:description" content="How to create and manage backup policies in Plakar Control Plane.">
+  <meta name="twitter:title" content="SLA Policies">
+  <meta name="twitter:description" content="How to create and manage SLA policies in Plakar Control Plane.">
 
   
   
@@ -254,8 +254,8 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "articleSection": "Documentation",
-    "name": "Policies",
-    "headline": "Policies",
+    "name": "SLA Policies",
+    "headline": "SLA Policies",
     
     "inLanguage": "en",
     "url" : "https://plakar.io/docs/control-plane/operations/policies/",
@@ -267,12 +267,12 @@
     "dateCreated": "2026-05-13T00:00:00\u002b00:00",
     "datePublished": "2026-05-13T00:00:00\u002b00:00",
     
-    "dateModified": "2026-06-25T18:26:43\u002b02:00",
+    "dateModified": "2026-06-25T18:27:55\u002b02:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "772"
+    "wordCount": "442"
   }]
   </script>
 
@@ -1550,7 +1550,7 @@
       <a href="/docs/control-plane/operations/policies/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          text-primary-500 bg-neutral-100 font-medium">
-        Policies
+        SLA Policies
       </a>
     
   
@@ -3334,7 +3334,7 @@
       <a href="/docs/control-plane/operations/policies/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          text-primary-500 bg-neutral-100 font-medium">
-        Policies
+        SLA Policies
       </a>
     
   
@@ -4076,7 +4076,7 @@
           </span>
         
       
-      <span class="text-neutral-900 font-medium">Policies</span>
+      <span class="text-neutral-900 font-medium">SLA Policies</span>
     </nav>
   </div>
 
@@ -4141,26 +4141,17 @@
       <article class="docs-font prose dark:prose-invert max-w-none mt-8">
         
 <div class="relative group">
-  <h1 id="policies">Policies</h1>
+  <h1 id="sla-policies">SLA Policies</h1>
   
   <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#policies" aria-label="Anchor">#</a>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#sla-policies" aria-label="Anchor">#</a>
   </span>
   
 </div>
-<p>A backup policy defines a set of backup requirements such as frequency, retention, and storage tier that your sources are measured/checked against. Policies give you a way to verify that your existing backup schedules are meeting the standards you expect, and highlight any sources that are not compliant.</p>
-
-<div class="relative group">
-  <h2 id="why-you-need-policies">Why you need policies</h2>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#why-you-need-policies" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<p>Backing up your resources is only half the story. Without a way to verify that those backups meet a defined standard, it is easy to end up in a situation where a critical database is being backed up less frequently than required, or where backups are being kept for too short a period to meet regulatory requirements and you may not know about it until it is too late.</p>
-<p>Policies give you a compliance layer on top of your backup schedules. You define what <strong>good</strong> looks like for a given type of data and environment, scope the policy to the environments and data classes it should apply to, and Plakar Control Plane continuously checks whether matching sources are meeting the requirements. Sources that are not compliant are surfaced so you can act on them.</p>
-<p>Because policies use environment and data class scoping rather than targeting individual resources, a single policy can cover hundreds of sources at once. When you add a new source and assign it the right environment and data class, it is automatically picked up by any matching policies.</p>
+<p>An SLA policy defines backup requirements for your sources i.e. how often
+backups should be taken and how long they should be retained. When a policy is
+scoped to an environment and data class, Plakar Control Plane automatically
+creates backup schedules for all source connectors that match.</p>
 
 <div class="relative group">
   <h2 id="creating-a-policy">Creating a policy</h2>
@@ -4170,7 +4161,8 @@
   </span>
   
 </div>
-<p>To create a policy you need to provide a name for the policy, then define the backup requirements.</p>
+<p>To create a policy, provide a name, then define the backup requirements and
+select a store connector to use for backups.</p>
 
 <div class="relative group">
   <h3 id="backup-frequency-and-retention">Backup frequency and retention</h3>
@@ -4180,10 +4172,9 @@
   </span>
   
 </div>
-<p>You define requirements across six time granularities. You can configure any combination of these:</p>
+<p>You define requirements across six time granularities. You can configure any
+combination of these:</p>
 <ul>
-<li>Minutely</li>
-<li>Hourly</li>
 <li>Daily</li>
 <li>Weekly</li>
 <li>Monthly</li>
@@ -4191,21 +4182,14 @@
 </ul>
 <p>For each granularity you enable, you configure:</p>
 <ul>
-<li><strong>Frequency</strong> - how often a backup should be taken within that period, for example every 4 hours or once a day</li>
-<li><strong>Retention</strong> - how long should snapshots should be kept</li>
-<li><strong>Storage tier</strong> - where the snapshots should be stored: hot, cold, or offline</li>
+<li><strong>Frequency</strong> - how often a backup should be taken within that period, for
+example 4 times or once a day</li>
+<li><strong>Retention</strong> - how long backup snapshots should be kept</li>
 </ul>
-<p>Hot storage is for frequently accessed backups and offers the fastest restore times. Cold storage is for less frequently accessed backups at lower cost. Offline storage is for long-term retention and regulatory compliance.</p>
-
-<div class="relative group">
-  <h2 id="policy-summary">Policy summary</h2>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#policy-summary" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<p>Before creating the policy, Plakar Control Plane shows you a summary of the policy contract based on your selections.</p>
+<p>You then select a <a href="../../connectors/stores" >store</a> where the backup will be
+stored and toggle whether you want to run a
+<a href="../scheduling/tasks#check-task" >check task</a> on the after each. It&rsquo;s recommended
+to leave this on.</p>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
@@ -4214,7 +4198,20 @@
     alt=""
     src="../images/create-policy.png"
     ></figure>
-<p>This gives you a clear picture of what the policy will enforce before you apply it. The summary shows you the RPO and lookback derived from your settings. RPO being the maximum data loss window based on your most frequent backup, and lookback being how far back you can restore from based on your retention.</p>
+
+<div class="relative group">
+  <h3 id="policy-summary">Policy summary</h3>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#policy-summary" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>Before creating the policy, Plakar Control Plane shows you a summary of the
+policy contract based on your selections.</p>
+<p>The summary shows the RPO and lookback derived from your settings. RPO is the
+maximum data loss window based on your most frequent backup, and lookback is how
+far back you can restore from based on your retention settings.</p>
 
 <div class="relative group">
   <h2 id="scoping-a-policy">Scoping a policy</h2>
@@ -4224,40 +4221,28 @@
   </span>
   
 </div>
-<p>When a new policy is created, it starts as a draft policy by default. A policy becomes active once a scope is assigned to it.</p>
-<p>Policies are scoped using environment and data class filters. Plakar Control Plane automatically evaluates all source connectors and matches them against the configured scopes. Any source connector whose configured environment and data class match a policy scope will automatically be evaluated against that policy.</p>
+<p>After creating a policy, you are immediately taken to the scoping page to set up
+the environment and data class filters.</p>
 <p>Supported scope filters include:</p>
 <ul>
-<li><strong>Environment</strong> - production, staging, integration, or testing</li>
-<li><strong>Data Class</strong> - critical, database, financial records, PII, standard, documents, application data, code repositories, basic, logs, development, test, or archives</li>
+<li><strong>Environment</strong> - the environment the policy applies to. Environments can be
+managed from the <a href="" >settings</a>.</li>
+<li><strong>Data Class</strong> - one or more data classes the policy applies to. Data classes
+can be managed from the <a href="" >settings</a>.</li>
+<li><strong>Tag</strong> - narrows the matched sources down further to only those carrying the
+specified tag. Useful when environment and data class alone would match more
+sources than intended.</li>
 </ul>
-<p>For example, a policy scoped to <strong>production</strong> and <strong>database</strong> will apply to all source connectors configured with those values. When a new source connector is added with matching scope values, it is automatically evaluated against the policy without requiring any additional configuration.</p>
-<p>A source connector can be covered by multiple policies if multiple policies have overlapping scopes. This allows policies to be layered. For example, you may have a general policy covering all production sources, and a stricter policy specifically covering production databases.</p>
-<details
-      class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
-      data-type="warning"
-      open>
-      <summary class="flex items-center gap-2 font-semibold text-inherit cursor-pointer">
-        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"/></svg>
-</span></div>
-        <div class="grow">
-          CURRENT LIMITATIONS
-        </div>
-        <div
-          class="ms-auto flex h-5 w-5 items-center justify-center transition-transform ease-in-out -rotate-90 group-open:rotate-0 print:hidden"><span class="relative block icon"><svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 20 20"
-  fill="currentColor"
-  aria-hidden="true"
->
-  <path
-    fill-rule="evenodd"
-    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-    clip-rule="evenodd"
-  />
-</svg>
-</span></div>
-      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>SLA policy scope can currently target only a single data class</p></div></details><figure><img
+<p>Plakar Control Plane matches all source connectors against the configured scope.
+Any source connector whose environment and data class match the policy is
+automatically scheduled according to the policy rules. When a new source
+connector is added with matching values, it is automatically picked up by the
+policy without any additional configuration.</p>
+<p>A source connector can be covered by multiple policies if their scopes overlap.
+This allows policies to be layered for example, a general policy covering all
+production sources and a stricter policy specifically covering production
+databases.</p>
+<figure><img
     class="my-0 rounded-md"
     loading="lazy"
     decoding="async"
@@ -4267,33 +4252,18 @@
     ></figure>
 
 <div class="relative group">
-  <h2 id="compliance">Compliance</h2>
+  <h2 id="scheduling">Scheduling</h2>
   
   <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#compliance" aria-label="Anchor">#</a>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#scheduling" aria-label="Anchor">#</a>
   </span>
   
 </div>
-<p>Once a policy is active and scoped, Plakar Control Plane continuously checks whether each covered source is meeting the policy requirements. For each source, it evaluates whether backups are being taken at the required frequency, retained for the required period, and stored in the required storage tier.</p>
-<p>Sources that are not meeting the requirements are flagged as non-compliant, giving you visibility into gaps in your backup coverage before they become a problem. You can see compliance status per policy and per source from the policies dashboard.</p>
-<figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="low"
-    alt=""
-    src="../images/policy-compliance.png"
-    ></figure>
-<p>On source connectors, the <strong>Scheduling</strong> tab displays SLA compliance warnings when the configured schedules do not satisfy the assigned policy requirements.</p>
-<p>Non-compliant sources display an orange <strong>Retention</strong> badge showing that the source is violating its expected retention or backup policy requirements.</p>
-<figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="low"
-    alt=""
-    src="../images/source-sla-warning.png"
-    ></figure>
+<p>Once a policy is scoped, the policy scheduler automatically creates backup
+schedules for all matching sources using the store connector selected when the
+policy was created. See the
+<a href="../scheduling/policy-scheduler" >policy scheduler documentation</a> for more
+details.</p>
 
       </article>
       <footer class="mt-12 flex flex-col gap-6 docs-font border-t border-neutral-200 pt-6">
@@ -4359,15 +4329,14 @@
     <div class="toc-content text-neutral-600">
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#why-you-need-policies">Why you need policies</a></li>
     <li><a href="#creating-a-policy">Creating a policy</a>
       <ul>
         <li><a href="#backup-frequency-and-retention">Backup frequency and retention</a></li>
+        <li><a href="#policy-summary">Policy summary</a></li>
       </ul>
     </li>
-    <li><a href="#policy-summary">Policy summary</a></li>
     <li><a href="#scoping-a-policy">Scoping a policy</a></li>
-    <li><a href="#compliance">Compliance</a></li>
+    <li><a href="#scheduling">Scheduling</a></li>
   </ul>
 </nav>
     </div>

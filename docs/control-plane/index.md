@@ -37,7 +37,7 @@
 
 ## [Operations](https://plakar.io/docs/control-plane/operations/index.md)
 
-- [Policies](https://plakar.io/docs/control-plane/operations/policies/index.md): How to create and manage backup policies in Plakar Control Plane.
+- [SLA Policies](https://plakar.io/docs/control-plane/operations/policies/index.md): How to create and manage SLA policies in Plakar Control Plane.
 - [Scheduling](https://plakar.io/docs/control-plane/operations/scheduling/index.md): How to create and manage tasks and schedules in Plakar Control Plane.
 
 
