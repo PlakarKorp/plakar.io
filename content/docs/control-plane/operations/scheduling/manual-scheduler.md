@@ -38,4 +38,4 @@ Schedules can be enabled or disabled independently. Disabling a schedule pauses
 it without deleting it.
 
 See the [job history documentation](../job-history) for details on monitoring
-job progress, viewing job output, and finding jobs on connector pages.
+job progress, viewing job output, and finding jobs on app pages.

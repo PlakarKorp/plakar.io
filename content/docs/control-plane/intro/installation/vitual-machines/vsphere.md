@@ -86,8 +86,8 @@ files.
 ### Select networks
 
 Map the source network to the destination network segment you have prepared in
-your vCenter environment. If your environment uses an NSX-backed network segment,
-select it as the destination network, for example `plakar-network`.
+your vCenter environment. If your environment uses an NSX-backed network
+segment, select it as the destination network, for example `plakar-network`.
 
 ![](../images/ovhcloud-ova-7.png)
 
@@ -184,8 +184,8 @@ Configure the virtual machine with the recommended Plakar Control Plane sizing:
 
 These are recommendations for a production deployment. For evaluation or
 testing, you can reduce CPU, RAM, and storage. The data disk stores the
-database, logs, and all Plakar state. Backups themselves are stored wherever
-you configure using connectors.
+database, logs, and all Plakar state. Backups themselves are stored wherever you
+configure using apps.
 
 For the **CD/DVD Drive**, select **Datastore ISO File**, then browse to the
 Plakar Control Plane ISO that you uploaded earlier. Enable **Connect At Power

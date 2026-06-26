@@ -68,8 +68,10 @@ Class;Name;URN;Hostname
 You can expand a resource row to view its details. Each row expands to show
 three tabs:
 
-- **Snapshots** - lists backups taken for this resource
-- **Connectors** - shows connectors associated with this resource
+- **Apps** - lists latest 5 restore points available for this resource, apps
+  associated with the resource and and option to assign a new app to the
+  resource. See the [apps documentation](../../apps) on how to set them up on
+  resources.
 - **Settings** - edit resource details and configure backup coverage
 
 All fields can be modified in the **Settings** tab except the **URN**, which is

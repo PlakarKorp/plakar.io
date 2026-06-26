@@ -1,30 +1,31 @@
 ---
-title: "Source Connector"
+title: "Source App"
 date: "2026-05-11T00:00:00Z"
-weight: 1
-summary: "How source connectors work in Plakar Control Plane."
+weight: 2
+summary: "How source apps work in Plakar Control Plane."
 aliases:
   - /control-plane-docs/connectors/sources/
+  - /docs/control-plane/connectors/sources/
 ---
 
-# Source Connector
+# Source App
 
-A source connector defines a resource that Plakar Control Plane can back up.
+A source app defines a resource that Plakar Control Plane can back up.
 
-## Assigning a source connector
+## Assigning a source app
 
-Source connectors are assigned from the **Resources** page. Click on a resource
-to open it, then go to the **Connectors** tab. This tab shows all source and
-[destination connectors](../destinations) already assigned to the resource and
-allows you to assign new ones. Store connectors are not managed from here, see
-the [store connector](../stores) documentation for how to assign a store.
+Source apps are assigned from the **Resources** page. Click on a resource to
+open it, then go to the **Apps** tab. This tab shows all source and destination
+already assigned to the resource and allows you to assign new ones. Store apps
+are not managed from here, see the [store app](../stores) documentation for how
+to assign a store.
 
 ![](../images/resource-details.png)
 
-To assign a source connector, click **Assign connector** from the **Connectors**
-tab and select **Source**. Then provide a name for the connector. The name is
-used to distinguish this connector when multiple connectors of the same type are
-configured for the same resource.
+To assign a source app, click **Assign app** from the **Apps** tab and select
+**Source**. Then provide a name for the app. The name is used to distinguish
+this app when multiple apps of the same type are configured for the same
+resource.
 
 Next, select the **Environment** and **Data Class** for the source:
 
@@ -54,15 +55,14 @@ fields.
 
 ## Testing the connection
 
-Once a source connector is created, its details page provides a **Dashboard**
-tab with a **Test Connection** action. Use this to verify that Plakar Control
-Plane can connect to the source using the provided configuration and
-credentials.
+Once a source app is created, its details page provides a **Dashboard** tab with
+a **Test Connection** action. Use this to verify that Plakar Control Plane can
+connect to the source using the provided configuration and credentials.
 
 ![](../images/source-connector-1.png)
 
-If the connection test fails, check the connector configuration and credentials,
-then run the test again. Once the store has been initialized, additional actions
+If the connection test fails, check the app configuration and credentials, then
+run the test again. Once the store has been initialized, additional actions
 become available from the dashboard:
 
 - **Create Backup** - create a backup task from this source
@@ -79,7 +79,7 @@ individual files without performing a full restore.
 
 ## Tasks and Schedules
 
-Tasks can be created directly from the source connector dashboard or from the
+Tasks can be created directly from the source app dashboard or from the
 **Operations > Scheduling** section. See the
 [scheduling documentation](../../operations/scheduling) for details on creating
 and managing tasks and schedules.

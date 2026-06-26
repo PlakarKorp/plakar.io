@@ -41,9 +41,9 @@ scheduler, as those are fully managed by the policies engine.
 
 ## Jobs and Schedules on Apps
 
-Each app ([sources](../../connectors/sources), [stores](../../connectors/stores)
-& [destinations](../../connectors/destinations)) also surfaces scheduling
-information on its own details page:
+Each app ([sources](../../apps/sources), [stores](../../apps/stores) &
+[destinations](../../apps/destinations)) also surfaces scheduling information on
+its own details page:
 
 - The **Dashboard** tab lists all past and upcoming jobs involving that app,
   scoped to that app only.

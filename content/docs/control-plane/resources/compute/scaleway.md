@@ -36,7 +36,7 @@ flowchart TD
   end
 
   subgraph Plakar["Plakar Control Plane"]
-    Source["Scaleway Compute<br/>Source connector"]
+    Source["Scaleway Compute<br/>Source app"]
     Backup["Backup process<br/>Encrypt & deduplicate"]
   end
 
@@ -61,7 +61,7 @@ flowchart TD
   Store["Kloset Store"]
 
   subgraph Plakar["Plakar Control Plane"]
-    Destination["Scaleway Compute<br/>Destination connector"]
+    Destination["Scaleway Compute<br/>Destination app"]
     Restore["Restore process"]
   end
 
@@ -86,8 +86,7 @@ flowchart TD
 
 ## Configuration
 
-Scaleway compute resources can be configured as a source or destination
-connector.
+Scaleway compute resources can be configured using a source or destination app.
 
 ### Integration
 
