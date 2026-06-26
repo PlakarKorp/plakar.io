@@ -38,7 +38,7 @@ Here is what went in across our core repositories since **v1.0.6** (roughly six 
 
 That is well over **2,000 commits** and several hundred reviewed pull requests, spread across plakar, Kloset, the gRPC bridge, the SDK, and our 25 integrations.
 
-If you want the full story behind the headline features, the [v1.1.0-beta announcement](/posts/2026-01_09_plakar_1_1_0_beta/) still holds up and goes into much more detail than I will here, this post is the victory lap rather than the deep dive.
+If you want the full story behind the headline features, the [v1.1.0-beta announcement](/posts/2026-01-26/plakar-v1.1.0-beta-the-foundation-for-whats-next/) still holds up and goes into much more detail than I will here, this post is the victory lap rather than the deep dive.
 But since a lot of you discovered the v1.1.0 branch through that beta and then patiently helped us harden it, I want to recap what landed, what changed since the beta, and what comes next.
 
 ## TL;DR
