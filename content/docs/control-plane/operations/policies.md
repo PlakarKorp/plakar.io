@@ -33,9 +33,9 @@ For each granularity you enable, you configure:
 
 - **Frequency** - how often a backup should be taken within that period, for
   example 4 times or once a day
-- **Retention** - how long backup snapshots should be kept
+- **Retention** - how long backup restore points should be kept
 
-You then select a [store](../../connectors/stores) where the backup will be
+You then select a [store](../../apps/stores) where the backup will be
 stored and toggle whether you want to run a
 [check task](../scheduling/tasks#check-task) on the after each. It's recommended
 to leave this on.

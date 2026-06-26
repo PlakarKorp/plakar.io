@@ -85,9 +85,9 @@ additional fields are needed beyond what is described in
 
 ![](./images/destination-app.png)
 
-## Managing connectors
+## Managing apps
 
 The following pages provide detailed configuration and management information
-for each connector type.
+for each app type.
 
 {{% children description="true" %}}

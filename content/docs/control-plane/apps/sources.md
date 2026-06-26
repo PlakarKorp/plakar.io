@@ -69,10 +69,11 @@ become available from the dashboard:
 
 ![](../images/source-connector-2.png)
 
-## Browsing Snapshots
+## Browsing Restore Points
 
-You can view all backup snapshots stored on a store from the **Snapshots** tab.
-From there, you can view the files contained in each snapshot and download
+You can view all backup restore points stored on a store from the **Restore
+Points** tab. From there, you can view the files contained in each restore point
+and download
 individual files without performing a full restore.
 
 ![](../images/view-source-snapshots.png)

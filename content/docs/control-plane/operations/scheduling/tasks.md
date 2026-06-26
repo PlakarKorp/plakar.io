@@ -21,8 +21,8 @@ a source app and a store app.
 ## Restore Task
 
 A restore task restores data from a store app to a destination app. It requires
-a store app and a destination app. If no snapshot is selected, Plakar Control
-Plane restores the latest available snapshot.
+a store app and a destination app. If no restore point is selected, Plakar
+Control Plane restores the latest available restore point.
 
 ![](../images/restore-task.png)
 
@@ -39,6 +39,7 @@ different storage tier.
 A check task verifies the integrity of data in a store app. It checks that the
 backup data can be read correctly and validates file MACs to make sure no
 corruption has occurred. It requires a store app. By default the entire store is
-checked, but you can select a specific snapshot to check only that snapshot.
+checked, but you can select a specific restore point to check only that restore
+point.
 
 ![](../images/check-task.png)

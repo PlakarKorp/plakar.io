@@ -29,7 +29,7 @@ the new passphrase.
 
 The general workflow is:
 
-1. Create a new store connector with the new passphrase.
+1. Create a new store app with the new passphrase.
 2. Run a sync task from the old store to the new store.
 3. Verify that the sync job completed successfully.
 4. Update backup, restore, check, and sync tasks to use the new store.
@@ -45,8 +45,8 @@ The general workflow is:
 
 ## Step 1: Create a new store
 
-First, create a new store connector. This store must use the new passphrase. See
-the [connectors documentation](../connectors) for the full procedure.
+First, create a new store app. This store must use the new passphrase. See
+the [apps documentation](../apps) for the full procedure.
 
 When creating the new store:
 
@@ -56,7 +56,7 @@ When creating the new store:
 > [!NOTE]+
 >
 > The new store should be separate from the old one. Do not point both store
-> connectors to the same resource. Read the
+> apps to the same resource. Read the
 > [resources documentation](../resources) for more information about resources.
 
 ## Step 2: Sync the old store to the new store
@@ -64,7 +64,7 @@ When creating the new store:
 After the new store has been created, create a sync task from the old store to
 the new store. The old store is used as the source. The new store is used as the
 destination. See the
-[sync task documentation](../connectors/stores#sync-store-task) for details on
+[sync task documentation](../apps/stores#sync-store-task) for details on
 creating and running scheduled tasks. When configuring the sync task:
 
 - Select the old store as the source store.
@@ -82,7 +82,7 @@ Once the sync job has completed, verify that the new store can be used. Check
 that:
 
 - The sync job completed successfully.
-- The new store contains the expected snapshots.
+- The new store contains the expected restore points.
 - A check task can run successfully on the new store to verify data integrity.
 
 ## Step 4: Update existing tasks and policies
@@ -146,6 +146,6 @@ details on using secrets from a secret manager inside Plakar Control Plane.
 
 ## See also
 
-- [Store connectors](../connectors/stores)
+- [Store apps](../apps/stores)
 - [Scheduling tasks](../operations/scheduling)
 - [Secret Providers](../infrastructure/secret-providers)

@@ -76,13 +76,13 @@ become available from the dashboard:
 - **Sync Store** - create a synchronization task to another store
 - **Restore Data** - create a restore task from the store
 
-## Browsing Snapshots
+## Browsing Restore Points
 
-You can view all backup snapshots stored on a store from the **Browse** tab.
+You can view all backup restore points stored on a store from the **Browse** tab.
 
 ![](../images/view-snapshots.png)
 
-From there, you can view the files contained in each snapshot and download
+From there, you can view the files contained in each restore point and download
 individual files without performing a full restore.
 
 ![](../images/browse-snapshots.png)
