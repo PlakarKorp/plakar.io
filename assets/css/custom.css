@@ -167,3 +167,46 @@ table.Nm + br + table.Nm {
 table.Nm {
   margin: 0;
 }
+
+/* =============================================
+   Hero v2 — animation-only rules
+   (layout, colours, spacing all use Tailwind)
+   ============================================= */
+
+/* Rotating headline: needs overflow+height trick and cubic-bezier transition */
+.hv2-rotate {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  height: 1.08em;
+  vertical-align: bottom;
+}
+.hv2-rotate-inner {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.hv2-rotate-inner span {
+  display: block;
+  line-height: 1.08;
+  white-space: nowrap;
+}
+
+/* Expand panel: max-height animation */
+.hv2-d-expand { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+.hv2-d-expand.open { max-height: 340px; }
+
+/* Demo modals: opacity+scale reveal */
+.hv2-d-modal { opacity: 0; transform: scale(0.97); transition: opacity 0.25s ease, transform 0.25s ease; pointer-events: none; }
+.hv2-d-modal.open { opacity: 1; transform: scale(1); pointer-events: auto; }
+
+/* Animated cursor: left/top transitions driven by JS */
+#hv2-cursor {
+  position: absolute;
+  width: 22px; height: 22px;
+  z-index: 40;
+  left: 40px; top: 70px;
+  transition: left 0.7s cubic-bezier(0.4, 0, 0.2, 1), top 0.7s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+  pointer-events: none;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,.3));
+}

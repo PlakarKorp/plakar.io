@@ -1,684 +1,675 @@
 {{ define "main" }}
 
-<!-- JS: assets/js/main/home-scroll.js -->
 <!-- JS: assets/js/main/newsletter.js -->
+<!-- JS: assets/js/main/home-hero.js -->
+<!-- JS: assets/js/main/home-sections.js -->
 
-{{ $dashboardHero := resources.Get "img/general/dashboard-8.png" }}
-{{ $testimonialJJ := resources.Get "img/testimonials/jj.jpeg" }}
-{{ $klosetSchema := resources.Get "img/general/kloset-schema.svg" }}
-{{ $nestor := resources.Get "img/nestor/nestor-inline.svg" }}
-{{ $gradientBlue := resources.Get "img/general/gradient-blue.png" }}
 {{ $gradientOrange := resources.Get "img/general/gradient-orange.png" }}
 
-<!-- Hero -->
-<section class="section-light-2 grid-background pt-24">
-  <div class="px-4 pt-20 pb-7 max-w-350 mx-auto flex flex-col items-center gap-8">
-    <h1 class="text-4xl lg:text-6xl font-medium text-center">
-      <span class="text-primary-500">Backup</span> Anything.
-      <span class="text-primary-500">Store</span> Anywhere.<br />
-      <span class="text-primary-500">Restore</span> Everywhere.
-    </h1>
-    <p class="text-lg lg:text-xl text-neutral-600 text-center">
-      The
-      <span class="text-secondary-500 font-extrabold"
-        >Open Source standard</span
-      >
-      for unified resilience.<br />
-      Secure your Cloud, SaaS and On-Prem data with native
-      <span class="text-secondary-500 font-extrabold"
-        >zero-trust encryption</span
-      >.
-    </p>
-    {{ partial "components/buttons/base-button.html" (dict
-      "label" "Quickstart guide"
-      "labelShort" "Get started"
-      "href" "/docs/community/v1.1.0/quickstart/first-backup"
-      "target" "_blank"
-    ) }}
-  </div>
+<!-- Hero v2 -->
+<!-- JS: assets/js/main/home-hero.js -->
+<section class="section-light-2 grid-background pt-24 relative overflow-hidden">
+  <div class="px-4 pt-16 pb-20 max-w-350 mx-auto relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
-  <!-- Dashboard image -->
-  <div class="bg-gradient-section mt-14">
-    <div class="max-w-350 mx-auto px-4">
-      <img
-        src="{{ $dashboardHero.RelPermalink }}"
-        alt="Plakar dashboard"
-        class="block mx-auto rounded-t-xl border-x-8 border-t-8 border-neutral-900/20"
-      />
+      <!-- Left: copy -->
+      <div>
+        <h1 class="text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight mb-5 text-neutral-900">
+          Back up and recover<br>
+          your <span class="hv2-rotate"><span class="hv2-rotate-inner text-primary-500" id="hv2-rot"><span>AI pipelines</span></span></span><br>
+          from a single control plane.
+        </h1>
+        <p class="text-lg text-neutral-600 max-w-lg mb-7 leading-relaxed">
+          <strong class="text-neutral-900 font-semibold">Plakar</strong> is the
+          <span class="text-secondary-500 font-extrabold">open-source standard</span>
+          for efficient, secure backups.<br>
+          <strong class="text-neutral-900 font-semibold">Plakar Control Plane</strong> adds
+          the visibility your organization needs across every inventory. It orchestrates
+          your entire resilience posture, with backups defined by hand or <span class="text-primary-500 font-semibold whitespace-nowrap">as code</span>, from one place.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="/docs/community/v1.1.0/quickstart/first-backup/"
+             class="inline-flex items-center gap-2 px-6 py-3.5 text-[15px] font-semibold rounded-lg bg-primary-500 text-white hover:bg-primary-600 transition-colors no-underline">
+            Get started
+          </a>
+          <a href="#"
+             class="inline-flex items-center gap-2 px-6 py-3.5 text-[15px] font-semibold rounded-lg bg-white border border-neutral-300 text-neutral-900 hover:border-neutral-400 hover:bg-neutral-50 transition-colors no-underline book-a-demo-modal-open">
+            Book a demo
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: animated control-plane demo -->
+      <div id="hv2-demo" class="relative select-none">
+        <div class="rounded-xl border border-slate-200 shadow-2xl shadow-slate-300/40 overflow-hidden bg-white">
+          <!-- browser chrome -->
+          <div class="flex items-center gap-3 px-4 py-2.5 bg-slate-100 border-b border-slate-200">
+            <div class="flex items-center gap-1.5">
+              <span class="w-3 h-3 rounded-full bg-red-400"></span>
+              <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+            </div>
+            <div class="flex-1 bg-white rounded-md px-3 py-1 text-[11px] text-slate-400 font-mono border border-slate-200">plakar.mycie.com</div>
+          </div>
+
+          <!-- demo body -->
+          <div class="relative h-[500px] overflow-hidden">
+            <!-- header row -->
+            <div class="flex items-center justify-between px-4 py-2.5 border-b border-slate-100">
+              <div class="flex items-center gap-2">
+                <span class="text-sm font-semibold text-slate-800">Resources</span>
+                <span class="text-[11px] text-slate-400">AWS inventory</span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500">Production</span>
+                <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500">Operation</span>
+              </div>
+            </div>
+            <!-- column headers -->
+            <div class="flex items-center px-4 py-2 text-[10px] uppercase tracking-wider text-slate-400 font-semibold border-b border-slate-100">
+              <span class="flex-1">Resource</span>
+              <span class="w-24">Type</span>
+              <span class="w-20">Apps</span>
+              <span class="w-24 text-right">Protection</span>
+            </div>
+
+            <!-- expandable row: app-server-01 -->
+            <div id="hv2-d-row1" class="hv2-d-row flex items-center px-4 py-2.5 text-sm border-b border-slate-100 cursor-pointer" onclick="hv2ToggleExpand()">
+              <span class="flex-1 flex items-center gap-1.5">
+                <svg id="hv2-d-chevron" class="w-3 h-3 text-slate-400 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                <span class="font-medium text-slate-800">app-server-01</span>
+              </span>
+              <span class="w-24 text-xs text-slate-500">EC2</span>
+              <span class="w-20 flex items-center gap-1">__GITLAB__ __MYSQL__ __S3__</span>
+              <span class="w-24 text-right text-[11px] font-medium text-emerald-600">Protected</span>
+            </div>
+
+            <!-- expand panel -->
+            <div id="hv2-d-expand" class="hv2-d-expand bg-slate-50/70 border-b border-slate-100">
+              <div class="px-4 py-3 space-y-2">
+                <p class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold">Apps on app-server-01</p>
+                <!-- GitLab -->
+                <div class="flex items-center gap-3 bg-white rounded-lg border border-slate-200 px-3 py-2">
+                  <span class="w-[18px] h-[18px] shrink-0">__GITLAB__</span>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-sm font-medium text-slate-800">GitLab</p>
+                    <p class="text-[11px] text-slate-500">Policies: <span class="text-slate-700 font-medium">Production, Operation</span></p>
+                  </div>
+                  <button onclick="event.stopPropagation(); hv2OpenBackup()" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-primary-500 text-white text-xs font-medium hover:bg-primary-600 transition-colors">
+                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 512 512"><path d="M288 109.3L288 352c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-242.7-73.4 73.4c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l128-128c12.5-12.5 32.8-12.5 45.3 0l128 128c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L288 109.3zM64 352l128 0c0 35.3 28.7 64 64 64s64-28.7 64-64l128 0c35.3 0 64 28.7 64 64l0 32c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64l0-32c0-35.3 28.7-64 64-64z"/></svg>
+                    Backup
+                  </button>
+                  <button id="hv2-d-restorebtn" onclick="event.stopPropagation(); hv2OpenRestore()" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-slate-200 text-slate-600 text-xs font-medium hover:bg-slate-50 transition-colors">
+                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 512 512"><path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 242.7-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7 288 32zM64 352c-35.3 0-64 28.7-64 64l0 32c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-32c0-35.3-28.7-64-64-64l-101.5 0-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352 64 352z"/></svg>
+                    Restore
+                  </button>
+                </div>
+                <!-- MySQL -->
+                <div class="flex items-center gap-3 bg-white rounded-lg border border-slate-200 px-3 py-2">
+                  <span class="w-[18px] h-[18px] shrink-0">__MYSQL__</span>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-sm font-medium text-slate-800">MySQL</p>
+                    <p class="text-[11px] text-slate-500">Policies: <span class="text-slate-700 font-medium">Production, Compliance</span></p>
+                  </div>
+                  <span class="text-[11px] text-slate-300 font-mono">2h ago</span>
+                </div>
+                <!-- S3 -->
+                <div class="flex items-center gap-3 bg-white rounded-lg border border-slate-200 px-3 py-2">
+                  <span class="w-[18px] h-[18px] shrink-0">__S3__</span>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-sm font-medium text-slate-800">S3</p>
+                    <p class="text-[11px] text-slate-500">Policies: <span class="text-slate-700 font-medium">Operation</span></p>
+                  </div>
+                  <span class="text-[11px] text-slate-300 font-mono">5h ago</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- static rows -->
+            <div class="hv2-d-row flex items-center px-4 py-2.5 text-sm border-b border-slate-100">
+              <span class="flex-1 flex items-center gap-1.5 pl-[18px]"><span class="font-medium text-slate-800">db-primary</span></span>
+              <span class="w-24 text-xs text-slate-500">RDS</span>
+              <span class="w-20 flex items-center gap-1">__PG__</span>
+              <span class="w-24 text-right text-[11px] font-medium text-emerald-600">Protected</span>
+            </div>
+            <div class="hv2-d-row flex items-center px-4 py-2.5 text-sm border-b border-slate-100">
+              <span class="flex-1 flex items-center gap-1.5 pl-[18px]"><span class="font-medium text-slate-800">web-server-01</span></span>
+              <span class="w-24 text-xs text-slate-500">EC2</span>
+              <span class="w-20 flex items-center gap-1">__SFTP__ __FS__</span>
+              <span class="w-24 text-right text-[11px] font-medium text-emerald-600">Protected</span>
+            </div>
+            <div class="hv2-d-row flex items-center px-4 py-2.5 text-sm border-b border-slate-100">
+              <span class="flex-1 flex items-center gap-1.5 pl-[18px]"><span class="font-medium text-slate-800">cache-redis</span></span>
+              <span class="w-24 text-xs text-slate-500">ElastiCache</span>
+              <span class="w-20 flex items-center gap-1">__REDIS__</span>
+              <span class="w-24 text-right text-[11px] font-medium text-amber-600">Not protected</span>
+            </div>
+            <div class="hv2-d-row flex items-center px-4 py-2.5 text-sm border-b border-slate-100">
+              <span class="flex-1 flex items-center gap-1.5 pl-[18px]"><span class="font-medium text-slate-800">object-store-eu</span></span>
+              <span class="w-24 text-xs text-slate-500">S3</span>
+              <span class="w-20 flex items-center gap-1">__S3__</span>
+              <span class="w-24 text-right text-[11px] font-medium text-emerald-600">Protected</span>
+            </div>
+            <div class="hv2-d-row flex items-center px-4 py-2.5 text-sm border-b border-slate-100">
+              <span class="flex-1 flex items-center gap-1.5 pl-[18px]"><span class="font-medium text-slate-800">analytics-mongo</span></span>
+              <span class="w-24 text-xs text-slate-500">EC2</span>
+              <span class="w-20 flex items-center gap-1">__MONGO__</span>
+              <span class="w-24 text-right text-[11px] font-medium text-emerald-600">Protected</span>
+            </div>
+            <div class="hv2-d-row flex items-center px-4 py-2.5 text-sm">
+              <span class="flex-1 flex items-center gap-1.5 pl-[18px]"><span class="font-medium text-slate-800">ci-runner-01</span></span>
+              <span class="w-24 text-xs text-slate-500">EC2</span>
+              <span class="w-20 flex items-center gap-1">__GITLAB__</span>
+              <span class="w-24 text-right text-[11px] font-medium text-amber-600">Not protected</span>
+            </div>
+
+            <!-- BACKUP modal -->
+            <div id="hv2-d-bmodal" class="hv2-d-modal absolute inset-0 bg-slate-900/30 flex items-center justify-center p-4">
+              <div class="bg-white rounded-xl shadow-2xl w-full max-w-sm border border-slate-200">
+                <div class="flex items-center justify-between px-4 py-3 border-b border-slate-100">
+                  <h4 class="text-sm font-semibold text-slate-900">Backup GitLab</h4>
+                  <button onclick="hv2CloseBackup()" class="text-slate-400 hover:text-slate-600">
+                    <span class="block w-3.5 h-3.5">{{ partial "icon.html" "x-mark" }}</span>
+                  </button>
+                </div>
+                <div class="px-4 py-3">
+                  <p class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold mb-1.5">App</p>
+                  <div class="flex items-center gap-2.5 px-3 py-2 bg-slate-50 rounded-lg mb-3">
+                    <span class="w-[18px] h-[18px]">__GITLAB__</span>
+                    <div class="min-w-0">
+                      <p class="text-sm font-medium text-slate-800">GitLab</p>
+                      <p class="text-[11px] text-slate-400">Policies: Production, Operation · app-server-01</p>
+                    </div>
+                  </div>
+                  <p class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold mb-1.5">Destination store</p>
+                  <div class="w-full text-sm border border-slate-200 rounded-lg px-3 py-1.5 text-slate-600 flex items-center justify-between">
+                    s3-backup-prod · APPEND_ONLY
+                    <svg class="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                  </div>
+                </div>
+                <div class="flex items-center justify-end gap-2 px-4 py-3 border-t border-slate-100">
+                  <button onclick="hv2CloseBackup()" class="px-3 py-1.5 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-lg">Cancel</button>
+                  <button id="hv2-d-brun" class="px-3 py-1.5 text-sm font-medium bg-primary-500 text-white rounded-lg hover:bg-primary-600">Run backup</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- RESTORE modal -->
+            <div id="hv2-d-rmodal" class="hv2-d-modal absolute inset-0 bg-slate-900/30 flex items-center justify-center p-4">
+              <div class="bg-white rounded-xl shadow-2xl w-full max-w-sm border border-slate-200">
+                <div class="flex items-center justify-between px-4 py-3 border-b border-slate-100">
+                  <h4 class="text-sm font-semibold text-slate-900">Restore GitLab</h4>
+                  <button onclick="hv2CloseRestore()" class="text-slate-400 hover:text-slate-600">
+                    <span class="block w-3.5 h-3.5">{{ partial "icon.html" "x-mark" }}</span>
+                  </button>
+                </div>
+                <div class="px-4 py-3">
+                  <p class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold mb-1.5">Recovery point</p>
+                  <label class="flex items-center justify-between gap-2 py-1 text-sm text-slate-700">
+                    <span class="flex items-center gap-2"><input type="radio" name="hv2-snap" checked class="accent-primary-500"><span class="font-mono text-xs">Jun 16 · 02:00</span></span>
+                    <span class="text-[11px] text-slate-400">2.4 GiB</span>
+                  </label>
+                  <label class="flex items-center justify-between gap-2 py-1 text-sm text-slate-700">
+                    <span class="flex items-center gap-2"><input type="radio" name="hv2-snap" class="accent-primary-500"><span class="font-mono text-xs">Jun 15 · 02:00</span></span>
+                    <span class="text-[11px] text-slate-400">2.4 GiB</span>
+                  </label>
+                  <p class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold mt-3 mb-1.5">Restore to</p>
+                  <label id="hv2-d-dest-orig" class="flex items-center gap-2 py-1.5 px-2.5 rounded-lg border border-slate-200 text-sm text-slate-700 mb-1.5 cursor-pointer" onclick="hv2ShowCombo(false)">
+                    <input type="radio" name="hv2-dest" checked class="accent-primary-500">Original location <span class="text-[11px] text-slate-400">· app-server-01</span>
+                  </label>
+                  <label id="hv2-d-dest-alt" class="flex items-center gap-2 py-1.5 px-2.5 rounded-lg border border-slate-200 text-sm text-slate-700 cursor-pointer" onclick="hv2ShowCombo(true)">
+                    <input type="radio" name="hv2-dest" class="accent-primary-500">New destination: pick a store
+                  </label>
+                  <select id="hv2-d-dest-combo" class="hidden w-full mt-1.5 text-sm bg-white border border-slate-200 rounded-lg px-3 py-1.5 text-slate-700 focus:outline-none focus:ring-2 focus:ring-primary-300">
+                    <option>s3-backup-staging · S3</option>
+                    <option>minio-dr · MinIO</option>
+                    <option>local-fs · Filesystem</option>
+                  </select>
+                </div>
+                <div class="flex items-center justify-end gap-2 px-4 py-3 border-t border-slate-100">
+                  <button onclick="hv2CloseRestore()" class="px-3 py-1.5 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-lg">Cancel</button>
+                  <button id="hv2-d-rrun" class="px-3 py-1.5 text-sm font-medium bg-primary-500 text-white rounded-lg hover:bg-primary-600">Restore</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- animated cursor -->
+        <svg id="hv2-cursor" viewBox="0 0 24 24" fill="white" stroke="#1e293b" stroke-width="1.5">
+          <path d="M5 3l15 9-6 1.5L18 20l-3 1.5-4-6.5L5 19V3z"/>
+        </svg>
+      </div>
+
     </div>
   </div>
+
+  <!-- Gradient fade: rises behind the demo, like the original hero -->
+  <div class="bg-gradient-section absolute inset-x-0 bottom-0 h-2/5 z-0"></div>
 </section>
 
-<!-- Problem statement -->
-<section class="section-light-2 pt-14 lg:pt-38 pb-28">
-  <div class="max-w-350 mx-auto px-4 flex flex-col gap-12">
+<!-- Why Backups -->
+<section class="section-light-1 border-y border-neutral-200 py-24">
+  <div class="px-4 max-w-350 mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
 
-    <div class="text-center flex flex-col gap-6 max-w-4xl mx-auto">
-      <h2 class="text-4xl lg:text-6xl font-medium text-neutral-900 leading-tight">
-        The <span class="text-primary-500">Math</span> has changed
-      </h2>
-      <p class="text-lg lg:text-xl text-neutral-600 leading-normal">
-        End-to-end encryption broke the efficiency model of traditional backup.<br class="hidden md:block"/>
-        Plakar defined a new architectural standard.
-      </p>
-    </div>
-
-    <div class="grid md:grid-cols-3 -mt-6 gap-8 lg:gap-12">
-
-      <div class="p-6 bg-neutral-50 border border-neutral-200 rounded-lg shadow-sm flex flex-col gap-3">
-        <div class="flex items-center gap-3 text-primary-500">
-          <span class="w-6 h-6 shrink-0">{{ partial "icon.html" "ri/file-lock-line" }}</span>
-          <h3 class="font-bold text-lg text-neutral-900 leading-tight">Encryption kills storage efficiency</h3>
-        </div>
-        <p class="text-neutral-600 leading-relaxed text-base">
-          Standard backup solutions cannot deduplicate what they cannot see. You are forced to choose: explode your storage costs or surrender your encryption keys.
-          <span class="font-medium text-neutral-800 mt-2 block">Plakar fixes the math: high density on fully encrypted data.</span>
-        </p>
-      </div>
-
-      <div class="p-6 bg-neutral-50 border border-neutral-200 rounded-lg shadow-sm flex flex-col gap-3">
-        <div class="flex items-center gap-3 text-primary-500">
-          <span class="w-6 h-6 shrink-0">{{ partial "icon.html" "ri/server-line" }}</span>
-          <h3 class="font-bold text-lg text-neutral-900 leading-tight">Backup engines break at scale</h3>
-        </div>
-        <p class="text-neutral-600 leading-relaxed text-base">
-          Architectures built for gigabytes crumble under petabytes. They consume too much RAM, scan too slowly and inevitably miss your SLAs.
-          <span class="font-medium text-neutral-800 mt-2 block">Plakar is engineered for exabytes with a minimal footprint.</span>
-        </p>
-      </div>
-
-      <div class="p-6 bg-neutral-50 border border-neutral-200 rounded-lg shadow-sm flex flex-col gap-3">
-        <div class="flex items-center gap-3 text-primary-500">
-          <span class="w-6 h-6 shrink-0">{{ partial "icon.html" "ri/apps-2-line" }}</span>
-          <h3 class="font-bold text-lg text-neutral-900 leading-tight">Files are just a fraction of your data</h3>
-        </div>
-        <p class="text-neutral-600 leading-relaxed text-base">
-          Your assets live in SaaS, databases and Cloud buckets. Traditional tools ignore these sources, forcing you to maintain brittle custom scripts.
-          <span class="font-medium text-neutral-800 mt-2 block">Plakar builds the open ecosystem to secure any data source.</span>
-        </p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- Unified Resilience Architecture -->
-<section class="section-dark-1 pt-14 lg:pt-28 pb-28 relative overflow-hidden">
-
-  <div class="absolute inset-0 pointer-events-none opacity-20">
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-225 h-100 bg-linear-to-r from-secondary-500/30 to-primary-500/20 blur-[120px] rounded-full"></div>
-  </div>
-
-  <div class="max-w-350 mx-auto px-4 relative z-10 flex flex-col gap-16">
-
-    <div class="text-center flex flex-col gap-6 max-w-3xl mx-auto">
-      <h2 class="text-3xl lg:text-5xl font-medium text-neutral-50 leading-tighter">
-        Plakar <span class="text-primary-500">Unified Resilience</span> Architecture
-      </h2>
-      <p class="text-lg lg:text-xl text-neutral-400">
-        Decoupling data protection from infrastructure constraints.<br class="hidden md:block"/>
-        From <span class="text-neutral-50">source</span> to <span class="text-neutral-50">value</span>, you are in control.
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      <div class="bg-neutral-800 group border border-neutral-700 rounded-xl p-5 flex flex-col gap-4 hover:border-secondary-500 transition-colors">
-        <span class="text-xxs font-bold uppercase ml-auto tracking-wider text-secondary-400 border border-secondary-900 bg-secondary-900/30 px-2 py-0.5 rounded-full w-fit">Open Source</span>
-        <div class="w-12 h-12 -mt-10 bg-neutral-900 group-hover:scale-110 duration-200 border border-neutral-700 rounded-lg flex items-center justify-center text-secondary-500">
-          <span class="w-6 h-6">{{ partial "icon.html" "ri/lock-2-line" }}</span>
-        </div>
-        <div>
-          <div class="text-secondary-500 font-mono text-xs font-bold tracking-widest mb-1">01 / BACKUP</div>
-          <h3 class="font-semibold text-xl text-neutral-50">Secure at Source</h3>
-        </div>
-        <p class="text-neutral-400 text-sm leading-relaxed">Deploy <span class="text-secondary-500 font-bold">backup agents</span> on-premise or use <span class="text-secondary-500 font-bold">agentless connectors</span> for Cloud & SaaS. Deduplication & encryption happen at the source, ensuring zero-knowledge privacy before data moves.</p>
-      </div>
-
-      <div class="bg-neutral-800 group border border-neutral-700 rounded-xl p-5 flex flex-col gap-4 hover:border-secondary-500 transition-colors">
-        <span class="text-xxs font-bold uppercase ml-auto tracking-wider text-secondary-400 border border-secondary-900 bg-secondary-900/30 px-2 py-0.5 rounded-full w-fit">Open Source</span>
-        <div class="w-12 h-12 -mt-10 bg-neutral-900 group-hover:scale-110 duration-200 border border-neutral-700 rounded-lg flex items-center justify-center text-secondary-500">
-          <span class="w-6 h-6">{{ partial "icon.html" "ri/hard-drive-2-line" }}</span>
-        </div>
-        <div>
-          <div class="text-secondary-500 font-mono text-xs font-bold tracking-widest mb-1">02 / STORAGE</div>
-          <h3 class="font-semibold text-xl text-neutral-50">Self-Host or Delegate</h3>
-        </div>
-        <p class="text-neutral-400 text-sm leading-relaxed">Store copies yourself on any disk or cloud, OR delegate resilience to a Provider via the <span class="text-secondary-500 font-bold">Plakar Vault Protocol</span>. In both cases, your data remains fully encrypted and sovereign.</p>
-      </div>
-
-      <div class="bg-neutral-800 group border border-neutral-700 rounded-xl p-5 flex flex-col gap-4 hover:border-secondary-500 transition-colors">
-        <span class="text-xxs font-bold uppercase ml-auto tracking-wider text-secondary-400 border border-secondary-900 bg-secondary-900/30 px-2 py-0.5 rounded-full w-fit">Open Source</span>
-        <div class="w-12 h-12 -mt-10 bg-neutral-900 group-hover:scale-110 duration-200 border border-neutral-700 rounded-lg flex items-center justify-center text-secondary-500">
-          <span class="w-6 h-6">{{ partial "icon.html" "ri/shield-check-line" }}</span>
-        </div>
-        <div>
-          <div class="text-secondary-500 font-mono text-xs font-bold tracking-widest mb-1">03 / VERIFY</div>
-          <h3 class="font-semibold text-xl text-neutral-50">Native Integrity Proofs</h3>
-        </div>
-        <p class="text-neutral-400 text-sm leading-relaxed">Don't assume, verify. Mount snapshots to run business logic tests or rely on Plakar's <span class="text-secondary-500 font-bold">native cryptographic proofs</span> to guarantee zero bit-rot without full restoration.</p>
-      </div>
-
-      <div class="bg-neutral-800 group border border-neutral-700 rounded-xl p-5 flex flex-col gap-4 hover:border-secondary-500 transition-colors">
-        <span class="text-xxs font-bold uppercase ml-auto tracking-wider text-secondary-400 border border-secondary-900 bg-secondary-900/30 px-2 py-0.5 rounded-full w-fit">Open Source</span>
-        <div class="w-12 h-12 -mt-10 bg-neutral-900 group-hover:scale-110 duration-200 border border-neutral-700 rounded-lg flex items-center justify-center text-secondary-500">
-          <span class="w-6 h-6">{{ partial "icon.html" "ri/flashlight-line" }}</span>
-        </div>
-        <div>
-          <div class="text-secondary-500 font-mono text-xs font-bold tracking-widest mb-1">04 / CREATE VALUE</div>
-          <h3 class="font-semibold text-xl text-neutral-50">Recover & Provision</h3>
-        </div>
-        <p class="text-neutral-400 text-sm leading-relaxed">Stop treating backups as dead weight. Trigger full disaster recovery or <span class="text-secondary-500 font-bold">provision staging environments</span> instantly to fuel your business workflows.</p>
-      </div>
-    </div>
-
-    <!-- Enterprise governance block -->
-    <div class="bg-black border border-neutral-800 rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-8 md:gap-16 shadow-2xl relative overflow-hidden">
-      <div class="absolute top-0 right-0 p-40 bg-primary-900/20 rounded-full blur-[100px]"></div>
-      <div class="flex-1 flex flex-col gap-4 relative z-10">
-        <div class="flex items-center gap-3 text-primary-500 mb-2">
-          <span class="w-5 h-5">{{ partial "icon.html" "ri/dashboard-3-line" }}</span>
-          <span class="font-bold uppercase tracking-widest text-sm">Governance Layer</span>
-        </div>
-        <h3 class="text-2xl md:text-3xl font-medium text-neutral-50">
-          Plakar Enterprise: <span class="text-primary-500">Unified Backup Posture</span>
-        </h3>
-        <p class="text-neutral-400 text-lg leading-relaxed">
-          The missing link for C-Levels. Aggregates metadata from all agents to map your real-time protection status. Identify <span class="text-neutral-50">blind spots</span>, unbacked up assets, and enforce <span class="text-neutral-50">compliance</span> across the entire estate.
-        </p>
-      </div>
-      <div class="w-full md:w-1/3 bg-neutral-900 rounded-xl p-6 relative z-10">
-        <div class="flex flex-col gap-4">
-          <div class="flex justify-between items-center border-b border-neutral-800 pb-2">
-            <span class="text-neutral-500 font-mono text-sm">Total Assets</span>
-            <span class="text-neutral-50 font-mono font-bold">1,420</span>
-          </div>
-          <div class="flex justify-between items-center border-b border-neutral-800 pb-2">
-            <span class="text-neutral-500 font-mono text-sm">Protected</span>
-            <span class="text-primary-500 font-mono font-bold">99.9%</span>
-          </div>
-          <div class="flex justify-between items-center">
-            <span class="text-neutral-500 font-mono text-sm">Integrity Check</span>
-            <span class="text-primary-500 font-mono font-bold">PASSED</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- From blind spots to provable posture -->
-<section class="section-light-1 py-14 lg:py-28 relative">
-  <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-30 pointer-events-none">
-    <div class="absolute top-[-10%] right-[-5%] w-125 h-125 bg-primary-100 rounded-full blur-3xl"></div>
-    <div class="absolute bottom-[-10%] left-[-5%] w-100 h-100 bg-secondary-50 rounded-full blur-3xl"></div>
-  </div>
-
-  <div class="max-w-350 mx-auto px-4 flex flex-col gap-12 relative z-10">
-    <div class="flex flex-col md:flex-row justify-between items-end gap-6 border-b border-neutral-200 pb-8">
-      <div class="max-w-2xl">
-        <h2 class="text-4xl lg:text-6xl font-medium text-neutral-900 leading-tighter">
-          From blind spots to <span class="text-primary-500">provable posture</span>
+      <!-- Left: copy -->
+      <div>
+        <h2 class="text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-neutral-900">
+          Because breach is no longer a risk, it's a <span class="text-red-600">certainty.</span>
         </h2>
-        <p class="mt-4 text-lg lg:text-xl text-neutral-600">
-          For tech leaders, Plakar Enterprise transforms backup from a fragmented operational task into a unified, audit-ready strategy.
+        <p class="text-lg text-neutral-600 mt-6 leading-relaxed">
+          State-led ransomware, AI-driven exfiltration, and the erosion of the
+          internal perimeter have turned cyber-resilience from a nice-to-have into
+          the <strong class="text-neutral-900 font-semibold">most important line of defense</strong>.
         </p>
       </div>
-      <div class="hidden md:flex flex-col items-end shrink-0">
-        <div class="text-neutral-400 text-sm uppercase tracking-widest font-semibold">Risk Management</div>
-        <div class="text-neutral-900 text-xl font-bold">Zero-Trust Native</div>
-      </div>
-    </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-
-      <!-- Left large card -->
-      <div class="lg:col-span-7 bg-neutral-50 border border-neutral-200 rounded-2xl p-8 flex flex-col justify-between hover:border-primary-200 transition-colors duration-300">
-        <div class="flex flex-col gap-4">
-          <div class="w-12 h-12 bg-neutral-50 rounded-lg border border-neutral-200 flex items-center justify-center text-primary-500 shadow-sm">
-            <span class="w-8 h-8">{{ partial "icon.html" "ri/list-view" }}</span>
-          </div>
-          <h3 class="text-2xl font-semibold text-neutral-900">Unified Resilience Posture</h3>
-          <p class="text-neutral-600 text-lg max-w-md">
-            Stop guessing what is recoverable. Get one consolidated view of your resilience across On-Prem, Cloud and SaaS. Eliminate coverage gaps before the audit.
-          </p>
+      <!-- Right: stat cards -->
+      <div class="grid grid-cols-2 gap-4">
+        <div class="bg-neutral-50 border border-primary-500 rounded-xl p-6 shadow-[0_14px_40px_-22px_rgba(82,76,255,0.5)]">
+          <span class="block text-4xl font-extrabold tracking-tight leading-none text-red-600 mb-1.5">96%</span>
+          <span class="block text-sm text-neutral-600 leading-snug">of ransomware attacks target backup repositories</span>
         </div>
-
-        <div class="mt-8 bg-neutral-50 rounded-tl-xl border-t border-l border-neutral-200 shadow-sm p-6">
-          <div class="flex flex-col gap-3">
-            <div class="flex flex-col md:flex-row md:items-center justify-between p-3 rounded border border-neutral-200">
-              <div class="flex items-center gap-3">
-                <div class="w-2 h-2 rounded-full bg-green-500"></div>
-                <span class="text-xs font-mono text-neutral-600">aws-prod-db-01</span>
-              </div>
-              <span class="pl-5 md:pl-0 text-xs font-mono text-neutral-400">Verified • 2h ago</span>
-            </div>
-            <div class="flex flex-col md:flex-row md:items-center justify-between p-3 rounded border border-neutral-200">
-              <div class="flex items-center gap-3">
-                <div class="w-2 h-2 rounded-full bg-green-500"></div>
-                <span class="text-xs font-mono text-neutral-600">saas-salesforce-crm</span>
-              </div>
-              <span class="pl-5 md:pl-0 text-xs font-mono text-neutral-400">Verified • 15m ago</span>
-            </div>
-            <div class="flex flex-col md:flex-row md:items-center justify-between p-3 rounded border border-neutral-200">
-              <div class="flex items-center gap-3">
-                <div class="w-2 h-2 rounded-full bg-green-500"></div>
-                <span class="text-xs font-mono text-neutral-600">onprem-nas-finance</span>
-              </div>
-              <span class="pl-5 md:pl-0 text-xs font-mono text-neutral-400">Verified • 1d ago</span>
-            </div>
-            <div class="flex justify-end">
-              <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold border border-green-200">100% Coverage</span>
-            </div>
-          </div>
+        <div class="bg-neutral-50 border border-neutral-200 rounded-xl p-6">
+          <span class="block text-4xl font-extrabold tracking-tight leading-none text-primary-500 mb-1.5">43%</span>
+          <span class="block text-sm text-neutral-600 leading-snug">of affected data is unrecoverable after an attack</span>
         </div>
-      </div>
-
-      <!-- Right two cards -->
-      <div class="lg:col-span-5 flex flex-col gap-6">
-
-        <div class="flex-1 bg-neutral-900 rounded-2xl p-8 flex flex-col justify-center gap-4 relative overflow-hidden">
-          <div class="absolute top-0 right-0 p-32 bg-primary-500 rounded-full blur-[80px] opacity-20"></div>
-          <div class="relative z-10">
-            <h3 class="text-2xl font-semibold text-neutral-50 mb-2">Cost vs. Security: Solved</h3>
-            <p class="text-neutral-400 text-base">
-              Encryption usually kills deduplication. We fixed the math. Enforce Zero-Trust without exploding your storage budget.
-            </p>
-          </div>
-          <div class="flex items-baseline gap-2 mt-2">
-            <span class="text-4xl font-bold text-neutral-50">&gt;100:1</span>
-            <span class="text-primary-400 font-medium">Efficiency Ratio</span>
-          </div>
+        <div class="bg-neutral-50 border border-neutral-200 rounded-xl p-6">
+          <span class="block text-4xl font-extrabold tracking-tight leading-none text-primary-500 mb-1.5">45%</span>
+          <span class="block text-sm text-neutral-600 leading-snug">of AI-generated code introduces security vulnerabilities</span>
         </div>
-
-        <div class="flex-1 bg-primary-50 border border-primary-100 rounded-2xl p-8 flex flex-col justify-center gap-4 hover:border-primary-300 transition-colors">
-          <div class="w-10 h-10 bg-neutral-50 rounded-lg border border-primary-100 flex items-center justify-center text-primary-600 shadow-sm">
-            <span class="w-6 h-6">{{ partial "icon.html" "ri/shield-check-line" }}</span>
-          </div>
-          <div>
-            <h3 class="text-xl font-semibold text-neutral-900">Delegate Ops, Keep Keys</h3>
-            <p class="text-neutral-600 text-sm mt-2">
-              Outsource retention and replication to MSPs or Cloud without ever exposing your secrets. The Plakar Vault Protocol ensures the provider remains blind.
-            </p>
-          </div>
+        <div class="bg-neutral-50 border border-neutral-200 rounded-xl p-6">
+          <span class="block text-4xl font-extrabold tracking-tight leading-none text-primary-500 mb-1.5">8×</span>
+          <span class="block text-sm text-neutral-600 leading-snug">higher median recovery cost when backups are compromised</span>
         </div>
-
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- Testimonial -->
-<section class="bg-primary-600 py-14 lg:py-36">
-  <div class="max-w-350 mx-auto px-4 flex flex-col gap-6 items-center text-center">
-
-    <p class="text-neutral-50 text-xl lg:text-3xl leading-tighter max-w-5xl">
-      "Plakar reconciles the rigor of Open Source security with the scale of Enterprise needs. It's the first time we've achieved a <span class="text-secondary-500 font-bold">70% cost reduction</span> through high-density efficiency, without ever handing over our encryption keys."
-    </p>
-
-    <div class="flex items-center gap-4">
-      <img src="{{ $testimonialJJ.RelPermalink }}" alt="John Jean" class="w-10 h-10 rounded-full outline-2 outline-neutral-50 object-cover">
-      <div class="flex flex-col text-left">
-        <span class="text-neutral-50 text-lg font-semibold">John JEAN</span>
-        <span class="text-primary-200 -mt-1 text-sm font-medium">CTO Group at Wargan</span>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- Why engineers choose Plakar -->
-<section class="section-light-2 py-14 lg:py-30">
-  <div class="max-w-350 mx-auto px-4 flex flex-col gap-16">
-
-    <!-- Title -->
-    <div class="text-center flex flex-col gap-6.5 max-w-4xl mx-auto">
-      <h2 class="text-4xl lg:text-6xl font-medium text-neutral-900 leading-tight">
-        Why engineers choose <span class="text-secondary-500">Plakar</span>
+<!-- What recoverable takes -->
+<section class="section-light-2 py-24">
+  <div class="px-4 max-w-350 mx-auto">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <h2 class="text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-neutral-900">
+        So "<span class="text-primary-500">recoverable</span>" has to actually mean something.
       </h2>
-      <p class="text-neutral-600 leading-normal">
-        Because it combines <span class="text-secondary-500 font-medium">Open Source</span> transparency with production-grade rigor.<br class="hidden md:block"/>
-        <span class="text-primary-500 font-medium">Secure by default</span> and built by veterans to fit seamlessly into your DevOps workflows.
-      </p>
+      <p class="text-lg text-neutral-600 mt-5">Five things Plakar delivers for security and infrastructure teams.</p>
     </div>
 
-    <!-- Steps -->
-    <div class="flex flex-col gap-14 relative mt-24" id="progress-steps">
+    <!-- Tab rail -->
+    <div id="rec-rail" class="flex flex-wrap justify-center gap-2 mb-7">
+      <button data-rec-tab="efficiency" class="inline-flex items-center gap-2.5 rounded-full border px-4 py-2.5 transition-colors bg-primary-500 text-white border-primary-500">
+        <span data-rec-num class="flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold bg-white/25 text-white">1</span>
+        <span class="text-sm font-bold">Efficiency</span>
+      </button>
+      <button data-rec-tab="zero-trust" class="inline-flex items-center gap-2.5 rounded-full border px-4 py-2.5 transition-colors bg-white text-neutral-700 border-neutral-300">
+        <span data-rec-num class="flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold bg-neutral-200 text-neutral-600">2</span>
+        <span class="text-sm font-bold">Zero-trust</span>
+      </button>
+      <button data-rec-tab="autonomy" class="inline-flex items-center gap-2.5 rounded-full border px-4 py-2.5 transition-colors bg-white text-neutral-700 border-neutral-300">
+        <span data-rec-num class="flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold bg-neutral-200 text-neutral-600">3</span>
+        <span class="text-sm font-bold">Strategic autonomy</span>
+      </button>
+      <button data-rec-tab="cloud-native" class="inline-flex items-center gap-2.5 rounded-full border px-4 py-2.5 transition-colors bg-white text-neutral-700 border-neutral-300">
+        <span data-rec-num class="flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold bg-neutral-200 text-neutral-600">4</span>
+        <span class="text-sm font-bold">Resilience as Code</span>
+      </button>
+      <button data-rec-tab="ai-ready" class="inline-flex items-center gap-2.5 rounded-full border px-4 py-2.5 transition-colors bg-white text-neutral-700 border-neutral-300">
+        <span data-rec-num class="flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold bg-neutral-200 text-neutral-600">5</span>
+        <span class="text-sm font-bold">AI-ready primitives</span>
+      </button>
+    </div>
 
-      <!-- Step 1 -->
-      <div class="step flex flex-row items-start gap-4 md:gap-6">
-        <div class="flex flex-col items-center gap-2 shrink-0 relative">
-          <div class="step-circle z-10 w-10 h-10 rounded-full flex items-center justify-center font-bold text-base border border-neutral-300 bg-neutral-50 text-neutral-700 transition-all duration-300">
-            1
-          </div>
-          <div class="step-line absolute w-0.5 bg-neutral-200 transition-all duration-300 origin-top"></div>
+    <!-- Stage -->
+    <div class="bg-white border border-neutral-200 rounded-2xl p-8 lg:p-10 shadow-[0_34px_80px_-34px_rgba(20,24,48,0.22)] max-w-5xl mx-auto">
+
+      <!-- Pane 1: Complete coverage -->
+      <div data-rec-pane="efficiency" class="grid grid-cols-1 lg:grid-cols-[0.85fr_1.1fr] gap-10 items-center">
+        <div>
+          <p class="text-2xl font-extrabold tracking-tight text-neutral-900 mb-3">Radically efficient, by design.</p>
+          <p class="text-[15px] text-neutral-600 leading-relaxed">Plakar <span class="text-primary-500 font-semibold">deduplicates and compresses</span> everything before it leaves your system, collapsing the storage and egress overhead that makes legacy backup so expensive. Protecting the whole estate costs <span class="text-primary-500 font-semibold">a fraction of what traditional tools charge</span>, so you never have to choose what to leave unprotected.</p>
         </div>
-        <div class="flex flex-col lg:flex-row items-start gap-8 pb-12 pt-2 flex-1">
-          <div class="flex flex-col gap-3 lg:max-w-[30%]">
-            <h3 class="text-xl lg:text-3xl text-neutral-900">Trust Nothing <br/> Architecture</h3>
-            <p class="text-neutral-500 text-lg">We assume the network is compromised and the storage is untrusted.</p>
-            <p class="text-neutral-500 text-lg">With client-side encryption and immutable snapshots, we don't just "hope" your data is safe — we mathematically guarantee it.</p>
+        <div class="rounded-xl border border-neutral-200 bg-gradient-to-br from-primary-50 to-neutral-100 p-8 min-h-[300px] flex flex-col items-center justify-center gap-5">
+          <div class="flex items-center gap-5">
+            <div class="flex flex-col gap-2">
+              <span class="text-[10px] font-bold uppercase tracking-wider text-neutral-400">2 snapshots</span>
+              <div class="flex items-center gap-1.5"><span class="text-[11px] text-neutral-500 w-7">S</span><span class="w-7 h-7 rounded-md border-[1.5px] border-red-400/50 bg-red-400/10 text-red-600 font-mono text-xs font-bold flex items-center justify-center">A</span><span class="w-7 h-7 rounded-md border-[1.5px] border-neutral-300 bg-white text-neutral-500 font-mono text-xs font-bold flex items-center justify-center">B</span><span class="w-7 h-7 rounded-md border-[1.5px] border-red-400/50 bg-red-400/10 text-red-600 font-mono text-xs font-bold flex items-center justify-center">A</span><span class="w-7 h-7 rounded-md border-[1.5px] border-neutral-300 bg-white text-neutral-500 font-mono text-xs font-bold flex items-center justify-center">C</span></div>
+              <div class="flex items-center gap-1.5"><span class="text-[11px] text-neutral-500 w-7">S+1</span><span class="w-7 h-7 rounded-md border-[1.5px] border-red-400/50 bg-red-400/10 text-red-600 font-mono text-xs font-bold flex items-center justify-center">A</span><span class="w-7 h-7 rounded-md border-[1.5px] border-neutral-300 bg-white text-neutral-500 font-mono text-xs font-bold flex items-center justify-center">B</span><span class="w-7 h-7 rounded-md border-[1.5px] border-red-400/50 bg-red-400/10 text-red-600 font-mono text-xs font-bold flex items-center justify-center">A</span><span class="w-7 h-7 rounded-md border-[1.5px] border-neutral-300 bg-white text-neutral-500 font-mono text-xs font-bold flex items-center justify-center">C</span><span class="w-7 h-7 rounded-md border-[1.5px] border-green-500/50 bg-green-500/10 text-green-700 font-mono text-xs font-bold flex items-center justify-center">E</span></div>
+            </div>
           </div>
-          <div class="w-full lg:w-2/5 mt-4 rounded-lg overflow-hidden aspect-video">
-            <iframe class="w-full h-full rounded-lg"
-                    src="https://www.youtube.com/embed/b5lOzw32J1E?rel=0&modestbranding=1"
-                    title="Plakar presentation"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen>
-            </iframe>
-          </div>
-        </div>
-      </div>
-
-      <!-- Step 2 -->
-      <div class="step flex flex-row items-start gap-4 md:gap-6">
-        <div class="flex flex-col items-center gap-2 shrink-0 relative">
-          <div class="step-circle z-10 w-10 h-10 rounded-full flex items-center justify-center font-bold text-base border border-neutral-300 bg-neutral-50 text-neutral-700 transition-all duration-300">
-            2
-          </div>
-          <div class="step-line absolute w-0.5 bg-neutral-200 transition-all duration-300 origin-top"></div>
-        </div>
-        <div class="flex flex-col lg:flex-row items-start gap-6 pb-12 pt-2 flex-1">
-          <div class="flex flex-col gap-3 lg:max-w-[30%]">
-            <h3 class="text-xl lg:text-3xl text-neutral-900 leading-tight">The Efficiency Engine</h3>
-            <p class="text-neutral-500 text-lg leading-normal">Encryption blinds standard tools. Plakar's Kloset engine performs high-density deduplication <em>before</em> the encryption layer.</p>
-            <p class="text-neutral-500 text-lg leading-normal">Slash your storage costs and network usage without ever exposing a single byte of plain text to the infrastructure.</p>
-          </div>
-
-          <div class="flex-1 flex flex-wrap max-w-2xl gap-4">
-
-            <div class="w-full sm:w-[calc(50%-8px)] bg-neutral-50 p-4 lg:p-6 rounded-lg flex flex-col gap-2 shadow-sm border border-neutral-200">
-              <div class="flex items-center gap-2">
-                <span class="w-5 h-5 text-primary-500">{{ partial "icon.html" "ri/menu-search-line" }}</span>
-                <h4 class="text-neutral-900 text-lg font-semibold">Searchable & Browsable</h4>
-              </div>
-              <p class="text-neutral-500 text-base leading-normal">Mount snapshots as a filesystem or browse terabytes instantly via the UI without restoring.</p>
-            </div>
-
-            <div class="w-full sm:w-[calc(50%-8px)] bg-neutral-50 p-4 lg:p-6 rounded-lg flex flex-col gap-2 shadow-sm border border-neutral-200">
-              <div class="flex items-center gap-2">
-                <span class="w-5 h-5 text-primary-500">{{ partial "icon.html" "ri/database-line" }}</span>
-                <h4 class="text-neutral-900 text-lg font-semibold">Petabyte Scale</h4>
-              </div>
-              <p class="text-neutral-500 text-base leading-normal">Engineered to handle millions of files and massive datasets with a minimal memory footprint.</p>
-            </div>
-
-            <div class="w-full sm:w-[calc(50%-8px)] bg-neutral-50 p-4 lg:p-6 rounded-lg flex flex-col gap-2 shadow-sm border border-neutral-200">
-              <div class="flex items-center gap-2">
-                <span class="w-5 h-5 text-primary-500">{{ partial "icon.html" "ri/puzzle-2-line" }}</span>
-                <h4 class="text-neutral-900 text-lg font-semibold">Integration Architecture</h4>
-              </div>
-              <p class="text-neutral-500 text-base leading-normal">Write your own input/output connectors in your favorite language. The ecosystem is open.</p>
-            </div>
-
-            <div class="w-full sm:w-[calc(50%-8px)] bg-neutral-50 p-4 lg:p-6 rounded-lg flex flex-col gap-2 shadow-sm border border-neutral-200">
-              <div class="flex items-center gap-2">
-                <span class="w-5 h-5 text-primary-500">{{ partial "icon.html" "ri/shield-check-line" }}</span>
-                <h4 class="text-neutral-900 text-lg font-semibold">Entropy Analysis</h4>
-              </div>
-              <p class="text-neutral-500 text-base leading-normal">Detect high-entropy anomalies typical of ransomware activity before it spreads.</p>
-            </div>
-
-            <div class="w-full sm:w-[calc(50%-8px)] bg-neutral-50 p-4 lg:p-6 rounded-lg flex flex-col gap-2 shadow-sm border border-neutral-200">
-              <div class="flex items-center gap-2">
-                <span class="w-5 h-5 text-primary-500">{{ partial "icon.html" "ri/archive-line" }}</span>
-                <h4 class="text-neutral-900 text-lg font-semibold">Vendor Lock-Free</h4>
-              </div>
-              <p class="text-neutral-500 text-base leading-normal">Data is stored in open formats, readable by Open Source code. No proprietary chains.</p>
-            </div>
-
-            <div class="w-full sm:w-[calc(50%-8px)] bg-neutral-50 p-4 lg:p-6 rounded-lg flex flex-col gap-2 shadow-sm border border-neutral-200">
-              <div class="flex items-center gap-2">
-                <span class="w-5 h-5 text-primary-500">{{ partial "icon.html" "ri/flashlight-line" }}</span>
-                <h4 class="text-neutral-900 text-lg font-semibold">Immutable & Verifiable</h4>
-              </div>
-              <p class="text-neutral-500 text-base leading-normal">Snapshots are read-only by design. Cryptographic checks guarantee restore integrity.</p>
-            </div>
-
+          <div class="text-2xl text-neutral-400">&#8595;</div>
+          <div class="flex flex-col items-center gap-2">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-neutral-400">Kloset · unique chunks</span>
+            <div class="flex gap-1.5"><span class="w-7 h-7 rounded-md bg-primary-500 text-white font-mono text-xs font-bold flex items-center justify-center">A</span><span class="w-7 h-7 rounded-md bg-primary-500 text-white font-mono text-xs font-bold flex items-center justify-center">B</span><span class="w-7 h-7 rounded-md bg-primary-500 text-white font-mono text-xs font-bold flex items-center justify-center">C</span><span class="w-7 h-7 rounded-md bg-primary-500 text-white font-mono text-xs font-bold flex items-center justify-center">E</span></div>
+            <span class="text-xs text-neutral-500 mt-1">9 logical &#8594; 4 stored · encrypted</span>
           </div>
         </div>
       </div>
 
-      <!-- Step 3 -->
-      <div class="step flex flex-row items-start gap-4 md:gap-6">
-        <div class="flex flex-col items-center gap-2 shrink-0">
-          <div class="step-circle w-10 h-10 rounded-full flex items-center justify-center font-bold text-base border border-neutral-300 bg-neutral-50 text-neutral-700 transition-all duration-300 z-10 relative">
-            3
+      <!-- Pane 2: Zero-trust -->
+      <div data-rec-pane="zero-trust" class="hidden grid grid-cols-1 lg:grid-cols-[0.85fr_1.1fr] gap-10 items-center">
+        <div>
+          <p class="text-2xl font-extrabold tracking-tight text-neutral-900 mb-3">Zero-trust, and tamperproof.</p>
+          <p class="text-[15px] text-neutral-600 leading-relaxed">Your backups are <span class="text-primary-500 font-semibold">encrypted before they ever leave your system</span>, so not even the storage provider can read them. On object-lock storage they're <span class="text-primary-500 font-semibold">immutable</span>: ransomware and rogue operators can't alter or delete them. Whoever reaches your backups finds only ciphertext they can't touch.</p>
+        </div>
+        <div class="rounded-xl border border-neutral-200 bg-gradient-to-br from-primary-50 to-neutral-100 p-6 min-h-[300px] flex items-center justify-center">
+          <div class="w-full max-w-sm bg-neutral-900 rounded-xl border border-neutral-700 overflow-hidden shadow-xl">
+            <div class="px-4 py-2.5 border-b border-neutral-700 flex items-center gap-2">
+              <svg class="w-3.5 h-3.5 text-neutral-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24M1 1l22 22"/></svg>
+              <span class="text-[11px] font-semibold uppercase tracking-wider text-neutral-400">What anyone who reaches the storage sees</span>
+            </div>
+            <div class="px-4 py-4 font-mono text-[12px]">
+              <div class="text-neutral-600 leading-relaxed break-all mb-3">a3f9 7c21 e0b4 9d8a 11ff 4c2e 6b0d 8e3a c5f1 0297 ab44 d913 7e58 1b6c 2f90 db17</div>
+              <div class="space-y-1.5">
+                <div class="flex items-center gap-2 text-neutral-300"><span class="text-red-400 font-bold">✗</span> delete snapshot<span class="ml-auto text-red-400 text-[11px]">denied</span></div>
+                <div class="flex items-center gap-2 text-neutral-300"><span class="text-red-400 font-bold">✗</span> overwrite object<span class="ml-auto text-red-400 text-[11px]">denied</span></div>
+                <div class="flex items-center gap-2 text-neutral-300"><span class="text-green-400 font-bold">✓</span> object-lock WORM<span class="ml-auto text-green-400 text-[11px]">active</span></div>
+              </div>
+              <div class="mt-3 pt-3 border-t border-neutral-800 text-neutral-400 flex items-center gap-2">&#128273; keys: in your own secret manager</div>
+            </div>
           </div>
         </div>
-        <div class="flex flex-col lg:flex-row items-start gap-6 pt-2 flex-1">
+      </div>
 
-          <div class="hidden lg:flex flex-col gap-3 lg:max-w-[30%]">
-            <h3 class="text-xl lg:text-3xl text-neutral-900 leading-tight">
-              Store Anywhere.<br/> Restore Everywhere.
-            </h3>
-            <p class="text-neutral-500 text-lg leading-normal">
-              Decouple your data from the infrastructure. From cloud buckets to cold storage tapes, your backups are unified, portable and ready to restore.
-            </p>
-            {{ partial "components/buttons/base-button.html" (dict
-              "label" "See it in action"
-              "href" "/docs/community"
-              "target" "_blank"
-            ) }}
+      <!-- Pane 3: Strategic autonomy -->
+      <div data-rec-pane="autonomy" class="hidden grid grid-cols-1 lg:grid-cols-[0.85fr_1.1fr] gap-10 items-center">
+        <div>
+          <p class="text-2xl font-extrabold tracking-tight text-neutral-900 mb-3">Your data, never held hostage.</p>
+          <p class="text-[15px] text-neutral-600 leading-relaxed">Autonomy is more than open source: it's the guarantee that a usable copy of your data always stays <span class="text-primary-500 font-semibold">under your control</span>, ready to restore or move without asking anyone's permission. <span class="text-secondary-500 font-semibold">Open under a permissive license</span>, self-hostable everywhere, and stored in a non-proprietary format, Plakar turns that control into <span class="text-primary-500 font-semibold">real leverage</span>. Switch SaaS or cloud providers on your terms, and choose exactly where your data resides to meet local regulation. No appliance lock-in, no vendor-mediated recovery path.</p>
+        </div>
+        <div class="rounded-xl border border-neutral-200 bg-gradient-to-br from-primary-50 to-neutral-100 p-8 min-h-[300px] flex flex-col items-center justify-center gap-4">
+          <!-- the asset you hold -->
+          <div class="bg-white border-2 border-primary-500 rounded-xl px-5 py-3.5 text-center shadow-sm">
+            <div class="flex items-center justify-center gap-2 text-sm font-bold text-neutral-900">&#128274; Your encrypted snapshot</div>
+            <div class="text-[11px] text-neutral-500 mt-0.5">your keys · open format</div>
           </div>
-
-          <div class="flex lg:hidden flex-col gap-3 w-full">
-            <h3 class="text-xl font-medium text-neutral-900 leading-tight">
-              Store Anywhere. Restore Everywhere.
-            </h3>
-            <p class="text-neutral-500 text-base leading-normal">
-              Decouple your data from the infrastructure. From cloud buckets to cold storage tapes, your backups are unified, portable and ready to restore.
-            </p>
+          <!-- portability cue -->
+          <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-primary-500">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7l-4 5 4 5M16 7l4 5-4 5M14 4l-4 16"/></svg>
+            Move it anywhere, anytime
           </div>
-
-          <div class="w-full lg:flex-1">
-            {{ partial "components/common/kloset-schema.html" . }}
+          <!-- interchangeable destinations -->
+          <div class="grid grid-cols-3 gap-2 w-full max-w-xs">
+            <span class="flex items-center justify-center gap-1.5 bg-white border border-neutral-200 rounded-lg px-2.5 py-2 text-[12px] font-medium text-neutral-700">On-prem</span>
+            <span class="flex items-center justify-center gap-1.5 bg-white border border-neutral-200 rounded-lg px-2.5 py-2 text-[12px] font-medium text-neutral-700"><img src="/img/providers/favicon-aws-amazon-com.png" alt="" class="w-4 h-4 rounded-sm">AWS</span>
+            <span class="flex items-center justify-center gap-1.5 bg-white border border-neutral-200 rounded-lg px-2.5 py-2 text-[12px] font-medium text-neutral-700"><img src="/img/providers/favicon-ovhcloud-com.png" alt="" class="w-4 h-4 rounded-sm">OVHcloud</span>
+            <span class="flex items-center justify-center gap-1.5 bg-white border border-neutral-200 rounded-lg px-2.5 py-2 text-[12px] font-medium text-neutral-700"><img src="/img/providers/favicon-scaleway-com.png" alt="" class="w-4 h-4 rounded-sm">Scaleway</span>
+            <span class="flex items-center justify-center gap-1.5 bg-white border border-neutral-200 rounded-lg px-2.5 py-2 text-[12px] font-medium text-neutral-700"><img src="/img/providers/favicon-minio.png" alt="" class="w-4 h-4 rounded-sm">MinIO</span>
+            <span class="flex items-center justify-center gap-1.5 bg-white border border-dashed border-neutral-300 rounded-lg px-2.5 py-2 text-[12px] font-medium text-neutral-500">+ any S3</span>
           </div>
+          <span class="text-xs text-neutral-500 text-center">Switch providers without re-architecting. No lock-in.</span>
+        </div>
+      </div>
 
-          <div class="flex lg:hidden">
-            {{ partial "components/buttons/base-button.html" (dict
-              "label" "See it in action"
-              "href" "/docs/community"
-              "target" "_blank"
-            ) }}
+      <!-- Pane 4: Cloud-native -->
+      <div data-rec-pane="cloud-native" class="hidden grid grid-cols-1 lg:grid-cols-[0.85fr_1.1fr] gap-10 items-center">
+        <div>
+          <p class="text-2xl font-extrabold tracking-tight text-neutral-900 mb-3">Cloud-native resilience, as code.</p>
+          <p class="text-[15px] text-neutral-600 leading-relaxed">Plakar's operator turns Kubernetes into the control plane for <span class="text-primary-500 font-semibold">the resilience layer of your entire estate</span>, not just your clusters. Define backup, retention, replication, and recovery policies as Kubernetes CRDs, Terraform resources, or Ansible playbooks. <span class="text-primary-500 font-semibold">Version them in Git, reconcile state continuously.</span></p>
+        </div>
+        <div class="rounded-xl border border-neutral-200 bg-gradient-to-br from-primary-50 to-neutral-100 p-8 min-h-[300px] flex flex-col items-center justify-center gap-3">
+          <pre class="bg-neutral-900 text-neutral-100 rounded-xl px-5 py-4 font-mono text-[12.5px] leading-relaxed w-full max-w-sm overflow-x-auto"><span class="text-sky-300">apiVersion:</span> <span class="text-green-300">task.plakar.io/v1alpha1</span>
+<span class="text-sky-300">kind:</span> <span class="text-green-300">ScheduleBackup</span>
+<span class="text-sky-300">spec:</span>
+  <span class="text-sky-300">periodicity:</span> <span class="text-green-300">900</span>  <span class="text-neutral-500"># every 15 min</span>
+  <span class="text-sky-300">source:</span>
+    <span class="text-sky-300">name:</span> <span class="text-green-300">postgres-prod</span>
+  <span class="text-sky-300">store:</span>
+    <span class="text-sky-300">name:</span> <span class="text-green-300">s3-immutable</span></pre>
+          <span class="text-sm text-neutral-500 text-center">Versioned in Git · reconciled by the operator</span>
+        </div>
+      </div>
+
+      <!-- Pane 5: AI-ready primitives -->
+      <div data-rec-pane="ai-ready" class="hidden grid grid-cols-1 lg:grid-cols-[0.85fr_1.1fr] gap-10 items-center">
+        <div>
+          <p class="text-2xl font-extrabold tracking-tight text-neutral-900 mb-3">Programmatic by design, for humans and AI.</p>
+          <p class="text-[15px] text-neutral-600 leading-relaxed">As more code is written and operated by AI, how easily a tool can be driven matters as much as what it does. Plakar is <span class="text-primary-500 font-semibold">programmatic by design</span>: every action is exposed through a clean <span class="text-primary-500 font-semibold">SDK, CLI, and API</span>, so an agent can snapshot the data it works with and restore it the instant something breaks. Docs and source are built to be read, so agents and people drive it right.</p>
+        </div>
+        <div class="rounded-xl border border-neutral-200 bg-gradient-to-br from-primary-50 to-neutral-100 p-6 min-h-[300px] flex items-center justify-center">
+          <div class="w-full max-w-sm bg-neutral-900 rounded-xl border border-neutral-700 overflow-hidden shadow-xl">
+            <div class="px-4 py-2.5 border-b border-neutral-700 flex items-center gap-2">
+              <span class="text-base leading-none">🤖</span>
+              <span class="text-[12px] font-semibold text-neutral-200">OpenClaw</span>
+              <span class="text-[11px] text-neutral-500">pre-hook</span>
+            </div>
+            <div class="px-4 py-4 font-mono text-[12.5px] leading-relaxed">
+              <div class="text-neutral-400"><span class="text-sky-300">on</span> preToolUse(<span class="text-amber-300">Edit</span>, <span class="text-amber-300">Bash</span>)</div>
+              <div class="text-neutral-400"><span class="text-sky-300">run</span> plakar backup ./workspace</div>
+              <div class="h-3"></div>
+              <div class="text-green-400">✓ auto-snapshot 9f3a1c</div>
+              <div class="text-neutral-500">&nbsp;&nbsp;taken before the agent's risky step</div>
+              <div class="text-neutral-300 mt-2">↩ one command to roll back</div>
+            </div>
           </div>
+        </div>
+      </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- Your environment, your storage -->
+<section class="section-dark-1 py-24">
+  <div class="px-4 max-w-350 mx-auto">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <h2 class="text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-neutral-50">
+        It runs on your environment, your storage.
+      </h2>
+      <p class="text-lg text-neutral-400 mt-5">Deploy Plakar on infrastructure you own. One engine protects every source across the estate, written to storage you control.</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 max-w-5xl mx-auto">
+      <!-- Self-hosted -->
+      <div class="bg-neutral-800 border border-neutral-700 rounded-xl p-8">
+        <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-green-400 bg-green-500/10 rounded-md px-3 py-1.5 mb-4">● Self-hosted</span>
+        <h3 class="text-xl font-extrabold tracking-tight text-neutral-50 mb-2">Run it on your environment</h3>
+        <p class="text-sm text-neutral-400 mb-5 leading-relaxed">One binary, no appliance, no SaaS dependency. Run Plakar on the infrastructure you already operate: on-prem, in a private or sovereign cloud, or on any hypervisor. Your data and keys stay on infrastructure you control.</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5">On-prem</span>
+          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5">Private cloud</span>
+          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="/img/providers/favicon-aws-amazon-com.png" alt="" class="w-4 h-4 rounded-sm">AWS</span>
+          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="/img/providers/favicon-cloud-google-com.png" alt="" class="w-4 h-4 rounded-sm">GCP</span>
+          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="/img/providers/favicon-azure.png" alt="" class="w-4 h-4 rounded-sm">Azure</span>
+          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="/img/providers/favicon-ovhcloud-com.png" alt="" class="w-4 h-4 rounded-sm">OVHcloud</span>
+          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="/img/providers/favicon-scaleway-com.png" alt="" class="w-4 h-4 rounded-sm">Scaleway</span>
+          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="/img/providers/favicon-vmware-com.png" alt="" class="w-4 h-4 rounded-sm">VMware</span>
+          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="/img/providers/favicon-proxmox-com.png" alt="" class="w-4 h-4 rounded-sm">Proxmox</span>
+          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5">Bare metal</span>
+          <span class="inline-flex items-center text-[12.5px] font-medium text-neutral-400 bg-neutral-900 border border-dashed border-neutral-600 rounded-lg px-3 py-1.5">and more…</span>
+        </div>
+      </div>
+      <!-- Your storage -->
+      <div class="bg-neutral-800 border border-neutral-700 rounded-xl p-8">
+        <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-primary-300 bg-primary-500/15 rounded-md px-3 py-1.5 mb-4">★ Your own storage</span>
+        <h3 class="text-xl font-extrabold tracking-tight text-neutral-50 mb-2">Storage provider agnostic</h3>
+        <p class="text-sm text-neutral-400 mb-5 leading-relaxed">Snapshots land on storage you own, always with zero plaintext: any S3-compatible backend, local disk, or filesystem. On S3-compatible backends, object-lock immutability and append-only keep them tamper-proof.</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="/img/providers/amazon-s3.svg" alt="" class="w-4 h-4">AWS S3</span>
+          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="/img/providers/favicon-azure.png" alt="" class="w-4 h-4 rounded-sm">Azure Blob</span>
+          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="/img/providers/favicon-cloud-google-com.png" alt="" class="w-4 h-4 rounded-sm">Google Cloud</span>
+          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="/img/providers/favicon-minio.png" alt="" class="w-4 h-4 rounded-sm">MinIO</span>
+          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="/img/providers/favicon-backblaze.png" alt="" class="w-4 h-4 rounded-sm">Backblaze B2</span>
+          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="/img/providers/favicon-cloudflare.png" alt="" class="w-4 h-4 rounded-sm">Cloudflare R2</span>
+          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="/img/providers/favicon-netapp.png" alt="" class="w-4 h-4 rounded-sm">NetApp</span>
+          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="/img/providers/icon-filesystem.svg" alt="" class="w-4 h-4">Local disk</span>
+          <span class="inline-flex items-center text-[12.5px] font-medium text-neutral-400 bg-neutral-900 border border-dashed border-neutral-600 rounded-lg px-3 py-1.5">and more…</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Built on Kloset -->
-<section class="section-dark-1 py-14 lg:py-32 overflow-hidden">
-  <div class="max-w-350 mx-auto px-4 flex flex-col gap-24">
-
-    <!-- Title + description -->
-    <div class="flex flex-col lg:flex-row justify-between items-start gap-10">
-      <div class="flex flex-col gap-4 max-w-2xl">
-        <h2 class="text-4xl lg:text-6xl font-medium text-neutral-50 leading-tighter">
-          Built on top of the powerful <span class="text-secondary-500">Kloset</span>
+<!-- Open Resilience as Code -->
+<section class="section-light-1 py-24">
+  <div class="px-4 max-w-350 mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+      <div>
+        <h2 class="text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-neutral-900 mb-5">
+          And your whole backup posture lives <span class="text-primary-500">as code</span>.
         </h2>
-      </div>
-      <div class="flex flex-col gap-8 max-w-md">
-        <p class="text-lg lg:text-2xl text-neutral-200">
-          Powerful technology designed for developers who value <span class="font-semibold text-neutral-50">reliability</span>,
-          <span class="font-semibold text-neutral-50">security</span> and <span class="font-semibold text-neutral-50">efficiency</span>.
+        <p class="text-[16.5px] text-neutral-600 leading-relaxed">
+          Resilience as Code means your backup posture is <strong class="text-neutral-900 font-semibold">defined, versioned, and automated</strong>, not clicked through a console. With the Plakar Kubernetes Operator, teams declare their entire backup strategy as native CRDs: sources, storage, schedules, retention, replication, and verification live in Git, reconcile continuously, and ship the same way the rest of your infrastructure does. Manage every policy through the Plakar API, a Terraform provider, or Ansible playbooks.
         </p>
-        <div class="flex gap-8">
-          {{ partial "components/buttons/base-button.html" (dict
-            "label" "Learn more about Kloset"
-            "labelShort" "More about Kloset"
-            "href" "/posts/2025-04-29/kloset-the-immutable-data-store"
-            "class" "text-sm"
-          ) }}
-          {{ partial "components/buttons/base-button.html" (dict
-            "label" "Technical docs"
-            "labelShort" "Tech docs"
-            "href" "/docs/community"
-            "textColor" "text-neutral-900"
-            "bgColor" "bg-neutral-300"
-            "bgHoverColor" "bg-neutral-100"
-            "class" "text-sm"
-          ) }}
+      </div>
+      <!-- Terminal -->
+      <div class="bg-neutral-900 border border-neutral-700 rounded-xl overflow-hidden font-mono text-[13px] leading-relaxed shadow-[0_26px_64px_-28px_rgba(20,24,48,0.4)]">
+        <div class="flex items-center gap-2 px-4 py-3 bg-neutral-800 border-b border-neutral-700">
+          <span class="w-2.5 h-2.5 rounded-full bg-[#FF5F57]"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-[#FEBC2E]"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-[#28C840]"></span>
+          <span class="text-[11px] text-neutral-500 mx-auto">plakar — zsh</span>
+        </div>
+        <div class="px-5 py-5 text-neutral-100 space-y-1">
+          <div><span class="text-primary-400">❯</span> terraform apply</div>
+          <div class="text-green-400">✓ plakar_backup_policy.postgres-prod created</div>
+          <div class="text-neutral-500">&nbsp;&nbsp;schedule = "*/15 * * * *" · retention = "30d-immutable"</div>
+          <div class="text-neutral-500">&nbsp;&nbsp;replication = [ovh, scaleway]</div>
+          <div class="h-2"></div>
+          <div><span class="text-primary-400">❯</span> kubectl apply -f resilience-policy.yaml</div>
+          <div class="text-green-400">✓ BackupPolicy/postgres-prod reconciled · GitOps-ready</div>
+          <div class="h-2"></div>
+          <div><span class="text-primary-400">❯</span> ansible-playbook resilience.yml</div>
+          <div class="text-green-400">✓ 12 hosts · policies converged</div>
+          <div class="h-2"></div>
+          <div><span class="text-primary-400">❯</span> curl -s api.plakar.io/v1/coverage</div>
+          <div class="text-green-400">✓ {"protected": 1420, "verified": "100%"}</div>
         </div>
       </div>
-    </div>
-
-    <div class="flex flex-col gap-16">
-      <div class="relative w-full rounded-xl overflow-hidden" style="background-image: url('{{ $gradientBlue.RelPermalink }}'); background-size: cover; background-position: center;">
-        <div class="relative p-2 lg:p-6 pb-8 flex lg:flex-row flex-col items-center lg:justify-center">
-          <div class="w-full max-w-2xl translate-y-16 bg-neutral-800 rounded-xl lg:p-8 flex flex-col gap-4">
-            <div class="bg-neutral-900 rounded-lg p-4 font-mono text-xs lg:text-sm text-green-400">
-              $ plakar inspect kloset://backup-2023-04-18<br>
-              • Integrity verified<br>
-              / 1,245 files, 26.8 GB, created Apr 18 2023
-            </div>
-            <img src="{{ $klosetSchema.RelPermalink }}" alt="Kloset schema" class="w-full h-auto">
-          </div>
-
-          <div class="z-10 lg:absolute pb-10 lg:-bottom-4 lg:translate-x-90 max-w-xs mx-auto mt-7 w-full p-5 bg-neutral-900/95 rounded-xl border border-neutral-700 flex flex-col gap-3 text-neutral-50 shadow-xl outline-8 outline-neutral-800/20 hover:shadow-none transition-all duration-300">
-            <div class="flex items-center gap-2 font-semibold text-base">
-              <span class="w-5 h-5 text-neutral-50">{{ partial "icon.html" "ri/check-fill" }}</span>
-              This is Kloset
-            </div>
-            <p class="text-neutral-300 text-sm leading-relaxed">
-              Kloset encapsulates each backup into a self-contained, immutable, structured data asset. Like a container that packages an app with everything it needs, Kloset packages data with context, structure, metadata and integrity.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Feature cards -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-5">
-
-        <div class="p-6 bg-neutral-800/70 rounded-lg flex flex-col gap-4">
-          <div class="flex items-center gap-4">
-            <span class="w-6 h-6 text-neutral-500">{{ partial "icon.html" "ri/menu-search-line" }}</span>
-            <h4 class="text-neutral-50">Self-contained</h4>
-          </div>
-          <p class="text-neutral-200">Everything your data needs travels with it. No external dependencies.</p>
-        </div>
-
-        <div class="p-6 bg-neutral-800/70 rounded-lg flex flex-col gap-4">
-          <div class="flex items-center gap-4">
-            <span class="w-6 h-6 text-neutral-500">{{ partial "icon.html" "ri/shield-check-line" }}</span>
-            <h4 class="text-neutral-50">Immutable</h4>
-          </div>
-          <p class="text-neutral-200">Once created, a Kloset never changes, ensuring data integrity and security.</p>
-        </div>
-
-        <div class="p-6 bg-neutral-800/70 rounded-lg flex flex-col gap-4">
-          <div class="flex items-center gap-4">
-            <span class="w-6 h-6 text-neutral-500">{{ partial "icon.html" "ri/database-line" }}</span>
-            <h4 class="text-neutral-50">Queryable</h4>
-          </div>
-          <p class="text-neutral-200">Inspect and query snapshots without restoration. Instant access.</p>
-        </div>
-
-        <div class="p-6 bg-neutral-800/70 rounded-lg flex flex-col gap-4">
-          <div class="flex items-center gap-4">
-            <span class="w-6 h-6 text-neutral-500">{{ partial "icon.html" "ri/list-view" }}</span>
-            <h4 class="text-neutral-50">Portable</h4>
-          </div>
-          <p class="text-neutral-200">Move your Klosets anywhere. Same structure, everywhere.</p>
-        </div>
-
-      </div>
-
-      <!-- Kloset vs Docker comparison -->
-      <div class="flex flex-col gap-8 text-center items-center mt-16">
-        <h3 class="text-2xl lg:text-4xl font-medium text-neutral-50">
-          <span class="text-secondary-500">Kloset</span> does for data what <span class="text-secondary-500">Docker containers</span> did for compute
-        </h3>
-
-        <div class="flex flex-col md:flex-row md:items-center items-stretch max-w-4xl w-full mt-5 gap-0">
-          <div class="flex-1 h-fit bg-neutral-800/70 rounded-lg flex flex-col gap-6 text-left p-8 md:py-16">
-            <div class="flex items-center gap-3">
-              <span class="w-6 h-6 text-neutral-500">{{ $nestor.Content | safeHTML }}</span>
-              <h4 class="text-neutral-50">Kloset for Data</h4>
-            </div>
-            <ul class="flex flex-col gap-3 text-neutral-200 text-base">
-              <li class="flex items-center gap-2">
-                <span class="w-5 h-5 shrink-0 text-primary-500">{{ partial "icon.html" "ri/check-fill" }}</span>
-                Packages data with all metadata and context
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="w-5 h-5 shrink-0 text-primary-500">{{ partial "icon.html" "ri/check-fill" }}</span>
-                Ensures consistent data integrity and structure
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="w-5 h-5 shrink-0 text-primary-500">{{ partial "icon.html" "ri/check-fill" }}</span>
-                Portable across different storage systems
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="w-5 h-5 shrink-0 text-primary-500">{{ partial "icon.html" "ri/check-fill" }}</span>
-                Standardized format for preservation
-              </li>
-            </ul>
-          </div>
-
-          <div class="flex-1 h-fit border border-neutral-800/70 rounded-lg flex flex-col gap-6 text-left p-8">
-            <div class="flex items-center gap-3">
-              <span class="w-6 h-6 text-neutral-500">{{ partial "icon.html" "corporate/docker" }}</span>
-              <h4 class="text-neutral-50">Docker for Applications</h4>
-            </div>
-            <ul class="flex flex-col gap-3 text-neutral-200 text-base">
-              <li class="flex items-center gap-2">
-                <span class="w-5 h-5 shrink-0 text-primary-500">{{ partial "icon.html" "ri/check-fill" }}</span>
-                Packages application with all dependencies
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="w-5 h-5 shrink-0 text-primary-500">{{ partial "icon.html" "ri/check-fill" }}</span>
-                Ensures consistent execution environment
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="w-5 h-5 shrink-0 text-primary-500">{{ partial "icon.html" "ri/check-fill" }}</span>
-                Portable across systems
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="w-5 h-5 shrink-0 text-primary-500">{{ partial "icon.html" "ri/check-fill" }}</span>
-                Standardized format for distribution
-              </li>
-            </ul>
-          </div>
-
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
 
-<!-- Newsletter -->
-<section class="section-gradient-blue-1 overflow-hidden py-14 lg:py-28">
-  <div class="max-w-350 mx-auto px-4 flex flex-col lg:flex-row-reverse gap-16 items-start">
-
-    <div class="lg:w-1/2 flex flex-col gap-8">
-      <h2 class="text-4xl lg:text-6xl font-medium leading-tighter text-primary-900">
-        Stay ahead with Plakar updates
+<!-- Integrations -->
+<section class="section-light-2 py-24">
+  <div class="px-4 max-w-350 mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <h2 class="text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-neutral-900">
+        It fits the estate you already have.
       </h2>
-      <p class="text-neutral-900 leading-normal">
-        Get exclusive insights, new features and expert tips on backup, storage and immutability.<br/> No spam, ever.
-      </p>
+      <p class="text-lg text-neutral-600 mt-5">Dozens of sources and tools, one engine, and the long tail keeps growing. Missing something? Ask for it.</p>
     </div>
 
-    <div class="lg:w-1/2 w-full bg-neutral-800 border border-neutral-700 rounded-2xl shadow-sm overflow-hidden">
-      <div class="bg-primary-600 px-6 py-5">
-        <h3 class="text-neutral-50 font-semibold">Sign up with your email</h3>
-        <p class="text-neutral-50 opacity-80 mt-1">We'll send you major product updates, no noise.</p>
-      </div>
-      <form id="newsletter-form-home" class="px-6 py-8 flex flex-col gap-6">
-        <input type="email" name="email" placeholder="Your email address" required class="w-full border border-neutral-600 bg-neutral-50 text-neutral-900 placeholder-neutral-500 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary-400">
-        <div class="flex justify-end">
-          <button type="submit" class="bg-primary-500 hover:bg-primary-600 text-neutral-50 px-6 py-2 rounded-lg font-medium transition">
-            Subscribe
-          </button>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
+      <!-- Featured: S3 -->
+      <div class="bg-primary-50 border border-primary-500 rounded-xl p-5 flex flex-col gap-2.5">
+        <div class="flex flex-wrap gap-1.5 mb-1">
+          <img src="/img/providers/amazon-s3.svg" alt="AWS S3" class="w-5 h-5">
+          <img src="/img/providers/favicon-azure.png" alt="Azure Blob" class="w-5 h-5 rounded-sm">
+          <img src="/img/providers/favicon-cloud-google-com.png" alt="Google Cloud" class="w-5 h-5 rounded-sm">
+          <img src="/img/providers/favicon-minio.png" alt="MinIO" class="w-5 h-5 rounded-sm">
+          <img src="/img/providers/favicon-backblaze.png" alt="Backblaze B2" class="w-5 h-5 rounded-sm">
+          <img src="/img/providers/favicon-netapp.png" alt="NetApp" class="w-5 h-5 rounded-sm">
         </div>
-      </form>
+        <h4 class="text-[14.5px] font-bold text-primary-500">S3-compatible storage</h4>
+        <span class="text-[12.5px] text-neutral-600">Object-lock immutable, append-only destinations on storage you own.</span>
+        <span class="text-[10px] font-bold uppercase tracking-wide text-green-700 bg-green-100 rounded px-2 py-0.5 self-start mt-auto">Live</span>
+      </div>
+      <!-- Featured: Cloud providers -->
+      <div class="bg-primary-50 border border-primary-500 rounded-xl p-5 flex flex-col gap-2.5">
+        <div class="flex flex-wrap gap-1.5 mb-1">
+          <img src="/img/providers/favicon-aws-amazon-com.png" alt="AWS" class="w-5 h-5 rounded-sm">
+          <img src="/img/providers/favicon-azure.png" alt="Azure" class="w-5 h-5 rounded-sm">
+          <img src="/img/providers/favicon-cloud-google-com.png" alt="Google Cloud" class="w-5 h-5 rounded-sm">
+          <img src="/img/providers/favicon-ovhcloud-com.png" alt="OVHcloud" class="w-5 h-5 rounded-sm">
+          <img src="/img/providers/favicon-scaleway-com.png" alt="Scaleway" class="w-5 h-5 rounded-sm">
+        </div>
+        <h4 class="text-[14.5px] font-bold text-primary-500">Cloud providers</h4>
+        <span class="text-[12.5px] text-neutral-600">Agentless VM-level snapshots across your cloud estate.</span>
+        <span class="text-[10px] font-bold uppercase tracking-wide text-green-700 bg-green-100 rounded px-2 py-0.5 self-start mt-auto">Live</span>
+      </div>
+      <!-- PostgreSQL -->
+      <div class="bg-white border border-neutral-200 rounded-xl p-5 flex flex-col gap-2">
+        <span class="w-9 h-9 rounded-lg bg-neutral-100 flex items-center justify-center mb-1"><img src="/img/providers/icon-postgresql.svg" alt="" class="w-5 h-5"></span>
+        <h4 class="text-[14.5px] font-bold text-neutral-900">PostgreSQL</h4>
+        <span class="text-[12.5px] text-neutral-600">Consistent full-database snapshots &amp; dumps</span>
+        <span class="text-[10px] font-bold uppercase tracking-wide text-green-700 bg-green-100 rounded px-2 py-0.5 self-start mt-auto">Live</span>
+      </div>
+      <!-- MySQL -->
+      <div class="bg-white border border-neutral-200 rounded-xl p-5 flex flex-col gap-2">
+        <span class="w-9 h-9 rounded-lg bg-neutral-100 flex items-center justify-center mb-1"><img src="/img/providers/mysql.png" alt="" class="w-5 h-5 object-contain"></span>
+        <h4 class="text-[14.5px] font-bold text-neutral-900">MySQL / MariaDB</h4>
+        <span class="text-[12.5px] text-neutral-600">Encrypted, deduplicated database snapshots</span>
+        <span class="text-[10px] font-bold uppercase tracking-wide text-green-700 bg-green-100 rounded px-2 py-0.5 self-start mt-auto">Live</span>
+      </div>
+      <!-- Kubernetes -->
+      <div class="bg-white border border-neutral-200 rounded-xl p-5 flex flex-col gap-2">
+        <span class="w-9 h-9 rounded-lg bg-neutral-100 flex items-center justify-center mb-1"><img src="/img/providers/favicon-kubernetes.png" alt="" class="w-5 h-5"></span>
+        <h4 class="text-[14.5px] font-bold text-neutral-900">Kubernetes</h4>
+        <span class="text-[12.5px] text-neutral-600">Cluster-native snapshots, GitOps-ready</span>
+        <span class="text-[10px] font-bold uppercase tracking-wide text-green-700 bg-green-100 rounded px-2 py-0.5 self-start mt-auto">Live</span>
+      </div>
+      <!-- Proxmox -->
+      <div class="bg-white border border-neutral-200 rounded-xl p-5 flex flex-col gap-2">
+        <span class="w-9 h-9 rounded-lg bg-neutral-100 flex items-center justify-center mb-1"><img src="/img/providers/favicon-proxmox-com.png" alt="" class="w-5 h-5"></span>
+        <h4 class="text-[14.5px] font-bold text-neutral-900">Proxmox</h4>
+        <span class="text-[12.5px] text-neutral-600">Agentless VM &amp; container snapshots</span>
+        <span class="text-[10px] font-bold uppercase tracking-wide text-green-700 bg-green-100 rounded px-2 py-0.5 self-start mt-auto">Live</span>
+      </div>
+      <!-- VMware -->
+      <div class="bg-white border border-neutral-200 rounded-xl p-5 flex flex-col gap-2">
+        <span class="w-9 h-9 rounded-lg bg-neutral-100 flex items-center justify-center mb-1"><img src="/img/providers/favicon-vmware-com.png" alt="" class="w-5 h-5"></span>
+        <h4 class="text-[14.5px] font-bold text-neutral-900">VMware vSphere</h4>
+        <span class="text-[12.5px] text-neutral-600">Agentless VM protection for hybrid estates</span>
+        <span class="text-[10px] font-bold uppercase tracking-wide text-green-700 bg-green-100 rounded px-2 py-0.5 self-start mt-auto">Live</span>
+      </div>
+      <!-- Docker -->
+      <div class="bg-white border border-neutral-200 rounded-xl p-5 flex flex-col gap-2">
+        <span class="w-9 h-9 rounded-lg bg-neutral-100 flex items-center justify-center mb-1"><img src="/img/providers/favicon-docker.png" alt="" class="w-5 h-5"></span>
+        <h4 class="text-[14.5px] font-bold text-neutral-900">Docker</h4>
+        <span class="text-[12.5px] text-neutral-600">Snapshot container volumes &amp; state</span>
+        <span class="text-[10px] font-bold uppercase tracking-wide text-green-700 bg-green-100 rounded px-2 py-0.5 self-start mt-auto">Live</span>
+      </div>
     </div>
 
+    <div class="text-center mt-9">
+      <a href="/integrations/" class="inline-flex items-center gap-2 px-6 py-3.5 text-[15px] font-semibold rounded-lg bg-primary-500 text-white hover:bg-primary-600 transition-colors no-underline">View all integrations →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Wall of love -->
+<section class="bg-primary-600 py-24">
+  <div class="px-4 max-w-350 mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <h2 class="text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-white">
+        Teams already trust Plakar.
+      </h2>
+      <a href="https://discord.gg/uuegtnF2Q5" target="_blank" rel="noopener"
+         class="inline-flex items-center gap-2.5 mt-6 px-6 py-3.5 text-[15px] font-semibold rounded-lg bg-white text-primary-600 hover:bg-neutral-100 transition-colors no-underline">
+        <span class="block w-[18px] h-[18px]">{{ partial "icon.html" "discord" }}</span>
+        Join us on Discord
+      </a>
+    </div>
+    <div class="columns-1 md:columns-2 lg:columns-3 gap-4 max-w-5xl mx-auto">
+      <a href="https://www.reddit.com/r/kubernetes/comments/1shpt9k/rookceph_s3_buckets/off33rf/" target="_blank" rel="noopener" class="block break-inside-avoid bg-white rounded-xl p-5 mb-4 no-underline hover:shadow-lg transition-shadow">
+        <p class="text-[14.5px] text-neutral-800 mb-4 leading-relaxed">"Very efficient, free, open-source, easy as hell to integrate."</p>
+        <div class="flex items-center gap-2.5"><span class="w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center font-bold text-xs text-neutral-500">r/</span><div><div class="text-[13px] font-bold text-neutral-900">r/kubernetes</div><div class="text-xs text-neutral-400">on Rook-Ceph S3 buckets</div></div></div>
+      </a>
+      <a href="https://twitter.com/bipbip/status/2032924249229238328" target="_blank" rel="noopener" class="block break-inside-avoid bg-white rounded-xl p-5 mb-4 no-underline hover:shadow-lg transition-shadow">
+        <p class="text-[14.5px] text-neutral-800 mb-4 leading-relaxed">"The first big disruption to the backup / archiving world in a long time. Open source &amp; built in Europe. Must have a look for SREs / sysadmins."</p>
+        <div class="flex items-center gap-2.5"><span class="w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center font-bold text-xs text-neutral-500">B</span><div><div class="text-[13px] font-bold text-neutral-900">@bipbip</div><div class="text-xs text-neutral-400">on X</div></div></div>
+      </a>
+      <a href="https://twitter.com/BretFisher/status/2036114857536131375" target="_blank" rel="noopener" class="block break-inside-avoid bg-white rounded-xl p-5 mb-4 no-underline hover:shadow-lg transition-shadow">
+        <p class="text-[14.5px] text-neutral-800 mb-4 leading-relaxed">"Plakar deduplicates and encrypts at the source so your cloud provider never sees your keys. And the snapshot model has no chain dependencies. You can delete any backup without breaking the others."</p>
+        <div class="flex items-center gap-2.5"><span class="w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center font-bold text-xs text-neutral-500">BF</span><div><div class="text-[13px] font-bold text-neutral-900">Bret Fisher</div><div class="text-xs text-neutral-400">DevOps &amp; Docker Talk</div></div></div>
+      </a>
+      <a href="https://twitter.com/tom_doerr/status/2051481040267477292" target="_blank" rel="noopener" class="block break-inside-avoid bg-white rounded-xl p-5 mb-4 no-underline hover:shadow-lg transition-shadow">
+        <p class="text-[14.5px] text-neutral-800 mb-4 leading-relaxed">"Restores 1 million items in 3 minutes."</p>
+        <div class="flex items-center gap-2.5"><span class="w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center font-bold text-xs text-neutral-500">TD</span><div><div class="text-[13px] font-bold text-neutral-900">@tom_doerr</div><div class="text-xs text-neutral-400">on X, benchmarking Plakar 1.1</div></div></div>
+      </a>
+      <a href="https://www.reddit.com/r/linuxadmin/comments/1to2vm5/i_built_opsvault_an_opensource_backup_automation/opxr08y/" target="_blank" rel="noopener" class="block break-inside-avoid bg-white rounded-xl p-5 mb-4 no-underline hover:shadow-lg transition-shadow">
+        <p class="text-[14.5px] text-neutral-800 mb-4 leading-relaxed">"Plakar looks pretty slick, especially that Proxmox integration."</p>
+        <div class="flex items-center gap-2.5"><span class="w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center font-bold text-xs text-neutral-500">k</span><div><div class="text-[13px] font-bold text-neutral-900">u/kernelqzor</div><div class="text-xs text-neutral-400">r/linuxadmin</div></div></div>
+      </a>
+      <a href="https://korben.info/plakar-solution-backup-open-source-francaise.html" target="_blank" rel="noopener" class="block break-inside-avoid bg-white rounded-xl p-5 mb-4 no-underline hover:shadow-lg transition-shadow">
+        <p class="text-[14.5px] text-neutral-800 mb-4 leading-relaxed">"Two little French geniuses just released a solution that's going to make you love backups."</p>
+        <div class="flex items-center gap-2.5"><span class="w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center font-bold text-xs text-neutral-500">K</span><div><div class="text-[13px] font-bold text-neutral-900">Korben</div><div class="text-xs text-neutral-400">on korben.info</div></div></div>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -688,7 +679,7 @@
 
     <div class="flex flex-col items-center gap-8 text-center">
       <h2 class="text-4xl lg:text-6xl font-medium text-neutral-900 leading-tight">
-        Community <span class="text-secondary-500">powered</span>, trusted by teams
+        Community <span class="text-secondary-500">powered</span>
       </h2>
       <p class="text-base lg:text-lg text-neutral-600 font-medium max-w-2xl">
         There must be a way to ensure backups remain accessible 10 or 30 years from now.
@@ -777,35 +768,87 @@
       </div>
     </div>
 
-    <div class="flex flex-col xl:flex-row items-start justify-between gap-8">
-      <div class="flex flex-col gap-1 shrink-0">
-        <h2 class="text-xl lg:text-3xl text-neutral-900 font-medium">Trusted by great teams</h2>
-        <p class="text-base lg:text-lg text-neutral-600 font-medium opacity-70">Chosen by teams who can't afford to lose data or sleep.</p>
+  </div>
+</section>
+
+<!-- Nestor -->
+<section class="section-light-1 py-24">
+  <div class="px-4 max-w-350 mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-14 items-center max-w-5xl mx-auto">
+      <div>
+        <h2 class="text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-neutral-900 mb-5">
+          Every chunk, accounted for. <span class="text-secondary-500">Voilà.</span>
+        </h2>
+        <p class="text-[16.5px] text-neutral-600 mb-4 leading-relaxed">
+          Nestor is Plakar's mascot, a chipmunk obsessed with chunks. His companion? Chunky Ptarson, a nut named after the <code class="bg-neutral-200 px-1.5 py-0.5 rounded text-sm">.ptar</code> format he calls home. Nestor carries the snapshots. Chunky <em>is</em> the snapshot.
+        </p>
+        <div class="border-l-[3px] border-primary-500 bg-primary-50 rounded-r-lg px-5 py-3">
+          <p class="text-[15px] text-neutral-800 italic">"You're just… leaving your snapshots out there? Unverified?! Mon dieu. You have to protect your nuts!"</p>
+          <span class="block text-[12.5px] text-neutral-400 mt-2">— Nestor, every time someone says their backups "just work"</span>
+        </div>
       </div>
-
-      <div class="flex-1 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-4 gap-y-6 xl:justify-end">
-        {{ $clients := slice
-          (dict "img" "img/logo-client/holberton.png" "name" "Holberton")
-          (dict "img" "img/logo-client/republique-francaise-logo-black-and-white.png" "name" "République Française")
-          (dict "img" "img/logo-client/spark-angle-logo-only.png" "name" "Spark Angle")
-          (dict "img" "img/logo-client/moose-and-toom.png" "name" "Moose & Toom")
-          (dict "img" "img/logo-client/hoodie.png" "name" "Hoodie")
-        }}
-        {{ range $clients }}
-          {{ $logo := resources.Get .img }}
-          {{ if $logo }}
-            <div class="flex items-center gap-3">
-              <div class="w-9 shrink-0">
-                <img src="{{ $logo.RelPermalink }}" alt="{{ .name }}" class="w-full h-full object-contain rounded-sm">
-              </div>
-              <span class="text-neutral-700 text-sm md:text-base font-medium">{{ .name }}</span>
-            </div>
-          {{ end }}
-        {{ end }}
-
+      <div class="shrink-0 w-64 mx-auto">
+        <img src="{{ (resources.Get "img/nestor/nestor-v2.svg").RelPermalink }}" alt="Nestor, Plakar's chipmunk mascot, holding Chunky Ptarson" class="w-full h-auto block">
       </div>
     </div>
+  </div>
+</section>
 
+<!-- Newsletter -->
+<section class="section-gradient-blue-1 overflow-hidden py-14 lg:py-28">
+  <div class="max-w-350 mx-auto px-4 flex flex-col lg:flex-row-reverse gap-16 items-start">
+
+    <div class="lg:w-1/2 flex flex-col gap-8">
+      <h2 class="text-4xl lg:text-6xl font-medium leading-tighter text-primary-900">
+        Stay ahead with Plakar updates
+      </h2>
+      <p class="text-neutral-900 leading-normal">
+        Get exclusive insights, new features and expert tips on backup, storage and immutability.<br/> No spam, ever.
+      </p>
+    </div>
+
+    <div class="lg:w-1/2 w-full bg-neutral-800 border border-neutral-700 rounded-2xl shadow-sm overflow-hidden">
+      <div class="bg-primary-600 px-6 py-5">
+        <h3 class="text-neutral-50 font-semibold">Sign up with your email</h3>
+        <p class="text-neutral-50 opacity-80 mt-1">We'll send you major product updates, no noise.</p>
+      </div>
+      <form id="newsletter-form-home" class="px-6 py-8 flex flex-col gap-6">
+        <input type="email" name="email" placeholder="Your email address" required class="w-full border border-neutral-600 bg-neutral-50 text-neutral-900 placeholder-neutral-500 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary-400">
+        <div class="flex justify-end">
+          <button type="submit" class="bg-primary-500 hover:bg-primary-600 text-neutral-50 px-6 py-2 rounded-lg font-medium transition">
+            Subscribe
+          </button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section class="section-dark-1 py-24">
+  <div class="px-4 max-w-350 mx-auto text-center">
+    <h2 class="text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-neutral-50 mb-4">
+      Back up anything. Prove it's recoverable.
+    </h2>
+    <p class="text-lg text-neutral-400 max-w-xl mx-auto mb-8">
+      The complete engine, free and open source. Organization-wide visibility when you need it. Your keys, your data, your recovery path.
+    </p>
+    <div class="flex flex-wrap justify-center gap-3 mb-8">
+      <a href="/docs/community/v1.1.0/quickstart/first-backup/" class="inline-flex items-center gap-2 px-6 py-3.5 text-[15px] font-semibold rounded-lg bg-primary-500 text-white hover:bg-primary-600 transition-colors no-underline">Get started</a>
+      <a href="#" class="inline-flex items-center gap-2 px-6 py-3.5 text-[15px] font-semibold rounded-lg bg-neutral-800 border border-neutral-700 text-neutral-50 hover:bg-neutral-700 transition-colors no-underline book-a-demo-modal-open">Book a demo →</a>
+    </div>
+    <div class="flex items-center justify-center gap-5 flex-wrap">
+      <div class="bg-white rounded-xl px-6 py-4 flex items-center justify-center">
+        <img src="{{ (resources.Get "img/community/cncf-member-silver-color.svg").RelPermalink }}" alt="CNCF Silver Member" class="h-12 w-auto">
+      </div>
+      <div class="bg-white rounded-xl px-6 py-4 flex items-center justify-center">
+        <img src="{{ (resources.Get "img/community/lf-member-level-silver.svg").RelPermalink }}" alt="Linux Foundation Silver Member" class="h-12 w-auto">
+      </div>
+      <div class="bg-white rounded-xl px-6 py-4 flex items-center justify-center">
+        <img src="{{ (resources.Get "img/community/sylva-logo.svg").RelPermalink }}" alt="Sylva project member" class="h-12 w-auto">
+      </div>
+    </div>
   </div>
 </section>
 
