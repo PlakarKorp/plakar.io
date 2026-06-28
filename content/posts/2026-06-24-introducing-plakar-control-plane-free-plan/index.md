@@ -15,7 +15,7 @@ tags:
 draft: true
 ---
 
-Last week, we [released Plakar 1.1.3](https://www.plakar.io/posts/2026-06-16/plakar-v1.1.3-is-here/), the open source engine for efficient backup, with a new terminal UI, multi-directory backups (single source), rewritten FUSE mounting (plus HTTP mounts), a brand new package manager, and much simpler integration interfaces. That was a massive release and a proof of our open source commitment.
+Last week, we [released Plakar 1.1.3](/posts/2026-06-16/plakar-v1.1.3-is-here/), the open source engine for efficient backup, with a new terminal UI, multi-directory backups (single source), rewritten FUSE mounting (plus HTTP mounts), a brand new package manager, and much simpler integration interfaces. That was a massive release and a proof of our open source commitment.
 
 Today, after months of collaboration with design partners and customers, we're officially launching a free plan for our first commercial product: **Plakar Control Plane**, a self-hosted backup management platform built on top of the open-source Plakar.
 
@@ -47,7 +47,7 @@ Built on top of Plakar's zero-trust resilience engine, Plakar Control Plane come
 
 ### Unified inventory management
 
-**Inventories** connect Plakar Control Plane to a provider and expose the list of compute or storage [resources](https://www.plakar.io/docs/control-plane/resources/) available to back up — i.e. EC2 instances, S3 buckets, etc. There are two types of [inventories](https://www.plakar.io/docs/control-plane/infrastructure/inventories/): **Managed inventories** to sync resources automatically using credentials, and **Self-managed inventories** to define resources manually.
+**Inventories** connect Plakar Control Plane to a provider and expose the list of compute or storage [resources](/docs/control-plane/resources/) available to back up — i.e. EC2 instances, S3 buckets, etc. There are two types of [inventories](/docs/control-plane/infrastructure/inventories/): **Managed inventories** to sync resources automatically using credentials, and **Self-managed inventories** to define resources manually.
 
 ![Plakar Control Plane — inventory management](inventory.png)
 
@@ -57,11 +57,11 @@ Plakar Control Plane ships with native integrations for the systems that actuall
 
 ### Centralized backup policies and scheduling
 
-Plakar Control Plane gives you multiple ways to define and drive resilience posture, depending on how your team works. [Backup policies](https://www.plakar.io/docs/control-plane/operations/policies/) can be configured manually through the interface, derived automatically from resource tags, or defined programmatically through code-based rules. You are not locked into a single console-driven workflow; the model adapts to how your infrastructure is already managed.
+Plakar Control Plane gives you multiple ways to define and drive resilience posture, depending on how your team works. [Backup policies](/docs/control-plane/operations/policies/) can be configured manually through the interface, derived automatically from resource tags, or defined programmatically through code-based rules. You are not locked into a single console-driven workflow; the model adapts to how your infrastructure is already managed.
 
 ![Plakar Control Plane — create and schedule a backup task](task-scheduling.png)
 
-The same flexibility applies to [scheduling](https://www.plakar.io/docs/control-plane/operations/scheduling/#scheduling). Some schedulers are driven from the UI, others are steered programmatically through the API or infrastructure-as-code tooling. What makes this different from a standard scheduler is that the Control Plane dashboard gives you unified visibility and control across all of them. Programmatic control and a single pane of observability are not separate concerns; they converge in one place, which is what actually makes resilience manageable at scale.
+The same flexibility applies to [scheduling](/docs/control-plane/operations/scheduling/#scheduling). Some schedulers are driven from the UI, others are steered programmatically through the API or infrastructure-as-code tooling. What makes this different from a standard scheduler is that the Control Plane dashboard gives you unified visibility and control across all of them. Programmatic control and a single pane of observability are not separate concerns; they converge in one place, which is what actually makes resilience manageable at scale.
 
 There is also a graph view of scheduled tasks, so you can easily visualize the background jobs keeping your infrastructure secure.
 
@@ -77,7 +77,7 @@ When configuring any resource that requires a token or password, you can either 
 
 Plakar Control Plane is available today for deployment on AWS, OVHcloud, Scaleway, and self-hosted virtual machines.
 
-[**Download and deploy → plakar.io/download**](https://www.plakar.io/download/)
+[**Download and deploy → plakar.io/download**](/download/)
 
 The list of providers is growing fast and should soon include all hyperscalers — i.e. Azure, GCP — and other European cloud providers. Your backup data never leaves your environment. Only the consumption metrics needed for billing ever touch our systems.
 
