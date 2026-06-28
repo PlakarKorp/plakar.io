@@ -4,6 +4,10 @@
 
 
 
+## [Introducing the Plakar Control Plane free plan: Open Resilience for everyone, deployed on your terms](https://plakar.io/posts/2026-06-24/introducing-plakar-control-plane-free-plan/index.md)
+
+
+
 ## [Plakar v1.1.3 is here](https://plakar.io/posts/2026-06-16/plakar-v1.1.3-is-here/index.md)
 
 
