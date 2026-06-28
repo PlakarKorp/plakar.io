@@ -12,7 +12,8 @@ tags:
   - control-plane
   - open-source
   - announcement
-draft: true
+featured-scope:
+  - hero-page
 ---
 
 Last week, we [released Plakar 1.1.3](/posts/2026-06-16/plakar-v1.1.3-is-here/), the open source engine for efficient backup, with a new terminal UI, multi-directory backups (single source), rewritten FUSE mounting (plus HTTP mounts), a brand new package manager, and much simpler integration interfaces. That was a massive release and a proof of our open source commitment.
