@@ -10,11 +10,11 @@
 <!-- JS: assets/js/main/home-hero.js -->
 <section class="section-light-2 grid-background pt-24 relative overflow-hidden">
   <div class="px-4 pt-16 pb-20 max-w-350 mx-auto relative z-10">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
 
       <!-- Left: copy -->
       <div>
-        <h1 class="text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight mb-5 text-neutral-900">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight mb-5 text-neutral-900">
           Back up and recover<br>
           your <span class="hv2-rotate"><span class="hv2-rotate-inner text-primary-500" id="hv2-rot"><span>AI pipelines</span></span></span><br>
           from a single control plane.
@@ -29,11 +29,11 @@
         </p>
         <div class="flex flex-wrap gap-3">
           <a href="/docs/community/v1.1.0/quickstart/first-backup/"
-             class="inline-flex items-center gap-2 px-6 py-3.5 text-[15px] font-semibold rounded-lg bg-primary-500 text-white hover:bg-primary-600 transition-colors no-underline">
+             class="inline-flex items-center gap-2 px-5 py-3 text-sm sm:px-6 sm:py-3.5 sm:text-[15px] font-semibold rounded-lg bg-primary-500 text-white hover:bg-primary-600 transition-colors no-underline">
             Get started
           </a>
           <a href="#"
-             class="inline-flex items-center gap-2 px-6 py-3.5 text-[15px] font-semibold rounded-lg bg-white border border-neutral-300 text-neutral-900 hover:border-neutral-400 hover:bg-neutral-50 transition-colors no-underline book-a-demo-modal-open">
+             class="inline-flex items-center gap-2 px-5 py-3 text-sm sm:px-6 sm:py-3.5 sm:text-[15px] font-semibold rounded-lg bg-white border border-neutral-300 text-neutral-900 hover:border-neutral-400 hover:bg-neutral-50 transition-colors no-underline book-a-demo-modal-open">
             Book a demo
           </a>
         </div>
@@ -249,7 +249,7 @@
 </section>
 
 <!-- Why Backups -->
-<section class="section-light-1 border-y border-neutral-200 py-24">
+<section class="section-light-1 border-y border-neutral-200 py-14 lg:py-24">
   <div class="px-4 max-w-350 mx-auto">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
 
@@ -290,7 +290,7 @@
 </section>
 
 <!-- What recoverable takes -->
-<section class="section-light-2 py-24">
+<section class="section-light-2 py-14 lg:py-24">
   <div class="px-4 max-w-350 mx-auto">
     <div class="text-center max-w-3xl mx-auto mb-12">
       <h2 class="text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-neutral-900">
@@ -300,39 +300,39 @@
     </div>
 
     <!-- Tab rail -->
-    <div id="rec-rail" class="flex flex-wrap justify-center gap-2 mb-7">
-      <button data-rec-tab="efficiency" class="inline-flex items-center gap-2.5 rounded-full border px-4 py-2.5 transition-colors bg-primary-500 text-white border-primary-500">
+    <div id="rec-rail" class="flex gap-2 mb-7 overflow-x-auto pb-1 lg:flex-wrap lg:justify-center lg:overflow-visible">
+      <button data-rec-tab="efficiency" class="inline-flex items-center gap-2 shrink-0 rounded-full border px-3.5 py-2 lg:px-4 lg:py-2.5 transition-colors bg-primary-500 text-white border-primary-500">
         <span data-rec-num class="flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold bg-white/25 text-white">1</span>
         <span class="text-sm font-bold">Efficiency</span>
       </button>
-      <button data-rec-tab="zero-trust" class="inline-flex items-center gap-2.5 rounded-full border px-4 py-2.5 transition-colors bg-white text-neutral-700 border-neutral-300">
+      <button data-rec-tab="zero-trust" class="inline-flex items-center gap-2 shrink-0 rounded-full border px-3.5 py-2 lg:px-4 lg:py-2.5 transition-colors bg-white text-neutral-700 border-neutral-300">
         <span data-rec-num class="flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold bg-neutral-200 text-neutral-600">2</span>
         <span class="text-sm font-bold">Zero-trust</span>
       </button>
-      <button data-rec-tab="autonomy" class="inline-flex items-center gap-2.5 rounded-full border px-4 py-2.5 transition-colors bg-white text-neutral-700 border-neutral-300">
+      <button data-rec-tab="autonomy" class="inline-flex items-center gap-2 shrink-0 rounded-full border px-3.5 py-2 lg:px-4 lg:py-2.5 transition-colors bg-white text-neutral-700 border-neutral-300">
         <span data-rec-num class="flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold bg-neutral-200 text-neutral-600">3</span>
         <span class="text-sm font-bold">Strategic autonomy</span>
       </button>
-      <button data-rec-tab="cloud-native" class="inline-flex items-center gap-2.5 rounded-full border px-4 py-2.5 transition-colors bg-white text-neutral-700 border-neutral-300">
+      <button data-rec-tab="cloud-native" class="inline-flex items-center gap-2 shrink-0 rounded-full border px-3.5 py-2 lg:px-4 lg:py-2.5 transition-colors bg-white text-neutral-700 border-neutral-300">
         <span data-rec-num class="flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold bg-neutral-200 text-neutral-600">4</span>
         <span class="text-sm font-bold">Resilience as Code</span>
       </button>
-      <button data-rec-tab="ai-ready" class="inline-flex items-center gap-2.5 rounded-full border px-4 py-2.5 transition-colors bg-white text-neutral-700 border-neutral-300">
+      <button data-rec-tab="ai-ready" class="inline-flex items-center gap-2 shrink-0 rounded-full border px-3.5 py-2 lg:px-4 lg:py-2.5 transition-colors bg-white text-neutral-700 border-neutral-300">
         <span data-rec-num class="flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold bg-neutral-200 text-neutral-600">5</span>
         <span class="text-sm font-bold">AI-ready primitives</span>
       </button>
     </div>
 
     <!-- Stage -->
-    <div class="bg-white border border-neutral-200 rounded-2xl p-8 lg:p-10 shadow-[0_34px_80px_-34px_rgba(20,24,48,0.22)] max-w-5xl mx-auto">
+    <div class="bg-white border border-neutral-200 rounded-2xl p-4 sm:p-6 lg:p-10 shadow-[0_34px_80px_-34px_rgba(20,24,48,0.22)] max-w-5xl mx-auto">
 
       <!-- Pane 1: Complete coverage -->
-      <div data-rec-pane="efficiency" class="grid grid-cols-1 lg:grid-cols-[0.85fr_1.1fr] gap-10 items-center">
+      <div data-rec-pane="efficiency" class="grid grid-cols-1 lg:grid-cols-[0.85fr_1.1fr] gap-6 lg:gap-10 items-center">
         <div>
           <p class="text-2xl font-extrabold tracking-tight text-neutral-900 mb-3">Radically efficient, by design.</p>
           <p class="text-[15px] text-neutral-600 leading-relaxed">Plakar <span class="text-primary-500 font-semibold">deduplicates and compresses</span> everything before it leaves your system, collapsing the storage and egress overhead that makes legacy backup so expensive. Protecting the whole estate costs <span class="text-primary-500 font-semibold">a fraction of what traditional tools charge</span>, so you never have to choose what to leave unprotected.</p>
         </div>
-        <div class="rounded-xl border border-neutral-200 bg-gradient-to-br from-primary-50 to-neutral-100 p-8 min-h-[300px] flex flex-col items-center justify-center gap-5">
+        <div class="rounded-xl border border-neutral-200 bg-gradient-to-br from-primary-50 to-neutral-100 p-4 sm:p-6 lg:p-8 min-h-[300px] flex flex-col items-center justify-center gap-5">
           <div class="flex items-center gap-5">
             <div class="flex flex-col gap-2">
               <span class="text-[10px] font-bold uppercase tracking-wider text-neutral-400">2 snapshots</span>
@@ -350,12 +350,12 @@
       </div>
 
       <!-- Pane 2: Zero-trust -->
-      <div data-rec-pane="zero-trust" class="hidden grid grid-cols-1 lg:grid-cols-[0.85fr_1.1fr] gap-10 items-center">
+      <div data-rec-pane="zero-trust" class="hidden grid grid-cols-1 lg:grid-cols-[0.85fr_1.1fr] gap-6 lg:gap-10 items-center">
         <div>
           <p class="text-2xl font-extrabold tracking-tight text-neutral-900 mb-3">Zero-trust, and tamperproof.</p>
           <p class="text-[15px] text-neutral-600 leading-relaxed">Your backups are <span class="text-primary-500 font-semibold">encrypted before they ever leave your system</span>, so not even the storage provider can read them. On object-lock storage they're <span class="text-primary-500 font-semibold">immutable</span>: ransomware and rogue operators can't alter or delete them. Whoever reaches your backups finds only ciphertext they can't touch.</p>
         </div>
-        <div class="rounded-xl border border-neutral-200 bg-gradient-to-br from-primary-50 to-neutral-100 p-6 min-h-[300px] flex items-center justify-center">
+        <div class="rounded-xl border border-neutral-200 bg-gradient-to-br from-primary-50 to-neutral-100 p-4 sm:p-6 min-h-[300px] flex items-center justify-center">
           <div class="w-full max-w-sm bg-neutral-900 rounded-xl border border-neutral-700 overflow-hidden shadow-xl">
             <div class="px-4 py-2.5 border-b border-neutral-700 flex items-center gap-2">
               <svg class="w-3.5 h-3.5 text-neutral-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24M1 1l22 22"/></svg>
@@ -375,12 +375,12 @@
       </div>
 
       <!-- Pane 3: Strategic autonomy -->
-      <div data-rec-pane="autonomy" class="hidden grid grid-cols-1 lg:grid-cols-[0.85fr_1.1fr] gap-10 items-center">
+      <div data-rec-pane="autonomy" class="hidden grid grid-cols-1 lg:grid-cols-[0.85fr_1.1fr] gap-6 lg:gap-10 items-center">
         <div>
           <p class="text-2xl font-extrabold tracking-tight text-neutral-900 mb-3">Your data, never held hostage.</p>
           <p class="text-[15px] text-neutral-600 leading-relaxed">Autonomy is more than open source: it's the guarantee that a usable copy of your data always stays <span class="text-primary-500 font-semibold">under your control</span>, ready to restore or move without asking anyone's permission. <span class="text-secondary-500 font-semibold">Open under a permissive license</span>, self-hostable everywhere, and stored in a non-proprietary format, Plakar turns that control into <span class="text-primary-500 font-semibold">real leverage</span>. Switch SaaS or cloud providers on your terms, and choose exactly where your data resides to meet local regulation. No appliance lock-in, no vendor-mediated recovery path.</p>
         </div>
-        <div class="rounded-xl border border-neutral-200 bg-gradient-to-br from-primary-50 to-neutral-100 p-8 min-h-[300px] flex flex-col items-center justify-center gap-4">
+        <div class="rounded-xl border border-neutral-200 bg-gradient-to-br from-primary-50 to-neutral-100 p-4 sm:p-6 lg:p-8 min-h-[300px] flex flex-col items-center justify-center gap-4">
           <!-- the asset you hold -->
           <div class="bg-white border-2 border-primary-500 rounded-xl px-5 py-3.5 text-center shadow-sm">
             <div class="flex items-center justify-center gap-2 text-sm font-bold text-neutral-900">&#128274; Your encrypted snapshot</div>
@@ -405,12 +405,12 @@
       </div>
 
       <!-- Pane 4: Cloud-native -->
-      <div data-rec-pane="cloud-native" class="hidden grid grid-cols-1 lg:grid-cols-[0.85fr_1.1fr] gap-10 items-center">
+      <div data-rec-pane="cloud-native" class="hidden grid grid-cols-1 lg:grid-cols-[0.85fr_1.1fr] gap-6 lg:gap-10 items-center">
         <div>
           <p class="text-2xl font-extrabold tracking-tight text-neutral-900 mb-3">Cloud-native resilience, as code.</p>
           <p class="text-[15px] text-neutral-600 leading-relaxed">Plakar's operator turns Kubernetes into the control plane for <span class="text-primary-500 font-semibold">the resilience layer of your entire estate</span>, not just your clusters. Define backup, retention, replication, and recovery policies as Kubernetes CRDs, Terraform resources, or Ansible playbooks. <span class="text-primary-500 font-semibold">Version them in Git, reconcile state continuously.</span></p>
         </div>
-        <div class="rounded-xl border border-neutral-200 bg-gradient-to-br from-primary-50 to-neutral-100 p-8 min-h-[300px] flex flex-col items-center justify-center gap-3">
+        <div class="rounded-xl border border-neutral-200 bg-gradient-to-br from-primary-50 to-neutral-100 p-4 sm:p-6 lg:p-8 min-h-[300px] flex flex-col items-center justify-center gap-3">
           <pre class="bg-neutral-900 text-neutral-100 rounded-xl px-5 py-4 font-mono text-[12.5px] leading-relaxed w-full max-w-sm overflow-x-auto"><span class="text-sky-300">apiVersion:</span> <span class="text-green-300">task.plakar.io/v1alpha1</span>
 <span class="text-sky-300">kind:</span> <span class="text-green-300">ScheduleBackup</span>
 <span class="text-sky-300">spec:</span>
@@ -424,12 +424,12 @@
       </div>
 
       <!-- Pane 5: AI-ready primitives -->
-      <div data-rec-pane="ai-ready" class="hidden grid grid-cols-1 lg:grid-cols-[0.85fr_1.1fr] gap-10 items-center">
+      <div data-rec-pane="ai-ready" class="hidden grid grid-cols-1 lg:grid-cols-[0.85fr_1.1fr] gap-6 lg:gap-10 items-center">
         <div>
           <p class="text-2xl font-extrabold tracking-tight text-neutral-900 mb-3">Programmatic by design, for humans and AI.</p>
           <p class="text-[15px] text-neutral-600 leading-relaxed">As more code is written and operated by AI, how easily a tool can be driven matters as much as what it does. Plakar is <span class="text-primary-500 font-semibold">programmatic by design</span>: every action is exposed through a clean <span class="text-primary-500 font-semibold">SDK, CLI, and API</span>, so an agent can snapshot the data it works with and restore it the instant something breaks. Docs and source are built to be read, so agents and people drive it right.</p>
         </div>
-        <div class="rounded-xl border border-neutral-200 bg-gradient-to-br from-primary-50 to-neutral-100 p-6 min-h-[300px] flex items-center justify-center">
+        <div class="rounded-xl border border-neutral-200 bg-gradient-to-br from-primary-50 to-neutral-100 p-4 sm:p-6 min-h-[300px] flex items-center justify-center">
           <div class="w-full max-w-sm bg-neutral-900 rounded-xl border border-neutral-700 overflow-hidden shadow-xl">
             <div class="px-4 py-2.5 border-b border-neutral-700 flex items-center gap-2">
               <span class="text-base leading-none">🤖</span>
@@ -453,7 +453,7 @@
 </section>
 
 <!-- Your environment, your storage -->
-<section class="section-dark-1 py-24">
+<section class="section-dark-1 py-14 lg:py-24">
   <div class="px-4 max-w-350 mx-auto">
     <div class="text-center max-w-3xl mx-auto mb-12">
       <h2 class="text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-neutral-50">
@@ -504,7 +504,7 @@
 </section>
 
 <!-- Open Resilience as Code -->
-<section class="section-light-1 py-24">
+<section class="section-light-1 py-14 lg:py-24">
   <div class="px-4 max-w-350 mx-auto">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
       <div>
@@ -544,7 +544,7 @@
 </section>
 
 <!-- Integrations -->
-<section class="section-light-2 py-24">
+<section class="section-light-2 py-14 lg:py-24">
   <div class="px-4 max-w-350 mx-auto">
     <div class="text-center max-w-2xl mx-auto mb-12">
       <h2 class="text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-neutral-900">
@@ -626,20 +626,20 @@
     </div>
 
     <div class="text-center mt-9">
-      <a href="/integrations/" class="inline-flex items-center gap-2 px-6 py-3.5 text-[15px] font-semibold rounded-lg bg-primary-500 text-white hover:bg-primary-600 transition-colors no-underline">View all integrations →</a>
+      <a href="/integrations/" class="inline-flex items-center gap-2 px-5 py-3 text-sm sm:px-6 sm:py-3.5 sm:text-[15px] font-semibold rounded-lg bg-primary-500 text-white hover:bg-primary-600 transition-colors no-underline">View all integrations →</a>
     </div>
   </div>
 </section>
 
 <!-- Wall of love -->
-<section class="bg-primary-600 py-24">
+<section class="bg-primary-600 py-14 lg:py-24">
   <div class="px-4 max-w-350 mx-auto">
     <div class="text-center max-w-2xl mx-auto mb-12">
       <h2 class="text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-white">
         Teams already trust Plakar.
       </h2>
       <a href="https://discord.gg/uuegtnF2Q5" target="_blank" rel="noopener"
-         class="inline-flex items-center gap-2.5 mt-6 px-6 py-3.5 text-[15px] font-semibold rounded-lg bg-white text-primary-600 hover:bg-neutral-100 transition-colors no-underline">
+         class="inline-flex items-center gap-2.5 mt-6 px-5 py-3 text-sm sm:px-6 sm:py-3.5 sm:text-[15px] font-semibold rounded-lg bg-white text-primary-600 hover:bg-neutral-100 transition-colors no-underline">
         <span class="block w-[18px] h-[18px]">{{ partial "icon.html" "discord" }}</span>
         Join us on Discord
       </a>
@@ -772,7 +772,7 @@
 </section>
 
 <!-- Nestor -->
-<section class="section-light-1 py-24">
+<section class="section-light-1 py-14 lg:py-24">
   <div class="px-4 max-w-350 mx-auto">
     <div class="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-14 items-center max-w-5xl mx-auto">
       <div>
@@ -826,7 +826,7 @@
 </section>
 
 <!-- Final CTA -->
-<section class="section-dark-1 py-24">
+<section class="section-dark-1 py-14 lg:py-24">
   <div class="px-4 max-w-350 mx-auto text-center">
     <h2 class="text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-neutral-50 mb-4">
       Back up anything. Prove it's recoverable.
@@ -835,8 +835,8 @@
       The complete engine, free and open source. Organization-wide visibility when you need it. Your keys, your data, your recovery path.
     </p>
     <div class="flex flex-wrap justify-center gap-3 mb-8">
-      <a href="/docs/community/v1.1.0/quickstart/first-backup/" class="inline-flex items-center gap-2 px-6 py-3.5 text-[15px] font-semibold rounded-lg bg-primary-500 text-white hover:bg-primary-600 transition-colors no-underline">Get started</a>
-      <a href="#" class="inline-flex items-center gap-2 px-6 py-3.5 text-[15px] font-semibold rounded-lg bg-neutral-800 border border-neutral-700 text-neutral-50 hover:bg-neutral-700 transition-colors no-underline book-a-demo-modal-open">Book a demo →</a>
+      <a href="/docs/community/v1.1.0/quickstart/first-backup/" class="inline-flex items-center gap-2 px-5 py-3 text-sm sm:px-6 sm:py-3.5 sm:text-[15px] font-semibold rounded-lg bg-primary-500 text-white hover:bg-primary-600 transition-colors no-underline">Get started</a>
+      <a href="#" class="inline-flex items-center gap-2 px-5 py-3 text-sm sm:px-6 sm:py-3.5 sm:text-[15px] font-semibold rounded-lg bg-neutral-800 border border-neutral-700 text-neutral-50 hover:bg-neutral-700 transition-colors no-underline book-a-demo-modal-open">Book a demo →</a>
     </div>
     <div class="flex items-center justify-center gap-5 flex-wrap">
       <div class="bg-white rounded-xl px-6 py-4 flex items-center justify-center">
