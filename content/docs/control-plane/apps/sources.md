@@ -59,7 +59,7 @@ Once a source app is created, its details page provides a **Dashboard** tab with
 a **Test Connection** action. Use this to verify that Plakar Control Plane can
 connect to the source using the provided configuration and credentials.
 
-![](../images/source-connector-1.png)
+![](../images/source-app-1.png)
 
 If the connection test fails, check the app configuration and credentials, then
 run the test again. Once the store has been initialized, additional actions
@@ -67,16 +67,15 @@ become available from the dashboard:
 
 - **Create Backup** - create a backup task from this source
 
-![](../images/source-connector-2.png)
+![](../images/source-app-2.png)
 
 ## Browsing Restore Points
 
 You can view all backup restore points stored on a store from the **Restore
 Points** tab. From there, you can view the files contained in each restore point
-and download
-individual files without performing a full restore.
+and download individual files without performing a full restore.
 
-![](../images/view-source-snapshots.png)
+![](../images/view-source-restore-points.png)
 
 ## Tasks and Schedules
 

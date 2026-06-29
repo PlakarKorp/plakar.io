@@ -40,7 +40,7 @@ Once the resource is created, open it and go to the **Apps** tab. Add a
 **Source** app and select the **PCP** integration (PCP stands for Plakar Control
 Plane).
 
-![Add a PCP source app](../images/add-source-connector.png)
+![Add a PCP source app](../images/add-source-app.png)
 
 ## Step 4 — Schedule a backup task
 
