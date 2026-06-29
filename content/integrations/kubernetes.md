@@ -50,7 +50,7 @@ seo_tags:
 
 technical_documentation_link: /docs/community/main/integrations/kubernetes/
 
-stage: beta
+stage: stable
 
 new: true
 
