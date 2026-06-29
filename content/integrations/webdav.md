@@ -42,7 +42,7 @@ seo_tags:
   - disaster recovery
   - file sync backup
 
-technical_documentation_link:
+technical_documentation_link: /docs/community/main/integrations/webdav/
 
 stage: alpha
 
