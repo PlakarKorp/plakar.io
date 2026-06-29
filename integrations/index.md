@@ -4,6 +4,10 @@
 
 
 
+## [WebDAV](https://plakar.io/integrations/webdav/index.md)
+
+
+
 ## [Azure Blob Storage](https://plakar.io/integrations/azblob/index.md)
 
 

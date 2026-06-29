@@ -45,6 +45,8 @@
 
 ## [Plakar Integrations](https://plakar.io/integrations/index.md)
 
+- [WebDAV](https://plakar.io/integrations/webdav/index.md): Protect your WebDAV remotes against data loss and accidental deletion. Plakar provides encrypted, deduplicated snapshots of any WebDAV-compatible service, restorable to any environment.
+
 - [Azure Blob Storage](https://plakar.io/integrations/azblob/index.md): Protect your Azure Blob Storage containers against accidental deletion, ransomware, and misconfiguration. Plakar provides immutable, encrypted snapshots for Azure Blob Storage, restorable across any provider or environment.
 
 - [Google Cloud Storage](https://plakar.io/integrations/gcs/index.md): Protect your Google Cloud Storage buckets against accidental deletion, ransomware, and misconfiguration. Plakar provides immutable, encrypted snapshots for GCS, restorable across any provider or environment.

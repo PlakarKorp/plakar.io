@@ -57,6 +57,7 @@
 - [Azure Blob Storage](https://plakar.io/docs/community/main/integrations/azblob/index.md): Back up and restore Azure Blob Storage containers with Plakar.
 - [Google Cloud Storage](https://plakar.io/docs/community/main/integrations/gcs/index.md): Back up and restore Google Cloud Storage buckets with Plakar.
 - [OCI Registry](https://plakar.io/docs/community/main/integrations/oci/index.md): Use an OCI registry as a Kloset store backend with Plakar.
+- [WebDAV](https://plakar.io/docs/community/main/integrations/webdav/index.md): Back up and restore WebDAV remotes with Plakar.
 
 
 ## [Explanations](https://plakar.io/docs/community/main/explanations/index.md)

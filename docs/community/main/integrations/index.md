@@ -87,4 +87,8 @@ Below is a list of links to the documentation for each supported integration.
 
 
 
+## [WebDAV](https://plakar.io/docs/community/main/integrations/webdav/index.md)
+
+
+
 
