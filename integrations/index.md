@@ -12,6 +12,10 @@
 
 
 
+## [OCI Registry](https://plakar.io/integrations/oci/index.md)
+
+
+
 ## [etcd](https://plakar.io/integrations/etcd/index.md)
 
 

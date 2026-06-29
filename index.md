@@ -49,6 +49,8 @@
 
 - [Google Cloud Storage](https://plakar.io/integrations/gcs/index.md): Protect your Google Cloud Storage buckets against accidental deletion, ransomware, and misconfiguration. Plakar provides immutable, encrypted snapshots for GCS, restorable across any provider or environment.
 
+- [OCI Registry](https://plakar.io/integrations/oci/index.md): Use your existing container registry infrastructure to store Plakar backups. Plakar encodes repository data as native OCI artifacts, giving you immutable, encrypted snapshots with registry-native replication and access controls.
+
 - [etcd](https://plakar.io/integrations/etcd/index.md): Protect your etcd cluster against data loss and node failures. Plakar takes encrypted, deduplicated snapshots of etcd cluster state, giving you a reliable recovery point when it matters most.
 
 - [MySQL / MariaDB](https://plakar.io/integrations/mysql/index.md): Protect your MySQL and MariaDB databases against data loss, accidental deletion, and misconfiguration. Plakar provides encrypted, deduplicated snapshots using the backup tools MySQL and MariaDB already ship with.

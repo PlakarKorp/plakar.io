@@ -83,4 +83,8 @@ Below is a list of links to the documentation for each supported integration.
 
 
 
+## [OCI Registry](https://plakar.io/docs/community/v1.1.0/integrations/oci/index.md)
+
+
+
 
