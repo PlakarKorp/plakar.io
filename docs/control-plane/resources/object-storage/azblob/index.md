@@ -31,8 +31,8 @@ where to get the container name.
 
 ## Configuration
 
-Azure Blob Storage resources can be configured as a source, store, or
-destination connector.
+Azure Blob Storage resources can be configured using a source, store, or
+destination app.
 
 ### Account Name
 

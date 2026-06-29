@@ -31,8 +31,8 @@ Plakar Control Plane requires the following recommended setup:
 
 These are recommendations for a production deployment. For evaluation or
 testing, you can reduce CPU, RAM, and storage. The data volume stores the
-database, logs, and all Plakar state. Backups themselves are stored wherever
-you configure using connectors.
+database, logs, and all Plakar state. Backups themselves are stored wherever you
+configure using apps.
 
 The default marketplace configuration already selects a compatible instance type
 and storage configuration.

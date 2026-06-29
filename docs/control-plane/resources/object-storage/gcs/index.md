@@ -11,7 +11,7 @@ added manually using a
 
 If you have a Google Cloud inventory configured in Plakar Control Plane, GCS
 buckets in your project are automatically discovered and available as resources.
-No manual setup is needed, you can go directly to attaching a connector to the
+No manual setup is needed, you can go directly to attaching a app to the
 resource and configuring its credentials.
 
 ## Setting up with a self-managed inventory
@@ -34,8 +34,8 @@ the `subclass`. For the endpoint, use the bucket name.
 
 ## Configuration
 
-Google Cloud Storage resources can be configured as a source, store, or
-destination connector.
+Google Cloud Storage resources can be configured using a source, store, or
+destination app.
 
 ### Credentials File
 

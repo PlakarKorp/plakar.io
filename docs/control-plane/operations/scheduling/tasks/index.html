@@ -94,7 +94,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-06-25T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-06-29T12:49:00+02:00">
+    <meta property="article:modified_time" content="2026-06-29T12:49:32+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -279,12 +279,12 @@
     "dateCreated": "2026-06-25T00:00:00\u002b00:00",
     "datePublished": "2026-06-25T00:00:00\u002b00:00",
     
-    "dateModified": "2026-06-29T12:49:00\u002b02:00",
+    "dateModified": "2026-06-29T12:49:32\u002b02:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "202"
+    "wordCount": "206"
   }]
   </script>
 
@@ -1109,10 +1109,10 @@
       
         <div class="sidebar-accordion ">
           <div class="flex items-center rounded-lg hover:bg-neutral-100 ">
-            <a href="/docs/control-plane/connectors/"
+            <a href="/docs/control-plane/apps/"
                class="flex-1 px-2 py-1.5 font-medium text-neutral-700 hover:text-primary-500
                ">
-              Connectors
+              Apps
             </a>
             <button class="sidebar-accordion-btn px-2 py-1.5 shrink-0 text-neutral-400 hover:text-neutral-700">
               <span class="sidebar-accordion-chevron w-4 h-4 flex items-center justify-center transition-transform duration-200 ">
@@ -1156,28 +1156,28 @@
   
     
     
-      <a href="/docs/control-plane/connectors/sources/"
+      <a href="/docs/control-plane/apps/stores/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Source Connector
+        Store App
       </a>
     
   
     
     
-      <a href="/docs/control-plane/connectors/stores/"
+      <a href="/docs/control-plane/apps/sources/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Store Connector
+        Source App
       </a>
     
   
     
     
-      <a href="/docs/control-plane/connectors/destinations/"
+      <a href="/docs/control-plane/apps/destinations/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Destination Connector
+        Destination App
       </a>
     
   
@@ -2893,10 +2893,10 @@
       
         <div class="sidebar-accordion ">
           <div class="flex items-center rounded-lg hover:bg-neutral-100 ">
-            <a href="/docs/control-plane/connectors/"
+            <a href="/docs/control-plane/apps/"
                class="flex-1 px-2 py-1.5 font-medium text-neutral-700 hover:text-primary-500
                ">
-              Connectors
+              Apps
             </a>
             <button class="sidebar-accordion-btn px-2 py-1.5 shrink-0 text-neutral-400 hover:text-neutral-700">
               <span class="sidebar-accordion-chevron w-4 h-4 flex items-center justify-center transition-transform duration-200 ">
@@ -2940,28 +2940,28 @@
   
     
     
-      <a href="/docs/control-plane/connectors/sources/"
+      <a href="/docs/control-plane/apps/stores/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Source Connector
+        Store App
       </a>
     
   
     
     
-      <a href="/docs/control-plane/connectors/stores/"
+      <a href="/docs/control-plane/apps/sources/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Store Connector
+        Source App
       </a>
     
   
     
     
-      <a href="/docs/control-plane/connectors/destinations/"
+      <a href="/docs/control-plane/apps/destinations/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Destination Connector
+        Destination App
       </a>
     
   
@@ -4173,9 +4173,8 @@
   
 </div>
 <p>Plakar Control Plane runs operations as tasks. There are four types of tasks,
-each requiring a different combination of connectors. Any task can be run once
-as a one-off operation or attached to a schedule so that it repeats
-automatically.</p>
+each requiring a different combination of apps. Any task can be run once as a
+one-off operation or attached to a schedule so that it repeats automatically.</p>
 
 <div class="relative group">
   <h2 id="backup-task">Backup Task</h2>
@@ -4185,8 +4184,8 @@ automatically.</p>
   </span>
   
 </div>
-<p>A backup task stores backup data from a source connector into a store connector.
-It requires a source connector and a store connector.</p>
+<p>A backup task stores backup data from a source app into a store app. It requires
+a source app and a store app.</p>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
@@ -4204,9 +4203,9 @@ It requires a source connector and a store connector.</p>
   </span>
   
 </div>
-<p>A restore task restores data from a store connector to a destination connector.
-It requires a store connector and a destination connector. If no snapshot is
-selected, Plakar Control Plane restores the latest available snapshot.</p>
+<p>A restore task restores data from a store app to a destination app. It requires
+a store app and a destination app. If no restore point is selected, Plakar
+Control Plane restores the latest available restore point.</p>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
@@ -4224,9 +4223,9 @@ selected, Plakar Control Plane restores the latest available snapshot.</p>
   </span>
   
 </div>
-<p>A sync task copies backup data from one store connector to another. It requires
-two store connectors. This is useful for replicating backups to a second
-location or a different storage tier.</p>
+<p>A sync task copies backup data from one store app to another. It requires two
+store app. This is useful for replicating backups to a second location or a
+different storage tier.</p>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
@@ -4244,11 +4243,11 @@ location or a different storage tier.</p>
   </span>
   
 </div>
-<p>A check task verifies the integrity of data in a store connector. It checks that
-the backup data can be read correctly and validates file MACs to make sure no
-corruption has occurred. It requires a store connector. By default the entire
-store is checked, but you can select a specific snapshot to check only that
-snapshot.</p>
+<p>A check task verifies the integrity of data in a store app. It checks that the
+backup data can be read correctly and validates file MACs to make sure no
+corruption has occurred. It requires a store app. By default the entire store is
+checked, but you can select a specific restore point to check only that restore
+point.</p>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"

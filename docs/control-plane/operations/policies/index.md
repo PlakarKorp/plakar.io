@@ -4,12 +4,12 @@
 An SLA policy defines backup requirements for your sources i.e. how often
 backups should be taken and how long they should be retained. When a policy is
 scoped to an environment and data class, Plakar Control Plane automatically
-creates backup schedules for all source connectors that match.
+creates backup schedules for all source apps that match.
 
 ## Creating a policy
 
 To create a policy, provide a name, then define the backup requirements and
-select a store connector to use for backups.
+select a store app to use for backups.
 
 ### Backup frequency and retention
 
@@ -25,9 +25,9 @@ For each granularity you enable, you configure:
 
 - **Frequency** - how often a backup should be taken within that period, for
   example 4 times or once a day
-- **Retention** - how long backup snapshots should be kept
+- **Retention** - how long backup restore points should be kept
 
-You then select a [store](../../connectors/stores) where the backup will be
+You then select a [store](../../apps/stores) where the backup will be
 stored and toggle whether you want to run a
 [check task](../scheduling/tasks#check-task) on the after each. It's recommended
 to leave this on.
@@ -58,14 +58,14 @@ Supported scope filters include:
   specified tag. Useful when environment and data class alone would match more
   sources than intended.
 
-Plakar Control Plane matches all source connectors against the configured scope.
-Any source connector whose environment and data class match the policy is
-automatically scheduled according to the policy rules. When a new source
-connector is added with matching values, it is automatically picked up by the
-policy without any additional configuration.
+Plakar Control Plane matches all source apps against the configured scope. Any
+source app whose environment and data class match the policy is automatically
+scheduled according to the policy rules. When a new source app is added with
+matching values, it is automatically picked up by the policy without any
+additional configuration.
 
-A source connector can be covered by multiple policies if their scopes overlap.
-This allows policies to be layered for example, a general policy covering all
+A source app can be covered by multiple policies if their scopes overlap. This
+allows policies to be layered for example, a general policy covering all
 production sources and a stricter policy specifically covering production
 databases.
 
@@ -74,8 +74,8 @@ databases.
 ## Scheduling
 
 Once a policy is scoped, the policy scheduler automatically creates backup
-schedules for all matching sources using the store connector selected when the
-policy was created. See the
+schedules for all matching sources using the store app selected when the policy
+was created. See the
 [policy scheduler documentation](../scheduling/policy-scheduler) for more
 details.
 

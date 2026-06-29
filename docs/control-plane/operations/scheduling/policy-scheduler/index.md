@@ -11,8 +11,8 @@ When creating a policy, you define:
 - Which environment and data class the policy applies to
 - Which store to use for storing the backups
 
-Once the policy is active, Plakar Control Plane looks at all source connectors
-and finds those whose environment and data class match the policy. All matching
+Once the policy is active, Plakar Control Plane looks at all source apps and
+finds those whose environment and data class match the policy. All matching
 sources are automatically scheduled according to the rules defined in the
 policy.
 

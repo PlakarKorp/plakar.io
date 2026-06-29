@@ -31,7 +31,7 @@ flowchart TD
   end
 
   subgraph Plakar["Plakar Control Plane"]
-    Source["Scaleway Block Storage<br/>Source connector"]
+    Source["Scaleway Block Storage<br/>Source app"]
     Backup["Backup process<br/>Encrypt & deduplicate"]
   end
 
@@ -54,7 +54,7 @@ flowchart TD
   Store["Kloset Store"]
 
   subgraph Plakar["Plakar Control Plane"]
-    Destination["Scaleway Block Storage<br/>Destination connector"]
+    Destination["Scaleway Block Storage<br/>Destination app"]
     Restore["Restore process"]
   end
 
@@ -75,8 +75,8 @@ flowchart TD
 
 ## Configuration
 
-Scaleway block storage resources can be configured as a source or destination
-connector.
+Scaleway block storage resources can be configured using a source or destination
+app.
 
 ### Integration
 

@@ -21,11 +21,11 @@
 - [Inventories](https://plakar.io/docs/control-plane/infrastructure/inventories/index.md): Understand how inventories work in Plakar Control Plane and how to use them.
 
 
-## [Connectors](https://plakar.io/docs/control-plane/connectors/index.md)
+## [Apps](https://plakar.io/docs/control-plane/apps/index.md)
 
-- [Source Connector](https://plakar.io/docs/control-plane/connectors/sources/index.md): How source connectors work in Plakar Control Plane.
-- [Store Connector](https://plakar.io/docs/control-plane/connectors/stores/index.md): How store connectors work in Plakar Control Plane.
-- [Destination Connector](https://plakar.io/docs/control-plane/connectors/destinations/index.md): How destination connectors work in Plakar Control Plane.
+- [Store App](https://plakar.io/docs/control-plane/apps/stores/index.md): How store apps work in Plakar Control Plane.
+- [Source App](https://plakar.io/docs/control-plane/apps/sources/index.md): How source apps work in Plakar Control Plane.
+- [Destination App](https://plakar.io/docs/control-plane/apps/destinations/index.md): How destination apps work in Plakar Control Plane.
 
 
 ## [Resources](https://plakar.io/docs/control-plane/resources/index.md)

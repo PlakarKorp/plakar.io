@@ -94,7 +94,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-05-19T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-06-29T12:49:00+02:00">
+    <meta property="article:modified_time" content="2026-06-29T12:49:32+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -279,7 +279,7 @@
     "dateCreated": "2026-05-19T00:00:00\u002b00:00",
     "datePublished": "2026-05-19T00:00:00\u002b00:00",
     
-    "dateModified": "2026-06-29T12:49:00\u002b02:00",
+    "dateModified": "2026-06-29T12:49:32\u002b02:00",
     
     
     
@@ -1109,10 +1109,10 @@
       
         <div class="sidebar-accordion ">
           <div class="flex items-center rounded-lg hover:bg-neutral-100 ">
-            <a href="/docs/control-plane/connectors/"
+            <a href="/docs/control-plane/apps/"
                class="flex-1 px-2 py-1.5 font-medium text-neutral-700 hover:text-primary-500
                ">
-              Connectors
+              Apps
             </a>
             <button class="sidebar-accordion-btn px-2 py-1.5 shrink-0 text-neutral-400 hover:text-neutral-700">
               <span class="sidebar-accordion-chevron w-4 h-4 flex items-center justify-center transition-transform duration-200 ">
@@ -1156,28 +1156,28 @@
   
     
     
-      <a href="/docs/control-plane/connectors/sources/"
+      <a href="/docs/control-plane/apps/stores/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Source Connector
+        Store App
       </a>
     
   
     
     
-      <a href="/docs/control-plane/connectors/stores/"
+      <a href="/docs/control-plane/apps/sources/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Store Connector
+        Source App
       </a>
     
   
     
     
-      <a href="/docs/control-plane/connectors/destinations/"
+      <a href="/docs/control-plane/apps/destinations/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Destination Connector
+        Destination App
       </a>
     
   
@@ -2893,10 +2893,10 @@
       
         <div class="sidebar-accordion ">
           <div class="flex items-center rounded-lg hover:bg-neutral-100 ">
-            <a href="/docs/control-plane/connectors/"
+            <a href="/docs/control-plane/apps/"
                class="flex-1 px-2 py-1.5 font-medium text-neutral-700 hover:text-primary-500
                ">
-              Connectors
+              Apps
             </a>
             <button class="sidebar-accordion-btn px-2 py-1.5 shrink-0 text-neutral-400 hover:text-neutral-700">
               <span class="sidebar-accordion-chevron w-4 h-4 flex items-center justify-center transition-transform duration-200 ">
@@ -2940,28 +2940,28 @@
   
     
     
-      <a href="/docs/control-plane/connectors/sources/"
+      <a href="/docs/control-plane/apps/stores/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Source Connector
+        Store App
       </a>
     
   
     
     
-      <a href="/docs/control-plane/connectors/stores/"
+      <a href="/docs/control-plane/apps/sources/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Store Connector
+        Source App
       </a>
     
   
     
     
-      <a href="/docs/control-plane/connectors/destinations/"
+      <a href="/docs/control-plane/apps/destinations/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Destination Connector
+        Destination App
       </a>
     
   
@@ -4172,7 +4172,9 @@
   </span>
   
 </div>
-<p>S3 resources represent bucket-based object storage exposed via the S3 protocol. This includes AWS S3, Scaleway Object Storage, MinIO, and any other S3-compatible storage system.</p>
+<p>S3 resources represent bucket-based object storage exposed via the S3 protocol.
+This includes AWS S3, Scaleway Object Storage, MinIO, and any other
+S3-compatible storage system.</p>
 
 <div class="relative group">
   <h2 id="configuration">Configuration</h2>
@@ -4182,7 +4184,7 @@
   </span>
   
 </div>
-<p>S3 resources can be configured as a source, store, or destination connector.</p>
+<p>S3 resources can be configured using a source, store, or destination app.</p>
 
 <div class="relative group">
   <h3 id="access-key-and-secret-access-key">Access Key and Secret Access Key</h3>
@@ -4202,7 +4204,8 @@
   </span>
   
 </div>
-<p>Automatically set to the S3 integration for any resource with <code>class</code> Object Storage and <code>subclass</code> S3.</p>
+<p>Automatically set to the S3 integration for any resource with <code>class</code> Object
+Storage and <code>subclass</code> S3.</p>
 
 <div class="relative group">
   <h3 id="hostname">Hostname</h3>
@@ -4212,7 +4215,10 @@
   </span>
   
 </div>
-<p>Optional. Hint Plakar Control Plane how to reach the resource in case the hostname is ambiguous. Control Plane suggests hostnames discovered from the inventory, for example <code>plakar-staging-data.s3.eu-west-3.amazonaws.com</code> for AWS S3 or <code>s3.fr-par.scw.cloud</code> for Scaleway Object Storage.</p>
+<p>Optional. Hint Plakar Control Plane how to reach the resource in case the
+hostname is ambiguous. Control Plane suggests hostnames discovered from the
+inventory, for example <code>plakar-staging-data.s3.eu-west-3.amazonaws.com</code> for AWS
+S3 or <code>s3.fr-par.scw.cloud</code> for Scaleway Object Storage.</p>
 
 <div class="relative group">
   <h3 id="root">Root</h3>
@@ -4222,7 +4228,11 @@
   </span>
   
 </div>
-<p>Optional. The bucket path prefix Plakar Control Plane uses when reading and writing objects. When the bucket name is not part of the hostname, the bucket name needs to be provided here as a path prefix, for example <code>/bucket-name</code> for Scaleway. When the bucket name is already in the hostname, this can be left as <code>/</code>.</p>
+<p>Optional. The bucket path prefix Plakar Control Plane uses when reading and
+writing objects. When the bucket name is not part of the hostname, the bucket
+name needs to be provided here as a path prefix, for example <code>/bucket-name</code> for
+Scaleway. When the bucket name is already in the hostname, this can be left as
+<code>/</code>.</p>
 
 <div class="relative group">
   <h3 id="endpoint">Endpoint</h3>
@@ -4232,7 +4242,10 @@
   </span>
   
 </div>
-<p>Optional. The S3 service URL. Only needed when the bucket name contains a dot, which breaks virtual host-style URL resolution. For example, for an AWS S3 bucket named <code>eu.mybucket</code>, set this to <code>https://s3.amazonaws.com</code> and enable Virtual Host. Not needed for Scaleway Object Storage.</p>
+<p>Optional. The S3 service URL. Only needed when the bucket name contains a dot,
+which breaks virtual host-style URL resolution. For example, for an AWS S3
+bucket named <code>eu.mybucket</code>, set this to <code>https://s3.amazonaws.com</code> and enable
+Virtual Host. Not needed for Scaleway Object Storage.</p>
 
 <div class="relative group">
   <h3 id="port">Port</h3>
@@ -4243,7 +4256,9 @@
   
 </div>
 <p>Optional. The TCP port to connect on. Only needed when the endpoint runs on a
-non-standard port, for example <code>9000</code> for a local MinIO instance. AWS S3 and Scaleway Object Storage use the standard HTTPS port and do not require this to be set.</p>
+non-standard port, for example <code>9000</code> for a local MinIO instance. AWS S3 and
+Scaleway Object Storage use the standard HTTPS port and do not require this to
+be set.</p>
 
 <div class="relative group">
   <h3 id="sse-customer-key">SSE Customer Key</h3>
@@ -4253,7 +4268,8 @@ non-standard port, for example <code>9000</code> for a local MinIO instance. AWS
   </span>
   
 </div>
-<p>Optional. A Base64-encoded 256-bit (32-byte) customer-provided AES-256 key for SSE-C server-side encryption. Only needed if the bucket is configured to require
+<p>Optional. A Base64-encoded 256-bit (32-byte) customer-provided AES-256 key for
+SSE-C server-side encryption. Only needed if the bucket is configured to require
 customer-provided encryption keys.</p>
 
 <div class="relative group">
@@ -4264,9 +4280,11 @@ customer-provided encryption keys.</p>
   </span>
   
 </div>
-<p>Optional. Tells Plakar Control Plane whether the bucket name is part of the hostname. For AWS S3, the bucket name is included in the hostname by default e.g
+<p>Optional. Tells Plakar Control Plane whether the bucket name is part of the
+hostname. For AWS S3, the bucket name is included in the hostname by default e.g
 <code>plakar-staging-data.s3.eu-west-3.amazonaws.com</code> so this should be enabled. For
-Scaleway Object Storage, the hostname is just the endpoint e.g <code>s3.fr-par.scw.cloud</code> so this should be disabled.</p>
+Scaleway Object Storage, the hostname is just the endpoint e.g
+<code>s3.fr-par.scw.cloud</code> so this should be disabled.</p>
 
 <div class="relative group">
   <h3 id="use-tls">Use TLS</h3>
@@ -4276,7 +4294,9 @@ Scaleway Object Storage, the hostname is just the endpoint e.g <code>s3.fr-par.s
   </span>
   
 </div>
-<p>Optional. Enables TLS when connecting to the S3 endpoint. Should be enabled whenever communicating over the internet, such as with AWS S3 or Scaleway Object Storage. For local endpoints like MinIO on <code>localhost:9000</code> this is not needed.</p>
+<p>Optional. Enables TLS when connecting to the S3 endpoint. Should be enabled
+whenever communicating over the internet, such as with AWS S3 or Scaleway Object
+Storage. For local endpoints like MinIO on <code>localhost:9000</code> this is not needed.</p>
 
 <div class="relative group">
   <h3 id="tls-insecure-no-verify">TLS Insecure No Verify</h3>
@@ -4286,7 +4306,9 @@ Scaleway Object Storage, the hostname is just the endpoint e.g <code>s3.fr-par.s
   </span>
   
 </div>
-<p>Optional. Disables TLS certificate verification. This should only ever be used for testing, enabling it in production means Plakar Control Plane will not verify the identity of the endpoint it is connecting to.</p>
+<p>Optional. Disables TLS certificate verification. This should only ever be used
+for testing, enabling it in production means Plakar Control Plane will not
+verify the identity of the endpoint it is connecting to.</p>
 
 <div class="relative group">
   <h2 id="additional-configuration">Additional configuration</h2>
@@ -4314,7 +4336,9 @@ Scaleway Object Storage, the hostname is just the endpoint e.g <code>s3.fr-par.s
   </span>
   
 </div>
-<p>Optional. The SLA environment covering this source, for example production, staging, or development. See the <a href="../../../operations/policies" >policies documentation</a> for more details.</p>
+<p>Optional. The SLA environment covering this source, for example production,
+staging, or development. See the
+<a href="../../../operations/policies" >policies documentation</a> for more details.</p>
 
 <div class="relative group">
   <h4 id="data-class">Data Class</h4>
@@ -4324,7 +4348,9 @@ Scaleway Object Storage, the hostname is just the endpoint e.g <code>s3.fr-par.s
   </span>
   
 </div>
-<p>Optional. The SLA data class covering this source, for example critical, database, or PII. See the <a href="../../../operations/policies" >policies documentation</a> for more details.</p>
+<p>Optional. The SLA data class covering this source, for example critical,
+database, or PII. See the <a href="../../../operations/policies" >policies documentation</a>
+for more details.</p>
 
 <div class="relative group">
   <h3 id="store">Store</h3>
@@ -4343,7 +4369,8 @@ Scaleway Object Storage, the hostname is just the endpoint e.g <code>s3.fr-par.s
   </span>
   
 </div>
-<p>The passphrase Plakar Control Plane uses to encrypt the store. This passphrase is required to access the store and must be kept safe.</p>
+<p>The passphrase Plakar Control Plane uses to encrypt the store. This passphrase
+is required to access the store and must be kept safe.</p>
 
 <div class="relative group">
   <h2 id="permissions">Permissions</h2>
@@ -4362,7 +4389,12 @@ Scaleway Object Storage, the hostname is just the endpoint e.g <code>s3.fr-par.s
   </span>
   
 </div>
-<p>Plakar Control Plane requires a set of IAM permissions to access your S3 bucket(s). These permissions should be attached to an IAM user or role that Plakar will use to authenticate. See the documentation on <a href="../../../guides/aws/iam-users-roles-and-access-keys" >Managing IAM Roles, Users, and Access Keys on AWS</a> for instructions on how to set up the permissions and generate an access key and secret access key.</p>
+<p>Plakar Control Plane requires a set of IAM permissions to access your S3
+bucket(s). These permissions should be attached to an IAM user or role that
+Plakar will use to authenticate. See the documentation on
+<a href="../../../guides/aws/iam-users-roles-and-access-keys" >Managing IAM Roles, Users, and Access Keys on AWS</a>
+for instructions on how to set up the permissions and generate an access key and
+secret access key.</p>
 <table>
   <thead>
       <tr>
@@ -4448,7 +4480,13 @@ Scaleway Object Storage, the hostname is just the endpoint e.g <code>s3.fr-par.s
   </span>
   
 </div>
-<p>Plakar Control Plane requires a set of IAM permissions on your Scaleway project to access Object Storage. These permissions should be attached to an IAM application that Plakar Control Plane will use to authenticate. See the documentation on <a href="../../../guides/scaleway/iam-and-api-keys" >Managing IAM Policies and API Keys on Scaleway</a> for instructions on how to set up the permissions and generate an access key and secret access key.</p>
+<p>Plakar Control Plane requires a set of IAM permissions on your Scaleway project
+to access Object Storage. These permissions should be attached to an IAM
+application that Plakar Control Plane will use to authenticate. See the
+documentation on
+<a href="../../../guides/scaleway/iam-and-api-keys" >Managing IAM Policies and API Keys on Scaleway</a>
+for instructions on how to set up the permissions and generate an access key and
+secret access key.</p>
 <table>
   <thead>
       <tr>

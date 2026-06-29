@@ -94,7 +94,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-06-04T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-06-29T12:49:00+02:00">
+    <meta property="article:modified_time" content="2026-06-29T12:49:32+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -279,12 +279,12 @@
     "dateCreated": "2026-06-04T00:00:00\u002b00:00",
     "datePublished": "2026-06-04T00:00:00\u002b00:00",
     
-    "dateModified": "2026-06-29T12:49:00\u002b02:00",
+    "dateModified": "2026-06-29T12:49:32\u002b02:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "829"
+    "wordCount": "830"
   }]
   </script>
 
@@ -1109,10 +1109,10 @@
       
         <div class="sidebar-accordion ">
           <div class="flex items-center rounded-lg hover:bg-neutral-100 ">
-            <a href="/docs/control-plane/connectors/"
+            <a href="/docs/control-plane/apps/"
                class="flex-1 px-2 py-1.5 font-medium text-neutral-700 hover:text-primary-500
                ">
-              Connectors
+              Apps
             </a>
             <button class="sidebar-accordion-btn px-2 py-1.5 shrink-0 text-neutral-400 hover:text-neutral-700">
               <span class="sidebar-accordion-chevron w-4 h-4 flex items-center justify-center transition-transform duration-200 ">
@@ -1156,28 +1156,28 @@
   
     
     
-      <a href="/docs/control-plane/connectors/sources/"
+      <a href="/docs/control-plane/apps/stores/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Source Connector
+        Store App
       </a>
     
   
     
     
-      <a href="/docs/control-plane/connectors/stores/"
+      <a href="/docs/control-plane/apps/sources/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Store Connector
+        Source App
       </a>
     
   
     
     
-      <a href="/docs/control-plane/connectors/destinations/"
+      <a href="/docs/control-plane/apps/destinations/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Destination Connector
+        Destination App
       </a>
     
   
@@ -2893,10 +2893,10 @@
       
         <div class="sidebar-accordion ">
           <div class="flex items-center rounded-lg hover:bg-neutral-100 ">
-            <a href="/docs/control-plane/connectors/"
+            <a href="/docs/control-plane/apps/"
                class="flex-1 px-2 py-1.5 font-medium text-neutral-700 hover:text-primary-500
                ">
-              Connectors
+              Apps
             </a>
             <button class="sidebar-accordion-btn px-2 py-1.5 shrink-0 text-neutral-400 hover:text-neutral-700">
               <span class="sidebar-accordion-chevron w-4 h-4 flex items-center justify-center transition-transform duration-200 ">
@@ -2940,28 +2940,28 @@
   
     
     
-      <a href="/docs/control-plane/connectors/sources/"
+      <a href="/docs/control-plane/apps/stores/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Source Connector
+        Store App
       </a>
     
   
     
     
-      <a href="/docs/control-plane/connectors/stores/"
+      <a href="/docs/control-plane/apps/sources/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Store Connector
+        Source App
       </a>
     
   
     
     
-      <a href="/docs/control-plane/connectors/destinations/"
+      <a href="/docs/control-plane/apps/destinations/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Destination Connector
+        Destination App
       </a>
     
   
@@ -4181,7 +4181,7 @@ creates a new encrypted store containing the same backup data, protected with
 the new passphrase.</p>
 <p>The general workflow is:</p>
 <ol>
-<li>Create a new store connector with the new passphrase.</li>
+<li>Create a new store app with the new passphrase.</li>
 <li>Run a sync task from the old store to the new store.</li>
 <li>Verify that the sync job completed successfully.</li>
 <li>Update backup, restore, check, and sync tasks to use the new store.</li>
@@ -4223,8 +4223,8 @@ the sync completed successfully.</p></div></details>
   </span>
   
 </div>
-<p>First, create a new store connector. This store must use the new passphrase. See
-the <a href="/docs/control-plane/connectors/" >connectors documentation</a> for the full procedure.</p>
+<p>First, create a new store app. This store must use the new passphrase. See
+the <a href="/docs/control-plane/apps/" >apps documentation</a> for the full procedure.</p>
 <p>When creating the new store:</p>
 <ul>
 <li>Set up the new store with a new passphrase.</li>
@@ -4255,7 +4255,7 @@ the <a href="/docs/control-plane/connectors/" >connectors documentation</a> for 
 </svg>
 </span></div>
       </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>The new store should be separate from the old one. Do not point both store
-connectors to the same resource. Read the
+apps to the same resource. Read the
 <a href="/docs/control-plane/resources/" >resources documentation</a> for more information about resources.</p></div></details>
 <div class="relative group">
   <h2 id="step-2-sync-the-old-store-to-the-new-store">Step 2: Sync the old store to the new store</h2>
@@ -4268,7 +4268,7 @@ connectors to the same resource. Read the
 <p>After the new store has been created, create a sync task from the old store to
 the new store. The old store is used as the source. The new store is used as the
 destination. See the
-<a href="/docs/control-plane/connectors/stores/#sync-store-task" >sync task documentation</a> for details on
+<a href="/docs/control-plane/apps/stores/#sync-store-task" >sync task documentation</a> for details on
 creating and running scheduled tasks. When configuring the sync task:</p>
 <ul>
 <li>Select the old store as the source store.</li>
@@ -4292,7 +4292,7 @@ passphrase.</p>
 that:</p>
 <ul>
 <li>The sync job completed successfully.</li>
-<li>The new store contains the expected snapshots.</li>
+<li>The new store contains the expected restore points.</li>
 <li>A check task can run successfully on the new store to verify data integrity.</li>
 </ul>
 
@@ -4404,7 +4404,7 @@ cannot be decrypted.</p></div></details>
   
 </div>
 <ul>
-<li><a href="/docs/control-plane/connectors/stores/" >Store connectors</a></li>
+<li><a href="/docs/control-plane/apps/stores/" >Store apps</a></li>
 <li><a href="/docs/control-plane/operations/scheduling/" >Scheduling tasks</a></li>
 <li><a href="/docs/control-plane/infrastructure/secret-providers/" >Secret Providers</a></li>
 </ul>

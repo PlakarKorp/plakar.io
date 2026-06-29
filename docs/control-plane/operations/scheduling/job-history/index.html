@@ -94,7 +94,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-06-25T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-06-29T12:49:00+02:00">
+    <meta property="article:modified_time" content="2026-06-29T12:49:32+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -279,12 +279,12 @@
     "dateCreated": "2026-06-25T00:00:00\u002b00:00",
     "datePublished": "2026-06-25T00:00:00\u002b00:00",
     
-    "dateModified": "2026-06-29T12:49:00\u002b02:00",
+    "dateModified": "2026-06-29T12:49:32\u002b02:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "226"
+    "wordCount": "261"
   }]
   </script>
 
@@ -1109,10 +1109,10 @@
       
         <div class="sidebar-accordion ">
           <div class="flex items-center rounded-lg hover:bg-neutral-100 ">
-            <a href="/docs/control-plane/connectors/"
+            <a href="/docs/control-plane/apps/"
                class="flex-1 px-2 py-1.5 font-medium text-neutral-700 hover:text-primary-500
                ">
-              Connectors
+              Apps
             </a>
             <button class="sidebar-accordion-btn px-2 py-1.5 shrink-0 text-neutral-400 hover:text-neutral-700">
               <span class="sidebar-accordion-chevron w-4 h-4 flex items-center justify-center transition-transform duration-200 ">
@@ -1156,28 +1156,28 @@
   
     
     
-      <a href="/docs/control-plane/connectors/sources/"
+      <a href="/docs/control-plane/apps/stores/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Source Connector
+        Store App
       </a>
     
   
     
     
-      <a href="/docs/control-plane/connectors/stores/"
+      <a href="/docs/control-plane/apps/sources/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Store Connector
+        Source App
       </a>
     
   
     
     
-      <a href="/docs/control-plane/connectors/destinations/"
+      <a href="/docs/control-plane/apps/destinations/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Destination Connector
+        Destination App
       </a>
     
   
@@ -2893,10 +2893,10 @@
       
         <div class="sidebar-accordion ">
           <div class="flex items-center rounded-lg hover:bg-neutral-100 ">
-            <a href="/docs/control-plane/connectors/"
+            <a href="/docs/control-plane/apps/"
                class="flex-1 px-2 py-1.5 font-medium text-neutral-700 hover:text-primary-500
                ">
-              Connectors
+              Apps
             </a>
             <button class="sidebar-accordion-btn px-2 py-1.5 shrink-0 text-neutral-400 hover:text-neutral-700">
               <span class="sidebar-accordion-chevron w-4 h-4 flex items-center justify-center transition-transform duration-200 ">
@@ -2940,28 +2940,28 @@
   
     
     
-      <a href="/docs/control-plane/connectors/sources/"
+      <a href="/docs/control-plane/apps/stores/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Source Connector
+        Store App
       </a>
     
   
     
     
-      <a href="/docs/control-plane/connectors/stores/"
+      <a href="/docs/control-plane/apps/sources/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Store Connector
+        Source App
       </a>
     
   
     
     
-      <a href="/docs/control-plane/connectors/destinations/"
+      <a href="/docs/control-plane/apps/destinations/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Destination Connector
+        Destination App
       </a>
     
   
@@ -4198,10 +4198,12 @@ running.</p>
 <p>Each job has a details popup with the following information:</p>
 <ul>
 <li><strong>Job ID</strong> - a unique identifier for the job</li>
-<li><strong>Status</strong> - the outcome of the job: succeeded, failed, or running</li>
-<li><strong>Snapshot</strong> - a link to browse the snapshot produced by the job, once the
-backup is complete</li>
-<li><strong>Progress</strong> - the current progress of the job</li>
+<li><strong>Status</strong> - the current state of the job: <code>succeeded</code>, <code>failed</code>, or <code>running</code></li>
+<li><strong>Restore Point</strong> - the restore point produced by the job, available once the
+job completes</li>
+<li><strong>Progress</strong> - the restore point ID and number of objects processed so far</li>
+<li><strong>Recent Paths</strong> - a live list of the last files being processed, each showing
+whether it has <code>succeeded</code>, <code>failed</code>, or is still in <code>progress</code></li>
 <li><strong>Output</strong> - the full log output for the job, useful for diagnosing failures</li>
 </ul>
 
@@ -4210,8 +4212,8 @@ backup is complete</li>
   
   
   </figure>
-<p>If a job is currently running, the output updates in real time and a <strong>Cancel</strong>
-button is available to stop the job.</p>
+<p>If a job is currently running, the output and recent paths update in real time.
+A <strong>Cancel job</strong> button is available to stop the job.</p>
 <p>Failed or successful jobs from the manual scheduler can be retried directly from
 the job history list. This is not available for jobs triggered by the policy
 scheduler, as those are fully managed by the policies engine.</p>
@@ -4223,19 +4225,21 @@ scheduler, as those are fully managed by the policies engine.</p>
   </figure>
 
 <div class="relative group">
-  <h2 id="jobs-and-schedules-on-connectors">Jobs and Schedules on Connectors</h2>
+  <h2 id="jobs-and-schedules-on-apps">Jobs and Schedules on Apps</h2>
   
   <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#jobs-and-schedules-on-connectors" aria-label="Anchor">#</a>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#jobs-and-schedules-on-apps" aria-label="Anchor">#</a>
   </span>
   
 </div>
-<p>Each connector also surfaces scheduling information on its own details page:</p>
+<p>Each app (<a href="/docs/control-plane/apps/sources/" >sources</a>, <a href="/docs/control-plane/apps/stores/" >stores</a> &amp;
+<a href="/docs/control-plane/apps/destinations/" >destinations</a>) also surfaces scheduling information on
+its own details page:</p>
 <ul>
-<li>The <strong>Dashboard</strong> tab lists all past and upcoming jobs involving that
-connector, scoped to that connector only.</li>
-<li>The <strong>Scheduling</strong> tab lists all schedules that involve that connector, so you
-can see at a glance what is configured to run and when.</li>
+<li>The <strong>Dashboard</strong> tab lists all past and upcoming jobs involving that app,
+scoped to that app only.</li>
+<li>The <strong>Scheduling</strong> tab lists all schedules that involve that app, so you can
+see at a glance what is configured to run and when.</li>
 </ul>
 <p><figure><img
     class="my-0 rounded-md"
@@ -4325,7 +4329,7 @@ can see at a glance what is configured to run and when.</li>
     <div class="toc-content text-neutral-600">
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#jobs-and-schedules-on-connectors">Jobs and Schedules on Connectors</a></li>
+    <li><a href="#jobs-and-schedules-on-apps">Jobs and Schedules on Apps</a></li>
   </ul>
 </nav>
     </div>

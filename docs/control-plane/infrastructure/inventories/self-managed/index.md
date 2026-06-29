@@ -30,6 +30,8 @@ When adding a resource manually, you need to provide:
   for the full list
 - **Subclass** - a more specific type within the class. See
   [Resource classes](#resource-classes)
+- **Tags** - provide several tags to the resource. Can be later used by
+  [policies](../../operations/policies) to filter resources
 - **Hostname** - the address used to reach the resource (hostname or IP
   address). A resource can have multiple hostnames.
 - **Exclude from backup coverage** - optionally exclude the resource from backup
@@ -59,8 +61,10 @@ Class;Name;URN;Hostname
 You can expand a resource row to view its details. Each row expands to show
 three tabs:
 
-- **Snapshots** - lists backups taken for this resource
-- **Connectors** - shows connectors associated with this resource
+- **Apps** - lists latest 5 restore points available for this resource, apps
+  associated with the resource and and option to assign a new app to the
+  resource. See the [apps documentation](../../apps) on how to set them up on
+  resources.
 - **Settings** - edit resource details and configure backup coverage
 
 All fields can be modified in the **Settings** tab except the **URN**, which is

@@ -94,7 +94,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-06-11T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-06-29T12:49:00+02:00">
+    <meta property="article:modified_time" content="2026-06-29T12:49:32+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -279,7 +279,7 @@
     "dateCreated": "2026-06-11T00:00:00\u002b00:00",
     "datePublished": "2026-06-11T00:00:00\u002b00:00",
     
-    "dateModified": "2026-06-29T12:49:00\u002b02:00",
+    "dateModified": "2026-06-29T12:49:32\u002b02:00",
     
     
     
@@ -1109,10 +1109,10 @@
       
         <div class="sidebar-accordion ">
           <div class="flex items-center rounded-lg hover:bg-neutral-100 ">
-            <a href="/docs/control-plane/connectors/"
+            <a href="/docs/control-plane/apps/"
                class="flex-1 px-2 py-1.5 font-medium text-neutral-700 hover:text-primary-500
                ">
-              Connectors
+              Apps
             </a>
             <button class="sidebar-accordion-btn px-2 py-1.5 shrink-0 text-neutral-400 hover:text-neutral-700">
               <span class="sidebar-accordion-chevron w-4 h-4 flex items-center justify-center transition-transform duration-200 ">
@@ -1156,28 +1156,28 @@
   
     
     
-      <a href="/docs/control-plane/connectors/sources/"
+      <a href="/docs/control-plane/apps/stores/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Source Connector
+        Store App
       </a>
     
   
     
     
-      <a href="/docs/control-plane/connectors/stores/"
+      <a href="/docs/control-plane/apps/sources/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Store Connector
+        Source App
       </a>
     
   
     
     
-      <a href="/docs/control-plane/connectors/destinations/"
+      <a href="/docs/control-plane/apps/destinations/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Destination Connector
+        Destination App
       </a>
     
   
@@ -2893,10 +2893,10 @@
       
         <div class="sidebar-accordion ">
           <div class="flex items-center rounded-lg hover:bg-neutral-100 ">
-            <a href="/docs/control-plane/connectors/"
+            <a href="/docs/control-plane/apps/"
                class="flex-1 px-2 py-1.5 font-medium text-neutral-700 hover:text-primary-500
                ">
-              Connectors
+              Apps
             </a>
             <button class="sidebar-accordion-btn px-2 py-1.5 shrink-0 text-neutral-400 hover:text-neutral-700">
               <span class="sidebar-accordion-chevron w-4 h-4 flex items-center justify-center transition-transform duration-200 ">
@@ -2940,28 +2940,28 @@
   
     
     
-      <a href="/docs/control-plane/connectors/sources/"
+      <a href="/docs/control-plane/apps/stores/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Source Connector
+        Store App
       </a>
     
   
     
     
-      <a href="/docs/control-plane/connectors/stores/"
+      <a href="/docs/control-plane/apps/sources/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Store Connector
+        Source App
       </a>
     
   
     
     
-      <a href="/docs/control-plane/connectors/destinations/"
+      <a href="/docs/control-plane/apps/destinations/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Destination Connector
+        Destination App
       </a>
     
   
@@ -4172,7 +4172,10 @@
   </span>
   
 </div>
-<p>Plakar Control Plane can back up its own configuration and database using the same backup workflow you use for any other resource. The process follows the standard steps: create an inventory, register the resource, attach a source connector, and schedule a backup task.</p>
+<p>Plakar Control Plane can back up its own configuration and database using the
+same backup workflow you use for any other resource. The process follows the
+standard steps: create an inventory, register the resource, attach a source app,
+and schedule a backup task.</p>
 
 <div class="relative group">
   <h2 id="step-1--create-a-self-managed-inventory">Step 1 — Create a self-managed inventory</h2>
@@ -4182,7 +4185,10 @@
   </span>
   
 </div>
-<p>If you do not already have a self-managed inventory to hold the Plakar Control Plane resource, create one now. See <a href="../../../infrastructure/inventories/self-managed" >Self-Managed Inventory</a> for instructions.</p>
+<p>If you do not already have a self-managed inventory to hold the Plakar Control
+Plane resource, create one now. See
+<a href="../../../infrastructure/inventories/self-managed" >Self-Managed Inventory</a> for
+instructions.</p>
 
 <div class="relative group">
   <h2 id="step-2--register-the-plakar-control-plane-resource">Step 2 — Register the Plakar Control Plane resource</h2>
@@ -4192,7 +4198,8 @@
   </span>
   
 </div>
-<p>Inside your self-managed inventory, add a new resource manually with the following values:</p>
+<p>Inside your self-managed inventory, add a new resource manually with the
+following values:</p>
 <table>
   <thead>
       <tr>
@@ -4225,21 +4232,23 @@
     ></figure>
 
 <div class="relative group">
-  <h2 id="step-3--add-a-source-connector-using-the-pcp-integration">Step 3 — Add a source connector using the PCP integration</h2>
+  <h2 id="step-3--add-a-source-app-using-the-pcp-integration">Step 3 — Add a source app using the PCP integration</h2>
   
   <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#step-3--add-a-source-connector-using-the-pcp-integration" aria-label="Anchor">#</a>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#step-3--add-a-source-app-using-the-pcp-integration" aria-label="Anchor">#</a>
   </span>
   
 </div>
-<p>Once the resource is created, open it and go to the <strong>Connectors</strong> tab. Add a <strong>Source</strong> connector and select the <strong>PCP</strong> integration (PCP stands for Plakar Control Plane).</p>
+<p>Once the resource is created, open it and go to the <strong>Apps</strong> tab. Add a
+<strong>Source</strong> app and select the <strong>PCP</strong> integration (PCP stands for Plakar Control
+Plane).</p>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
     decoding="async"
     fetchpriority="low"
-    alt="Add a PCP source connector"
-    src="../images/add-source-connector.png"
+    alt="Add a PCP source app"
+    src="../images/add-source-app.png"
     ></figure>
 
 <div class="relative group">
@@ -4250,15 +4259,18 @@
   </span>
   
 </div>
-<p>With the source connector in place, create a backup task to run it on a schedule. You can do this from the connector&rsquo;s dashboard or from <strong>Operations &gt; Scheduling</strong>.</p>
-<p>Select your PCP source connector as the source and choose a store connector as the destination. Configure a schedule that fits your recovery point objective.</p>
-<p>See <a href="../../../operations/scheduling" >Scheduling</a> for full details on creating tasks.</p>
+<p>With the source app in place, create a backup task to run it on a schedule. You
+can do this from the app&rsquo;s dashboard or from <strong>Operations &gt; Scheduling</strong>.</p>
+<p>Select your PCP source app as the source and choose a store app as the
+destination. Configure a schedule that fits your recovery point objective.</p>
+<p>See <a href="../../../operations/scheduling" >Scheduling</a> for full details on creating
+tasks.</p>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
     decoding="async"
     fetchpriority="low"
-    alt="Schedule a backup task for the PCP connector"
+    alt="Schedule a backup task for the PCP app"
     src="../images/schedule-task.png"
     ></figure>
 
@@ -4270,12 +4282,14 @@
   </span>
   
 </div>
-<p>Once a backup task completes, you can browse the snapshot contents like any other backup. A Plakar Control Plane snapshot includes:</p>
+<p>Once a backup task completes, you can browse the snapshot contents like any
+other backup. A Plakar Control Plane snapshot includes:</p>
 <ul>
 <li>Important configuration files</li>
 <li>A database dump of the Plakar Control Plane internal database</li>
 </ul>
-<p>If you need to recover from this snapshot, see <a href="/docs/control-plane/administration/backup-and-restore/restore/" >Restoring Plakar Control Plane</a>.</p>
+<p>If you need to recover from this snapshot, see
+<a href="/docs/control-plane/administration/backup-and-restore/restore/" >Restoring Plakar Control Plane</a>.</p>
 
       </article>
       <footer class="mt-12 flex flex-col gap-6 docs-font border-t border-neutral-200 pt-6">
@@ -4343,7 +4357,7 @@
   <ul>
     <li><a href="#step-1--create-a-self-managed-inventory">Step 1 — Create a self-managed inventory</a></li>
     <li><a href="#step-2--register-the-plakar-control-plane-resource">Step 2 — Register the Plakar Control Plane resource</a></li>
-    <li><a href="#step-3--add-a-source-connector-using-the-pcp-integration">Step 3 — Add a source connector using the PCP integration</a></li>
+    <li><a href="#step-3--add-a-source-app-using-the-pcp-integration">Step 3 — Add a source app using the PCP integration</a></li>
     <li><a href="#step-4--schedule-a-backup-task">Step 4 — Schedule a backup task</a></li>
     <li><a href="#what-the-backup-contains">What the backup contains</a></li>
   </ul>

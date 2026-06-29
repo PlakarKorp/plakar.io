@@ -78,7 +78,7 @@ disk. Plakar Control Plane requires an additional persistent data volume that
 stores the database, logs, and all Plakar state.
 
 Attach an additional Block Storage volume with a recommended size of `1024 GB`.
-Backups themselves are stored wherever you configure using connectors.
+Backups themselves are stored wherever you configure using apps.
 
 ## Networking and Security Groups
 

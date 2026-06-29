@@ -94,7 +94,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-05-13T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-06-29T12:49:00+02:00">
+    <meta property="article:modified_time" content="2026-06-29T12:49:32+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -279,12 +279,12 @@
     "dateCreated": "2026-05-13T00:00:00\u002b00:00",
     "datePublished": "2026-05-13T00:00:00\u002b00:00",
     
-    "dateModified": "2026-06-29T12:49:00\u002b02:00",
+    "dateModified": "2026-06-29T12:49:32\u002b02:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "442"
+    "wordCount": "443"
   }]
   </script>
 
@@ -1109,10 +1109,10 @@
       
         <div class="sidebar-accordion ">
           <div class="flex items-center rounded-lg hover:bg-neutral-100 ">
-            <a href="/docs/control-plane/connectors/"
+            <a href="/docs/control-plane/apps/"
                class="flex-1 px-2 py-1.5 font-medium text-neutral-700 hover:text-primary-500
                ">
-              Connectors
+              Apps
             </a>
             <button class="sidebar-accordion-btn px-2 py-1.5 shrink-0 text-neutral-400 hover:text-neutral-700">
               <span class="sidebar-accordion-chevron w-4 h-4 flex items-center justify-center transition-transform duration-200 ">
@@ -1156,28 +1156,28 @@
   
     
     
-      <a href="/docs/control-plane/connectors/sources/"
+      <a href="/docs/control-plane/apps/stores/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Source Connector
+        Store App
       </a>
     
   
     
     
-      <a href="/docs/control-plane/connectors/stores/"
+      <a href="/docs/control-plane/apps/sources/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Store Connector
+        Source App
       </a>
     
   
     
     
-      <a href="/docs/control-plane/connectors/destinations/"
+      <a href="/docs/control-plane/apps/destinations/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Destination Connector
+        Destination App
       </a>
     
   
@@ -2893,10 +2893,10 @@
       
         <div class="sidebar-accordion ">
           <div class="flex items-center rounded-lg hover:bg-neutral-100 ">
-            <a href="/docs/control-plane/connectors/"
+            <a href="/docs/control-plane/apps/"
                class="flex-1 px-2 py-1.5 font-medium text-neutral-700 hover:text-primary-500
                ">
-              Connectors
+              Apps
             </a>
             <button class="sidebar-accordion-btn px-2 py-1.5 shrink-0 text-neutral-400 hover:text-neutral-700">
               <span class="sidebar-accordion-chevron w-4 h-4 flex items-center justify-center transition-transform duration-200 ">
@@ -2940,28 +2940,28 @@
   
     
     
-      <a href="/docs/control-plane/connectors/sources/"
+      <a href="/docs/control-plane/apps/stores/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Source Connector
+        Store App
       </a>
     
   
     
     
-      <a href="/docs/control-plane/connectors/stores/"
+      <a href="/docs/control-plane/apps/sources/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Store Connector
+        Source App
       </a>
     
   
     
     
-      <a href="/docs/control-plane/connectors/destinations/"
+      <a href="/docs/control-plane/apps/destinations/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Destination Connector
+        Destination App
       </a>
     
   
@@ -4163,7 +4163,7 @@
 <p>An SLA policy defines backup requirements for your sources i.e. how often
 backups should be taken and how long they should be retained. When a policy is
 scoped to an environment and data class, Plakar Control Plane automatically
-creates backup schedules for all source connectors that match.</p>
+creates backup schedules for all source apps that match.</p>
 
 <div class="relative group">
   <h2 id="creating-a-policy">Creating a policy</h2>
@@ -4174,7 +4174,7 @@ creates backup schedules for all source connectors that match.</p>
   
 </div>
 <p>To create a policy, provide a name, then define the backup requirements and
-select a store connector to use for backups.</p>
+select a store app to use for backups.</p>
 
 <div class="relative group">
   <h3 id="backup-frequency-and-retention">Backup frequency and retention</h3>
@@ -4196,9 +4196,9 @@ combination of these:</p>
 <ul>
 <li><strong>Frequency</strong> - how often a backup should be taken within that period, for
 example 4 times or once a day</li>
-<li><strong>Retention</strong> - how long backup snapshots should be kept</li>
+<li><strong>Retention</strong> - how long backup restore points should be kept</li>
 </ul>
-<p>You then select a <a href="../../connectors/stores" >store</a> where the backup will be
+<p>You then select a <a href="../../apps/stores" >store</a> where the backup will be
 stored and toggle whether you want to run a
 <a href="../scheduling/tasks#check-task" >check task</a> on the after each. It&rsquo;s recommended
 to leave this on.</p>
@@ -4245,13 +4245,13 @@ can be managed from the <a href="" >settings</a>.</li>
 specified tag. Useful when environment and data class alone would match more
 sources than intended.</li>
 </ul>
-<p>Plakar Control Plane matches all source connectors against the configured scope.
-Any source connector whose environment and data class match the policy is
-automatically scheduled according to the policy rules. When a new source
-connector is added with matching values, it is automatically picked up by the
-policy without any additional configuration.</p>
-<p>A source connector can be covered by multiple policies if their scopes overlap.
-This allows policies to be layered for example, a general policy covering all
+<p>Plakar Control Plane matches all source apps against the configured scope. Any
+source app whose environment and data class match the policy is automatically
+scheduled according to the policy rules. When a new source app is added with
+matching values, it is automatically picked up by the policy without any
+additional configuration.</p>
+<p>A source app can be covered by multiple policies if their scopes overlap. This
+allows policies to be layered for example, a general policy covering all
 production sources and a stricter policy specifically covering production
 databases.</p>
 <figure><img
@@ -4272,8 +4272,8 @@ databases.</p>
   
 </div>
 <p>Once a policy is scoped, the policy scheduler automatically creates backup
-schedules for all matching sources using the store connector selected when the
-policy was created. See the
+schedules for all matching sources using the store app selected when the policy
+was created. See the
 <a href="../scheduling/policy-scheduler" >policy scheduler documentation</a> for more
 details.</p>
 

@@ -94,7 +94,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-04-14T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-06-29T12:49:00+02:00">
+    <meta property="article:modified_time" content="2026-06-29T12:49:32+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -279,12 +279,12 @@
     "dateCreated": "2026-04-14T00:00:00\u002b00:00",
     "datePublished": "2026-04-14T00:00:00\u002b00:00",
     
-    "dateModified": "2026-06-29T12:49:00\u002b02:00",
+    "dateModified": "2026-06-29T12:49:32\u002b02:00",
     
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "298"
+    "wordCount": "305"
   }]
   </script>
 
@@ -1109,10 +1109,10 @@
       
         <div class="sidebar-accordion ">
           <div class="flex items-center rounded-lg hover:bg-neutral-100 ">
-            <a href="/docs/control-plane/connectors/"
+            <a href="/docs/control-plane/apps/"
                class="flex-1 px-2 py-1.5 font-medium text-neutral-700 hover:text-primary-500
                ">
-              Connectors
+              Apps
             </a>
             <button class="sidebar-accordion-btn px-2 py-1.5 shrink-0 text-neutral-400 hover:text-neutral-700">
               <span class="sidebar-accordion-chevron w-4 h-4 flex items-center justify-center transition-transform duration-200 ">
@@ -1156,28 +1156,28 @@
   
     
     
-      <a href="/docs/control-plane/connectors/sources/"
+      <a href="/docs/control-plane/apps/stores/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Source Connector
+        Store App
       </a>
     
   
     
     
-      <a href="/docs/control-plane/connectors/stores/"
+      <a href="/docs/control-plane/apps/sources/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Store Connector
+        Source App
       </a>
     
   
     
     
-      <a href="/docs/control-plane/connectors/destinations/"
+      <a href="/docs/control-plane/apps/destinations/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Destination Connector
+        Destination App
       </a>
     
   
@@ -2893,10 +2893,10 @@
       
         <div class="sidebar-accordion ">
           <div class="flex items-center rounded-lg hover:bg-neutral-100 ">
-            <a href="/docs/control-plane/connectors/"
+            <a href="/docs/control-plane/apps/"
                class="flex-1 px-2 py-1.5 font-medium text-neutral-700 hover:text-primary-500
                ">
-              Connectors
+              Apps
             </a>
             <button class="sidebar-accordion-btn px-2 py-1.5 shrink-0 text-neutral-400 hover:text-neutral-700">
               <span class="sidebar-accordion-chevron w-4 h-4 flex items-center justify-center transition-transform duration-200 ">
@@ -2940,28 +2940,28 @@
   
     
     
-      <a href="/docs/control-plane/connectors/sources/"
+      <a href="/docs/control-plane/apps/stores/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Source Connector
+        Store App
       </a>
     
   
     
     
-      <a href="/docs/control-plane/connectors/stores/"
+      <a href="/docs/control-plane/apps/sources/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Store Connector
+        Source App
       </a>
     
   
     
     
-      <a href="/docs/control-plane/connectors/destinations/"
+      <a href="/docs/control-plane/apps/destinations/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Destination Connector
+        Destination App
       </a>
     
   
@@ -4163,9 +4163,9 @@
 <p>Plakar Control Plane is a self-hosted backup management system built on top of
 the open-source <a href="https://github.com/PlakarKorp/plakar"  target="_blank" rel="noreferrer">Plakar</a>. It brings
 everything Plakar is good at like deduplication, encryption, independent
-snapshots, flexible connectors and adds the tooling companies need to manage
-backups at scale: a full web interface, centralized scheduling, inventory and
-resource management, and more.</p>
+snapshots, flexible <a href="../../apps" >apps</a> and adds the tooling companies need to
+manage backups at scale: a full web interface, centralized scheduling, inventory
+and resource management, and more.</p>
 <p>It is packaged as a virtual appliance you deploy in your own infrastructure, so
 your data never leaves your environment.</p>
 
@@ -4213,13 +4213,15 @@ of resources available to back up. Managed inventories sync automatically;
 self-managed ones let you enter resources manually.</p>
 </li>
 <li>
-<p><strong>Connectors</strong> are the individual sources, stores, and destinations attached
-to a resource. A source is what gets backed up, a store is where backups are
-kept, and a destination is where data gets restored to.</p>
+<p><strong>Apps</strong> are the individual <a href="../../apps/sources" >sources</a>,
+<a href="../../apps/stores" >stores</a>, and <a href="../../apps/destinations" >destinations</a>
+attached to a resource. A source is what gets backed up, a store is where
+backups are kept, and a destination is where data gets restored to.</p>
 </li>
 <li>
 <p><strong>Secret providers</strong> let you store credentials securely in an external manager
-like AWS Secrets Manager or HashiCorp Vault.</p>
+like <a href="../../infrastructure/secret-providers/aws" >AWS Secrets Manager</a> or
+<a href="../../infrastructure/secret-providers/vault" >HashiCorp Vault</a>.</p>
 </li>
 <li>
 <p><strong>Scheduling</strong> defines when backup, restore, sync, and check jobs run. The
@@ -4236,8 +4238,8 @@ scheduler handles concurrency automatically.</p>
   
 </div>
 <ul>
-<li><a href="/docs/control-plane/intro/installation/" >Installation</a></li>
-<li><a href="/docs/control-plane/intro/enrollment/" >Enrollment</a></li>
+<li><a href="/docs/control-plane/intro/installation/" >Installing Control Plane</a></li>
+<li><a href="/docs/control-plane/intro/enrollment/" >Enrolling a new Control Plane instance</a></li>
 </ul>
 
       </article>

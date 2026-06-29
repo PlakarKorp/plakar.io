@@ -4,9 +4,9 @@
 Plakar Control Plane is a self-hosted backup management system built on top of
 the open-source [Plakar](https://github.com/PlakarKorp/plakar). It brings
 everything Plakar is good at like deduplication, encryption, independent
-snapshots, flexible connectors and adds the tooling companies need to manage
-backups at scale: a full web interface, centralized scheduling, inventory and
-resource management, and more.
+snapshots, flexible [apps](../../apps) and adds the tooling companies need to
+manage backups at scale: a full web interface, centralized scheduling, inventory
+and resource management, and more.
 
 It is packaged as a virtual appliance you deploy in your own infrastructure, so
 your data never leaves your environment.
@@ -35,18 +35,20 @@ needed for billing.
   of resources available to back up. Managed inventories sync automatically;
   self-managed ones let you enter resources manually.
 
-- **Connectors** are the individual sources, stores, and destinations attached
-  to a resource. A source is what gets backed up, a store is where backups are
-  kept, and a destination is where data gets restored to.
+- **Apps** are the individual [sources](../../apps/sources),
+  [stores](../../apps/stores), and [destinations](../../apps/destinations)
+  attached to a resource. A source is what gets backed up, a store is where
+  backups are kept, and a destination is where data gets restored to.
 
 - **Secret providers** let you store credentials securely in an external manager
-  like AWS Secrets Manager or HashiCorp Vault.
+  like [AWS Secrets Manager](../../infrastructure/secret-providers/aws) or
+  [HashiCorp Vault](../../infrastructure/secret-providers/vault).
 
 - **Scheduling** defines when backup, restore, sync, and check jobs run. The
   scheduler handles concurrency automatically.
 
 ## What's next
 
-- [Installation](./installation)
-- [Enrollment](./enrollment)
+- [Installing Control Plane](./installation)
+- [Enrolling a new Control Plane instance](./enrollment)
 

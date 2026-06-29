@@ -9,8 +9,8 @@ filesystems.
 
 All resources discovered across all inventories are available under
 **Infrastructure -> Resources**. From here a resouce can be assigned to either a
-[source](../connectors/sources) or a [destination](../connectors/destinations)
-app. You can also filter resources by inventories or by resource class.
+[source](../apps/sources) or a [destination](../apps/destinations) app. You can
+also filter resources by inventories or by resource class.
 
 ![](./images/view-resources.png)
 
