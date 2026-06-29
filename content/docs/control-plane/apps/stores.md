@@ -1,24 +1,24 @@
 ---
-title: "Store Connector"
+title: "Store App"
 date: "2026-05-11T00:00:00Z"
-weight: 2
-summary: "How store connectors work in Plakar Control Plane."
+weight: 1
+summary: "How store apps work in Plakar Control Plane."
 aliases:
   - /control-plane-docs/connectors/stores/
+  - /docs/control-plane/connectors/stores/
 ---
 
-# Store Connector
+# Store App
 
-A store connector defines where Plakar Control Plane stores backup data.
+A store app defines where Plakar Control Plane stores backup data.
 
-## Creating a store connector
+## Creating a store app
 
-To create a store connector, open the **Inventories** page and click on the
-inventory that contains the resource you want to use as a store. From the
-inventory details page, click **Add Store** and select the resource to use as
-the store. Provide a name for the connector. The name is used to distinguish
-this connector when multiple connectors of the same type are configured for the
-same resource.
+To create a store app, open the **Inventories** page and click on the inventory
+that contains the resource you want to use as a store. From the inventory
+details page, click **Add Store** and select the resource to use as the store.
+Provide a name for the app. The name is used to distinguish this app when
+multiple apps of the same type are configured for the same resource.
 
 ![](../images/inventory-details.png)
 
@@ -49,8 +49,8 @@ fields.
 
 ## Testing and initializing
 
-Once a store connector is created, its details page provides a **Dashboard** tab
-with actions for testing and initializing the store. Use **Test Connection** to
+Once a store app is created, its details page provides a **Dashboard** tab with
+actions for testing and initializing the store. Use **Test Connection** to
 verify that Plakar Control Plane can connect to the store using the provided
 configuration and credentials.
 
@@ -67,8 +67,8 @@ structure required to receive backup data.
 
 ![](../images/store-connector-2.png)
 
-If the connection test fails, check the connector configuration and credentials,
-then run the test again. Once the store has been initialized, additional actions
+If the connection test fails, check the app configuration and credentials, then
+run the test again. Once the store has been initialized, additional actions
 become available from the dashboard:
 
 - **Check Store** - create an integrity check task for the Kloset store
@@ -76,20 +76,20 @@ become available from the dashboard:
 - **Sync Store** - create a synchronization task to another store
 - **Restore Data** - create a restore task from the store
 
-## Browsing Snapshots
+## Browsing Restore Points
 
-You can view all backup snapshots stored on a store from the **Browse** tab.
+You can view all backup restore points stored on a store from the **Browse** tab.
 
 ![](../images/view-snapshots.png)
 
-From there, you can view the files contained in each snapshot and download
+From there, you can view the files contained in each restore point and download
 individual files without performing a full restore.
 
 ![](../images/browse-snapshots.png)
 
 ## Tasks and Schedules
 
-Tasks can be created directly from the store connector dashboard or from the
+Tasks can be created directly from the store app dashboard or from the
 **Operations > Scheduling** section. See the
 [scheduling documentation](../../operations/scheduling) for details on creating
 and managing tasks and schedules.

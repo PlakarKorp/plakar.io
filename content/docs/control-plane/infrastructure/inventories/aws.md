@@ -141,8 +141,10 @@ They are managed by the inventory and cannot be manually created or deleted.
 You can expand a resource row to view its details. Each row expands to show
 three tabs:
 
-- **Snapshots** - lists backups taken for this resource
-- **Connectors** - shows connectors associated with this resource
+- **Apps** - lists latest 5 restore points available for this resource, apps
+  associated with the resource and and option to assign a new app to the
+  resource. See the [apps documentation](../../apps) on how to set them up on
+  resources.
 - **Settings** - configure the resource, including backup coverage
 
 Backup coverage tracks how many of your resources are protected by backups. If a

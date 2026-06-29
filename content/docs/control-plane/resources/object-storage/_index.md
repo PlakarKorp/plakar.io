@@ -16,8 +16,3 @@ due to their durability, scalability, and low cost.
 Plakar Control Plane supports the following object storages:
 
 {{% children description="true" %}}
-
-<!--
-- [GCS]()
-- [S3](./s3)
-- [Azure Blob]()-->

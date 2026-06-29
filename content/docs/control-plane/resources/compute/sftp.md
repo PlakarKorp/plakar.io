@@ -32,8 +32,8 @@ target machine.
 
 ## Configuration
 
-SFTP resources can be configured as a source, store, or destination connector.
-When setting up the connector, select **sftp** from the integration dropdown.
+SFTP resources can be configured using a source, store, or destination app. When
+setting up the app, select **sftp** from the integration dropdown.
 
 ### Port
 
