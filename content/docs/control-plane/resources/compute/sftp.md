@@ -30,10 +30,54 @@ target machine.
 
 ![](../images/add-sftp-resource.png)
 
+## Backup flow
+
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+flowchart TD
+  subgraph Remote["Remote Machine"]
+    Files["Filesystem<br/>Root path"]
+  end
+
+  subgraph Plakar["Plakar Control Plane"]
+    Source["SFTP<br/>Source app"]
+    Backup["Backup process<br/>Encrypt & deduplicate"]
+  end
+
+  Store["Kloset Store"]
+
+  Source -->|"SSH/SFTP connection"| Files
+  Files -->|"read files"| Backup
+  Backup --> Store
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
+
+## Restore flow
+
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+flowchart TD
+  Store["Kloset Store"]
+
+  subgraph Plakar["Plakar Control Plane"]
+    Destination["SFTP<br/>Destination app"]
+    Restore["Restore process"]
+  end
+
+  subgraph Remote["Remote Machine"]
+    Files["Filesystem<br/>Root path"]
+  end
+
+  Store --> Restore
+  Destination --> Restore
+  Restore -->|"SSH/SFTP connection"| Files
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
+
 ## Configuration
 
 SFTP resources can be configured using a source, store, or destination app. When
-setting up the app, select **sftp** from the integration dropdown.
+setting up the app, select `sftp` from the integration dropdown.
 
 ### Port
 

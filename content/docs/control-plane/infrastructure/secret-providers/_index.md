@@ -1,7 +1,7 @@
 ---
 title: "Secret Providers"
 date: "2026-04-23T00:00:00Z"
-weight: 1
+weight: 2
 summary:
   "How to manage credentials in Plakar Control Plane using secret providers."
 aliases:
@@ -11,8 +11,8 @@ aliases:
 # Secret providers
 
 Plakar Control Plane handles sensitive credentials like tokens, passwords, and
-more. When configuring an app, inventory, or any other resource that
-requires a credential, Plakar Control Plane gives you two options.
+more. When configuring an app, inventory, or any other resource that requires a
+credential, Plakar Control Plane gives you two options.
 
 - **Direct value:** stores the credential directly in the Plakar Control Plane
   database. This is the simplest option and works well for most setups.

@@ -16,6 +16,22 @@ Scaleway Secret Manager can be added as a secret provider in Plakar Control
 Plane by selecting `scaleway` as the integration type when creating a new secret
 provider.
 
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+flowchart TB
+  subgraph Plakar["Plakar Control Plane"]
+    App["Any configuration field<br/>(passwords, keys, certs, ...)"]
+  end
+
+  IAMApp["IAM Application<br/>Secret Key"]
+  SM["Scaleway Secret Manager"]
+
+  App -->|"authenticate via"| IAMApp
+  IAMApp -->|"read secret"| SM
+  SM -->|"secret value"| App
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
+
 When adding the secret provider, you must provide a name for the secret
 provider, the Scaleway region where your secret is stored, for example `fr-par`,
 and a Scaleway secret key.

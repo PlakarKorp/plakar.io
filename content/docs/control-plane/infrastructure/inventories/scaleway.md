@@ -15,6 +15,27 @@ account and discover resources in a Scaleway project.
 Once connected, Plakar Control Plane discovers supported Scaleway resources and
 makes them available for management directly within Plakar Control Plane.
 
+## Discovery flow
+
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+flowchart TD
+  subgraph Plakar["Plakar Control Plane"]
+    Inventory["Scaleway Inventory<br/>Discover & classify"]
+  end
+
+  IAMApp["IAM Application<br/>Access Key + Secret Key"]
+
+  subgraph Scaleway["Scaleway Project"]
+    Resources["Supported Resources"]
+  end
+
+  Inventory -->|"authenticate"| IAMApp
+  IAMApp -->|"Scaleway APIs"| Resources
+  Resources -->|"sync to inventory"| Inventory
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
+
 ## Supported Resources
 
 | Resource                                 | Source | Store | Destination |
