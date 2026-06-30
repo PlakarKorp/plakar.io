@@ -15,6 +15,29 @@ account and discover resources across your projects.
 Once connected, Plakar Control Plane discovers supported OVHcloud resources and
 makes them available for management directly within Plakar Control Plane.
 
+## Discovery flow
+
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+flowchart TD
+  subgraph Plakar["Plakar Control Plane"]
+    Inventory["OVHcloud Inventory<br/>Discover & classify"]
+  end
+
+  subgraph Creds["Authentication"]
+    Keys["Application Key (AK)<br/>Application Secret (AS)<br/>Consumer Key (CK)"]
+  end
+
+  subgraph OVHcloud["OVHcloud Account"]
+    Resources["Supported Resources"]
+  end
+
+  Inventory -->|"authenticate"| Keys
+  Keys -->|"OVHcloud APIs"| Resources
+  Resources -->|"sync to inventory"| Inventory
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
+
 ## Supported Resources
 
 | Resource             | Source | Store | Destination |
