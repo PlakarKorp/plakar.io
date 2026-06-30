@@ -11,10 +11,11 @@
 {{ $textColor := .textColor | default "text-neutral-50" }}
 {{ $flex := .flex | default "inline-flex" }}
 {{ $class := .class | default "" }}
+{{ $minH := .minH | default "lg:min-h-12" }}
 
 <a href="{{ $href }}" target="{{ $target }}" class="flex items-center {{ $class }}">
   <div class="{{ $textColor }} {{ $border }} {{ $borderColor }} {{ $bgColor }} {{ $textHoverColor }} {{ $flex }} relative
-    group overflow-hidden min-h-7 lg:min-h-12 px-4 pr-4 rounded-lg items-center gap-2 transition-all
+    group overflow-hidden min-h-7 {{ $minH }} px-4 pr-4 rounded-lg items-center gap-2 transition-all
     duration-150 ease-out hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1 active:shadow-inner">
 
     <!-- Background hover fill -->
