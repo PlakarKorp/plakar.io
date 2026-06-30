@@ -94,9 +94,9 @@ Set to the Scaleway integration. Must be selected manually.
 
 ### Protocol
 
-The Scaleway integration supports two protocols. Select `scaleway-instance` for
-compute resources. The `scaleway-block` protocol is used for block storage
-resources.
+The Scaleway integration supports three protocols. Select `scaleway-instance`
+for compute resources. The `scaleway-block` protocol is used for block storage
+resources and `scaleway-secret` for the Scaleway secrets manager.
 
 ### Access Key and Secret Key
 
@@ -119,15 +119,6 @@ The Scaleway Object Storage bucket name. Used as a staging area when exporting
 instance and block volume snapshots. This bucket must exist before configuring
 the resource. We recommend using a dedicated bucket for Plakar Control Plane
 operations rather than a general-purpose bucket.
-
-### Project ID
-
-The Scaleway project ID that the instance belongs to.
-
-### Zone
-
-The Scaleway zone where the instance resides, for example `fr-par-1`. Must be
-entered manually.
 
 ## Additional configuration
 
