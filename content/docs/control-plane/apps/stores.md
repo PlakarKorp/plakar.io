@@ -78,7 +78,8 @@ become available from the dashboard:
 
 ## Browsing Restore Points
 
-You can view all backup restore points stored on a store from the **Browse** tab.
+You can view all backup restore points stored on a store from the **Browse**
+tab.
 
 ![](../images/view-snapshots.png)
 

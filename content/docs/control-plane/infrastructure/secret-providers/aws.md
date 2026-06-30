@@ -15,6 +15,22 @@ aliases:
 AWS Secrets Manager can be added as a secret provider in Plakar Control Plane by
 selecting `aws` as the integration type when creating a new secret provider.
 
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+flowchart TB
+  subgraph Plakar["Plakar Control Plane (on AWS)"]
+    App["Any configuration field<br/>(passwords, keys, certs, ...)"]
+  end
+
+  IAM["IAM Role<br/>(attached to EC2 instance)"]
+  SM["AWS Secrets Manager"]
+
+  App -->|"authenticate via"| IAM
+  IAM -->|"read secret"| SM
+  SM -->|"secret value"| App
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
+
 Currently, AWS Secrets Manager is only supported when Plakar Control Plane is
 running on AWS and authenticated using an attached IAM role. Deployments hosted
 outside AWS are not currently supported because access key authentication for

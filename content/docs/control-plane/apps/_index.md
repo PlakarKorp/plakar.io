@@ -20,6 +20,26 @@ Plakar Control Plane supports three app types:
 - **Store** - where backups are kept
 - **Destination** - where backups are restored to
 
+**Backup**
+
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+flowchart LR
+  Resource["Resource"] -->|"Source App"| PCP["Plakar Control Plane"]
+  PCP -->|"Store App"| Store["Kloset Store"]
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
+
+**Restore**
+
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+flowchart LR
+  Store["Kloset Store"] -->|"Store App"| PCP["Plakar Control Plane"]
+  PCP -->|"Destination App"| Resource["Resource"]
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
+
 ## How apps work
 
 Each resource has a `class` and `subclass` that describe what kind of resource

@@ -15,6 +15,32 @@ discover and classify your resources.
 Once connected, Plakar Control Plane discovers all resources in your AWS account
 and makes them available for management directly within Plakar Control Plane.
 
+## Discovery flow
+
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+flowchart TD
+  subgraph Plakar["Plakar Control Plane"]
+    Inventory["AWS Inventory<br/>Discover & Classify"]
+  end
+
+  subgraph Creds["Authentication"]
+    direction LR
+    IAM["IAM Role<br/>(PCP deployed on AWS)"]
+    Key["Access Key<br/>(PCP deployed outside AWS)"]
+  end
+
+  subgraph AWS["AWS Account"]
+    Resources["Supported Resources"]
+  end
+
+  Inventory -->|"on AWS"| IAM
+  Inventory -->|"outside AWS"| Key
+  IAM & Key -->|"AWS APIs"| Resources
+  Resources -->|"sync to inventory"| Inventory
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
+
 ## Supported Resources
 
 | Resource        | Source | Store | Destination |
