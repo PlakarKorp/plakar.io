@@ -2,17 +2,23 @@
 title: "Back Up an Exoscale Managed MySQL Database"
 date: "2026-03-19T00:00:00Z"
 weight: 2
-summary: "Back up an Exoscale Managed MySQL database to Exoscale Object Storage using mysqldump and Plakar"
+summary:
+  "Back up an Exoscale Managed MySQL database to Exoscale Object Storage using
+  mysqldump and Plakar"
 aliases:
   - /docs/v1.0.6/guides/exoscale/backup-exoscale-managed-mysql/
 ---
 
 # Back Up an Exoscale Managed MySQL Database
 
-This guide backs up an Exoscale Managed MySQL database using `mysqldump` streamed through Plakar to Exoscale Object Storage (SOS). The result is an encrypted, deduplicated snapshot stored separately from your database infrastructure.
+This guide backs up an Exoscale Managed MySQL database using `mysqldump`
+streamed through Plakar to Exoscale Object Storage (SOS). The result is an
+encrypted, deduplicated snapshot stored separately from your database
+infrastructure.
 
 ## Architecture
 
+<!-- prettier-ignore-start -->
 {{< mermaid >}}
 flowchart TB
 
@@ -34,6 +40,7 @@ MySQLDump -->|stdin| Plakar
 Plakar -->|Snapshots| SOS
 
 {{< /mermaid >}}
+<!-- prettier-ignore-end -->
 
 ## Prerequisites
 
@@ -42,14 +49,17 @@ Plakar -->|Snapshots| SOS
 ## Create MySQL Database
 
 ### Provision database
+
 1. Log in to Exoscale Portal
 2. Go to **DBAAS** → **Services**
-3. Click on the button with an ellipsis icon then select **Add MySQL Service** from the dropdown
+3. Click on the button with an ellipsis icon then select **Add MySQL Service**
+   from the dropdown
 4. Configure:
-    - Zone: Select location
-    - Database name
-    - Plan: Select instance size
-    - IP Filters, click on **Add CIDR** and enter your IP address to access the database or use `0.0.0.0/0` to access it from any IP
+   - Zone: Select location
+   - Database name
+   - Plan: Select instance size
+   - IP Filters, click on **Add CIDR** and enter your IP address to access the
+     database or use `0.0.0.0/0` to access it from any IP
 5. Click **Add**
 
 ![Setup a MySQL database](../images/setup-db-1.png)
@@ -58,7 +68,8 @@ Plakar -->|Snapshots| SOS
 
 ### Download connection details
 
-1. In the database connection data tab, download your CA Certificates and get the other connection details.
+1. In the database connection data tab, download your CA Certificates and get
+   the other connection details.
 2. In the users tab, save your database user password
 
 ## Install Tools
@@ -93,6 +104,7 @@ $ sudo chmod 644 /etc/mysql/certs/ca.pem
 ```
 
 Create MySQL configuration file:
+
 ```bash
 $ cat > ~/.my.cnf << 'EOF'
 [client]
@@ -119,7 +131,8 @@ $ plakar pkg add s3
 
 ### Create Object Storage bucket
 
-If not already configured, follow: [Exoscale Object Storage setup](../exoscale-compute-as-a-dedicated-backup-server/#configure-object-storage)
+If not already configured, follow:
+[Exoscale Object Storage setup](../exoscale-compute-as-a-dedicated-backup-server/#configure-object-storage)
 
 ### Add storage connector
 
@@ -132,6 +145,7 @@ $ plakar store add exoscale-sos-mysql \
 ```
 
 Replace:
+
 - `<SOS_ENDPOINT>`: e.g., `sos-ch-dk-2.exo.io`
 - `<BUCKET_NAME>`: e.g., `plakar-backups`
 - `<ACCESS_KEY>` and `<SECRET_KEY>`: From Exoscale IAM
@@ -175,17 +189,22 @@ $ plakar at "@exoscale-sos-mysql" cat <SNAPSHOT_ID>:dump.sql | mysql <DB_NAME>
 ## Troubleshooting
 
 **Connection refused**
-- Verify `MYSQL_HOST`, `MYSQL_TCP_PORT`, `MYSQL_USER`, `MYSQL_PWD` environment variables
+
+- Verify `MYSQL_HOST`, `MYSQL_TCP_PORT`, `MYSQL_USER`, `MYSQL_PWD` environment
+  variables
 - Check database is running in Exoscale Portal
 - Verify network access/firewall rules
 
 **Authentication failed**
+
 - Confirm user credentials
 
 **S3 upload errors**
+
 - Check S3 credentials: `plakar store show exoscale-sos-mysql`
 - Verify endpoint URL and bucket name
 - Confirm bucket exists in Exoscale Portal
 
 **mysqldump not found**
+
 - Install MySQL client: `sudo apt install mysql-client`

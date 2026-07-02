@@ -1,6 +1,11 @@
 ---
-title: "Kapsul: a tool to create and manage deduplicated, compressed and encrypted PTAR vaults"
-summary: "want to craft a ptar archive but you don't need a full-fledged backup solution ? here comes kapsul, our ptar-specific tool, providing all you need from building to restoring and inspecting."
+title:
+  "Kapsul: a tool to create and manage deduplicated, compressed and encrypted
+  PTAR vaults"
+summary:
+  "want to craft a ptar archive but you don't need a full-fledged backup
+  solution ? here comes kapsul, our ptar-specific tool, providing all you need
+  from building to restoring and inspecting."
 slug: "kapsul-a-tool-to-create-and-manage-deduplicated-compressed-and-encrypted-ptar-vaults"
 date: 2025-07-07T20:00:00+0100
 authors:
@@ -16,9 +21,16 @@ category: "technology"
 
 ## TL;DR:
 
-We recently introduced our [ptar archive format](../../2025-06-27/it-doesnt-make-sense-to-wrap-modern-data-in-a-1979-format-introducing-.ptar/) and the feedback was good, but many people felt like this was too tied to the plakar backup solution: if you just want to use a deduplicated archive solution, why should you install a full backup software?
+We recently introduced our
+[ptar archive format](../../2025-06-27/it-doesnt-make-sense-to-wrap-modern-data-in-a-1979-format-introducing-.ptar/)
+and the feedback was good, but many people felt like this was too tied to the
+plakar backup solution: if you just want to use a deduplicated archive solution,
+why should you install a full backup software?
 
-Today, we unveil `kapsul`, an **ISC-licensed open-source** tool dedicated to creating and consuming ptar archives. It only does a subset of what `plakar` does, but has less requirements and an even simpler interface with zero configuration and no need for an agent.
+Today, we unveil `kapsul`, an **ISC-licensed open-source** tool dedicated to
+creating and consuming ptar archives. It only does a subset of what `plakar`
+does, but has less requirements and an even simpler interface with zero
+configuration and no need for an agent.
 
 This short post tells you all you need to know to get started testing it.
 
@@ -26,9 +38,12 @@ This short post tells you all you need to know to get started testing it.
 
 ## What Is `kapsul`?
 
-The `kapsul` utility allows creating ptar archives, _aka. capsules_, that contain deduplicated, compressed, content-addressed, strongly encrypted data.
+The `kapsul` utility allows creating ptar archives, _aka. capsules_, that
+contain deduplicated, compressed, content-addressed, strongly encrypted data.
 
-What sets it apart from `plakar`, is that by accepting a trade-off and not supporting _some_ of the features that `plakar` does, `kapsul` can be implemented as an agentless and zero-configuration tool.
+What sets it apart from `plakar`, is that by accepting a trade-off and not
+supporting _some_ of the features that `plakar` does, `kapsul` can be
+implemented as an agentless and zero-configuration tool.
 
 In other words: you install, you run, it works right away.
 
@@ -45,12 +60,16 @@ repository passphrase:
 2025-07-07T21:51:57Z   bff68fc7    3.1 MB        0s /private/etc
 ```
 
-With just these three commands, you go from nothing to a `/tmp/bleh.ptar` that has all of these properties (shameless copy-paste from previous article):
+With just these three commands, you go from nothing to a `/tmp/bleh.ptar` that
+has all of these properties (shameless copy-paste from previous article):
 
 - **Immutable** — it is write-once, tamper-evident by design.
-- **Deduplicated** — it is content-addressed, chunks are referenced multiple times.
+- **Deduplicated** — it is content-addressed, chunks are referenced multiple
+  times.
 - **Compressed** — it has post-deduplication compression to save more space.
-- **Encrypted** — it uses same [audited model](/posts/2025-02-28/audit-of-plakar-cryptography/) as underlying Kloset store.
+- **Encrypted** — it uses same
+  [audited model](/posts/2025-02-28/audit-of-plakar-cryptography/) as underlying
+  Kloset store.
 - **Versioned** — it supports granular inspection of previous states.
 - **Browsable** — it support browsing via CLI or UI, without full extraction.
 - **(Trans)Portable** — it works on a USB stick, offline machine, or tape.
@@ -59,11 +78,18 @@ With just these three commands, you go from nothing to a `/tmp/bleh.ptar` that h
 
 ## So What Are The Trade-Offs?
 
-To be zero-config AND agent-less, `kapsul` only supports a limited set of integrations and does not have the same level of caching as `plakar` to accelerate the processing of previously archived data.
+To be zero-config AND agent-less, `kapsul` only supports a limited set of
+integrations and does not have the same level of caching as `plakar` to
+accelerate the processing of previously archived data.
 
-Long story short, it can archive data coming from the local filesystem, a remote SFTP, `stdin` and another `.ptar` archive (we will soon extend to other archive formats to allow conversions into `.ptar`).
+Long story short, it can archive data coming from the local filesystem, a remote
+SFTP, `stdin` and another `.ptar` archive (we will soon extend to other archive
+formats to allow conversions into `.ptar`).
 
-While `kapsul` is simpler, it does not support advanced features like remote read-write targets, custom scheduling, or complex caching mechanisms that `plakar` provides. If you need more granular control over your backup process or advanced features, `plakar` might still be the better fit.
+While `kapsul` is simpler, it does not support advanced features like remote
+read-write targets, custom scheduling, or complex caching mechanisms that
+`plakar` provides. If you need more granular control over your backup process or
+advanced features, `plakar` might still be the better fit.
 
 ---
 
@@ -73,7 +99,8 @@ That's the nicest part.
 
 _MOST_ of what `plakar` can do... `kapsul` can do.
 
-You can craft a ptar, list or display its content, launch a `ui`, preview files (including media), ...
+You can craft a ptar, list or display its content, launch a `ui`, preview files
+(including media), ...
 
 ```sh
 $ kapsul -f /tmp/bleh.ptar create ~/Downloads
@@ -110,14 +137,17 @@ $ kapsul -f /tmp/bleh.ptar ui
 repository passphrase:
 ```
 
-![](preview.png)
-![](preview1.png)
+![](preview.png) ![](preview1.png)
 
-and some of the commands that are currently not supported, like `mount` and the like, are going to be implemented in the next few weeks providing very powerful capabilities to `kapsul`.
+and some of the commands that are currently not supported, like `mount` and the
+like, are going to be implemented in the next few weeks providing very powerful
+capabilities to `kapsul`.
 
 Oooooh, and maybe I'm the only one finding that cool, but...
 
-It even supports accessing a remote `ptar` over http/https for random access fetching. Accessing a remote .ptar over HTTP/HTTPS allows you to fetch specific parts of an archive without downloading it in full:
+It even supports accessing a remote `ptar` over http/https for random access
+fetching. Accessing a remote .ptar over HTTP/HTTPS allows you to fetch specific
+parts of an archive without downloading it in full:
 
 ```sh
 $ kapsul -f https://poolp.org/test.ptar ls
@@ -128,13 +158,18 @@ $ kapsul -f https://poolp.org/test.ptar ui
 
 ![](preview2.png)
 
-All of the commands that work on a local archive can be used on a remote one, and will transparently use optimized random accesses so the archive is never fetched fully.
+All of the commands that work on a local archive can be used on a remote one,
+and will transparently use optimized random accesses so the archive is never
+fetched fully.
 
 ---
 
 ## Conclusion
 
-A week ago, we released `ptar` as a `plakar` subcommand and some people thought it should be a separate tool. A week later, you have a new standalone tool, `kapsul`, that's ISC-licensed, open-source, free, and that lets you build your own little secure vaults in seconds.
+A week ago, we released `ptar` as a `plakar` subcommand and some people thought
+it should be a separate tool. A week later, you have a new standalone tool,
+`kapsul`, that's ISC-licensed, open-source, free, and that lets you build your
+own little secure vaults in seconds.
 
 In case we need to state the obvious, we care about users <3
 

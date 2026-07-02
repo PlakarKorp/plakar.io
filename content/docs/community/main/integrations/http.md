@@ -9,7 +9,10 @@ aliases:
 
 # HTTP(S)
 
-The HTTP(S) integration allows Plakar to use an HTTP or HTTPS endpoint as a Kloset store backend. Its used to connect to a Kloset store exposed by `plakar server`. The integration is pre-installed in Plakar `v1.1.0` and later and requires no additional setup. The integration provides one connector:
+The HTTP(S) integration allows Plakar to use an HTTP or HTTPS endpoint as a
+Kloset store backend. Its used to connect to a Kloset store exposed by
+`plakar server`. The integration is pre-installed in Plakar `v1.1.0` and later
+and requires no additional setup. The integration provides one connector:
 
 | Connector type    | Description                                                  |
 | ----------------- | ------------------------------------------------------------ |
@@ -19,7 +22,8 @@ The HTTP(S) integration allows Plakar to use an HTTP or HTTPS endpoint as a Klos
 
 ### Storage connector
 
-The HTTP(S) storage connector uses an HTTP or HTTPS endpoint as the backend for a Kloset store.
+The HTTP(S) storage connector uses an HTTP or HTTPS endpoint as the backend for
+a Kloset store.
 
 #### Configure
 

@@ -2,28 +2,33 @@
 title: "OpenDrive"
 date: "2026-03-20T00:00:00Z"
 weight: 10
-summary: "Back up and restore OpenDrive data with Plakar, and host Kloset stores in OpenDrive."
+summary:
+  "Back up and restore OpenDrive data with Plakar, and host Kloset stores in
+  OpenDrive."
 aliases:
   - /docs/v1.0.6/integrations/opendrive/
 ---
 
 # OpenDrive
 
-The OpenDrive integration for Plakar lets you back up and restore data from OpenDrive, as well as host Kloset stores in OpenDrive, using Rclone.
+The OpenDrive integration for Plakar lets you back up and restore data from
+OpenDrive, as well as host Kloset stores in OpenDrive, using Rclone.
 
-[Rclone](https://rclone.org/) is a command-line program to manage files on cloud storage, and supports OpenDrive as one of its many backends.
+[Rclone](https://rclone.org/) is a command-line program to manage files on cloud
+storage, and supports OpenDrive as one of its many backends.
 
 The Rclone integration package for Plakar provides three connectors:
 
-| Connector type               | Description |
-| ---------------------------- | ----------- |
-| **Storage connector**        | Host a Kloset store inside a Rclone remote. |
-| **Source connector**         | Back up a Rclone remote into a Kloset store. |
-| **Destination connector**    | Restore data from a Kloset store into a Rclone remote. |
+| Connector type            | Description                                            |
+| ------------------------- | ------------------------------------------------------ |
+| **Storage connector**     | Host a Kloset store inside a Rclone remote.            |
+| **Source connector**      | Back up a Rclone remote into a Kloset store.           |
+| **Destination connector** | Restore data from a Kloset store into a Rclone remote. |
 
 **Requirements**
 
-- Rclone must be installed, and at least one OpenDrive remote must be configured.
+- Rclone must be installed, and at least one OpenDrive remote must be
+  configured.
 
 **Typical use cases**
 
@@ -36,60 +41,72 @@ The Rclone integration package for Plakar provides three connectors:
 To interact with OpenDrive, you need to install the Rclone Plakar package.
 
 {{< tabs >}}
-  {{< tab label="Pre-built package" >}}
-  
-  Pre-compiled packages are available for common platforms and provide the simplest installation method.
-  
-  > [!NOTE]+ Logging In
-  > Pre-built packages require Plakar authentication. See [Logging in to Plakar](../../guides/logging-in-to-plakar) for details.
-  
-  Install the Rclone package:
-  
-  ```bash
-  $ plakar pkg add rclone
-  ```
 
-  Verify installation:
-  ```bash
-  $ plakar pkg list
-  ```
-  
-  {{< /tab >}}
-  {{< tab label="Building from source" >}}
-  
-  Source builds are useful when pre-built packages are unavailable or when customization is required.
+{{< tab label="Pre-built package" >}}
 
-  **Prerequisites:**
-  - Go toolchain compatible with your **Plakar** version
-  
-  Build the package:
-  
-  ```bash
-  $ plakar pkg build rclone
-  ```
-  
-  A package archive will be created in the current directory (e.g., `rclone_v1.0.0_darwin_arm64.ptar`).
-  
-  Install the package:
-  
-  ```bash
-  $ plakar pkg add ./rclone_v1.0.0_darwin_arm64.ptar
-  ```
-  
-  Verify installation:
-  
-  ```bash
-  $ plakar pkg list
-  ```
-  
-  {{< /tab >}}
+Pre-compiled packages are available for common platforms and provide the
+simplest installation method.
+
+> [!NOTE]+ Logging In
+>
+> Pre-built packages require Plakar authentication. See
+> [Logging in to Plakar](../../guides/logging-in-to-plakar) for details.
+
+Install the Rclone package:
+
+```bash
+$ plakar pkg add rclone
+```
+
+Verify installation:
+
+```bash
+$ plakar pkg list
+```
+
+{{< /tab >}}
+
+{{< tab label="Building from source" >}}
+
+Source builds are useful when pre-built packages are unavailable or when
+customization is required.
+
+**Prerequisites:**
+
+- Go toolchain compatible with your **Plakar** version
+
+Build the package:
+
+```bash
+$ plakar pkg build rclone
+```
+
+A package archive will be created in the current directory (e.g.,
+`rclone_v1.0.0_darwin_arm64.ptar`).
+
+Install the package:
+
+```bash
+$ plakar pkg add ./rclone_v1.0.0_darwin_arm64.ptar
+```
+
+Verify installation:
+
+```bash
+$ plakar pkg list
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
-To list, upgrade, or remove the package, see [managing packages guide](../../guides/managing-packages/).
+To list, upgrade, or remove the package, see
+[managing packages guide](../../guides/managing-packages/).
 
 ## Generate Rclone configuration
 
-Install Rclone on your system by following the instructions at [https://rclone.org/install/](https://rclone.org/install/).
+Install Rclone on your system by following the instructions at
+[https://rclone.org/install/](https://rclone.org/install/).
 
 Then, run the following command to configure Rclone with OpenDrive:
 
@@ -97,9 +114,11 @@ Then, run the following command to configure Rclone with OpenDrive:
 $ rclone config
 ```
 
-You will be guided through a series of prompts to set up a new remote for OpenDrive.
+You will be guided through a series of prompts to set up a new remote for
+OpenDrive.
 
 For Rclone v1.72.1, the configuration flow is as follows:
+
 1. Choose `n` to create a new remote.
 2. Name the remote (e.g., `mydrive`).
 3. Enter your username (your OpenDrive email).
@@ -122,14 +141,18 @@ The output should list the files and folders in your OpenDrive.
 
 ## Connectors
 
-The Rclone package provides storage, source, and destination connectors to interact with OpenDrive via Rclone.
+The Rclone package provides storage, source, and destination connectors to
+interact with OpenDrive via Rclone.
 
-You can use any combination of these connectors together with other supported Plakar connectors.
+You can use any combination of these connectors together with other supported
+Plakar connectors.
 
 ### Storage connector
 
-The Plakar Rclone package provides a storage connector to host Kloset stores on Rclone remotes.
+The Plakar Rclone package provides a storage connector to host Kloset stores on
+Rclone remotes.
 
+<!-- prettier-ignore-start -->
 {{< mermaid >}}
 flowchart LR
 
@@ -145,6 +168,7 @@ end
 
 Source --> Plakar --> Via --> Kloset
 {{< /mermaid >}}
+<!-- prettier-ignore-end -->
 
 #### Configure
 
@@ -171,16 +195,19 @@ $ plakar at "@mydrive" backup "@my_source"
 
 #### Options
 
-These options can be set when configuring the storage connector with `plakar store add` or `plakar store set`:
+These options can be set when configuring the storage connector with
+`plakar store add` or `plakar store set`:
 
-| Option | Purpose |
-|--------|-------------|
+| Option       | Purpose                     |
+| ------------ | --------------------------- |
 | `passphrase` | The Kloset store passphrase |
 
 ### Source connector
 
-The Plakar Rclone package provides a source connector to back up OpenDrive directories accessible via Rclone.
+The Plakar Rclone package provides a source connector to back up OpenDrive
+directories accessible via Rclone.
 
+<!-- prettier-ignore-start -->
 {{< mermaid >}}
 flowchart LR
 
@@ -196,6 +223,7 @@ Store["Kloset Store"]
 
 FS --> Via --> Plakar --> Store
 {{< /mermaid >}}
+<!-- prettier-ignore-end -->
 
 #### Configure
 
@@ -217,8 +245,10 @@ The Rclone source connector doesn't support any specific options.
 
 ### Destination connector
 
-The Rclone package provides a destination connector to restore snapshots to OpenDrive directories.
+The Rclone package provides a destination connector to restore snapshots to
+OpenDrive directories.
 
+<!-- prettier-ignore-start -->
 {{< mermaid >}}
 flowchart LR
 
@@ -234,6 +264,7 @@ end
 
 Store --> Plakar --> Via --> FS
 {{< /mermaid >}}
+<!-- prettier-ignore-end -->
 
 #### Configure
 

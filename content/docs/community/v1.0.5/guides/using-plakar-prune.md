@@ -2,22 +2,31 @@
 title: "Pruning snapshots"
 date: "2026-04-24T00:00:00Z"
 weight: 9
-summary: "Remove old snapshots from a Kloset store using age, tags, or retention policies."
+summary:
+  "Remove old snapshots from a Kloset store using age, tags, or retention
+  policies."
 aliases:
   - /docs/v1.0.5/guides/using-plakar-prune/
 ---
 
 # Pruning Snapshots
 
-`plakar prune` removes snapshots from a Kloset store. Snapshots can be selected for removal by age, tag, or retention policy.
+`plakar prune` removes snapshots from a Kloset store. Snapshots can be selected
+for removal by age, tag, or retention policy.
 
-Every backup you run creates a new snapshot in your Kloset store. If its feft unchecked, snapshots can accumulate indefinitely.
+Every backup you run creates a new snapshot in your Kloset store. If its feft
+unchecked, snapshots can accumulate indefinitely.
 
-Pruning lets you define how much history you actually need such as keeping hourly snapshots for the past week, daily ones for the past month, monthly ones for the past year and discard everything else. This keeps your store from growing without bound while preserving important recovery points.
+Pruning lets you define how much history you actually need such as keeping
+hourly snapshots for the past week, daily ones for the past month, monthly ones
+for the past year and discard everything else. This keeps your store from
+growing without bound while preserving important recovery points.
 
-By default, `plakar prune` runs in dry-run mode and makes no changes, you'll need to pass `-apply` to execute the operation.
+By default, `plakar prune` runs in dry-run mode and makes no changes, you'll
+need to pass `-apply` to execute the operation.
 
-On this guide, we will use a Kloset store is located at `$HOME/backups`, but your store can be located anywhere else:
+On this guide, we will use a Kloset store is located at `$HOME/backups`, but
+your store can be located anywhere else:
 
 ## Previewing what would be pruned
 
@@ -27,7 +36,8 @@ Before removing anything, check which snapshots would be affected:
 $ plakar at $HOME/backups prune -days 30
 ```
 
-No snapshots are deleted without `-apply`. The output shows what *would* be removed.
+No snapshots are deleted without `-apply`. The output shows what _would_ be
+removed.
 
 ## Removing snapshots by age
 
@@ -51,7 +61,9 @@ Only snapshots matching the tag are considered. Others are left untouched.
 
 ## Applying a retention policy
 
-A retention policy keeps a defined number of snapshots across different time windows and deletes everything else. This is the most common way to keep a store bounded over time.
+A retention policy keeps a defined number of snapshots across different time
+windows and deletes everything else. This is the most common way to keep a store
+bounded over time.
 
 ```sh
 $ plakar at $HOME/backups prune \
@@ -64,16 +76,19 @@ $ plakar at $HOME/backups prune \
 
 This can be broken down as:
 
-* `-days 1 -per-day 7` — For the past day, keep up to 7 snapshots. This preserves frequent checkpoints in the most recent period.
-* `-weeks 4 -per-week 1` — For the past 4 weeks, keep 1 snapshot per week. Older intra-day snapshots are pruned down to a single representative per week.
-* `-months 12 -per-month 1` — For the past 12 months, keep 1 snapshot per month.
-* `-years 5 -per-year 1` — For the past 5 years, keep 1 snapshot per year.
+- `-days 1 -per-day 7` — For the past day, keep up to 7 snapshots. This
+  preserves frequent checkpoints in the most recent period.
+- `-weeks 4 -per-week 1` — For the past 4 weeks, keep 1 snapshot per week. Older
+  intra-day snapshots are pruned down to a single representative per week.
+- `-months 12 -per-month 1` — For the past 12 months, keep 1 snapshot per month.
+- `-years 5 -per-year 1` — For the past 5 years, keep 1 snapshot per year.
 
 Everything outside those windows is deleted.
 
 ## Using a named policy
 
-Rather than specifying retention parameters on the command line each time, a named policy can be defined once and reused.
+Rather than specifying retention parameters on the command line each time, a
+named policy can be defined once and reused.
 
 You can create a policy and configure its retention parameters:
 
@@ -102,7 +117,10 @@ $ plakar policy rm weekly         # delete a policy
 
 ## Reclaiming storage after pruning
 
-Pruning removes snapshots, but does not immediately free storage. Because Plakar deduplicates data across snapshots, the underlying chunks and packfiles remain until `plakar maintenance` runs (also consider the maintenance [grace period](../../explanations/how-maintenance-works/#the-grace-period)).
+Pruning removes snapshots, but does not immediately free storage. Because Plakar
+deduplicates data across snapshots, the underlying chunks and packfiles remain
+until `plakar maintenance` runs (also consider the maintenance
+[grace period](../../explanations/how-maintenance-works/#the-grace-period)).
 
 After pruning, run `plakar maintenance` to reclaim the freed space:
 
@@ -112,5 +130,5 @@ $ plakar maintenance
 
 ## See also
 
-* [plakar policy](../references/commands/plakar-policy)
-* [How maintenance works](../../explanations/how-maintenance-works)
+- [plakar policy](../references/commands/plakar-policy)
+- [How maintenance works](../../explanations/how-maintenance-works)

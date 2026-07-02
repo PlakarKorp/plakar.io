@@ -2,22 +2,30 @@
 title: "Scheduling Tasks"
 date: "2026-03-16T00:00:00Z"
 weight: 1
-summary: "Learn how to configure and run the Plakar scheduler to automate backups."
+summary:
+  "Learn how to configure and run the Plakar scheduler to automate backups."
 aliases:
   - /docs/main/guides/setup-scheduler-daily-backups/
 ---
 
 # Scheduling Tasks
 
-Plakar includes a scheduler that can run backups as well as tasks like restoring files, synchronizing Kloset stores, and verifying backup integrity. 
+Plakar includes a scheduler that can run backups as well as tasks like restoring
+files, synchronizing Kloset stores, and verifying backup integrity.
 
-Backups only protect you if they run regularly. Without automation, it's easy to forget to run a backup. The backup you didn't run is the one you'll wish you had when something goes wrong. The Plakar scheduler lets you define tasks that run automatically at a given interval, so your backups happen consistently on a schedule.
+Backups only protect you if they run regularly. Without automation, it's easy to
+forget to run a backup. The backup you didn't run is the one you'll wish you had
+when something goes wrong. The Plakar scheduler lets you define tasks that run
+automatically at a given interval, so your backups happen consistently on a
+schedule.
 
-In this guide, we will show how to set up the scheduler to run backups every day.
+In this guide, we will show how to set up the scheduler to run backups every
+day.
 
 ## Requirements
 
-Create a configuration for your Kloset store. This ensures the scheduler can later retrieve the store passphrase:
+Create a configuration for your Kloset store. This ensures the scheduler can
+later retrieve the store passphrase:
 
 ```bash
 $ plakar store add mybackups /var/backups passphrase=mysuperpassphrase
@@ -31,7 +39,8 @@ $ plakar at "@mybackups" create
 
 ## Configuration
 
-Create the configuration file `scheduler.yaml` for the scheduler in your current directory with the following content:
+Create the configuration file `scheduler.yaml` for the scheduler in your current
+directory with the following content:
 
 ```yaml
 agent:
@@ -48,8 +57,10 @@ agent:
 This configuration file defines a task for the Plakar scheduler, where:
 
 - `name` is the task label, displayed in the UI.
-- `repository` refers to the Kloset store. The syntax `@mystore` corresponds to the store previously configured with `plakar store add mystore`.
-- `backup` is the task type. In this case, we back up the Plakar source code at the given path every 24 hours.
+- `repository` refers to the Kloset store. The syntax `@mystore` corresponds to
+  the store previously configured with `plakar store add mystore`.
+- `backup` is the task type. In this case, we back up the Plakar source code at
+  the given path every 24 hours.
 - `check` runs a verification after the backup is created.
 
 ## Running the scheduler

@@ -9,7 +9,8 @@ aliases:
 
 # HTTP
 
-The HTTP integration allows Plakar to use an HTTP endpoint as a Kloset store backend. Its used to connect to a Kloset store exposed by `plakar server`.
+The HTTP integration allows Plakar to use an HTTP endpoint as a Kloset store
+backend. Its used to connect to a Kloset store exposed by `plakar server`.
 
 The HTTP integration provides one connector:
 
@@ -19,15 +20,20 @@ The HTTP integration provides one connector:
 
 ## Installation
 
-In Plakar `v1.0.6` and earlier, the HTTP integration must be installed before HTTP stores can be accessed.
+In Plakar `v1.0.6` and earlier, the HTTP integration must be installed before
+HTTP stores can be accessed.
 
 {{< tabs >}}
+
 {{< tab label="Pre-built package" >}}
 
-Pre-compiled packages are available for common platforms and provide the simplest installation method.
+Pre-compiled packages are available for common platforms and provide the
+simplest installation method.
 
 > [!NOTE]+ Logging In
-> Pre-built packages require Plakar authentication. See [Logging in to Plakar](../../guides/logging-in-to-plakar) for details.
+>
+> Pre-built packages require Plakar authentication. See
+> [Logging in to Plakar](../../guides/logging-in-to-plakar) for details.
 
 Install the SFTP package:
 
@@ -42,9 +48,11 @@ $ plakar pkg list
 ```
 
 {{< /tab >}}
+
 {{< tab label="Building from source" >}}
 
-Source builds are useful when pre-built packages are unavailable or when customization is required.
+Source builds are useful when pre-built packages are unavailable or when
+customization is required.
 
 **Prerequisites:**
 
@@ -56,7 +64,8 @@ Build the package:
 $ plakar pkg build http
 ```
 
-A package archive will be created in the current directory (e.g., `http_v1.0.0_darwin_arm64.ptar`).
+A package archive will be created in the current directory (e.g.,
+`http_v1.0.0_darwin_arm64.ptar`).
 
 Install the package:
 
@@ -71,15 +80,18 @@ $ plakar pkg list
 ```
 
 {{< /tab >}}
+
 {{< /tabs >}}
 
-To list, upgrade, or remove the package, see [managing packages guide](../../guides/managing-packages/).
+To list, upgrade, or remove the package, see
+[managing packages guide](../../guides/managing-packages/).
 
 ## Connectors
 
 ### Storage connector
 
-The HTTP storage connector uses an HTTP endpoint as the backend for a Kloset store.
+The HTTP storage connector uses an HTTP endpoint as the backend for a Kloset
+store.
 
 #### Configure
 
