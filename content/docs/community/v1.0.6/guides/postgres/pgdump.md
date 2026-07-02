@@ -2,7 +2,8 @@
 title: "Logical backups with SQL dumps"
 date: "2026-03-19T00:00:00Z"
 weight: 1
-summary: "Back up PostgreSQL databases using pg_dump and restore from these backups."
+summary:
+  "Back up PostgreSQL databases using pg_dump and restore from these backups."
 aliases:
   - /docs/v1.0.6/guides/postgres/pgdump/
   - /docs/v1.0.6/guides/postgresql/pgdump
@@ -10,9 +11,13 @@ aliases:
 
 # Logical backups with SQL dumps
 
-SQL dumps consist of a file containing SQL commands that can be fed back to a PostgreSQL server to recreate a database in the exact state it was in at the time the dump was taken.
+SQL dumps consist of a file containing SQL commands that can be fed back to a
+PostgreSQL server to recreate a database in the exact state it was in at the
+time the dump was taken.
 
-For a deeper understanding of SQL dumps and PostgreSQL backup strategies, we recommend reading the [official PostgreSQL documentation on SQL dumps](https://www.postgresql.org/docs/current/backup-dump.html).
+For a deeper understanding of SQL dumps and PostgreSQL backup strategies, we
+recommend reading the
+[official PostgreSQL documentation on SQL dumps](https://www.postgresql.org/docs/current/backup-dump.html).
 
 ## Prerequisites
 
@@ -42,6 +47,7 @@ $ plakar at /var/backups cat <SNAPSHOT_ID>:dump.sql | psql -X <dbname>
 ```
 
 List snapshots:
+
 ```bash
 $ plakar at /var/backups ls
 ```

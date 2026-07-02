@@ -9,126 +9,159 @@ aliases:
 
 # Installation
 
-Several installation methods are available depending on your operating system. Choose the method that best suits your environment.
+Several installation methods are available depending on your operating system.
+Choose the method that best suits your environment.
 
 ## Installation Methods
 
 {{< tabs >}}
-  {{< tab label="Debian/Ubuntu (APT)" >}}
 
-  For Debian-based operating systems (such as Ubuntu or Debian), the easiest way is to use our APT repository. First, install necessary dependencies and add the repository's GPG key:
+{{< tab label="Debian/Ubuntu (APT)" >}}
 
-  ```bash
-  $ sudo apt-get update
-  $ sudo apt-get install -y curl gnupg2
-  $ curl -fsSL https://plakar.io/dist/keys/community-v1.0.0.gpg | sudo gpg --dearmor -o /usr/share/keyrings/plakar.gpg
-  $ echo "deb [signed-by=/usr/share/keyrings/plakar.gpg] https://plakar.io/dist/repos/deb/ stable main" | sudo tee /etc/apt/sources.list.d/plakar.list
-  ```
+For Debian-based operating systems (such as Ubuntu or Debian), the easiest way
+is to use our APT repository. First, install necessary dependencies and add the
+repository's GPG key:
 
-  Then update the package list and install plakar:
+```bash
+$ sudo apt-get update
+$ sudo apt-get install -y curl gnupg2
+$ curl -fsSL https://plakar.io/dist/keys/community-v1.0.0.gpg | sudo gpg --dearmor -o /usr/share/keyrings/plakar.gpg
+$ echo "deb [signed-by=/usr/share/keyrings/plakar.gpg] https://plakar.io/dist/repos/deb/ stable main" | sudo tee /etc/apt/sources.list.d/plakar.list
+```
 
-  ```bash
-  $ sudo apt-get update
-  $ sudo apt-get install plakar
-  ```
+Then update the package list and install plakar:
 
-  {{< /tab >}}
-  {{< tab label="RPM-based (DNF)" >}}
+```bash
+$ sudo apt-get update
+$ sudo apt-get install plakar
+```
 
-  For operating systems which use RPM-based packages (such as Fedora), the easiest way is to use our DNF repository.
+{{< /tab >}}
 
-  First, set up the repository:
-  ```bash
-  $ cat <<EOF | sudo tee /etc/yum.repos.d/plakar.repo
-  [plakar]
-  name=Plakar Repository
-  baseurl=https://plakar.io/dist/repos/rpm/$(uname -m)/
-  enabled=1
-  gpgcheck=0
-  gpgkey=https://plakar.io/dist/keys/community-v1.0.0.gpg
-  EOF
-  ```
+{{< tab label="RPM-based (DNF)" >}}
 
-  Then install plakar with:
+For operating systems which use RPM-based packages (such as Fedora), the easiest
+way is to use our DNF repository.
 
-  ```bash
-  $ sudo dnf install plakar
-  ```
+First, set up the repository:
 
-  {{< /tab >}}
-  {{< tab label="macOS (Homebrew)" >}}
+```bash
+$ cat <<EOF | sudo tee /etc/yum.repos.d/plakar.repo
+[plakar]
+name=Plakar Repository
+baseurl=https://plakar.io/dist/repos/rpm/$(uname -m)/
+enabled=1
+gpgcheck=0
+gpgkey=https://plakar.io/dist/keys/community-v1.0.0.gpg
+EOF
+```
 
-  The simplest way to install Plakar on macOS is with [Homebrew](https://brew.sh/). Ensure you have Homebrew installed, then add the Plakar tap and install Plakar with:
+Then install plakar with:
 
-  ```bash
-  $ brew install plakarkorp/tap/plakar
-  ```
+```bash
+$ sudo dnf install plakar
+```
 
-  > If you prefer not to use our tap, you can install from the default Homebrew repository instead with `brew install plakar`. Note that the version in the default repository may not always be the latest release.
+{{< /tab >}}
 
-  macOS includes built-in protection against untrusted binaries. **To allow plakar to run, you will need to explicitly approve it in the Privacy & Security settings.**
+{{< tab label="macOS (Homebrew)" >}}
 
-  ![macOS Privacy and Security settings](../images/macos.png)
+The simplest way to install Plakar on macOS is with
+[Homebrew](https://brew.sh/). Ensure you have Homebrew installed, then add the
+Plakar tap and install Plakar with:
 
-  {{< /tab >}}
-  {{< tab label="Windows" >}}
+```bash
+$ brew install plakarkorp/tap/plakar
+```
 
-  The simplest way to install Plakar on Windows is by downloading the pre-built package from the [Download page](/download).
+> If you prefer not to use our tap, you can install from the default Homebrew
+> repository instead with `brew install plakar`. Note that the version in the
+> default repository may not always be the latest release.
 
-  The downloaded package is simply an archive containing the executable. Copy this to anywhere on your system PATH, or run it directly from a shell where it is installed.
+macOS includes built-in protection against untrusted binaries. **To allow plakar
+to run, you will need to explicitly approve it in the Privacy & Security
+settings.**
 
-  ![Windows running plakar](../images/windows.png)
+![macOS Privacy and Security settings](../images/macos.png)
 
-  {{< /tab >}}
-  {{< tab label="Go Install" >}}
+{{< /tab >}}
 
-  To install using the Go toolchain, use `go install` with the version you want to install, or `latest`:
+{{< tab label="Windows" >}}
 
-  ```bash
-  $ go install "github.com/PlakarKorp/plakar@v1.0.6"
-  ```
+The simplest way to install Plakar on Windows is by downloading the pre-built
+package from the [Download page](/download).
 
-  This will install the binary into your `$GOPATH/bin` directory, which you may need to add to your `$PATH` if it is not already there.
+The downloaded package is simply an archive containing the executable. Copy this
+to anywhere on your system PATH, or run it directly from a shell where it is
+installed.
 
-  {{< /tab >}}
-  {{< tab label="Others" >}}
+![Windows running plakar](../images/windows.png)
 
-  ### Arch Linux
+{{< /tab >}}
 
-  Plakar is available on the Arch User Repository (AUR). If you use an AUR helper such as `yay`, you can install it with:
+{{< tab label="Go Install" >}}
 
-  ```bash
-  $ yay -S plakar
-  ```
+To install using the Go toolchain, use `go install` with the version you want to
+install, or `latest`:
 
-  ### Building from Source
+```bash
+$ go install "github.com/PlakarKorp/plakar@v1.0.6"
+```
 
-  You can build Plakar from source. You will need:
-  - [Go (Golang)](https://go.dev/doc/install)
-  - `make` (available by default on most Linux distributions; on macOS, install the Xcode command line tools with `xcode-select --install`; on Windows, use [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) or a tool like [GnuWin32 Make](https://gnuwin32.sourceforge.net/packages/make.htm))
+This will install the binary into your `$GOPATH/bin` directory, which you may
+need to add to your `$PATH` if it is not already there.
 
-  Clone the repository and run `make`:
-  ```bash
-  $ git clone https://github.com/PlakarKorp/plakar.git
-  $ cd plakar
-  $ make
-  ```
+{{< /tab >}}
 
-  This produces a `plakar` binary in the current directory. To build a specific release version, check out the corresponding tag before running `make`:
+{{< tab label="Others" >}}
 
-  ```bash
-  $ git fetch --tags
-  $ git checkout tags/v1.0.6
-  $ make
-  ```
+### Arch Linux
 
-  ### Other Platforms
+Plakar is available on the Arch User Repository (AUR). If you use an AUR helper
+such as `yay`, you can install it with:
 
-  For other supported operating systems, or for an alternative to the methods mentioned above, it is possible to download pre-built binaries for different platforms and architectures from the [Download page](/download).
+```bash
+$ yay -S plakar
+```
 
-  These are in standard formats for the relevant platforms, so consult OS-specific documentation for how to install them.
+### Building from Source
 
-  {{< /tab >}}
+You can build Plakar from source. You will need:
+
+- [Go (Golang)](https://go.dev/doc/install)
+- `make` (available by default on most Linux distributions; on macOS, install
+  the Xcode command line tools with `xcode-select --install`; on Windows, use
+  [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) or a tool like
+  [GnuWin32 Make](https://gnuwin32.sourceforge.net/packages/make.htm))
+
+Clone the repository and run `make`:
+
+```bash
+$ git clone https://github.com/PlakarKorp/plakar.git
+$ cd plakar
+$ make
+```
+
+This produces a `plakar` binary in the current directory. To build a specific
+release version, check out the corresponding tag before running `make`:
+
+```bash
+$ git fetch --tags
+$ git checkout tags/v1.0.6
+$ make
+```
+
+### Other Platforms
+
+For other supported operating systems, or for an alternative to the methods
+mentioned above, it is possible to download pre-built binaries for different
+platforms and architectures from the [Download page](/download).
+
+These are in standard formats for the relevant platforms, so consult OS-specific
+documentation for how to install them.
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
 ## Verifying the Installation
@@ -143,16 +176,23 @@ This should return the expected version number, for example `plakar/v1.0.6`.
 
 ## Downloading Specific Versions
 
-All release versions of **Plakar** are available directly from GitHub on the project's [release page](/download).
+All release versions of **Plakar** are available directly from GitHub on the
+project's [release page](/download).
 
-For each release, check under the "Assets" section for a list of pre-built packages. They follow the naming convention `plakar_<version>_<os>_<arch>.<format>`.
+For each release, check under the "Assets" section for a list of pre-built
+packages. They follow the naming convention
+`plakar_<version>_<os>_<arch>.<format>`.
 
 ## Installation Troubleshooting
 
-If you encounter any issues during installation, or notice that this documentation is out of date:
+If you encounter any issues during installation, or notice that this
+documentation is out of date:
+
 - Ensure you are following the instructions for the correct version of plakar.
-- Open an issue on the [GitHub issue tracker](https://github.com/PlakarKorp/plakar/issues).
+- Open an issue on the
+  [GitHub issue tracker](https://github.com/PlakarKorp/plakar/issues).
 
 ## Next Steps: Getting Started
 
-Now that you have plakar installed, we recommend proceeding to the [Quickstart guide](../first-backup) to set up your first backup.
+Now that you have plakar installed, we recommend proceeding to the
+[Quickstart guide](../first-backup) to set up your first backup.

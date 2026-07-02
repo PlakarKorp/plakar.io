@@ -9,6 +9,7 @@ aliases:
 
 # Operations
 
-Operations cover backup scheduling and SLA policy management in Plakar Control Plane.
+Operations cover backup scheduling and SLA policy management in Plakar Control
+Plane.
 
 {{< children description="true" >}}

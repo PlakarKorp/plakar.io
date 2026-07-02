@@ -47,7 +47,9 @@ To interact with Google Drive, you need to install the Rclone Plakar package.
 Pre-compiled packages are available for common platforms and provide the
 simplest installation method.
 
-> [!NOTE]+ Logging In Pre-built packages require Plakar authentication. See
+> [!NOTE]+ Logging In
+>
+> Pre-built packages require Plakar authentication. See
 > [Logging in to Plakar](../../guides/logging-in-to-plakar) for details.
 
 Install the Rclone package:

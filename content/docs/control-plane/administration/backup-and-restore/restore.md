@@ -65,13 +65,15 @@ current directory.
 
 ## Step 5 — Upload the archive to the appliance
 
-Pipe the archive directly into the `orkestrator` container using the `$APPLIANCE_ADDRESS` set in step 2:
+Pipe the archive directly into the `orkestrator` container using the
+`$APPLIANCE_ADDRESS` set in step 2:
 
 ```bash
 cat pcp.tar.gz | ssh plakar@$APPLIANCE_ADDRESS sudo ctr -n services.linuxkit task exec --exec-id upload-pcp orkestrator sh -c '"mkdir -p /data/tmp-restore-pcp && cat > /data/tmp-restore-pcp/pcp.tar.gz"'
 ```
 
-This places the archive at `/data/tmp-restore-pcp/pcp.tar.gz` inside the container.
+This places the archive at `/data/tmp-restore-pcp/pcp.tar.gz` inside the
+container.
 
 ## Step 6 — Run the restore commands
 
@@ -123,15 +125,20 @@ rm -rf /data/tmp-restore-pcp
 
 ## Step 7 — Reboot
 
-Reboot the appliance from your provider's management console. For example on AWS, select the instance and click **Reboot**.
+Reboot the appliance from your provider's management console. For example on
+AWS, select the instance and click **Reboot**.
 
 ## Post-restore: verify provider-side configuration
 
-Once the appliance is back online, the instance is fully restored. However, depending on your deployment environment, you may also need to verify that the new instance has the same provider-side configuration as the original.
+Once the appliance is back online, the instance is fully restored. However,
+depending on your deployment environment, you may also need to verify that the
+new instance has the same provider-side configuration as the original.
 
 For example, on AWS, ensure that the new EC2 instance has:
+
 - The same IAM role and permissions attached
 - The same security group rules and network restrictions
 - The same VPC and subnet placement if applicable
 
-Refer to the [installation guide](../../../intro/installation) for your platform for details on the required provider-side configuration.
+Refer to the [installation guide](../../../intro/installation) for your platform
+for details on the required provider-side configuration.

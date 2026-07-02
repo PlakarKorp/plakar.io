@@ -2,7 +2,9 @@
 title: "Plakar Ptar"
 date: "2026-03-19T00:00:00Z"
 weight: 1
-summary: "Command reference for creating and accessing Ptar archives: syntax, options, and examples for plakar ptar and related commands."
+summary:
+  "Command reference for creating and accessing Ptar archives: syntax, options,
+  and examples for plakar ptar and related commands."
 aliases:
   - /docs/v1.0.6/references/ptar/
 ---
@@ -19,28 +21,27 @@ $ plakar ptar [options] -o output.ptar [sources]
 
 ### Required Arguments
 
-| Argument | Description |
-|----------|-------------|
-| `-o path` | Output file path for the `.ptar` archive |
-| sources | At least one: `-k location` for Kloset Store or filesystem path |
+| Argument  | Description                                                     |
+| --------- | --------------------------------------------------------------- |
+| `-o path` | Output file path for the `.ptar` archive                        |
+| sources   | At least one: `-k location` for Kloset Store or filesystem path |
 
 ### Options
 
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| `-k location` | string | - | Include a Kloset Store (path or alias) |
-| `-plaintext` | flag | false | Disable encryption |
-| `-overwrite` | flag | false | Allow overwriting existing files |
-
+| Option        | Type   | Default | Description                            |
+| ------------- | ------ | ------- | -------------------------------------- |
+| `-k location` | string | -       | Include a Kloset Store (path or alias) |
+| `-plaintext`  | flag   | false   | Disable encryption                     |
+| `-overwrite`  | flag   | false   | Allow overwriting existing files       |
 
 ### Source Types
 
-| Source Type | Syntax | Example |
-|-------------|--------|---------|
-| Filesystem path | `/path` or `./path` | `/home/user/Documents` |
-| Kloset Store (path) | `-k /path` | `-k $HOME/backups` |
-| Kloset Store (alias) | `-k @alias` | `-k @s3-backups` |
-| Remote protocols | Plugin-dependent | `sftp://`, `s3://`, `ipfs://` |
+| Source Type          | Syntax              | Example                       |
+| -------------------- | ------------------- | ----------------------------- |
+| Filesystem path      | `/path` or `./path` | `/home/user/Documents`        |
+| Kloset Store (path)  | `-k /path`          | `-k $HOME/backups`            |
+| Kloset Store (alias) | `-k @alias`         | `-k @s3-backups`              |
+| Remote protocols     | Plugin-dependent    | `sftp://`, `s3://`, `ipfs://` |
 
 ### Examples
 
@@ -69,15 +70,15 @@ $ plakar ptar -overwrite -o existing.ptar -k $HOME/backups
 
 ### Environment Variables
 
-| Variable | Description |
-|----------|-------------|
+| Variable            | Description                                                   |
+| ------------------- | ------------------------------------------------------------- |
 | `PLAKAR_PASSPHRASE` | Passphrase for archive encryption (avoids interactive prompt) |
 
 ### Exit Codes
 
-| Code | Meaning |
-|------|---------|
-| 0    | Success |
+| Code | Meaning                                                        |
+| ---- | -------------------------------------------------------------- |
+| 0    | Success                                                        |
 | 1    | Error (file exists without `-overwrite`, invalid source, etc.) |
 
 ## plakar at ... (Ptar Operations)
@@ -92,12 +93,12 @@ $ plakar at archive.ptar <command>
 
 ### Supported Commands
 
-| Command | Description |
-|---------|-------------|
-| `ls [snapshot-id]` | List snapshots or files in a snapshot |
-| `check` | Verify cryptographic integrity |
-| `restore -to destination [snapshot-id]` | Restore snapshot contents |
-| `info` | Display archive metadata |
+| Command                                 | Description                           |
+| --------------------------------------- | ------------------------------------- |
+| `ls [snapshot-id]`                      | List snapshots or files in a snapshot |
+| `check`                                 | Verify cryptographic integrity        |
+| `restore -to destination [snapshot-id]` | Restore snapshot contents             |
+| `info`                                  | Display archive metadata              |
 
 ## plakar at ... ls
 
@@ -111,9 +112,9 @@ $ plakar at archive.ptar ls [snapshot-id]
 
 ### Arguments
 
-| Argument | Required | Description |
-|----------|----------|-------------|
-| snapshot-id | No | If omitted, lists all snapshots; if provided, lists files in that snapshot |
+| Argument    | Required | Description                                                                |
+| ----------- | -------- | -------------------------------------------------------------------------- |
+| snapshot-id | No       | If omitted, lists all snapshots; if provided, lists files in that snapshot |
 
 ### Examples
 
@@ -173,10 +174,10 @@ $ plakar at archive.ptar restore -to destination [snapshot-id]
 
 ### Arguments
 
-| Argument | Required | Description |
-|----------|----------|-------------|
-| `-to path` | Yes | Destination directory or Kloset Store alias (e.g., `@alias`) |
-| snapshot-id | No | Snapshot to restore; defaults to first snapshot if omitted |
+| Argument    | Required | Description                                                  |
+| ----------- | -------- | ------------------------------------------------------------ |
+| `-to path`  | Yes      | Destination directory or Kloset Store alias (e.g., `@alias`) |
+| snapshot-id | No       | Snapshot to restore; defaults to first snapshot if omitted   |
 
 ### Examples
 
@@ -245,16 +246,18 @@ $ plakar ptar -o backup.ptar -k $HOME/backups
 
 ## File Format Properties
 
-| Property | Value |
-|----------|-------|
-| Read-only | Yes (archives cannot be modified after creation) |
-| Self-contained | Yes (includes all metadata and data) |
-| Portable | Yes (single file can be moved/copied freely) |
-| Encrypted by default | Yes (unless `-plaintext` specified) |
-| Tamper-evident | Yes (cryptographic verification via `check`) |
+| Property             | Value                                            |
+| -------------------- | ------------------------------------------------ |
+| Read-only            | Yes (archives cannot be modified after creation) |
+| Self-contained       | Yes (includes all metadata and data)             |
+| Portable             | Yes (single file can be moved/copied freely)     |
+| Encrypted by default | Yes (unless `-plaintext` specified)              |
+| Tamper-evident       | Yes (cryptographic verification via `check`)     |
 
 ## Further Reading
-For a deeper dive into the philosophy and technical design of the format, check out the following posts on the Plakar blog:
+
+For a deeper dive into the philosophy and technical design of the format, check
+out the following posts on the Plakar blog:
 
 - [It doesn't make sense to wrap modern data in a 1979 format, introducing .ptar](https://www.plakar.io/posts/2025-06-27/it-doesnt-make-sense-to-wrap-modern-data-in-a-1979-format-introducing-.ptar/)
 - [Technical deep dive into .ptar: replacing .tgz for petabyte-scale S3 archives](https://www.plakar.io/posts/2025-06-30/technical-deep-dive-into-.ptar-replacing-.tgz-for-petabyte-scale-s3-archives/)

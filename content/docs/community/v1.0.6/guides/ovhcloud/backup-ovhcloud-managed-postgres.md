@@ -2,17 +2,22 @@
 title: "Backing Up an OVHcloud Managed PostgreSQL Database"
 date: "2026-03-19T00:00:00Z"
 weight: 2
-summary: "Backing up an OVHcloud Managed PostgreSQL database to Object Storage using pg_dump and Plakar."
+summary:
+  "Backing up an OVHcloud Managed PostgreSQL database to Object Storage using
+  pg_dump and Plakar."
 aliases:
   - /docs/v1.0.6/guides/ovhcloud/backup-ovhcloud-managed-postgres/
 ---
 
 # Backing Up an OVHcloud Managed PostgreSQL Database
 
-This guide backs up an OVHcloud Managed PostgreSQL database using `pg_dump` streamed through Plakar to OVHcloud Object Storage. The result is an encrypted, deduplicated snapshot stored separately from your database infrastructure.
+This guide backs up an OVHcloud Managed PostgreSQL database using `pg_dump`
+streamed through Plakar to OVHcloud Object Storage. The result is an encrypted,
+deduplicated snapshot stored separately from your database infrastructure.
 
 ## Architecture
 
+<!-- prettier-ignore-start -->
 {{< mermaid >}}
 flowchart TB
 
@@ -34,6 +39,7 @@ PGDump -->|stdin| Plakar
 Plakar -->|Snapshots| S3
 
 {{< /mermaid >}}
+<!-- prettier-ignore-end -->
 
 ## Prerequisites
 
@@ -50,17 +56,18 @@ Plakar -->|Snapshots| S3
 2. Go to **Public Cloud** → **Databases & Analytics** → **Databases**
 3. Click **Create a service**
 4. Configure:
-    - Database name
-    - Engine: PostgreSQL
-    - Version: 14-18 (OVHcloud supported)
-    - Instance: Select vCores, memory, storage
-    - Network: Public network
+   - Database name
+   - Engine: PostgreSQL
+   - Version: 14-18 (OVHcloud supported)
+   - Instance: Select vCores, memory, storage
+   - Network: Public network
 5. Click **Order**
 
 ![OVHcloud Databases Page](../images/ovhcloud-databases.png)
 ![Create PostgreSQL database](../images/create-pg-database-2.png)
 
 ### Create backup user
+
 1. Open PostgreSQL database in dashboard
 2. Go to **Users** tab
 3. Click **Add user**
@@ -113,7 +120,9 @@ $ plakar pkg add s3
 ```
 
 ### Create Object Storage bucket
-If not already configured, follow: [OVHcloud Object Storage setup](../ovhcloud-as-a-dedicated-backup-server/#configure-object-storage)
+
+If not already configured, follow:
+[OVHcloud Object Storage setup](../ovhcloud-as-a-dedicated-backup-server/#configure-object-storage)
 
 ### Add Kloset store
 
@@ -126,11 +135,13 @@ $ plakar store add ovhcloud-s3-postgres \
 ```
 
 Replace:
+
 - `<S3_ENDPOINT>`: e.g., `s3.eu-west-par.io.cloud.ovh.net`
 - `<BUCKET_NAME>`: e.g., `plakar-backups`
 - `<ACCESS_KEY>` and `<SECRET_KEY>`: From OVHcloud Control Panel
 
 ### Initialize store
+
 ```bash
 $ plakar at "@ovhcloud-s3-postgres" create
 ```
@@ -180,17 +191,21 @@ Add:
 ## Troubleshooting
 
 **Connection refused**
+
 - Verify `PGHOST`, `PGPORT`, `PGUSER`, `PGPASSWORD` environment variables
 - Check network access to managed database
 
 **Authentication failed**
+
 - Confirm backup user has `replication` role
 - Verify password in connection string
 
 **S3 upload errors**
+
 - Check S3 credentials: `plakar store show ovhcloud-s3-postgres`
 - Verify endpoint URL and bucket name
 - Confirm bucket exists in OVHcloud dashboard
 
 **pg_dump not found**
+
 - Install PostgreSQL client: `sudo apt install postgresql-client`

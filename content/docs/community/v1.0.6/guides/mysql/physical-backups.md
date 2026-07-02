@@ -2,16 +2,21 @@
 title: "Physical backups"
 date: "2026-03-18T00:00:00Z"
 weight: 2
-summary: "Perform physical backups of MySQL databases using file copy or Percona XtraBackup with Plakar."
+summary:
+  "Perform physical backups of MySQL databases using file copy or Percona
+  XtraBackup with Plakar."
 aliases:
   - /docs/v1.0.6/guides/mysql/physical-backups/
 ---
 
 # Physical backups
 
-Physical backups copy raw database directories and files directly from the MySQL data directory. This approach is faster than logical backups and produces more compact output, but requires MySQL to be stopped or locked during backup.
+Physical backups copy raw database directories and files directly from the MySQL
+data directory. This approach is faster than logical backups and produces more
+compact output, but requires MySQL to be stopped or locked during backup.
 
-For a deeper understanding of physical backups and backup methods, refer to the [official MySQL documentation on backup methods](https://dev.mysql.com/doc/refman/8.0/en/backup-methods.html).
+For a deeper understanding of physical backups and backup methods, refer to the
+[official MySQL documentation on backup methods](https://dev.mysql.com/doc/refman/8.0/en/backup-methods.html).
 
 ## Prerequisites
 
@@ -20,7 +25,9 @@ For a deeper understanding of physical backups and backup methods, refer to the 
 - MySQL server stopped or ability to apply read locks
 
 > [!WARNING]+ Data Consistency
-> Copying the data directory while MySQL is running without proper locking produces inconsistent backups.
+>
+> Copying the data directory while MySQL is running without proper locking
+> produces inconsistent backups.
 
 ## Back Up with MySQL Stopped
 
@@ -33,7 +40,9 @@ $ sudo systemctl start mysql.service
 ```
 
 > [!NOTE]+ Data Directory Location
-> Check `datadir` in `/etc/mysql/my.cnf` or `/etc/my.cnf` if your data directory differs.
+>
+> Check `datadir` in `/etc/mysql/my.cnf` or `/etc/my.cnf` if your data directory
+> differs.
 
 ## Back Up with Read Lock
 
@@ -48,7 +57,9 @@ EOF
 ```
 
 > [!WARNING]+ Write Operations Blocked
-> All write operations are blocked during backup. Lock releases automatically if connection drops.
+>
+> All write operations are blocked during backup. Lock releases automatically if
+> connection drops.
 
 ## Back Up Specific Databases
 
@@ -65,14 +76,17 @@ Replace `<dbname>` with the target database name.
 ## Restore Physical Backup
 
 > [!WARNING]+ Before Restoring
+>
 > Stop MySQL and back up or move the current data directory.
 
 List snapshots:
+
 ```bash
 $ plakar at /var/backups ls
 ```
 
 Restore:
+
 ```bash
 $ sudo systemctl stop mysql.service
 $ sudo mv /var/lib/mysql /var/lib/mysql.old
@@ -106,6 +120,7 @@ $ docker run --rm -ti --name mysql \
 ```
 
 Connect:
+
 ```bash
 $ docker exec -ti mysql mysql -u root -p -e 'SHOW DATABASES;'
 ```
@@ -114,12 +129,15 @@ $ docker exec -ti mysql mysql -u root -p -e 'SHOW DATABASES;'
 
 ### Physical vs Logical Backups
 
-- **Logical backups** (`mysqldump`): Machine-independent, portable across MySQL versions and architectures
-- **Physical backups**: Faster backup/restore, more compact, but require identical hardware and MySQL version
+- **Logical backups** (`mysqldump`): Machine-independent, portable across MySQL
+  versions and architectures
+- **Physical backups**: Faster backup/restore, more compact, but require
+  identical hardware and MySQL version
 
 ### InnoDB Consistency
 
 Ensure backups include all InnoDB files:
+
 - `ibdata*`
 - `ib_logfile*` (or `#ib_redo*` in MySQL 8.0.30+)
 - Individual `.ibd` files
@@ -128,7 +146,8 @@ InnoDB performs automatic crash recovery on startup if backup was consistent.
 
 ### MEMORY Tables
 
-MEMORY tables are not stored on disk and will be empty after physical backup restoration. Use `mysqldump` for MEMORY tables.
+MEMORY tables are not stored on disk and will be empty after physical backup
+restoration. Use `mysqldump` for MEMORY tables.
 
 ## References
 

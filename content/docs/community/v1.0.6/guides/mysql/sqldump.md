@@ -2,16 +2,21 @@
 title: "Logical backups with SQL dumps"
 date: "2026-03-18T00:00:00Z"
 weight: 1
-summary: "Back up MySQL databases using mysqldump and restore from these backups."
+summary:
+  "Back up MySQL databases using mysqldump and restore from these backups."
 aliases:
   - /docs/v1.0.6/guides/mysql/sqldump/
 ---
 
 # Logical backups with SQL dumps
 
-Logical backups export database structure (`CREATE DATABASE`, `CREATE TABLE`) and content (`INSERT` statements) using `mysqldump`. These backups are machine-independent and portable across MySQL versions and architectures.
+Logical backups export database structure (`CREATE DATABASE`, `CREATE TABLE`)
+and content (`INSERT` statements) using `mysqldump`. These backups are
+machine-independent and portable across MySQL versions and architectures.
 
-For a deeper understanding of logical backups and MySQL backup strategies, we recommend reading the [official MySQL documentation on mysqldump](https://dev.mysql.com/doc/refman/8.0/en/mysqldump.html).
+For a deeper understanding of logical backups and MySQL backup strategies, we
+recommend reading the
+[official MySQL documentation on mysqldump](https://dev.mysql.com/doc/refman/8.0/en/mysqldump.html).
 
 ## Prerequisites
 
@@ -33,11 +38,13 @@ $ export MYSQL_PWD=xxxx
 ## Back Up Single Database
 
 ### Basic backup
+
 ```bash
 $ mysqldump <dbname> | plakar at /var/backups backup stdin:dump.sql
 ```
 
 ### InnoDB with all objects (recommended)
+
 ```bash
 $ mysqldump --single-transaction \
   --routines \
@@ -47,6 +54,7 @@ $ mysqldump --single-transaction \
 ```
 
 Options:
+
 - `--single-transaction`: Consistent snapshot without locking tables (InnoDB)
 - `--routines`: Include stored procedures and functions
 - `--triggers`: Include table triggers
@@ -64,21 +72,25 @@ $ mysqldump --all-databases \
   plakar at /var/backups backup stdin:all_databases.sql
 ```
 
-The `--set-gtid-purged=OFF` option improves portability across MySQL configurations.
+The `--set-gtid-purged=OFF` option improves portability across MySQL
+configurations.
 
 ## Restore Database
 
 ### Single database
+
 ```bash
 $ plakar at /var/backups cat <SNAPSHOT_ID>:dump.sql | mysql <dbname>
 ```
 
 ### All databases
+
 ```bash
 $ plakar at /var/backups cat <SNAPSHOT_ID>:all_databases.sql | mysql
 ```
 
 List snapshots:
+
 ```bash
 $ plakar at /var/backups ls
 ```
@@ -97,14 +109,18 @@ This blocks all write operations during the dump.
 ## Best Practices
 
 ### Credentials
+
 - Use environment variables or `~/.my.cnf`
-- Never pass passwords with `-p<password>` on command line (exposes in process listings)
+- Never pass passwords with `-p<password>` on command line (exposes in process
+  listings)
 
 ### Compression
+
 - Do not compress dumps manually
 - Plakar automatically deduplicates and compresses data
 - Pre-compressed dumps prevent effective deduplication
 
 ### Storage Engines
+
 - Use `--single-transaction` for InnoDB (default since MySQL 5.5)
 - Use `--lock-all-tables` for mixed InnoDB/MyISAM environments

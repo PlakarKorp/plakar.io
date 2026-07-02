@@ -2,21 +2,25 @@
 title: "Proxmox"
 date: "2026-03-30T00:00:00Z"
 weight: 12
-summary: "Back up and restore Proxmox virtual machines and containers with Plakar."
+summary:
+  "Back up and restore Proxmox virtual machines and containers with Plakar."
 aliases:
   - /docs/main/integrations/proxmox/
 ---
 
 # Proxmox
 
-The Proxmox integration wraps Proxmox's native `vzdump` tool to back up virtual machines and containers into a Kloset store. Plakar handles encryption, deduplication, and snapshot management on top of the archives that `vzdump` produces.
+The Proxmox integration wraps Proxmox's native `vzdump` tool to back up virtual
+machines and containers into a Kloset store. Plakar handles encryption,
+deduplication, and snapshot management on top of the archives that `vzdump`
+produces.
 
 The integration provides two connectors:
 
-| Connector type               | Description |
-| ---------------------------- | ----------- |
+| Connector type            | Description                                                         |
+| ------------------------- | ------------------------------------------------------------------- |
 | **Source connector**      | Back up VMs and containers from a Proxmox node into a Kloset store. |
-| **Destination connector** | Restore snapshots from a Kloset store back to a Proxmox node. |
+| **Destination connector** | Restore snapshots from a Kloset store back to a Proxmox node.       |
 
 **Requirements**
 
@@ -36,56 +40,67 @@ The integration provides two connectors:
 The Proxmox integration is distributed as a Plakar package.
 
 {{< tabs >}}
-  {{< tab label="Pre-built package" >}}
-  
-  Pre-compiled packages are available for common platforms and provide the simplest installation method.
-  
-  > [!NOTE]+ Logging In
-  > Pre-built packages require Plakar authentication. See [Logging in to Plakar](../../guides/logging-in-to-plakar) for details.
-  
-  Install the Proxmox package:
-  
-  ```bash
-  $ plakar pkg add proxmox
-  ```
 
-  Verify installation:
-  
-  ```bash
-  $ plakar pkg list
-  ```
-  
-  {{< /tab >}}
-  {{< tab label="Building from source" >}}
-  
-  Source builds are useful when pre-built packages are unavailable or when customization is required.
+{{< tab label="Pre-built package" >}}
 
-  **Prerequisites:**
-  - Go toolchain compatible with your **Plakar** version
-  
-  Build the package:
-  
-  ```bash
-  $ plakar pkg build proxmox
-  ```
-  
-  A package archive will be created in the current directory (e.g., `proxmox_v1.1.0-rc.1_darwin_arm64.ptar`).
-  
-  Install the package:
-  
-  ```bash
-  $ plakar pkg add ./proxmox_v1.0.0_darwin_arm64.ptar
-  ```
-  
-  Verify installation:
-  ```bash
-  $ plakar pkg list
-  ```
-  
-  {{< /tab >}}
+Pre-compiled packages are available for common platforms and provide the
+simplest installation method.
+
+> [!NOTE]+ Logging In
+>
+> Pre-built packages require Plakar authentication. See
+> [Logging in to Plakar](../../guides/logging-in-to-plakar) for details.
+
+Install the Proxmox package:
+
+```bash
+$ plakar pkg add proxmox
+```
+
+Verify installation:
+
+```bash
+$ plakar pkg list
+```
+
+{{< /tab >}}
+
+{{< tab label="Building from source" >}}
+
+Source builds are useful when pre-built packages are unavailable or when
+customization is required.
+
+**Prerequisites:**
+
+- Go toolchain compatible with your **Plakar** version
+
+Build the package:
+
+```bash
+$ plakar pkg build proxmox
+```
+
+A package archive will be created in the current directory (e.g.,
+`proxmox_v1.1.0-rc.1_darwin_arm64.ptar`).
+
+Install the package:
+
+```bash
+$ plakar pkg add ./proxmox_v1.0.0_darwin_arm64.ptar
+```
+
+Verify installation:
+
+```bash
+$ plakar pkg list
+```
+
+{{< /tab >}}
+
 {{< /tabs >}}
 
-To list, upgrade, or remove the package, see [managing packages guide](../../guides/managing-packages/).
+To list, upgrade, or remove the package, see
+[managing packages guide](../../guides/managing-packages/).
 
 ## Operating modes
 
@@ -99,7 +114,8 @@ Proxmox node
  └ plakar
 ```
 
-**Remote mode** — Plakar runs on a separate machine and connects to the Proxmox node over SSH:
+**Remote mode** — Plakar runs on a separate machine and connects to the Proxmox
+node over SSH:
 
 ```
 Backup server
@@ -110,12 +126,17 @@ Proxmox node
      └ vzdump
 ```
 
-Remote mode allows a single Plakar instance to back up multiple hypervisors. The operating mode is set via the `mode` option when configuring a source or destination.
+Remote mode allows a single Plakar instance to back up multiple hypervisors. The
+operating mode is set via the `mode` option when configuring a source or
+destination.
 
 ## Source connector
 
-The source connector invokes `vzdump` on the Proxmox node, collects the resulting archive, and ingests it into a Kloset store with encryption and deduplication.
+The source connector invokes `vzdump` on the Proxmox node, collects the
+resulting archive, and ingests it into a Kloset store with encryption and
+deduplication.
 
+<!-- prettier-ignore-start -->
 {{< mermaid >}}
 flowchart LR
 
@@ -133,6 +154,7 @@ Store["Kloset Store"]
 
 Vzdump --> Via --> Plakar --> Transform --> Store
 {{< /mermaid >}}
+<!-- prettier-ignore-end -->
 
 ### Configure
 
@@ -168,18 +190,21 @@ $ plakar backup -o all @myProxmox
 
 ### Options
 
-| Option                | Required | Description |
-| --------------------- | -------- | ----------- |
-| `location`            | Yes      | Proxmox node address. Format: `proxmox+backup://<host>` |
-| `mode`                | Yes      | Operating mode. `local` or `remote`. |
-| `conn_username`       | Yes (remote) | SSH username on the Proxmox node. |
-| `conn_identity_file`  | No       | Path to the SSH private key. Required when `conn_method=identity`. |
-| `conn_method`         | No       | Authentication method. `identity` for key-based auth. |
+| Option               | Required     | Description                                                        |
+| -------------------- | ------------ | ------------------------------------------------------------------ |
+| `location`           | Yes          | Proxmox node address. Format: `proxmox+backup://<host>`            |
+| `mode`               | Yes          | Operating mode. `local` or `remote`.                               |
+| `conn_username`      | Yes (remote) | SSH username on the Proxmox node.                                  |
+| `conn_identity_file` | No           | Path to the SSH private key. Required when `conn_method=identity`. |
+| `conn_method`        | No           | Authentication method. `identity` for key-based auth.              |
 
 ## Destination connector
 
-The destination connector uploads a `vzdump` archive from a Plakar snapshot to a Proxmox node and restores it using native Proxmox tools: `qmrestore` for virtual machines and `pct restore` for containers.
+The destination connector uploads a `vzdump` archive from a Plakar snapshot to a
+Proxmox node and restores it using native Proxmox tools: `qmrestore` for virtual
+machines and `pct restore` for containers.
 
+<!-- prettier-ignore-start -->
 {{< mermaid >}}
 flowchart LR
 
@@ -197,6 +222,7 @@ end
 
 Store --> Plakar --> Transform --> Via --> Restore
 {{< /mermaid >}}
+<!-- prettier-ignore-end -->
 
 ### Configure
 
@@ -227,13 +253,13 @@ $ plakar restore -to @myProxmox <snapshot_id>:/backup/qemu/101_myvm
 
 ### Options
 
-| Option                | Required | Description |
-| --------------------- | -------- | ----------- |
-| `location`            | Yes      | Proxmox node address. Format: `proxmox+backup://<host>` |
-| `mode`                | Yes      | Operating mode. `local` or `remote`. |
-| `conn_username`       | Yes (remote) | SSH username on the Proxmox node. |
-| `conn_identity_file`  | No       | Path to the SSH private key. Required when `conn_method=identity`. |
-| `conn_method`         | No       | Authentication method. `identity` for key-based auth. |
+| Option               | Required     | Description                                                        |
+| -------------------- | ------------ | ------------------------------------------------------------------ |
+| `location`           | Yes          | Proxmox node address. Format: `proxmox+backup://<host>`            |
+| `mode`               | Yes          | Operating mode. `local` or `remote`.                               |
+| `conn_username`      | Yes (remote) | SSH username on the Proxmox node.                                  |
+| `conn_identity_file` | No           | Path to the SSH private key. Required when `conn_method=identity`. |
+| `conn_method`        | No           | Authentication method. `identity` for key-based auth.              |
 
 ## Limitations and scope
 
@@ -244,7 +270,11 @@ $ plakar restore -to @myProxmox <snapshot_id>:/backup/qemu/101_myvm
 
 **Snapshot consistency**
 
-Plakar relies on `vzdump` for snapshot consistency. For live machines, `vzdump` uses QEMU guest agent or suspend-resume to produce a consistent backup. Refer to the [Proxmox vzdump documentation](https://pve.proxmox.com/wiki/Backup_and_Restore) for details on consistency modes.
+Plakar relies on `vzdump` for snapshot consistency. For live machines, `vzdump`
+uses QEMU guest agent or suspend-resume to produce a consistent backup. Refer to
+the
+[Proxmox vzdump documentation](https://pve.proxmox.com/wiki/Backup_and_Restore)
+for details on consistency modes.
 
 ## See also
 

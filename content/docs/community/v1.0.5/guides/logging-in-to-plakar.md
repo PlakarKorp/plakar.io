@@ -2,7 +2,9 @@
 title: "Logging In to Plakar"
 date: "2026-03-18T00:00:00Z"
 weight: 7
-summary: "Log in to unlock optional features like pre-built package installation and alerting."
+summary:
+  "Log in to unlock optional features like pre-built package installation and
+  alerting."
 aliases:
   - /docs/v1.0.5/guides/logging-in-to-plakar/
   - /docs/v1.0.5/guides/what-is-plakar-login
@@ -10,7 +12,11 @@ aliases:
 
 # Logging In to Plakar
 
-Plakar works without an account by default. Logging in is optional but it unlocks additional features such as installing pre-built packages hosted on Plakar's servers (so you don't have to build them from source) and alerting service which can notify you by email on important issues like when a backup fail.
+Plakar works without an account by default. Logging in is optional but it
+unlocks additional features such as installing pre-built packages hosted on
+Plakar's servers (so you don't have to build them from source) and alerting
+service which can notify you by email on important issues like when a backup
+fail.
 
 ## Logging In
 
@@ -28,7 +34,8 @@ $ plakar login -email myemail@domain.com
 
 ## Enabling Alerting
 
-After logging in, enable alerting to send backup metadata to Plakar's servers for reporting:
+After logging in, enable alerting to send backup metadata to Plakar's servers
+for reporting:
 
 ```bash
 $ plakar service enable alerting
@@ -40,11 +47,14 @@ Enable email notifications:
 $ plakar service set alerting report.email=true
 ```
 
-Alerting sends non-sensitive metadata (backup status, timestamps, sizes) to power the reporting dashboard and email notifications. Your backup data never leaves your system.
+Alerting sends non-sensitive metadata (backup status, timestamps, sizes) to
+power the reporting dashboard and email notifications. Your backup data never
+leaves your system.
 
 ## Installing Pre-Built Packages
 
-Once logged in, you install pre-built integration packages hosted on Plakar's servers:
+Once logged in, you install pre-built integration packages hosted on Plakar's
+servers:
 
 ```bash
 $ plakar pkg add s3

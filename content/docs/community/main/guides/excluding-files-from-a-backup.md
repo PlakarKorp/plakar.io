@@ -9,19 +9,29 @@ aliases:
 
 # Excluding files from a backup
 
-This guide shows how to exclude files and directories from a backup using ignore patterns.
+This guide shows how to exclude files and directories from a backup using ignore
+patterns.
 
 ## Why you'd need to exclude files from a backup
 
-When backing up a source directory, not all files are worth preserving. Some are large and easily regenerated (build artifacts, dependency directories like `node_modules` or `vendor`), some are temporary (cache files, lock files, log files), and some are sensitive and should not be stored in a backup repository (secrets, local environment files).
+When backing up a source directory, not all files are worth preserving. Some are
+large and easily regenerated (build artifacts, dependency directories like
+`node_modules` or `vendor`), some are temporary (cache files, lock files, log
+files), and some are sensitive and should not be stored in a backup repository
+(secrets, local environment files).
 
-Excluding these from your backups reduces storage usage, speeds up backup and restore operations, and keeps your snapshots focused on only the important files.
+Excluding these from your backups reduces storage usage, speeds up backup and
+restore operations, and keeps your snapshots focused on only the important
+files.
 
-The `plakar backup` command supports the `-ignore` and `-ignore-file` options to exclude files from a backup. These options use patterns with a syntax similar to `.gitignore` files.
+The `plakar backup` command supports the `-ignore` and `-ignore-file` options to
+exclude files from a backup. These options use patterns with a syntax similar to
+`.gitignore` files.
 
 ## Examples
 
-For the examples below, we assume the following directory structure in `/var/files/demo`:
+For the examples below, we assume the following directory structure in
+`/var/files/demo`:
 
 ```
 /var/files/demo
@@ -76,7 +86,9 @@ And we assume the backup command is:
 $ plakar at /var/backups backup -ignore-file ./excludes.txt /var/files
 ```
 
-> You can use `-ignore` multiple times with different patterns, or use `-ignore-file` with a file containing one pattern per line. The result is the same.
+> You can use `-ignore` multiple times with different patterns, or use
+> `-ignore-file` with a file containing one pattern per line. The result is the
+> same.
 
 ### Ignore the `/var/files/demo/vendor` directory only:
 
@@ -90,7 +102,8 @@ $ plakar at /var/backups backup -ignore-file ./excludes.txt /var/files
 node_modules
 ```
 
-> In this case, both `/var/files/demo/node_modules` and `/var/files/demo/src/node_modules` would be ignored.
+> In this case, both `/var/files/demo/node_modules` and
+> `/var/files/demo/src/node_modules` would be ignored.
 
 ### Ignore the file `.git/config`, wherever it is in the tree:
 
@@ -100,7 +113,8 @@ node_modules
 
 Here, the double asterisk `**` is required.
 
-> When a path pattern contains multiple parts, it is evaluated relative to the root directory `/`.
+> When a path pattern contains multiple parts, it is evaluated relative to the
+> root directory `/`.
 
 ### Exclude all files located in a `tmp` directory anywhere in the tree, except for `cache.db`:
 

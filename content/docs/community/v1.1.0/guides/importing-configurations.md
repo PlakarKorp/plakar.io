@@ -2,37 +2,51 @@
 title: "Importing Configurations"
 date: "2026-03-16T00:00:00Z"
 weight: 2
-summary: "Learn how to import configurations for stores, sources, and destinations in Plakar using the import command."
+summary:
+  "Learn how to import configurations for stores, sources, and destinations in
+  Plakar using the import command."
 aliases:
   - /docs/v1.1.0/guides/importing-configurations/
 ---
 
 # Importing Configurations
 
-The commands `plakar store`, `plakar source` and `plakar destination` configure storage locations, backup sources, and restore destinations respectively.
+The commands `plakar store`, `plakar source` and `plakar destination` configure
+storage locations, backup sources, and restore destinations respectively.
 
-Each command includes an import subcommand for importing configurations from different sources.
+Each command includes an import subcommand for importing configurations from
+different sources.
 
 ## Why you'd need to import configurations
 
-Plakar stores, sources, and destinations each require configuration data such as credentials, locations and passphrases that you'd otherwise have to re-enter manually on every machine.
+Plakar stores, sources, and destinations each require configuration data such as
+credentials, locations and passphrases that you'd otherwise have to re-enter
+manually on every machine.
 
-Importing lets you replicate a working setup across servers, share configurations across a team, migrate from one machine to another, or bootstrap a new installation from a backup of your config.
+Importing lets you replicate a working setup across servers, share
+configurations across a team, migrate from one machine to another, or bootstrap
+a new installation from a backup of your config.
 
-It also lets you bring in configurations from other tools directly: if you already have rclone remotes configured, you can import them as Plakar stores without duplicating the credentials by hand.
+It also lets you bring in configurations from other tools directly: if you
+already have rclone remotes configured, you can import them as Plakar stores
+without duplicating the credentials by hand.
 
 ## Basic Usage
 
 The import subcommand can read configuration data from:
+
 - Standard input (stdin) — useful for piping from other commands
 - A file specified with the `-config` option
 - URLs (when using `-config` with a URL)
 
 ### Importing from a Configuration File
 
-Use the `-config` option to specify a configuration file to import. Create a YAML file with the appropriate structure for the type of configuration you're importing.
+Use the `-config` option to specify a configuration file to import. Create a
+YAML file with the appropriate structure for the type of configuration you're
+importing.
 
-For example, to import store configurations, create a file like `my-stores.yaml`:
+For example, to import store configurations, create a file like
+`my-stores.yaml`:
 
 ```yaml
 minio:
@@ -56,7 +70,8 @@ $ plakar source import -config my-sources.yaml
 $ plakar destination import -config my-destinations.yaml
 ```
 
-The configuration files should be in YAML format with named sections for each configuration entry.
+The configuration files should be in YAML format with named sections for each
+configuration entry.
 
 ### Importing from Piped Input
 
@@ -75,7 +90,8 @@ $ rclone config show -secrets | plakar store import -rclone koofr
 
 ### Section Selection
 
-You can specify which sections to import by listing their names. Sections can be renamed during import by appending `:newname`.
+You can specify which sections to import by listing their names. Sections can be
+renamed during import by appending `:newname`.
 
 ```bash
 # Import only specific sections
@@ -87,7 +103,8 @@ $ plakar store import -config stores.yaml oldname:newname
 
 ## Configuration File Format
 
-Configuration files should be in YAML format. Each top-level key represents a named configuration section.
+Configuration files should be in YAML format. Each top-level key represents a
+named configuration section.
 
 ### Store Configuration Example
 
@@ -153,7 +170,8 @@ $ plakar store import -config stores-backup.yaml
 
 ### Converting Sources to Destinations
 
-A common use case is to use the same locations for both backup sources and restore destinations:
+A common use case is to use the same locations for both backup sources and
+restore destinations:
 
 ```bash
 # Import all sources as destinations
@@ -185,10 +203,11 @@ $ plakar destination check mydest
 
 ### Common Issues
 
-1. **Permission Denied**: Ensure you have read access to the configuration file and write access to Plakar's configuration directory.
-
-2. **Invalid YAML**: Validate your YAML syntax before importing. Use tools like `yamllint` or online validators.
-
-3. **Name Conflicts**: Use `-overwrite` to replace existing configurations, or rename sections during import.
-
-4. **rclone Import Issues**: Ensure rclone is installed and the specified remote exists in your rclone configuration.
+1. **Permission Denied**: Ensure you have read access to the configuration file
+   and write access to Plakar's configuration directory.
+2. **Invalid YAML**: Validate your YAML syntax before importing. Use tools like
+   `yamllint` or online validators.
+3. **Name Conflicts**: Use `-overwrite` to replace existing configurations, or
+   rename sections during import.
+4. **rclone Import Issues**: Ensure rclone is installed and the specified remote
+   exists in your rclone configuration.
