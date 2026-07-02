@@ -49,6 +49,13 @@ individually or in bulk. This approach is useful when:
   MinIO instance)
 - You require full control over how resources are defined and managed
 
+## Configuration bundles
+
+Configuration bundles let you define shared credentials and settings at the
+inventory level and apply them automatically to matching resources. This avoids
+having to configure the same credentials individually on each discovered
+resource. See [configuration bundles](./configuration-bundles) for details.
+
 ## Provider-specific instructions
 
 {{< children description="true" >}}
