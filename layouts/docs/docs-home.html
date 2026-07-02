@@ -1,0 +1,48 @@
+{{ define "main" }}
+  <div class="px-6 py-20 max-w-4xl mx-auto">
+    <div class="mb-12 text-center">
+      <h1 class="text-4xl sm:text-5xl font-bold text-neutral-900 mb-4">Documentation</h1>
+      <p class="sm:text-lg text-neutral-600 max-w-2xl mx-auto">
+        Plakar is available as an open-source community edition and as a managed Control Plane edition for enterprise. Choose the documentation that fits your setup.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+
+      <!-- Community Docs -->
+      <a href="/docs/community/" class="group flex flex-col gap-4 p-8 rounded-2xl border-2 border-neutral-200 hover:border-primary-300 hover:shadow-sm transition-all">
+        <div class="w-10 h-10 rounded-xl bg-primary-50 flex items-center justify-center text-primary-500">
+          <span class="w-5 h-5">{{ partial "icon.html" "ri/open-source-line" }}</span>
+        </div>
+        <div>
+          <h2 class="text-xl font-semibold text-neutral-900 group-hover:text-primary-500 transition-colors mb-2">Community</h2>
+          <p class="text-neutral-600 text-sm leading-relaxed">
+            Self-hosted, open-source Plakar. Covers installation, quickstart guides, integrations, CLI references, and more.
+          </p>
+        </div>
+        <span class="mt-auto inline-flex items-center gap-1 text-sm text-primary-500 font-medium">
+          Browse docs
+          <span class="w-4 h-4">{{ partial "icon.html" "ri/arrow-right-line" }}</span>
+        </span>
+      </a>
+
+      <!-- Control Plane Docs -->
+      <a href="/docs/control-plane/" class="group flex flex-col gap-4 p-8 rounded-2xl border-2 border-neutral-200 hover:border-primary-300 hover:shadow-sm transition-all">
+        <div class="w-10 h-10 rounded-xl bg-primary-50 flex items-center justify-center text-primary-500">
+          <span class="w-5 h-5">{{ partial "icon.html" "ri/server-line" }}</span>
+        </div>
+        <div>
+          <h2 class="text-xl font-semibold text-neutral-900 group-hover:text-primary-500 transition-colors mb-2">Control Plane</h2>
+          <p class="text-neutral-600 text-sm leading-relaxed">
+            Managed infrastructure for Plakar. Covers deployment guides, infrastructure setup, administration, and resource management.
+          </p>
+        </div>
+        <span class="mt-auto inline-flex items-center gap-1 text-sm text-primary-500 font-medium">
+          Browse docs
+          <span class="w-4 h-4">{{ partial "icon.html" "ri/arrow-right-line" }}</span>
+        </span>
+      </a>
+
+    </div>
+  </div>
+{{ end }}

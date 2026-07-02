@@ -1,6 +1,8 @@
 ---
 title: "Researching a PostgreSQL viewer for Plakar"
-summary: "An R&D exploration of adding a PostgreSQL viewer to the Plakar UI, comparing filesystem-based approaches with block-level copy-on-write using qcow2."
+summary:
+  "An R&D exploration of adding a PostgreSQL viewer to the Plakar UI, comparing
+  filesystem-based approaches with block-level copy-on-write using qcow2."
 slug: "researching-a-postgresql-viewer-for-plakar"
 date: 2026-01-11T20:00:00+0100
 authors:
@@ -16,7 +18,8 @@ category: "technology"
 
 Plakar offers a nice UI to see the content of a Kloset store.
 
-You can run it locally with just one command, and a live demo is available at https://demo.plakar.io.
+You can run it locally with just one command, and a live demo is available at
+https://demo.plakar.io.
 
 ```bash
 plakar at <store> ui
@@ -24,29 +27,43 @@ plakar at <store> ui
 
 ![Plakar UI screenshot](./plakar-ui.png)
 
-When browsing the files inside a snapshot, you can preview text files, images, videos, PDFs, and audio files directly in the UI.
+When browsing the files inside a snapshot, you can preview text files, images,
+videos, PDFs, and audio files directly in the UI.
 
 ![Plakar UI file preview screenshot](./plakar-ui-preview-text.png)
 
 ![Plakar UI PDF preview screenshot](./plakar-ui-preview-pdf.png)
 
-This is extremely handy when you want to quickly inspect the contents of a backup without restoring an entire snapshot to local disk, especially when you don't know which snapshot contains the file you're looking for.
+This is extremely handy when you want to quickly inspect the contents of a
+backup without restoring an entire snapshot to local disk, especially when you
+don't know which snapshot contains the file you're looking for.
 
-In this blog post, we'll walk through our first research and experiments aimed at adding a PostgreSQL viewer to the Plakar UI.
+In this blog post, we'll walk through our first research and experiments aimed
+at adding a PostgreSQL viewer to the Plakar UI.
 
 ## Why a PostgreSQL viewer?
 
-Let's say you accidentally deleted an image from your favorite photo album. With Plakar UI, you can quickly scan through your backups, preview the images inside each snapshot, and restore the snapshot that contains the missing photo.
+Let's say you accidentally deleted an image from your favorite photo album. With
+Plakar UI, you can quickly scan through your backups, preview the images inside
+each snapshot, and restore the snapshot that contains the missing photo.
 
-Now, what if the lost data is stored inside a PostgreSQL database? The only way to check whether a snapshot contains the missing data is to restore the entire database backup and run SQL queries against it.
+Now, what if the lost data is stored inside a PostgreSQL database? The only way
+to check whether a snapshot contains the missing data is to restore the entire
+database backup and run SQL queries against it.
 
 ![Plakar UI screenshot showing PostgreSQL can't be previewed](./plakar-ui-unknown-viewer.png)
 
-What if we provided a PostgreSQL viewer directly inside the Plakar UI? You could connect to a snapshot, run SQL queries, and preview the results without restoring the full database, in the same way you can preview text files or images today.
+What if we provided a PostgreSQL viewer directly inside the Plakar UI? You could
+connect to a snapshot, run SQL queries, and preview the results without
+restoring the full database, in the same way you can preview text files or
+images today.
 
 ## Performing the backup
 
-We wrote a [PostgreSQL backup guide](https://plakar.io/docs/main/guides/postgresql/pg_base_backup/) that explains how to perform a physical backup of a PostgreSQL database using `pg_basebackup` and Plakar.
+We wrote a
+[PostgreSQL backup guide](https://plakar.io/docs/community/main/guides/postgresql/pg_base_backup/)
+that explains how to perform a physical backup of a PostgreSQL database using
+`pg_basebackup` and Plakar.
 
 The command looks like this:
 
@@ -60,13 +77,19 @@ $ pg_basebackup -D - -F tar -X fetch | \
   plakar at /var/backups backup -no-progress tar:///dev/stdin
 ```
 
-It assumes a PostgreSQL server running on `PGHOST:PGPORT`. It generates a `.tar` archive of `/var/lib/postgresql/data` and uses Plakar's tar source importer (reading from stdin) to import the data into a Kloset store.
+It assumes a PostgreSQL server running on `PGHOST:PGPORT`. It generates a `.tar`
+archive of `/var/lib/postgresql/data` and uses Plakar's tar source importer
+(reading from stdin) to import the data into a Kloset store.
 
 ## Running a Docker containerized PostgreSQL instance
 
-The first approach to display a PostgreSQL viewer from the UI would be to restore the snapshot to a local directory and run a PostgreSQL Docker container using that directory as a data volume.
+The first approach to display a PostgreSQL viewer from the UI would be to
+restore the snapshot to a local directory and run a PostgreSQL Docker container
+using that directory as a data volume.
 
-As explained in the [PostgreSQL backup guide](https://plakar.io/docs/main/guides/postgresql/pg_base_backup/), you could first restore the snapshot:
+As explained in the
+[PostgreSQL backup guide](https://plakar.io/docs/community/main/guides/postgresql/pg_base_backup/),
+you could first restore the snapshot:
 
 ```bash
 $ plakar at /var/backups restore -to ./mydir <snapshot_id>
@@ -81,25 +104,36 @@ $ docker run --rm -ti \
   postgres
 ```
 
-It works well, but it requires restoring the full snapshot to disk first. For large databases, this can be slow, storage-intensive, and even impossible: you may not have enough free disk space to restore the entire database.
+It works well, but it requires restoring the full snapshot to disk first. For
+large databases, this can be slow, storage-intensive, and even impossible: you
+may not have enough free disk space to restore the entire database.
 
-What if there was a way to run PostgreSQL directly on top of the snapshot data stored in Kloset, without restoring the full snapshot first?
+What if there was a way to run PostgreSQL directly on top of the snapshot data
+stored in Kloset, without restoring the full snapshot first?
 
 ## Plakar mount to the rescue
 
-The command `plakar mount` allows mounting a Kloset store as a local read-only filesystem:
+The command `plakar mount` allows mounting a Kloset store as a local read-only
+filesystem:
 
 ```bash
 $ ./plakar mount -to /mnt/mysnapshot <snapshot_id>
 ```
 
-This command is magical: it allows browsing the files inside a snapshot as if they were stored on a local disk, but files are fetched on-demand from the Kloset store.
+This command is magical: it allows browsing the files inside a snapshot as if
+they were stored on a local disk, but files are fetched on-demand from the
+Kloset store.
 
 ![Plakar mount screenshot](./plakar-mount.png)
 
-It seems like the perfect fit for our PostgreSQL viewer: we could mount the snapshot containing the PostgreSQL data files, and run PostgreSQL directly on top of that mount point. Since files are fetched on-demand, only the data that PostgreSQL actually reads would be downloaded from Kloset.
+It seems like the perfect fit for our PostgreSQL viewer: we could mount the
+snapshot containing the PostgreSQL data files, and run PostgreSQL directly on
+top of that mount point. Since files are fetched on-demand, only the data that
+PostgreSQL actually reads would be downloaded from Kloset.
 
-It is particularly important not to download the entire database, because PostgreSQL data directories can be huge, and you don't want to transfer gigabytes of data just to run a few read-only queries.
+It is particularly important not to download the entire database, because
+PostgreSQL data directories can be huge, and you don't want to transfer
+gigabytes of data just to run a few read-only queries.
 
 Let's try to run PostgreSQL on top of the mounted Kloset snapshot:
 
@@ -118,9 +152,12 @@ $ chown: changing ownership of '/var/lib/postgresql/data': Read-only file system
 ...
 ```
 
-PostgreSQL tries to change permissions and ownership of its data directory. Since the directory is mounted read-only, the server cannot start.
+PostgreSQL tries to change permissions and ownership of its data directory.
+Since the directory is mounted read-only, the server cannot start.
 
-Unfortunately, this is a fundamental problem: PostgreSQL needs write access to its data directory, and there is no fully read-only mode, even if you only want to run read-only queries.
+Unfortunately, this is a fundamental problem: PostgreSQL needs write access to
+its data directory, and there is no fully read-only mode, even if you only want
+to run read-only queries.
 
 <p align="center">
   <img src="./nestor-shrug.svg" alt="Nestor shrug" width="200">
@@ -128,9 +165,11 @@ Unfortunately, this is a fundamental problem: PostgreSQL needs write access to i
 
 ## Overlayfs
 
-Overlayfs provides a way to create a writable filesystem (the upper layer) on top of a read-only filesystem (the lower layer).
+Overlayfs provides a way to create a writable filesystem (the upper layer) on
+top of a read-only filesystem (the lower layer).
 
-It works only on Linux, but it could be a good fit for our use case. Let's explore this option.
+It works only on Linux, but it could be a good fit for our use case. Let's
+explore this option.
 
 First, create the required directories and mount the overlay filesystem:
 
@@ -142,12 +181,15 @@ $ mount -t overlay overlay \
 ```
 
 Here:
+
 - `/mnt/mysnapshot` is the read-only mount point created by `plakar mount`,
 - `./upper` is a writable directory where changes will be stored,
 - `./merged` is a combined view of both layers.
 
-Whenever a file is read from `./merged`, if it exists in `./upper`, it is read from there; otherwise, it is read from `/mnt/mysnapshot`.
+Whenever a file is read from `./merged`, if it exists in `./upper`, it is read
+from there; otherwise, it is read from `/mnt/mysnapshot`.
 
+<!-- prettier-ignore-start -->
 {{< mermaid >}}
 flowchart TB
   PG[PostgreSQL]
@@ -174,10 +216,15 @@ flowchart TB
   class CopyUp action;
   class Apply action;
 {{< /mermaid >}}
+<!-- prettier-ignore-end -->
 
-For any write operation, the file is first copied from the lower layer to the upper layer (if it exists in the lower layer), and then the write is performed on the copy in the upper layer.
+For any write operation, the file is first copied from the lower layer to the
+upper layer (if it exists in the lower layer), and then the write is performed
+on the copy in the upper layer.
 
-This looks promising: we could expose `./merged` as the PostgreSQL data directory, allowing PostgreSQL to write to its files, while the original data is still read from the Kloset snapshot on-demand.
+This looks promising: we could expose `./merged` as the PostgreSQL data
+directory, allowing PostgreSQL to write to its files, while the original data is
+still read from the Kloset snapshot on-demand.
 
 ## Fail… again
 
@@ -196,11 +243,18 @@ PostgreSQL starts successfully after some time, and you can run queries:
 $ docker exec -ti pg psql -U postgres -c '\l'
 ```
 
-It seems to work, but it doesn't. As we explained before, any write operation causes the file to be copied from the lower layer to the upper layer. A single permission change or byte update causes the entire file to be duplicated. 
+It seems to work, but it doesn't. As we explained before, any write operation
+causes the file to be copied from the lower layer to the upper layer. A single
+permission change or byte update causes the entire file to be duplicated.
 
-This is another fundamental limitation of overlayfs for our use case. We can't avoid writes: PostgreSQL modifies all its data files, and even small modifications cause entire files to be copied to the upper layer.
+This is another fundamental limitation of overlayfs for our use case. We can't
+avoid writes: PostgreSQL modifies all its data files, and even small
+modifications cause entire files to be copied to the upper layer.
 
-It is transparent to the user, but under the hood, if the PostgreSQL data directory contains, let's say, 100 GB of data files, then running PostgreSQL on top of overlayfs will end up copying all those 100 GB into the `upper` directory.
+It is transparent to the user, but under the hood, if the PostgreSQL data
+directory contains, let's say, 100 GB of data files, then running PostgreSQL on
+top of overlayfs will end up copying all those 100 GB into the `upper`
+directory.
 
 <p align="center">
   <img src="./nestor-sad.svg" alt="Nestor sad" width="200">
@@ -208,15 +262,21 @@ It is transparent to the user, but under the hood, if the PostgreSQL data direct
 
 ## Operating at the block level
 
-The problem with overlayfs is that it operates at the file level: any write to a file causes the entire file to be copied to the upper layer.
+The problem with overlayfs is that it operates at the file level: any write to a
+file causes the entire file to be copied to the upper layer.
 
-What if we could operate at the block level instead? That is, only the modified blocks of a file would be copied to the upper layer, while unchanged blocks would still be read from the lower layer.
+What if we could operate at the block level instead? That is, only the modified
+blocks of a file would be copied to the upper layer, while unchanged blocks
+would still be read from the lower layer.
 
-This would be perfect for our use case: PostgreSQL modifies many files, but usually only a small portion of each file. If we could copy only the modified blocks, the amount of data copied would be much smaller.
+This would be perfect for our use case: PostgreSQL modifies many files, but
+usually only a small portion of each file. If we could copy only the modified
+blocks, the amount of data copied would be much smaller.
 
 ## Qcow2
 
-With qcow2, modified blocks are written to a new image, while unchanged blocks are read from a backing file.
+With qcow2, modified blocks are written to a new image, while unchanged blocks
+are read from a backing file.
 
 Let's create a base qcow2 image with enough space to hold the PostgreSQL data:
 
@@ -236,9 +296,13 @@ $ umount ./mnt
 $ qemu-nbd -d /dev/nbd0
 ```
 
-Now, `./base.qcow2` is a qcow2 image that contains a filesystem with the PostgreSQL data.
+Now, `./base.qcow2` is a qcow2 image that contains a filesystem with the
+PostgreSQL data.
 
-> Here, we had to build the base image by restoring the full snapshot. This is because we are still experimenting, but if we go down this path, we could expose Kloset data as a block device directly, avoiding the full restore step. It is a non-trivial problem, but solvable.
+> Here, we had to build the base image by restoring the full snapshot. This is
+> because we are still experimenting, but if we go down this path, we could
+> expose Kloset data as a block device directly, avoiding the full restore step.
+> It is a non-trivial problem, but solvable.
 
 Now, let's create an overlay image using the base image as backing storage:
 
@@ -248,8 +312,12 @@ $ qemu-nbd --connect /dev/nbd0 ./overlay.qcow2
 $ mount /dev/nbd0 ./mnt
 ```
 
-Now, `./mnt` contains the PostgreSQL data directory, backed by `base.qcow2`. Any read operation fetches data from `base.qcow2`, and write operations copy only the modified **blocks** from `base.qcow2` to `overlay.qcow2`, and not the entire files.
+Now, `./mnt` contains the PostgreSQL data directory, backed by `base.qcow2`. Any
+read operation fetches data from `base.qcow2`, and write operations copy only
+the modified **blocks** from `base.qcow2` to `overlay.qcow2`, and not the entire
+files.
 
+<!-- prettier-ignore-start -->
 {{< mermaid >}}
 flowchart TB
   PG[PostgreSQL]
@@ -276,6 +344,7 @@ flowchart TB
   class CopyBlock action;
   class Apply action;
 {{< /mermaid >}}
+<!-- prettier-ignore-end -->
 
 Let's run PostgreSQL:
 
@@ -285,7 +354,8 @@ $ docker run --name pg --rm -ti -v ./mnt:/var/lib/postgresql/data postgres
 
 PostgreSQL starts successfully, and queries work as expected.
 
-This time, `overlay.qcow2` grows only when blocks are modified, and the growth is significantly smaller than with overlayfs.
+This time, `overlay.qcow2` grows only when blocks are modified, and the growth
+is significantly smaller than with overlayfs.
 
 <p align="center">
   <img src="./nestor-walking.svg" alt="Nestor walking" width="200">
@@ -293,12 +363,28 @@ This time, `overlay.qcow2` grows only when blocks are modified, and the growth i
 
 ## Conclusion
 
-Providing a PostgreSQL viewer inside the Plakar UI is an interesting idea that can significantly improve the user experience when dealing with database backups.
+Providing a PostgreSQL viewer inside the Plakar UI is an interesting idea that
+can significantly improve the user experience when dealing with database
+backups.
 
-We first attempted to restore a snapshot to disk and run PostgreSQL on top of it, but this approach is not feasible for large databases: it requires transferring the entire database backup before any query can run, which is slow and storage-intensive.
+We first attempted to restore a snapshot to disk and run PostgreSQL on top of
+it, but this approach is not feasible for large databases: it requires
+transferring the entire database backup before any query can run, which is slow
+and storage-intensive.
 
-Then, we explored running PostgreSQL directly on top of snapshot data mounted with `plakar mount`. However, since PostgreSQL requires write access to its data directory, this approach failed.
+Then, we explored running PostgreSQL directly on top of snapshot data mounted
+with `plakar mount`. However, since PostgreSQL requires write access to its data
+directory, this approach failed.
 
-Next, we experimented with overlayfs to provide a writable layer on top of the read-only Kloset mount. While this allowed PostgreSQL to start, the file-level copy-on-write behavior caused a full copy of the database, defeating the purpose of on-demand data fetching.
+Next, we experimented with overlayfs to provide a writable layer on top of the
+read-only Kloset mount. While this allowed PostgreSQL to start, the file-level
+copy-on-write behavior caused a full copy of the database, defeating the purpose
+of on-demand data fetching.
 
-Finally, we found that using qcow2 images provided a better solution. By creating a qcow2 overlay image backed by a base image containing the PostgreSQL data, we were able to run PostgreSQL with block-level copy-on-write semantics. This approach significantly reduced the amount of data copied during write operations, making it a promising path toward implementing a native PostgreSQL viewer in Plakar. There is still a lot of complex work to be done to make this solution production-ready, but the initial experiments are encouraging.
+Finally, we found that using qcow2 images provided a better solution. By
+creating a qcow2 overlay image backed by a base image containing the PostgreSQL
+data, we were able to run PostgreSQL with block-level copy-on-write semantics.
+This approach significantly reduced the amount of data copied during write
+operations, making it a promising path toward implementing a native PostgreSQL
+viewer in Plakar. There is still a lot of complex work to be done to make this
+solution production-ready, but the initial experiments are encouraging.

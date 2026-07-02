@@ -1,7 +1,7 @@
 # Top level items
 [[main]]
 identifier = "solutions"
-name = "Solutions"
+name = "Products"
 url = "#"
 weight = 10
 [[main.params]]
@@ -9,7 +9,7 @@ weight = 10
 
 [[main]]
 identifier = "engineering"
-name = "Engineering"
+name = "Resources"
 url = "#"
 weight = 20
 [[main.params]]
@@ -20,6 +20,14 @@ identifier = "integrations"
 name = "Integrations"
 url = "/integrations/"
 weight = 30
+[[main.params]]
+  enabled = true
+
+[[main]]
+identifier = "docs"
+name = "Docs"
+url = "/docs"
+weight = 35
 [[main.params]]
   enabled = true
 
@@ -128,7 +136,7 @@ parent = "solutions"
 [[main]]
 identifier = "engineering-learn-quickstart"
 name = "Quick start"
-url = "/docs/v1.0.6/quickstart/first-backup"
+url = "/docs/community/v1.1.0/quickstart/first-backup"
 weight = 10
 parent = "engineering"
 [[main.params]]
@@ -146,7 +154,7 @@ url = "/docs"
 weight = 20
 parent = "engineering"
 [[main.params]]
-  description = "How to use Plakar?"
+  description = "Full Plakar documentation"
   enabled = true
   section = "Learn"
   section_weight = 10
@@ -156,7 +164,7 @@ parent = "engineering"
 [[main]]
 identifier = "engineering-learn-control-plane-docs"
 name = "Control Plane Documentation"
-url = "/control-plane-docs/"
+url = "/docs/control-plane"
 weight = 30
 parent = "engineering"
 [[main.params]]
@@ -170,7 +178,7 @@ parent = "engineering"
 [[main]]
 identifier = "engineering-learn-blog"
 name = "Plakar blog"
-url = "/posts/"
+url = "/posts"
 weight = 30
 parent = "engineering"
 [[main.params]]
@@ -184,7 +192,7 @@ parent = "engineering"
 [[main]]
 identifier = "engineering-community-join"
 name = "Plakar community"
-url = "community/"
+url = "/community"
 weight = 40
 parent = "engineering"
 [[main.params]]
@@ -197,7 +205,7 @@ parent = "engineering"
 [[main]]
 identifier = "engineering-community-calendar"
 name = "Upcoming events"
-url = "contact/#upcoming-events"
+url = "/contact#upcoming-events"
 weight = 40
 parent = "engineering"
 [[main.params]]
@@ -210,7 +218,7 @@ parent = "engineering"
 [[main]]
 identifier = "contact-us"
 name = "Contact us"
-url = "/contact/#email-contact"
+url = "/contact#email-contact"
 weight = 50
 parent = "engineering"
 [[main.params]]
@@ -223,7 +231,7 @@ parent = "engineering"
 [[main]]
 identifier = "engineering-community-newsletter"
 name = "Newsletter"
-url = "contact/#newsletter-signup"
+url = "/contact#newsletter-signup"
 weight = 60
 parent = "engineering"
 [[main.params]]

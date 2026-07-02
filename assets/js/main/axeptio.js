@@ -13,6 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const script = document.createElement("script");
   script.async = true;
-  script.src = "//static.axept.io/sdk.js";
+  script.src = "https://static.axept.io/sdk.js";
   document.head.appendChild(script);
 });

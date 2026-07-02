@@ -27,12 +27,13 @@
 {{ with index $featured 0 }}
   {{ $image := or (.Resources.GetMatch "featured.webp") (index (.Resources.Match "featured.*") 0) }}
   {{ if not $image }}
-    {{ $image = resources.Get "img/placeholder-400x254.png" }}
+    {{ with resources.Get "img/placeholder-400x254.png" }}{{ $image = . }}{{ end }}
   {{ end }}
 
   <section class="section-light-2 py-7 px-4">
     <div class="max-w-350 mx-auto flex flex-col xl:flex-row items-center xl:items-stretch gap-6">
 
+      {{ if $image }}
       <!-- Image -->
       <div class="w-full max-w-lg xl:max-w-none xl:w-1/2 shrink-0 rounded-lg bg-neutral-50 border border-neutral-300">
         <div class="w-full h-7 px-4 flex items-center gap-2 border-b border-neutral-200">
@@ -44,6 +45,7 @@
           <img src="{{ $image.RelPermalink }}" alt="Article preview" class="w-full h-auto object-cover rounded-sm">
         </div>
       </div>
+      {{ end }}
 
       <!-- Content -->
       <div class="w-full max-w-lg xl:max-w-none bg-neutral-100 flex flex-1 flex-col gap-4 items-start justify-center px-4 xl:px-8 py-4 rounded-lg">
@@ -61,8 +63,10 @@
           <span>{{ .WordCount }} words</span>
           <span>•</span>
           <span>{{ .Date.Format "January 2, 2006" }}</span>
-          <span>•</span>
-          <span>{{ .ReadingTime }} min read</span>
+          {{ if gt .ReadingTime 0 }}
+            <span>•</span>
+            <span>{{ .ReadingTime }} min read</span>
+          {{ end }}
         </div>
 
         <!-- Title + summary -->
@@ -90,23 +94,63 @@
 {{ end }}
 
 <!-- Category filter -->
+{{ $categories := slice
+  (dict "key" "announcement" "label" "Announcement")
+  (dict "key" "release-note" "label" "Release Notes")
+  (dict "key" "community" "label" "Community")
+  (dict "key" "insights" "label" "Insights")
+  (dict "key" "technology" "label" "Technology")
+}}
+{{ $usedCategories := slice }}
+{{ range $allVisible }}
+  {{ $rawCats := slice }}
+  {{ if .Params.categories }}
+    {{ $rawCats = .Params.categories }}
+  {{ else if .Params.category }}
+    {{ $rawCats = slice .Params.category }}
+  {{ end }}
+  {{ range $rawCats }}
+    {{ $c := replace (replace . "release-notes" "release-note") "announcements" "announcement" }}
+    {{ if not (in $usedCategories $c) }}
+      {{ $usedCategories = $usedCategories | append $c }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+{{ $hasMultipleCategories := gt (len $usedCategories) 1 }}
+{{ if $hasMultipleCategories }}
 <section class="section-light-2 px-4 pb-6 pt-10">
   <div class="max-w-350 mx-auto flex justify-center">
-    <div class="inline-flex items-center gap-1 bg-neutral-50 rounded-xl p-2" id="posts-filter">
+    <div class="relative posts-filter-dropdown w-full sm:hidden">
+      <button class="posts-filter-dropdown-btn w-full flex items-center justify-between px-3 py-2.5 border border-neutral-200 rounded-lg text-neutral-700 hover:border-neutral-300 bg-neutral-50">
+        <span class="posts-filter-dropdown-label truncate text-sm">All Posts</span>
+        <span class="w-4 h-4 shrink-0 flex items-center justify-center">
+          {{ partial "icon.html" "chevron-down" }}
+        </span>
+      </button>
+      <div class="posts-filter-dropdown-menu hidden absolute top-full mt-1 w-full bg-neutral-50 border border-neutral-200 rounded-lg z-50 overflow-hidden shadow-lg">
+        <a data-filter="all" class="filter-dropdown-option block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 cursor-pointer">All Posts</a>
+        {{ range $categories }}
+          {{ if in $usedCategories .key }}
+            <a data-filter="{{ .key }}" class="filter-dropdown-option block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 cursor-pointer">{{ .label }}</a>
+          {{ end }}
+        {{ end }}
+      </div>
+    </div>
+    <div class="hidden sm:inline-flex items-center gap-1 bg-neutral-50 rounded-xl p-2" id="posts-filter">
       <a data-filter="all" class="filter-btn px-4 py-3 rounded-lg text-sm cursor-pointer font-medium transition-all duration-150 text-neutral-700">All Posts</a>
-      <a data-filter="announcement" class="filter-btn px-2 py-4 rounded-lg text-sm cursor-pointer font-medium transition-all duration-150 text-neutral-700">Announcement</a>
-      <a data-filter="release-note" class="filter-btn px-2 py-4 rounded-lg text-sm cursor-pointer font-medium transition-all duration-150 text-neutral-700">Release Notes</a>
-      <a data-filter="community" class="filter-btn px-2 py-4 rounded-lg text-sm cursor-pointer font-medium transition-all duration-150 text-neutral-700">Community</a>
-      <a data-filter="insights" class="filter-btn px-2 py-4 rounded-lg text-sm cursor-pointer font-medium transition-all duration-150 text-neutral-700">Insights</a>
-      <a data-filter="technology" class="filter-btn px-2 py-4 rounded-lg text-sm cursor-pointer font-medium transition-all duration-150 text-neutral-700">Technology</a>
+      {{ range $categories }}
+        {{ if in $usedCategories .key }}
+          <a data-filter="{{ .key }}" class="filter-btn px-2 py-4 rounded-lg text-sm cursor-pointer font-medium transition-all duration-150 text-neutral-700">{{ .label }}</a>
+        {{ end }}
+      {{ end }}
     </div>
   </div>
 </section>
+{{ end }}
 
 <!-- Posts grid -->
 <section id="posts-grid" class="section-light-2 px-4 py-12">
   <div class="max-w-350 mx-auto">
-    {{ $allVisible := where .Pages "Params.hidden" "ne" true }}
     {{ $rest := after 1 (sort $allVisible "Date" "desc") }}
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {{ range $rest }}

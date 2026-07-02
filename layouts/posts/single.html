@@ -3,7 +3,7 @@
 
 {{ $image := or (.Resources.GetMatch "featured.webp") (index (.Resources.Match "featured.*") 0) }}
 {{ if not $image }}
-  {{ $image = resources.Get "img/placeholder-1600x1200.png" }}
+  {{ with resources.Get "img/placeholder-1600x1200.png" }}{{ $image = . }}{{ end }}
 {{ end }}
 
 <!-- Hero -->
@@ -27,14 +27,17 @@
         <span>{{ .WordCount }} words</span>
         <span>•</span>
         <span>{{ .Date.Format "January 2, 2006" }}</span>
-        <span>•</span>
-        <span>{{ .ReadingTime }} min read</span>
+        {{ if gt .ReadingTime 0 }}
+          <span>•</span>
+          <span>{{ .ReadingTime }} min read</span>
+        {{ end }}
       </div>
 
     </div>
   </div>
 </section>
 
+{{ if $image }}
 <!-- Featured image -->
 <section class="section-light-2 grid-background">
   <div class="bg-gradient-section-light-1 px-4 py-2">
@@ -54,13 +57,15 @@
     </div>
   </div>
 </section>
+{{ end }}
 
 <!-- Article -->
 <section class="section-light-1 px-4 py-7">
   <div class="max-w-350 mx-auto flex flex-col xl:flex-row items-start gap-8">
 
     <!-- TOC sidebar -->
-    <aside class="hidden xl:block xl:sticky xl:top-28 w-70 shrink-0">
+    <aside class="hidden xl:block xl:sticky xl:top-28 w-70 shrink-0 docs-font">
+      {{ partial "series/series.html" . }}
       {{ partial "docs/toc.html" . }}
       {{ partial "posts/toc-share.html" . }}
     </aside>
@@ -76,8 +81,7 @@
           <div class="flex items-start gap-4">
             {{ $authorImg := resources.Get .image }}
             {{ if $authorImg }}
-              <img src="{{ $authorImg.RelPermalink }}" alt="{{ .name }}"
-                   class="w-14 h-14 rounded-full shrink-0">
+              <img src="{{ $authorImg.RelPermalink }}" alt="{{ .name }}" class="w-14 h-14 rounded-full aspect-square object-cover shrink-0">
             {{ else }}
               <div class="w-14 h-14 rounded-full bg-neutral-200 shrink-0 flex items-center justify-center text-neutral-500">
                 <span class="w-6 h-6">{{ partial "icon.html" "ri/user-line" }}</span>
@@ -90,6 +94,10 @@
           </div>
         {{ end }}
       {{ end }}
+
+      <div class="xl:hidden overflow-hidden rounded-lg ps-5 docs-font">
+        {{ partial "series/series_base.html" . }}
+      </div>
 
       <hr class="border-neutral-200">
 

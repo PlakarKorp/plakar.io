@@ -1,0 +1,22 @@
+{{/*
+Shortcode: bounty-list
+Renders the list of bounties defined in data/bounties.yaml (or .yml/.json)
+Usage in content: {{< bounty-list >}}
+All code/text in English per repo conventions.
+*/}}
+{{ $bounties := .Site.Data.bounties }}
+{{ if not $bounties }}
+  <p>No bounties found.</p>
+{{ else }}
+  <ul class="bounty-list">
+  {{ range $bounties }}
+    <li class="bounty-item">
+      <h3 class="bounty-title">{{ .title }}</h3>
+      {{ if .technical_id }}<p class="bounty-technical"><strong>Technical Identifier:</strong> {{ .technical_id }}</p>{{ end }}
+      {{ if .description }}<p class="bounty-desc">{{ .description }}</p>{{ end }}
+      <p class="bounty-meta"><strong>Reward:</strong> {{ .reward }} {{ with .status }} | <strong>Status:</strong> {{ . }}{{ end }}</p>
+      {{ if .link }}<p class="bounty-link"><a href="{{ .link }}">More details</a></p>{{ end }}
+    </li>
+  {{ end }}
+  </ul>
+{{ end }}

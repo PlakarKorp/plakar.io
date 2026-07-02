@@ -13,8 +13,16 @@
           <img src="{{ $image.RelPermalink }}" alt="{{ .Title }}" class="w-20 h-20 object-cover rounded-md shrink-0">
         {{ end }}
         <div class="flex flex-col gap-1 justify-center">
-          {{ with .Params.category }}
-            <span class="text-xs text-primary-500 uppercase font-medium">{{ replace . "-" " " }}</span>
+          {{ $cats := slice }}
+          {{ if .Params.categories }}
+            {{ $cats = .Params.categories }}
+          {{ else if .Params.category }}
+            {{ $cats = slice .Params.category }}
+          {{ end }}
+          {{ if $cats }}
+            <span class="text-xs text-primary-500 uppercase font-medium">
+              {{ range $i, $c := $cats }}{{ if $i }} · {{ end }}{{ replace (replace (replace $c "release-notes" "release-note") "announcements" "announcement") "-" " " }}{{ end }}
+            </span>
           {{ end }}
           <span class="text-sm font-medium text-neutral-900 group-hover/link:text-primary-500 line-clamp-2 leading-snug">
             {{ .Title }}

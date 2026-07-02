@@ -3,6 +3,7 @@
 // Elements: #release-notes-link, .version-option, .version-panel, .version-badge, .sha-copy-btn
 
 document.addEventListener("DOMContentLoaded", () => {
+  // ---- OSS Plakar version selector ----
   const btn = document.getElementById("version-dropdown-btn");
   const menu = document.getElementById("version-dropdown-menu");
   const currentVersionDisplay = document.getElementById(
@@ -15,15 +16,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const showVersion = (version) => {
     if (currentVersionDisplay) currentVersionDisplay.textContent = version;
-
     panels.forEach((p) => {
       p.style.display = p.dataset.version === version ? "" : "none";
     });
-
     badges.forEach((b) => {
       b.style.display = b.dataset.version === version ? "" : "none";
     });
-
     options.forEach((o) => {
       const active = o.dataset.version === version;
       o.classList.toggle("bg-primary-50", active);
@@ -33,11 +31,9 @@ document.addEventListener("DOMContentLoaded", () => {
         releaseNotesLink.href = o.dataset.releaseNotesUrl;
       }
     });
-
     const url = new URL(window.location);
     url.searchParams.set("version", version);
-    history.pushState({}, "", url);
-
+    history.replaceState({}, "", url);
     menu?.classList.add("hidden");
   };
 
@@ -46,6 +42,11 @@ document.addEventListener("DOMContentLoaded", () => {
     menu?.classList.toggle("hidden");
   });
 
+  options.forEach((o) => {
+    o.addEventListener("click", () => showVersion(o.dataset.version));
+  });
+
+  // ---- Close dropdown on outside click ----
   document.addEventListener("click", (e) => {
     if (
       !e.target.closest("#version-dropdown-btn") &&
@@ -55,15 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  options.forEach((o) => {
-    o.addEventListener("click", () => showVersion(o.dataset.version));
-  });
-
-  const params = new URLSearchParams(window.location.search);
-  const firstPanel = panels[0];
-  const version = params.get("version") || firstPanel?.dataset.version;
-  if (version) showVersion(version);
-
+  // ---- SHA copy buttons ----
   document.querySelectorAll(".sha-copy-btn").forEach((btn) => {
     btn.addEventListener("click", async () => {
       const sha = btn.dataset.sha;
@@ -79,4 +72,10 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 1500);
     });
   });
+
+  // ---- Init ----
+  const params = new URLSearchParams(window.location.search);
+  const firstPanel = panels[0];
+  const version = params.get("version") || firstPanel?.dataset.version;
+  if (version) showVersion(version);
 });
