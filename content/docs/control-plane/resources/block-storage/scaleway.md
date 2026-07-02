@@ -100,28 +100,12 @@ documentation on
 for instructions on how to set up the permissions and generate an access key and
 secret key.
 
-### Endpoint
-
-Optional. Hint Plakar Control Plane how to reach the resource in case the
-endpoint is ambiguous. Plakar Control Plane suggests endpoints discovered from
-the inventory, for example the block storage UUID
-`3dcd8901-d213-4ca4-89c5-85ba55a60ff7`.
-
 ### Bucket
 
 The Scaleway Object Storage bucket name. Used as a temporary staging area when
 exporting block storage snapshots. This bucket must exist before configuring the
 resource. We recommend using a dedicated bucket for Plakar Control Plane
 operations rather than a general-purpose bucket.
-
-### Project ID
-
-The Scaleway project ID that the block storage belongs to.
-
-### Zone
-
-The Scaleway zone where the block volume storage. Suggested automatically from
-the inventory e.g. `fr-par-1` .
 
 ## Additional configuration
 
