@@ -222,10 +222,11 @@
     <div class="flex flex-col sm:flex-row gap-3 shrink-0">
       {{ range $versions }}
         {{ $version := .Params.version }}
+        {{ $docsVersion := default $version .Params.docs_version }}
         <div class="version-panel" data-version="{{ $version }}" style="display:none;">
           {{ partial "components/buttons/base-button.html" (dict
             "label" "Installation Guide"
-            "href" (printf "/docs/community/%s/quickstart/installation/" $version)
+            "href" (printf "/docs/community/%s/quickstart/installation/" $docsVersion)
           ) }}
         </div>
       {{ end }}
