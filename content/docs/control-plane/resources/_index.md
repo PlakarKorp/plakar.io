@@ -17,6 +17,30 @@ Control Plane manages as part of a backup workflow. Examples of resources
 include S3 buckets, EC2 instances, PostgreSQL databases, virtual machines, and
 filesystems.
 
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+flowchart TB
+  subgraph Inventories
+    Managed["Managed inventory\n(AWS, Scaleway, ...)"]
+    SelfManaged["Self-managed inventory"]
+  end
+
+  subgraph Resources
+    R["Resource\nclass / subclass"]
+  end
+
+  subgraph Apps
+    Source["Source\n(Back up content from here)"]
+    Store["Store\n(Store backups here)"]
+    Destination["Destination\n(Restore here)"]
+  end
+
+  Managed -->|"auto-discover"| R
+  SelfManaged -->|"manually added"| R
+  R --> Source & Store & Destination
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
+
 All resources discovered across all inventories are available under
 **Infrastructure -> Resources**. From here a resouce can be assigned to either a
 [source](../apps/sources) or a [destination](../apps/destinations) app. You can

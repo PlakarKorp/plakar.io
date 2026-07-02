@@ -1,7 +1,7 @@
 ---
 title: "Inventories"
 date: "2026-05-03T00:00:00Z"
-weight: 2
+weight: 1
 summary:
   "Understand how inventories work in Plakar Control Plane and how to use them."
 aliases:

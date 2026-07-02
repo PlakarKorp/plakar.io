@@ -14,6 +14,28 @@ backups should be taken and how long they should be retained. When a policy is
 scoped to an environment and data class, Plakar Control Plane automatically
 creates backup schedules for all source apps that match.
 
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+flowchart TD
+  subgraph Policy["SLA Policy"]
+    Requirements["Frequency & retention"]
+    Scope["Scope\nenvironment · data class · tag"]
+    PolicyStore["Store app"]
+  end
+
+  subgraph Sources["Source Apps"]
+    S1["Source A\nproduction · database"]
+    S2["Source B\nproduction · critical"]
+    S3["Source C\nstaging · database"]
+  end
+
+  Scope -->|"auto-match"| S1 & S2
+  S1 & S2 -->|"schedule created"| Backup["Backup"]
+  Requirements --> Backup
+  Backup --> PolicyStore
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
+
 ## Creating a policy
 
 To create a policy, provide a name, then define the backup requirements and

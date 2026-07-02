@@ -35,6 +35,50 @@ where to get the container name.
 
 ![](../images/add-azblob-resource.png)
 
+## Backup flow
+
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+flowchart TD
+  subgraph Azure["Azure Blob Container (source)"]
+    Blobs["Blobs"]
+  end
+
+  subgraph Plakar["Plakar Control Plane"]
+    Source["Azure Blob Source app"]
+    Backup["Backup process<br/>Encrypt & deduplicate"]
+  end
+
+  Store["Kloset Store"]
+
+  Source -->|"read blobs"| Blobs
+  Blobs --> Backup
+  Backup --> Store
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
+
+## Restore flow
+
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+flowchart TD
+  Store["Kloset Store"]
+
+  subgraph Plakar["Plakar Control Plane"]
+    Destination["Azure Blob Destination app"]
+    Restore["Restore process"]
+  end
+
+  subgraph Azure["Azure Blob Container (destination)"]
+    Blobs["Blobs"]
+  end
+
+  Store --> Restore
+  Destination --> Restore
+  Restore -->|"write blobs"| Blobs
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
+
 ## Configuration
 
 Azure Blob Storage resources can be configured using a source, store, or

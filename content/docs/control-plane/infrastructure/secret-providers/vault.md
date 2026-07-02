@@ -17,6 +17,22 @@ selecting `vault` as integration type when adding a new secret provider. You'll
 then need to provide your vault access token, the vaults server url and any
 suitable name for it.
 
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+flowchart TB
+  subgraph Plakar["Plakar Control Plane"]
+    App["Any configuration field<br/>(passwords, keys, certs, ...)"]
+  end
+
+  Token["Vault Access Token"]
+  Vault["HashiCorp Vault"]
+
+  App -->|"authenticate via"| Token
+  Token -->|"read secret"| Vault
+  Vault -->|"secret value"| App
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
+
 ## Vault's path format
 
 Vault organizes secrets under secret engines. Think of a secret engine as a

@@ -39,6 +39,50 @@ the `subclass`. For the endpoint, use the bucket name.
 
 ![](../images/add-gcs-resource.png)
 
+## Backup flow
+
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+flowchart TD
+  subgraph GCS["GCS Bucket (source)"]
+    Objects["Objects"]
+  end
+
+  subgraph Plakar["Plakar Control Plane"]
+    Source["GCS Source app"]
+    Backup["Backup process<br/>Encrypt & deduplicate"]
+  end
+
+  Store["Kloset Store"]
+
+  Source -->|"read objects"| Objects
+  Objects --> Backup
+  Backup --> Store
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
+
+## Restore flow
+
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+flowchart TD
+  Store["Kloset Store"]
+
+  subgraph Plakar["Plakar Control Plane"]
+    Destination["GCS Destination app"]
+    Restore["Restore process"]
+  end
+
+  subgraph GCS["GCS Bucket (destination)"]
+    Objects["Objects"]
+  end
+
+  Store --> Restore
+  Destination --> Restore
+  Restore -->|"write objects"| Objects
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
+
 ## Configuration
 
 Google Cloud Storage resources can be configured using a source, store, or
