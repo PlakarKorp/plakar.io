@@ -35,10 +35,7 @@ something new-something like a Kubernetes integration.
 [cncf-join]:
   https://plakar.io/posts/2026-01-07/plakar-joins-the-linux-foundation-and-cloud-native-computing-foundation/
 
-{{< figure src="cnd-booth.png" caption="From left to right: Omar, Julien,
-Antoine & Gilles at our Cloud Native Days booth."
-
-> }}
+{{< figure src="cnd-booth.png" caption="From left to right: Omar, Julien, Antoine & Gilles at our Cloud Native Days booth." >}}
 
 I've worked a lot with Kubernetes in the last years, but it was mostly as a user
 and in a particular environment: strict adherence to a GitOps flow, managed

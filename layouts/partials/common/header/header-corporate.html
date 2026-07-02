@@ -3,7 +3,7 @@
 {{ $logo := resources.Get .Site.Params.logos.dark }}
 {{ $logoKit := resources.Get "img/branding/logo.zip" }}
 
-<header id="site-header" class="fixed flex px-2 py-2 md:py-3 top-5 rounded-2xl mx-auto inset-x-4 md:inset-x-10 max-w-350 z-50 bg-neutral-50 border-b border-l border-r border-neutral-300 overflow-hidden">
+<header id="site-header" class="fixed flex px-2 py-2 md:py-3 top-5 rounded-2xl mx-auto inset-x-4 md:inset-x-10 max-w-350 z-50 bg-neutral-50 border-b border-l border-r border-neutral-300 overflow-x-clip">
   <div class="flex mx-auto w-full justify-between relative">
     <div class="flex items-center min-w-0 space-x-2 xl:space-x-6">
       <!-- Logo -->
