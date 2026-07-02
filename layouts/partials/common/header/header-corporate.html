@@ -3,9 +3,9 @@
 {{ $logo := resources.Get .Site.Params.logos.dark }}
 {{ $logoKit := resources.Get "img/branding/logo.zip" }}
 
-<header id="site-header" class="fixed flex px-2 py-2 md:py-3 top-5 rounded-2xl mx-auto inset-x-4 md:inset-x-10 max-w-350 z-50 bg-neutral-50 border-b border-l border-r border-neutral-300">
+<header id="site-header" class="fixed flex px-2 py-2 md:py-3 top-5 rounded-2xl mx-auto inset-x-4 md:inset-x-10 max-w-350 z-50 bg-neutral-50 border-b border-l border-r border-neutral-300 overflow-hidden">
   <div class="flex mx-auto w-full justify-between relative">
-    <div class="flex mx-auto items-center w-full space-x-2 xl:space-x-16">
+    <div class="flex items-center min-w-0 space-x-2 xl:space-x-6">
       <!-- Logo -->
       <a href="/" id="logo-link" class="block md:w-34 w-28 pb-0.5 md:pl-2 relative">
         <span class="block">{{ $logo.Content | safeHTML }}</span>
@@ -36,8 +36,8 @@
 
     <div class="flex flex-row items-center space-x-2 shrink-0 justify-end">
       <!-- Search trigger -->
-      <button class="search-trigger group flex items-center gap-2 min-h-7 lg:min-h-12 px-2.5 border border-neutral-300 rounded-lg bg-neutral-50 text-neutral-400 hover:text-neutral-600 hover:border-neutral-400 transition-colors" aria-label="Open search">
-        <span class="w-6 h-6 shrink-0">{{ partial "icon.html" "ri/search-line" }}</span>
+      <button class="search-trigger group flex items-center justify-center xl:justify-start gap-2 min-h-7 xl:min-h-12 aspect-square xl:aspect-auto xl:px-2.5 border border-neutral-300 rounded-lg bg-neutral-50 text-neutral-400 hover:text-neutral-600 hover:border-neutral-400 transition-colors" aria-label="Open search">
+        <span class="w-5 h-5 shrink-0">{{ partial "icon.html" "ri/search-line" }}</span>
         <span class="hidden text-sm">Search...</span>
         <kbd class="hidden items-center h-5 bg-white border border-neutral-200 rounded px-1.5 ml-1">
           <span class="text-[10px] text-neutral-400" id="search-kbd-hint"></span>
@@ -61,10 +61,11 @@
         "label" "Book a demo"
         "labelShort" "Demo"
         "class" "book-a-demo-modal-open"
+        "minH" "xl:min-h-12"
       ) }}
 
       <!-- Mobile menu toggle -->
-      <button id="menu-button" class="lg:hidden min-h-7 aspect-square overflow-y-auto border border-neutral-300 rounded-lg text-neutral-900 focus:outline-none flex items-center justify-center">
+      <button id="menu-button" class="xl:hidden min-h-7 aspect-square overflow-y-auto border border-neutral-300 rounded-lg text-neutral-900 focus:outline-none flex items-center justify-center">
         <span class="w-4 h-4 flex items-center justify-center">
           {{ partial "icon.html" "ri/menu-line" }}
         </span>
