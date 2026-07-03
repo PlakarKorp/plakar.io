@@ -65,5 +65,5 @@ If the command produces multiple files, have it generate a TAR archive and
 ingest it with the TAR integration instead:
 
 ```bash
-$ some-command --output-format=tar | plakar at /var/backups backup tgz://
+$ some-command --output-format=tar | plakar at /var/backups backup tar://
 ```
