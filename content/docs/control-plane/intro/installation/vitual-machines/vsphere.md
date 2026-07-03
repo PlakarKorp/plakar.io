@@ -232,6 +232,32 @@ The gateway can usually be found from the NSX network segment configuration.
 
 ![](../images/ovhcloud-iso-7.png)
 
+### Proxy Configuration
+
+If your network requires outbound traffic to go through a proxy, you can
+configure this via vSphere's guest info parameters.
+
+You'll need to create a YAML file e.g `userdata.yml` and write your config then
+encode the file to base64.
+
+```yml
+proxy:
+  http: http://proxy.corp:3128
+  https: http://proxy.corp:3128 # defaults to http if omitted
+  no_proxy: 10.0.0.0/8,.corp.local
+```
+
+```sh
+base64 -i userdata.yml -o userdata.b64
+```
+
+Add the following parameters:
+
+| Parameter                     | Description                          |
+| ----------------------------- | ------------------------------------ |
+| `guestinfo.userdata`          | Paste the contents of `userdata.b64` |
+| `guestinfo.userdata.encoding` | `base64`                             |
+
 ### Optional: enable SSH access
 
 SSH access is optional and is not required for a standard installation.
