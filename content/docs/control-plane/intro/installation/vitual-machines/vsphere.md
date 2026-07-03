@@ -237,26 +237,20 @@ The gateway can usually be found from the NSX network segment configuration.
 If your network requires outbound traffic to go through a proxy, you can
 configure this via vSphere's guest info parameters.
 
-You'll need to create a YAML file e.g `userdata.yml` and write your config then
-encode the file to base64.
+Add the following parameter under **Advanced Parameters**:
+
+| Parameter            | Description                      |
+| -------------------- | -------------------------------- |
+| `guestinfo.userdata` | Your proxy config, as plain YAML |
 
 ```yml
-proxy:
-  http: http://proxy.corp:3128
-  https: http://proxy.corp:3128 # defaults to http if omitted
-  no_proxy: 10.0.0.0/8,.corp.local
+proxy: { http: "http://proxy.corp:3128", no_proxy: "10.0.0.0/8,.corp.local" }
 ```
 
-```sh
-base64 -i userdata.yml -o userdata.b64
-```
-
-Add the following parameters:
-
-| Parameter                     | Description                          |
-| ----------------------------- | ------------------------------------ |
-| `guestinfo.userdata`          | Paste the contents of `userdata.b64` |
-| `guestinfo.userdata.encoding` | `base64`                             |
+- `http` is the only required field. If your proxy handles both HTTP and HTTPS
+  traffic on the same endpoint, `https` can be omitted, it will default to the
+  value of `http`.
+- `no_proxy` is optional and rarely needed.
 
 ### Optional: enable SSH access
 
