@@ -1,7 +1,7 @@
 ---
 title: "Updating Control Plane"
 date: "2026-05-13T00:00:00Z"
-weight: 1
+weight: 2
 summary:
   "How to update Plakar Control Plane and its underlying deployment
   infrastructure."
