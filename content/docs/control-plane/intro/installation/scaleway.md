@@ -88,6 +88,19 @@ stores the database, logs, and all Plakar state.
 Attach an additional Block Storage volume with a recommended size of `1024 GB`.
 Backups themselves are stored wherever you configure using apps.
 
+## Proxy Configuration
+
+If your network requires outbound traffic to go through a proxy, you can
+configure this via Scaleway's cloud-init user data field when creating the
+instance.
+
+- `http` is the only required field. If your proxy handles both HTTP and HTTPS
+  traffic on the same endpoint, `https` can be omitted, it will default to the
+  value of http.
+- `no_proxy` is optional and rarely needed;
+
+![Adding proxy configuration to Scaleway cloud init](../images/scaleway-cloud-init.png)
+
 ## Networking and Security Groups
 
 The networking configuration below is intended for a basic deployment setup.
