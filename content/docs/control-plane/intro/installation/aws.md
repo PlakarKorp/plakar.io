@@ -61,6 +61,24 @@ Instances** page in the AWS Console.
 
 ![](../images/aws-launch-instance.png)
 
+## Proxy Configuration
+
+If your network requires outbound traffic to go through a proxy, you can
+configure this via the instance's User data field when launching the instance.
+
+To configure User data, you need to select the **Lauch from EC2 Console**
+instead of the **One-click launch from AWS Marketplace** for you to be able to
+set the advanced details. From the setup page, expand the **Advanced details**
+section, the User data setup will be available as the last configuration at the
+bottom of the page
+
+- `http` is the only required field. If your proxy handles both HTTP and HTTPS
+  traffic on the same endpoint, `https` can be omitted, it will default to the
+  value of http.
+- `no_proxy` is optional and rarely needed;
+
+![Adding proxy configuration to AWS User data](../images/aws-user-data.png)
+
 ## Security Groups
 
 The networking configuration shown below is intended for a basic deployment
