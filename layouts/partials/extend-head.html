@@ -1,3 +1,14 @@
+{{/* Google Tag Manager + Google Consent Mode v2.
+  Configure via [params.gtm] in config; production only.
+  Consent defaults to denied and is granted from the Axeptio CMP choices.
+  JS lives in assets/js/main/gtm.js (bundled below), driven by this marker.
+  Paired noscript lives in layouts/_default/baseof.html. */}}
+{{ with .Params.gtm }}
+  {{ if and .enabled hugo.IsProduction }}
+    <div id="gtm-config" data-id="{{ .id }}" hidden></div>
+  {{ end }}
+{{ end }}
+
 {{ with .Params.axeptio }}
   {{ if .enabled }}
     <div id="axeptio-config" data-client-id="{{ .clientId }}" data-cookies-version="{{ .cookiesVersion }}" hidden></div>
@@ -31,6 +42,7 @@
   (resources.Get "js/main/posts-filter.js")
   (resources.Get "js/main/book-demo-modal.js")
   (resources.Get "js/main/axeptio.js")
+  (resources.Get "js/main/gtm.js")
   (resources.Get "js/main/hubspot.js")
   (resources.Get "js/main/promptwatch.js")
   (resources.Get "js/main/search.js")

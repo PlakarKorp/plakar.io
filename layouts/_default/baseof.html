@@ -2,6 +2,15 @@
 <html lang="en">
   {{ partial "head.html" . }}
   <body>
+    {{/* Google Tag Manager (noscript) — configure via [params.gtm] in config; production only. Paired head script lives in layouts/partials/extend-head.html. */}}
+    {{ with site.Params.gtm }}
+      {{ if and .enabled hugo.IsProduction }}
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ .id }}"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
+      {{ end }}
+    {{ end }}
     {{ partial "common/header/header.html" . }}
     <main class="min-h-[calc(100dvh-18rem)]">
       {{ block "main" . }}{{ end }}
