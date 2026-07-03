@@ -57,10 +57,9 @@ For each granularity you enable, you configure:
   example 4 times or once a day
 - **Retention** - how long backup restore points should be kept
 
-You then select a [store](../../apps/stores) where the backup will be
-stored and toggle whether you want to run a
-[check task](../scheduling/tasks#check-task) on the after each. It's recommended
-to leave this on.
+You then select a [store](../../apps/stores) where the backup will be stored and
+toggle whether you want to run a [check task](../scheduling/tasks#check-task) on
+the after each. It's recommended to leave this on.
 
 ![](../images/create-policy.png)
 
@@ -108,3 +107,11 @@ schedules for all matching sources using the store app selected when the policy
 was created. See the
 [policy scheduler documentation](../scheduling/policy-scheduler) for more
 details.
+
+## Managing environments & data classes
+
+Environments and data classes used by the SLA system to scope resources are
+managed from **Settings > Classification**. From there, you can create new
+environments and data classes, or delete existing ones.
+
+![Creating and deleting environments and data classes](../images/managing-classification.png)
