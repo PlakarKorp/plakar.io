@@ -16,12 +16,11 @@ forget to run one, and the backup you didn't run is the one you'll wish you had
 when something goes wrong. The fix is to run `plakar backup` automatically on a
 schedule.
 
-Plakar does not ship its own scheduler since `v1.1.0`. The right way to schedule
-a backup going forward is to delegate to the scheduling to what your operating
-system already provides:
+We can schedule backups using operating system tools such as:
 
 - **cron**: available on virtually every Linux and macOS system.
-- **systemd timers**: the recommended option on modern Linux distributions.
+- **systemd** timers: the recommended option on modern Linux distributions.
+- **launchd**: the native scheduler on macOS.
 - **Windows Task Scheduler**: the native scheduler on Windows.
 
 Using the OS scheduler means your backups appear alongside every other scheduled
@@ -39,9 +38,6 @@ itself:
 $ plakar store add mybackups /var/backups passphrase=mysuperpassphrase
 $ plakar at "@mybackups" create
 ```
-
-The `@mybackups` label refers to the entry you just created with
-`plakar store add`. The configuration lives in `~/.config/plakar/stores.yml`.
 
 ### Make the passphrase available without a prompt
 
@@ -62,9 +58,9 @@ supply the passphrase non-interactively. Pick one of the following:
   $ plakar store add mybackups /var/backups passphrase_cmd="gopass show mystore/passphrase"
   ```
 
-- **Use a key file.** Pass `-keyfile /path/to/key` as a global flag (it must
-  appear before `at`). Plakar reads the passphrase from that file. This flag
-  overrides `PLAKAR_PASSPHRASE` if both are set.
+- **Use a key file.** Pass `-keyfile /path/to/key` as a flag . Plakar reads the
+  passphrase from that file. This flag overrides `PLAKAR_PASSPHRASE` if both are
+  set.
 - **Use an environment variable.** Export `PLAKAR_PASSPHRASE` in the job's
   environment.
 
@@ -74,7 +70,7 @@ Every scheduler below runs the same command. Back up a path into the store and
 verify the result:
 
 ```bash
-$ plakar at "@mybackups" backup /var/www -check
+$ plakar at "@mybackups" backup -check /var/www
 ```
 
 `-check` runs a full integrity check after the backup is completed.
@@ -97,11 +93,12 @@ Add a line to run the backup every day at 02:00, sending all output to a log
 file:
 
 ```cron
-0 2 * * * /usr/local/bin/plakar at "@mybackups" backup /var/www -check >> /var/log/plakar-backup.log 2>&1
+0 2 * * * /usr/local/bin/plakar at "@mybackups" backup -check /var/www >> /var/log/plakar-backup.log 2>&1
 ```
 
 A plain cron job does **not** run a backup that was missed while the machine was
-off. If that matters, use a systemd timer with `Persistent=true` instead.
+off. If that matters, which is often the case, use a `systemd timer` (Linux) or
+`launchd` (macOS), both of which catch up on missed runs.
 
 ## systemd timers (Linux)
 
@@ -120,7 +117,7 @@ After=network-online.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/local/bin/plakar at @mybackups backup /var/www -check
+ExecStart=/usr/local/bin/plakar at @mybackups backup -check /var/www
 # If you supply the passphrase via the environment instead of the store config:
 # Environment=PLAKAR_PASSPHRASE=mysuperpassphrase
 ```
@@ -141,8 +138,8 @@ WantedBy=timers.target
 ```
 
 `Persistent=true` runs the job as soon as the machine comes back up if a
-scheduled time was missed. Adjust `OnCalendar` to taste (`daily`, `hourly`,
-`*-*-* 02,14:00:00`, and so on).
+scheduled time was missed while it was off. Adjust `OnCalendar` to taste
+(`daily`, `hourly`, `*-*-* 02,14:00:00`, and so on).
 
 Enable and start the timer:
 
@@ -167,15 +164,74 @@ and manage them with `systemctl --user`; user timers run only while that user
 has an active session unless lingering is enabled
 (`loginctl enable-linger <user>`).
 
+## launchd (macOS)
+
+macOS uses launchd for scheduled jobs. Create the launchd agent at
+`~/Library/LaunchAgents/io.plakar.backup.plist`:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>io.plakar.backup</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/local/bin/plakar</string>
+    <string>at</string>
+    <string>@mybackups</string>
+    <string>backup</string>
+    <string>-check</string>
+    <string>/Users/me/Documents</string>
+  </array>
+
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key><integer>2</integer>
+    <key>Minute</key><integer>0</integer>
+  </dict>
+
+  <key>StandardOutPath</key>
+  <string>/Users/me/Library/Logs/plakar-backup.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/me/Library/Logs/plakar-backup.log</string>
+</dict>
+</plist>
+```
+
+If the Mac is asleep at the scheduled time, launchd runs the job once when it
+next wakes, so missed runs are picked up automatically.
+
+Load the agent so it becomes active:
+
+```sh
+$ launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/io.plakar.backup.plist
+```
+
+Trigger a run immediately to test it, and read the log:
+
+```sh
+$ launchctl kickstart -k gui/$(id -u)/io.plakar.backup
+$ tail -f ~/Library/Logs/plakar-backup.log
+```
+
 ## Windows Task Scheduler
 
 On Windows, schedule the same command with Task Scheduler. The quickest way is
 from an elevated Command Prompt or PowerShell:
 
 ```bat
-schtasks /Create /TN "Plakar Daily Backup" /SC DAILY /ST 02:00 ^
-  /TR "\"C:\Program Files\Plakar\plakar.exe\" at @mybackups backup C:\Data -check" ^
-  /RU "DOMAIN\user" /RP * /RL HIGHEST
+schtasks /Create ^
+  /TN "Plakar Daily Backup" ^
+  /SC DAILY ^
+  /ST 02:00 ^
+  /TR "\"C:\Program Files\Plakar\plakar.exe\" at @mybackups backup -check \"C:\Data\"" ^
+  /RU "DOMAIN\user" ^
+  /RP * ^
+  /RL HIGHEST
 ```
 
 - `/SC DAILY /ST 02:00` runs it every day at 02:00.
@@ -190,7 +246,7 @@ To capture output, wrap the command in a small batch file and run that instead:
 
 ```bat
 @echo off
-"C:\Program Files\Plakar\plakar.exe" at @mybackups backup C:\Data -check >> "C:\Logs\plakar-backup.log" 2>&1
+"C:\Program Files\Plakar\plakar.exe" at @mybackups backup -check C:\Data >> "C:\Logs\plakar-backup.log" 2>&1
 ```
 
 You can also create the task through the Task Scheduler GUI (**Create Task** →
@@ -208,3 +264,74 @@ $ plakar at "@mybackups" ls
 
 For monitoring and alerting, rely on the exit status: `plakar backup` returns
 `0` on success and a non-zero code on failure.
+
+## Power saving and battery (laptops)
+
+On a laptop you usually don't want a backup to fire while you're on battery.
+Each OS can skip runs unless the machine is on AC power.
+
+### Linux
+
+On Linux with systemd add `ConditionACPower=true` to the `[Unit]` section of
+`plakar-backup.service`. When you're on battery at the scheduled time, that run
+is skipped.
+
+### macOS
+
+launchd has no built-in AC-power condition, so run the backup through a small
+wrapper script that checks the power state first. Create
+`~/bin/plakar-backup.sh` and make it executable with
+`chmod +x ~/bin/plakar-backup.sh`:
+
+```bash
+#!/bin/sh
+set -eu
+
+# Optional pause switch: `touch ~/.plakar-pause` to pause, `rm` to resume.
+[ -f "$HOME/.plakar-pause" ] && exit 0
+
+# Skip the run when not on AC power.
+pmset -g ps | grep -q "AC Power" || exit 0
+
+exec /usr/local/bin/plakar at "@mybackups" backup -check "$HOME/Documents"
+```
+
+Then point the agent at the wrapper instead of at `plakar` directly by replacing
+the `ProgramArguments` block in `io.plakar.backup.plist`:
+
+```xml
+<key>ProgramArguments</key>
+<array>
+  <string>/Users/me/bin/plakar-backup.sh</string>
+</array>
+```
+
+Reload the agent to apply the change:
+
+```bash
+$ launchctl bootout   gui/$(id -u)/io.plakar.backup
+$ launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/io.plakar.backup.plist
+```
+
+### Windows
+
+Windows Task Scheduler has native power conditions. Open the task, and on the
+**Conditions** tab:
+
+- Enable Start the task only if the computer is on AC power.
+- Enable Stop if the computer switches to battery power.
+
+On the Settings tab, enable **Run task as soon as possible after a scheduled
+start is missed** so a run skipped while the machine was off (or on battery) is
+caught up.
+
+These conditions can't be set through `schtasks` flags. To script it, export the
+task to XML, set the fields below, and re-import with `schtasks /Create /XML`:
+
+```xml
+<Settings>
+  <DisallowStartIfOnBatteries>true</DisallowStartIfOnBatteries>
+  <StopIfGoingOnBatteries>true</StopIfGoingOnBatteries>
+  <StartWhenAvailable>true</StartWhenAvailable>
+</Settings>
+```
