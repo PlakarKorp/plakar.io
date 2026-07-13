@@ -174,5 +174,5 @@ That could make for a fun community project to build a Wikipedia importer for
 Plakar.
 
 A Plakar integration is relatively easy to build, and the
-[integration example github repo](https://github.com/PlakarKorp/integration-example/tree/main)
+[integration example repo](http://github.com/PlakarKorp/integrations/tree/main/example)
 is a good place to start if you want to experiment with one.
