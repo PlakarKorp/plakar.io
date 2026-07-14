@@ -40,17 +40,13 @@ Data volumes double every three to four years, and encryption is now mandatory a
 
 Run your backups inside AWS and the bill creeps up quietly: snapshot sprawl, cross-region replication that doubles your storage, per-GB costs that grow every time your data does. Annoying, but survivable.
 
-The real problem is what it does to your security posture. Every serious resilience playbook says the same thing: keep a copy off your primary provider: the old 3-2-1 rule. On AWS, an off-provider copy means paying egress, and egress is billed per gigabyte, every time. That makes a full second copy expensive enough that most teams quietly skip it. So the only real copy of their data ends up in the same account, the same provider, the same blast radius as production. If that account is hit, whether by ransomware, stolen credentials, or a bad day for a region, the backup goes down with everything else.
+The real problem is what it does to your security posture. Every serious resilience playbook says the same thing: keep a copy off your primary provider: the old [3-2-1 rule](/posts/2025-02-11/the-3-2-1-backup-rule-a-proven-strategy-for-data-protection/). On AWS, an off-provider copy means paying egress, and egress is billed per gigabyte, every time. That makes a full second copy expensive enough that most teams quietly skip it. So the only real copy of their data ends up in the same account, the same provider, the same blast radius as production. If that account is hit, whether by ransomware, stolen credentials, or a bad day for a region, the backup goes down with everything else.
 
 That copy outside AWS isn't a nice-to-have. It's the condition that makes your data actually safe. Plakar's job is to make it affordable: high-ratio source-side deduplication strips redundant data *before* it ever leaves your environment, so you pay egress and off-site storage on a fraction of the bytes. And because every copy is encrypted client-side under keys you control, that second copy is safe sitting on whatever storage is cheapest and most independent: OVHcloud, Scaleway, on-prem, cold archive. The copy outside AWS stops being the line item you cut, and becomes the one that saves you.
 
-## What we built in the open: Kloset and ptar
-
-Two open-source foundations. **Kloset**, our immutable storage engine, and **ptar**, a universal archive format. Together they finally reconcile high-density storage efficiency with zero-knowledge encryption: your data stays deduplicated and compact, and is never exposed in plaintext to the infrastructure holding it. 600+ engineers in our Discord pressure-tested it, release after release.
-
 ## Plakar Control Plane: declare resilience like you declare infrastructure
 
-Control Plane is a self-hosted backup management platform that turns all of that into **resilience as code**. It sits above the open backup engine and gives security and infrastructure teams four things legacy tooling can't:
+Control Plane is a self-hosted backup management platform enabling resilience as code. It sits above the Plakar backup engine and gives security and infrastructure teams four benefits legacy tooling can't:
 
 - **Provable posture**: one [inventory](/docs/control-plane/infrastructure/inventories/) across VMs, databases, Kubernetes, buckets, and SaaS, showing what's protected, with integrity checks after every backup.
 - **Safe, cost-efficient copies**: client-side deduplication and zero-trust encryption, stored on the provider of your choice.
@@ -58,16 +54,6 @@ Control Plane is a self-hosted backup management platform that turns all of that
 - **Strategic autonomy**: self-hosted, keys you control, an auditable codebase. No vendor sits between you and your recovery.
 
 ![Plakar Control Plane: inventory management](inventory.png)
-
-Connect a provider and Control Plane syncs your [resources](/docs/control-plane/resources/), EC2 instances, S3 buckets, databases, and matches each to the right integration automatically. Secrets stay where they belong: keep them in Control Plane or delegate to your existing secrets manager, resolved only at runtime.
-
-![Plakar Control Plane: secret providers](secrets.png)
-
-Here's what "resilience as code" looks like in practice. An [SLA policy](/docs/control-plane/operations/policies/) is a contract: how often backups must be taken, how long restore points are kept, and which store they land in. Scope it to an environment, a data class, or a tag, say, `production` + `database`, and every matching source is scheduled automatically. Add a new database next quarter and it's picked up by the policy with zero extra configuration. Control Plane even derives the RPO and lookback window from your settings, so the contract is explicit before you commit to it.
-
-![Plakar Control Plane: create and schedule a backup task](task-scheduling.png)
-
-Layer policies like you layer infrastructure: a general one covering all of production, a stricter one just for production databases. Need something outside the contract? Add a [one-off task](/docs/control-plane/operations/scheduling/one-off-tasks/) or a [manual schedule](/docs/control-plane/operations/scheduling/manual-scheduler/), either way, every scheduled task and background job converges into one graph view.
 
 ![Plakar Control Plane: graph view of scheduled tasks](graph-scheduling.png)
 
