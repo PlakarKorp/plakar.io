@@ -55,8 +55,6 @@ Control Plane is a self-hosted backup management platform enabling resilience as
 
 ![Plakar Control Plane: inventory management](inventory.png)
 
-![Plakar Control Plane: graph view of scheduled tasks](graph-scheduling.png)
-
 ## What Control Plane protects
 
 Plakar's open integrations cover the systems that actually make up a production estate:
