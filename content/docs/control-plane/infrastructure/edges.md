@@ -22,6 +22,28 @@ or NAT gateways.
 
 ![list of remote edge executors registered on a control plane instance](../images/edges-list.png)
 
+## How edges work
+
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+sequenceDiagram
+  participant Edge as plakar-edge
+  participant PCP as Plakar Control Plane
+  participant Target as Source / store app
+
+  Note over Edge,PCP: Enrollment (one-time)
+  Edge->>PCP: Register with enrollment key
+  PCP-->>Edge: Auth token
+
+  Note over Edge,PCP: Scheduled task run
+  PCP->>Edge: Assign task (backup, restore, sync, check)
+  PCP-->>Edge: Resolve and provide required secrets
+  Edge->>Target: Perform operation locally
+  Target-->>Edge: Result
+  Edge-->>PCP: Report task result
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
+
 ## Requirements
 
 An edge must have network access to:
