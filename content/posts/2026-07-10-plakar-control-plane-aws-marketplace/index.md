@@ -61,12 +61,12 @@ Plakar's open integrations cover the systems that actually make up a production 
 
 | Resource | Integrations |
 |---|---|
-| **Databases** | PostgreSQL, MySQL, SQLite, etcd: consistent snapshots with SLA metadata |
-| **Object storage** | Amazon S3, Google Cloud Storage, Azure Blob |
-| **Kubernetes** | Cluster workloads, plus a dedicated [Kubernetes operator](https://github.com/PlakarKorp/plakar-operator) |
-| **VMs & containers** | Proxmox, Docker volumes, OCI images |
-| **Files & NAS** | Local filesystems, SFTP, FTP, WebDAV, and anything [rclone](https://rclone.org/) can reach |
-| **SaaS & apps** | Notion, IMAP mailboxes, CalDAV, with more landing through the open [integrations](/integrations/) ecosystem |
+| **Databases** | [PostgreSQL](/integrations/postgres/), [MySQL](/integrations/mysql/), SQLite, [etcd](/integrations/etcd/): consistent snapshots with SLA metadata |
+| **Object storage** | [Amazon S3](/integrations/s3/), [Google Cloud Storage](/integrations/gcs/), [Azure Blob](/integrations/azblob/) |
+| **Kubernetes** | [Cluster workloads](/integrations/kubernetes/), plus a dedicated Kubernetes operator |
+| **VMs & containers** | [Proxmox](/integrations/proxmox/), Docker volumes, [OCI images](/integrations/oci/) |
+| **Files & NAS** | [Local filesystems](/integrations/fs/), [SFTP](/integrations/sftp/), [FTP](/integrations/ftp/), [WebDAV](/integrations/webdav/), and anything [rclone](https://rclone.org/) can reach |
+| **SaaS & apps** | [Notion](/integrations/notion/), [IMAP mailboxes](/integrations/imap/), [CalDAV](/integrations/caldav/), with more landing through the open [integrations](/integrations/) ecosystem |
 
 On AWS specifically, [managed inventories](/docs/control-plane/infrastructure/inventories/aws/) discover your resources agentlessly through native AWS APIs: EC2 instances, S3 buckets, and RDS PostgreSQL databases surface automatically, while lightweight agents extend the same policies to on-prem and hybrid workloads.
 
@@ -96,8 +96,6 @@ Our mission is simple: make reliable backup accessible to everyone. Decouple dat
 Backup anything. Store anywhere. Restore everywhere. That's **Open Resilience as Code.**
 
 ## Explore Plakar Control Plane on AWS Marketplace
-
-Deploy in minutes, in your own account, with a free plan that has no time limit.
 
 [**Get it on AWS Marketplace →**](https://aws.amazon.com/marketplace/pp/prodview-n3wsyckyby6vq)
 
