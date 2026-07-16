@@ -29,7 +29,7 @@ backups, Plakar makes it straightforward.
 ## Getting Started
 
 - [Plakar Installation Guide](./installation)
-- [Create your first backup](./quickstart)
+- [Create your first backup](./first-backup)
 
 ## Core Concepts
 
