@@ -22,3 +22,6 @@ how tasks run, while the [policy scheduler](../policy-scheduler) automates
 scheduling based on the protection requirements defined in your policies.
 
 {{< children description="true" >}}
+
+Backup, check, and sync tasks can also be scheduled declaratively from
+Kubernetes. See [Infrastructure as Code](../../infrastructure-as-code).
