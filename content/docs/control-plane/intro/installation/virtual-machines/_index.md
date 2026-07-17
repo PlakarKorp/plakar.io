@@ -3,6 +3,8 @@ title: "Virtual Machines"
 date: "2026-06-09T00:00:00Z"
 weight: 7
 summary: "How to install Plakar Control Plane on a virtual machine"
+aliases:
+  - /control-plane-docs/intro/installation/vitual-machines/
 ---
 
 # Virtual Machines
