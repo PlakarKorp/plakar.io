@@ -11,6 +11,8 @@ The general settings page lets you check your instance's identity and version,
 download diagnostic data, forward logs to Vector, and manage early-access
 features.
 
+![Plakar Control Plane general settings](../images/general-settings.png)
+
 ## Organization
 
 Shows your organization's unique identifier.
@@ -48,9 +50,20 @@ a copy of the logs is forwarded there rather than replacing local processing.
 Enter the target instance's address as `host:port` and click **Update** to
 apply.
 
+## Email & SMTP
+
+Configure the SMTP server used by Plakar Control Plane to send outgoing emails,
+including notifications and other system-generated messages. See
+[Email & SMTP](../email-and-smtp) for configuration details.
+
+## Edge enrollment
+
+Enable edge enrollment to allow new edge executors to register with your Plakar
+Control Plane instance. Once enabled, you can generate or regenerate the
+enrollment key used during the initial registration process. See
+[Edges](../../infrastructure/edges) for more information.
+
 ## UI preview mode
 
 Enable preview mode to access early features. They may be unpolished, but let
 you explore them and give feedback before release.
-
-![Plakar Control Plane general settings](../images/general-settings.png)
