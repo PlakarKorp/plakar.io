@@ -15,6 +15,9 @@ independently.
 
 ![](../images/attach-schedule.png)
 
+See the [job history documentation](../job-history) for details on monitoring
+job progress, viewing job output, and finding jobs on app pages.
+
 ## Recurrence
 
 How often the schedule runs. Available options: `twice daily`, `daily`,
@@ -35,7 +38,13 @@ Plakar Control Plane restart.
 ## Enabled
 
 Schedules can be enabled or disabled independently. Disabling a schedule pauses
-it without deleting it.
+that schedule without deleting it, while any other schedules attached to the
+task continue to run as configured.
 
-See the [job history documentation](../job-history) for details on monitoring
-job progress, viewing job output, and finding jobs on app pages.
+## Advanced Scheduler Settings
+
+### Enabled
+
+Enables or disables the task as a whole, overriding all of its individual
+schedules. When disabled here, the task won't run even if one or more of its
+schedules are enabled.
