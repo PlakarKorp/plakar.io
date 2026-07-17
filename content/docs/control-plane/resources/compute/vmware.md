@@ -84,20 +84,6 @@ destination apps using the `vmware` protocol.
 - **vSphere Username**: Required. The username used to authenticate with the
   vCenter Server or ESXi host.
 
-### Source configuration
-
-The following extra settings are available when configuring a source app using
-the `vmware` protocol.
-
-- **NSX URL**: The URL of the NSX Manager, if NSX-managed networking resources
-  are included for backup.
-- **NSX Username**: The username used to authenticate with NSX Manager. If
-  omitted, the value of **vSphere Username** is used.
-- **NSX Password**: The password used to authenticate with NSX Manager. If
-  omitted, the value of **vSphere Password** is used.
-- **NSX TLS Skip Verify**: Skip TLS certificate verification when connecting to
-  NSX Manager.
-
 ### Destination configuration
 
 The following extra settings are available when configuring a destination app
@@ -105,11 +91,6 @@ using the `vmware` protocol.
 
 - **Tmp Dir**: The temporary directory used by VDDK and NBDKit during restore
   operations. Defaults to `/home/plakar/tmp`.
-
-> [!NOTE]
->
-> Restoring NSX-managed networking resources is not yet supported. Only virtual
-> machine disk data is restored.
 
 ## 2. `vmware+nbd` protocol
 
@@ -198,7 +179,9 @@ destination apps using the `vmware+nbd` protocol.
 - **Nbd Ssh Private Key**: Required. The private key used to authenticate over
   SSH with the NBD server.
 - **Nbd Uri**: The TLS NBD URI used for direct disk data transfer, e.g.
-  `nbds://<host>`. Defaults to the host of **Nbd Ssh Url** when omitted.
+  `nbds://[<user>:<password>@]<host>:<port>`. Defaults to the host of Nbd Ssh
+  Url when omitted. Credentials in the URI default to Vsphere Username / Vsphere
+  Password when omitted.
 - **Nbd Tls Ca Bundle**: Required. The PEM CA bundle used by the client to
   verify the NBD server's TLS certificate.
 - **Nbd Tls Certificates Dir**: The remote directory on the NBD server
@@ -229,24 +212,11 @@ The following extra settings are available when configuring a source app using
 the `vmware+nbd` protocol.
 
 - **Nbd Verbose**: Enable verbose `nbdkit` logging.
-- **NSX URL**: The URL of the NSX Manager, if NSX-managed networking resources
-  are included for backup.
-- **NSX Username**: The username used to authenticate with NSX Manager. If
-  omitted, the value of **Vsphere Username** is used.
-- **NSX Password**: The password used to authenticate with NSX Manager. If
-  omitted, the value of **Vsphere Password** is used.
-- **NSX Skip Verify**: Skip TLS certificate verification when connecting to NSX
-  Manager.
 
 ### Destination configuration
 
 The following extra settings are available when configuring a destination app
 using the `vmware+nbd` protocol.
 
-- **Tmp Dir**: The temporary directory used by `nbdkit` during restore
-  operations.
-
-> [!NOTE]
->
-> Restoring NSX-managed networking resources is not yet supported. Only virtual
-> machine disk data is restored.
+- **Tmp Dir**: The temporary directory (local file copy) used during restore
+  operations. Defaults to `/var/lib/plakman/pkgs`

@@ -96,8 +96,8 @@ sudo mkdir -p /usr/lib/vmware-vix-disklib
 sudo cp -r vmware-vix-disklib-distrib/* /usr/lib/vmware-vix-disklib/
 ```
 
-This path `/usr/lib/vmware-vix-disklib` is what you will later reference as the
-`nbd_vix_library_path` parameter in the Plakar connector configuration.
+The VDDK libraries must be installed at this exact path,
+`/usr/lib/vmware-vix-disklib`, for the `nbdkit-vddk` plugin to find them.
 
 Verify the installation:
 
@@ -122,6 +122,7 @@ Set these two variables first, you'll reuse them throughout this step:
 ```bash
 user='ubuntu'
 nbd_ip=''
+org_name=''
 ```
 
 Install `certtool` and create a dedicated group for TLS material access:
@@ -145,7 +146,7 @@ cat > ca.info < server-key.pem
 
 # Server certificate, bound to the NBD server's IP address
 cat > server.info <<EOF
-organization = MyOrg
+organization = ${org_name}
 cn = ${nbd_ip}
 ip_address = ${nbd_ip}
 tls_www_server
@@ -207,11 +208,11 @@ SSH is used for orchestration only. Disk bytes never travel over SSH, only over
 the TLS-secured NBD connection set up in
 [Step 3](step-3-generate-tls-certificates).
 
-On the consumer side (wherever Plakar Control Plane will initiate connections
-from), generate a keypair:
+Generate a keypair. This can be done on any machine since only the private key
+contents are needed later as the `nbd_ssh_private_key` value:
 
 ```bash
-ssh-keygen -t ed25519 -N "" -f
+ssh-keygen -t ed25519 -N "" -f <key-name>
 ```
 
 Keep the private key secure. You'll need it later when configuring the VMware
