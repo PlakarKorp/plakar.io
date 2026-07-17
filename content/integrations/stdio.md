@@ -43,7 +43,7 @@ seo_tags:
   - live data ingestion
   - secure data streaming
 
-technical_documentation_link:
+technical_documentation_link: /docs/community/main/integrations/stdio/
 
 stage: stable
 

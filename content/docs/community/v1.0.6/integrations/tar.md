@@ -49,3 +49,21 @@ $ plakar at /var/backups backup tar:///home/user/backup.tar
 # Import a gzip-compressed archive
 $ plakar at /var/backups backup tgz:///home/user/backup.tar.gz
 ```
+
+## Use cases
+
+### Backing up command output
+
+If a command generates a single output stream, you can pipe it directly into
+Plakar using the [STDIO integration](../stdio):
+
+```bash
+$ some-command | plakar at /var/backups backup stdio://
+```
+
+If the command produces multiple files, have it generate a TAR archive and
+ingest it with the TAR integration instead:
+
+```bash
+$ some-command --output-format=tar | plakar at /var/backups backup tar://
+```
