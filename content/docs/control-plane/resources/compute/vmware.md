@@ -20,6 +20,57 @@ any additional infrastructure.
 This is the simplest protocol to deploy, but throughput is typically limited to
 around **30 MB/s**.
 
+#### Backup flow
+
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+flowchart TD
+  subgraph VMware["VMware vSphere"]
+    VCenter["vCenter / ESXi"]
+    VM["Virtual Machine"]
+  end
+
+  subgraph Plakar["Plakar Control Plane"]
+    Source["VMware Compute<br/>Source app"]
+    Backup["Backup process<br/>Encrypt & deduplicate"]
+  end
+
+  Store["Kloset Store"]
+
+  Source -->|"vSphere API over HTTPS"| VCenter
+  VCenter --> VM
+  VM -->|"disk data transfer"| Source
+  Source --> Backup
+  Backup --> Store
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
+
+#### Restore flow
+
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+flowchart TD
+  Store["Kloset Store"]
+
+  subgraph Plakar["Plakar Control Plane"]
+    Destination["VMware Compute<br/>Destination app"]
+    Restore["Restore process"]
+  end
+
+  subgraph VMware["VMware vSphere"]
+    VCenter["vCenter / ESXi"]
+    VM["Restored Virtual Machine"]
+  end
+
+  Store --> Restore
+  Destination --> Restore
+
+  Restore -->|"disk data transfer"| Destination
+  Destination -->|"vSphere API over HTTPS"| VCenter
+  VCenter --> VM
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
+
 ### Shared configuration
 
 The following settings are available when configuring both source and
@@ -68,6 +119,67 @@ TLS. It supports both backup and restore operations, and is significantly faster
 than the `vmware` protocol, but requires setting up an NBD server first. See
 [Setting up an NBD Server for VMware Backups](../../../guides/vmware/nbd-server-setup)
 for instructions.
+
+#### Backup flow
+
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+flowchart TD
+  subgraph VMware["VMware vSphere"]
+    VCenter["vCenter / ESXi"]
+    VM["Virtual Machine"]
+  end
+
+  subgraph NBDServer["NBD Server"]
+    Nbdkit["nbdkit + VDDK plugin"]
+  end
+
+  subgraph Plakar["Plakar Control Plane"]
+    Source["VMware Compute<br/>Source app"]
+    Backup["Backup process<br/>Encrypt & deduplicate"]
+  end
+
+  Store["Kloset Store"]
+
+  Source -->|"SSH: orchestration"| Nbdkit
+  Nbdkit -->|"VDDK API"| VCenter
+  VCenter --> VM
+  Nbdkit -->|"NBD over TLS: disk bytes"| Source
+  Source --> Backup
+  Backup --> Store
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
+
+#### Restore flow
+
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+flowchart TD
+  Store["Kloset Store"]
+
+  subgraph Plakar["Plakar Control Plane"]
+    Destination["VMware Compute<br/>Destination app"]
+    Restore["Restore process"]
+  end
+
+  subgraph NBDServer["NBD Server"]
+    Nbdkit["nbdkit + VDDK plugin"]
+  end
+
+  subgraph VMware["VMware vSphere"]
+    VCenter["vCenter / ESXi"]
+    VM["Restored Virtual Machine"]
+  end
+
+  Store --> Restore
+  Destination --> Restore
+
+  Destination -->|"SSH: orchestration"| Nbdkit
+  Destination -->|"NBD over TLS: disk bytes"| Nbdkit
+  Nbdkit -->|"VDDK API"| VCenter
+  VCenter --> VM
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
 
 ### Shared configuration
 
