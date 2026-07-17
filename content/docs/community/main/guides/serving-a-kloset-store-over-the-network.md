@@ -20,10 +20,25 @@ There are two main reasons to use `plakar server`:
   HTTP. For example, a NAS that is reachable over HTTP but not over SSH. In
   these cases, `plakar server` lets you bridge the gap by re-exposing a store
   through HTTP.
-- **Protection against snapshot deletion.** By default, `plakar server` refuses
-  delete operations. This is useful when multiple machines push backups to a
-  shared store. If one of those machines is compromised, an attacker cannot use
-  it to delete snapshots.
+- **Protection against destructive maintenance operations.** By default,
+  `plakar server` refuses to delete the underlying objects (states, packfiles,
+  and locks) stored inside a store. This is useful when multiple machines push
+  backups to a shared store: if one of those machines is compromised, an
+  attacker cannot use it to permanently erase backup data.
+
+  Note that this does _not_ prevent a client from marking a snapshot as deleted.
+  In Plakar's model, deleting a snapshot doesn't remove anything by itself. It
+  only pushes a new state that marks the snapshot as deleted, which from the
+  store's point of view is an addition, not a removal. The actual data is only
+  reclaimed later, when `plakar maintenance` runs. It's this reclamation step
+  that `plakar server` blocks by default. If you need to stop a machine from
+  even marking snapshots as deleted, don't push backups from it directly;
+  instead pull the data from that machine using a trusted server (for example
+  over SFTP). See
+  [Should you push or pull backups](../../explanations/should-you-pull-or-push-backups)
+  for more on this tradeoff, and
+  [How Maintenance Works](../../explanations/how-maintenance-works) for the full
+  picture of how deletion and reclamation work.
 
 In all cases, clients still need the repository passphrase to access the store,
 and all snapshot data remains fully encrypted in transit.
@@ -65,9 +80,12 @@ Remote clients on the same network can then reach the store using:
 $ plakar at http://192.168.1.10:12345 ls
 ```
 
-## Enabling delete operations
+## Enabling destructive operations
 
-Delete operations are disabled by default. To allow them explicitly:
+By default, `plakar server` refuses to delete the underlying objects (states,
+packfiles, and locks) stored inside a store. This is what happens during
+`plakar maintenance`. To allow these destructive operations through the server
+explicitly:
 
 ```bash
 $ plakar at /var/backups server -allow-delete
@@ -106,3 +124,11 @@ $ plakar at sftp://example.org server
 
 - TLS certificates are not generated automatically. You must provide your own
   certificate and private key when enabling HTTPS.
+- The server's delete protection guards against object-level removal (states,
+  packfiles, locks) during maintenance. It does not prevent a client from
+  marking snapshots as deleted, and there is currently no CLI-level way to
+  restrict that. If a client must be prevented from doing even that, pull
+  backups from it via a trusted machine instead of letting it push directly. See
+  [How Maintenance Works](../../explanations/how-maintenance-works) for details
+  on the grace period, packfile-level garbage collection, and checkpoints that
+  govern when reclamation actually happens.
