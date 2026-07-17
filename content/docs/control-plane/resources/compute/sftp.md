@@ -2,7 +2,7 @@
 title: "SFTP"
 date: "2026-06-18T00:00:00Z"
 weight: 2
-summary: "How to configure an SFTP resource in Plakar Control Plane."
+summary: "How to configure SFTP resource in Plakar Control Plane."
 ---
 
 # SFTP

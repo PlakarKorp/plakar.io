@@ -1,7 +1,7 @@
 ---
 title: "Self Managed"
 date: "2026-05-06T00:00:00Z"
-weight: 5
+weight: 6
 summary:
   "How to connect and manage a Self Managed inventory in Plakar Control Plane."
 aliases:
