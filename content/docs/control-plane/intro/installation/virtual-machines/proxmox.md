@@ -123,7 +123,7 @@ configuration, license validation, and plugin downloads. If your proxy uses a
 whitelist rather than allowing all traffic, `*.plakar.io` must be on it.
 
 The appliance also needs to pull Docker images from `docker.io` and `ghcr.io`.
-There are two ways to make this work:
+There are two supported approaches:
 
 1. **Route image pulls through the same HTTP proxy.** If you take this route,
    the proxy must allow:
@@ -148,12 +148,13 @@ cat > /var/lib/vz/snippets/plakar-appliance.yaml << 'EOF'
 proxy:
   http:  http://<proxy-ip>:<proxy-port>
   https: http://<proxy-ip>:<proxy-port>
+  no_proxy: .corp.example,10.0.0.0/8       # optional
 
 registry:
   mirrors:
     docker.io: <harbor-host>/dockerhub-proxy
     ghcr.io:   <harbor-host>/ghcr-proxy
-  insecure: false
+  insecure: false     # true: skip TLS verification for the mirror hosts
 EOF
 ```
 
