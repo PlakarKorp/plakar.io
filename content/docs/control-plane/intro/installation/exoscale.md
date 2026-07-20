@@ -184,18 +184,54 @@ volume**, then select the Block Storage volume that you created.
 
 ![Attaching an Exoscale Block Storage volume](../images/attach-exoscale-block-storage.png)
 
-## Proxy Configuration
+## Proxy and Harbor Configuration
 
-If your network requires outbound traffic to go through a proxy, you can
-configure it through the instance's **User data** before the instance is
-created.
+If the instance doesn't have direct internet access, configure an HTTP proxy, a
+local Harbor registry mirror, or both through the instance's **User data**
+before creating the instance.
 
-- `http` is the only required field. If your proxy handles both HTTP and HTTPS
-  traffic on the same endpoint, `https` can be omitted and defaults to the value
-  of `http`.
-- `no_proxy` is optional and is rarely needed.
+![Adding proxy and Harbor configuration to Exoscale User data](../images/exoscale-user-data.png)
 
-![Adding proxy configuration to Exoscale User data](../images/exoscale-user-data.png)
+### What needs to be reachable
+
+Plakar Control Plane requires HTTPS access to `api.plakar.io` for runtime
+configuration, license validation, and plugin downloads. If your proxy uses a
+whitelist instead of allowing all outbound traffic, you need to add
+`*.plakar.io`
+
+The appliance also needs to pull container images from `docker.io` and
+`ghcr.io`. There are two supported approaches:
+
+1. **Route image pulls through the HTTP proxy.** If you choose this option, the
+   proxy should allow access to:
+   - `.docker.io`
+   - `.docker.com`
+   - `.ghcr.io`
+   - `.githubusercontent.com`
+
+2. **Use a Harbor registry mirror.** This is the recommended approach for
+   production deployments because images are pulled from a local registry cache
+   instead of the public internet. When using Harbor, you don't need to
+   whitelist the Docker and GitHub domains above on your proxy.
+
+### User data configuration
+
+The User data is a standard cloud-init YAML document containing `proxy:` and/or
+`registry:` sections, depending on your environment.
+
+```yaml
+#cloud-config
+proxy:
+  http: http://<proxy-ip>:<proxy-port>
+  https: http://<proxy-ip>:<proxy-port>
+  no_proxy: .corp.example,10.0.0.0/8 # optional
+
+registry:
+  mirrors:
+    docker.io: <harbor-host>/dockerhub-proxy
+    ghcr.io: <harbor-host>/ghcr-proxy
+  insecure: false # true: skip TLS verification for the mirror hosts
+```
 
 ## Security Groups
 
