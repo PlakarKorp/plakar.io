@@ -43,6 +43,33 @@ There are two main reasons to use `plakar server`:
 In all cases, clients still need the repository passphrase to access the store,
 and all snapshot data remains fully encrypted in transit.
 
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+flowchart TD
+  subgraph Clients["Client Machines"]
+    C1["backup / ls / restore"]
+    C2["rm<br/>(marks snapshot deleted)"]
+    C3["maintenance<br/>(reclaims storage space)"]
+  end
+
+  HTTP(["plakar server<br/>HTTP endpoint"])
+  Guard{"-allow-delete<br/>flag set?"}
+
+  subgraph Store["Kloset Store"]
+    Objects["States, packfiles, locks"]
+  end
+
+  C1 -->|"HTTP"| HTTP
+  C2 -->|"HTTP: push new state"| HTTP
+  C3 -->|"HTTP: delete request"| HTTP
+
+  HTTP -->|"non-destructive ops"| Objects
+  HTTP -->|"destructive ops"| Guard
+  Guard -->|"No (default): refused"| Blocked["Request rejected"]
+  Guard -->|"Yes: -allow-delete"| Objects
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
+
 ## Starting an HTTP server
 
 Assume you have a Kloset Store located at `/var/backups`. To expose it over

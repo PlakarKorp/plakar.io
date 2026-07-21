@@ -43,6 +43,33 @@ There are two main reasons to use `plakar server`:
 In all cases, clients still need the repository passphrase to access the store,
 and all snapshot data remains fully encrypted in transit.
 
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+flowchart TD
+  subgraph Clients["Client Machines"]
+    C1["backup / ls / restore"]
+    C2["rm<br/>(marks snapshot deleted)"]
+    C3["maintenance<br/>(reclaims storage space)"]
+  end
+
+  HTTP(["plakar server<br/>HTTP(S) endpoint"])
+  Guard{"-allow-delete<br/>flag set?"}
+
+  subgraph Store["Kloset Store"]
+    Objects["States, packfiles, locks"]
+  end
+
+  C1 -->|"HTTP(S)"| HTTP
+  C2 -->|"HTTP(S): push new state"| HTTP
+  C3 -->|"HTTP(S): delete request"| HTTP
+
+  HTTP -->|"non-destructive ops"| Objects
+  HTTP -->|"destructive ops"| Guard
+  Guard -->|"No (default): refused"| Blocked["Request rejected"]
+  Guard -->|"Yes: -allow-delete"| Objects
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
+
 ## Starting an HTTP server
 
 Assume you have a Kloset Store located at `/var/backups`. To expose it over
@@ -110,6 +137,13 @@ $ plakar at https://backup.example.com ls
 ```
 
 If either `-cert` or `-key` is missing, the server falls back to plain HTTP.
+
+Note that HTTPS doesn't add much protection here: as mentioned above, all
+snapshot data is already fully encrypted end-to-end with the repository
+passphrase, regardless of the transport. Plain HTTP does not expose your
+backups. HTTPS is still worth enabling if you want to hide metadata like
+request patterns from network observers, or if you're bridging environments
+that require TLS for other reasons (e.g. a corporate proxy).
 
 ## Serving remote stores
 
