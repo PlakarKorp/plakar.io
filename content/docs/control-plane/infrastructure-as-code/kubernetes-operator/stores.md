@@ -17,7 +17,7 @@ kind: Store
 metadata:
   name: production-s3
 spec:
-  endpoint: s3://my-backup-bucket
+  endpoint: bucket1.s3.eu-west-3.amazonaws.com
   protocol: s3
   integration:
     name: aws

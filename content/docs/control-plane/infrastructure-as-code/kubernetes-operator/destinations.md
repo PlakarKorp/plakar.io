@@ -18,8 +18,8 @@ kind: Destination
 metadata:
   name: recovery-database
 spec:
-  endpoint: postgres://recovery-db.internal:5432/app
-  protocol: postgres
+  endpoint: db2.eu-west-3.rds.amazonaws.com
+  protocol: postgres+aws
   integration:
     name: postgres
     version: 1.1.0

@@ -17,8 +17,8 @@ kind: Source
 metadata:
   name: production-database
 spec:
-  endpoint: postgres://db.internal:5432/app
-  protocol: postgres
+  endpoint: db1.eu-west-3.rds.amazonaws.com
+  protocol: postgres+aws
   integration:
     name: postgres
     version: 1.1.0
