@@ -127,10 +127,10 @@ There are two supported approaches:
 
 1. **Route image pulls through the same HTTP proxy.** If you take this route,
    the proxy must allow:
-   - `.docker.io`
-   - `.docker.com`
-   - `.ghcr.io`
-   - `.githubusercontent.com`
+   - `*.docker.io`
+   - `*.docker.com`
+   - `*.ghcr.io`
+   - `*.githubusercontent.com`
 2. **Configure a Harbor registry mirror.** This is the preferred option for
    production, since it gives you a local cache of the images instead of pulling
    them over the internet on every deployment. If you use Harbor, you don't need
