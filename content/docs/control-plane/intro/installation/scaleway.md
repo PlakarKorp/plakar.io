@@ -108,10 +108,10 @@ The appliance also needs to pull container images from `docker.io` and
 
 1. **Route image pulls through the HTTP proxy.** If you choose this option, the
    proxy should allow access to:
-   - `.docker.io`
-   - `.docker.com`
-   - `.ghcr.io`
-   - `.githubusercontent.com`
+   - `*.docker.io`
+   - `*.docker.com`
+   - `*.ghcr.io`
+   - `*.githubusercontent.com`
 
 2. **Use a Harbor registry mirror.** This is the recommended approach for
    production deployments because images are pulled from a local registry cache
