@@ -43,7 +43,8 @@ store. It does not affect the underlying storage itself.
 
 Finally, provide the configuration and credentials required for the selected
 resource. See the [resources documentation](../../resources) for the required
-fields.
+fields. If a [configuration bundle](../../administration/configuration-bundles)
+matches this resource, matching fields are filled in automatically.
 
 ![](../images/create-store.png)
 

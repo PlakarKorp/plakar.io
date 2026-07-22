@@ -58,9 +58,13 @@ integrations are available, you can choose the integration manually from the
 integration list.
 
 Once the integration is selected, you must provide the configuration and
-credentials required for that integration. After configuration, you can test the
-app directly from the UI to verify that Plakar Control Plane can successfully
-reach and authenticate with the resource before using it in a backup workflow.
+credentials required for that integration. If a
+[configuration bundle](../administration/configuration-bundles) matches the
+resource, fields it already supplies are filled in automatically, and you only
+need to fill in the rest; if every required field ends up filled, the app is
+created automatically. After configuration, you can test the app directly from
+the UI to verify that Plakar Control Plane can successfully reach and
+authenticate with the resource before using it in a backup workflow.
 
 ### Store apps
 

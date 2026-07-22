@@ -40,7 +40,9 @@ When adding a resource manually, you need to provide:
 - **Subclass** - a more specific type within the class. See
   [Resource classes](#resource-classes)
 - **Tags** - provide several tags to the resource. Can be later used by
-  [policies](../../operations/policies) to filter resources
+  [policies](../../operations/policies) or
+  [configuration bundles](../../administration/configuration-bundles#scope) to
+  filter resources
 - **Hostname** - the address used to reach the resource (hostname or IP
   address). A resource can have multiple hostnames.
 - **Exclude from backup coverage** - optionally exclude the resource from backup

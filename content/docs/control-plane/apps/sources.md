@@ -49,7 +49,8 @@ and you will need to select the appropriate one after choosing the integration.
 
 Finally, provide the configuration and credentials required for the selected
 resource. See the [resources documentation](../../resources) for the required
-fields.
+fields. If a [configuration bundle](../../administration/configuration-bundles)
+matches this resource, matching fields are filled in automatically.
 
 ![](../images/create-source.png)
 
