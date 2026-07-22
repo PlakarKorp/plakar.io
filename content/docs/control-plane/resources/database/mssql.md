@@ -37,9 +37,9 @@ When using a self-managed inventory, you must register your resources manually
 or import them from a CSV file.
 
 To add a Windows machine running SQL Server as a resource, use `Database` as the
-class. For the endpoint, use the IP address of the target machine. See
-[resources documentation](../../resources) for more information on how to setup
-resources on a self-managed inventory.
+class. For the endpoint, use the IP address or hostname of the target machine.
+See [resources documentation](../../resources) for more information on how to
+setup resources on a self-managed inventory.
 
 #### Backup flow
 
@@ -141,6 +141,17 @@ reachable on the Windows host before it can be used.
    New-NetFirewallRule -Name sshd -DisplayName 'OpenSSH Server (sshd)' -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 22
    ```
 
+   The auto-created rule is normally scoped to the Domain and Private
+   [firewall profiles](https://learn.microsoft.com/en-us/previous-versions/windows/desktop/ics/windows-firewall-profiles)
+   only. If the host is reached over its Public IP, Windows classifies that
+   interface as the Public profile and the rule will silently not apply. Check
+   the rule's profile and add Public if needed:
+
+   ```powershell
+   Get-NetFirewallRule -Name sshd | Select-Object Profile
+   Set-NetFirewallRule -Name sshd -Profile Any
+   ```
+
 4. **Open port 22 at the network/firewall level** as well (cloud security group,
    VPC firewall, etc.), in addition to the Windows Firewall rule above.
 
@@ -175,6 +186,30 @@ reachable on the Windows host before it can be used.
    A successful, passwordless login confirms the key is authorized correctly and
    that the network path (firewall, security group, sshd) is open.
 
+   If this is the first time connecting to this host over SSH, you will be
+   prompted to accept its host key. This is expected; type `yes` to continue. To
+   skip the prompt, connect with:
+
+   ```bash
+   ssh -o StrictHostKeyChecking=accept-new Administrator@<host>
+   ```
+
+   To verify the fingerprint instead of trusting it blindly, retrieve it
+   directly from the Windows host, where OpenSSH Server stores its host keys
+   under `C:\ProgramData\ssh`:
+
+   ```powershell
+   ssh-keygen -lf C:\ProgramData\ssh\ssh_host_ed25519_key.pub
+   ```
+
+   Compare its output against the fingerprint shown in the SSH prompt before
+   accepting.
+
+   Once the resource is configured in Plakar Control Plane, you can instead use
+   the [Test Connection](../../apps/sources#testing-the-connection) action on
+   the source app's dashboard to verify connectivity without using the `ssh`
+   command directly.
+
 ## Destination configuration
 
 Restoring the Program Files folder requires SQL Server to be fully shut down,
@@ -186,7 +221,7 @@ Windows host:
   database engine.
 - **SQL Server Agent** (`SQLSERVERAGENT`): scheduled job runner.
 - **SQL Server Browser** (`SQLBrowser`): named instance discovery.
-- **SQL Server CEIP** (`SQLTELEMETRY`): usage/telemetry reporting. Cab be missed
+- **SQL Server CEIP** (`SQLTELEMETRY`): usage/telemetry reporting. Can be missed
   since it does not appear in SQL Server Configuration Manager's default service
   list, but it holds files open and will block deletion or restore if left
   running.
