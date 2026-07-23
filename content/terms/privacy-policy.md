@@ -1,6 +1,12 @@
 ---
 title: "Privacy Policy"
 date: 2025-05-05T10:00:00Z
+type: "privacy-policy"
+weight: 3
+description: "How we collect, use, and protect your personal data across our website and services."
+icon: "ri/shield-check-line"
+aliases:
+  - /privacy-policy/
 ---
 
 **Effective date: October 8, 2024**
