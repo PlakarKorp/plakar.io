@@ -7,8 +7,6 @@ description:
   "The general terms and conditions governing the use of Plakar's products and
   services."
 icon: "ri/file-text-line"
-aliases:
-  - /general-terms/
 ---
 
 Last update on: 20/07/2025
