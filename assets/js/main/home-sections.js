@@ -34,4 +34,8 @@
       activate(tab.getAttribute("data-rec-tab"));
     });
   });
+
+  if (tabs.length) {
+    activate(tabs[0].getAttribute("data-rec-tab"));
+  }
 })();
