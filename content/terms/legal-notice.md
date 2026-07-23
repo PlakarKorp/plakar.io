@@ -1,6 +1,12 @@
 ---
 title: "Legal Notice"
 date: 2025-05-05T10:00:00Z
+type: "legal-notice"
+weight: 2
+description: "Publisher information, hosting details, and legal information about the Plakar website."
+icon: "ri/scales-3-line"
+aliases:
+  - /legal-notice/
 ---
 
 Last update on: 06/05/2025
@@ -84,7 +90,7 @@ correspondence, providing a subscription, or handling a job application. If
 applicable, Plakar commits to complying with the relevant personal data
 protection regulations.
 
-[https://plakar.io/privacy-policy/](/privacy-policy/)
+[https://plakar.io/terms/privacy-policy/](/terms/privacy-policy/)
 
 ## Cookies
 
@@ -104,4 +110,4 @@ governs the submission of critical software vulnerabilities and specific roadmap
 development contributions. The complete program policy, including terms of
 participation, validation workflows, financial reward grids, and legal safe
 harbor provisions, can be accessed directly at
-[https://plakar.io/legal-notice/bounty-policy/](/legal-notice/bounty-policy/).
+[https://plakar.io/terms/bounty-policy/](/terms/bounty-policy/).
