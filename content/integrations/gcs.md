@@ -47,6 +47,8 @@ seo_tags:
 
 technical_documentation_link: /docs/community/main/integrations/gcs
 
+edition: community
+
 stage: stable
 
 date: 2026-06-18

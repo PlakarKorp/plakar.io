@@ -48,6 +48,8 @@ seo_tags:
 
 technical_documentation_link: /docs/main/integrations/azblob
 
+edition: community
+
 stage: beta
 
 date: 2026-06-18

@@ -45,6 +45,8 @@ seo_tags:
 
 technical_documentation_link: /docs/community/main/integrations/etcd
 
+edition: community
+
 stage: beta
 
 date: 2026-04-02

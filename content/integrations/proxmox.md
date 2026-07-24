@@ -50,6 +50,8 @@ seo_tags:
 
 technical_documentation_link: /docs/community/main/integrations/proxmox/
 
+edition: community
+
 stage: rc
 
 new: true

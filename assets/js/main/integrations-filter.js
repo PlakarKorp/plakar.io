@@ -1,58 +1,89 @@
 // Targets: layouts/integrations/list.html
-// Elements: #integrations-grid, #integrations-filter, #integrations-sort, .filter-btn, .sort-btn, [data-categories]
+// Elements: #integrations-grid, .integrations-filter-dropdown, #integrations-sort,
+// .filter-dropdown-option, .edition-dropdown-option, .sort-btn, [data-categories], [data-editions]
 
 document.addEventListener("DOMContentLoaded", () => {
   const grid = document.getElementById("integrations-grid");
-  const filter = document.getElementById("integrations-filter");
   const filterDropdown = document.querySelector(".integrations-filter-dropdown");
   const filterDropdownBtn = filterDropdown?.querySelector(".integrations-filter-dropdown-btn");
   const filterDropdownMenu = filterDropdown?.querySelector(".integrations-filter-dropdown-menu");
   const filterDropdownLabel = filterDropdown?.querySelector(".integrations-filter-dropdown-label");
   const sortContainer = document.getElementById("integrations-sort");
-  if (!grid || (!filter && !filterDropdown)) return;
+  if (!grid || !filterDropdown) return;
 
-  const filterButtons = filter ? filter.querySelectorAll(".filter-btn") : [];
+  const categoryOptions = filterDropdown.querySelectorAll(".filter-dropdown-option");
+  const editionOptions = filterDropdown.querySelectorAll(".edition-dropdown-option");
   const sortButtons = sortContainer ? sortContainer.querySelectorAll(".sort-btn") : [];
 
-  const filterLabels = {
-    all: "All Integrations",
+  const categoryLabels = {
+    all: "All Categories",
     source: "Source",
     destination: "Destination",
     storage: "Storage",
     viewer: "Viewer",
   };
 
-  const applyFilter = (category) => {
-    filterButtons.forEach((btn) => {
-      const isActive = btn.dataset.filter === category;
-      btn.classList.toggle("bg-primary-500", isActive);
-      btn.classList.toggle("text-neutral-50", isActive);
-      btn.classList.toggle("text-neutral-700", !isActive);
-      btn.classList.toggle("hover:bg-neutral-100", !isActive);
-    });
+  const editionLabels = {
+    all: "All Editions",
+    community: "Community",
+    "control-plane": "Control Plane",
+  };
 
-    if (filterDropdownLabel) {
-      filterDropdownLabel.textContent = filterLabels[category] || category;
+  let activeCategory = "all";
+  let activeEdition = "all";
+
+  const updateLabel = () => {
+    if (!filterDropdownLabel) return;
+    if (activeCategory === "all" && activeEdition === "all") {
+      filterDropdownLabel.textContent = "All Integrations";
+      return;
     }
-    filterDropdown?.querySelectorAll(".filter-dropdown-option").forEach((opt) => {
+    const parts = [];
+    if (activeCategory !== "all") parts.push(categoryLabels[activeCategory]);
+    if (activeEdition !== "all") parts.push(editionLabels[activeEdition]);
+    filterDropdownLabel.textContent = parts.join(" · ");
+  };
+
+  const updateVisibility = () => {
+    const cards = grid.querySelectorAll("[data-categories]");
+    cards.forEach((card) => {
+      const categories = card.dataset.categories
+        .split(",")
+        .map((c) => c.trim().toLowerCase());
+      const editions = (card.dataset.editions || "")
+        .split(",")
+        .map((c) => c.trim().toLowerCase());
+
+      const matchesCategory =
+        activeCategory === "all" ||
+        categories.some((c) => c.includes(activeCategory));
+      const matchesEdition =
+        activeEdition === "all" || editions.includes(activeEdition);
+
+      card.style.display = matchesCategory && matchesEdition ? "" : "none";
+    });
+  };
+
+  const applyFilter = (category) => {
+    activeCategory = category;
+    categoryOptions.forEach((opt) => {
       const isActive = opt.dataset.filter === category;
       opt.classList.toggle("text-primary-500", isActive);
       opt.classList.toggle("bg-neutral-100", isActive);
     });
+    updateLabel();
+    updateVisibility();
+  };
 
-    const cards = grid.querySelectorAll("[data-categories]");
-    cards.forEach((card) => {
-      if (category === "all") {
-        card.style.display = "";
-        return;
-      }
-      const categories = card.dataset.categories
-        .split(",")
-        .map((c) => c.trim().toLowerCase());
-      card.style.display = categories.some((c) => c.includes(category))
-        ? ""
-        : "none";
+  const applyEditionFilter = (edition) => {
+    activeEdition = edition;
+    editionOptions.forEach((opt) => {
+      const isActive = opt.dataset.edition === edition;
+      opt.classList.toggle("text-primary-500", isActive);
+      opt.classList.toggle("bg-neutral-100", isActive);
     });
+    updateLabel();
+    updateVisibility();
   };
 
   const applySort = (sortBy) => {
@@ -74,17 +105,33 @@ document.addEventListener("DOMContentLoaded", () => {
     cards.forEach((card) => grid.appendChild(card));
   };
 
-  filterButtons.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
+  categoryOptions.forEach((opt) => {
+    opt.addEventListener("click", (e) => {
       e.preventDefault();
-      const category = btn.dataset.filter;
-      applyFilter(category);
+      applyFilter(opt.dataset.filter);
+      filterDropdownMenu?.classList.add("hidden");
 
       const url = new URL(window.location);
-      if (category === "all") {
+      if (opt.dataset.filter === "all") {
         url.searchParams.delete("category");
       } else {
-        url.searchParams.set("category", category);
+        url.searchParams.set("category", opt.dataset.filter);
+      }
+      history.pushState({}, "", url);
+    });
+  });
+
+  editionOptions.forEach((opt) => {
+    opt.addEventListener("click", (e) => {
+      e.preventDefault();
+      applyEditionFilter(opt.dataset.edition);
+      filterDropdownMenu?.classList.add("hidden");
+
+      const url = new URL(window.location);
+      if (opt.dataset.edition === "all") {
+        url.searchParams.delete("edition");
+      } else {
+        url.searchParams.set("edition", opt.dataset.edition);
       }
       history.pushState({}, "", url);
     });
@@ -111,23 +158,6 @@ document.addEventListener("DOMContentLoaded", () => {
     filterDropdownMenu?.classList.toggle("hidden");
   });
 
-  filterDropdown?.querySelectorAll(".filter-dropdown-option").forEach((opt) => {
-    opt.addEventListener("click", (e) => {
-      e.preventDefault();
-      const category = opt.dataset.filter;
-      applyFilter(category);
-      filterDropdownMenu?.classList.add("hidden");
-
-      const url = new URL(window.location);
-      if (category === "all") {
-        url.searchParams.delete("category");
-      } else {
-        url.searchParams.set("category", category);
-      }
-      history.pushState({}, "", url);
-    });
-  });
-
   document.addEventListener("click", (e) => {
     if (!e.target.closest(".integrations-filter-dropdown")) {
       filterDropdownMenu?.classList.add("hidden");
@@ -136,7 +166,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const params = new URLSearchParams(window.location.search);
   const category = params.get("category") || "all";
+  const edition = params.get("edition") || "all";
   const sort = params.get("sort") || "name";
   applySort(sort);
   applyFilter(category);
+  applyEditionFilter(edition);
 });

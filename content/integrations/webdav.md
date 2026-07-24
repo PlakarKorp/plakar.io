@@ -44,6 +44,8 @@ seo_tags:
 
 technical_documentation_link: /docs/community/main/integrations/webdav/
 
+edition: community
+
 stage: alpha
 
 new: true

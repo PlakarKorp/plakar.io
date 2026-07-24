@@ -47,6 +47,8 @@ seo_tags:
 
 technical_documentation_link: /docs/community/main/integrations/oci/
 
+edition: community
+
 stage: beta
 
 date: 2026-06-18

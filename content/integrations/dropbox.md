@@ -49,6 +49,8 @@ seo_tags:
 
 technical_documentation_link: /docs/community/main/integrations/dropbox/
 
+edition: community
+
 stage: beta
 
 date: 2026-03-23
