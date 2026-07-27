@@ -55,7 +55,8 @@ compatible integrations, in this case just the S3 integration.
 
 In most cases, the integration is selected automatically. If multiple compatible
 integrations are available, you can choose the integration manually from the
-integration list.
+integration list. See [Managing Integrations](./integrations) documentation for
+information about installing additional integrations.
 
 Once the integration is selected, you must provide the configuration and
 credentials required for that integration. After configuration, you can test the
