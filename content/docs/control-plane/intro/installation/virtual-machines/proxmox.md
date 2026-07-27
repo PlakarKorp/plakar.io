@@ -168,30 +168,13 @@ that path is `/var/lib/vz/snippets/`.
 ### Attach the user-data to the VM
 
 Add a cloud-init drive so Proxmox can generate the cidata image, and point it at
-your snippet:
+your snippet. The cloud-init drive must always be attached at `ide3`:
 
 ```bash
 qm set <vmid> --ide3 local:cloudinit
 qm set <vmid> --cicustom "user=local:snippets/plakar-appliance.yaml"
 qm cloudinit update <vmid>
 ```
-
-Convert the generated cidata image to raw and attach it as a regular disk rather
-than a CD-ROM:
-
-```bash
-qemu-img convert -O raw /var/lib/vz/images/<vmid>/vm-<vmid>-cloudinit.qcow2 /var/lib/vz/images/<vmid>/vm-<vmid>-cidata.raw
-qm set <vmid> --scsi1 local:<vmid>/vm-<vmid>-cidata.raw,format=raw
-```
-
-Pick whichever `scsiN` slot is free on your VM. Check with `qm config <vmid>`
-first.
-
-> [!NOTE]+
->
-> This conversion is a one-time snapshot, not a live link. If you change the
-> snippet later, repeat the `cloudinit update`, `qemu-img convert`, and
-> `qm set --scsiN` steps, then reboot, for the change to take effect.
 
 ### Apply and reboot
 
@@ -206,6 +189,53 @@ either the proxy configuration that was applied, or why none was found:
 
 ```txt
 proxy-collect: proxy configured: http=http://<proxy-ip>:<proxy-port> https=... no_proxy=...
+```
+
+## SSH Keys Configuration
+
+There are two ways to set an SSH authorized key, and which one applies depends
+on whether you also need proxy and/or registry configuration.
+
+If you don't need proxy or Harbor configuration you can skip the YAML entirely
+and set the key from the Proxmox UI instead.
+
+![](../images/proxmox-ve-10.png)
+
+1. On the VM, go to **Hardware**, click **Add**, and select **CloudInit Drive**.
+2. Set **Bus/Device** to **IDE**, and change the index from the default `0` to
+   `3`, so the drive lands on `ide3`.
+3. Choose a **Storage** location.
+4. Leave **Format** on the default (QEMU image format, qcow2).
+5. Click **Add**.
+
+{{< figure src="../images/proxmox-ve-11.png" alt="Adding a CloudInit Drive" class="mx-auto max-w-100" >}}
+
+6. Open the **Cloud-Init** tab, click **SSH public key**, and paste in your
+   public key, or upload the key file directly.
+
+   ![Cloud-Init tab with SSH public key field](../images/proxmox-ve-12.png)
+
+If you need both the proxy and/or registry configuration as well, the UI on
+Proxmox dashboard isn't enough, since it can't set `proxy:` and/or `registry:`.
+You'll need to add `ssh_authorized_keys` as an extra top-level key in the same
+YAML snippet described [above](#proxy-and-harbor-configuration) instead,
+alongside `proxy:` and/or `registry:`:
+
+```yaml
+#cloud-config
+proxy:
+  http: http://<proxy-ip>:<proxy-port>
+  https: http://<proxy-ip>:<proxy-port>
+  no_proxy: .corp.example,10.0.0.0/8 # optional
+
+registry:
+  mirrors:
+    docker.io: <harbor-host>/dockerhub-proxy
+    ghcr.io: <harbor-host>/ghcr-proxy
+  insecure: false # true: skip TLS verification for the mirror hosts
+
+ssh_authorized_keys:
+  - ssh-ed25519 AAAA...
 ```
 
 ## Start the appliance and complete enrollment
