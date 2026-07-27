@@ -18,8 +18,9 @@ Development Kit (VDDK) and streams the data over NBD. Plakar Control Plane
 connects to it purely as a client; it does not run any VMware-specific component
 itself.
 
-The NBD server can run anywhere, as a plain compute instance (for example, on
-OVHcloud), as long as it has network access to both sides:
+The NBD server can run anywhere, as a VM managed by the same vCenter (required
+for HotAdd) or as any other compute instance, as long as it has network access
+to both sides:
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -52,14 +53,46 @@ This guide walks through:
 
 ## Prerequisites
 
-- Root access on that instance is recommended, since the NBD server behaves best
-  when the executing user has root privileges.
+- The account that runs `nbdkit` (the same account configured in Plakar
+  Control Plane's `nbd_ssh_url`) determines which transports are available. A
+  regular, non-root account is sufficient for NBD/NBDSSL transport. Root
+  access is required if the NBD server will be used for HotAdd, see
+  [HotAdd and root access](#hotadd-and-root-access) below.
 - Network access from the NBD server to your vCenter/ESXi environment. Some
   vCenter deployments including OVHcloud Managed vSphere sit behind a firewall,
   so the NBD server's IP address must be added to the allow list before it can
   reach vCenter.
 - Network access from Plakar Control Plane to the NBD server, both for SSH
   (orchestration) and for the TLS-secured NBD port (disk data).
+
+## HotAdd and root access
+
+HotAdd can be used when the NBD server itself is a VM managed by the same
+vCenter as the VM being backed up, and has access to the same datastores. When
+HotAdd is in use, VDDK temporarily attaches the source VM's disks directly to
+the NBD server VM. Make sure the NBD server has free SCSI controller/device
+slots available, and that nothing (snapshot automation, provisioning scripts,
+etc.) removes these temporary disks while a backup or restore is running.
+
+To let VDDK attach and open HotAdded devices, install and run `nbdkit` as
+`root`:
+
+```bash
+sudo su -
+user='root'
+```
+
+The SSH public key from
+[Step 4](#step-4-set-up-ssh-access-for-consumers) must be installed in
+`/root/.ssh/authorized_keys`, and the connector's `nbd_ssh_url` must use
+`ssh://root@<nbd_ip>`. Running the installation commands with `sudo` while
+still configuring the connector for `ssh://ubuntu@...` does **not** make the
+remotely launched `nbdkit` process run as root.
+
+Root SSH access should remain key-only. On Ubuntu, verify that the effective
+SSH configuration permits public-key login for root (for example,
+`PermitRootLogin prohibit-password`) rather than enabling password login for
+root.
 
 ## Step 1: Install nbdkit and the VDDK plugin
 
@@ -120,7 +153,7 @@ server.
 Set these two variables first, you'll reuse them throughout this step:
 
 ```bash
-user='ubuntu'
+user='ubuntu'   # use 'root' if the NBD server will be used for HotAdd
 nbd_ip=''
 org_name=''
 ```
@@ -222,8 +255,14 @@ On the NBD server, add the corresponding public key to the executing user's
 authorized keys:
 
 ```bash
+install -d -m 0700 ~/.ssh
 echo "" >> ~/.ssh/authorized_keys
+chmod 0600 ~/.ssh/authorized_keys
 ```
+
+If the NBD server will be used for HotAdd, run these commands from a root
+shell instead, so the key lands in `/root/.ssh/authorized_keys` (see
+[HotAdd and root access](#hotadd-and-root-access)).
 
 ## Next Steps
 
