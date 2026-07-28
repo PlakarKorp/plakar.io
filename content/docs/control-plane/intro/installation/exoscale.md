@@ -18,31 +18,38 @@ a **Compute custom template**, which can then be used to create instances.
 
 ## Preparing the QCOW2 image
 
-Start by downloading the Plakar Control Plane QCOW2 image from the downloads
-page.
+Exoscale needs a publicly accessible URL to download the QCOW2 image from when
+creating the custom template, along with its MD5 checksum to verify the image
+during import. There are two ways to provide this:
 
-Before importing the image into Exoscale, generate an MD5 checksum. Exoscale
-uses this checksum to verify the image during the import process.
+- **Direct download (recommended)**: use the download link from the
+  [downloads page](https://www.plakar.io/download) directly as the image source,
+  together with the MD5 checksum published alongside it. No local download or
+  re-hosting is required.
+- **Self-hosted**: download the QCOW2 image locally, then re-upload it to your
+  own publicly accessible storage, such as Exoscale's Simple Object Storage
+  (SOS). Use this if you want to keep your own copy of the image, or if your
+  environment can't reach `plakar.io` directly when creating the template.
 
-To generate the checksum locally, run:
+If you choose the self-hosted option, download the image from the downloads
+page, then confirm it downloaded correctly by comparing its checksum against the
+one published on the downloads page:
 
 ```bash
 md5sum plakar-control-plane.qcow2
 ```
 
-Next, make the QCOW2 image available at a publicly accessible URL so Exoscale
-can download it during the template creation process. You can host the image on
-any publicly accessible server. Exoscale's Simple Object Storage (SOS) is a
-convenient option. Upload the QCOW2 image to an SOS bucket, then generate a
-public URL for the object.
-
 > [!NOTE]+ QCOW2 Image URL
 >
-> The image URL must be publicly accessible. Exoscale downloads the image
-> directly when creating the custom template, so the URL cannot require
-> authentication.
+> Whichever option you choose, the image URL must be publicly accessible.
+> Exoscale downloads the image directly when creating the custom template, so
+> the URL cannot require authentication.
 
 ## Hosting the QCOW2 image with Exoscale Simple Object Storage
+
+This step is only needed if you're following the self-hosted option above. If
+you're linking directly to the downloads page, skip ahead to
+[Creating the custom template](#creating-the-custom-template).
 
 Open the **Storage** section in the Exoscale console and create a new **Simple
 Object Storage (SOS)** bucket. Choose a zone for the bucket and provide a name.
@@ -74,9 +81,9 @@ the zone where you intend to deploy Plakar Control Plane.
 
 ![](../images/create-exoscale-compute-template.png)
 
-For the image source, provide the public URL of the QCOW2 image that you
-uploaded earlier, then enter the corresponding MD5 checksum. Set the boot mode
-to **UEFI**.
+For the image source, provide the public URL of the QCOW2 image, either the
+direct download link from the downloads page or your SOS object URL then enter
+the corresponding MD5 checksum. Set the boot mode to **UEFI**.
 
 If you intend to use Exoscale's Application Consistent Snapshots, enable
 **Application consistent snapshot** when creating the custom template. This
