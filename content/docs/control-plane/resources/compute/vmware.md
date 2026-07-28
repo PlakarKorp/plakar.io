@@ -175,7 +175,12 @@ destination apps using the `vmware+nbd` protocol.
 - **Vsphere Tls Ca Bundle**: The CA certificate bundle used to verify the
   vCenter Server or ESXi TLS certificate.
 - **Nbd Ssh Url**: Required. The SSH URL used to reach the NBD server for
-  orchestration, e.g. `ssh://<user>@<host>:<port>`.
+  orchestration, e.g. `ssh://<user>@<host>:<port>`. This is also the account
+  that runs `nbdkit` on the NBD server: a regular account is sufficient for
+  NBD/NBDSSL transport, but `root` is required if the NBD server is used for
+  HotAdd, e.g. `ssh://root@<host>:<port>`. See
+  [HotAdd and root access](../../../guides/vmware/nbd-server-setup#hotadd-and-root-access)
+  for details.
 - **Nbd Ssh Private Key**: Required. The private key used to authenticate over
   SSH with the NBD server.
 - **Nbd Uri**: The TLS NBD URI used for direct disk data transfer, e.g.
