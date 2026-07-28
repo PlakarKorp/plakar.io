@@ -43,7 +43,5 @@ more information.
 After the resource is created, the corresponding destination is created in
 Plakar Control Plane. Its UUID is exposed through `status.id`.
 
-At present, the Kubernetes operator does not provide a `ScheduleRestore` custom
-resource. Creating a `Destination` resource only registers it as a valid restore
-target in Plakar Control Plane. Restore operations must still be initiated
-through the web interface or API.
+To run a one-off restore into this destination, see the
+[Restore Resource](../restore).

@@ -1,7 +1,7 @@
 ---
 title: "Scheduling"
 date: "2026-07-15T00:00:00Z"
-weight: 5
+weight: 6
 summary:
   "Define scheduled backup, check, and sync tasks using the plakar-operator."
 ---
@@ -80,6 +80,6 @@ After a scheduling resource is created, the corresponding scheduled task is
 created in Plakar Control Plane. Its UUID is exposed through `status.id`, while
 `status.conditions` reports whether the task was created successfully.
 
-The operator currently manages only recurring tasks. To run a task immediately,
-use the [manual scheduler](../../../operations/scheduling/manual-scheduler) or
-the Plakar Control Plane API.
+These resources only cover recurring tasks. For one-off restores, see the
+[Restore Resource](../restore). For any other task run once, use the
+[manual scheduler](../../../operations/scheduling/manual-scheduler)

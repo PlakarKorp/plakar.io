@@ -47,8 +47,10 @@ concepts you'll already know from the PCP web interface:
   [source](../../apps/sources), [store](../../apps/stores), and
   [destination](../../apps/destinations) apps.
 - **ScheduleBackup, ScheduleCheck, ScheduleSync**: declarative equivalents of
-  the backup, check, and sync tasks covered in
+  the recurring backup, check, and sync tasks covered in
   [Scheduling](../../operations/scheduling).
+- **Restore**: a one-off restore job from a `Store` into a `Destination`. See
+  [Restore Resource](./restore).
 
 Most resources report the ID PCP assigned them in `status.id`, alongside a set
 of conditions (`Available`, `Progressing`, `Degraded`) describing reconciliation
