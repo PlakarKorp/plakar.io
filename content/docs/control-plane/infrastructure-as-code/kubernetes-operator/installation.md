@@ -68,7 +68,16 @@ kubectl get pods -n plakar-operator-system
 
 ## Generating an API key
 
-_TODO_
+The operator authenticates to Plakar Control Plane using an **Application** user
+and an associated API key. Application users are intended for non-human clients,
+such as operators, automation, and other services that interact with the Plakar
+Control Plane API.
+
+See [Managing Users](../../../administration/users) for detailed instructions on
+creating application users, assigning organizations, and generating API keys.
+
+You'll use this API key in the next step when creating the Kubernetes Secret
+used by the operator to authenticate with Plakar Control Plane.
 
 ## Creating an inventory
 
