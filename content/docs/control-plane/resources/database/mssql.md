@@ -24,13 +24,6 @@ the capability of discoving Microsoft SQL Server resources. You need to set up a
 [self-managed inventory](../../infrastructure/inventories/self-managed) before
 adding an MSSQL resource.
 
-### Setting up a self-managed inventory
-
-You can create a self-managed inventory to manage your MSSQL resources by
-providing a name for it. Read the
-[self-managed inventory](../../infrastructure/inventories/self-managed)
-documentation for more information.
-
 ### Adding MSSQL as a resource
 
 When using a self-managed inventory, you must register your resources manually
