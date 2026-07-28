@@ -33,8 +33,6 @@ next to everything else, instead of switching to a separate UI to set them up.
 
 - A running, [enrolled](../../intro/enrollment) PCP instance
 - A PCP API key
-- An [inventory](../../infrastructure/inventories) UUID dedicated to the
-  operator
 - A Kubernetes cluster with access to that PCP instance's API endpoint
 
 ## Core concepts

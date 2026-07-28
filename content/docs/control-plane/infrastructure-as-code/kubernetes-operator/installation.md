@@ -79,31 +79,11 @@ creating application users, assigning organizations, and generating API keys.
 You'll use this API key in the next step when creating the Kubernetes Secret
 used by the operator to authenticate with Plakar Control Plane.
 
-## Creating an inventory
-
-The operator creates and manages resources inside a Plakar Control Plane
-inventory. Create a new **Self-managed** inventory for the operator to use.
-
-You can give the inventory any name, for example `kube`. Once the inventory has
-been created, open its details page and copy the **Inventory UUID**. You'll need
-this value when configuring the operator in the next step.
-
-![Copying the inventory UUID](../images/operator-inventory-uuid.png)
-
-It's recommended to dedicate this inventory to the operator. This keeps
-operator-managed resources separate from resources created manually through the
-Plakar Control Plane web interface.
-
-> [!NOTE]+ Creating Inventories
->
-> A future version of the operator will be able to create and manage its own
-> inventory automatically. When that becomes available, this manual step will no
-> longer be required.
-
 ## Connecting to Plakar Control Plane
 
 Once the operator is running, it needs to know which PCP instance to manage and
-how to authenticate to it.
+how to authenticate to it. The operator creates and manages its own inventory in
+Plakar Control Plane automatically, so no manual inventory setup is required.
 
 Start by storing the PCP API key in a Kubernetes Secret:
 
@@ -116,8 +96,8 @@ The `Plakar` resource references the Secret by name only, so the Secret must
 exist in the same namespace as the `Plakar` resource. In this guide, both are
 created in the `plakar-operator-system` namespace.
 
-Next, create a `Plakar` resource that references the Secret, your PCP instance,
-and the inventory UUID:
+Next, create a `Plakar` resource that references the Secret and your PCP
+instance:
 
 ```yaml
 apiVersion: task.plakar.io/v1alpha1
@@ -127,7 +107,6 @@ metadata:
   namespace: plakar-operator-system
 spec:
   plakarControlPlaneUrl: https://pcp.example.com
-  inventoryUUID: 11111111-2222-3333-4444-555555555555
   apiKey:
     secretName: plakar-credentials
     key: apikey
