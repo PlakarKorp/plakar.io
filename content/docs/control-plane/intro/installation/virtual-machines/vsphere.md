@@ -234,25 +234,70 @@ The gateway can usually be found from the NSX network segment configuration.
 
 ![](../images/ovhcloud-iso-7.png)
 
-### Proxy Configuration
+### Proxy and Harbor Configuration
 
-If your network requires outbound traffic to go through a proxy, you can
-configure this via vSphere's guest info parameters.
+If the appliance doesn't have direct internet access, configure an HTTP proxy, a
+local Harbor registry mirror, or both through vSphere's guest info parameters
+before powering on the virtual machine.
 
-Add the following parameter under **Advanced Parameters**:
+### What needs to be reachable
 
-| Parameter            | Description                      |
-| -------------------- | -------------------------------- |
-| `guestinfo.userdata` | Your proxy config, as plain YAML |
+Plakar Control Plane requires HTTPS access to `api.plakar.io` for runtime
+configuration, license validation, and plugin downloads. If your proxy uses a
+whitelist instead of allowing all outbound traffic, you need to add
+`*.plakar.io`
 
-```yml
-proxy: { http: "http://proxy.corp:3128", no_proxy: "10.0.0.0/8,.corp.local" }
+The appliance also needs to pull container images from `docker.io` and
+`ghcr.io`. There are two supported approaches:
+
+1. **Route image pulls through the HTTP proxy.** If you choose this option, the
+   proxy should allow access to:
+   - `*.docker.io`
+   - `*.docker.com`
+   - `*.ghcr.io`
+   - `*.githubusercontent.com`
+
+2. **Use a Harbor registry mirror.** This is the recommended approach for
+   production deployments because images are pulled from a local registry cache
+   instead of the public internet. When using Harbor, you don't need to
+   whitelist the Docker and GitHub domains above on your proxy.
+
+### Guest info configuration
+
+Add the following advanced parameter under **Advanced Parameters**:
+
+| Parameter            | Description                                                        |
+| -------------------- | ------------------------------------------------------------------ |
+| `guestinfo.userdata` | Cloud-init configuration containing proxy and/or registry settings |
+
+The value of `guestinfo.userdata` is a standard cloud-init YAML document
+containing `proxy:` and/or `registry:` sections, depending on your environment.
+
+```yaml
+#cloud-config
+proxy:
+  http: http://<proxy-ip>:<proxy-port>
+  https: http://<proxy-ip>:<proxy-port>
+  no_proxy: .corp.example,10.0.0.0/8 # optional
+
+registry:
+  mirrors:
+    docker.io: <harbor-host>/dockerhub-proxy
+    ghcr.io: <harbor-host>/ghcr-proxy
+  insecure: false # true: skip TLS verification for the mirror hosts
 ```
 
-- `http` is the only required field. If your proxy handles both HTTP and HTTPS
-  traffic on the same endpoint, `https` can be omitted, it will default to the
-  value of `http`.
-- `no_proxy` is optional and rarely needed.
+For VMware, we recommend using the equivalent single-line YAML format. The
+guestinfo.userdata field is a single-line input rather than a multi-line text
+area, so line breaks are removed when the value is entered. Using the compact
+representation makes it easier to copy and paste the configuration into the
+field.
+
+<!-- prettier-ignore-start -->
+```yaml
+{ proxy: { http: "http://<proxy-ip>:<proxy-port>", https: "http://<proxy-ip>:<proxy-port>", no_proxy: ".corp.example,10.0.0.0/8" }, registry: { mirrors: { docker.io: "<harbor-host>/dockerhub-proxy", ghcr.io: "<harbor-host>/ghcr-proxy" }, insecure: false } }
+```
+<!-- prettier-ignore-end -->
 
 ### Optional: enable SSH access
 
