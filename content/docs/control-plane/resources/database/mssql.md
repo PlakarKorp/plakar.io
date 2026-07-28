@@ -94,9 +94,10 @@ destination apps.
 - **Ssh Private Key**: To authenticate with the remote machine, PCP uses SSH
   key-based authentication. Generate a dedicated SSH keypair for PCP and add the
   public key to the remote machine's authorized keys before configuring this
-  field (see [Setting up SSH access on the Windows host](#) below), then copy
-  the private key in full, including the header and footer lines, into this
-  field:
+  field (see
+  [Setting up SSH access on the Windows host](#setting-up-ssh-access-on-the-windows-host)
+  below), then copy the private key in full, including the header and footer
+  lines, into this field:
 
   ```txt
   -----BEGIN OPENSSH PRIVATE KEY-----
@@ -110,98 +111,13 @@ destination apps.
 ### Setting up SSH access on the Windows host
 
 The `mssql` integration relies on OpenSSH Server being installed, running, and
-reachable on the Windows host before it can be used.
+reachable on the Windows host before it can be used, with a dedicated SSH key
+authorized for the administrative account Plakar connects as.
 
-1. **Install the OpenSSH Server capability**, if not already present:
-
-   ```powershell
-   Get-WindowsCapability -Online | Where-Object Name -like 'OpenSSH*'
-   Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
-   ```
-
-2. **Start the service and set it to start automatically**:
-
-   ```powershell
-   Start-Service sshd
-   Set-Service -Name sshd -StartupType 'Automatic'
-   ```
-
-3. **Confirm the Windows Firewall allows inbound connections on port 22**. A
-   rule is normally created automatically; verify it exists and add it if not:
-
-   ```powershell
-   Get-NetFirewallRule -Name *ssh*
-   New-NetFirewallRule -Name sshd -DisplayName 'OpenSSH Server (sshd)' -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 22
-   ```
-
-   The auto-created rule is normally scoped to the Domain and Private
-   [firewall profiles](https://learn.microsoft.com/en-us/previous-versions/windows/desktop/ics/windows-firewall-profiles)
-   only. If the host is reached over its Public IP, Windows classifies that
-   interface as the Public profile and the rule will silently not apply. Check
-   the rule's profile and add Public if needed:
-
-   ```powershell
-   Get-NetFirewallRule -Name sshd | Select-Object Profile
-   Set-NetFirewallRule -Name sshd -Profile Any
-   ```
-
-4. **Open port 22 at the network/firewall level** as well (cloud security group,
-   VPC firewall, etc.), in addition to the Windows Firewall rule above.
-
-5. **Authorize a dedicated SSH key** for the administrative account used by
-   Plakar, rather than relying on password authentication. For accounts that are
-   members of the local Administrators group, keys are read from a dedicated
-   file rather than the user's own `.ssh` folder:
-
-   ```powershell
-   notepad C:\ProgramData\ssh\administrators_authorized_keys
-   ```
-
-   Add the public key on its own line, save, then restrict the file's
-   permissions. SSH will silently ignore the file if permissions are too
-   permissive:
-
-   ```powershell
-   icacls "C:\ProgramData\ssh\administrators_authorized_keys" /inheritance:r
-   icacls "C:\ProgramData\ssh\administrators_authorized_keys" /grant "Administrators:F"
-   icacls "C:\ProgramData\ssh\administrators_authorized_keys" /grant "SYSTEM:F"
-   ```
-
-6. **Test the connection** before pasting the private key into Plakar Control
-   Plane.
-
-   ```bash
-   eval `ssh-agent`
-   ssh-add /path/to/private_key
-   ssh Administrator@<host>
-   ```
-
-   A successful, passwordless login confirms the key is authorized correctly and
-   that the network path (firewall, security group, sshd) is open.
-
-   If this is the first time connecting to this host over SSH, you will be
-   prompted to accept its host key. This is expected; type `yes` to continue. To
-   skip the prompt, connect with:
-
-   ```bash
-   ssh -o StrictHostKeyChecking=accept-new Administrator@<host>
-   ```
-
-   To verify the fingerprint instead of trusting it blindly, retrieve it
-   directly from the Windows host, where OpenSSH Server stores its host keys
-   under `C:\ProgramData\ssh`:
-
-   ```powershell
-   ssh-keygen -lf C:\ProgramData\ssh\ssh_host_ed25519_key.pub
-   ```
-
-   Compare its output against the fingerprint shown in the SSH prompt before
-   accepting.
-
-   Once the resource is configured in Plakar Control Plane, you can instead use
-   the [Test Connection](../../apps/sources#testing-the-connection) action on
-   the source app's dashboard to verify connectivity without using the `ssh`
-   command directly.
+See
+[Setting Up OpenSSH Server on Windows](../../guides/windows/windows-openssh-setup)
+for step-by-step instructions on installing OpenSSH Server, opening port 22, and
+authorizing an SSH key.
 
 ## Destination configuration
 
