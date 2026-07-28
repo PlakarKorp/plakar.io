@@ -32,7 +32,8 @@ Each job has a details popup with the following information:
 - **Network** - a graph of network throughput over the job's runtime
 - **Recent Paths** - a live list of the last files being processed, each showing
   whether it has `succeeded`, `failed`, or is still in `progress`
-- **Output** - the full log output for the job, useful for diagnosing failures
+- **Output** - the full log output for the job, useful for diagnosing failures.
+  Logs can also be downloaded from this view using the download icon.
 
 {{< figure src="../images/job-info-1.png" class="max-w-150 mx-auto" >}}
 {{< figure src="../images/job-info-2.png" class="max-w-150 mx-auto" >}}
