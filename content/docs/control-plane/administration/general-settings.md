@@ -1,6 +1,6 @@
 ---
 title: "General Settings"
-date: "2026-07-03T00:00:00Z"
+date: "2026-07-27T00:00:00Z"
 weight: 1
 summary: "Configure your Plakar Control Plane instance from Settings > General."
 ---
@@ -8,7 +8,8 @@ summary: "Configure your Plakar Control Plane instance from Settings > General."
 # General Settings
 
 The general settings page lets you check your instance's identity and version,
-download diagnostic data, forward logs to Vector, and manage early-access
+control security and access, connect email and log forwarding, manage edge
+enrollment and notifications, export diagnostics, and manage early-access
 features.
 
 ![Plakar Control Plane general settings](../images/general-settings.png)
@@ -28,16 +29,17 @@ available. See [Updating Control Plane](../updating-control-plane) for how to
 install updates and, where needed, update the underlying deployment
 infrastructure.
 
-## Plakar Control Plane logs
+## Authentication badge TTL
 
-Download Plakar Control Plane's own logs for diagnostics and troubleshooting.
-Pick a date and click **Download** to get a `.log.gz` file containing that day's
-logs.
+The authentication badge indicates the current authentication status of your
+Plakar Control Plane session. Configure how long the badge remains valid after
+authentication, then click **Update** to apply the new time-to-live (TTL).
 
-## Plakar Control Plane database
+## SMTP
 
-Download a full dump of the Plakar Control Plane internal database, as `SQL`,
-`GZIP`, or `ZIP`. Select the format and click **Download**.
+Configure the SMTP server used by Plakar Control Plane to send outgoing emails,
+including notifications and other system-generated messages. See
+[Email & SMTP](../email-and-smtp) documentation for configuration details.
 
 ## Vector
 
@@ -50,18 +52,36 @@ a copy of the logs is forwarded there rather than replacing local processing.
 Enter the target instance's address as `host:port` and click **Update** to
 apply.
 
-## Email & SMTP
-
-Configure the SMTP server used by Plakar Control Plane to send outgoing emails,
-including notifications and other system-generated messages. See
-[Email & SMTP](../email-and-smtp) for configuration details.
-
 ## Edge enrollment
 
 Enable edge enrollment to allow new edge executors to register with your Plakar
 Control Plane instance. Once enabled, you can generate or regenerate the
 enrollment key used during the initial registration process. See
-[Edges](../../infrastructure/edges) for more information.
+[Edges](../../infrastructure/edges) documentation for more information.
+
+## Webhook
+
+Deliver Plakar Control Plane events, such as job completions and failures, to an
+external endpoint as HTTP requests. See [Webook](../webhook) documentation for
+more information.
+
+## Plakar Control Plane logs
+
+Download Plakar Control Plane's own logs for diagnostics and troubleshooting.
+Pick a date and click **Download** to get a `.log.gz` file containing that day's
+logs.
+
+## Plakar Control Plane database
+
+Download a full dump of the Plakar Control Plane internal database, as `SQL`,
+`GZIP`, or `ZIP`. Select the format and click **Download**.
+
+## Debug logging
+
+Enable `DEBUG` logging to temporarily increase the level of detail recorded in
+Plakar Control Plane logs while troubleshooting an issue. Select how long debug
+logging should remain enabled, then click **Enable**. Once the selected duration
+expires, Plakar Control Plane automatically restores the previous log level.
 
 ## UI preview mode
 

@@ -1,12 +1,11 @@
 ---
-title: "Email & SMTP"
+title: "Email & SMTP Setup"
 date: "2026-07-13T00:00:00Z"
 weight: 2
 summary: "Configure SMTP for email notifications."
-draft: true
 ---
 
-# Email & SMTP
+# Email & SMTP Setup
 
 Plakar Control Plane can send email notifications using an `SMTP` server. This
 can be configured under **General Settings**.
