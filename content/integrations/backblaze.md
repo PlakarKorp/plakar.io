@@ -46,6 +46,8 @@ seo_tags:
 
 technical_documentation_link: /docs/community/main/integrations/s3/
 
+edition: community
+
 stage: stable
 
 date: 2026-07-03

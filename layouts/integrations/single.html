@@ -3,6 +3,7 @@
 {{ $logo := resources.Get .Site.Params.logos.icon }}
 {{ $image := resources.Get .Params.image }}
 {{ $laptop := resources.Get "img/general/laptop-plakar-demo.png" }}
+{{ $isControlPlaneOnly := eq .Params.edition "control-plane" }}
 
 <!-- Hero -->
 <section class="section-light-2 grid-background pt-14 lg:pt-24">
@@ -14,24 +15,53 @@
 
           <!-- Left: title + description + CTA -->
           <div class="flex flex-col gap-4 justify-end w-full lg:w-1/2">
+            <div class="flex flex-wrap gap-2">
+              {{ if $isControlPlaneOnly }}
+                <a href="{{ .Params.control_plane_link | default "/docs/control-plane/" }}" class="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-primary-600 bg-primary-50 hover:bg-primary-100 rounded-full px-3 py-1 transition-colors">
+                  <span class="w-3.5 h-3.5">{{ partial "icon.html" "ri/dashboard-3-line" }}</span>
+                  Control Plane only
+                </a>
+              {{ else }}
+                <span class="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-secondary-600 bg-secondary-50 rounded-full px-3 py-1">
+                  <span class="w-3.5 h-3.5">{{ partial "icon.html" "ri/open-source-line" }}</span>
+                  Community &amp; Control Plane
+                </span>
+              {{ end }}
+            </div>
             <h1 class="text-3xl lg:text-6xl font-medium">
               {{ partial "utils/colorize.html" (dict "text" .Params.subtitle "word" .Params.resource) }}
             </h1>
             <p class="text-lg lg:text-2xl text-neutral-600 font-medium pt-6">
               {{ .Description }}
             </p>
+            {{ $techDocsLink := .Params.technical_documentation_link }}
+            {{ $fallbackHref := "/docs/community" }}
+            {{ if $isControlPlaneOnly }}
+              {{ $fallbackHref = .Params.control_plane_link | default "/docs/control-plane/" }}
+            {{ end }}
+            {{ $primaryHref := $techDocsLink | default $fallbackHref }}
             <div class="flex flex-col gap-2">
-              {{ partial "components/buttons/base-button.html" (dict
-                "label" "Get started"
-                "labelShort" "Start"
-                "href" "/docs/community"
-              ) }}
-              {{ with .Params.technical_documentation_link }}
-                <a href="{{ . }}" class="inline-flex mt-2 w-fit items-center gap-2 text-base font-medium text-neutral-900 hover:text-primary-500 transition-colors">
+              {{ if $isControlPlaneOnly }}
+                {{ partial "components/buttons/base-button.html" (dict
+                  "label" "Explore Control Plane"
+                  "labelShort" "Control Plane"
+                  "href" $primaryHref
+                  "target" (cond (eq $primaryHref $techDocsLink) "_blank" "_self")
+                ) }}
+              {{ else }}
+                {{ partial "components/buttons/base-button.html" (dict
+                  "label" "Get started"
+                  "labelShort" "Start"
+                  "href" $primaryHref
+                  "target" (cond (eq $primaryHref $techDocsLink) "_blank" "_self")
+                ) }}
+              {{ end }}
+              {{ range .Params.additional_links }}
+                <a href="{{ .url }}" target="_blank" rel="noopener noreferrer" class="inline-flex w-fit items-center gap-2 text-base font-medium text-neutral-900 hover:text-primary-500 transition-colors">
                   <span class="w-5 h-5 flex items-center justify-center">
-                    {{ partial "icon.html" "ri/corner-down-right-line" }}
+                    {{ partial "icon.html" (.icon | default "ri/external-link-line") }}
                   </span>
-                  Read the {{ $.Params.resource }} docs
+                  {{ .label }}
                 </a>
               {{ end }}
             </div>

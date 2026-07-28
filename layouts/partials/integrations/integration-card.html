@@ -3,14 +3,18 @@
 {{ $stageColors := dict
   "stable"      "text-green-800 bg-green-50"
   "beta"        "text-neutral-900 bg-neutral-50"
-  "alpha"        "text-neutral-900 bg-neutral-50"
+  "alpha"       "text-neutral-900 bg-neutral-50"
+  "rc"          "text-neutral-900 bg-neutral-50"
   "coming soon" "text-neutral-600 bg-neutral-100 border-neutral-200"
 }}
 
 {{ $image := resources.Get $p.Params.image }}
 {{ $stageClass := index $stageColors (lower $p.Params.stage) | default "text-neutral-600 bg-neutral-100" }}
 
-<a href="{{ $p.Permalink }}" data-categories="{{ delimit $p.Params.categories "," }}" data-name="{{ lower $p.Title }}" data-date="{{ $p.Date.Unix }}" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
+{{ $isControlPlaneOnly := eq $p.Params.edition "control-plane" }}
+{{ $editions := cond $isControlPlaneOnly "control-plane" "community" }}
+
+<a href="{{ $p.Permalink }}" data-categories="{{ delimit $p.Params.categories "," }}" data-editions="{{ $editions }}" data-name="{{ lower $p.Title }}" data-date="{{ $p.Date.Unix }}" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
   <div class="flex items-start justify-between gap-3">
     <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 bg-neutral-100 flex items-center justify-center">
       {{ if $image }}
@@ -19,11 +23,24 @@
         <span class="w-6 h-6 text-neutral-400">{{ partial "icon.html" "plug-line" }}</span>
       {{ end }}
     </div>
-    {{ with $p.Params.stage }}
-      <span class="text-sm font-medium px-2 py-1 rounded-md {{ $stageClass }} uppercase shrink-0">
-        {{ . }}
-      </span>
-    {{ end }}
+    <div class="flex flex-col items-end gap-1 shrink-0">
+      {{ with $p.Params.stage }}
+        <span class="text-sm font-medium px-2 py-1 rounded-md {{ $stageClass }} uppercase shrink-0">
+          {{ . }}
+        </span>
+      {{ end }}
+      {{ if $isControlPlaneOnly }}
+        <span class="inline-flex items-center gap-1 text-xxs font-semibold px-2 py-0.5 rounded-full text-primary-600 bg-primary-50 uppercase tracking-wide shrink-0">
+          <span class="w-3 h-3">{{ partial "icon.html" "ri/dashboard-3-line" }}</span>
+          Control Plane
+        </span>
+      {{ else }}
+        <span class="inline-flex items-center gap-1 text-xxs font-semibold px-2 py-0.5 rounded-full text-secondary-600 bg-secondary-50 uppercase tracking-wide shrink-0">
+          <span class="w-3 h-3">{{ partial "icon.html" "ri/open-source-line" }}</span>
+          Community
+        </span>
+      {{ end }}
+    </div>
   </div>
 
   <!-- Title -->

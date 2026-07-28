@@ -48,6 +48,8 @@ seo_tags:
 
 technical_documentation_link:
 
+edition: community
+
 stage: beta
 
 new: true

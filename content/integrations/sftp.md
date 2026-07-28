@@ -50,6 +50,8 @@ seo_tags:
 
 technical_documentation_link: /docs/community/main/integrations/sftp/
 
+edition: community
+
 stage: stable
 
 date: 2026-03-23
