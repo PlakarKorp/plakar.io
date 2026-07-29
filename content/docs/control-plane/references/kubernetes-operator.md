@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes Operator"
-date: "2026-07-28T13:36:19Z"
+date: "2026-07-29T06:18:33Z"
 weight: 1
 summary:
   "Field-by-field reference for every custom resource defined by
@@ -251,6 +251,7 @@ group.
 ### Resource Types
 
 - [Plakar](#plakar)
+- [Restore](#restore)
 - [ScheduleBackup](#schedulebackup)
 - [ScheduleCheck](#schedulecheck)
 - [ScheduleSync](#schedulesync)
@@ -270,6 +271,7 @@ _Appears in:_
 
 _Appears in:_
 
+- [RestoreSpec](#restorespec)
 - [ScheduleBackupSpec](#schedulebackupspec)
 - [ScheduleCheckSpec](#schedulecheckspec)
 - [ScheduleSyncSpec](#schedulesyncspec)
@@ -299,11 +301,11 @@ _Appears in:_
 
 - [Plakar](#plakar)
 
-| Field                              | Description                                          | Default | Validation                                                                                                                     |
-| ---------------------------------- | ---------------------------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| `plakarControlPlaneUrl` _string_   | The URL for the Plakar Control Plane instance.       |         | Format: uri <br />Required: \{\} <br />                                                                                        |
-| `inventoryUUID` _string_           | The UUID of the inventory dedicated to the operator. |         | Pattern: `^[0-9a-fA-F]\{8\}-[0-9a-fA-F]\{4\}-[0-9a-fA-F]\{4\}-[0-9a-fA-F]\{4\}-[0-9a-fA-F]\{12\}$` <br />Required: \{\} <br /> |
-| `apiKey` _[APIKeyRef](#apikeyref)_ | API key.                                             |         | Required: \{\} <br />                                                                                                          |
+| Field                              | Description                                                                                                                                                          | Default | Validation                                                                                                                     |
+| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `plakarControlPlaneUrl` _string_   | The URL for the Plakar Control Plane instance.                                                                                                                       |         | Format: uri <br />Required: \{\} <br />                                                                                        |
+| `inventoryUUID` _string_           | The UUID of the inventory dedicated to the operator.<br />If unset, the operator creates a self-managed inventory and<br />records its UUID in status.inventoryUUID. |         | Pattern: `^[0-9a-fA-F]\{8\}-[0-9a-fA-F]\{4\}-[0-9a-fA-F]\{4\}-[0-9a-fA-F]\{4\}-[0-9a-fA-F]\{12\}$` <br />Optional: \{\} <br /> |
+| `apiKey` _[APIKeyRef](#apikeyref)_ | API key.                                                                                                                                                             |         | Required: \{\} <br />                                                                                                          |
 
 #### PlakarStatus
 
@@ -313,9 +315,50 @@ _Appears in:_
 
 - [Plakar](#plakar)
 
-| Field                                                                                                                    | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Default | Validation            |
-| ------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | --------------------- |
-| `conditions` _[Condition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.36/#condition-v1-meta) array_ | conditions represent the current state of the Plakar resource.<br />Each condition has a unique type and reflects the status of a specific aspect of the resource.<br />Standard condition types include:<br />- "Available": the resource is fully functional<br />- "Progressing": the resource is being created or updated<br />- "Degraded": the resource failed to reach or maintain its desired state<br />The status of each condition is one of True, False, or Unknown. |         | Optional: \{\} <br /> |
+| Field                                                                                                                    | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Default | Validation                                                                                                                     |
+| ------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `conditions` _[Condition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.36/#condition-v1-meta) array_ | conditions represent the current state of the Plakar resource.<br />Each condition has a unique type and reflects the status of a specific aspect of the resource.<br />Standard condition types include:<br />- "Available": the resource is fully functional<br />- "Progressing": the resource is being created or updated<br />- "Degraded": the resource failed to reach or maintain its desired state<br />The status of each condition is one of True, False, or Unknown. |         | Optional: \{\} <br />                                                                                                          |
+| `inventoryUUID` _string_                                                                                                 | The UUID of the inventory dedicated to the operator, either<br />mirrored from spec.inventoryUUID or created by the operator<br />when spec.inventoryUUID was left unset. Once set, it is never<br />regenerated.                                                                                                                                                                                                                                                                |         | Pattern: `^[0-9a-fA-F]\{8\}-[0-9a-fA-F]\{4\}-[0-9a-fA-F]\{4\}-[0-9a-fA-F]\{4\}-[0-9a-fA-F]\{12\}$` <br />Optional: \{\} <br /> |
+
+#### Restore
+
+Restore is the Schema for the restores API.
+
+| Field                                                                                                              | Description                                                     | Default | Validation            |
+| ------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------- | ------- | --------------------- |
+| `apiVersion` _string_                                                                                              | `task.plakar.io/v1alpha1`                                       |         |                       |
+| `kind` _string_                                                                                                    | `Restore`                                                       |         |                       |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.36/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |         | Optional: \{\} <br /> |
+| `spec` _[RestoreSpec](#restorespec)_                                                                               | spec defines the desired state of Restore                       |         | Required: \{\} <br /> |
+| `status` _[RestoreStatus](#restorestatus)_                                                                         | status defines the observed state of Restore                    |         | Optional: \{\} <br /> |
+
+#### RestoreSpec
+
+RestoreSpec defines the desired state of Restore.
+
+_Appears in:_
+
+- [Restore](#restore)
+
+| Field                                         | Description                                                                                                      | Default | Validation            |
+| --------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ------- | --------------------- |
+| `store` _[ConnectorRef](#connectorref)_       | Store is the connector where the backup to restore from lives.                                                   |         | Required: \{\} <br /> |
+| `destination` _[ConnectorRef](#connectorref)_ | Destination is the connector where the data will be restored to.                                                 |         | Required: \{\} <br /> |
+| `snapshotID` _string_                         | SnapshotID pins the restore to a specific snapshot. Mutually<br />exclusive with Latest.                         |         | Optional: \{\} <br /> |
+| `latest` _boolean_                            | Latest instructs plakman to restore the most recent snapshot when<br />true. Mutually exclusive with SnapshotID. |         | Optional: \{\} <br /> |
+
+#### RestoreStatus
+
+RestoreStatus defines the observed state of Restore.
+
+_Appears in:_
+
+- [Restore](#restore)
+
+| Field                                                                                                                    | Description                                                                            | Default | Validation            |
+| ------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------- | ------- | --------------------- |
+| `atID` _string_                                                                                                          | AtID is the at-job identifier returned by plakman when the restore<br />was submitted. |         | Optional: \{\} <br /> |
+| `conditions` _[Condition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.36/#condition-v1-meta) array_ | conditions represent the current state of the Restore resource.                        |         | Optional: \{\} <br /> |
 
 #### ScheduleBackup
 
