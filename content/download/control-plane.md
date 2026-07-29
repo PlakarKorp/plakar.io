@@ -27,8 +27,8 @@ images:
     md5: "c898cb269c525fd93ae016d4de460cdd"
   - provider: "Other Hypervisors"
     format: "ISO"
-    download_url: "https://www.plakar.io/dist/releases/plakar/control-plane/appliance/plakar-appliance_v1.1.0_efi.iso.gz"
-    docs_url: "/docs/control-plane/intro/installation/"
-    sha256: "5c10407f2abeaea9019ea2c177b4d2cffaacab0d59eb24f58f6d7fc05d435f59"
-    md5: "37fb7eba65e1a758b6740fe801c10cf1"
+    download_url: "https://plakar-enterprise-image.s3.fr-par.scw.cloud/plakar-appliance-proxmox-def.iso"
+    docs_url: "/docs/control-plane/intro/installation/virtual-machines/"
+    sha256: "5567929175cd355d3da39847eabd05f889f4373eff2fadb6225dbb0daad868e8"
+    md5: "6acc68293cd097f33fb81e87cf6f87ca"
 ---
