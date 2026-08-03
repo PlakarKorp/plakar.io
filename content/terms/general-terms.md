@@ -2,11 +2,9 @@
 title: "General Terms"
 date: 2025-07-20T10:00:00Z
 type: "legal-notice"
-weight: 1
 description:
   "The general terms and conditions governing the use of Plakar's products and
   services."
-icon: "ri/file-text-line"
 ---
 
 Last update on: 20/07/2025

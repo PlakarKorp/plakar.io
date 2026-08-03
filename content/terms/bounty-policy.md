@@ -2,11 +2,9 @@
 title: "Feature and Bug Bounty Program Policy"
 date: 2026-01-01T12:00:00Z
 type: "legal-notice"
-weight: 4
 description:
   "Rules, rewards, and safe harbor terms for our feature and security bounty
   program."
-icon: "ri/price-tag-3-line"
 aliases:
   - /legal-notice/bounty-policy/
 ---

@@ -2,9 +2,9 @@
 title: "Legal Notice"
 date: 2025-05-05T10:00:00Z
 type: "legal-notice"
-weight: 2
-description: "Publisher information, hosting details, and legal information about the Plakar website."
-icon: "ri/scales-3-line"
+description:
+  "Publisher information, hosting details, and legal information about the
+  Plakar website."
 aliases:
   - /legal-notice/
 ---
