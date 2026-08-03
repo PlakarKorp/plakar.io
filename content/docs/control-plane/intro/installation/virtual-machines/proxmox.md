@@ -100,8 +100,10 @@ Select the network bridge the appliance should attach to. Leave the model on
 
 > [!NOTE]+
 >
-> The appliance receives its network configuration via DHCP. A DHCP server must
-> be running and reachable on the selected bridge.
+> By default the appliance receives its network configuration via DHCP, so a
+> DHCP server must be running and reachable on the selected bridge. For a static
+> IP instead, see the **Advanced** tab in
+> [Configuring the Appliance](#configuring-the-appliance) below.
 
 ### Confirm
 
@@ -110,11 +112,47 @@ virtual machine.
 
 ![](../images/proxmox-ve-8.png)
 
-## Proxy and Harbor Configuration
+## Configuring the Appliance
 
-If the appliance's network doesn't have direct access to the internet, it needs
-an HTTP proxy, a local Harbor registry mirror, or both, configured before the
-first boot.
+By default the appliance boots with DHCP networking and no SSH access. If that's
+enough for you, skip ahead to
+[Start the appliance and complete enrollment](#start-the-appliance-and-complete-enrollment).
+Otherwise, pick one of the two tabs below, not both. A Proxmox VM only takes a
+single cloud-init user-data source, so if you use the Advanced tab's snippet,
+set the SSH key there too, alongside any proxy, registry, or network settings,
+instead of from the UI.
+
+{{< tabs >}}
+
+{{< tab label="Basic (UI)" >}}
+
+If SSH access is all you need (no proxy, no registry mirror, no static IP), set
+the key from the Proxmox UI, no YAML required.
+
+![](../images/proxmox-ve-10.png)
+
+1. On the VM, go to **Hardware**, click **Add**, and select **CloudInit Drive**.
+2. Set **Bus/Device** to **IDE**, and change the index from the default `0` to
+   `3`, so the drive lands on `ide3`.
+3. Choose a **Storage** location.
+4. Leave **Format** on the default (QEMU image format, qcow2).
+5. Click **Add**.
+
+{{< figure src="../images/proxmox-ve-11.png" alt="Adding a CloudInit Drive" class="mx-auto max-w-100" >}}
+
+6. Open the **Cloud-Init** tab, click **SSH public key**, and paste in your
+   public key, or upload the key file directly.
+
+   ![Cloud-Init tab with SSH public key field](../images/proxmox-ve-12.png)
+
+{{< /tab >}}
+
+{{< tab label="Advanced (CLI)" >}}
+
+The Proxmox UI can only set an SSH key: it has no fields for a proxy, registry
+mirror, or static IP. For any of those, write a single cloud-init YAML snippet
+on the Proxmox node instead; it can carry all four settings at once, so include
+only the keys you actually need.
 
 ### What needs to be reachable
 
@@ -138,9 +176,6 @@ There are two supported approaches:
 
 ### Write the user-data snippet
 
-The user-data is a plain YAML document with `proxy:` and/or `registry:` keys.
-You'll need to supply either or both, depending on what you need.
-
 ```bash
 mkdir -p /var/lib/vz/snippets
 cat > /var/lib/vz/snippets/plakar-appliance.yaml << 'EOF'
@@ -155,8 +190,54 @@ registry:
     docker.io: <harbor-host>/dockerhub-proxy
     ghcr.io:   <harbor-host>/ghcr-proxy
   insecure: false     # true: skip TLS verification for the mirror hosts
+
+network:
+  ethernets:
+    eth0:
+      addresses: [10.0.1.5/24]             # CIDR suffix is mandatory
+      gateway4: 10.0.1.1
+      nameservers:
+        addresses: [10.0.1.53, 10.0.1.54]
+
+ssh_authorized_keys:
+  - ssh-ed25519 AAAA...
 EOF
 ```
+
+Every top-level key above is optional; include only what you need. On Proxmox,
+this `network:` key is the only network source ahead of the DHCP fallback:
+whichever NICs it doesn't configure fall back to DHCP.
+
+`network:` accepts a subset of [netplan v2](https://netplan.readthedocs.io/)
+syntax, either under a top-level `network:` key (as above) or a bare
+`ethernets:` key. The supported fields are `addresses` (first entry, CIDR
+required), `gateway4`, `routes` (`{to, via}`, with `to: default` as an alias for
+`gateway4`), `nameservers.addresses`, `dhcp4: true`, and `match.macaddress`. Use
+`match.macaddress` to select a NIC by MAC address instead of its kernel name
+(`eth0`, `eth1`, ... in PCI order, for multi-NIC VMs). A MAC match survives
+adapter reordering. Anything else netplan defines, such as bonds, VLANs,
+bridges, `dhcp6`, or `mtu`, is silently ignored.
+
+- **One default gateway, one DNS set.** Declare `gateway4` (or a default route)
+  and `nameservers` on exactly one interface — the management one. If several
+  interfaces declare either, the first by interface name wins and the others are
+  logged and ignored.
+- **Unlisted NICs fall back to DHCP.** Any NIC without a stanza, or with a
+  stanza that fails validation, is picked up by the DHCP client. A NIC on a
+  segment without a DHCP server simply stays unconfigured.
+- **The first NIC (`eth0`) is special**: when it is DHCP-configured, boot waits
+  for its lease. Leases on other NICs are acquired in the background and never
+  delay boot.
+- Static addressing is outbound-only: the appliance's own services (UI, SSH)
+  listen on **all** interfaces regardless of this configuration. Restrict access
+  to the management plane with your network policy.
+
+> [!NOTE]+
+>
+> Proxmox's own IP configuration fields on the Cloud-Init tab (`ipconfig0` and
+> friends) are not read by the appliance — they land in a separate
+> `network-config` file the appliance does not consume. Static addressing must
+> go through the `network:` key above instead.
 
 The Proxmox web interface only lists existing snippets under **Storage →
 Snippets** it has no option to create or upload one. Snippets have to be placed
@@ -184,59 +265,20 @@ qm reboot <vmid>
 
 ### Verify
 
-Watch the console during boot for a line prefixed `proxy-collect:`. It reports
-either the proxy configuration that was applied, or why none was found:
+Watch the console during boot for lines prefixed `proxy-collect:` (proxy and
+registry) and `net-collect:` / `net-apply:` (network). Each reports the
+configuration that was applied, or why none was found:
 
 ```txt
 proxy-collect: proxy configured: http=http://<proxy-ip>:<proxy-port> https=... no_proxy=...
 ```
 
-## SSH Keys Configuration
+Configuration is collected once per boot. Changes to the snippet take effect on
+the next reboot.
 
-There are two ways to set an SSH authorized key, and which one applies depends
-on whether you also need proxy and/or registry configuration.
+{{< /tab >}}
 
-If you don't need proxy or Harbor configuration you can skip the YAML entirely
-and set the key from the Proxmox UI instead.
-
-![](../images/proxmox-ve-10.png)
-
-1. On the VM, go to **Hardware**, click **Add**, and select **CloudInit Drive**.
-2. Set **Bus/Device** to **IDE**, and change the index from the default `0` to
-   `3`, so the drive lands on `ide3`.
-3. Choose a **Storage** location.
-4. Leave **Format** on the default (QEMU image format, qcow2).
-5. Click **Add**.
-
-{{< figure src="../images/proxmox-ve-11.png" alt="Adding a CloudInit Drive" class="mx-auto max-w-100" >}}
-
-6. Open the **Cloud-Init** tab, click **SSH public key**, and paste in your
-   public key, or upload the key file directly.
-
-   ![Cloud-Init tab with SSH public key field](../images/proxmox-ve-12.png)
-
-If you need both the proxy and/or registry configuration as well, the UI on
-Proxmox dashboard isn't enough, since it can't set `proxy:` and/or `registry:`.
-You'll need to add `ssh_authorized_keys` as an extra top-level key in the same
-YAML snippet described [above](#proxy-and-harbor-configuration) instead,
-alongside `proxy:` and/or `registry:`:
-
-```yaml
-#cloud-config
-proxy:
-  http: http://<proxy-ip>:<proxy-port>
-  https: http://<proxy-ip>:<proxy-port>
-  no_proxy: .corp.example,10.0.0.0/8 # optional
-
-registry:
-  mirrors:
-    docker.io: <harbor-host>/dockerhub-proxy
-    ghcr.io: <harbor-host>/ghcr-proxy
-  insecure: false # true: skip TLS verification for the mirror hosts
-
-ssh_authorized_keys:
-  - ssh-ed25519 AAAA...
-```
+{{< /tabs >}}
 
 ## Start the appliance and complete enrollment
 
