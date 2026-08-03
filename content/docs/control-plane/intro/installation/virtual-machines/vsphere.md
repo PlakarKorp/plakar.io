@@ -22,7 +22,11 @@ Two deployment methods are supported:
 Both images can be downloaded from the
 [Plakar Control Plane Downloads Page](https://www.plakar.io/download).
 
-## Installation from OVA
+## Creating the Virtual Machine
+
+{{< tabs >}}
+
+{{< tab label="OVA" >}}
 
 In the vSphere HTML Client, open **Hosts and Clusters** (first column on the
 sidebar), right-click the datacenter that will contain the appliance, and select
@@ -100,7 +104,9 @@ from **Recent Tasks** until the virtual machine appears in the inventory.
 
 ![](../images/ovhcloud-ova-8.png)
 
-## Installation from ISO
+{{< /tab >}}
+
+{{< tab label="ISO" >}}
 
 The ISO installation method creates a new virtual machine manually and boots it
 from the Plakar Control Plane ISO image. This method is used when you want to
@@ -202,50 +208,34 @@ Other hardware settings can be left at their default values.
 
 ![](../images/ovhcloud-iso-5.png)
 
-## Post-deployment configuration
+{{< /tab >}}
 
-After the virtual machine has been created, you need to do some VMware
-configuration before the first power-on.
+{{< /tabs >}}
+
+## Add the data disk
 
 On the ISO path, the recommended 1 TB storage is already configured during
-virtual machine creation. On the OVA path, you need to add the extra 1 TB data
-disk.
-
-You can edit the VM settings by right clicking on the VM then selecting **Edit
-settings**. This opens a dialog with three tabs. We can add the extra 1TB data
-disk from the **Virtual Hardware** tab by clicking on **Add New Device**, select
-**Hard Disk** and set it to 1 TB.
+virtual machine creation, so this step is OVA-only. Before first power-on,
+right-click the VM, select **Edit settings**, open the **Virtual Hardware** tab,
+click **Add New Device**, select **Hard Disk**, and set it to 1 TB.
 
 ![](../images/ovhcloud-iso-6.png)
 
-### Add Advanced Configuration Parameters
+## Configuring the Appliance
 
-You can setup the parameters from the **Advanced Parameters** tab and set the
-following information. You'll need to add this setup to both ISO and OVA
-installation methods.
-
-| Parameter                  | Description                                      |
-| -------------------------- | ------------------------------------------------ |
-| `guestinfo.plakar.ip`      | Appliance IP address with CIDR mask              |
-| `guestinfo.plakar.dns`     | DNS resolver used by the appliance e.g `1.1.1.1` |
-| `guestinfo.plakar.gateway` | Network gateway for the selected segment         |
-
-The gateway can usually be found from the NSX network segment configuration.
-
-![](../images/ovhcloud-iso-7.png)
-
-### Proxy and Harbor Configuration
-
-If the appliance doesn't have direct internet access, configure an HTTP proxy, a
-local Harbor registry mirror, or both through vSphere's guest info parameters
-before powering on the virtual machine.
+By default the appliance boots with DHCP networking and no SSH access. If that's
+enough for you, skip ahead to
+[Start the appliance and complete enrollment](#start-the-appliance-and-complete-enrollment).
+Otherwise, every other setting (static IP, proxy, registry mirror, SSH key) is
+delivered through vSphere's guest info mechanism, added under **Advanced
+Parameters** before first power-on, or during the Deploy-OVF wizard's Customize
+Template step on the OVA path. Pick one of the two tabs below.
 
 ### What needs to be reachable
 
 Plakar Control Plane requires HTTPS access to `api.plakar.io` for runtime
 configuration, license validation, and plugin downloads. If your proxy uses a
-whitelist instead of allowing all outbound traffic, you need to add
-`*.plakar.io`
+whitelist instead of allowing all outbound traffic, add `*.plakar.io`.
 
 The appliance also needs to pull container images from `docker.io` and
 `ghcr.io`. There are two supported approaches:
@@ -256,22 +246,107 @@ The appliance also needs to pull container images from `docker.io` and
    - `*.docker.com`
    - `*.ghcr.io`
    - `*.githubusercontent.com`
-
 2. **Use a Harbor registry mirror.** This is the recommended approach for
    production deployments because images are pulled from a local registry cache
    instead of the public internet. When using Harbor, you don't need to
    whitelist the Docker and GitHub domains above on your proxy.
 
-### Guest info configuration
+{{< tabs >}}
 
-Add the following advanced parameter under **Advanced Parameters**:
+{{< tab label="Basic (flat keys)" >}}
 
-| Parameter            | Description                                                        |
-| -------------------- | ------------------------------------------------------------------ |
-| `guestinfo.userdata` | Cloud-init configuration containing proxy and/or registry settings |
+For a single NIC and straightforward settings, every option is its own
+`guestinfo.plakar.*` parameter, no YAML required.
 
-The value of `guestinfo.userdata` is a standard cloud-init YAML document
-containing `proxy:` and/or `registry:` sections, depending on your environment.
+For a static IP, set `guestinfo.plakar.ip`, `guestinfo.plakar.gateway`, and
+`guestinfo.plakar.dns` together: all three are required for this channel to take
+effect. The proxy, registry, and SSH parameters below are independent of the
+network ones and of each other, so add only the ones you actually need.
+
+| Parameter                              | Description                                             |
+| -------------------------------------- | ------------------------------------------------------- |
+| `guestinfo.plakar.ip`                  | Appliance IP address with CIDR mask                     |
+| `guestinfo.plakar.gateway`             | Network gateway for the selected segment                |
+| `guestinfo.plakar.dns`                 | DNS resolver used by the appliance, e.g. `1.1.1.1`      |
+| `guestinfo.plakar.http_proxy`          | HTTP proxy URL                                          |
+| `guestinfo.plakar.https_proxy`         | HTTPS proxy URL (defaults to the HTTP proxy if omitted) |
+| `guestinfo.plakar.no_proxy`            | Comma-separated bypass list                             |
+| `guestinfo.plakar.registry_mirrors`    | Comma-separated `upstream=prefix` pairs                 |
+| `guestinfo.plakar.registry_insecure`   | `true` to skip TLS verification for the mirror hosts    |
+| `guestinfo.plakar.ssh_authorized_keys` | Contents of your SSH public key                         |
+
+The gateway can usually be found from the NSX network segment configuration.
+
+![](../images/ovhcloud-iso-7.png)
+
+{{< /tab >}}
+
+{{< tab label="Advanced (YAML)" >}}
+
+For multiple NICs, static routes, or to bundle every setting into one document,
+use one of these two YAML channels instead of the flat keys.
+
+### Netplan via `guestinfo.metadata` (network only, multi-NIC)
+
+The appliance evaluates the sources in order. As soon as one source successfully
+defines at least one network interface, it is used and all remaining sources are
+ignored.
+
+1. `guestinfo.metadata` (this channel)
+2. An OVF property set during the Deploy-OVF wizard's Customize Template step,
+   if the deployed OVA defines one
+3. The flat `guestinfo.plakar.*` keys, from the Basic tab
+4. A `network:` key inside `guestinfo.userdata`, below
+5. DHCP fallback
+
+A [netplan v2](https://netplan.readthedocs.io/) YAML document, under a top-level
+`network:` key or a bare `ethernets:` key:
+
+```yaml
+network:
+  ethernets:
+    eth0:
+      addresses: [10.0.1.5/24] # CIDR suffix is mandatory
+      gateway4: 10.0.1.1
+      nameservers:
+        addresses: [10.0.1.53, 10.0.1.54]
+    eth1:
+      addresses: [10.20.0.5/24]
+      routes: # reach sources behind a router on this segment
+        - to: 10.50.0.0/16
+          via: 10.20.0.1
+    eth2:
+      dhcp4: true
+```
+
+Only a subset of netplan is supported: `addresses` (first entry, CIDR required),
+`gateway4`, `routes` (`{to, via}`, with `to: default` as an alias for
+`gateway4`), `nameservers.addresses`, `dhcp4: true`, and `match.macaddress` to
+select a NIC by MAC address instead of its kernel name. A MAC match survives
+adapter reordering, unlike the PCI-order `eth0`/`eth1` kernel names:
+
+```yaml
+backup-a:
+  match: { macaddress: "00:50:56:aa:bb:cc" }
+  addresses: [10.20.0.5/24]
+```
+
+The Advanced Parameters field is single-line, so base64-encode the document
+before pasting it in:
+
+```sh
+base64 -w0 < netplan.yaml
+```
+
+| Parameter                     | Description                                        |
+| ----------------------------- | -------------------------------------------------- |
+| `guestinfo.metadata`          | Netplan YAML document, encoded per the field below |
+| `guestinfo.metadata.encoding` | `base64`, `gzip+base64`, or omitted for raw YAML   |
+
+### Cloud-init via `guestinfo.userdata` (proxy, registry, network, SSH)
+
+A single cloud-config document can carry `proxy:`, `registry:`, `network:`, and
+`ssh_authorized_keys:` together, so include only the keys you need:
 
 ```yaml
 #cloud-config
@@ -285,13 +360,24 @@ registry:
     docker.io: <harbor-host>/dockerhub-proxy
     ghcr.io: <harbor-host>/ghcr-proxy
   insecure: false # true: skip TLS verification for the mirror hosts
+
+network:
+  ethernets:
+    eth0:
+      addresses: [10.0.1.5/24]
+      gateway4: 10.0.1.1
+      nameservers:
+        addresses: [10.0.1.53]
+
+ssh_authorized_keys:
+  - ssh-ed25519 AAAA...
 ```
 
-For VMware, we recommend using the equivalent single-line YAML format. The
-guestinfo.userdata field is a single-line input rather than a multi-line text
-area, so line breaks are removed when the value is entered. Using the compact
-representation makes it easier to copy and paste the configuration into the
-field.
+`network:` accepts the same netplan subset described above.
+
+For VMware, we recommend the equivalent single-line YAML format instead: the
+`guestinfo.userdata` field is single-line, so line breaks are removed when the
+value is entered, and the compact form is easier to copy and paste:
 
 <!-- prettier-ignore-start -->
 ```yaml
@@ -299,28 +385,29 @@ field.
 ```
 <!-- prettier-ignore-end -->
 
-### Optional: enable SSH access
+| Parameter            | Description                                                |
+| -------------------- | ---------------------------------------------------------- |
+| `guestinfo.userdata` | Cloud-init document containing any of the keys shown above |
 
-SSH access is optional and is not required for a standard installation.
+Alternatively, the OVF property `plakar.userdata` can carry the same document,
+base64-encoded, via the Deploy-OVF wizard's Customize Template step, instead of
+Advanced Parameters.
 
-Plakar Control Plane is designed to be managed from the web interface. Only
-enable SSH if you intentionally need administrative shell access for your
-environment.
+{{< /tab >}}
 
-To inject an SSH public key, add the following advanced parameter before booting
-the VM:
+{{< /tabs >}}
 
-| Parameter                              | Description                     |
-| -------------------------------------- | ------------------------------- |
-| `guestinfo.plakar.ssh_authorized_keys` | Contents of your SSH public key |
+### Connect over SSH
 
-After the virtual machine has booted, connect to it with the `plakar` user:
+If you configured an SSH key, connect to the booted appliance with the `plakar`
+user:
 
 ```sh
 ssh plakar@<ASSIGNED-IP>
 ```
 
-Replace `<ASSIGNED-IP>` with the IP address configured in `guestinfo.plakar.ip`.
+Replace `<ASSIGNED-IP>` with the appliance's configured or DHCP-assigned IP
+address.
 
 ## Start the appliance and complete enrollment
 
