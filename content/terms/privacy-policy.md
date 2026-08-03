@@ -2,9 +2,9 @@
 title: "Privacy Policy"
 date: 2025-05-05T10:00:00Z
 type: "legal-notice"
-weight: 3
-description: "How we collect, use, and protect your personal data across our website and services."
-icon: "ri/shield-check-line"
+description:
+  "How we collect, use, and protect your personal data across our website and
+  services."
 aliases:
   - /privacy-policy/
 ---
