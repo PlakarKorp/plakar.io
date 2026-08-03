@@ -153,6 +153,7 @@ plakar-edge \
   -control-plane https://plakman.example.com \
   -enroll <enrollment-key> \
   -name edge-paris-1 \
+  -tags env:prod,zone:eu-1 \
   -state-dir /var/lib/plakar-edge \
   -pkg /var/lib/plakar-edge/pkgs
 ```
@@ -163,6 +164,9 @@ plakar-edge \
   via the `PLAKAR_EDGE_ENROLL_KEY` environment variable instead of the flag.
 - **`-name`**: **Optional.** Defaults to the hostname. Display name shown in the
   Control Plane.
+- **`-tags`**: **Optional.** Comma-separated list of tags self-reported to the
+  Control Plane on every poll (e.g. `env:prod,zone:eu-1`), letting it target
+  this edge by tag match.
 - **`-state-dir`**: **Optional.** Defaults to `/var/lib/plakar-edge`. Directory
   used to store the edge identity and authentication token.
 - **`-pkg`**: **Optional.** Defaults to `<state-dir>/pkg`. Base directory used
