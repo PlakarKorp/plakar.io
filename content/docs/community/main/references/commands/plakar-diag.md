@@ -1,5 +1,5 @@
 ---
-date: "2026-06-12T21:26:51Z"
+date: "2026-08-04T11:03:17Z"
 title: diag
 summary: "Display detailed information about Plakar internal structures"
 aliases:
@@ -23,10 +23,11 @@ aliases:
 <table class="Nm">
   <tr>
     <td><code class="Nm">plakar diag</code></td>
-    <td>[<code class="Cm">contenttype</code> | <code class="Cm">locks</code> |
-      <code class="Cm">object</code> | <code class="Cm">packfile</code> |
-      <code class="Cm">snapshot</code> | <code class="Cm">state</code> |
-      <code class="Cm">vfs</code> | <code class="Cm">xattr</code>]</td>
+    <td>[<code class="Cm">chunks</code> | <code class="Cm">contenttype</code> |
+      <code class="Cm">locks</code> | <code class="Cm">object</code> |
+      <code class="Cm">packfile</code> | <code class="Cm">snapshot</code> |
+      <code class="Cm">state</code> | <code class="Cm">vfs</code> |
+      <code class="Cm">xattr</code>]</td>
   </tr>
 </table>
 </section>
@@ -38,6 +39,10 @@ aliases:
     information about the repository.</p>
 <p class="Pp">The sub-commands are as follows:</p>
 <dl class="Bl-tag">
+  <dt id="chunks"><a class="permalink" href="#chunks"><code class="Cm">chunks</code></a>
+    <var class="Ar">snapshotID</var>:<var class="Ar">path</var></dt>
+  <dd>Display the list of chunks for a file within a snapshot, including the
+      index, byte offset, length, MAC, and entropy of each chunk.</dd>
   <dt id="contenttype"><a class="permalink" href="#contenttype"><code class="Cm">contenttype</code></a>
     <var class="Ar">snapshotID</var>:<var class="Ar">path</var></dt>
   <dd style="width: auto;">&#x00A0;</dd>

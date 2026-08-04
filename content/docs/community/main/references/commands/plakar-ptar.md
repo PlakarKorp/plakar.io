@@ -1,5 +1,5 @@
 ---
-date: "2026-06-12T21:26:52Z"
+date: "2026-08-04T11:03:18Z"
 title: ptar
 summary: "generate a self-contained Kloset archive (.ptar)"
 aliases:
@@ -24,7 +24,9 @@ aliases:
   <tr>
     <td><code class="Nm">plakar ptar</code></td>
     <td>[<code class="Fl">-plaintext</code>]
-      [<code class="Fl">-overwrite</code>] [<code class="Fl">-k</code>
+      [<code class="Fl">-overwrite</code>] [<code class="Fl">-ignore</code>
+      <var class="Ar">pattern</var>] [<code class="Fl">-ignore-file</code>
+      <var class="Ar">file</var>] [<code class="Fl">-k</code>
       <var class="Ar">location</var>] <code class="Fl">-o</code>
       <var class="Ar">file.ptar</var> [<var class="Ar">path ...</var>]</td>
   </tr>
@@ -57,6 +59,15 @@ aliases:
   <dt id="overwrite"><a class="permalink" href="#overwrite"><code class="Fl">-overwrite</code></a></dt>
   <dd>Overwrite an existing <span class="Pa">.ptar</span> file at the
       destination path.</dd>
+  <dt id="ignore"><a class="permalink" href="#ignore"><code class="Fl">-ignore</code></a>
+    <var class="Ar">pattern</var></dt>
+  <dd>Exclude files matching a gitignore-style pattern while backing up
+      filesystem paths into the archive. May be specified multiple times.</dd>
+  <dt id="ignore-file"><a class="permalink" href="#ignore-file"><code class="Fl">-ignore-file</code></a>
+    <var class="Ar">file</var></dt>
+  <dd>Read newline-separated gitignore-style patterns from
+      <var class="Ar">file</var>. Blank lines and comments are ignored. May be
+      specified multiple times.</dd>
   <dt id="k"><a class="permalink" href="#k"><code class="Fl">-k</code></a>
     <var class="Ar">location</var>, <code class="Fl">-kloset</code>
     <var class="Ar">location</var></dt>
