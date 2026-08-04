@@ -1,5 +1,5 @@
 ---
-date: "2026-06-12T21:26:52Z"
+date: "2026-08-04T11:03:18Z"
 title: source
 summary: "Manage Plakar backup source configuration"
 aliases:

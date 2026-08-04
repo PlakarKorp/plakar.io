@@ -1,5 +1,5 @@
 ---
-date: "2026-06-12T21:26:51Z"
+date: "2026-08-04T11:03:17Z"
 title: check
 summary: "Check data integrity in a Plakar repository"
 aliases:
