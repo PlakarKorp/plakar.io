@@ -19,8 +19,8 @@ Plakar Control Plane supports two types of users:
   Plakar Control Plane API using an access key.
 
 Application users are intended for automation and integrations, such as the
-[Plakar Kubernetes Operator](#) or custom applications that interact with the
-API.
+[Plakar Kubernetes Operator](../infrastructure-as-code/kubernetes-operator) or
+custom applications that interact with the API.
 
 ## Creating users
 

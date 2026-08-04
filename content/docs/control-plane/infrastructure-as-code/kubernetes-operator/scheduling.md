@@ -76,6 +76,34 @@ spec:
     name: cold-storage-glacier
 ```
 
+## Running tasks on a remote edge
+
+All three resources also accept an optional `edgeTags` field to dispatch the
+task to a remote [edge](../../../infrastructure/edges) instead of running it
+on the Control Plane appliance:
+
+```yaml
+apiVersion: task.plakar.io/v1alpha1
+kind: ScheduleBackup
+metadata:
+  name: nightly-database-backup
+spec:
+  periodicity: 86400
+  source:
+    name: production-database
+  store:
+    name: production-s3
+  edgeTags:
+    - gpu
+    - eu-west
+```
+
+All listed tags must be present on the edge for it to match. If `edgeTags` is
+omitted or empty, the task matches any online edge, preferring one over local
+execution; if none are online, it falls back to running on the Control Plane
+appliance. If `edgeTags` is set but matches no online edge, the task fails
+instead of running locally.
+
 After a scheduling resource is created, the corresponding scheduled task is
 created in Plakar Control Plane. Its UUID is exposed through `status.id`, while
 `status.conditions` reports whether the task was created successfully.

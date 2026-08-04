@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes Operator"
-date: "2026-07-29T06:18:33Z"
+date: "2026-08-04T09:24:45Z"
 weight: 1
 summary:
   "Field-by-field reference for every custom resource defined by
@@ -340,12 +340,13 @@ _Appears in:_
 
 - [Restore](#restore)
 
-| Field                                         | Description                                                                                                      | Default | Validation            |
-| --------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ------- | --------------------- |
-| `store` _[ConnectorRef](#connectorref)_       | Store is the connector where the backup to restore from lives.                                                   |         | Required: \{\} <br /> |
-| `destination` _[ConnectorRef](#connectorref)_ | Destination is the connector where the data will be restored to.                                                 |         | Required: \{\} <br /> |
-| `snapshotID` _string_                         | SnapshotID pins the restore to a specific snapshot. Mutually<br />exclusive with Latest.                         |         | Optional: \{\} <br /> |
-| `latest` _boolean_                            | Latest instructs plakman to restore the most recent snapshot when<br />true. Mutually exclusive with SnapshotID. |         | Optional: \{\} <br /> |
+| Field                                         | Description                                                                                                                                                                                                                                                                                                                            | Default | Validation            |
+| --------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | --------------------- |
+| `store` _[ConnectorRef](#connectorref)_       | Store is the connector where the backup to restore from lives.                                                                                                                                                                                                                                                                         |         | Required: \{\} <br /> |
+| `destination` _[ConnectorRef](#connectorref)_ | Destination is the connector where the data will be restored to.                                                                                                                                                                                                                                                                       |         | Required: \{\} <br /> |
+| `snapshotID` _string_                         | SnapshotID pins the restore to a specific snapshot. Mutually<br />exclusive with Latest.                                                                                                                                                                                                                                               |         | Optional: \{\} <br /> |
+| `latest` _boolean_                            | Latest instructs plakman to restore the most recent snapshot when<br />true. Mutually exclusive with SnapshotID.                                                                                                                                                                                                                       |         | Optional: \{\} <br /> |
+| `edgeTags` _string array_                     | EdgeTags selects a remote edge to run this restore by tag match:<br />all listed tags must be present on the edge. Omitted/empty matches<br />any online edge, preferring one over local execution; if none are<br />online it falls back to running locally. A populated list that<br />matches no online edge fails the run instead. |         | Optional: \{\} <br /> |
 
 #### RestoreStatus
 
@@ -380,11 +381,12 @@ _Appears in:_
 
 - [ScheduleBackup](#schedulebackup)
 
-| Field                                    | Description                                              | Default | Validation                             |
-| ---------------------------------------- | -------------------------------------------------------- | ------- | -------------------------------------- |
-| `periodicity` _integer_                  | Periodicity is the interval in second for the operation. |         | Minimum: 1 <br />Required: \{\} <br /> |
-| `source` _[ConnectorRef](#connectorref)_ | Source is the UUID of the source                         |         | Required: \{\} <br />                  |
-| `store` _[ConnectorRef](#connectorref)_  | Store is the UUID of the store                           |         | Required: \{\} <br />                  |
+| Field                                    | Description                                                                                                                                                                                                                                                                                                                          | Default | Validation                             |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- | -------------------------------------- |
+| `periodicity` _integer_                  | Periodicity is the interval in second for the operation.                                                                                                                                                                                                                                                                             |         | Minimum: 1 <br />Required: \{\} <br /> |
+| `source` _[ConnectorRef](#connectorref)_ | Source is the UUID of the source                                                                                                                                                                                                                                                                                                     |         | Required: \{\} <br />                  |
+| `store` _[ConnectorRef](#connectorref)_  | Store is the UUID of the store                                                                                                                                                                                                                                                                                                       |         | Required: \{\} <br />                  |
+| `edgeTags` _string array_                | EdgeTags selects a remote edge to run this task by tag match: all<br />listed tags must be present on the edge. Omitted/empty matches any<br />online edge, preferring one over local execution; if none are<br />online it falls back to running locally. A populated list that<br />matches no online edge fails the task instead. |         | Optional: \{\} <br />                  |
 
 #### ScheduleBackupStatus
 
@@ -419,10 +421,11 @@ _Appears in:_
 
 - [ScheduleCheck](#schedulecheck)
 
-| Field                                   | Description                                              | Default | Validation                             |
-| --------------------------------------- | -------------------------------------------------------- | ------- | -------------------------------------- |
-| `periodicity` _integer_                 | Periodicity is the interval in second for the operation. |         | Minimum: 1 <br />Required: \{\} <br /> |
-| `store` _[ConnectorRef](#connectorref)_ | Store is the store to check.                             |         | Required: \{\} <br />                  |
+| Field                                   | Description                                                                                                                                                                                                                                                                                                                          | Default | Validation                             |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- | -------------------------------------- |
+| `periodicity` _integer_                 | Periodicity is the interval in second for the operation.                                                                                                                                                                                                                                                                             |         | Minimum: 1 <br />Required: \{\} <br /> |
+| `store` _[ConnectorRef](#connectorref)_ | Store is the store to check.                                                                                                                                                                                                                                                                                                         |         | Required: \{\} <br />                  |
+| `edgeTags` _string array_               | EdgeTags selects a remote edge to run this task by tag match: all<br />listed tags must be present on the edge. Omitted/empty matches any<br />online edge, preferring one over local execution; if none are<br />online it falls back to running locally. A populated list that<br />matches no online edge fails the task instead. |         | Optional: \{\} <br />                  |
 
 #### ScheduleCheckStatus
 
@@ -457,11 +460,12 @@ _Appears in:_
 
 - [ScheduleSync](#schedulesync)
 
-| Field                                              | Description                                              | Default | Validation                             |
-| -------------------------------------------------- | -------------------------------------------------------- | ------- | -------------------------------------- |
-| `periodicity` _integer_                            | Periodicity is the interval in second for the operation. |         | Minimum: 1 <br />Required: \{\} <br /> |
-| `sourceStore` _[ConnectorRef](#connectorref)_      | SourceStore is the store to sync from.                   |         | Required: \{\} <br />                  |
-| `destinationStore` _[ConnectorRef](#connectorref)_ | DestinationStore is the store to sync to.                |         | Required: \{\} <br />                  |
+| Field                                              | Description                                                                                                                                                                                                                                                                                                                          | Default | Validation                             |
+| -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- | -------------------------------------- |
+| `periodicity` _integer_                            | Periodicity is the interval in second for the operation.                                                                                                                                                                                                                                                                             |         | Minimum: 1 <br />Required: \{\} <br /> |
+| `sourceStore` _[ConnectorRef](#connectorref)_      | SourceStore is the store to sync from.                                                                                                                                                                                                                                                                                               |         | Required: \{\} <br />                  |
+| `destinationStore` _[ConnectorRef](#connectorref)_ | DestinationStore is the store to sync to.                                                                                                                                                                                                                                                                                            |         | Required: \{\} <br />                  |
+| `edgeTags` _string array_                          | EdgeTags selects a remote edge to run this task by tag match: all<br />listed tags must be present on the edge. Omitted/empty matches any<br />online edge, preferring one over local execution; if none are<br />online it falls back to running locally. A populated list that<br />matches no online edge fails the task instead. |         | Optional: \{\} <br />                  |
 
 #### ScheduleSyncStatus
 
