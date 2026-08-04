@@ -1,5 +1,5 @@
 ---
-date: "2026-06-08T12:47:36Z"
+date: "2026-08-04T11:06:32Z"
 title: pkg-rm
 summary: "Uninstall Plakar plugins"
 aliases:
