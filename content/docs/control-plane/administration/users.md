@@ -1,7 +1,7 @@
 ---
 title: "Managing Users"
 date: "2026-07-27T00:00:00Z"
-weight: 7
+weight: 6
 summary: "Manage users and application identities in Plakar Control Plane."
 ---
 
@@ -13,9 +13,9 @@ authenticating to the API.
 
 Plakar Control Plane supports two types of users:
 
-- **Member** – a person who signs in to the web interface and interacts with
+- **Member**: a person who signs in to the web interface and interacts with
   Plakar Control Plane.
-- **Application** – a non-human identity used by software to authenticate to the
+- **Application**: a non-human identity used by software to authenticate to the
   Plakar Control Plane API using an access key.
 
 Application users are intended for automation and integrations, such as the
