@@ -59,6 +59,26 @@ Control Plane instance. Once enabled, you can generate or regenerate the
 enrollment key used during the initial registration process. See
 [Edges](../../infrastructure/edges) documentation for more information.
 
+## Network interfaces
+
+Click **Manage** to view and configure the appliance's network interfaces. The
+network interface table shows each interface's name, IP address, link status,
+MAC address, and current MTU.
+
+To change an interface's MTU, click the pencil icon next to the current value,
+enter the new MTU, and save your changes.
+
+![Network interfaces settings](../images/mtu-settings.png)
+
+The default MTU is **1500 bytes**, which is appropriate for most Ethernet
+networks. Increase the MTU only if every device along the network path supports
+the larger frame size. Using an MTU larger than the network can handle may
+result in packet fragmentation, dropped packets, or connectivity issues rather
+than improved performance.
+
+For more information about MTU values and jumbo frames, see
+[MTU and Jumbo Frames](../../guides/mtu-and-jumbo-frames) documentation.
+
 ## Webhook
 
 Deliver Plakar Control Plane events, such as job completions and failures, to an
