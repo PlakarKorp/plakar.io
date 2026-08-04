@@ -71,5 +71,5 @@ touches an uncontrolled network or the internet.
 
 By default, the Plakar Control Plane appliance uses the standard 1500-byte MTU
 on its interfaces. This is configurable per interface from the
-[settings](../administration/general-settings) page if your network requires a
-different value.
+[settings](../administration/general-settings#network-interfaces) page if your
+network requires a different value.
