@@ -15,17 +15,26 @@ resources available for management. Resources are the individual entities you
 can back up, use as storage, or restore to, for example, EC2 instances, S3
 buckets, and their equivalents across other supported cloud providers.
 
+Inventory providers are delivered as integrations. Before creating an inventory,
+install the required provider from the **Integrations** page or directly from
+the **Add inventory** dialog. The dialog displays providers that are already
+installed alongside providers that can be installed and used immediately.
+
+![Creating a new inventory](./images/create-inventory.png)
+
 Once an inventory is connected, you can attach apps to each resource. Plakar
 Control Plane supports three app types:
 
-- **Source** - the resource being backed up
-- **Store** - where backups are stored
-- **Destination** - where data is restored to
+- **Source**: the resource being backed up
+- **Store**: where backups are stored
+- **Destination**: where data is restored to
 
 ## Managed inventories
 
 Managed inventories connect to a provider using credentials. Plakar Control
 Plane then automatically discovers and classifies resources in your account.
+
+Each managed inventory provider must be installed before it can be created.
 
 For example, in an AWS inventory:
 
@@ -39,6 +48,7 @@ Managed inventories are supported for:
 - Scaleway
 - Google Cloud
 - VMware
+- Kubernetes
 
 ## Self-managed inventories
 
