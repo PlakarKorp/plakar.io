@@ -1,7 +1,7 @@
 ---
 title: "Configuration Bundles"
 date: "2026-07-22T00:00:00Z"
-weight: 5
+weight: 6
 summary:
   "How to use configuration bundles to share credentials and settings across
   resources."
