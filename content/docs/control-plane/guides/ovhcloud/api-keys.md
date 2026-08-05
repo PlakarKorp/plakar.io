@@ -92,7 +92,7 @@ inventory configuration.
 ## Managing and Revoking Credentials
 
 Existing API credentials can be viewed and revoked from the OVHcloud Control
-Panel under **IAM / Security** > **Identities and Access Management** >
-**API keys**.
+Panel under **IAM / Security** > **Identities and Access Management** > **API
+keys**.
 
 ![](../images/managing-api-keys.png)

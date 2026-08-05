@@ -45,8 +45,8 @@ The general workflow is:
 
 ## Step 1: Create a new store
 
-First, create a new store app. This store must use the new passphrase. See
-the [apps documentation](../apps) for the full procedure.
+First, create a new store app. This store must use the new passphrase. See the
+[apps documentation](../apps) for the full procedure.
 
 When creating the new store:
 
@@ -56,16 +56,16 @@ When creating the new store:
 > [!NOTE]+
 >
 > The new store should be separate from the old one. Do not point both store
-> apps to the same resource. Read the
-> [resources documentation](../resources) for more information about resources.
+> apps to the same resource. Read the [resources documentation](../resources)
+> for more information about resources.
 
 ## Step 2: Sync the old store to the new store
 
 After the new store has been created, create a sync task from the old store to
 the new store. The old store is used as the source. The new store is used as the
-destination. See the
-[sync task documentation](../apps/stores#sync-store-task) for details on
-creating and running scheduled tasks. When configuring the sync task:
+destination. See the [sync task documentation](../apps/stores#sync-store-task)
+for details on creating and running scheduled tasks. When configuring the sync
+task:
 
 - Select the old store as the source store.
 - Select the new store as the destination store.
