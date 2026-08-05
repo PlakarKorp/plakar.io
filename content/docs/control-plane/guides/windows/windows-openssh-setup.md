@@ -1,5 +1,5 @@
 ---
-title: "Setting Up OpenSSH Server on Windows"
+title: "Setting Up OpenSSH Server"
 date: "2026-07-28T00:00:00Z"
 weight: 1
 summary:
