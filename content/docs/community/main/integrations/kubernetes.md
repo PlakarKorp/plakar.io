@@ -17,7 +17,7 @@ provides two connectors accessible via two URI schemes:
 | ------------ | ---------------------------------------------------------- |
 | `k8s://`     | Kubernetes manifests and resource state across namespaces. |
 | `k8s+csi://` | Persistent volume contents via CSI VolumeSnapshot.         |
-| `k8s+pvc://` | Persistent volume contents witohut a VolumeSnapshot.       |
+| `k8s+pvc://` | Persistent volume contents without a VolumeSnapshot.       |
 
 **Requirements**
 
