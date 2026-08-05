@@ -68,7 +68,7 @@ permissions must first be attached to the Plakar Control Plane EC2 instance.
 
 Read the documentation on
 [Managing IAM Roles, Users, and Access Keys on AWS](../../../guides/aws/iam-users-roles-and-access-keys)
-for more information on how to set up IAM role with the neccessary permissions
+for more information on how to set up IAM role with the necessary permissions
 and attach it to the instance.
 
 Once attached, selecting the **IAM** credential type during AWS inventory setup

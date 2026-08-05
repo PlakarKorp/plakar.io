@@ -58,7 +58,7 @@ secret/production/aws#access_key
 ![](../images/vault2.png)
 
 In our example above, we can remove the `data` section in the configuration path
-then append our field in the end, in our case thats `#access_key`
+then append our field in the end, in our case that's `#access_key`
 
 ## Using Vault secrets in Plakar Control Plane
 

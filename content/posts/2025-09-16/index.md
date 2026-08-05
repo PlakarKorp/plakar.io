@@ -139,7 +139,7 @@ under control.
 
 The result: faster operations that feel lighter and more predictable.
 
-There are still corner cases where we cache too agressively and that we need to
+There are still corner cases where we cache too aggressively and that we need to
 work on, but **v1.0.4** already halves cache storage space for most setups and
 performs far less disk hits for cache lookups and writes, putting less pressure
 on disk I/O.

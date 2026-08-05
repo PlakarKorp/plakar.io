@@ -18,7 +18,7 @@ adding an Azure Blob Storage resource.
 
 You can create a self managed inventory to manage your Azure resources by just
 providing a name for it, read the
-[self managed invetory](../../infrastructure/inventories/self-managed)
+[self managed inventory](../../infrastructure/inventories/self-managed)
 documentation for more information.
 
 ## Adding Azure Blob Storage as a resource

@@ -18,7 +18,7 @@ build it, package it, and install it using the `plakar` CLI.
 
 Plakar ships with connectors for common sources and storage backends. When you
 need to back up something that isn't supported out of the box such as an
-internal database thats not commonly used or a custom data source, you can write
+internal database that's not commonly used or a custom data source, you can write
 your own connector in Go and install it like any other package.
 
 ## What you will build
