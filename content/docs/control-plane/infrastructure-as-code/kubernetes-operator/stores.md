@@ -21,7 +21,6 @@ spec:
   protocol: s3
   integration:
     name: aws
-    version: 1.1.2
   fields:
     region:
       value: eu-west-1

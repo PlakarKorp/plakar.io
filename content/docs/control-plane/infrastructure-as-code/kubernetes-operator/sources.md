@@ -21,7 +21,6 @@ spec:
   protocol: postgres+aws
   integration:
     name: postgres
-    version: 1.1.0
   environment: production
   dataClasses:
     - database

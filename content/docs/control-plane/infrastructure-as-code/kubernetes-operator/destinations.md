@@ -22,7 +22,6 @@ spec:
   protocol: postgres+aws
   integration:
     name: postgres
-    version: 1.1.0
   fieldsFrom:
     - secretRef:
         name: postgres-recovery-credentials
