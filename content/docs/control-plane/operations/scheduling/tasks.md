@@ -91,7 +91,7 @@ matching all the provided labels will be synced to the other store.
 
 A check task verifies the integrity of data in a store app. It checks that the
 backup data can be read correctly and validates file MACs to make sure no
-corruption has occurred. It is perfomed on a store app.
+corruption has occurred. It is performed on a store app.
 
 By default, when no filters or restore point are specified, the entire store is
 checked. If you select a specific restore point, only that restore point is

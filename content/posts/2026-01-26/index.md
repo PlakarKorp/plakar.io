@@ -265,7 +265,7 @@ type Exporter interface {
 
 A side effect of this rework is that an Importer can become the input to an
 Exporter, something that was not possible with previous interfaces. This will
-simplify the testing considerably and allow the implementaton of a new
+simplify the testing considerably and allow the implementation of a new
 "transfer" capability to synchronize origins and destinations without going
 through a Kloset!
 
@@ -364,7 +364,7 @@ or long-running operations.
 <small>\*tested on a 14-core mac mini with 64 GiB RAM and NVMe storage.</small>
 
 There's still some room for improvement but memory usage being a factor of
-concurrency, this is controlable by reducing concurrency to an amount that suits
+concurrency, this is controllable by reducing concurrency to an amount that suits
 the RAM requirements.
 
 ### Improved cache space

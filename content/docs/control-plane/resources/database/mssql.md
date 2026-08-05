@@ -16,9 +16,9 @@ directory, then copies the files from the snapshot over SFTP. Restoring requires
 the SQL Server services to be stopped first, since the destination files are
 locked while SQL Server is running.
 
-## Inventory Managment
+## Inventory Management
 
-Curretly no
+Currently no
 [managed inventory](../../infrastructure/inventories#managed-inventories) has
 the capability of discoving Microsoft SQL Server resources. You need to set up a
 [self-managed inventory](../../infrastructure/inventories/self-managed) before
