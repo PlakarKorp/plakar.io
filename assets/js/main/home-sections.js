@@ -14,8 +14,12 @@
   function activate(key) {
     tabs.forEach(function (tab) {
       var on = tab.getAttribute("data-rec-tab") === key;
-      ACTIVE.forEach(function (c) { tab.classList.toggle(c, on); });
-      IDLE.forEach(function (c) { tab.classList.toggle(c, !on); });
+      ACTIVE.forEach(function (c) {
+        tab.classList.toggle(c, on);
+      });
+      IDLE.forEach(function (c) {
+        tab.classList.toggle(c, !on);
+      });
       var num = tab.querySelector("[data-rec-num]");
       if (num) {
         num.classList.toggle("bg-white/25", on);
@@ -25,7 +29,10 @@
       }
     });
     panes.forEach(function (pane) {
-      pane.classList.toggle("hidden", pane.getAttribute("data-rec-pane") !== key);
+      pane.classList.toggle(
+        "hidden",
+        pane.getAttribute("data-rec-pane") !== key,
+      );
     });
   }
 

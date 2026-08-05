@@ -11,26 +11,31 @@
 ## Documentation Structure
 
 ### Getting Started (Tutorials)
+
 **For**: Brand new users  
 **Goal**: Teach basics, build confidence  
 **Examples**: Installation, first backup
 
 ### Guides (How-to)
+
 **For**: Users solving specific problems  
 **Goal**: Step-by-step recipes assuming basic knowledge  
 **Examples**: Back up PostgreSQL, create Kloset store, automate backups
 
 ### References
+
 **For**: Looking up technical details  
 **Goal**: Describe commands, options, APIs  
 **Examples**: CLI commands, configuration files, flags
 
 ### Explanations
+
 **For**: Understanding concepts  
 **Goal**: Provide context, discuss trade-offs  
 **Examples**: How Plakar works, backup strategies
 
 ### Integrations
+
 **For**: Connecting Plakar to other services  
 **Goal**: Setup and configuration for integrations  
 **Examples**: S3, SFTP, tar, Notion, Google Drive, Proton Drive
@@ -49,9 +54,19 @@
 
 ## Development
 
-- Clone the repo or a fork of the repo including the submodules `git clone --recurse-submodules git@github.com:PlakarKorp/plakar.io.git`
-- If you have cloned the repo but the submodules folder is empty or missing, you can pull them with `git submodule update --init --recursive`
-- Run `npm install` at `themes/blowfish` and at the root of the repo to install blowfish dependencies and our dependencies
-- Run `npm run dev` at the root of the repo to start the development server and watch for changes to the Tailwind CSS files
+- Clone the repo or a fork of the repo including the submodules
+  `git clone --recurse-submodules git@github.com:PlakarKorp/plakar.io.git`
+- If you have cloned the repo but the submodules folder is empty or missing, you
+  can pull them with `git submodule update --init --recursive`
+- Run `npm install` at `themes/blowfish` and at the root of the repo to install
+  blowfish dependencies and our dependencies
+- Run `npm run dev` at the root of the repo to start the development server and
+  watch for changes to the Tailwind CSS files
 - To build the static site run `npm run build`
 - You can test the CI locally with `act push`
+- Run `npm run codespell` to check for common spelling mistakes
+  ([codespell](https://github.com/codespell-project/codespell) must be
+  installed, e.g. `brew install codespell`)
+- Run `npm run format` to format the codebase with
+  [Prettier](https://prettier.io), or `npm run format:check` to check formatting
+  without writing changes

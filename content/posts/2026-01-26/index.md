@@ -364,8 +364,8 @@ or long-running operations.
 <small>\*tested on a 14-core mac mini with 64 GiB RAM and NVMe storage.</small>
 
 There's still some room for improvement but memory usage being a factor of
-concurrency, this is controllable by reducing concurrency to an amount that suits
-the RAM requirements.
+concurrency, this is controllable by reducing concurrency to an amount that
+suits the RAM requirements.
 
 ### Improved cache space
 
