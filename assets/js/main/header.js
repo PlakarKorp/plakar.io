@@ -10,7 +10,10 @@
 document.addEventListener("DOMContentLoaded", () => {
   const kbdHint = document.getElementById("search-kbd-hint");
   if (kbdHint) {
-    const isMac = (navigator.userAgentData?.platform || navigator.platform || "").indexOf("Mac") > -1;
+    const isMac =
+      (navigator.userAgentData?.platform || navigator.platform || "").indexOf(
+        "Mac",
+      ) > -1;
     kbdHint.textContent = isMac ? "⌘K" : "Ctrl K";
   }
 

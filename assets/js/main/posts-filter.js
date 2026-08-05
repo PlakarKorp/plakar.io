@@ -4,9 +4,15 @@
 document.addEventListener("DOMContentLoaded", () => {
   const filter = document.getElementById("posts-filter");
   const filterDropdown = document.querySelector(".posts-filter-dropdown");
-  const filterDropdownBtn = filterDropdown?.querySelector(".posts-filter-dropdown-btn");
-  const filterDropdownMenu = filterDropdown?.querySelector(".posts-filter-dropdown-menu");
-  const filterDropdownLabel = filterDropdown?.querySelector(".posts-filter-dropdown-label");
+  const filterDropdownBtn = filterDropdown?.querySelector(
+    ".posts-filter-dropdown-btn",
+  );
+  const filterDropdownMenu = filterDropdown?.querySelector(
+    ".posts-filter-dropdown-menu",
+  );
+  const filterDropdownLabel = filterDropdown?.querySelector(
+    ".posts-filter-dropdown-label",
+  );
   const grid = document.getElementById("posts-grid");
   if (!grid || (!filter && !filterDropdown)) return;
 
@@ -34,18 +40,22 @@ document.addEventListener("DOMContentLoaded", () => {
     if (filterDropdownLabel) {
       filterDropdownLabel.textContent = filterLabels[category] || category;
     }
-    filterDropdown?.querySelectorAll(".filter-dropdown-option").forEach((opt) => {
-      const isActive = opt.dataset.filter === category;
-      opt.classList.toggle("text-primary-500", isActive);
-      opt.classList.toggle("bg-neutral-100", isActive);
-    });
+    filterDropdown
+      ?.querySelectorAll(".filter-dropdown-option")
+      .forEach((opt) => {
+        const isActive = opt.dataset.filter === category;
+        opt.classList.toggle("text-primary-500", isActive);
+        opt.classList.toggle("bg-neutral-100", isActive);
+      });
 
     cards.forEach((card) => {
       if (category === "all") {
         card.style.display = "";
         return;
       }
-      const cardCategories = (card.dataset.categories || "").split(" ").filter(Boolean);
+      const cardCategories = (card.dataset.categories || "")
+        .split(" ")
+        .filter(Boolean);
       card.style.display = cardCategories.includes(category) ? "" : "none";
     });
 
