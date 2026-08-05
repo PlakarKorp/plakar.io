@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes Operator"
-date: "2026-08-04T09:24:45Z"
+date: "2026-08-05T11:58:24Z"
 weight: 1
 summary:
   "Field-by-field reference for every custom resource defined by
@@ -140,10 +140,9 @@ _Appears in:_
 - [SourceSpec](#sourcespec)
 - [StoreSpec](#storespec)
 
-| Field              | Description         | Default | Validation            |
-| ------------------ | ------------------- | ------- | --------------------- |
-| `name` _string_    | Integration name    |         | Required: \{\} <br /> |
-| `version` _string_ | Integration version |         | Required: \{\} <br /> |
+| Field           | Description      | Default | Validation            |
+| --------------- | ---------------- | ------- | --------------------- |
+| `name` _string_ | Integration name |         | Required: \{\} <br /> |
 
 #### LocalObjectReference
 
@@ -255,6 +254,7 @@ group.
 - [ScheduleBackup](#schedulebackup)
 - [ScheduleCheck](#schedulecheck)
 - [ScheduleSync](#schedulesync)
+- [TaskRun](#taskrun)
 
 #### APIKeyRef
 
@@ -381,12 +381,13 @@ _Appears in:_
 
 - [ScheduleBackup](#schedulebackup)
 
-| Field                                    | Description                                                                                                                                                                                                                                                                                                                          | Default | Validation                             |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- | -------------------------------------- |
-| `periodicity` _integer_                  | Periodicity is the interval in second for the operation.                                                                                                                                                                                                                                                                             |         | Minimum: 1 <br />Required: \{\} <br /> |
-| `source` _[ConnectorRef](#connectorref)_ | Source is the UUID of the source                                                                                                                                                                                                                                                                                                     |         | Required: \{\} <br />                  |
-| `store` _[ConnectorRef](#connectorref)_  | Store is the UUID of the store                                                                                                                                                                                                                                                                                                       |         | Required: \{\} <br />                  |
-| `edgeTags` _string array_                | EdgeTags selects a remote edge to run this task by tag match: all<br />listed tags must be present on the edge. Omitted/empty matches any<br />online edge, preferring one over local execution; if none are<br />online it falls back to running locally. A populated list that<br />matches no online edge fails the task instead. |         | Optional: \{\} <br />                  |
+| Field                                    | Description                                                                                                                                                                                                                                                                                                                          | Default | Validation                                               |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- | -------------------------------------------------------- |
+| `periodicity` _integer_                  | Periodicity is the interval in second for the operation.                                                                                                                                                                                                                                                                             |         | Minimum: 1 <br />Required: \{\} <br />                   |
+| `source` _[ConnectorRef](#connectorref)_ | Source is the UUID of the source                                                                                                                                                                                                                                                                                                     |         | Required: \{\} <br />                                    |
+| `store` _[ConnectorRef](#connectorref)_  | Store is the UUID of the store                                                                                                                                                                                                                                                                                                       |         | Required: \{\} <br />                                    |
+| `edgeTags` _string array_                | EdgeTags selects a remote edge to run this task by tag match: all<br />listed tags must be present on the edge. Omitted/empty matches any<br />online edge, preferring one over local execution; if none are<br />online it falls back to running locally. A populated list that<br />matches no online edge fails the task instead. |         | Optional: \{\} <br />                                    |
+| `historyLimit` _integer_                 | HistoryLimit caps the number of TaskRun objects kept for this<br />schedule. Older runs are pruned once the limit is exceeded.<br />Defaults to 5 when unset. Maximum is 20.                                                                                                                                                         |         | Maximum: 20 <br />Minimum: 1 <br />Optional: \{\} <br /> |
 
 #### ScheduleBackupStatus
 
@@ -421,11 +422,12 @@ _Appears in:_
 
 - [ScheduleCheck](#schedulecheck)
 
-| Field                                   | Description                                                                                                                                                                                                                                                                                                                          | Default | Validation                             |
-| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- | -------------------------------------- |
-| `periodicity` _integer_                 | Periodicity is the interval in second for the operation.                                                                                                                                                                                                                                                                             |         | Minimum: 1 <br />Required: \{\} <br /> |
-| `store` _[ConnectorRef](#connectorref)_ | Store is the store to check.                                                                                                                                                                                                                                                                                                         |         | Required: \{\} <br />                  |
-| `edgeTags` _string array_               | EdgeTags selects a remote edge to run this task by tag match: all<br />listed tags must be present on the edge. Omitted/empty matches any<br />online edge, preferring one over local execution; if none are<br />online it falls back to running locally. A populated list that<br />matches no online edge fails the task instead. |         | Optional: \{\} <br />                  |
+| Field                                   | Description                                                                                                                                                                                                                                                                                                                          | Default | Validation                                               |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- | -------------------------------------------------------- |
+| `periodicity` _integer_                 | Periodicity is the interval in second for the operation.                                                                                                                                                                                                                                                                             |         | Minimum: 1 <br />Required: \{\} <br />                   |
+| `store` _[ConnectorRef](#connectorref)_ | Store is the store to check.                                                                                                                                                                                                                                                                                                         |         | Required: \{\} <br />                                    |
+| `edgeTags` _string array_               | EdgeTags selects a remote edge to run this task by tag match: all<br />listed tags must be present on the edge. Omitted/empty matches any<br />online edge, preferring one over local execution; if none are<br />online it falls back to running locally. A populated list that<br />matches no online edge fails the task instead. |         | Optional: \{\} <br />                                    |
+| `historyLimit` _integer_                | HistoryLimit caps the number of TaskRun objects kept for this<br />schedule. Older runs are pruned once the limit is exceeded.<br />Defaults to 5 when unset. Maximum is 20.                                                                                                                                                         |         | Maximum: 20 <br />Minimum: 1 <br />Optional: \{\} <br /> |
 
 #### ScheduleCheckStatus
 
@@ -460,12 +462,13 @@ _Appears in:_
 
 - [ScheduleSync](#schedulesync)
 
-| Field                                              | Description                                                                                                                                                                                                                                                                                                                          | Default | Validation                             |
-| -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- | -------------------------------------- |
-| `periodicity` _integer_                            | Periodicity is the interval in second for the operation.                                                                                                                                                                                                                                                                             |         | Minimum: 1 <br />Required: \{\} <br /> |
-| `sourceStore` _[ConnectorRef](#connectorref)_      | SourceStore is the store to sync from.                                                                                                                                                                                                                                                                                               |         | Required: \{\} <br />                  |
-| `destinationStore` _[ConnectorRef](#connectorref)_ | DestinationStore is the store to sync to.                                                                                                                                                                                                                                                                                            |         | Required: \{\} <br />                  |
-| `edgeTags` _string array_                          | EdgeTags selects a remote edge to run this task by tag match: all<br />listed tags must be present on the edge. Omitted/empty matches any<br />online edge, preferring one over local execution; if none are<br />online it falls back to running locally. A populated list that<br />matches no online edge fails the task instead. |         | Optional: \{\} <br />                  |
+| Field                                              | Description                                                                                                                                                                                                                                                                                                                          | Default | Validation                                               |
+| -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------- | -------------------------------------------------------- |
+| `periodicity` _integer_                            | Periodicity is the interval in second for the operation.                                                                                                                                                                                                                                                                             |         | Minimum: 1 <br />Required: \{\} <br />                   |
+| `sourceStore` _[ConnectorRef](#connectorref)_      | SourceStore is the store to sync from.                                                                                                                                                                                                                                                                                               |         | Required: \{\} <br />                                    |
+| `destinationStore` _[ConnectorRef](#connectorref)_ | DestinationStore is the store to sync to.                                                                                                                                                                                                                                                                                            |         | Required: \{\} <br />                                    |
+| `edgeTags` _string array_                          | EdgeTags selects a remote edge to run this task by tag match: all<br />listed tags must be present on the edge. Omitted/empty matches any<br />online edge, preferring one over local execution; if none are<br />online it falls back to running locally. A populated list that<br />matches no online edge fails the task instead. |         | Optional: \{\} <br />                                    |
+| `historyLimit` _integer_                           | HistoryLimit caps the number of TaskRun objects kept for this<br />schedule. Older runs are pruned once the limit is exceeded.<br />Defaults to 5 when unset. Maximum is 20.                                                                                                                                                         |         | Maximum: 20 <br />Minimum: 1 <br />Optional: \{\} <br /> |
 
 #### ScheduleSyncStatus
 
@@ -479,3 +482,59 @@ _Appears in:_
 | ------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | --------------------------------------------------------------------------------------------------------- |
 | `id` _string_                                                                                                            | ID is the created sync task id on plakman.                                                                                                                                                                                                                                                                                                                                                                                                                                             |         | Pattern: `^[0-9a-fA-F]\{8\}-[0-9a-fA-F]\{4\}-[0-9a-fA-F]\{4\}-[0-9a-fA-F]\{4\}-[0-9a-fA-F]\{12\}$` <br /> |
 | `conditions` _[Condition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.36/#condition-v1-meta) array_ | conditions represent the current state of the ScheduleSync resource.<br />Each condition has a unique type and reflects the status of a specific aspect of the resource.<br />Standard condition types include:<br />- "Available": the resource is fully functional<br />- "Progressing": the resource is being created or updated<br />- "Degraded": the resource failed to reach or maintain its desired state<br />The status of each condition is one of True, False, or Unknown. |         | Optional: \{\} <br />                                                                                     |
+
+#### TaskRef
+
+TaskRef identifies the schedule resource that owns this run.
+
+_Appears in:_
+
+- [TaskRunSpec](#taskrunspec)
+
+| Field           | Description                                                                                          | Default | Validation            |
+| --------------- | ---------------------------------------------------------------------------------------------------- | ------- | --------------------- |
+| `name` _string_ | Name is the name of the parent schedule resource.                                                    |         | Required: \{\} <br /> |
+| `kind` _string_ | Kind is the kind of the parent schedule resource<br />(ScheduleBackup, ScheduleSync, ScheduleCheck). |         | Required: \{\} <br /> |
+
+#### TaskRun
+
+TaskRun is a virtual record of a single execution of a scheduled task, mirroring
+state from the plakman control plane.
+
+| Field                                                                                                              | Description                                                                  | Default | Validation            |
+| ------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------- | ------- | --------------------- |
+| `apiVersion` _string_                                                                                              | `task.plakar.io/v1alpha1`                                                    |         |                       |
+| `kind` _string_                                                                                                    | `TaskRun`                                                                    |         |                       |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.36/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`.              |         | Optional: \{\} <br /> |
+| `spec` _[TaskRunSpec](#taskrunspec)_                                                                               | spec identifies the execution; it is set once at creation and never mutated. |         | Required: \{\} <br /> |
+| `status` _[TaskRunStatus](#taskrunstatus)_                                                                         | status reflects the observed execution state.                                |         | Optional: \{\} <br /> |
+
+#### TaskRunSpec
+
+TaskRunSpec defines the (immutable) identity of a single execution.
+
+_Appears in:_
+
+- [TaskRun](#taskrun)
+
+| Field                           | Description                                                    | Default | Validation            |
+| ------------------------------- | -------------------------------------------------------------- | ------- | --------------------- |
+| `taskRef` _[TaskRef](#taskref)_ | TaskRef references the parent schedule that produced this run. |         | Required: \{\} <br /> |
+| `jobID` _string_                | JobID is the plakman job UUID for this execution.              |         | Required: \{\} <br /> |
+
+#### TaskRunStatus
+
+TaskRunStatus reflects the observed state of the execution as reported by the
+plakman control plane.
+
+_Appears in:_
+
+- [TaskRun](#taskrun)
+
+| Field                                                                                                                    | Description                                                                                                  | Default | Validation            |
+| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------- | --------------------- |
+| `phase` _string_                                                                                                         | Phase is the current lifecycle phase of the execution:<br />queued, running, canceled, succeeded, or failed. |         | Optional: \{\} <br /> |
+| `scheduledAt` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.36/#time-v1-meta)_                | ScheduledAt is the time the execution was scheduled to run.                                                  |         | Optional: \{\} <br /> |
+| `startedAt` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.36/#time-v1-meta)_                  | StartedAt is the time the execution actually started.                                                        |         | Optional: \{\} <br /> |
+| `stoppedAt` _[Time](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.36/#time-v1-meta)_                  | StoppedAt is the time the execution finished (success or failure).                                           |         | Optional: \{\} <br /> |
+| `conditions` _[Condition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.36/#condition-v1-meta) array_ | conditions represent the current state of the TaskRun resource.                                              |         | Optional: \{\} <br /> |
