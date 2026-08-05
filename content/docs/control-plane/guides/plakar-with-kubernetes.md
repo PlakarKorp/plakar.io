@@ -54,17 +54,29 @@ management.
 
 See the [Edges](../infrastructure/edges) documentation for more information.
 
+## Plakar Control Plane on Kubernetes
+
+Plakar Control Plane will be available as a deployment running inside a
+Kubernetes cluster, in addition to the currently supported deployment models.
+This will allow the orchestration layer itself, alongside the components it
+manages, to run natively on Kubernetes.
+
+> [!NOTE]+
+>
+> This component is planned and not yet available.
+
 ## Choosing the right component
 
 Each component serves a different purpose and they are designed to complement
 one another.
 
-| Component              | Purpose                                                            |
-| ---------------------- | ------------------------------------------------------------------ |
-| Kubernetes Inventory   | Discovers Kubernetes resources.                                    |
-| Kubernetes Integration | Backs up and restores Kubernetes resources and Persistent Volumes. |
-| Plakar Operator        | Manages Plakar resources declaratively using Kubernetes manifests. |
-| Plakar Edge            | Executes backup and restore operations close to the data.          |
+| Component                      | Purpose                                                            |
+| ------------------------------ | ------------------------------------------------------------------ |
+| Kubernetes Inventory           | Discovers Kubernetes resources.                                    |
+| Kubernetes Integration         | Backs up and restores Kubernetes resources and Persistent Volumes. |
+| Plakar Operator                | Manages Plakar resources declaratively using Kubernetes manifests. |
+| Plakar Edge                    | Executes backup and restore operations close to the data.          |
+| Plakar Control Plane (planned) | Runs the orchestration layer itself inside a Kubernetes cluster.   |
 
 A typical deployment may use the Kubernetes inventory to discover resources, the
 Kubernetes integration to protect them, the Plakar Operator to manage
