@@ -1,18 +1,18 @@
 ---
 title: "Job History"
 date: "2026-06-25T00:00:00Z"
-weight: 5
+weight: 6
 summary:
   "How to monitor job history and view job details in Plakar Control Plane."
 ---
 
 # Job History
 
-The **Operations > Scheduling** section includes a **Job History** for both the
-[manual scheduler](../manual-scheduler) and the
-[policy scheduler](../policy-scheduler) that lists all jobs that have run,
-whether they succeeded or failed, along with any jobs that are currently
-running.
+The **Operations > Scheduling** section includes a **Job History** for the
+[manual scheduler](../manual-scheduler), the
+[policy scheduler](../policy-scheduler), and each
+[user scheduler](../user-schedulers), listing all jobs that have run, whether
+they succeeded or failed, along with any jobs that are currently running.
 
 ![](../images/manual-scheduler-history.png)
 ![](../images/policy-scheduler-history.png)

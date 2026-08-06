@@ -36,28 +36,28 @@ edges execute tasks within their local environments.
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
 flowchart LR
-    PCP["Plakar Control Plane"]
+  PCP["Plakar Control Plane"]
 
-    subgraph Site1["Datacenter A"]
-        Edge1["Edge"]
-        VM1["Virtual Machines"]
-        DB1["Databases"]
-    end
+  subgraph Site1["Datacenter A"]
+    Edge1["Edge"]
+    VM1["Virtual Machines"]
+    DB1["Databases"]
+  end
 
-    subgraph Site2["Remote Office"]
-        Edge2["Edge"]
-        NAS["NAS"]
-        Files["File Servers"]
-    end
+  subgraph Site2["Remote Office"]
+    Edge2["Edge"]
+    NAS["NAS"]
+    Files["File Servers"]
+  end
 
-    PCP -->|Assign task| Edge1
-    PCP -->|Assign task| Edge2
+  PCP -->|Assign task| Edge1
+  PCP -->|Assign task| Edge2
 
-    Edge1 --> VM1
-    Edge1 --> DB1
+  Edge1 --> VM1
+  Edge1 --> DB1
 
-    Edge2 --> NAS
-    Edge2 --> Files
+  Edge2 --> NAS
+  Edge2 --> Files
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
@@ -111,11 +111,11 @@ The `plakar-edge` source code is available from
 Currently, the edge must be built from source:
 
 ```sh
-make
+$ make
 
 # or
 
-go build -o plakar-edge .
+$ go build -o plakar-edge .
 ```
 
 Future releases will provide prebuilt binaries, and edge functionality will
@@ -149,7 +149,7 @@ has been disabled.
 Start the edge for the first time using the enrollment key:
 
 ```sh
-plakar-edge \
+$ plakar-edge \
   -control-plane https://plakman.example.com \
   -enroll <enrollment-key> \
   -name edge-paris-1 \

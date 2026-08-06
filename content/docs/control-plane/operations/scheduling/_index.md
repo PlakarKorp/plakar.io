@@ -9,19 +9,27 @@ aliases:
 
 # Scheduling
 
-Plakar Control Plane supports two ways to schedule backup operations:
+Plakar Control Plane supports three ways to schedule backup operations:
 
-- **Manual scheduler** - create tasks manually and attach one or more schedules
-  to run them on a recurring basis
-- **Policy scheduler** - policies automatically schedule tasks based on SLA
-  rules defined for your sources
+- **Manual scheduler**: create tasks manually from the UI and attach one or more
+  schedules to run them on a recurring basis
+- **Policy scheduler**: policies automatically schedule tasks based on SLA rules
+  defined for your sources
+- **User schedulers**: each
+  [Application user](../../administration/users#application-users) can have its
+  own scheduler, created and managed through the Plakar Control Plane API using
+  that user's API key
 
-Both schedulers can trigger the same types of tasks. The
-[manual scheduler](../manual-scheduler) gives you direct control over when and
-how tasks run, while the [policy scheduler](../policy-scheduler) automates
-scheduling based on the protection requirements defined in your policies.
+All three trigger the same types of tasks. The
+[manual scheduler](./manual-scheduler) gives you direct control from the UI over
+when and how tasks run, the [policy scheduler](./policy-scheduler) automates
+scheduling based on the protection requirements defined in your policies, and
+[user schedulers](./user-schedulers) let external clients manage their own
+schedules independently through the API.
 
 {{< children description="true" >}}
 
 Backup, check, and sync tasks can also be scheduled declaratively from
-Kubernetes. See [Infrastructure as Code](../../infrastructure-as-code).
+Kubernetes using the
+[Kubernetes Operator](../../infrastructure-as-code/kubernetes-operator), which
+is currently the primary example of a user scheduler.

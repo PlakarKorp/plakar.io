@@ -35,7 +35,7 @@ then build the operator image and push it to a container registry that your
 cluster can access:
 
 ```sh
-make docker-build docker-push IMG=<some-registry>/plakar-operator:tag
+$ make docker-build docker-push IMG=<some-registry>/plakar-operator:tag
 ```
 
 The registry must be reachable by your Kubernetes cluster, since it will pull
@@ -45,13 +45,13 @@ Next, install the operator's Custom Resource Definitions (CRDs). These define
 the Kubernetes resource types that the operator watches and manages.
 
 ```sh
-make install
+$ make install
 ```
 
 Deploy the operator, pointing it to the image you just pushed:
 
 ```sh
-make deploy IMG=<some-registry>/plakar-operator:tag
+$ make deploy IMG=<some-registry>/plakar-operator:tag
 ```
 
 > [!NOTE]+
@@ -63,7 +63,7 @@ make deploy IMG=<some-registry>/plakar-operator:tag
 Verify that the operator is running:
 
 ```sh
-kubectl get pods -n plakar-operator-system
+$ kubectl get pods -n plakar-operator-system
 ```
 
 ## Generating an API key
@@ -88,7 +88,7 @@ Plakar Control Plane automatically, so no manual inventory setup is required.
 Start by storing the PCP API key in a Kubernetes Secret:
 
 ```sh
-kubectl -n plakar-operator-system create secret generic plakar-credentials \
+$ kubectl -n plakar-operator-system create secret generic plakar-credentials \
   --from-literal=apikey=<your-pcp-api-key>
 ```
 
@@ -130,7 +130,7 @@ configuration.
 Verify that the operator successfully connected to Plakar Control Plane:
 
 ```sh
-kubectl -n plakar-operator-system describe plakar my-pcp
+$ kubectl -n plakar-operator-system describe plakar my-pcp
 ```
 
 A successful connection reports an `Available` condition with a status of `True`
