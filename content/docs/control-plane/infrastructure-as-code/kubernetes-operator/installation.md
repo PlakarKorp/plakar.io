@@ -112,8 +112,20 @@ spec:
     key: apikey
 ```
 
-You'll typically create one `Plakar` resource for each Plakar Control Plane
-instance you want the operator to manage.
+Only one `Plakar` resource is active at a time per operator deployment. The
+operator connects to a single Plakar Control Plane instance, and its
+configuration is shared by every reconciler it runs. If several `Plakar`
+resources exist, the oldest one by creation time wins. Any other `Plakar`
+resource is left with an `Available` condition of `False` and a
+`MultiplePlakarResources` reason instead of overwriting the active
+configuration.
+
+> [!NOTE]+ Multiple `Plakar` resources
+>
+> Creating an additional `Plakar` resource does not fail. It is just never
+> applied. If the active resource is later deleted, a previously rejected one
+> only takes over the next time it is reconciled, for example after a spec edit
+> or an operator restart.
 
 Verify that the operator successfully connected to Plakar Control Plane:
 
