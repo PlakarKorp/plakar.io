@@ -32,8 +32,8 @@ The Kubernetes integration provides backup and restore capabilities for
 Kubernetes resources and Persistent Volumes. It is used by apps attached to
 Kubernetes resources and performs the actual backup and restore operations.
 
-See the [Kubernetes Integration](#) documentation for configuration
-instructions.
+See the [Kubernetes Integration](/docs/community/main/interations/kubernetes)
+documentation for configuration instructions.
 
 ## Plakar Operator
 

@@ -25,7 +25,7 @@ spec:
     name: recovery-database
   latest: true
   edgeTags:
-    - gpu
+    - eu-west-1
 ```
 
 `store` and `destination` reference the `Store` and `Destination` resources by
@@ -43,6 +43,4 @@ instead of running locally.
 
 Once submitted, the job's identifier is exposed through `status.atID`, and
 `status.conditions` reports `Running`, `Completed`, or `Failed` as the job
-progresses. To run a task immediately without pinning it to a `Store` and
-`Destination` already declared as Kubernetes resources, use the
-[manual scheduler](../../../operations/scheduling/manual-scheduler).
+progresses.
