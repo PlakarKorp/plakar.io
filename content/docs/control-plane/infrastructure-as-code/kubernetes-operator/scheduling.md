@@ -123,7 +123,13 @@ $ kubectl get taskruns
 
 `TaskRun` resources are read-only records owned by the schedule that created
 them, so deleting a `ScheduleBackup`, `ScheduleCheck`, or `ScheduleSync`
-resource also deletes its `TaskRun` history.
+resource also deletes its `TaskRun` history. Each one carries
+`task.plakar.io/name` and `task.plakar.io/kind` labels identifying that parent,
+so you can list only the runs for a given schedule:
+
+```sh
+$ kubectl get taskruns -l task.plakar.io/name=backup
+```
 
 ```txt
 NAME              TASK     KIND             PHASE       SCHEDULEDAT   AGE

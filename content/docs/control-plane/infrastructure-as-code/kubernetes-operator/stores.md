@@ -57,3 +57,41 @@ After the resource is created, the corresponding store is created in Plakar
 Control Plane. Its UUID is exposed through `status.id` and can be referenced by
 [ScheduleBackup](../scheduling), [ScheduleCheck](../scheduling), and
 [ScheduleSync](../scheduling) resources.
+
+## Inspecting Stores
+
+Since `Store` is an ordinary Kubernetes custom resource, `kubectl get` and
+`kubectl describe` work on it the same way they do on any built-in Kubernetes
+object:
+
+```sh
+$ kubectl get Store
+NAME       AGE
+s3bucket   111m
+```
+
+```sh
+$ kubectl describe Store s3bucket
+...
+Status:
+  Conditions:
+    Last Transition Time:  2026-08-07T08:10:31Z
+    Message:               Underlying connector updated at plakar control-plane
+    Reason:                Updated
+    Status:                True
+    Type:                  Available
+    Last Transition Time:  2026-08-07T08:10:31Z
+    Message:               connector is reachable
+    Reason:                ConnectionVerified
+    Status:                True
+    Type:                  Tested
+  Id:                      ba8191e7-d02d-431b-8ca4-3a1c3a26a406
+  Observed Generation:     1
+```
+
+The `Tested` condition reflects the same connection check as the **Test
+Connection** action described in
+[store app](../../../apps/stores#testing-and-initializing). It is run
+automatically by the operator instead of manually from the web interface. A
+`ConnectionVerified` reason means Plakar Control Plane successfully connected to
+the store using the resource's configuration and credentials.

@@ -14,53 +14,33 @@ resources declaratively using Kubernetes manifests. Once installed and connected
 to a PCP instance, the operator reconciles Kubernetes custom resources with the
 corresponding resources in PCP.
 
-`plakar-operator` does not yet have a published container image. For now, you'll
-build the operator image yourself and push it to a container registry that your
-Kubernetes cluster can access.
+Each release publishes a container image to
+[ghcr.io/plakarkorp/plakar-operator](ghcr.io/plakarkorp/plakar-operator) and a
+Helm chart to `oci://ghcr.io/plakarkorp/charts/plakar-operator`. This requires
+`kubectl` and `helm` on your machine, as well as administrative access to a
+Kubernetes cluster.
 
-This requires Go, Docker, and `kubectl` on your machine, as well as
-administrative access to a Kubernetes cluster. See the
-[project README](https://github.com/PlakarKorp/plakar-operator#prerequisites)
-for the supported tool versions.
+## Installing the Helm chart
 
-> [!NOTE]+
->
-> A published container image on `ghcr.io` and a Helm chart are planned for a
-> future release. Once available, installation will no longer require building
-> and publishing the image manually.
-
-Clone the
-[plakar-operator repository](https://github.com/PlakarKorp/plakar-operator),
-then build the operator image and push it to a container registry that your
-cluster can access:
+Install the operator's CRDs and controller with Helm. Without `--version`, this
+installs the latest published chart:
 
 ```sh
-$ make docker-build docker-push IMG=<some-registry>/plakar-operator:tag
+$ helm install plakar-operator \
+  oci://ghcr.io/plakarkorp/charts/plakar-operator \
+  --namespace plakar-operator-system \
+  --create-namespace
 ```
 
-The registry must be reachable by your Kubernetes cluster, since it will pull
-the image when the operator is deployed.
+To pin a specific version instead, add `--version <version>`.
 
-Next, install the operator's Custom Resource Definitions (CRDs). These define
-the Kubernetes resource types that the operator watches and manages.
+To see which values the chart accepts:
 
 ```sh
-$ make install
+$ helm show values oci://ghcr.io/plakarkorp/charts/plakar-operator
 ```
 
-Deploy the operator, pointing it to the image you just pushed:
-
-```sh
-$ make deploy IMG=<some-registry>/plakar-operator:tag
-```
-
-> [!NOTE]+
->
-> If deployment fails with RBAC errors, ensure you're authenticated as a cluster
-> administrator or have sufficient permissions to create the required roles and
-> role bindings.
-
-Verify that the operator is running:
+Once installed, verify that the operator is running:
 
 ```sh
 $ kubectl get pods -n plakar-operator-system
@@ -119,6 +99,18 @@ resources exist, the oldest one by creation time wins. Any other `Plakar`
 resource is left with an `Available` condition of `False` and a
 `MultiplePlakarResources` reason instead of overwriting the active
 configuration.
+
+A rejected `Plakar` resource reports:
+
+```text
+Status:
+  Conditions:
+    Last Transition Time:  2026-07-15T10:14:02Z
+    Message:               only one Plakar resource is supported; plakar-operator-system/my-pcp is already active
+    Reason:                MultiplePlakarResources
+    Status:                False
+    Type:                  Available
+```
 
 > [!NOTE]+ Multiple `Plakar` resources
 >

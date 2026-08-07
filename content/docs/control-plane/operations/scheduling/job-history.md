@@ -16,6 +16,7 @@ they succeeded or failed, along with any jobs that are currently running.
 
 ![](../images/manual-scheduler-history.png)
 ![](../images/policy-scheduler-history.png)
+![](../images/user-scheduler-history.png)
 
 ## Job details
 

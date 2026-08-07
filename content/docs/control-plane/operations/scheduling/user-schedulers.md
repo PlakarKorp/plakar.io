@@ -30,6 +30,8 @@ own scheduled tasks and job history, the same way the
 [job history documentation](../job-history) for details on monitoring job
 progress, viewing job output, and finding jobs on app pages.
 
+![User scheduler](../images/user-scheduler.png)
+
 ## Kubernetes Operator
 
 The [Kubernetes Operator](../../infrastructure-as-code/kubernetes-operator) is

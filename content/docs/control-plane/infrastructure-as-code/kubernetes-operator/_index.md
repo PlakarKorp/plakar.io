@@ -56,6 +56,9 @@ Most resources report the ID PCP assigned them in `status.id`, alongside a set
 of conditions (`Available`, `Progressing`, `Degraded`) describing reconciliation
 state, similar to how `kubectl get` reports status on any other Kubernetes
 object. `Plakar` itself only exposes conditions, since it isn't a PCP object.
+Since these are ordinary Kubernetes custom resources, `kubectl get` and
+`kubectl describe` work on them the same way they do on any built-in Kubernetes
+object.
 
 For the exhaustive field-by-field reference of every custom resource, see the
 [Kubernetes Operator API Reference](../../references/kubernetes-operator).
