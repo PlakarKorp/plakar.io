@@ -21,9 +21,9 @@ technology_description: >
   inaccessible.
 
 categories:
-  - source connector
-  - destination connector
-  - storage connector
+  - source
+  - destination
+  - storage
 
 tags:
   - Proton Drive
@@ -46,17 +46,18 @@ seo_tags:
   - portable format
   - privacy-focused backup
 
-technical_documentation_link: /docs/community/main/integrations/protondrive/
+links:
+  - type: community
+    url: /docs/community/main/integrations/protondrive/
 
-edition: community
+edition:
+  - community
 
 stage: beta
 
 date: 2026-03-23
 
 resource: Proton Drive
-
-resource_type: cloud-storage
 
 image: img/integrations/protondrive.png
 ---

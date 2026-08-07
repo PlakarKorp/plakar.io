@@ -22,10 +22,9 @@ technology_description: >
   resilient backend for encrypted, deduplicated, and verifiable snapshots.
 
 categories:
-  - source connector
-  - destination connector
-  - storage connector
-  - viewer
+  - source
+  - destination
+  - storage
 
 tags:
   - S3-compatible
@@ -47,17 +46,19 @@ seo_tags:
   - snapshot technology
   - portable format
 
-technical_documentation_link: /docs/community/main/integrations/s3/
+links:
+  - type: community
+    url: /docs/community/main/integrations/s3/
 
-edition: community
+edition:
+  - community
+  - control-plane
 
 stage: stable
 
 date: 2026-03-23
 
 resource: MinIO
-
-resource_type: object-storage
 
 image: img/integrations/minio.png
 ---

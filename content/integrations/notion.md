@@ -22,7 +22,7 @@ technology_description: >
   flexible restoration options.
 
 categories:
-  - source connector
+  - source
 
 tags:
   - Notion
@@ -44,17 +44,18 @@ seo_tags:
   - Notion version control
   - collaborative workspace backup
 
-technical_documentation_link: /docs/community/main/integrations/notion/
+links:
+  - type: community
+    url: /docs/community/main/integrations/notion/
 
-edition: community
+edition:
+  - community
 
 stage: beta
 
 date: 2026-03-23
 
 resource: Notion
-
-resource_type: saas-platform
 
 image: img/integrations/notion.png
 ---

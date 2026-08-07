@@ -23,9 +23,9 @@ technology_description: >
   turning it into a truly resilient part of your backup strategy.
 
 categories:
-  - source connector
-  - destination connector
-  - storage connector
+  - source
+  - destination
+  - storage
 
 tags:
   - Object Storage
@@ -46,17 +46,19 @@ seo_tags:
   - deduplication
   - encrypted storage
 
-technical_documentation_link: /docs/main/integrations/azblob
+links:
+  - type: community
+    url: /docs/main/integrations/azblob
 
-edition: community
+edition:
+  - community
+  - control-plane
 
 stage: beta
 
 date: 2026-06-18
 
 resource: Azure Blob Storage
-
-resource_type: object-storage
 
 image: img/integrations/azblob.png
 ---

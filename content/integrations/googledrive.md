@@ -21,9 +21,9 @@ technology_description: >
   wherever you choose, easily restorable and fully under your control.
 
 categories:
-  - source connector
-  - destination connector
-  - storage connector
+  - source
+  - destination
+  - storage
 
 tags:
   - Google Drive
@@ -45,17 +45,18 @@ seo_tags:
   - snapshot technology
   - portable format
 
-technical_documentation_link: /docs/community/main/integrations/googledrive
+links:
+  - type: community
+    url: /docs/community/main/integrations/googledrive
 
-edition: community
+edition:
+  - community
 
 stage: beta
 
 date: 2026-03-23
 
 resource: Google Drive
-
-resource_type: cloud-storage
 
 image: img/integrations/googledrive.png
 ---

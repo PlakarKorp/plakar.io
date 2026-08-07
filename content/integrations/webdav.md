@@ -23,8 +23,8 @@ technology_description: >
   the same protection as enterprise cloud infrastructure.
 
 categories:
-  - source connector
-  - destination connector
+  - source
+  - destination
 
 tags:
   - WebDAV
@@ -42,9 +42,13 @@ seo_tags:
   - disaster recovery
   - file sync backup
 
-technical_documentation_link: /docs/community/main/integrations/webdav/
+links:
+  - type: community
+    url: /docs/community/main/integrations/webdav/
 
-edition: community
+edition:
+  - community
+  - control-plane
 
 stage: alpha
 
@@ -53,8 +57,6 @@ new: true
 date: 2026-06-26
 
 resource: WebDAV
-
-resource_type: filesystem
 
 image: img/integrations/webdav.png
 ---

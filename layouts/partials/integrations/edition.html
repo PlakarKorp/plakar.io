@@ -1,0 +1,22 @@
+{{ $p := . }}
+{{ $edition := $p.Params.edition }}
+{{ $validEditions := slice "community" "control-plane" }}
+{{ if or (lt (len $edition) 1) (gt (len $edition) 2) }}
+  {{ errorf "%s: `edition` must list 1 or 2 values from %v (got %v)" $p.File.Filename $validEditions $edition }}
+{{ end }}
+{{ range $edition }}
+  {{ if not (in $validEditions .) }}
+    {{ errorf "%s: invalid `edition` value %q, must be one of %v" $p.File.Filename . $validEditions }}
+  {{ end }}
+{{ end }}
+{{ if ne (len $edition) (len (uniq $edition)) }}
+  {{ errorf "%s: `edition` values must be unique" $p.File.Filename }}
+{{ end }}
+{{ $hasCommunity := in $edition "community" }}
+{{ $hasControlPlane := in $edition "control-plane" }}
+{{ return dict
+  "list" $edition
+  "hasCommunity" $hasCommunity
+  "hasControlPlane" $hasControlPlane
+  "isControlPlaneOnly" (and $hasControlPlane (not $hasCommunity))
+}}

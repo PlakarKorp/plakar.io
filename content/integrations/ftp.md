@@ -22,9 +22,8 @@ technology_description: >
   snapshots.
 
 categories:
-  - source connector
-  - destination connector
-  - viewer
+  - source
+  - destination
 
 tags:
   - FTP
@@ -42,17 +41,17 @@ seo_tags:
   - FTP versioning
   - immutable FTP backups
 
-technical_documentation_link:
+links: []
 
-edition: community
+edition:
+  - community
+  - control-plane
 
 stage: stable
 
 date: 2026-03-23
 
 resource: FTP
-
-resource_type: file-transfer
 
 image: img/integrations/ftp.png
 ---
@@ -106,8 +105,6 @@ Plakar can integrate with FTP servers as:
   and bring them into a secure Plakar Kloset.
 - **Destination Connector**: Restore your snapshots to any FTP server in your
   environment.
-- **Viewer**: Browse and verify FTP-sourced backups without performing a full
-  restore.
 
 Plakar ensures your FTP-based infrastructure remains resilient, secure, and
 verifiable from creation to recovery.

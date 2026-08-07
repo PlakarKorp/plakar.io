@@ -21,9 +21,9 @@ technology_description: >
   and fully under your control.
 
 categories:
-  - source connector
-  - destination connector
-  - storage connector
+  - source
+  - destination
+  - storage
 
 tags:
   - Koofr
@@ -47,17 +47,18 @@ seo_tags:
   - snapshot technology
   - portable format
 
-technical_documentation_link: /docs/main/integrations/koofr/
+links:
+  - type: community
+    url: /docs/main/integrations/koofr/
 
-edition: community
+edition:
+  - community
 
 stage: beta
 
 date: 2026-03-23
 
 resource: Koofr
-
-resource_type: cloud-storage
 
 image: img/integrations/koofr.png
 ---

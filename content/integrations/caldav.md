@@ -21,8 +21,8 @@ technology_description: >
   metadata.
 
 categories:
-  - source connector
-  - destination connector
+  - source
+  - destination
 
 tags:
   - CalDAV
@@ -43,17 +43,19 @@ seo_tags:
   - calendar version control
   - calendar data protection
 
-technical_documentation_link: /docs/community/main/integrations/caldav/
+links:
+  - type: community
+    url: /docs/community/main/integrations/caldav/
 
-edition: community
+edition:
+  - community
+  - control-plane
 
 stage: beta
 
 date: 2026-03-23
 
 resource: CalDAV
-
-resource_type: calendar-protocol
 
 image: img/integrations/caldav.png
 ---

@@ -21,10 +21,9 @@ technology_description: >
   restorable and fully under your control.
 
 categories:
-  - source connector
-  - destination connector
-  - storage connector
-  - viewer
+  - source
+  - destination
+  - storage
 
 tags:
   - iCloud Drive
@@ -48,17 +47,18 @@ seo_tags:
   - snapshot technology
   - portable format
 
-technical_documentation_link: /docs/community/main/integrations/iclouddrive/
+links:
+  - type: community
+    url: /docs/community/main/integrations/iclouddrive/
 
-edition: community
+edition:
+  - community
 
 stage: beta
 
 date: 2026-03-23
 
 resource: iCloud Drive
-
-resource_type: cloud-storage
 
 image: img/integrations/iclouddrive.png
 ---

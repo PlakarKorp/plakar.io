@@ -21,8 +21,8 @@ technology_description: >
   security risks, and simplifies automated backup workflows.
 
 categories:
-  - source connector
-  - destination connector
+  - source
+  - destination
 
 tags:
   - Stdio
@@ -43,17 +43,18 @@ seo_tags:
   - live data ingestion
   - secure data streaming
 
-technical_documentation_link: /docs/community/main/integrations/stdio/
+links:
+  - type: community
+    url: /docs/community/main/integrations/stdio/
 
-edition: community
+edition:
+  - community
 
 stage: stable
 
 date: 2026-03-23
 
 resource: Stdio
-
-resource_type: stdio
 
 image: img/integrations/stdio.png
 ---

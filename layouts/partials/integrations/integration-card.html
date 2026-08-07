@@ -2,19 +2,20 @@
 
 {{ $stageColors := dict
   "stable"      "text-green-800 bg-green-50"
-  "beta"        "text-neutral-900 bg-neutral-50"
-  "alpha"       "text-neutral-900 bg-neutral-50"
-  "rc"          "text-neutral-900 bg-neutral-50"
+  "rc"          "text-blue-800 bg-blue-50"
+  "beta"        "text-amber-800 bg-amber-50"
+  "alpha"       "text-orange-800 bg-orange-50"
   "coming soon" "text-neutral-600 bg-neutral-100 border-neutral-200"
 }}
 
 {{ $image := resources.Get $p.Params.image }}
 {{ $stageClass := index $stageColors (lower $p.Params.stage) | default "text-neutral-600 bg-neutral-100" }}
 
-{{ $isControlPlaneOnly := eq $p.Params.edition "control-plane" }}
-{{ $editions := cond $isControlPlaneOnly "control-plane" "community" }}
+{{ $edition := partial "integrations/edition.html" $p }}
+{{ $hasCommunity := $edition.hasCommunity }}
+{{ $hasControlPlane := $edition.hasControlPlane }}
 
-<a href="{{ $p.Permalink }}" data-categories="{{ delimit $p.Params.categories "," }}" data-editions="{{ $editions }}" data-name="{{ lower $p.Title }}" data-date="{{ $p.Date.Unix }}" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
+<a href="{{ $p.RelPermalink }}" data-categories="{{ delimit $p.Params.categories "," }}" data-editions="{{ delimit $edition.list "," }}" data-name="{{ lower $p.Title }}" data-date="{{ $p.Date.Unix }}" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
   <div class="flex items-start justify-between gap-3">
     <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 bg-neutral-100 flex items-center justify-center">
       {{ if $image }}
@@ -29,15 +30,16 @@
           {{ . }}
         </span>
       {{ end }}
-      {{ if $isControlPlaneOnly }}
-        <span class="inline-flex items-center gap-1 text-xxs font-semibold px-2 py-0.5 rounded-full text-primary-600 bg-primary-50 uppercase tracking-wide shrink-0">
-          <span class="w-3 h-3">{{ partial "icon.html" "ri/dashboard-3-line" }}</span>
-          Control Plane
-        </span>
-      {{ else }}
+      {{ if $hasCommunity }}
         <span class="inline-flex items-center gap-1 text-xxs font-semibold px-2 py-0.5 rounded-full text-secondary-600 bg-secondary-50 uppercase tracking-wide shrink-0">
           <span class="w-3 h-3">{{ partial "icon.html" "ri/open-source-line" }}</span>
           Community
+        </span>
+      {{ end }}
+      {{ if $hasControlPlane }}
+        <span class="inline-flex items-center gap-1 text-xxs font-semibold px-2 py-0.5 rounded-full text-primary-600 bg-primary-50 uppercase tracking-wide shrink-0">
+          <span class="w-3 h-3">{{ partial "icon.html" "ri/dashboard-3-line" }}</span>
+          Control Plane
         </span>
       {{ end }}
     </div>
@@ -59,7 +61,7 @@
     {{ if gt (len $categories) 0 }}
       <div class="text-xs text-primary-500 font-medium">
         {{ range $i, $cat := $categories }}
-          {{ if gt $i 0 }} / {{ end }}{{ replace $cat.LinkTitle " Connector" "" }}
+          {{ if gt $i 0 }} / {{ end }}{{ replace $cat.LinkTitle "-" " " }}
         {{ end }}
       </div>
     {{ end }}

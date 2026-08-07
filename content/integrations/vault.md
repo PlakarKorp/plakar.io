@@ -20,8 +20,9 @@ technology_description: >
   the same cluster or a new one.
 
 categories:
-  - source connector
-  - destination connector
+  - source
+  - destination
+  - secrets-manager
 
 tags:
   - HashiCorp Vault
@@ -38,17 +39,16 @@ seo_tags:
   - secrets management backup
   - Vault snapshot
 
-technical_documentation_link:
+links: []
 
-edition: control-plane
+edition:
+  - control-plane
 
 stage: stable
 
 date: 2026-07-24
 
 resource: Vault
-
-resource_type: secrets-manager
 
 image: img/integrations/vault.png
 ---

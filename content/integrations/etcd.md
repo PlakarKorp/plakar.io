@@ -21,7 +21,7 @@ technology_description: >
   snapshots of etcd outside the cluster itself.
 
 categories:
-  - source connector
+  - source
 
 tags:
   - etcd
@@ -43,17 +43,19 @@ seo_tags:
   - etcd recovery
   - immutable snapshots
 
-technical_documentation_link: /docs/community/main/integrations/etcd
+links:
+  - type: community
+    url: /docs/community/main/integrations/etcd
 
-edition: community
+edition:
+  - community
+  - control-plane
 
 stage: beta
 
 date: 2026-04-02
 
 resource: etcd
-
-resource_type: kv-store
 
 image: img/integrations/etcd.png
 ---

@@ -23,10 +23,9 @@ technology_description: >
   case of data loss or corruption.
 
 categories:
-  - source connector
-  - destination connector
-  - viewer
-  - storage connector
+  - source
+  - destination
+  - storage
 
 tags:
   - Filesystem
@@ -51,17 +50,16 @@ seo_tags:
   - airgapped backup
   - snapshot technology
 
-technical_documentation_link:
+links: []
 
-edition: community
+edition:
+  - community
 
 stage: stable
 
 date: 2026-03-23
 
 resource: Filesystem
-
-resource_type: filesystem
 
 image: img/integrations/fs.png
 ---

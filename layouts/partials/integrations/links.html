@@ -1,0 +1,31 @@
+{{ $p := . }}
+{{ $links := $p.Params.links }}
+{{ $validLinkTypes := slice "community" "control-plane" "custom" }}
+{{ range $links }}
+  {{ if not (in $validLinkTypes .type) }}
+    {{ errorf "%s: invalid link type %q, must be one of %v" $p.File.Filename .type $validLinkTypes }}
+  {{ end }}
+  {{ if not .url }}
+    {{ errorf "%s: link of type %q is missing a `url`" $p.File.Filename .type }}
+  {{ end }}
+  {{ if and (eq .type "custom") (not .label) }}
+    {{ errorf "%s: custom link is missing a `label`" $p.File.Filename }}
+  {{ end }}
+{{ end }}
+{{ $communityLinks := where $links "type" "community" }}
+{{ $controlPlaneLinks := where $links "type" "control-plane" }}
+{{ if gt (len $communityLinks) 1 }}
+  {{ errorf "%s: only one `community` link is allowed" $p.File.Filename }}
+{{ end }}
+{{ if gt (len $controlPlaneLinks) 1 }}
+  {{ errorf "%s: only one `control-plane` link is allowed" $p.File.Filename }}
+{{ end }}
+{{ $communityLink := "" }}
+{{ with $communityLinks }}{{ $communityLink = (index . 0).url }}{{ end }}
+{{ $controlPlaneLink := "" }}
+{{ with $controlPlaneLinks }}{{ $controlPlaneLink = (index . 0).url }}{{ end }}
+{{ return dict
+  "communityLink" $communityLink
+  "controlPlaneLink" $controlPlaneLink
+  "customLinks" (where $links "type" "custom")
+}}
