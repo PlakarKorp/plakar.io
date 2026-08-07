@@ -1,7 +1,12 @@
 ---
 title: "Feature and Bug Bounty Program Policy"
 date: 2026-01-01T12:00:00Z
-draft: false
+type: "legal-notice"
+description:
+  "Rules, rewards, and safe harbor terms for our feature and security bounty
+  program."
+aliases:
+  - /legal-notice/bounty-policy/
 ---
 
 Last update on: 01/01/2026
@@ -254,4 +259,4 @@ On: [Current Date]
 
 **Signature of the Beneficiary:** [Your Signature]
 
-[bounty-roadmap]: /legal-notice/bounties/
+[bounty-roadmap]: /community/#bounty-program
