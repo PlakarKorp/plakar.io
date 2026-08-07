@@ -27,8 +27,16 @@ your setup.
 To see which packages are currently installed:
 
 ```bash
-$ plakar pkg list
+$ plakar pkg show
 ```
+
+> [!NOTE]+ Listing installed packages
+>
+> `plakar pkg show` is the preferred command for listing installed packages.
+>
+> The older `plakar pkg list` command remains supported as an alias for backward
+> compatibility, so existing scripts and workflows continue to work. New
+> documentation and examples use `plakar pkg show`.
 
 ## Install a package
 
