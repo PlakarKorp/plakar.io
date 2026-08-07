@@ -4,9 +4,9 @@
 <!-- JS: assets/js/main/integrations-filter.js -->
 
 {{ $allIntegrations := where .Site.RegularPages "Section" "integrations" }}
-{{ $sourceConnectors := where $allIntegrations "Params.categories" "intersect" (slice "source connector") }}
-{{ $destConnectors := where $allIntegrations "Params.categories" "intersect" (slice "destination connector") }}
-{{ $storageConnectors := where $allIntegrations "Params.categories" "intersect" (slice "storage connector") }}
+{{ $sourceConnectors := where $allIntegrations "Params.categories" "intersect" (slice "source") }}
+{{ $destConnectors := where $allIntegrations "Params.categories" "intersect" (slice "destination") }}
+{{ $storageConnectors := where $allIntegrations "Params.categories" "intersect" (slice "storage") }}
 
 <!-- Hero -->
 <section class="section-light-2 grid-background px-4 pt-44 pb-7">
@@ -77,7 +77,8 @@
         <a data-filter="source" class="filter-dropdown-option block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 cursor-pointer">Source</a>
         <a data-filter="destination" class="filter-dropdown-option block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 cursor-pointer">Destination</a>
         <a data-filter="storage" class="filter-dropdown-option block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 cursor-pointer">Storage</a>
-        <a data-filter="viewer" class="filter-dropdown-option block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 cursor-pointer">Viewer</a>
+        <a data-filter="secrets-manager" class="filter-dropdown-option block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 cursor-pointer">Secrets Manager</a>
+        <a data-filter="inventories" class="filter-dropdown-option block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 cursor-pointer">Inventories</a>
 
         <div class="px-3 pt-2.5 pb-1 text-xs font-semibold uppercase tracking-wide text-neutral-400 border-t border-neutral-200 mt-1">Edition</div>
         <a data-edition="all" class="edition-dropdown-option block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 cursor-pointer">All Editions</a>
@@ -118,8 +119,8 @@
     </h2>
     <div class="flex flex-col gap-6 text-neutral-600 text-lg lg:text-xl font-medium mx-auto">
       <p>
-        <span class="text-secondary-500">Integration Packages</span> bundle everything you need to back up, restore, and visualize a resource:
-        they include a <strong>Source Connector</strong>, <strong>Destination Connector</strong>, <strong>Storage Connector</strong>, and <strong>Viewer</strong>.
+        <span class="text-secondary-500">Integration Packages</span> bundle everything you need to back up and restore a resource:
+        they include a <strong>Source Connector</strong>, <strong>Destination Connector</strong>, and <strong>Storage Connector</strong>.
       </p>
       <p>
         <span class="text-secondary-500">Storage Connectors</span> persist your snapshots: they handle writing, reading, and listing deduplicated, encrypted chunks to storage backends like S3 or a local filesystem.

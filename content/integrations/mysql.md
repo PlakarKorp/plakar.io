@@ -21,8 +21,8 @@ technology_description: >
   snapshot management on top of the standard SQL dump format.
 
 categories:
-  - source connector
-  - destination connector
+  - source
+  - destination
 
 tags:
   - MySQL
@@ -46,9 +46,11 @@ seo_tags:
   - deduplication
   - cross-server restore
 
-technical_documentation_link:
+links: []
 
-edition: community
+edition:
+  - community
+  - control-plane
 
 stage: beta
 
@@ -57,8 +59,6 @@ new: true
 date: 2026-04-02
 
 resource: MySQL and MariaDB
-
-resource_type: database
 
 image: img/integrations/mysql.png
 ---

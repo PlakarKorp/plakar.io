@@ -20,8 +20,7 @@ technology_description: >
   tar archives when needed.
 
 categories:
-  - source connector
-  - viewer
+  - source
 
 tags:
   - Tar
@@ -42,17 +41,18 @@ seo_tags:
   - data archiving
   - offsite backup tar
 
-technical_documentation_link: /docs/community/main/integrations/tar/
+links:
+  - type: community
+    url: /docs/community/main/integrations/tar/
 
-edition: community
+edition:
+  - community
 
 stage: stable
 
 date: 2026-03-23
 
 resource: Tar
-
-resource_type: archive
 
 image: img/integrations/tar.png
 ---

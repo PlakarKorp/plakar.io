@@ -23,9 +23,9 @@ technology_description: >
   compromised.
 
 categories:
-  - source connector
-  - destination connector
-  - storage connector
+  - source
+  - destination
+  - storage
 
 tags:
   - OneDrive
@@ -48,17 +48,18 @@ seo_tags:
   - snapshot technology
   - portable format
 
-technical_documentation_link: /docs/community/main/integrations/onedrive/
+links:
+  - type: community
+    url: /docs/community/main/integrations/onedrive/
 
-edition: community
+edition:
+  - community
 
 stage: beta
 
 date: 2026-03-23
 
 resource: OneDrive
-
-resource_type: cloud-storage
 
 image: img/integrations/onedrive.png
 ---

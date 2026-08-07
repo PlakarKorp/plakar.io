@@ -23,9 +23,9 @@ technology_description: >
   deletion, corruption, and unauthorized access.
 
 categories:
-  - source connector
-  - destination connector
-  - storage connector
+  - source
+  - destination
+  - storage
 
 tags:
   - Cloud storage
@@ -47,17 +47,18 @@ seo_tags:
   - snapshot technology
   - portable format
 
-technical_documentation_link: /docs/community/main/integrations/dropbox/
+links:
+  - type: community
+    url: /docs/community/main/integrations/dropbox/
 
-edition: community
+edition:
+  - community
 
 stage: beta
 
 date: 2026-03-23
 
 resource: Dropbox
-
-resource_type: cloud-storage
 
 image: img/integrations/dropbox.png
 ---

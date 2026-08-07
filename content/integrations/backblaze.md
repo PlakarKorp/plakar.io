@@ -23,9 +23,9 @@ technology_description: >
   directly with Plakar's S3 integration without any additional configuration.
 
 categories:
-  - source connector
-  - destination connector
-  - storage connector
+  - source
+  - destination
+  - storage
 
 tags:
   - Object Storage
@@ -44,17 +44,19 @@ seo_tags:
   - disaster recovery
   - ransomware protection
 
-technical_documentation_link: /docs/community/main/integrations/s3/
+links:
+  - type: community
+    url: /docs/community/main/integrations/s3/
 
-edition: community
+edition:
+  - community
+  - control-plane
 
 stage: stable
 
 date: 2026-07-03
 
 resource: S3
-
-resource_type: object-storage
 
 image: img/integrations/backblaze.png
 ---

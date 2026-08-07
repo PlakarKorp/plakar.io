@@ -23,8 +23,8 @@ technology_description: >
   layered backup strategy that covers the full lifecycle of a cluster.
 
 categories:
-  - source connector
-  - destination connector
+  - source
+  - destination
 
 tags:
   - etcd
@@ -48,9 +48,13 @@ seo_tags:
   - cloud native backup
   - namespace restore
 
-technical_documentation_link: /docs/community/main/integrations/kubernetes/
+links:
+  - type: community
+    url: /docs/community/main/integrations/kubernetes/
 
-edition: community
+edition:
+  - community
+  - control-plane
 
 stage: stable
 
@@ -59,8 +63,6 @@ new: true
 date: 2026-03-16
 
 resource: Kubernetes
-
-resource_type: orchestration
 
 image: img/integrations/kubernetes.png
 ---

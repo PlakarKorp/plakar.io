@@ -20,9 +20,9 @@ technology_description: >
   environments.
 
 categories:
-  - source connector
-  - destination connector
-  - storage connector
+  - source
+  - destination
+  - storage
 
 tags:
   - Opendrive
@@ -44,17 +44,18 @@ seo_tags:
   - snapshot technology
   - portable format
 
-technical_documentation_link: /docs/community/main/integrations/opendrive/
+links:
+  - type: community
+    url: /docs/community/main/integrations/opendrive/
 
-edition: community
+edition:
+  - community
 
 stage: beta
 
 date: 2026-03-23
 
 resource: OpenDrive
-
-resource_type: cloud-storage
 
 image: img/integrations/opendrive.png
 ---

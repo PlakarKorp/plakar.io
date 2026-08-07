@@ -23,10 +23,9 @@ technology_description: >
   encrypted, verifiable snapshots.
 
 categories:
-  - source connector
-  - destination connector
-  - storage connector
-  - viewer
+  - source
+  - destination
+  - storage
 
 tags:
   - SFTP
@@ -48,17 +47,19 @@ seo_tags:
   - multi-server backup
   - airgapped storage
 
-technical_documentation_link: /docs/community/main/integrations/sftp/
+links:
+  - type: community
+    url: /docs/community/main/integrations/sftp/
 
-edition: community
+edition:
+  - community
+  - control-plane
 
 stage: stable
 
 date: 2026-03-23
 
 resource: SFTP
-
-resource_type: file-transfer
 
 image: img/integrations/sftp.png
 ---

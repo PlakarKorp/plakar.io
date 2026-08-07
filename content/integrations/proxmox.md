@@ -23,8 +23,8 @@ technology_description: >
   already knows how to produce.
 
 categories:
-  - source connector
-  - destination connector
+  - source
+  - destination
 
 tags:
   - Proxmox
@@ -48,9 +48,13 @@ seo_tags:
   - deduplication
   - hypervisor backup
 
-technical_documentation_link: /docs/community/main/integrations/proxmox/
+links:
+  - type: community
+    url: /docs/community/main/integrations/proxmox/
 
-edition: community
+edition:
+  - community
+  - control-plane
 
 stage: rc
 
@@ -59,8 +63,6 @@ new: true
 date: 2026-03-16
 
 resource: Proxmox
-
-resource_type: virtualization
 
 image: img/integrations/proxmox.png
 ---

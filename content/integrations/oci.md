@@ -21,7 +21,7 @@ technology_description: >
   container workloads with no additional storage infrastructure to manage.
 
 categories:
-  - storage connector
+  - storage
 
 tags:
   - Object Storage
@@ -45,17 +45,19 @@ seo_tags:
   - disaster recovery
   - cloud-native backup
 
-technical_documentation_link: /docs/community/main/integrations/oci/
+links:
+  - type: community
+    url: /docs/community/main/integrations/oci/
 
-edition: community
+edition:
+  - community
+  - control-plane
 
 stage: beta
 
 date: 2026-06-18
 
 resource: OCI
-
-resource_type: object-storage
 
 image: img/integrations/oci.png
 ---

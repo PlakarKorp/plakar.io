@@ -20,7 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
     source: "Source",
     destination: "Destination",
     storage: "Storage",
-    viewer: "Viewer",
+    "secrets-manager": "Secrets Manager",
+    inventories: "Inventories",
   };
 
   const editionLabels = {

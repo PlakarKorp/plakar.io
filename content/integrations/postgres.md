@@ -21,8 +21,8 @@ technology_description: >
   formats PostgreSQL already knows how to produce.
 
 categories:
-  - source connector
-  - destination connector
+  - source
+  - destination
 
 tags:
   - Databases
@@ -44,9 +44,11 @@ seo_tags:
   - database snapshot
   - deduplication
 
-technical_documentation_link:
+links: []
 
-edition: community
+edition:
+  - community
+  - control-plane
 
 stage: beta
 
@@ -55,8 +57,6 @@ new: true
 date: 2026-04-02
 
 resource: PostgreSQL
-
-resource_type: database
 
 image: img/integrations/postgres.png
 ---

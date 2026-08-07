@@ -21,8 +21,8 @@ technology_description: >
   mail server's state.
 
 categories:
-  - source connector
-  - destination connector
+  - source
+  - destination
 
 tags:
   - Mail
@@ -44,17 +44,17 @@ seo_tags:
   - Gmail backup
   - Exchange backup
 
-technical_documentation_link:
+links: []
 
-edition: community
+edition:
+  - community
+  - control-plane
 
 stage: stable
 
 date: 2026-03-23
 
 resource: IMAP
-
-resource_type: email-protocol
 
 image: img/integrations/imap.jpg
 ---

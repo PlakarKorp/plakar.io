@@ -22,9 +22,9 @@ technology_description: >
   truly resilient part of your backup strategy.
 
 categories:
-  - source connector
-  - destination connector
-  - storage connector
+  - source
+  - destination
+  - storage
 
 tags:
   - Object Storage
@@ -45,17 +45,19 @@ seo_tags:
   - deduplication
   - encrypted storage
 
-technical_documentation_link: /docs/community/main/integrations/gcs
+links:
+  - type: community
+    url: /docs/community/main/integrations/gcs
 
-edition: community
+edition:
+  - community
+  - control-plane
 
 stage: stable
 
 date: 2026-06-18
 
 resource: Google Cloud Storage
-
-resource_type: object-storage
 
 image: img/integrations/gcs.png
 ---
