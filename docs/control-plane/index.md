@@ -65,7 +65,18 @@
 - [OVHcloud](https://plakar.io/docs/control-plane/guides/ovhcloud/index.md): Guides and tutorials for configuring OVHcloud services with Plakar.
 - [VMware](https://plakar.io/docs/control-plane/guides/vmware/index.md): Guides and tutorials for configuring VMware services with Plakar.
 - [Windows](https://plakar.io/docs/control-plane/guides/windows/index.md): Guides and tutorials for configuring Windows hosts for use with Plakar.
+- [Plakar with Kubernetes](https://plakar.io/docs/control-plane/guides/plakar-with-kubernetes/index.md): An overview of the Kubernetes components available in the Plakar ecosystem.
 - [MTU and Jumbo Frames](https://plakar.io/docs/control-plane/guides/mtu-and-jumbo-frames/index.md): Background on Ethernet MTU, jumbo frames, and TCP MSS, and why they matter for control plane deployments.
+
+
+## [Infrastructure as Code](https://plakar.io/docs/control-plane/infrastructure-as-code/index.md)
+
+- [Kubernetes Operator](https://plakar.io/docs/control-plane/infrastructure-as-code/kubernetes-operator/index.md): Manage Plakar Control Plane declaratively from Kubernetes using the plakar-operator.
+
+
+## [References](https://plakar.io/docs/control-plane/references/index.md)
+
+- [Kubernetes Operator](https://plakar.io/docs/control-plane/references/kubernetes-operator/index.md): Field-by-field reference for every custom resource defined by plakar-operator.
 
 
 

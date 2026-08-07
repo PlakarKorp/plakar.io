@@ -108,6 +108,9 @@ The following pages provide detailed configuration and management information
 for each app type.
 
 
+Apps can also be managed declaratively from Kubernetes instead of the web
+interface. See [Infrastructure as Code](../infrastructure-as-code).
+
 
 
 

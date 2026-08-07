@@ -13,6 +13,8 @@
 - [Operations](https://plakar.io/docs/control-plane/operations/index.md): Manage scheduling and policies in Plakar Control Plane.
 - [Administration](https://plakar.io/docs/control-plane/administration/index.md): Manage settings, updates, backups, and logs in Plakar Control Plane.
 - [General Guides](https://plakar.io/docs/control-plane/guides/index.md): General purpose guides, walkthroughs, and platform-specific tutorials.
+- [Infrastructure as Code](https://plakar.io/docs/control-plane/infrastructure-as-code/index.md): Ways to manage Plakar Control Plane declaratively, from code, instead of the web interface.
+- [References](https://plakar.io/docs/control-plane/references/index.md): Reference material for Plakar Control Plane: API keys, custom resource fields, and other lookup information.
 
 
 ## [Community Docs](https://plakar.io/docs/community/index.md)

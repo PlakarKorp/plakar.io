@@ -71,6 +71,10 @@ resource. See [configuration bundles](./configuration-bundles) for details.
 
 
 
+## [Kubernetes](https://plakar.io/docs/control-plane/infrastructure/inventories/kubernetes/index.md)
+
+
+
 ## [VMware](https://plakar.io/docs/control-plane/infrastructure/inventories/vmware/index.md)
 
 

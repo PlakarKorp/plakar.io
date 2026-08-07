@@ -15,6 +15,7 @@ This section covers infrastructure-related features such as inventories and secr
 - [OVHcloud](https://plakar.io/docs/control-plane/infrastructure/inventories/ovhcloud/index.md): How to connect and manage OVHcloud inventory in Plakar Control Plane.
 - [Scaleway](https://plakar.io/docs/control-plane/infrastructure/inventories/scaleway/index.md): How to connect and manage Scaleway inventory in Plakar Control Plane.
 - [Google Cloud](https://plakar.io/docs/control-plane/infrastructure/inventories/google-cloud/index.md): How to connect and manage Google Cloud inventory in Plakar Control Plane.
+- [Kubernetes](https://plakar.io/docs/control-plane/infrastructure/inventories/kubernetes/index.md): How to connect and manage OVHcloud inventory in Plakar Control Plane.
 - [VMware](https://plakar.io/docs/control-plane/infrastructure/inventories/vmware/index.md): Connect and manage a VMware inventory in Plakar Control Plane.
 - [Self Managed](https://plakar.io/docs/control-plane/infrastructure/inventories/self-managed/index.md): How to connect and manage a Self Managed inventory in Plakar Control Plane.
 
