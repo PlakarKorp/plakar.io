@@ -1,5 +1,5 @@
 ---
-title: Volume Shadow Copy (VSS)
+title: VSS
 
 subtitle: Consistent, encrypted backups for live Windows servers
 

@@ -1,12 +1,13 @@
 ---
-title: "Volume Shadow Copy (VSS)"
+title: "VSS"
 date: "2026-08-10T00:00:00Z"
 weight: 4
 summary:
-  "How to configure a Volume Shadow Copy (VSS) resource in Plakar Control Plane."
+  "How to configure a Volume Shadow Copy Service (VSS) resource in Plakar
+  Control Plane."
 ---
 
-# Volume Shadow Copy (VSS)
+# Volume Shadow Copy Service (VSS)
 
 The VSS integration allows Plakar Control Plane to back up and restore a
 directory on a live Windows host. Plakar connects to the Windows host over SSH,
