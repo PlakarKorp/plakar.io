@@ -1,5 +1,5 @@
 ---
-title: "Updating Scaleway"
+title: "Updating Scaleway QCOW2"
 date: "2026-05-18T00:00:00Z"
 weight: 2
 summary: "How to update the Plakar Control Plane Scaleway installation image."
