@@ -50,6 +50,8 @@ seo_tags:
 links:
   - type: community
     url: /docs/community/main/integrations/sftp/
+  - type: control-plane
+    url: /docs/control-plane/resources/compute/sftp/
 
 edition:
   - community
