@@ -46,7 +46,9 @@ seo_tags:
   - point-in-time snapshot
   - Windows disaster recovery
 
-links: []
+links:
+  - type: control-plane
+    url: /docs/control-plane/resources/compute/vss/
 
 edition:
   - control-plane
