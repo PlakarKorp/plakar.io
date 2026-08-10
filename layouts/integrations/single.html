@@ -71,7 +71,7 @@
                 ) }}
               {{ end }}
               {{ range $customLinks }}
-                <a href="{{ .url }}" target="_blank" rel="noopener noreferrer" class="inline-flex w-fit items-center gap-2 text-base font-medium text-neutral-900 hover:text-primary-500 transition-colors">
+                <a href="{{ .url }}" rel="noopener noreferrer" class="inline-flex w-fit items-center gap-2 text-base font-medium text-neutral-900 hover:text-primary-500 transition-colors">
                   <span class="w-5 h-5 flex items-center justify-center">
                     {{ partial "icon.html" (.icon | default "ri/external-link-line") }}
                   </span>
@@ -136,7 +136,6 @@
           "label" (printf "Read the %s docs" $.Params.title)
           "labelShort" (printf "%s docs" $.Params.title)
           "href" $primaryLink
-          "target" "_blank"
           "bgColor" "bg-neutral-900"
           "bgHoverColor" "bg-neutral"
           "textColor" "text-neutral"
