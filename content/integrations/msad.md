@@ -53,6 +53,8 @@ edition:
 
 stage: stable
 
+new: true
+
 date: 2026-08-10
 
 resource: Active Directory
