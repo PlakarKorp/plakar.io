@@ -49,12 +49,14 @@ seo_tags:
 links:
   - type: community
     url: /docs/main/integrations/azblob
+  - type: control-plane
+    url: /docs/control-plane/resources/object-storage/azblob/
 
 edition:
   - community
   - control-plane
 
-stage: beta
+stage: stable
 
 date: 2026-06-18
 
@@ -133,7 +135,3 @@ This enables multiple backup strategies:
 Plakar also allows direct inspection of backups. You can browse, search, or
 verify the integrity of your Azure Blob data via the CLI or UI without
 performing a full restore first.
-
-Instead of relying solely on Azure configuration and access controls, Plakar
-provides cryptographic guarantees and operational control over your data — from
-snapshot creation through integrity verification to recovery.
