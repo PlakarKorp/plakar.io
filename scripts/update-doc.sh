@@ -85,3 +85,6 @@ EOF
   esac
   sed $i "s|https://docs\.plakar\.io/en/guides/importing-configurations/|https://plakar.io/docs/community/${VERSION}/guides/importing-configurations/|g" "$dest"
 done
+
+echo "formatting generated documentation for ${VERSION}"
+(cd "${SCRIPT_DIR}/.." && npx --no-install prettier --write "${OUTDIR}")

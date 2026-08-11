@@ -141,9 +141,9 @@ If either `-cert` or `-key` is missing, the server falls back to plain HTTP.
 Note that HTTPS doesn't add much protection here: as mentioned above, all
 snapshot data is already fully encrypted end-to-end with the repository
 passphrase, regardless of the transport. Plain HTTP does not expose your
-backups. HTTPS is still worth enabling if you want to hide metadata like
-request patterns from network observers, or if you're bridging environments
-that require TLS for other reasons (e.g. a corporate proxy).
+backups. HTTPS is still worth enabling if you want to hide metadata like request
+patterns from network observers, or if you're bridging environments that require
+TLS for other reasons (e.g. a corporate proxy).
 
 ## Serving remote stores
 

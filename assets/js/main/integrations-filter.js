@@ -4,16 +4,30 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   const grid = document.getElementById("integrations-grid");
-  const filterDropdown = document.querySelector(".integrations-filter-dropdown");
-  const filterDropdownBtn = filterDropdown?.querySelector(".integrations-filter-dropdown-btn");
-  const filterDropdownMenu = filterDropdown?.querySelector(".integrations-filter-dropdown-menu");
-  const filterDropdownLabel = filterDropdown?.querySelector(".integrations-filter-dropdown-label");
+  const filterDropdown = document.querySelector(
+    ".integrations-filter-dropdown",
+  );
+  const filterDropdownBtn = filterDropdown?.querySelector(
+    ".integrations-filter-dropdown-btn",
+  );
+  const filterDropdownMenu = filterDropdown?.querySelector(
+    ".integrations-filter-dropdown-menu",
+  );
+  const filterDropdownLabel = filterDropdown?.querySelector(
+    ".integrations-filter-dropdown-label",
+  );
   const sortContainer = document.getElementById("integrations-sort");
   if (!grid || !filterDropdown) return;
 
-  const categoryOptions = filterDropdown.querySelectorAll(".filter-dropdown-option");
-  const editionOptions = filterDropdown.querySelectorAll(".edition-dropdown-option");
-  const sortButtons = sortContainer ? sortContainer.querySelectorAll(".sort-btn") : [];
+  const categoryOptions = filterDropdown.querySelectorAll(
+    ".filter-dropdown-option",
+  );
+  const editionOptions = filterDropdown.querySelectorAll(
+    ".edition-dropdown-option",
+  );
+  const sortButtons = sortContainer
+    ? sortContainer.querySelectorAll(".sort-btn")
+    : [];
 
   const categoryLabels = {
     all: "All Categories",

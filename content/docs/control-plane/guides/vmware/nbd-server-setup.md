@@ -53,10 +53,10 @@ This guide walks through:
 
 ## Prerequisites
 
-- The account that runs `nbdkit` (the same account configured in Plakar
-  Control Plane's `nbd_ssh_url`) determines which transports are available. A
-  regular, non-root account is sufficient for NBD/NBDSSL transport. Root
-  access is required if the NBD server will be used for HotAdd, see
+- The account that runs `nbdkit` (the same account configured in Plakar Control
+  Plane's `nbd_ssh_url`) determines which transports are available. A regular,
+  non-root account is sufficient for NBD/NBDSSL transport. Root access is
+  required if the NBD server will be used for HotAdd, see
   [HotAdd and root access](#hotadd-and-root-access) below.
 - Network access from the NBD server to your vCenter/ESXi environment. Some
   vCenter deployments including OVHcloud Managed vSphere sit behind a firewall,
@@ -82,15 +82,14 @@ sudo su -
 user='root'
 ```
 
-The SSH public key from
-[Step 4](#step-4-set-up-ssh-access-for-consumers) must be installed in
-`/root/.ssh/authorized_keys`, and the connector's `nbd_ssh_url` must use
-`ssh://root@<nbd_ip>`. Running the installation commands with `sudo` while
-still configuring the connector for `ssh://ubuntu@...` does **not** make the
-remotely launched `nbdkit` process run as root.
+The SSH public key from [Step 4](#step-4-set-up-ssh-access-for-consumers) must
+be installed in `/root/.ssh/authorized_keys`, and the connector's `nbd_ssh_url`
+must use `ssh://root@<nbd_ip>`. Running the installation commands with `sudo`
+while still configuring the connector for `ssh://ubuntu@...` does **not** make
+the remotely launched `nbdkit` process run as root.
 
-Root SSH access should remain key-only. On Ubuntu, verify that the effective
-SSH configuration permits public-key login for root (for example,
+Root SSH access should remain key-only. On Ubuntu, verify that the effective SSH
+configuration permits public-key login for root (for example,
 `PermitRootLogin prohibit-password`) rather than enabling password login for
 root.
 
@@ -260,8 +259,8 @@ echo "" >> ~/.ssh/authorized_keys
 chmod 0600 ~/.ssh/authorized_keys
 ```
 
-If the NBD server will be used for HotAdd, run these commands from a root
-shell instead, so the key lands in `/root/.ssh/authorized_keys` (see
+If the NBD server will be used for HotAdd, run these commands from a root shell
+instead, so the key lands in `/root/.ssh/authorized_keys` (see
 [HotAdd and root access](#hotadd-and-root-access)).
 
 ## Next Steps
