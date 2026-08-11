@@ -10,7 +10,7 @@ hosts with Plakar.
 
 
 
-## [Setting Up OpenSSH Server on Windows](https://plakar.io/docs/control-plane/guides/windows/windows-openssh-setup/index.md)
+## [Setting Up OpenSSH Server](https://plakar.io/docs/control-plane/guides/windows/windows-openssh-setup/index.md)
 
 
 

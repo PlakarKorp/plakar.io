@@ -14,4 +14,8 @@ Plakar Control Plane supports the following database resources:
 
 
 
+## [Microsoft Active Directory](https://plakar.io/docs/control-plane/resources/database/msad/index.md)
+
+
+
 

@@ -100,6 +100,7 @@ required to use each one as a source, store, or destination.
 ## [Database](https://plakar.io/docs/control-plane/resources/database/index.md)
 
 - [Microsoft SQL Server](https://plakar.io/docs/control-plane/resources/database/mssql/index.md): How to configure a Microsoft SQL Server resource in Plakar Control Plane.
+- [Microsoft Active Directory](https://plakar.io/docs/control-plane/resources/database/msad/index.md): How to configure a Microsoft Active Directory resource in Plakar Control Plane.
 
 
 

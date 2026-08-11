@@ -4,6 +4,10 @@
 
 
 
+## [Microsoft Active Directory](https://plakar.io/integrations/msad/index.md)
+
+
+
 ## [Vault](https://plakar.io/integrations/vault/index.md)
 
 
