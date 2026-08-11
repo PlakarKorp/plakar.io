@@ -9,6 +9,10 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!id) return;
 
   // Google Consent Mode v2 defaults (must run before the GTM loader below).
+  // Consent *updates* are driven natively by Axeptio's Google Consent Mode v2
+  // integration (project vendor `google_consent_mode_v2`, googleConsentMode
+  // enabled in the Axeptio config) — it pushes gtag('consent','update',...) on
+  // the user's choice, so no custom _axcb bridge is needed here.
   window.dataLayer = window.dataLayer || [];
   function gtag() {
     dataLayer.push(arguments);
@@ -25,23 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   gtag("set", "url_passthrough", true);
   gtag("set", "ads_data_redaction", true);
-
-  // Bridge Axeptio consent choices -> Google Consent Mode.
-  // NOTE: the choice keys below (google_analytics, google_ads) must match the
-  // vendor identifiers configured in the Axeptio project.
-  window._axcb = window._axcb || [];
-  window._axcb.push(function (axeptio) {
-    axeptio.on("cookies:complete", function (choices) {
-      const analytics = choices.google_analytics ? "granted" : "denied";
-      const ads = choices.google_ads ? "granted" : "denied";
-      gtag("consent", "update", {
-        analytics_storage: analytics,
-        ad_storage: ads,
-        ad_user_data: ads,
-        ad_personalization: ads,
-      });
-    });
-  });
 
   (function (w, d, s, l, i) {
     w[l] = w[l] || [];

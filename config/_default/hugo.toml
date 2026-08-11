@@ -11,7 +11,10 @@ summaryLength = 0
 buildDrafts = false
 buildFuture = false
 enableEmoji = true
-googleAnalytics = "G-4EJ3HLL4HS"
+# Google Analytics (G-4EJ3HLL4HS) is loaded via the Google Tag Manager container
+# (GTM-T7VMM5VM) so there is a single, consent-gated GA4 path. Do not also set
+# `googleAnalytics` here — the theme would load GA4 a second time (double-counting)
+# and outside Consent Mode.
 
 [permalinks]
   [permalinks.page]
