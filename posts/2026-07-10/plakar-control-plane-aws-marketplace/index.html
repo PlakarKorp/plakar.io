@@ -94,10 +94,10 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2026-07-10T12:00:00+01:00">
-    <meta property="article:modified_time" content="2026-08-11T15:05:59+03:00">
+    <meta property="article:modified_time" content="2026-08-11T15:27:34+03:00">
     <meta property="article:tag" content="Plakar">
     <meta property="article:tag" content="Control-Plane">
-    <meta property="article:tag" content="AWS">
+    <meta property="article:tag" content="Aws">
     <meta property="article:tag" content="Announcement">
     <meta property="og:image" content="https://plakar.io/posts/2026-07-10/plakar-control-plane-aws-marketplace/featured.png">
 
@@ -268,7 +268,7 @@
     "dateCreated": "2026-07-10T12:00:00\u002b01:00",
     "datePublished": "2026-07-10T12:00:00\u002b01:00",
     
-    "dateModified": "2026-08-11T15:05:59\u002b03:00",
+    "dateModified": "2026-08-11T15:27:34\u002b03:00",
     
     "keywords": ["plakar","control-plane","aws","announcement"],
     
@@ -2091,13 +2091,24 @@
       <div class="prose docs-font max-w-full">
         <p><strong>TL;DR</strong></p>
 <ul>
-<li><strong>Plakar Control Plane is now on <a href="https://aws.amazon.com/marketplace/pp/prodview-n3wsyckyby6vq"  target="_blank" rel="noreferrer">AWS Marketplace</a></strong>, deployable in a few clicks.</li>
-<li><strong>Self-hosted in your own AWS account</strong>: delivered as an AMI; your backup data never leaves your environment.</li>
-<li><strong>Agentless protection for AWS resources</strong> via native APIs, lightweight agents for on-prem and hybrid.</li>
-<li><strong>The off-AWS copy finally becomes affordable</strong>: source-side dedup + client-side encryption cut egress and off-site storage to a fraction of the bytes.</li>
+<li><strong>Plakar Control Plane is now on
+<a href="https://aws.amazon.com/marketplace/pp/prodview-n3wsyckyby6vq"  target="_blank" rel="noreferrer">AWS Marketplace</a></strong>,
+deployable in a few clicks.</li>
+<li><strong>Self-hosted in your own AWS account</strong>: delivered as an AMI; your backup data
+never leaves your environment.</li>
+<li><strong>Agentless protection for AWS resources</strong> via native APIs, lightweight agents
+for on-prem and hybrid.</li>
+<li><strong>The off-AWS copy finally becomes affordable</strong>: source-side dedup +
+client-side encryption cut egress and off-site storage to a fraction of the
+bytes.</li>
 <li><strong>Free plan</strong>: fully functional, no time limit.</li>
 </ul>
-<p>After several months in beta, with a group of early customers running Plakar Control Plane against real production estates, <strong>it&rsquo;s now available on the <a href="https://aws.amazon.com/marketplace/pp/prodview-n3wsyckyby6vq"  target="_blank" rel="noreferrer">AWS Marketplace</a>.</strong> Anyone with an AWS account can deploy it into their own environment in a few clicks. No data leaves your account: only consumption metrics for billing ever reach us.</p>
+<p>After several months in beta, with a group of early customers running Plakar
+Control Plane against real production estates, <strong>it&rsquo;s now available on the
+<a href="https://aws.amazon.com/marketplace/pp/prodview-n3wsyckyby6vq"  target="_blank" rel="noreferrer">AWS Marketplace</a>.</strong>
+Anyone with an AWS account can deploy it into their own environment in a few
+clicks. No data leaves your account: only consumption metrics for billing ever
+reach us.</p>
 
 <div class="relative group">
   <h2 id="legacy-backup-hit-a-structural-dead-end">Legacy backup hit a structural dead end</h2>
@@ -2107,7 +2118,12 @@
   </span>
   
 </div>
-<p>Data volumes double every three to four years, and encryption is now mandatory against ransomware and breach. Legacy tools can&rsquo;t hold both at once: encrypt, and you lose the storage efficiency that keeps backup affordable; stay efficient, and you leave data exposed. Add an estate scattered across VMs, databases, Kubernetes, cloud buckets, and SaaS, and you get governance blind spots: nobody can say, with confidence, what&rsquo;s actually recoverable.</p>
+<p>Data volumes double every three to four years, and encryption is now mandatory
+against ransomware and breach. Legacy tools can&rsquo;t hold both at once: encrypt,
+and you lose the storage efficiency that keeps backup affordable; stay
+efficient, and you leave data exposed. Add an estate scattered across VMs,
+databases, Kubernetes, cloud buckets, and SaaS, and you get governance blind
+spots: nobody can say, with confidence, what&rsquo;s actually recoverable.</p>
 
 <div class="relative group">
   <h2 id="the-aws-backup-math-nobody-likes">The AWS backup math nobody likes</h2>
@@ -2117,9 +2133,27 @@
   </span>
   
 </div>
-<p>Run your backups inside AWS and the bill creeps up quietly: snapshot sprawl, cross-region replication that doubles your storage, per-GB costs that grow every time your data does. Annoying, but survivable.</p>
-<p>The real problem is what it does to your security posture. Every serious resilience playbook says the same thing: keep a copy off your primary provider: the old <a href="/posts/2025-02-11/the-3-2-1-backup-rule-a-proven-strategy-for-data-protection/" >3-2-1 rule</a>. On AWS, an off-provider copy means paying egress, and egress is billed per gigabyte, every time. That makes a full second copy expensive enough that most teams quietly skip it. So the only real copy of their data ends up in the same account, the same provider, the same blast radius as production. If that account is hit, whether by ransomware, stolen credentials, or a bad day for a region, the backup goes down with everything else.</p>
-<p>That copy outside AWS isn&rsquo;t a nice-to-have. It&rsquo;s the condition that makes your data actually safe. Plakar&rsquo;s job is to make it affordable: high-ratio source-side deduplication strips redundant data <em>before</em> it ever leaves your environment, so you pay egress and off-site storage on a fraction of the bytes. And because every copy is encrypted client-side under keys you control, that second copy is safe sitting on whatever storage is cheapest and most independent: OVHcloud, Scaleway, on-prem, cold archive. The copy outside AWS stops being the line item you cut, and becomes the one that saves you.</p>
+<p>Run your backups inside AWS and the bill creeps up quietly: snapshot sprawl,
+cross-region replication that doubles your storage, per-GB costs that grow every
+time your data does. Annoying, but survivable.</p>
+<p>The real problem is what it does to your security posture. Every serious
+resilience playbook says the same thing: keep a copy off your primary provider:
+the old
+<a href="/posts/2025-02-11/the-3-2-1-backup-rule-a-proven-strategy-for-data-protection/" >3-2-1 rule</a>.
+On AWS, an off-provider copy means paying egress, and egress is billed per
+gigabyte, every time. That makes a full second copy expensive enough that most
+teams quietly skip it. So the only real copy of their data ends up in the same
+account, the same provider, the same blast radius as production. If that account
+is hit, whether by ransomware, stolen credentials, or a bad day for a region,
+the backup goes down with everything else.</p>
+<p>That copy outside AWS isn&rsquo;t a nice-to-have. It&rsquo;s the condition that makes your
+data actually safe. Plakar&rsquo;s job is to make it affordable: high-ratio
+source-side deduplication strips redundant data <em>before</em> it ever leaves your
+environment, so you pay egress and off-site storage on a fraction of the bytes.
+And because every copy is encrypted client-side under keys you control, that
+second copy is safe sitting on whatever storage is cheapest and most
+independent: OVHcloud, Scaleway, on-prem, cold archive. The copy outside AWS
+stops being the line item you cut, and becomes the one that saves you.</p>
 
 <div class="relative group">
   <h2 id="plakar-control-plane-declare-resilience-like-you-declare-infrastructure">Plakar Control Plane: declare resilience like you declare infrastructure</h2>
@@ -2129,12 +2163,24 @@
   </span>
   
 </div>
-<p>Control Plane is a self-hosted backup management platform enabling resilience as code. It sits above the Plakar backup engine and gives security and infrastructure teams four benefits legacy tooling can&rsquo;t:</p>
+<p>Control Plane is a self-hosted backup management platform enabling resilience as
+code. It sits above the Plakar backup engine and gives security and
+infrastructure teams four benefits legacy tooling can&rsquo;t:</p>
 <ul>
-<li><strong>Provable posture</strong>: one <a href="/docs/control-plane/infrastructure/inventories/" >inventory</a> across VMs, databases, Kubernetes, buckets, and SaaS, showing what&rsquo;s protected, with integrity checks after every backup.</li>
-<li><strong>Safe, cost-efficient copies</strong>: client-side deduplication and zero-trust encryption, stored on the provider of your choice.</li>
-<li><strong>Declarative policies</strong>: <a href="/docs/control-plane/operations/policies/" >SLA policies</a> work like contracts: declare frequency, retention, and scope once, and the <a href="/docs/control-plane/operations/scheduling/policy-scheduler/" >policy scheduler</a> enforces them across every matching source. No per-source configuration to drift.</li>
-<li><strong>Strategic autonomy</strong>: self-hosted, keys you control, an auditable codebase. No vendor sits between you and your recovery.</li>
+<li><strong>Provable posture</strong>: one
+<a href="/docs/control-plane/infrastructure/inventories/" >inventory</a> across VMs,
+databases, Kubernetes, buckets, and SaaS, showing what&rsquo;s protected, with
+integrity checks after every backup.</li>
+<li><strong>Safe, cost-efficient copies</strong>: client-side deduplication and zero-trust
+encryption, stored on the provider of your choice.</li>
+<li><strong>Declarative policies</strong>:
+<a href="/docs/control-plane/operations/policies/" >SLA policies</a> work like contracts:
+declare frequency, retention, and scope once, and the
+<a href="/docs/control-plane/operations/scheduling/policy-scheduler/" >policy scheduler</a>
+enforces them across every matching source. No per-source configuration to
+drift.</li>
+<li><strong>Strategic autonomy</strong>: self-hosted, keys you control, an auditable codebase.
+No vendor sits between you and your recovery.</li>
 </ul>
 <figure><img
     class="my-0 rounded-md"
@@ -2157,7 +2203,8 @@
   </span>
   
 </div>
-<p>Plakar&rsquo;s open integrations cover the systems that actually make up a production estate:</p>
+<p>Plakar&rsquo;s open integrations cover the systems that actually make up a production
+estate:</p>
 <table>
   <thead>
       <tr>
@@ -2192,8 +2239,14 @@
       </tr>
   </tbody>
 </table>
-<p>On AWS specifically, <a href="/docs/control-plane/infrastructure/inventories/aws/" >managed inventories</a> discover your resources agentlessly through native AWS APIs: EC2 instances, S3 buckets, and RDS PostgreSQL databases surface automatically, while lightweight agents extend the same policies to on-prem and hybrid workloads.</p>
-<p>Everything lands in the same inventory, under the same policies, visible in the same posture view. No separate tool per resource type, no scripts held together with cron and hope.</p>
+<p>On AWS specifically,
+<a href="/docs/control-plane/infrastructure/inventories/aws/" >managed inventories</a>
+discover your resources agentlessly through native AWS APIs: EC2 instances, S3
+buckets, and RDS PostgreSQL databases surface automatically, while lightweight
+agents extend the same policies to on-prem and hybrid workloads.</p>
+<p>Everything lands in the same inventory, under the same policies, visible in the
+same posture view. No separate tool per resource type, no scripts held together
+with cron and hope.</p>
 
 <div class="relative group">
   <h2 id="up-and-running-in-minutes">Up and running in minutes</h2>
@@ -2205,12 +2258,20 @@
 </div>
 <!-- TODO(victor): validate steps against the actual onboarding flow -->
 <ol>
-<li><strong>Subscribe</strong> on <a href="https://aws.amazon.com/marketplace/pp/prodview-n3wsyckyby6vq"  target="_blank" rel="noreferrer">AWS Marketplace</a> and launch the appliance (AMI) in your own account.</li>
-<li><strong>Connect an <a href="/docs/control-plane/infrastructure/inventories/" >inventory</a></strong>: point Control Plane at your AWS credentials and it syncs your resources automatically.</li>
-<li><strong>Apply an <a href="/docs/control-plane/operations/policies/" >SLA policy</a></strong>: set frequency and retention, scope it by environment, data class, or tag; every matching source is scheduled automatically.</li>
-<li><strong>Watch the first snapshots land</strong>: deduplicated, encrypted under your keys, stored where you decided.</li>
+<li><strong>Subscribe</strong> on
+<a href="https://aws.amazon.com/marketplace/pp/prodview-n3wsyckyby6vq"  target="_blank" rel="noreferrer">AWS Marketplace</a>
+and launch the appliance (AMI) in your own account.</li>
+<li><strong>Connect an <a href="/docs/control-plane/infrastructure/inventories/" >inventory</a></strong>:
+point Control Plane at your AWS credentials and it syncs your resources
+automatically.</li>
+<li><strong>Apply an <a href="/docs/control-plane/operations/policies/" >SLA policy</a></strong>: set
+frequency and retention, scope it by environment, data class, or tag; every
+matching source is scheduled automatically.</li>
+<li><strong>Watch the first snapshots land</strong>: deduplicated, encrypted under your keys,
+stored where you decided.</li>
 </ol>
-<p>No SaaS control plane in the middle, no data path through our infrastructure. You run it; we never see your data.</p>
+<p>No SaaS control plane in the middle, no data path through our infrastructure.
+You run it; we never see your data.</p>
 
 <div class="relative group">
   <h2 id="available-now-on-your-cloud-on-your-terms">Available now: on your cloud, on your terms</h2>
@@ -2220,8 +2281,15 @@
   </span>
   
 </div>
-<p>On AWS Marketplace you get what enterprises actually need to adopt fast: streamlined procurement and governance, security-validated deployment, consolidated AWS billing, and private pricing for larger commitments. Prefer another home? Control Plane also runs on OVHcloud, Scaleway, and self-hosted VMs today, with Azure and GCP next.</p>
-<p>And there&rsquo;s a <strong>free plan: fully functional, with no time limit.</strong> Whether you&rsquo;re an independent researcher, an NGO, an SMB, or an enterprise rebuilding its cyber-resilience posture under board or regulator pressure, you can start protecting real workloads today.</p>
+<p>On AWS Marketplace you get what enterprises actually need to adopt fast:
+streamlined procurement and governance, security-validated deployment,
+consolidated AWS billing, and private pricing for larger commitments. Prefer
+another home? Control Plane also runs on OVHcloud, Scaleway, and self-hosted VMs
+today, with Azure and GCP next.</p>
+<p>And there&rsquo;s a <strong>free plan: fully functional, with no time limit.</strong> Whether
+you&rsquo;re an independent researcher, an NGO, an SMB, or an enterprise rebuilding
+its cyber-resilience posture under board or regulator pressure, you can start
+protecting real workloads today.</p>
 
 <div class="relative group">
   <h2 id="the-vision-an-open-standard-for-data-resilience">The vision: an open standard for data resilience</h2>
@@ -2231,8 +2299,11 @@
   </span>
   
 </div>
-<p>Our mission is simple: make reliable backup accessible to everyone. Decouple data protection from storage infrastructure, so you can delegate resilience to a cloud, an MSP, or a teammate without ever surrendering access to your own data.</p>
-<p>Backup anything. Store anywhere. Restore everywhere. That&rsquo;s <strong>Open Resilience as Code.</strong></p>
+<p>Our mission is simple: make reliable backup accessible to everyone. Decouple
+data protection from storage infrastructure, so you can delegate resilience to a
+cloud, an MSP, or a teammate without ever surrendering access to your own data.</p>
+<p>Backup anything. Store anywhere. Restore everywhere. That&rsquo;s <strong>Open Resilience as
+Code.</strong></p>
 
 <div class="relative group">
   <h2 id="explore-plakar-control-plane-on-aws-marketplace">Explore Plakar Control Plane on AWS Marketplace</h2>
@@ -2243,7 +2314,8 @@
   
 </div>
 <p><a href="https://aws.amazon.com/marketplace/pp/prodview-n3wsyckyby6vq"  target="_blank" rel="noreferrer"><strong>Get it on AWS Marketplace →</strong></a></p>
-<p>Prefer to start with the open-source engine? <a href="/download/" ><strong>Download and deploy → plakar.io/download</strong></a></p>
+<p>Prefer to start with the open-source engine?
+<a href="/download/" ><strong>Download and deploy → plakar.io/download</strong></a></p>
 
 <div class="relative group">
   <h2 id="faq">FAQ</h2>
@@ -2253,14 +2325,17 @@
   </span>
   
 </div>
-<p><strong>Does my backup data ever leave my AWS account?</strong>
-No. Control Plane is self-hosted in your own account. All data is encrypted client-side with keys you exclusively control; only consumption metrics for billing ever reach Plakar.</p>
-<p><strong>Can I keep a copy of my backups outside AWS?</strong>
-Yes, that&rsquo;s the point. Source-side deduplication shrinks what crosses the wire, so an off-AWS copy (OVHcloud, Scaleway, on-prem, cold archive) becomes affordable instead of the line item you cut.</p>
-<p><strong>Is there really a free plan?</strong>
-Yes. Fully functional, no time limit. Enterprise features and support come with paid tiers.</p>
-<p><strong>What if I&rsquo;m not on AWS?</strong>
-Control Plane also runs on OVHcloud, Scaleway, and self-hosted VMs today, Azure and GCP are next.</p>
+<p><strong>Does my backup data ever leave my AWS account?</strong> No. Control Plane is
+self-hosted in your own account. All data is encrypted client-side with keys you
+exclusively control; only consumption metrics for billing ever reach Plakar.</p>
+<p><strong>Can I keep a copy of my backups outside AWS?</strong> Yes, that&rsquo;s the point.
+Source-side deduplication shrinks what crosses the wire, so an off-AWS copy
+(OVHcloud, Scaleway, on-prem, cold archive) becomes affordable instead of the
+line item you cut.</p>
+<p><strong>Is there really a free plan?</strong> Yes. Fully functional, no time limit.
+Enterprise features and support come with paid tiers.</p>
+<p><strong>What if I&rsquo;m not on AWS?</strong> Control Plane also runs on OVHcloud, Scaleway, and
+self-hosted VMs today, Azure and GCP are next.</p>
 
       </div>
 

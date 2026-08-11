@@ -2,9 +2,13 @@
 
 # Commands
 
-Welcome to the Plakar commands reference. This section provides detailed documentation for all available Plakar commands, including usage, options, and examples.
-You can browse the command documentation here, or access it directly from your terminal using `plakar help`. This allows you to explore command behavior and options whether you are online or working locally.
-Below is the complete list of commands. Select any command to view its detailed documentation.
+Welcome to the Plakar commands reference. This section provides detailed
+documentation for all available Plakar commands, including usage, options, and
+examples. You can browse the command documentation here, or access it directly
+from your terminal using `plakar help`. This allows you to explore command
+behavior and options whether you are online or working locally. Below is the
+complete list of commands. Select any command to view its detailed
+documentation.
 
 
 

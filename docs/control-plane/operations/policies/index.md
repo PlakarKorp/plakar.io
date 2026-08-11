@@ -72,9 +72,9 @@ the environment and data class filters.
 Supported scope filters include:
 
 - **Environment** - the environment the policy applies to. Environments can be
-  managed from the [settings]().
+  managed from the [settings](<>).
 - **Data Class** - one or more data classes the policy applies to. Data classes
-  can be managed from the [settings]().
+  can be managed from the [settings](<>).
 - **Tag** - narrows the matched sources down further to only those carrying the
   specified tag. Useful when environment and data class alone would match more
   sources than intended.

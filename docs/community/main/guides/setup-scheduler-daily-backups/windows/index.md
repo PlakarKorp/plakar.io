@@ -1,9 +1,9 @@
 
 # Windows: Task Scheduler
 
-This guide assumes you've already completed the
-[prerequisites](../): a configured store with a non-interactive passphrase, and
-the `plakar` command you want to schedule.
+This guide assumes you've already completed the [prerequisites](../): a
+configured store with a non-interactive passphrase, and the `plakar` command you
+want to schedule.
 
 ## Task Scheduler
 

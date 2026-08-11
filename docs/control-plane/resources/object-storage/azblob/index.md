@@ -112,7 +112,7 @@ documentation.
 
 You can create a Storage Container from your Storage Account under **Data
 Storage -> Containers**. Use the name of the container as the endpoint when
-setting up the resource in [step 2]()
+setting up the resource in [step 2](<>)
 
 ![](../images/azure-create-container.png)
 

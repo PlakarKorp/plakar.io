@@ -2,7 +2,8 @@
 
 # Infrastructure
 
-This section covers infrastructure-related features such as inventories and secret providers.
+This section covers infrastructure-related features such as inventories and
+secret providers.
 
 
 
