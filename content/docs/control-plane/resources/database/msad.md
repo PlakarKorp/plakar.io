@@ -143,11 +143,6 @@ destination apps.
   e.g. `C:`, `D:`. Required when configuring the destination app.
 - **Username**: Required. The administrative account used to create and restore
   System State backups.
-- **Location**: Required. The hostname or IP address of the Windows Domain
-  Controller.
-- **SSH Auth Sock**: The path to a running SSH agent's socket.
-- **SSH Private Key TTL**: How long a key loaded via SSH Private Key stays in
-  the SSH agent. Defaults to `5s`.
 - **SSH Private Key**: To authenticate with the remote machine, PCP uses SSH
   key-based authentication. Generate a dedicated SSH keypair for PCP and add the
   public key to the Windows host's authorized keys before configuring this field
@@ -161,10 +156,6 @@ destination apps.
   ...
   -----END OPENSSH PRIVATE KEY-----
 ```
-
-- **Identity**: The path to an SSH private key file used for authentication.
-- **Insecure Ignore Host Key**: Skip SSH host key verification. Only use this
-  for testing.
 
 ## Restoring a Domain Controller
 
