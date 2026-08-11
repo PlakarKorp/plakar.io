@@ -9,17 +9,17 @@ summary:
 
 # Microsoft Active Directory
 
-The Microsoft Active Directory (MS AD) integration allows Plakar Control Plane
-to protect Windows Active Directory Domain Controllers by creating and restoring
+The Microsoft Active Directory (MSAD) integration allows Plakar Control Plane to
+protect Windows Active Directory Domain Controllers by creating and restoring
 Windows **System State** backups.
 
-The integration is built on top of Plakar's VSS integration. Plakar connects to
-the Windows host over SSH and creates a System State backup on a dedicated NTFS
-volume, then takes a VSS snapshot of that volume and transfers the backup files
-over SFTP into the Kloset store. During recovery, Plakar restores the System
-State backup to the NTFS volume, allowing **Windows Server Backup** to restore
-the Domain Controller once booted into **Directory Services Restore Mode
-(DSRM)**.
+The integration is built on top of Plakar's
+[VSS integration](../../compute/vss). Plakar connects to the Windows host over
+SSH and creates a System State backup on a dedicated NTFS volume, then takes a
+VSS snapshot of that volume and transfers the backup files over SFTP into the
+Kloset store. During recovery, Plakar restores the System State backup to the
+NTFS volume, allowing **Windows Server Backup** to restore the Domain Controller
+once booted into **Directory Services Restore Mode (DSRM)**.
 
 The Microsoft Active Directory integration creates System State backups while a
 Domain Controller is healthy and online, and restores them when needed. It is
