@@ -213,8 +213,8 @@ The integration is not the fastest to say the least, however we have ways to
 improve that as we've mainly focused on making it work without any optimization
 whatsoever.
 
-Backup works fine once the pages have been configured, including medias that are
-present in them, however at the current time restore can't restore the medias
+Backup works fine once the pages have been configured, including media that are
+present in them, however at the current time restore can't restore the media
 within Notion: they are part of the backups but can't be pushed back.
 
 The reason for that is that the Notion API wants the images to be hosted

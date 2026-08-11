@@ -201,7 +201,7 @@ compression won't cancel duplicate data.
 
 That topic would require a deep-dive into how compression works, something a bit
 off-topic for this article, but let me know if you're interested in such
-readings, me likey writing :-)
+readings, me likey writing :-) <!-- codespell:ignore likey -->
 
 Anyways, that's a sharp contrast with `.ptar`:
 
