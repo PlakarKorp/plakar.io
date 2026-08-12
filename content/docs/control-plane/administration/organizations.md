@@ -1,7 +1,7 @@
 ---
 title: "Managing Organizations"
 date: "2026-07-27T00:00:00Z"
-weight: 7
+weight: 8
 summary:
   "Organize and isolate resources, configuration, and administration within
   Plakar Control Plane."

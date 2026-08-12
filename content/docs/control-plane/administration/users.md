@@ -1,7 +1,7 @@
 ---
 title: "Managing Users"
 date: "2026-07-27T00:00:00Z"
-weight: 6
+weight: 7
 summary: "Manage users and application identities in Plakar Control Plane."
 ---
 
