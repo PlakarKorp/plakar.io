@@ -50,6 +50,8 @@
 
 - [Microsoft Active Directory](https://plakar.io/integrations/msad/index.md): Protect Active Directory against the scenario replication can't fix: no  healthy Domain Controller left to recover from. Plakar captures encrypted  System State backups of Domain Controllers while they're healthy, ready to  bring Active Directory back after hardware failure, corruption, or ransomware.
 
+- [VSS](https://plakar.io/integrations/vss/index.md): Protect Windows Server workloads like Active Directory and SQL Server against accidental deletion, ransomware, and configuration mistakes. Plakar captures a consistent, point-in-time snapshot of a live Windows system and restores it with confidence, without taking anything offline.
+
 - [Vault](https://plakar.io/integrations/vault/index.md): Back up and restore a HashiCorp Vault cluster's secrets. Plakar exports a Vault cluster into an encrypted, deduplicated Kloset snapshot and restores it back to the same cluster or a freshly provisioned one.
 
 - [Backblaze B2](https://plakar.io/integrations/backblaze/index.md): Protect your data with Plakar on Backblaze B2 Cloud Storage. Immutable, encrypted snapshots stored on one of the most cost-effective S3-compatible object storage platforms available, with free egress and enterprise-grade security.

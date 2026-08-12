@@ -90,6 +90,7 @@ required to use each one as a source, store, or destination.
 - [Scaleway Compute](https://plakar.io/docs/control-plane/resources/compute/scaleway/index.md): How to configure a Scaleway compute resource in Plakar Control Plane.
 - [SFTP](https://plakar.io/docs/control-plane/resources/compute/sftp/index.md): How to configure SFTP resource in Plakar Control Plane.
 - [VMware Compute](https://plakar.io/docs/control-plane/resources/compute/vmware/index.md): How to configure a VMware compute resource in Plakar Control Plane.
+- [VSS](https://plakar.io/docs/control-plane/resources/compute/vss/index.md): How to configure a Volume Shadow Copy Service (VSS) resource in Plakar Control Plane.
 
 
 ## [Security](https://plakar.io/docs/control-plane/resources/security/index.md)

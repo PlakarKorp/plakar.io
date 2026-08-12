@@ -22,4 +22,8 @@ Plane supports the following compute resources:
 
 
 
+## [VSS](https://plakar.io/docs/control-plane/resources/compute/vss/index.md)
+
+
+
 

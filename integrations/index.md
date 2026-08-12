@@ -12,6 +12,10 @@
 
 
 
+## [VSS](https://plakar.io/integrations/vss/index.md)
+
+
+
 ## [Vault](https://plakar.io/integrations/vault/index.md)
 
 
