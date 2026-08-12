@@ -24,8 +24,16 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    // Pass the HubSpot tracking cookie so HubSpot attributes this submission to
+    // the visitor's tracked session (Original/Latest Source, e.g. LinkedIn paid).
+    const hutk = document.cookie.match(/(?:^|;\s*)hubspotutk=([^;]+)/)?.[1];
     const payload = {
       fields: Object.keys(data).map((key) => ({ name: key, value: data[key] })),
+      context: {
+        ...(hutk ? { hutk } : {}),
+        pageUri: window.location.href,
+        pageName: document.title,
+      },
     };
 
     try {
