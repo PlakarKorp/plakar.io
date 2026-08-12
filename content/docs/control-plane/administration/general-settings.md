@@ -82,7 +82,7 @@ For more information about MTU values and jumbo frames, see
 ## Webhook
 
 Deliver Plakar Control Plane events, such as job completions and failures, to an
-external endpoint as HTTP requests. See [Webook](../webhook) documentation for
+external endpoint as HTTP requests. See [Webook](../webhooks) documentation for
 more information.
 
 ## Plakar Control Plane logs
