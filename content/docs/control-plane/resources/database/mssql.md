@@ -10,11 +10,11 @@ summary:
 
 The MSSQL integration allows Plakar Control Plane to back up and restore the
 `Program Files` folder used by `Microsoft SQL Server` on Windows. It is built on
-top of Plakar's VSS integration. Plakar connects to the Windows host over SSH,
-requests a VSS snapshot of the volume containing the SQL Server installation
-directory, then copies the files from the snapshot over SFTP. Restoring requires
-the SQL Server services to be stopped first, since the destination files are
-locked while SQL Server is running.
+top of Plakar's [VSS integration](../../compute/vss). Plakar connects to the
+Windows host over SSH, requests a VSS snapshot of the volume containing the SQL
+Server installation directory, then copies the files from the snapshot over
+SFTP. Restoring requires the SQL Server services to be stopped first, since the
+destination files are locked while SQL Server is running.
 
 ## Inventory Management
 
