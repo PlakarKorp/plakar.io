@@ -48,7 +48,7 @@ flowchart TD
   PCP --> Gateway
   Gateway --> Internet
 
-  LBBackend -. "Health check<br/>GET /login<br/>Expected 200" .-> PCP
+  LBBackend -. "Health check<br/>GET /health/ready<br/>Expected 200" .-> PCP
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
@@ -171,11 +171,27 @@ Configure the health check as follows:
 - **Port**: 80
 - **Method**: GET
 - **Expected code**: 200
-- **Path**: `/login`
+- **Path**: `/health/ready`
 - **TLS encryption**: leave disabled
 - **Send Proxy protocol to Healthcheck**: leave disabled
 
+The `/health/ready` endpoint reports whether Plakar Control Plane is ready to
+serve requests. It returns **HTTP 200** only after the application has started
+successfully and established a connection to its database. Until then, it
+returns **HTTP 503**, preventing the Load Balancer from routing traffic to an
+instance that is not yet ready.
+
 ![](../images/create-lb-backend-2.png)
+
+> [!NOTE]+ Health Endpoints
+>
+> Plakar Control Plane exposes two health endpoints:
+>
+> - `/health` is a lightweight liveness check that verifies the application is
+>   running. It does not check database connectivity.
+> - `/health/ready` is a readiness check that verifies the application is ready
+>   to serve requests, including successful database connectivity. This endpoint
+>   is recommended for Load Balancer health checks.
 
 Once the backend is saved, you can monitor the health of your instance from the
 **Servers** tab on the backend details page. The Load Balancer will report the

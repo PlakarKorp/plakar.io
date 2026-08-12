@@ -281,12 +281,12 @@
     "dateCreated": "2026-05-03T00:00:00\u002b00:00",
     "datePublished": "2026-05-03T00:00:00\u002b00:00",
     
-    "dateModified": "2026-08-12T08:25:28\u002b03:00",
+    "dateModified": "2026-08-12T10:47:35\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://plakar.io/docs/control-plane/infrastructure/inventories/",
-    "wordCount": "319"
+    "wordCount": "371"
   }]
   </script>
 
@@ -2038,6 +2038,8 @@
   
     
   
+    
+  
   
 
   
@@ -2060,6 +2062,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         Email &amp; SMTP Setup
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/administration/webhooks/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Webhook Setup
       </a>
     
   
@@ -4648,6 +4659,8 @@
   
     
   
+    
+  
   
 
   
@@ -4670,6 +4683,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         Email &amp; SMTP Setup
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/administration/webhooks/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Webhook Setup
       </a>
     
   
@@ -5835,12 +5857,24 @@
 resources available for management. Resources are the individual entities you
 can back up, use as storage, or restore to, for example, EC2 instances, S3
 buckets, and their equivalents across other supported cloud providers.</p>
+<p>Inventory providers are delivered as integrations. Before creating an inventory,
+install the required provider from the <strong>Integrations</strong> page or directly from
+the <strong>Add inventory</strong> dialog. The dialog displays providers that are already
+installed alongside providers that can be installed and used immediately.</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="low"
+    alt="Creating a new inventory"
+    src="./images/create-inventory.png"
+    ></figure>
 <p>Once an inventory is connected, you can attach apps to each resource. Plakar
 Control Plane supports three app types:</p>
 <ul>
-<li><strong>Source</strong> - the resource being backed up</li>
-<li><strong>Store</strong> - where backups are stored</li>
-<li><strong>Destination</strong> - where data is restored to</li>
+<li><strong>Source</strong>: the resource being backed up</li>
+<li><strong>Store</strong>: where backups are stored</li>
+<li><strong>Destination</strong>: where data is restored to</li>
 </ul>
 
 <div class="relative group">
@@ -5853,6 +5887,7 @@ Control Plane supports three app types:</p>
 </div>
 <p>Managed inventories connect to a provider using credentials. Plakar Control
 Plane then automatically discovers and classifies resources in your account.</p>
+<p>Each managed inventory provider must be installed before it can be created.</p>
 <p>For example, in an AWS inventory:</p>
 <ul>
 <li>EC2 instances are classified as compute resources</li>
@@ -5865,6 +5900,7 @@ Plane then automatically discovers and classifies resources in your account.</p>
 <li>Scaleway</li>
 <li>Google Cloud</li>
 <li>VMware</li>
+<li>Kubernetes</li>
 </ul>
 
 <div class="relative group">

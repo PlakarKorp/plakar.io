@@ -27,7 +27,7 @@
 - [Store App](https://plakar.io/docs/control-plane/apps/stores/index.md): How store apps work in Plakar Control Plane.
 - [Source App](https://plakar.io/docs/control-plane/apps/sources/index.md): How source apps work in Plakar Control Plane.
 - [Destination App](https://plakar.io/docs/control-plane/apps/destinations/index.md): How destination apps work in Plakar Control Plane.
-- [Managing Integrations](https://plakar.io/docs/control-plane/apps/integrations/index.md): Managing your integrations in Plakar Control Plane.
+- [Managing Integrations](https://plakar.io/docs/control-plane/apps/integrations/index.md): Managing integrations in Plakar Control Plane.
 
 
 ## [Resources](https://plakar.io/docs/control-plane/resources/index.md)
@@ -49,6 +49,7 @@
 
 - [General Settings](https://plakar.io/docs/control-plane/administration/general-settings/index.md): Configure your Plakar Control Plane instance from Settings &gt; General.
 - [Email & SMTP Setup](https://plakar.io/docs/control-plane/administration/email-and-smtp/index.md): Configure SMTP for email notifications.
+- [Webhook Setup](https://plakar.io/docs/control-plane/administration/webhooks/index.md): Configure webhooks to receive event notifications from Plakar Control Plane.
 - [Updating Control Plane](https://plakar.io/docs/control-plane/administration/updating-control-plane/index.md): How to update Plakar Control Plane and its underlying deployment infrastructure.
 - [Backup and Restore](https://plakar.io/docs/control-plane/administration/backup-and-restore/index.md): How to back up and restore the Plakar Control Plane configuration and data.
 - [Configuration Bundles](https://plakar.io/docs/control-plane/administration/configuration-bundles/index.md): How to use configuration bundles to share credentials and settings across resources.

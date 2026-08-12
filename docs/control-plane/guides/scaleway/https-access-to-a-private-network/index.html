@@ -94,7 +94,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-06-15T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-08-12T08:25:28+03:00">
+    <meta property="article:modified_time" content="2026-08-12T10:47:35+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -291,12 +291,12 @@
     "dateCreated": "2026-06-15T00:00:00\u002b00:00",
     "datePublished": "2026-06-15T00:00:00\u002b00:00",
     
-    "dateModified": "2026-08-12T08:25:28\u002b03:00",
+    "dateModified": "2026-08-12T10:47:35\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://plakar.io/docs/control-plane/guides/scaleway/https-access-to-a-private-network/",
-    "wordCount": "1141"
+    "wordCount": "1247"
   }]
   </script>
 
@@ -2048,6 +2048,8 @@
   
     
   
+    
+  
   
 
   
@@ -2070,6 +2072,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         Email &amp; SMTP Setup
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/administration/webhooks/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Webhook Setup
       </a>
     
   
@@ -4658,6 +4669,8 @@
   
     
   
+    
+  
   
 
   
@@ -4680,6 +4693,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         Email &amp; SMTP Setup
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/administration/webhooks/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Webhook Setup
       </a>
     
   
@@ -5899,7 +5921,7 @@ flowchart TD
   PCP --> Gateway
   Gateway --> Internet
 
-  LBBackend -. "Health check<br/>GET /login<br/>Expected 200" .-> PCP
+  LBBackend -. "Health check<br/>GET /health/ready<br/>Expected 200" .-> PCP
 </pre>
 
 <!-- prettier-ignore-end -->
@@ -6112,10 +6134,15 @@ servers</strong>.</p>
 <li><strong>Port</strong>: 80</li>
 <li><strong>Method</strong>: GET</li>
 <li><strong>Expected code</strong>: 200</li>
-<li><strong>Path</strong>: <code>/login</code></li>
+<li><strong>Path</strong>: <code>/health/ready</code></li>
 <li><strong>TLS encryption</strong>: leave disabled</li>
 <li><strong>Send Proxy protocol to Healthcheck</strong>: leave disabled</li>
 </ul>
+<p>The <code>/health/ready</code> endpoint reports whether Plakar Control Plane is ready to
+serve requests. It returns <strong>HTTP 200</strong> only after the application has started
+successfully and established a connection to its database. Until then, it
+returns <strong>HTTP 503</strong>, preventing the Load Balancer from routing traffic to an
+instance that is not yet ready.</p>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
@@ -6124,7 +6151,38 @@ servers</strong>.</p>
     alt=""
     src="../images/create-lb-backend-2.png"
     ></figure>
-<p>Once the backend is saved, you can monitor the health of your instance from the
+<details
+      class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
+      data-type="note"
+      open>
+      <summary class="flex items-center gap-2 font-semibold text-inherit cursor-pointer">
+        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"/></svg>
+</span></div>
+        <div class="grow">
+          Health Endpoints
+        </div>
+        <div
+          class="ms-auto flex h-5 w-5 items-center justify-center transition-transform ease-in-out -rotate-90 group-open:rotate-0 print:hidden"><span class="relative block icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+</span></div>
+      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Plakar Control Plane exposes two health endpoints:</p>
+<ul>
+<li><code>/health</code> is a lightweight liveness check that verifies the application is
+running. It does not check database connectivity.</li>
+<li><code>/health/ready</code> is a readiness check that verifies the application is ready
+to serve requests, including successful database connectivity. This endpoint
+is recommended for Load Balancer health checks.</li>
+</ul></div></details><p>Once the backend is saved, you can monitor the health of your instance from the
 <strong>Servers</strong> tab on the backend details page. The Load Balancer will report the
 server status based on health check results.</p>
 <figure><img

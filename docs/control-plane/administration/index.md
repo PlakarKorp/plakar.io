@@ -18,6 +18,10 @@ up and restoring the appliance, and viewing system logs.
 
 
 
+## [Webhook Setup](https://plakar.io/docs/control-plane/administration/webhooks/index.md)
+
+
+
 ## [Updating Control Plane](https://plakar.io/docs/control-plane/administration/updating-control-plane/index.md)
 
 - [Updating AWS AMI](https://plakar.io/docs/control-plane/administration/updating-control-plane/aws/index.md): How to update Plakar Control Plane AMI on AWS.
