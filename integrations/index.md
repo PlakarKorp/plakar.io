@@ -4,6 +4,10 @@
 
 
 
+## [Microsoft SQL Server](https://plakar.io/integrations/mssql/index.md)
+
+
+
 ## [Microsoft Active Directory](https://plakar.io/integrations/msad/index.md)
 
 

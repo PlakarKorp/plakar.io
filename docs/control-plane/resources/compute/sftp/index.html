@@ -94,7 +94,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-06-18T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-08-12T10:59:10+03:00">
+    <meta property="article:modified_time" content="2026-08-12T17:26:47+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -291,12 +291,12 @@
     "dateCreated": "2026-06-18T00:00:00\u002b00:00",
     "datePublished": "2026-06-18T00:00:00\u002b00:00",
     
-    "dateModified": "2026-08-12T10:59:10\u002b03:00",
+    "dateModified": "2026-08-12T17:26:47\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://plakar.io/docs/control-plane/resources/compute/sftp/",
-    "wordCount": "397"
+    "wordCount": "475"
   }]
   </script>
 
@@ -5902,26 +5902,27 @@
   </span>
   
 </div>
-<p>SFTP resources represent remote machines accessible over SSH/SFTP. SFTP does not
-support automatic inventory discovery in Plakar Control Plane. You need to set
-up a <a href="/docs/control-plane/infrastructure/inventories/self-managed/" >self-managed inventory</a>
-before adding an SFTP resource.</p>
+<p>The SFTP integration allows Plakar Control Plane to back up and restore files on
+any remote machine reachable over SSH. Plakar connects to the remote machine
+over SSH and reads or writes files directly under the configured root path using
+SFTP.</p>
 
 <div class="relative group">
-  <h2 id="setting-up-a-self-managed-inventory">Setting up a self-managed inventory</h2>
+  <h2 id="inventory-management">Inventory Management</h2>
   
   <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#setting-up-a-self-managed-inventory" aria-label="Anchor">#</a>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#inventory-management" aria-label="Anchor">#</a>
   </span>
   
 </div>
-<p>You can create a self-managed inventory to manage your SFTP resources by
-providing a name for it. Read the
-<a href="/docs/control-plane/infrastructure/inventories/self-managed/" >self-managed inventory</a>
-documentation for more information.</p>
+<p>Currently no
+<a href="/docs/control-plane/infrastructure/inventories/#managed-inventories" >managed inventory</a> has
+the capability of discovering SFTP resources. You need to set up a
+<a href="/docs/control-plane/infrastructure/inventories/self-managed/" >self-managed inventory</a> before
+adding an SFTP resource.</p>
 
 <div class="relative group">
-  <h2 id="adding-sftp-as-a-resource">Adding SFTP as a resource</h2>
+  <h3 id="adding-sftp-as-a-resource">Adding SFTP as a resource</h3>
   
   <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
     <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#adding-sftp-as-a-resource" aria-label="Anchor">#</a>
@@ -5931,19 +5932,12 @@ documentation for more information.</p>
 <p>When using a self-managed inventory, you must register your resources manually
 or import them from a CSV file.</p>
 <p>To add an SFTP machine as a resource, use <strong>Compute</strong> as the <code>class</code>. SFTP
-resources do not require a subclass. For the endpoint, use the IP address of the
-target machine.</p>
-<figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="low"
-    alt=""
-    src="../images/add-sftp-resource.png"
-    ></figure>
+resources do not require a subclass. For the endpoint, use the IP address or
+hostname of the target machine. See <a href="/docs/control-plane/resources/" >resources documentation</a>
+for more information on how to set up resources on a self-managed inventory.</p>
 
 <div class="relative group">
-  <h2 id="backup-flow">Backup flow</h2>
+  <h4 id="backup-flow">Backup flow</h4>
   
   <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
     <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#backup-flow" aria-label="Anchor">#</a>
@@ -5972,7 +5966,7 @@ flowchart TD
 <!-- prettier-ignore-end -->
 
 <div class="relative group">
-  <h2 id="restore-flow">Restore flow</h2>
+  <h4 id="restore-flow">Restore flow</h4>
   
   <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
     <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#restore-flow" aria-label="Anchor">#</a>
@@ -6001,65 +5995,68 @@ flowchart TD
 <!-- prettier-ignore-end -->
 
 <div class="relative group">
-  <h2 id="configuration">Configuration</h2>
+  <h2 id="shared-configuration">Shared configuration</h2>
   
   <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#configuration" aria-label="Anchor">#</a>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#shared-configuration" aria-label="Anchor">#</a>
   </span>
   
 </div>
-<p>SFTP resources can be configured using a source, store, or destination app. When
-setting up the app, select <code>sftp</code> from the integration dropdown.</p>
-
-<div class="relative group">
-  <h3 id="port">Port</h3>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#port" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<p>The TCP/UDP port number the SSH service is listening on. Defaults to <code>22</code>.</p>
-
-<div class="relative group">
-  <h3 id="root">Root</h3>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#root" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<p>The absolute filesystem path to use as the root for backup operations. Defaults
-to <code>/</code>.</p>
-
-<div class="relative group">
-  <h3 id="ssh-private-key">SSH Private Key</h3>
-  
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#ssh-private-key" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
-<p>To authenticate with the remote machine, PCP uses SSH key-based authentication.
-You need to generate a dedicated SSH keypair for PCP and add the public key to
-the remote machine&rsquo;s authorized keys before configuring this field.</p>
-<p>Once the public key is on the remote machine, copy the private key and use it
-into this field. The key should be added in full including the header and footer
-lines.</p>
+<p>The following settings are available when configuring a source, store, or
+destination app.</p>
+<ul>
+<li>
+<p><strong>Port</strong>: The TCP/UDP port number the SSH service is listening on. Defaults to
+<code>22</code>.</p>
+</li>
+<li>
+<p><strong>Root</strong>: The absolute filesystem path to use as the root for backup
+operations. Defaults to <code>/</code>.</p>
+</li>
+<li>
+<p><strong>Ssh Private Key</strong>: SSH private key material (PEM/OpenSSH) to load into
+<code>ssh-agent</code> via <code>ssh-add</code> (not supported on Windows). Generate a dedicated SSH
+keypair for PCP and add the public key to the remote machine&rsquo;s authorized keys
+before configuring this field, then copy the private key in full, including
+the header and footer lines, into this field:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">-----BEGIN OPENSSH PRIVATE KEY-----
 </span></span><span class="line"><span class="cl">...
 </span></span><span class="line"><span class="cl">-----END OPENSSH PRIVATE KEY-----</span></span></code></pre></div></div>
+</li>
+<li>
+<p><strong>Username</strong>: The SFTP username to authenticate as on the remote machine. This
+field cannot be used if the hostname already includes a <code>user@host</code> format.</p>
+</li>
+</ul>
 
 <div class="relative group">
-  <h3 id="username">Username</h3>
+  <h2 id="store-configuration">Store configuration</h2>
   
   <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#username" aria-label="Anchor">#</a>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#store-configuration" aria-label="Anchor">#</a>
   </span>
   
 </div>
-<p>The SFTP username to authenticate as on the remote machine. This field cannot be
-used if the hostname already includes a <code>user@host</code> format.</p>
+<p>The following extra settings are available when configuring a store app.</p>
+<ul>
+<li><strong>Kloset Passphrase</strong>: The passphrase Plakar Control Plane uses to encrypt the
+store. This passphrase is required to access the store and must be kept safe.</li>
+</ul>
+
+<div class="relative group">
+  <h2 id="destination-configuration">Destination configuration</h2>
+  
+  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
+    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#destination-configuration" aria-label="Anchor">#</a>
+  </span>
+  
+</div>
+<p>The following extra settings are available when configuring a destination app.</p>
+<ul>
+<li><strong>Set Owner</strong>: Sets the owner and group of restored files to match the
+original snapshot. Requires the SSH user configured for PCP to have superuser
+permissions on the remote machine.</li>
+</ul>
 
 <div class="relative group">
   <h2 id="permissions">Permissions</h2>
@@ -6149,18 +6146,19 @@ rather than reusing personal credentials.</p>
     <div class="toc-content text-neutral-600">
       <nav id="TableOfContents">
   <ul>
-    <li><a href="#setting-up-a-self-managed-inventory">Setting up a self-managed inventory</a></li>
-    <li><a href="#adding-sftp-as-a-resource">Adding SFTP as a resource</a></li>
-    <li><a href="#backup-flow">Backup flow</a></li>
-    <li><a href="#restore-flow">Restore flow</a></li>
-    <li><a href="#configuration">Configuration</a>
+    <li><a href="#inventory-management">Inventory Management</a>
       <ul>
-        <li><a href="#port">Port</a></li>
-        <li><a href="#root">Root</a></li>
-        <li><a href="#ssh-private-key">SSH Private Key</a></li>
-        <li><a href="#username">Username</a></li>
+        <li><a href="#adding-sftp-as-a-resource">Adding SFTP as a resource</a>
+          <ul>
+            <li><a href="#backup-flow">Backup flow</a></li>
+            <li><a href="#restore-flow">Restore flow</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
+    <li><a href="#shared-configuration">Shared configuration</a></li>
+    <li><a href="#store-configuration">Store configuration</a></li>
+    <li><a href="#destination-configuration">Destination configuration</a></li>
     <li><a href="#permissions">Permissions</a></li>
   </ul>
 </nav>

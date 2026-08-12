@@ -46,6 +46,8 @@
 
 ## [Plakar Integrations](https://plakar.io/integrations/index.md)
 
+- [Microsoft SQL Server](https://plakar.io/integrations/mssql/index.md): Protect Microsoft SQL Server against accidental deletion, ransomware, and failed maintenance without taking the database offline to back it up. Plakar captures a consistent snapshot of a live SQL Server installation and restores it with confidence, on the original server or a new one.
+
 - [Microsoft Active Directory](https://plakar.io/integrations/msad/index.md): Protect Active Directory against the scenario replication can't fix: no  healthy Domain Controller left to recover from. Plakar captures encrypted  System State backups of Domain Controllers while they're healthy, ready to  bring Active Directory back after hardware failure, corruption, or ransomware.
 
 - [Vault](https://plakar.io/integrations/vault/index.md): Back up and restore a HashiCorp Vault cluster's secrets. Plakar exports a Vault cluster into an encrypted, deduplicated Kloset snapshot and restores it back to the same cluster or a freshly provisioned one.
