@@ -4,6 +4,7 @@
 
 {{ $latest := .Site.Params.docs.latestVersion }}
 {{ $nestorRocket := resources.Get "img/nestor/nestor-rocket.png" }}
+{{ $gradientBlue := resources.Get "img/general/gradient-blue.png" }}
 
 {{/* --- OSS Plakar versions --- */}}
 {{ $raw := where site.RegularPages "Section" "download" }}
@@ -28,7 +29,7 @@
 {{ $cpPage := site.GetPage "/download/control-plane" }}
 
 <!-- Rocket banner -->
-<section class="section-gradient-blue-1 pt-26">
+<section class="pt-26 text-neutral-50" style="background-image: url('{{ $gradientBlue.RelPermalink }}'); background-size: 100% 100%; background-repeat: no-repeat; background-position: center;">
   <div class="max-w-350 mx-auto flex justify-center items-end">
     <img src="{{ $nestorRocket.RelPermalink }}" alt="Nestor rocket" class="w-full max-h-50 md:max-h-112 object-contain object-top">
   </div>
@@ -196,7 +197,21 @@
     <!-- Per-version download panels -->
     {{ range $versions }}
       {{ $version := .Params.version }}
+      {{ $docsVersion := default $version .Params.docs_version }}
+      {{ $installPage := site.GetPage (printf "/docs/community/%s/quickstart/installation" $docsVersion) }}
       <div class="version-panel" data-version="{{ $version }}" style="display:none;">
+        {{ with $installPage }}
+          <div class="flex items-center justify-between gap-4 flex-wrap p-4 mb-6 bg-primary-50 border border-primary-200 rounded-lg">
+            <div class="flex items-center gap-3">
+              <span class="w-5 h-5 shrink-0 text-primary-600">{{ partial "icon.html" "ri/terminal-box-line" }}</span>
+              <span class="text-neutral-800">Prefer package managers such as apt, dnf, or Homebrew, or an OS-specific setup? See the full installation guide.</span>
+            </div>
+            <a href="{{ .RelPermalink }}" class="shrink-0 text-primary-600 font-medium hover:underline">
+              View installation guide →
+            </a>
+          </div>
+        {{ end }}
+
         {{ if .Params.downloads }}
           <div class="overflow-x-auto rounded-lg">
             <table class="w-full">
