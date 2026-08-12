@@ -5,6 +5,7 @@
 <!-- JS: assets/js/main/home-sections.js -->
 
 {{ $gradientOrange := resources.Get "img/general/gradient-orange.png" }}
+{{ $gradientBlue := resources.Get "img/general/gradient-blue.png" }}
 
 <!-- Hero v2 -->
 <!-- JS: assets/js/main/home-hero.js -->
@@ -795,7 +796,7 @@
 </section>
 
 <!-- Newsletter -->
-<section class="section-gradient-blue-1 overflow-hidden py-14 lg:py-28">
+<section class="overflow-hidden py-14 lg:py-28 text-neutral-50" style="background-image: url('{{ $gradientBlue.RelPermalink }}'); background-size: 100% 100%; background-repeat: no-repeat; background-position: center;">
   <div class="max-w-350 mx-auto px-4 flex flex-col lg:flex-row-reverse gap-16 items-start">
 
     <div class="lg:w-1/2 flex flex-col gap-8">

@@ -4,6 +4,7 @@
 
 {{ $latest := .Site.Params.docs.latestVersion }}
 {{ $nestorRocket := resources.Get "img/nestor/nestor-rocket.png" }}
+{{ $gradientBlue := resources.Get "img/general/gradient-blue.png" }}
 
 {{/* --- OSS Plakar versions --- */}}
 {{ $raw := where site.RegularPages "Section" "download" }}
@@ -28,7 +29,7 @@
 {{ $cpPage := site.GetPage "/download/control-plane" }}
 
 <!-- Rocket banner -->
-<section class="section-gradient-blue-1 pt-26">
+<section class="pt-26 text-neutral-50" style="background-image: url('{{ $gradientBlue.RelPermalink }}'); background-size: 100% 100%; background-repeat: no-repeat; background-position: center;">
   <div class="max-w-350 mx-auto flex justify-center items-end">
     <img src="{{ $nestorRocket.RelPermalink }}" alt="Nestor rocket" class="w-full max-h-50 md:max-h-112 object-contain object-top">
   </div>
