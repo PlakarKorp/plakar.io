@@ -7,30 +7,30 @@ summary: "How to configure SFTP resource in Plakar Control Plane."
 
 # SFTP
 
-SFTP resources represent remote machines accessible over SSH/SFTP. SFTP does not
-support automatic inventory discovery in Plakar Control Plane. You need to set
-up a [self-managed inventory](../../infrastructure/inventories/self-managed)
-before adding an SFTP resource.
+The SFTP integration allows Plakar Control Plane to back up and restore files on
+any remote machine reachable over SSH. Plakar connects to the remote machine
+over SSH and reads or writes files directly under the configured root path using
+SFTP.
 
-## Setting up a self-managed inventory
+## Inventory Management
 
-You can create a self-managed inventory to manage your SFTP resources by
-providing a name for it. Read the
-[self-managed inventory](../../infrastructure/inventories/self-managed)
-documentation for more information.
+Currently no
+[managed inventory](../../infrastructure/inventories#managed-inventories) has
+the capability of discovering SFTP resources. You need to set up a
+[self-managed inventory](../../infrastructure/inventories/self-managed) before
+adding an SFTP resource.
 
-## Adding SFTP as a resource
+### Adding SFTP as a resource
 
 When using a self-managed inventory, you must register your resources manually
 or import them from a CSV file.
 
 To add an SFTP machine as a resource, use **Compute** as the `class`. SFTP
-resources do not require a subclass. For the endpoint, use the IP address of the
-target machine.
+resources do not require a subclass. For the endpoint, use the IP address or
+hostname of the target machine. See [resources documentation](../../resources)
+for more information on how to set up resources on a self-managed inventory.
 
-![](../images/add-sftp-resource.png)
-
-## Backup flow
+#### Backup flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -52,7 +52,7 @@ flowchart TD
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-## Restore flow
+#### Restore flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -74,40 +74,44 @@ flowchart TD
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-## Configuration
+## Shared configuration
 
-SFTP resources can be configured using a source, store, or destination app. When
-setting up the app, select `sftp` from the integration dropdown.
+The following settings are available when configuring a source, store, or
+destination app.
 
-### Port
+- **Port**: The TCP/UDP port number the SSH service is listening on. Defaults to
+  `22`.
+- **Root**: The absolute filesystem path to use as the root for backup
+  operations. Defaults to `/`.
+- **Ssh Private Key**: SSH private key material (PEM/OpenSSH) to load into
+  `ssh-agent` via `ssh-add` (not supported on Windows). Generate a dedicated SSH
+  keypair for PCP and add the public key to the remote machine's authorized keys
+  before configuring this field, then copy the private key in full, including
+  the header and footer lines, into this field:
 
-The TCP/UDP port number the SSH service is listening on. Defaults to `22`.
+  ```txt
+  -----BEGIN OPENSSH PRIVATE KEY-----
+  ...
+  -----END OPENSSH PRIVATE KEY-----
+  ```
 
-### Root
+- **Username**: The SFTP username to authenticate as on the remote machine. This
+  field cannot be used if the hostname already includes a `user@host` format.
 
-The absolute filesystem path to use as the root for backup operations. Defaults
-to `/`.
+## Store configuration
 
-### SSH Private Key
+The following extra settings are available when configuring a store app.
 
-To authenticate with the remote machine, PCP uses SSH key-based authentication.
-You need to generate a dedicated SSH keypair for PCP and add the public key to
-the remote machine's authorized keys before configuring this field.
+- **Kloset Passphrase**: The passphrase Plakar Control Plane uses to encrypt the
+  store. This passphrase is required to access the store and must be kept safe.
 
-Once the public key is on the remote machine, copy the private key and use it
-into this field. The key should be added in full including the header and footer
-lines.
+## Destination configuration
 
-```txt
------BEGIN OPENSSH PRIVATE KEY-----
-...
------END OPENSSH PRIVATE KEY-----
-```
+The following extra settings are available when configuring a destination app.
 
-### Username
-
-The SFTP username to authenticate as on the remote machine. This field cannot be
-used if the hostname already includes a `user@host` format.
+- **Set Owner**: Sets the owner and group of restored files to match the
+  original snapshot. Requires the SSH user configured for PCP to have superuser
+  permissions on the remote machine.
 
 ## Permissions
 
