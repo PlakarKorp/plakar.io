@@ -42,6 +42,10 @@ up and restoring the appliance, and viewing system logs.
 
 
 
+## [Two-factor authentication](https://plakar.io/docs/control-plane/administration/two-factor-authentication/index.md)
+
+
+
 ## [Managing Organizations](https://plakar.io/docs/control-plane/administration/organizations/index.md)
 
 

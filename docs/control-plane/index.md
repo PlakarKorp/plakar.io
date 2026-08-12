@@ -54,6 +54,7 @@
 - [Backup and Restore](https://plakar.io/docs/control-plane/administration/backup-and-restore/index.md): How to back up and restore the Plakar Control Plane configuration and data.
 - [Configuration Bundles](https://plakar.io/docs/control-plane/administration/configuration-bundles/index.md): How to use configuration bundles to share credentials and settings across resources.
 - [Managing Users](https://plakar.io/docs/control-plane/administration/users/index.md): Manage users and application identities in Plakar Control Plane.
+- [Two-factor authentication](https://plakar.io/docs/control-plane/administration/two-factor-authentication/index.md): Secure your Plakar Control Plane account with two-factor authentication.
 - [Managing Organizations](https://plakar.io/docs/control-plane/administration/organizations/index.md): Organize and isolate resources, configuration, and administration within Plakar Control Plane.
 
 
