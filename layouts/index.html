@@ -6,9 +6,11 @@
 
 {{ $gradientOrange := resources.Get "img/general/gradient-orange.png" }}
 {{ $gradientBlue := resources.Get "img/general/gradient-blue.png" }}
+{{ $nestorV2 := resources.Get "img/nestor/nestor-v2.svg" }}
+{{ $cncfLogo := resources.Get "img/community/cncf-member-silver-color.svg" }}
+{{ $lfLogo := resources.Get "img/community/lf-member-level-silver.svg" }}
+{{ $sylvaLogo := resources.Get "img/community/sylva-logo.svg" }}
 
-<!-- Hero v2 -->
-<!-- JS: assets/js/main/home-hero.js -->
 <section class="section-light-2 grid-background pt-24 relative overflow-hidden">
   <div class="px-4 pt-16 pb-20 max-w-350 mx-auto relative z-10">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
@@ -29,14 +31,21 @@
           your entire resilience posture, with backups defined by hand or <span class="text-primary-500 font-semibold whitespace-nowrap">as code</span>, from one place.
         </p>
         <div class="flex flex-wrap gap-3">
-          <a href="/docs/community/v1.1.0/quickstart/first-backup/"
-             class="inline-flex items-center gap-2 px-5 py-3 text-sm sm:px-6 sm:py-3.5 sm:text-[15px] font-semibold rounded-lg bg-primary-500 text-white hover:bg-primary-600 transition-colors no-underline">
-            Get started
-          </a>
-          <a href="#"
-             class="inline-flex items-center gap-2 px-5 py-3 text-sm sm:px-6 sm:py-3.5 sm:text-[15px] font-semibold rounded-lg bg-white border border-neutral-300 text-neutral-900 hover:border-neutral-400 hover:bg-neutral-50 transition-colors no-underline book-a-demo-modal-open">
-            Book a demo
-          </a>
+          {{ partial "components/buttons/base-button.html" (dict
+            "label" "Get started"
+            "labelShort" "Start"
+            "href" "/docs/community/v1.1.0/quickstart/first-backup/"
+          ) }}
+          {{ partial "components/buttons/base-button.html" (dict
+            "label" "Book a demo"
+            "labelShort" "Demo"
+            "class" "book-a-demo-modal-open"
+            "bgColor" "bg-white"
+            "bgHoverColor" "bg-neutral-50"
+            "textColor" "text-neutral-900"
+            "border" "border"
+            "borderColor" "border-neutral-300"
+          ) }}
         </div>
       </div>
 
@@ -54,7 +63,7 @@
           </div>
 
           <!-- demo body -->
-          <div class="relative h-[500px] overflow-hidden">
+          <div class="relative h-125 overflow-hidden">
             <!-- header row -->
             <div class="flex items-center justify-between px-4 py-2.5 border-b border-slate-100">
               <div class="flex items-center gap-2">
@@ -91,7 +100,7 @@
                 <p class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold">Apps on app-server-01</p>
                 <!-- GitLab -->
                 <div class="flex items-center gap-3 bg-white rounded-lg border border-slate-200 px-3 py-2">
-                  <span class="w-[18px] h-[18px] shrink-0">__GITLAB__</span>
+                  <span class="w-4.5 h-4.5 shrink-0">__GITLAB__</span>
                   <div class="flex-1 min-w-0">
                     <p class="text-sm font-medium text-slate-800">GitLab</p>
                     <p class="text-[11px] text-slate-500">Policies: <span class="text-slate-700 font-medium">Production, Operation</span></p>
@@ -107,7 +116,7 @@
                 </div>
                 <!-- MySQL -->
                 <div class="flex items-center gap-3 bg-white rounded-lg border border-slate-200 px-3 py-2">
-                  <span class="w-[18px] h-[18px] shrink-0">__MYSQL__</span>
+                  <span class="w-4.5 h-4.5 shrink-0">__MYSQL__</span>
                   <div class="flex-1 min-w-0">
                     <p class="text-sm font-medium text-slate-800">MySQL</p>
                     <p class="text-[11px] text-slate-500">Policies: <span class="text-slate-700 font-medium">Production, Compliance</span></p>
@@ -116,7 +125,7 @@
                 </div>
                 <!-- S3 -->
                 <div class="flex items-center gap-3 bg-white rounded-lg border border-slate-200 px-3 py-2">
-                  <span class="w-[18px] h-[18px] shrink-0">__S3__</span>
+                  <span class="w-4.5 h-4.5 shrink-0">__S3__</span>
                   <div class="flex-1 min-w-0">
                     <p class="text-sm font-medium text-slate-800">S3</p>
                     <p class="text-[11px] text-slate-500">Policies: <span class="text-slate-700 font-medium">Operation</span></p>
@@ -128,37 +137,37 @@
 
             <!-- static rows -->
             <div class="hv2-d-row flex items-center px-4 py-2.5 text-sm border-b border-slate-100">
-              <span class="flex-1 flex items-center gap-1.5 pl-[18px]"><span class="font-medium text-slate-800">db-primary</span></span>
+              <span class="flex-1 flex items-center gap-1.5 pl-4.5"><span class="font-medium text-slate-800">db-primary</span></span>
               <span class="w-24 text-xs text-slate-500">RDS</span>
               <span class="w-20 flex items-center gap-1">__PG__</span>
               <span class="w-24 text-right text-[11px] font-medium text-emerald-600">Protected</span>
             </div>
             <div class="hv2-d-row flex items-center px-4 py-2.5 text-sm border-b border-slate-100">
-              <span class="flex-1 flex items-center gap-1.5 pl-[18px]"><span class="font-medium text-slate-800">web-server-01</span></span>
+              <span class="flex-1 flex items-center gap-1.5 pl-4.5"><span class="font-medium text-slate-800">web-server-01</span></span>
               <span class="w-24 text-xs text-slate-500">EC2</span>
               <span class="w-20 flex items-center gap-1">__SFTP__ __FS__</span>
               <span class="w-24 text-right text-[11px] font-medium text-emerald-600">Protected</span>
             </div>
             <div class="hv2-d-row flex items-center px-4 py-2.5 text-sm border-b border-slate-100">
-              <span class="flex-1 flex items-center gap-1.5 pl-[18px]"><span class="font-medium text-slate-800">cache-redis</span></span>
+              <span class="flex-1 flex items-center gap-1.5 pl-4.5"><span class="font-medium text-slate-800">cache-redis</span></span>
               <span class="w-24 text-xs text-slate-500">ElastiCache</span>
               <span class="w-20 flex items-center gap-1">__REDIS__</span>
               <span class="w-24 text-right text-[11px] font-medium text-amber-600">Not protected</span>
             </div>
             <div class="hv2-d-row flex items-center px-4 py-2.5 text-sm border-b border-slate-100">
-              <span class="flex-1 flex items-center gap-1.5 pl-[18px]"><span class="font-medium text-slate-800">object-store-eu</span></span>
+              <span class="flex-1 flex items-center gap-1.5 pl-4.5"><span class="font-medium text-slate-800">object-store-eu</span></span>
               <span class="w-24 text-xs text-slate-500">S3</span>
               <span class="w-20 flex items-center gap-1">__S3__</span>
               <span class="w-24 text-right text-[11px] font-medium text-emerald-600">Protected</span>
             </div>
             <div class="hv2-d-row flex items-center px-4 py-2.5 text-sm border-b border-slate-100">
-              <span class="flex-1 flex items-center gap-1.5 pl-[18px]"><span class="font-medium text-slate-800">analytics-mongo</span></span>
+              <span class="flex-1 flex items-center gap-1.5 pl-4.5"><span class="font-medium text-slate-800">analytics-mongo</span></span>
               <span class="w-24 text-xs text-slate-500">EC2</span>
               <span class="w-20 flex items-center gap-1">__MONGO__</span>
               <span class="w-24 text-right text-[11px] font-medium text-emerald-600">Protected</span>
             </div>
             <div class="hv2-d-row flex items-center px-4 py-2.5 text-sm">
-              <span class="flex-1 flex items-center gap-1.5 pl-[18px]"><span class="font-medium text-slate-800">ci-runner-01</span></span>
+              <span class="flex-1 flex items-center gap-1.5 pl-4.5"><span class="font-medium text-slate-800">ci-runner-01</span></span>
               <span class="w-24 text-xs text-slate-500">EC2</span>
               <span class="w-20 flex items-center gap-1">__GITLAB__</span>
               <span class="w-24 text-right text-[11px] font-medium text-amber-600">Not protected</span>
@@ -176,7 +185,7 @@
                 <div class="px-4 py-3">
                   <p class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold mb-1.5">App</p>
                   <div class="flex items-center gap-2.5 px-3 py-2 bg-slate-50 rounded-lg mb-3">
-                    <span class="w-[18px] h-[18px]">__GITLAB__</span>
+                    <span class="w-4.5 h-4.5">__GITLAB__</span>
                     <div class="min-w-0">
                       <p class="text-sm font-medium text-slate-800">GitLab</p>
                       <p class="text-[11px] text-slate-400">Policies: Production, Operation · app-server-01</p>
@@ -333,7 +342,7 @@
           <p class="text-2xl font-extrabold tracking-tight text-neutral-900 mb-3">Radically efficient, by design.</p>
           <p class="text-[15px] text-neutral-600 leading-relaxed">Plakar <span class="text-primary-500 font-semibold">deduplicates and compresses</span> everything before it leaves your system, collapsing the storage and egress overhead that makes legacy backup so expensive. Protecting the whole estate costs <span class="text-primary-500 font-semibold">a fraction of what traditional tools charge</span>, so you never have to choose what to leave unprotected.</p>
         </div>
-        <div class="rounded-xl border border-neutral-200 bg-gradient-to-br from-primary-50 to-neutral-100 p-4 sm:p-6 lg:p-8 min-h-[300px] flex flex-col items-center justify-center gap-5">
+        <div class="rounded-xl border border-neutral-200 bg-linear-to-br from-primary-50 to-neutral-100 p-4 sm:p-6 lg:p-8 min-h-75 flex flex-col items-center justify-center gap-5">
           <div class="flex items-center gap-5">
             <div class="flex flex-col gap-2">
               <span class="text-[10px] font-bold uppercase tracking-wider text-neutral-400">2 snapshots</span>
@@ -356,7 +365,7 @@
           <p class="text-2xl font-extrabold tracking-tight text-neutral-900 mb-3">Zero-trust, and tamperproof.</p>
           <p class="text-[15px] text-neutral-600 leading-relaxed">Your backups are <span class="text-primary-500 font-semibold">encrypted before they ever leave your system</span>, so not even the storage provider can read them. On object-lock storage they're <span class="text-primary-500 font-semibold">immutable</span>: ransomware and rogue operators can't alter or delete them. Whoever reaches your backups finds only ciphertext they can't touch.</p>
         </div>
-        <div class="rounded-xl border border-neutral-200 bg-gradient-to-br from-primary-50 to-neutral-100 p-4 sm:p-6 min-h-[300px] flex items-center justify-center">
+        <div class="rounded-xl border border-neutral-200 bg-linear-to-br from-primary-50 to-neutral-100 p-4 sm:p-6 min-h-75 flex items-center justify-center">
           <div class="w-full max-w-sm bg-neutral-900 rounded-xl border border-neutral-700 overflow-hidden shadow-xl">
             <div class="px-4 py-2.5 border-b border-neutral-700 flex items-center gap-2">
               <svg class="w-3.5 h-3.5 text-neutral-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24M1 1l22 22"/></svg>
@@ -381,7 +390,7 @@
           <p class="text-2xl font-extrabold tracking-tight text-neutral-900 mb-3">Your data, never held hostage.</p>
           <p class="text-[15px] text-neutral-600 leading-relaxed">Autonomy is more than open source: it's the guarantee that a usable copy of your data always stays <span class="text-primary-500 font-semibold">under your control</span>, ready to restore or move without asking anyone's permission. <span class="text-secondary-500 font-semibold">Open under a permissive license</span>, self-hostable everywhere, and stored in a non-proprietary format, Plakar turns that control into <span class="text-primary-500 font-semibold">real leverage</span>. Switch SaaS or cloud providers on your terms, and choose exactly where your data resides to meet local regulation. No appliance lock-in, no vendor-mediated recovery path.</p>
         </div>
-        <div class="rounded-xl border border-neutral-200 bg-gradient-to-br from-primary-50 to-neutral-100 p-4 sm:p-6 lg:p-8 min-h-[300px] flex flex-col items-center justify-center gap-4">
+        <div class="rounded-xl border border-neutral-200 bg-linear-to-br from-primary-50 to-neutral-100 p-4 sm:p-6 lg:p-8 min-h-75 flex flex-col items-center justify-center gap-4">
           <!-- the asset you hold -->
           <div class="bg-white border-2 border-primary-500 rounded-xl px-5 py-3.5 text-center shadow-sm">
             <div class="flex items-center justify-center gap-2 text-sm font-bold text-neutral-900">&#128274; Your encrypted snapshot</div>
@@ -411,7 +420,7 @@
           <p class="text-2xl font-extrabold tracking-tight text-neutral-900 mb-3">Cloud-native resilience, as code.</p>
           <p class="text-[15px] text-neutral-600 leading-relaxed">Plakar's operator turns Kubernetes into the control plane for <span class="text-primary-500 font-semibold">the resilience layer of your entire estate</span>, not just your clusters. Define backup, retention, replication, and recovery policies as Kubernetes CRDs, Terraform resources, or Ansible playbooks. <span class="text-primary-500 font-semibold">Version them in Git, reconcile state continuously.</span></p>
         </div>
-        <div class="rounded-xl border border-neutral-200 bg-gradient-to-br from-primary-50 to-neutral-100 p-4 sm:p-6 lg:p-8 min-h-[300px] flex flex-col items-center justify-center gap-3">
+        <div class="rounded-xl border border-neutral-200 bg-linear-to-br from-primary-50 to-neutral-100 p-4 sm:p-6 lg:p-8 min-h-75 flex flex-col items-center justify-center gap-3">
           <pre class="bg-neutral-900 text-neutral-100 rounded-xl px-5 py-4 font-mono text-[12.5px] leading-relaxed w-full max-w-sm overflow-x-auto"><span class="text-sky-300">apiVersion:</span> <span class="text-green-300">task.plakar.io/v1alpha1</span>
 <span class="text-sky-300">kind:</span> <span class="text-green-300">ScheduleBackup</span>
 <span class="text-sky-300">spec:</span>
@@ -430,7 +439,7 @@
           <p class="text-2xl font-extrabold tracking-tight text-neutral-900 mb-3">Programmatic by design, for humans and AI.</p>
           <p class="text-[15px] text-neutral-600 leading-relaxed">As more code is written and operated by AI, how easily a tool can be driven matters as much as what it does. Plakar is <span class="text-primary-500 font-semibold">programmatic by design</span>: every action is exposed through a clean <span class="text-primary-500 font-semibold">SDK, CLI, and API</span>, so an agent can snapshot the data it works with and restore it the instant something breaks. Docs and source are built to be read, so agents and people drive it right.</p>
         </div>
-        <div class="rounded-xl border border-neutral-200 bg-gradient-to-br from-primary-50 to-neutral-100 p-4 sm:p-6 min-h-[300px] flex items-center justify-center">
+        <div class="rounded-xl border border-neutral-200 bg-linear-to-br from-primary-50 to-neutral-100 p-4 sm:p-6 min-h-75 flex items-center justify-center">
           <div class="w-full max-w-sm bg-neutral-900 rounded-xl border border-neutral-700 overflow-hidden shadow-xl">
             <div class="px-4 py-2.5 border-b border-neutral-700 flex items-center gap-2">
               <span class="text-base leading-none">🤖</span>
@@ -626,8 +635,13 @@
       </div>
     </div>
 
-    <div class="text-center mt-9">
-      <a href="/integrations/" class="inline-flex items-center gap-2 px-5 py-3 text-sm sm:px-6 sm:py-3.5 sm:text-[15px] font-semibold rounded-lg bg-primary-500 text-white hover:bg-primary-600 transition-colors no-underline">View all integrations →</a>
+    <div class="flex justify-center mt-9">
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "View all integrations"
+        "labelShort" "Integrations"
+        "href" "/integrations/"
+        "icon" "ri/arrow-right-line"
+      ) }}
     </div>
   </div>
 </section>
@@ -639,11 +653,19 @@
       <h2 class="text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-white">
         Teams already trust Plakar.
       </h2>
-      <a href="https://discord.gg/uuegtnF2Q5" target="_blank" rel="noopener"
-         class="inline-flex items-center gap-2.5 mt-6 px-5 py-3 text-sm sm:px-6 sm:py-3.5 sm:text-[15px] font-semibold rounded-lg bg-white text-primary-600 hover:bg-neutral-100 transition-colors no-underline">
-        <span class="block w-[18px] h-[18px]">{{ partial "icon.html" "discord" }}</span>
-        Join us on Discord
-      </a>
+      <div class="flex justify-center mt-6">
+        {{ partial "components/buttons/base-button.html" (dict
+          "label" "Join us on Discord"
+          "labelShort" "Discord"
+          "href" "https://discord.gg/uuegtnF2Q5"
+          "target" "_blank"
+          "icon" "discord"
+          "bgColor" "bg-white"
+          "bgHoverColor" "bg-neutral-100"
+          "textColor" "text-primary-600"
+          "textHoverColor" "text-primary-600"
+        ) }}
+      </div>
     </div>
     <div class="columns-1 md:columns-2 lg:columns-3 gap-4 max-w-5xl mx-auto">
       <a href="https://www.reddit.com/r/kubernetes/comments/1shpt9k/rookceph_s3_buckets/off33rf/" target="_blank" rel="noopener" class="block break-inside-avoid bg-white rounded-xl p-5 mb-4 no-underline hover:shadow-lg transition-shadow">
@@ -789,7 +811,7 @@
         </div>
       </div>
       <div class="shrink-0 w-64 mx-auto">
-        <img src="{{ (resources.Get "img/nestor/nestor-v2.svg").RelPermalink }}" alt="Nestor, Plakar's chipmunk mascot, holding Chunky Ptarson" class="w-full h-auto block">
+        <img src="{{ $nestorV2.RelPermalink }}" alt="Nestor, Plakar's chipmunk mascot, holding Chunky Ptarson" class="w-full h-auto block">
       </div>
     </div>
   </div>
@@ -816,9 +838,11 @@
       <form id="newsletter-form-home" class="px-6 py-8 flex flex-col gap-6">
         <input type="email" name="email" placeholder="Your email address" required class="w-full border border-neutral-600 bg-neutral-50 text-neutral-900 placeholder-neutral-500 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary-400">
         <div class="flex justify-end">
-          <button type="submit" class="bg-primary-500 hover:bg-primary-600 text-neutral-50 px-6 py-2 rounded-lg font-medium transition">
-            Subscribe
-          </button>
+          {{ partial "components/buttons/base-button.html" (dict
+            "label" "Subscribe"
+            "icon" "ri/arrow-right-line"
+            "submit" true
+          ) }}
         </div>
       </form>
     </div>
@@ -836,18 +860,31 @@
       The complete engine, free and open source. Organization-wide visibility when you need it. Your keys, your data, your recovery path.
     </p>
     <div class="flex flex-wrap justify-center gap-3 mb-8">
-      <a href="/docs/community/v1.1.0/quickstart/first-backup/" class="inline-flex items-center gap-2 px-5 py-3 text-sm sm:px-6 sm:py-3.5 sm:text-[15px] font-semibold rounded-lg bg-primary-500 text-white hover:bg-primary-600 transition-colors no-underline">Get started</a>
-      <a href="#" class="inline-flex items-center gap-2 px-5 py-3 text-sm sm:px-6 sm:py-3.5 sm:text-[15px] font-semibold rounded-lg bg-neutral-800 border border-neutral-700 text-neutral-50 hover:bg-neutral-700 transition-colors no-underline book-a-demo-modal-open">Book a demo →</a>
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "Get started"
+        "labelShort" "Start"
+        "href" "/docs/community/v1.1.0/quickstart/first-backup/"
+      ) }}
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "Book a demo"
+        "labelShort" "Demo"
+        "class" "book-a-demo-modal-open"
+        "bgColor" "bg-neutral-800"
+        "bgHoverColor" "bg-neutral-700"
+        "textColor" "text-neutral-50"
+        "border" "border"
+        "borderColor" "border-neutral-700"
+      ) }}
     </div>
     <div class="flex items-center justify-center gap-5 flex-wrap">
       <div class="bg-white rounded-xl px-6 py-4 flex items-center justify-center">
-        <img src="{{ (resources.Get "img/community/cncf-member-silver-color.svg").RelPermalink }}" alt="CNCF Silver Member" class="h-12 w-auto">
+        <img src="{{ $cncfLogo.RelPermalink }}" alt="CNCF Silver Member" class="h-12 w-auto">
       </div>
       <div class="bg-white rounded-xl px-6 py-4 flex items-center justify-center">
-        <img src="{{ (resources.Get "img/community/lf-member-level-silver.svg").RelPermalink }}" alt="Linux Foundation Silver Member" class="h-12 w-auto">
+        <img src="{{ $lfLogo.RelPermalink }}" alt="Linux Foundation Silver Member" class="h-12 w-auto">
       </div>
       <div class="bg-white rounded-xl px-6 py-4 flex items-center justify-center">
-        <img src="{{ (resources.Get "img/community/sylva-logo.svg").RelPermalink }}" alt="Sylva project member" class="h-12 w-auto">
+        <img src="{{ $sylvaLogo.RelPermalink }}" alt="Sylva project member" class="h-12 w-auto">
       </div>
     </div>
   </div>
