@@ -6,6 +6,9 @@ on:
       - main
   pull_request:
 
+permissions:
+  contents: read
+
 concurrency:
   group: codespell-${{ github.head_ref || github.ref_name }}
   cancel-in-progress: true
