@@ -281,7 +281,7 @@
     "dateCreated": "2026-07-15T00:00:00\u002b00:00",
     "datePublished": "2026-07-15T00:00:00\u002b00:00",
     
-    "dateModified": "2026-08-13T06:00:31\u002b03:00",
+    "dateModified": "2026-08-13T18:57:11\u002b03:00",
     
     
     
@@ -5902,12 +5902,11 @@
   </span>
   
 </div>
-<p><a href="https://github.com/PlakarKorp/plakar-operator"  target="_blank" rel="noreferrer">plakar-operator</a> is a Kubernetes
-controller that lets you manage Plakar Control Plane (PCP) using Kubernetes
-custom resources instead of the web interface. You describe the
-<a href="/docs/control-plane/apps/" >apps</a> and <a href="/docs/control-plane/operations/scheduling/tasks/" >tasks</a> you want as
-YAML, apply them with <code>kubectl apply</code>, and the operator reconciles them by
-calling the real PCP API on your behalf.</p>
+<p><code>plakar-operator</code> is a Kubernetes controller that lets you manage Plakar Control
+Plane (PCP) using Kubernetes custom resources instead of the web interface. You
+describe the <a href="/docs/control-plane/apps/" >apps</a> and <a href="/docs/control-plane/operations/scheduling/tasks/" >tasks</a>
+you want as YAML, apply them with <code>kubectl apply</code>, and the operator reconciles
+them by calling the real PCP API on your behalf.</p>
 <p>The operator doesn&rsquo;t run PCP and doesn&rsquo;t move any backup data itself. It only
 creates, updates, and reads objects through PCP&rsquo;s API. PCP itself does all the
 <em>real work</em> of doing the actual backup flows. The operator only needs network
