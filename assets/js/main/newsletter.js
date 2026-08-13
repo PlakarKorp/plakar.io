@@ -24,13 +24,24 @@ const submitNewsletter = (formId) => {
       return;
     }
 
+    // Pass the HubSpot tracking cookie so HubSpot attributes this submission to
+    // the visitor's tracked session (Original/Latest Source, e.g. LinkedIn paid).
+    const hutk = document.cookie.match(/(?:^|;\s*)hubspotutk=([^;]+)/)?.[1];
+
     try {
       const res = await fetch(
         `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_NEWSLETTER_PORTAL_ID}/${HUBSPOT_NEWSLETTER_FORM_ID}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ fields: [{ name: "email", value: email }] }),
+          body: JSON.stringify({
+            fields: [{ name: "email", value: email }],
+            context: {
+              ...(hutk ? { hutk } : {}),
+              pageUri: window.location.href,
+              pageName: document.title,
+            },
+          }),
         },
       );
 
