@@ -39,8 +39,8 @@ summary: "Field-by-field reference for every custom resource defined by plakar-o
 # Kubernetes Operator API reference
 
 This page lists every field on every custom resource defined by
-[plakar-operator](https://github.com/PlakarKorp/plakar-operator). For an
-introduction to what these resources are and how to use them, see
+`plakar-operator`. For an introduction to what these resources
+are and how to use them, see
 [Kubernetes Operator](../../infrastructure-as-code/kubernetes-operator).
 
 EOF

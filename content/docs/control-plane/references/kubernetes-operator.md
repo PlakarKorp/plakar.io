@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes Operator"
-date: "2026-08-05T11:58:24Z"
+date: "2026-08-13T15:53:35Z"
 weight: 1
 summary:
   "Field-by-field reference for every custom resource defined by
@@ -9,8 +9,7 @@ summary:
 
 # Kubernetes Operator API reference
 
-This page lists every field on every custom resource defined by
-[plakar-operator](https://github.com/PlakarKorp/plakar-operator). For an
+This page lists every field on every custom resource defined by . For an
 introduction to what these resources are and how to use them, see
 [Kubernetes Operator](../../infrastructure-as-code/kubernetes-operator).
 
