@@ -159,7 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
       applySort(sortBy);
 
       const url = new URL(window.location);
-      if (sortBy === "name") {
+      if (sortBy === "date") {
         url.searchParams.delete("sort");
       } else {
         url.searchParams.set("sort", sortBy);
@@ -182,7 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
   const category = params.get("category") || "all";
   const edition = params.get("edition") || "all";
-  const sort = params.get("sort") || "name";
+  const sort = params.get("sort") || "date";
   applySort(sort);
   applyFilter(category);
   applyEditionFilter(edition);

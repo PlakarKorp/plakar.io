@@ -3,7 +3,7 @@
 
 <!-- JS: assets/js/main/integrations-filter.js -->
 
-{{ $allIntegrations := where .Site.RegularPages "Section" "integrations" }}
+{{ $allIntegrations := (where .Site.RegularPages "Section" "integrations").ByDate.Reverse }}
 {{ $sourceConnectors := where $allIntegrations "Params.categories" "intersect" (slice "source") }}
 {{ $destConnectors := where $allIntegrations "Params.categories" "intersect" (slice "destination") }}
 {{ $storageConnectors := where $allIntegrations "Params.categories" "intersect" (slice "storage") }}
@@ -89,11 +89,11 @@
     <div class="inline-flex items-center gap-2 ml-auto" id="integrations-sort">
       <span class="text-sm text-neutral-500 font-medium">Sort by</span>
       <div class="inline-flex items-center gap-1 bg-neutral-50 rounded-xl p-2">
-        <a data-sort="name" class="sort-btn px-3 py-2 rounded-lg text-sm cursor-pointer transition-all duration-150 text-neutral-700">
-          Name
-        </a>
         <a data-sort="date" class="sort-btn px-3 py-2 rounded-lg text-sm cursor-pointer transition-all duration-150 text-neutral-700">
           Date
+        </a>
+        <a data-sort="name" class="sort-btn px-3 py-2 rounded-lg text-sm cursor-pointer transition-all duration-150 text-neutral-700">
+          Name
         </a>
       </div>
     </div>
