@@ -25,7 +25,8 @@ up and restoring the appliance, and viewing system logs.
 ## [Updating Control Plane](https://plakar.io/docs/control-plane/administration/updating-control-plane/index.md)
 
 - [Updating AWS AMI](https://plakar.io/docs/control-plane/administration/updating-control-plane/aws/index.md): How to update Plakar Control Plane AMI on AWS.
-- [Updating Scaleway](https://plakar.io/docs/control-plane/administration/updating-control-plane/scaleway/index.md): How to update the Plakar Control Plane Scaleway installation image.
+- [Updating Scaleway QCOW2](https://plakar.io/docs/control-plane/administration/updating-control-plane/scaleway/index.md): How to update the Plakar Control Plane Scaleway installation image.
+- [Updating Proxmox ISO](https://plakar.io/docs/control-plane/administration/updating-control-plane/proxmox/index.md): How to update the Plakar Control Plane Proxmox installation image.
 
 
 ## [Backup and Restore](https://plakar.io/docs/control-plane/administration/backup-and-restore/index.md)

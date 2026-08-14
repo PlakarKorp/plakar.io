@@ -53,9 +53,6 @@ Settings page without replacing the EC2 instance or updating the AMI.
 
 Platform-specific infrastructure update procedures are documented separately:
 
-- [Updating AWS deployments](./aws)
-- [Updating OVHcloud deployments](#)
-- [Updating Scaleway deployments](./scaleway)
 
 
 
@@ -65,7 +62,11 @@ Platform-specific infrastructure update procedures are documented separately:
 
 
 
-## [Updating Scaleway](https://plakar.io/docs/control-plane/administration/updating-control-plane/scaleway/index.md)
+## [Updating Scaleway QCOW2](https://plakar.io/docs/control-plane/administration/updating-control-plane/scaleway/index.md)
+
+
+
+## [Updating Proxmox ISO](https://plakar.io/docs/control-plane/administration/updating-control-plane/proxmox/index.md)
 
 
 

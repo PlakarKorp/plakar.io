@@ -281,12 +281,12 @@
     "dateCreated": "2026-05-13T00:00:00\u002b00:00",
     "datePublished": "2026-05-13T00:00:00\u002b00:00",
     
-    "dateModified": "2026-08-14T10:32:36\u002b03:00",
+    "dateModified": "2026-08-14T17:22:04\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://plakar.io/docs/control-plane/administration/updating-control-plane/",
-    "wordCount": "221"
+    "wordCount": "250"
   }]
   </script>
 
@@ -2136,6 +2136,8 @@
   
     
   
+    
+  
   
 
   
@@ -2157,7 +2159,16 @@
       <a href="/docs/control-plane/administration/updating-control-plane/scaleway/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Updating Scaleway
+        Updating Scaleway QCOW2
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/administration/updating-control-plane/proxmox/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Updating Proxmox ISO
       </a>
     
   
@@ -4779,6 +4790,8 @@
   
     
   
+    
+  
   
 
   
@@ -4800,7 +4813,16 @@
       <a href="/docs/control-plane/administration/updating-control-plane/scaleway/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Updating Scaleway
+        Updating Scaleway QCOW2
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/administration/updating-control-plane/proxmox/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Updating Proxmox ISO
       </a>
     
   
@@ -5981,11 +6003,42 @@ deployment platform and distribution method.</p>
 Marketplace. Most application updates can be installed directly from the
 Settings page without replacing the EC2 instance or updating the AMI.</p>
 <p>Platform-specific infrastructure update procedures are documented separately:</p>
-<ul>
-<li><a href="/docs/control-plane/administration/updating-control-plane/aws/" >Updating AWS deployments</a></li>
-<li><a href="" >Updating OVHcloud deployments</a></li>
-<li><a href="/docs/control-plane/administration/updating-control-plane/scaleway/" >Updating Scaleway deployments</a></li>
-</ul>
+
+  <div class="not-prose section-index mt-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <a href="/docs/control-plane/administration/updating-control-plane/aws/" class="group/card flex flex-col justify-between rounded-lg border border-neutral-200 bg-neutral-50 p-4 no-underline hover:border-primary-200 hover:bg-primary-50 transition-all duration-150">
+          <div class="flex items-start justify-between gap-2">
+            <span class="text-base font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors truncate">Updating AWS AMI</span>
+            <span class="w-4 h-4 shrink-0 mt-0.5 text-neutral-300 group-hover/card:text-primary-500 group-hover/card:translate-x-0.5 transition-all duration-150">
+              <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
+</span>
+            </span>
+          </div>
+              <p class="mt-2 text-xs text-neutral-500 leading-snug line-clamp-2">How to update Plakar Control Plane AMI on AWS.</p>
+        </a>
+        <a href="/docs/control-plane/administration/updating-control-plane/scaleway/" class="group/card flex flex-col justify-between rounded-lg border border-neutral-200 bg-neutral-50 p-4 no-underline hover:border-primary-200 hover:bg-primary-50 transition-all duration-150">
+          <div class="flex items-start justify-between gap-2">
+            <span class="text-base font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors truncate">Updating Scaleway QCOW2</span>
+            <span class="w-4 h-4 shrink-0 mt-0.5 text-neutral-300 group-hover/card:text-primary-500 group-hover/card:translate-x-0.5 transition-all duration-150">
+              <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
+</span>
+            </span>
+          </div>
+              <p class="mt-2 text-xs text-neutral-500 leading-snug line-clamp-2">How to update the Plakar Control Plane Scaleway installation image.</p>
+        </a>
+        <a href="/docs/control-plane/administration/updating-control-plane/proxmox/" class="group/card flex flex-col justify-between rounded-lg border border-neutral-200 bg-neutral-50 p-4 no-underline hover:border-primary-200 hover:bg-primary-50 transition-all duration-150">
+          <div class="flex items-start justify-between gap-2">
+            <span class="text-base font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors truncate">Updating Proxmox ISO</span>
+            <span class="w-4 h-4 shrink-0 mt-0.5 text-neutral-300 group-hover/card:text-primary-500 group-hover/card:translate-x-0.5 transition-all duration-150">
+              <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
+</span>
+            </span>
+          </div>
+              <p class="mt-2 text-xs text-neutral-500 leading-snug line-clamp-2">How to update the Plakar Control Plane Proxmox installation image.</p>
+        </a>
+    </div>
+  </div>
+
 
       </article>
       <footer class="mt-12 flex flex-col gap-6 docs-font border-t border-neutral-200 pt-6">
@@ -5993,6 +6046,8 @@ Settings page without replacing the EC2 instance or updating the AMI.</p>
   
   
   
+  
+    
   
     
   
