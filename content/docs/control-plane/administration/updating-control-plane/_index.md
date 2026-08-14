@@ -62,6 +62,4 @@ Settings page without replacing the EC2 instance or updating the AMI.
 
 Platform-specific infrastructure update procedures are documented separately:
 
-- [Updating AWS deployments](./aws)
-- [Updating OVHcloud deployments](#)
-- [Updating Scaleway deployments](./scaleway)
+{{< children description="true" >}}
