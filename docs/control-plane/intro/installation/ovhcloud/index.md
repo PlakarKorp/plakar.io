@@ -1,10 +1,26 @@
 
+
 # OVHcloud Installation
 
-> [!NOTE]
->
-> This documentation is currently being worked on. If you need assistance in the
-> meantime, you can reach out in the Plakar Discord community.
->
-> [Join the Discord server](https://discord.gg/uuegtnF2Q5)
+Plakar Control Plane can be deployed on OVHcloud using either a **Public Cloud
+instance** or a **dedicated server**. The appropriate deployment method depends
+on your infrastructure and resource requirements.
+
+Each guide in this section covers the deployment process for a specific OVHcloud
+environment, including how to deploy the Plakar Control Plane image and
+configure the system before first boot.
+
+
+
+
+
+
+## [Baremetal](https://plakar.io/docs/control-plane/intro/installation/ovhcloud/baremetal/index.md)
+
+
+
+## [Compute Instance](https://plakar.io/docs/control-plane/intro/installation/ovhcloud/instance/index.md)
+
+
+
 

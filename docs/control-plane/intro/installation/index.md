@@ -32,6 +32,8 @@ to activate your instance.
 
 ## [OVHcloud](https://plakar.io/docs/control-plane/intro/installation/ovhcloud/index.md)
 
+- [Baremetal](https://plakar.io/docs/control-plane/intro/installation/ovhcloud/baremetal/index.md): How to install Plakar Control Plane on OVHcloud Baremetal
+- [Compute Instance](https://plakar.io/docs/control-plane/intro/installation/ovhcloud/instance/index.md): How to install Plakar Control Plane on OVHcloud compute instance
 
 
 ## [Scaleway](https://plakar.io/docs/control-plane/intro/installation/scaleway/index.md)
