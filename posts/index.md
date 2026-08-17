@@ -4,6 +4,10 @@
 
 
 
+## [10 Reasons You Need an Independent, Offsite Backup in 2026](https://plakar.io/posts/2026-08-12/independent-backup-reasons/index.md)
+
+
+
 ## [Portable Backups for Managed Postgres with pg_dump and Plakar](https://plakar.io/posts/2026-07-17/portable-backups-for-managed-postgres-with-pgdump-and-plakar/index.md)
 
 

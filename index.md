@@ -6,6 +6,7 @@
 
 ## [Plakar Blog](https://plakar.io/posts/index.md)
 
+- [10 Reasons You Need an Independent, Offsite Backup in 2026](https://plakar.io/posts/2026-08-12/independent-backup-reasons/index.md): Cloud storage isn&rsquo;t a backup strategy. 10 reasons you need an independent, offsite backup you control, from ransomware and rogue AI agents to climate, conflict, and storage cost.
 - [Portable Backups for Managed Postgres with pg_dump and Plakar](https://plakar.io/posts/2026-07-17/portable-backups-for-managed-postgres-with-pgdump-and-plakar/index.md): Managed Postgres backups can&rsquo;t be downloaded. Here&rsquo;s how Plakar wraps pg_dump into encrypted and deduplicated snapshots you can own.
 - [Plakar Control Plane is now on AWS Marketplace: Resilience on your terms](https://plakar.io/posts/2026-07-10/plakar-control-plane-aws-marketplace/index.md): Plakar Control Plane, the self-hosted backup management platform built on open-source Plakar, is now available on AWS Marketplace. Deploy it in your own AWS account in a few clicks; your backup data never leaves your environment.
 - [Introducing the Plakar Control Plane free plan: Open Resilience for everyone, deployed on your terms](https://plakar.io/posts/2026-06-24/introducing-plakar-control-plane-free-plan/index.md): We&rsquo;re launching a free plan for our first commercial product, Plakar Control Plane — a self-hosted backup management platform built on top of open-source Plakar. Fully functional, no time limit, deployed on infrastructure you own.
