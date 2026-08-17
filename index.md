@@ -122,16 +122,6 @@
 - [Plakar v1.1.4](index.md): Download binaries and packages for Plakar v1.1.4. All links are served from plakar.io.
 
 
-## [Legal Notice](https://plakar.io/legal-notice/index.md)
-
-- [Feature and Bug Bounty Program Policy](https://plakar.io/legal-notice/bounty-policy/index.md)
-- [Plakar Bounty Roadmap](https://plakar.io/legal-notice/bounties/index.md)
-
-
-## [Privacy Policy](https://plakar.io/privacy-policy/index.md)
-
-
-
 ## [Branding](https://plakar.io/branding/index.md)
 
 
