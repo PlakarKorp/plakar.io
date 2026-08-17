@@ -15,7 +15,6 @@ tags:
   - ransomware
   - disaster-recovery
   - security
-draft: true
 ---
 
 The cloud didn't repeal the oldest rule in data protection: you need offsite
