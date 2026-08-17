@@ -135,7 +135,7 @@ We process personal data in accordance with the applicable regulations on the
 protection of personal data, including Regulation (EU) 2016/679 (GDPR) and
 French Law No. 78-17 of 6 January 1978. For details on how we collect and
 process personal data through the Site, please refer to our
-[Privacy Policy](/terms/privacy-policy/).
+[Privacy Policy](/legal/privacy-policy/).
 
 ## 12. Changes to these Terms
 

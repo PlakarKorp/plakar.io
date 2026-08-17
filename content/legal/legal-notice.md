@@ -90,7 +90,7 @@ correspondence, providing a subscription, or handling a job application. If
 applicable, Plakar commits to complying with the relevant personal data
 protection regulations.
 
-[https://plakar.io/terms/privacy-policy/](/terms/privacy-policy/)
+[https://plakar.io/legal/privacy-policy/](/legal/privacy-policy/)
 
 ## Cookies
 
@@ -110,4 +110,4 @@ governs the submission of critical software vulnerabilities and specific roadmap
 development contributions. The complete program policy, including terms of
 participation, validation workflows, financial reward grids, and legal safe
 harbor provisions, can be accessed directly at
-[https://plakar.io/terms/bounty-policy/](/terms/bounty-policy/).
+[https://plakar.io/legal/bounty-policy/](/legal/bounty-policy/).
