@@ -1,9 +1,17 @@
 {{ $anchor := anchorize .Anchor }}
-<div class="relative group">
-  <h{{ .Level }} id="{{ $anchor }}">{{ .Text | safeHTML }}</h{{ .Level }}>
-  {{ if .Page.Params.showHeadingAnchors | default (.Page.Site.Params.article.showHeadingAnchors | default true) }}
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#{{ $anchor }}" aria-label="{{ i18n "article.anchor_label" }}">#</a>
-  </span>
+{{ $show := .Page.Params.showHeadingAnchors | default (.Page.Site.Params.article.showHeadingAnchors | default true) }}
+<h{{ .Level }} id="{{ $anchor }}" class="group{{ if $show }} pr-8{{ end }}">
+  {{- .Text | safeHTML -}}
+  {{ if $show }}
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="{{ $anchor }}"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5">{{ partial "icon.html" "ri/links-line" }}</span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden">{{ partial "icon.html" "ri/check-line" }}</span>
+    </button>
   {{ end }}
-</div>
+</h{{ .Level }}>
