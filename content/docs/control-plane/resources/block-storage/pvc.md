@@ -61,7 +61,9 @@ The following settings are available when configuring a source app using the
 
 - **Kubeconfig**: Required. Upload a kube config YAML file or paste its contents
   directly.
-- **Kubelet Image**: The container image used for the helper pod.
+- **Kubelet Image**: The container image used for the helper pod. Leave this
+  unset. It exists only so that Plakar support can supply a replacement image
+  while diagnosing a problem, and a working deployment never needs it.
 - **Volume Snapshot Class**: Required. The name of the `VolumeSnapshotClass` to
   use when creating the CSI snapshot.
 
@@ -131,4 +133,6 @@ destination apps using the `k8s+pvc` protocol.
 
 - **Kubeconfig**: Required. Upload a kube config YAML file or paste its contents
   directly.
-- **Kubelet Image**: The container image used for the helper pod.
+- **Kubelet Image**: The container image used for the helper pod. Leave this
+  unset. It exists only so that Plakar support can supply a replacement image
+  while diagnosing a problem, and a working deployment never needs it.
