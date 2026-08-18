@@ -90,7 +90,8 @@ packages, then click **Update**. Leave the field empty to use the default
 `plakar.io` repository.
 
 For air-gapped deployments, see [air-gapped enrollment](../intro/air-gapped) for
-the complete enrollment process and [hosting a package repository](#) for
+the complete enrollment process and
+[hosting a package repository](../../guides/self-hosted-package-repository) for
 instructions on setting up a local repository.
 
 ## Webhook
