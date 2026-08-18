@@ -40,6 +40,10 @@
 
 
 
+## [Kubernetes](https://plakar.io/integrations/kubernetes/index.md)
+
+
+
 ## [etcd](https://plakar.io/integrations/etcd/index.md)
 
 
@@ -117,10 +121,6 @@
 
 
 ## [Tar](https://plakar.io/integrations/tar/index.md)
-
-
-
-## [Kubernetes](https://plakar.io/integrations/kubernetes/index.md)
 
 
 

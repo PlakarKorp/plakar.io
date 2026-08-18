@@ -14,4 +14,8 @@ instances. Plakar Control Plane supports the following block storage resources:
 
 
 
+## [Kubernetes PVC](https://plakar.io/docs/control-plane/resources/block-storage/pvc/index.md)
+
+
+
 

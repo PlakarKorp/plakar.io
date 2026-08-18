@@ -83,6 +83,7 @@ required to use each one as a source, store, or destination.
 ## [Block Storage](https://plakar.io/docs/control-plane/resources/block-storage/index.md)
 
 - [Scaleway Block Storage](https://plakar.io/docs/control-plane/resources/block-storage/scaleway/index.md): How to configure a Scaleway block storage resource in Plakar Control Plane.
+- [Kubernetes PVC](https://plakar.io/docs/control-plane/resources/block-storage/pvc/index.md): How to configure a Kubernetes PersistentVolumeClaim resource in Plakar Control Plane.
 
 
 ## [Compute](https://plakar.io/docs/control-plane/resources/compute/index.md)
