@@ -54,6 +54,10 @@ links:
     url: /docs/community/main/integrations/kubernetes/
   - type: control-plane
     url: /docs/control-plane/resources/block-storage/pvc
+  - type: custom
+    label: "Blog: Backing up kubernetes clusters with Plakar"
+    url: /posts/2026-02-18/backing-up-kubernetes-clusters-with-plakar/
+    icon: ri/article-line
 
 edition:
   - community
