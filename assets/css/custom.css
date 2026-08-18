@@ -230,6 +230,116 @@ table.Nm {
   z-index: 1000;
 }
 
+/* Steps — numbered vertical step list (layouts/shortcodes/steps.html, step.html) */
+.steps {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+  padding-left: var(--steps-gutter);
+  counter-reset: step;
+  overflow: hidden;
+  --steps-gutter: 3rem;
+  --steps-badge-size: 1.75rem;
+  --steps-badge-offset: 0px;
+}
+
+.steps > .step {
+  position: relative;
+  counter-increment: step;
+}
+
+.steps > .step::before,
+.steps > .step > :is(h1, h2, h3, h4, h5, h6):first-child::before {
+  content: counter(step);
+  position: absolute;
+  left: calc(-1 * var(--steps-gutter));
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--steps-badge-size);
+  height: var(--steps-badge-size);
+  border-radius: 9999px;
+  background-color: rgb(var(--color-neutral-200));
+  color: rgb(var(--color-neutral-700));
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.steps > .step::after,
+.steps > .step > :is(h1, h2, h3, h4, h5, h6):first-child::after {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--steps-gutter) + var(--steps-badge-size) / 2);
+  width: 1px;
+  height: 9999px;
+  background-color: rgb(var(--color-neutral-300));
+}
+
+.steps > .step::before {
+  top: 0;
+}
+
+.steps > .step::after {
+  top: calc(var(--steps-badge-size) / 2);
+}
+
+.steps > .step > :is(h1, h2, h3, h4, h5, h6):first-child {
+  position: relative;
+}
+
+.steps > .step > :is(h1, h2, h3, h4, h5, h6):first-child::before {
+  top: 50%;
+  transform: translateY(calc(-50% + var(--steps-badge-offset)));
+}
+
+.steps > .step > :is(h1, h2, h3, h4, h5, h6):first-child::after {
+  top: 50%;
+}
+
+.steps > .step:has(> :is(h1, h2, h3, h4, h5, h6):first-child)::before,
+.steps > .step:has(> :is(h1, h2, h3, h4, h5, h6):first-child)::after {
+  display: none;
+}
+
+.steps > .step > h4:first-child {
+  --steps-badge-offset: -1px;
+}
+
+.steps > .step > h5:first-child {
+  --steps-badge-offset: -1.5px;
+}
+
+.steps > .step > h6:first-child {
+  --steps-badge-offset: -2px;
+}
+
+.steps > .step > :first-child,
+.steps > .step > :is(h1, h2, h3, h4, h5, h6):first-child {
+  margin-top: 0;
+}
+
+.steps > .step > :last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 639px) {
+  .steps {
+    --steps-gutter: 2rem;
+    --steps-badge-size: 1.5rem;
+    gap: 1.25rem;
+  }
+
+  .steps > .step::before,
+  .steps > .step > :is(h1, h2, h3, h4, h5, h6):first-child::before {
+    font-size: 0.75rem;
+  }
+}
+
 @media (hover: none) {
   .heading-anchor {
     opacity: 1;
