@@ -45,8 +45,8 @@ team members, and billing together. Use your company name or team name.
 ## Admin account
 
 You then create an admin account for this specific instance. This is a local
-account on the appliance, separate from the owner email in
-[step 1](#1-owner-email). You can use the same email address or a different one.
+account on the appliance, separate from the [owner email](#owner-email). You can
+use the same email address or a different one.
 
 {{< /step >}}
 

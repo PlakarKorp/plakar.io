@@ -19,12 +19,20 @@ license issued by Plakar in advance, without the instance ever reaching out to
 From the sign-in step of the enrollment process, select **Enroll with an offline
 license bundle** to switch to air-gapped enrollment.
 
+{{< steps >}}
+
+{{< step >}}
+
 ## Getting a license
 
 [Contact us](/contact) to request an offline license for your instance. Once you
 have it, paste it into the enrollment page, or load it directly from the license
 file. The instance validates the license locally, then uses it to create the
 organization and admin account described below.
+
+{{< /step >}}
+
+{{< step >}}
 
 ## Organization and admin account
 
@@ -37,6 +45,10 @@ enroll the instance.
 
 Because there is no owner email verification step in air-gapped mode, the admin
 account created here also acts as the instance owner.
+
+{{< /step >}}
+
+{{< /steps >}}
 
 ## License renewal
 
