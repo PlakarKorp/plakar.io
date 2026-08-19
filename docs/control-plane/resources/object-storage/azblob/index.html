@@ -27,7 +27,7 @@
     
   
   
-    <meta name="description" content="How to configure Azure Azblob resource in Plakar Control Plane.">
+    <meta name="description" content="How to configure an Azure Blob Storage resource in Plakar Control Plane.">
   
   
     <meta name="keywords" content="backup,open-source,deduplication,encryption,plakar,cloud backup,database backup,">
@@ -89,17 +89,17 @@
   <meta property="og:url" content="https://plakar.io/docs/control-plane/resources/object-storage/azblob/">
   <meta property="og:site_name" content="Plakar | The Open Standard for Backup and Restore">
   <meta property="og:title" content="Azure Blob Storage">
-  <meta property="og:description" content="How to configure Azure Azblob resource in Plakar Control Plane.">
+  <meta property="og:description" content="How to configure an Azure Blob Storage resource in Plakar Control Plane.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-06-18T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-08-19T16:21:12+03:00">
+    <meta property="article:modified_time" content="2026-08-19T16:37:23+03:00">
 
   
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Azure Blob Storage">
-  <meta name="twitter:description" content="How to configure Azure Azblob resource in Plakar Control Plane.">
+  <meta name="twitter:description" content="How to configure an Azure Blob Storage resource in Plakar Control Plane.">
 
   
   
@@ -291,12 +291,12 @@
     "dateCreated": "2026-06-18T00:00:00\u002b00:00",
     "datePublished": "2026-06-18T00:00:00\u002b00:00",
     
-    "dateModified": "2026-08-19T16:21:12\u002b03:00",
+    "dateModified": "2026-08-19T16:37:23\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://plakar.io/docs/control-plane/resources/object-storage/azblob/",
-    "wordCount": "511"
+    "wordCount": "607"
   }]
   </script>
 
@@ -6123,18 +6123,14 @@
   
 </h1>
 <p>Azure Blob Storage resources represent container-based object storage hosted on
-Microsoft Azure. Unlike S3-compatible providers, Azure Blob Storage does not
-have a native integration with Plakar Control Plane&rsquo;s inventory discovery. You
-need to set up a
-<a href="/docs/control-plane/infrastructure/inventories/self-managed/" >self-managed inventory</a> before
-adding an Azure Blob Storage resource.</p>
+Microsoft Azure.</p>
 
 
-<h2 id="setting-up-a-self-managed-inventory" class="group pr-8">Setting up a self-managed inventory
+<h2 id="inventory-management" class="group pr-8">Inventory Management
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="setting-up-a-self-managed-inventory"
+      data-anchor="inventory-management"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6145,13 +6141,14 @@ adding an Azure Blob Storage resource.</p>
     </button>
   
 </h2>
-<p>You can create a self managed inventory to manage your Azure resources by just
-providing a name for it, read the
-<a href="/docs/control-plane/infrastructure/inventories/self-managed/" >self managed inventory</a>
-documentation for more information.</p>
+<p>Currently no
+<a href="/docs/control-plane/infrastructure/inventories/#managed-inventories" >managed inventory</a> has
+the capability of discovering Azure Blob Storage resources. You must configure a
+<a href="/docs/control-plane/infrastructure/inventories/self-managed/" >self-managed inventory</a> before
+adding an Azure Blob Storage resource.</p>
 
 
-<h2 id="adding-azure-blob-storage-as-a-resource" class="group pr-8">Adding Azure Blob Storage as a resource
+<h3 id="adding-azure-blob-storage-as-a-resource" class="group pr-8">Adding Azure Blob Storage as a resource
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
@@ -6165,26 +6162,16 @@ documentation for more information.</p>
 </span></span>
     </button>
   
-</h2>
-<p>When using a managed inventory, all resources are automatically discovered for
-you, but for self managed inventory you&rsquo;ll have to register your resources
-manually or import them from a CSV file.</p>
-<p>To add Azure Blob Storage container as a resource, you need to use Object
-Storage as <code>class</code> and Azblob as the <code>subclass</code>. For the endpoint you should use
-the container name. Read the
-<a href="/docs/control-plane/resources/object-storage/azblob/#getting-your-credentials-from-azure" >Getting your credentials from Azure</a> on
-where to get the container name.</p>
-<figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="low"
-    alt=""
-    src="../images/add-azblob-resource.png"
-    ></figure>
+</h3>
+<p>When using a self-managed inventory, register the resource with <code>Object Storage</code>
+as the class and <code>Azblob</code> as the subclass. For the endpoint, use the container
+name. See
+<a href="/docs/control-plane/resources/object-storage/azblob/#getting-your-credentials-from-azure" >Getting your credentials from Azure</a> for
+where to find the container name, and <a href="/docs/control-plane/resources/" >resources documentation</a>
+for more information on how to set up resources on a self-managed inventory.</p>
 
 
-<h2 id="backup-flow" class="group pr-8">Backup flow
+<h4 id="backup-flow" class="group pr-8">Backup flow
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
@@ -6198,7 +6185,7 @@ where to get the container name.</p>
 </span></span>
     </button>
   
-</h2>
+</h4>
 <!-- prettier-ignore-start -->
 <pre class="not-prose mermaid">
 flowchart TD
@@ -6221,7 +6208,7 @@ flowchart TD
 <!-- prettier-ignore-end -->
 
 
-<h2 id="restore-flow" class="group pr-8">Restore flow
+<h4 id="restore-flow" class="group pr-8">Restore flow
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
@@ -6235,7 +6222,7 @@ flowchart TD
 </span></span>
     </button>
   
-</h2>
+</h4>
 <!-- prettier-ignore-start -->
 <pre class="not-prose mermaid">
 flowchart TD
@@ -6258,11 +6245,11 @@ flowchart TD
 <!-- prettier-ignore-end -->
 
 
-<h2 id="configuration" class="group pr-8">Configuration
+<h2 id="shared-configuration" class="group pr-8">Shared Configuration
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="configuration"
+      data-anchor="shared-configuration"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6273,71 +6260,43 @@ flowchart TD
     </button>
   
 </h2>
-<p>Azure Blob Storage resources can be configured using a source, store, or
-destination app.</p>
-
-
-<h3 id="account-name" class="group pr-8">Account Name
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="account-name"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
-<p>The name of the Azure Storage account, for example <code>mystorageaccount</code>.</p>
-
-
-<h3 id="account-key" class="group pr-8">Account Key
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="account-key"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
-<p>The access key used to authenticate with the Azure Storage account.</p>
-
-
-<h3 id="connection-string" class="group pr-8">Connection String
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="connection-string"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
-<p>Optional. The full Azure Blob Storage connection string, for example
+<p>The following settings are available when configuring source, store or
+destination apps.</p>
+<ul>
+<li><strong>Account Name</strong>: The name of the Azure Storage account, for example
+<code>mystorageaccount</code>.</li>
+<li><strong>Account Key</strong>: The access key used to authenticate with the Azure Storage
+account.</li>
+<li><strong>Connection String</strong>: The full Azure Blob Storage connection string, for
+example
 <code>DefaultEndpointsProtocol=https;AccountName=mystorageaccount;AccountKey=...;EndpointSuffix=core.windows.net</code>.
-When provided, this takes precedence over Account Name and Account Key.</p>
+When provided, this takes precedence over Account Name and Account Key.</li>
+<li><strong>Endpoint</strong>: The Azure Blob service URL, for example
+<code>https://mystorageaccount.blob.core.windows.net</code>. Only needed when connecting
+to a non-standard endpoint such as Azurite for local development, or to
+resolve the storage account&rsquo;s service URL when Use Managed Identity is enabled
+without Account Name.</li>
+<li><strong>Managed Identity Client ID</strong>: The client ID of the user-assigned managed
+identity to authenticate with. Only needed when authenticating with a
+user-assigned managed identity; leave unset to use the system-assigned managed
+identity.</li>
+<li><strong>No Auth</strong>: Disables authentication entirely. Only useful for public blobs or
+local emulator setups such as Azurite. Should never be enabled in production.</li>
+<li><strong>Use Managed Identity</strong>: Authenticates with Azure Active Directory using a
+<a href="https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview"  target="_blank" rel="noreferrer">managed identity</a>
+assigned to the environment Plakar Control Plane runs in, instead of an
+account key or connection string. Supports both system-assigned and
+user-assigned identities. It requires <strong>Account Name</strong> or <strong>Endpoint</strong> to be
+set so the storage account&rsquo;s service URL can be resolved, and cannot be
+combined with <strong>Connection String</strong>, <strong>Account Key</strong> or <strong>No Auth</strong>.</li>
+</ul>
 
 
-<h3 id="endpoint" class="group pr-8">Endpoint
+<h2 id="store-configuration" class="group pr-8">Store configuration
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="endpoint"
+      data-anchor="store-configuration"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6347,29 +6306,12 @@ When provided, this takes precedence over Account Name and Account Key.</p>
 </span></span>
     </button>
   
-</h3>
-<p>Optional. The Azure Blob service URL, for example
-<code>https://mystorageaccount.blob.core.windows.net</code>. Only needed when connecting to
-a non-standard endpoint such as Azurite for local development.</p>
-
-
-<h3 id="no-auth" class="group pr-8">No Auth
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="no-auth"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
-<p>Optional. Disables authentication entirely. Only useful for public blobs or
-local emulator setups such as Azurite. Should never be enabled in production.</p>
+</h2>
+<p>The following extra settings are available when configuring a store app.</p>
+<ul>
+<li><strong>Kloset Passphrase</strong>: The passphrase Plakar Control Plane uses to encrypt the
+store. This passphrase is required to access the store and must be kept safe.</li>
+</ul>
 
 
 <h2 id="getting-your-credentials-from-azure" class="group pr-8">Getting your credentials from Azure
@@ -6393,7 +6335,8 @@ Resource Group for it. You can read more under
 documentation.</p>
 <p>You can create a Storage Container from your Storage Account under <strong>Data
 Storage -&gt; Containers</strong>. Use the name of the container as the endpoint when
-setting up the resource in <a href="" >step 2</a></p>
+setting up the resource, as described in
+<a href="/docs/control-plane/resources/object-storage/azblob/#adding-azure-blob-storage-as-a-resource" >Adding Azure Blob Storage as a resource</a>.</p>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
@@ -6554,7 +6497,7 @@ documentation for instructions on how to assign roles.</p>
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#setting-up-a-self-managed-inventory">Setting up a self-managed inventory</a></li><li><a href="#adding-azure-blob-storage-as-a-resource">Adding Azure Blob Storage as a resource</a></li><li><a href="#backup-flow">Backup flow</a></li><li><a href="#restore-flow">Restore flow</a></li><li><a href="#configuration">Configuration</a><ul><li><a href="#account-name">Account Name</a></li><li><a href="#account-key">Account Key</a></li><li><a href="#connection-string">Connection String</a></li><li><a href="#endpoint">Endpoint</a></li><li><a href="#no-auth">No Auth</a></li></ul></li><li><a href="#getting-your-credentials-from-azure">Getting your credentials from Azure</a></li><li><a href="#permissions">Permissions</a></li></ul>
+      <ul><li><a href="#inventory-management">Inventory Management</a><ul><li><a href="#adding-azure-blob-storage-as-a-resource">Adding Azure Blob Storage as a resource</a><ul><li><a href="#backup-flow">Backup flow</a></li><li><a href="#restore-flow">Restore flow</a></li></ul></li></ul></li><li><a href="#shared-configuration">Shared Configuration</a></li><li><a href="#store-configuration">Store configuration</a></li><li><a href="#getting-your-credentials-from-azure">Getting your credentials from Azure</a></li><li><a href="#permissions">Permissions</a></li></ul>
     </div>
 
     

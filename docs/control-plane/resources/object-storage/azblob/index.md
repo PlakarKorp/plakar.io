@@ -2,34 +2,26 @@
 # Azure Blob Storage
 
 Azure Blob Storage resources represent container-based object storage hosted on
-Microsoft Azure. Unlike S3-compatible providers, Azure Blob Storage does not
-have a native integration with Plakar Control Plane's inventory discovery. You
-need to set up a
+Microsoft Azure.
+
+## Inventory Management
+
+Currently no
+[managed inventory](../../infrastructure/inventories#managed-inventories) has
+the capability of discovering Azure Blob Storage resources. You must configure a
 [self-managed inventory](../../infrastructure/inventories/self-managed) before
 adding an Azure Blob Storage resource.
 
-## Setting up a self-managed inventory
+### Adding Azure Blob Storage as a resource
 
-You can create a self managed inventory to manage your Azure resources by just
-providing a name for it, read the
-[self managed inventory](../../infrastructure/inventories/self-managed)
-documentation for more information.
+When using a self-managed inventory, register the resource with `Object Storage`
+as the class and `Azblob` as the subclass. For the endpoint, use the container
+name. See
+[Getting your credentials from Azure](#getting-your-credentials-from-azure) for
+where to find the container name, and [resources documentation](../../resources)
+for more information on how to set up resources on a self-managed inventory.
 
-## Adding Azure Blob Storage as a resource
-
-When using a managed inventory, all resources are automatically discovered for
-you, but for self managed inventory you'll have to register your resources
-manually or import them from a CSV file.
-
-To add Azure Blob Storage container as a resource, you need to use Object
-Storage as `class` and Azblob as the `subclass`. For the endpoint you should use
-the container name. Read the
-[Getting your credentials from Azure](#getting-your-credentials-from-azure) on
-where to get the container name.
-
-![](../images/add-azblob-resource.png)
-
-## Backup flow
+#### Backup flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -51,7 +43,7 @@ flowchart TD
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-## Restore flow
+#### Restore flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -73,35 +65,44 @@ flowchart TD
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-## Configuration
+## Shared Configuration
 
-Azure Blob Storage resources can be configured using a source, store, or
-destination app.
+The following settings are available when configuring source, store or
+destination apps.
 
-### Account Name
+- **Account Name**: The name of the Azure Storage account, for example
+  `mystorageaccount`.
+- **Account Key**: The access key used to authenticate with the Azure Storage
+  account.
+- **Connection String**: The full Azure Blob Storage connection string, for
+  example
+  `DefaultEndpointsProtocol=https;AccountName=mystorageaccount;AccountKey=...;EndpointSuffix=core.windows.net`.
+  When provided, this takes precedence over Account Name and Account Key.
+- **Endpoint**: The Azure Blob service URL, for example
+  `https://mystorageaccount.blob.core.windows.net`. Only needed when connecting
+  to a non-standard endpoint such as Azurite for local development, or to
+  resolve the storage account's service URL when Use Managed Identity is enabled
+  without Account Name.
+- **Managed Identity Client ID**: The client ID of the user-assigned managed
+  identity to authenticate with. Only needed when authenticating with a
+  user-assigned managed identity; leave unset to use the system-assigned managed
+  identity.
+- **No Auth**: Disables authentication entirely. Only useful for public blobs or
+  local emulator setups such as Azurite. Should never be enabled in production.
+- **Use Managed Identity**: Authenticates with Azure Active Directory using a
+  [managed identity](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview)
+  assigned to the environment Plakar Control Plane runs in, instead of an
+  account key or connection string. Supports both system-assigned and
+  user-assigned identities. It requires **Account Name** or **Endpoint** to be
+  set so the storage account's service URL can be resolved, and cannot be
+  combined with **Connection String**, **Account Key** or **No Auth**.
 
-The name of the Azure Storage account, for example `mystorageaccount`.
+## Store configuration
 
-### Account Key
+The following extra settings are available when configuring a store app.
 
-The access key used to authenticate with the Azure Storage account.
-
-### Connection String
-
-Optional. The full Azure Blob Storage connection string, for example
-`DefaultEndpointsProtocol=https;AccountName=mystorageaccount;AccountKey=...;EndpointSuffix=core.windows.net`.
-When provided, this takes precedence over Account Name and Account Key.
-
-### Endpoint
-
-Optional. The Azure Blob service URL, for example
-`https://mystorageaccount.blob.core.windows.net`. Only needed when connecting to
-a non-standard endpoint such as Azurite for local development.
-
-### No Auth
-
-Optional. Disables authentication entirely. Only useful for public blobs or
-local emulator setups such as Azurite. Should never be enabled in production.
+- **Kloset Passphrase**: The passphrase Plakar Control Plane uses to encrypt the
+  store. This passphrase is required to access the store and must be kept safe.
 
 ## Getting your credentials from Azure
 
@@ -112,7 +113,8 @@ documentation.
 
 You can create a Storage Container from your Storage Account under **Data
 Storage -> Containers**. Use the name of the container as the endpoint when
-setting up the resource in [step 2](<>)
+setting up the resource, as described in
+[Adding Azure Blob Storage as a resource](#adding-azure-blob-storage-as-a-resource).
 
 ![](../images/azure-create-container.png)
 

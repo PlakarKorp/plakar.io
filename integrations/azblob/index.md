@@ -70,7 +70,3 @@ Plakar also allows direct inspection of backups. You can browse, search, or
 verify the integrity of your Azure Blob data via the CLI or UI without
 performing a full restore first.
 
-Instead of relying solely on Azure configuration and access controls, Plakar
-provides cryptographic guarantees and operational control over your data — from
-snapshot creation through integrity verification to recovery.
-
