@@ -54,7 +54,7 @@ links:
 edition:
   - community
 
-stage: beta
+stage: stable
 
 date: 2026-03-23
 
