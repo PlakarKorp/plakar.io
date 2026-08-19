@@ -1,10 +1,66 @@
 <!-- JS: assets/js/docs/main.js -->
 
-{{ with .TableOfContents }}
+{{- $start := 2 -}}
+{{- $end := 4 -}}
+{{- $pattern := printf `<h([%d-%d])[^>]*id="([^"]+)"[^>]*>([\s\S]*?)</h[%d-%d]>` $start $end $start $end -}}
+
+{{- $items := slice -}}
+{{- $seen := slice -}}
+{{- range $m := findRESubmatch $pattern .Content -}}
+  {{- $id := index $m 2 -}}
+  {{- $text := index $m 3
+    | replaceRE `<button[\s\S]*?</button>` ""
+    | plainify
+    | htmlUnescape
+    | strings.TrimSpace -}}
+
+  {{- if and $text (not (in $seen $id)) -}}
+    {{- $seen = $seen | append $id -}}
+    {{- $items = $items | append (dict
+      "level" (int (index $m 1))
+      "id" $id
+      "text" $text) -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $html := "" -}}
+{{- if $items -}}
+  {{- $root := (index $items 0).level -}}
+  {{- $prev := 0 -}}
+  {{- range $item := $items -}}
+    {{- $level := $item.level -}}
+    {{- if eq $prev 0 -}}
+      {{- $html = printf "%s<ul>" $html -}}
+    {{- else if gt $level $prev -}}
+      {{- range seq (sub $level $prev) -}}
+        {{- $html = printf "%s<ul>" $html -}}
+      {{- end -}}
+    {{- else -}}
+      {{- $html = printf "%s</li>" $html -}}
+      {{- if lt $level $prev -}}
+        {{- range seq (sub $prev $level) -}}
+          {{- $html = printf "%s</ul></li>" $html -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+    {{- $html = printf `%s<li><a href="#%s">%s</a>` $html $item.id $item.text -}}
+    {{- $prev = $level -}}
+  {{- end -}}
+
+  {{- $html = printf "%s</li>" $html -}}
+  {{- if gt $prev $root -}}
+    {{- range seq (sub $prev $root) -}}
+      {{- $html = printf "%s</ul></li>" $html -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $html = printf "%s</ul>" $html -}}
+{{- end -}}
+
+{{ with $html }}
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      {{ . | emojify }}
+      {{ . | safeHTML | emojify }}
     </div>
 
     {{ with $.Site.Params.docs.docsRepo }}
