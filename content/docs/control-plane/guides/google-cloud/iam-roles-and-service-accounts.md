@@ -26,6 +26,10 @@ authenticate against Google Cloud APIs.
 This guide walks through creating a custom IAM role, creating a service account,
 assigning the role to it, and generating a service account key.
 
+{{< steps >}}
+
+{{< step >}}
+
 ## Creating a Custom Role
 
 The first step is to create a custom IAM role with the permissions required by
@@ -53,6 +57,10 @@ After adding the required permissions, click **Create** to save the role.
 
 ![](../images/adding-permissions-to-role.png)
 
+{{< /step >}}
+
+{{< step >}}
+
 ## Creating a Service Account
 
 After creating the custom role, create a service account to act as the identity
@@ -72,6 +80,10 @@ custom role we created before.
 
 Click **Done** to finish creating the service account.
 
+{{< /step >}}
+
+{{< step >}}
+
 ## Generating a Service Account Key
 
 After creating the service account and assigning the role, generate a key for
@@ -90,3 +102,7 @@ the key and download it to your machine as a JSON file.
 > The JSON key file is only available at the time of creation. Store it securely
 > before leaving the page, and treat it as you would any other sensitive
 > credential.
+
+{{< /step >}}
+
+{{< /steps >}}

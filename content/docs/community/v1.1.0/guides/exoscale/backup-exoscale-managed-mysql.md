@@ -46,6 +46,10 @@ Plakar -->|Snapshots| SOS
 
 - Exoscale account with billing configured
 
+{{< steps >}}
+
+{{< step >}}
+
 ## Create MySQL Database
 
 ### Provision database
@@ -72,6 +76,10 @@ Plakar -->|Snapshots| SOS
    the other connection details.
 2. In the users tab, save your database user password
 
+{{< /step >}}
+
+{{< step >}}
+
 ## Install Tools
 
 Install MySQL client:
@@ -82,6 +90,10 @@ $ sudo apt install mysql-client
 ```
 
 Install Plakar using the [installation guide](../../../quickstart/installation).
+
+{{< /step >}}
+
+{{< step >}}
 
 ## Configure MySQL Connection
 
@@ -120,6 +132,10 @@ Test connection:
 $ mysql -e "SELECT VERSION();"
 ```
 
+{{< /step >}}
+
+{{< step >}}
+
 ## Configure Object Storage
 
 ### Install S3 integration
@@ -156,6 +172,10 @@ Replace:
 $ plakar at "@exoscale-sos-mysql" create
 ```
 
+{{< /step >}}
+
+{{< step >}}
+
 ## Back Up Database
 
 ```bash
@@ -172,6 +192,10 @@ Verify:
 $ plakar at "@exoscale-sos-mysql" ls
 ```
 
+{{< /step >}}
+
+{{< step >}}
+
 ## Restore Database
 
 Retrieve snapshot ID:
@@ -185,6 +209,10 @@ $ plakar at "@exoscale-sos-mysql" ls
 ```bash
 $ plakar at "@exoscale-sos-mysql" cat <SNAPSHOT_ID>:dump.sql | mysql <DB_NAME>
 ```
+
+{{< /step >}}
+
+{{< /steps >}}
 
 ## Troubleshooting
 

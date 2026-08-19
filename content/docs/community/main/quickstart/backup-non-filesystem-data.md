@@ -37,6 +37,10 @@ After following the previous parts of this quickstart, you should have:
   file under the name `s3-backups` (see
   [Part 2 of this quickstart](../synchronize-copies)).
 
+{{< steps >}}
+
+{{< step >}}
+
 ## Initialize the S3 bucket with some data
 
 Before we can back up an S3 bucket, we need to have one with some data in it. If
@@ -56,6 +60,10 @@ Then, click on the "Upload" button, and upload a few files of your choice to the
 bucket.
 
 ![Upload files on MinIO](../images/minio-upload.png)
+
+{{< /step >}}
+
+{{< step >}}
 
 ## Configure the S3 source in plakar
 
@@ -80,6 +88,10 @@ we are connecting to a local server without TLS.
 
 _`use_tls` should be omitted or set to `true` when connecting to production
 S3-compatible services that use TLS._
+
+{{< /step >}}
+
+{{< step >}}
 
 ## Create the backup
 
@@ -106,6 +118,10 @@ Note that in this example, we created the backup to a store hosted on the local
 filesystem. It is perfectly possible to back up S3 data directly to another S3
 location, or any other supported store, using
 `plakar at "@store-name" backup "@source-name"`.
+
+{{< /step >}}
+
+{{< step >}}
 
 ## Restore the backup
 
@@ -136,6 +152,10 @@ info: restore: restoration of 842de8b1:/ at @mydata completed successfully
 
 For the `restore` command, we used the alias again with `@mydata` which
 references the S3 destination we just configured.
+
+{{< /step >}}
+
+{{< /steps >}}
 
 ## Congratulations!
 

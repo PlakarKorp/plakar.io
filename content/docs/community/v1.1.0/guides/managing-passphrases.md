@@ -38,7 +38,11 @@ The general workflow is:
 > Do not delete the old store immediately. Keep it until you have confirmed that
 > the sync completed successfully and the new store is working as expected.
 
-### Step 1: Create a new store
+{{< steps >}}
+
+{{< step >}}
+
+### Create a new store
 
 Create a new store at a different location and configure it with the new
 passphrase.
@@ -47,7 +51,11 @@ passphrase.
 $ plakar store add store2 /var/backups passphrase=xxx
 ```
 
-### Step 2: Sync the old store to the new store
+{{< /step >}}
+
+{{< step >}}
+
+### Sync the old store to the new store
 
 Use `plakar sync` to copy all snapshots from the old store into the new store.
 The old store is the source and the new store is the destination.
@@ -60,7 +68,11 @@ The sync operation reads each snapshot from the old store, decrypts it using the
 old passphrase, and writes it into the new store encrypted with the new
 passphrase.
 
-### Step 3: Verify the sync
+{{< /step >}}
+
+{{< step >}}
+
+### Verify the sync
 
 Once the sync has completed, confirm that the new store contains the expected
 snapshots:
@@ -69,12 +81,20 @@ snapshots:
 $ plakar at @store2 ls
 ```
 
-### Step 4: Update scripts and scheduled tasks
+{{< /step >}}
+
+{{< step >}}
+
+### Update scripts and scheduled tasks
 
 After validating the new store, update any scripts, cron jobs, or automation
 that reference the old store to use the new store.
 
-### Step 5: Remove the old store when safe
+{{< /step >}}
+
+{{< step >}}
+
+### Remove the old store when safe
 
 Only remove the old store after you have confirmed that:
 
@@ -82,6 +102,10 @@ Only remove the old store after you have confirmed that:
 - The new passphrase is stored securely (for example, in a password manager or
   secrets manager).
 - All backup and restore workflows are using the new store successfully.
+
+{{< /step >}}
+
+{{< /steps >}}
 
 ## Why passphrase rotation is not supported
 

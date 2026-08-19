@@ -17,7 +17,11 @@ summary:
 This guide walks through restoring a Plakar Control Plane backup to a fresh
 appliance.
 
-## Step 1 — Start a new virtual appliance in bootstrap mode
+{{< steps >}}
+
+{{< step >}}
+
+## Start a new virtual appliance in bootstrap mode
 
 Deploy a new Plakar Control Plane virtual appliance and leave it in **bootstrap
 mode** without completing the initial setup wizard. Refer to the
@@ -30,7 +34,11 @@ instructions on deploying the appliance.
 > running at the time the backup was taken. Once the restore is complete, you
 > can [upgrade the appliance](../../updating-control-plane) to a newer version.
 
-## Step 2 — Verify SSH access
+{{< /step >}}
+
+{{< step >}}
+
+## Verify SSH access
 
 Confirm that you can connect to the new appliance over SSH using the `plakar`
 user:
@@ -41,7 +49,11 @@ export APPLIANCE_ADDRESS=<appliance-address>
 ssh plakar@$APPLIANCE_ADDRESS
 ```
 
-## Step 3 — Install Plakar OSS and configure the store
+{{< /step >}}
+
+{{< step >}}
+
+## Install Plakar OSS and configure the store
 
 On your local machine, install the Plakar OSS client. Refer to the
 [installation guide](/docs/community/main/quickstart/installation) for
@@ -51,7 +63,11 @@ Once installed, configure the store where your backup snapshot is hosted. Refer
 to the [quickstart guide](/docs/community/main/quickstart/first-backup) for
 store configuration instructions.
 
-## Step 4 — Archive the snapshot to a local file
+{{< /step >}}
+
+{{< step >}}
+
+## Archive the snapshot to a local file
 
 Use the `plakar` CLI to export the backup snapshot as a compressed archive:
 
@@ -63,10 +79,14 @@ Replace `<store>` with the store URI and `<snapshot_id>` with the identifier of
 the snapshot you want to restore. This produces a `pcp.tar.gz` file in the
 current directory.
 
-## Step 5 — Upload the archive to the appliance
+{{< /step >}}
+
+{{< step >}}
+
+## Upload the archive to the appliance
 
 Pipe the archive directly into the `orkestrator` container using the
-`$APPLIANCE_ADDRESS` set in step 2:
+`$APPLIANCE_ADDRESS` set when you verified SSH access:
 
 ```bash
 cat pcp.tar.gz | ssh plakar@$APPLIANCE_ADDRESS sudo ctr -n services.linuxkit task exec --exec-id upload-pcp orkestrator sh -c '"mkdir -p /data/tmp-restore-pcp && cat > /data/tmp-restore-pcp/pcp.tar.gz"'
@@ -75,7 +95,11 @@ cat pcp.tar.gz | ssh plakar@$APPLIANCE_ADDRESS sudo ctr -n services.linuxkit tas
 This places the archive at `/data/tmp-restore-pcp/pcp.tar.gz` inside the
 container.
 
-## Step 6 — Run the restore commands
+{{< /step >}}
+
+{{< step >}}
+
+## Run the restore commands
 
 Connect to the `orkestrator` container and run the restore commands:
 
@@ -123,10 +147,18 @@ rm -rf /data/plakman/* && cp -r /data/tmp-restore-pcp/fs/appliance_data/plakman/
 rm -rf /data/tmp-restore-pcp
 ```
 
-## Step 7 — Reboot
+{{< /step >}}
+
+{{< step >}}
+
+## Reboot
 
 Reboot the appliance from your provider's management console. For example on
 AWS, select the instance and click **Reboot**.
+
+{{< /step >}}
+
+{{< /steps >}}
 
 ## Post-restore: verify provider-side configuration
 

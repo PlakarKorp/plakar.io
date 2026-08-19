@@ -43,7 +43,11 @@ The general workflow is:
 > Do not delete the old store immediately. Keep it until you have confirmed that
 > the sync completed successfully.
 
-## Step 1: Create a new store
+{{< steps >}}
+
+{{< step >}}
+
+## Create a new store
 
 First, create a new store app. This store must use the new passphrase. See the
 [apps documentation](../apps) for the full procedure.
@@ -59,7 +63,11 @@ When creating the new store:
 > apps to the same resource. Read the [resources documentation](../resources)
 > for more information about resources.
 
-## Step 2: Sync the old store to the new store
+{{< /step >}}
+
+{{< step >}}
+
+## Sync the old store to the new store
 
 After the new store has been created, create a sync task from the old store to
 the new store. The old store is used as the source. The new store is used as the
@@ -76,7 +84,11 @@ The sync operation copies the backup data into the new store. Since the new
 store uses a different passphrase, the synchronized data is protected by the new
 passphrase.
 
-## Step 3: Verify the sync
+{{< /step >}}
+
+{{< step >}}
+
+## Verify the sync
 
 Once the sync job has completed, verify that the new store can be used. Check
 that:
@@ -85,7 +97,11 @@ that:
 - The new store contains the expected restore points.
 - A check task can run successfully on the new store to verify data integrity.
 
-## Step 4: Update existing tasks and policies
+{{< /step >}}
+
+{{< step >}}
+
+## Update existing tasks and policies
 
 After the new store has been validated, update existing tasks and policies so
 they use the new store. This may include:
@@ -96,13 +112,21 @@ they use the new store. This may include:
 - Check tasks
 - SLA policies that target the old store
 
-## Step 5: Remove the old store when safe
+{{< /step >}}
+
+{{< step >}}
+
+## Remove the old store when safe
 
 Only remove the old store after you have confirmed that:
 
 - The new store contains the expected backup data.
 - The new passphrase is stored securely.
 - Backup and restore workflows use the new store.
+
+{{< /step >}}
+
+{{< /steps >}}
 
 ## Why passphrase rotation is not supported
 

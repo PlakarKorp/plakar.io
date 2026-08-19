@@ -32,7 +32,11 @@ it to walk directories, read from APIs, or consume any other data source.
 - Go 1.21 or later
 - `plakar` installed and available in your `$PATH`
 
-## 1. Set up the project
+{{< steps >}}
+
+{{< step >}}
+
+## Set up the project
 
 Create a new Go module for your plugin:
 
@@ -67,7 +71,11 @@ Create the project structure:
 └── go.sum
 ```
 
-## 2. Implement the connector
+{{< /step >}}
+
+{{< step >}}
+
+## Implement the connector
 
 Create `connector.go`:
 
@@ -135,7 +143,11 @@ func (f *testConnector) Import(ctx context.Context, records chan<- *connectors.R
 > plugin over gRPC through stdin/stdout — any writes there corrupt the stream.
 > Use `os.Stderr` for debug output instead.
 
-## 3. Create the entrypoint
+{{< /step >}}
+
+{{< step >}}
+
+## Create the entrypoint
 
 Create `importer/main.go`:
 
@@ -154,7 +166,11 @@ func main() {
 }
 ```
 
-## 4. Write the manifest
+{{< /step >}}
+
+{{< step >}}
+
+## Write the manifest
 
 Create `manifest.yaml`:
 
@@ -194,7 +210,11 @@ connector's `Flags()` method. Set `class` and `subclass` to values that best
 describe your data source — for a connector that reads from a local filesystem
 path, `filesystem` and your protocol name are appropriate choices.
 
-## 5. Build the plugin
+{{< /step >}}
+
+{{< step >}}
+
+## Build the plugin
 
 Create a `Makefile`:
 
@@ -209,7 +229,11 @@ Then build:
 make build
 ```
 
-## 6. Package and install
+{{< /step >}}
+
+{{< step >}}
+
+## Package and install
 
 Package the plugin into a `.ptar` file:
 
@@ -231,7 +255,11 @@ plakar pkg show
 
 You should see `example` listed.
 
-## 7. Use the connector
+{{< /step >}}
+
+{{< step >}}
+
+## Use the connector
 
 Back up using your new importer:
 
@@ -242,6 +270,10 @@ plakar at /var/backups backup example://
 Because this connector uses a hardcoded file path, the location after
 `example://` is ignored — the importer always reads from
 `/home/user/Documents/notes.md`.
+
+{{< /step >}}
+
+{{< /steps >}}
 
 ## Next steps
 

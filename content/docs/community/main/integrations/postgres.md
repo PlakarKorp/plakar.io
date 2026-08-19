@@ -295,7 +295,11 @@ same `postgres://` destination connector.
 
 ### AWS setup
 
-#### 1. Enable IAM authentication on the RDS instance
+{{< steps >}}
+
+{{< step >}}
+
+#### Enable IAM authentication on the RDS instance
 
 Enable
 [IAM database authentication](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.Enabling.html)
@@ -304,7 +308,11 @@ creation time or toggled on an existing instance.
 
 ![](../images/aws-enable-iam-auth-on-rds-db.png)
 
-#### 2. Create an IAM policy with `rds-db:connect`
+{{< /step >}}
+
+{{< step >}}
+
+#### Create an IAM policy with `rds-db:connect`
 
 Attach the following policy to the IAM user or role that will run Plakar. See
 [Managing IAM Roles, Users, and Access Keys](../../../control-plane/guides/aws/iam-users-roles-and-access-keys/)
@@ -329,7 +337,11 @@ for instructions on creating policies and attaching them to a user or role.
   found in the RDS console under **Configuration**
 - `DB_USER`: the PostgreSQL username Plakar will connect as
 
-#### 3. Create the PostgreSQL user with IAM login
+{{< /step >}}
+
+{{< step >}}
+
+#### Create the PostgreSQL user with IAM login
 
 Connect to the database as a superuser and run:
 
@@ -340,6 +352,10 @@ GRANT rds_iam TO myuser;
 
 The user must not have a password set as authentication is handled entirely via
 the IAM token.
+
+{{< /step >}}
+
+{{< /steps >}}
 
 ### Providing credentials
 

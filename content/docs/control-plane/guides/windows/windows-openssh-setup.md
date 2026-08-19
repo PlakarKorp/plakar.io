@@ -16,7 +16,11 @@ hosts over SSH. This guide explains how to install and configure OpenSSH Server
 on Windows and authorize an SSH key for the account used by Plakar Control
 Plane.
 
-## Step 1: Install OpenSSH Server
+{{< steps >}}
+
+{{< step >}}
+
+## Install OpenSSH Server
 
 Check whether OpenSSH Server is already installed. If it is not, install it
 using the following commands:
@@ -26,7 +30,11 @@ Get-WindowsCapability -Online | Where-Object Name -like 'OpenSSH*'
 Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
 ```
 
-## Step 2: Start the SSH service
+{{< /step >}}
+
+{{< step >}}
+
+## Start the SSH service
 
 Start the `sshd` service and configure it to start automatically whenever the
 system boots:
@@ -36,7 +44,11 @@ Start-Service sshd
 Set-Service -Name sshd -StartupType 'Automatic'
 ```
 
-## Step 3: Allow SSH connections
+{{< /step >}}
+
+{{< step >}}
+
+## Allow SSH connections
 
 OpenSSH Server listens on TCP port `22`. Windows normally creates a firewall
 rule automatically when the capability is installed. Verify that the rule
@@ -61,7 +73,11 @@ Set-NetFirewallRule -Name sshd -Profile Any
 Also open port 22 at the network/firewall level (cloud security group, VPC
 firewall, etc.), in addition to the Windows Firewall rule above.
 
-## Step 4: Authorize a dedicated SSH key
+{{< /step >}}
+
+{{< step >}}
+
+## Authorize a dedicated SSH key
 
 Generate a dedicated SSH keypair for PCP rather than relying on password
 authentication. For accounts that are members of the local Administrators group,
@@ -80,7 +96,11 @@ icacls "C:\ProgramData\ssh\administrators_authorized_keys" /grant "Administrator
 icacls "C:\ProgramData\ssh\administrators_authorized_keys" /grant "SYSTEM:F"
 ```
 
-## Step 5: Test the connection
+{{< /step >}}
+
+{{< step >}}
+
+## Test the connection
 
 Before pasting the private key into Plakar Control Plane, confirm the key and
 network path both work:
@@ -112,3 +132,7 @@ ssh-keygen -lf C:\ProgramData\ssh\ssh_host_ed25519_key.pub
 
 Compare its output against the fingerprint shown in the SSH prompt before
 accepting.
+
+{{< /step >}}
+
+{{< /steps >}}
