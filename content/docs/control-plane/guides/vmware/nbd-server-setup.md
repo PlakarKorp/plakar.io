@@ -255,7 +255,7 @@ Compute resource in Plakar Control Plane.
 
 SSH is used for orchestration only. Disk bytes never travel over SSH, only over
 the TLS-secured NBD connection set up in
-[Step 3](step-3-generate-tls-certificates).
+[Generate TLS certificates](#generate-tls-certificates).
 
 Generate a keypair. This can be done on any machine since only the private key
 contents are needed later as the `nbd_ssh_private_key` value:
