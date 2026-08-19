@@ -94,7 +94,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2026-01-11T20:00:00+01:00">
-    <meta property="article:modified_time" content="2026-08-19T10:36:14+03:00">
+    <meta property="article:modified_time" content="2026-08-19T11:14:20+03:00">
     <meta property="article:tag" content="Postgresql">
     <meta property="article:tag" content="Ui">
     <meta property="article:tag" content="Filesystem">
@@ -147,8 +147,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.299e5c20860a16e738ac308662b3ac78a0d74597fd731250069e50b2ec95e268470da8939107cb762183f247686d7f8ab9656926983ec08c1e8a78bcfdfe2220.css"
-    integrity="sha512-KZ5cIIYKFuc4rDCGYrOseKDXRZf9cxJQBp5QsuyV4mhHDaiTkQfLdiGD8kdobX&#43;KuWVpJpg&#43;wIweini8/f4iIA==">
+    href="/css/main.bundle.min.925f87575a15b0a494097f7730d412c6944d438eca8f1fdebe474d9e42e9965adef76f722dc7628c93434ff43514b809359bb9356a0b6cc07afcb387d017d1e6.css"
+    integrity="sha512-kl&#43;HV1oVsKSUCX93MNQSxpRNQ47Kjx/evkdNnkLpllre929yLcdijJNDT/Q1FLgJNZu5NWoLbMB6/LOH0BfR5g==">
 
   
   
@@ -284,12 +284,12 @@
     "dateCreated": "2026-01-11T20:00:00\u002b01:00",
     "datePublished": "2026-01-11T20:00:00\u002b01:00",
     
-    "dateModified": "2026-08-19T10:36:14\u002b03:00",
+    "dateModified": "2026-08-19T11:14:20\u002b03:00",
     
     "keywords": ["postgresql","UI","filesystem","overlayfs","qcow2"],
     
     "mainEntityOfPage": "https://plakar.io/posts/2026-01-11/researching-a-postgresql-viewer-for-plakar/",
-    "wordCount": "1787"
+    "wordCount": "1778"
   }]
   </script>
 
@@ -344,7 +344,7 @@
 
 
 
-<script src="/js/compiled/bundle.min.cc10ed1dec565d4797a9f322fb64684a042ecb3c9577bba68e64701e755c43ea.js" defer></script>
+<script src="/js/compiled/bundle.min.8e20e4341c781bede548551eeeafa78a774cf4a43eae42473de61fd07358a591.js" defer></script>
 
   
 
@@ -1929,7 +1929,7 @@
             <span>•</span>
           
         
-        <span>1787 words</span>
+        <span>1778 words</span>
         <span>•</span>
         <span>January 11, 2026</span>
         
@@ -1973,24 +1973,10 @@
       
 
       
-
-
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <nav id="TableOfContents">
-  <ul>
-    <li><a href="#why-a-postgresql-viewer">Why a PostgreSQL viewer?</a></li>
-    <li><a href="#performing-the-backup">Performing the backup</a></li>
-    <li><a href="#running-a-docker-containerized-postgresql-instance">Running a Docker containerized PostgreSQL instance</a></li>
-    <li><a href="#plakar-mount-to-the-rescue">Plakar mount to the rescue</a></li>
-    <li><a href="#overlayfs">Overlayfs</a></li>
-    <li><a href="#fail-again">Fail… again</a></li>
-    <li><a href="#operating-at-the-block-level">Operating at the block level</a></li>
-    <li><a href="#qcow2">Qcow2</a></li>
-    <li><a href="#conclusion">Conclusion</a></li>
-  </ul>
-</nav>
+      <ul><li><a href="#why-a-postgresql-viewer">Why a PostgreSQL viewer?</a></li><li><a href="#performing-the-backup">Performing the backup</a></li><li><a href="#running-a-docker-containerized-postgresql-instance">Running a Docker containerized PostgreSQL instance</a></li><li><a href="#plakar-mount-to-the-rescue">Plakar mount to the rescue</a></li><li><a href="#overlayfs">Overlayfs</a></li><li><a href="#fail-again">Fail… again</a></li><li><a href="#operating-at-the-block-level">Operating at the block level</a></li><li><a href="#qcow2">Qcow2</a></li><li><a href="#conclusion">Conclusion</a></li></ul>
     </div>
 
     
@@ -2139,14 +2125,22 @@ don&rsquo;t know which snapshot contains the file you&rsquo;re looking for.</p>
 <p>In this blog post, we&rsquo;ll walk through our first research and experiments aimed
 at adding a PostgreSQL viewer to the Plakar UI.</p>
 
-<div class="relative group">
-  <h2 id="why-a-postgresql-viewer">Why a PostgreSQL viewer?</h2>
+
+<h2 id="why-a-postgresql-viewer" class="group pr-8">Why a PostgreSQL viewer?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="why-a-postgresql-viewer"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
   
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#why-a-postgresql-viewer" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
+</h2>
 <p>Let&rsquo;s say you accidentally deleted an image from your favorite photo album. With
 Plakar UI, you can quickly scan through your backups, preview the images inside
 each snapshot, and restore the snapshot that contains the missing photo.</p>
@@ -2166,14 +2160,22 @@ connect to a snapshot, run SQL queries, and preview the results without
 restoring the full database, in the same way you can preview text files or
 images today.</p>
 
-<div class="relative group">
-  <h2 id="performing-the-backup">Performing the backup</h2>
+
+<h2 id="performing-the-backup" class="group pr-8">Performing the backup
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="performing-the-backup"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
   
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#performing-the-backup" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
+</h2>
 <p>We wrote a
 <a href="https://plakar.io/docs/community/main/guides/postgresql/pg_base_backup/"  target="_blank" rel="noreferrer">PostgreSQL backup guide</a>
 that explains how to perform a physical backup of a PostgreSQL database using
@@ -2190,14 +2192,22 @@ that explains how to perform a physical backup of a PostgreSQL database using
 archive of <code>/var/lib/postgresql/data</code> and uses Plakar&rsquo;s tar source importer
 (reading from stdin) to import the data into a Kloset store.</p>
 
-<div class="relative group">
-  <h2 id="running-a-docker-containerized-postgresql-instance">Running a Docker containerized PostgreSQL instance</h2>
+
+<h2 id="running-a-docker-containerized-postgresql-instance" class="group pr-8">Running a Docker containerized PostgreSQL instance
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="running-a-docker-containerized-postgresql-instance"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
   
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#running-a-docker-containerized-postgresql-instance" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
+</h2>
 <p>The first approach to display a PostgreSQL viewer from the UI would be to
 restore the snapshot to a local directory and run a PostgreSQL Docker container
 using that directory as a data volume.</p>
@@ -2216,14 +2226,22 @@ may not have enough free disk space to restore the entire database.</p>
 <p>What if there was a way to run PostgreSQL directly on top of the snapshot data
 stored in Kloset, without restoring the full snapshot first?</p>
 
-<div class="relative group">
-  <h2 id="plakar-mount-to-the-rescue">Plakar mount to the rescue</h2>
+
+<h2 id="plakar-mount-to-the-rescue" class="group pr-8">Plakar mount to the rescue
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="plakar-mount-to-the-rescue"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
   
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#plakar-mount-to-the-rescue" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
+</h2>
 <p>The command <code>plakar mount</code> allows mounting a Kloset store as a local read-only
 filesystem:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ./plakar mount -to /mnt/mysnapshot &lt;snapshot_id&gt;</span></span></code></pre></div></div>
@@ -2263,14 +2281,22 @@ to run read-only queries.</p>
   <img src="./nestor-shrug.svg" alt="Nestor shrug" width="200">
 </p>
 
-<div class="relative group">
-  <h2 id="overlayfs">Overlayfs</h2>
+
+<h2 id="overlayfs" class="group pr-8">Overlayfs
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="overlayfs"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
   
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#overlayfs" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
+</h2>
 <p>Overlayfs provides a way to create a writable filesystem (the upper layer) on
 top of a read-only filesystem (the lower layer).</p>
 <p>It works only on Linux, but it could be a good fit for our use case. Let&rsquo;s
@@ -2324,14 +2350,22 @@ on the copy in the upper layer.</p>
 directory, allowing PostgreSQL to write to its files, while the original data is
 still read from the Kloset snapshot on-demand.</p>
 
-<div class="relative group">
-  <h2 id="fail-again">Fail… again</h2>
+
+<h2 id="fail-again" class="group pr-8">Fail… again
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="fail-again"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
   
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#fail-again" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
+</h2>
 <p>Let&rsquo;s try running PostgreSQL on top of overlayfs:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ docker run --rm -ti <span class="se">\
 </span></span></span><span class="line"><span class="cl">  --name pg <span class="se">\
@@ -2353,14 +2387,22 @@ directory.</p>
   <img src="./nestor-sad.svg" alt="Nestor sad" width="200">
 </p>
 
-<div class="relative group">
-  <h2 id="operating-at-the-block-level">Operating at the block level</h2>
+
+<h2 id="operating-at-the-block-level" class="group pr-8">Operating at the block level
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="operating-at-the-block-level"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
   
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#operating-at-the-block-level" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
+</h2>
 <p>The problem with overlayfs is that it operates at the file level: any write to a
 file causes the entire file to be copied to the upper layer.</p>
 <p>What if we could operate at the block level instead? That is, only the modified
@@ -2370,14 +2412,22 @@ would still be read from the lower layer.</p>
 usually only a small portion of each file. If we could copy only the modified
 blocks, the amount of data copied would be much smaller.</p>
 
-<div class="relative group">
-  <h2 id="qcow2">Qcow2</h2>
+
+<h2 id="qcow2" class="group pr-8">Qcow2
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="qcow2"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
   
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#qcow2" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
+</h2>
 <p>With qcow2, modified blocks are written to a new image, while unchanged blocks
 are read from a backing file.</p>
 <p>Let&rsquo;s create a base qcow2 image with enough space to hold the PostgreSQL data:</p>
@@ -2442,14 +2492,22 @@ is significantly smaller than with overlayfs.</p>
   <img src="./nestor-walking.svg" alt="Nestor walking" width="200">
 </p>
 
-<div class="relative group">
-  <h2 id="conclusion">Conclusion</h2>
+
+<h2 id="conclusion" class="group pr-8">Conclusion
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="conclusion"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
   
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#conclusion" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
+</h2>
 <p>Providing a PostgreSQL viewer inside the Plakar UI is an interesting idea that
 can significantly improve the user experience when dealing with database
 backups.</p>
@@ -2868,7 +2926,7 @@ solution production-ready, but the initial experiments are encouraging.</p>
 
     
   
-  <script src="/js/docs/main.min.2d3e6ba3dae8ddc4c79ea067ad0f9b2e8ac549479c4e6295abe9b946688fc99c.js" defer></script>
+  <script src="/js/docs/main.min.7408419afc0e5c4039538b8aee2a5642081229200d46e75b43306842d31db769.js" defer></script>
 
   </body>
 </html>

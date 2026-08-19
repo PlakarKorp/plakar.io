@@ -94,7 +94,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2026-05-25T09:00:00+00:00">
-    <meta property="article:modified_time" content="2026-08-19T10:36:14+03:00">
+    <meta property="article:modified_time" content="2026-08-19T11:14:20+03:00">
     <meta property="article:tag" content="Zod">
     <meta property="article:tag" content="Typescript">
     <meta property="article:tag" content="Validation">
@@ -152,8 +152,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.299e5c20860a16e738ac308662b3ac78a0d74597fd731250069e50b2ec95e268470da8939107cb762183f247686d7f8ab9656926983ec08c1e8a78bcfdfe2220.css"
-    integrity="sha512-KZ5cIIYKFuc4rDCGYrOseKDXRZf9cxJQBp5QsuyV4mhHDaiTkQfLdiGD8kdobX&#43;KuWVpJpg&#43;wIweini8/f4iIA==">
+    href="/css/main.bundle.min.925f87575a15b0a494097f7730d412c6944d438eca8f1fdebe474d9e42e9965adef76f722dc7628c93434ff43514b809359bb9356a0b6cc07afcb387d017d1e6.css"
+    integrity="sha512-kl&#43;HV1oVsKSUCX93MNQSxpRNQ47Kjx/evkdNnkLpllre929yLcdijJNDT/Q1FLgJNZu5NWoLbMB6/LOH0BfR5g==">
 
   
   
@@ -279,12 +279,12 @@
     "dateCreated": "2026-05-25T09:00:00\u002b00:00",
     "datePublished": "2026-05-25T09:00:00\u002b00:00",
     
-    "dateModified": "2026-08-19T10:36:14\u002b03:00",
+    "dateModified": "2026-08-19T11:14:20\u002b03:00",
     
     "keywords": ["zod","typescript","validation","plakar-ui"],
     
     "mainEntityOfPage": "https://plakar.io/posts/2026-05-25/plakar-ui-zod/",
-    "wordCount": "1057"
+    "wordCount": "1052"
   }]
   </script>
 
@@ -339,7 +339,7 @@
 
 
 
-<script src="/js/compiled/bundle.min.cc10ed1dec565d4797a9f322fb64684a042ecb3c9577bba68e64701e755c43ea.js" defer></script>
+<script src="/js/compiled/bundle.min.8e20e4341c781bede548551eeeafa78a774cf4a43eae42473de61fd07358a591.js" defer></script>
 
   
 
@@ -1924,7 +1924,7 @@
             <span>•</span>
           
         
-        <span>1057 words</span>
+        <span>1052 words</span>
         <span>•</span>
         <span>May 25, 2026</span>
         
@@ -2121,20 +2121,10 @@
 
 
       
-
-
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <nav id="TableOfContents">
-  <ul>
-    <li><a href="#the-problem-with-raw-json">The problem with raw JSON</a></li>
-    <li><a href="#what-zod-does">What Zod does</a></li>
-    <li><a href="#how-we-use-it-in-plakar-ui">How we use it in Plakar UI</a></li>
-    <li><a href="#we-want-it-to-blow-up">We want it to blow up</a></li>
-    <li><a href="#what-happens-when-the-api-changes">What happens when the API changes</a></li>
-  </ul>
-</nav>
+      <ul><li><a href="#the-problem-with-raw-json">The problem with raw JSON</a></li><li><a href="#what-zod-does">What Zod does</a></li><li><a href="#how-we-use-it-in-plakar-ui">How we use it in Plakar UI</a></li><li><a href="#we-want-it-to-blow-up">We want it to blow up</a></li><li><a href="#what-happens-when-the-api-changes">What happens when the API changes</a></li></ul>
     </div>
 
     
@@ -2400,14 +2390,22 @@ head-on.</p>
 <p>TypeScript types describe code that <em>you</em> write. They say nothing about data
 that arrives from outside your program at runtime.</p>
 
-<div class="relative group">
-  <h2 id="the-problem-with-raw-json">The problem with raw JSON</h2>
+
+<h2 id="the-problem-with-raw-json" class="group pr-8">The problem with raw JSON
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="the-problem-with-raw-json"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
   
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#the-problem-with-raw-json" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
+</h2>
 <p>When you fetch data from an API, the response comes back as raw JSON. TypeScript
 doesn&rsquo;t know what&rsquo;s in it — it can&rsquo;t. The network call happens at runtime, after
 the compiler has long since finished its job and gone home.</p>
@@ -2428,14 +2426,22 @@ silently produces <code>undefined</code> values that slowly corrupt your UI stat
 something renders wrong three components deep and you spend an hour tracing back
 where the data went sideways.</p>
 
-<div class="relative group">
-  <h2 id="what-zod-does">What Zod does</h2>
+
+<h2 id="what-zod-does" class="group pr-8">What Zod does
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="what-zod-does"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
   
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#what-zod-does" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
+</h2>
 <p>Zod is a schema definition and validation library. Instead of asserting what
 shape you <em>hope</em> the data has, you define a schema that describes the shape you
 <em>expect</em>, and then you validate the actual data against it at the point where it
@@ -2466,14 +2472,22 @@ the schema. You define the shape once — in the schema — and TypeScript&rsquo
 for the validated data is generated from it. No duplication, no risk of the type
 and the schema drifting apart.</p>
 
-<div class="relative group">
-  <h2 id="how-we-use-it-in-plakar-ui">How we use it in Plakar UI</h2>
+
+<h2 id="how-we-use-it-in-plakar-ui" class="group pr-8">How we use it in Plakar UI
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-we-use-it-in-plakar-ui"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
   
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#how-we-use-it-in-plakar-ui" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
+</h2>
 <p>Every API response in Plakar UI is parsed with a Zod schema. Here&rsquo;s a real
 example from the codebase:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="c1">// apps/plakman/src/api/connectors/schema.ts
@@ -2494,14 +2508,22 @@ in. From that point on, everywhere in the UI, <code>snapshot.creation_time</code
 <code>new Date(snapshot.creation_time)</code> — that conversion already happened, once, at
 the boundary.</p>
 
-<div class="relative group">
-  <h2 id="we-want-it-to-blow-up">We want it to blow up</h2>
+
+<h2 id="we-want-it-to-blow-up" class="group pr-8">We want it to blow up
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="we-want-it-to-blow-up"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
   
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#we-want-it-to-blow-up" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
+</h2>
 <p>This is the part that might surprise you.</p>
 <p>The Plakar UI is shipped alongside the API. They are not separate products with
 independent release cycles. When the API changes, the UI changes at the same
@@ -2522,14 +2544,22 @@ guaranteed: no component in the UI ever needs to handle &ldquo;what if version i
 missing&rdquo;, because that case is impossible by the time the data reaches them.
 Entire categories of defensive code disappear.</p>
 
-<div class="relative group">
-  <h2 id="what-happens-when-the-api-changes">What happens when the API changes</h2>
+
+<h2 id="what-happens-when-the-api-changes" class="group pr-8">What happens when the API changes
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="what-happens-when-the-api-changes"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
   
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#what-happens-when-the-api-changes" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
+</h2>
 <p>Without Zod, your TypeScript types and the actual API can drift silently. A
 backend developer renames <code>creation_time</code> to <code>created_at</code>. They update the Go
 struct, the API handler, run the backend tests — everything passes on their
@@ -2958,7 +2988,7 @@ keeping the UI in sync with the server.</p>
 
     
   
-  <script src="/js/docs/main.min.2d3e6ba3dae8ddc4c79ea067ad0f9b2e8ac549479c4e6295abe9b946688fc99c.js" defer></script>
+  <script src="/js/docs/main.min.7408419afc0e5c4039538b8aee2a5642081229200d46e75b43306842d31db769.js" defer></script>
 
   </body>
 </html>

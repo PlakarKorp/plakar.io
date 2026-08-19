@@ -94,10 +94,10 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2026-02-07T20:00:00+01:00">
-    <meta property="article:modified_time" content="2026-08-19T10:36:14+03:00">
+    <meta property="article:modified_time" content="2026-08-19T11:14:20+03:00">
     <meta property="article:tag" content="Integration">
     <meta property="article:tag" content="Storage">
-    <meta property="article:tag" content="Oci">
+    <meta property="article:tag" content="OCI">
     <meta property="og:image" content="https://plakar.io/posts/2026-02-07/storing-backups-in-an-oci-registry/featured.png">
 
   
@@ -145,8 +145,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.299e5c20860a16e738ac308662b3ac78a0d74597fd731250069e50b2ec95e268470da8939107cb762183f247686d7f8ab9656926983ec08c1e8a78bcfdfe2220.css"
-    integrity="sha512-KZ5cIIYKFuc4rDCGYrOseKDXRZf9cxJQBp5QsuyV4mhHDaiTkQfLdiGD8kdobX&#43;KuWVpJpg&#43;wIweini8/f4iIA==">
+    href="/css/main.bundle.min.925f87575a15b0a494097f7730d412c6944d438eca8f1fdebe474d9e42e9965adef76f722dc7628c93434ff43514b809359bb9356a0b6cc07afcb387d017d1e6.css"
+    integrity="sha512-kl&#43;HV1oVsKSUCX93MNQSxpRNQ47Kjx/evkdNnkLpllre929yLcdijJNDT/Q1FLgJNZu5NWoLbMB6/LOH0BfR5g==">
 
   
   
@@ -286,12 +286,12 @@
     "dateCreated": "2026-02-07T20:00:00\u002b01:00",
     "datePublished": "2026-02-07T20:00:00\u002b01:00",
     
-    "dateModified": "2026-08-19T10:36:14\u002b03:00",
+    "dateModified": "2026-08-19T11:14:20\u002b03:00",
     
     "keywords": ["integration","storage","oci"],
     
     "mainEntityOfPage": "https://plakar.io/posts/2026-02-07/storing-backups-in-an-oci-registry/",
-    "wordCount": "1174"
+    "wordCount": "1164"
   }]
   </script>
 
@@ -346,7 +346,7 @@
 
 
 
-<script src="/js/compiled/bundle.min.cc10ed1dec565d4797a9f322fb64684a042ecb3c9577bba68e64701e755c43ea.js" defer></script>
+<script src="/js/compiled/bundle.min.8e20e4341c781bede548551eeeafa78a774cf4a43eae42473de61fd07358a591.js" defer></script>
 
   
 
@@ -1931,7 +1931,7 @@
             <span>•</span>
           
         
-        <span>1174 words</span>
+        <span>1164 words</span>
         <span>•</span>
         <span>February 7, 2026</span>
         
@@ -1975,31 +1975,10 @@
       
 
       
-
-
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <nav id="TableOfContents">
-  <ul>
-    <li><a href="#first-of-all-what-is-an-oci-registry">First of all, what is an OCI Registry?</a>
-      <ul>
-        <li><a href="#from-container-images-to-general-artifacts">From container images to general artifacts</a></li>
-        <li><a href="#content-addressed-and-immutable-by-design">Content-addressed and immutable by design</a></li>
-        <li><a href="#why-oci-registries-in-our-context-">Why OCI registries in our context ?</a></li>
-      </ul>
-    </li>
-    <li><a href="#how-does-it-tie-to-plakar-">How does it tie to Plakar ?</a>
-      <ul>
-        <li><a href="#installing-the-oci-registry-integration">Installing the OCI registry integration</a></li>
-        <li><a href="#launching-a-registry-container">Launching a registry container</a></li>
-        <li><a href="#using-plakar-with-the-registry-container">Using Plakar with the registry container</a></li>
-      </ul>
-    </li>
-    <li><a href="#limitations">Limitations</a></li>
-    <li><a href="#conclusion">Conclusion</a></li>
-  </ul>
-</nav>
+      <ul><li><a href="#first-of-all-what-is-an-oci-registry">First of all, what is an OCI Registry?</a><ul><li><a href="#from-container-images-to-general-artifacts">From container images to general artifacts</a></li><li><a href="#content-addressed-and-immutable-by-design">Content-addressed and immutable by design</a></li><li><a href="#why-oci-registries-in-our-context-">Why OCI registries in our context ?</a></li></ul></li><li><a href="#how-does-it-tie-to-plakar-">How does it tie to Plakar ?</a><ul><li><a href="#installing-the-oci-registry-integration">Installing the OCI registry integration</a></li><li><a href="#launching-a-registry-container">Launching a registry container</a></li><li><a href="#using-plakar-with-the-registry-container">Using Plakar with the registry container</a></li></ul></li><li><a href="#limitations">Limitations</a></li><li><a href="#conclusion">Conclusion</a></li></ul>
     </div>
 
     
@@ -2152,14 +2131,22 @@ could implement a new Plakar storage backend as a weekend project.</p>
 <p>That’s exactly the kind of extensibility we were aiming for: not just
 <em>possible</em>, but <em>boringly easy</em>.</p>
 
-<div class="relative group">
-  <h2 id="first-of-all-what-is-an-oci-registry">First of all, what is an OCI Registry?</h2>
+
+<h2 id="first-of-all-what-is-an-oci-registry" class="group pr-8">First of all, what is an OCI Registry?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="first-of-all-what-is-an-oci-registry"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
   
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#first-of-all-what-is-an-oci-registry" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
+</h2>
 <p>An <strong>OCI registry</strong> is a standardized service for storing, versioning, and
 distributing binary artifacts. While best known for container images, it is not
 limited to them.</p>
@@ -2170,14 +2157,22 @@ communicate over HTTP to push, pull, and manage artifacts.</p>
 <p>In short, an <strong>OCI registry</strong> is a content-addressable, HTTP-based artifact
 store with strong guarantees around immutability and integrity.</p>
 
-<div class="relative group">
-  <h3 id="from-container-images-to-general-artifacts">From container images to general artifacts</h3>
+
+<h3 id="from-container-images-to-general-artifacts" class="group pr-8">From container images to general artifacts
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="from-container-images-to-general-artifacts"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
   
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#from-container-images-to-general-artifacts" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
+</h3>
 <p>OCI registries were originally designed for <strong>container images</strong> (for example,
 Docker Hub), but the underlying model is generic.</p>
 <p>An OCI artifact consists of:</p>
@@ -2191,14 +2186,22 @@ Docker Hub), but the underlying model is generic.</p>
 containers, including Helm charts, WASM modules, VM images, CLI tools, plugins,
 policies, signatures, and other software artifacts.</p>
 
-<div class="relative group">
-  <h3 id="content-addressed-and-immutable-by-design">Content-addressed and immutable by design</h3>
+
+<h3 id="content-addressed-and-immutable-by-design" class="group pr-8">Content-addressed and immutable by design
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="content-addressed-and-immutable-by-design"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
   
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#content-addressed-and-immutable-by-design" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
+</h3>
 <p>All content in an OCI registry is addressed by its hash (typically SHA-256).
 This provides:</p>
 <ul>
@@ -2210,14 +2213,22 @@ This provides:</p>
 <p>Tags such as <code>latest</code> or <code>v1.2.3</code> are merely mutable references. The true
 identity of an artifact is its digest.</p>
 
-<div class="relative group">
-  <h3 id="why-oci-registries-in-our-context-">Why OCI registries in our context ?</h3>
+
+<h3 id="why-oci-registries-in-our-context-" class="group pr-8">Why OCI registries in our context ?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="why-oci-registries-in-our-context-"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
   
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#why-oci-registries-in-our-context-" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
+</h3>
 <p>OCI registries have become a <strong>universal distribution layer</strong> because they are
 standardized, widely deployed, secure, and efficient at scale. They are also
 deeply integrated into modern CI/CD ecosystems.</p>
@@ -2225,14 +2236,22 @@ deeply integrated into modern CI/CD ecosystems.</p>
 artifacts, an OCI registry is often the simplest and most robust solution, and
 you don’t need to be shipping containers to benefit from it.</p>
 
-<div class="relative group">
-  <h2 id="how-does-it-tie-to-plakar-">How does it tie to Plakar ?</h2>
+
+<h2 id="how-does-it-tie-to-plakar-" class="group pr-8">How does it tie to Plakar ?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-does-it-tie-to-plakar-"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
   
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#how-does-it-tie-to-plakar-" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
+</h2>
 <p>In many aspects, the kloset storage layer is very similar to an OCI registry and
 the primitives map fairly well one to another.</p>
 <p>During backups, Plakar will generate packfiles that are MAC-indexed in kloset
@@ -2241,14 +2260,22 @@ packfiles in the OCI registry and map the MAC to the blob through a manifest.
 With this plumbing in place, calls are mapped 1:1 with the registry with
 manifests being used to locate the blob by MAC.</p>
 
-<div class="relative group">
-  <h3 id="installing-the-oci-registry-integration">Installing the OCI registry integration</h3>
+
+<h3 id="installing-the-oci-registry-integration" class="group pr-8">Installing the OCI registry integration
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="installing-the-oci-registry-integration"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
   
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#installing-the-oci-registry-integration" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
+</h3>
 <p>At the time of this writing, the OCI registry integration has been
 <a href="https://github.com/PlakarKorp/integration-oci"  target="_blank" rel="noreferrer">committed to a public repository</a>
 and is <strong>only available for plakar v1.1.0-beta</strong>.</p>
@@ -2269,14 +2296,22 @@ and is <strong>only available for plakar v1.1.0-beta</strong>.</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ plakar pkg add ./oci_v1.1.0-beta.4_darwin_arm64.ptar</span></span></code></pre></div></div>
 <p>That&rsquo;s it, you&rsquo;re good to go !</p>
 
-<div class="relative group">
-  <h3 id="launching-a-registry-container">Launching a registry container</h3>
+
+<h3 id="launching-a-registry-container" class="group pr-8">Launching a registry container
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="launching-a-registry-container"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
   
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#launching-a-registry-container" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
+</h3>
 <p>The easiest way to test is to simply start a docker container for the OCI
 registry.</p>
 <p>This can be done with this simple command, which will run the container and bind
@@ -2287,14 +2322,22 @@ the registry to port 5000 on localhost:</p>
 </span></span></span><span class="line"><span class="cl">  registry:2
 </span></span><span class="line"><span class="cl">b61a4bc5df40307b6301d30f692cd276db64acd8448258ba49f2a4c6c760cb8c</span></span></code></pre></div></div>
 
-<div class="relative group">
-  <h3 id="using-plakar-with-the-registry-container">Using Plakar with the registry container</h3>
+
+<h3 id="using-plakar-with-the-registry-container" class="group pr-8">Using Plakar with the registry container
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="using-plakar-with-the-registry-container"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
   
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#using-plakar-with-the-registry-container" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
+</h3>
 <p>To avoid having to type the passphrase over and over in this article, I just
 start by setting the <code>PLAKAR_PASSPHRASE</code> environment variable to a key that I
 generated with <code>openssl rand -hex 32</code>:</p>
@@ -2336,27 +2379,43 @@ generated with <code>openssl rand -hex 32</code>:</p>
     sizes="(min-width: 768px) 50vw, 65vw"
     data-zoom-src="/posts/2026-02-07/storing-backups-in-an-oci-registry/oci-registry.png"></figure>
 
-<div class="relative group">
-  <h2 id="limitations">Limitations</h2>
+
+<h2 id="limitations" class="group pr-8">Limitations
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="limitations"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
   
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#limitations" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
+</h2>
 <p>This is the first iteration of the integration. It is not production-ready and
 currently lacks some important features, such as authentication.</p>
 <p>The goal was to build a functional proof of concept first, it will now need
 polishing and hardening before real-world use.</p>
 
-<div class="relative group">
-  <h2 id="conclusion">Conclusion</h2>
+
+<h2 id="conclusion" class="group pr-8">Conclusion
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="conclusion"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
   
-  <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none" data-pagefind-ignore>
-    <a class="text-primary-300 dark:text-neutral-700 no-underline!" href="#conclusion" aria-label="Anchor">#</a>
-  </span>
-  
-</div>
+</h2>
 <p>This integration was not originally planned; it emerged from a casual
 discussion.</p>
 <p>Even without prior knowledge of OCI registries, it took roughly half an hour to
@@ -2760,7 +2819,7 @@ new use cases.</p>
 
     
   
-  <script src="/js/docs/main.min.2d3e6ba3dae8ddc4c79ea067ad0f9b2e8ac549479c4e6295abe9b946688fc99c.js" defer></script>
+  <script src="/js/docs/main.min.7408419afc0e5c4039538b8aee2a5642081229200d46e75b43306842d31db769.js" defer></script>
 
   </body>
 </html>

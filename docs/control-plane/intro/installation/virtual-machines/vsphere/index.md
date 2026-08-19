@@ -134,17 +134,17 @@ sidebar), right-click the datacenter that will contain the appliance, and select
 
 Select **Create a new virtual machine** and click **Next**.
 
-### Specify a name and target location
+### Specify a name and target location {#iso-specify-a-name-and-target-location}
 
 Enter a name for the virtual machine and select the datacenter as the target
 location.
 
-### Select a compute resource
+### Select a compute resource {#iso-select-a-compute-resource}
 
 Select the destination compute resource for the datacenter. This will typically
 be your cluster, for example `Cluster1`.
 
-### Select storage
+### Select storage {#iso-select-storage}
 
 Select the datastore that will hold the virtual machine configuration and disk
 files.
