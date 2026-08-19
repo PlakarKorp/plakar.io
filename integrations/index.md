@@ -12,6 +12,10 @@
 
 
 
+## [VMware](https://plakar.io/integrations/vmware/index.md)
+
+
+
 ## [VSS](https://plakar.io/integrations/vss/index.md)
 
 
