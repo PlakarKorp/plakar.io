@@ -46,13 +46,17 @@ flowchart TD
 Before starting, complete the following steps from the
 [HTTPS access guide](./https-access-to-a-private-network):
 
-- [Step 1: Create a VPC and a Private Network](./https-access-to-a-private-network#step-1-create-a-vpc-and-a-private-network)
-- [Step 2: Create a Public Gateway and attach it to the Private Network](./https-access-to-a-private-network#step-2-create-a-public-gateway-and-attach-it-to-the-private-network)
-- [Step 3: Attach the PCP instance to the Private Network](./https-access-to-a-private-network#step-3-attach-the-pcp-instance-to-the-private-network)
+- [Create a VPC and a Private Network](./https-access-to-a-private-network#create-a-vpc-and-a-private-network)
+- [Create a Public Gateway and attach it to the Private Network](./https-access-to-a-private-network#create-a-public-gateway-and-attach-it-to-the-private-network)
+- [Attach the PCP instance to the Private Network](./https-access-to-a-private-network#attach-the-pcp-instance-to-the-private-network)
 
 Make sure the instance has no public IPv4 or IPv6 address assigned.
 
-## Step 1: Enable SSH bastion on the Public Gateway
+{{< steps >}}
+
+{{< step >}}
+
+## Enable SSH bastion on the Public Gateway
 
 In the Scaleway console, navigate to **Network** > **Public Gateways** and open
 the gateway created in the prerequisites. On the **Overview** page, find the
@@ -63,7 +67,11 @@ click **Save SSH bastion settings**.
 
 ![](../images/enable-ssh-bastion.png)
 
-## Step 2: Configure allowed IPs (optional)
+{{< /step >}}
+
+{{< step >}}
+
+## Configure allowed IPs (optional)
 
 By default, SSH bastion allows connections from any public IP (`0.0.0.0/0`). To
 restrict access to specific IP ranges, delete the default entry and add your own
@@ -71,7 +79,11 @@ under the **Allowed IPs** section on the gateway's overview page.
 
 Enter each IPv4 range with its subnet mask, using `/32` for single addresses.
 
-## Step 3: Configure your SSH client
+{{< /step >}}
+
+{{< step >}}
+
+## Configure your SSH client
 
 Add the following to your `~/.ssh/config` file, replacing the placeholders with
 your Public Gateway's public IP and your PCP instance's private IP. The private
@@ -85,7 +97,11 @@ Host plakar-pcp
   LocalForward 8080 <PLAKAR_SERVER_PRIVATE_IP>:80
 ```
 
-## Step 4: Access the web UI via port forwarding
+{{< /step >}}
+
+{{< step >}}
+
+## Access the web UI via port forwarding
 
 Run the following command to open the tunnel. No SSH access to the PCP instance
 is required since the bastion makes a direct TCP connection to it over the
@@ -100,6 +116,10 @@ Then open your browser and navigate to:
 ```
 http://localhost:8080
 ```
+
+{{< /step >}}
+
+{{< /steps >}}
 
 ## What you have built
 

@@ -14,14 +14,22 @@ same backup workflow you use for any other resource. The process follows the
 standard steps: create an inventory, register the resource, attach a source app,
 and schedule a backup task.
 
-## Step 1 — Create a self-managed inventory
+{{< steps >}}
+
+{{< step >}}
+
+## Create a self-managed inventory
 
 If you do not already have a self-managed inventory to hold the Plakar Control
 Plane resource, create one now. See
 [Self-Managed Inventory](../../../infrastructure/inventories/self-managed) for
 instructions.
 
-## Step 2 — Register the Plakar Control Plane resource
+{{< /step >}}
+
+{{< step >}}
+
+## Register the Plakar Control Plane resource
 
 Inside your self-managed inventory, add a new resource manually with the
 following values:
@@ -34,7 +42,11 @@ following values:
 
 ![Add the Plakar Control Plane resource](../images/add-resource.png)
 
-## Step 3 — Add a source app using the PCP integration
+{{< /step >}}
+
+{{< step >}}
+
+## Add a source app using the PCP integration
 
 Once the resource is created, open it and go to the **Apps** tab. Add a
 **Source** app and select the **PCP** integration (PCP stands for Plakar Control
@@ -42,7 +54,11 @@ Plane).
 
 ![Add a PCP source app](../images/add-source-app.png)
 
-## Step 4 — Schedule a backup task
+{{< /step >}}
+
+{{< step >}}
+
+## Schedule a backup task
 
 With the source app in place, create a backup task to run it on a schedule. You
 can do this from the app's dashboard or from **Operations > Scheduling**.
@@ -54,6 +70,10 @@ See [Scheduling](../../../operations/scheduling) for full details on creating
 tasks.
 
 ![Schedule a backup task for the PCP app](../images/schedule-task.png)
+
+{{< /step >}}
+
+{{< /steps >}}
 
 ## What the backup contains
 

@@ -103,6 +103,10 @@ The Control Plane does not require direct connectivity to those protected
 resources. Instead, it dispatches work to an edge, which executes the operation
 locally and reports the outcome back.
 
+{{< steps >}}
+
+{{< step >}}
+
 ## Installing plakar-edge
 
 The `plakar-edge` source code is available from
@@ -120,6 +124,10 @@ $ go build -o plakar-edge .
 
 Future releases will provide prebuilt binaries, and edge functionality will
 eventually be integrated directly into the `plakar` CLI.
+
+{{< /step >}}
+
+{{< step >}}
 
 ## Enabling edge enrollment
 
@@ -143,6 +151,10 @@ Enrollment only needs to remain enabled while new edges are joining the Control
 Plane and can be disabled once all required edges have been registered. Existing
 edges continue to authenticate using their stored token even after enrollment
 has been disabled.
+
+{{< /step >}}
+
+{{< step >}}
 
 ## Enrolling an edge
 
@@ -177,6 +189,10 @@ $ plakar-edge \
 
 After a successful enrollment, the edge stores its identity and authentication
 token in `-state-dir`.
+
+{{< /step >}}
+
+{{< /steps >}}
 
 ## Restarting an enrolled edge
 

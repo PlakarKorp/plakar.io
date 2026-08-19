@@ -193,6 +193,10 @@ important to choose correctly before running the recovery wizard:
   through normal replication. Use this mode whenever another healthy Domain
   Controller is available.
 
+{{< steps >}}
+
+{{< step >}}
+
 ### Boot into Directory Services Restore Mode
 
 Before restoring the System State backup, boot the server into **Directory
@@ -207,6 +211,10 @@ shutdown /r /t 0
 
 After the restart, sign in with the local **DSRM Administrator** account, using
 the account name in the form `.\Administrator`.
+
+{{< /step >}}
+
+{{< step >}}
 
 ### Restore the System State backup
 
@@ -229,6 +237,10 @@ Complete the wizard and let Windows Server Backup finish restoring the System
 State backup, then restart the server when prompted. The server's hostname will
 change to match the Domain Controller recorded in the backup.
 
+{{< /step >}}
+
+{{< step >}}
+
 ### Return to normal boot mode
 
 After the restore completes, disable DSRM boot:
@@ -240,6 +252,10 @@ bcdedit /deletevalue safeboot
 Restart the server and sign in with a domain administrator account. If the
 password is not known, it can be reset once the **Domain Controller** is back
 online.
+
+{{< /step >}}
+
+{{< step >}}
 
 ### Verify the restored Domain Controller
 
@@ -266,3 +282,7 @@ If they are missing, enable the **SysvolReady** registry value:
 
 Confirm the **SYSVOL** and **NETLOGON** shares are now available and that the
 **Active Directory Users and Computers** console opens successfully.
+
+{{< /step >}}
+
+{{< /steps >}}

@@ -36,12 +36,20 @@ The update process consists of:
 2. Deploying a new EC2 instance from the newer AMI
 3. Reattaching the existing data volume to the new instance
 
-### 1. Stop the current instance
+{{< steps >}}
+
+{{< step >}}
+
+### Stop the current instance
 
 Stop the currently running Plakar Control Plane EC2 instance before making any
 storage changes.
 
-### 2. Detach the existing data volume
+{{< /step >}}
+
+{{< step >}}
+
+### Detach the existing data volume
 
 Locate the larger attached data volume (`1TB`) and detach it from the stopped
 instance. Before detaching the volume, note down the volume ID because the same
@@ -62,7 +70,11 @@ later, including:
 
 ![](../images/update-aws-ami-1.png)
 
-### 3. Launch a new Plakar Control Plane instance
+{{< /step >}}
+
+{{< step >}}
+
+### Launch a new Plakar Control Plane instance
 
 Deploy a new Plakar Control Plane instance from AWS Marketplace using the newer
 AMI. Follow the standard deployment process documented in the
@@ -81,12 +93,20 @@ The new instance will be provisioned with:
 - A new root volume
 - A new empty data volume
 
-### 4. Stop the new instance
+{{< /step >}}
+
+{{< step >}}
+
+### Stop the new instance
 
 Once the new instance has been provisioned successfully, stop it before
 modifying its attached volumes.
 
-### 5. Remove the new empty data volume
+{{< /step >}}
+
+{{< step >}}
+
+### Remove the new empty data volume
 
 Detach the newly created empty data volume from the new instance. This volume is
 not needed because the original data volume from the previous deployment will be
@@ -95,7 +115,11 @@ reused instead.
 Do not delete the detached volume yet until the migration is confirmed working
 correctly.
 
-### 6. Attach the old data volume
+{{< /step >}}
+
+{{< step >}}
+
+### Attach the old data volume
 
 Attach the original data volume from the previous instance to the new instance.
 Once attached, the new instance will use the existing Plakar Control Plane data
@@ -103,7 +127,11 @@ and configuration.
 
 ![](../images/update-aws-ami-2.png)
 
-### 7. Reconfigure instance settings
+{{< /step >}}
+
+{{< step >}}
+
+### Reconfigure instance settings
 
 Reapply any configuration that existed on the previous instance. This may
 include:
@@ -114,7 +142,11 @@ include:
 - DNS configuration
 - Monitoring or automation integrations
 
-### 8. Start the new instance
+{{< /step >}}
+
+{{< step >}}
+
+### Start the new instance
 
 Start the new EC2 instance.
 
@@ -122,7 +154,11 @@ Once the instance is running, Plakar Control Plane should resume normally using
 the existing data volume. All inventories, schedules, policies, configuration,
 and backup data should remain intact.
 
-### 9. Cleanup
+{{< /step >}}
+
+{{< step >}}
+
+### Cleanup
 
 After confirming the new deployment is working correctly, you can safely remove
 unused resources:
@@ -135,3 +171,7 @@ unused resources:
 >
 > Do not delete any volumes until you have verified the new deployment is
 > working correctly.
+
+{{< /step >}}
+
+{{< /steps >}}
