@@ -1,7 +1,7 @@
 ---
 title: "Two-factor authentication"
 date: "2026-08-06T00:00:00Z"
-weight: 8
+weight: 9
 summary:
   "Secure your Plakar Control Plane account with two-factor authentication."
 ---
