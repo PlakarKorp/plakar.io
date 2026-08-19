@@ -94,7 +94,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-03-19T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-08-19T11:14:20+03:00">
+    <meta property="article:modified_time" content="2026-08-19T12:48:00+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -155,8 +155,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.925f87575a15b0a494097f7730d412c6944d438eca8f1fdebe474d9e42e9965adef76f722dc7628c93434ff43514b809359bb9356a0b6cc07afcb387d017d1e6.css"
-    integrity="sha512-kl&#43;HV1oVsKSUCX93MNQSxpRNQ47Kjx/evkdNnkLpllre929yLcdijJNDT/Q1FLgJNZu5NWoLbMB6/LOH0BfR5g==">
+    href="/css/main.bundle.min.7143a55e5110d96888a6bc704a4b7d7e4cc2176d5abddcd82585d9c8ff357a62d35126a4ad5d962e9316088348934eabb4e13c2be75ace63925d14d5540e5f86.css"
+    integrity="sha512-cUOlXlEQ2WiIprxwSkt9fkzCF21avdzYJYXZyP81emLTUSakrV2WLpMWCINIk06rtOE8K&#43;dazmOSXRTVVA5fhg==">
 
   
   
@@ -291,7 +291,7 @@
     "dateCreated": "2026-03-19T00:00:00\u002b00:00",
     "datePublished": "2026-03-19T00:00:00\u002b00:00",
     
-    "dateModified": "2026-08-19T11:14:20\u002b03:00",
+    "dateModified": "2026-08-19T12:48:00\u002b03:00",
     
     
     
@@ -4610,7 +4610,9 @@ BackupCompute -->|Store Snapshots| Kloset
 <li>SSH access to source servers</li>
 <li>Basic familiarity with Plakar commands</li>
 </ul>
+<div class="steps">
 
+<div class="step">
 
 <h2 id="create-object-storage-bucket" class="group pr-8">Create Object Storage Bucket
     <button
@@ -4706,7 +4708,10 @@ once you leave the page)</li>
     src="../images/setup-iam-2.png"
     ></figure>
 </p>
+</div>
 
+
+<div class="step">
 
 <h2 id="create-ssh-keypair" class="group pr-8">Create SSH Keypair
     <button
@@ -4751,7 +4756,10 @@ key then click <strong>Import</strong>.</li>
     src="../images/setup-ssh-2.png"
     ></figure>
 </p>
+</div>
 
+
+<div class="step">
 
 <h2 id="provision-backup-compute-instance" class="group pr-8">Provision Backup Compute Instance
     <button
@@ -4889,7 +4897,10 @@ IP Address here)</li>
 </h3>
 <p>Once instance is running, note the public IP and connect:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ssh ubuntu@&lt;instance-ip&gt;</span></span></code></pre></div></div>
+</div>
 
+
+<div class="step">
 
 <h2 id="install-plakar" class="group pr-8">Install Plakar
     <button
@@ -4908,7 +4919,10 @@ IP Address here)</li>
 </h2>
 <p>Install Plakar on the instance using the
 <a href="/docs/community/main/quickstart/installation/" >Plakar Installation Guide</a></p>
+</div>
 
+
+<div class="step">
 
 <h2 id="configure-object-storage" class="group pr-8">Configure Object Storage
     <button
@@ -5018,7 +5032,10 @@ without prompts.</p></div></details>
   
 </h3>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar at <span class="s2">&#34;@exoscale-sos-backups&#34;</span> create</span></span></code></pre></div></div>
+</div>
 
+
+<div class="step">
 
 <h2 id="configure-ssh-access-to-source-servers" class="group pr-8">Configure SSH Access to Source Servers
     <button
@@ -5125,7 +5142,10 @@ without prompts.</p></div></details>
 </span></span></span><span class="line"><span class="cl"><span class="s">EOF</span></span></span></code></pre></div></div>
 <p>Test:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ssh source-1 <span class="s1">&#39;echo &#34;Alias works&#34;&#39;</span></span></span></code></pre></div></div>
+</div>
 
+
+<div class="step">
 
 <h2 id="configure-backup-sources" class="group pr-8">Configure Backup Sources
     <button
@@ -5147,7 +5167,10 @@ without prompts.</p></div></details>
 </span></span><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add web-server-2 sftp://source-2:/var/www</span></span></code></pre></div></div>
 <p>Verify:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar <span class="nb">source</span> show</span></span></code></pre></div></div>
+</div>
 
+
+<div class="step">
 
 <h2 id="test-backup" class="group pr-8">Test Backup
     <button
@@ -5172,7 +5195,10 @@ without prompts.</p></div></details>
 </span></span><span class="line"><span class="cl">$ plakar at <span class="s2">&#34;@exoscale-sos-backups&#34;</span> backup <span class="s2">&#34;@web-server-1&#34;</span> <span class="s2">&#34;@web-server-2&#34;</span></span></span></code></pre></div></div>
 <p>List snapshots:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar at <span class="s2">&#34;@exoscale-sos-backups&#34;</span> ls</span></span></code></pre></div></div>
+</div>
 
+
+<div class="step">
 
 <h2 id="schedule-automatic-backups" class="group pr-8">Schedule Automatic Backups
     <button
@@ -5199,6 +5225,11 @@ replacing:</p>
 </ul>
 <p>The scheduler configuration, systemd services, and web UI setup are identical on
 any Linux machine.</p>
+</div>
+
+
+</div>
+
 
 
 <h2 id="troubleshooting" class="group pr-8">Troubleshooting

@@ -20,6 +20,10 @@ Make sure **Plakar** is installed on your system. If you haven't done this yet,
 please refer to the [installation guide](../installation) for detailed
 instructions.
 
+{{< steps >}}
+
+{{< step >}}
+
 ## Create a Kloset Store
 
 Before we can back up any data, we need to define where the backup will go. In
@@ -50,6 +54,10 @@ $ plakar at $HOME/backups create
 > Your passphrase is not stored anywhere and **cannot** be recovered in case of
 > loss. A lost passphrase means the data within the repository can no longer be
 > accessed or recovered.
+
+{{< /step >}}
+
+{{< step >}}
 
 ## Create your first backup
 
@@ -96,6 +104,10 @@ particular snapshot and is also how you identify the snapshot to use for various
 > example, if you forget what the options are for restoring files from a
 > snapshot: `plakar help restore`
 
+{{< /step >}}
+
+{{< step >}}
+
 ## List snapshots
 
 You can verify that the backup exists with the `ls` command, which returns the
@@ -109,6 +121,10 @@ $ plakar at $HOME/backups ls
 The output lists the date of the last backup, the short UUID, the size of files
 backed-up, the time it took to create the backup and the source path of the
 backup.
+
+{{< /step >}}
+
+{{< step >}}
 
 ## Verify integrity
 
@@ -132,6 +148,10 @@ info: check: verification of dd62691d:/home/user/Documents completed successfull
 In production, you would typically run this command periodically to ensure the
 integrity of your backups over time. This is necessary to ensure that data has
 not degraded or become corrupted while stored.
+
+{{< /step >}}
+
+{{< step >}}
 
 ## Restore files from a backup
 
@@ -169,6 +189,10 @@ drwxr-xr-x 2 user user 4096 Jan 14 06:31 recipes
 -rw-r--r-- 1 user user   29 Jan 14 06:31 resume.pdf
 ```
 
+{{< /step >}}
+
+{{< step >}}
+
 ## Access the UI
 
 Plakar provides a web interface to view the backups and their content. To start
@@ -187,6 +211,10 @@ snapshots, search and view the files, and download them.
 A public instance of the web UI is also available at
 [https://demo.plakar.io](https://demo.plakar.io). You can use it to explore the
 features of the UI on real backups without installing anything.
+
+{{< /step >}}
+
+{{< /steps >}}
 
 ## Congratulations!
 

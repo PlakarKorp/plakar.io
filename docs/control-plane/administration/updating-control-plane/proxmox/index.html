@@ -94,7 +94,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-08-10T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-08-19T11:14:20+03:00">
+    <meta property="article:modified_time" content="2026-08-19T12:48:00+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -155,8 +155,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.925f87575a15b0a494097f7730d412c6944d438eca8f1fdebe474d9e42e9965adef76f722dc7628c93434ff43514b809359bb9356a0b6cc07afcb387d017d1e6.css"
-    integrity="sha512-kl&#43;HV1oVsKSUCX93MNQSxpRNQ47Kjx/evkdNnkLpllre929yLcdijJNDT/Q1FLgJNZu5NWoLbMB6/LOH0BfR5g==">
+    href="/css/main.bundle.min.7143a55e5110d96888a6bc704a4b7d7e4cc2176d5abddcd82585d9c8ff357a62d35126a4ad5d962e9316088348934eabb4e13c2be75ace63925d14d5540e5f86.css"
+    integrity="sha512-cUOlXlEQ2WiIprxwSkt9fkzCF21avdzYJYXZyP81emLTUSakrV2WLpMWCINIk06rtOE8K&#43;dazmOSXRTVVA5fhg==">
 
   
   
@@ -281,12 +281,12 @@
     "dateCreated": "2026-08-10T00:00:00\u002b00:00",
     "datePublished": "2026-08-10T00:00:00\u002b00:00",
     
-    "dateModified": "2026-08-19T11:14:20\u002b03:00",
+    "dateModified": "2026-08-19T12:48:00\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://plakar.io/docs/control-plane/administration/updating-control-plane/proxmox/",
-    "wordCount": "351"
+    "wordCount": "346"
   }]
   </script>
 
@@ -6167,13 +6167,15 @@ persistent disk.</p>
 <li>Starting the VM</li>
 <li>Verifying the update</li>
 </ol>
+<div class="steps">
 
+<div class="step">
 
-<h3 id="1-upload-the-new-iso" class="group pr-8">1. Upload the new ISO
+<h3 id="upload-the-new-iso" class="group pr-8">Upload the new ISO
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="1-upload-the-new-iso"
+      data-anchor="upload-the-new-iso"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6189,13 +6191,16 @@ persistent disk.</p>
 same Proxmox storage used for the current ISO. Refer to
 <a href="../../../intro/installation/virtual-machines/proxmox#uploading-the-iso" >Uploading the ISO</a>
 in the Proxmox installation guide for details.</p>
+</div>
 
 
-<h3 id="2-stop-the-vm" class="group pr-8">2. Stop the VM
+<div class="step">
+
+<h3 id="stop-the-vm" class="group pr-8">Stop the VM
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="2-stop-the-vm"
+      data-anchor="stop-the-vm"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6208,13 +6213,16 @@ in the Proxmox installation guide for details.</p>
 </h3>
 <p>Stop the currently running Plakar Control Plane VM.</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">qm stop &lt;vmid&gt;</span></span></code></pre></div></div>
+</div>
 
 
-<h3 id="3-swap-the-mounted-iso" class="group pr-8">3. Swap the mounted ISO
+<div class="step">
+
+<h3 id="swap-the-mounted-iso" class="group pr-8">Swap the mounted ISO
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="3-swap-the-mounted-iso"
+      data-anchor="swap-the-mounted-iso"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6254,13 +6262,16 @@ in the Proxmox installation guide for details.</p>
 </svg>
 </span></div>
       </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>This only replaces the appliance ISO. The VM&rsquo;s persistent disk (<code>scsi0</code>), EFI
-disk (<code>efidisk0</code>), and cloud-init drive (<code>ide3</code>), if present, are untouched.</p></div></details>
+disk (<code>efidisk0</code>), and cloud-init drive (<code>ide3</code>), if present, are untouched.</p></div></details></div>
 
-<h3 id="4-start-the-vm" class="group pr-8">4. Start the VM
+
+<div class="step">
+
+<h3 id="start-the-vm" class="group pr-8">Start the VM
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="4-start-the-vm"
+      data-anchor="start-the-vm"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6276,13 +6287,16 @@ disk (<code>efidisk0</code>), and cloud-init drive (<code>ide3</code>), if prese
 <p>The appliance boots from the new ISO and uses the existing persistent disk.
 inventories, schedules, policies, configuration, and other Plakar Control Plane
 data will remain intact.</p>
+</div>
 
 
-<h3 id="5-verify" class="group pr-8">5. Verify
+<div class="step">
+
+<h3 id="verify" class="group pr-8">Verify
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="5-verify"
+      data-anchor="verify"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6296,6 +6310,11 @@ data will remain intact.</p>
 <p>Once the VM is reachable on the network, open Plakar Control Plane in a browser
 as usual and confirm that the appliance is running the new version and that
 existing data is present.</p>
+</div>
+
+
+</div>
+
 
       </article>
       <footer class="mt-12 flex flex-col gap-6 docs-font border-t border-neutral-200 pt-6">
@@ -6359,7 +6378,7 @@ existing data is present.</p>
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#deployment-layout">Deployment layout</a></li><li><a href="#updating-the-appliance">Updating the appliance</a><ul><li><a href="#1-upload-the-new-iso">1. Upload the new ISO</a></li><li><a href="#2-stop-the-vm">2. Stop the VM</a></li><li><a href="#3-swap-the-mounted-iso">3. Swap the mounted ISO</a></li><li><a href="#4-start-the-vm">4. Start the VM</a></li><li><a href="#5-verify">5. Verify</a></li></ul></li></ul>
+      <ul><li><a href="#deployment-layout">Deployment layout</a></li><li><a href="#updating-the-appliance">Updating the appliance</a><ul><li><a href="#upload-the-new-iso">Upload the new ISO</a></li><li><a href="#stop-the-vm">Stop the VM</a></li><li><a href="#swap-the-mounted-iso">Swap the mounted ISO</a></li><li><a href="#start-the-vm">Start the VM</a></li><li><a href="#verify">Verify</a></li></ul></li></ul>
     </div>
 
     

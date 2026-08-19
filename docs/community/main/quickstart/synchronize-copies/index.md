@@ -27,6 +27,10 @@ guide).
 **Plakar** is designed to make it easy to synchronize a Kloset Store to another
 location.
 
+{{< steps >}}
+
+{{< step >}}
+
 ## Login to install pre-built integrations
 
 By default, **Plakar** works without requiring you to create an account or log
@@ -69,6 +73,10 @@ login.
 
 {{< /tabs >}}
 
+{{< /step >}}
+
+{{< step >}}
+
 ## Install the S3 integration
 
 Run the following command to install the S3 integration:
@@ -92,6 +100,10 @@ $ plakar pkg list
 s3@v1.0.7
 ```
 
+{{< /step >}}
+
+{{< step >}}
+
 ## Set up S3-compatible storage
 
 For this quickstart, we will use a local MinIO instance as our S3-compatible
@@ -108,6 +120,10 @@ $ docker run -d --name minio -p 9000:9000 -p 9001:9001 quay.io/minio/minio serve
 This command starts a MinIO server accessible at `http://localhost:9000`, with a
 web interface available at `http://localhost:9001`. The default access key is
 `minioadmin` and the secret key is also `minioadmin`.
+
+{{< /step >}}
+
+{{< step >}}
 
 ## Configure Plakar
 
@@ -131,6 +147,10 @@ specified because we are connecting to a local server without TLS.
 
 _`use_tls` should be omitted or set to `true` when connecting to production
 S3-compatible services that use TLS._
+
+{{< /step >}}
+
+{{< step >}}
 
 ## Initialize the Kloset Store
 
@@ -159,6 +179,10 @@ passphrase** as the local Kloset Store, but you can if you want to.
 
 Plakar will automatically create the bucket if it does not already exist.
 
+{{< /step >}}
+
+{{< step >}}
+
 ## List snapshots
 
 If you list the snapshots in this new store, you will see that it is currently
@@ -167,6 +191,10 @@ empty:
 ```bash
 plakar at "@s3-backups" ls
 ```
+
+{{< /step >}}
+
+{{< step >}}
 
 ## Synchronize the local Kloset Store to S3
 
@@ -210,6 +238,10 @@ In production, you would typically run this command periodically to ensure that
 the S3 Kloset Store remains up-to-date with the local Kloset Store. If there are
 no new snapshots to transfer, the command will complete quickly without
 transferring any data.
+
+{{< /step >}}
+
+{{< /steps >}}
 
 ## A remote Kloset Store works just like a local one
 

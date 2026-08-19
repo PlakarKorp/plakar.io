@@ -73,8 +73,9 @@ sudo su -
 user='root'
 ```
 
-The SSH public key from [Step 4](#step-4-set-up-ssh-access-for-consumers) must
-be installed in `/root/.ssh/authorized_keys`, and the connector's `nbd_ssh_url`
+The SSH public key from
+[Set up SSH access for consumers](#set-up-ssh-access-for-consumers) must be
+installed in `/root/.ssh/authorized_keys`, and the connector's `nbd_ssh_url`
 must use `ssh://root@<nbd_ip>`. Running the installation commands with `sudo`
 while still configuring the connector for `ssh://ubuntu@...` does **not** make
 the remotely launched `nbdkit` process run as root.
@@ -84,7 +85,11 @@ configuration permits public-key login for root (for example,
 `PermitRootLogin prohibit-password`) rather than enabling password login for
 root.
 
-## Step 1: Install nbdkit and the VDDK plugin
+{{< steps >}}
+
+{{< step >}}
+
+## Install nbdkit and the VDDK plugin
 
 On the NBD server instance, install `nbdkit` along with the NBD client tools and
 the VDDK plugin:
@@ -103,7 +108,11 @@ nbdkit vddk --dump-plugin
 This should print a list of plugin parameters. If instead you get a
 `cannot open plugin` error, the plugin was not installed correctly.
 
-## Step 2: Install the VDDK libraries from Broadcom
+{{< /step >}}
+
+{{< step >}}
+
+## Install the VDDK libraries from Broadcom
 
 `nbdkit-vddk` needs the actual VMware VDDK libraries, which are distributed
 separately from Broadcom.
@@ -133,7 +142,11 @@ A successful install shows a line similar to
 `vddk_dll=/usr/lib/vmware-vix-disklib/lib64/libvixDiskLib.so.9.1.0.0` in the
 `--dump-plugin` output.
 
-## Step 3: Generate TLS certificates
+{{< /step >}}
+
+{{< step >}}
+
+## Generate TLS certificates
 
 Disk data flows over plain TCP between the consumer (Plakar Control Plane) and
 `nbdkit`, so TLS is required (`--tls=require`). The recommended approach is to
@@ -225,7 +238,11 @@ certtool --certificate-info --infile /etc/nbdkit/certs/server-cert.pem | grep -A
 Keep a copy of `ca-cert.pem`. You'll need it later when configuring the VMware
 Compute resource in Plakar Control Plane.
 
-## Step 4: Set up SSH access for consumers
+{{< /step >}}
+
+{{< step >}}
+
+## Set up SSH access for consumers
 
 SSH is used for orchestration only. Disk bytes never travel over SSH, only over
 the TLS-secured NBD connection set up in
@@ -253,6 +270,10 @@ chmod 0600 ~/.ssh/authorized_keys
 If the NBD server will be used for HotAdd, run these commands from a root shell
 instead, so the key lands in `/root/.ssh/authorized_keys` (see
 [HotAdd and root access](#hotadd-and-root-access)).
+
+{{< /step >}}
+
+{{< /steps >}}
 
 ## Next Steps
 

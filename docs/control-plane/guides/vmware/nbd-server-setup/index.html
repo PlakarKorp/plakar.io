@@ -94,7 +94,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-07-17T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-08-19T11:14:20+03:00">
+    <meta property="article:modified_time" content="2026-08-19T12:48:00+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -155,8 +155,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.925f87575a15b0a494097f7730d412c6944d438eca8f1fdebe474d9e42e9965adef76f722dc7628c93434ff43514b809359bb9356a0b6cc07afcb387d017d1e6.css"
-    integrity="sha512-kl&#43;HV1oVsKSUCX93MNQSxpRNQ47Kjx/evkdNnkLpllre929yLcdijJNDT/Q1FLgJNZu5NWoLbMB6/LOH0BfR5g==">
+    href="/css/main.bundle.min.7143a55e5110d96888a6bc704a4b7d7e4cc2176d5abddcd82585d9c8ff357a62d35126a4ad5d962e9316088348934eabb4e13c2be75ace63925d14d5540e5f86.css"
+    integrity="sha512-cUOlXlEQ2WiIprxwSkt9fkzCF21avdzYJYXZyP81emLTUSakrV2WLpMWCINIk06rtOE8K&#43;dazmOSXRTVVA5fhg==">
 
   
   
@@ -291,12 +291,12 @@
     "dateCreated": "2026-07-17T00:00:00\u002b00:00",
     "datePublished": "2026-07-17T00:00:00\u002b00:00",
     
-    "dateModified": "2026-08-19T11:14:20\u002b03:00",
+    "dateModified": "2026-08-19T12:48:00\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://plakar.io/docs/control-plane/guides/vmware/nbd-server-setup/",
-    "wordCount": "1211"
+    "wordCount": "1207"
   }]
   </script>
 
@@ -6218,8 +6218,9 @@ etc.) removes these temporary disks while a backup or restore is running.</p>
 <code>root</code>:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo su -
 </span></span><span class="line"><span class="cl"><span class="nv">user</span><span class="o">=</span><span class="s1">&#39;root&#39;</span></span></span></code></pre></div></div>
-<p>The SSH public key from <a href="/docs/control-plane/guides/vmware/nbd-server-setup/#step-4-set-up-ssh-access-for-consumers" >Step 4</a> must
-be installed in <code>/root/.ssh/authorized_keys</code>, and the connector&rsquo;s <code>nbd_ssh_url</code>
+<p>The SSH public key from
+<a href="/docs/control-plane/guides/vmware/nbd-server-setup/#set-up-ssh-access-for-consumers" >Set up SSH access for consumers</a> must be
+installed in <code>/root/.ssh/authorized_keys</code>, and the connector&rsquo;s <code>nbd_ssh_url</code>
 must use <code>ssh://root@&lt;nbd_ip&gt;</code>. Running the installation commands with <code>sudo</code>
 while still configuring the connector for <code>ssh://ubuntu@...</code> does <strong>not</strong> make
 the remotely launched <code>nbdkit</code> process run as root.</p>
@@ -6227,13 +6228,15 @@ the remotely launched <code>nbdkit</code> process run as root.</p>
 configuration permits public-key login for root (for example,
 <code>PermitRootLogin prohibit-password</code>) rather than enabling password login for
 root.</p>
+<div class="steps">
 
+<div class="step">
 
-<h2 id="step-1-install-nbdkit-and-the-vddk-plugin" class="group pr-8">Step 1: Install nbdkit and the VDDK plugin
+<h2 id="install-nbdkit-and-the-vddk-plugin" class="group pr-8">Install nbdkit and the VDDK plugin
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="step-1-install-nbdkit-and-the-vddk-plugin"
+      data-anchor="install-nbdkit-and-the-vddk-plugin"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6252,13 +6255,16 @@ the VDDK plugin:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nbdkit vddk --dump-plugin</span></span></code></pre></div></div>
 <p>This should print a list of plugin parameters. If instead you get a
 <code>cannot open plugin</code> error, the plugin was not installed correctly.</p>
+</div>
 
 
-<h2 id="step-2-install-the-vddk-libraries-from-broadcom" class="group pr-8">Step 2: Install the VDDK libraries from Broadcom
+<div class="step">
+
+<h2 id="install-the-vddk-libraries-from-broadcom" class="group pr-8">Install the VDDK libraries from Broadcom
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="step-2-install-the-vddk-libraries-from-broadcom"
+      data-anchor="install-the-vddk-libraries-from-broadcom"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6286,13 +6292,16 @@ the NBD server (for example with <code>scp</code>), then extract and install it:
 <p>A successful install shows a line similar to
 <code>vddk_dll=/usr/lib/vmware-vix-disklib/lib64/libvixDiskLib.so.9.1.0.0</code> in the
 <code>--dump-plugin</code> output.</p>
+</div>
 
 
-<h2 id="step-3-generate-tls-certificates" class="group pr-8">Step 3: Generate TLS certificates
+<div class="step">
+
+<h2 id="generate-tls-certificates" class="group pr-8">Generate TLS certificates
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="step-3-generate-tls-certificates"
+      data-anchor="generate-tls-certificates"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6387,13 +6396,16 @@ server&rsquo;s IP:</p>
 </span></span><span class="line"><span class="cl"><span class="c1"># expect: IPAddress:</span></span></span></code></pre></div></div>
 <p>Keep a copy of <code>ca-cert.pem</code>. You&rsquo;ll need it later when configuring the VMware
 Compute resource in Plakar Control Plane.</p>
+</div>
 
 
-<h2 id="step-4-set-up-ssh-access-for-consumers" class="group pr-8">Step 4: Set up SSH access for consumers
+<div class="step">
+
+<h2 id="set-up-ssh-access-for-consumers" class="group pr-8">Set up SSH access for consumers
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="step-4-set-up-ssh-access-for-consumers"
+      data-anchor="set-up-ssh-access-for-consumers"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6420,6 +6432,11 @@ authorized keys:</p>
 <p>If the NBD server will be used for HotAdd, run these commands from a root shell
 instead, so the key lands in <code>/root/.ssh/authorized_keys</code> (see
 <a href="/docs/control-plane/guides/vmware/nbd-server-setup/#hotadd-and-root-access" >HotAdd and root access</a>).</p>
+</div>
+
+
+</div>
+
 
 
 <h2 id="next-steps" class="group pr-8">Next Steps
@@ -6491,7 +6508,7 @@ this NBD server.</p>
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#prerequisites">Prerequisites</a></li><li><a href="#hotadd-and-root-access">HotAdd and root access</a></li><li><a href="#step-1-install-nbdkit-and-the-vddk-plugin">Step 1: Install nbdkit and the VDDK plugin</a></li><li><a href="#step-2-install-the-vddk-libraries-from-broadcom">Step 2: Install the VDDK libraries from Broadcom</a></li><li><a href="#step-3-generate-tls-certificates">Step 3: Generate TLS certificates</a></li><li><a href="#step-4-set-up-ssh-access-for-consumers">Step 4: Set up SSH access for consumers</a></li><li><a href="#next-steps">Next Steps</a></li></ul>
+      <ul><li><a href="#prerequisites">Prerequisites</a></li><li><a href="#hotadd-and-root-access">HotAdd and root access</a></li><li><a href="#install-nbdkit-and-the-vddk-plugin">Install nbdkit and the VDDK plugin</a></li><li><a href="#install-the-vddk-libraries-from-broadcom">Install the VDDK libraries from Broadcom</a></li><li><a href="#generate-tls-certificates">Generate TLS certificates</a></li><li><a href="#set-up-ssh-access-for-consumers">Set up SSH access for consumers</a></li><li><a href="#next-steps">Next Steps</a></li></ul>
     </div>
 
     

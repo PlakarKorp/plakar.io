@@ -18,6 +18,10 @@ IAM policy, and generating an API key.
 
 ![](../images/iam-dashboard.png)
 
+{{< steps >}}
+
+{{< step >}}
+
 ## Creating an IAM Application
 
 In Scaleway, API keys can be generated either for an IAM user or for an IAM
@@ -39,6 +43,10 @@ also optionally attach policies during creation, but in this guide we will
 create the policies separately first before attaching them to the application.
 
 ![](../images/creating-iam-application.png)
+
+{{< /step >}}
+
+{{< step >}}
 
 ## Creating an IAM Policy
 
@@ -101,6 +109,10 @@ You can add more rules if the application needs access to additional services or
 projects. Once the policy contains the rules you need, you can create the
 policy.
 
+{{< /step >}}
+
+{{< step >}}
+
 ## Generating API Keys
 
 After creating the IAM application and attaching the required policy, generate
@@ -134,4 +146,8 @@ Copy and store the secret key securely.
 >
 > The secret key is only shown once. Store it somewhere safe before leaving the
 > page.
+
+{{< /step >}}
+
+{{< /steps >}}
 

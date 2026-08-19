@@ -94,7 +94,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-07-28T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-08-19T11:14:20+03:00">
+    <meta property="article:modified_time" content="2026-08-19T12:48:00+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -155,8 +155,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.925f87575a15b0a494097f7730d412c6944d438eca8f1fdebe474d9e42e9965adef76f722dc7628c93434ff43514b809359bb9356a0b6cc07afcb387d017d1e6.css"
-    integrity="sha512-kl&#43;HV1oVsKSUCX93MNQSxpRNQ47Kjx/evkdNnkLpllre929yLcdijJNDT/Q1FLgJNZu5NWoLbMB6/LOH0BfR5g==">
+    href="/css/main.bundle.min.7143a55e5110d96888a6bc704a4b7d7e4cc2176d5abddcd82585d9c8ff357a62d35126a4ad5d962e9316088348934eabb4e13c2be75ace63925d14d5540e5f86.css"
+    integrity="sha512-cUOlXlEQ2WiIprxwSkt9fkzCF21avdzYJYXZyP81emLTUSakrV2WLpMWCINIk06rtOE8K&#43;dazmOSXRTVVA5fhg==">
 
   
   
@@ -281,12 +281,12 @@
     "dateCreated": "2026-07-28T00:00:00\u002b00:00",
     "datePublished": "2026-07-28T00:00:00\u002b00:00",
     
-    "dateModified": "2026-08-19T11:14:20\u002b03:00",
+    "dateModified": "2026-08-19T12:48:00\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://plakar.io/docs/control-plane/guides/windows/windows-openssh-setup/",
-    "wordCount": "455"
+    "wordCount": "445"
   }]
   </script>
 
@@ -6118,13 +6118,15 @@
 hosts over SSH. This guide explains how to install and configure OpenSSH Server
 on Windows and authorize an SSH key for the account used by Plakar Control
 Plane.</p>
+<div class="steps">
 
+<div class="step">
 
-<h2 id="step-1-install-openssh-server" class="group pr-8">Step 1: Install OpenSSH Server
+<h2 id="install-openssh-server" class="group pr-8">Install OpenSSH Server
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="step-1-install-openssh-server"
+      data-anchor="install-openssh-server"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6139,13 +6141,16 @@ Plane.</p>
 using the following commands:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">Get-WindowsCapability</span> <span class="n">-Online</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="n">Name</span> <span class="o">-like</span> <span class="s1">&#39;OpenSSH*&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="nb">Add-WindowsCapability</span> <span class="n">-Online</span> <span class="n">-Name</span> <span class="n">OpenSSH</span><span class="p">.</span><span class="n">Server</span><span class="p">~~~~</span><span class="mf">0.0</span><span class="p">.</span><span class="py">1</span><span class="p">.</span><span class="mf">0</span></span></span></code></pre></div></div>
+</div>
 
 
-<h2 id="step-2-start-the-ssh-service" class="group pr-8">Step 2: Start the SSH service
+<div class="step">
+
+<h2 id="start-the-ssh-service" class="group pr-8">Start the SSH service
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="step-2-start-the-ssh-service"
+      data-anchor="start-the-ssh-service"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6160,13 +6165,16 @@ using the following commands:</p>
 system boots:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">Start-Service</span> <span class="n">sshd</span>
 </span></span><span class="line"><span class="cl"><span class="nb">Set-Service</span> <span class="n">-Name</span> <span class="n">sshd</span> <span class="n">-StartupType</span> <span class="s1">&#39;Automatic&#39;</span></span></span></code></pre></div></div>
+</div>
 
 
-<h2 id="step-3-allow-ssh-connections" class="group pr-8">Step 3: Allow SSH connections
+<div class="step">
+
+<h2 id="allow-ssh-connections" class="group pr-8">Allow SSH connections
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="step-3-allow-ssh-connections"
+      data-anchor="allow-ssh-connections"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6191,13 +6199,16 @@ rule&rsquo;s profile and add Public if needed:</p>
 </span></span><span class="line"><span class="cl"><span class="nb">Set-NetFirewallRule</span> <span class="n">-Name</span> <span class="n">sshd</span> <span class="n">-Profile</span> <span class="n">Any</span></span></span></code></pre></div></div>
 <p>Also open port 22 at the network/firewall level (cloud security group, VPC
 firewall, etc.), in addition to the Windows Firewall rule above.</p>
+</div>
 
 
-<h2 id="step-4-authorize-a-dedicated-ssh-key" class="group pr-8">Step 4: Authorize a dedicated SSH key
+<div class="step">
+
+<h2 id="authorize-a-dedicated-ssh-key" class="group pr-8">Authorize a dedicated SSH key
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="step-4-authorize-a-dedicated-ssh-key"
+      data-anchor="authorize-a-dedicated-ssh-key"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6217,13 +6228,16 @@ SSH will silently ignore the file if permissions are too permissive:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">icacls</span> <span class="s2">&#34;C:\ProgramData\ssh\administrators_authorized_keys&#34;</span> <span class="p">/</span><span class="n">inheritance</span><span class="err">:</span><span class="nb">r
 </span></span></span><span class="line"><span class="cl"><span class="n">icacls</span> <span class="s2">&#34;C:\ProgramData\ssh\administrators_authorized_keys&#34;</span> <span class="p">/</span><span class="n">grant</span> <span class="s2">&#34;Administrators:F&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="n">icacls</span> <span class="s2">&#34;C:\ProgramData\ssh\administrators_authorized_keys&#34;</span> <span class="p">/</span><span class="n">grant</span> <span class="s2">&#34;SYSTEM:F&#34;</span></span></span></code></pre></div></div>
+</div>
 
 
-<h2 id="step-5-test-the-connection" class="group pr-8">Step 5: Test the connection
+<div class="step">
+
+<h2 id="test-the-connection" class="group pr-8">Test the connection
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="step-5-test-the-connection"
+      data-anchor="test-the-connection"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6251,6 +6265,11 @@ from the Windows host, where OpenSSH Server stores its host keys under
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">ssh-keygen</span> <span class="n">-lf</span> <span class="n">C:</span><span class="p">\</span><span class="n">ProgramData</span><span class="p">\</span><span class="n">ssh</span><span class="p">\</span><span class="n">ssh_host_ed25519_key</span><span class="p">.</span><span class="n">pub</span></span></span></code></pre></div></div>
 <p>Compare its output against the fingerprint shown in the SSH prompt before
 accepting.</p>
+</div>
+
+
+</div>
+
 
       </article>
       <footer class="mt-12 flex flex-col gap-6 docs-font border-t border-neutral-200 pt-6">
@@ -6301,7 +6320,7 @@ accepting.</p>
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#step-1-install-openssh-server">Step 1: Install OpenSSH Server</a></li><li><a href="#step-2-start-the-ssh-service">Step 2: Start the SSH service</a></li><li><a href="#step-3-allow-ssh-connections">Step 3: Allow SSH connections</a></li><li><a href="#step-4-authorize-a-dedicated-ssh-key">Step 4: Authorize a dedicated SSH key</a></li><li><a href="#step-5-test-the-connection">Step 5: Test the connection</a></li></ul>
+      <ul><li><a href="#install-openssh-server">Install OpenSSH Server</a></li><li><a href="#start-the-ssh-service">Start the SSH service</a></li><li><a href="#allow-ssh-connections">Allow SSH connections</a></li><li><a href="#authorize-a-dedicated-ssh-key">Authorize a dedicated SSH key</a></li><li><a href="#test-the-connection">Test the connection</a></li></ul>
     </div>
 
     

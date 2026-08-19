@@ -94,7 +94,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-06-29T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-08-19T11:14:20+03:00">
+    <meta property="article:modified_time" content="2026-08-19T12:48:00+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -155,8 +155,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.925f87575a15b0a494097f7730d412c6944d438eca8f1fdebe474d9e42e9965adef76f722dc7628c93434ff43514b809359bb9356a0b6cc07afcb387d017d1e6.css"
-    integrity="sha512-kl&#43;HV1oVsKSUCX93MNQSxpRNQ47Kjx/evkdNnkLpllre929yLcdijJNDT/Q1FLgJNZu5NWoLbMB6/LOH0BfR5g==">
+    href="/css/main.bundle.min.7143a55e5110d96888a6bc704a4b7d7e4cc2176d5abddcd82585d9c8ff357a62d35126a4ad5d962e9316088348934eabb4e13c2be75ace63925d14d5540e5f86.css"
+    integrity="sha512-cUOlXlEQ2WiIprxwSkt9fkzCF21avdzYJYXZyP81emLTUSakrV2WLpMWCINIk06rtOE8K&#43;dazmOSXRTVVA5fhg==">
 
   
   
@@ -281,7 +281,7 @@
     "dateCreated": "2026-06-29T00:00:00\u002b00:00",
     "datePublished": "2026-06-29T00:00:00\u002b00:00",
     
-    "dateModified": "2026-08-19T11:14:20\u002b03:00",
+    "dateModified": "2026-08-19T12:48:00\u002b03:00",
     
     
     
@@ -6122,7 +6122,9 @@ tokens together: an application key that identifies the application, an
 application secret that authenticates it, and a consumer key that authorizes it
 to act on a specific account with a defined set of permissions.</p>
 <p>This guide walks through generating the three tokens Plakar Control Plane needs.</p>
+<div class="steps">
 
+<div class="step">
 
 <h2 id="generating-api-credentials" class="group pr-8">Generating API Credentials
     <button
@@ -6157,11 +6159,8 @@ screenshot in <a href="/docs/control-plane/guides/ovhcloud/api-keys/#managing-an
 credentials. If your account is a sub-user, enter the account ID in the format
 <code>XXXX-XXXX-XX/user</code> along with the password. If two-factor authentication is
 enabled, you will also be prompted for a one-time code.</p>
-
 <figure>
       <img class="my-0 rounded-md mx-auto max-w-100" src="../images/create-api-keys.png" alt="" />
-  
-  
   </figure>
 <p>Once logged in, fill in the token form:</p>
 <ul>
@@ -6214,7 +6213,10 @@ paths your use case requires.</p>
 </span></div>
       </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>If the credentials are used for an important workflow such as automated
 backups, an expired token will prevent Plakar Control Plane from running those
-backups until the credentials are updated.</p></div></details>
+backups until the credentials are updated.</p></div></details></div>
+
+
+<div class="step">
 
 <h2 id="storing-the-credentials" class="group pr-8">Storing the Credentials
     <button
@@ -6267,6 +6269,11 @@ Treat this as a secret and store it securely.</li>
       </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>The application secret and consumer key are only shown once. Copy and store
 them somewhere safe before leaving the page.</p></div></details><p>Enter these three values into the relevant Plakar Control Plane integration or
 inventory configuration.</p>
+</div>
+
+
+</div>
+
 
 
 <h2 id="managing-and-revoking-credentials" class="group pr-8">Managing and Revoking Credentials

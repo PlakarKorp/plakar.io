@@ -94,7 +94,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-07-17T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-08-19T11:14:20+03:00">
+    <meta property="article:modified_time" content="2026-08-19T12:48:00+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -155,8 +155,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.925f87575a15b0a494097f7730d412c6944d438eca8f1fdebe474d9e42e9965adef76f722dc7628c93434ff43514b809359bb9356a0b6cc07afcb387d017d1e6.css"
-    integrity="sha512-kl&#43;HV1oVsKSUCX93MNQSxpRNQ47Kjx/evkdNnkLpllre929yLcdijJNDT/Q1FLgJNZu5NWoLbMB6/LOH0BfR5g==">
+    href="/css/main.bundle.min.7143a55e5110d96888a6bc704a4b7d7e4cc2176d5abddcd82585d9c8ff357a62d35126a4ad5d962e9316088348934eabb4e13c2be75ace63925d14d5540e5f86.css"
+    integrity="sha512-cUOlXlEQ2WiIprxwSkt9fkzCF21avdzYJYXZyP81emLTUSakrV2WLpMWCINIk06rtOE8K&#43;dazmOSXRTVVA5fhg==">
 
   
   
@@ -286,12 +286,12 @@
     "dateCreated": "2026-07-17T00:00:00\u002b00:00",
     "datePublished": "2026-07-17T00:00:00\u002b00:00",
     
-    "dateModified": "2026-08-19T11:14:20\u002b03:00",
+    "dateModified": "2026-08-19T12:48:00\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://plakar.io/docs/control-plane/intro/installation/virtual-machines/proxmox/",
-    "wordCount": "1533"
+    "wordCount": "1532"
   }]
   </script>
 
@@ -6509,35 +6509,12 @@ Otherwise, pick one of the two tabs below, not both. A Proxmox VM only takes a
 single cloud-init user-data source, so if you use the Advanced tab&rsquo;s snippet,
 set the SSH key there too, alongside any proxy, registry, or network settings,
 instead of from the UI.</p>
-<div
-  class="tab__container w-full"
-  
-  >
-  <div class="tab__nav overflow-x-auto" role="tablist">
-    <div class="flex gap-1 min-w-max"><button
-          class="tab__button px-3 py-2 text-sm font-semibold border-b-2 border-transparent rounded-t-md bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-600 tab--active"
-          role="tab"
-          aria-selected="true"
-          data-tab-index="0"
-          data-tab-label="Basic (UI)">
-          <span class="flex items-center gap-1">
-            
-            Basic (UI)
-          </span>
-        </button><button
-          class="tab__button px-3 py-2 text-sm font-semibold border-b-2 border-transparent rounded-t-md bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-600 "
-          role="tab"
-          aria-selected="false"
-          data-tab-index="1"
-          data-tab-label="Advanced (CLI)">
-          <span class="flex items-center gap-1">
-            
-            Advanced (CLI)
-          </span>
-        </button></div>
-  </div>
-  <div class="tab__content mt-4"><div class="tab__panel tab--active" data-tab-index="0">
-        <p>If SSH access is all you need (no proxy, no registry mirror, no static IP), set
+<div class="tab__container w-full">
+<div class="tab__nav overflow-x-auto" role="tablist">
+<div class="flex gap-1 min-w-max"><button class="tab__button px-3 py-2 text-sm font-semibold border-b-2 border-transparent rounded-t-md bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-600 tab--active" role="tab" aria-selected="true" data-tab-index="0" data-tab-label="Basic (UI)"><span class="flex items-center gap-1">Basic (UI)</span></button><button class="tab__button px-3 py-2 text-sm font-semibold border-b-2 border-transparent rounded-t-md bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-600" role="tab" aria-selected="false" data-tab-index="1" data-tab-label="Advanced (CLI)"><span class="flex items-center gap-1">Advanced (CLI)</span></button></div>
+</div>
+<div class="tab__content mt-4"><div class="tab__panel tab--active" data-tab-index="0">
+<p>If SSH access is all you need (no proxy, no registry mirror, no static IP), set
 the key from the Proxmox UI, no YAML required.</p>
 <figure><img
     class="my-0 rounded-md"
@@ -6573,8 +6550,8 @@ public key, or upload the key file directly.</p>
 </li>
 </ol>
 
-      </div><div class="tab__panel " data-tab-index="1">
-        <p>The Proxmox UI can only set an SSH key: it has no fields for a proxy, registry
+</div><div class="tab__panel" data-tab-index="1">
+<p>The Proxmox UI can only set an SSH key: it has no fields for a proxy, registry
 mirror, or static IP. For any of those, write a single cloud-init YAML snippet
 on the Proxmox node instead; it can carry all four settings at once, so include
 only the keys you actually need.</p>
@@ -6787,7 +6764,7 @@ configuration that was applied, or why none was found:</p>
 <p>Configuration is collected once per boot. Changes to the snippet take effect on
 the next reboot.</p>
 
-      </div></div>
+</div></div>
 </div>
 
 

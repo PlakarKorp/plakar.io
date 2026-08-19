@@ -12,6 +12,10 @@ Helm chart to `oci://ghcr.io/plakarkorp/charts/plakar-operator`. This requires
 `kubectl` and `helm` on your machine, as well as administrative access to a
 Kubernetes cluster.
 
+{{< steps >}}
+
+{{< step >}}
+
 ## Installing the Helm chart
 
 Install the operator's CRDs and controller with Helm. Without `--version`, this
@@ -38,6 +42,10 @@ Once installed, verify that the operator is running:
 $ kubectl get pods -n plakar-operator-system
 ```
 
+{{< /step >}}
+
+{{< step >}}
+
 ## Generating an API key
 
 The operator authenticates to Plakar Control Plane using an **Application** user
@@ -50,6 +58,10 @@ creating application users, assigning organizations, and generating API keys.
 
 You'll use this API key in the next step when creating the Kubernetes Secret
 used by the operator to authenticate with Plakar Control Plane.
+
+{{< /step >}}
+
+{{< step >}}
 
 ## Connecting to Plakar Control Plane
 
@@ -129,4 +141,8 @@ Status:
     Status:                True
     Type:                  Available
 ```
+
+{{< /step >}}
+
+{{< /steps >}}
 

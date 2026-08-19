@@ -94,7 +94,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-05-18T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-08-19T11:14:20+03:00">
+    <meta property="article:modified_time" content="2026-08-19T12:48:00+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -155,8 +155,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.925f87575a15b0a494097f7730d412c6944d438eca8f1fdebe474d9e42e9965adef76f722dc7628c93434ff43514b809359bb9356a0b6cc07afcb387d017d1e6.css"
-    integrity="sha512-kl&#43;HV1oVsKSUCX93MNQSxpRNQ47Kjx/evkdNnkLpllre929yLcdijJNDT/Q1FLgJNZu5NWoLbMB6/LOH0BfR5g==">
+    href="/css/main.bundle.min.7143a55e5110d96888a6bc704a4b7d7e4cc2176d5abddcd82585d9c8ff357a62d35126a4ad5d962e9316088348934eabb4e13c2be75ace63925d14d5540e5f86.css"
+    integrity="sha512-cUOlXlEQ2WiIprxwSkt9fkzCF21avdzYJYXZyP81emLTUSakrV2WLpMWCINIk06rtOE8K&#43;dazmOSXRTVVA5fhg==">
 
   
   
@@ -281,12 +281,12 @@
     "dateCreated": "2026-05-18T00:00:00\u002b00:00",
     "datePublished": "2026-05-18T00:00:00\u002b00:00",
     
-    "dateModified": "2026-08-19T11:14:20\u002b03:00",
+    "dateModified": "2026-08-19T12:48:00\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://plakar.io/docs/control-plane/administration/updating-control-plane/scaleway/",
-    "wordCount": "595"
+    "wordCount": "585"
   }]
   </script>
 
@@ -6167,13 +6167,15 @@ the actual Plakar Control Plane data and configuration.</p>
 <li>Launching a new instance from the updated snapshot</li>
 <li>Reattaching the existing persistent data volume</li>
 </ol>
+<div class="steps">
 
+<div class="step">
 
-<h2 id="1-upload-the-new-qcow2-image" class="group pr-8">1. Upload the new QCOW2 image
+<h2 id="upload-the-new-qcow2-image" class="group pr-8">Upload the new QCOW2 image
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="1-upload-the-new-qcow2-image"
+      data-anchor="upload-the-new-qcow2-image"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6188,13 +6190,16 @@ the actual Plakar Control Plane data and configuration.</p>
 Object Storage. You can refer to
 <a href="../../../intro/installation/scaleway#uploading-the-qcow2-image-to-scaleway-object-storage" >Scaleway installation</a>
 documentation.</p>
+</div>
 
 
-<h2 id="2-create-a-new-block-storage-snapshot" class="group pr-8">2. Create a new Block Storage snapshot
+<div class="step">
+
+<h2 id="create-a-new-block-storage-snapshot" class="group pr-8">Create a new Block Storage snapshot
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="2-create-a-new-block-storage-snapshot"
+      data-anchor="create-a-new-block-storage-snapshot"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6209,13 +6214,16 @@ documentation.</p>
 snapshot in the same Scaleway zone as the existing deployment. You can refer to
 <a href="../../../intro/installation/scaleway#creating-a-block-storage-snapshot" >Scaleway installation</a>
 documentation.</p>
+</div>
 
 
-<h2 id="3-stop-the-current-instance" class="group pr-8">3. Stop the current instance
+<div class="step">
+
+<h2 id="stop-the-current-instance" class="group pr-8">Stop the current instance
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="3-stop-the-current-instance"
+      data-anchor="stop-the-current-instance"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6228,13 +6236,16 @@ documentation.</p>
 </h2>
 <p>Stop the currently running Plakar Control Plane instance before modifying
 attached storage volumes.</p>
+</div>
 
 
-<h2 id="4-detach-the-existing-persistent-data-volume" class="group pr-8">4. Detach the existing persistent data volume
+<div class="step">
+
+<h2 id="detach-the-existing-persistent-data-volume" class="group pr-8">Detach the existing persistent data volume
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="4-detach-the-existing-persistent-data-volume"
+      data-anchor="detach-the-existing-persistent-data-volume"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6265,13 +6276,16 @@ later, including:</p>
     alt=""
     src="../images/update-scaleway-qcow-1.png"
     ></figure>
+</div>
 
 
-<h2 id="5-create-a-new-instance" class="group pr-8">5. Create a new instance
+<div class="step">
+
+<h2 id="create-a-new-instance" class="group pr-8">Create a new instance
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="5-create-a-new-instance"
+      data-anchor="create-a-new-instance"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6296,13 +6310,16 @@ attached manually.</p>
 <li>Do not attach a new additional <code>1024GB</code> Block Storage volume</li>
 </ul>
 <p>The new instance should only contain the boot volume created from the snapshot.</p>
+</div>
 
 
-<h2 id="6-stop-the-new-instance" class="group pr-8">6. Stop the new instance
+<div class="step">
+
+<h2 id="stop-the-new-instance" class="group pr-8">Stop the new instance
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="6-stop-the-new-instance"
+      data-anchor="stop-the-new-instance"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6315,13 +6332,16 @@ attached manually.</p>
 </h2>
 <p>Once the new instance has been created successfully, stop it before attaching
 the old persistent data volume.</p>
+</div>
 
 
-<h2 id="7-attach-the-old-persistent-data-volume" class="group pr-8">7. Attach the old persistent data volume
+<div class="step">
+
+<h2 id="attach-the-old-persistent-data-volume" class="group pr-8">Attach the old persistent data volume
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="7-attach-the-old-persistent-data-volume"
+      data-anchor="attach-the-old-persistent-data-volume"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6343,13 +6363,16 @@ instance.</p>
     alt=""
     src="../images/update-scaleway-qcow-2.png"
     ></figure>
+</div>
 
 
-<h2 id="8-reconfigure-instance-settings" class="group pr-8">8. Reconfigure instance settings
+<div class="step">
+
+<h2 id="reconfigure-instance-settings" class="group pr-8">Reconfigure instance settings
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="8-reconfigure-instance-settings"
+      data-anchor="reconfigure-instance-settings"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6368,13 +6391,16 @@ include:</p>
 <li>DNS configuration</li>
 <li>Monitoring or automation integrations</li>
 </ul>
+</div>
 
 
-<h2 id="9-start-the-new-instance" class="group pr-8">9. Start the new instance
+<div class="step">
+
+<h2 id="start-the-new-instance" class="group pr-8">Start the new instance
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="9-start-the-new-instance"
+      data-anchor="start-the-new-instance"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6389,13 +6415,16 @@ include:</p>
 <p>Once the instance is running, Plakar Control Plane should resume normally using
 the existing persistent data volume. All inventories, schedules, policies,
 configuration, and other data should remain intact.</p>
+</div>
 
 
-<h2 id="10-cleanup" class="group pr-8">10. Cleanup
+<div class="step">
+
+<h2 id="cleanup" class="group pr-8">Cleanup
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="10-cleanup"
+      data-anchor="cleanup"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6438,7 +6467,12 @@ unused resources:</p>
 </svg>
 </span></div>
       </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Do not delete any old volumes or snapshots until the new deployment has been
-verified working correctly.</p></div></details>
+verified working correctly.</p></div></details></div>
+
+
+</div>
+
+
       </article>
       <footer class="mt-12 flex flex-col gap-6 docs-font border-t border-neutral-200 pt-6">
 
@@ -6510,7 +6544,7 @@ verified working correctly.</p></div></details>
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#deployment-layout">Deployment layout</a></li><li><a href="#updating-the-installation-image">Updating the installation image</a></li><li><a href="#1-upload-the-new-qcow2-image">1. Upload the new QCOW2 image</a></li><li><a href="#2-create-a-new-block-storage-snapshot">2. Create a new Block Storage snapshot</a></li><li><a href="#3-stop-the-current-instance">3. Stop the current instance</a></li><li><a href="#4-detach-the-existing-persistent-data-volume">4. Detach the existing persistent data volume</a></li><li><a href="#5-create-a-new-instance">5. Create a new instance</a></li><li><a href="#6-stop-the-new-instance">6. Stop the new instance</a></li><li><a href="#7-attach-the-old-persistent-data-volume">7. Attach the old persistent data volume</a></li><li><a href="#8-reconfigure-instance-settings">8. Reconfigure instance settings</a></li><li><a href="#9-start-the-new-instance">9. Start the new instance</a></li><li><a href="#10-cleanup">10. Cleanup</a></li></ul>
+      <ul><li><a href="#deployment-layout">Deployment layout</a></li><li><a href="#updating-the-installation-image">Updating the installation image</a></li><li><a href="#upload-the-new-qcow2-image">Upload the new QCOW2 image</a></li><li><a href="#create-a-new-block-storage-snapshot">Create a new Block Storage snapshot</a></li><li><a href="#stop-the-current-instance">Stop the current instance</a></li><li><a href="#detach-the-existing-persistent-data-volume">Detach the existing persistent data volume</a></li><li><a href="#create-a-new-instance">Create a new instance</a></li><li><a href="#stop-the-new-instance">Stop the new instance</a></li><li><a href="#attach-the-old-persistent-data-volume">Attach the old persistent data volume</a></li><li><a href="#reconfigure-instance-settings">Reconfigure instance settings</a></li><li><a href="#start-the-new-instance">Start the new instance</a></li><li><a href="#cleanup">Cleanup</a></li></ul>
     </div>
 
     

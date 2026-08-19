@@ -94,7 +94,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-06-09T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-08-19T11:14:20+03:00">
+    <meta property="article:modified_time" content="2026-08-19T12:48:00+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -155,8 +155,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.925f87575a15b0a494097f7730d412c6944d438eca8f1fdebe474d9e42e9965adef76f722dc7628c93434ff43514b809359bb9356a0b6cc07afcb387d017d1e6.css"
-    integrity="sha512-kl&#43;HV1oVsKSUCX93MNQSxpRNQ47Kjx/evkdNnkLpllre929yLcdijJNDT/Q1FLgJNZu5NWoLbMB6/LOH0BfR5g==">
+    href="/css/main.bundle.min.7143a55e5110d96888a6bc704a4b7d7e4cc2176d5abddcd82585d9c8ff357a62d35126a4ad5d962e9316088348934eabb4e13c2be75ace63925d14d5540e5f86.css"
+    integrity="sha512-cUOlXlEQ2WiIprxwSkt9fkzCF21avdzYJYXZyP81emLTUSakrV2WLpMWCINIk06rtOE8K&#43;dazmOSXRTVVA5fhg==">
 
   
   
@@ -286,12 +286,12 @@
     "dateCreated": "2026-06-09T00:00:00\u002b00:00",
     "datePublished": "2026-06-09T00:00:00\u002b00:00",
     
-    "dateModified": "2026-08-19T11:14:20\u002b03:00",
+    "dateModified": "2026-08-19T12:48:00\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://plakar.io/docs/control-plane/intro/installation/virtual-machines/vsphere/",
-    "wordCount": "1857"
+    "wordCount": "1855"
   }]
   </script>
 
@@ -6157,35 +6157,12 @@ manually</li>
     </button>
   
 </h2>
-<div
-  class="tab__container w-full"
-  
-  >
-  <div class="tab__nav overflow-x-auto" role="tablist">
-    <div class="flex gap-1 min-w-max"><button
-          class="tab__button px-3 py-2 text-sm font-semibold border-b-2 border-transparent rounded-t-md bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-600 tab--active"
-          role="tab"
-          aria-selected="true"
-          data-tab-index="0"
-          data-tab-label="OVA">
-          <span class="flex items-center gap-1">
-            
-            OVA
-          </span>
-        </button><button
-          class="tab__button px-3 py-2 text-sm font-semibold border-b-2 border-transparent rounded-t-md bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-600 "
-          role="tab"
-          aria-selected="false"
-          data-tab-index="1"
-          data-tab-label="ISO">
-          <span class="flex items-center gap-1">
-            
-            ISO
-          </span>
-        </button></div>
-  </div>
-  <div class="tab__content mt-4"><div class="tab__panel tab--active" data-tab-index="0">
-        <p>In the vSphere HTML Client, open <strong>Hosts and Clusters</strong> (first column on the
+<div class="tab__container w-full">
+<div class="tab__nav overflow-x-auto" role="tablist">
+<div class="flex gap-1 min-w-max"><button class="tab__button px-3 py-2 text-sm font-semibold border-b-2 border-transparent rounded-t-md bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-600 tab--active" role="tab" aria-selected="true" data-tab-index="0" data-tab-label="OVA"><span class="flex items-center gap-1">OVA</span></button><button class="tab__button px-3 py-2 text-sm font-semibold border-b-2 border-transparent rounded-t-md bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-600" role="tab" aria-selected="false" data-tab-index="1" data-tab-label="ISO"><span class="flex items-center gap-1">ISO</span></button></div>
+</div>
+<div class="tab__content mt-4"><div class="tab__panel tab--active" data-tab-index="0">
+<p>In the vSphere HTML Client, open <strong>Hosts and Clusters</strong> (first column on the
 sidebar), right-click the datacenter that will contain the appliance, and select
 <strong>Deploy OVF Template</strong>.</p>
 <figure><img
@@ -6447,8 +6424,8 @@ from <strong>Recent Tasks</strong> until the virtual machine appears in the inve
     src="../images/ovhcloud-ova-8.png"
     ></figure>
 
-      </div><div class="tab__panel " data-tab-index="1">
-        <p>The ISO installation method creates a new virtual machine manually and boots it
+</div><div class="tab__panel" data-tab-index="1">
+<p>The ISO installation method creates a new virtual machine manually and boots it
 from the Plakar Control Plane ISO image. This method is used when you want to
 configure the virtual machine hardware yourself instead of importing the
 pre-built OVA appliance.</p>
@@ -6740,7 +6717,7 @@ example <code>plakar-network</code>.</p>
     src="../images/ovhcloud-iso-5.png"
     ></figure>
 
-      </div></div>
+</div></div>
 </div>
 
 
@@ -6833,35 +6810,12 @@ production deployments because images are pulled from a local registry cache
 instead of the public internet. When using Harbor, you don&rsquo;t need to
 whitelist the Docker and GitHub domains above on your proxy.</li>
 </ol>
-<div
-  class="tab__container w-full"
-  
-  >
-  <div class="tab__nav overflow-x-auto" role="tablist">
-    <div class="flex gap-1 min-w-max"><button
-          class="tab__button px-3 py-2 text-sm font-semibold border-b-2 border-transparent rounded-t-md bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-600 tab--active"
-          role="tab"
-          aria-selected="true"
-          data-tab-index="0"
-          data-tab-label="Basic (flat keys)">
-          <span class="flex items-center gap-1">
-            
-            Basic (flat keys)
-          </span>
-        </button><button
-          class="tab__button px-3 py-2 text-sm font-semibold border-b-2 border-transparent rounded-t-md bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-600 "
-          role="tab"
-          aria-selected="false"
-          data-tab-index="1"
-          data-tab-label="Advanced (YAML)">
-          <span class="flex items-center gap-1">
-            
-            Advanced (YAML)
-          </span>
-        </button></div>
-  </div>
-  <div class="tab__content mt-4"><div class="tab__panel tab--active" data-tab-index="0">
-        <p>For a single NIC and straightforward settings, every option is its own
+<div class="tab__container w-full">
+<div class="tab__nav overflow-x-auto" role="tablist">
+<div class="flex gap-1 min-w-max"><button class="tab__button px-3 py-2 text-sm font-semibold border-b-2 border-transparent rounded-t-md bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-600 tab--active" role="tab" aria-selected="true" data-tab-index="0" data-tab-label="Basic (flat keys)"><span class="flex items-center gap-1">Basic (flat keys)</span></button><button class="tab__button px-3 py-2 text-sm font-semibold border-b-2 border-transparent rounded-t-md bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-300 dark:hover:bg-neutral-600" role="tab" aria-selected="false" data-tab-index="1" data-tab-label="Advanced (YAML)"><span class="flex items-center gap-1">Advanced (YAML)</span></button></div>
+</div>
+<div class="tab__content mt-4"><div class="tab__panel tab--active" data-tab-index="0">
+<p>For a single NIC and straightforward settings, every option is its own
 <code>guestinfo.plakar.*</code> parameter, no YAML required.</p>
 <p>For a static IP, set <code>guestinfo.plakar.ip</code>, <code>guestinfo.plakar.gateway</code>, and
 <code>guestinfo.plakar.dns</code> together: all three are required for this channel to take
@@ -6923,8 +6877,8 @@ network ones and of each other, so add only the ones you actually need.</p>
     src="../images/ovhcloud-iso-7.png"
     ></figure>
 
-      </div><div class="tab__panel " data-tab-index="1">
-        <p>For multiple NICs, static routes, or to bundle every setting into one document,
+</div><div class="tab__panel" data-tab-index="1">
+<p>For multiple NICs, static routes, or to bundle every setting into one document,
 use one of these two YAML channels instead of the flat keys.</p>
 
 
@@ -7065,7 +7019,7 @@ value is entered, and the compact form is easier to copy and paste:</p>
 base64-encoded, via the Deploy-OVF wizard&rsquo;s Customize Template step, instead of
 Advanced Parameters.</p>
 
-      </div></div>
+</div></div>
 </div>
 
 

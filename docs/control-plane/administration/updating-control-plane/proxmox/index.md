@@ -30,7 +30,11 @@ The update process consists of:
 4. Starting the VM
 5. Verifying the update
 
-### 1. Upload the new ISO
+{{< steps >}}
+
+{{< step >}}
+
+### Upload the new ISO
 
 Download the newer Plakar Control Plane appliance ISO from the
 [downloads](/download) page and upload it to the **ISO Images** section of the
@@ -38,7 +42,11 @@ same Proxmox storage used for the current ISO. Refer to
 [Uploading the ISO](../../../intro/installation/virtual-machines/proxmox#uploading-the-iso)
 in the Proxmox installation guide for details.
 
-### 2. Stop the VM
+{{< /step >}}
+
+{{< step >}}
+
+### Stop the VM
 
 Stop the currently running Plakar Control Plane VM.
 
@@ -46,7 +54,11 @@ Stop the currently running Plakar Control Plane VM.
 qm stop <vmid>
 ```
 
-### 3. Swap the mounted ISO
+{{< /step >}}
+
+{{< step >}}
+
+### Swap the mounted ISO
 
 Point `ide2` to the newly uploaded ISO.
 
@@ -65,7 +77,11 @@ qm config <vmid>
 > This only replaces the appliance ISO. The VM's persistent disk (`scsi0`), EFI
 > disk (`efidisk0`), and cloud-init drive (`ide3`), if present, are untouched.
 
-### 4. Start the VM
+{{< /step >}}
+
+{{< step >}}
+
+### Start the VM
 
 Start the VM.
 
@@ -77,9 +93,17 @@ The appliance boots from the new ISO and uses the existing persistent disk.
 inventories, schedules, policies, configuration, and other Plakar Control Plane
 data will remain intact.
 
-### 5. Verify
+{{< /step >}}
+
+{{< step >}}
+
+### Verify
 
 Once the VM is reachable on the network, open Plakar Control Plane in a browser
 as usual and confirm that the appliance is running the new version and that
 existing data is present.
+
+{{< /step >}}
+
+{{< /steps >}}
 

@@ -52,7 +52,11 @@ flowchart TD
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-## Step 1: Create a VPC and a Private Network
+{{< steps >}}
+
+{{< step >}}
+
+## Create a VPC and a Private Network
 
 In the Scaleway console, navigate to **Network** > **VPC** in the left sidebar.
 Click **Create VPC**, select a region, and give it a name.
@@ -65,7 +69,11 @@ required at this stage.
 
 ![](../images/create-scaleway-private-network.png)
 
-## Step 2: Create a Public Gateway and attach it to the Private Network
+{{< /step >}}
+
+{{< step >}}
+
+## Create a Public Gateway and attach it to the Private Network
 
 In the Scaleway console, navigate to **Network** > **Public Gateways**. Click
 **Create public gateway** and configure the following:
@@ -77,8 +85,8 @@ In the Scaleway console, navigate to **Network** > **Public Gateways**. Click
 
 Once the gateway is created, open it and go to the **Private Networks** tab.
 Click **Attach to a private network**, select the Private Network created in
-[Step 1](#step-1-create-a-vpc-and-a-private-network), and configure the
-attachment:
+[Create a VPC and a Private Network](#create-a-vpc-and-a-private-network), and
+configure the attachment:
 
 - **Advertise default route**: enable this so that other resources on the
   Private Network learn the default route through the gateway, allowing them to
@@ -93,13 +101,17 @@ route** is enabled on the new gateway's attachment to the Private Network.
 Resources on the network learn the default route via DHCP, so after switching
 gateways, reboot the PCP instance to pick up the new route.
 
-## Step 3: Attach the PCP instance to the Private Network
+{{< /step >}}
+
+{{< step >}}
+
+## Attach the PCP instance to the Private Network
 
 If you have not yet created your PCP instance, follow the
 [Scaleway installation guide](../../intro/installation/scaleway). When creating
 the instance, do not assign a public IPv4 or IPv6 address to it. The Public
 Gateway set up in
-[Step 2](#step-2-create-a-public-gateway-and-attach-it-to-the-private-network)
+[Create a Public Gateway and attach it to the Private Network](#create-a-public-gateway-and-attach-it-to-the-private-network)
 will provide internet access. You can also attach the instance to the Private
 Network directly during instance creation.
 
@@ -107,10 +119,10 @@ Network directly during instance creation.
 
 If your instance already exists, open your VPC in the Scaleway console, navigate
 to the Private Network created in
-[Step 1](#step-1-create-a-vpc-and-a-private-network), and click **Attach a
-resource**. Set the resource type to **Instance**, select your PCP instance, and
-leave both **Private IPv4 address** and **Private IPv6 address** set to
-auto-allocate from the pool.
+[Create a VPC and a Private Network](#create-a-vpc-and-a-private-network), and
+click **Attach a resource**. Set the resource type to **Instance**, select your
+PCP instance, and leave both **Private IPv4 address** and **Private IPv6
+address** set to auto-allocate from the pool.
 
 {{< figure src="../images/attach-instance-to-private-net.png" class="mx-auto max-w-130" >}}
 
@@ -119,7 +131,15 @@ instance details page under the **Flexible IPs** section.
 
 ![](../images/dettach-ip-from-instance.png)
 
-## Step 4: Create and configure the Load Balancer
+{{< /step >}}
+
+{{< step >}}
+
+## Create and configure the Load Balancer
+
+{{< steps >}}
+
+{{< step >}}
 
 ### Create the Load Balancer
 
@@ -136,12 +156,20 @@ When prompted for quick setup, skip it. We will configure everything manually.
 
 ![](../images/create-load-balancer.png)
 
+{{< /step >}}
+
+{{< step >}}
+
 ### Attach the Load Balancer to the Private Network
 
 Open the Load Balancer and go to the **Private Networks** tab. Click **Attach to
 a private network**, select the Private Network from
-[Step 1](#step-1-create-a-vpc-and-a-private-network), and leave **Private IPv4
-address** set to auto-allocate from the pool.
+[Create a VPC and a Private Network](#create-a-vpc-and-a-private-network), and
+leave **Private IPv4 address** set to auto-allocate from the pool.
+
+{{< /step >}}
+
+{{< step >}}
 
 ### Add a backend
 
@@ -199,6 +227,10 @@ server status based on health check results.
 
 ![](../images/create-lb-backend-3.png)
 
+{{< /step >}}
+
+{{< step >}}
+
 ### Create an SSL certificate
 
 Go to the **SSL Certificates** tab and click **Create SSL certificate**. Provide
@@ -211,6 +243,10 @@ a name and choose one of two options:
   key, and optionally the certificate authorities
 
 {{< figure src="../images/create-ssl-certificate.png" class="mx-auto max-w-130" >}}
+
+{{< /step >}}
+
+{{< step >}}
 
 ### Add a frontend
 
@@ -230,6 +266,14 @@ If you prefer to keep your Load Balancer off the public internet entirely, see
 [Access Plakar Control Plane via SSH Bastion](./ssh-bastion-access) for an
 approach using SSH port forwarding through a bastion, with no public-facing load
 balancer.
+
+{{< /step >}}
+
+{{< /steps >}}
+
+{{< /step >}}
+
+{{< /steps >}}
 
 ## What you have built
 

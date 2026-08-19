@@ -94,7 +94,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-06-15T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-08-19T11:14:20+03:00">
+    <meta property="article:modified_time" content="2026-08-19T12:48:00+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -155,8 +155,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.925f87575a15b0a494097f7730d412c6944d438eca8f1fdebe474d9e42e9965adef76f722dc7628c93434ff43514b809359bb9356a0b6cc07afcb387d017d1e6.css"
-    integrity="sha512-kl&#43;HV1oVsKSUCX93MNQSxpRNQ47Kjx/evkdNnkLpllre929yLcdijJNDT/Q1FLgJNZu5NWoLbMB6/LOH0BfR5g==">
+    href="/css/main.bundle.min.7143a55e5110d96888a6bc704a4b7d7e4cc2176d5abddcd82585d9c8ff357a62d35126a4ad5d962e9316088348934eabb4e13c2be75ace63925d14d5540e5f86.css"
+    integrity="sha512-cUOlXlEQ2WiIprxwSkt9fkzCF21avdzYJYXZyP81emLTUSakrV2WLpMWCINIk06rtOE8K&#43;dazmOSXRTVVA5fhg==">
 
   
   
@@ -291,12 +291,12 @@
     "dateCreated": "2026-06-15T00:00:00\u002b00:00",
     "datePublished": "2026-06-15T00:00:00\u002b00:00",
     
-    "dateModified": "2026-08-19T11:14:20\u002b03:00",
+    "dateModified": "2026-08-19T12:48:00\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://plakar.io/docs/control-plane/guides/scaleway/https-access-to-a-private-network/",
-    "wordCount": "1236"
+    "wordCount": "1252"
   }]
   </script>
 
@@ -6172,13 +6172,15 @@ flowchart TD
 </pre>
 
 <!-- prettier-ignore-end -->
+<div class="steps">
 
+<div class="step">
 
-<h2 id="step-1-create-a-vpc-and-a-private-network" class="group pr-8">Step 1: Create a VPC and a Private Network
+<h2 id="create-a-vpc-and-a-private-network" class="group pr-8">Create a VPC and a Private Network
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="step-1-create-a-vpc-and-a-private-network"
+      data-anchor="create-a-vpc-and-a-private-network"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6210,13 +6212,16 @@ required at this stage.</p>
     alt=""
     src="../images/create-scaleway-private-network.png"
     ></figure>
+</div>
 
 
-<h2 id="step-2-create-a-public-gateway-and-attach-it-to-the-private-network" class="group pr-8">Step 2: Create a Public Gateway and attach it to the Private Network
+<div class="step">
+
+<h2 id="create-a-public-gateway-and-attach-it-to-the-private-network" class="group pr-8">Create a Public Gateway and attach it to the Private Network
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="step-2-create-a-public-gateway-and-attach-it-to-the-private-network"
+      data-anchor="create-a-public-gateway-and-attach-it-to-the-private-network"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6237,8 +6242,8 @@ required at this stage.</p>
 </ul>
 <p>Once the gateway is created, open it and go to the <strong>Private Networks</strong> tab.
 Click <strong>Attach to a private network</strong>, select the Private Network created in
-<a href="/docs/control-plane/guides/scaleway/https-access-to-a-private-network/#step-1-create-a-vpc-and-a-private-network" >Step 1</a>, and configure the
-attachment:</p>
+<a href="/docs/control-plane/guides/scaleway/https-access-to-a-private-network/#create-a-vpc-and-a-private-network" >Create a VPC and a Private Network</a>, and
+configure the attachment:</p>
 <ul>
 <li><strong>Advertise default route</strong>: enable this so that other resources on the
 Private Network learn the default route through the gateway, allowing them to
@@ -6246,23 +6251,23 @@ reach the internet</li>
 <li><strong>Private IPv4 address</strong>: leave this set to auto-allocate an available IP from
 the pool</li>
 </ul>
-
 <figure>
       <img class="my-0 rounded-md mx-auto max-w-130" src="../images/attach-scaleway-gateway-to-private-network.png" alt="" />
-  
-  
   </figure>
 <p>If you ever replace this gateway with a new one, make sure <strong>Advertise default
 route</strong> is enabled on the new gateway&rsquo;s attachment to the Private Network.
 Resources on the network learn the default route via DHCP, so after switching
 gateways, reboot the PCP instance to pick up the new route.</p>
+</div>
 
 
-<h2 id="step-3-attach-the-pcp-instance-to-the-private-network" class="group pr-8">Step 3: Attach the PCP instance to the Private Network
+<div class="step">
+
+<h2 id="attach-the-pcp-instance-to-the-private-network" class="group pr-8">Attach the PCP instance to the Private Network
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="step-3-attach-the-pcp-instance-to-the-private-network"
+      data-anchor="attach-the-pcp-instance-to-the-private-network"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6277,7 +6282,7 @@ gateways, reboot the PCP instance to pick up the new route.</p>
 <a href="/docs/control-plane/intro/installation/scaleway/" >Scaleway installation guide</a>. When creating
 the instance, do not assign a public IPv4 or IPv6 address to it. The Public
 Gateway set up in
-<a href="/docs/control-plane/guides/scaleway/https-access-to-a-private-network/#step-2-create-a-public-gateway-and-attach-it-to-the-private-network" >Step 2</a>
+<a href="/docs/control-plane/guides/scaleway/https-access-to-a-private-network/#create-a-public-gateway-and-attach-it-to-the-private-network" >Create a Public Gateway and attach it to the Private Network</a>
 will provide internet access. You can also attach the instance to the Private
 Network directly during instance creation.</p>
 <figure><img
@@ -6290,15 +6295,12 @@ Network directly during instance creation.</p>
     ></figure>
 <p>If your instance already exists, open your VPC in the Scaleway console, navigate
 to the Private Network created in
-<a href="/docs/control-plane/guides/scaleway/https-access-to-a-private-network/#step-1-create-a-vpc-and-a-private-network" >Step 1</a>, and click <strong>Attach a
-resource</strong>. Set the resource type to <strong>Instance</strong>, select your PCP instance, and
-leave both <strong>Private IPv4 address</strong> and <strong>Private IPv6 address</strong> set to
-auto-allocate from the pool.</p>
-
+<a href="/docs/control-plane/guides/scaleway/https-access-to-a-private-network/#create-a-vpc-and-a-private-network" >Create a VPC and a Private Network</a>, and
+click <strong>Attach a resource</strong>. Set the resource type to <strong>Instance</strong>, select your
+PCP instance, and leave both <strong>Private IPv4 address</strong> and <strong>Private IPv6
+address</strong> set to auto-allocate from the pool.</p>
 <figure>
       <img class="my-0 rounded-md mx-auto max-w-130" src="../images/attach-instance-to-private-net.png" alt="" />
-  
-  
   </figure>
 <p>If your existing instance has a public IP attached, you can detach it from the
 instance details page under the <strong>Flexible IPs</strong> section.</p>
@@ -6310,13 +6312,16 @@ instance details page under the <strong>Flexible IPs</strong> section.</p>
     alt=""
     src="../images/dettach-ip-from-instance.png"
     ></figure>
+</div>
 
 
-<h2 id="step-4-create-and-configure-the-load-balancer" class="group pr-8">Step 4: Create and configure the Load Balancer
+<div class="step">
+
+<h2 id="create-and-configure-the-load-balancer" class="group pr-8">Create and configure the Load Balancer
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="step-4-create-and-configure-the-load-balancer"
+      data-anchor="create-and-configure-the-load-balancer"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6327,8 +6332,8 @@ instance details page under the <strong>Flexible IPs</strong> section.</p>
     </button>
   
 </h2>
-
-
+<div class="steps">
+<div class="step">
 <h3 id="create-the-load-balancer" class="group pr-8">Create the Load Balancer
     <button
       type="button"
@@ -6342,7 +6347,6 @@ instance details page under the <strong>Flexible IPs</strong> section.</p>
       <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
 </span></span>
     </button>
-  
 </h3>
 <p>In the Scaleway console, navigate to <strong>Network</strong> &gt; <strong>Load Balancers</strong> and click
 <strong>Create load balancer</strong>. Configure the following:</p>
@@ -6362,8 +6366,8 @@ public IPv4 address. IPv6 is not required</li>
     alt=""
     src="../images/create-load-balancer.png"
     ></figure>
-
-
+</div>
+<div class="step">
 <h3 id="attach-the-load-balancer-to-the-private-network" class="group pr-8">Attach the Load Balancer to the Private Network
     <button
       type="button"
@@ -6377,14 +6381,13 @@ public IPv4 address. IPv6 is not required</li>
       <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
 </span></span>
     </button>
-  
 </h3>
 <p>Open the Load Balancer and go to the <strong>Private Networks</strong> tab. Click <strong>Attach to
 a private network</strong>, select the Private Network from
-<a href="/docs/control-plane/guides/scaleway/https-access-to-a-private-network/#step-1-create-a-vpc-and-a-private-network" >Step 1</a>, and leave <strong>Private IPv4
-address</strong> set to auto-allocate from the pool.</p>
-
-
+<a href="/docs/control-plane/guides/scaleway/https-access-to-a-private-network/#create-a-vpc-and-a-private-network" >Create a VPC and a Private Network</a>, and
+leave <strong>Private IPv4 address</strong> set to auto-allocate from the pool.</p>
+</div>
+<div class="step">
 <h3 id="add-a-backend" class="group pr-8">Add a backend
     <button
       type="button"
@@ -6398,7 +6401,6 @@ address</strong> set to auto-allocate from the pool.</p>
       <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
 </span></span>
     </button>
-  
 </h3>
 <p>Go to the <strong>Backends</strong> tab and click <strong>Add backend</strong>. Configure the following:</p>
 <ul>
@@ -6496,8 +6498,8 @@ server status based on health check results.</p>
     alt=""
     src="../images/create-lb-backend-3.png"
     ></figure>
-
-
+</div>
+<div class="step">
 <h3 id="create-an-ssl-certificate" class="group pr-8">Create an SSL certificate
     <button
       type="button"
@@ -6511,7 +6513,6 @@ server status based on health check results.</p>
       <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
 </span></span>
     </button>
-  
 </h3>
 <p>Go to the <strong>SSL Certificates</strong> tab and click <strong>Create SSL certificate</strong>. Provide
 a name and choose one of two options:</p>
@@ -6522,14 +6523,10 @@ will generate the certificate automatically</li>
 the full PEM-formatted certificate chain, including the public key, private
 key, and optionally the certificate authorities</li>
 </ul>
-
 <figure>
       <img class="my-0 rounded-md mx-auto max-w-130" src="../images/create-ssl-certificate.png" alt="" />
-  
-  
-  </figure>
-
-
+  </figure></div>
+<div class="step">
 <h3 id="add-a-frontend" class="group pr-8">Add a frontend
     <button
       type="button"
@@ -6543,7 +6540,6 @@ key, and optionally the certificate authorities</li>
       <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
 </span></span>
     </button>
-  
 </h3>
 <p>Go to the <strong>Frontends</strong> tab and click <strong>Add frontend</strong>. Configure the following:</p>
 <ul>
@@ -6566,6 +6562,12 @@ through the Load Balancer.</p>
 <a href="/docs/control-plane/guides/scaleway/ssh-bastion-access/" >Access Plakar Control Plane via SSH Bastion</a> for an
 approach using SSH port forwarding through a bastion, with no public-facing load
 balancer.</p>
+</div>
+</div></div>
+
+
+</div>
+
 
 
 <h2 id="what-you-have-built" class="group pr-8">What you have built
@@ -6660,7 +6662,7 @@ keeping it isolated from the public internet.</p>
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#step-1-create-a-vpc-and-a-private-network">Step 1: Create a VPC and a Private Network</a></li><li><a href="#step-2-create-a-public-gateway-and-attach-it-to-the-private-network">Step 2: Create a Public Gateway and attach it to the Private Network</a></li><li><a href="#step-3-attach-the-pcp-instance-to-the-private-network">Step 3: Attach the PCP instance to the Private Network</a></li><li><a href="#step-4-create-and-configure-the-load-balancer">Step 4: Create and configure the Load Balancer</a><ul><li><a href="#create-the-load-balancer">Create the Load Balancer</a></li><li><a href="#attach-the-load-balancer-to-the-private-network">Attach the Load Balancer to the Private Network</a></li><li><a href="#add-a-backend">Add a backend</a></li><li><a href="#create-an-ssl-certificate">Create an SSL certificate</a></li><li><a href="#add-a-frontend">Add a frontend</a></li></ul></li><li><a href="#what-you-have-built">What you have built</a></li></ul>
+      <ul><li><a href="#create-a-vpc-and-a-private-network">Create a VPC and a Private Network</a></li><li><a href="#create-a-public-gateway-and-attach-it-to-the-private-network">Create a Public Gateway and attach it to the Private Network</a></li><li><a href="#attach-the-pcp-instance-to-the-private-network">Attach the PCP instance to the Private Network</a></li><li><a href="#create-and-configure-the-load-balancer">Create and configure the Load Balancer</a><ul><li><a href="#create-the-load-balancer">Create the Load Balancer</a></li><li><a href="#attach-the-load-balancer-to-the-private-network">Attach the Load Balancer to the Private Network</a></li><li><a href="#add-a-backend">Add a backend</a></li><li><a href="#create-an-ssl-certificate">Create an SSL certificate</a></li><li><a href="#add-a-frontend">Add a frontend</a></li></ul></li><li><a href="#what-you-have-built">What you have built</a></li></ul>
     </div>
 
     

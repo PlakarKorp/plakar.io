@@ -94,7 +94,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-03-19T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-08-19T11:14:20+03:00">
+    <meta property="article:modified_time" content="2026-08-19T12:48:00+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -155,8 +155,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.925f87575a15b0a494097f7730d412c6944d438eca8f1fdebe474d9e42e9965adef76f722dc7628c93434ff43514b809359bb9356a0b6cc07afcb387d017d1e6.css"
-    integrity="sha512-kl&#43;HV1oVsKSUCX93MNQSxpRNQ47Kjx/evkdNnkLpllre929yLcdijJNDT/Q1FLgJNZu5NWoLbMB6/LOH0BfR5g==">
+    href="/css/main.bundle.min.7143a55e5110d96888a6bc704a4b7d7e4cc2176d5abddcd82585d9c8ff357a62d35126a4ad5d962e9316088348934eabb4e13c2be75ace63925d14d5540e5f86.css"
+    integrity="sha512-cUOlXlEQ2WiIprxwSkt9fkzCF21avdzYJYXZyP81emLTUSakrV2WLpMWCINIk06rtOE8K&#43;dazmOSXRTVVA5fhg==">
 
   
   
@@ -291,7 +291,7 @@
     "dateCreated": "2026-03-19T00:00:00\u002b00:00",
     "datePublished": "2026-03-19T00:00:00\u002b00:00",
     
-    "dateModified": "2026-08-19T11:14:20\u002b03:00",
+    "dateModified": "2026-08-19T12:48:00\u002b03:00",
     
     
     
@@ -4608,7 +4608,9 @@ BackupVPS -->|Store Snapshots| Kloset
 <li>SSH access to source servers</li>
 <li>Basic familiarity with Plakar commands</li>
 </ul>
+<div class="steps">
 
+<div class="step">
 
 <h2 id="create-object-storage" class="group pr-8">Create Object Storage
     <button
@@ -4719,7 +4721,10 @@ BackupVPS -->|Store Snapshots| Kloset
 </p>
 <p>Reference:
 <a href="https://help.ovhcloud.com/csm/fr-documentation-public-cloud-storage-object-storage-s3?id=kb_browse_cat&amp;kb_id=574a8325551974502d4c6e78b7421938&amp;kb_category=8eaef5882c21fe144a4e082b79ed2fb9&amp;spa=1"  target="_blank" rel="noreferrer">OVHcloud S3 Object Storage documentation</a></p>
+</div>
 
+
+<div class="step">
 
 <h2 id="provision-backup-vps" class="group pr-8">Provision Backup VPS
     <button
@@ -4806,7 +4811,10 @@ Private Servers</strong></li>
 <p>Change the temporary password when prompted, then reconnect.</p>
 <p>Reference:
 <a href="https://help.ovhcloud.com/csm/fr-vps-getting-started?id=kb_article_view&amp;sysparm_article=KB0047736"  target="_blank" rel="noreferrer">OVHcloud VPS Getting Started guide</a></p>
+</div>
 
+
+<div class="step">
 
 <h2 id="install-plakar" class="group pr-8">Install Plakar
     <button
@@ -4827,7 +4835,10 @@ Private Servers</strong></li>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ssh ubuntu@your-vps-ip</span></span></code></pre></div></div>
 <p>Follow the
 <a href="/docs/community/main/quickstart/installation/" >Plakar Installation Guide</a></p>
+</div>
 
+
+<div class="step">
 
 <h2 id="configure-object-storage" class="group pr-8">Configure Object Storage
     <button
@@ -4935,7 +4946,10 @@ without prompts.</p></div></details>
   
 </h3>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar at <span class="s2">&#34;@ovhcloud-s3-backups&#34;</span> create</span></span></code></pre></div></div>
+</div>
 
+
+<div class="step">
 
 <h2 id="configure-ssh-access" class="group pr-8">Configure SSH Access
     <button
@@ -5042,7 +5056,10 @@ without prompts.</p></div></details>
 </span></span></span><span class="line"><span class="cl"><span class="s">EOF</span></span></span></code></pre></div></div>
 <p>Test:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ssh source-1 <span class="s1">&#39;echo &#34;Alias works&#34;&#39;</span></span></span></code></pre></div></div>
+</div>
 
+
+<div class="step">
 
 <h2 id="configure-backup-sources" class="group pr-8">Configure Backup Sources
     <button
@@ -5064,7 +5081,10 @@ without prompts.</p></div></details>
 </span></span><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add web-server-2 sftp://source-2:/var/www</span></span></code></pre></div></div>
 <p>Verify:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar <span class="nb">source</span> show</span></span></code></pre></div></div>
+</div>
 
+
+<div class="step">
 
 <h2 id="test-backup" class="group pr-8">Test Backup
     <button
@@ -5089,7 +5109,10 @@ without prompts.</p></div></details>
 </span></span><span class="line"><span class="cl">$ plakar at <span class="s2">&#34;@ovhcloud-s3-backups&#34;</span> backup <span class="s2">&#34;@web-server-1&#34;</span> <span class="s2">&#34;@web-server-2&#34;</span></span></span></code></pre></div></div>
 <p>List snapshots:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar at <span class="s2">&#34;@ovhcloud-s3-backups&#34;</span> ls</span></span></code></pre></div></div>
+</div>
 
+
+<div class="step">
 
 <h2 id="schedule-automatic-backups" class="group pr-8">Schedule Automatic Backups
     <button
@@ -5185,7 +5208,10 @@ without prompts.</p></div></details>
 <p>See
 <a href="/docs/community/main/guides/setup-scheduler-daily-backups/" >Scheduler Documentation</a>
 for more scheduling options.</p>
+</div>
 
+
+<div class="step">
 
 <h2 id="configure-systemd-services" class="group pr-8">Configure Systemd Services
     <button
@@ -5235,7 +5261,10 @@ for more scheduling options.</p>
 </span></span></span><span class="line"><span class="cl"><span class="s">[Install]
 </span></span></span><span class="line"><span class="cl"><span class="s">WantedBy=multi-user.target
 </span></span></span><span class="line"><span class="cl"><span class="s">EOF</span></span></span></code></pre></div></div>
+</div>
 
+
+<div class="step">
 
 <h2 id="access-web-ui" class="group pr-8">Access Web UI
     <button
@@ -5337,7 +5366,12 @@ for more scheduling options.</p>
 </svg>
 </span></div>
       </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Security Configure firewall to restrict port 8080 access or use a reverse
-proxy with SSL.</p></div></details>
+proxy with SSL.</p></div></details></div>
+
+
+</div>
+
+
 
 <h2 id="troubleshooting" class="group pr-8">Troubleshooting
     <button

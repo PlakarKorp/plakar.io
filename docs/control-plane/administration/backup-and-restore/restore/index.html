@@ -94,7 +94,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-06-11T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-08-19T11:14:20+03:00">
+    <meta property="article:modified_time" content="2026-08-19T12:48:00+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -155,8 +155,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.925f87575a15b0a494097f7730d412c6944d438eca8f1fdebe474d9e42e9965adef76f722dc7628c93434ff43514b809359bb9356a0b6cc07afcb387d017d1e6.css"
-    integrity="sha512-kl&#43;HV1oVsKSUCX93MNQSxpRNQ47Kjx/evkdNnkLpllre929yLcdijJNDT/Q1FLgJNZu5NWoLbMB6/LOH0BfR5g==">
+    href="/css/main.bundle.min.7143a55e5110d96888a6bc704a4b7d7e4cc2176d5abddcd82585d9c8ff357a62d35126a4ad5d962e9316088348934eabb4e13c2be75ace63925d14d5540e5f86.css"
+    integrity="sha512-cUOlXlEQ2WiIprxwSkt9fkzCF21avdzYJYXZyP81emLTUSakrV2WLpMWCINIk06rtOE8K&#43;dazmOSXRTVVA5fhg==">
 
   
   
@@ -281,12 +281,12 @@
     "dateCreated": "2026-06-11T00:00:00\u002b00:00",
     "datePublished": "2026-06-11T00:00:00\u002b00:00",
     
-    "dateModified": "2026-08-19T11:14:20\u002b03:00",
+    "dateModified": "2026-08-19T12:48:00\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://plakar.io/docs/control-plane/administration/backup-and-restore/restore/",
-    "wordCount": "727"
+    "wordCount": "708"
   }]
   </script>
 
@@ -6139,13 +6139,15 @@
       </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>The restore process is currently manual. Automated restore support is under
 active development and will be available very soon.</p></div></details><p>This guide walks through restoring a Plakar Control Plane backup to a fresh
 appliance.</p>
+<div class="steps">
 
+<div class="step">
 
-<h2 id="step-1--start-a-new-virtual-appliance-in-bootstrap-mode" class="group pr-8">Step 1 — Start a new virtual appliance in bootstrap mode
+<h2 id="start-a-new-virtual-appliance-in-bootstrap-mode" class="group pr-8">Start a new virtual appliance in bootstrap mode
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="step-1--start-a-new-virtual-appliance-in-bootstrap-mode"
+      data-anchor="start-a-new-virtual-appliance-in-bootstrap-mode"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6186,13 +6188,16 @@ instructions on deploying the appliance.</p>
 </span></div>
       </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>The virtual appliance image must be the same version as the one that was
 running at the time the backup was taken. Once the restore is complete, you
-can <a href="../../updating-control-plane" >upgrade the appliance</a> to a newer version.</p></div></details>
+can <a href="../../updating-control-plane" >upgrade the appliance</a> to a newer version.</p></div></details></div>
 
-<h2 id="step-2--verify-ssh-access" class="group pr-8">Step 2 — Verify SSH access
+
+<div class="step">
+
+<h2 id="verify-ssh-access" class="group pr-8">Verify SSH access
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="step-2--verify-ssh-access"
+      data-anchor="verify-ssh-access"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6208,13 +6213,16 @@ user:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">APPLIANCE_ADDRESS</span><span class="o">=</span>&lt;appliance-address&gt;
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">ssh plakar@<span class="nv">$APPLIANCE_ADDRESS</span></span></span></code></pre></div></div>
+</div>
 
 
-<h2 id="step-3--install-plakar-oss-and-configure-the-store" class="group pr-8">Step 3 — Install Plakar OSS and configure the store
+<div class="step">
+
+<h2 id="install-plakar-oss-and-configure-the-store" class="group pr-8">Install Plakar OSS and configure the store
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="step-3--install-plakar-oss-and-configure-the-store"
+      data-anchor="install-plakar-oss-and-configure-the-store"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6231,13 +6239,16 @@ instructions.</p>
 <p>Once installed, configure the store where your backup snapshot is hosted. Refer
 to the <a href="/docs/community/main/quickstart/first-backup/" >quickstart guide</a> for
 store configuration instructions.</p>
+</div>
 
 
-<h2 id="step-4--archive-the-snapshot-to-a-local-file" class="group pr-8">Step 4 — Archive the snapshot to a local file
+<div class="step">
+
+<h2 id="archive-the-snapshot-to-a-local-file" class="group pr-8">Archive the snapshot to a local file
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="step-4--archive-the-snapshot-to-a-local-file"
+      data-anchor="archive-the-snapshot-to-a-local-file"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6253,13 +6264,16 @@ store configuration instructions.</p>
 <p>Replace <code>&lt;store&gt;</code> with the store URI and <code>&lt;snapshot_id&gt;</code> with the identifier of
 the snapshot you want to restore. This produces a <code>pcp.tar.gz</code> file in the
 current directory.</p>
+</div>
 
 
-<h2 id="step-5--upload-the-archive-to-the-appliance" class="group pr-8">Step 5 — Upload the archive to the appliance
+<div class="step">
+
+<h2 id="upload-the-archive-to-the-appliance" class="group pr-8">Upload the archive to the appliance
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="step-5--upload-the-archive-to-the-appliance"
+      data-anchor="upload-the-archive-to-the-appliance"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6271,17 +6285,20 @@ current directory.</p>
   
 </h2>
 <p>Pipe the archive directly into the <code>orkestrator</code> container using the
-<code>$APPLIANCE_ADDRESS</code> set in step 2:</p>
+<code>$APPLIANCE_ADDRESS</code> set when you verified SSH access:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat pcp.tar.gz <span class="p">|</span> ssh plakar@<span class="nv">$APPLIANCE_ADDRESS</span> sudo ctr -n services.linuxkit task <span class="nb">exec</span> --exec-id upload-pcp orkestrator sh -c <span class="s1">&#39;&#34;mkdir -p /data/tmp-restore-pcp &amp;&amp; cat &gt; /data/tmp-restore-pcp/pcp.tar.gz&#34;&#39;</span></span></span></code></pre></div></div>
 <p>This places the archive at <code>/data/tmp-restore-pcp/pcp.tar.gz</code> inside the
 container.</p>
+</div>
 
 
-<h2 id="step-6--run-the-restore-commands" class="group pr-8">Step 6 — Run the restore commands
+<div class="step">
+
+<h2 id="run-the-restore-commands" class="group pr-8">Run the restore commands
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="step-6--run-the-restore-commands"
+      data-anchor="run-the-restore-commands"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6330,13 +6347,16 @@ container.</p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># Clean up</span>
 </span></span><span class="line"><span class="cl">rm -rf /data/tmp-restore-pcp</span></span></code></pre></div></div>
+</div>
 
 
-<h2 id="step-7--reboot" class="group pr-8">Step 7 — Reboot
+<div class="step">
+
+<h2 id="reboot" class="group pr-8">Reboot
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="step-7--reboot"
+      data-anchor="reboot"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6349,6 +6369,11 @@ container.</p>
 </h2>
 <p>Reboot the appliance from your provider&rsquo;s management console. For example on
 AWS, select the instance and click <strong>Reboot</strong>.</p>
+</div>
+
+
+</div>
+
 
 
 <h2 id="post-restore-verify-provider-side-configuration" class="group pr-8">Post-restore: verify provider-side configuration
@@ -6438,7 +6463,7 @@ for details on the required provider-side configuration.</p>
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#step-1--start-a-new-virtual-appliance-in-bootstrap-mode">Step 1 — Start a new virtual appliance in bootstrap mode</a></li><li><a href="#step-2--verify-ssh-access">Step 2 — Verify SSH access</a></li><li><a href="#step-3--install-plakar-oss-and-configure-the-store">Step 3 — Install Plakar OSS and configure the store</a></li><li><a href="#step-4--archive-the-snapshot-to-a-local-file">Step 4 — Archive the snapshot to a local file</a></li><li><a href="#step-5--upload-the-archive-to-the-appliance">Step 5 — Upload the archive to the appliance</a></li><li><a href="#step-6--run-the-restore-commands">Step 6 — Run the restore commands</a></li><li><a href="#step-7--reboot">Step 7 — Reboot</a></li><li><a href="#post-restore-verify-provider-side-configuration">Post-restore: verify provider-side configuration</a></li></ul>
+      <ul><li><a href="#start-a-new-virtual-appliance-in-bootstrap-mode">Start a new virtual appliance in bootstrap mode</a></li><li><a href="#verify-ssh-access">Verify SSH access</a></li><li><a href="#install-plakar-oss-and-configure-the-store">Install Plakar OSS and configure the store</a></li><li><a href="#archive-the-snapshot-to-a-local-file">Archive the snapshot to a local file</a></li><li><a href="#upload-the-archive-to-the-appliance">Upload the archive to the appliance</a></li><li><a href="#run-the-restore-commands">Run the restore commands</a></li><li><a href="#reboot">Reboot</a></li><li><a href="#post-restore-verify-provider-side-configuration">Post-restore: verify provider-side configuration</a></li></ul>
     </div>
 
     

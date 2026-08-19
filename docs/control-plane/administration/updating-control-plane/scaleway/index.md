@@ -29,26 +29,42 @@ The update process consists of:
 3. Launching a new instance from the updated snapshot
 4. Reattaching the existing persistent data volume
 
-## 1. Upload the new QCOW2 image
+{{< steps >}}
+
+{{< step >}}
+
+## Upload the new QCOW2 image
 
 Download the newer Plakar Control Plane QCOW2 image, then upload it to Scaleway
 Object Storage. You can refer to
 [Scaleway installation](../../../intro/installation/scaleway#uploading-the-qcow2-image-to-scaleway-object-storage)
 documentation.
 
-## 2. Create a new Block Storage snapshot
+{{< /step >}}
+
+{{< step >}}
+
+## Create a new Block Storage snapshot
 
 Open the uploaded QCOW2 object and select **Import as snapshot**. Create the
 snapshot in the same Scaleway zone as the existing deployment. You can refer to
 [Scaleway installation](../../../intro/installation/scaleway#creating-a-block-storage-snapshot)
 documentation.
 
-## 3. Stop the current instance
+{{< /step >}}
+
+{{< step >}}
+
+## Stop the current instance
 
 Stop the currently running Plakar Control Plane instance before modifying
 attached storage volumes.
 
-## 4. Detach the existing persistent data volume
+{{< /step >}}
+
+{{< step >}}
+
+## Detach the existing persistent data volume
 
 Locate the attached `1024GB` Block Storage volume and detach it from the stopped
 instance.
@@ -66,7 +82,11 @@ later, including:
 
 ![](../images/update-scaleway-qcow-1.png)
 
-## 5. Create a new instance
+{{< /step >}}
+
+{{< step >}}
+
+## Create a new instance
 
 Create a new Scaleway instance using the newly imported Block Storage snapshot
 as the boot source. Due to a Scaleway limitation, it is not possible to attach
@@ -85,12 +105,20 @@ During instance creation:
 
 The new instance should only contain the boot volume created from the snapshot.
 
-## 6. Stop the new instance
+{{< /step >}}
+
+{{< step >}}
+
+## Stop the new instance
 
 Once the new instance has been created successfully, stop it before attaching
 the old persistent data volume.
 
-## 7. Attach the old persistent data volume
+{{< /step >}}
+
+{{< step >}}
+
+## Attach the old persistent data volume
 
 Open the detached Block Storage volume from the previous deployment and attach
 it to the new instance. When attaching the volume, select the newly created
@@ -98,7 +126,11 @@ instance.
 
 ![](../images/update-scaleway-qcow-2.png)
 
-## 8. Reconfigure instance settings
+{{< /step >}}
+
+{{< step >}}
+
+## Reconfigure instance settings
 
 Reapply any configuration that existed on the previous instance. This may
 include:
@@ -108,7 +140,11 @@ include:
 - DNS configuration
 - Monitoring or automation integrations
 
-## 9. Start the new instance
+{{< /step >}}
+
+{{< step >}}
+
+## Start the new instance
 
 Start the new Scaleway instance.
 
@@ -116,7 +152,11 @@ Once the instance is running, Plakar Control Plane should resume normally using
 the existing persistent data volume. All inventories, schedules, policies,
 configuration, and other data should remain intact.
 
-## 10. Cleanup
+{{< /step >}}
+
+{{< step >}}
+
+## Cleanup
 
 After confirming the new deployment is working correctly, you can safely remove
 unused resources:
@@ -129,4 +169,8 @@ unused resources:
 >
 > Do not delete any old volumes or snapshots until the new deployment has been
 > verified working correctly.
+
+{{< /step >}}
+
+{{< /steps >}}
 

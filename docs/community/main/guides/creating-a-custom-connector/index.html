@@ -94,7 +94,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-04-16T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-08-19T11:14:20+03:00">
+    <meta property="article:modified_time" content="2026-08-19T12:48:00+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -155,8 +155,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.925f87575a15b0a494097f7730d412c6944d438eca8f1fdebe474d9e42e9965adef76f722dc7628c93434ff43514b809359bb9356a0b6cc07afcb387d017d1e6.css"
-    integrity="sha512-kl&#43;HV1oVsKSUCX93MNQSxpRNQ47Kjx/evkdNnkLpllre929yLcdijJNDT/Q1FLgJNZu5NWoLbMB6/LOH0BfR5g==">
+    href="/css/main.bundle.min.7143a55e5110d96888a6bc704a4b7d7e4cc2176d5abddcd82585d9c8ff357a62d35126a4ad5d962e9316088348934eabb4e13c2be75ace63925d14d5540e5f86.css"
+    integrity="sha512-cUOlXlEQ2WiIprxwSkt9fkzCF21avdzYJYXZyP81emLTUSakrV2WLpMWCINIk06rtOE8K&#43;dazmOSXRTVVA5fhg==">
 
   
   
@@ -281,12 +281,12 @@
     "dateCreated": "2026-04-16T00:00:00\u002b00:00",
     "datePublished": "2026-04-16T00:00:00\u002b00:00",
     
-    "dateModified": "2026-08-19T11:14:20\u002b03:00",
+    "dateModified": "2026-08-19T12:48:00\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://plakar.io/docs/community/main/guides/creating-a-custom-connector/",
-    "wordCount": "852"
+    "wordCount": "845"
   }]
   </script>
 
@@ -4579,13 +4579,15 @@ it to walk directories, read from APIs, or consume any other data source.</p>
 <li>Go 1.21 or later</li>
 <li><code>plakar</code> installed and available in your <code>$PATH</code></li>
 </ul>
+<div class="steps">
 
+<div class="step">
 
-<h2 id="1-set-up-the-project" class="group pr-8">1. Set up the project
+<h2 id="set-up-the-project" class="group pr-8">Set up the project
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="1-set-up-the-project"
+      data-anchor="set-up-the-project"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -4617,13 +4619,16 @@ it to walk directories, read from APIs, or consume any other data source.</p>
 </span></span><span class="line"><span class="cl">├── Makefile            # Build and packaging targets
 </span></span><span class="line"><span class="cl">├── go.mod
 </span></span><span class="line"><span class="cl">└── go.sum</span></span></code></pre></div></div>
+</div>
 
 
-<h2 id="2-implement-the-connector" class="group pr-8">2. Implement the connector
+<div class="step">
+
+<h2 id="implement-the-connector" class="group pr-8">Implement the connector
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="2-implement-the-connector"
+      data-anchor="implement-the-connector"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -4716,13 +4721,16 @@ it to walk directories, read from APIs, or consume any other data source.</p>
 </span></div>
       </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Writing to console Never write to <code>os.Stdout</code>. Plakar communicates with the
 plugin over gRPC through stdin/stdout — any writes there corrupt the stream.
-Use <code>os.Stderr</code> for debug output instead.</p></div></details>
+Use <code>os.Stderr</code> for debug output instead.</p></div></details></div>
 
-<h2 id="3-create-the-entrypoint" class="group pr-8">3. Create the entrypoint
+
+<div class="step">
+
+<h2 id="create-the-entrypoint" class="group pr-8">Create the entrypoint
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="3-create-the-entrypoint"
+      data-anchor="create-the-entrypoint"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -4746,13 +4754,16 @@ Use <code>os.Stderr</code> for debug output instead.</p></div></details>
 </span></span></span><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">sdk</span><span class="p">.</span><span class="nf">EntrypointImporter</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">,</span><span class="w"> </span><span class="nx">connector</span><span class="p">.</span><span class="nx">NewImporter</span><span class="p">)</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+</div>
 
 
-<h2 id="4-write-the-manifest" class="group pr-8">4. Write the manifest
+<div class="step">
+
+<h2 id="write-the-manifest" class="group pr-8">Write the manifest
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="4-write-the-manifest"
+      data-anchor="write-the-manifest"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -4795,13 +4806,16 @@ The <code>location_flags</code> list must reflect the <code>location.Flags</code
 connector&rsquo;s <code>Flags()</code> method. Set <code>class</code> and <code>subclass</code> to values that best
 describe your data source — for a connector that reads from a local filesystem
 path, <code>filesystem</code> and your protocol name are appropriate choices.</p>
+</div>
 
 
-<h2 id="5-build-the-plugin" class="group pr-8">5. Build the plugin
+<div class="step">
+
+<h2 id="build-the-plugin" class="group pr-8">Build the plugin
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="5-build-the-plugin"
+      data-anchor="build-the-plugin"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -4818,13 +4832,16 @@ path, <code>filesystem</code> and your protocol name are appropriate choices.</p
 </span></span></code></pre></div></div>
 <p>Then build:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">make build</span></span></code></pre></div></div>
+</div>
 
 
-<h2 id="6-package-and-install" class="group pr-8">6. Package and install
+<div class="step">
+
+<h2 id="package-and-install" class="group pr-8">Package and install
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="6-package-and-install"
+      data-anchor="package-and-install"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -4842,13 +4859,16 @@ path, <code>filesystem</code> and your protocol name are appropriate choices.</p
 <p>Verify the installation:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">plakar pkg show</span></span></code></pre></div></div>
 <p>You should see <code>example</code> listed.</p>
+</div>
 
 
-<h2 id="7-use-the-connector" class="group pr-8">7. Use the connector
+<div class="step">
+
+<h2 id="use-the-connector" class="group pr-8">Use the connector
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="7-use-the-connector"
+      data-anchor="use-the-connector"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -4864,6 +4884,11 @@ path, <code>filesystem</code> and your protocol name are appropriate choices.</p
 <p>Because this connector uses a hardcoded file path, the location after
 <code>example://</code> is ignored — the importer always reads from
 <code>/home/user/Documents/notes.md</code>.</p>
+</div>
+
+
+</div>
+
 
 
 <h2 id="next-steps" class="group pr-8">Next steps
@@ -4994,7 +5019,7 @@ for the full interface definitions and a complete working implementation.</p>
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#why-write-a-custom-connector">Why write a custom connector?</a></li><li><a href="#what-you-will-build">What you will build</a></li><li><a href="#prerequisites">Prerequisites</a></li><li><a href="#1-set-up-the-project">1. Set up the project</a></li><li><a href="#2-implement-the-connector">2. Implement the connector</a></li><li><a href="#3-create-the-entrypoint">3. Create the entrypoint</a></li><li><a href="#4-write-the-manifest">4. Write the manifest</a></li><li><a href="#5-build-the-plugin">5. Build the plugin</a></li><li><a href="#6-package-and-install">6. Package and install</a></li><li><a href="#7-use-the-connector">7. Use the connector</a></li><li><a href="#next-steps">Next steps</a></li></ul>
+      <ul><li><a href="#why-write-a-custom-connector">Why write a custom connector?</a></li><li><a href="#what-you-will-build">What you will build</a></li><li><a href="#prerequisites">Prerequisites</a></li><li><a href="#set-up-the-project">Set up the project</a></li><li><a href="#implement-the-connector">Implement the connector</a></li><li><a href="#create-the-entrypoint">Create the entrypoint</a></li><li><a href="#write-the-manifest">Write the manifest</a></li><li><a href="#build-the-plugin">Build the plugin</a></li><li><a href="#package-and-install">Package and install</a></li><li><a href="#use-the-connector">Use the connector</a></li><li><a href="#next-steps">Next steps</a></li></ul>
     </div>
 
     

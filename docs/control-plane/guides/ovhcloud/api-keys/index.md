@@ -14,6 +14,10 @@ to act on a specific account with a defined set of permissions.
 
 This guide walks through generating the three tokens Plakar Control Plane needs.
 
+{{< steps >}}
+
+{{< step >}}
+
 ## Generating API Credentials
 
 OVHcloud provides a token creation portal where you can generate all three
@@ -63,6 +67,10 @@ Click **Create** once the form is complete.
 > backups, an expired token will prevent Plakar Control Plane from running those
 > backups until the credentials are updated.
 
+{{< /step >}}
+
+{{< step >}}
+
 ## Storing the Credentials
 
 After creating the token, OVHcloud displays three values:
@@ -81,6 +89,10 @@ After creating the token, OVHcloud displays three values:
 
 Enter these three values into the relevant Plakar Control Plane integration or
 inventory configuration.
+
+{{< /step >}}
+
+{{< /steps >}}
 
 ## Managing and Revoking Credentials
 

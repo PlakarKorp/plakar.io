@@ -94,7 +94,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-03-11T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-08-19T11:14:20+03:00">
+    <meta property="article:modified_time" content="2026-08-19T12:48:00+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -155,8 +155,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.925f87575a15b0a494097f7730d412c6944d438eca8f1fdebe474d9e42e9965adef76f722dc7628c93434ff43514b809359bb9356a0b6cc07afcb387d017d1e6.css"
-    integrity="sha512-kl&#43;HV1oVsKSUCX93MNQSxpRNQ47Kjx/evkdNnkLpllre929yLcdijJNDT/Q1FLgJNZu5NWoLbMB6/LOH0BfR5g==">
+    href="/css/main.bundle.min.7143a55e5110d96888a6bc704a4b7d7e4cc2176d5abddcd82585d9c8ff357a62d35126a4ad5d962e9316088348934eabb4e13c2be75ace63925d14d5540e5f86.css"
+    integrity="sha512-cUOlXlEQ2WiIprxwSkt9fkzCF21avdzYJYXZyP81emLTUSakrV2WLpMWCINIk06rtOE8K&#43;dazmOSXRTVVA5fhg==">
 
   
   
@@ -281,7 +281,7 @@
     "dateCreated": "2026-03-11T00:00:00\u002b00:00",
     "datePublished": "2026-03-11T00:00:00\u002b00:00",
     
-    "dateModified": "2026-08-19T11:14:20\u002b03:00",
+    "dateModified": "2026-08-19T12:48:00\u002b03:00",
     
     
     
@@ -4545,7 +4545,9 @@ before it ever leaves your machine.</p>
 <p>Make sure <strong>Plakar</strong> is installed on your system. If you haven&rsquo;t done this yet,
 please refer to the <a href="../installation" >installation guide</a> for detailed
 instructions.</p>
+<div class="steps">
 
+<div class="step">
 
 <h2 id="create-a-kloset-store" class="group pr-8">Create a Kloset Store
     <button
@@ -4603,7 +4605,10 @@ sure it is complex enough to be secure. To add complexity, use a mixture of
 upper and lower case characters, numbers and symbols.</p>
 <p>Your passphrase is not stored anywhere and <strong>cannot</strong> be recovered in case of
 loss. A lost passphrase means the data within the repository can no longer be
-accessed or recovered.</p></div></details>
+accessed or recovered.</p></div></details></div>
+
+
+<div class="step">
 
 <h2 id="create-your-first-backup" class="group pr-8">Create your first backup
     <button
@@ -4671,7 +4676,10 @@ particular snapshot and is also how you identify the snapshot to use for various
 includes built-in help for all commands. Just use <code>plakar help</code> and then the
 command you need help with for a full list of options and examples. For
 example, if you forget what the options are for restoring files from a
-snapshot: <code>plakar help restore</code></p></div></details>
+snapshot: <code>plakar help restore</code></p></div></details></div>
+
+
+<div class="step">
 
 <h2 id="list-snapshots" class="group pr-8">List snapshots
     <button
@@ -4695,7 +4703,10 @@ backups in that Kloset Store:</p>
 <p>The output lists the date of the last backup, the short UUID, the size of files
 backed-up, the time it took to create the backup and the source path of the
 backup.</p>
+</div>
 
+
+<div class="step">
 
 <h2 id="verify-integrity" class="group pr-8">Verify integrity
     <button
@@ -4728,7 +4739,10 @@ decrypt it and verify its integrity by recomputing checksums.</p>
 <p>In production, you would typically run this command periodically to ensure the
 integrity of your backups over time. This is necessary to ensure that data has
 not degraded or become corrupted while stored.</p>
+</div>
 
+
+<div class="step">
 
 <h2 id="restore-files-from-a-backup" class="group pr-8">Restore files from a backup
     <button
@@ -4771,7 +4785,10 @@ permissions, will match the original files:</p>
 </span></span><span class="line"><span class="cl">-rw-r--r-- <span class="m">1</span> user user   <span class="m">40</span> Jan <span class="m">14</span> 06:31 project_proposal.docx
 </span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">2</span> user user <span class="m">4096</span> Jan <span class="m">14</span> 06:31 recipes
 </span></span><span class="line"><span class="cl">-rw-r--r-- <span class="m">1</span> user user   <span class="m">29</span> Jan <span class="m">14</span> 06:31 resume.pdf</span></span></code></pre></div></div>
+</div>
 
+
+<div class="step">
 
 <h2 id="access-the-ui" class="group pr-8">Access the UI
     <button
@@ -4814,6 +4831,11 @@ snapshots, search and view the files, and download them.</p>
 <p>A public instance of the web UI is also available at
 <a href="https://demo.plakar.io"  target="_blank" rel="noreferrer">https://demo.plakar.io</a>. You can use it to explore the
 features of the UI on real backups without installing anything.</p>
+</div>
+
+
+</div>
+
 
 
 <h2 id="congratulations" class="group pr-8">Congratulations!

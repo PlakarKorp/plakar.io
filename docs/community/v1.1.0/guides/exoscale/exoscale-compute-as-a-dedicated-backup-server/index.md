@@ -41,6 +41,10 @@ BackupCompute -->|Store Snapshots| Kloset
 - SSH access to source servers
 - Basic familiarity with Plakar commands
 
+{{< steps >}}
+
+{{< step >}}
+
 ## Create Object Storage Bucket
 
 ### Create bucket in Exoscale Portal
@@ -66,6 +70,10 @@ BackupCompute -->|Store Snapshots| Kloset
 ![Create IAM API Key](../images/setup-iam-1.png)
 ![Create IAM API Key](../images/setup-iam-2.png)
 
+{{< /step >}}
+
+{{< step >}}
+
 ## Create SSH Keypair
 
 1. Generate SSH key locally and copy the public key:
@@ -81,6 +89,10 @@ $ cat ~/.ssh/id_exoscale.pub
 
 ![Setup SSH Keys](../images/setup-ssh-1.png)
 ![Setup SSH Keys](../images/setup-ssh-2.png)
+
+{{< /step >}}
+
+{{< step >}}
 
 ## Provision Backup Compute Instance
 
@@ -127,10 +139,18 @@ Once instance is running, note the public IP and connect:
 $ ssh ubuntu@<instance-ip>
 ```
 
+{{< /step >}}
+
+{{< step >}}
+
 ## Install Plakar
 
 Install Plakar on the instance using the
 [Plakar Installation Guide](../../../../../docs/community/main/quickstart/installation/)
+
+{{< /step >}}
+
+{{< step >}}
 
 ## Configure Object Storage
 
@@ -170,6 +190,10 @@ Replace:
 ```bash
 $ plakar at "@exoscale-sos-backups" create
 ```
+
+{{< /step >}}
+
+{{< step >}}
 
 ## Configure SSH Access to Source Servers
 
@@ -224,6 +248,10 @@ Test:
 $ ssh source-1 'echo "Alias works"'
 ```
 
+{{< /step >}}
+
+{{< step >}}
+
 ## Configure Backup Sources
 
 Add source connectors for each server:
@@ -238,6 +266,10 @@ Verify:
 ```bash
 $ plakar source show
 ```
+
+{{< /step >}}
+
+{{< step >}}
 
 ## Test Backup
 
@@ -257,6 +289,10 @@ List snapshots:
 $ plakar at "@exoscale-sos-backups" ls
 ```
 
+{{< /step >}}
+
+{{< step >}}
+
 ## Schedule Automatic Backups
 
 For scheduler configuration and systemd service setup, follow the same steps as
@@ -269,6 +305,10 @@ replacing:
 
 The scheduler configuration, systemd services, and web UI setup are identical on
 any Linux machine.
+
+{{< /step >}}
+
+{{< /steps >}}
 
 ## Troubleshooting
 

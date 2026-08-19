@@ -94,7 +94,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-07-15T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-08-19T11:14:20+03:00">
+    <meta property="article:modified_time" content="2026-08-19T12:48:00+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -155,8 +155,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.925f87575a15b0a494097f7730d412c6944d438eca8f1fdebe474d9e42e9965adef76f722dc7628c93434ff43514b809359bb9356a0b6cc07afcb387d017d1e6.css"
-    integrity="sha512-kl&#43;HV1oVsKSUCX93MNQSxpRNQ47Kjx/evkdNnkLpllre929yLcdijJNDT/Q1FLgJNZu5NWoLbMB6/LOH0BfR5g==">
+    href="/css/main.bundle.min.7143a55e5110d96888a6bc704a4b7d7e4cc2176d5abddcd82585d9c8ff357a62d35126a4ad5d962e9316088348934eabb4e13c2be75ace63925d14d5540e5f86.css"
+    integrity="sha512-cUOlXlEQ2WiIprxwSkt9fkzCF21avdzYJYXZyP81emLTUSakrV2WLpMWCINIk06rtOE8K&#43;dazmOSXRTVVA5fhg==">
 
   
   
@@ -281,7 +281,7 @@
     "dateCreated": "2026-07-15T00:00:00\u002b00:00",
     "datePublished": "2026-07-15T00:00:00\u002b00:00",
     
-    "dateModified": "2026-08-19T11:14:20\u002b03:00",
+    "dateModified": "2026-08-19T12:48:00\u002b03:00",
     
     
     
@@ -6121,7 +6121,9 @@ corresponding resources in PCP.</p>
 Helm chart to <code>oci://ghcr.io/plakarkorp/charts/plakar-operator</code>. This requires
 <code>kubectl</code> and <code>helm</code> on your machine, as well as administrative access to a
 Kubernetes cluster.</p>
+<div class="steps">
 
+<div class="step">
 
 <h2 id="installing-the-helm-chart" class="group pr-8">Installing the Helm chart
     <button
@@ -6149,7 +6151,10 @@ installs the latest published chart:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ helm show values oci://ghcr.io/plakarkorp/charts/plakar-operator</span></span></code></pre></div></div>
 <p>Once installed, verify that the operator is running:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ kubectl get pods -n plakar-operator-system</span></span></code></pre></div></div>
+</div>
 
+
+<div class="step">
 
 <h2 id="generating-an-api-key" class="group pr-8">Generating an API key
     <button
@@ -6174,7 +6179,10 @@ Control Plane API.</p>
 creating application users, assigning organizations, and generating API keys.</p>
 <p>You&rsquo;ll use this API key in the next step when creating the Kubernetes Secret
 used by the operator to authenticate with Plakar Control Plane.</p>
+</div>
 
+
+<div class="step">
 
 <h2 id="connecting-to-plakar-control-plane" class="group pr-8">Connecting to Plakar Control Plane
     <button
@@ -6265,6 +6273,11 @@ and a message similar to:</p>
 </span></span><span class="line"><span class="cl">    Reason:                ConfigurationLoaded
 </span></span><span class="line"><span class="cl">    Status:                True
 </span></span><span class="line"><span class="cl">    Type:                  Available</span></span></code></pre></div></div>
+</div>
+
+
+</div>
+
 
       </article>
       <footer class="mt-12 flex flex-col gap-6 docs-font border-t border-neutral-200 pt-6">

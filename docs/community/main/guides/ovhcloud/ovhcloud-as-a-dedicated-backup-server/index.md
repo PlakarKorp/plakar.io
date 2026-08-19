@@ -41,6 +41,10 @@ BackupVPS -->|Store Snapshots| Kloset
 - SSH access to source servers
 - Basic familiarity with Plakar commands
 
+{{< steps >}}
+
+{{< step >}}
+
 ## Create Object Storage
 
 ### Create storage user
@@ -73,6 +77,10 @@ BackupVPS -->|Store Snapshots| Kloset
 Reference:
 [OVHcloud S3 Object Storage documentation](https://help.ovhcloud.com/csm/fr-documentation-public-cloud-storage-object-storage-s3?id=kb_browse_cat&kb_id=574a8325551974502d4c6e78b7421938&kb_category=8eaef5882c21fe144a4e082b79ed2fb9&spa=1)
 
+{{< /step >}}
+
+{{< step >}}
+
 ## Provision Backup VPS
 
 ### Order VPS
@@ -102,6 +110,10 @@ Change the temporary password when prompted, then reconnect.
 Reference:
 [OVHcloud VPS Getting Started guide](https://help.ovhcloud.com/csm/fr-vps-getting-started?id=kb_article_view&sysparm_article=KB0047736)
 
+{{< /step >}}
+
+{{< step >}}
+
 ## Install Plakar
 
 SSH to the backup VPS and install Plakar:
@@ -112,6 +124,10 @@ ssh ubuntu@your-vps-ip
 
 Follow the
 [Plakar Installation Guide](../../../../../docs/community/main/quickstart/installation/)
+
+{{< /step >}}
+
+{{< step >}}
 
 ## Configure Object Storage
 
@@ -149,6 +165,10 @@ Replace:
 ```bash
 $ plakar at "@ovhcloud-s3-backups" create
 ```
+
+{{< /step >}}
+
+{{< step >}}
 
 ## Configure SSH Access
 
@@ -203,6 +223,10 @@ Test:
 $ ssh source-1 'echo "Alias works"'
 ```
 
+{{< /step >}}
+
+{{< step >}}
+
 ## Configure Backup Sources
 
 Add source connectors for each server:
@@ -217,6 +241,10 @@ Verify:
 ```bash
 $ plakar source show
 ```
+
+{{< /step >}}
+
+{{< step >}}
 
 ## Test Backup
 
@@ -235,6 +263,10 @@ List snapshots:
 ```bash
 $ plakar at "@ovhcloud-s3-backups" ls
 ```
+
+{{< /step >}}
+
+{{< step >}}
 
 ## Schedule Automatic Backups
 
@@ -274,6 +306,10 @@ See
 [Scheduler Documentation](../../../../../docs/community/main/guides/setup-scheduler-daily-backups/)
 for more scheduling options.
 
+{{< /step >}}
+
+{{< step >}}
+
 ## Configure Systemd Services
 
 ### Create scheduler service
@@ -296,6 +332,10 @@ WorkingDirectory=/home/ubuntu
 WantedBy=multi-user.target
 EOF
 ```
+
+{{< /step >}}
+
+{{< step >}}
 
 ## Access Web UI
 
@@ -351,6 +391,10 @@ Access: `http://your-vps-ip:8080` with the token from the URL.
 >
 > Security Configure firewall to restrict port 8080 access or use a reverse
 > proxy with SSL.
+
+{{< /step >}}
+
+{{< /steps >}}
 
 ## Troubleshooting
 

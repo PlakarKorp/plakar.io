@@ -38,6 +38,10 @@ Plakar -->|Snapshots| S3
 - PostgreSQL client tools (`pg_dump`)
 - OVHcloud Object Storage bucket configured
 
+{{< steps >}}
+
+{{< step >}}
+
 ## Create PostgreSQL Database
 
 ### Provision database
@@ -70,6 +74,10 @@ Plakar -->|Snapshots| S3
 ![Create Backup User](../images/create-user-2.png)
 ![Create Backup User](../images/create-user-3.png)
 
+{{< /step >}}
+
+{{< step >}}
+
 ## Install Tools
 
 Install PostgreSQL client:
@@ -80,6 +88,10 @@ $ sudo apt install postgresql-client
 ```
 
 Install Plakar using the [installation guide](../../../quickstart/installation).
+
+{{< /step >}}
+
+{{< step >}}
 
 ## Configure PostgreSQL Connection
 
@@ -99,6 +111,10 @@ $ psql -X <DB_NAME>
 ```
 
 Exit with `\q`.
+
+{{< /step >}}
+
+{{< step >}}
 
 ## Configure Object Storage
 
@@ -136,6 +152,10 @@ Replace:
 $ plakar at "@ovhcloud-s3-postgres" create
 ```
 
+{{< /step >}}
+
+{{< step >}}
+
 ## Back Up Database
 
 Run backup:
@@ -149,6 +169,10 @@ Verify:
 ```bash
 $ plakar at "@ovhcloud-s3-postgres" ls
 ```
+
+{{< /step >}}
+
+{{< step >}}
 
 ## Restore Database
 
@@ -164,6 +188,10 @@ Restore:
 $ plakar at "@ovhcloud-s3-postgres" cat <SNAPSHOT_ID>:dump.sql | psql <DB_NAME>
 ```
 
+{{< /step >}}
+
+{{< step >}}
+
 ## Automate Backups
 
 Create cron job for daily backups:
@@ -177,6 +205,10 @@ Add:
 ```bash
 0 2 * * * pg_dump <DB_NAME> | plakar at "@ovhcloud-s3-postgres" backup stdin:dump-$(date +\%Y\%m\%d).sql
 ```
+
+{{< /step >}}
+
+{{< /steps >}}
 
 ## Troubleshooting
 
