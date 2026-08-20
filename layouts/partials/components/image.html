@@ -1,0 +1,59 @@
+{{- $r := .resource -}}
+{{- $alt := .alt | default "" -}}
+{{- $class := .class | default "" -}}
+{{- $quality := .quality | default 80 -}}
+{{- $widths := .widths | default (slice 400 800 1200) -}}
+{{- $eager := .eager | default false -}}
+{{- $loading := cond $eager "eager" "lazy" -}}
+
+{{- $sizes := cond $eager (.sizes | default "100vw") (.sizes | default "auto") -}}
+
+{{- if $r -}}
+  {{- $processable := and (eq $r.ResourceType "image") (ne $r.MediaType.SubType "svg") -}}
+
+  {{- if not $processable -}}
+    <img
+      src="{{ $r.RelPermalink }}"
+      alt="{{ $alt }}"
+      {{ with $class }}class="{{ . }}"{{ end }}
+      loading="{{ $loading }}"
+      decoding="async"
+      {{ if $eager }}fetchpriority="high"{{ end }}>
+  {{- else -}}
+    {{- $usable := slice -}}
+    {{- range $widths -}}
+      {{- if le . $r.Width -}}
+        {{- $usable = $usable | append . -}}
+      {{- end -}}
+    {{- end -}}
+
+    {{- if and $usable (gt (len $widths) (len $usable)) -}}
+      {{- if gt $r.Width (index $usable (sub (len $usable) 1)) -}}
+        {{- $usable = $usable | append $r.Width -}}
+      {{- end -}}
+    {{- end -}}
+
+    {{- if not $usable -}}
+      {{- $usable = slice $r.Width -}}
+    {{- end -}}
+
+    {{- $srcset := slice -}}
+    {{- range $usable -}}
+      {{- $v := $r.Resize (printf "%dx webp q%d" . $quality) -}}
+      {{- $srcset = $srcset | append (printf "%s %dw" $v.RelPermalink $v.Width) -}}
+    {{- end -}}
+
+    {{- $primary := $r.Resize (printf "%dx webp q%d" (index $usable 0) $quality) -}}
+
+    <img
+      src="{{ $primary.RelPermalink }}"
+      {{ if gt (len $srcset) 1 }}srcset="{{ delimit $srcset ", " }}" sizes="{{ $sizes }}"{{ end }}
+      width="{{ $primary.Width }}"
+      height="{{ $primary.Height }}"
+      alt="{{ $alt }}"
+      {{ with $class }}class="{{ . }}"{{ end }}
+      loading="{{ $loading }}"
+      decoding="async"
+      {{ if $eager }}fetchpriority="high"{{ end }}>
+  {{- end -}}
+{{- end -}}
