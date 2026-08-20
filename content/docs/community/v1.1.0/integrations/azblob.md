@@ -3,6 +3,8 @@ title: "Azure Blob Storage"
 date: "2026-06-18T00:00:00Z"
 weight: 17
 summary: "Back up and restore Azure Blob Storage containers with Plakar."
+aliases:
+  - /docs/v1.1.0/integrations/azblob/
 ---
 
 # Azure Blob Storage
