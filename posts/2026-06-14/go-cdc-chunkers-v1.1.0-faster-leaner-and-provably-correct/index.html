@@ -37,6 +37,7 @@
   
   
   <link rel="canonical" href="https://stg.plakar.io/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/">
+
   
   
     
@@ -96,7 +97,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2026-06-14T09:00:00+02:00">
-    <meta property="article:modified_time" content="2026-08-21T14:46:12+03:00">
+    <meta property="article:modified_time" content="2026-08-21T15:53:18+03:00">
     <meta property="article:tag" content="Plakar">
     <meta property="article:tag" content="Kloset">
     <meta property="article:tag" content="Chunking">
@@ -126,13 +127,6 @@
   
 
   
-  
-  
-  
-  
-  
-
-  
 
   
   
@@ -150,39 +144,17 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.7143a55e5110d96888a6bc704a4b7d7e4cc2176d5abddcd82585d9c8ff357a62d35126a4ad5d962e9316088348934eabb4e13c2be75ace63925d14d5540e5f86.css"
-    integrity="sha512-cUOlXlEQ2WiIprxwSkt9fkzCF21avdzYJYXZyP81emLTUSakrV2WLpMWCINIk06rtOE8K&#43;dazmOSXRTVVA5fhg==">
-
-  
-  
-  <script
-    type="text/javascript"
-    src="/js/appearance.min.764f412f07ea715415e9123a5eb5f355429502d0b760146b9bcab854bc50829dee14488594acd935dfcdc6a0fe7e6d14d7bee914ebb9272b251aa238cb52c4dd.js"
-    integrity="sha512-dk9BLwfqcVQV6RI6XrXzVUKVAtC3YBRrm8q4VLxQgp3uFEiFlKzZNd/NxqD&#43;fm0U177pFOu5JyslGqI4y1LE3Q=="></script>
-  
-
-
-  
-  
-  
-  
-  
+    href="/css/main.bundle.min.eb0f0aee4d0fba9a04193c8e01596e196eb4ad5736d5484e52635df619655c2f7d7a42a87f9a55ab7e38d756c338e1fe7de57af2b8052cab1fb213afba3e0e4c.css"
+    integrity="sha512-6w8K7k0PupoEGTyOAVluGW60rVc21UhOUmNd9hllXC99ekKof5pVq34411bDOOH&#43;feV68rgFLKsfshOvuj4OTA==">
   
     
-    <script src="/lib/zoom/zoom.min.umd.a527109b68c082a70f3697716dd72a9d5aa8b545cf800cecbbc7399f2ca6f6e0ce3e431f2062b48bbfa47c9ea42822714060bef309be073f49b9c0e30d318d7b.js" integrity="sha512-pScQm2jAgqcPNpdxbdcqnVqotUXPgAzsu8c5nyym9uDOPkMfIGK0i7&#43;kfJ6kKCJxQGC&#43;8wm&#43;Bz9JucDjDTGNew=="></script>
+    <script defer src="/lib/zoom/zoom.min.umd.a527109b68c082a70f3697716dd72a9d5aa8b545cf800cecbbc7399f2ca6f6e0ce3e431f2062b48bbfa47c9ea42822714060bef309be073f49b9c0e30d318d7b.js" integrity="sha512-pScQm2jAgqcPNpdxbdcqnVqotUXPgAzsu8c5nyym9uDOPkMfIGK0i7&#43;kfJ6kKCJxQGC&#43;8wm&#43;Bz9JucDjDTGNew=="></script>
   
 
   
   
   
     
-  
-  
-  
-    
-  
-  
-  
   
   
   
@@ -191,8 +163,8 @@
       defer
       type="text/javascript"
       id="script-bundle"
-      src="/js/main.bundle.min.2d1f35734e9db2393178a04e446cdc5807021754fd8ea71a4103e1364a54991885a6aa4502116dee081d93262f70c08203d6ed10597b7dd339ec5597838a03c3.js"
-      integrity="sha512-LR81c06dsjkxeKBORGzcWAcCF1T9jqcaQQPhNkpUmRiFpqpFAhFt7ggdkyYvcMCCA9btEFl7fdM57FWXg4oDww=="
+      src="/js/main.bundle.min.ec6f201d478aa54dcade344193fa13aca5ffcefa7492dae7f3ae16a80dc0377e62edabdd45cea36de5df026a3e4a3cc7b1f265d2754ea9a54e5ab456a9f67630.js"
+      integrity="sha512-7G8gHUeKpU3K3jRBk/oTrKX/zvp0ktrn864WqA3AN35i7avdRc6jbeXfAmo&#43;SjzHsfJl0nVOqaVOWrRWqfZ2MA=="
       data-copy="Copy"
       data-copied="Copied"></script>
   
@@ -277,7 +249,7 @@
     "dateCreated": "2026-06-14T09:00:00\u002b02:00",
     "datePublished": "2026-06-14T09:00:00\u002b02:00",
     
-    "dateModified": "2026-08-21T14:46:12\u002b03:00",
+    "dateModified": "2026-08-21T15:53:18\u002b03:00",
     
     "keywords": ["plakar","kloset","chunking","cdc","deduplication","performance","open-source"],
     
@@ -292,9 +264,7 @@
   
 
   
-  
     
-
   
 
 
@@ -334,12 +304,14 @@
   
 
   
-  
     
 
-  
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/space-grotesk-latin-wght-normal.woff2">
 
-  
+
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/inter-latin-wght-normal.woff2">
+
+
   
 </head>
 
@@ -518,14 +490,10 @@
                         <div class="w-10 h-10 bg-neutral-100 text-neutral-600 p-2 group-hover/link:bg-neutral-50 group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
                           <span class="relative block icon"><?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 19.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-	 viewBox="0 0 304 182" style="enable-background:new 0 0 304 182;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:#252F3E;}
-	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:#FF9900;}
-</style>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	 viewBox="0 0 304 182" xml:space="preserve">
 <g>
-	<path class="st0" d="M86.4,66.4c0,3.7,0.4,6.7,1.1,8.9c0.8,2.2,1.8,4.6,3.2,7.2c0.5,0.8,0.7,1.6,0.7,2.3c0,1-0.6,2-1.9,3l-6.3,4.2
+	<path fill="#252F3E" d="M86.4,66.4c0,3.7,0.4,6.7,1.1,8.9c0.8,2.2,1.8,4.6,3.2,7.2c0.5,0.8,0.7,1.6,0.7,2.3c0,1-0.6,2-1.9,3l-6.3,4.2
 		c-0.9,0.6-1.8,0.9-2.6,0.9c-1,0-2-0.5-3-1.4C76.2,90,75,88.4,74,86.8c-1-1.7-2-3.6-3.1-5.9c-7.8,9.2-17.6,13.8-29.4,13.8
 		c-8.4,0-15.1-2.4-20-7.2c-4.9-4.8-7.4-11.2-7.4-19.2c0-8.5,3-15.4,9.1-20.6c6.1-5.2,14.2-7.8,24.5-7.8c3.4,0,6.9,0.3,10.6,0.8
 		c3.7,0.5,7.5,1.3,11.5,2.2v-7.3c0-7.6-1.6-12.9-4.7-16c-3.2-3.1-8.6-4.6-16.3-4.6c-3.5,0-7.1,0.4-10.8,1.3c-3.7,0.9-7.3,2-10.8,3.4
@@ -547,9 +515,9 @@
 		c2,1.9,5.7,3.8,11,5.5l14.2,4.5c7.2,2.3,12.4,5.5,15.5,9.6c3.1,4.1,4.6,8.8,4.6,14c0,4.3-0.9,8.2-2.6,11.6
 		c-1.8,3.4-4.2,6.4-7.3,8.8c-3.1,2.5-6.8,4.3-11.1,5.6C264.4,94.4,259.7,95.1,254.6,95.1z"/>
 	<g>
-		<path class="st1" d="M273.5,143.7c-32.9,24.3-80.7,37.2-121.8,37.2c-57.6,0-109.5-21.3-148.7-56.7c-3.1-2.8-0.3-6.6,3.4-4.4
+		<path fill="#FF9900" fill-rule="evenodd" clip-rule="evenodd" d="M273.5,143.7c-32.9,24.3-80.7,37.2-121.8,37.2c-57.6,0-109.5-21.3-148.7-56.7c-3.1-2.8-0.3-6.6,3.4-4.4
 			c42.4,24.6,94.7,39.5,148.8,39.5c36.5,0,76.6-7.6,113.5-23.2C274.2,133.6,278.9,139.7,273.5,143.7z"/>
-		<path class="st1" d="M287.2,128.1c-4.2-5.4-27.8-2.6-38.5-1.3c-3.2,0.4-3.7-2.4-0.8-4.5c18.8-13.2,49.7-9.4,53.3-5
+		<path fill="#FF9900" fill-rule="evenodd" clip-rule="evenodd" d="M287.2,128.1c-4.2-5.4-27.8-2.6-38.5-1.3c-3.2,0.4-3.7-2.4-0.8-4.5c18.8-13.2,49.7-9.4,53.3-5
 			c3.6,4.5-1,35.4-18.6,50.2c-2.7,2.3-5.3,1.1-4.1-1.9C282.5,155.7,291.4,133.4,287.2,128.1z"/>
 	</g>
 </g>
@@ -680,7 +648,16 @@
       
       <a href="/posts/2026-04-03/backing-up-postgresql-with-plakar/" class="group/link flex items-stretch gap-3 rounded-lg border border-neutral-200 hover:bg-neutral-100 hover:border-neutral-300 p-3 no-underline">
         
-          <img src="/posts/2026-04-03/backing-up-postgresql-with-plakar/featured.png" alt="Backing up PostgreSQL with Plakar" class="w-20 h-20 object-cover rounded-md shrink-0">
+          <img
+      src="/posts/2026-04-03/backing-up-postgresql-with-plakar/featured_hu_8fe9aa7111efd89e.webp"
+      
+      width="160"
+      height="160"
+      alt="Backing up PostgreSQL with Plakar"
+      class="w-20 h-20 object-cover rounded-md shrink-0"
+      loading="lazy"
+      decoding="async"
+      >
         
         <div class="flex flex-col gap-1 justify-center">
           
@@ -701,7 +678,16 @@
       
       <a href="/posts/2026-02-18/backing-up-kubernetes-clusters-with-plakar/" class="group/link flex items-stretch gap-3 rounded-lg border border-neutral-200 hover:bg-neutral-100 hover:border-neutral-300 p-3 no-underline">
         
-          <img src="/posts/2026-02-18/backing-up-kubernetes-clusters-with-plakar/featured.png" alt="Backing up kubernetes clusters with Plakar" class="w-20 h-20 object-cover rounded-md shrink-0">
+          <img
+      src="/posts/2026-02-18/backing-up-kubernetes-clusters-with-plakar/featured_hu_265b319c5f38bb61.webp"
+      
+      width="160"
+      height="107"
+      alt="Backing up kubernetes clusters with Plakar"
+      class="w-20 h-20 object-cover rounded-md shrink-0"
+      loading="lazy"
+      decoding="async"
+      >
         
         <div class="flex flex-col gap-1 justify-center">
           
@@ -980,7 +966,16 @@
       
       <a href="/posts/2026-04-03/backing-up-postgresql-with-plakar/" class="group/link flex items-stretch gap-3 rounded-lg border border-neutral-200 hover:bg-neutral-100 hover:border-neutral-300 p-3 no-underline">
         
-          <img src="/posts/2026-04-03/backing-up-postgresql-with-plakar/featured.png" alt="Backing up PostgreSQL with Plakar" class="w-20 h-20 object-cover rounded-md shrink-0">
+          <img
+      src="/posts/2026-04-03/backing-up-postgresql-with-plakar/featured_hu_8fe9aa7111efd89e.webp"
+      
+      width="160"
+      height="160"
+      alt="Backing up PostgreSQL with Plakar"
+      class="w-20 h-20 object-cover rounded-md shrink-0"
+      loading="lazy"
+      decoding="async"
+      >
         
         <div class="flex flex-col gap-1 justify-center">
           
@@ -1001,7 +996,16 @@
       
       <a href="/posts/2026-02-18/backing-up-kubernetes-clusters-with-plakar/" class="group/link flex items-stretch gap-3 rounded-lg border border-neutral-200 hover:bg-neutral-100 hover:border-neutral-300 p-3 no-underline">
         
-          <img src="/posts/2026-02-18/backing-up-kubernetes-clusters-with-plakar/featured.png" alt="Backing up kubernetes clusters with Plakar" class="w-20 h-20 object-cover rounded-md shrink-0">
+          <img
+      src="/posts/2026-02-18/backing-up-kubernetes-clusters-with-plakar/featured_hu_265b319c5f38bb61.webp"
+      
+      width="160"
+      height="107"
+      alt="Backing up kubernetes clusters with Plakar"
+      class="w-20 h-20 object-cover rounded-md shrink-0"
+      loading="lazy"
+      decoding="async"
+      >
         
         <div class="flex flex-col gap-1 justify-center">
           
@@ -1344,14 +1348,10 @@
                         <span class="w-4 h-4 flex items-center justify-center">
                           <span class="relative block icon"><?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 19.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-	 viewBox="0 0 304 182" style="enable-background:new 0 0 304 182;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:#252F3E;}
-	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:#FF9900;}
-</style>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	 viewBox="0 0 304 182" xml:space="preserve">
 <g>
-	<path class="st0" d="M86.4,66.4c0,3.7,0.4,6.7,1.1,8.9c0.8,2.2,1.8,4.6,3.2,7.2c0.5,0.8,0.7,1.6,0.7,2.3c0,1-0.6,2-1.9,3l-6.3,4.2
+	<path fill="#252F3E" d="M86.4,66.4c0,3.7,0.4,6.7,1.1,8.9c0.8,2.2,1.8,4.6,3.2,7.2c0.5,0.8,0.7,1.6,0.7,2.3c0,1-0.6,2-1.9,3l-6.3,4.2
 		c-0.9,0.6-1.8,0.9-2.6,0.9c-1,0-2-0.5-3-1.4C76.2,90,75,88.4,74,86.8c-1-1.7-2-3.6-3.1-5.9c-7.8,9.2-17.6,13.8-29.4,13.8
 		c-8.4,0-15.1-2.4-20-7.2c-4.9-4.8-7.4-11.2-7.4-19.2c0-8.5,3-15.4,9.1-20.6c6.1-5.2,14.2-7.8,24.5-7.8c3.4,0,6.9,0.3,10.6,0.8
 		c3.7,0.5,7.5,1.3,11.5,2.2v-7.3c0-7.6-1.6-12.9-4.7-16c-3.2-3.1-8.6-4.6-16.3-4.6c-3.5,0-7.1,0.4-10.8,1.3c-3.7,0.9-7.3,2-10.8,3.4
@@ -1373,9 +1373,9 @@
 		c2,1.9,5.7,3.8,11,5.5l14.2,4.5c7.2,2.3,12.4,5.5,15.5,9.6c3.1,4.1,4.6,8.8,4.6,14c0,4.3-0.9,8.2-2.6,11.6
 		c-1.8,3.4-4.2,6.4-7.3,8.8c-3.1,2.5-6.8,4.3-11.1,5.6C264.4,94.4,259.7,95.1,254.6,95.1z"/>
 	<g>
-		<path class="st1" d="M273.5,143.7c-32.9,24.3-80.7,37.2-121.8,37.2c-57.6,0-109.5-21.3-148.7-56.7c-3.1-2.8-0.3-6.6,3.4-4.4
+		<path fill="#FF9900" fill-rule="evenodd" clip-rule="evenodd" d="M273.5,143.7c-32.9,24.3-80.7,37.2-121.8,37.2c-57.6,0-109.5-21.3-148.7-56.7c-3.1-2.8-0.3-6.6,3.4-4.4
 			c42.4,24.6,94.7,39.5,148.8,39.5c36.5,0,76.6-7.6,113.5-23.2C274.2,133.6,278.9,139.7,273.5,143.7z"/>
-		<path class="st1" d="M287.2,128.1c-4.2-5.4-27.8-2.6-38.5-1.3c-3.2,0.4-3.7-2.4-0.8-4.5c18.8-13.2,49.7-9.4,53.3-5
+		<path fill="#FF9900" fill-rule="evenodd" clip-rule="evenodd" d="M287.2,128.1c-4.2-5.4-27.8-2.6-38.5-1.3c-3.2,0.4-3.7-2.4-0.8-4.5c18.8-13.2,49.7-9.4,53.3-5
 			c3.6,4.5-1,35.4-18.6,50.2c-2.7,2.3-5.3,1.1-4.1-1.9C282.5,155.7,291.4,133.4,287.2,128.1z"/>
 	</g>
 </g>
@@ -1935,7 +1935,16 @@
         </div>
         <div class="p-4">
           <div class="aspect-video overflow-hidden rounded-sm">
-            <img src="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/featured.png" alt="go-cdc-chunkers v1.1.0: faster, leaner, and provably correct" class="w-full h-full object-cover">
+            <img
+      src="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/featured_hu_8b293c7daeac5c9f.webp"
+      srcset="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/featured_hu_8b293c7daeac5c9f.webp 480w, /posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/featured_hu_ddfc7d0ee1d39266.webp 680w, /posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/featured_hu_af05175307e0e4dc.webp 1360w" sizes="(min-width: 1024px) 680px, 100vw"
+      width="480"
+      height="256"
+      alt="go-cdc-chunkers v1.1.0: faster, leaner, and provably correct"
+      class="w-full h-full object-cover"
+      loading="eager"
+      decoding="async"
+      fetchpriority="high">
           </div>
         </div>
       </div>
@@ -2050,7 +2059,16 @@
           <div class="flex items-start gap-4">
             
             
-              <img src="/img/team/gchehade.png" alt="Gilles Chehade" class="w-14 h-14 rounded-full aspect-square object-cover shrink-0">
+              <img
+      src="/img/team/gchehade_hu_2ba4926dd2ac6c4f.webp"
+      srcset="/img/team/gchehade_hu_2ba4926dd2ac6c4f.webp 56w, /img/team/gchehade_hu_f5106d379ef114c7.webp 112w" sizes="auto"
+      width="56"
+      height="56"
+      alt="Gilles Chehade"
+      class="w-14 h-14 rounded-full aspect-square object-cover shrink-0"
+      loading="lazy"
+      decoding="async"
+      >
             
             <div class="flex flex-col gap-1">
               <span class="text-sm font-semibold text-neutral-900">Gilles Chehade</span>
@@ -2207,10 +2225,10 @@ like, straight out of <code>cmd/cdcplot</code>:</p>
     alt="JC v1.1.0 chunk-size distribution"
     width="768"
     height="480"
-    src="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/jc-chunk-distribution.png"
-    srcset="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/jc-chunk-distribution.png 800w, /posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/jc-chunk-distribution.png 1280w"
+    src="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/jc-chunk-distribution_hu_9b9ec2acc0bf1e04.webp"
+    srcset="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/jc-chunk-distribution_hu_9b9ec2acc0bf1e04.webp 400w, /posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/jc-chunk-distribution_hu_4d2c4ec6a9ba76a5.webp 768w"
     sizes="(min-width: 768px) 50vw, 65vw"
-    data-zoom-src="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/jc-chunk-distribution.png"></figure>
+    data-zoom-src="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/jc-chunk-distribution_hu_4d2c4ec6a9ba76a5.webp"></figure>
 
 <figure><img
     class="my-0 rounded-md"
@@ -2220,10 +2238,10 @@ like, straight out of <code>cmd/cdcplot</code>:</p>
     alt="FastCDC v1.0.0 chunk-size distribution"
     width="768"
     height="480"
-    src="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/fastcdc-chunk-distribution.png"
-    srcset="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/fastcdc-chunk-distribution.png 800w, /posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/fastcdc-chunk-distribution.png 1280w"
+    src="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/fastcdc-chunk-distribution_hu_4d2dd6b9fd046d47.webp"
+    srcset="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/fastcdc-chunk-distribution_hu_4d2dd6b9fd046d47.webp 400w, /posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/fastcdc-chunk-distribution_hu_c54bd3e5986852f5.webp 768w"
     sizes="(min-width: 768px) 50vw, 65vw"
-    data-zoom-src="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/fastcdc-chunk-distribution.png"></figure>
+    data-zoom-src="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/fastcdc-chunk-distribution_hu_c54bd3e5986852f5.webp"></figure>
 
 <figure><img
     class="my-0 rounded-md"
@@ -2233,10 +2251,10 @@ like, straight out of <code>cmd/cdcplot</code>:</p>
     alt="UltraCDC v1.0.0 chunk-size distribution"
     width="768"
     height="480"
-    src="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/ultracdc-chunk-distribution.png"
-    srcset="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/ultracdc-chunk-distribution.png 800w, /posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/ultracdc-chunk-distribution.png 1280w"
+    src="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/ultracdc-chunk-distribution_hu_eb6251c0fe24769c.webp"
+    srcset="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/ultracdc-chunk-distribution_hu_eb6251c0fe24769c.webp 400w, /posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/ultracdc-chunk-distribution_hu_e96aae2ba34cd90f.webp 768w"
     sizes="(min-width: 768px) 50vw, 65vw"
-    data-zoom-src="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/ultracdc-chunk-distribution.png"></figure>
+    data-zoom-src="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/ultracdc-chunk-distribution_hu_e96aae2ba34cd90f.webp"></figure>
 </p>
 <p>You can see the trade-offs in the shapes: JC and FastCDC cluster tightly around
 the target average with a long thin tail, while UltraCDC pushes toward larger
@@ -2377,10 +2395,10 @@ pooled <code>NewChunkerBuffer</code>:</p>
     alt="Memory usage over time: NewChunker vs pooled NewChunkerBuffer"
     width="672"
     height="384"
-    src="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/memory-over-time.png"
-    srcset="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/memory-over-time.png 800w, /posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/memory-over-time.png 1280w"
+    src="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/memory-over-time_hu_32664bd1a6545372.webp"
+    srcset="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/memory-over-time_hu_32664bd1a6545372.webp 400w, /posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/memory-over-time_hu_a2d5ac3d1e66f08c.webp 672w"
     sizes="(min-width: 768px) 50vw, 65vw"
-    data-zoom-src="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/memory-over-time.png"></figure>
+    data-zoom-src="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/memory-over-time_hu_a2d5ac3d1e66f08c.webp"></figure>
 <p>The two <code>NewChunker</code> lines climb steadily past 400 MB as buffers pile up; the
 pooled <code>NewChunkerBuffer</code> line flattens out around 245 MB and stays there. Same
 work, same chunk boundaries, a third less memory.</p>
@@ -2468,10 +2486,10 @@ the dedup ratio responds as you sweep the average chunk size:</p>
     alt="JC v1.1.0 deduplication ratio vs average chunk size"
     width="768"
     height="480"
-    src="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/jc-dedup-sweep.png"
-    srcset="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/jc-dedup-sweep.png 800w, /posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/jc-dedup-sweep.png 1280w"
+    src="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/jc-dedup-sweep_hu_7f0171702570c32.webp"
+    srcset="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/jc-dedup-sweep_hu_7f0171702570c32.webp 400w, /posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/jc-dedup-sweep_hu_212f9c6d0285aa10.webp 768w"
     sizes="(min-width: 768px) 50vw, 65vw"
-    data-zoom-src="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/jc-dedup-sweep.png"></figure>
+    data-zoom-src="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/jc-dedup-sweep_hu_212f9c6d0285aa10.webp"></figure>
 <p>and how well boundaries <em>resynchronize</em> after you edit the data, which is the
 whole point of content-defined chunking:</p>
 <figure><img
@@ -2482,10 +2500,10 @@ whole point of content-defined chunking:</p>
     alt="JC v1.1.0 resync quality after edits"
     width="768"
     height="480"
-    src="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/jc-resync-impact.png"
-    srcset="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/jc-resync-impact.png 800w, /posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/jc-resync-impact.png 1280w"
+    src="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/jc-resync-impact_hu_8e03ff1c0a769294.webp"
+    srcset="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/jc-resync-impact_hu_8e03ff1c0a769294.webp 400w, /posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/jc-resync-impact_hu_ba174d2c6ce8a129.webp 768w"
     sizes="(min-width: 768px) 50vw, 65vw"
-    data-zoom-src="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/jc-resync-impact.png"></figure>
+    data-zoom-src="/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/jc-resync-impact_hu_ba174d2c6ce8a129.webp"></figure>
 </li>
 <li>
 <p><strong><code>cmd/cdcbench</code></strong> — a concurrent benchmark that measures time, CPU, and
@@ -2936,10 +2954,12 @@ anyone ever takes.</p>
 
 
   <script>
-    mediumZoom(document.querySelectorAll(".prose img:not(.nozoom)"), {
-      margin: 24,
-      background: "rgba(0,0,0,0.5)",
-      scrollOffset: 0,
+    document.addEventListener("DOMContentLoaded", function () {
+      mediumZoom(document.querySelectorAll(".prose img:not(.nozoom)"), {
+        margin: 24,
+        background: "rgba(0,0,0,0.5)",
+        scrollOffset: 0,
+      });
     });
   </script>
 
