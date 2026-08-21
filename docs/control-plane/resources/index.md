@@ -73,36 +73,36 @@ required to use each one as a source, store, or destination.
 
 
 
-## [Object Storage](https://plakar.io/docs/control-plane/resources/object-storage/index.md)
+## [Object Storage](https://www.plakar.io/docs/control-plane/resources/object-storage/index.md)
 
-- [S3](https://plakar.io/docs/control-plane/resources/object-storage/s3/index.md): How to configure an S3 resource in Plakar Control Plane.
-- [Azure Blob Storage](https://plakar.io/docs/control-plane/resources/object-storage/azblob/index.md): How to configure an Azure Blob Storage resource in Plakar Control Plane.
-- [Google Cloud Storage](https://plakar.io/docs/control-plane/resources/object-storage/gcs/index.md): How to configure a Google Cloud Storage resource in Plakar Control Plane.
-
-
-## [Block Storage](https://plakar.io/docs/control-plane/resources/block-storage/index.md)
-
-- [Scaleway Block Storage](https://plakar.io/docs/control-plane/resources/block-storage/scaleway/index.md): How to configure a Scaleway block storage resource in Plakar Control Plane.
-- [Kubernetes PVC](https://plakar.io/docs/control-plane/resources/block-storage/pvc/index.md): How to configure a Kubernetes PersistentVolumeClaim resource in Plakar Control Plane.
+- [S3](https://www.plakar.io/docs/control-plane/resources/object-storage/s3/index.md): How to configure an S3 resource in Plakar Control Plane.
+- [Azure Blob Storage](https://www.plakar.io/docs/control-plane/resources/object-storage/azblob/index.md): How to configure an Azure Blob Storage resource in Plakar Control Plane.
+- [Google Cloud Storage](https://www.plakar.io/docs/control-plane/resources/object-storage/gcs/index.md): How to configure a Google Cloud Storage resource in Plakar Control Plane.
 
 
-## [Compute](https://plakar.io/docs/control-plane/resources/compute/index.md)
+## [Block Storage](https://www.plakar.io/docs/control-plane/resources/block-storage/index.md)
 
-- [Scaleway Compute](https://plakar.io/docs/control-plane/resources/compute/scaleway/index.md): How to configure a Scaleway compute resource in Plakar Control Plane.
-- [SFTP](https://plakar.io/docs/control-plane/resources/compute/sftp/index.md): How to configure SFTP resource in Plakar Control Plane.
-- [VMware Compute](https://plakar.io/docs/control-plane/resources/compute/vmware/index.md): How to configure a VMware compute resource in Plakar Control Plane.
-- [VSS](https://plakar.io/docs/control-plane/resources/compute/vss/index.md): How to configure a Volume Shadow Copy Service (VSS) resource in Plakar Control Plane.
+- [Scaleway Block Storage](https://www.plakar.io/docs/control-plane/resources/block-storage/scaleway/index.md): How to configure a Scaleway block storage resource in Plakar Control Plane.
+- [Kubernetes PVC](https://www.plakar.io/docs/control-plane/resources/block-storage/pvc/index.md): How to configure a Kubernetes PersistentVolumeClaim resource in Plakar Control Plane.
 
 
-## [Security](https://plakar.io/docs/control-plane/resources/security/index.md)
+## [Compute](https://www.plakar.io/docs/control-plane/resources/compute/index.md)
 
-- [Scaleway Secret Manager](https://plakar.io/docs/control-plane/resources/security/scaleway-sm/index.md): How to configure a Scaleway Secret Manager resource in Plakar Control Plane.
+- [Scaleway Compute](https://www.plakar.io/docs/control-plane/resources/compute/scaleway/index.md): How to configure a Scaleway compute resource in Plakar Control Plane.
+- [SFTP](https://www.plakar.io/docs/control-plane/resources/compute/sftp/index.md): How to configure SFTP resource in Plakar Control Plane.
+- [VMware Compute](https://www.plakar.io/docs/control-plane/resources/compute/vmware/index.md): How to configure a VMware compute resource in Plakar Control Plane.
+- [VSS](https://www.plakar.io/docs/control-plane/resources/compute/vss/index.md): How to configure a Volume Shadow Copy Service (VSS) resource in Plakar Control Plane.
 
 
-## [Database](https://plakar.io/docs/control-plane/resources/database/index.md)
+## [Security](https://www.plakar.io/docs/control-plane/resources/security/index.md)
 
-- [Microsoft SQL Server](https://plakar.io/docs/control-plane/resources/database/mssql/index.md): How to configure a Microsoft SQL Server resource in Plakar Control Plane.
-- [Microsoft Active Directory](https://plakar.io/docs/control-plane/resources/database/msad/index.md): How to configure a Microsoft Active Directory resource in Plakar Control Plane.
+- [Scaleway Secret Manager](https://www.plakar.io/docs/control-plane/resources/security/scaleway-sm/index.md): How to configure a Scaleway Secret Manager resource in Plakar Control Plane.
+
+
+## [Database](https://www.plakar.io/docs/control-plane/resources/database/index.md)
+
+- [Microsoft SQL Server](https://www.plakar.io/docs/control-plane/resources/database/mssql/index.md): How to configure a Microsoft SQL Server resource in Plakar Control Plane.
+- [Microsoft Active Directory](https://www.plakar.io/docs/control-plane/resources/database/msad/index.md): How to configure a Microsoft Active Directory resource in Plakar Control Plane.
 
 
 

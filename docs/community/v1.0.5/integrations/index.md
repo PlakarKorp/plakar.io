@@ -14,47 +14,47 @@ Below is a list of links to the documentation for each supported integration.
 
 
 
-## [S3](https://plakar.io/docs/community/v1.0.5/integrations/s3/index.md)
+## [S3](https://www.plakar.io/docs/community/v1.0.5/integrations/s3/index.md)
 
 
 
-## [SFTP / SSH](https://plakar.io/docs/community/v1.0.5/integrations/sftp/index.md)
+## [SFTP / SSH](https://www.plakar.io/docs/community/v1.0.5/integrations/sftp/index.md)
 
 
 
-## [HTTP](https://plakar.io/docs/community/v1.0.5/integrations/http/index.md)
+## [HTTP](https://www.plakar.io/docs/community/v1.0.5/integrations/http/index.md)
 
 
 
-## [Notion](https://plakar.io/docs/community/v1.0.5/integrations/notion/index.md)
+## [Notion](https://www.plakar.io/docs/community/v1.0.5/integrations/notion/index.md)
 
 
 
-## [Dropbox](https://plakar.io/docs/community/v1.0.5/integrations/dropbox/index.md)
+## [Dropbox](https://www.plakar.io/docs/community/v1.0.5/integrations/dropbox/index.md)
 
 
 
-## [iCloud Drive](https://plakar.io/docs/community/v1.0.5/integrations/iclouddrive/index.md)
+## [iCloud Drive](https://www.plakar.io/docs/community/v1.0.5/integrations/iclouddrive/index.md)
 
 
 
-## [Koofr](https://plakar.io/docs/community/v1.0.5/integrations/koofr/index.md)
+## [Koofr](https://www.plakar.io/docs/community/v1.0.5/integrations/koofr/index.md)
 
 
 
-## [Google Drive](https://plakar.io/docs/community/v1.0.5/integrations/googledrive/index.md)
+## [Google Drive](https://www.plakar.io/docs/community/v1.0.5/integrations/googledrive/index.md)
 
 
 
-## [OneDrive](https://plakar.io/docs/community/v1.0.5/integrations/onedrive/index.md)
+## [OneDrive](https://www.plakar.io/docs/community/v1.0.5/integrations/onedrive/index.md)
 
 
 
-## [OpenDrive](https://plakar.io/docs/community/v1.0.5/integrations/opendrive/index.md)
+## [OpenDrive](https://www.plakar.io/docs/community/v1.0.5/integrations/opendrive/index.md)
 
 
 
-## [Proton Drive](https://plakar.io/docs/community/v1.0.5/integrations/protondrive/index.md)
+## [Proton Drive](https://www.plakar.io/docs/community/v1.0.5/integrations/protondrive/index.md)
 
 
 

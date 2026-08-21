@@ -115,19 +115,19 @@ interface. See [Infrastructure as Code](../infrastructure-as-code).
 
 
 
-## [Store App](https://plakar.io/docs/control-plane/apps/stores/index.md)
+## [Store App](https://www.plakar.io/docs/control-plane/apps/stores/index.md)
 
 
 
-## [Source App](https://plakar.io/docs/control-plane/apps/sources/index.md)
+## [Source App](https://www.plakar.io/docs/control-plane/apps/sources/index.md)
 
 
 
-## [Destination App](https://plakar.io/docs/control-plane/apps/destinations/index.md)
+## [Destination App](https://www.plakar.io/docs/control-plane/apps/destinations/index.md)
 
 
 
-## [Managing Integrations](https://plakar.io/docs/control-plane/apps/integrations/index.md)
+## [Managing Integrations](https://www.plakar.io/docs/control-plane/apps/integrations/index.md)
 
 
 

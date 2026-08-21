@@ -10,19 +10,19 @@ Plane supports the following compute resources:
 
 
 
-## [Scaleway Compute](https://plakar.io/docs/control-plane/resources/compute/scaleway/index.md)
+## [Scaleway Compute](https://www.plakar.io/docs/control-plane/resources/compute/scaleway/index.md)
 
 
 
-## [SFTP](https://plakar.io/docs/control-plane/resources/compute/sftp/index.md)
+## [SFTP](https://www.plakar.io/docs/control-plane/resources/compute/sftp/index.md)
 
 
 
-## [VMware Compute](https://plakar.io/docs/control-plane/resources/compute/vmware/index.md)
+## [VMware Compute](https://www.plakar.io/docs/control-plane/resources/compute/vmware/index.md)
 
 
 
-## [VSS](https://plakar.io/docs/control-plane/resources/compute/vss/index.md)
+## [VSS](https://www.plakar.io/docs/control-plane/resources/compute/vss/index.md)
 
 
 

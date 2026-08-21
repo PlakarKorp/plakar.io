@@ -92,15 +92,15 @@ For monitoring and alerting, rely on the exit status: `plakar backup` returns
 
 
 
-## [Linux: cron and systemd timers](https://plakar.io/docs/community/main/guides/setup-scheduler-daily-backups/linux/index.md)
+## [Linux: cron and systemd timers](https://www.plakar.io/docs/community/main/guides/setup-scheduler-daily-backups/linux/index.md)
 
 
 
-## [macOS: launchd](https://plakar.io/docs/community/main/guides/setup-scheduler-daily-backups/macos/index.md)
+## [macOS: launchd](https://www.plakar.io/docs/community/main/guides/setup-scheduler-daily-backups/macos/index.md)
 
 
 
-## [Windows: Task Scheduler](https://plakar.io/docs/community/main/guides/setup-scheduler-daily-backups/windows/index.md)
+## [Windows: Task Scheduler](https://www.plakar.io/docs/community/main/guides/setup-scheduler-daily-backups/windows/index.md)
 
 
 

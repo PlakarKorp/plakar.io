@@ -10,7 +10,7 @@ services with Plakar.
 
 
 
-## [Managing IAM Roles, Users, and Access Keys](https://plakar.io/docs/control-plane/guides/aws/iam-users-roles-and-access-keys/index.md)
+## [Managing IAM Roles, Users, and Access Keys](https://www.plakar.io/docs/control-plane/guides/aws/iam-users-roles-and-access-keys/index.md)
 
 
 

@@ -18,23 +18,23 @@ will guide you through the initial setup and basic operations.
 
 
 
-## [Overview](https://plakar.io/docs/community/main/quickstart/overview/index.md)
+## [Overview](https://www.plakar.io/docs/community/main/quickstart/overview/index.md)
 
 
 
-## [Installation](https://plakar.io/docs/community/main/quickstart/installation/index.md)
+## [Installation](https://www.plakar.io/docs/community/main/quickstart/installation/index.md)
 
 
 
-## [Quickstart](https://plakar.io/docs/community/main/quickstart/first-backup/index.md)
+## [Quickstart](https://www.plakar.io/docs/community/main/quickstart/first-backup/index.md)
 
 
 
-## [Synchronize multiple copies](https://plakar.io/docs/community/main/quickstart/synchronize-copies/index.md)
+## [Synchronize multiple copies](https://www.plakar.io/docs/community/main/quickstart/synchronize-copies/index.md)
 
 
 
-## [Backup non-filesystem data](https://plakar.io/docs/community/main/quickstart/backup-non-filesystem-data/index.md)
+## [Backup non-filesystem data](https://www.plakar.io/docs/community/main/quickstart/backup-non-filesystem-data/index.md)
 
 
 

@@ -17,11 +17,11 @@ manage PostgreSQL backups with Plakar.
 
 
 
-## [Logical backups with SQL dumps](https://plakar.io/docs/community/v1.0.6/guides/postgres/pgdump/index.md)
+## [Logical backups with SQL dumps](https://www.plakar.io/docs/community/v1.0.6/guides/postgres/pgdump/index.md)
 
 
 
-## [Physical backups with pg_basebackup](https://plakar.io/docs/community/v1.0.6/guides/postgres/pg-base-backup/index.md)
+## [Physical backups with pg_basebackup](https://www.plakar.io/docs/community/v1.0.6/guides/postgres/pg-base-backup/index.md)
 
 
 

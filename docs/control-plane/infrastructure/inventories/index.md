@@ -65,31 +65,31 @@ resource. See [configuration bundles](./configuration-bundles) for details.
 
 
 
-## [AWS](https://plakar.io/docs/control-plane/infrastructure/inventories/aws/index.md)
+## [AWS](https://www.plakar.io/docs/control-plane/infrastructure/inventories/aws/index.md)
 
 
 
-## [OVHcloud](https://plakar.io/docs/control-plane/infrastructure/inventories/ovhcloud/index.md)
+## [OVHcloud](https://www.plakar.io/docs/control-plane/infrastructure/inventories/ovhcloud/index.md)
 
 
 
-## [Scaleway](https://plakar.io/docs/control-plane/infrastructure/inventories/scaleway/index.md)
+## [Scaleway](https://www.plakar.io/docs/control-plane/infrastructure/inventories/scaleway/index.md)
 
 
 
-## [Google Cloud](https://plakar.io/docs/control-plane/infrastructure/inventories/google-cloud/index.md)
+## [Google Cloud](https://www.plakar.io/docs/control-plane/infrastructure/inventories/google-cloud/index.md)
 
 
 
-## [Kubernetes](https://plakar.io/docs/control-plane/infrastructure/inventories/kubernetes/index.md)
+## [Kubernetes](https://www.plakar.io/docs/control-plane/infrastructure/inventories/kubernetes/index.md)
 
 
 
-## [VMware](https://plakar.io/docs/control-plane/infrastructure/inventories/vmware/index.md)
+## [VMware](https://www.plakar.io/docs/control-plane/infrastructure/inventories/vmware/index.md)
 
 
 
-## [Self Managed](https://plakar.io/docs/control-plane/infrastructure/inventories/self-managed/index.md)
+## [Self Managed](https://www.plakar.io/docs/control-plane/infrastructure/inventories/self-managed/index.md)
 
 
 

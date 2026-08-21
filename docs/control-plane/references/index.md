@@ -12,7 +12,7 @@ of the documentation instead.
 
 
 
-## [Kubernetes Operator](https://plakar.io/docs/control-plane/references/kubernetes-operator/index.md)
+## [Kubernetes Operator](https://www.plakar.io/docs/control-plane/references/kubernetes-operator/index.md)
 
 
 

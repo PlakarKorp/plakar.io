@@ -58,15 +58,15 @@ Platform-specific infrastructure update procedures are documented separately:
 
 
 
-## [Updating AWS AMI](https://plakar.io/docs/control-plane/administration/updating-control-plane/aws/index.md)
+## [Updating AWS AMI](https://www.plakar.io/docs/control-plane/administration/updating-control-plane/aws/index.md)
 
 
 
-## [Updating Scaleway QCOW2](https://plakar.io/docs/control-plane/administration/updating-control-plane/scaleway/index.md)
+## [Updating Scaleway QCOW2](https://www.plakar.io/docs/control-plane/administration/updating-control-plane/scaleway/index.md)
 
 
 
-## [Updating Proxmox ISO](https://plakar.io/docs/control-plane/administration/updating-control-plane/proxmox/index.md)
+## [Updating Proxmox ISO](https://www.plakar.io/docs/control-plane/administration/updating-control-plane/proxmox/index.md)
 
 
 

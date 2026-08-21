@@ -18,7 +18,7 @@ will guide you through the initial setup and basic operations.
 
 
 
-## [Quickstart](https://plakar.io/docs/community/v1.0.5/quickstart/quickstart/index.md)
+## [Quickstart](https://www.plakar.io/docs/community/v1.0.5/quickstart/quickstart/index.md)
 
 
 

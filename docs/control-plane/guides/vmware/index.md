@@ -10,7 +10,7 @@ services with Plakar.
 
 
 
-## [Setting up an NBD Server for VMware Backups](https://plakar.io/docs/control-plane/guides/vmware/nbd-server-setup/index.md)
+## [Setting up an NBD Server for VMware Backups](https://www.plakar.io/docs/control-plane/guides/vmware/nbd-server-setup/index.md)
 
 
 
