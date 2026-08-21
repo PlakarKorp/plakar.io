@@ -24,14 +24,6 @@ technology_description: >
 categories:
   - source
 
-tags:
-  - Notion
-  - SaaS
-  - Workspace
-  - Productivity
-  - Collaboration
-  - Knowledge management
-
 seo_tags:
   - Notion backup
   - Notion disaster recovery
@@ -51,7 +43,13 @@ links:
 edition:
   - community
 
+opensource: true
+
 stage: beta
+
+author:
+  - type: official
+    name: Plakar
 
 date: 2026-03-23
 

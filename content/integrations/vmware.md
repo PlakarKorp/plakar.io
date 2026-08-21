@@ -28,16 +28,6 @@ categories:
   - destination
   - inventory
 
-tags:
-  - VMware
-  - vSphere
-  - vCenter
-  - ESXi
-  - Virtual Machines
-  - OVHcloud
-  - Disaster Recovery
-  - Ransomware Protection
-
 seo_tags:
   - VMware backup
   - vSphere backup
@@ -55,7 +45,13 @@ links:
 edition:
   - control-plane
 
+opensource: false
+
 stage: stable
+
+author:
+  - type: official
+    name: Plakar
 
 date: 2026-08-10
 

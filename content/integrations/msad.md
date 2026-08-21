@@ -27,14 +27,6 @@ categories:
   - source
   - destination
 
-tags:
-  - Active Directory
-  - Domain Controller
-  - Windows Server
-  - System State
-  - Disaster Recovery
-  - Ransomware Protection
-
 seo_tags:
   - Active Directory backup
   - Active Directory disaster recovery
@@ -51,7 +43,13 @@ links:
 edition:
   - control-plane
 
+opensource: false
+
 stage: stable
+
+author:
+  - type: official
+    name: Plakar
 
 new: true
 

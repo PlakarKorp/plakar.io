@@ -27,14 +27,6 @@ categories:
   - destination
   - storage
 
-tags:
-  - SFTP
-  - Linux
-  - BSD
-  - NAS
-  - Synology
-  - QNAP
-
 seo_tags:
   - SFTP backup
   - Linux backup
@@ -57,7 +49,13 @@ edition:
   - community
   - control-plane
 
+opensource: true
+
 stage: stable
+
+author:
+  - type: official
+    name: Plakar
 
 date: 2026-03-23
 

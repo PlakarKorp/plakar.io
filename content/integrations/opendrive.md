@@ -24,10 +24,6 @@ categories:
   - destination
   - storage
 
-tags:
-  - Opendrive
-  - Cloud storage
-
 seo_tags:
   - OpenDrive
   - OpenDrive providers
@@ -51,7 +47,13 @@ links:
 edition:
   - community
 
+opensource: true
+
 stage: stable
+
+author:
+  - type: official
+    name: Plakar
 
 date: 2026-03-23
 

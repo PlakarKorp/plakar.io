@@ -9,46 +9,48 @@
 }}
 
 {{ $image := resources.Get $p.Params.image }}
+{{ $plakarLogo := resources.Get "img/logos/plakar-logo-icon.svg" }}
 {{ $stageClass := index $stageColors (lower $p.Params.stage) | default "text-neutral-600 bg-neutral-100" }}
 
 {{ $edition := partial "integrations/edition.html" $p }}
 {{ $hasCommunity := $edition.hasCommunity }}
 {{ $hasControlPlane := $edition.hasControlPlane }}
 
-<a href="{{ $p.RelPermalink }}" data-categories="{{ delimit $p.Params.categories "," }}" data-editions="{{ delimit $edition.list "," }}" data-name="{{ lower $p.Title }}" data-date="{{ $p.Date.Unix }}" class="group/card flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 hover:shadow-none transition-all duration-300">
-  <div class="flex items-start justify-between gap-3">
-    <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 bg-neutral-100 flex items-center justify-center">
+{{ $author := partial "integrations/author.html" $p }}
+
+{{ $categories := $p.GetTerms "categories" }}
+{{ $searchText := printf "%s %s" $p.Title (path.Base $p.RelPermalink) | lower }}
+
+<a
+  href="{{ $p.RelPermalink }}"
+  data-categories="{{ delimit $p.Params.categories "," }}"
+  data-editions="{{ delimit $edition.list "," }}"
+  data-author="{{ $author.type }}"
+  data-name="{{ lower $p.Title }}"
+  data-date="{{ $p.Date.Unix }}"
+  data-search="{{ $searchText }}"
+  class="group/card relative flex flex-col gap-3 p-5 rounded-2xl border border-neutral-100 hover:border-primary-300 bg-neutral-50 shadow-sm hover:shadow-none outline-4 outline-transparent hover:outline-primary-400/20 transition-all duration-300"
+>
+  <div class="flex items-start gap-3.5">
+    <div class="w-13 h-13 rounded-lg overflow-hidden shrink-0 flex items-center justify-center">
       {{ if $image }}
-        <img src="{{ $image.RelPermalink }}" alt="{{ $p.Title }}" class="w-full h-full object-cover">
+        <img src="{{ $image.RelPermalink }}" alt="{{ $p.Title }}" class="w-full h-full object-contain">
       {{ else }}
         <span class="w-6 h-6 text-neutral-400">{{ partial "icon.html" "plug-line" }}</span>
       {{ end }}
     </div>
-    <div class="flex flex-col items-end gap-1 shrink-0">
-      {{ with $p.Params.stage }}
-        <span class="text-sm font-medium px-2 py-1 rounded-md {{ $stageClass }} uppercase shrink-0">
-          {{ . }}
-        </span>
-      {{ end }}
-      {{ if $hasCommunity }}
-        <span class="inline-flex items-center gap-1 text-xxs font-semibold px-2 py-0.5 rounded-full text-secondary-600 bg-secondary-50 uppercase tracking-wide shrink-0">
-          <span class="w-3 h-3">{{ partial "icon.html" "ri/open-source-line" }}</span>
-          Community
-        </span>
-      {{ end }}
-      {{ if $hasControlPlane }}
-        <span class="inline-flex items-center gap-1 text-xxs font-semibold px-2 py-0.5 rounded-full text-primary-600 bg-primary-50 uppercase tracking-wide shrink-0">
-          <span class="w-3 h-3">{{ partial "icon.html" "ri/dashboard-3-line" }}</span>
-          Control Plane
-        </span>
-      {{ end }}
-    </div>
+    {{ with $p.Params.stage }}
+      <span class="ml-auto inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full {{ $stageClass }} uppercase shrink-0">
+        <span class="w-1.5 h-1.5 rounded-full bg-current shrink-0"></span>
+        {{ . }}
+      </span>
+    {{ end }}
   </div>
 
   <!-- Title -->
-  <div class="flex flex-col gap-1">
-    <div class="flex items-center gap-2">
-      <h3 class="text-lg lg:text-2xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
+  <div class="flex flex-col mt-3">
+    <div class="flex items-center gap-2 flex-wrap">
+      <h3 class="text-lg lg:text-xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
         {{ $p.Title }}
       </h3>
       {{ if $p.Params.new }}
@@ -56,10 +58,8 @@
       {{ end }}
     </div>
 
-    <!-- Categories -->
-    {{ $categories := $p.GetTerms "categories" }}
     {{ if gt (len $categories) 0 }}
-      <div class="text-xs text-primary-500 font-medium">
+      <div class="text-xs text-primary-500 font-semibold mt-4">
         {{ range $i, $cat := $categories }}
           {{ if gt $i 0 }} / {{ end }}{{ replace $cat.LinkTitle "-" " " }}
         {{ end }}
@@ -69,22 +69,38 @@
 
   <!-- Description -->
   {{ with $p.Params.description }}
-    <p class="text-neutral-600 leading-snug -mt-1 line-clamp-3">{{ . | plainify }}</p>
+    <p class="text-sm text-neutral-500 line-clamp-3 mt-1">{{ . | plainify }}</p>
   {{ end }}
 
-  <!-- Tags -->
-  {{ with $p.Params.tags }}
-    <div class="flex flex-wrap items-start gap-1 self-start w-full">
-      {{ range . }}
-        <span class="text-sm px-2 py-0.5 rounded bg-primary-50 text-primary-500">
-          {{ . }}
-        </span>
-      {{ end }}
+  <!-- Footer -->
+  <div class="mt-auto pt-3 border-t border-neutral-200 flex items-center gap-4">
+    <div class="flex flex-col gap-0.5 min-w-0">
+      <span class="text-xxs font-semibold uppercase tracking-wide text-neutral-400">Platform</span>
+      <span class="text-xs font-semibold flex items-center gap-1.5 flex-wrap">
+        {{ if $hasCommunity }}<span class="text-green-600">Community</span>{{ end }}
+        {{ if and $hasCommunity $hasControlPlane }}<span class="text-neutral-300">·</span>{{ end }}
+        {{ if $hasControlPlane }}<span class="text-primary-600">Control Plane</span>{{ end }}
+      </span>
     </div>
-  {{ end }}
-
-  <div class="flex items-center gap-1 mt-1 group-hover/card:text-primary-500">
-    <div class="w-5 h-5">{{ partial "icon.html" "ri/corner-down-right-line" }}</div>
-    <p class="text-sm font-semibold">Read more</p>
+    <div class="flex flex-col gap-0.5 min-w-0 pl-4 border-l border-neutral-200">
+      <span class="text-xxs font-semibold uppercase tracking-wide text-neutral-400">Author</span>
+      <span class="text-xs font-semibold text-neutral-900 flex items-center gap-1.5 flex-wrap">
+        {{ if $author.isOfficial }}
+          <img class="w-4 h-4 shrink-0" src="{{ $plakarLogo.RelPermalink }}" alt="">
+          <span>{{ $author.name }}</span>
+        {{ else if $author.isPartner }}
+          <span class="w-4 h-4 pt-0.5 pl-0.3 rounded-full bg-secondary-500 text-neutral-50 text-xxs font-bold flex items-center justify-center shrink-0">{{ upper (substr $author.name 0 1) }}</span>
+          <span>{{ $author.name }}</span>
+          <span class="text-neutral-400 font-medium">· Partner</span>
+        {{ else }}
+          <span class="w-4 h-4 rounded-full flex items-center justify-center shrink-0 text-neutral-500">{{ partial "icon.html" "ri/team-line" }}</span>
+          <span>{{ $author.name }}</span>
+          <span class="text-neutral-400 font-medium">· Community</span>
+        {{ end }}
+      </span>
+    </div>
+    <div class="ml-auto shrink-0 text-neutral-300 group-hover/card:text-primary-500 group-hover/card:translate-x-0.5 transition-all">
+      <div class="w-4.5 h-4.5">{{ partial "icon.html" "ri/arrow-right-line" }}</div>
+    </div>
   </div>
 </a>

@@ -25,10 +25,6 @@ categories:
   - destination
   - storage
 
-tags:
-  - Proton Drive
-  - Cloud storage
-
 seo_tags:
   - Proton Drive
   - Proton Drive backup
@@ -53,7 +49,13 @@ links:
 edition:
   - community
 
+opensource: true
+
 stage: stable
+
+author:
+  - type: official
+    name: Plakar
 
 date: 2026-03-23
 
