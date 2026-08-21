@@ -1,0 +1,15 @@
+# Preview / staging overrides.
+#
+# Merged on top of config/_default/ when Hugo runs with --environment preview,
+# which CI does by setting HUGO_ENVIRONMENT=preview. Only the keys that must
+# differ from production belong here.
+#
+# Environment config has the highest precedence, so this wins over both
+# config/_default/hugo.toml and the root hugo.toml.
+#
+# Note that --environment preview also makes hugo.IsProduction false, which
+# switches off Google Tag Manager via the existing guards in
+# layouts/partials/extend-head.html and layouts/_default/baseof.html. Staging
+# therefore reports no analytics without any template changes.
+
+baseURL = "https://stg.plakar.io/"

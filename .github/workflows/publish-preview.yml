@@ -1,9 +1,17 @@
-name: Publish Site
+name: Publish Preview
 
+# Staging deploy. Mirrors publish-site.yml, with two differences:
+#
+#   HUGO_ENVIRONMENT: preview  loads config/preview/ on top of config/_default/,
+#                              which sets baseURL to stg.plakar.io, marks the
+#                              site noindex, and makes hugo.IsProduction false
+#                              so Google Tag Manager stays off
+#   publish_branch             gh-pages-preview rather than the action's default
+#                              of gh-pages, which is production
 on:
   push:
     branches:
-      - main
+      - preview
 
 permissions:
   contents: write
@@ -43,12 +51,12 @@ jobs:
 
       - name: Build site
         run: npm run build
+        env:
+          HUGO_ENVIRONMENT: preview
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-          # Stated explicitly rather than relying on the action's default, so
-          # this cannot be confused with publish-preview.yml's target.
-          publish_branch: gh-pages
+          publish_branch: gh-pages-preview
