@@ -25,10 +25,6 @@ categories:
   - destination
   - storage
 
-tags:
-  - Google Drive
-  - Cloud storage
-
 seo_tags:
   - Google Drive
   - Google Drive backup
@@ -52,7 +48,13 @@ links:
 edition:
   - community
 
+opensource: true
+
 stage: stable
+
+author:
+  - type: official
+    name: Plakar
 
 date: 2026-03-23
 

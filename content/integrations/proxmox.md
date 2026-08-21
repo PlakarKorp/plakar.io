@@ -26,15 +26,6 @@ categories:
   - source
   - destination
 
-tags:
-  - Proxmox
-  - Virtual Machines
-  - Containers
-  - KVM
-  - LXC
-  - vzdump
-  - Virtualization
-
 seo_tags:
   - Proxmox backup
   - VM backup
@@ -56,7 +47,13 @@ edition:
   - community
   - control-plane
 
+opensource: true
+
 stage: rc
+
+author:
+  - type: partner
+    name: FactorFX
 
 new: true
 

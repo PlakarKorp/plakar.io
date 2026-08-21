@@ -24,16 +24,6 @@ categories:
   - source
   - destination
 
-tags:
-  - MySQL
-  - MariaDB
-  - Databases
-  - SQL
-  - mysqldump
-  - AWS RDS
-  - Managed Databases
-  - On-Premise
-
 seo_tags:
   - MySQL backup
   - MariaDB backup
@@ -52,7 +42,13 @@ edition:
   - community
   - control-plane
 
+opensource: true
+
 stage: beta
+
+author:
+  - type: official
+    name: Plakar
 
 new: true
 

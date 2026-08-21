@@ -25,11 +25,6 @@ categories:
   - destination
   - storage
 
-tags:
-  - Koofr
-  - Cloud storage
-  - Privacy
-
 seo_tags:
   - Koofr
   - Koofr backup
@@ -54,7 +49,13 @@ links:
 edition:
   - community
 
+opensource: true
+
 stage: stable
+
+author:
+  - type: official
+    name: Plakar
 
 date: 2026-03-23
 

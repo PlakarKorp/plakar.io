@@ -24,13 +24,6 @@ categories:
   - destination
   - secrets-manager
 
-tags:
-  - HashiCorp Vault
-  - Secrets Management
-  - Key-Value Store
-  - Disaster Recovery
-  - Cluster Backup
-
 seo_tags:
   - HashiCorp Vault backup
   - Vault disaster recovery
@@ -44,7 +37,13 @@ links: []
 edition:
   - control-plane
 
+opensource: false
+
 stage: stable
+
+author:
+  - type: official
+    name: Plakar
 
 date: 2026-07-24
 

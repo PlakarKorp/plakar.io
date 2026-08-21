@@ -27,15 +27,6 @@ categories:
   - destination
   - storage
 
-tags:
-  - Filesystem
-  - NFS
-  - SMB
-  - NAS
-  - SAN
-  - NTFS
-  - EXT4
-
 seo_tags:
   - filesystem backup
   - local backup
@@ -55,7 +46,13 @@ links: []
 edition:
   - community
 
+opensource: true
+
 stage: stable
+
+author:
+  - type: official
+    name: Plakar
 
 date: 2026-03-23
 

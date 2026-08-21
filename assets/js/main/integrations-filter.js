@@ -1,66 +1,61 @@
 // Targets: layouts/integrations/list.html
-// Elements: #integrations-grid, .integrations-filter-dropdown, #integrations-sort,
-// .filter-dropdown-option, .edition-dropdown-option, .sort-btn, [data-categories], [data-editions]
+// Elements: #integrations-grid, #integrations-search, #integrations-author,
+// #integrations-type, #integrations-platform, #integrations-sort,
+// #integrations-reset, #integrations-empty-reset, #integrations-result-note,
+// #integrations-empty-filters, #integrations-empty-community, [data-stat]
 
 document.addEventListener("DOMContentLoaded", () => {
   const grid = document.getElementById("integrations-grid");
-  const filterDropdown = document.querySelector(
-    ".integrations-filter-dropdown",
-  );
-  const filterDropdownBtn = filterDropdown?.querySelector(
-    ".integrations-filter-dropdown-btn",
-  );
-  const filterDropdownMenu = filterDropdown?.querySelector(
-    ".integrations-filter-dropdown-menu",
-  );
-  const filterDropdownLabel = filterDropdown?.querySelector(
-    ".integrations-filter-dropdown-label",
-  );
+  if (!grid) return;
+
+  const searchInput = document.getElementById("integrations-search");
+  const authorContainer = document.getElementById("integrations-author");
+  const typeSelect = document.getElementById("integrations-type");
+  const platformContainer = document.getElementById("integrations-platform");
   const sortContainer = document.getElementById("integrations-sort");
-  if (!grid || !filterDropdown) return;
+  const resultNote = document.getElementById("integrations-result-note");
+  const resetBtn = document.getElementById("integrations-reset");
+  const emptyResetBtn = document.getElementById("integrations-empty-reset");
+  const emptyFilters = document.getElementById("integrations-empty-filters");
+  const emptyCommunity = document.getElementById(
+    "integrations-empty-community",
+  );
 
-  const categoryOptions = filterDropdown.querySelectorAll(
-    ".filter-dropdown-option",
-  );
-  const editionOptions = filterDropdown.querySelectorAll(
-    ".edition-dropdown-option",
-  );
-  const sortButtons = sortContainer
-    ? sortContainer.querySelectorAll(".sort-btn")
+  const authorButtons = authorContainer
+    ? Array.from(authorContainer.querySelectorAll("[data-author]"))
     : [];
+  const platformButtons = platformContainer
+    ? Array.from(platformContainer.querySelectorAll("[data-platform]"))
+    : [];
+  const sortButtons = sortContainer
+    ? Array.from(sortContainer.querySelectorAll("[data-sort]"))
+    : [];
+  const cards = Array.from(grid.querySelectorAll("[data-categories]"));
+  const totalCount = cards.length;
 
-  const categoryLabels = {
-    all: "All Categories",
-    source: "Source",
-    destination: "Destination",
-    storage: "Storage",
-    "secrets-manager": "Secrets Manager",
-    inventories: "Inventories",
+  const state = {
+    q: "",
+    author: "all",
+    type: "all",
+    platform: "all",
+    sort: "date",
   };
 
-  const editionLabels = {
-    all: "All Editions",
-    community: "Community",
-    "control-plane": "Control Plane",
+  // Active state is expressed as ARIA, and the styling hangs off
+  // `aria-selected:` / `aria-pressed:` variants in the template.
+  const setActive = (buttons, attr, value, ariaName) => {
+    buttons.forEach((btn) => {
+      btn.setAttribute(ariaName, String(btn.dataset[attr] === value));
+    });
   };
 
-  let activeCategory = "all";
-  let activeEdition = "all";
+  const hasActiveFilters = () =>
+    !!state.q || state.type !== "all" || state.platform !== "all";
 
-  const updateLabel = () => {
-    if (!filterDropdownLabel) return;
-    if (activeCategory === "all" && activeEdition === "all") {
-      filterDropdownLabel.textContent = "All Integrations";
-      return;
-    }
-    const parts = [];
-    if (activeCategory !== "all") parts.push(categoryLabels[activeCategory]);
-    if (activeEdition !== "all") parts.push(editionLabels[activeEdition]);
-    filterDropdownLabel.textContent = parts.join(" · ");
-  };
+  const applyVisibility = () => {
+    const q = state.q.trim().toLowerCase();
+    let visibleCount = 0;
 
-  const updateVisibility = () => {
-    const cards = grid.querySelectorAll("[data-categories]");
     cards.forEach((card) => {
       const categories = card.dataset.categories
         .split(",")
@@ -68,122 +63,143 @@ document.addEventListener("DOMContentLoaded", () => {
       const editions = (card.dataset.editions || "")
         .split(",")
         .map((c) => c.trim().toLowerCase());
+      const author = card.dataset.author || "";
 
-      const matchesCategory =
-        activeCategory === "all" ||
-        categories.some((c) => c.includes(activeCategory));
-      const matchesEdition =
-        activeEdition === "all" || editions.includes(activeEdition);
+      const matchesAuthor = state.author === "all" || author === state.author;
+      const matchesType =
+        state.type === "all" || categories.includes(state.type);
+      const matchesPlatform =
+        state.platform === "all" || editions.includes(state.platform);
+      const matchesSearch = !q || (card.dataset.search || "").includes(q);
 
-      card.style.display = matchesCategory && matchesEdition ? "" : "none";
+      const visible =
+        matchesAuthor && matchesType && matchesPlatform && matchesSearch;
+      card.style.display = visible ? "" : "none";
+      if (visible) visibleCount += 1;
     });
+
+    if (resultNote) {
+      resultNote.textContent = `${visibleCount} / ${totalCount} integrations`;
+    }
+    if (resetBtn) resetBtn.hidden = !hasActiveFilters();
+
+    const showCommunityEmpty =
+      visibleCount === 0 && state.author === "community" && !hasActiveFilters();
+    if (emptyCommunity) emptyCommunity.hidden = !showCommunityEmpty;
+    if (emptyFilters)
+      emptyFilters.hidden = !(visibleCount === 0 && !showCommunityEmpty);
   };
 
-  const applyFilter = (category) => {
-    activeCategory = category;
-    categoryOptions.forEach((opt) => {
-      const isActive = opt.dataset.filter === category;
-      opt.classList.toggle("text-primary-500", isActive);
-      opt.classList.toggle("bg-neutral-100", isActive);
-    });
-    updateLabel();
-    updateVisibility();
-  };
-
-  const applyEditionFilter = (edition) => {
-    activeEdition = edition;
-    editionOptions.forEach((opt) => {
-      const isActive = opt.dataset.edition === edition;
-      opt.classList.toggle("text-primary-500", isActive);
-      opt.classList.toggle("bg-neutral-100", isActive);
-    });
-    updateLabel();
-    updateVisibility();
-  };
+  const setAuthorActive = (v) =>
+    setActive(authorButtons, "author", v, "aria-selected");
+  const setPlatformActive = (v) =>
+    setActive(platformButtons, "platform", v, "aria-pressed");
 
   const applySort = (sortBy) => {
-    sortButtons.forEach((btn) => {
-      const isActive = btn.dataset.sort === sortBy;
-      btn.classList.toggle("bg-primary-500", isActive);
-      btn.classList.toggle("text-neutral-50", isActive);
-      btn.classList.toggle("text-neutral-700", !isActive);
-      btn.classList.toggle("hover:bg-neutral-100", !isActive);
+    state.sort = sortBy;
+    setActive(sortButtons, "sort", sortBy, "aria-pressed");
+    const sorted = [...cards].sort((a, b) => {
+      if (sortBy === "name")
+        return (a.dataset.name || "").localeCompare(b.dataset.name || "");
+      return parseInt(b.dataset.date, 10) - parseInt(a.dataset.date, 10);
     });
-
-    const cards = Array.from(grid.querySelectorAll("[data-categories]"));
-    cards.sort((a, b) => {
-      if (sortBy === "date") {
-        return parseInt(b.dataset.date, 10) - parseInt(a.dataset.date, 10);
-      }
-      return (a.dataset.name || "").localeCompare(b.dataset.name || "");
-    });
-    cards.forEach((card) => grid.appendChild(card));
+    sorted.forEach((card) => grid.appendChild(card));
   };
 
-  categoryOptions.forEach((opt) => {
-    opt.addEventListener("click", (e) => {
-      e.preventDefault();
-      applyFilter(opt.dataset.filter);
-      filterDropdownMenu?.classList.add("hidden");
+  const resetFilters = () => {
+    state.q = "";
+    state.type = "all";
+    state.platform = "all";
+    if (searchInput) searchInput.value = "";
+    if (typeSelect) typeSelect.value = "all";
+    setPlatformActive("all");
+    applyVisibility();
+  };
 
-      const url = new URL(window.location);
-      if (opt.dataset.filter === "all") {
-        url.searchParams.delete("category");
-      } else {
-        url.searchParams.set("category", opt.dataset.filter);
-      }
-      history.pushState({}, "", url);
+  searchInput?.addEventListener("input", () => {
+    state.q = searchInput.value;
+    applyVisibility();
+  });
+
+  authorButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      state.author = btn.dataset.author;
+      setAuthorActive(state.author);
+      applyVisibility();
     });
   });
 
-  editionOptions.forEach((opt) => {
-    opt.addEventListener("click", (e) => {
-      e.preventDefault();
-      applyEditionFilter(opt.dataset.edition);
-      filterDropdownMenu?.classList.add("hidden");
+  authorContainer?.addEventListener("keydown", (e) => {
+    if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+    const idx = authorButtons.findIndex(
+      (b) => b.dataset.author === state.author,
+    );
+    const step = e.key === "ArrowRight" ? 1 : authorButtons.length - 1;
+    const next = authorButtons[(idx + step) % authorButtons.length];
+    if (!next) return;
+    e.preventDefault();
+    next.click();
+    next.focus();
+  });
 
-      const url = new URL(window.location);
-      if (opt.dataset.edition === "all") {
-        url.searchParams.delete("edition");
-      } else {
-        url.searchParams.set("edition", opt.dataset.edition);
-      }
-      history.pushState({}, "", url);
+  typeSelect?.addEventListener("change", () => {
+    state.type = typeSelect.value;
+    applyVisibility();
+  });
+
+  platformButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      state.platform = btn.dataset.platform;
+      setPlatformActive(state.platform);
+      applyVisibility();
     });
   });
 
   sortButtons.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      const sortBy = btn.dataset.sort;
-      applySort(sortBy);
-
-      const url = new URL(window.location);
-      if (sortBy === "date") {
-        url.searchParams.delete("sort");
-      } else {
-        url.searchParams.set("sort", sortBy);
-      }
-      history.pushState({}, "", url);
+    btn.addEventListener("click", () => {
+      applySort(btn.dataset.sort);
     });
   });
 
-  filterDropdownBtn?.addEventListener("click", (e) => {
-    e.stopPropagation();
-    filterDropdownMenu?.classList.toggle("hidden");
+  // `/` focuses the search box, matching the kbd hint in the panel.
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "/" || e.metaKey || e.ctrlKey || e.altKey) return;
+    const active = document.activeElement;
+    const tag = active?.tagName;
+    if (tag === "INPUT" || tag === "SELECT" || tag === "TEXTAREA") return;
+    if (active?.isContentEditable) return;
+    if (!searchInput) return;
+    e.preventDefault();
+    searchInput.focus();
   });
 
-  document.addEventListener("click", (e) => {
-    if (!e.target.closest(".integrations-filter-dropdown")) {
-      filterDropdownMenu?.classList.add("hidden");
-    }
+  resetBtn?.addEventListener("click", resetFilters);
+  emptyResetBtn?.addEventListener("click", resetFilters);
+
+  document.querySelectorAll("[data-stat]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const stat = btn.dataset.stat;
+      if (stat === "all") {
+        resetFilters();
+      } else {
+        if (stat === "opensource") {
+          state.platform = "community";
+          setPlatformActive("community");
+        }
+        if (stat === "storage") {
+          state.type = "storage";
+          if (typeSelect) typeSelect.value = "storage";
+        }
+        applyVisibility();
+      }
+      searchInput
+        ?.closest("section")
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
   });
 
-  const params = new URLSearchParams(window.location.search);
-  const category = params.get("category") || "all";
-  const edition = params.get("edition") || "all";
-  const sort = params.get("sort") || "date";
-  applySort(sort);
-  applyFilter(category);
-  applyEditionFilter(edition);
+  setAuthorActive("all");
+  setPlatformActive("all");
+  applySort("date");
+  applyVisibility();
 });

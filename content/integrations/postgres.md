@@ -24,14 +24,6 @@ categories:
   - source
   - destination
 
-tags:
-  - Databases
-  - pg_dump
-  - pg_basebackup
-  - SQL
-  - AWS RDS
-  - Managed Databases
-
 seo_tags:
   - PostgreSQL backup
   - pg_dump backup
@@ -50,7 +42,13 @@ edition:
   - community
   - control-plane
 
+opensource: true
+
 stage: beta
+
+author:
+  - type: official
+    name: Plakar
 
 new: true
 
