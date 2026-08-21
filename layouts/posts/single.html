@@ -50,7 +50,14 @@
         </div>
         <div class="p-4">
           <div class="aspect-video overflow-hidden rounded-sm">
-            <img src="{{ $image.RelPermalink }}" alt="{{ .Title }}" class="w-full h-full object-cover">
+            {{ partial "components/image.html" (dict
+              "resource" $image
+              "alt" .Title
+              "widths" (slice 480 680 1360)
+              "sizes" "(min-width: 1024px) 680px, 100vw"
+              "class" "w-full h-full object-cover"
+              "eager" true
+            ) }}
           </div>
         </div>
       </div>
@@ -81,7 +88,12 @@
           <div class="flex items-start gap-4">
             {{ $authorImg := resources.Get .image }}
             {{ if $authorImg }}
-              <img src="{{ $authorImg.RelPermalink }}" alt="{{ .name }}" class="w-14 h-14 rounded-full aspect-square object-cover shrink-0">
+              {{ partial "components/image.html" (dict
+                "resource" $authorImg
+                "alt" .name
+                "widths" (slice 56 112)
+                "class" "w-14 h-14 rounded-full aspect-square object-cover shrink-0"
+              ) }}
             {{ else }}
               <div class="w-14 h-14 rounded-full bg-neutral-200 shrink-0 flex items-center justify-center text-neutral-500">
                 <span class="w-6 h-6">{{ partial "icon.html" "ri/user-line" }}</span>
