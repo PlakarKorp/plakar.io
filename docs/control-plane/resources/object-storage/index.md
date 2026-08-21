@@ -1,0 +1,28 @@
+
+
+# Object Storage
+
+Object storage resources represent bucket-based storage systems that store data
+as objects rather than files or blocks. They are commonly used as backup stores
+due to their durability, scalability, and low cost.
+
+Plakar Control Plane supports the following object storages:
+
+
+
+
+
+
+## [S3](https://stg.plakar.io/docs/control-plane/resources/object-storage/s3/index.md)
+
+
+
+## [Azure Blob Storage](https://stg.plakar.io/docs/control-plane/resources/object-storage/azblob/index.md)
+
+
+
+## [Google Cloud Storage](https://stg.plakar.io/docs/control-plane/resources/object-storage/gcs/index.md)
+
+
+
+

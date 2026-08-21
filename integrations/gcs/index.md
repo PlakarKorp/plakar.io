@@ -1,0 +1,75 @@
+
+## Why protecting Google Cloud Storage data matters
+
+GCS is often used as a backup destination, but infrastructure durability is not
+the same as data protection. While Google provides strong redundancy at the
+storage level, your data remains logically vulnerable to:
+
+- **Accidental Deletion**: Misconfigured lifecycle policies or bulk delete
+  operations can permanently remove critical objects in seconds. GCS does not
+  provide a safety net for logical deletions unless object versioning is
+  explicitly enabled and maintained.
+- **Silent Corruption**: Standard object storage lacks built-in integrity
+  validation across your entire dataset. Objects can be overwritten or corrupted
+  without any automatic detection.
+- **Versioning Gaps**: Object versioning is optional and easy to misconfigure.
+  Even when enabled, it does not protect against lifecycle policy deletions or
+  deliberate version purging.
+- **Replication Risks**: GCS replication spreads corruption, accidental
+  deletions, and malicious changes just as quickly as legitimate data.
+
+For production data, compliance records, and cloud-native assets, Google Cloud
+Storage needs an independent safety net beyond buckets and replication.
+
+## What happens when GCP credentials are compromised
+
+Access to GCS is controlled by service account keys, IAM roles, and application
+default credentials. These credentials are frequently embedded in application
+configuration, CI/CD pipelines, or shared across services, creating significant
+exposure.
+
+If credentials are leaked or permissions are misconfigured:
+
+- **Total Loss**: An attacker with sufficient IAM permissions can delete or
+  overwrite entire buckets through the API. Automated scripts can wipe thousands
+  of objects in seconds.
+- **Ransomware Encryption**: Malicious actors can overwrite all objects with
+  encrypted content, making your data inaccessible without paying a ransom.
+- **Damage Propagation**: Replication and sync jobs immediately propagate
+  malicious changes across regions, amplifying the impact.
+- **No Recovery Path**: Without an independent backup, there is no way to undo
+  deletions or modifications in standard GCS.
+
+Plakar mitigates these risks by creating immutable snapshots stored outside the
+live GCS namespace. With end-to-end encryption and support for offline or
+air-gapped retention, your backups remain secure even if your GCP credentials
+are compromised.
+
+## How Plakar secures your Google Cloud Storage workflows
+
+Plakar integrates with Google Cloud Storage as a flexible bridge, enabling
+secure data movement in multiple directions:
+
+- **Source Connector**: Take snapshots of one or more GCS buckets. Plakar
+  encrypts and deduplicates the content before saving it to a trusted Kloset
+  Store, creating an independent backup layer outside GCP.
+- **Storage Connector**: Use GCS as your Kloset backend. Store encrypted,
+  deduplicated, and versioned snapshots from any source — databases, file
+  systems, containers, or other cloud services.
+- **Destination Connector**: Restore verified snapshots back into GCS, whether
+  to the original bucket, a different project, or an entirely separate region.
+
+This enables multiple backup strategies:
+
+- Pull data from production buckets into isolated backup storage
+- Push encrypted snapshots to GCS as a low-cost, durable backend
+- Separate backup credentials from production IAM roles for improved security
+
+Plakar also allows direct inspection of backups. You can browse, search, or
+verify the integrity of your GCS data via the CLI or UI without performing a
+full restore first.
+
+Instead of relying solely on GCP configuration and access controls, Plakar
+provides cryptographic guarantees and operational control over your data — from
+snapshot creation through integrity verification to recovery.
+

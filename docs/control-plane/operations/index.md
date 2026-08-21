@@ -1,0 +1,27 @@
+
+
+# Operations
+
+Operations cover backup scheduling and SLA policy management in Plakar Control
+Plane.
+
+
+
+
+
+
+## [SLA Policies](https://stg.plakar.io/docs/control-plane/operations/policies/index.md)
+
+
+
+## [Scheduling](https://stg.plakar.io/docs/control-plane/operations/scheduling/index.md)
+
+- [Scheduled Tasks](https://stg.plakar.io/docs/control-plane/operations/scheduling/tasks/index.md): The different types of tasks you can run in Plakar Control Plane.
+- [One-off Tasks](https://stg.plakar.io/docs/control-plane/operations/scheduling/one-off-tasks/index.md): How to run a task immediately as a one-off operation in Plakar Control Plane.
+- [Manual Scheduler](https://stg.plakar.io/docs/control-plane/operations/scheduling/manual-scheduler/index.md): How to attach schedules to tasks and monitor job history in Plakar Control Plane.
+- [Policy Scheduler](https://stg.plakar.io/docs/control-plane/operations/scheduling/policy-scheduler/index.md): How policies automatically schedule tasks in Plakar Control Plane.
+- [User Schedulers](https://stg.plakar.io/docs/control-plane/operations/scheduling/user-schedulers/index.md): How Application users get their own scheduler through the Plakar Control Plane API.
+- [Job History](https://stg.plakar.io/docs/control-plane/operations/scheduling/job-history/index.md): How to monitor job history and view job details in Plakar Control Plane.
+
+
+
