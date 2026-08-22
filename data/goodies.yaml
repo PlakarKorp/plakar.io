@@ -1,0 +1,115 @@
+# Data source of truth for the Nestor sticker vote page (/community/goodies/).
+#
+# Art: final Nestor sticker exports pulled from Google Drive `nestor/stickers/`
+# (owner gilles@plakar.io), optimized to web size and stored in
+# assets/img/nestor/stickers/. Do not invent art: only ship stickers that exist.
+#
+# This file is the data-driven backbone of the page. To add a new series drop
+# later (Video Games, Music, The 90s, Mythology, Ops & On-Call, Seasonal, ...),
+# add its `series` entry below and one `stickers` entry per finished design. A
+# filter chip appears automatically for every series that has at least one
+# sticker, so no code change is needed.
+
+# The three finishes explained in the "How the drop works" strip.
+tiers:
+  - key: common
+    name: "Common"
+    finish: "Matte"
+    line: "Every design, standard matte vinyl. Free at the booth while they last."
+  - key: rare
+    name: "Rare"
+    finish: "Gloss"
+    line: "Fan favorites, pressed on glossy vinyl. Fewer printed, first come first served."
+  - key: legendary
+    name: "Legendary"
+    finish: "Holographic"
+    line: "Top 3 by community vote only. Foil, individually numbered /250, handed out in person."
+
+# Ordered series list. `label` is the chip text. A chip renders only when the
+# series has at least one sticker below, so future series can sit here dormant.
+series:
+  - key: memes
+    label: "Memes"
+  - key: movies
+    label: "Movies"
+  - key: seasonal
+    label: "Seasonal"
+
+# The finished set. `image` is relative to assets/. Default order below is the
+# grid order; the Standings view re-sorts these by vote count.
+stickers:
+  - slug: this-is-fine
+    title: "This Is Fine"
+    series: memes
+    image: img/nestor/stickers/this-is-fine.png
+    caption: "I have offsite backups."
+  - slug: no-backups-youre-nuts
+    title: "No Backups? You're Nuts"
+    series: memes
+    image: img/nestor/stickers/no-backups-youre-nuts.png
+    caption: "No backups? Are you nuts?"
+  - slug: matrix
+    title: "Matrix"
+    series: movies
+    image: img/nestor/stickers/matrix.png
+    caption: "Broken production, or restore. Choose."
+  - slug: back-to-the-future
+    title: "Back to the Future"
+    series: movies
+    image: img/nestor/stickers/future.png
+    caption: "Back up to the future."
+  - slug: two-buttons
+    title: "Two Buttons"
+    series: memes
+    image: img/nestor/stickers/two-buttons.png
+    caption: "Skip it, or set up immutable backups. Decisions, decisions."
+  - slug: wargames
+    title: "WarGames"
+    series: movies
+    image: img/nestor/stickers/wargames.png
+    caption: "The only winning move is to back up."
+  - slug: change-my-mind
+    title: "Change My Mind"
+    series: memes
+    image: img/nestor/stickers/change-my-mind.png
+    caption: "Backups aren't optional. Change my mind."
+  - slug: hitchhikers-guide
+    title: "Hitchhiker's Guide"
+    series: movies
+    image: img/nestor/stickers/guide.png
+    caption: "The answer is 42.ptar."
+  - slug: roll-safe
+    title: "Roll Safe"
+    series: memes
+    image: img/nestor/stickers/roll-safe.png
+    caption: "Can't lose data if you never stop backing up."
+  - slug: jurassic-park
+    title: "Jurassic Park"
+    series: movies
+    image: img/nestor/stickers/jurassic.png
+    caption: "Life, uh, finds a way to restore."
+  - slug: success-kid
+    title: "Success Kid"
+    series: memes
+    image: img/nestor/stickers/success.png
+    caption: "Backup finished at 3 AM. You stayed asleep."
+  - slug: tron
+    title: "Tron"
+    series: movies
+    image: img/nestor/stickers/tron.png
+    caption: "Ride the grid. Back up the grid."
+  - slug: ghostbusters
+    title: "Ghostbusters"
+    series: movies
+    image: img/nestor/stickers/ghostbuster.png
+    caption: "Who you gonna call when prod goes down?"
+  - slug: awkward
+    title: "Awkward"
+    series: memes
+    image: img/nestor/stickers/awkward.png
+    caption: "No backups? Awkward."
+  - slug: apes
+    title: "Apes"
+    series: movies
+    image: img/nestor/stickers/singe.png
+    caption: "The monolith was a .ptar all along."
