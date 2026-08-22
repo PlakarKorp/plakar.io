@@ -94,7 +94,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="legal">
     <meta property="article:published_time" content="2026-01-01T12:00:00+00:00">
-    <meta property="article:modified_time" content="2026-08-23T00:17:27+02:00">
+    <meta property="article:modified_time" content="2026-08-23T00:26:41+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -281,12 +281,12 @@
     "dateCreated": "2026-01-01T12:00:00\u002b00:00",
     "datePublished": "2026-01-01T12:00:00\u002b00:00",
     
-    "dateModified": "2026-08-23T00:17:27\u002b02:00",
+    "dateModified": "2026-08-23T00:26:41\u002b02:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/legal/bounty-policy/",
-    "wordCount": "1857"
+    "wordCount": "1947"
   }]
   </script>
 
@@ -2188,11 +2188,11 @@ documentation is mandatory to justify corporate expenses and confirm the reality
 of the services delivered to the company.</p>
 
 
-<h2 id="4-reward-scales" class="group pr-8">4. Reward Scales
+<h2 id="4-rewards" class="group pr-8">4. Rewards
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="4-reward-scales"
+      data-anchor="4-rewards"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -2203,9 +2203,20 @@ of the services delivered to the company.</p>
     </button>
   
 </h2>
-<p>Rewards are separated into two distinct grids based on the contribution type.
-The official Bounty Roadmap on the Plakar website (<a href="/community/#bounty-program" >the Bounty
-Roadmap</a>) remains the final authority for specific task pricing.</p>
+<p>Plakar pays for two kinds of contribution: security vulnerabilities, and the
+development tasks listed on our official Bounty Roadmap on the Plakar website
+(<a href="/community/#bounty-program" >the Bounty Roadmap</a>). Both programs are active and funded.
+For development tasks, the roadmap remains the final authority on which tasks are eligible.</p>
+<p>What we no longer publish are the payout figures.</p>
+<p>We used to, and the tables turned out to be an excellent magnet for automated,
+LLM-generated submissions. They look credible at first glance, they cite real
+function names from our codebase, they use the right vocabulary, they arrive
+pre-formatted to look like the thing we asked for. On examination they collapse.
+Every one of them still cost us a real review, done by the same small team that
+builds Plakar, and the volume became untenable. So the numbers are gone: not
+crawled, not scraped, not usable as a price list to aim a bot at.</p>
+<p>The consequence for anyone contributing in good faith is small.
+Talk to us first, in both programs, and we agree the amount with you directly.</p>
 
 
 <h3 id="security-vulnerability-rewards" class="group pr-8">Security Vulnerability Rewards
@@ -2223,33 +2234,21 @@ Roadmap</a>) remains the final authority for specific task pricing.</p>
     </button>
   
 </h3>
-<p>Plakar runs a paid vulnerability reward program, and we intend to keep it. What
-we no longer publish is the reward table.</p>
-<p>The reason is simple: a public table of payouts turned out to be an excellent
-magnet for automated, LLM-generated reports. They look alarming at first
-glance, they cite real function names from our codebase, they use the right
-vocabulary, they arrive with a CVSS score already attached. On examination,
-none of them held up. The recurring patterns were severity inflation (a minor
-bug filed as critical), threat models that require the victim to actively
-cooperate with the attacker (install a malicious plugin the attacker wrote
-themselves), and, in one case we still think about, an attack on a repository
-by someone who did not hold the key &hellip; demonstrated by using the key to decrypt
-part of the repository.</p>
-<p>Every one of these got a real analysis from us, because that is what a security
-report deserves until proven otherwise. That work is done by the same small team
-that builds Plakar and handles actual security issues, and the volume became
-untenable. So the table is gone: not crawled, not scraped, not usable as a
-price list to aim a bot at.</p>
-<p>The program itself is unchanged. If you have found a vulnerability, write to
-<strong><a href="mailto:security@plakar.io" >security@plakar.io</a></strong> with a brief description of the issue and a working
-reproduction: the exact steps, commands, or code that demonstrate the flaw
-against a real Plakar setup. A report without a reproduction we can run is not
-something we can evaluate, and we will not chase one down for you. We will
-first confirm we are talking to a human, then assess the finding on its merits
-and discuss compensation with you directly if it is legitimate. Severity is
-still evaluated against CVSS, and critical and high findings are still
-rewarded, we simply do that assessment with you rather than advertising the
-numbers to crawlers.</p>
+<p>The bogus reports followed recurring patterns: severity inflation (a minor bug
+filed as critical), threat models that require the victim to actively cooperate
+with the attacker (install a malicious plugin the attacker wrote themselves),
+and, in one case we still think about, an attack on a repository by someone who
+did not hold the key &hellip; demonstrated by using the key to decrypt part of the
+repository.</p>
+<p>If you have found a vulnerability, write to <strong><a href="mailto:security@plakar.io" >security@plakar.io</a></strong> with a brief
+description of the issue and a working reproduction: the exact steps, commands,
+or code that demonstrate the flaw against a real Plakar setup. A report without
+a reproduction we can run is not something we can evaluate, and we will not
+chase one down for you. We will first confirm we are talking to a human, then
+assess the finding on its merits and discuss compensation with you if it is
+legitimate. Severity is still evaluated against CVSS, and critical and high
+findings are still rewarded, we simply do that assessment with you rather than
+advertising the numbers to crawlers.</p>
 
 
 <h3 id="feature-and-integration-rewards" class="group pr-8">Feature and Integration Rewards
@@ -2267,30 +2266,26 @@ numbers to crawlers.</p>
     </button>
   
 </h3>
-<p>Only development tasks explicitly listed in our official Bounty Roadmap on the
-Plakar website (<a href="/community/#bounty-program" >the Bounty Roadmap</a>) are eligible for financial
-rewards.</p>
-<table>
-  <thead>
-      <tr>
-          <th style="text-align: left">Contribution Type</th>
-          <th style="text-align: left">Technical Description</th>
-          <th style="text-align: left">Reward Range</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left"><strong>Integration</strong></td>
-          <td style="text-align: left">Development of a full, turnkey Integration Package (providing source, destination, storage connectors) for an enterprise system listed on the Plakar website (<a href="/community/#bounty-program" >the Bounty Roadmap</a>).</td>
-          <td style="text-align: left">€500 to €1,000 (depending on difficulty)</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>Feature</strong></td>
-          <td style="text-align: left">Implementation of architectural components, performance optimizations, or functional tools listed on the Plakar website (including listed upstream/downstream project developments).</td>
-          <td style="text-align: left">€250 to €500 (depending on difficulty)</td>
-      </tr>
-  </tbody>
-</table>
+<p>Two categories are eligible, and only for tasks explicitly listed on the Bounty
+Roadmap:</p>
+<ul>
+<li><strong>Integration</strong>: a full, turnkey Integration Package, providing source,
+destination and storage connectors for an enterprise system listed on the
+roadmap.</li>
+<li><strong>Feature</strong>: architectural components, performance optimizations, or
+functional tools listed on the roadmap, including listed upstream and
+downstream project developments.</li>
+</ul>
+<p>Amounts depend on the difficulty of the specific task and are agreed before you
+start, not after you submit. Claim the task by writing to
+<strong><a href="mailto:bounty@plakar.io" >bounty@plakar.io</a></strong> with the roadmap item you want, a short outline of how
+you intend to implement it, and enough about yourself for us to establish we are
+talking to a human. We will confirm the task is unclaimed, agree the reward with
+you, and only then do you write any code.</p>
+<p>Unsolicited pull requests against roadmap items are welcome as contributions but
+carry no reward. We do not pay for code we did not agree to in advance, which is
+the only defence we have found against generated submissions that pattern-match
+a roadmap entry without implementing it.</p>
 
 
 <h2 id="5-invoicing-payout-and-tax-compliance" class="group pr-8">5. Invoicing, Payout, and Tax Compliance
