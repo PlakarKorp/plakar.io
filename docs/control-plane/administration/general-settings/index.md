@@ -73,6 +73,21 @@ than improved performance.
 For more information about MTU values and jumbo frames, see
 [MTU and Jumbo Frames](../../guides/mtu-and-jumbo-frames) documentation.
 
+## Package repository
+
+By default, Plakar Control Plane downloads the integrations index and packages
+from `plakar.io`. In environments without internet access, such as air-gapped
+deployments, you can instead configure an internal package repository.
+
+Enter the URL of a web server hosting the integrations index and `.ptar`
+packages, then click **Update**. Leave the field empty to use the default
+`plakar.io` repository.
+
+For air-gapped deployments, see [air-gapped enrollment](../intro/air-gapped) for
+the complete enrollment process and
+[hosting a package repository](../../guides/self-hosted-package-repository) for
+instructions on setting up a local repository.
+
 ## Webhook
 
 Deliver Plakar Control Plane events, such as job completions and failures, to an

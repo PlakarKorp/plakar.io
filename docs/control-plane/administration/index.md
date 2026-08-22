@@ -26,6 +26,7 @@ up and restoring the appliance, and viewing system logs.
 
 - [Updating AWS AMI](https://www.plakar.io/docs/control-plane/administration/updating-control-plane/aws/index.md): How to update Plakar Control Plane AMI on AWS.
 - [Updating Scaleway QCOW2](https://www.plakar.io/docs/control-plane/administration/updating-control-plane/scaleway/index.md): How to update the Plakar Control Plane Scaleway installation image.
+- [Updating vSphere](https://www.plakar.io/docs/control-plane/administration/updating-control-plane/vsphere/index.md): How to update the Plakar Control Plane vSphere installation
 - [Updating Proxmox ISO](https://www.plakar.io/docs/control-plane/administration/updating-control-plane/proxmox/index.md): How to update the Plakar Control Plane Proxmox installation image.
 
 
@@ -43,11 +44,11 @@ up and restoring the appliance, and viewing system logs.
 
 
 
-## [Two-factor authentication](https://www.plakar.io/docs/control-plane/administration/two-factor-authentication/index.md)
-
-
-
 ## [Managing Organizations](https://www.plakar.io/docs/control-plane/administration/organizations/index.md)
+
+
+
+## [Two-factor authentication](https://www.plakar.io/docs/control-plane/administration/two-factor-authentication/index.md)
 
 
 

@@ -29,6 +29,10 @@ Control Plane, including installation, enrollment, and billing.
 
 
 
+## [Air-gapped enrollment](https://www.plakar.io/docs/control-plane/intro/air-gapped/index.md)
+
+
+
 ## [Billing & Plans](https://www.plakar.io/docs/control-plane/intro/billing/index.md)
 
 
