@@ -345,3 +345,167 @@ table.Nm {
     opacity: 1;
   }
 }
+
+/* -- Nestor sticker vote (/community/goodies/) ---------------------------- */
+/* Component styles for layouts/goodies/single.html. Colors use the shared
+   --color-* tokens so light and dark themes both work. Motion (the holo foil)
+   is disabled under prefers-reduced-motion. */
+
+.goodies-chip {
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.5rem 0.9rem;
+  border-radius: 9999px;
+  border: 1px solid rgb(var(--color-neutral-300));
+  color: rgb(var(--color-neutral-700));
+  background-color: rgb(var(--color-neutral-50));
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+.goodies-chip:hover {
+  border-color: rgb(var(--color-secondary-400));
+  color: rgb(var(--color-secondary-600));
+}
+.goodies-chip.is-active {
+  background-color: rgb(var(--color-secondary-500));
+  border-color: rgb(var(--color-secondary-500));
+  color: rgb(var(--color-neutral-50));
+}
+.goodies-chip:focus-visible,
+.goodies-view-btn:focus-visible,
+.goodies-vote-btn:focus-visible {
+  outline: 2px solid rgb(var(--color-secondary-500));
+  outline-offset: 2px;
+}
+
+.goodies-view-btn {
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.4rem 0.9rem;
+  border-radius: 0.6rem;
+  color: rgb(var(--color-neutral-600));
+  background-color: transparent;
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+.goodies-view-btn.is-active {
+  background-color: rgb(var(--color-neutral-50));
+  color: rgb(var(--color-secondary-600));
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.goodies-vote-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 0.6rem;
+  border: 1.5px solid rgb(var(--color-secondary-500));
+  color: rgb(var(--color-secondary-600));
+  background-color: transparent;
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+.goodies-vote-btn:hover {
+  background-color: rgb(var(--color-secondary-50));
+}
+.goodies-vote-btn.is-voted {
+  background-color: rgb(var(--color-secondary-500));
+  border-color: rgb(var(--color-secondary-500));
+  color: rgb(var(--color-neutral-50));
+}
+.goodies-vote-btn .goodies-vote-check {
+  display: none;
+}
+.goodies-vote-btn.is-voted .goodies-vote-plus {
+  display: none;
+}
+.goodies-vote-btn.is-voted .goodies-vote-check {
+  display: inline;
+}
+
+.goodies-rank {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  height: 2rem;
+  padding: 0 0.5rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: rgb(var(--color-neutral-50));
+  background-color: rgb(var(--color-neutral-700));
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+.goodies-rank.is-top3 {
+  background-color: rgb(var(--color-secondary-500));
+}
+.goodies-card.is-top3 {
+  border-color: rgb(var(--color-secondary-400));
+}
+
+.goodies-foil {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background-image: linear-gradient(
+    115deg,
+    transparent 20%,
+    rgba(255, 133, 71, 0.28),
+    rgba(82, 76, 255, 0.24),
+    rgba(255, 133, 71, 0.28),
+    transparent 80%
+  );
+  background-size: 300% 300%;
+  transition: opacity 0.3s ease;
+}
+.goodies-card.is-top3 .goodies-foil {
+  opacity: 1;
+  animation: goodies-foil-move 4s linear infinite;
+}
+
+.goodies-foil-card {
+  position: relative;
+  overflow: hidden;
+}
+.goodies-foil-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(
+    115deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.4),
+    transparent 65%
+  );
+  background-size: 250% 250%;
+  opacity: 0.55;
+  animation: goodies-foil-move 5s linear infinite;
+}
+
+@keyframes goodies-foil-move {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .goodies-card.is-top3 .goodies-foil,
+  .goodies-foil-card::after {
+    animation: none;
+  }
+}
