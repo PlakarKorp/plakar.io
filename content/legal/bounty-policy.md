@@ -141,17 +141,36 @@ Roadmap][bounty-roadmap]) remains the final authority for specific task pricing.
 
 ### Security Vulnerability Rewards
 
-Security vulnerabilities are evaluated and classified objectively according to
-the Common Vulnerability Scoring System (CVSS v3/v4) standard metrics. Only
-vulnerabilities meeting the Critical or High thresholds are eligible for
-financial compensation.
+Plakar runs a paid vulnerability reward program, and we intend to keep it. What
+we no longer publish is the reward table.
 
-| Severity Level | Technical Description & CVSS Metrics                                                                                         | Reward Range                |
-| :------------- | :--------------------------------------------------------------------------------------------------------------------------- | :-------------------------- |
-| **Critical**   | CVSS Score: 9.0 to 10.0. Vulnerabilities causing unauthorized data decryption, absolute data loss, or remote code execution. | €1,000 to €2,500+           |
-| **High**       | CVSS Score: 7.0 to 8.9. Flaws in immutability logic, deduplication bypasses, or broken access controls.                      | €500 to €1,000              |
-| **Medium**     | CVSS Score: 4.0 to 6.9. Logic errors under specific edge cases or minor data exposure risks.                                 | Recognition & Public Thanks |
-| **Low**        | CVSS Score: 0.1 to 3.9. Minor display anomalies, cosmetic UI bugs, or low-risk validation omissions.                         | Recognition & Public Thanks |
+The reason is simple: a public table of payouts turned out to be an excellent
+magnet for automated, LLM-generated reports. They look alarming at first
+glance, they cite real function names from our codebase, they use the right
+vocabulary, they arrive with a CVSS score already attached. On examination,
+none of them held up. The recurring patterns were severity inflation (a minor
+bug filed as critical), threat models that require the victim to actively
+cooperate with the attacker (install a malicious plugin the attacker wrote
+themselves), and, in one case we still think about, an attack on a repository
+by someone who did not hold the key ... demonstrated by using the key to decrypt
+part of the repository.
+
+Every one of these got a real analysis from us, because that is what a security
+report deserves until proven otherwise. That work is done by the same small team
+that builds Plakar and handles actual security issues, and the volume became
+untenable. So the table is gone: not crawled, not scraped, not usable as a
+price list to aim a bot at.
+
+The program itself is unchanged. If you have found a vulnerability, write to
+**security@plakar.io** with a brief description of the issue and a working
+reproduction: the exact steps, commands, or code that demonstrate the flaw
+against a real Plakar setup. A report without a reproduction we can run is not
+something we can evaluate, and we will not chase one down for you. We will
+first confirm we are talking to a human, then assess the finding on its merits
+and discuss compensation with you directly if it is legitimate. Severity is
+still evaluated against CVSS, and critical and high findings are still
+rewarded, we simply do that assessment with you rather than advertising the
+numbers to crawlers.
 
 ### Feature and Integration Rewards
 
