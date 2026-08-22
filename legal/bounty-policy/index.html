@@ -94,7 +94,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="legal">
     <meta property="article:published_time" content="2026-01-01T12:00:00+00:00">
-    <meta property="article:modified_time" content="2026-08-21T14:46:12+03:00">
+    <meta property="article:modified_time" content="2026-08-23T00:17:27+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -281,12 +281,12 @@
     "dateCreated": "2026-01-01T12:00:00\u002b00:00",
     "datePublished": "2026-01-01T12:00:00\u002b00:00",
     
-    "dateModified": "2026-08-21T14:46:12\u002b03:00",
+    "dateModified": "2026-08-23T00:17:27\u002b02:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/legal/bounty-policy/",
-    "wordCount": "1656"
+    "wordCount": "1857"
   }]
   </script>
 
@@ -2223,41 +2223,33 @@ Roadmap</a>) remains the final authority for specific task pricing.</p>
     </button>
   
 </h3>
-<p>Security vulnerabilities are evaluated and classified objectively according to
-the Common Vulnerability Scoring System (CVSS v3/v4) standard metrics. Only
-vulnerabilities meeting the Critical or High thresholds are eligible for
-financial compensation.</p>
-<table>
-  <thead>
-      <tr>
-          <th style="text-align: left">Severity Level</th>
-          <th style="text-align: left">Technical Description &amp; CVSS Metrics</th>
-          <th style="text-align: left">Reward Range</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left"><strong>Critical</strong></td>
-          <td style="text-align: left">CVSS Score: 9.0 to 10.0. Vulnerabilities causing unauthorized data decryption, absolute data loss, or remote code execution.</td>
-          <td style="text-align: left">€1,000 to €2,500+</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>High</strong></td>
-          <td style="text-align: left">CVSS Score: 7.0 to 8.9. Flaws in immutability logic, deduplication bypasses, or broken access controls.</td>
-          <td style="text-align: left">€500 to €1,000</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>Medium</strong></td>
-          <td style="text-align: left">CVSS Score: 4.0 to 6.9. Logic errors under specific edge cases or minor data exposure risks.</td>
-          <td style="text-align: left">Recognition &amp; Public Thanks</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>Low</strong></td>
-          <td style="text-align: left">CVSS Score: 0.1 to 3.9. Minor display anomalies, cosmetic UI bugs, or low-risk validation omissions.</td>
-          <td style="text-align: left">Recognition &amp; Public Thanks</td>
-      </tr>
-  </tbody>
-</table>
+<p>Plakar runs a paid vulnerability reward program, and we intend to keep it. What
+we no longer publish is the reward table.</p>
+<p>The reason is simple: a public table of payouts turned out to be an excellent
+magnet for automated, LLM-generated reports. They look alarming at first
+glance, they cite real function names from our codebase, they use the right
+vocabulary, they arrive with a CVSS score already attached. On examination,
+none of them held up. The recurring patterns were severity inflation (a minor
+bug filed as critical), threat models that require the victim to actively
+cooperate with the attacker (install a malicious plugin the attacker wrote
+themselves), and, in one case we still think about, an attack on a repository
+by someone who did not hold the key &hellip; demonstrated by using the key to decrypt
+part of the repository.</p>
+<p>Every one of these got a real analysis from us, because that is what a security
+report deserves until proven otherwise. That work is done by the same small team
+that builds Plakar and handles actual security issues, and the volume became
+untenable. So the table is gone: not crawled, not scraped, not usable as a
+price list to aim a bot at.</p>
+<p>The program itself is unchanged. If you have found a vulnerability, write to
+<strong><a href="mailto:security@plakar.io" >security@plakar.io</a></strong> with a brief description of the issue and a working
+reproduction: the exact steps, commands, or code that demonstrate the flaw
+against a real Plakar setup. A report without a reproduction we can run is not
+something we can evaluate, and we will not chase one down for you. We will
+first confirm we are talking to a human, then assess the finding on its merits
+and discuss compensation with you directly if it is legitimate. Severity is
+still evaluated against CVSS, and critical and high findings are still
+rewarded, we simply do that assessment with you rather than advertising the
+numbers to crawlers.</p>
 
 
 <h3 id="feature-and-integration-rewards" class="group pr-8">Feature and Integration Rewards
