@@ -26,10 +26,6 @@ categories:
   - destination
   - storage
 
-tags:
-  - S3-compatible
-  - Object storage
-
 seo_tags:
   - MinIO
   - S3-compatible providers
@@ -60,7 +56,13 @@ edition:
   - community
   - control-plane
 
+opensource: true
+
 stage: stable
+
+author:
+  - type: official
+    name: Plakar
 
 date: 2026-03-23
 

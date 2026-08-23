@@ -23,16 +23,6 @@ technology_description: >
 categories:
   - source
 
-tags:
-  - etcd
-  - Kubernetes
-  - Distributed Systems
-  - Key-Value Store
-  - Disaster Recovery
-  - On-Premise
-  - Cloud Native
-  - CNCF
-
 seo_tags:
   - etcd backup
   - etcd snapshot
@@ -51,7 +41,13 @@ edition:
   - community
   - control-plane
 
+opensource: true
+
 stage: beta
+
+author:
+  - type: official
+    name: Plakar
 
 date: 2026-04-02
 

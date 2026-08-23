@@ -1,0 +1,20 @@
+{{ $p := . }}
+{{ $author := $p.Params.author }}
+{{ $validTypes := slice "official" "partner" "community" }}
+{{ if ne (len $author) 1 }}
+  {{ errorf "%s: `author` must list exactly 1 entry" $p.File.Filename }}
+{{ end }}
+{{ $entry := index $author 0 }}
+{{ if not (in $validTypes $entry.type) }}
+  {{ errorf "%s: invalid `author.type` %q, must be one of %v" $p.File.Filename $entry.type $validTypes }}
+{{ end }}
+{{ if not $entry.name }}
+  {{ errorf "%s: `author` entry is missing a `name`" $p.File.Filename }}
+{{ end }}
+{{ return dict
+  "type" $entry.type
+  "name" $entry.name
+  "isOfficial" (eq $entry.type "official")
+  "isPartner" (eq $entry.type "partner")
+  "isCommunity" (eq $entry.type "community")
+}}

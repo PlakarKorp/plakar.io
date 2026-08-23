@@ -26,12 +26,6 @@ categories:
   - source
   - destination
 
-tags:
-  - WebDAV
-  - Nextcloud
-  - ownCloud
-  - Self-hosted
-
 seo_tags:
   - WebDAV backup
   - Nextcloud backup
@@ -50,7 +44,13 @@ edition:
   - community
   - control-plane
 
+opensource: true
+
 stage: alpha
+
+author:
+  - type: official
+    name: Plakar
 
 new: true
 

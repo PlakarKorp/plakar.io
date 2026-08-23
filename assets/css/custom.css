@@ -345,3 +345,19 @@ table.Nm {
     opacity: 1;
   }
 }
+
+/* Integrations */
+.integrations-stat-card {
+  transition-property: transform;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}

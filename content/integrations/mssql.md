@@ -25,14 +25,6 @@ categories:
   - source
   - destination
 
-tags:
-  - Microsoft SQL Server
-  - SQL Server
-  - Windows Server
-  - Database
-  - Disaster Recovery
-  - Ransomware Protection
-
 seo_tags:
   - SQL Server backup
   - Microsoft SQL Server disaster recovery
@@ -48,7 +40,13 @@ links:
 edition:
   - control-plane
 
+opensource: false
+
 stage: stable
+
+author:
+  - type: official
+    name: Plakar
 
 new: true
 

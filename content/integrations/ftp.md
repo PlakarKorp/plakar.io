@@ -25,12 +25,6 @@ categories:
   - source
   - destination
 
-tags:
-  - FTP
-  - Public repositories
-  - Network appliances
-  - NAS
-
 seo_tags:
   - FTP backup
   - FTP server backup
@@ -47,7 +41,13 @@ edition:
   - community
   - control-plane
 
+opensource: true
+
 stage: stable
+
+author:
+  - type: official
+    name: Plakar
 
 date: 2026-03-23
 

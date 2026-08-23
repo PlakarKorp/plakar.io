@@ -26,15 +26,6 @@ categories:
   - source
   - destination
 
-tags:
-  - VSS
-  - Volume Shadow Copy
-  - Windows Server
-  - Active Directory
-  - SQL Server
-  - Disaster Recovery
-  - Ransomware Protection
-
 seo_tags:
   - Windows Server backup
   - VSS backup
@@ -53,7 +44,13 @@ links:
 edition:
   - control-plane
 
+opensource: false
+
 stage: stable
+
+author:
+  - type: official
+    name: Plakar
 
 new: true
 

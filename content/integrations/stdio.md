@@ -24,15 +24,6 @@ categories:
   - source
   - destination
 
-tags:
-  - Stdio
-  - Pipelines
-  - Automation
-  - Database Dumps
-  - Scripting
-  - Linux
-  - Unix
-
 seo_tags:
   - stdin backup
   - stdout restore
@@ -50,7 +41,13 @@ links:
 edition:
   - community
 
+opensource: true
+
 stage: stable
+
+author:
+  - type: official
+    name: Plakar
 
 date: 2026-03-23
 

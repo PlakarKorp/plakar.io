@@ -24,14 +24,6 @@ categories:
   - source
   - destination
 
-tags:
-  - Mail
-  - IMAP
-  - Email backup
-  - Gmail
-  - Exchange
-  - Office 365
-
 seo_tags:
   - IMAP backup
   - email backup
@@ -50,7 +42,13 @@ edition:
   - community
   - control-plane
 
+opensource: true
+
 stage: stable
+
+author:
+  - type: official
+    name: Plakar
 
 date: 2026-03-23
 

@@ -24,13 +24,6 @@ categories:
   - source
   - destination
 
-tags:
-  - CalDAV
-  - Calendar
-  - Nextcloud
-  - Fastmail
-  - iCloud
-
 seo_tags:
   - CalDAV backup
   - calendar backup
@@ -51,7 +44,13 @@ edition:
   - community
   - control-plane
 
+opensource: true
+
 stage: beta
+
+author:
+  - type: official
+    name: Plakar
 
 date: 2026-03-23
 
