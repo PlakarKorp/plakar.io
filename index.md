@@ -69,6 +69,8 @@
 
 - [Kubernetes](https://stg.plakar.io/integrations/kubernetes/index.md): Protect your Kubernetes infrastructure at every level. Plakar discovers cluster resources, backs up etcd for disaster recovery, manifests for granular inspection and restore, and persistent volumes via CSI snapshots. All encrypted, deduplicated, and portable across environments.
 
+- [Proxmox](https://stg.plakar.io/integrations/proxmox/index.md): Protect your Proxmox clusters against data loss, ransomware, and misconfiguration. Plakar wraps native Proxmox backups into encrypted, deduplicated snapshots that are portable, verifiable, and restorable across clusters or storage backends.
+
 - [etcd](https://stg.plakar.io/integrations/etcd/index.md): Protect your etcd cluster against data loss and node failures. Plakar takes encrypted, deduplicated snapshots of etcd cluster state, giving you a reliable recovery point when it matters most.
 
 - [MySQL / MariaDB](https://stg.plakar.io/integrations/mysql/index.md): Protect your MySQL and MariaDB databases against data loss, accidental deletion, and misconfiguration. Plakar provides encrypted, deduplicated snapshots using the backup tools MySQL and MariaDB already ship with.
@@ -108,8 +110,6 @@
 - [Stdio](https://stg.plakar.io/integrations/stdio/index.md): Back up and restore data directly via Stdio without creating temporary files. Plakar ensures encrypted, deduplicated, and verifiable snapshots for database dumps, logs, and automated pipelines.
 
 - [Tar](https://stg.plakar.io/integrations/tar/index.md): Import data from existing tar archives into Plakar. Imported data is stored securely as deduplicated, verifiable snapshots.
-
-- [Proxmox](https://stg.plakar.io/integrations/proxmox/index.md): Protect your Proxmox clusters against data loss, ransomware, and misconfiguration. Plakar wraps native Proxmox backups into encrypted, deduplicated snapshots that are portable, verifiable, and restorable across clusters or storage backends.
 
 
 

@@ -54,4 +54,8 @@ tutorials related to Plakar and supported platforms.
 
 
 
+## [Hosting a Package Repository](https://stg.plakar.io/docs/control-plane/guides/self-hosted-package-repository/index.md)
+
+
+
 

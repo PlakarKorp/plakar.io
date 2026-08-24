@@ -48,6 +48,10 @@
 
 
 
+## [Proxmox](https://stg.plakar.io/integrations/proxmox/index.md)
+
+
+
 ## [etcd](https://stg.plakar.io/integrations/etcd/index.md)
 
 
@@ -125,10 +129,6 @@
 
 
 ## [Tar](https://stg.plakar.io/integrations/tar/index.md)
-
-
-
-## [Proxmox](https://stg.plakar.io/integrations/proxmox/index.md)
 
 
 

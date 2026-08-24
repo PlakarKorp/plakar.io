@@ -105,4 +105,9 @@ required to use each one as a source, store, or destination.
 - [Microsoft Active Directory](https://stg.plakar.io/docs/control-plane/resources/database/msad/index.md): How to configure a Microsoft Active Directory resource in Plakar Control Plane.
 
 
+## [Hypervisor](https://stg.plakar.io/docs/control-plane/resources/hypervisor/index.md)
+
+- [Proxmox](https://stg.plakar.io/docs/control-plane/resources/hypervisor/proxmox/index.md): How to configure a Proxmox resource in Plakar Control Plane.
+
+
 

@@ -12,7 +12,8 @@ your license and set up billing reporting. No backup data is ever transferred
 during this process, only the consumption metrics needed for billing.
 
 If you operate in an air-gapped or PCI-DSS environment and need a full offline
-mode, [contact us](/contact).
+mode, see [air-gapped enrollment](../air-gapped) and [contact us](/contact) to
+get a licence for your air-gapped instance.
 
 ## Next steps
 
