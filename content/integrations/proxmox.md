@@ -57,8 +57,6 @@ author:
   - type: partner
     name: FactorFX
 
-new: true
-
 date: 2026-04-11
 
 resource: Proxmox
