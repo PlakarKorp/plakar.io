@@ -179,7 +179,7 @@
                 <div class="flex items-center justify-between px-4 py-3 border-b border-slate-100">
                   <h4 class="text-sm font-semibold text-slate-900">Backup GitLab</h4>
                   <button onclick="hv2CloseBackup()" class="text-slate-400 hover:text-slate-600">
-                    <span class="block w-3.5 h-3.5">{{ partial "icon.html" "x-mark" }}</span>
+                    <span class="block w-3.5 h-3.5">{{ partial "icon.html" "ri/close-line" }}</span>
                   </button>
                 </div>
                 <div class="px-4 py-3">
@@ -210,7 +210,7 @@
                 <div class="flex items-center justify-between px-4 py-3 border-b border-slate-100">
                   <h4 class="text-sm font-semibold text-slate-900">Restore GitLab</h4>
                   <button onclick="hv2CloseRestore()" class="text-slate-400 hover:text-slate-600">
-                    <span class="block w-3.5 h-3.5">{{ partial "icon.html" "x-mark" }}</span>
+                    <span class="block w-3.5 h-3.5">{{ partial "icon.html" "ri/close-line" }}</span>
                   </button>
                 </div>
                 <div class="px-4 py-3">
@@ -734,7 +734,12 @@
             <div class="aspect-square p-1 border border-dashed border-neutral-300 flex items-center justify-center overflow-hidden">
               {{ if . }}
                 {{ with resources.Get . }}
-                  <img src="{{ .RelPermalink }}" alt="Contributor" class="w-full h-full object-cover">
+                  {{ partial "components/image.html" (dict
+                    "resource" .
+                    "alt" "Contributor"
+                    "widths" (slice 100 200)
+                    "class" "w-full h-full object-cover"
+                  ) }}
                 {{ end }}
               {{ end }}
             </div>
@@ -782,7 +787,12 @@
             <div class="aspect-square p-1 border border-dashed border-neutral-300 flex items-center justify-center overflow-hidden">
               {{ if . }}
                 {{ with resources.Get . }}
-                  <img src="{{ .RelPermalink }}" alt="Contributor" class="w-full h-full object-cover">
+                  {{ partial "components/image.html" (dict
+                    "resource" .
+                    "alt" "Contributor"
+                    "widths" (slice 100 200)
+                    "class" "w-full h-full object-cover"
+                  ) }}
                 {{ end }}
               {{ end }}
             </div>

@@ -102,10 +102,12 @@
 
 {{ if not (.Site.Params.disableImageZoom | default false) }}
   <script>
-    mediumZoom(document.querySelectorAll(".prose img:not(.nozoom)"), {
-      margin: 24,
-      background: "rgba(0,0,0,0.5)",
-      scrollOffset: 0,
+    document.addEventListener("DOMContentLoaded", function () {
+      mediumZoom(document.querySelectorAll(".prose img:not(.nozoom)"), {
+        margin: 24,
+        background: "rgba(0,0,0,0.5)",
+        scrollOffset: 0,
+      });
     });
   </script>
 {{ end }}
