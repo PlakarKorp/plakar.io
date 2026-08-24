@@ -13,75 +13,46 @@
   {{ end }}
 {{ end }}
 
-{{ $nestorRocket := resources.Get "img/nestor/nestor-rocket.png" }}
-{{ $qr := resources.Get "img/nestor/goodies-qr.svg" }}
 {{ $pageURL := "https://www.plakar.io/community/goodies/" }}
-{{ $shareText := "I just voted for the next Nestor sticker drop. Protect your nuts." }}
+{{ $shareText := "I just voted for the next Nestor stickers. Protect your nuts." }}
 
 <!-- Hero -->
 <section class="section-secondary-1 pt-44 pb-10">
   <div class="max-w-350 mx-auto px-4 flex flex-col items-center text-center gap-6">
     <span class="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wide px-3 py-1 rounded-full text-secondary-700 bg-secondary-50">
       <span class="w-2 h-2 rounded-full bg-secondary-500"></span>
-      Nestor Goodies / Community Drop
+      Nestor Goodies / Sticker Vote
     </span>
     <h1 class="text-4xl lg:text-6xl font-medium leading-tighter max-w-5xl">
-      Vote for the next <span class="text-secondary-500">Nestor</span> drop
+      Vote for your favorite <span class="text-secondary-500">Nestor</span> stickers
     </h1>
     <p class="text-lg lg:text-2xl text-neutral-700 max-w-3xl">
-      Pick the stickers you would fight to get printed. The community's top 3 get
-      pressed as limited edition <span class="text-secondary-500 font-semibold">holographic</span>
-      stickers: foil, individually numbered /250, handed out in person only.
+      Tell us which stickers you want to see printed. Your votes help us
+      prioritize what we produce and hand out at events and online.
     </p>
     <p class="text-xl lg:text-2xl font-semibold text-secondary-600">Protect your nuts.</p>
     <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
       <a href="#ballot" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg font-semibold text-neutral-50 bg-secondary-500 hover:bg-secondary-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-500 focus-visible:ring-offset-2">
         Cast your ballot
       </a>
-      <a href="#drop" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg font-semibold text-secondary-700 bg-neutral-50 border border-secondary-200 hover:border-secondary-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-500 focus-visible:ring-offset-2">
-        How the drop works
+      <a href="#get-goodies" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg font-semibold text-secondary-700 bg-neutral-50 border border-secondary-200 hover:border-secondary-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-500 focus-visible:ring-offset-2">
+        How to get goodies
       </a>
     </div>
   </div>
 </section>
 
-<!-- How the drop works -->
-<section id="drop" class="section-light-2 py-14 lg:py-20 scroll-mt-24">
-  <div class="max-w-350 mx-auto px-4 flex flex-col gap-10">
-    <div class="flex flex-col gap-3 text-center items-center">
-      <h2 class="text-3xl lg:text-5xl font-medium text-neutral-900">
-        How the <span class="text-secondary-500">drop</span> works
-      </h2>
-      <p class="text-base lg:text-xl text-neutral-600 max-w-3xl">
-        Three finishes, one rule: rarer stickers are earned, not bought. Every
-        conference is a new drop. Trade your doubles at the booth to complete the set.
-      </p>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {{ range $data.tiers }}
-        {{ $isLegendary := eq .key "legendary" }}
-        <div class="relative flex flex-col gap-3 p-6 rounded-lg border {{ if $isLegendary }}border-secondary-400 bg-secondary-50{{ else }}border-neutral-300 bg-neutral-50{{ end }} shadow-sm{{ if $isLegendary }} goodies-foil-card{{ end }}">
-          <div class="flex items-center justify-between gap-2">
-            <span class="text-sm font-semibold uppercase tracking-wide {{ if $isLegendary }}text-secondary-600{{ else }}text-neutral-500{{ end }}">{{ .name }}</span>
-            <span class="text-xs font-semibold px-2 py-0.5 rounded-full {{ if $isLegendary }}text-neutral-50 bg-secondary-500{{ else }}text-neutral-600 bg-neutral-200{{ end }} uppercase tracking-wide">{{ .finish }}</span>
-          </div>
-          <p class="text-neutral-700 text-base lg:text-lg leading-snug">{{ .line }}</p>
-        </div>
-      {{ end }}
-    </div>
-  </div>
-</section>
-
 <!-- Ballot: controls -->
-<section id="ballot" class="section-light-1 pt-12 lg:pt-16 scroll-mt-24">
+<section id="ballot" class="section-light-1 pt-14 lg:pt-20 scroll-mt-24">
   <div class="max-w-350 mx-auto px-4 flex flex-col gap-6">
     <div class="flex flex-col gap-2">
       <h2 class="text-3xl lg:text-5xl font-medium text-neutral-900">
         The <span class="text-secondary-500">ballot</span>
       </h2>
       <p class="text-base lg:text-xl text-neutral-600 max-w-3xl">
-        Toggle a vote on every sticker you want printed. Pick as many as you like:
-        one vote per sticker.
+        Toggle a vote on every sticker you want printed. Pick as many as you
+        like: one vote per sticker. We use the results to prioritize what we
+        print and give away.
       </p>
     </div>
 
@@ -104,8 +75,8 @@
     <!-- Honest persistence + running tally -->
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 rounded-lg border border-neutral-200 bg-neutral-50">
       <p class="text-sm text-neutral-600 leading-snug">
-        Your picks are saved on this device. Global tallies and the live community
-        standings go live once the ballot is wired to the backend.
+        Your picks are saved on this device. Global tallies and the live
+        community standings go live once the ballot is wired to the backend.
       </p>
       <p class="text-sm font-semibold text-neutral-700 shrink-0">
         Your picks: <span id="goodies-mine-count" class="text-secondary-600" aria-live="polite">0</span>
@@ -125,8 +96,6 @@
 
           <!-- Rank badge (Standings view only) -->
           <span class="goodies-rank" aria-hidden="true" hidden></span>
-          <!-- Holographic foil overlay (top 3 in Standings) -->
-          <span class="goodies-foil" aria-hidden="true"></span>
 
           <!-- Sticker art -->
           <div class="relative h-52 sm:h-56 flex items-center justify-center rounded-lg bg-neutral-50 overflow-hidden">
@@ -175,82 +144,68 @@
       {{ end }}
     </div>
 
-    <p id="goodies-empty" class="text-center text-neutral-500 py-10" hidden>No stickers in this series yet. Check back after the next drop.</p>
+    <p id="goodies-empty" class="text-center text-neutral-500 py-10" hidden>No stickers in this series yet. Check back after the next batch.</p>
   </div>
 </section>
 
-<!-- Booth QR + share -->
-<section class="section-gradient-secondary-1 py-14 lg:py-24">
-  <div class="max-w-350 mx-auto px-4 flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
-
-    <!-- QR -->
-    <div class="flex flex-col items-center gap-3 shrink-0">
-      <div class="bg-neutral-50 p-4 rounded-2xl shadow-lg border border-neutral-200">
-        {{ with $qr }}
-          <img src="{{ .RelPermalink }}" width="200" height="200" alt="QR code linking to this voting page" class="w-40 h-40 lg:w-48 lg:h-48">
-        {{ end }}
-      </div>
-      <p class="text-sm font-medium text-neutral-800">Scan at the booth to vote</p>
+<!-- Share -->
+<section class="section-secondary-1 py-12 lg:py-16">
+  <div class="max-w-350 mx-auto px-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
+    <div class="flex flex-col gap-1">
+      <h2 class="text-2xl lg:text-3xl font-medium text-neutral-900">Know someone with strong sticker opinions?</h2>
+      <p class="text-neutral-700 text-base lg:text-lg">Send them the ballot. More votes, better picks.</p>
     </div>
+    <div class="flex flex-wrap items-center gap-3 shrink-0">
+      <a href="https://twitter.com/intent/tweet?{{ querify "text" $shareText "url" $pageURL | safeURL }}"
+        target="_blank" rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-5 py-3 rounded-lg font-semibold text-neutral-50 bg-neutral-900 hover:bg-neutral-800 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-500 focus-visible:ring-offset-2">
+        <span class="w-5 h-5">{{ partial "icon.html" "ri/twitter-x-line" }}</span>
+        Share on X
+      </a>
+      <a href="https://www.linkedin.com/sharing/share-offsite/?{{ querify "url" $pageURL | safeURL }}"
+        target="_blank" rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-5 py-3 rounded-lg font-semibold text-neutral-50 bg-[#0a66c2] hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-500 focus-visible:ring-offset-2">
+        <span class="w-5 h-5">{{ partial "icon.html" "ri/linkedin-box-fill" }}</span>
+        Share on LinkedIn
+      </a>
+    </div>
+  </div>
+</section>
 
-    <!-- Share -->
-    <div class="flex flex-col gap-5 text-center lg:text-left">
+<!-- How to get Plakar goodies -->
+<section id="get-goodies" class="section-light-2 py-14 lg:py-24 scroll-mt-24">
+  <div class="max-w-350 mx-auto px-4 flex flex-col gap-10">
+    <div class="flex flex-col gap-3 max-w-3xl">
       <h2 class="text-3xl lg:text-5xl font-medium text-neutral-900">
-        Rally your <span class="text-secondary-500">crew</span>
+        How to get <span class="text-secondary-500">Plakar goodies</span>
       </h2>
-      <p class="text-base lg:text-xl text-neutral-800 max-w-2xl">
-        More votes, better drop. Share the ballot and get the stickers you want on
-        the print run.
+      <p class="text-base lg:text-xl text-neutral-600">
+        Goodies go to the people who show up for the project. Here are the best
+        ways to get involved, and get stickers in hand.
       </p>
-      <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3">
-        <a href="https://twitter.com/intent/tweet?{{ querify "text" $shareText "url" $pageURL | safeURL }}"
-          target="_blank" rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 px-5 py-3 rounded-lg font-semibold text-neutral-50 bg-neutral-900 hover:bg-neutral-800 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-500 focus-visible:ring-offset-2">
-          <span class="w-5 h-5">{{ partial "icon.html" "ri/twitter-x-line" }}</span>
-          Share on X
-        </a>
-        <a href="https://www.linkedin.com/sharing/share-offsite/?{{ querify "url" $pageURL | safeURL }}"
-          target="_blank" rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 px-5 py-3 rounded-lg font-semibold text-neutral-50 bg-[#0a66c2] hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-500 focus-visible:ring-offset-2">
-          <span class="w-5 h-5">{{ partial "icon.html" "ri/linkedin-box-fill" }}</span>
-          Share on LinkedIn
-        </a>
-      </div>
     </div>
-  </div>
-</section>
 
-<!-- Community tie-in -->
-<section class="section-light-2 py-14 lg:py-20">
-  <div class="max-w-350 mx-auto px-4 flex flex-col items-center text-center gap-6">
-    {{ with $nestorRocket }}
-      {{ $r := .Fit "240x240 webp q80" }}
-      <img src="{{ $r.RelPermalink }}" width="{{ $r.Width }}" height="{{ $r.Height }}" loading="lazy" alt="Nestor on a rocket" class="w-28 h-28 object-contain">
-    {{ end }}
-    <h2 class="text-2xl lg:text-4xl font-medium text-neutral-900">
-      Built by dreamers, <span class="text-secondary-500">powered by community</span>
-    </h2>
-    <p class="text-base lg:text-xl text-neutral-600 max-w-2xl">
-      The drops are just the fun part. Come build the open-source standard for data
-      protection with us.
-    </p>
-    <div class="flex flex-wrap items-center justify-center gap-3">
-      {{ partial "components/buttons/base-button.html" (dict
-        "label" "Join us on Discord"
-        "href" "https://discord.gg/uuegtnF2Q5"
-        "target" "_blank"
-        "icon" "discord"
-        "bgColor" "bg-secondary-500"
-        "bgHoverColor" "bg-secondary-600"
-      ) }}
-      {{ partial "components/buttons/base-button.html" (dict
-        "label" "Explore the Community"
-        "href" "/community/"
-        "icon" "ri/open-source-line"
-        "bgColor" "bg-neutral-900"
-        "bgHoverColor" "bg-neutral-800"
-      ) }}
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {{ range $data.contribute }}
+        <div class="flex flex-col gap-3 p-6 rounded-lg border border-neutral-300 bg-neutral-50 shadow-sm">
+          <h3 class="text-xl lg:text-2xl font-semibold text-secondary-500">{{ .title }}</h3>
+          <p class="text-neutral-700 text-base lg:text-lg leading-snug flex-1">{{ .body }}</p>
+          <a href="{{ .cta_href }}"{{ if .external }} target="_blank" rel="noopener noreferrer"{{ end }}
+            class="inline-flex items-center gap-2 self-start mt-1 px-4 py-2.5 rounded-lg font-semibold text-neutral-50 bg-secondary-500 hover:bg-secondary-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-500 focus-visible:ring-offset-2">
+            {{ .cta_label }}
+            <svg viewBox="0 0 20 20" fill="none" class="w-4 h-4" aria-hidden="true">
+              <path d="M5 10h10M11 5l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      {{ end }}
     </div>
+
+    <p class="text-base text-neutral-600">
+      There is more to the community than swag.
+      <a href="/community/" class="text-secondary-600 underline font-medium">Explore the Plakar Community</a>
+      for daily briefings, hackrooms, weekly calls, and how to contribute.
+    </p>
   </div>
 </section>
 

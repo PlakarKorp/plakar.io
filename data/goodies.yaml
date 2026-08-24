@@ -10,20 +10,29 @@
 # filter chip appears automatically for every series that has at least one
 # sticker, so no code change is needed.
 
-# The three finishes explained in the "How the drop works" strip.
-tiers:
-  - key: common
-    name: "Common"
-    finish: "Matte"
-    line: "Every design, standard matte vinyl. Free at the booth while they last."
-  - key: rare
-    name: "Rare"
-    finish: "Gloss"
-    line: "Fan favorites, pressed on glossy vinyl. Fewer printed, first come first served."
-  - key: legendary
-    name: "Legendary"
-    finish: "Holographic"
-    line: "Top 3 by community vote only. Foil, individually numbered /250, handed out in person."
+# Ways to get involved (and get goodies), rendered in the "How to get Plakar
+# goodies" section. Kept short on purpose so it does not duplicate /community/.
+contribute:
+  - title: "Organize a meetup"
+    body: "Bring the Plakar community together, in person or online. Local gatherings or larger events, we can back you with content, slides, and Plakar goodies to give away."
+    cta_label: "Start a meetup"
+    cta_href: "https://github.com/PlakarKorp/plakar-meetups"
+    external: true
+  - title: "Spread the word"
+    body: "Share Plakar's story through blog posts, podcasts, videos, and social media. Made something? Tell us so we can promote it on Plakar's channels."
+    cta_label: "Email hello@plakar.io"
+    cta_href: "mailto:hello@plakar.io"
+    external: false
+  - title: "Improve the docs"
+    body: "Help make Plakar easier to use: tutorials, guides, and examples, written, video, or interactive."
+    cta_label: "Open the docs repo"
+    cta_href: "https://github.com/PlakarKorp/plakar.io"
+    external: true
+  - title: "Contribute code"
+    body: "New features, bug fixes, documentation: contributions of all kinds are welcome. The guide walks you through getting started."
+    cta_label: "Read the Contributing Guide"
+    cta_href: "https://github.com/PlakarKorp/plakar/blob/main/CONTRIBUTING.md"
+    external: true
 
 # Ordered series list. `label` is the chip text. A chip renders only when the
 # series has at least one sticker below, so future series can sit here dormant.

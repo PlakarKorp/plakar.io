@@ -1,9 +1,8 @@
 ---
-title: "Vote for the Next Nestor Drop"
+title: "Vote for Your Favorite Nestor Stickers"
 description:
-  "Pick the Nestor stickers you want printed. The community's top 3 become
-  limited edition holographic stickers, foil, numbered /250, handed out in
-  person at our next event."
+  "Vote for the Nestor stickers you want us to print and give away at events and
+  online. Your picks help us prioritize the next batch of goodies."
 url: "/community/goodies/"
 type: "goodies"
 layout: "single"
