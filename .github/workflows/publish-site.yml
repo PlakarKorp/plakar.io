@@ -41,6 +41,15 @@ jobs:
       - name: Install root dependencies
         run: npm ci
 
+      - name: Cache Hugo resources
+        uses: actions/cache@v4
+        with:
+          path: resources/_gen
+          key: hugo-resources-v1-${{ github.ref_name }}-${{ hashFiles('assets/**', 'content/**', 'layouts/**') }}
+          restore-keys: |
+            hugo-resources-v1-${{ github.ref_name }}-
+            hugo-resources-v1-
+
       - name: Build site
         run: npm run build
 
