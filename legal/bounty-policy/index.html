@@ -95,7 +95,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="legal">
     <meta property="article:published_time" content="2026-01-01T12:00:00+00:00">
-    <meta property="article:modified_time" content="2026-08-26T21:28:02+03:00">
+    <meta property="article:modified_time" content="2026-08-27T01:22:50+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -253,12 +253,12 @@
     "dateCreated": "2026-01-01T12:00:00\u002b00:00",
     "datePublished": "2026-01-01T12:00:00\u002b00:00",
     
-    "dateModified": "2026-08-26T21:28:02\u002b03:00",
+    "dateModified": "2026-08-27T01:22:50\u002b02:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/legal/bounty-policy/",
-    "wordCount": "1947"
+    "wordCount": "2209"
   }]
   </script>
 
@@ -2125,20 +2125,34 @@ French law, all submissions must follow a structured validation workflow.</p>
   
 </h3>
 <ol>
-<li><strong>Notification (Optional):</strong> Before developing major features or
-integrations, contributors may notify the team by sending a brief functional
-outline or issue draft to <a href="mailto:bounty@plakar.io" >bounty@plakar.io</a> to check roadmap alignment. Plakar
-SAS does not guarantee exclusivity, and multiple participants may work on the
-same task independently.</li>
-<li><strong>Implementation:</strong> Submit a Pull Request (PR) to the relevant public
-repository, referencing the specific targeted item from the Bounty Roadmap
-available on our website (<a href="/community/#bounty-program" >the Bounty Roadmap</a>).</li>
-<li><strong>Review and Merge:</strong> The Plakar maintainer team will review the code.</li>
-<li><strong>Claiming the Reward (Claim):</strong> Once the PR is approved and merged, the
-contributor must explicitly claim their bounty by sending an email to
-<a href="mailto:bounty@plakar.io" >bounty@plakar.io</a>. The reward is strictly attributed to the first valid,
-complete, and merged Pull Request.</li>
+<li>
+<p><strong>Notification:</strong> Before starting work on a feature or integration, you <strong>must</strong>
+write to <a href="mailto:bounty@plakar.io" >bounty@plakar.io</a> with a short functional
+outline, or a draft issue, naming the item you intend to take from the
+<a href="/community/#bounty-program" >Bounty Roadmap</a>. We confirm that the item is eligible, that your
+approach fits, and agree the reward with you before any code is written. Plakar
+SAS does not grant exclusivity: several contributors may work on the same item
+independently, and the reward goes to whoever lands first.</p>
+</li>
+<li>
+<p><strong>Implementation:</strong> Develop in a repository you own, referencing the targeted
+item from the <a href="/community/#bounty-program" >Bounty Roadmap</a> in your commits and description.</p>
+</li>
+<li>
+<p><strong>Review and Merge:</strong> Open a pull request against the relevant Plakar
+repository. The maintainer team reviews it against our architectural guidelines
+and code quality standards. Expect review comments, and expect to address them;
+an agreed reward does not commit us to merging work that does not meet those
+standards.</p>
+</li>
+<li>
+<p><strong>Claim:</strong> Once your pull request is approved and merged, claim the reward by
+writing to <a href="mailto:bounty@plakar.io" >bounty@plakar.io</a>. The reward is attributed
+strictly to the first valid, complete, and merged pull request for that item.</p>
+</li>
 </ol>
+<p>Unsolicited pull requests against roadmap items are welcome as contributions, but
+carry no reward: we do not pay for code we did not agree to in advance.</p>
 
 
 <h3 id="for-bug-and-vulnerability-reports" class="group pr-8">For Bug and Vulnerability Reports
@@ -2157,12 +2171,33 @@ complete, and merged Pull Request.</li>
   
 </h3>
 <ol>
-<li><strong>Reporting:</strong> Send a detailed description along with reproduction steps
-securely via email to both <a href="mailto:security@plakar.io" >security@plakar.io</a> and <a href="mailto:bounty@plakar.io" >bounty@plakar.io</a>.</li>
-<li><strong>Triage:</strong> The engineering team will assess the impact and verify if the
-vulnerability meets the Critical or High classification criteria within five
-business days.</li>
+<li>
+<p><strong>Notification:</strong> Verify that the issue affects users within the limits of our
+<a href="/legal/threat-model/" >threat model</a>. If it does, write to
+<a href="mailto:security@plakar.io" >security@plakar.io</a> and summarize what you found and
+what it allows (for example: <em>&ldquo;I found an issue that lets me do X without
+holding Y&rdquo;</em>). Give us only what we need to gauge the severity and decide whether
+the issue is worth investigating — <strong>no details and no reproducer at this
+stage</strong>.</p>
+</li>
+<li>
+<p><strong>Triage:</strong> Our team will come back to you within five business days. We will
+either explain why the details are not needed — the issue may be a duplicate,
+already fixed, or awaiting a bugfix release — or open an exchange and ask you for
+a full description and reproduction steps so we can confirm the issue is
+legitimate.</p>
+</li>
+<li>
+<p><strong>Exchange:</strong> Once the submission is confirmed, we assign a severity against
+CVSS and agree any reward with you directly. Critical and High findings are
+eligible for a financial reward; Medium and Low findings receive public
+recognition and our thanks. We will keep you involved through analysis and
+remediation, coordinate disclosure with you, and credit you when the fix is
+published, unless you would rather we did not.</p>
+</li>
 </ol>
+<p>Public disclosure before we have explicitly authorized it remains strictly
+prohibited at every stage and results in immediate disqualification.</p>
 
 
 <h3 id="corporate-record-keeping" class="group pr-8">Corporate Record Keeping
