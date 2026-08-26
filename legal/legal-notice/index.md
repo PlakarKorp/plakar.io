@@ -97,8 +97,17 @@ deleted when the user closes their browser.
 Plakar operates a dedicated Feature and Bug Bounty Program to safely collaborate
 with independent security researchers and open-source developers. This program
 governs the submission of critical software vulnerabilities and specific roadmap
-development contributions. The complete program policy, including terms of
-participation, validation workflows, financial reward grids, and legal safe
-harbor provisions, can be accessed directly at
-[https://plakar.io/legal/bounty-policy/](/legal/bounty-policy/).
+development contributions.
+
+Every contribution starts with a conversation. Before submitting any pull
+request or invoice, contributors must first reach out by email so a member of
+the team can confirm the scope, seriousness, and relevance of the intended work:
+security vulnerabilities to security@plakar.io, and feature or integration
+contributions to bounty@plakar.io. Submissions sent without this prior human
+confirmation will not be rewarded, and clearly AI-generated or automated emails
+and pull requests are not welcome and will be rejected.
+
+The complete program policy, including terms of participation, validation
+workflows, reward conditions, and legal safe harbor provisions, can be accessed
+at [https://plakar.io/legal/bounty-policy/](/legal/bounty-policy/).
 
