@@ -3,7 +3,7 @@ title: "Threat model"
 date: 2025-05-05T10:00:00Z
 type: "legal-notice"
 description:
-  "Details regarding the threat mdoel"
+  "Details regarding the threat model"
 aliases:
   - /threat-model/
 ---
