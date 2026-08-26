@@ -12,8 +12,8 @@
   {{- $nozoom := .Get "nozoom" | default false -}}
 
   <figure{{ with $figureClass }} class="{{ . }}"{{ end }}>
-  {{- with $href }}<a href="{{ . }}" {{ with $target }}target="{{ . }}"{{ end }} class="inline-block">{{ end -}}
-  {{- if findRE "^https?" $url.Scheme }}
+  {{- with $href }}<a href="{{ . }}" target="{{ $target }}"{{ if eq $target "_blank" }} rel="noopener noreferrer"{{ end }} class="inline-block">{{ end -}}
+  {{- if findRE "^(https?|data)" $url.Scheme }}
     <img class="my-0 rounded-md{{ with $nozoom }} nozoom{{ end }}{{ with $class }} {{ . }}{{ end }}" src="{{ $url.String }}" alt="{{ $altText }}" loading="lazy" decoding="async" />
   {{- else }}
     {{- $resource := "" }}

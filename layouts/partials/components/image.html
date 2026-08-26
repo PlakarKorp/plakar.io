@@ -38,12 +38,14 @@
     {{- end -}}
 
     {{- $srcset := slice -}}
+    {{- $variants := slice -}}
     {{- range $usable -}}
       {{- $v := $r.Resize (printf "%dx webp q%d" . $quality) -}}
+      {{- $variants = $variants | append $v -}}
       {{- $srcset = $srcset | append (printf "%s %dw" $v.RelPermalink $v.Width) -}}
     {{- end -}}
 
-    {{- $primary := $r.Resize (printf "%dx webp q%d" (index $usable 0) $quality) -}}
+    {{- $primary := index $variants 0 -}}
 
     <img
       src="{{ $primary.RelPermalink }}"
