@@ -1,93 +1,81 @@
-{{ $disableImageOptimization := .Site.Params.disableImageOptimization | default false }}
-{{ if .Get "default" }}
-  {{ partial "hugo-embedded/shortcodes/figure-default.html" . }}
-{{ else }}
-  {{- $url := urls.Parse (.Get "src") }}
-  {{- $altText := .Get "alt" }}
-  {{- $caption := .Get "caption" }}
-  {{- $href := .Get "href" }}
-  {{- $class := .Get "class" }}
-  {{- $figureClass := .Get "figureClass" }}
-  {{- $target := .Get "target" | default "_blank" }}
+{{- $disableImageOptimization := .Site.Params.disableImageOptimization | default false -}}
+{{- if .Get "default" -}}
+  {{- partial "hugo-embedded/shortcodes/figure-default.html" . -}}
+{{- else -}}
+  {{- $url := urls.Parse (.Get "src") -}}
+  {{- $altText := .Get "alt" -}}
+  {{- $caption := .Get "caption" -}}
+  {{- $href := .Get "href" -}}
+  {{- $class := .Get "class" -}}
+  {{- $figureClass := .Get "figureClass" -}}
+  {{- $target := .Get "target" | default "_blank" -}}
   {{- $nozoom := .Get "nozoom" | default false -}}
+
+  {{- $imgClass := "my-0 rounded-md" -}}
+  {{- with $nozoom }}{{ $imgClass = printf "%s nozoom" $imgClass }}{{ end -}}
+  {{- with $class }}{{ $imgClass = printf "%s %s" $imgClass . }}{{ end -}}
 
   <figure{{ with $figureClass }} class="{{ . }}"{{ end }}>
   {{- with $href }}<a href="{{ . }}" target="{{ $target }}"{{ if eq $target "_blank" }} rel="noopener noreferrer"{{ end }} class="inline-block">{{ end -}}
-  {{- if findRE "^(https?|data)" $url.Scheme }}
-    <img class="my-0 rounded-md{{ with $nozoom }} nozoom{{ end }}{{ with $class }} {{ . }}{{ end }}" src="{{ $url.String }}" alt="{{ $altText }}" loading="lazy" decoding="async" />
-  {{- else }}
-    {{- $resource := "" }}
 
-    {{- $rel := $url.String }}
-    {{- $ctx := $.Page }}
-    {{- range seq 6 }}
-      {{- if hasPrefix $rel "../" }}
-        {{- $rel = strings.TrimPrefix "../" $rel }}
-        {{- with $ctx.Parent }}{{ $ctx = . }}{{ end }}
-      {{- end }}
-    {{- end }}
+  {{- if findRE "^(https?|data)" $url.Scheme -}}
+    <img class="{{ $imgClass }}" src="{{ $url.String }}" alt="{{ $altText }}" loading="lazy" decoding="async" />
+  {{- else -}}
+    {{- $resource := "" -}}
 
-    {{- if $ctx.Resources.GetMatch $rel }}
-      {{- $resource = $ctx.Resources.GetMatch $rel }}
-    {{- else if $.Page.Resources.GetMatch ($url.String) }}
-      {{- $resource = $.Page.Resources.GetMatch ($url.String) }}
-    {{- else if resources.GetMatch ($url.String) }}
-      {{- $resource = resources.Get ($url.String) }}
-    {{- end }}
+    {{- $rel := $url.String -}}
+    {{- $ctx := $.Page -}}
+    {{- range seq 6 -}}
+      {{- if hasPrefix $rel "../" -}}
+        {{- $rel = strings.TrimPrefix "../" $rel -}}
+        {{- with $ctx.Parent }}{{ $ctx = . }}{{ end -}}
+      {{- end -}}
+    {{- end -}}
 
-    {{- with $resource }}
-      {{- if or $disableImageOptimization (eq .MediaType.SubType "svg") }}
-        <img
-          class="my-0 rounded-md{{ with $nozoom }} nozoom{{ end }}{{ with $class }} {{ . }}{{ end }}"
-          src="{{ .RelPermalink }}"
-          alt="{{ $altText }}"
-          loading="lazy"
-          decoding="async"
-        />
-      {{- else }}
-        {{- $w := .Width }}
-        {{- $targets := slice 400 800 1200 }}
-        {{- $variants := slice }}
-        {{- range $targets }}
-          {{- if le . $w }}
-            {{- $variants = $variants | append ($resource.Resize (printf "%dx webp" .)) }}
-          {{- end }}
-        {{- end }}
-        {{/* A rung was dropped for exceeding the source, so emit the source
-             width rather than discarding the detail past our top rung. */}}
-        {{- if and $variants (gt (len $targets) (len $variants)) }}
-          {{- if gt $w (index $variants (sub (len $variants) 1)).Width }}
-            {{- $variants = $variants | append ($resource.Resize (printf "%dx webp" $w)) }}
-          {{- end }}
-        {{- end }}
-        {{- if not $variants }}
-          {{- $variants = slice ($resource.Resize (printf "%dx webp" $w)) }}
-        {{- end }}
-        {{- $srcset := slice }}
-        {{- range $variants }}
-          {{- $srcset = $srcset | append (printf "%s %dw" .RelPermalink .Width) }}
-        {{- end }}
-        {{- $zoom := index $variants (sub (len $variants) 1) }}
-        {{- if gt $w 1920 }}{{ $zoom = $resource.Resize "1920x webp" }}{{ end }}
-        <img
-          class="my-0 rounded-md{{ with $nozoom }} nozoom{{ end }}{{ with $class }} {{ . }}{{ end }}"
-          loading="lazy"
-          decoding="async"
-          fetchpriority="auto"
-          alt="{{ $altText }}"
-          {{ with .Width }}width="{{ . }}"{{ end }}
-          {{ with .Height }}height="{{ . }}"{{ end }}
-          src="{{ (index $variants 0).RelPermalink }}"
-          srcset="{{ delimit $srcset ", " }}"
-          sizes="(min-width: 768px) 50vw, 65vw"
-          data-zoom-src="{{ $zoom.RelPermalink }}"
-        />
-      {{- end }}
-    {{- else }}
-      <img class="my-0 rounded-md{{ with $nozoom }} nozoom{{ end }}{{ with $class }} {{ . }}{{ end }}" src="{{ $url.String }}" alt="{{ $altText }}" loading="lazy" decoding="async" />
-    {{- end }}
-  {{- end }}
-  {{ if $href }}</a>{{ end }}
-  {{ with $caption }}<figcaption>{{ . | markdownify }}</figcaption>{{ end }}
+    {{- if $ctx.Resources.GetMatch $rel -}}
+      {{- $resource = $ctx.Resources.GetMatch $rel -}}
+    {{- else if $.Page.Resources.GetMatch ($url.String) -}}
+      {{- $resource = $.Page.Resources.GetMatch ($url.String) -}}
+    {{- else if resources.GetMatch ($url.String) -}}
+      {{- $resource = resources.Get ($url.String) -}}
+    {{- end -}}
+
+    {{- with $resource -}}
+      {{- if or $disableImageOptimization (eq .MediaType.SubType "svg") -}}
+        <img class="{{ $imgClass }}" src="{{ .RelPermalink }}" alt="{{ $altText }}" loading="lazy" decoding="async" />
+      {{- else -}}
+        {{- $w := .Width -}}
+        {{- $targets := slice 400 800 1200 -}}
+        {{- $variants := slice -}}
+        {{- range $targets -}}
+          {{- if le . $w -}}
+            {{- $variants = $variants | append ($resource.Resize (printf "%dx webp" .)) -}}
+          {{- end -}}
+        {{- end -}}
+        {{- /* A rung was dropped for exceeding the source, so emit the source
+               width rather than discarding the detail past our top rung. */ -}}
+        {{- if and $variants (gt (len $targets) (len $variants)) -}}
+          {{- if gt $w (index $variants (sub (len $variants) 1)).Width -}}
+            {{- $variants = $variants | append ($resource.Resize (printf "%dx webp" $w)) -}}
+          {{- end -}}
+        {{- end -}}
+        {{- if not $variants -}}
+          {{- $variants = slice ($resource.Resize (printf "%dx webp" $w)) -}}
+        {{- end -}}
+        {{- $srcset := slice -}}
+        {{- range $variants -}}
+          {{- $srcset = $srcset | append (printf "%s %dw" .RelPermalink .Width) -}}
+        {{- end -}}
+        {{- $zoom := index $variants (sub (len $variants) 1) -}}
+        {{- if gt $w 1920 }}{{ $zoom = $resource.Resize "1920x webp" }}{{ end -}}
+        <img class="{{ $imgClass }}" loading="lazy" decoding="async" fetchpriority="auto" alt="{{ $altText }}"{{ with .Width }} width="{{ . }}"{{ end }}{{ with .Height }} height="{{ . }}"{{ end }} src="{{ (index $variants 0).RelPermalink }}" srcset="{{ delimit $srcset ", " }}" sizes="(min-width: 768px) 50vw, 65vw" data-zoom-src="{{ $zoom.RelPermalink }}" />
+      {{- end -}}
+    {{- else -}}
+      <img class="{{ $imgClass }}" src="{{ $url.String }}" alt="{{ $altText }}" loading="lazy" decoding="async" />
+    {{- end -}}
+  {{- end -}}
+
+  {{- with $href }}</a>{{ end -}}
+  {{- with $caption }}<figcaption>{{ . | markdownify }}</figcaption>{{ end -}}
   </figure>
 {{- end -}}
