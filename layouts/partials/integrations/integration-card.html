@@ -34,7 +34,12 @@
   <div class="flex items-start gap-3.5">
     <div class="w-13 h-13 rounded-lg overflow-hidden shrink-0 flex items-center justify-center">
       {{ if $image }}
-        <img src="{{ $image.RelPermalink }}" alt="{{ $p.Title }}" class="w-full h-full object-contain">
+        {{ partial "components/image.html" (dict
+          "resource" $image
+          "alt" $p.Title
+          "widths" (slice 64 128)
+          "class" "w-full h-full object-contain"
+        ) }}
       {{ else }}
         <span class="w-6 h-6 text-neutral-400">{{ partial "icon.html" "plug-line" }}</span>
       {{ end }}

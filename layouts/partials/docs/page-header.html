@@ -47,7 +47,7 @@
           {{ partial "icon.html" "chevron-down" }}
         </span>
       </button>
-      <div class="open-in-selector-menu hidden absolute top-full mt-1 left-0 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg z-50 overflow-hidden w-50">
+      <div class="open-in-selector-menu hidden absolute top-full mt-1 left-0 bg-neutral-50 border border-neutral-200 rounded-lg z-50 overflow-hidden w-50">
         <a href="https://claude.ai/new?q={{ printf "Read %s, I want to ask questions about it." (printf "%sindex.md" .Permalink) | urlquery }}" target="_blank" class="flex items-center justify-between px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 gap-2">
           <span class="flex items-center gap-2">
             <span class="w-4 h-4">{{ partial "icon.html" "ri/anthropic-fill" }}</span>
