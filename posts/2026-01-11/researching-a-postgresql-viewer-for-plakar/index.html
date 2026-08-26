@@ -35,6 +35,7 @@
   
   
   <link rel="canonical" href="https://www.plakar.io/posts/2026-01-11/researching-a-postgresql-viewer-for-plakar/">
+
   
   
     
@@ -94,9 +95,9 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2026-01-11T20:00:00+01:00">
-    <meta property="article:modified_time" content="2026-08-25T20:12:03+03:00">
+    <meta property="article:modified_time" content="2026-08-26T10:36:05+03:00">
     <meta property="article:tag" content="Postgresql">
-    <meta property="article:tag" content="UI">
+    <meta property="article:tag" content="Ui">
     <meta property="article:tag" content="Filesystem">
     <meta property="article:tag" content="Overlayfs">
     <meta property="article:tag" content="Qcow2">
@@ -123,13 +124,6 @@
   
 
   
-  
-  
-  
-  
-  
-
-  
 
   
   
@@ -147,39 +141,17 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.03a147c0018b83b3c8e90bb942dd9caa4f187503c1e8e2ee936cde8c83e8c3e9e0388f5257c5fbb8a86a51ea9ebe93de01575f98c74b3aea8cc8cb45f5c68639.css"
-    integrity="sha512-A6FHwAGLg7PI6Qu5Qt2cqk8YdQPB6OLuk2zejIPow&#43;ngOI9SV8X7uKhqUeqevpPeAVdfmMdLOuqMyMtF9caGOQ==">
-
-  
-  
-  <script
-    type="text/javascript"
-    src="/js/appearance.min.764f412f07ea715415e9123a5eb5f355429502d0b760146b9bcab854bc50829dee14488594acd935dfcdc6a0fe7e6d14d7bee914ebb9272b251aa238cb52c4dd.js"
-    integrity="sha512-dk9BLwfqcVQV6RI6XrXzVUKVAtC3YBRrm8q4VLxQgp3uFEiFlKzZNd/NxqD&#43;fm0U177pFOu5JyslGqI4y1LE3Q=="></script>
-  
-
-
-  
-  
-  
-  
-  
+    href="/css/main.bundle.min.a014799e92dfb3dd65340bc1f27a07672cc68fe557b3a5d4c7713b34b56f76ea7abb373ec078e0acd73af47432153ca0fee01137d0c4fbe6b523dda807d2fdc6.css"
+    integrity="sha512-oBR5npLfs91lNAvB8noHZyzGj&#43;VXs6XUx3E7NLVvdup6uzc&#43;wHjgrNc69HQyFTyg/uARN9DE&#43;&#43;a1I92oB9L9xg==">
   
     
-    <script src="/lib/zoom/zoom.min.umd.a527109b68c082a70f3697716dd72a9d5aa8b545cf800cecbbc7399f2ca6f6e0ce3e431f2062b48bbfa47c9ea42822714060bef309be073f49b9c0e30d318d7b.js" integrity="sha512-pScQm2jAgqcPNpdxbdcqnVqotUXPgAzsu8c5nyym9uDOPkMfIGK0i7&#43;kfJ6kKCJxQGC&#43;8wm&#43;Bz9JucDjDTGNew=="></script>
+    <script defer src="/lib/zoom/zoom.min.umd.a527109b68c082a70f3697716dd72a9d5aa8b545cf800cecbbc7399f2ca6f6e0ce3e431f2062b48bbfa47c9ea42822714060bef309be073f49b9c0e30d318d7b.js" integrity="sha512-pScQm2jAgqcPNpdxbdcqnVqotUXPgAzsu8c5nyym9uDOPkMfIGK0i7&#43;kfJ6kKCJxQGC&#43;8wm&#43;Bz9JucDjDTGNew=="></script>
   
 
   
   
   
     
-  
-  
-  
-    
-  
-  
-  
   
   
   
@@ -188,8 +160,8 @@
       defer
       type="text/javascript"
       id="script-bundle"
-      src="/js/main.bundle.min.2d1f35734e9db2393178a04e446cdc5807021754fd8ea71a4103e1364a54991885a6aa4502116dee081d93262f70c08203d6ed10597b7dd339ec5597838a03c3.js"
-      integrity="sha512-LR81c06dsjkxeKBORGzcWAcCF1T9jqcaQQPhNkpUmRiFpqpFAhFt7ggdkyYvcMCCA9btEFl7fdM57FWXg4oDww=="
+      src="/js/main.bundle.min.ec6f201d478aa54dcade344193fa13aca5ffcefa7492dae7f3ae16a80dc0377e62edabdd45cea36de5df026a3e4a3cc7b1f265d2754ea9a54e5ab456a9f67630.js"
+      integrity="sha512-7G8gHUeKpU3K3jRBk/oTrKX/zvp0ktrn864WqA3AN35i7avdRc6jbeXfAmo&#43;SjzHsfJl0nVOqaVOWrRWqfZ2MA=="
       data-copy="Copy"
       data-copied="Copied"></script>
   
@@ -284,7 +256,7 @@
     "dateCreated": "2026-01-11T20:00:00\u002b01:00",
     "datePublished": "2026-01-11T20:00:00\u002b01:00",
     
-    "dateModified": "2026-08-25T20:12:03\u002b03:00",
+    "dateModified": "2026-08-26T10:36:05\u002b03:00",
     
     "keywords": ["postgresql","UI","filesystem","overlayfs","qcow2"],
     
@@ -305,9 +277,7 @@
   
 
   
-  
     
-
   
     <div id="gtm-config" data-id="GTM-T7VMM5VM" hidden></div>
   
@@ -349,12 +319,14 @@
   
 
   
-  
     
 
-  
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/space-grotesk-latin-wght-normal.woff2">
 
-  
+
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/inter-latin-wght-normal.woff2">
+
+
   
 </head>
 
@@ -538,14 +510,10 @@
                         <div class="w-10 h-10 bg-neutral-100 text-neutral-600 p-2 group-hover/link:bg-neutral-50 group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
                           <span class="relative block icon"><?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 19.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-	 viewBox="0 0 304 182" style="enable-background:new 0 0 304 182;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:#252F3E;}
-	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:#FF9900;}
-</style>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	 viewBox="0 0 304 182" xml:space="preserve">
 <g>
-	<path class="st0" d="M86.4,66.4c0,3.7,0.4,6.7,1.1,8.9c0.8,2.2,1.8,4.6,3.2,7.2c0.5,0.8,0.7,1.6,0.7,2.3c0,1-0.6,2-1.9,3l-6.3,4.2
+	<path fill="#252F3E" d="M86.4,66.4c0,3.7,0.4,6.7,1.1,8.9c0.8,2.2,1.8,4.6,3.2,7.2c0.5,0.8,0.7,1.6,0.7,2.3c0,1-0.6,2-1.9,3l-6.3,4.2
 		c-0.9,0.6-1.8,0.9-2.6,0.9c-1,0-2-0.5-3-1.4C76.2,90,75,88.4,74,86.8c-1-1.7-2-3.6-3.1-5.9c-7.8,9.2-17.6,13.8-29.4,13.8
 		c-8.4,0-15.1-2.4-20-7.2c-4.9-4.8-7.4-11.2-7.4-19.2c0-8.5,3-15.4,9.1-20.6c6.1-5.2,14.2-7.8,24.5-7.8c3.4,0,6.9,0.3,10.6,0.8
 		c3.7,0.5,7.5,1.3,11.5,2.2v-7.3c0-7.6-1.6-12.9-4.7-16c-3.2-3.1-8.6-4.6-16.3-4.6c-3.5,0-7.1,0.4-10.8,1.3c-3.7,0.9-7.3,2-10.8,3.4
@@ -567,9 +535,9 @@
 		c2,1.9,5.7,3.8,11,5.5l14.2,4.5c7.2,2.3,12.4,5.5,15.5,9.6c3.1,4.1,4.6,8.8,4.6,14c0,4.3-0.9,8.2-2.6,11.6
 		c-1.8,3.4-4.2,6.4-7.3,8.8c-3.1,2.5-6.8,4.3-11.1,5.6C264.4,94.4,259.7,95.1,254.6,95.1z"/>
 	<g>
-		<path class="st1" d="M273.5,143.7c-32.9,24.3-80.7,37.2-121.8,37.2c-57.6,0-109.5-21.3-148.7-56.7c-3.1-2.8-0.3-6.6,3.4-4.4
+		<path fill="#FF9900" fill-rule="evenodd" clip-rule="evenodd" d="M273.5,143.7c-32.9,24.3-80.7,37.2-121.8,37.2c-57.6,0-109.5-21.3-148.7-56.7c-3.1-2.8-0.3-6.6,3.4-4.4
 			c42.4,24.6,94.7,39.5,148.8,39.5c36.5,0,76.6-7.6,113.5-23.2C274.2,133.6,278.9,139.7,273.5,143.7z"/>
-		<path class="st1" d="M287.2,128.1c-4.2-5.4-27.8-2.6-38.5-1.3c-3.2,0.4-3.7-2.4-0.8-4.5c18.8-13.2,49.7-9.4,53.3-5
+		<path fill="#FF9900" fill-rule="evenodd" clip-rule="evenodd" d="M287.2,128.1c-4.2-5.4-27.8-2.6-38.5-1.3c-3.2,0.4-3.7-2.4-0.8-4.5c18.8-13.2,49.7-9.4,53.3-5
 			c3.6,4.5-1,35.4-18.6,50.2c-2.7,2.3-5.3,1.1-4.1-1.9C282.5,155.7,291.4,133.4,287.2,128.1z"/>
 	</g>
 </g>
@@ -700,7 +668,16 @@
       
       <a href="/posts/2026-04-03/backing-up-postgresql-with-plakar/" class="group/link flex items-stretch gap-3 rounded-lg border border-neutral-200 hover:bg-neutral-100 hover:border-neutral-300 p-3 no-underline">
         
-          <img src="/posts/2026-04-03/backing-up-postgresql-with-plakar/featured.png" alt="Backing up PostgreSQL with Plakar" class="w-20 h-20 object-cover rounded-md shrink-0">
+          <img
+      src="/posts/2026-04-03/backing-up-postgresql-with-plakar/featured_hu_8fe9aa7111efd89e.webp"
+      
+      width="160"
+      height="160"
+      alt="Backing up PostgreSQL with Plakar"
+      class="w-20 h-20 object-cover rounded-md shrink-0"
+      loading="lazy"
+      decoding="async"
+      >
         
         <div class="flex flex-col gap-1 justify-center">
           
@@ -721,7 +698,16 @@
       
       <a href="/posts/2026-02-18/backing-up-kubernetes-clusters-with-plakar/" class="group/link flex items-stretch gap-3 rounded-lg border border-neutral-200 hover:bg-neutral-100 hover:border-neutral-300 p-3 no-underline">
         
-          <img src="/posts/2026-02-18/backing-up-kubernetes-clusters-with-plakar/featured.png" alt="Backing up kubernetes clusters with Plakar" class="w-20 h-20 object-cover rounded-md shrink-0">
+          <img
+      src="/posts/2026-02-18/backing-up-kubernetes-clusters-with-plakar/featured_hu_265b319c5f38bb61.webp"
+      
+      width="160"
+      height="107"
+      alt="Backing up kubernetes clusters with Plakar"
+      class="w-20 h-20 object-cover rounded-md shrink-0"
+      loading="lazy"
+      decoding="async"
+      >
         
         <div class="flex flex-col gap-1 justify-center">
           
@@ -1000,7 +986,16 @@
       
       <a href="/posts/2026-04-03/backing-up-postgresql-with-plakar/" class="group/link flex items-stretch gap-3 rounded-lg border border-neutral-200 hover:bg-neutral-100 hover:border-neutral-300 p-3 no-underline">
         
-          <img src="/posts/2026-04-03/backing-up-postgresql-with-plakar/featured.png" alt="Backing up PostgreSQL with Plakar" class="w-20 h-20 object-cover rounded-md shrink-0">
+          <img
+      src="/posts/2026-04-03/backing-up-postgresql-with-plakar/featured_hu_8fe9aa7111efd89e.webp"
+      
+      width="160"
+      height="160"
+      alt="Backing up PostgreSQL with Plakar"
+      class="w-20 h-20 object-cover rounded-md shrink-0"
+      loading="lazy"
+      decoding="async"
+      >
         
         <div class="flex flex-col gap-1 justify-center">
           
@@ -1021,7 +1016,16 @@
       
       <a href="/posts/2026-02-18/backing-up-kubernetes-clusters-with-plakar/" class="group/link flex items-stretch gap-3 rounded-lg border border-neutral-200 hover:bg-neutral-100 hover:border-neutral-300 p-3 no-underline">
         
-          <img src="/posts/2026-02-18/backing-up-kubernetes-clusters-with-plakar/featured.png" alt="Backing up kubernetes clusters with Plakar" class="w-20 h-20 object-cover rounded-md shrink-0">
+          <img
+      src="/posts/2026-02-18/backing-up-kubernetes-clusters-with-plakar/featured_hu_265b319c5f38bb61.webp"
+      
+      width="160"
+      height="107"
+      alt="Backing up kubernetes clusters with Plakar"
+      class="w-20 h-20 object-cover rounded-md shrink-0"
+      loading="lazy"
+      decoding="async"
+      >
         
         <div class="flex flex-col gap-1 justify-center">
           
@@ -1364,14 +1368,10 @@
                         <span class="w-4 h-4 flex items-center justify-center">
                           <span class="relative block icon"><?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 19.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-	 viewBox="0 0 304 182" style="enable-background:new 0 0 304 182;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:#252F3E;}
-	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:#FF9900;}
-</style>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	 viewBox="0 0 304 182" xml:space="preserve">
 <g>
-	<path class="st0" d="M86.4,66.4c0,3.7,0.4,6.7,1.1,8.9c0.8,2.2,1.8,4.6,3.2,7.2c0.5,0.8,0.7,1.6,0.7,2.3c0,1-0.6,2-1.9,3l-6.3,4.2
+	<path fill="#252F3E" d="M86.4,66.4c0,3.7,0.4,6.7,1.1,8.9c0.8,2.2,1.8,4.6,3.2,7.2c0.5,0.8,0.7,1.6,0.7,2.3c0,1-0.6,2-1.9,3l-6.3,4.2
 		c-0.9,0.6-1.8,0.9-2.6,0.9c-1,0-2-0.5-3-1.4C76.2,90,75,88.4,74,86.8c-1-1.7-2-3.6-3.1-5.9c-7.8,9.2-17.6,13.8-29.4,13.8
 		c-8.4,0-15.1-2.4-20-7.2c-4.9-4.8-7.4-11.2-7.4-19.2c0-8.5,3-15.4,9.1-20.6c6.1-5.2,14.2-7.8,24.5-7.8c3.4,0,6.9,0.3,10.6,0.8
 		c3.7,0.5,7.5,1.3,11.5,2.2v-7.3c0-7.6-1.6-12.9-4.7-16c-3.2-3.1-8.6-4.6-16.3-4.6c-3.5,0-7.1,0.4-10.8,1.3c-3.7,0.9-7.3,2-10.8,3.4
@@ -1393,9 +1393,9 @@
 		c2,1.9,5.7,3.8,11,5.5l14.2,4.5c7.2,2.3,12.4,5.5,15.5,9.6c3.1,4.1,4.6,8.8,4.6,14c0,4.3-0.9,8.2-2.6,11.6
 		c-1.8,3.4-4.2,6.4-7.3,8.8c-3.1,2.5-6.8,4.3-11.1,5.6C264.4,94.4,259.7,95.1,254.6,95.1z"/>
 	<g>
-		<path class="st1" d="M273.5,143.7c-32.9,24.3-80.7,37.2-121.8,37.2c-57.6,0-109.5-21.3-148.7-56.7c-3.1-2.8-0.3-6.6,3.4-4.4
+		<path fill="#FF9900" fill-rule="evenodd" clip-rule="evenodd" d="M273.5,143.7c-32.9,24.3-80.7,37.2-121.8,37.2c-57.6,0-109.5-21.3-148.7-56.7c-3.1-2.8-0.3-6.6,3.4-4.4
 			c42.4,24.6,94.7,39.5,148.8,39.5c36.5,0,76.6-7.6,113.5-23.2C274.2,133.6,278.9,139.7,273.5,143.7z"/>
-		<path class="st1" d="M287.2,128.1c-4.2-5.4-27.8-2.6-38.5-1.3c-3.2,0.4-3.7-2.4-0.8-4.5c18.8-13.2,49.7-9.4,53.3-5
+		<path fill="#FF9900" fill-rule="evenodd" clip-rule="evenodd" d="M287.2,128.1c-4.2-5.4-27.8-2.6-38.5-1.3c-3.2,0.4-3.7-2.4-0.8-4.5c18.8-13.2,49.7-9.4,53.3-5
 			c3.6,4.5-1,35.4-18.6,50.2c-2.7,2.3-5.3,1.1-4.1-1.9C282.5,155.7,291.4,133.4,287.2,128.1z"/>
 	</g>
 </g>
@@ -1955,7 +1955,16 @@
         </div>
         <div class="p-4">
           <div class="aspect-video overflow-hidden rounded-sm">
-            <img src="/posts/2026-01-11/researching-a-postgresql-viewer-for-plakar/featured.png" alt="Researching a PostgreSQL viewer for Plakar" class="w-full h-full object-cover">
+            <img
+      src="/posts/2026-01-11/researching-a-postgresql-viewer-for-plakar/featured_hu_4106689b14caeea8.webp"
+      srcset="/posts/2026-01-11/researching-a-postgresql-viewer-for-plakar/featured_hu_4106689b14caeea8.webp 480w, /posts/2026-01-11/researching-a-postgresql-viewer-for-plakar/featured_hu_c8328ce7be176f30.webp 680w, /posts/2026-01-11/researching-a-postgresql-viewer-for-plakar/featured_hu_169d5b37241eddef.webp 1024w" sizes="(min-width: 1024px) 680px, 100vw"
+      width="480"
+      height="480"
+      alt="Researching a PostgreSQL viewer for Plakar"
+      class="w-full h-full object-cover"
+      loading="eager"
+      decoding="async"
+      fetchpriority="high">
           </div>
         </div>
       </div>
@@ -2070,7 +2079,16 @@
           <div class="flex items-start gap-4">
             
             
-              <img src="/img/team/jcastets.png" alt="Julien Castets" class="w-14 h-14 rounded-full aspect-square object-cover shrink-0">
+              <img
+      src="/img/team/jcastets_hu_d676a8a1ab913fa6.webp"
+      srcset="/img/team/jcastets_hu_d676a8a1ab913fa6.webp 56w, /img/team/jcastets_hu_db3d32459776a97e.webp 112w" sizes="auto"
+      width="56"
+      height="56"
+      alt="Julien Castets"
+      class="w-14 h-14 rounded-full aspect-square object-cover shrink-0"
+      loading="lazy"
+      decoding="async"
+      >
             
             <div class="flex flex-col gap-1">
               <span class="text-sm font-semibold text-neutral-900">Julien Castets</span>
@@ -2097,28 +2115,40 @@
     class="my-0 rounded-md"
     loading="lazy"
     decoding="async"
-    fetchpriority="low"
+    fetchpriority="auto"
     alt="Plakar UI screenshot"
-    src="./plakar-ui.png"
-    ></figure>
+    width="3598"
+    height="2022"
+    src="/posts/2026-01-11/researching-a-postgresql-viewer-for-plakar/plakar-ui_hu_14c761a41ef7343b.webp"
+    srcset="/posts/2026-01-11/researching-a-postgresql-viewer-for-plakar/plakar-ui_hu_14c761a41ef7343b.webp 400w, /posts/2026-01-11/researching-a-postgresql-viewer-for-plakar/plakar-ui_hu_f781f54be9c84d9e.webp 800w, /posts/2026-01-11/researching-a-postgresql-viewer-for-plakar/plakar-ui_hu_630ccd19096e6173.webp 1200w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/posts/2026-01-11/researching-a-postgresql-viewer-for-plakar/plakar-ui_hu_da62d4c3c0e45f10.webp"></figure>
 <p>When browsing the files inside a snapshot, you can preview text files, images,
 videos, PDFs, and audio files directly in the UI.</p>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
     decoding="async"
-    fetchpriority="low"
+    fetchpriority="auto"
     alt="Plakar UI file preview screenshot"
-    src="./plakar-ui-preview-text.png"
-    ></figure>
+    width="3598"
+    height="2026"
+    src="/posts/2026-01-11/researching-a-postgresql-viewer-for-plakar/plakar-ui-preview-text_hu_49c21eee3a6ee81b.webp"
+    srcset="/posts/2026-01-11/researching-a-postgresql-viewer-for-plakar/plakar-ui-preview-text_hu_49c21eee3a6ee81b.webp 400w, /posts/2026-01-11/researching-a-postgresql-viewer-for-plakar/plakar-ui-preview-text_hu_60f8fe591788381c.webp 800w, /posts/2026-01-11/researching-a-postgresql-viewer-for-plakar/plakar-ui-preview-text_hu_b3203865cddded03.webp 1200w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/posts/2026-01-11/researching-a-postgresql-viewer-for-plakar/plakar-ui-preview-text_hu_74f77a16e6d55855.webp"></figure>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
     decoding="async"
-    fetchpriority="low"
+    fetchpriority="auto"
     alt="Plakar UI PDF preview screenshot"
-    src="./plakar-ui-preview-pdf.png"
-    ></figure>
+    width="3600"
+    height="2020"
+    src="/posts/2026-01-11/researching-a-postgresql-viewer-for-plakar/plakar-ui-preview-pdf_hu_3e742bb6ecfc89b9.webp"
+    srcset="/posts/2026-01-11/researching-a-postgresql-viewer-for-plakar/plakar-ui-preview-pdf_hu_3e742bb6ecfc89b9.webp 400w, /posts/2026-01-11/researching-a-postgresql-viewer-for-plakar/plakar-ui-preview-pdf_hu_5e7f7661ec3a09d0.webp 800w, /posts/2026-01-11/researching-a-postgresql-viewer-for-plakar/plakar-ui-preview-pdf_hu_80cd3e89ba47d670.webp 1200w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/posts/2026-01-11/researching-a-postgresql-viewer-for-plakar/plakar-ui-preview-pdf_hu_32c9860b1e92d950.webp"></figure>
 <p>This is extremely handy when you want to quickly inspect the contents of a
 backup without restoring an entire snapshot to local disk, especially when you
 don&rsquo;t know which snapshot contains the file you&rsquo;re looking for.</p>
@@ -2151,10 +2181,14 @@ database backup and run SQL queries against it.</p>
     class="my-0 rounded-md"
     loading="lazy"
     decoding="async"
-    fetchpriority="low"
+    fetchpriority="auto"
     alt="Plakar UI screenshot showing PostgreSQL can&rsquo;t be previewed"
-    src="./plakar-ui-unknown-viewer.png"
-    ></figure>
+    width="1732"
+    height="470"
+    src="/posts/2026-01-11/researching-a-postgresql-viewer-for-plakar/plakar-ui-unknown-viewer_hu_ae4347fca67d4040.webp"
+    srcset="/posts/2026-01-11/researching-a-postgresql-viewer-for-plakar/plakar-ui-unknown-viewer_hu_ae4347fca67d4040.webp 400w, /posts/2026-01-11/researching-a-postgresql-viewer-for-plakar/plakar-ui-unknown-viewer_hu_4f54a82d5f3d4e9d.webp 800w, /posts/2026-01-11/researching-a-postgresql-viewer-for-plakar/plakar-ui-unknown-viewer_hu_c4a44e08acde418f.webp 1200w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/posts/2026-01-11/researching-a-postgresql-viewer-for-plakar/plakar-ui-unknown-viewer_hu_c4a44e08acde418f.webp"></figure>
 <p>What if we provided a PostgreSQL viewer directly inside the Plakar UI? You could
 connect to a snapshot, run SQL queries, and preview the results without
 restoring the full database, in the same way you can preview text files or
@@ -2252,10 +2286,14 @@ Kloset store.</p>
     class="my-0 rounded-md"
     loading="lazy"
     decoding="async"
-    fetchpriority="low"
+    fetchpriority="auto"
     alt="Plakar mount screenshot"
-    src="./plakar-mount.png"
-    ></figure>
+    width="1738"
+    height="171"
+    src="/posts/2026-01-11/researching-a-postgresql-viewer-for-plakar/plakar-mount_hu_e336b13e7b50d17a.webp"
+    srcset="/posts/2026-01-11/researching-a-postgresql-viewer-for-plakar/plakar-mount_hu_e336b13e7b50d17a.webp 400w, /posts/2026-01-11/researching-a-postgresql-viewer-for-plakar/plakar-mount_hu_a3eabe0912ce2fd2.webp 800w, /posts/2026-01-11/researching-a-postgresql-viewer-for-plakar/plakar-mount_hu_8a5dae6d830d34d4.webp 1200w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/posts/2026-01-11/researching-a-postgresql-viewer-for-plakar/plakar-mount_hu_8a5dae6d830d34d4.webp"></figure>
 <p>It seems like the perfect fit for our PostgreSQL viewer: we could mount the
 snapshot containing the PostgreSQL data files, and run PostgreSQL directly on
 top of that mount point. Since files are fetched on-demand, only the data that
@@ -2916,10 +2954,12 @@ solution production-ready, but the initial experiments are encouraging.</p>
 
 
   <script>
-    mediumZoom(document.querySelectorAll(".prose img:not(.nozoom)"), {
-      margin: 24,
-      background: "rgba(0,0,0,0.5)",
-      scrollOffset: 0,
+    document.addEventListener("DOMContentLoaded", function () {
+      mediumZoom(document.querySelectorAll(".prose img:not(.nozoom)"), {
+        margin: 24,
+        background: "rgba(0,0,0,0.5)",
+        scrollOffset: 0,
+      });
     });
   </script>
 
