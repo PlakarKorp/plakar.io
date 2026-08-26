@@ -30,7 +30,7 @@
   {{ with $metaDescription }}
     <meta name="description" content="{{ . | plainify }}">
   {{ end }}
-  {{ with  .Params.Tags | default .Site.Params.keywords }}
+  {{ with .Params.seo_tags | default .Params.Tags | default .Site.Params.keywords }}
     <meta name="keywords" content="{{ range . }}{{ . }},{{ end }}">
   {{ end }}
   {{ with .Site.Params.robots }}
