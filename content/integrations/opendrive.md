@@ -47,8 +47,6 @@ links:
 edition:
   - community
 
-opensource: true
-
 stage: stable
 
 author:

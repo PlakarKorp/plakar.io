@@ -8,7 +8,7 @@
 {{ $destConnectors := where $allIntegrations "Params.categories" "intersect" (slice "destination") }}
 {{ $storageConnectors := where $allIntegrations "Params.categories" "intersect" (slice "storage") }}
 {{ $connectors := union $sourceConnectors $destConnectors }}
-{{ $openSourceIntegrations := where $allIntegrations "Params.opensource" true }}
+{{ $newIntegrations := where $allIntegrations "Params.new" true }}
 
 {{ $plakarLogo := resources.Get "img/logos/plakar-logo-icon.svg" }}
 
@@ -58,15 +58,15 @@
         </button>
 
         <!-- Card 2 -->
-        <button type="button" data-stat="opensource" title="Filter: Community edition"
+        <button type="button" data-stat="all" title="Browse all integrations"
           class="{{ $statCard }} md:transform-[translateY(-10px)] md:hover:transform-[translateY(-16px)]">
-          <span class="{{ $statNum }}">
-            {{ div (mul (len $openSourceIntegrations) 100) (len $allIntegrations) }}%
-          </span>
-          <span class="{{ $statLabel }}">Open Source</span>
-          <span class="text-xs text-neutral-500">
-            {{ len $openSourceIntegrations }} of {{ len $allIntegrations }} integrations
-          </span>
+          <span class="{{ $statNum }}">{{ len $allIntegrations }}</span>
+          <span class="{{ $statLabel }}">Integrations &amp; counting</span>
+          {{ with len $newIntegrations }}
+            <span class="text-xs text-neutral-500">
+              {{ . }} new integration{{ if ne . 1 }}s{{ end }} added recently
+            </span>
+          {{ end }}
         </button>
 
         <!-- Card 3 -->

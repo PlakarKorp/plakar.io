@@ -39,8 +39,6 @@ links:
 edition:
   - control-plane
 
-opensource: false
-
 stage: stable
 
 author:

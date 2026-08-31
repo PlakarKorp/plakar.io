@@ -42,8 +42,6 @@ edition:
   - community
   - control-plane
 
-opensource: true
-
 stage: beta
 
 author:
