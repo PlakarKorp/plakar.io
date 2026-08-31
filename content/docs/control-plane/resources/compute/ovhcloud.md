@@ -75,6 +75,12 @@ flowchart TD
 The following settings are available when configuring both source and
 destination apps.
 
+> [!NOTE]+
+>
+> Currently the integration discovers several values for endpoints. You can
+> select the compute instance UUID as the specific endpoint value incase you get
+> configuration errors from the endpoint being ambiguous.
+
 - **OpenStack Application Credential Id**: Required. Identifies the OpenStack
   application credential used to authenticate with your OVHcloud Public Cloud
   project.
