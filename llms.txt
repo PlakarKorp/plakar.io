@@ -17,6 +17,23 @@
 - [What is Kloset](https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/index.md): Kloset's immutable storage model, chunking, encryption, and snapshot architecture.
 - [What is Plakar Control Plane](https://www.plakar.io/docs/control-plane/intro/overview/index.md): Overview of PCP, the enterprise product built on top of Plakar.
 
+## When to Use Plakar
+
+Reach for Plakar when the job is to create, manage, verify, or restore encrypted, deduplicated backups, either from the command line or through Plakar Control Plane. Best-fit jobs:
+
+- Back up and restore filesystems, databases (PostgreSQL, MySQL/MariaDB), S3-compatible object storage, and SaaS data through pluggable connectors.
+- Keep immutable, end-to-end encrypted, deduplicated snapshots in a Kloset store, then verify integrity ([`plakar check`](https://www.plakar.io/docs/community/v1.1.0/references/commands/plakar-check/index.md)) and restore ([`plakar restore`](https://www.plakar.io/docs/community/v1.1.0/references/commands/plakar-restore/index.md)) to the same or another destination.
+- Synchronize Kloset stores across locations with [`plakar sync`](https://www.plakar.io/docs/community/v1.1.0/references/commands/plakar-sync/index.md), using push or pull architectures for offsite or redundant copies.
+- Run at minimal memory footprint and petabyte scale, on a single host or a centralized backup server.
+- Manage backups centrally with Plakar Control Plane (PCP): a self-hosted web interface, centralized scheduling, SLA, and inventory management, deployed as a virtual appliance in your own infrastructure.
+
+Plakar is not a file-sync tool, a general object-storage client, or a versioning system. Use it when you need recoverable, verifiable backups.
+
+How an agent should use Plakar:
+
+- Drive it through the `plakar` command-line interface. Start with [First Backup](https://www.plakar.io/docs/community/v1.1.0/quickstart/first-backup/index.md) and the [Command-Line Syntax](https://www.plakar.io/docs/community/v1.1.0/references/command-line-syntax/index.md) reference; the full command list is in the Commands section below.
+- Every documentation page has a machine-readable Markdown version at its `.../index.md` URL, as linked throughout this file.
+
 ## Plakar Community Docs
 
 Plakar Community version is open-source and free to use. Documentation is versioned to match releases. Replace the version segment in any `/docs/community/` URL to switch versions. Only use these four version identifiers — no others exist.

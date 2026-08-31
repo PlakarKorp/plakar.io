@@ -14,4 +14,8 @@ Control Plane supports the following security resources:
 
 
 
+## [HashiCorp Vault](https://stg.plakar.io/docs/control-plane/resources/security/vault/index.md)
+
+
+
 

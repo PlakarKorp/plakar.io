@@ -97,6 +97,7 @@ required to use each one as a source, store, or destination.
 ## [Security](https://stg.plakar.io/docs/control-plane/resources/security/index.md)
 
 - [Scaleway Secret Manager](https://stg.plakar.io/docs/control-plane/resources/security/scaleway-sm/index.md): How to configure a Scaleway Secret Manager resource in Plakar Control Plane.
+- [HashiCorp Vault](https://stg.plakar.io/docs/control-plane/resources/security/vault/index.md): How to configure a HashiCorp Vault resource in Plakar Control Plane.
 
 
 ## [Database](https://stg.plakar.io/docs/control-plane/resources/database/index.md)

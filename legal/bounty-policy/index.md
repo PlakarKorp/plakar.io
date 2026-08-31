@@ -94,27 +94,55 @@ French law, all submissions must follow a structured validation workflow.
 
 ### For Feature Contributions and Integrations
 
-1. **Notification (Optional):** Before developing major features or
-   integrations, contributors may notify the team by sending a brief functional
-   outline or issue draft to bounty@plakar.io to check roadmap alignment. Plakar
-   SAS does not guarantee exclusivity, and multiple participants may work on the
-   same task independently.
-2. **Implementation:** Submit a Pull Request (PR) to the relevant public
-   repository, referencing the specific targeted item from the Bounty Roadmap
-   available on our website ([the Bounty Roadmap][bounty-roadmap]).
-3. **Review and Merge:** The Plakar maintainer team will review the code.
-4. **Claiming the Reward (Claim):** Once the PR is approved and merged, the
-   contributor must explicitly claim their bounty by sending an email to
-   bounty@plakar.io. The reward is strictly attributed to the first valid,
-   complete, and merged Pull Request.
+1. **Notification:** Before starting work on a feature or integration, you **must**
+   write to [bounty@plakar.io](mailto:bounty@plakar.io) with a short functional
+   outline, or a draft issue, naming the item you intend to take from the
+   [Bounty Roadmap][bounty-roadmap]. We confirm that the item is eligible, that your
+   approach fits, and agree the reward with you before any code is written. Plakar
+   SAS does not grant exclusivity: several contributors may work on the same item
+   independently, and the reward goes to whoever lands first.
+
+2. **Implementation:** Develop in a repository you own, referencing the targeted
+   item from the [Bounty Roadmap][bounty-roadmap] in your commits and description.
+
+3. **Review and Merge:** Open a pull request against the relevant Plakar
+   repository. The maintainer team reviews it against our architectural guidelines
+   and code quality standards. Expect review comments, and expect to address them;
+   an agreed reward does not commit us to merging work that does not meet those
+   standards.
+
+4. **Claim:** Once your pull request is approved and merged, claim the reward by
+   writing to [bounty@plakar.io](mailto:bounty@plakar.io). The reward is attributed
+   strictly to the first valid, complete, and merged pull request for that item.
+
+Unsolicited pull requests against roadmap items are welcome as contributions, but
+carry no reward: we do not pay for code we did not agree to in advance.
 
 ### For Bug and Vulnerability Reports
 
-1. **Reporting:** Send a detailed description along with reproduction steps
-   securely via email to both security@plakar.io and bounty@plakar.io.
-2. **Triage:** The engineering team will assess the impact and verify if the
-   vulnerability meets the Critical or High classification criteria within five
-   business days.
+1. **Notification:** Verify that the issue affects users within the limits of our
+   [threat model](/legal/threat-model). If it does, write to
+   [security@plakar.io](mailto:security@plakar.io) and summarize what you found and
+   what it allows (for example: _"I found an issue that lets me do X without
+   holding Y"_). Give us only what we need to gauge the severity and decide whether
+   the issue is worth investigating — **no details and no reproducer at this
+   stage**.
+
+2. **Triage:** Our team will come back to you within five business days. We will
+   either explain why the details are not needed — the issue may be a duplicate,
+   already fixed, or awaiting a bugfix release — or open an exchange and ask you for
+   a full description and reproduction steps so we can confirm the issue is
+   legitimate.
+
+3. **Exchange:** Once the submission is confirmed, we assign a severity against
+   CVSS and agree any reward with you directly. Critical and High findings are
+   eligible for a financial reward; Medium and Low findings receive public
+   recognition and our thanks. We will keep you involved through analysis and
+   remediation, coordinate disclosure with you, and credit you when the fix is
+   published, unless you would rather we did not.
+
+Public disclosure before we have explicitly authorized it remains strictly
+prohibited at every stage and results in immediate disqualification.
 
 ### Corporate Record Keeping
 
