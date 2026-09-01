@@ -36,7 +36,11 @@ seo_tags:
   - database snapshot
   - deduplication
 
-links: []
+links:
+  - type: community
+    url: /docs/community/main/integrations/postgres/
+  - type: control-plane
+    url: /docs/control-plane/resources/database/postgres/
 
 edition:
   - community
@@ -44,7 +48,7 @@ edition:
 
 opensource: true
 
-stage: beta
+stage: stable
 
 author:
   - type: official
