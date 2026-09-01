@@ -59,7 +59,7 @@ flowchart TD
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-## Shared Configuration
+## Source Configuration
 
 The following settings are available when configuring a source app.
 
