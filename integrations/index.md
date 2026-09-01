@@ -4,6 +4,10 @@
 
 
 
+## [Plakar Control Plane](https://www.plakar.io/integrations/pcp/index.md)
+
+
+
 ## [Microsoft SQL Server](https://www.plakar.io/integrations/mssql/index.md)
 
 

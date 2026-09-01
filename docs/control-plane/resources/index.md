@@ -104,6 +104,7 @@ required to use each one as a source, store, or destination.
 
 - [Microsoft SQL Server](https://www.plakar.io/docs/control-plane/resources/database/mssql/index.md): How to configure a Microsoft SQL Server resource in Plakar Control Plane.
 - [Microsoft Active Directory](https://www.plakar.io/docs/control-plane/resources/database/msad/index.md): How to configure a Microsoft Active Directory resource in Plakar Control Plane.
+- [Plakar Control Plane](https://www.plakar.io/docs/control-plane/resources/database/pcp/index.md): How to configure a Plakar Control Plane (PCP) resource in Plakar Control Plane.
 
 
 ## [Hypervisor](https://www.plakar.io/docs/control-plane/resources/hypervisor/index.md)

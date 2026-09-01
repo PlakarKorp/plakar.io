@@ -18,4 +18,8 @@ Plakar Control Plane supports the following database resources:
 
 
 
+## [Plakar Control Plane](https://www.plakar.io/docs/control-plane/resources/database/pcp/index.md)
+
+
+
 
