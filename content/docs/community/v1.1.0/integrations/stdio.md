@@ -1,7 +1,7 @@
 ---
 title: "STDIO"
 date: "2026-07-02T00:00:00Z"
-weight: 23
+weight: 22
 summary: "Back up from stdin and restore to stdout or stderr with Plakar."
 ---
 
