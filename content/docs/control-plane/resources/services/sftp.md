@@ -1,8 +1,10 @@
 ---
 title: "SFTP"
 date: "2026-06-18T00:00:00Z"
-weight: 2
+weight: 1
 summary: "How to configure SFTP resource in Plakar Control Plane."
+aliases:
+  - /docs/control-plane/resources/compute/sftp/
 ---
 
 # SFTP
@@ -25,10 +27,10 @@ adding an SFTP resource.
 When using a self-managed inventory, you must register your resources manually
 or import them from a CSV file.
 
-To add an SFTP machine as a resource, use **Compute** as the `class`. SFTP
-resources do not require a subclass. For the endpoint, use the IP address or
-hostname of the target machine. See [resources documentation](../../resources)
-for more information on how to set up resources on a self-managed inventory.
+To add an SFTP machine as a resource, use **Services** as the `class` and
+**Sftp** as the `subclass`. For the endpoint, use the IP address or hostname of
+the target machine. See [resources documentation](../../resources) for more
+information on how to set up resources on a self-managed inventory.
 
 #### Backup flow
 

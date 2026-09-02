@@ -49,7 +49,7 @@ edition:
   - community
   - control-plane
 
-stage: rc
+stage: stable
 
 author:
   - type: partner

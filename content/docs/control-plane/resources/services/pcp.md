@@ -1,10 +1,12 @@
 ---
 title: "Plakar Control Plane"
 date: "2026-08-24T00:00:00Z"
-weight: 3
+weight: 2
 summary:
   "How to configure a Plakar Control Plane (PCP) resource in Plakar Control
   Plane."
+aliases:
+  - /docs/control-plane/resources/database/pcp/
 ---
 
 # Plakar Control Plane
