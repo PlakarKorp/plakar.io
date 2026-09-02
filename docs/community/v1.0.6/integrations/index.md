@@ -66,4 +66,8 @@ Below is a list of links to the documentation for each supported integration.
 
 
 
+## [FTP](https://www.plakar.io/docs/community/v1.0.6/integrations/ftp/index.md)
+
+
+
 

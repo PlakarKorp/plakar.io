@@ -16,6 +16,10 @@ following service resources:
 
 
 
+## [FTP](https://www.plakar.io/docs/control-plane/resources/services/ftp/index.md)
+
+
+
 ## [Plakar Control Plane](https://www.plakar.io/docs/control-plane/resources/services/pcp/index.md)
 
 

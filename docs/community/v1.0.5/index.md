@@ -39,6 +39,7 @@
 - [OneDrive](https://www.plakar.io/docs/community/v1.0.5/integrations/onedrive/index.md): Back up and restore your OneDrive with Plakar, and host Kloset stores in OneDrive.
 - [OpenDrive](https://www.plakar.io/docs/community/v1.0.5/integrations/opendrive/index.md): Back up and restore OpenDrive data with Plakar, and host Kloset stores in OpenDrive.
 - [Proton Drive](https://www.plakar.io/docs/community/v1.0.5/integrations/protondrive/index.md): Back up and restore your Proton Drive with Plakar, and host Kloset stores in Proton Drive.
+- [FTP](https://www.plakar.io/docs/community/v1.0.5/integrations/ftp/index.md): Back up remote directories over FTP, and restore snapshots to FTP destinations.
 
 
 ## [Explanations](https://www.plakar.io/docs/community/v1.0.5/explanations/index.md)

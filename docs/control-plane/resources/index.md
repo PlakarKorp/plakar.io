@@ -115,6 +115,7 @@ required to use each one as a source, store, or destination.
 ## [Services](https://www.plakar.io/docs/control-plane/resources/services/index.md)
 
 - [SFTP](https://www.plakar.io/docs/control-plane/resources/services/sftp/index.md): How to configure SFTP resource in Plakar Control Plane.
+- [FTP](https://www.plakar.io/docs/control-plane/resources/services/ftp/index.md): How to configure an FTP resource in Plakar Control Plane.
 - [Plakar Control Plane](https://www.plakar.io/docs/control-plane/resources/services/pcp/index.md): How to configure a Plakar Control Plane (PCP) resource in Plakar Control Plane.
 
 
