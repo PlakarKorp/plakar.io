@@ -35,7 +35,11 @@ seo_tags:
   - FTP versioning
   - immutable FTP backups
 
-links: []
+links:
+  - type: community
+    url: /docs/community/main/integrations/ftp/
+  - type: control-plane
+    url: /docs/control-plane/resources/services/ftp/
 
 edition:
   - community
