@@ -27,6 +27,7 @@ secret providers.
 - [HashiCorp Vault](https://www.plakar.io/docs/control-plane/infrastructure/secret-providers/vault/index.md): How to configure and use HashiCorp Vault as a secret provider in Plakar Control Plane.
 - [Scaleway Secret Manager](https://www.plakar.io/docs/control-plane/infrastructure/secret-providers/scaleway/index.md): How to configure and use Scaleway Secret Manager as a secret provider in Plakar Control Plane.
 - [GCP Secret Manager](https://www.plakar.io/docs/control-plane/infrastructure/secret-providers/gcp/index.md): How to configure and use GCP Secret Manager as a secret provider in Plakar Control Plane.
+- [OVHcloud Secret Manager](https://www.plakar.io/docs/control-plane/infrastructure/secret-providers/ovhcloud/index.md): How to configure and use OVHcloud Secret Manager as a secret provider in Plakar Control Plane.
 
 
 ## [Edges](https://www.plakar.io/docs/control-plane/infrastructure/edges/index.md)

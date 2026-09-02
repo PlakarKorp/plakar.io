@@ -4,6 +4,18 @@
 
 
 
+## [AWS](https://www.plakar.io/integrations/aws/index.md)
+
+
+
+## [Scaleway](https://www.plakar.io/integrations/scaleway/index.md)
+
+
+
+## [OVHcloud](https://www.plakar.io/integrations/ovhcloud/index.md)
+
+
+
 ## [Plakar Control Plane](https://www.plakar.io/integrations/pcp/index.md)
 
 

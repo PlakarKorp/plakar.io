@@ -95,7 +95,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-05-11T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-09-01T09:36:55+03:00">
+    <meta property="article:modified_time" content="2026-09-02T05:19:05+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -253,12 +253,12 @@
     "dateCreated": "2026-05-11T00:00:00\u002b00:00",
     "datePublished": "2026-05-11T00:00:00\u002b00:00",
     
-    "dateModified": "2026-09-01T09:36:55\u002b03:00",
+    "dateModified": "2026-09-02T05:19:05\u002b02:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/apps/stores/",
-    "wordCount": "518"
+    "wordCount": "541"
   }]
   </script>
 
@@ -299,7 +299,7 @@
 
 
 
-<script src="/js/compiled/bundle.min.2d06d6ce5a251d2c4a8288e7d550efb768518b03fe67ff5a1c7b35334ced61b1.js" defer></script>
+<script src="/js/compiled/bundle.min.c180e0afc0538e5f8631a936c6a18c2beaf11822936268cf8351f90bb3317eb8.js" defer></script>
 
   
 
@@ -1172,6 +1172,8 @@
   
     
   
+    
+  
   
 
   
@@ -1212,6 +1214,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         GCP Secret Manager
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/infrastructure/secret-providers/ovhcloud/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        OVHcloud Secret Manager
       </a>
     
   
@@ -1636,6 +1647,8 @@
   
     
   
+    
+  
   
 
   
@@ -1676,6 +1689,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         VSS
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/resources/compute/ovhcloud/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        OVHcloud Compute
       </a>
     
   
@@ -4038,6 +4060,8 @@
   
     
   
+    
+  
   
 
   
@@ -4078,6 +4102,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         GCP Secret Manager
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/infrastructure/secret-providers/ovhcloud/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        OVHcloud Secret Manager
       </a>
     
   
@@ -4502,6 +4535,8 @@
   
     
   
+    
+  
   
 
   
@@ -4542,6 +4577,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         VSS
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/resources/compute/ovhcloud/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        OVHcloud Compute
       </a>
     
   
@@ -6366,7 +6410,11 @@ appropriate one after choosing the integration.</p>
 it can be accessed, such as Amazon S3 Glacier</li>
 </ul>
 <p>The storage type is used by the policies engine to infer the nature of the
-store. It does not affect the underlying storage itself.</p>
+store. It does not affect the underlying storage itself. For S3 stores,
+archival storage is configured separately through the resource&rsquo;s Storage
+Class setting. See
+<a href="../../resources/object-storage/s3#cold-storage-on-amazon-s3-glacier" >Cold Storage on Amazon S3 Glacier</a>
+for details.</p>
 <p>Finally, provide the configuration and credentials required for the selected
 resource. See the <a href="../../resources" >resources documentation</a> for the required
 fields. If a <a href="../../administration/configuration-bundles" >configuration bundle</a>
@@ -6555,7 +6603,7 @@ and managing tasks and schedules.</p>
   
   <div class="flex items-center justify-between text-xs text-neutral-400">
     
-      <span>Last updated: September 1, 2026</span>
+      <span>Last updated: September 2, 2026</span>
     
     
       <a href="https://github.com/PlakarKorp/plakar.io/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">

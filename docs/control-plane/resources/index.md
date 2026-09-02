@@ -92,6 +92,7 @@ required to use each one as a source, store, or destination.
 - [SFTP](https://www.plakar.io/docs/control-plane/resources/compute/sftp/index.md): How to configure SFTP resource in Plakar Control Plane.
 - [VMware Compute](https://www.plakar.io/docs/control-plane/resources/compute/vmware/index.md): How to configure a VMware compute resource in Plakar Control Plane.
 - [VSS](https://www.plakar.io/docs/control-plane/resources/compute/vss/index.md): How to configure a Volume Shadow Copy Service (VSS) resource in Plakar Control Plane.
+- [OVHcloud Compute](https://www.plakar.io/docs/control-plane/resources/compute/ovhcloud/index.md): How to configure an OVHcloud Compute resource in Plakar Control Plane.
 
 
 ## [Security](https://www.plakar.io/docs/control-plane/resources/security/index.md)
