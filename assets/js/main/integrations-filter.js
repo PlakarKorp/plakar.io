@@ -182,10 +182,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (stat === "all") {
         resetFilters();
       } else {
-        if (stat === "opensource") {
-          state.platform = "community";
-          setPlatformActive("community");
-        }
         if (stat === "storage") {
           state.type = "storage";
           if (typeSelect) typeSelect.value = "storage";

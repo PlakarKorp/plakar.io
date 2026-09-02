@@ -43,8 +43,6 @@ links:
 edition:
   - community
 
-opensource: true
-
 stage: beta
 
 author:
