@@ -117,10 +117,10 @@ This should print a list of plugin parameters. If instead you get a
 `nbdkit-vddk` needs the actual VMware VDDK libraries, which are distributed
 separately from Broadcom.
 
-Download the VMware Virtual Disk Development Kit (VDDK) tarball from the
-[Broadcom support portal](https://developer.broadcom.com/sdks/vmware-virtual-disk-development-kit-vddk/latest)
-for example, `VMware-vix-disklib-8.x.x-xxxxxxx.x86_64.tar.gz`. Transfer it to
-the NBD server (for example with `scp`), then extract and install it:
+The VDDK library can be found in your account at Broadcom. Download the VMware
+Virtual Disk Development Kit (VDDK) tarball, for example
+`VMware-vix-disklib-8.x.x-xxxxxxx.x86_64.tar.gz`. Transfer it to the NBD server
+(for example with `scp`), then extract and install it:
 
 ```bash
 tar xzf VMware-vix-disklib-*.tar.gz
