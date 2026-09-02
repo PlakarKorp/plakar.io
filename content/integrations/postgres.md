@@ -36,13 +36,23 @@ seo_tags:
   - database snapshot
   - deduplication
 
-links: []
+links:
+  - type: community
+    url: /docs/community/main/integrations/postgres/
+  - type: control-plane
+    url: /docs/control-plane/resources/database/postgres/
+  - type: custom
+    label: "Blog: Researching a PostgreSQL viewer for Plakar"
+    url: /posts/2026-01-11/researching-a-postgresql-viewer-for-plakar/
+    icon: ri/article-line
 
 edition:
   - community
   - control-plane
 
-stage: beta
+opensource: true
+
+stage: stable
 
 author:
   - type: official
