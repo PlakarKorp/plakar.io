@@ -92,6 +92,7 @@ required to use each one as a source, store, or destination.
 - [SFTP](https://stg.plakar.io/docs/control-plane/resources/compute/sftp/index.md): How to configure SFTP resource in Plakar Control Plane.
 - [VMware Compute](https://stg.plakar.io/docs/control-plane/resources/compute/vmware/index.md): How to configure a VMware compute resource in Plakar Control Plane.
 - [VSS](https://stg.plakar.io/docs/control-plane/resources/compute/vss/index.md): How to configure a Volume Shadow Copy Service (VSS) resource in Plakar Control Plane.
+- [OVHcloud Compute](https://stg.plakar.io/docs/control-plane/resources/compute/ovhcloud/index.md): How to configure an OVHcloud Compute resource in Plakar Control Plane.
 
 
 ## [Security](https://stg.plakar.io/docs/control-plane/resources/security/index.md)
@@ -104,6 +105,8 @@ required to use each one as a source, store, or destination.
 
 - [Microsoft SQL Server](https://stg.plakar.io/docs/control-plane/resources/database/mssql/index.md): How to configure a Microsoft SQL Server resource in Plakar Control Plane.
 - [Microsoft Active Directory](https://stg.plakar.io/docs/control-plane/resources/database/msad/index.md): How to configure a Microsoft Active Directory resource in Plakar Control Plane.
+- [Plakar Control Plane](https://stg.plakar.io/docs/control-plane/resources/database/pcp/index.md): How to configure a Plakar Control Plane (PCP) resource in Plakar Control Plane.
+- [PostgreSQL](https://stg.plakar.io/docs/control-plane/resources/database/postgres/index.md): How to configure a PostgreSQL resource in Plakar Control Plane.
 
 
 ## [Hypervisor](https://stg.plakar.io/docs/control-plane/resources/hypervisor/index.md)

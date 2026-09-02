@@ -47,6 +47,14 @@
 
 ## [Plakar Integrations](https://stg.plakar.io/integrations/index.md)
 
+- [AWS](https://stg.plakar.io/integrations/aws/index.md): Manage AWS resources and credentials from Plakar Control Plane. Discover  resources automatically as your AWS account changes, and manage secrets  through AWS Secrets Manager instead of scattering credentials across scripts  and tools.
+
+- [Scaleway](https://stg.plakar.io/integrations/scaleway/index.md): Manage Scaleway from Plakar Control Plane end to end. Discover Instances and Block Storage volumes automatically, manage secrets through Scaleway Secret Manager, and protect Instances, volumes, and the secrets themselves with encrypted, deduplicated backups and restores.
+
+- [OVHcloud](https://stg.plakar.io/integrations/ovhcloud/index.md): Manage OVHcloud Public Cloud from Plakar Control Plane end to end. Discover compute instances, block storage volumes, and object storage automatically, manage secrets through OVHcloud's own secret store, and protect resources with encrypted, deduplicated backups and restores.
+
+- [Plakar Control Plane](https://stg.plakar.io/integrations/pcp/index.md): Protect the Plakar Control Plane appliance against hardware failure, misconfiguration, or a full appliance replacement. Plakar backs up its own configuration and internal database into an encrypted, deduplicated Kloset snapshot.
+
 - [Microsoft SQL Server](https://stg.plakar.io/integrations/mssql/index.md): Protect Microsoft SQL Server against accidental deletion, ransomware, and failed maintenance without taking the database offline to back it up. Plakar captures a consistent snapshot of a live SQL Server installation and restores it with confidence, on the original server or a new one.
 
 - [Microsoft Active Directory](https://stg.plakar.io/integrations/msad/index.md): Protect Active Directory against the scenario replication can't fix: no  healthy Domain Controller left to recover from. Plakar captures encrypted  System State backups of Domain Controllers while they're healthy, ready to  bring Active Directory back after hardware failure, corruption, or ransomware.
@@ -76,8 +84,6 @@
 - [MySQL / MariaDB](https://stg.plakar.io/integrations/mysql/index.md): Protect your MySQL and MariaDB databases against data loss, accidental deletion, and misconfiguration. Plakar provides encrypted, deduplicated snapshots using the backup tools MySQL and MariaDB already ship with.
 
 - [PostgreSQL](https://stg.plakar.io/integrations/postgres/index.md): Protect your PostgreSQL databases against data loss, accidental deletion, and misconfiguration. Plakar provides encrypted, deduplicated snapshots using either logical or physical backups, restorable to any environment.
-
-- [CalDAV](https://stg.plakar.io/integrations/caldav/index.md): Backup and restore your calendar data from any CalDAV-compatible server using Plakar. Plakar creates encrypted, deduplicated, and verifiable backups of your scheduling data.
 
 - [Dropbox](https://stg.plakar.io/integrations/dropbox/index.md): Back up your Dropbox workloads with Plakar to protect against data loss, corruption, and ransomware. Immutable, encrypted, and restorable even offline and across environments.
 

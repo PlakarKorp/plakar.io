@@ -120,6 +120,40 @@ The following extra settings are available when configuring a store app.
 
 - **Kloset Passphrase**: The passphrase Plakar Control Plane uses to encrypt the
   store. This passphrase is required to access the store and must be kept safe.
+- **Storage Class**: The S3 storage class Plakar Control Plane uses when writing
+  backup data to the bucket. `STANDARD` is the default and keeps data
+  immediately accessible. `GLACIER` moves backup data into archival storage,
+  which lowers storage cost for backups that are rarely accessed. See
+  [Cold Storage on Amazon S3 Glacier](#cold-storage-on-amazon-s3-glacier) below.
+
+## Cold Storage on Amazon S3 Glacier
+
+Amazon S3 Glacier Flexible Retrieval is an archival storage class for data that
+does not need to be accessed immediately, such as backups. Setting a store's
+Storage Class to `GLACIER` moves its backup data into this archival tier,
+trading immediate accessibility for lower storage cost.
+
+Backup data, stored in the `packfiles` folder, is kept only in Glacier Flexible
+Retrieval. Snapshot metadata, such as the store configuration and state files
+under the `states` folder, is kept in Standard storage for browsing, alongside
+an archived copy in Glacier. This is why a store using Glacier can still be
+browsed: restore points and the directory structure of a snapshot remain
+visible. The content of backup data itself is not readable until it has been
+retrieved from archival storage, so previewing a file from the browse view is
+not possible.
+
+Plakar Control Plane does not currently trigger or manage Glacier retrievals. To
+restore a snapshot or a file archived on Glacier, you must request a restore of
+the `packfiles` folder from the AWS S3 console before retrying the operation in
+Plakar Control Plane. AWS offers different retrieval speeds for this: expedited
+retrievals complete in minutes at an extra cost, while bulk retrievals are free
+but take between 5 and 12 hours. Plakar Control Plane can only read the data to
+preview files or perform a restore once the retrieval has completed.
+
+When using Glacier, also set the store's
+[Storage Type](../../apps/stores#creating-a-store-app) to **Cold**. This does
+not change how data is stored, but lets the policies engine account for the
+archival nature of the store.
 
 ## Permissions
 

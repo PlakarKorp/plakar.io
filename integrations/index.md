@@ -4,6 +4,22 @@
 
 
 
+## [AWS](https://stg.plakar.io/integrations/aws/index.md)
+
+
+
+## [Scaleway](https://stg.plakar.io/integrations/scaleway/index.md)
+
+
+
+## [OVHcloud](https://stg.plakar.io/integrations/ovhcloud/index.md)
+
+
+
+## [Plakar Control Plane](https://stg.plakar.io/integrations/pcp/index.md)
+
+
+
 ## [Microsoft SQL Server](https://stg.plakar.io/integrations/mssql/index.md)
 
 
@@ -61,10 +77,6 @@
 
 
 ## [PostgreSQL](https://stg.plakar.io/integrations/postgres/index.md)
-
-
-
-## [CalDAV](https://stg.plakar.io/integrations/caldav/index.md)
 
 
 

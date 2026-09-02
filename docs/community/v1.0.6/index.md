@@ -48,7 +48,6 @@
 - [OneDrive](https://stg.plakar.io/docs/community/v1.0.6/integrations/onedrive/index.md): Back up and restore your OneDrive with Plakar, and host Kloset stores in OneDrive.
 - [OpenDrive](https://stg.plakar.io/docs/community/v1.0.6/integrations/opendrive/index.md): Back up and restore OpenDrive data with Plakar, and host Kloset stores in OpenDrive.
 - [Proton Drive](https://stg.plakar.io/docs/community/v1.0.6/integrations/protondrive/index.md): Back up and restore your Proton Drive with Plakar, and host Kloset stores in Proton Drive.
-- [CalDAV](https://stg.plakar.io/docs/community/v1.0.6/integrations/caldav/index.md): Back up and restore CalDAV calendars with Plakar.
 - [TAR](https://stg.plakar.io/docs/community/v1.0.6/integrations/tar/index.md): Import TAR archives into a Kloset store with Plakar.
 - [STDIO](https://stg.plakar.io/docs/community/v1.0.6/integrations/stdio/index.md): Back up from stdin and restore to stdout or stderr with Plakar.
 

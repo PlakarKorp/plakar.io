@@ -18,4 +18,12 @@ Plakar Control Plane supports the following database resources:
 
 
 
+## [Plakar Control Plane](https://stg.plakar.io/docs/control-plane/resources/database/pcp/index.md)
+
+
+
+## [PostgreSQL](https://stg.plakar.io/docs/control-plane/resources/database/postgres/index.md)
+
+
+
 

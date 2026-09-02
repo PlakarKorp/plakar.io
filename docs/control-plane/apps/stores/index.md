@@ -30,7 +30,11 @@ Next, select a **Storage Type**:
   it can be accessed, such as Amazon S3 Glacier
 
 The storage type is used by the policies engine to infer the nature of the
-store. It does not affect the underlying storage itself.
+store. It does not affect the underlying storage itself. For S3 stores,
+archival storage is configured separately through the resource's Storage
+Class setting. See
+[Cold Storage on Amazon S3 Glacier](../../resources/object-storage/s3#cold-storage-on-amazon-s3-glacier)
+for details.
 
 Finally, provide the configuration and credentials required for the selected
 resource. See the [resources documentation](../../resources) for the required

@@ -45,4 +45,8 @@ provider-specific instructions for your secret manager:
 
 
 
+## [OVHcloud Secret Manager](https://stg.plakar.io/docs/control-plane/infrastructure/secret-providers/ovhcloud/index.md)
+
+
+
 

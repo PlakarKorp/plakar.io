@@ -58,10 +58,6 @@ Below is a list of links to the documentation for each supported integration.
 
 
 
-## [CalDAV](https://stg.plakar.io/docs/community/v1.0.6/integrations/caldav/index.md)
-
-
-
 ## [TAR](https://stg.plakar.io/docs/community/v1.0.6/integrations/tar/index.md)
 
 

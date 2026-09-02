@@ -4,19 +4,23 @@
 Scaleway block storage resources represent persistent block volumes managed by
 Scaleway. Plakar Control Plane backs up block storages by triggering a Scaleway
 snapshot export, which saves the volume as a QCOW2 image to a Scaleway Object
-Storage bucket. Plakar Control Plane then backs up that image into the Kloset
-store.
+Storage bucket, then backs up that image into the Kloset store. Scaleway Block
+Storage resources currently support backup only; restoring a block volume is not
+available.
 
-During restore, Plakar Control Plane uploads the QCOW2 image back to the bucket
-and uses it to recreate the block volume.
+A dedicated Scaleway Object Storage bucket is required for this process. We
+recommend creating a bucket specifically for this purpose, as it is also used
+when backing up other Scaleway resources such as instances.
 
-A dedicated Scaleway Object Storage bucket is required for this process. Plakar
-Control Plane uses this bucket as a temporary staging area when exporting and
-restoring block volume snapshots. We recommend creating a bucket specifically
-for this purpose, as it is also used when backing up other Scaleway resources
-such as instances.
+## Inventory Management
 
-## Backup flow
+[Managed inventories](../../infrastructure/inventories#managed-inventories) can
+discover Scaleway Block Storage volumes automatically once connected to your
+Scaleway project. Scaleway Block Storage resources are only discovered by the
+[Scaleway inventory](../../infrastructure/inventories/scaleway) and cannot be
+setup by a self-managed inventory.
+
+#### Backup flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -46,73 +50,21 @@ flowchart TD
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-## Restore flow
+## Source Configuration
 
-<!-- prettier-ignore-start -->
-{{< mermaid >}}
-flowchart TD
-  Store["Kloset Store"]
+The following settings are available when configuring a source app.
 
-  subgraph Plakar["Plakar Control Plane"]
-    Destination["Scaleway Block Storage<br/>Destination app"]
-    Restore["Restore process"]
-  end
-
-  subgraph Scaleway["Scaleway Project"]
-    Bucket["Object Storage Bucket<br/>Staging area"]
-    Image["Uploaded QCOW2 image"]
-    Volume["Restored Block <br> Storage Volume"]
-  end
-
-  Store --> Restore
-  Destination --> Restore
-
-  Restore -->|"uploads QCOW2 image"| Bucket
-  Bucket --> Image
-  Image -->|"recreate block volume"| Volume
-{{< /mermaid >}}
-<!-- prettier-ignore-end -->
-
-## Configuration
-
-Scaleway block storage resources can be configured using a source or destination
-app.
-
-### Integration
-
-Automatically set to the Scaleway integration for any resource with `class`
-Block Storage managed by a Scaleway inventory.
-
-### Access Key and Secret Key
-
-The access key and secret key used to authenticate with Scaleway. See the
-documentation on
-[Managing IAM Policies and API Keys on Scaleway](../../../guides/scaleway/iam-and-api-keys)
-for instructions on how to set up the permissions and generate an access key and
-secret key.
-
-### Bucket
-
-The Scaleway Object Storage bucket name. Used as a temporary staging area when
-exporting block storage snapshots. This bucket must exist before configuring the
-resource. We recommend using a dedicated bucket for Plakar Control Plane
-operations rather than a general-purpose bucket.
-
-## Additional configuration
-
-### Source
-
-**Environment**
-
-Optional. The SLA environment covering this source, for example production,
-staging, or development. See the
-[policies documentation](../../../operations/policies) for more details.
-
-**Data Class**
-
-Optional. The SLA data class covering this source, for example critical,
-database, or PII. See the [policies documentation](../../../operations/policies)
-for more details.
+- **Access Key**: Required. The access key used to authenticate with Scaleway.
+  See the documentation on
+  [Managing IAM Policies and API Keys on Scaleway](../../../guides/scaleway/iam-and-api-keys)
+  for instructions on how to set up the permissions and generate an access key
+  and secret key.
+- **Secret Key**: Required. The secret key used to authenticate with Scaleway.
+- **Bucket**: Required. The Scaleway Object Storage bucket name, used as a
+  temporary staging area when exporting block storage snapshots. This bucket
+  must exist before configuring the resource. We recommend using a dedicated
+  bucket for Plakar Control Plane operations rather than a general-purpose
+  bucket.
 
 ## Permissions
 

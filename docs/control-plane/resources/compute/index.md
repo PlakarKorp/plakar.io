@@ -26,4 +26,8 @@ Plane supports the following compute resources:
 
 
 
+## [OVHcloud Compute](https://stg.plakar.io/docs/control-plane/resources/compute/ovhcloud/index.md)
+
+
+
 

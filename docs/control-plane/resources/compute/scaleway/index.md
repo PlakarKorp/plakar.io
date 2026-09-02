@@ -1,20 +1,32 @@
 
 # Scaleway Compute
 
-Scaleway compute resources represent virtual machine instances managed by
-Scaleway. Plakar Control Plane backs up instances by exporting the instance and
-all attached block volumes as QCOW2 images to a Scaleway Object Storage bucket.
-Plakar Control Plane then backs up those images into the Kloset store.
+Scaleway Compute resources represent virtual machine instances managed by
+Scaleway, backed up and restored through the `scaleway-instance` protocol of the
+Scaleway integration. Plakar Control Plane backs up an instance by exporting it
+and all its attached block volumes as QCOW2 images to a Scaleway Object Storage
+bucket, then backs up those images into the Kloset store.
 
 During restore, Plakar Control Plane uploads the QCOW2 images back to the
-bucket, uses them to restore the instance snapshot, and recreates and attaches
-the block volumes to the instance.
+bucket, then creates a new block volume from each one, including the source
+instance's boot disk, and attaches them to the destination instance. Restoring
+does not create a new instance. The destination app must point at an existing
+Scaleway Compute instance, and restored disks are added to it as additional
+attached volumes rather than replacing its own boot volume.
 
 A dedicated Scaleway Object Storage bucket is required for this process. We
 recommend using the same dedicated bucket used for other Scaleway resources such
 as block storage.
 
-## Backup flow
+## Inventory Management
+
+[Managed inventories](../../infrastructure/inventories#managed-inventories) can
+discover Scaleway Compute instances automatically once connected to your
+Scaleway project. Scaleway Compute resources are only discovered by the
+[Scaleway inventory](../../infrastructure/inventories/scaleway) and cannot be
+setup by a self-managed inventory.
+
+#### Backup flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -45,7 +57,7 @@ flowchart TD
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-## Restore flow
+#### Restore flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -60,8 +72,8 @@ flowchart TD
   subgraph Scaleway["Scaleway Project"]
     Bucket["Object Storage Bucket<br/>Staging area"]
     Images["Uploaded QCOW2 images"]
-    Instance["Restored Compute Instance"]
-    Volumes["Recreated Block Volumes"]
+    Instance["Existing Compute Instance"]
+    Volumes["New Block Volumes"]
   end
 
   Store --> Restore
@@ -70,63 +82,27 @@ flowchart TD
   Restore -->|"uploads QCOW2 images"| Bucket
   Bucket --> Images
 
-  Images -->|"restore instance snapshot"| Instance
-  Images -->|"recreate volumes"| Volumes
+  Images -->|"creates volume <br/> from each disk"| Volumes
   Volumes -->|"attach"| Instance
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-## Configuration
+## Shared Configuration
 
-Scaleway compute resources can be configured using a source or destination app.
+The following settings are available when configuring both source and
+destination apps.
 
-### Integration
-
-Set to the Scaleway integration. Must be selected manually.
-
-### Protocol
-
-The Scaleway integration supports three protocols. Select `scaleway-instance`
-for compute resources. The `scaleway-block` protocol is used for block storage
-resources and `scaleway-secret` for the Scaleway secrets manager.
-
-### Access Key and Secret Key
-
-The access key and secret key used to authenticate with Scaleway. See the
-documentation on
-[Managing IAM Policies and API Keys on Scaleway](../../../guides/scaleway/iam-and-api-keys)
-for instructions on how to set up the permissions and generate an access key and
-secret key.
-
-### Hostname
-
-Optional. Hint Plakar Control Plane how to reach the resource in case the
-hostname is ambiguous. Plakar Control Plane suggests hostnames discovered from
-the inventory. Select the hostname corresponding to the UUID of the instance,
-for example `136336b9-7de6-4b4a-b196-86f814c99848`.
-
-### Bucket
-
-The Scaleway Object Storage bucket name. Used as a staging area when exporting
-instance and block volume snapshots. This bucket must exist before configuring
-the resource. We recommend using a dedicated bucket for Plakar Control Plane
-operations rather than a general-purpose bucket.
-
-## Additional configuration
-
-### Source
-
-**Environment**
-
-Optional. The SLA environment covering this source, for example production,
-staging, or development. See the
-[policies documentation](../../../operations/policies) for more details.
-
-**Data Class**
-
-Optional. The SLA data class covering this source, for example critical,
-database, or PII. See the [policies documentation](../../../operations/policies)
-for more details.
+- **Access Key**: Required. The access key used to authenticate with Scaleway.
+  See the documentation on
+  [Managing IAM Policies and API Keys on Scaleway](../../../guides/scaleway/iam-and-api-keys)
+  for instructions on how to set up the permissions and generate an access key
+  and secret key.
+- **Secret Key**: Required. The secret key used to authenticate with Scaleway.
+- **Bucket**: Required. The Scaleway Object Storage bucket name, used as a
+  staging area when exporting and restoring instance and block volume images.
+  This bucket must exist before configuring the resource. We recommend using a
+  dedicated bucket for Plakar Control Plane operations rather than a
+  general-purpose bucket.
 
 ## Permissions
 

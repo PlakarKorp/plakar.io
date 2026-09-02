@@ -3,13 +3,20 @@
 
 Scaleway Secret Manager resources represent secrets stored in a Scaleway
 project. Plakar Control Plane backs up secrets using the Scaleway Secret Manager
-API and stores their values in the Kloset store.
+API and stores their values in the Kloset store. During restore, Plakar Control
+Plane writes the secrets back to a Scaleway Secret Manager project. The
+destination project can be different from the source project, which makes it
+possible to copy secrets across projects or regions.
 
-During restore, Plakar Control Plane writes the secrets back to a Scaleway
-Secret Manager project. The destination project can be different from the source
-project, which makes it possible to copy secrets across projects or regions.
+## Inventory Management
 
-## Backup flow
+[Managed inventories](../../infrastructure/inventories#managed-inventories) can
+discover Scaleway Secret Manager resources automatically once connected to your
+Scaleway project. Scaleway Secret Manager resources are only discovered by the
+[Scaleway inventory](../../infrastructure/inventories/scaleway) and cannot be
+setup by a self-managed inventory.
+
+#### Backup flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -31,7 +38,7 @@ flowchart TD
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-## Restore flow
+#### Restore flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -53,42 +60,19 @@ flowchart TD
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-## Configuration
+## Shared Configuration
 
-Scaleway Secret Manager resources can be configured using a source or
-destination app.
+The following settings are available when configuring source or destination
+apps.
 
-### Integration
-
-Automatically set to the Scaleway integration for any resource with `class`
-Secret Manager and `subclass` Scaleway.
-
-### Access Key and Secret Key
-
-The access key and secret key used to authenticate with Scaleway. See the
-documentation on
-[Managing IAM Policies and API Keys on Scaleway](../../../guides/scaleway/iam-and-api-keys)
-for instructions on how to set up the permissions and generate an access key and
-secret key.
-
-### Region
-
-The Scaleway region where the secrets are stored, for example `fr-par`.
-
-## Additional configuration
-
-### Source
-
-#### Environment
-
-Optional. The SLA environment covering this source, for example production,
-staging, or development. See the
-[policies documentation](../../../operations/policies) for more details.
-
-#### Data Class
-
-Optional. The SLA data class covering this source, for example critical or PII.
-See the [policies documentation](../../../operations/policies) for more details.
+- **Access Key**: Required. The access key used to authenticate with Scaleway.
+  See the documentation on
+  [Managing IAM Policies and API Keys on Scaleway](../../../guides/scaleway/iam-and-api-keys)
+  for instructions on how to set up the permissions and generate an access key
+  and secret key.
+- **Secret Key**: Required. The secret key used to authenticate with Scaleway.
+- **Region**: The Scaleway region where the secrets are stored, for example
+  `fr-par`.
 
 ## Permissions
 
