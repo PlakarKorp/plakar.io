@@ -89,9 +89,8 @@ required to use each one as a source, store, or destination.
 ## [Compute](https://www.plakar.io/docs/control-plane/resources/compute/index.md)
 
 - [Scaleway Compute](https://www.plakar.io/docs/control-plane/resources/compute/scaleway/index.md): How to configure a Scaleway compute resource in Plakar Control Plane.
-- [SFTP](https://www.plakar.io/docs/control-plane/resources/compute/sftp/index.md): How to configure SFTP resource in Plakar Control Plane.
 - [VMware Compute](https://www.plakar.io/docs/control-plane/resources/compute/vmware/index.md): How to configure a VMware compute resource in Plakar Control Plane.
-- [VSS](https://www.plakar.io/docs/control-plane/resources/compute/vss/index.md): How to configure a Volume Shadow Copy Service (VSS) resource in Plakar Control Plane.
+- [Windows VSS](https://www.plakar.io/docs/control-plane/resources/compute/vss/index.md): How to configure a Volume Shadow Copy Service (VSS) resource in Plakar Control Plane.
 - [OVHcloud Compute](https://www.plakar.io/docs/control-plane/resources/compute/ovhcloud/index.md): How to configure an OVHcloud Compute resource in Plakar Control Plane.
 
 
@@ -105,13 +104,18 @@ required to use each one as a source, store, or destination.
 
 - [Microsoft SQL Server](https://www.plakar.io/docs/control-plane/resources/database/mssql/index.md): How to configure a Microsoft SQL Server resource in Plakar Control Plane.
 - [Microsoft Active Directory](https://www.plakar.io/docs/control-plane/resources/database/msad/index.md): How to configure a Microsoft Active Directory resource in Plakar Control Plane.
-- [Plakar Control Plane](https://www.plakar.io/docs/control-plane/resources/database/pcp/index.md): How to configure a Plakar Control Plane (PCP) resource in Plakar Control Plane.
 - [PostgreSQL](https://www.plakar.io/docs/control-plane/resources/database/postgres/index.md): How to configure a PostgreSQL resource in Plakar Control Plane.
 
 
 ## [Hypervisor](https://www.plakar.io/docs/control-plane/resources/hypervisor/index.md)
 
 - [Proxmox](https://www.plakar.io/docs/control-plane/resources/hypervisor/proxmox/index.md): How to configure a Proxmox resource in Plakar Control Plane.
+
+
+## [Services](https://www.plakar.io/docs/control-plane/resources/services/index.md)
+
+- [SFTP](https://www.plakar.io/docs/control-plane/resources/services/sftp/index.md): How to configure SFTP resource in Plakar Control Plane.
+- [Plakar Control Plane](https://www.plakar.io/docs/control-plane/resources/services/pcp/index.md): How to configure a Plakar Control Plane (PCP) resource in Plakar Control Plane.
 
 
 

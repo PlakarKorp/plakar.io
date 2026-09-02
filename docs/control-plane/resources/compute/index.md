@@ -14,15 +14,11 @@ Plane supports the following compute resources:
 
 
 
-## [SFTP](https://www.plakar.io/docs/control-plane/resources/compute/sftp/index.md)
-
-
-
 ## [VMware Compute](https://www.plakar.io/docs/control-plane/resources/compute/vmware/index.md)
 
 
 
-## [VSS](https://www.plakar.io/docs/control-plane/resources/compute/vss/index.md)
+## [Windows VSS](https://www.plakar.io/docs/control-plane/resources/compute/vss/index.md)
 
 
 

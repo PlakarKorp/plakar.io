@@ -47,7 +47,7 @@
 
 ## [Plakar Integrations](https://www.plakar.io/integrations/index.md)
 
-- [AWS](https://www.plakar.io/integrations/aws/index.md): Manage AWS resources and credentials from Plakar Control Plane. Discover  resources automatically as your AWS account changes, and manage secrets  through AWS Secrets Manager instead of scattering credentials across scripts  and tools.
+- [Amazon Web Services (AWS)](https://www.plakar.io/integrations/aws/index.md): Manage AWS resources and credentials from Plakar Control Plane. Discover  resources automatically as your AWS account changes, and manage secrets  through AWS Secrets Manager instead of scattering credentials across scripts  and tools.
 
 - [Scaleway](https://www.plakar.io/integrations/scaleway/index.md): Manage Scaleway from Plakar Control Plane end to end. Discover Instances and Block Storage volumes automatically, manage secrets through Scaleway Secret Manager, and protect Instances, volumes, and the secrets themselves with encrypted, deduplicated backups and restores.
 
@@ -61,7 +61,7 @@
 
 - [VMware](https://www.plakar.io/integrations/vmware/index.md): Protect virtual machines running on vCenter, ESXi, or a vSphere-based cloud platform against accidental deletion, ransomware, and infrastructure failure. Plakar discovers, backs up, and restores VMware workloads with independent, encrypted snapshots.
 
-- [VSS](https://www.plakar.io/integrations/vss/index.md): Protect Windows Server workloads like Active Directory and SQL Server against accidental deletion, ransomware, and configuration mistakes. Plakar captures a consistent, point-in-time snapshot of a live Windows system and restores it with confidence, without taking anything offline.
+- [Windows VSS](https://www.plakar.io/integrations/vss/index.md): Protect Windows Server workloads like Active Directory and SQL Server against accidental deletion, ransomware, and configuration mistakes. Plakar captures a consistent, point-in-time snapshot of a live Windows system and restores it with confidence, without taking anything offline.
 
 - [Vault](https://www.plakar.io/integrations/vault/index.md): Back up and restore a HashiCorp Vault cluster's secrets. Plakar exports a Vault cluster into an encrypted, deduplicated Kloset snapshot and restores it back to the same cluster or a freshly provisioned one.
 

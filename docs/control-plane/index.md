@@ -39,6 +39,7 @@
 - [Security](https://www.plakar.io/docs/control-plane/resources/security/index.md): An overview of security resources in Plakar Control Plane.
 - [Database](https://www.plakar.io/docs/control-plane/resources/database/index.md): An overview of database resources in Plakar Control Plane.
 - [Hypervisor](https://www.plakar.io/docs/control-plane/resources/hypervisor/index.md): An overview of hypervisor resources in Plakar Control Plane.
+- [Services](https://www.plakar.io/docs/control-plane/resources/services/index.md): An overview of service resources in Plakar Control Plane.
 
 
 ## [Operations](https://www.plakar.io/docs/control-plane/operations/index.md)

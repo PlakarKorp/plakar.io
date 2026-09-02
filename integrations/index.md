@@ -4,7 +4,7 @@
 
 
 
-## [AWS](https://www.plakar.io/integrations/aws/index.md)
+## [Amazon Web Services (AWS)](https://www.plakar.io/integrations/aws/index.md)
 
 
 
@@ -32,7 +32,7 @@
 
 
 
-## [VSS](https://www.plakar.io/integrations/vss/index.md)
+## [Windows VSS](https://www.plakar.io/integrations/vss/index.md)
 
 
 
