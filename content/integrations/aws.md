@@ -1,5 +1,5 @@
 ---
-title: AWS
+title: Amazon Web Services (AWS)
 
 subtitle: Discovery and secrets management for AWS
 

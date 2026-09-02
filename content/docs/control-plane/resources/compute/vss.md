@@ -1,7 +1,7 @@
 ---
-title: "VSS"
+title: "Windows VSS"
 date: "2026-08-10T00:00:00Z"
-weight: 4
+weight: 3
 summary:
   "How to configure a Volume Shadow Copy Service (VSS) resource in Plakar
   Control Plane."

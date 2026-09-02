@@ -1,7 +1,7 @@
 ---
 title: "VMware Compute"
 date: "2026-07-17T00:00:00Z"
-weight: 3
+weight: 2
 summary: "How to configure a VMware compute resource in Plakar Control Plane."
 ---
 

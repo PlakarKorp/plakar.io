@@ -1,5 +1,5 @@
 ---
-title: VSS
+title: Windows VSS
 
 subtitle: Consistent, encrypted backups for live Windows servers
 
