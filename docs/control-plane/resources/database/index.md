@@ -22,4 +22,8 @@ Plakar Control Plane supports the following database resources:
 
 
 
+## [PostgreSQL](https://www.plakar.io/docs/control-plane/resources/database/postgres/index.md)
+
+
+
 
