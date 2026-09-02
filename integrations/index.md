@@ -80,10 +80,6 @@
 
 
 
-## [CalDAV](https://www.plakar.io/integrations/caldav/index.md)
-
-
-
 ## [Dropbox](https://www.plakar.io/integrations/dropbox/index.md)
 
 

@@ -85,8 +85,6 @@
 
 - [PostgreSQL](https://www.plakar.io/integrations/postgres/index.md): Protect your PostgreSQL databases against data loss, accidental deletion, and misconfiguration. Plakar provides encrypted, deduplicated snapshots using either logical or physical backups, restorable to any environment.
 
-- [CalDAV](https://www.plakar.io/integrations/caldav/index.md): Backup and restore your calendar data from any CalDAV-compatible server using Plakar. Plakar creates encrypted, deduplicated, and verifiable backups of your scheduling data.
-
 - [Dropbox](https://www.plakar.io/integrations/dropbox/index.md): Back up your Dropbox workloads with Plakar to protect against data loss, corruption, and ransomware. Immutable, encrypted, and restorable even offline and across environments.
 
 - [Filesystem](https://www.plakar.io/integrations/fs/index.md): Back up local directories and mounted filesystems to protect against accidental deletion, corruption, and ransomware. Versioned, encrypted, and fully restorable across systems.
