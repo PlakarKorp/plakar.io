@@ -4,6 +4,10 @@
 
 
 
+## [Google Cloud (GCP)](https://www.plakar.io/integrations/gcp/index.md)
+
+
+
 ## [Amazon Web Services (AWS)](https://www.plakar.io/integrations/aws/index.md)
 
 
