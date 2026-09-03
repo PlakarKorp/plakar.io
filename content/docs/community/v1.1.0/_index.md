@@ -1,6 +1,6 @@
 ---
-title: "Plakar: v1.1.x (latest: v1.1.4)"
-date: "2026-03-11T00:00:00Z"
+title: "Plakar: v1.1.x (latest: v1.1.5)"
+date: "2026-09-03T00:00:00Z"
 weight: 2
 summary:
   "Plakar documentation hub, find guides, references, and resources for working
@@ -9,9 +9,9 @@ aliases:
   - /docs/v1.1.0/
 ---
 
-# Plakar: v1.1.x (latest: v1.1.4)
+# Plakar: v1.1.x (latest: v1.1.5)
 
 This documentation covers all releases in the `v1.1.x` major, from `v1.1.0`
-through `v1.1.4`.
+through `v1.1.5`.
 
 {{% children description="true" style="sections" %}}

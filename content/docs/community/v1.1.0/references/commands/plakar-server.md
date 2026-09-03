@@ -1,5 +1,5 @@
 ---
-date: "2026-08-04T11:06:32Z"
+date: "2026-09-03T13:08:13Z"
 title: server
 summary: "Start a Plakar server"
 aliases:
@@ -25,7 +25,8 @@ aliases:
     <td>[<code class="Fl">-allow-delete</code>] [<code class="Fl">-listen</code>
       [<var class="Ar">host</var>]:<var class="Ar">port</var>]
       [<code class="Fl">-cert</code> <var class="Ar">path</var>]
-      [<code class="Fl">-key</code> <var class="Ar">path</var>]</td>
+      [<code class="Fl">-key</code> <var class="Ar">path</var>]
+      [<code class="Fl">-token</code> <var class="Ar">string</var>]</td>
   </tr>
 </table>
 </section>
@@ -54,6 +55,10 @@ aliases:
   <dt id="key"><a class="permalink" href="#key"><code class="Fl">-key</code></a>
     <var class="Ar">path</var></dt>
   <dd>Path to a certificate private key file in PEM format.</dd>
+  <dt id="token"><a class="permalink" href="#token"><code class="Fl">-token</code></a>
+    <var class="Ar">string</var></dt>
+  <dd>Require clients to provide the given Authorization Bearer token in order
+      to interact with <code class="Nm">plakar server</code>.</dd>
 </dl>
 </section>
 <section class="Sh">
@@ -95,5 +100,5 @@ aliases:
 </section>
 </main>
 <div class="foot" role="doc-pagefooter" aria-label="Manual footer
-  line"><span class="foot-left">Plakar</span> <span class="foot-date">May 5,
+  line"><span class="foot-left">Plakar</span> <span class="foot-date">August 25,
   2026</span> <span class="foot-right">PLAKAR-SERVER(1)</span></div>
