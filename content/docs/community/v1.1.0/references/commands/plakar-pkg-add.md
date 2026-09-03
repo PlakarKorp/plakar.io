@@ -1,5 +1,5 @@
 ---
-date: "2026-08-04T11:06:32Z"
+date: "2026-09-03T13:08:13Z"
 title: pkg-add
 summary: "Install Plakar plugins"
 aliases:
@@ -22,7 +22,9 @@ aliases:
 <table class="Nm">
   <tr>
     <td><code class="Nm">plakar pkg add</code></td>
-    <td>[<code class="Fl">-u</code>] <var class="Ar">plugin ...</var></td>
+    <td>[<code class="Fl">-allow-unsigned</code>]
+      [<code class="Fl">-devel</code>] [<code class="Fl">-u</code>]
+      <var class="Ar">plugin ...</var></td>
   </tr>
 </table>
 </section>
@@ -44,6 +46,11 @@ aliases:
     <var class="Ar">name</var>@<var class="Ar">version</var> syntax.</p>
 <p class="Pp">The options are as follows:</p>
 <dl class="Bl-tag">
+  <dt id="allow-unsigned"><a class="permalink" href="#allow-unsigned"><code class="Fl">-allow-unsigned</code></a></dt>
+  <dd>Install packages that carry no signature. By default, package are expected
+      to be signed.</dd>
+  <dt id="devel"><a class="permalink" href="#devel"><code class="Fl">-devel</code></a></dt>
+  <dd>Use the integration devel tree.</dd>
   <dt id="u"><a class="permalink" href="#u"><code class="Fl">-u</code></a></dt>
   <dd>Update the specific plugins. If none are given, attempt to update all the
       installed ones.</dd>
@@ -76,5 +83,5 @@ aliases:
 </section>
 </main>
 <div class="foot" role="doc-pagefooter" aria-label="Manual footer
-  line"><span class="foot-left">Plakar</span> <span class="foot-date">March 23,
+  line"><span class="foot-left">Plakar</span> <span class="foot-date">August 26,
   2026</span> <span class="foot-right">PLAKAR-PKG-ADD(1)</span></div>
