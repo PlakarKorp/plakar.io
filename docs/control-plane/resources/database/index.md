@@ -18,6 +18,10 @@ Plakar Control Plane supports the following database resources:
 
 
 
+## [MySQL](https://www.plakar.io/docs/control-plane/resources/database/mysql/index.md)
+
+
+
 ## [PostgreSQL](https://www.plakar.io/docs/control-plane/resources/database/postgres/index.md)
 
 

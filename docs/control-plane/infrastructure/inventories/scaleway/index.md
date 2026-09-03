@@ -36,7 +36,7 @@ flowchart TD
 | Instances (with attached Block Storages) | Yes    | No    | Yes         |
 | Block Storage Volume                     | Yes    | No    | Yes         |
 | Secret Manager                           | Yes    | No    | Yes         |
-| Database                                 | Yes    | No    | Yes         |
+| Managed Database                         | Yes    | No    | Yes         |
 
 ## Authentication
 
