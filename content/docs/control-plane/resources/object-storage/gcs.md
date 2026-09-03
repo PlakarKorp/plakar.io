@@ -27,8 +27,6 @@ as the class and `GCS` as the subclass. For the endpoint, use the bucket name.
 See [resources documentation](../../resources) for more information on how to
 set up resources on a self-managed inventory.
 
-![](../images/add-gcs-resource.png)
-
 #### Backup flow
 
 <!-- prettier-ignore-start -->
