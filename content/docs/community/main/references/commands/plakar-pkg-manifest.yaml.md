@@ -1,5 +1,5 @@
 ---
-date: "2026-08-04T11:03:18Z"
+date: "2026-09-03T15:16:40Z"
 title: pkg-manifest.yaml
 summary: "Manifest for plugin assemblation"
 aliases:
