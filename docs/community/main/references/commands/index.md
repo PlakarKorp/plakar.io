@@ -15,43 +15,7 @@ documentation.
 
 
 
-## [pkg-build](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-build/index.md)
-
-
-
-## [pkg-create](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-create/index.md)
-
-
-
-## [pkg-manifest.yaml](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-manifest.yaml/index.md)
-
-
-
-## [pkg-recipe.yaml](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-recipe.yaml/index.md)
-
-
-
-## [pkg-rm](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-rm/index.md)
-
-
-
-## [pkg-show](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-show/index.md)
-
-
-
 ## [plakar](https://www.plakar.io/docs/community/main/references/commands/plakar/index.md)
-
-
-
-## [policy](https://www.plakar.io/docs/community/main/references/commands/plakar-policy/index.md)
-
-
-
-## [prune](https://www.plakar.io/docs/community/main/references/commands/plakar-prune/index.md)
-
-
-
-## [ptar](https://www.plakar.io/docs/community/main/references/commands/plakar-ptar/index.md)
 
 
 
@@ -168,6 +132,42 @@ documentation.
 
 
 ## [pkg-add](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-add/index.md)
+
+
+
+## [pkg-build](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-build/index.md)
+
+
+
+## [pkg-create](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-create/index.md)
+
+
+
+## [pkg-manifest.yaml](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-manifest.yaml/index.md)
+
+
+
+## [pkg-recipe.yaml](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-recipe.yaml/index.md)
+
+
+
+## [pkg-rm](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-rm/index.md)
+
+
+
+## [pkg-show](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-show/index.md)
+
+
+
+## [policy](https://www.plakar.io/docs/community/main/references/commands/plakar-policy/index.md)
+
+
+
+## [prune](https://www.plakar.io/docs/community/main/references/commands/plakar-prune/index.md)
+
+
+
+## [ptar](https://www.plakar.io/docs/community/main/references/commands/plakar-ptar/index.md)
 
 
 

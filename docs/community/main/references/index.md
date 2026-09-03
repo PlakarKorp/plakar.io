@@ -30,16 +30,7 @@ If you're looking for learning materials or conceptual explanations, see the
 
 ## [Commands](https://www.plakar.io/docs/community/main/references/commands/index.md)
 
-- [pkg-build](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-build/index.md): Build Plakar plugins from source
-- [pkg-create](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-create/index.md): Package a plugin
-- [pkg-manifest.yaml](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-manifest.yaml/index.md): Manifest for plugin assemblation
-- [pkg-recipe.yaml](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-recipe.yaml/index.md): Recipe to build Plakar plugins from source
-- [pkg-rm](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-rm/index.md): Uninstall Plakar plugins
-- [pkg-show](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-show/index.md): Show installed Plakar plugins
 - [plakar](https://www.plakar.io/docs/community/main/references/commands/plakar/index.md): effortless backups
-- [policy](https://www.plakar.io/docs/community/main/references/commands/plakar-policy/index.md): Manage Plakar retention policies
-- [prune](https://www.plakar.io/docs/community/main/references/commands/plakar-prune/index.md): Prune snapshots according to a policy
-- [ptar](https://www.plakar.io/docs/community/main/references/commands/plakar-ptar/index.md): generate a self-contained Kloset archive (.ptar)
 - [query](https://www.plakar.io/docs/community/main/references/commands/plakar-query/index.md): query flags shared among many Plakar subcommands
 - [restore](https://www.plakar.io/docs/community/main/references/commands/plakar-restore/index.md): Restore files from a Plakar snapshot
 - [rm](https://www.plakar.io/docs/community/main/references/commands/plakar-rm/index.md): Remove snapshots from a Plakar repository
@@ -69,6 +60,15 @@ If you're looking for learning materials or conceptual explanations, see the
 - [maintenance](https://www.plakar.io/docs/community/main/references/commands/plakar-maintenance/index.md): Remove unused data from a Plakar repository
 - [mount](https://www.plakar.io/docs/community/main/references/commands/plakar-mount/index.md): Mount Plakar snapshots as read-only filesystem
 - [pkg-add](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-add/index.md): Install Plakar plugins
+- [pkg-build](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-build/index.md): Build Plakar plugins from source
+- [pkg-create](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-create/index.md): Package a plugin
+- [pkg-manifest.yaml](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-manifest.yaml/index.md): Manifest for plugin assemblation
+- [pkg-recipe.yaml](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-recipe.yaml/index.md): Recipe to build Plakar plugins from source
+- [pkg-rm](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-rm/index.md): Uninstall Plakar plugins
+- [pkg-show](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-show/index.md): Show installed Plakar plugins
+- [policy](https://www.plakar.io/docs/community/main/references/commands/plakar-policy/index.md): Manage Plakar retention policies
+- [prune](https://www.plakar.io/docs/community/main/references/commands/plakar-prune/index.md): Prune snapshots according to a policy
+- [ptar](https://www.plakar.io/docs/community/main/references/commands/plakar-ptar/index.md): generate a self-contained Kloset archive (.ptar)
 
 
 

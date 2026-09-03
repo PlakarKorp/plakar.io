@@ -41,6 +41,13 @@
 <p class="Pp">Unless the <code class="Fl">-overwrite</code> flag is given,
     <code class="Nm">plakar ptar</code> refuses to replace an existing
   archive.</p>
+<p class="Pp">In addition to the flags described below, <code class="Nm">plakar
+    ptar</code> supports the location flags documented in
+    <a class="Xr" href="../plakar-query/" aria-label="plakar-query, section
+    7">plakar-query(7)</a> to precisely select which snapshots of the
+    <code class="Fl">-k</code> klosets are bundled. Without any of them every
+    snapshot is included. They do not affect the <var class="Ar">path</var>
+    arguments, which are always backed up in full.</p>
 <p class="Pp">The options are as follows:</p>
 <dl class="Bl-tag">
   <dt id="plaintext"><a class="permalink" href="#plaintext"><code class="Fl">-plaintext</code></a></dt>
@@ -64,7 +71,8 @@
     <var class="Ar">location</var>, <code class="Fl">-kloset</code>
     <var class="Ar">location</var></dt>
   <dd>Add a kloset repository to include in the archive. May be specified
-      multiple times to bundle several repositories.</dd>
+      multiple times to bundle several repositories. The location flags apply to
+      each of them.</dd>
   <dt id="o"><a class="permalink" href="#o"><code class="Fl">-o</code></a>
     <var class="Ar">file.ptar</var></dt>
   <dd>Path of the archive to create. This option is required.</dd>
