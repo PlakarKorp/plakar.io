@@ -95,7 +95,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-06-18T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-09-03T15:06:22+02:00">
+    <meta property="article:modified_time" content="2026-09-03T15:11:26+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -263,12 +263,12 @@
     "dateCreated": "2026-06-18T00:00:00\u002b00:00",
     "datePublished": "2026-06-18T00:00:00\u002b00:00",
     
-    "dateModified": "2026-09-03T15:06:22\u002b02:00",
+    "dateModified": "2026-09-03T15:11:26\u002b02:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/resources/object-storage/gcs/",
-    "wordCount": "502"
+    "wordCount": "379"
   }]
   </script>
 
@@ -6573,17 +6573,14 @@
   
 </h1>
 <p>Google Cloud Storage resources represent bucket-based object storage hosted on
-Google Cloud. GCS buckets can be automatically discovered through a
-<a href="../../../infrastructure/inventories/google-cloud" >Google Cloud inventory</a>, or
-added manually using a
-<a href="/docs/control-plane/infrastructure/inventories/self-managed/" >self-managed inventory</a>.</p>
+Google Cloud.</p>
 
 
-<h2 id="setting-up-with-a-google-cloud-inventory" class="group pr-8">Setting up with a Google Cloud inventory
+<h2 id="inventory-management" class="group pr-8">Inventory Management
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="setting-up-with-a-google-cloud-inventory"
+      data-anchor="inventory-management"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6594,34 +6591,15 @@ added manually using a
     </button>
   
 </h2>
-<p>If you have a Google Cloud inventory configured in Plakar Control Plane, GCS
-buckets in your project are automatically discovered and available as resources.
-No manual setup is needed, you can go directly to attaching a app to the
-resource and configuring its credentials.</p>
+<p><a href="/docs/control-plane/infrastructure/inventories/#managed-inventories" >Managed inventories</a> can
+discover GCS buckets automatically for
+<a href="../../../infrastructure/inventories/google-cloud" >Google Cloud</a>. For buckets
+not covered by managed discovery, you can instead set up a
+<a href="/docs/control-plane/infrastructure/inventories/self-managed/" >self-managed inventory</a> and add
+the resource manually.</p>
 
 
-<h2 id="setting-up-with-a-self-managed-inventory" class="group pr-8">Setting up with a self-managed inventory
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="setting-up-with-a-self-managed-inventory"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h2>
-<p>If you are not using a Google Cloud inventory, you can create a self-managed
-inventory to manage your GCS resources manually. Read the
-<a href="/docs/control-plane/infrastructure/inventories/self-managed/" >self-managed inventory</a>
-documentation for more information.</p>
-
-
-<h2 id="adding-google-cloud-storage-as-a-resource" class="group pr-8">Adding Google Cloud Storage as a resource
+<h3 id="adding-google-cloud-storage-as-a-resource" class="group pr-8">Adding Google Cloud Storage as a resource
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
@@ -6635,12 +6613,11 @@ documentation for more information.</p>
 </span></span>
     </button>
   
-</h2>
-<p>When using a Google Cloud inventory, buckets are automatically discovered. When
-using a self-managed inventory, you need to register your resources manually or
-import them from a CSV file.</p>
-<p>To add a GCS bucket as a resource, use Object Storage as the <code>class</code> and GCS as
-the <code>subclass</code>. For the endpoint, use the bucket name.</p>
+</h3>
+<p>When using a self-managed inventory, register the resource with <code>Object Storage</code>
+as the class and <code>GCS</code> as the subclass. For the endpoint, use the bucket name.
+See <a href="/docs/control-plane/resources/" >resources documentation</a> for more information on how to
+set up resources on a self-managed inventory.</p>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
@@ -6655,7 +6632,7 @@ the <code>subclass</code>. For the endpoint, use the bucket name.</p>
     data-zoom-src="/docs/control-plane/resources/object-storage/images/add-gcs-resource_hu_8957fc0765954037.webp"></figure>
 
 
-<h2 id="backup-flow" class="group pr-8">Backup flow
+<h4 id="backup-flow" class="group pr-8">Backup flow
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
@@ -6669,7 +6646,7 @@ the <code>subclass</code>. For the endpoint, use the bucket name.</p>
 </span></span>
     </button>
   
-</h2>
+</h4>
 <!-- prettier-ignore-start -->
 <pre class="not-prose mermaid">
 flowchart TD
@@ -6692,7 +6669,7 @@ flowchart TD
 <!-- prettier-ignore-end -->
 
 
-<h2 id="restore-flow" class="group pr-8">Restore flow
+<h4 id="restore-flow" class="group pr-8">Restore flow
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
@@ -6706,7 +6683,7 @@ flowchart TD
 </span></span>
     </button>
   
-</h2>
+</h4>
 <!-- prettier-ignore-start -->
 <pre class="not-prose mermaid">
 flowchart TD
@@ -6729,11 +6706,11 @@ flowchart TD
 <!-- prettier-ignore-end -->
 
 
-<h2 id="configuration" class="group pr-8">Configuration
+<h2 id="shared-configuration" class="group pr-8">Shared Configuration
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="configuration"
+      data-anchor="shared-configuration"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6744,15 +6721,25 @@ flowchart TD
     </button>
   
 </h2>
-<p>Google Cloud Storage resources can be configured using a source, store, or
-destination app.</p>
+<p>The following settings are available when configuring source, store, or
+destination apps.</p>
+<ul>
+<li><strong>Credentials JSON</strong>: Upload a Google Cloud service account JSON key file or
+paste its contents directly.</li>
+<li><strong>Endpoint</strong>: Overrides the default Google Cloud Storage API endpoint. Only
+needed when connecting to a non-standard endpoint such as a local GCS emulator
+for development and testing.</li>
+<li><strong>No Auth</strong>: Disables authentication entirely. Only useful when connecting to
+a local emulator that does not require credentials. Should never be enabled in
+production.</li>
+</ul>
 
 
-<h3 id="credentials-file" class="group pr-8">Credentials File
+<h2 id="store-configuration" class="group pr-8">Store configuration
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="credentials-file"
+      data-anchor="store-configuration"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6762,71 +6749,12 @@ destination app.</p>
 </span></span>
     </button>
   
-</h3>
-<p>The path to a Google Cloud service account JSON key file on the machine running
-Plakar Control Plane. Use this when you want to reference a key file on disk
-rather than embedding the credentials directly.</p>
-
-
-<h3 id="credentials-json" class="group pr-8">Credentials JSON
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="credentials-json"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
-<p>The full contents of a Google Cloud service account JSON key file, pasted
-directly into the field. Use this instead of Credentials File when you want to
-store the credentials inline without relying on a file path.</p>
-<p>You only need to provide one of Credentials File or Credentials JSON.</p>
-
-
-<h3 id="endpoint" class="group pr-8">Endpoint
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="endpoint"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
-<p>Optional. Overrides the default Google Cloud Storage API endpoint. Only needed
-when connecting to a non-standard endpoint such as a local GCS emulator for
-development and testing.</p>
-
-
-<h3 id="no-auth" class="group pr-8">No Auth
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="no-auth"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
-<p>Optional. Disables authentication entirely. Only useful when connecting to a
-local emulator that does not require credentials. Should never be enabled in
-production.</p>
+</h2>
+<p>The following extra settings are available when configuring a store app.</p>
+<ul>
+<li><strong>Kloset Passphrase</strong>: The passphrase Plakar Control Plane uses to encrypt the
+store. This passphrase is required to access the store and must be kept safe.</li>
+</ul>
 
 
 <h2 id="permissions" class="group pr-8">Permissions
@@ -6943,7 +6871,7 @@ generate a service account key.</p>
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#setting-up-with-a-google-cloud-inventory">Setting up with a Google Cloud inventory</a></li><li><a href="#setting-up-with-a-self-managed-inventory">Setting up with a self-managed inventory</a></li><li><a href="#adding-google-cloud-storage-as-a-resource">Adding Google Cloud Storage as a resource</a></li><li><a href="#backup-flow">Backup flow</a></li><li><a href="#restore-flow">Restore flow</a></li><li><a href="#configuration">Configuration</a><ul><li><a href="#credentials-file">Credentials File</a></li><li><a href="#credentials-json">Credentials JSON</a></li><li><a href="#endpoint">Endpoint</a></li><li><a href="#no-auth">No Auth</a></li></ul></li><li><a href="#permissions">Permissions</a></li></ul>
+      <ul><li><a href="#inventory-management">Inventory Management</a><ul><li><a href="#adding-google-cloud-storage-as-a-resource">Adding Google Cloud Storage as a resource</a><ul><li><a href="#backup-flow">Backup flow</a></li><li><a href="#restore-flow">Restore flow</a></li></ul></li></ul></li><li><a href="#shared-configuration">Shared Configuration</a></li><li><a href="#store-configuration">Store configuration</a></li><li><a href="#permissions">Permissions</a></li></ul>
     </div>
 
     
