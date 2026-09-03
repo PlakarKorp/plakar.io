@@ -36,13 +36,17 @@ seo_tags:
   - deduplication
   - cross-server restore
 
-links: []
+links:
+  - type: community
+    url: /docs/community/main/integrations/mysql/
+  - type: control-plane
+    url: /docs/control-plane/resources/database/mysql/
 
 edition:
   - community
   - control-plane
 
-stage: beta
+stage: stable
 
 author:
   - type: official
