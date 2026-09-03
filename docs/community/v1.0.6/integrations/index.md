@@ -70,4 +70,8 @@ Below is a list of links to the documentation for each supported integration.
 
 
 
+## [IMAP](https://www.plakar.io/docs/community/v1.0.6/integrations/imap/index.md)
+
+
+
 

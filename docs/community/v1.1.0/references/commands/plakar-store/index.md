@@ -89,6 +89,27 @@
   <dd>Remove the <var class="Ar">option</var> for the store entry identified by
       <var class="Ar">name</var>.</dd>
 </dl>
+<section class="Ss">
+<h3 class="Ss" id="HTTP_AND_HTTPS_STORE_OPTIONS"><a class="permalink" href="#HTTP_AND_HTTPS_STORE_OPTIONS">HTTP
+  AND HTTPS STORE OPTIONS</a></h3>
+<p class="Pp">When using an <code class="Cm">http://</code> or
+    <code class="Cm">https://</code> location, the following additional options
+    are available:</p>
+<dl class="Bl-tag">
+  <dt id="auth_token"><a class="permalink" href="#auth_token"><code class="Cm">auth_token</code></a></dt>
+  <dd>Bearer token sent in the &#x201C;Authorization&#x201D; header for every
+      request.</dd>
+  <dt id="insecure"><a class="permalink" href="#insecure"><code class="Cm">insecure</code></a></dt>
+  <dd>Optional, set to <code class="Cm">true</code> to opt-in the usage of the
+      <code class="Cm">auth_token</code> on HTTP plaintext connections.</dd>
+  <dt id="timeout"><a class="permalink" href="#timeout"><code class="Cm">timeout</code></a></dt>
+  <dd>Per-request timeout, default to &#x201C;5m&#x201D; i.e. five minutes
+    .</dd>
+  <dt id="tls_no_verify"><a class="permalink" href="#tls_no_verify"><code class="Cm">tls_no_verify</code></a></dt>
+  <dd>Set to <code class="Cm">true</code> to disable TLS certificate
+      verification. Useful when the server uses a self-signed certificate.</dd>
+</dl>
+</section>
 </section>
 <section class="Sh">
 <h2 class="Sh" id="EXIT_STATUS"><a class="permalink" href="#EXIT_STATUS">EXIT
@@ -104,6 +125,6 @@
 </section>
 </main>
 <div class="foot" role="doc-pagefooter" aria-label="Manual footer
-  line"><span class="foot-left">Plakar</span> <span class="foot-date">May 5,
-  2026</span> <span class="foot-right">PLAKAR-STORE(1)</span></div>
+  line"><span class="foot-left">Plakar</span> <span class="foot-date">September
+  2, 2026</span> <span class="foot-right">PLAKAR-STORE(1)</span></div>
 

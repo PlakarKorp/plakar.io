@@ -31,7 +31,6 @@ Plakar encrypts the store by default. A few flags modify this behaviour:
 - `-keyfile <path>`: reads the passphrase from a file, taking precedence over
   the environment variable. Useful when a file-based secret is preferred over an
   environment variable for non-interactive services.
-- `-plaintext`: disables encryption entirely (not recommended for production).
 - `-weak-passphrase`: allows a weak passphrase to be accepted (avoid in
   production).
 

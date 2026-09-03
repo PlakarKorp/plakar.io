@@ -265,6 +265,10 @@
 <section class="Sh">
 <h2 class="Sh" id="ENVIRONMENT"><a class="permalink" href="#ENVIRONMENT">ENVIRONMENT</a></h2>
 <dl class="Bl-tag">
+  <dt id="PLAKAR_INSECURE_PLAINTEXT"><a class="permalink" href="#PLAKAR_INSECURE_PLAINTEXT"><code class="Ev">PLAKAR_INSECURE_PLAINTEXT</code></a></dt>
+  <dd>Must be set to work with a Kloset store that is not encrypted. Without it,
+      every command that would read from or write to an unencrypted store
+      refuses to run.</dd>
   <dt id="PLAKAR_PASSPHRASE"><a class="permalink" href="#PLAKAR_PASSPHRASE"><code class="Ev">PLAKAR_PASSPHRASE</code></a></dt>
   <dd>Passphrase to unlock the Kloset store; overrides the one from the
       configuration. If set, <code class="Nm">plakar</code> won't prompt to
@@ -310,8 +314,9 @@
   <dt>66 (EX_NOINPUT)</dt>
   <dd>The repository could not be opened or located.</dd>
   <dt>77 (EX_NOPERM)</dt>
-  <dd>Authentication or decryption failure (wrong passphrase, missing
-    keyfile).</dd>
+  <dd>Authentication or decryption failure (wrong passphrase, missing keyfile),
+      or an unencrypted store used without
+      <code class="Ev">PLAKAR_INSECURE_PLAINTEXT</code>.</dd>
   <dt>78 (EX_CONFIG)</dt>
   <dd>Incompatible repository version.</dd>
 </dl>

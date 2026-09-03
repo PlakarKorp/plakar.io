@@ -51,6 +51,7 @@
 - [TAR](https://www.plakar.io/docs/community/v1.0.6/integrations/tar/index.md): Import TAR archives into a Kloset store with Plakar.
 - [STDIO](https://www.plakar.io/docs/community/v1.0.6/integrations/stdio/index.md): Back up from stdin and restore to stdout or stderr with Plakar.
 - [FTP](https://www.plakar.io/docs/community/v1.0.6/integrations/ftp/index.md): Back up remote directories over FTP, and restore snapshots to FTP destinations.
+- [IMAP](https://www.plakar.io/docs/community/v1.0.6/integrations/imap/index.md): Back up and restore mailboxes over IMAP.
 
 
 ## [Explanations](https://www.plakar.io/docs/community/v1.0.6/explanations/index.md)

@@ -20,6 +20,10 @@ following service resources:
 
 
 
+## [IMAP](https://www.plakar.io/docs/control-plane/resources/services/imap/index.md)
+
+
+
 ## [WebDAV](https://www.plakar.io/docs/control-plane/resources/services/webdav/index.md)
 
 

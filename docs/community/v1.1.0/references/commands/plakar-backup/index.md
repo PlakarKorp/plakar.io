@@ -30,7 +30,7 @@
       [<code class="Fl">-packfiles</code> <var class="Ar">path</var>]
       [<code class="Fl">-perimeter</code> <var class="Ar">perimeter</var>]
       [<code class="Fl">-tag</code> <var class="Ar">tag</var>]
-      [<var class="Ar">place</var>]</td>
+      [<var class="Ar">place ...</var>]</td>
   </tr>
 </table>
 </section>
@@ -45,6 +45,15 @@
     a source connector configured with
     <a class="Xr" href="../plakar-source/" aria-label="plakar-source, section
     1">plakar-source(1)</a>.</p>
+<p class="Pp">The alias can also be in the form of
+    &#x201C;@<var class="Ar">name</var>[:path-override]&#x201D; to override the
+    alias path on the command line. If <var class="Ar">path-override</var>
+    starts with &#x2018;/&#x2019; the whole path is replaced with the override,
+    otherwise it is appended to the existing path.</p>
+<p class="Pp">Multiple <var class="Ar">places</var> can be given, as long as
+    they all refer to different paths on the same remote, e.g. different files
+    or different prefixes on the same bucket. Not all importer connectors
+    support this feature, refer to their documentation for more information.</p>
 <p class="Pp">The options are as follows:</p>
 <dl class="Bl-tag">
   <dt id="cache"><a class="permalink" href="#cache"><code class="Fl">-cache</code></a>
@@ -135,9 +144,17 @@
 <div class="Bd Pp Bd-indent Li">
 <pre>$ plakar backup -ignore-file ~/my-ignore-file /var/www</pre>
 </div>
-<p class="Pp">or by using patterns specified inline:</p>
+<p class="Pp">Ignore files using patterns in one or more files or from the
+    command line:</p>
 <div class="Bd Pp Bd-indent Li">
-<pre>$ plakar backup -ignore &quot;*.tmp&quot; -ignore &quot;*.log&quot; /var/www</pre>
+<pre>$ plakar backup -ignore-file ~/.plkignore -ignore &quot;*.tmp&quot; /var/www</pre>
+</div>
+<p class="Pp">Define an alias for an s3 bucket and backup multiple path
+  prefixes</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>$ plakar source add bucket s3://example.com \
+        access_key=... secret_access_key=...
+$ plakar backup @bucket:/assets @bucket:/uploads @bucket:/logs</pre>
 </div>
 <p class="Pp">Pass an option to the importer, in this case to don't traverse
     mount points:</p>
@@ -155,6 +172,6 @@
 </section>
 </main>
 <div class="foot" role="doc-pagefooter" aria-label="Manual footer
-  line"><span class="foot-left">Plakar</span> <span class="foot-date">May 5,
+  line"><span class="foot-left">Plakar</span> <span class="foot-date">July 23,
   2026</span> <span class="foot-right">PLAKAR-BACKUP(1)</span></div>
 
