@@ -39,6 +39,8 @@ seo_tags:
 links:
   - type: community
     url: /docs/community/main/integrations/webdav/
+  - type: control-plane
+    url: /docs/control-plane/resources/services/webdav/
 
 edition:
   - community
