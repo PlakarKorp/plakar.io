@@ -95,7 +95,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-08-06T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-09-03T15:11:26+02:00">
+    <meta property="article:modified_time" content="2026-09-03T15:13:42+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -253,12 +253,12 @@
     "dateCreated": "2026-08-06T00:00:00\u002b00:00",
     "datePublished": "2026-08-06T00:00:00\u002b00:00",
     
-    "dateModified": "2026-09-03T15:11:26\u002b02:00",
+    "dateModified": "2026-09-03T15:13:42\u002b02:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/intro/air-gapped/",
-    "wordCount": "274"
+    "wordCount": "314"
   }]
   </script>
 
@@ -6556,6 +6556,11 @@ air-gapped or PCI-DSS environment where outbound connections are not permitted,
 use air-gapped enrollment instead. It enrolls the instance entirely from a
 license issued by Plakar in advance, without the instance ever reaching out to
 <code>plakar.io</code>.</p>
+<p>Since an air-gapped instance cannot reach <code>plakar.io</code> for enrollment, it also
+cannot reach it to fetch integrations and appliance components. Before
+enrolling, set up a
+<a href="../../guides/self-hosted-package-repository" >self-hosted package repository</a> so
+the instance can retrieve these files from your own network instead.</p>
 <p>From the sign-in step of the enrollment process, select <strong>Enroll with an offline
 license bundle</strong> to switch to air-gapped enrollment.</p>
 <div class="steps">
