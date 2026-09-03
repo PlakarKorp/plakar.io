@@ -20,6 +20,10 @@ following service resources:
 
 
 
+## [WebDAV](https://www.plakar.io/docs/control-plane/resources/services/webdav/index.md)
+
+
+
 ## [Plakar Control Plane](https://www.plakar.io/docs/control-plane/resources/services/pcp/index.md)
 
 
