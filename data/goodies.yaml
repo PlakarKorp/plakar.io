@@ -1,0 +1,123 @@
+# Data source of truth for the Nestor sticker showcase page (/community/goodies/).
+#
+# Art: final Nestor sticker exports pulled from Google Drive `nestor/stickers/`
+# (owner gilles@plakar.io), optimized to web size and stored in
+# assets/img/nestor/stickers/. Do not invent art: only ship stickers that exist.
+#
+# This file is the data-driven backbone of the page. To add a new series later
+# (Video Games, Music, The 90s, Mythology, Ops & On-Call, Seasonal, ...), add
+# its `series` entry below and one `stickers` entry per finished design. A
+# filter chip appears automatically for every series that has at least one
+# sticker, so no code change is needed.
+
+# Ways to get involved (and get goodies), rendered in the "How to get Plakar
+# goodies" section. Kept short on purpose so it does not duplicate /community/.
+contribute:
+  - title: "Organize a meetup"
+    body: "Bring the Plakar community together, in person or online. Local gatherings or larger events, we can back you with content, slides, and Plakar goodies to give away."
+    cta_label: "Start a meetup"
+    cta_href: "https://github.com/PlakarKorp/plakar-meetups"
+    external: true
+  - title: "Spread the word"
+    body: "Share Plakar's story through blog posts, podcasts, videos, and social media. Made something? Tell us so we can promote it on Plakar's channels."
+    cta_label: "Email hello@plakar.io"
+    cta_href: "mailto:hello@plakar.io"
+    external: false
+  - title: "Improve the docs"
+    body: "Help make Plakar easier to use. Docs live in mandoc next to the code and generate both the site and the CLI help, so guides, tutorials, and examples all start in one place."
+    cta_label: "Open the docs directory"
+    cta_href: "https://github.com/PlakarKorp/plakar/tree/main/docs"
+    external: true
+  - title: "Contribute code"
+    body: "New features, bug fixes, documentation: contributions of all kinds are welcome. The guide walks you through getting started."
+    cta_label: "Read the Contributing Guide"
+    cta_href: "https://github.com/PlakarKorp/plakar/blob/main/CONTRIBUTING.md"
+    external: true
+
+# Ordered series list. `label` is the chip text. A chip renders only when the
+# series has at least one sticker below, so future series can sit here dormant.
+series:
+  - key: memes
+    label: "Memes"
+  - key: movies
+    label: "Movies"
+  - key: seasonal
+    label: "Seasonal"
+
+# The finished set. `image` is relative to assets/. Order below is the grid order.
+stickers:
+  - slug: this-is-fine
+    title: "This Is Fine"
+    series: memes
+    image: img/nestor/stickers/this-is-fine.png
+    caption: "I have offsite backups."
+  - slug: no-backups-youre-nuts
+    title: "No Backups? You're Nuts"
+    series: memes
+    image: img/nestor/stickers/no-backups-youre-nuts.png
+    caption: "No backups? Are you nuts?"
+  - slug: matrix
+    title: "Matrix"
+    series: movies
+    image: img/nestor/stickers/matrix.png
+    caption: "Broken production, or restore. Choose."
+  - slug: back-to-the-future
+    title: "Back to the Future"
+    series: movies
+    image: img/nestor/stickers/future.png
+    caption: "Back up to the future."
+  - slug: two-buttons
+    title: "Two Buttons"
+    series: memes
+    image: img/nestor/stickers/two-buttons.png
+    caption: "Skip it, or set up immutable backups. Decisions, decisions."
+  - slug: wargames
+    title: "WarGames"
+    series: movies
+    image: img/nestor/stickers/wargames.png
+    caption: "The only winning move is to back up."
+  - slug: change-my-mind
+    title: "Change My Mind"
+    series: memes
+    image: img/nestor/stickers/change-my-mind.png
+    caption: "Backups aren't optional. Change my mind."
+  - slug: hitchhikers-guide
+    title: "Hitchhiker's Guide"
+    series: movies
+    image: img/nestor/stickers/guide.png
+    caption: "The answer is 42.ptar."
+  - slug: roll-safe
+    title: "Roll Safe"
+    series: memes
+    image: img/nestor/stickers/roll-safe.png
+    caption: "Can't lose data if you never stop backing up."
+  - slug: jurassic-park
+    title: "Jurassic Park"
+    series: movies
+    image: img/nestor/stickers/jurassic.png
+    caption: "Life, uh, finds a way to restore."
+  - slug: success-kid
+    title: "Success Kid"
+    series: memes
+    image: img/nestor/stickers/success.png
+    caption: "Backup finished at 3 AM. You stayed asleep."
+  - slug: tron
+    title: "Tron"
+    series: movies
+    image: img/nestor/stickers/tron.png
+    caption: "Ride the grid. Back up the grid."
+  - slug: ghostbusters
+    title: "Ghostbusters"
+    series: movies
+    image: img/nestor/stickers/ghostbuster.png
+    caption: "Who you gonna call when prod goes down?"
+  - slug: awkward
+    title: "Awkward"
+    series: memes
+    image: img/nestor/stickers/awkward.png
+    caption: "No backups? Awkward."
+  - slug: apes
+    title: "Apes"
+    series: movies
+    image: img/nestor/stickers/apes.png
+    caption: "The monolith was a .ptar all along."

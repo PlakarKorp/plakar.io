@@ -2,7 +2,9 @@
 {{ $target := .target | default "_self" }}
 {{ $label := .label | default "Click Me" }}
 {{ $labelShort := .labelShort | default $label }}
-{{ $icon := .icon | default "ri/corner-down-right-line" }}
+{{/* Omitting `icon` keeps the default; pass `"icon" ""` for a button with no icon. */}}
+{{ $icon := "ri/corner-down-right-line" }}
+{{ if isset . "icon" }}{{ $icon = .icon }}{{ end }}
 {{ $bgColor := .bgColor | default "bg-primary-500" }}
 {{ $bgHoverColor := .bgHoverColor | default "bg-primary-600" }}
 {{ $textHoverColor := .textHoverColor | default "text-neutral-50" }}
@@ -28,9 +30,11 @@
 
     <!-- Content -->
     <div class="relative z-10 flex items-center gap-2">
-      <span class="w-5 h-5 flex items-center justify-center">
-        {{ partial "icon.html" $icon }}
-      </span>
+      {{ with $icon }}
+        <span class="w-5 h-5 flex items-center justify-center">
+          {{ partial "icon.html" . }}
+        </span>
+      {{ end }}
       <span class="hidden xl:block">{{ $label }}</span>
       <span class="block xl:hidden">{{ $labelShort }}</span>
     </div>

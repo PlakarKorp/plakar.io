@@ -346,6 +346,35 @@ table.Nm {
   }
 }
 
+/* -- Nestor sticker gallery (/community/goodies/) ------------------------- */
+/* Filter chips for layouts/goodies/single.html. Colors use the shared
+   --color-* tokens so light and dark themes both work. */
+
+.goodies-chip {
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.5rem 0.9rem;
+  border-radius: 9999px;
+  border: 1px solid rgb(var(--color-neutral-300));
+  color: rgb(var(--color-neutral-700));
+  background-color: rgb(var(--color-neutral-50));
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+.goodies-chip:hover {
+  border-color: rgb(var(--color-secondary-400));
+  color: rgb(var(--color-secondary-600));
+}
+.goodies-chip.is-active {
+  background-color: rgb(var(--color-secondary-500));
+  border-color: rgb(var(--color-secondary-500));
+  color: rgb(var(--color-neutral-50));
+}
+.goodies-chip:focus-visible {
+  outline: 2px solid rgb(var(--color-secondary-500));
+  outline-offset: 2px;
+}
+
 /* Integrations */
 .integrations-stat-card {
   transition-property: transform;

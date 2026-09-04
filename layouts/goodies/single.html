@@ -1,0 +1,188 @@
+{{ define "main" }}
+<!-- JS: assets/js/main/goodies-filter.js -->
+
+{{ $data := site.Data.goodies }}
+{{ $stickers := $data.stickers }}
+
+{{ $seriesLabels := dict }}
+{{ $present := slice }}
+{{ range $data.series }}
+  {{ $seriesLabels = merge $seriesLabels (dict .key .label) }}
+  {{ if gt (len (where $stickers "series" .key)) 0 }}
+    {{ $present = $present | append (dict "key" .key "label" .label) }}
+  {{ end }}
+{{ end }}
+
+{{ $pageURL := .Permalink }}
+{{ $shareText := "The Nestor sticker collection from Plakar. Protect your nuts." }}
+
+<!-- Hero -->
+<section class="section-secondary-1 pt-44 pb-10">
+  <div class="max-w-350 mx-auto px-4 flex flex-col items-center text-center gap-6">
+    <span class="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wide px-3 py-1 rounded-full text-secondary-700 bg-secondary-50">
+      <span class="w-2 h-2 rounded-full bg-secondary-500"></span>
+      Nestor Goodies
+    </span>
+    <h1 class="text-4xl lg:text-6xl font-medium leading-tighter max-w-5xl">
+      The <span class="text-secondary-500">Nestor</span> sticker collection
+    </h1>
+    <p class="text-lg lg:text-2xl text-neutral-700 max-w-3xl">
+      The stickers we print and hand out at events and online. {{ len $stickers }}
+      designs so far, with more on the way.
+    </p>
+    <p class="text-xl lg:text-2xl font-semibold text-secondary-600">Protect your nuts.</p>
+    <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "See the stickers"
+        "labelShort" "Stickers"
+        "href" "#gallery"
+        "icon" ""
+        "bgColor" "bg-secondary-500"
+        "bgHoverColor" "bg-secondary-600"
+      ) }}
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "How to get goodies"
+        "labelShort" "Get goodies"
+        "href" "#get-goodies"
+        "icon" ""
+        "bgColor" "bg-neutral-50"
+        "bgHoverColor" "bg-neutral-100"
+        "textColor" "text-secondary-700"
+        "textHoverColor" "text-secondary-700"
+        "border" "border"
+        "borderColor" "border-secondary-200"
+      ) }}
+    </div>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section id="gallery" class="section-light-1 pt-14 pb-16 lg:pt-20 lg:pb-24 scroll-mt-24">
+  <div class="max-w-350 mx-auto px-4 flex flex-col gap-6">
+    <div class="flex flex-col gap-2">
+      <h2 class="text-3xl lg:text-5xl font-medium text-neutral-900">
+        The <span class="text-secondary-500">collection</span>
+      </h2>
+      <p class="text-base lg:text-xl text-neutral-600 max-w-3xl">
+        Backup humor, drawn on Nestor. Filter by series to browse.
+      </p>
+    </div>
+
+    <!-- Series filter chips -->
+    <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Filter stickers by series" id="goodies-filters">
+      <button type="button" class="goodies-chip is-active" data-filter="all" aria-pressed="true">All</button>
+      {{ range $present }}
+        <button type="button" class="goodies-chip" data-filter="{{ .key }}" aria-pressed="false">{{ .label }}</button>
+      {{ end }}
+    </div>
+
+    <!-- Sticker grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-2" id="goodies-grid">
+      {{ range $stickers }}
+        {{ $img := resources.Get .image }}
+        <article class="goodies-card group/card relative flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 transition-all duration-300"
+          data-series="{{ .series }}" data-title="{{ .title }}">
+
+          <!-- Sticker art -->
+          <div class="relative h-52 sm:h-56 flex items-center justify-center rounded-lg overflow-hidden">
+            {{ if $img }}
+              {{ partial "components/image.html" (dict
+                "resource" $img
+                "alt" (printf "%s, a Nestor sticker" .title)
+                "widths" (slice 320 480 640)
+                "class" "max-h-full w-auto object-contain drop-shadow-sm"
+              ) }}
+            {{ else }}
+              <span class="text-sm text-neutral-400">Art coming soon</span>
+            {{ end }}
+          </div>
+
+          <!-- Title + series tag -->
+          <div class="flex flex-col gap-1">
+            <h3 class="text-lg lg:text-xl font-semibold text-neutral-900 leading-tight">{{ .title }}</h3>
+            {{ with index $seriesLabels .series }}
+              <span class="text-xs font-semibold uppercase tracking-wide text-secondary-600">{{ . }}</span>
+            {{ end }}
+          </div>
+
+          {{ with .caption }}
+            <p class="text-sm text-neutral-600 leading-snug -mt-1">{{ . }}</p>
+          {{ end }}
+        </article>
+      {{ end }}
+    </div>
+
+    <p id="goodies-empty" class="text-center text-neutral-500 py-10" hidden>No stickers in this series yet. Check back after the next batch.</p>
+  </div>
+</section>
+
+<!-- Share -->
+<section class="section-secondary-1 py-12 lg:py-16">
+  <div class="max-w-350 mx-auto px-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
+    <div class="flex flex-col gap-1">
+      <h2 class="text-2xl lg:text-3xl font-medium text-neutral-900">Spot a favorite?</h2>
+      <p class="text-neutral-700 text-base lg:text-lg">Share the collection with someone who needs it on their laptop.</p>
+    </div>
+    <div class="flex flex-wrap items-center gap-3 shrink-0">
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "Share on X"
+        "labelShort" "X"
+        "href" (printf "https://twitter.com/intent/tweet?%s" (querify "text" $shareText "url" $pageURL) | safeURL)
+        "target" "_blank"
+        "icon" "ri/twitter-x-line"
+        "bgColor" "bg-neutral-900"
+        "bgHoverColor" "bg-neutral-800"
+      ) }}
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "Share on LinkedIn"
+        "labelShort" "LinkedIn"
+        "href" (printf "https://www.linkedin.com/sharing/share-offsite/?%s" (querify "url" $pageURL) | safeURL)
+        "target" "_blank"
+        "icon" "ri/linkedin-box-fill"
+        "bgColor" "bg-[#0a66c2]"
+        "bgHoverColor" "bg-[#004182]"
+      ) }}
+    </div>
+  </div>
+</section>
+
+<!-- How to get Plakar goodies -->
+<section id="get-goodies" class="section-light-2 py-14 lg:py-24 scroll-mt-24">
+  <div class="max-w-350 mx-auto px-4 flex flex-col gap-10">
+    <div class="flex flex-col gap-3 max-w-3xl">
+      <h2 class="text-3xl lg:text-5xl font-medium text-neutral-900">
+        How to get <span class="text-secondary-500">Plakar goodies</span>
+      </h2>
+      <p class="text-base lg:text-xl text-neutral-600">
+        Goodies go to the people who show up for the project. Here are the best
+        ways to get involved, and get stickers in hand.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {{ range $data.contribute }}
+        <div class="flex flex-col gap-3 p-6 rounded-lg border border-neutral-300 bg-neutral-50 shadow-sm">
+          <h3 class="text-xl lg:text-2xl font-semibold text-secondary-500">{{ .title }}</h3>
+          <p class="text-neutral-700 text-base lg:text-lg leading-snug flex-1">{{ .body }}</p>
+          {{ partial "components/buttons/base-button.html" (dict
+            "label" .cta_label
+            "href" .cta_href
+            "target" (cond .external "_blank" "_self")
+            "icon" "ri/arrow-right-line"
+            "class" "self-start mt-1"
+            "bgColor" "bg-secondary-500"
+            "bgHoverColor" "bg-secondary-600"
+          ) }}
+        </div>
+      {{ end }}
+    </div>
+
+    <p class="text-base text-neutral-600">
+      There is more to the community than swag.
+      <a href="/community/" class="text-secondary-600 underline font-medium">Explore the Plakar Community</a>
+      for daily briefings, hackrooms, weekly calls, and how to contribute.
+    </p>
+  </div>
+</section>
+
+{{ end }}
