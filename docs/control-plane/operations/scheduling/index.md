@@ -30,27 +30,27 @@ is currently the primary example of a user scheduler.
 
 
 
-## [Scheduled Tasks](https://stg.plakar.io/docs/control-plane/operations/scheduling/tasks/index.md)
+## [Scheduled Tasks](https://www.stg.plakar.io/docs/control-plane/operations/scheduling/tasks/index.md)
 
 
 
-## [One-off Tasks](https://stg.plakar.io/docs/control-plane/operations/scheduling/one-off-tasks/index.md)
+## [One-off Tasks](https://www.stg.plakar.io/docs/control-plane/operations/scheduling/one-off-tasks/index.md)
 
 
 
-## [Manual Scheduler](https://stg.plakar.io/docs/control-plane/operations/scheduling/manual-scheduler/index.md)
+## [Manual Scheduler](https://www.stg.plakar.io/docs/control-plane/operations/scheduling/manual-scheduler/index.md)
 
 
 
-## [Policy Scheduler](https://stg.plakar.io/docs/control-plane/operations/scheduling/policy-scheduler/index.md)
+## [Policy Scheduler](https://www.stg.plakar.io/docs/control-plane/operations/scheduling/policy-scheduler/index.md)
 
 
 
-## [User Schedulers](https://stg.plakar.io/docs/control-plane/operations/scheduling/user-schedulers/index.md)
+## [User Schedulers](https://www.stg.plakar.io/docs/control-plane/operations/scheduling/user-schedulers/index.md)
 
 
 
-## [Job History](https://stg.plakar.io/docs/control-plane/operations/scheduling/job-history/index.md)
+## [Job History](https://www.stg.plakar.io/docs/control-plane/operations/scheduling/job-history/index.md)
 
 
 

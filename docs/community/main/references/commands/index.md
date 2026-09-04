@@ -15,159 +15,159 @@ documentation.
 
 
 
-## [pkg-build](https://stg.plakar.io/docs/community/main/references/commands/plakar-pkg-build/index.md)
+## [plakar](https://www.stg.plakar.io/docs/community/main/references/commands/plakar/index.md)
 
 
 
-## [pkg-create](https://stg.plakar.io/docs/community/main/references/commands/plakar-pkg-create/index.md)
+## [query](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-query/index.md)
 
 
 
-## [pkg-manifest.yaml](https://stg.plakar.io/docs/community/main/references/commands/plakar-pkg-manifest.yaml/index.md)
+## [restore](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-restore/index.md)
 
 
 
-## [pkg-recipe.yaml](https://stg.plakar.io/docs/community/main/references/commands/plakar-pkg-recipe.yaml/index.md)
+## [rm](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-rm/index.md)
 
 
 
-## [pkg-rm](https://stg.plakar.io/docs/community/main/references/commands/plakar-pkg-rm/index.md)
+## [server](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-server/index.md)
 
 
 
-## [pkg-show](https://stg.plakar.io/docs/community/main/references/commands/plakar-pkg-show/index.md)
+## [service](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-service/index.md)
 
 
 
-## [plakar](https://stg.plakar.io/docs/community/main/references/commands/plakar/index.md)
+## [source](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-source/index.md)
 
 
 
-## [policy](https://stg.plakar.io/docs/community/main/references/commands/plakar-policy/index.md)
+## [store](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-store/index.md)
 
 
 
-## [prune](https://stg.plakar.io/docs/community/main/references/commands/plakar-prune/index.md)
+## [sync](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-sync/index.md)
 
 
 
-## [ptar](https://stg.plakar.io/docs/community/main/references/commands/plakar-ptar/index.md)
+## [token-create](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-token-create/index.md)
 
 
 
-## [query](https://stg.plakar.io/docs/community/main/references/commands/plakar-query/index.md)
+## [ui](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-ui/index.md)
 
 
 
-## [restore](https://stg.plakar.io/docs/community/main/references/commands/plakar-restore/index.md)
+## [version](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-version/index.md)
 
 
 
-## [rm](https://stg.plakar.io/docs/community/main/references/commands/plakar-rm/index.md)
+## [archive](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-archive/index.md)
 
 
 
-## [server](https://stg.plakar.io/docs/community/main/references/commands/plakar-server/index.md)
+## [backup](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-backup/index.md)
 
 
 
-## [service](https://stg.plakar.io/docs/community/main/references/commands/plakar-service/index.md)
+## [cat](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-cat/index.md)
 
 
 
-## [source](https://stg.plakar.io/docs/community/main/references/commands/plakar-source/index.md)
+## [check](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-check/index.md)
 
 
 
-## [store](https://stg.plakar.io/docs/community/main/references/commands/plakar-store/index.md)
+## [create](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-create/index.md)
 
 
 
-## [sync](https://stg.plakar.io/docs/community/main/references/commands/plakar-sync/index.md)
+## [destination](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-destination/index.md)
 
 
 
-## [token-create](https://stg.plakar.io/docs/community/main/references/commands/plakar-token-create/index.md)
+## [diag](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-diag/index.md)
 
 
 
-## [ui](https://stg.plakar.io/docs/community/main/references/commands/plakar-ui/index.md)
+## [diff](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-diff/index.md)
 
 
 
-## [version](https://stg.plakar.io/docs/community/main/references/commands/plakar-version/index.md)
+## [digest](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-digest/index.md)
 
 
 
-## [archive](https://stg.plakar.io/docs/community/main/references/commands/plakar-archive/index.md)
+## [dup](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-dup/index.md)
 
 
 
-## [backup](https://stg.plakar.io/docs/community/main/references/commands/plakar-backup/index.md)
+## [info](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-info/index.md)
 
 
 
-## [cat](https://stg.plakar.io/docs/community/main/references/commands/plakar-cat/index.md)
+## [locate](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-locate/index.md)
 
 
 
-## [check](https://stg.plakar.io/docs/community/main/references/commands/plakar-check/index.md)
+## [login](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-login/index.md)
 
 
 
-## [create](https://stg.plakar.io/docs/community/main/references/commands/plakar-create/index.md)
+## [logout](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-logout/index.md)
 
 
 
-## [destination](https://stg.plakar.io/docs/community/main/references/commands/plakar-destination/index.md)
+## [ls](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-ls/index.md)
 
 
 
-## [diag](https://stg.plakar.io/docs/community/main/references/commands/plakar-diag/index.md)
+## [maintenance](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-maintenance/index.md)
 
 
 
-## [diff](https://stg.plakar.io/docs/community/main/references/commands/plakar-diff/index.md)
+## [mount](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-mount/index.md)
 
 
 
-## [digest](https://stg.plakar.io/docs/community/main/references/commands/plakar-digest/index.md)
+## [pkg-add](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-pkg-add/index.md)
 
 
 
-## [dup](https://stg.plakar.io/docs/community/main/references/commands/plakar-dup/index.md)
+## [pkg-build](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-pkg-build/index.md)
 
 
 
-## [info](https://stg.plakar.io/docs/community/main/references/commands/plakar-info/index.md)
+## [pkg-create](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-pkg-create/index.md)
 
 
 
-## [locate](https://stg.plakar.io/docs/community/main/references/commands/plakar-locate/index.md)
+## [pkg-manifest.yaml](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-pkg-manifest.yaml/index.md)
 
 
 
-## [login](https://stg.plakar.io/docs/community/main/references/commands/plakar-login/index.md)
+## [pkg-recipe.yaml](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-pkg-recipe.yaml/index.md)
 
 
 
-## [logout](https://stg.plakar.io/docs/community/main/references/commands/plakar-logout/index.md)
+## [pkg-rm](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-pkg-rm/index.md)
 
 
 
-## [ls](https://stg.plakar.io/docs/community/main/references/commands/plakar-ls/index.md)
+## [pkg-show](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-pkg-show/index.md)
 
 
 
-## [maintenance](https://stg.plakar.io/docs/community/main/references/commands/plakar-maintenance/index.md)
+## [policy](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-policy/index.md)
 
 
 
-## [mount](https://stg.plakar.io/docs/community/main/references/commands/plakar-mount/index.md)
+## [prune](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-prune/index.md)
 
 
 
-## [pkg-add](https://stg.plakar.io/docs/community/main/references/commands/plakar-pkg-add/index.md)
+## [ptar](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-ptar/index.md)
 
 
 

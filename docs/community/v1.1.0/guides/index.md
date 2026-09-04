@@ -11,79 +11,79 @@ advanced configurations, so you can quickly find the instructions you need.
 
 
 
-## [Scheduling Backups](https://stg.plakar.io/docs/community/v1.1.0/guides/setup-scheduler-daily-backups/index.md)
+## [Scheduling Backups](https://www.stg.plakar.io/docs/community/v1.1.0/guides/setup-scheduler-daily-backups/index.md)
 
-- [Linux: cron and systemd timers](https://stg.plakar.io/docs/community/v1.1.0/guides/setup-scheduler-daily-backups/linux/index.md): Schedule Plakar backups on Linux with cron or systemd timers, and skip runs on battery power.
-- [macOS: launchd](https://stg.plakar.io/docs/community/v1.1.0/guides/setup-scheduler-daily-backups/macos/index.md): Schedule Plakar backups on macOS with launchd, and skip runs on battery power.
-- [Windows: Task Scheduler](https://stg.plakar.io/docs/community/v1.1.0/guides/setup-scheduler-daily-backups/windows/index.md): Schedule Plakar backups on Windows with Task Scheduler, and skip runs on battery power.
-
-
-## [Importing Configurations](https://stg.plakar.io/docs/community/v1.1.0/guides/importing-configurations/index.md)
+- [Linux: cron and systemd timers](https://www.stg.plakar.io/docs/community/v1.1.0/guides/setup-scheduler-daily-backups/linux/index.md): Schedule Plakar backups on Linux with cron or systemd timers, and skip runs on battery power.
+- [macOS: launchd](https://www.stg.plakar.io/docs/community/v1.1.0/guides/setup-scheduler-daily-backups/macos/index.md): Schedule Plakar backups on macOS with launchd, and skip runs on battery power.
+- [Windows: Task Scheduler](https://www.stg.plakar.io/docs/community/v1.1.0/guides/setup-scheduler-daily-backups/windows/index.md): Schedule Plakar backups on Windows with Task Scheduler, and skip runs on battery power.
 
 
-
-## [Creating a Kloset Store](https://stg.plakar.io/docs/community/v1.1.0/guides/create-kloset-repository/index.md)
+## [Importing Configurations](https://www.stg.plakar.io/docs/community/v1.1.0/guides/importing-configurations/index.md)
 
 
 
-## [Serving a Kloset Store over the Network](https://stg.plakar.io/docs/community/v1.1.0/guides/serving-a-kloset-store-over-the-network/index.md)
+## [Creating a Kloset Store](https://www.stg.plakar.io/docs/community/v1.1.0/guides/create-kloset-repository/index.md)
 
 
 
-## [Excluding files from a backup](https://stg.plakar.io/docs/community/v1.1.0/guides/excluding-files-from-a-backup/index.md)
+## [Serving a Kloset Store over the Network](https://www.stg.plakar.io/docs/community/v1.1.0/guides/serving-a-kloset-store-over-the-network/index.md)
 
 
 
-## [Retrieving secrets via external command](https://stg.plakar.io/docs/community/v1.1.0/guides/retrieve-passphrase-kloset-store/index.md)
+## [Excluding files from a backup](https://www.stg.plakar.io/docs/community/v1.1.0/guides/excluding-files-from-a-backup/index.md)
 
 
 
-## [Creating a custom connector](https://stg.plakar.io/docs/community/v1.1.0/guides/creating-a-custom-connector/index.md)
+## [Retrieving secrets via external command](https://www.stg.plakar.io/docs/community/v1.1.0/guides/retrieve-passphrase-kloset-store/index.md)
 
 
 
-## [Logging In to Plakar](https://stg.plakar.io/docs/community/v1.1.0/guides/logging-in-to-plakar/index.md)
+## [Creating a custom connector](https://www.stg.plakar.io/docs/community/v1.1.0/guides/creating-a-custom-connector/index.md)
 
 
 
-## [Managing packages](https://stg.plakar.io/docs/community/v1.1.0/guides/managing-packages/index.md)
+## [Logging In to Plakar](https://www.stg.plakar.io/docs/community/v1.1.0/guides/logging-in-to-plakar/index.md)
 
 
 
-## [Pruning snapshots](https://stg.plakar.io/docs/community/v1.1.0/guides/using-plakar-prune/index.md)
+## [Managing packages](https://www.stg.plakar.io/docs/community/v1.1.0/guides/managing-packages/index.md)
 
 
 
-## [Using Plakar UI](https://stg.plakar.io/docs/community/v1.1.0/guides/using-plakar-ui/index.md)
+## [Pruning snapshots](https://www.stg.plakar.io/docs/community/v1.1.0/guides/using-plakar-prune/index.md)
 
 
 
-## [Managing passphrases](https://stg.plakar.io/docs/community/v1.1.0/guides/managing-passphrases/index.md)
+## [Using Plakar UI](https://www.stg.plakar.io/docs/community/v1.1.0/guides/using-plakar-ui/index.md)
 
 
 
-## [MySQL](https://stg.plakar.io/docs/community/v1.1.0/guides/mysql/index.md)
-
-- [Logical backups with SQL dumps](https://stg.plakar.io/docs/community/v1.1.0/guides/mysql/sqldump/index.md): Back up MySQL and MariaDB databases using the Plakar MySQL integration and restore them.
-- [Physical backups](https://stg.plakar.io/docs/community/v1.1.0/guides/mysql/physical-backups/index.md): Perform physical backups of MySQL databases using Plakar&rsquo;s filesystem backup.
+## [Managing passphrases](https://www.stg.plakar.io/docs/community/v1.1.0/guides/managing-passphrases/index.md)
 
 
-## [PostgreSQL](https://stg.plakar.io/docs/community/v1.1.0/guides/postgres/index.md)
 
-- [Logical backups with pg_dump](https://stg.plakar.io/docs/community/v1.1.0/guides/postgres/pgdump/index.md): Back up PostgreSQL databases using the Plakar PostgreSQL integration and restore them.
-- [Physical backups with pg_basebackup](https://stg.plakar.io/docs/community/v1.1.0/guides/postgres/pg-base-backup/index.md): Back up a PostgreSQL cluster using the Plakar PostgreSQL integration and restore it.
+## [MySQL](https://www.stg.plakar.io/docs/community/v1.1.0/guides/mysql/index.md)
 
-
-## [OVHcloud](https://stg.plakar.io/docs/community/v1.1.0/guides/ovhcloud/index.md)
-
-- [Using OVHcloud VPS as a Dedicated Backup Server](https://stg.plakar.io/docs/community/v1.1.0/guides/ovhcloud/ovhcloud-as-a-dedicated-backup-server/index.md): Automate backups of OVHcloud servers to Object Storage using a dedicated VPS.
-- [Backing Up an OVHcloud Managed PostgreSQL Database](https://stg.plakar.io/docs/community/v1.1.0/guides/ovhcloud/backup-ovhcloud-managed-postgres/index.md): Backing up an OVHcloud Managed PostgreSQL database to Object Storage using pg_dump and Plakar.
+- [Logical backups with SQL dumps](https://www.stg.plakar.io/docs/community/v1.1.0/guides/mysql/sqldump/index.md): Back up MySQL and MariaDB databases using the Plakar MySQL integration and restore them.
+- [Physical backups](https://www.stg.plakar.io/docs/community/v1.1.0/guides/mysql/physical-backups/index.md): Perform physical backups of MySQL databases using Plakar&rsquo;s filesystem backup.
 
 
-## [Exoscale](https://stg.plakar.io/docs/community/v1.1.0/guides/exoscale/index.md)
+## [PostgreSQL](https://www.stg.plakar.io/docs/community/v1.1.0/guides/postgres/index.md)
 
-- [Using Exoscale Compute as a Dedicated Backup Server](https://stg.plakar.io/docs/community/v1.1.0/guides/exoscale/exoscale-compute-as-a-dedicated-backup-server/index.md): Back up Exoscale compute servers to Exoscale Object Storage using a dedicated compute instance.
-- [Back Up an Exoscale Managed MySQL Database](https://stg.plakar.io/docs/community/v1.1.0/guides/exoscale/backup-exoscale-managed-mysql/index.md): Back up an Exoscale Managed MySQL database to Exoscale Object Storage using mysqldump and Plakar
+- [Logical backups with pg_dump](https://www.stg.plakar.io/docs/community/v1.1.0/guides/postgres/pgdump/index.md): Back up PostgreSQL databases using the Plakar PostgreSQL integration and restore them.
+- [Physical backups with pg_basebackup](https://www.stg.plakar.io/docs/community/v1.1.0/guides/postgres/pg-base-backup/index.md): Back up a PostgreSQL cluster using the Plakar PostgreSQL integration and restore it.
+
+
+## [OVHcloud](https://www.stg.plakar.io/docs/community/v1.1.0/guides/ovhcloud/index.md)
+
+- [Using OVHcloud VPS as a Dedicated Backup Server](https://www.stg.plakar.io/docs/community/v1.1.0/guides/ovhcloud/ovhcloud-as-a-dedicated-backup-server/index.md): Automate backups of OVHcloud servers to Object Storage using a dedicated VPS.
+- [Backing Up an OVHcloud Managed PostgreSQL Database](https://www.stg.plakar.io/docs/community/v1.1.0/guides/ovhcloud/backup-ovhcloud-managed-postgres/index.md): Backing up an OVHcloud Managed PostgreSQL database to Object Storage using pg_dump and Plakar.
+
+
+## [Exoscale](https://www.stg.plakar.io/docs/community/v1.1.0/guides/exoscale/index.md)
+
+- [Using Exoscale Compute as a Dedicated Backup Server](https://www.stg.plakar.io/docs/community/v1.1.0/guides/exoscale/exoscale-compute-as-a-dedicated-backup-server/index.md): Back up Exoscale compute servers to Exoscale Object Storage using a dedicated compute instance.
+- [Back Up an Exoscale Managed MySQL Database](https://www.stg.plakar.io/docs/community/v1.1.0/guides/exoscale/backup-exoscale-managed-mysql/index.md): Back up an Exoscale Managed MySQL database to Exoscale Object Storage using mysqldump and Plakar
 
 
 

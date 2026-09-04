@@ -10,11 +10,11 @@ Control Plane supports the following security resources:
 
 
 
-## [Scaleway Secret Manager](https://stg.plakar.io/docs/control-plane/resources/security/scaleway-sm/index.md)
+## [Scaleway Secret Manager](https://www.stg.plakar.io/docs/control-plane/resources/security/scaleway-sm/index.md)
 
 
 
-## [HashiCorp Vault](https://stg.plakar.io/docs/control-plane/resources/security/vault/index.md)
+## [HashiCorp Vault](https://www.stg.plakar.io/docs/control-plane/resources/security/vault/index.md)
 
 
 

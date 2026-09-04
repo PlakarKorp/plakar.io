@@ -29,23 +29,23 @@ provider-specific instructions for your secret manager:
 
 
 
-## [AWS Secrets Manager](https://stg.plakar.io/docs/control-plane/infrastructure/secret-providers/aws/index.md)
+## [AWS Secrets Manager](https://www.stg.plakar.io/docs/control-plane/infrastructure/secret-providers/aws/index.md)
 
 
 
-## [HashiCorp Vault](https://stg.plakar.io/docs/control-plane/infrastructure/secret-providers/vault/index.md)
+## [HashiCorp Vault](https://www.stg.plakar.io/docs/control-plane/infrastructure/secret-providers/vault/index.md)
 
 
 
-## [Scaleway Secret Manager](https://stg.plakar.io/docs/control-plane/infrastructure/secret-providers/scaleway/index.md)
+## [Scaleway Secret Manager](https://www.stg.plakar.io/docs/control-plane/infrastructure/secret-providers/scaleway/index.md)
 
 
 
-## [GCP Secret Manager](https://stg.plakar.io/docs/control-plane/infrastructure/secret-providers/gcp/index.md)
+## [GCP Secret Manager](https://www.stg.plakar.io/docs/control-plane/infrastructure/secret-providers/gcp/index.md)
 
 
 
-## [OVHcloud Secret Manager](https://stg.plakar.io/docs/control-plane/infrastructure/secret-providers/ovhcloud/index.md)
+## [OVHcloud Secret Manager](https://www.stg.plakar.io/docs/control-plane/infrastructure/secret-providers/ovhcloud/index.md)
 
 
 

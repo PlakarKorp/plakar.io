@@ -15,11 +15,11 @@ reading the
 
 
 
-## [Logical backups with SQL dumps](https://stg.plakar.io/docs/community/v1.0.6/guides/mysql/sqldump/index.md)
+## [Logical backups with SQL dumps](https://www.stg.plakar.io/docs/community/v1.0.6/guides/mysql/sqldump/index.md)
 
 
 
-## [Physical backups](https://stg.plakar.io/docs/community/v1.0.6/guides/mysql/physical-backups/index.md)
+## [Physical backups](https://www.stg.plakar.io/docs/community/v1.0.6/guides/mysql/physical-backups/index.md)
 
 
 

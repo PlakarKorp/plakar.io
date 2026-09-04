@@ -14,55 +14,63 @@ Below is a list of links to the documentation for each supported integration.
 
 
 
-## [S3](https://stg.plakar.io/docs/community/v1.0.6/integrations/s3/index.md)
+## [S3](https://www.stg.plakar.io/docs/community/v1.0.6/integrations/s3/index.md)
 
 
 
-## [SFTP / SSH](https://stg.plakar.io/docs/community/v1.0.6/integrations/sftp/index.md)
+## [SFTP / SSH](https://www.stg.plakar.io/docs/community/v1.0.6/integrations/sftp/index.md)
 
 
 
-## [HTTP](https://stg.plakar.io/docs/community/v1.0.6/integrations/http/index.md)
+## [HTTP](https://www.stg.plakar.io/docs/community/v1.0.6/integrations/http/index.md)
 
 
 
-## [Notion](https://stg.plakar.io/docs/community/v1.0.6/integrations/notion/index.md)
+## [Notion](https://www.stg.plakar.io/docs/community/v1.0.6/integrations/notion/index.md)
 
 
 
-## [Dropbox](https://stg.plakar.io/docs/community/v1.0.6/integrations/dropbox/index.md)
+## [Dropbox](https://www.stg.plakar.io/docs/community/v1.0.6/integrations/dropbox/index.md)
 
 
 
-## [iCloud Drive](https://stg.plakar.io/docs/community/v1.0.6/integrations/iclouddrive/index.md)
+## [iCloud Drive](https://www.stg.plakar.io/docs/community/v1.0.6/integrations/iclouddrive/index.md)
 
 
 
-## [Koofr](https://stg.plakar.io/docs/community/v1.0.6/integrations/koofr/index.md)
+## [Koofr](https://www.stg.plakar.io/docs/community/v1.0.6/integrations/koofr/index.md)
 
 
 
-## [Google Drive](https://stg.plakar.io/docs/community/v1.0.6/integrations/googledrive/index.md)
+## [Google Drive](https://www.stg.plakar.io/docs/community/v1.0.6/integrations/googledrive/index.md)
 
 
 
-## [OneDrive](https://stg.plakar.io/docs/community/v1.0.6/integrations/onedrive/index.md)
+## [OneDrive](https://www.stg.plakar.io/docs/community/v1.0.6/integrations/onedrive/index.md)
 
 
 
-## [OpenDrive](https://stg.plakar.io/docs/community/v1.0.6/integrations/opendrive/index.md)
+## [OpenDrive](https://www.stg.plakar.io/docs/community/v1.0.6/integrations/opendrive/index.md)
 
 
 
-## [Proton Drive](https://stg.plakar.io/docs/community/v1.0.6/integrations/protondrive/index.md)
+## [Proton Drive](https://www.stg.plakar.io/docs/community/v1.0.6/integrations/protondrive/index.md)
 
 
 
-## [TAR](https://stg.plakar.io/docs/community/v1.0.6/integrations/tar/index.md)
+## [TAR](https://www.stg.plakar.io/docs/community/v1.0.6/integrations/tar/index.md)
 
 
 
-## [STDIO](https://stg.plakar.io/docs/community/v1.0.6/integrations/stdio/index.md)
+## [STDIO](https://www.stg.plakar.io/docs/community/v1.0.6/integrations/stdio/index.md)
+
+
+
+## [FTP](https://www.stg.plakar.io/docs/community/v1.0.6/integrations/ftp/index.md)
+
+
+
+## [IMAP](https://www.stg.plakar.io/docs/community/v1.0.6/integrations/imap/index.md)
 
 
 

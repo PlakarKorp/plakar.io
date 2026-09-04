@@ -60,27 +60,27 @@ For the exhaustive field-by-field reference of every custom resource, see the
 
 
 
-## [Operator Installation](https://stg.plakar.io/docs/control-plane/infrastructure-as-code/kubernetes-operator/installation/index.md)
+## [Operator Installation](https://www.stg.plakar.io/docs/control-plane/infrastructure-as-code/kubernetes-operator/installation/index.md)
 
 
 
-## [Store Resource](https://stg.plakar.io/docs/control-plane/infrastructure-as-code/kubernetes-operator/stores/index.md)
+## [Store Resource](https://www.stg.plakar.io/docs/control-plane/infrastructure-as-code/kubernetes-operator/stores/index.md)
 
 
 
-## [Source Resource](https://stg.plakar.io/docs/control-plane/infrastructure-as-code/kubernetes-operator/sources/index.md)
+## [Source Resource](https://www.stg.plakar.io/docs/control-plane/infrastructure-as-code/kubernetes-operator/sources/index.md)
 
 
 
-## [Destination Resource](https://stg.plakar.io/docs/control-plane/infrastructure-as-code/kubernetes-operator/destinations/index.md)
+## [Destination Resource](https://www.stg.plakar.io/docs/control-plane/infrastructure-as-code/kubernetes-operator/destinations/index.md)
 
 
 
-## [Restore Resource](https://stg.plakar.io/docs/control-plane/infrastructure-as-code/kubernetes-operator/restore/index.md)
+## [Restore Resource](https://www.stg.plakar.io/docs/control-plane/infrastructure-as-code/kubernetes-operator/restore/index.md)
 
 
 
-## [Scheduling](https://stg.plakar.io/docs/control-plane/infrastructure-as-code/kubernetes-operator/scheduling/index.md)
+## [Scheduling](https://www.stg.plakar.io/docs/control-plane/infrastructure-as-code/kubernetes-operator/scheduling/index.md)
 
 
 

@@ -15,11 +15,11 @@ configure the system before first boot.
 
 
 
-## [Baremetal](https://stg.plakar.io/docs/control-plane/intro/installation/ovhcloud/baremetal/index.md)
+## [Baremetal](https://www.stg.plakar.io/docs/control-plane/intro/installation/ovhcloud/baremetal/index.md)
 
 
 
-## [Compute Instance](https://stg.plakar.io/docs/control-plane/intro/installation/ovhcloud/instance/index.md)
+## [Compute Instance](https://www.stg.plakar.io/docs/control-plane/intro/installation/ovhcloud/instance/index.md)
 
 
 

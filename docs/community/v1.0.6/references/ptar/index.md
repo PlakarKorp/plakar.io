@@ -21,7 +21,6 @@ $ plakar ptar [options] -o output.ptar [sources]
 | Option        | Type   | Default | Description                            |
 | ------------- | ------ | ------- | -------------------------------------- |
 | `-k location` | string | -       | Include a Kloset Store (path or alias) |
-| `-plaintext`  | flag   | false   | Disable encryption                     |
 | `-overwrite`  | flag   | false   | Allow overwriting existing files       |
 
 ### Source Types
@@ -50,9 +49,6 @@ $ plakar ptar -o combined.ptar -k $HOME/backups -k @s3-backups
 
 # Mixed sources
 $ plakar ptar -o comprehensive.ptar -k $HOME/backups /home/user/NewDocs
-
-# Plaintext archive
-$ plakar ptar -plaintext -o unencrypted.ptar -k $HOME/backups
 
 # Overwrite existing
 $ plakar ptar -overwrite -o existing.ptar -k $HOME/backups
@@ -241,7 +237,7 @@ $ plakar ptar -o backup.ptar -k $HOME/backups
 | Read-only            | Yes (archives cannot be modified after creation) |
 | Self-contained       | Yes (includes all metadata and data)             |
 | Portable             | Yes (single file can be moved/copied freely)     |
-| Encrypted by default | Yes (unless `-plaintext` specified)              |
+| Encrypted by default | Yes                                              |
 | Tamper-evident       | Yes (cryptographic verification via `check`)     |
 
 ## Further Reading

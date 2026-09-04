@@ -15,11 +15,11 @@ This section covers:
 
 
 
-## [Backing Up Plakar Control Plane](https://stg.plakar.io/docs/control-plane/administration/backup-and-restore/backup/index.md)
+## [Backing Up Plakar Control Plane](https://www.stg.plakar.io/docs/control-plane/administration/backup-and-restore/backup/index.md)
 
 
 
-## [Restoring Plakar Control Plane](https://stg.plakar.io/docs/control-plane/administration/backup-and-restore/restore/index.md)
+## [Restoring Plakar Control Plane](https://www.stg.plakar.io/docs/control-plane/administration/backup-and-restore/restore/index.md)
 
 
 

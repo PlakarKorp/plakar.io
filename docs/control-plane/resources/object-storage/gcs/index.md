@@ -2,37 +2,25 @@
 # Google Cloud Storage
 
 Google Cloud Storage resources represent bucket-based object storage hosted on
-Google Cloud. GCS buckets can be automatically discovered through a
-[Google Cloud inventory](../../../infrastructure/inventories/google-cloud), or
-added manually using a
-[self-managed inventory](../../infrastructure/inventories/self-managed).
+Google Cloud.
 
-## Setting up with a Google Cloud inventory
+## Inventory Management
 
-If you have a Google Cloud inventory configured in Plakar Control Plane, GCS
-buckets in your project are automatically discovered and available as resources.
-No manual setup is needed, you can go directly to attaching a app to the
-resource and configuring its credentials.
+[Managed inventories](../../infrastructure/inventories#managed-inventories) can
+discover GCS buckets automatically for
+[Google Cloud](../../../infrastructure/inventories/google-cloud). For buckets
+not covered by managed discovery, you can instead set up a
+[self-managed inventory](../../infrastructure/inventories/self-managed) and add
+the resource manually.
 
-## Setting up with a self-managed inventory
+### Adding Google Cloud Storage as a resource
 
-If you are not using a Google Cloud inventory, you can create a self-managed
-inventory to manage your GCS resources manually. Read the
-[self-managed inventory](../../infrastructure/inventories/self-managed)
-documentation for more information.
+When using a self-managed inventory, register the resource with `Object Storage`
+as the class and `GCS` as the subclass. For the endpoint, use the bucket name.
+See [resources documentation](../../resources) for more information on how to
+set up resources on a self-managed inventory.
 
-## Adding Google Cloud Storage as a resource
-
-When using a Google Cloud inventory, buckets are automatically discovered. When
-using a self-managed inventory, you need to register your resources manually or
-import them from a CSV file.
-
-To add a GCS bucket as a resource, use Object Storage as the `class` and GCS as
-the `subclass`. For the endpoint, use the bucket name.
-
-![](../images/add-gcs-resource.png)
-
-## Backup flow
+#### Backup flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -54,7 +42,7 @@ flowchart TD
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-## Restore flow
+#### Restore flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -76,36 +64,26 @@ flowchart TD
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-## Configuration
+## Shared Configuration
 
-Google Cloud Storage resources can be configured using a source, store, or
-destination app.
+The following settings are available when configuring source, store, or
+destination apps.
 
-### Credentials File
+- **Credentials JSON**: Upload a Google Cloud service account JSON key file or
+  paste its contents directly.
+- **Endpoint**: Overrides the default Google Cloud Storage API endpoint. Only
+  needed when connecting to a non-standard endpoint such as a local GCS emulator
+  for development and testing.
+- **No Auth**: Disables authentication entirely. Only useful when connecting to
+  a local emulator that does not require credentials. Should never be enabled in
+  production.
 
-The path to a Google Cloud service account JSON key file on the machine running
-Plakar Control Plane. Use this when you want to reference a key file on disk
-rather than embedding the credentials directly.
+## Store configuration
 
-### Credentials JSON
+The following extra settings are available when configuring a store app.
 
-The full contents of a Google Cloud service account JSON key file, pasted
-directly into the field. Use this instead of Credentials File when you want to
-store the credentials inline without relying on a file path.
-
-You only need to provide one of Credentials File or Credentials JSON.
-
-### Endpoint
-
-Optional. Overrides the default Google Cloud Storage API endpoint. Only needed
-when connecting to a non-standard endpoint such as a local GCS emulator for
-development and testing.
-
-### No Auth
-
-Optional. Disables authentication entirely. Only useful when connecting to a
-local emulator that does not require credentials. Should never be enabled in
-production.
+- **Kloset Passphrase**: The passphrase Plakar Control Plane uses to encrypt the
+  store. This passphrase is required to access the store and must be kept safe.
 
 ## Permissions
 

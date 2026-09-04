@@ -14,7 +14,7 @@ Plakar Control Plane supports the following hypervisor resources:
 
 
 
-## [Proxmox](https://stg.plakar.io/docs/control-plane/resources/hypervisor/proxmox/index.md)
+## [Proxmox](https://www.stg.plakar.io/docs/control-plane/resources/hypervisor/proxmox/index.md)
 
 
 

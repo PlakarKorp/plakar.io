@@ -4,165 +4,165 @@
 
 
 
-## [10 Reasons You Need an Independent, Offsite Backup in 2026](https://stg.plakar.io/posts/2026-08-12/independent-backup-reasons/index.md)
+## [10 Reasons You Need an Independent, Offsite Backup in 2026](https://www.stg.plakar.io/posts/2026-08-12/independent-backup-reasons/index.md)
 
 
 
-## [Portable Backups for Managed Postgres with pg_dump and Plakar](https://stg.plakar.io/posts/2026-07-17/portable-backups-for-managed-postgres-with-pgdump-and-plakar/index.md)
+## [Portable Backups for Managed Postgres with pg_dump and Plakar](https://www.stg.plakar.io/posts/2026-07-17/portable-backups-for-managed-postgres-with-pgdump-and-plakar/index.md)
 
 
 
-## [Plakar Control Plane is now on AWS Marketplace: Resilience on your terms](https://stg.plakar.io/posts/2026-07-10/plakar-control-plane-aws-marketplace/index.md)
+## [Plakar Control Plane is now on AWS Marketplace: Resilience on your terms](https://www.stg.plakar.io/posts/2026-07-10/plakar-control-plane-aws-marketplace/index.md)
 
 
 
-## [Introducing the Plakar Control Plane free plan: Open Resilience for everyone, deployed on your terms](https://stg.plakar.io/posts/2026-06-24/introducing-plakar-control-plane-free-plan/index.md)
+## [Introducing the Plakar Control Plane free plan: Open Resilience for everyone, deployed on your terms](https://www.stg.plakar.io/posts/2026-06-24/introducing-plakar-control-plane-free-plan/index.md)
 
 
 
-## [Plakar v1.1.3 is here](https://stg.plakar.io/posts/2026-06-16/plakar-v1.1.3-is-here/index.md)
+## [Plakar v1.1.3 is here](https://www.stg.plakar.io/posts/2026-06-16/plakar-v1.1.3-is-here/index.md)
 
 
 
-## [go-cdc-chunkers v1.1.0: faster, leaner, and provably correct](https://stg.plakar.io/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/index.md)
+## [go-cdc-chunkers v1.1.0: faster, leaner, and provably correct](https://www.stg.plakar.io/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/index.md)
 
 
 
-## [The Plakar Frontend, Explained](https://stg.plakar.io/posts/plakar-ui-series/index.md)
+## [The Plakar Frontend, Explained](https://www.stg.plakar.io/posts/plakar-ui-series/index.md)
 
-- [I used to think frontend was easy](https://stg.plakar.io/posts/2026-05-25/plakar-ui-series-intro/index.md): I&rsquo;m a backend developer who ended up building a frontend. This series explains the Plakar UI stack — what&rsquo;s in it, why it&rsquo;s structured the way it is, and why it&rsquo;s not as scary as the node_modules folder suggests.
-- [Plakar UI #1: pnpm and Turborepo](https://stg.plakar.io/posts/2026-05-25/plakar-ui-pnpm-turborepo/index.md): How and why we set up the Plakar UI as a monorepo using pnpm for strict dependency management and Turborepo for fast, cached task orchestration.
-- [Plakar UI #2: React](https://stg.plakar.io/posts/2026-05-25/plakar-ui-react/index.md): Why React exists and what problems it actually solves — explained to backend developers who know Go and are curious about how modern frontend UIs are built.
-- [Plakar UI #3: TypeScript](https://stg.plakar.io/posts/2026-05-25/plakar-ui-typescript/index.md): Two TypeScript features that will surprise Go developers: incremental refactoring without blocking the compiler, and discriminated unions with automatic type narrowing.
-- [Plakar UI #4: Zod](https://stg.plakar.io/posts/2026-05-25/plakar-ui-zod/index.md): TypeScript types only protect your own code — Zod validates data at runtime API boundaries, turning silent undefined bugs into immediate, descriptive parse errors.
-- [Plakar UI #5: TanStack Query](https://stg.plakar.io/posts/2026-05-25/plakar-ui-tanstack-query/index.md): How TanStack Query handles all HTTP requests in Plakar UI — automatic caching, deduplication, background refetching, and cache invalidation after mutations.
-- [Plakar UI #6: TanStack Form](https://stg.plakar.io/posts/2026-05-25/plakar-ui-tanstack-form/index.md): How TanStack Form and the AppField pattern turn forms from a copy-paste nightmare into composable, declarative building blocks with type-safe validation.
-- [Plakar UI #7: React Aria Components](https://stg.plakar.io/posts/2026-05-25/plakar-ui-react-aria-components/index.md): Why we use React Aria Components as the foundation for our UI library — and why the breadth and composability of its component catalog made it an easy choice.
-- [Plakar UI #8: TanStack Table](https://stg.plakar.io/posts/2026-05-25/plakar-ui-tanstack-table/index.md): How TanStack Table gives us a headless, fully type-safe data grid — with sorting, filtering, and pagination — without dictating how anything looks.
-- [Plakar UI #9: TanStack Router](https://stg.plakar.io/posts/2026-05-25/plakar-ui-tanstack-router/index.md): How TanStack Router brings compile-time safety to client-side routing — broken links, missing params, and wrong search params are all caught before the code ships.
-- [Plakar UI #10: Storybook](https://stg.plakar.io/posts/2026-05-25/plakar-ui-storybook/index.md): How we use Storybook to develop, document, and visually test our UI component library in isolation, independent of application logic.
-- [Plakar UI #11: Testing Strategy](https://stg.plakar.io/posts/2026-05-25/plakar-ui-testing-strategy/index.md): Why we don&rsquo;t test UI components, what TypeScript and Zod already cover, and where we do write tests.
-- [Plakar UI #12: The Build Process](https://stg.plakar.io/posts/2026-05-25/plakar-ui-build-process/index.md): How we bundle and ship the Plakar UI: Vite, code splitting, and how the compiled assets end up embedded in the Go binary.
-- [Plakar UI: Conclusion](https://stg.plakar.io/posts/2026-05-25/plakar-ui-series-conclusion/index.md): Wrapping up the series: the common thread running through every tool choice, and what comes next.
+- [I used to think frontend was easy](https://www.stg.plakar.io/posts/2026-05-25/plakar-ui-series-intro/index.md): I&rsquo;m a backend developer who ended up building a frontend. This series explains the Plakar UI stack — what&rsquo;s in it, why it&rsquo;s structured the way it is, and why it&rsquo;s not as scary as the node_modules folder suggests.
+- [Plakar UI #1: pnpm and Turborepo](https://www.stg.plakar.io/posts/2026-05-25/plakar-ui-pnpm-turborepo/index.md): How and why we set up the Plakar UI as a monorepo using pnpm for strict dependency management and Turborepo for fast, cached task orchestration.
+- [Plakar UI #2: React](https://www.stg.plakar.io/posts/2026-05-25/plakar-ui-react/index.md): Why React exists and what problems it actually solves — explained to backend developers who know Go and are curious about how modern frontend UIs are built.
+- [Plakar UI #3: TypeScript](https://www.stg.plakar.io/posts/2026-05-25/plakar-ui-typescript/index.md): Two TypeScript features that will surprise Go developers: incremental refactoring without blocking the compiler, and discriminated unions with automatic type narrowing.
+- [Plakar UI #4: Zod](https://www.stg.plakar.io/posts/2026-05-25/plakar-ui-zod/index.md): TypeScript types only protect your own code — Zod validates data at runtime API boundaries, turning silent undefined bugs into immediate, descriptive parse errors.
+- [Plakar UI #5: TanStack Query](https://www.stg.plakar.io/posts/2026-05-25/plakar-ui-tanstack-query/index.md): How TanStack Query handles all HTTP requests in Plakar UI — automatic caching, deduplication, background refetching, and cache invalidation after mutations.
+- [Plakar UI #6: TanStack Form](https://www.stg.plakar.io/posts/2026-05-25/plakar-ui-tanstack-form/index.md): How TanStack Form and the AppField pattern turn forms from a copy-paste nightmare into composable, declarative building blocks with type-safe validation.
+- [Plakar UI #7: React Aria Components](https://www.stg.plakar.io/posts/2026-05-25/plakar-ui-react-aria-components/index.md): Why we use React Aria Components as the foundation for our UI library — and why the breadth and composability of its component catalog made it an easy choice.
+- [Plakar UI #8: TanStack Table](https://www.stg.plakar.io/posts/2026-05-25/plakar-ui-tanstack-table/index.md): How TanStack Table gives us a headless, fully type-safe data grid — with sorting, filtering, and pagination — without dictating how anything looks.
+- [Plakar UI #9: TanStack Router](https://www.stg.plakar.io/posts/2026-05-25/plakar-ui-tanstack-router/index.md): How TanStack Router brings compile-time safety to client-side routing — broken links, missing params, and wrong search params are all caught before the code ships.
+- [Plakar UI #10: Storybook](https://www.stg.plakar.io/posts/2026-05-25/plakar-ui-storybook/index.md): How we use Storybook to develop, document, and visually test our UI component library in isolation, independent of application logic.
+- [Plakar UI #11: Testing Strategy](https://www.stg.plakar.io/posts/2026-05-25/plakar-ui-testing-strategy/index.md): Why we don&rsquo;t test UI components, what TypeScript and Zod already cover, and where we do write tests.
+- [Plakar UI #12: The Build Process](https://www.stg.plakar.io/posts/2026-05-25/plakar-ui-build-process/index.md): How we bundle and ship the Plakar UI: Vite, code splitting, and how the compiled assets end up embedded in the Go binary.
+- [Plakar UI: Conclusion](https://www.stg.plakar.io/posts/2026-05-25/plakar-ui-series-conclusion/index.md): Wrapping up the series: the common thread running through every tool choice, and what comes next.
 
 
-## [Backing Up 12 Months of Wikipedia Data with Plakar](https://stg.plakar.io/posts/2026-05-22/backing-up-12-months-of-wikipedia-with-plakar/index.md)
+## [Backing Up 12 Months of Wikipedia Data with Plakar](https://www.stg.plakar.io/posts/2026-05-22/backing-up-12-months-of-wikipedia-with-plakar/index.md)
 
 
 
-## [Backing up PostgreSQL with Plakar](https://stg.plakar.io/posts/2026-04-03/backing-up-postgresql-with-plakar/index.md)
+## [Backing up PostgreSQL with Plakar](https://www.stg.plakar.io/posts/2026-04-03/backing-up-postgresql-with-plakar/index.md)
 
 
 
-## [Backing up Proxmox with Plakar: a third-party integration built in a few days](https://stg.plakar.io/posts/2026-03-16/backing-up-proxmox-with-plakar-a-third-party-integration-built-in-a-few-days/index.md)
+## [Backing up Proxmox with Plakar: a third-party integration built in a few days](https://www.stg.plakar.io/posts/2026-03-16/backing-up-proxmox-with-plakar-a-third-party-integration-built-in-a-few-days/index.md)
 
 
 
-## [Backing up kubernetes clusters with Plakar](https://stg.plakar.io/posts/2026-02-18/backing-up-kubernetes-clusters-with-plakar/index.md)
+## [Backing up kubernetes clusters with Plakar](https://www.stg.plakar.io/posts/2026-02-18/backing-up-kubernetes-clusters-with-plakar/index.md)
 
 
 
-## [Storing backups in an OCI registry](https://stg.plakar.io/posts/2026-02-07/storing-backups-in-an-oci-registry/index.md)
+## [Storing backups in an OCI registry](https://www.stg.plakar.io/posts/2026-02-07/storing-backups-in-an-oci-registry/index.md)
 
 
 
-## [Plakar v1.1.0-beta: the foundation for what’s next](https://stg.plakar.io/posts/2026-01-26/plakar-v1.1.0-beta-the-foundation-for-whats-next/index.md)
+## [Plakar v1.1.0-beta: the foundation for what’s next](https://www.stg.plakar.io/posts/2026-01-26/plakar-v1.1.0-beta-the-foundation-for-whats-next/index.md)
 
 
 
-## [Researching a PostgreSQL viewer for Plakar](https://stg.plakar.io/posts/2026-01-11/researching-a-postgresql-viewer-for-plakar/index.md)
+## [Researching a PostgreSQL viewer for Plakar](https://www.stg.plakar.io/posts/2026-01-11/researching-a-postgresql-viewer-for-plakar/index.md)
 
 
 
-## [Plakar joins the Linux Foundation and Cloud Native Computing Foundation](https://stg.plakar.io/posts/2026-01-07/plakar-joins-the-linux-foundation-and-cloud-native-computing-foundation/index.md)
+## [Plakar joins the Linux Foundation and Cloud Native Computing Foundation](https://www.stg.plakar.io/posts/2026-01-07/plakar-joins-the-linux-foundation-and-cloud-native-computing-foundation/index.md)
 
 
 
-## [Release v1.0.6 — Bugfix and memory usage improvement](https://stg.plakar.io/posts/2025-11-30/release-v1.0.6-bugfix-and-memory-usage-improvement/index.md)
+## [Release v1.0.6 — Bugfix and memory usage improvement](https://www.stg.plakar.io/posts/2025-11-30/release-v1.0.6-bugfix-and-memory-usage-improvement/index.md)
 
 
 
-## [Release v1.0.5 — Refinements, Hooks & Build Improvements](https://stg.plakar.io/posts/2025-10-15/release-v1.0.5-refinements-hooks-build-improvements/index.md)
+## [Release v1.0.5 — Refinements, Hooks & Build Improvements](https://www.stg.plakar.io/posts/2025-10-15/release-v1.0.5-refinements-hooks-build-improvements/index.md)
 
 
 
-## [Falsehoods Engineers belief about backup](https://stg.plakar.io/posts/2025-09-17/falsehoods-engineers-believe-about-backup/index.md)
+## [Falsehoods Engineers belief about backup](https://www.stg.plakar.io/posts/2025-09-17/falsehoods-engineers-believe-about-backup/index.md)
 
 
 
-## [Release v1.0.4 — A new milestone for Plakar](https://stg.plakar.io/posts/2025-09-16/release-v1.0.4-a-new-milestone-for-plakar/index.md)
+## [Release v1.0.4 — A new milestone for Plakar](https://www.stg.plakar.io/posts/2025-09-16/release-v1.0.4-a-new-milestone-for-plakar/index.md)
 
 
 
-## [Back up Notion? Yes, you can.](https://stg.plakar.io/posts/2025-07-17/back-up-notion-yes-you-can./index.md)
+## [Back up Notion? Yes, you can.](https://www.stg.plakar.io/posts/2025-07-17/back-up-notion-yes-you-can./index.md)
 
 
 
-## [go-kloset-sdk is live!](https://stg.plakar.io/posts/2025-07-15/go-kloset-sdk-is-live/index.md)
+## [go-kloset-sdk is live!](https://www.stg.plakar.io/posts/2025-07-15/go-kloset-sdk-is-live/index.md)
 
 
 
-## [Introducing go-cdc-chunkers: chunk and deduplicate everything](https://stg.plakar.io/posts/2025-07-11/introducing-go-cdc-chunkers-chunk-and-deduplicate-everything/index.md)
+## [Introducing go-cdc-chunkers: chunk and deduplicate everything](https://www.stg.plakar.io/posts/2025-07-11/introducing-go-cdc-chunkers-chunk-and-deduplicate-everything/index.md)
 
 
 
-## [Kapsul: a tool to create and manage deduplicated, compressed and encrypted PTAR vaults](https://stg.plakar.io/posts/2025-07-07/kapsul-a-tool-to-create-and-manage-deduplicated-compressed-and-encrypted-ptar-vaults/index.md)
+## [Kapsul: a tool to create and manage deduplicated, compressed and encrypted PTAR vaults](https://www.stg.plakar.io/posts/2025-07-07/kapsul-a-tool-to-create-and-manage-deduplicated-compressed-and-encrypted-ptar-vaults/index.md)
 
 
 
-## [Technical deep dive into .ptar: replacing .tgz for petabyte-scale S3 archives](https://stg.plakar.io/posts/2025-06-30/technical-deep-dive-into-.ptar-replacing-.tgz-for-petabyte-scale-s3-archives/index.md)
+## [Technical deep dive into .ptar: replacing .tgz for petabyte-scale S3 archives](https://www.stg.plakar.io/posts/2025-06-30/technical-deep-dive-into-.ptar-replacing-.tgz-for-petabyte-scale-s3-archives/index.md)
 
 
 
-## [It doesn't make sense to wrap modern data in a 1979 format, introducing .ptar](https://stg.plakar.io/posts/2025-06-27/it-doesnt-make-sense-to-wrap-modern-data-in-a-1979-format-introducing-.ptar/index.md)
+## [It doesn't make sense to wrap modern data in a 1979 format, introducing .ptar](https://www.stg.plakar.io/posts/2025-06-27/it-doesnt-make-sense-to-wrap-modern-data-in-a-1979-format-introducing-.ptar/index.md)
 
 
 
-## [Plakar v1.0.2 was released: mostly S3 improvements!](https://stg.plakar.io/posts/2025-06-03/plakar-v1.0.2-was-released-mostly-s3-improvements/index.md)
+## [Plakar v1.0.2 was released: mostly S3 improvements!](https://www.stg.plakar.io/posts/2025-06-03/plakar-v1.0.2-was-released-mostly-s3-improvements/index.md)
 
 
 
-## [Introducing Plakar v1.0 to redefine Open-Source Data Protection with $3M funding](https://stg.plakar.io/posts/2025-05-01/introducing-plakar-v1.0-to-redefine-open-source-data-protection-with-3m-funding/index.md)
+## [Introducing Plakar v1.0 to redefine Open-Source Data Protection with $3M funding](https://www.stg.plakar.io/posts/2025-05-01/introducing-plakar-v1.0-to-redefine-open-source-data-protection-with-3m-funding/index.md)
 
 
 
-## [Kloset: the immutable data store](https://stg.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/index.md)
+## [Kloset: the immutable data store](https://www.stg.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/index.md)
 
 
 
-## [A Short history of backup](https://stg.plakar.io/posts/2025-03-31/a-short-history-of-backup/index.md)
+## [A Short history of backup](https://www.stg.plakar.io/posts/2025-03-31/a-short-history-of-backup/index.md)
 
 
 
-## [Plakar 1.0.1-beta.13 out!](https://stg.plakar.io/posts/2025-03-19/plakar-1.0.1-beta.13-out/index.md)
+## [Plakar 1.0.1-beta.13 out!](https://www.stg.plakar.io/posts/2025-03-19/plakar-1.0.1-beta.13-out/index.md)
 
 
 
-## [Plakar beta.4 and upcoming features](https://stg.plakar.io/posts/2025-03-08/plakar-beta.4-and-upcoming-features/index.md)
+## [Plakar beta.4 and upcoming features](https://www.stg.plakar.io/posts/2025-03-08/plakar-beta.4-and-upcoming-features/index.md)
 
 
 
-## [Audit of Plakar cryptography](https://stg.plakar.io/posts/2025-02-28/audit-of-plakar-cryptography/index.md)
+## [Audit of Plakar cryptography](https://www.stg.plakar.io/posts/2025-02-28/audit-of-plakar-cryptography/index.md)
 
 
 
-## [Plakar beta release!](https://stg.plakar.io/posts/2025-02-26/plakar-beta-release/index.md)
+## [Plakar beta release!](https://www.stg.plakar.io/posts/2025-02-26/plakar-beta-release/index.md)
 
 
 
-## [Understanding RTO and RPO in disaster recovery](https://stg.plakar.io/posts/2025-02-12/understanding-rto-and-rpo-in-disaster-recovery/index.md)
+## [Understanding RTO and RPO in disaster recovery](https://www.stg.plakar.io/posts/2025-02-12/understanding-rto-and-rpo-in-disaster-recovery/index.md)
 
 
 
-## [The 3-2-1 backup rule: A proven strategy for data protection](https://stg.plakar.io/posts/2025-02-11/the-3-2-1-backup-rule-a-proven-strategy-for-data-protection/index.md)
+## [The 3-2-1 backup rule: A proven strategy for data protection](https://www.stg.plakar.io/posts/2025-02-11/the-3-2-1-backup-rule-a-proven-strategy-for-data-protection/index.md)
 
 
 
-## [S3 is not a backup: why you need a real backup strategy](https://stg.plakar.io/posts/2025-02-10/s3-is-not-a-backup-why-you-need-a-real-backup-strategy/index.md)
+## [S3 is not a backup: why you need a real backup strategy](https://www.stg.plakar.io/posts/2025-02-10/s3-is-not-a-backup-why-you-need-a-real-backup-strategy/index.md)
 
 
 
-## [Why replication is not backup](https://stg.plakar.io/posts/2025-02-10/why-replication-is-not-backup/index.md)
+## [Why replication is not backup](https://www.stg.plakar.io/posts/2025-02-10/why-replication-is-not-backup/index.md)
 
 
 

@@ -8,6 +8,12 @@ use air-gapped enrollment instead. It enrolls the instance entirely from a
 license issued by Plakar in advance, without the instance ever reaching out to
 `plakar.io`.
 
+Since an air-gapped instance cannot reach `plakar.io` for enrollment, it also
+cannot reach it to fetch integrations and appliance components. Before
+enrolling, set up a
+[self-hosted package repository](../../guides/self-hosted-package-repository) so
+the instance can retrieve these files from your own network instead.
+
 From the sign-in step of the enrollment process, select **Enroll with an offline
 license bundle** to switch to air-gapped enrollment.
 

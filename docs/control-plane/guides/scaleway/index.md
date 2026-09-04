@@ -10,15 +10,15 @@ services with Plakar.
 
 
 
-## [Managing IAM Policies and API Keys](https://stg.plakar.io/docs/control-plane/guides/scaleway/iam-and-api-keys/index.md)
+## [Managing IAM Policies and API Keys](https://www.stg.plakar.io/docs/control-plane/guides/scaleway/iam-and-api-keys/index.md)
 
 
 
-## [Setting up HTTPS access to Plakar Control Plane on a Scaleway Private Network](https://stg.plakar.io/docs/control-plane/guides/scaleway/https-access-to-a-private-network/index.md)
+## [Setting up HTTPS access to Plakar Control Plane on a Scaleway Private Network](https://www.stg.plakar.io/docs/control-plane/guides/scaleway/https-access-to-a-private-network/index.md)
 
 
 
-## [Access Plakar Control Plane via SSH Bastion](https://stg.plakar.io/docs/control-plane/guides/scaleway/ssh-bastion-access/index.md)
+## [Access Plakar Control Plane via SSH Bastion](https://www.stg.plakar.io/docs/control-plane/guides/scaleway/ssh-bastion-access/index.md)
 
 
 

@@ -10,45 +10,45 @@ up and restoring the appliance, and viewing system logs.
 
 
 
-## [General Settings](https://stg.plakar.io/docs/control-plane/administration/general-settings/index.md)
+## [General Settings](https://www.stg.plakar.io/docs/control-plane/administration/general-settings/index.md)
 
 
 
-## [Email & SMTP Setup](https://stg.plakar.io/docs/control-plane/administration/email-and-smtp/index.md)
+## [Email & SMTP Setup](https://www.stg.plakar.io/docs/control-plane/administration/email-and-smtp/index.md)
 
 
 
-## [Webhook Setup](https://stg.plakar.io/docs/control-plane/administration/webhooks/index.md)
+## [Webhook Setup](https://www.stg.plakar.io/docs/control-plane/administration/webhooks/index.md)
 
 
 
-## [Updating Control Plane](https://stg.plakar.io/docs/control-plane/administration/updating-control-plane/index.md)
+## [Updating Control Plane](https://www.stg.plakar.io/docs/control-plane/administration/updating-control-plane/index.md)
 
-- [Updating AWS AMI](https://stg.plakar.io/docs/control-plane/administration/updating-control-plane/aws/index.md): How to update Plakar Control Plane AMI on AWS.
-- [Updating Scaleway QCOW2](https://stg.plakar.io/docs/control-plane/administration/updating-control-plane/scaleway/index.md): How to update the Plakar Control Plane Scaleway installation image.
-- [Updating vSphere](https://stg.plakar.io/docs/control-plane/administration/updating-control-plane/vsphere/index.md): How to update the Plakar Control Plane vSphere installation
-- [Updating Proxmox ISO](https://stg.plakar.io/docs/control-plane/administration/updating-control-plane/proxmox/index.md): How to update the Plakar Control Plane Proxmox installation image.
-
-
-## [Backup and Restore](https://stg.plakar.io/docs/control-plane/administration/backup-and-restore/index.md)
-
-- [Backing Up Plakar Control Plane](https://stg.plakar.io/docs/control-plane/administration/backup-and-restore/backup/index.md): Step-by-step guide to back up Plakar Control Plane configuration and data using the UI.
-- [Restoring Plakar Control Plane](https://stg.plakar.io/docs/control-plane/administration/backup-and-restore/restore/index.md): How to restore Plakar Control Plane from a backup snapshot to a new appliance.
+- [Updating AWS AMI](https://www.stg.plakar.io/docs/control-plane/administration/updating-control-plane/aws/index.md): How to update Plakar Control Plane AMI on AWS.
+- [Updating Scaleway QCOW2](https://www.stg.plakar.io/docs/control-plane/administration/updating-control-plane/scaleway/index.md): How to update the Plakar Control Plane Scaleway installation image.
+- [Updating vSphere](https://www.stg.plakar.io/docs/control-plane/administration/updating-control-plane/vsphere/index.md): How to update the Plakar Control Plane vSphere installation
+- [Updating Proxmox ISO](https://www.stg.plakar.io/docs/control-plane/administration/updating-control-plane/proxmox/index.md): How to update the Plakar Control Plane Proxmox installation image.
 
 
-## [Configuration Bundles](https://stg.plakar.io/docs/control-plane/administration/configuration-bundles/index.md)
+## [Backup and Restore](https://www.stg.plakar.io/docs/control-plane/administration/backup-and-restore/index.md)
+
+- [Backing Up Plakar Control Plane](https://www.stg.plakar.io/docs/control-plane/administration/backup-and-restore/backup/index.md): Step-by-step guide to back up Plakar Control Plane configuration and data using the UI.
+- [Restoring Plakar Control Plane](https://www.stg.plakar.io/docs/control-plane/administration/backup-and-restore/restore/index.md): How to restore Plakar Control Plane from a backup snapshot to a new appliance.
 
 
-
-## [Managing Users](https://stg.plakar.io/docs/control-plane/administration/users/index.md)
+## [Configuration Bundles](https://www.stg.plakar.io/docs/control-plane/administration/configuration-bundles/index.md)
 
 
 
-## [Managing Organizations](https://stg.plakar.io/docs/control-plane/administration/organizations/index.md)
+## [Managing Users](https://www.stg.plakar.io/docs/control-plane/administration/users/index.md)
 
 
 
-## [Two-factor authentication](https://stg.plakar.io/docs/control-plane/administration/two-factor-authentication/index.md)
+## [Managing Organizations](https://www.stg.plakar.io/docs/control-plane/administration/organizations/index.md)
+
+
+
+## [Two-factor authentication](https://www.stg.plakar.io/docs/control-plane/administration/two-factor-authentication/index.md)
 
 
 

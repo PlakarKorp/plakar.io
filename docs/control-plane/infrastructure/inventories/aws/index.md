@@ -35,11 +35,11 @@ flowchart TD
 
 ## Supported Resources
 
-| Resource        | Source | Store | Destination |
-| --------------- | ------ | ----- | ----------- |
-| S3 Bucket       | Yes    | Yes   | Yes         |
-| EC2 Instance    | Yes    | No    | Yes         |
-| PostgreSQL(RDS) | Yes    | No    | Yes         |
+| Resource       | Source | Store | Destination |
+| -------------- | ------ | ----- | ----------- |
+| S3 Bucket      | Yes    | Yes   | Yes         |
+| EC2 Instance   | Yes    | No    | Yes         |
+| Database (RDS) | Yes    | No    | Yes         |
 
 ## Authentication
 

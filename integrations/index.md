@@ -4,143 +4,147 @@
 
 
 
-## [AWS](https://stg.plakar.io/integrations/aws/index.md)
+## [Google Cloud (GCP)](https://www.stg.plakar.io/integrations/gcp/index.md)
 
 
 
-## [Scaleway](https://stg.plakar.io/integrations/scaleway/index.md)
+## [Amazon Web Services (AWS)](https://www.stg.plakar.io/integrations/aws/index.md)
 
 
 
-## [OVHcloud](https://stg.plakar.io/integrations/ovhcloud/index.md)
+## [Scaleway](https://www.stg.plakar.io/integrations/scaleway/index.md)
 
 
 
-## [Plakar Control Plane](https://stg.plakar.io/integrations/pcp/index.md)
+## [OVHcloud](https://www.stg.plakar.io/integrations/ovhcloud/index.md)
 
 
 
-## [Microsoft SQL Server](https://stg.plakar.io/integrations/mssql/index.md)
+## [Plakar Control Plane](https://www.stg.plakar.io/integrations/pcp/index.md)
 
 
 
-## [Microsoft Active Directory](https://stg.plakar.io/integrations/msad/index.md)
+## [Microsoft SQL Server](https://www.stg.plakar.io/integrations/mssql/index.md)
 
 
 
-## [VMware](https://stg.plakar.io/integrations/vmware/index.md)
+## [Microsoft Active Directory](https://www.stg.plakar.io/integrations/msad/index.md)
 
 
 
-## [VSS](https://stg.plakar.io/integrations/vss/index.md)
+## [VMware](https://www.stg.plakar.io/integrations/vmware/index.md)
 
 
 
-## [Vault](https://stg.plakar.io/integrations/vault/index.md)
+## [Windows VSS](https://www.stg.plakar.io/integrations/vss/index.md)
 
 
 
-## [Backblaze B2](https://stg.plakar.io/integrations/backblaze/index.md)
+## [Vault](https://www.stg.plakar.io/integrations/vault/index.md)
 
 
 
-## [WebDAV](https://stg.plakar.io/integrations/webdav/index.md)
+## [Backblaze B2](https://www.stg.plakar.io/integrations/backblaze/index.md)
 
 
 
-## [Azure Blob Storage](https://stg.plakar.io/integrations/azblob/index.md)
+## [WebDAV](https://www.stg.plakar.io/integrations/webdav/index.md)
 
 
 
-## [Google Cloud Storage](https://stg.plakar.io/integrations/gcs/index.md)
+## [Azure Blob Storage](https://www.stg.plakar.io/integrations/azblob/index.md)
 
 
 
-## [OCI Registry](https://stg.plakar.io/integrations/oci/index.md)
+## [Google Cloud Storage](https://www.stg.plakar.io/integrations/gcs/index.md)
 
 
 
-## [Kubernetes](https://stg.plakar.io/integrations/kubernetes/index.md)
+## [OCI Registry](https://www.stg.plakar.io/integrations/oci/index.md)
 
 
 
-## [Proxmox](https://stg.plakar.io/integrations/proxmox/index.md)
+## [Kubernetes](https://www.stg.plakar.io/integrations/kubernetes/index.md)
 
 
 
-## [etcd](https://stg.plakar.io/integrations/etcd/index.md)
+## [Proxmox](https://www.stg.plakar.io/integrations/proxmox/index.md)
 
 
 
-## [MySQL / MariaDB](https://stg.plakar.io/integrations/mysql/index.md)
+## [etcd](https://www.stg.plakar.io/integrations/etcd/index.md)
 
 
 
-## [PostgreSQL](https://stg.plakar.io/integrations/postgres/index.md)
+## [MySQL / MariaDB](https://www.stg.plakar.io/integrations/mysql/index.md)
 
 
 
-## [Dropbox](https://stg.plakar.io/integrations/dropbox/index.md)
+## [PostgreSQL](https://www.stg.plakar.io/integrations/postgres/index.md)
 
 
 
-## [Filesystem](https://stg.plakar.io/integrations/fs/index.md)
+## [Dropbox](https://www.stg.plakar.io/integrations/dropbox/index.md)
 
 
 
-## [FTP](https://stg.plakar.io/integrations/ftp/index.md)
+## [Filesystem](https://www.stg.plakar.io/integrations/fs/index.md)
 
 
 
-## [Google Drive](https://stg.plakar.io/integrations/googledrive/index.md)
+## [FTP](https://www.stg.plakar.io/integrations/ftp/index.md)
 
 
 
-## [iCloud Drive](https://stg.plakar.io/integrations/iclouddrive/index.md)
+## [Google Drive](https://www.stg.plakar.io/integrations/googledrive/index.md)
 
 
 
-## [IMAP](https://stg.plakar.io/integrations/imap/index.md)
+## [iCloud Drive](https://www.stg.plakar.io/integrations/iclouddrive/index.md)
 
 
 
-## [Koofr](https://stg.plakar.io/integrations/koofr/index.md)
+## [IMAP](https://www.stg.plakar.io/integrations/imap/index.md)
 
 
 
-## [MinIO](https://stg.plakar.io/integrations/minio/index.md)
+## [Koofr](https://www.stg.plakar.io/integrations/koofr/index.md)
 
 
 
-## [Notion](https://stg.plakar.io/integrations/notion/index.md)
+## [MinIO](https://www.stg.plakar.io/integrations/minio/index.md)
 
 
 
-## [OneDrive](https://stg.plakar.io/integrations/onedrive/index.md)
+## [Notion](https://www.stg.plakar.io/integrations/notion/index.md)
 
 
 
-## [OpenDrive](https://stg.plakar.io/integrations/opendrive/index.md)
+## [OneDrive](https://www.stg.plakar.io/integrations/onedrive/index.md)
 
 
 
-## [Proton Drive](https://stg.plakar.io/integrations/protondrive/index.md)
+## [OpenDrive](https://www.stg.plakar.io/integrations/opendrive/index.md)
 
 
 
-## [S3](https://stg.plakar.io/integrations/s3/index.md)
+## [Proton Drive](https://www.stg.plakar.io/integrations/protondrive/index.md)
 
 
 
-## [SFTP](https://stg.plakar.io/integrations/sftp/index.md)
+## [S3](https://www.stg.plakar.io/integrations/s3/index.md)
 
 
 
-## [Stdio](https://stg.plakar.io/integrations/stdio/index.md)
+## [SFTP](https://www.stg.plakar.io/integrations/sftp/index.md)
 
 
 
-## [Tar](https://stg.plakar.io/integrations/tar/index.md)
+## [Stdio](https://www.stg.plakar.io/integrations/stdio/index.md)
+
+
+
+## [Tar](https://www.stg.plakar.io/integrations/tar/index.md)
 
 
 

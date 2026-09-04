@@ -51,8 +51,7 @@ flowchart TD
 The following settings are available when configuring a source app using the
 `k8s+csi` protocol.
 
-- **Kubeconfig**: Required. Upload a kube config YAML file or paste its contents
-  directly.
+- **Kubeconfig**: Upload a kube config YAML file or paste its contents directly.
 - **Kubelet Image**: The container image used for the helper pod. Leave this
   unset. It exists only so that Plakar support can supply a replacement image
   while diagnosing a problem, and a working deployment never needs it.
@@ -123,8 +122,7 @@ flowchart TD
 The following settings are available when configuring both source and
 destination apps using the `k8s+pvc` protocol.
 
-- **Kubeconfig**: Required. Upload a kube config YAML file or paste its contents
-  directly.
+- **Kubeconfig**: Upload a kube config YAML file or paste its contents directly.
 - **Kubelet Image**: The container image used for the helper pod. Leave this
   unset. It exists only so that Plakar support can supply a replacement image
   while diagnosing a problem, and a working deployment never needs it.

@@ -27,36 +27,36 @@ to activate your instance.
 
 
 
-## [AWS](https://stg.plakar.io/docs/control-plane/intro/installation/aws/index.md)
+## [AWS](https://www.stg.plakar.io/docs/control-plane/intro/installation/aws/index.md)
 
 
 
-## [OVHcloud](https://stg.plakar.io/docs/control-plane/intro/installation/ovhcloud/index.md)
+## [OVHcloud](https://www.stg.plakar.io/docs/control-plane/intro/installation/ovhcloud/index.md)
 
-- [Baremetal](https://stg.plakar.io/docs/control-plane/intro/installation/ovhcloud/baremetal/index.md): How to install Plakar Control Plane on OVHcloud Baremetal
-- [Compute Instance](https://stg.plakar.io/docs/control-plane/intro/installation/ovhcloud/instance/index.md): How to install Plakar Control Plane on OVHcloud compute instance
-
-
-## [Scaleway](https://stg.plakar.io/docs/control-plane/intro/installation/scaleway/index.md)
+- [Baremetal](https://www.stg.plakar.io/docs/control-plane/intro/installation/ovhcloud/baremetal/index.md): How to install Plakar Control Plane on OVHcloud Baremetal
+- [Compute Instance](https://www.stg.plakar.io/docs/control-plane/intro/installation/ovhcloud/instance/index.md): How to install Plakar Control Plane on OVHcloud compute instance
 
 
-
-## [Exoscale](https://stg.plakar.io/docs/control-plane/intro/installation/exoscale/index.md)
+## [Scaleway](https://www.stg.plakar.io/docs/control-plane/intro/installation/scaleway/index.md)
 
 
 
-## [Google Cloud](https://stg.plakar.io/docs/control-plane/intro/installation/google-cloud/index.md)
+## [Exoscale](https://www.stg.plakar.io/docs/control-plane/intro/installation/exoscale/index.md)
 
 
 
-## [Kubernetes](https://stg.plakar.io/docs/control-plane/intro/installation/kubernetes/index.md)
+## [Google Cloud](https://www.stg.plakar.io/docs/control-plane/intro/installation/google-cloud/index.md)
 
 
 
-## [Virtual Machines](https://stg.plakar.io/docs/control-plane/intro/installation/virtual-machines/index.md)
+## [Kubernetes](https://www.stg.plakar.io/docs/control-plane/intro/installation/kubernetes/index.md)
 
-- [VMware vSphere](https://stg.plakar.io/docs/control-plane/intro/installation/virtual-machines/vsphere/index.md): How to install Plakar Control Plane on vCenter using vSphere HTML Client
-- [Proxmox VE](https://stg.plakar.io/docs/control-plane/intro/installation/virtual-machines/proxmox/index.md): How to install Plakar Control Plane on Proxmox VE
+
+
+## [Virtual Machines](https://www.stg.plakar.io/docs/control-plane/intro/installation/virtual-machines/index.md)
+
+- [VMware vSphere](https://www.stg.plakar.io/docs/control-plane/intro/installation/virtual-machines/vsphere/index.md): How to install Plakar Control Plane on vCenter using vSphere HTML Client
+- [Proxmox VE](https://www.stg.plakar.io/docs/control-plane/intro/installation/virtual-machines/proxmox/index.md): How to install Plakar Control Plane on Proxmox VE
 
 
 

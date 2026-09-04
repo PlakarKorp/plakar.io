@@ -10,11 +10,11 @@ instances. Plakar Control Plane supports the following block storage resources:
 
 
 
-## [Scaleway Block Storage](https://stg.plakar.io/docs/control-plane/resources/block-storage/scaleway/index.md)
+## [Scaleway Block Storage](https://www.stg.plakar.io/docs/control-plane/resources/block-storage/scaleway/index.md)
 
 
 
-## [Kubernetes PVC](https://stg.plakar.io/docs/control-plane/resources/block-storage/pvc/index.md)
+## [Kubernetes PVC](https://www.stg.plakar.io/docs/control-plane/resources/block-storage/pvc/index.md)
 
 
 

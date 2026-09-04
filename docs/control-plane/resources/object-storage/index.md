@@ -13,15 +13,15 @@ Plakar Control Plane supports the following object storages:
 
 
 
-## [S3](https://stg.plakar.io/docs/control-plane/resources/object-storage/s3/index.md)
+## [S3](https://www.stg.plakar.io/docs/control-plane/resources/object-storage/s3/index.md)
 
 
 
-## [Azure Blob Storage](https://stg.plakar.io/docs/control-plane/resources/object-storage/azblob/index.md)
+## [Azure Blob Storage](https://www.stg.plakar.io/docs/control-plane/resources/object-storage/azblob/index.md)
 
 
 
-## [Google Cloud Storage](https://stg.plakar.io/docs/control-plane/resources/object-storage/gcs/index.md)
+## [Google Cloud Storage](https://www.stg.plakar.io/docs/control-plane/resources/object-storage/gcs/index.md)
 
 
 

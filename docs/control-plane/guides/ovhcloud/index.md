@@ -10,7 +10,7 @@ services with Plakar.
 
 
 
-## [Managing API Applications and Credentials](https://stg.plakar.io/docs/control-plane/guides/ovhcloud/api-keys/index.md)
+## [Managing API Applications and Credentials](https://www.stg.plakar.io/docs/control-plane/guides/ovhcloud/api-keys/index.md)
 
 
 

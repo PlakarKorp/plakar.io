@@ -10,23 +10,19 @@ Plane supports the following compute resources:
 
 
 
-## [Scaleway Compute](https://stg.plakar.io/docs/control-plane/resources/compute/scaleway/index.md)
+## [Scaleway Compute](https://www.stg.plakar.io/docs/control-plane/resources/compute/scaleway/index.md)
 
 
 
-## [SFTP](https://stg.plakar.io/docs/control-plane/resources/compute/sftp/index.md)
+## [VMware Compute](https://www.stg.plakar.io/docs/control-plane/resources/compute/vmware/index.md)
 
 
 
-## [VMware Compute](https://stg.plakar.io/docs/control-plane/resources/compute/vmware/index.md)
+## [Windows VSS](https://www.stg.plakar.io/docs/control-plane/resources/compute/vss/index.md)
 
 
 
-## [VSS](https://stg.plakar.io/docs/control-plane/resources/compute/vss/index.md)
-
-
-
-## [OVHcloud Compute](https://stg.plakar.io/docs/control-plane/resources/compute/ovhcloud/index.md)
+## [OVHcloud Compute](https://www.stg.plakar.io/docs/control-plane/resources/compute/ovhcloud/index.md)
 
 
 

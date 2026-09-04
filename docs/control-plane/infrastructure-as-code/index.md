@@ -20,14 +20,14 @@ see the [installation documentation](../intro/installation).
 
 
 
-## [Kubernetes Operator](https://stg.plakar.io/docs/control-plane/infrastructure-as-code/kubernetes-operator/index.md)
+## [Kubernetes Operator](https://www.stg.plakar.io/docs/control-plane/infrastructure-as-code/kubernetes-operator/index.md)
 
-- [Operator Installation](https://stg.plakar.io/docs/control-plane/infrastructure-as-code/kubernetes-operator/installation/index.md): Install the plakar-operator into a Kubernetes cluster and connect it to a Plakar Control Plane instance.
-- [Store Resource](https://stg.plakar.io/docs/control-plane/infrastructure-as-code/kubernetes-operator/stores/index.md): Declaring a store app with the plakar-operator Store custom resource.
-- [Source Resource](https://stg.plakar.io/docs/control-plane/infrastructure-as-code/kubernetes-operator/sources/index.md): Define a source using the plakar-operator Source custom resource.
-- [Destination Resource](https://stg.plakar.io/docs/control-plane/infrastructure-as-code/kubernetes-operator/destinations/index.md): Define a destination using the plakar-operator Destination custom resource.
-- [Restore Resource](https://stg.plakar.io/docs/control-plane/infrastructure-as-code/kubernetes-operator/restore/index.md): Run a one-off restore using the plakar-operator Restore custom resource.
-- [Scheduling](https://stg.plakar.io/docs/control-plane/infrastructure-as-code/kubernetes-operator/scheduling/index.md): Define scheduled backup, check, and sync tasks using the plakar-operator.
+- [Operator Installation](https://www.stg.plakar.io/docs/control-plane/infrastructure-as-code/kubernetes-operator/installation/index.md): Install the plakar-operator into a Kubernetes cluster and connect it to a Plakar Control Plane instance.
+- [Store Resource](https://www.stg.plakar.io/docs/control-plane/infrastructure-as-code/kubernetes-operator/stores/index.md): Declaring a store app with the plakar-operator Store custom resource.
+- [Source Resource](https://www.stg.plakar.io/docs/control-plane/infrastructure-as-code/kubernetes-operator/sources/index.md): Define a source using the plakar-operator Source custom resource.
+- [Destination Resource](https://www.stg.plakar.io/docs/control-plane/infrastructure-as-code/kubernetes-operator/destinations/index.md): Define a destination using the plakar-operator Destination custom resource.
+- [Restore Resource](https://www.stg.plakar.io/docs/control-plane/infrastructure-as-code/kubernetes-operator/restore/index.md): Run a one-off restore using the plakar-operator Restore custom resource.
+- [Scheduling](https://www.stg.plakar.io/docs/control-plane/infrastructure-as-code/kubernetes-operator/scheduling/index.md): Define scheduled backup, check, and sync tasks using the plakar-operator.
 
 
 

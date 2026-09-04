@@ -10,7 +10,7 @@ Cloud services with Plakar.
 
 
 
-## [Managing IAM Roles and Service Accounts](https://stg.plakar.io/docs/control-plane/guides/google-cloud/iam-roles-and-service-accounts/index.md)
+## [Managing IAM Roles and Service Accounts](https://www.stg.plakar.io/docs/control-plane/guides/google-cloud/iam-roles-and-service-accounts/index.md)
 
 
 

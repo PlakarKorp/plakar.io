@@ -275,64 +275,7 @@ The gateway can usually be found from the NSX network segment configuration.
 {{< tab label="Advanced (YAML)" >}}
 
 For multiple NICs, static routes, or to bundle every setting into one document,
-use one of these two YAML channels instead of the flat keys.
-
-### Netplan via `guestinfo.metadata` (network only, multi-NIC)
-
-The appliance evaluates the sources in order. As soon as one source successfully
-defines at least one network interface, it is used and all remaining sources are
-ignored.
-
-1. `guestinfo.metadata` (this channel)
-2. An OVF property set during the Deploy-OVF wizard's Customize Template step,
-   if the deployed OVA defines one
-3. The flat `guestinfo.plakar.*` keys, from the Basic tab
-4. A `network:` key inside `guestinfo.userdata`, below
-5. DHCP fallback
-
-A [netplan v2](https://netplan.readthedocs.io/) YAML document, under a top-level
-`network:` key or a bare `ethernets:` key:
-
-```yaml
-network:
-  ethernets:
-    eth0:
-      addresses: [10.0.1.5/24] # CIDR suffix is mandatory
-      gateway4: 10.0.1.1
-      nameservers:
-        addresses: [10.0.1.53, 10.0.1.54]
-    eth1:
-      addresses: [10.20.0.5/24]
-      routes: # reach sources behind a router on this segment
-        - to: 10.50.0.0/16
-          via: 10.20.0.1
-    eth2:
-      dhcp4: true
-```
-
-Only a subset of netplan is supported: `addresses` (first entry, CIDR required),
-`gateway4`, `routes` (`{to, via}`, with `to: default` as an alias for
-`gateway4`), `nameservers.addresses`, `dhcp4: true`, and `match.macaddress` to
-select a NIC by MAC address instead of its kernel name. A MAC match survives
-adapter reordering, unlike the PCI-order `eth0`/`eth1` kernel names:
-
-```yaml
-backup-a:
-  match: { macaddress: "00:50:56:aa:bb:cc" }
-  addresses: [10.20.0.5/24]
-```
-
-The Advanced Parameters field is single-line, so base64-encode the document
-before pasting it in:
-
-```sh
-base64 -w0 < netplan.yaml
-```
-
-| Parameter                     | Description                                        |
-| ----------------------------- | -------------------------------------------------- |
-| `guestinfo.metadata`          | Netplan YAML document, encoded per the field below |
-| `guestinfo.metadata.encoding` | `base64`, `gzip+base64`, or omitted for raw YAML   |
+use `guestinfo.userdata` instead of the flat keys.
 
 ### Cloud-init via `guestinfo.userdata` (proxy, registry, network, SSH)
 
@@ -355,16 +298,45 @@ registry:
 network:
   ethernets:
     eth0:
-      addresses: [10.0.1.5/24]
+      addresses: [10.0.1.5/24] # CIDR suffix is mandatory
       gateway4: 10.0.1.1
       nameservers:
-        addresses: [10.0.1.53]
+        addresses: [10.0.1.53, 10.0.1.54]
+    eth1:
+      addresses: [10.20.0.5/24]
+      routes: # reach sources behind a router on this segment
+        - to: 10.50.0.0/16
+          via: 10.20.0.1
+    eth2:
+      dhcp4: true
 
 ssh_authorized_keys:
   - ssh-ed25519 AAAA...
 ```
 
-`network:` accepts the same netplan subset described above.
+The `network:` key accepts a [netplan v2](https://netplan.readthedocs.io/)
+document, under a top-level `network:` key or a bare `ethernets:` key. The
+appliance evaluates network sources in order. As soon as one source successfully
+defines at least one network interface, it is used and all remaining sources are
+ignored.
+
+1. An OVF property set during the Deploy-OVF wizard's Customize Template step,
+   if the deployed OVA defines one
+2. The flat `guestinfo.plakar.*` keys, from the Basic tab
+3. The `network:` key inside `guestinfo.userdata`, above
+4. DHCP fallback
+
+Only a subset of netplan is supported: `addresses` (first entry, CIDR required),
+`gateway4`, `routes` (`{to, via}`, with `to: default` as an alias for
+`gateway4`), `nameservers.addresses`, `dhcp4: true`, and `match.macaddress` to
+select a NIC by MAC address instead of its kernel name. A MAC match survives
+adapter reordering, unlike the PCI-order `eth0`/`eth1` kernel names:
+
+```yaml
+backup-a:
+  match: { macaddress: "00:50:56:aa:bb:cc" }
+  addresses: [10.20.0.5/24]
+```
 
 For VMware, we recommend the equivalent single-line YAML format instead: the
 `guestinfo.userdata` field is single-line, so line breaks are removed when the

@@ -16,11 +16,11 @@ configure the virtual machine before first boot.
 
 
 
-## [VMware vSphere](https://stg.plakar.io/docs/control-plane/intro/installation/virtual-machines/vsphere/index.md)
+## [VMware vSphere](https://www.stg.plakar.io/docs/control-plane/intro/installation/virtual-machines/vsphere/index.md)
 
 
 
-## [Proxmox VE](https://stg.plakar.io/docs/control-plane/intro/installation/virtual-machines/proxmox/index.md)
+## [Proxmox VE](https://www.stg.plakar.io/docs/control-plane/intro/installation/virtual-machines/proxmox/index.md)
 
 
 
