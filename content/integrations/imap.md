@@ -40,7 +40,7 @@ links:
   - type: community
     url: /docs/community/main/integrations/imap/
   - type: control-plane
-    url: /docs/control-plane/resources/services/imap/
+    url: /docs/control-plane/resources/service/imap/
 
 edition:
   - community

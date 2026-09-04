@@ -1,8 +1,10 @@
 ---
 title: "WebDAV"
 date: "2026-09-03T00:00:00Z"
-weight: 4
+weight: 3
 summary: "How to configure a WebDAV resource in Plakar Control Plane."
+aliases:
+  - /docs/control-plane/resources/services/webdav/
 ---
 
 # WebDAV

@@ -1,10 +1,12 @@
 ---
 title: "Microsoft Active Directory"
 date: "2026-07-30T00:00:00Z"
-weight: 2
+weight: 1
 summary:
   "How to configure a Microsoft Active Directory resource in Plakar Control
   Plane."
+aliases:
+  - /docs/control-plane/resources/database/msad/
 ---
 
 # Microsoft Active Directory

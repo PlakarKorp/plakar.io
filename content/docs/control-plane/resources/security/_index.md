@@ -1,7 +1,7 @@
 ---
 title: "Security"
 date: "2026-06-30T00:00:00Z"
-weight: 4
+weight: 13
 summary: "An overview of security resources in Plakar Control Plane."
 ---
 

@@ -3,6 +3,8 @@ title: "FTP"
 date: "2026-09-02T00:00:00Z"
 weight: 2
 summary: "How to configure an FTP resource in Plakar Control Plane."
+aliases:
+  - /docs/control-plane/resources/services/ftp/
 ---
 
 # FTP

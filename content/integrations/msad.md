@@ -38,7 +38,7 @@ seo_tags:
 
 links:
   - type: control-plane
-    url: /docs/control-plane/resources/database/msad/
+    url: /docs/control-plane/resources/identity/msad/
 
 edition:
   - control-plane

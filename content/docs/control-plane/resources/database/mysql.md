@@ -1,7 +1,7 @@
 ---
 title: "MySQL"
 date: "2026-09-02T00:00:00Z"
-weight: 3
+weight: 2
 summary: "How to configure a MySQL resource in Plakar Control Plane."
 ---
 

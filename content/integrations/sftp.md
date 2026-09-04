@@ -43,7 +43,7 @@ links:
   - type: community
     url: /docs/community/main/integrations/sftp/
   - type: control-plane
-    url: /docs/control-plane/resources/services/sftp/
+    url: /docs/control-plane/resources/file-storage/sftp/
 
 edition:
   - community

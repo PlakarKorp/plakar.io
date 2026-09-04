@@ -1,7 +1,7 @@
 ---
 title: "Object Storage"
 date: "2026-05-19T00:00:00Z"
-weight: 1
+weight: 10
 summary: "An overview of object storage resources in Plakar Control Plane."
 aliases:
   - /control-plane-docs/resources/object-storage/
