@@ -27,16 +27,6 @@ categories:
   - destination
   - inventory
 
-tags:
-  - etcd
-  - Containers
-  - CSI
-  - Persistent Volumes
-  - On-Premise
-  - EKS
-  - GKE
-  - AKS
-
 seo_tags:
   - Kubernetes backup
   - etcd backup
@@ -64,6 +54,10 @@ edition:
   - control-plane
 
 stage: stable
+
+author:
+  - type: official
+    name: Plakar
 
 new: true
 

@@ -1,7 +1,7 @@
 ---
 title: "TAR"
 date: "2026-06-18T00:00:00Z"
-weight: 22
+weight: 21
 summary: "Import TAR archives into a Kloset store with Plakar."
 ---
 

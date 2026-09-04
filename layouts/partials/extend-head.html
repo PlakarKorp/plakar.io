@@ -1,8 +1,3 @@
-{{/* Google Tag Manager + Google Consent Mode v2.
-  Configure via [params.gtm] in config; production only.
-  Consent defaults to denied and is granted from the Axeptio CMP choices.
-  JS lives in assets/js/main/gtm.js (bundled below), driven by this marker.
-  Paired noscript lives in layouts/_default/baseof.html. */}}
 {{ with .Params.gtm }}
   {{ if and .enabled hugo.IsProduction }}
     <div id="gtm-config" data-id="{{ .id }}" hidden></div>
@@ -27,18 +22,6 @@
   {{ end }}
 {{ end }}
 
-{{ with .Params.kapa }}
-  {{ if .enabled }}
-    {{ $kapaLogo := resources.Get "img/logos/logo-nestor.png" }}
-    <div id="kapa-config"
-      data-website-id="{{ .websiteId }}"
-      data-project-name="{{ .projectName }}"
-      data-project-color="{{ .projectColor }}"
-      data-project-logo="{{ with $kapaLogo }}{{ .Permalink }}{{ end }}"
-      hidden></div>
-  {{ end }}
-{{ end }}
-
 {{ $js := slice
   (resources.Get "js/main/github.js")
   (resources.Get "js/main/discord.js")
@@ -60,7 +43,6 @@
   (resources.Get "js/main/gtm.js")
   (resources.Get "js/main/hubspot.js")
   (resources.Get "js/main/promptwatch.js")
-  (resources.Get "js/main/kapa.js")
   (resources.Get "js/main/search.js")
   | resources.Concat "js/compiled/bundle.js"
   | minify | fingerprint

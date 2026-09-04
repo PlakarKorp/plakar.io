@@ -104,27 +104,55 @@ French law, all submissions must follow a structured validation workflow.
 
 ### For Feature Contributions and Integrations
 
-1. **Notification (Optional):** Before developing major features or
-   integrations, contributors may notify the team by sending a brief functional
-   outline or issue draft to bounty@plakar.io to check roadmap alignment. Plakar
-   SAS does not guarantee exclusivity, and multiple participants may work on the
-   same task independently.
-2. **Implementation:** Submit a Pull Request (PR) to the relevant public
-   repository, referencing the specific targeted item from the Bounty Roadmap
-   available on our website ([the Bounty Roadmap][bounty-roadmap]).
-3. **Review and Merge:** The Plakar maintainer team will review the code.
-4. **Claiming the Reward (Claim):** Once the PR is approved and merged, the
-   contributor must explicitly claim their bounty by sending an email to
-   bounty@plakar.io. The reward is strictly attributed to the first valid,
-   complete, and merged Pull Request.
+1. **Notification:** Before starting work on a feature or integration, you **must**
+   write to [bounty@plakar.io](mailto:bounty@plakar.io) with a short functional
+   outline, or a draft issue, naming the item you intend to take from the
+   [Bounty Roadmap][bounty-roadmap]. We confirm that the item is eligible, that your
+   approach fits, and agree the reward with you before any code is written. Plakar
+   SAS does not grant exclusivity: several contributors may work on the same item
+   independently, and the reward goes to whoever lands first.
+
+2. **Implementation:** Develop in a repository you own, referencing the targeted
+   item from the [Bounty Roadmap][bounty-roadmap] in your commits and description.
+
+3. **Review and Merge:** Open a pull request against the relevant Plakar
+   repository. The maintainer team reviews it against our architectural guidelines
+   and code quality standards. Expect review comments, and expect to address them;
+   an agreed reward does not commit us to merging work that does not meet those
+   standards.
+
+4. **Claim:** Once your pull request is approved and merged, claim the reward by
+   writing to [bounty@plakar.io](mailto:bounty@plakar.io). The reward is attributed
+   strictly to the first valid, complete, and merged pull request for that item.
+
+Unsolicited pull requests against roadmap items are welcome as contributions, but
+carry no reward: we do not pay for code we did not agree to in advance.
 
 ### For Bug and Vulnerability Reports
 
-1. **Reporting:** Send a detailed description along with reproduction steps
-   securely via email to both security@plakar.io and bounty@plakar.io.
-2. **Triage:** The engineering team will assess the impact and verify if the
-   vulnerability meets the Critical or High classification criteria within five
-   business days.
+1. **Notification:** Verify that the issue affects users within the limits of our
+   [threat model](/legal/threat-model). If it does, write to
+   [security@plakar.io](mailto:security@plakar.io) and summarize what you found and
+   what it allows (for example: _"I found an issue that lets me do X without
+   holding Y"_). Give us only what we need to gauge the severity and decide whether
+   the issue is worth investigating — **no details and no reproducer at this
+   stage**.
+
+2. **Triage:** Our team will come back to you within five business days. We will
+   either explain why the details are not needed — the issue may be a duplicate,
+   already fixed, or awaiting a bugfix release — or open an exchange and ask you for
+   a full description and reproduction steps so we can confirm the issue is
+   legitimate.
+
+3. **Exchange:** Once the submission is confirmed, we assign a severity against
+   CVSS and agree any reward with you directly. Critical and High findings are
+   eligible for a financial reward; Medium and Low findings receive public
+   recognition and our thanks. We will keep you involved through analysis and
+   remediation, coordinate disclosure with you, and credit you when the fix is
+   published, unless you would rather we did not.
+
+Public disclosure before we have explicitly authorized it remains strictly
+prohibited at every stage and results in immediate disqualification.
 
 ### Corporate Record Keeping
 
@@ -133,36 +161,68 @@ vulnerability reports, and reward decisions. Under French legal frameworks, this
 documentation is mandatory to justify corporate expenses and confirm the reality
 of the services delivered to the company.
 
-## 4. Reward Scales
+## 4. Rewards
 
-Rewards are separated into two distinct grids based on the contribution type.
-The official Bounty Roadmap on the Plakar website ([the Bounty
-Roadmap][bounty-roadmap]) remains the final authority for specific task pricing.
+Plakar pays for two kinds of contribution: security vulnerabilities, and the
+development tasks listed on our official Bounty Roadmap on the Plakar website
+([the Bounty Roadmap][bounty-roadmap]). Both programs are active and funded.
+For development tasks, the roadmap remains the final authority on which tasks are eligible.
+
+What we no longer publish are the payout figures.
+
+We used to, and the tables turned out to be an excellent magnet for automated,
+LLM-generated submissions. They look credible at first glance, they cite real
+function names from our codebase, they use the right vocabulary, they arrive
+pre-formatted to look like the thing we asked for. On examination they collapse.
+Every one of them still cost us a real review, done by the same small team that
+builds Plakar, and the volume became untenable. So the numbers are gone: not
+crawled, not scraped, not usable as a price list to aim a bot at.
+
+The consequence for anyone contributing in good faith is small.
+Talk to us first, in both programs, and we agree the amount with you directly.
 
 ### Security Vulnerability Rewards
 
-Security vulnerabilities are evaluated and classified objectively according to
-the Common Vulnerability Scoring System (CVSS v3/v4) standard metrics. Only
-vulnerabilities meeting the Critical or High thresholds are eligible for
-financial compensation.
+The bogus reports followed recurring patterns: severity inflation (a minor bug
+filed as critical), threat models that require the victim to actively cooperate
+with the attacker (install a malicious plugin the attacker wrote themselves),
+and, in one case we still think about, an attack on a repository by someone who
+did not hold the key ... demonstrated by using the key to decrypt part of the
+repository.
 
-| Severity Level | Technical Description & CVSS Metrics                                                                                         | Reward Range                |
-| :------------- | :--------------------------------------------------------------------------------------------------------------------------- | :-------------------------- |
-| **Critical**   | CVSS Score: 9.0 to 10.0. Vulnerabilities causing unauthorized data decryption, absolute data loss, or remote code execution. | €1,000 to €2,500+           |
-| **High**       | CVSS Score: 7.0 to 8.9. Flaws in immutability logic, deduplication bypasses, or broken access controls.                      | €500 to €1,000              |
-| **Medium**     | CVSS Score: 4.0 to 6.9. Logic errors under specific edge cases or minor data exposure risks.                                 | Recognition & Public Thanks |
-| **Low**        | CVSS Score: 0.1 to 3.9. Minor display anomalies, cosmetic UI bugs, or low-risk validation omissions.                         | Recognition & Public Thanks |
+If you have found a vulnerability, write to **security@plakar.io** with a brief
+description of the issue and a working reproduction: the exact steps, commands,
+or code that demonstrate the flaw against a real Plakar setup. A report without
+a reproduction we can run is not something we can evaluate, and we will not
+chase one down for you. We will first confirm we are talking to a human, then
+assess the finding on its merits and discuss compensation with you if it is
+legitimate. Severity is still evaluated against CVSS, and critical and high
+findings are still rewarded, we simply do that assessment with you rather than
+advertising the numbers to crawlers.
 
 ### Feature and Integration Rewards
 
-Only development tasks explicitly listed in our official Bounty Roadmap on the
-Plakar website ([the Bounty Roadmap][bounty-roadmap]) are eligible for financial
-rewards.
+Two categories are eligible, and only for tasks explicitly listed on the Bounty
+Roadmap:
 
-| Contribution Type | Technical Description                                                                                                                                                                                | Reward Range                             |
-| :---------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------- |
-| **Integration**   | Development of a full, turnkey Integration Package (providing source, destination, storage connectors) for an enterprise system listed on the Plakar website ([the Bounty Roadmap][bounty-roadmap]). | €500 to €1,000 (depending on difficulty) |
-| **Feature**       | Implementation of architectural components, performance optimizations, or functional tools listed on the Plakar website (including listed upstream/downstream project developments).                 | €250 to €500 (depending on difficulty)   |
+- **Integration**: a full, turnkey Integration Package, providing source,
+  destination and storage connectors for an enterprise system listed on the
+  roadmap.
+- **Feature**: architectural components, performance optimizations, or
+  functional tools listed on the roadmap, including listed upstream and
+  downstream project developments.
+
+Amounts depend on the difficulty of the specific task and are agreed before you
+start, not after you submit. Claim the task by writing to
+**<bounty@plakar.io>** with the roadmap item you want, a short outline of how
+you intend to implement it, and enough about yourself for us to establish we are
+talking to a human. We will confirm the task is unclaimed, agree the reward with
+you, and only then do you write any code.
+
+Unsolicited pull requests against roadmap items are welcome as contributions but
+carry no reward. We do not pay for code we did not agree to in advance, which is
+the only defence we have found against generated submissions that pattern-match
+a roadmap entry without implementing it.
 
 ## 5. Invoicing, Payout, and Tax Compliance
 

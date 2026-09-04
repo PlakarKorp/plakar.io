@@ -1,5 +1,5 @@
 ---
-date: "2026-08-04T11:03:18Z"
+date: "2026-09-03T15:16:41Z"
 title: store
 summary: "Manage Plakar store configurations"
 aliases:
@@ -107,6 +107,12 @@ aliases:
   <dt id="auth_token"><a class="permalink" href="#auth_token"><code class="Cm">auth_token</code></a></dt>
   <dd>Bearer token sent in the &#x201C;Authorization&#x201D; header for every
       request.</dd>
+  <dt id="insecure"><a class="permalink" href="#insecure"><code class="Cm">insecure</code></a></dt>
+  <dd>Optional, set to <code class="Cm">true</code> to opt-in the usage of the
+      <code class="Cm">auth_token</code> on HTTP plaintext connections.</dd>
+  <dt id="timeout"><a class="permalink" href="#timeout"><code class="Cm">timeout</code></a></dt>
+  <dd>Per-request timeout, default to &#x201C;5m&#x201D; i.e. five minutes
+    .</dd>
   <dt id="tls_no_verify"><a class="permalink" href="#tls_no_verify"><code class="Cm">tls_no_verify</code></a></dt>
   <dd>Set to <code class="Cm">true</code> to disable TLS certificate
       verification. Useful when the server uses a self-signed certificate.</dd>

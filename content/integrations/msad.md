@@ -27,14 +27,6 @@ categories:
   - source
   - destination
 
-tags:
-  - Active Directory
-  - Domain Controller
-  - Windows Server
-  - System State
-  - Disaster Recovery
-  - Ransomware Protection
-
 seo_tags:
   - Active Directory backup
   - Active Directory disaster recovery
@@ -46,12 +38,16 @@ seo_tags:
 
 links:
   - type: control-plane
-    url: /docs/control-plane/resources/database/msad/
+    url: /docs/control-plane/resources/identity/msad/
 
 edition:
   - control-plane
 
 stage: stable
+
+author:
+  - type: official
+    name: Plakar
 
 new: true
 

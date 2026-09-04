@@ -26,12 +26,6 @@ categories:
   - destination
   - storage
 
-tags:
-  - Object Storage
-  - Google Cloud
-  - GCS
-  - GCP
-
 seo_tags:
   - Google Cloud Storage backup
   - GCS backup
@@ -48,12 +42,18 @@ seo_tags:
 links:
   - type: community
     url: /docs/community/main/integrations/gcs
+  - type: control-plane
+    url: /docs/control-plane/resources/object-storage/gcs/
 
 edition:
   - community
   - control-plane
 
 stage: stable
+
+author:
+  - type: official
+    name: Plakar
 
 date: 2026-06-18
 

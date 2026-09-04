@@ -1,5 +1,5 @@
 ---
-date: "2026-08-04T11:06:32Z"
+date: "2026-09-03T13:08:13Z"
 title: ls
 summary: "List snapshots and their contents in a Plakar repository"
 aliases:

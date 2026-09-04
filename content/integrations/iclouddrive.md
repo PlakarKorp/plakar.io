@@ -25,12 +25,6 @@ categories:
   - destination
   - storage
 
-tags:
-  - iCloud Drive
-  - Apple
-  - iCloud
-  - Cloud storage
-
 seo_tags:
   - iCloud Drive
   - iCloud Drive backup
@@ -55,6 +49,10 @@ edition:
   - community
 
 stage: stable
+
+author:
+  - type: official
+    name: Plakar
 
 date: 2026-03-23
 

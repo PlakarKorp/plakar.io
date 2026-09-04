@@ -22,14 +22,6 @@ technology_description: >
 categories:
   - source
 
-tags:
-  - Tar
-  - Archives
-  - Linux
-  - Unix
-  - Portability
-  - Migration
-
 seo_tags:
   - tar backup
   - tar restore
@@ -49,6 +41,10 @@ edition:
   - community
 
 stage: stable
+
+author:
+  - type: official
+    name: Plakar
 
 date: 2026-03-23
 

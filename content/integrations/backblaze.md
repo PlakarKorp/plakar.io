@@ -27,12 +27,6 @@ categories:
   - destination
   - storage
 
-tags:
-  - Object Storage
-  - S3
-  - Backblaze
-  - Backblaze B2
-
 seo_tags:
   - Backblaze B2 backup
   - B2 cloud storage backup
@@ -59,6 +53,10 @@ edition:
   - control-plane
 
 stage: stable
+
+author:
+  - type: official
+    name: Plakar
 
 date: 2026-07-03
 

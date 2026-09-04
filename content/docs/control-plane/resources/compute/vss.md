@@ -1,7 +1,7 @@
 ---
-title: "VSS"
+title: "Windows VSS"
 date: "2026-08-10T00:00:00Z"
-weight: 4
+weight: 3
 summary:
   "How to configure a Volume Shadow Copy Service (VSS) resource in Plakar
   Control Plane."
@@ -15,7 +15,7 @@ requests a VSS snapshot of the volume containing the target directory, then
 copies the files from the read-only snapshot over SFTP. It is also the base
 integration other Windows-specific integrations build on, such as
 [Microsoft SQL Server](../../database/mssql) and
-[Microsoft Active Directory](../../database/msad).
+[Microsoft Active Directory](../../identity/msad).
 
 ## Inventory Management
 
@@ -30,10 +30,10 @@ adding a VSS resource.
 When using a self-managed inventory, you must register your resources manually
 or import them from a CSV file.
 
-To add a Windows machine as a resource, use `Compute` as the class. VSS
-resources do not require a subclass. For the endpoint, use the IP address or
-hostname of the target machine. See [resources documentation](../../resources)
-for more information on how to set up resources on a self-managed inventory.
+To add a Windows machine as a resource, register it with no class or subclass.
+For the endpoint, use the IP address or hostname of the target machine. See
+[resources documentation](../../resources) for more information on how to set up
+resources on a self-managed inventory.
 
 #### Backup flow
 

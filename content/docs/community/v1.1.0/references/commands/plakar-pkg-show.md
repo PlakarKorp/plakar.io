@@ -1,5 +1,5 @@
 ---
-date: "2026-08-04T11:06:32Z"
+date: "2026-09-03T13:08:13Z"
 title: pkg-show
 summary: "Show installed Plakar plugins"
 aliases:
@@ -23,7 +23,7 @@ aliases:
 <table class="Nm">
   <tr>
     <td><code class="Nm">plakar pkg show</code></td>
-    <td>[<code class="Fl">-available</code>]
+    <td>[<code class="Fl">-available</code>] [<code class="Fl">-devel</code>]
       [<code class="Fl">-long</code>]</td>
   </tr>
 </table>
@@ -37,6 +37,8 @@ aliases:
   <dt id="available"><a class="permalink" href="#available"><code class="Fl">-available</code></a></dt>
   <dd>Instead of installed packages, show the set of prebuilt packages available
       for this system.</dd>
+  <dt id="devel"><a class="permalink" href="#devel"><code class="Fl">-devel</code></a></dt>
+  <dd>Use the integration devel tree.</dd>
   <dt id="long"><a class="permalink" href="#long"><code class="Fl">-long</code></a></dt>
   <dd>Show the full package name.</dd>
 </dl>
@@ -66,5 +68,5 @@ aliases:
 </section>
 </main>
 <div class="foot" role="doc-pagefooter" aria-label="Manual footer
-  line"><span class="foot-left">Plakar</span> <span class="foot-date">July 11,
-  2025</span> <span class="foot-right">PLAKAR-PKG-SHOW(1)</span></div>
+  line"><span class="foot-left">Plakar</span> <span class="foot-date">August 26,
+  2026</span> <span class="foot-right">PLAKAR-PKG-SHOW(1)</span></div>

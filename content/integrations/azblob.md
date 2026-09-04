@@ -27,12 +27,6 @@ categories:
   - destination
   - storage
 
-tags:
-  - Object Storage
-  - Azure
-  - Microsoft Azure
-  - Azurite
-
 seo_tags:
   - Azure Blob Storage backup
   - Azure backup
@@ -57,6 +51,10 @@ edition:
   - control-plane
 
 stage: stable
+
+author:
+  - type: official
+    name: Plakar
 
 date: 2026-06-18
 

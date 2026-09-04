@@ -27,10 +27,6 @@ categories:
   - destination
   - storage
 
-tags:
-  - Cloud storage
-  - Dropbox
-
 seo_tags:
   - Dropbox
   - Dropbox providers
@@ -55,6 +51,10 @@ edition:
   - community
 
 stage: stable
+
+author:
+  - type: official
+    name: Plakar
 
 date: 2026-03-23
 

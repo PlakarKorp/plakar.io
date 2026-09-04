@@ -1,5 +1,5 @@
 ---
-title: VSS
+title: Windows VSS
 
 subtitle: Consistent, encrypted backups for live Windows servers
 
@@ -26,15 +26,6 @@ categories:
   - source
   - destination
 
-tags:
-  - VSS
-  - Volume Shadow Copy
-  - Windows Server
-  - Active Directory
-  - SQL Server
-  - Disaster Recovery
-  - Ransomware Protection
-
 seo_tags:
   - Windows Server backup
   - VSS backup
@@ -54,6 +45,10 @@ edition:
   - control-plane
 
 stage: stable
+
+author:
+  - type: official
+    name: Plakar
 
 new: true
 

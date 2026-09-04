@@ -24,14 +24,6 @@ categories:
   - source
   - destination
 
-tags:
-  - Databases
-  - pg_dump
-  - pg_basebackup
-  - SQL
-  - AWS RDS
-  - Managed Databases
-
 seo_tags:
   - PostgreSQL backup
   - pg_dump backup
@@ -44,13 +36,25 @@ seo_tags:
   - database snapshot
   - deduplication
 
-links: []
+links:
+  - type: community
+    url: /docs/community/main/integrations/postgres/
+  - type: control-plane
+    url: /docs/control-plane/resources/database/postgres/
+  - type: custom
+    label: "Blog: Researching a PostgreSQL viewer for Plakar"
+    url: /posts/2026-01-11/researching-a-postgresql-viewer-for-plakar/
+    icon: ri/article-line
 
 edition:
   - community
   - control-plane
 
-stage: beta
+stage: stable
+
+author:
+  - type: official
+    name: Plakar
 
 new: true
 

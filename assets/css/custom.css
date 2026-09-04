@@ -1,15 +1,15 @@
-/* Space Grotesk - variable */
+/* Space Grotesk - variable, latin subset */
 @font-face {
   font-family: "SpaceGrotesk";
-  src: url("/fonts/spacegrotesk-variable.ttf") format("truetype");
+  src: url("/fonts/space-grotesk-latin-wght-normal.woff2") format("woff2");
   font-weight: 300 700;
   font-display: swap;
 }
 
-/* Inter - variable */
+/* Inter - variable, latin subset */
 @font-face {
   font-family: "Inter";
-  src: url("/fonts/inter-variable.ttf") format("truetype");
+  src: url("/fonts/inter-latin-wght-normal.woff2") format("woff2");
   font-weight: 300 700;
   font-display: swap;
 }
@@ -373,4 +373,20 @@ table.Nm {
 .goodies-chip:focus-visible {
   outline: 2px solid rgb(var(--color-secondary-500));
   outline-offset: 2px;
+}
+
+/* Integrations */
+.integrations-stat-card {
+  transition-property: transform;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }

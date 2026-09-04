@@ -24,13 +24,6 @@ categories:
   - destination
   - secrets-manager
 
-tags:
-  - HashiCorp Vault
-  - Secrets Management
-  - Key-Value Store
-  - Disaster Recovery
-  - Cluster Backup
-
 seo_tags:
   - HashiCorp Vault backup
   - Vault disaster recovery
@@ -39,12 +32,20 @@ seo_tags:
   - secrets management backup
   - Vault snapshot
 
-links: []
+links:
+  - type: control-plane
+    url: /docs/control-plane/resources/security/vault/
 
 edition:
   - control-plane
 
 stage: stable
+
+author:
+  - type: official
+    name: Plakar
+
+new: true
 
 date: 2026-07-24
 
@@ -93,14 +94,14 @@ backup history at risk.
 
 Plakar integrates with Vault in three ways:
 
-- **Secret provider** (Control Plane only): by default, Plakar Control Plane
-  stores its secrets directly in its own database. Vault can instead be
-  configured as an external secret provider, so those secrets are managed by
-  Vault rather than stored in Control Plane itself.
-- **Exporter**: capture a snapshot of a Vault cluster and store it in an
+- **Secret provider**: by default, Plakar Control Plane stores its secrets
+  directly in its own database. Vault can instead be configured as an external
+  secret provider, so those secrets are managed by Vault rather than stored in
+  Control Plane itself.
+- **Source connector**: capture a snapshot of a Vault cluster and store it in an
   encrypted, deduplicated Kloset, independent of the running Vault instance.
-- **Importer**: restore a snapshot back into a Vault cluster, resetting it to an
-  earlier known-good state.
+- **Destination connector**: restore a snapshot back into a Vault cluster,
+  resetting it to an earlier known-good state.
 
 Instead of relying on Vault's own operational tooling to recover a cluster,
 Plakar gives you an independent, verifiable copy of its secrets, encrypted and

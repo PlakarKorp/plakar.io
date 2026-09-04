@@ -25,12 +25,6 @@ categories:
   - source
   - destination
 
-tags:
-  - FTP
-  - Public repositories
-  - Network appliances
-  - NAS
-
 seo_tags:
   - FTP backup
   - FTP server backup
@@ -41,13 +35,21 @@ seo_tags:
   - FTP versioning
   - immutable FTP backups
 
-links: []
+links:
+  - type: community
+    url: /docs/community/main/integrations/ftp/
+  - type: control-plane
+    url: /docs/control-plane/resources/file-storage/ftp/
 
 edition:
   - community
   - control-plane
 
 stage: stable
+
+author:
+  - type: official
+    name: Plakar
 
 date: 2026-03-23
 

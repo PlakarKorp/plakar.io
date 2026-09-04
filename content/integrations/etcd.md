@@ -23,16 +23,6 @@ technology_description: >
 categories:
   - source
 
-tags:
-  - etcd
-  - Kubernetes
-  - Distributed Systems
-  - Key-Value Store
-  - Disaster Recovery
-  - On-Premise
-  - Cloud Native
-  - CNCF
-
 seo_tags:
   - etcd backup
   - etcd snapshot
@@ -46,12 +36,18 @@ seo_tags:
 links:
   - type: community
     url: /docs/community/main/integrations/etcd
+  - type: control-plane
+    url: /docs/control-plane/resources/database/etcd/
 
 edition:
   - community
   - control-plane
 
 stage: beta
+
+author:
+  - type: official
+    name: Plakar
 
 date: 2026-04-02
 

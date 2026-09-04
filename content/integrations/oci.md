@@ -23,17 +23,6 @@ technology_description: >
 categories:
   - storage
 
-tags:
-  - Object Storage
-  - OCI
-  - Docker
-  - Containers
-  - AWS ECR
-  - Google Artifact Registry
-  - Azure Container Registry
-  - GitHub Container Registry
-  - Harbor
-
 seo_tags:
   - OCI registry backup
   - container registry backup
@@ -54,6 +43,10 @@ edition:
   - control-plane
 
 stage: beta
+
+author:
+  - type: official
+    name: Plakar
 
 date: 2026-06-18
 

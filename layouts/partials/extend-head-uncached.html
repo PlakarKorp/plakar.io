@@ -2,3 +2,9 @@
   <meta property="og:image" content="{{ . | absURL }}">
   <meta name="twitter:image" content="{{ . | absURL }}">
 {{ end }}
+
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/space-grotesk-latin-wght-normal.woff2">
+
+{{ if or (hasPrefix .RelPermalink "/docs") (hasPrefix .RelPermalink "/posts") }}
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/inter-latin-wght-normal.woff2">
+{{ end }}
