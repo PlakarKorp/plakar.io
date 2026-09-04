@@ -3,7 +3,7 @@
 
 Several Plakar Control Plane integrations, including
 [Microsoft SQL Server](../../resources/database/mssql) and
-[Microsoft Active Directory](../../resources/database/msad), connect to Windows
+[Microsoft Active Directory](../../resources/identity/msad), connect to Windows
 hosts over SSH. This guide explains how to install and configure OpenSSH Server
 on Windows and authorize an SSH key for the account used by Plakar Control
 Plane.

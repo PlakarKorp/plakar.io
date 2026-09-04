@@ -33,13 +33,15 @@
 
 ## [Resources](https://www.plakar.io/docs/control-plane/resources/index.md)
 
-- [Object Storage](https://www.plakar.io/docs/control-plane/resources/object-storage/index.md): An overview of object storage resources in Plakar Control Plane.
 - [Block Storage](https://www.plakar.io/docs/control-plane/resources/block-storage/index.md): An overview of block storage resources in Plakar Control Plane.
 - [Compute](https://www.plakar.io/docs/control-plane/resources/compute/index.md): An overview of compute resources in Plakar Control Plane.
-- [Security](https://www.plakar.io/docs/control-plane/resources/security/index.md): An overview of security resources in Plakar Control Plane.
 - [Database](https://www.plakar.io/docs/control-plane/resources/database/index.md): An overview of database resources in Plakar Control Plane.
+- [File Storage](https://www.plakar.io/docs/control-plane/resources/file-storage/index.md): An overview of file storage resources in Plakar Control Plane.
 - [Hypervisor](https://www.plakar.io/docs/control-plane/resources/hypervisor/index.md): An overview of hypervisor resources in Plakar Control Plane.
-- [Services](https://www.plakar.io/docs/control-plane/resources/services/index.md): An overview of service resources in Plakar Control Plane.
+- [Identity](https://www.plakar.io/docs/control-plane/resources/identity/index.md): An overview of identity resources in Plakar Control Plane.
+- [Object Storage](https://www.plakar.io/docs/control-plane/resources/object-storage/index.md): An overview of object storage resources in Plakar Control Plane.
+- [Security](https://www.plakar.io/docs/control-plane/resources/security/index.md): An overview of security resources in Plakar Control Plane.
+- [Service](https://www.plakar.io/docs/control-plane/resources/service/index.md): An overview of service resources in Plakar Control Plane.
 
 
 ## [Operations](https://www.plakar.io/docs/control-plane/operations/index.md)

@@ -73,13 +73,6 @@ required to use each one as a source, store, or destination.
 
 
 
-## [Object Storage](https://www.plakar.io/docs/control-plane/resources/object-storage/index.md)
-
-- [S3](https://www.plakar.io/docs/control-plane/resources/object-storage/s3/index.md): How to configure an S3 resource in Plakar Control Plane.
-- [Azure Blob Storage](https://www.plakar.io/docs/control-plane/resources/object-storage/azblob/index.md): How to configure an Azure Blob Storage resource in Plakar Control Plane.
-- [Google Cloud Storage](https://www.plakar.io/docs/control-plane/resources/object-storage/gcs/index.md): How to configure a Google Cloud Storage resource in Plakar Control Plane.
-
-
 ## [Block Storage](https://www.plakar.io/docs/control-plane/resources/block-storage/index.md)
 
 - [Scaleway Block Storage](https://www.plakar.io/docs/control-plane/resources/block-storage/scaleway/index.md): How to configure a Scaleway block storage resource in Plakar Control Plane.
@@ -94,18 +87,18 @@ required to use each one as a source, store, or destination.
 - [OVHcloud Compute](https://www.plakar.io/docs/control-plane/resources/compute/ovhcloud/index.md): How to configure an OVHcloud Compute resource in Plakar Control Plane.
 
 
-## [Security](https://www.plakar.io/docs/control-plane/resources/security/index.md)
-
-- [Scaleway Secret Manager](https://www.plakar.io/docs/control-plane/resources/security/scaleway-sm/index.md): How to configure a Scaleway Secret Manager resource in Plakar Control Plane.
-- [HashiCorp Vault](https://www.plakar.io/docs/control-plane/resources/security/vault/index.md): How to configure a HashiCorp Vault resource in Plakar Control Plane.
-
-
 ## [Database](https://www.plakar.io/docs/control-plane/resources/database/index.md)
 
 - [Microsoft SQL Server](https://www.plakar.io/docs/control-plane/resources/database/mssql/index.md): How to configure a Microsoft SQL Server resource in Plakar Control Plane.
-- [Microsoft Active Directory](https://www.plakar.io/docs/control-plane/resources/database/msad/index.md): How to configure a Microsoft Active Directory resource in Plakar Control Plane.
 - [MySQL](https://www.plakar.io/docs/control-plane/resources/database/mysql/index.md): How to configure a MySQL resource in Plakar Control Plane.
 - [PostgreSQL](https://www.plakar.io/docs/control-plane/resources/database/postgres/index.md): How to configure a PostgreSQL resource in Plakar Control Plane.
+
+
+## [File Storage](https://www.plakar.io/docs/control-plane/resources/file-storage/index.md)
+
+- [SFTP](https://www.plakar.io/docs/control-plane/resources/file-storage/sftp/index.md): How to configure SFTP resource in Plakar Control Plane.
+- [FTP](https://www.plakar.io/docs/control-plane/resources/file-storage/ftp/index.md): How to configure an FTP resource in Plakar Control Plane.
+- [WebDAV](https://www.plakar.io/docs/control-plane/resources/file-storage/webdav/index.md): How to configure a WebDAV resource in Plakar Control Plane.
 
 
 ## [Hypervisor](https://www.plakar.io/docs/control-plane/resources/hypervisor/index.md)
@@ -113,13 +106,28 @@ required to use each one as a source, store, or destination.
 - [Proxmox](https://www.plakar.io/docs/control-plane/resources/hypervisor/proxmox/index.md): How to configure a Proxmox resource in Plakar Control Plane.
 
 
-## [Services](https://www.plakar.io/docs/control-plane/resources/services/index.md)
+## [Identity](https://www.plakar.io/docs/control-plane/resources/identity/index.md)
 
-- [SFTP](https://www.plakar.io/docs/control-plane/resources/services/sftp/index.md): How to configure SFTP resource in Plakar Control Plane.
-- [FTP](https://www.plakar.io/docs/control-plane/resources/services/ftp/index.md): How to configure an FTP resource in Plakar Control Plane.
-- [IMAP](https://www.plakar.io/docs/control-plane/resources/services/imap/index.md): How to configure an IMAP resource in Plakar Control Plane.
-- [WebDAV](https://www.plakar.io/docs/control-plane/resources/services/webdav/index.md): How to configure a WebDAV resource in Plakar Control Plane.
-- [Plakar Control Plane](https://www.plakar.io/docs/control-plane/resources/services/pcp/index.md): How to configure a Plakar Control Plane (PCP) resource in Plakar Control Plane.
+- [Microsoft Active Directory](https://www.plakar.io/docs/control-plane/resources/identity/msad/index.md): How to configure a Microsoft Active Directory resource in Plakar Control Plane.
+
+
+## [Object Storage](https://www.plakar.io/docs/control-plane/resources/object-storage/index.md)
+
+- [S3](https://www.plakar.io/docs/control-plane/resources/object-storage/s3/index.md): How to configure an S3 resource in Plakar Control Plane.
+- [Azure Blob Storage](https://www.plakar.io/docs/control-plane/resources/object-storage/azblob/index.md): How to configure an Azure Blob Storage resource in Plakar Control Plane.
+- [Google Cloud Storage](https://www.plakar.io/docs/control-plane/resources/object-storage/gcs/index.md): How to configure a Google Cloud Storage resource in Plakar Control Plane.
+
+
+## [Security](https://www.plakar.io/docs/control-plane/resources/security/index.md)
+
+- [Scaleway Secret Manager](https://www.plakar.io/docs/control-plane/resources/security/scaleway-sm/index.md): How to configure a Scaleway Secret Manager resource in Plakar Control Plane.
+- [HashiCorp Vault](https://www.plakar.io/docs/control-plane/resources/security/vault/index.md): How to configure a HashiCorp Vault resource in Plakar Control Plane.
+
+
+## [Service](https://www.plakar.io/docs/control-plane/resources/service/index.md)
+
+- [IMAP](https://www.plakar.io/docs/control-plane/resources/service/imap/index.md): How to configure an IMAP resource in Plakar Control Plane.
+- [Plakar Control Plane](https://www.plakar.io/docs/control-plane/resources/service/pcp/index.md): How to configure a Plakar Control Plane (PCP) resource in Plakar Control Plane.
 
 
 

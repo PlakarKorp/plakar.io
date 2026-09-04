@@ -57,6 +57,28 @@ $ plakar at @mybackups create
 $ plakar at @mybackups ls
 ```
 
+## HTTP and HTTPS stores
+
+A store exposed over the network with `plakar server` is reached using an
+`http://` or `https://` location. See
+[Serving a Kloset Store over the Network](../../guides/serving-a-kloset-store-over-the-network)
+for how to expose one.
+
+These locations accept additional options, configured like any other store
+option:
+
+```bash
+$ plakar store add remote https://backup.example.com auth_token=xxx
+```
+
+- `auth_token`: bearer token sent in the `Authorization` header on every
+  request. Required when the server was started with `-token`.
+- `insecure`: set to `true` to allow `auth_token` to be sent over a plaintext
+  HTTP connection. Without it, the token is only sent over HTTPS.
+- `timeout`: per-request timeout. Defaults to `5m`.
+- `tls_no_verify`: set to `true` to disable TLS certificate verification. Useful
+  when the server uses a self-signed certificate.
+
 ## Override a store path at runtime
 
 When using a config alias, you can override the root path of the store without
