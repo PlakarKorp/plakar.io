@@ -1,8 +1,8 @@
 ---
-title: "Vote for Your Favorite Nestor Stickers"
+title: "The Nestor Sticker Collection"
 description:
-  "Vote for the Nestor stickers you want us to print and give away at events and
-  online. Your picks help us prioritize the next batch of goodies."
+  "The Nestor sticker collection from Plakar: backup humor drawn on our mascot.
+  Browse the designs and see how to get them at events and online."
 url: "/community/goodies/"
 type: "goodies"
 layout: "single"
