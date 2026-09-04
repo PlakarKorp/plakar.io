@@ -15,6 +15,9 @@
 
 {{ $primaryLink := cond $isControlPlaneOnly $controlPlaneLink $communityLink }}
 
+{{/* Connectors that are free for registered users but not open source (code not distributed). */}}
+{{ $closedSource := in (slice "vss" "mssql") .File.BaseFileName }}
+
 <!-- Hero -->
 <section class="section-light-2 grid-background pt-14 lg:pt-24">
   <div class="bg-gradient-section-light-1 p-4">
@@ -26,7 +29,7 @@
           <!-- Left: title + description + CTA -->
           <div class="flex flex-col gap-4 justify-end w-full lg:w-1/2">
             <div class="flex flex-wrap gap-2">
-              {{ if .Params.closed_source }}
+              {{ if $closedSource }}
                 <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-700 bg-neutral-100 rounded-full px-3 py-1">
                   <span class="w-3.5 h-3.5">{{ partial "icon.html" "ri/lock-2-line" }}</span>
                   Free for registered users · Closed source · Built for Plakar Control Plane
@@ -54,9 +57,9 @@
             <p class="text-lg lg:text-2xl text-neutral-600 font-medium pt-6">
               {{ .Description }}
             </p>
-            {{ if .Params.closed_source }}
+            {{ if $closedSource }}
               <p class="mt-4 border-l-4 border-primary-500 pl-4 text-base text-neutral-600 max-w-2xl leading-relaxed">
-                This connector is developed for Plakar Control Plane and is not open source. It is free to use for registered Plakar users. The Plakar CLI and the Kloset format remain open source.
+                This connector is developed for Plakar Control Plane and is not open source. It is free to use for registered Plakar users.
               </p>
             {{ end }}
             <div class="flex flex-col gap-2">

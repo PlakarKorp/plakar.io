@@ -50,8 +50,6 @@ author:
   - type: official
     name: Plakar
 
-closed_source: true
-
 new: true
 
 date: 2026-08-10
