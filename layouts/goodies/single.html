@@ -4,16 +4,16 @@
 {{ $data := site.Data.goodies }}
 {{ $stickers := $data.stickers }}
 
-{{/* Data-driven series chips: render a chip only for a series that has art. */}}
+{{ $seriesLabels := dict }}
 {{ $present := slice }}
 {{ range $data.series }}
-  {{ $count := len (where $stickers "series" .key) }}
-  {{ if gt $count 0 }}
-    {{ $present = $present | append (dict "key" .key "label" .label "count" $count) }}
+  {{ $seriesLabels = merge $seriesLabels (dict .key .label) }}
+  {{ if gt (len (where $stickers "series" .key)) 0 }}
+    {{ $present = $present | append (dict "key" .key "label" .label) }}
   {{ end }}
 {{ end }}
 
-{{ $pageURL := "https://www.plakar.io/community/goodies/" }}
+{{ $pageURL := .Permalink }}
 {{ $shareText := "The Nestor sticker collection from Plakar. Protect your nuts." }}
 
 <!-- Hero -->
@@ -32,18 +32,32 @@
     </p>
     <p class="text-xl lg:text-2xl font-semibold text-secondary-600">Protect your nuts.</p>
     <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
-      <a href="#gallery" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg font-semibold text-neutral-50 bg-secondary-500 hover:bg-secondary-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-500 focus-visible:ring-offset-2">
-        See the stickers
-      </a>
-      <a href="#get-goodies" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg font-semibold text-secondary-700 bg-neutral-50 border border-secondary-200 hover:border-secondary-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-500 focus-visible:ring-offset-2">
-        How to get goodies
-      </a>
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "See the stickers"
+        "labelShort" "Stickers"
+        "href" "#gallery"
+        "icon" ""
+        "bgColor" "bg-secondary-500"
+        "bgHoverColor" "bg-secondary-600"
+      ) }}
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "How to get goodies"
+        "labelShort" "Get goodies"
+        "href" "#get-goodies"
+        "icon" ""
+        "bgColor" "bg-neutral-50"
+        "bgHoverColor" "bg-neutral-100"
+        "textColor" "text-secondary-700"
+        "textHoverColor" "text-secondary-700"
+        "border" "border"
+        "borderColor" "border-secondary-200"
+      ) }}
     </div>
   </div>
 </section>
 
-<!-- Gallery: controls -->
-<section id="gallery" class="section-light-1 pt-14 lg:pt-20 scroll-mt-24">
+<!-- Gallery -->
+<section id="gallery" class="section-light-1 pt-14 pb-16 lg:pt-20 lg:pb-24 scroll-mt-24">
   <div class="max-w-350 mx-auto px-4 flex flex-col gap-6">
     <div class="flex flex-col gap-2">
       <h2 class="text-3xl lg:text-5xl font-medium text-neutral-900">
@@ -61,27 +75,23 @@
         <button type="button" class="goodies-chip" data-filter="{{ .key }}" aria-pressed="false">{{ .label }}</button>
       {{ end }}
     </div>
-  </div>
-</section>
 
-<!-- Gallery: sticker grid -->
-<section class="section-light-1 pb-16 pt-8 lg:pb-24">
-  <div class="max-w-350 mx-auto px-4">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="goodies-grid">
+    <!-- Sticker grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-2" id="goodies-grid">
       {{ range $stickers }}
         {{ $img := resources.Get .image }}
-        {{ $title := .title }}
         <article class="goodies-card group/card relative flex flex-col gap-4 p-4 rounded-lg border border-neutral-200 bg-neutral-100 shadow-xl outline-8 outline-neutral-400/20 transition-all duration-300"
           data-series="{{ .series }}" data-title="{{ .title }}">
 
           <!-- Sticker art -->
-          <div class="relative h-52 sm:h-56 flex items-center justify-center rounded-lg bg-neutral-50 overflow-hidden">
-            {{ with $img }}
-              {{ $r := .Fit "640x640 webp q80" }}
-              <img src="{{ $r.RelPermalink }}" width="{{ $r.Width }}" height="{{ $r.Height }}"
-                loading="lazy" decoding="async"
-                alt="{{ $title }}, a Nestor sticker"
-                class="max-h-full w-auto object-contain drop-shadow-sm">
+          <div class="relative h-52 sm:h-56 flex items-center justify-center rounded-lg overflow-hidden">
+            {{ if $img }}
+              {{ partial "components/image.html" (dict
+                "resource" $img
+                "alt" (printf "%s, a Nestor sticker" .title)
+                "widths" (slice 320 480 640)
+                "class" "max-h-full w-auto object-contain drop-shadow-sm"
+              ) }}
             {{ else }}
               <span class="text-sm text-neutral-400">Art coming soon</span>
             {{ end }}
@@ -90,9 +100,8 @@
           <!-- Title + series tag -->
           <div class="flex flex-col gap-1">
             <h3 class="text-lg lg:text-xl font-semibold text-neutral-900 leading-tight">{{ .title }}</h3>
-            {{ $series := .series }}
-            {{ with (index (where $data.series "key" $series) 0) }}
-              <span class="text-xs font-semibold uppercase tracking-wide text-secondary-600">{{ .label }}</span>
+            {{ with index $seriesLabels .series }}
+              <span class="text-xs font-semibold uppercase tracking-wide text-secondary-600">{{ . }}</span>
             {{ end }}
           </div>
 
@@ -115,18 +124,24 @@
       <p class="text-neutral-700 text-base lg:text-lg">Share the collection with someone who needs it on their laptop.</p>
     </div>
     <div class="flex flex-wrap items-center gap-3 shrink-0">
-      <a href="https://twitter.com/intent/tweet?{{ querify "text" $shareText "url" $pageURL | safeURL }}"
-        target="_blank" rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 px-5 py-3 rounded-lg font-semibold text-neutral-50 bg-neutral-900 hover:bg-neutral-800 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-500 focus-visible:ring-offset-2">
-        <span class="w-5 h-5">{{ partial "icon.html" "ri/twitter-x-line" }}</span>
-        Share on X
-      </a>
-      <a href="https://www.linkedin.com/sharing/share-offsite/?{{ querify "url" $pageURL | safeURL }}"
-        target="_blank" rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 px-5 py-3 rounded-lg font-semibold text-neutral-50 bg-[#0a66c2] hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-500 focus-visible:ring-offset-2">
-        <span class="w-5 h-5">{{ partial "icon.html" "ri/linkedin-box-fill" }}</span>
-        Share on LinkedIn
-      </a>
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "Share on X"
+        "labelShort" "X"
+        "href" (printf "https://twitter.com/intent/tweet?%s" (querify "text" $shareText "url" $pageURL) | safeURL)
+        "target" "_blank"
+        "icon" "ri/twitter-x-line"
+        "bgColor" "bg-neutral-900"
+        "bgHoverColor" "bg-neutral-800"
+      ) }}
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "Share on LinkedIn"
+        "labelShort" "LinkedIn"
+        "href" (printf "https://www.linkedin.com/sharing/share-offsite/?%s" (querify "url" $pageURL) | safeURL)
+        "target" "_blank"
+        "icon" "ri/linkedin-box-fill"
+        "bgColor" "bg-[#0a66c2]"
+        "bgHoverColor" "bg-[#004182]"
+      ) }}
     </div>
   </div>
 </section>
@@ -149,13 +164,15 @@
         <div class="flex flex-col gap-3 p-6 rounded-lg border border-neutral-300 bg-neutral-50 shadow-sm">
           <h3 class="text-xl lg:text-2xl font-semibold text-secondary-500">{{ .title }}</h3>
           <p class="text-neutral-700 text-base lg:text-lg leading-snug flex-1">{{ .body }}</p>
-          <a href="{{ .cta_href }}"{{ if .external }} target="_blank" rel="noopener noreferrer"{{ end }}
-            class="inline-flex items-center gap-2 self-start mt-1 px-4 py-2.5 rounded-lg font-semibold text-neutral-50 bg-secondary-500 hover:bg-secondary-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-500 focus-visible:ring-offset-2">
-            {{ .cta_label }}
-            <svg viewBox="0 0 20 20" fill="none" class="w-4 h-4" aria-hidden="true">
-              <path d="M5 10h10M11 5l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
+          {{ partial "components/buttons/base-button.html" (dict
+            "label" .cta_label
+            "href" .cta_href
+            "target" (cond .external "_blank" "_self")
+            "icon" "ri/arrow-right-line"
+            "class" "self-start mt-1"
+            "bgColor" "bg-secondary-500"
+            "bgHoverColor" "bg-secondary-600"
+          ) }}
         </div>
       {{ end }}
     </div>
