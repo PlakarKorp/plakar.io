@@ -1,12 +1,12 @@
-# Data source of truth for the Nestor sticker vote page (/community/goodies/).
+# Data source of truth for the Nestor sticker showcase page (/community/goodies/).
 #
 # Art: final Nestor sticker exports pulled from Google Drive `nestor/stickers/`
 # (owner gilles@plakar.io), optimized to web size and stored in
 # assets/img/nestor/stickers/. Do not invent art: only ship stickers that exist.
 #
-# This file is the data-driven backbone of the page. To add a new series drop
-# later (Video Games, Music, The 90s, Mythology, Ops & On-Call, Seasonal, ...),
-# add its `series` entry below and one `stickers` entry per finished design. A
+# This file is the data-driven backbone of the page. To add a new series later
+# (Video Games, Music, The 90s, Mythology, Ops & On-Call, Seasonal, ...), add
+# its `series` entry below and one `stickers` entry per finished design. A
 # filter chip appears automatically for every series that has at least one
 # sticker, so no code change is needed.
 
@@ -44,8 +44,7 @@ series:
   - key: seasonal
     label: "Seasonal"
 
-# The finished set. `image` is relative to assets/. Default order below is the
-# grid order; the Standings view re-sorts these by vote count.
+# The finished set. `image` is relative to assets/. Order below is the grid order.
 stickers:
   - slug: this-is-fine
     title: "This Is Fine"
@@ -120,5 +119,5 @@ stickers:
   - slug: apes
     title: "Apes"
     series: movies
-    image: img/nestor/stickers/singe.png
+    image: img/nestor/stickers/apes.png
     caption: "The monolith was a .ptar all along."
