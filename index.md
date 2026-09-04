@@ -160,4 +160,8 @@
 - [On-Premises](https://www.plakar.io/solutions/on-premises/index.md)
 
 
+## [The Nestor Sticker Collection](https://www.plakar.io/community/goodies/index.md)
+
+
+
 
