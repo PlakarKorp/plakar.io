@@ -39,7 +39,7 @@ links:
   - type: community
     url: /docs/community/main/integrations/ftp/
   - type: control-plane
-    url: /docs/control-plane/resources/services/ftp/
+    url: /docs/control-plane/resources/file-storage/ftp/
 
 edition:
   - community

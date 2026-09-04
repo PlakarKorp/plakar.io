@@ -5,6 +5,7 @@ weight: 1
 summary: "How to configure SFTP resource in Plakar Control Plane."
 aliases:
   - /docs/control-plane/resources/compute/sftp/
+  - /docs/control-plane/resources/services/sftp/
 ---
 
 # SFTP

@@ -32,7 +32,7 @@ seo_tags:
 
 links:
   - type: control-plane
-    url: /docs/control-plane/resources/services/pcp/
+    url: /docs/control-plane/resources/service/pcp/
 
 edition:
   - control-plane

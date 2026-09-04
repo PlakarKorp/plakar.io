@@ -1,8 +1,10 @@
 ---
 title: "IMAP"
 date: "2026-09-03T00:00:00Z"
-weight: 4
+weight: 1
 summary: "How to configure an IMAP resource in Plakar Control Plane."
+aliases:
+  - /docs/control-plane/resources/services/imap/
 ---
 
 # IMAP

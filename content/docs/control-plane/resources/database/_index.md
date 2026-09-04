@@ -1,7 +1,7 @@
 ---
 title: "Database"
 date: "2026-07-21T00:00:00Z"
-weight: 5
+weight: 4
 summary: "An overview of database resources in Plakar Control Plane."
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "PostgreSQL"
 date: "2026-09-01T00:00:00Z"
-weight: 4
+weight: 3
 summary: "How to configure a PostgreSQL resource in Plakar Control Plane."
 ---
 

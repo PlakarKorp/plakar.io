@@ -40,7 +40,7 @@ links:
   - type: community
     url: /docs/community/main/integrations/webdav/
   - type: control-plane
-    url: /docs/control-plane/resources/services/webdav/
+    url: /docs/control-plane/resources/file-storage/webdav/
 
 edition:
   - community
