@@ -30,6 +30,16 @@ $ plakar pkg show
 > compatibility, so existing scripts and workflows continue to work. New
 > documentation and examples use `plakar pkg show`.
 
+## List available packages
+
+Rather than what is installed, `-available` shows the prebuilt packages that can
+be installed on the current system, which is how you discover what a given
+platform and architecture can run before installing anything:
+
+```bash
+$ plakar pkg show -available
+```
+
 ## Install a package
 
 ### Pre-built package
@@ -59,6 +69,30 @@ To install a specific version:
 
 ```bash
 $ plakar pkg add s3@v1.0.0
+```
+
+### Package signatures
+
+Packages are signed, and Plakar expects a signature when installing one. A
+package that carries no signature is rejected unless `-allow-unsigned` is passed
+explicitly:
+
+```bash
+$ plakar pkg add -allow-unsigned ./my_custom_integration.ptar
+```
+
+This mainly applies to packages you built yourself or obtained outside the
+official registry. Only use it for packages whose origin you trust.
+
+### Development integrations
+
+Integrations that are not yet stable are published to a separate devel tree
+instead of the regular one. They are not listed or installed unless `-devel` is
+passed:
+
+```bash
+$ plakar pkg show -available -devel
+$ plakar pkg add -devel <integration>
 ```
 
 ### Building from source

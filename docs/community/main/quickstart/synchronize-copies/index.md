@@ -96,7 +96,7 @@ You can list all installed integrations to confirm the S3 integration was
 installed successfully:
 
 ```bash
-$ plakar pkg list
+$ plakar pkg show
 s3@v1.0.7
 ```
 
