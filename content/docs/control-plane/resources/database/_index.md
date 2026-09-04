@@ -7,7 +7,8 @@ summary: "An overview of database resources in Plakar Control Plane."
 
 # Database
 
-Database resources represent database engines and the data files they manage.
-Plakar Control Plane supports the following database resources:
+Database resources represent database engines and key-value stores, along with
+the data they manage. Plakar Control Plane supports the following database
+resources:
 
 {{% children description="true" %}}
