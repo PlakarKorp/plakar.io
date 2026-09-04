@@ -23,4 +23,8 @@ resources:
 
 
 
+## [etcd](https://www.plakar.io/docs/control-plane/resources/database/etcd/index.md)
+
+
+
 
