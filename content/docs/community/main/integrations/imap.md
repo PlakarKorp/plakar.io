@@ -59,7 +59,7 @@ $ plakar pkg add imap
 Verify installation:
 
 ```bash
-$ plakar pkg list
+$ plakar pkg show
 ```
 
 {{< /tab >}}
@@ -91,7 +91,7 @@ $ plakar pkg add ./imap_v1.0.0_darwin_arm64.ptar
 Verify installation:
 
 ```bash
-$ plakar pkg list
+$ plakar pkg show
 ```
 
 {{< /tab >}}

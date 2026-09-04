@@ -65,7 +65,7 @@ $ plakar pkg add sftp
 Verify installation:
 
 ```bash
-$ plakar pkg list
+$ plakar pkg show
 ```
 
 {{< /tab >}}
@@ -97,7 +97,7 @@ $ plakar pkg add ./sftp_v1.0.0_darwin_arm64.ptar
 Verify installation:
 
 ```bash
-$ plakar pkg list
+$ plakar pkg show
 ```
 
 {{< /tab >}}
