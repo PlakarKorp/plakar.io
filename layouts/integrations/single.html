@@ -15,6 +15,10 @@
 
 {{ $primaryLink := cond $isControlPlaneOnly $controlPlaneLink $communityLink }}
 
+{{ $binaryOnly := default false .Params.binary }}
+
+{{ $editionIcon := cond $binaryOnly "ri/box-3-line" "ri/open-source-line" }}
+
 <!-- Hero -->
 <section class="section-light-2 grid-background pt-14 lg:pt-24">
   <div class="bg-gradient-section-light-1 p-4">
@@ -33,13 +37,19 @@
                 </span>
               {{ else if $hasControlPlane }}
                 <span class="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-secondary-600 bg-secondary-50 rounded-full px-3 py-1">
-                  <span class="w-3.5 h-3.5">{{ partial "icon.html" "ri/open-source-line" }}</span>
+                  <span class="w-3.5 h-3.5">{{ partial "icon.html" $editionIcon }}</span>
                   Community &amp; Control Plane
                 </span>
               {{ else }}
                 <span class="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-secondary-600 bg-secondary-50 rounded-full px-3 py-1">
-                  <span class="w-3.5 h-3.5">{{ partial "icon.html" "ri/open-source-line" }}</span>
+                  <span class="w-3.5 h-3.5">{{ partial "icon.html" $editionIcon }}</span>
                   Community
+                </span>
+              {{ end }}
+              {{ if $binaryOnly }}
+                <span class="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-neutral-700 bg-neutral-100 rounded-full px-3 py-1">
+                  <span class="w-3.5 h-3.5">{{ partial "icon.html" "ri/lock-2-line" }}</span>
+                  Closed source
                 </span>
               {{ end }}
             </div>
@@ -49,6 +59,18 @@
             <p class="text-lg lg:text-2xl text-neutral-600 font-medium pt-6">
               {{ .Description }}
             </p>
+            {{ if $binaryOnly }}
+              <p class="mt-4 border-l-4 border-primary-500 pl-4 text-base text-neutral-600 max-w-2xl leading-relaxed">
+                Integrations built for Plakar Control Plane are closed source.
+                This one is distributed to Community users as well, as a
+                pre-built package that is free to install with a Plakar
+                account. Because its source is not published, it cannot be
+                built locally the way Plakar's open source connectors can. See
+                <a href="/docs/community/main/guides/managing-packages/#source-availability"
+                  class="text-primary-600 underline font-medium">Managing packages</a>
+                for more information.
+              </p>
+            {{ end }}
             <div class="flex flex-col gap-2">
               {{ if $communityLink }}
                 {{ partial "components/buttons/base-button.html" (dict
