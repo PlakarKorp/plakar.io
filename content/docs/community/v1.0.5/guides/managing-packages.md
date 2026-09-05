@@ -30,6 +30,16 @@ To see which packages are currently installed:
 $ plakar pkg list
 ```
 
+## List available packages
+
+Rather than what is installed, `-available` shows the prebuilt packages that can
+be installed on the current system, which is how you discover what a given
+platform and architecture can run before installing anything:
+
+```bash
+$ plakar pkg show -available
+```
+
 ## Install a package
 
 ### Pre-built package
@@ -53,16 +63,35 @@ Once logged in, install a package by name from the official plugin registry
 $ plakar pkg add s3
 ```
 
-### Local archive
+### Building from source
 
-If you built the package from source or have a `.ptar` file on hand, pass the
-path directly:
+If you are not logged in or prefer not to use pre-built packages, you can build
+packages locally with `plakar pkg build`. This compiles the integration from its
+public repository, so it does not require a Plakar account.
+
+```bash
+$ plakar pkg build s3
+```
+
+On success, a `.ptar` archive is generated in the current directory. Install it
+with:
 
 ```bash
 $ plakar pkg add ./s3_v1.0.0_darwin_arm64.ptar
 ```
 
-This does not require a Plakar account.
+### Source availability
+
+Community integrations are open source, which is what makes both installation
+methods possible: a pre-built package, or a local build from the public
+repository. Control Plane integrations are closed source, but some of them are
+distributed to Community users as well, as pre-built packages only. The Windows
+VSS and Microsoft SQL Server connectors are the current examples.
+
+Once installed, these behave like any other package, and they are free to
+install with a Plakar account. The difference is that `plakar pkg build` cannot
+produce them, since there is no public source to compile, so installing the
+pre-built package is the only option.
 
 ## Upgrade a package
 

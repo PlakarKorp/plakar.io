@@ -15,8 +15,9 @@
 
 {{ $primaryLink := cond $isControlPlaneOnly $controlPlaneLink $communityLink }}
 
-{{/* Connectors that are free for registered users but not open source (code not distributed). */}}
-{{ $closedSource := in (slice "vss" "mssql") .File.BaseFileName }}
+{{ $binaryOnly := default false .Params.binary }}
+
+{{ $editionIcon := cond $binaryOnly "ri/box-3-line" "ri/open-source-line" }}
 
 <!-- Hero -->
 <section class="section-light-2 grid-background pt-14 lg:pt-24">
@@ -29,25 +30,26 @@
           <!-- Left: title + description + CTA -->
           <div class="flex flex-col gap-4 justify-end w-full lg:w-1/2">
             <div class="flex flex-wrap gap-2">
-              {{ if $closedSource }}
-                <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-700 bg-neutral-100 rounded-full px-3 py-1">
-                  <span class="w-3.5 h-3.5">{{ partial "icon.html" "ri/lock-2-line" }}</span>
-                  Free for registered users · Closed source · Built for Plakar Control Plane
-                </span>
-              {{ else if $isControlPlaneOnly }}
+              {{ if $isControlPlaneOnly }}
                 <span class="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-primary-600 bg-primary-50 rounded-full px-3 py-1">
                   <span class="w-3.5 h-3.5">{{ partial "icon.html" "ri/dashboard-3-line" }}</span>
                   Control Plane Only
                 </span>
               {{ else if $hasControlPlane }}
                 <span class="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-secondary-600 bg-secondary-50 rounded-full px-3 py-1">
-                  <span class="w-3.5 h-3.5">{{ partial "icon.html" "ri/open-source-line" }}</span>
+                  <span class="w-3.5 h-3.5">{{ partial "icon.html" $editionIcon }}</span>
                   Community &amp; Control Plane
                 </span>
               {{ else }}
                 <span class="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-secondary-600 bg-secondary-50 rounded-full px-3 py-1">
-                  <span class="w-3.5 h-3.5">{{ partial "icon.html" "ri/open-source-line" }}</span>
+                  <span class="w-3.5 h-3.5">{{ partial "icon.html" $editionIcon }}</span>
                   Community
+                </span>
+              {{ end }}
+              {{ if $binaryOnly }}
+                <span class="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-neutral-700 bg-neutral-100 rounded-full px-3 py-1">
+                  <span class="w-3.5 h-3.5">{{ partial "icon.html" "ri/lock-2-line" }}</span>
+                  Closed source
                 </span>
               {{ end }}
             </div>
@@ -57,9 +59,16 @@
             <p class="text-lg lg:text-2xl text-neutral-600 font-medium pt-6">
               {{ .Description }}
             </p>
-            {{ if $closedSource }}
+            {{ if $binaryOnly }}
               <p class="mt-4 border-l-4 border-primary-500 pl-4 text-base text-neutral-600 max-w-2xl leading-relaxed">
-                This connector is developed for Plakar Control Plane and is not open source. It is free to use for registered Plakar users.
+                Integrations built for Plakar Control Plane are closed source.
+                This one is distributed to Community users as well, as a
+                pre-built package that is free to install with a Plakar
+                account. Because its source is not published, it cannot be
+                built locally the way Plakar's open source connectors can. See
+                <a href="/docs/community/main/guides/managing-packages/#source-availability"
+                  class="text-primary-600 underline font-medium">Managing packages</a>
+                for more information.
               </p>
             {{ end }}
             <div class="flex flex-col gap-2">
