@@ -106,8 +106,8 @@ $ plakar pkg add -devel <integration>
 ### Building from source
 
 If you are not logged in or prefer not to use pre-built packages, you can build
-packages locally with `plakar pkg build`. This does not require a Plakar account
-but does require a working Go toolchain and `make`.
+packages locally with `plakar pkg build`. This compiles the integration from its
+public repository, so it does not require a Plakar account.
 
 ```bash
 $ plakar pkg build s3
@@ -119,6 +119,19 @@ with:
 ```bash
 $ plakar pkg add ./s3_v1.0.0_darwin_arm64.ptar
 ```
+
+### Source availability
+
+Community integrations are open source, which is what makes both installation
+methods possible: a pre-built package, or a local build from the public
+repository. Control Plane integrations are closed source, but some of them are
+distributed to Community users as well, as pre-built packages only. The Windows
+VSS and Microsoft SQL Server connectors are the current examples.
+
+Once installed, these behave like any other package, and they are free to
+install with a Plakar account. The difference is that `plakar pkg build` cannot
+produce them, since there is no public source to compile, so installing the
+pre-built package is the only option.
 
 ## Upgrade a package
 

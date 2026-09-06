@@ -38,9 +38,12 @@ links:
     url: /docs/control-plane/resources/database/mssql/
 
 edition:
+  - community
   - control-plane
 
 stage: stable
+
+binary: true
 
 author:
   - type: official

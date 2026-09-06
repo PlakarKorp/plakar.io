@@ -42,9 +42,12 @@ links:
     url: /docs/control-plane/resources/compute/vss/
 
 edition:
+  - community
   - control-plane
 
 stage: stable
+
+binary: true
 
 author:
   - type: official
