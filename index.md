@@ -6,6 +6,7 @@
 
 ## [Plakar Blog](https://www.plakar.io/posts/index.md)
 
+- [Plakar v1.1.5 is out](https://www.plakar.io/posts/2026-09-06/plakar-v1.1.5-is-out/index.md): plakar v1.1.5 is out: a security-focused patch release. Unencrypted stores are now refused unless you explicitly opt in, plugins are signature-checked at install time, and the HTTP store and server got hardened. Fully backward compatible, nothing to migrate.
 - [10 Reasons You Need an Independent, Offsite Backup in 2026](https://www.plakar.io/posts/2026-08-12/independent-backup-reasons/index.md): Cloud storage isn&rsquo;t a backup strategy. 10 reasons you need an independent, offsite backup you control, from ransomware and rogue AI agents to climate, conflict, and storage cost.
 - [Portable Backups for Managed Postgres with pg_dump and Plakar](https://www.plakar.io/posts/2026-07-17/portable-backups-for-managed-postgres-with-pgdump-and-plakar/index.md): Managed Postgres backups can&rsquo;t be downloaded. Here&rsquo;s how Plakar wraps pg_dump into encrypted and deduplicated snapshots you can own.
 - [Plakar Control Plane is now on AWS Marketplace: Resilience on your terms](https://www.plakar.io/posts/2026-07-10/plakar-control-plane-aws-marketplace/index.md): Plakar Control Plane, the self-hosted backup management platform built on open-source Plakar, is now available on AWS Marketplace. Deploy it in your own AWS account in a few clicks; your backup data never leaves your environment.

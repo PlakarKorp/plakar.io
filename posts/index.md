@@ -4,6 +4,10 @@
 
 
 
+## [Plakar v1.1.5 is out](https://www.plakar.io/posts/2026-09-06/plakar-v1.1.5-is-out/index.md)
+
+
+
 ## [10 Reasons You Need an Independent, Offsite Backup in 2026](https://www.plakar.io/posts/2026-08-12/independent-backup-reasons/index.md)
 
 
