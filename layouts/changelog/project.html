@@ -1,0 +1,128 @@
+{{ define "main" }}
+<div data-pagefind-filter="section:Changelog" hidden></div>
+<div data-pagefind-filter="project:{{ .Title }}" hidden></div>
+
+<!-- JS: assets/js/main/changelog.js -->
+
+{{ $plakarLogo := resources.Get "img/logos/plakar-logo-icon.svg" }}
+
+{{ $proj := partial "changelog/project.html" . }}
+{{ $projects := (site.GetPage "/changelog").Sections.ByWeight }}
+{{ $releases := slice }}
+{{ range $proj.releases }}
+  {{ $releases = $releases | append (partial "changelog/release.html" (dict "release" . "project" $proj)) }}
+{{ end }}
+
+<div class="flex gap-8 px-4 lg:px-6 pt-24 md:pt-32 pb-12 md:pb-16 max-w-350 mx-auto">
+
+  <!-- Sidebar (desktop) -->
+  <aside class="hidden lg:block w-64 shrink-0">
+    <div class="sticky top-28 overflow-y-auto max-h-[calc(100vh-8rem)]">
+      {{ partial "changelog/sidebar.html" (dict "project" $proj "projects" $projects "releases" $releases) }}
+    </div>
+  </aside>
+
+  <main class="flex-1 min-w-0 lg:px-12">
+
+    <!-- Header -->
+    <div class="flex flex-wrap items-start gap-5">
+      <img class="w-14 h-14 shrink-0 p-2 rounded-xl bg-primary-50 border border-primary-100" src="{{ $plakarLogo.RelPermalink }}" alt="">
+      <div class="flex-1 basis-80 min-w-0">
+        <h1 class="text-3xl lg:text-4xl font-bold tracking-tight text-neutral-900">{{ $proj.title }}</h1>
+        {{ with $proj.tagline }}
+          <p class="mt-2 text-neutral-700 text-[16.5px] max-w-[70ch]">{{ . }}</p>
+        {{ end }}
+      </div>
+    </div>
+
+    {{ with .Content }}
+      <div class="prose max-w-[75ch] text-neutral-700 mt-6">{{ . }}</div>
+    {{ end }}
+
+    <!-- Stats -->
+    <div class="flex flex-wrap items-center gap-x-8 gap-y-4 mt-6">
+      {{ with $proj.latest }}
+        <div class="flex flex-col gap-0.5">
+          <span class="text-xxs font-semibold uppercase tracking-wide text-neutral-400">Latest</span>
+          <span class="text-sm font-semibold text-neutral-900 tabular-nums">
+            {{ . }}
+            <span class="font-normal text-neutral-500">· {{ $proj.latestDate.Format "Jan 2, 2006" }}</span>
+          </span>
+        </div>
+      {{ end }}
+      <div class="flex flex-col gap-0.5">
+        <span class="text-xxs font-semibold uppercase tracking-wide text-neutral-400">Documented</span>
+        <span class="text-sm font-semibold text-neutral-900">{{ $proj.count }} release{{ if ne $proj.count 1 }}s{{ end }}</span>
+      </div>
+    </div>
+
+    <!-- Mobile project switcher + version jump list -->
+    <div class="lg:hidden mt-8 flex flex-col gap-4">
+      {{ partial "changelog/project-switcher.html" (dict "project" $proj "projects" $projects) }}
+      {{ with $releases }}
+        <div class="-mx-4 px-4 overflow-x-auto no-scrollbar">
+          <div class="flex gap-2 w-max">
+            {{ range . }}
+              <a href="#{{ .anchor }}" class="shrink-0 px-3 py-1.5 rounded-lg bg-neutral-100 text-[13px] font-semibold text-neutral-900 tabular-nums">{{ .version }}</a>
+            {{ end }}
+          </div>
+        </div>
+      {{ end }}
+    </div>
+
+    <!-- Releases -->
+    {{ if $releases }}
+      <div class="mt-8 sm:mt-12 flex flex-col">
+        {{ range $i, $r := $releases }}
+          <article id="{{ $r.anchor }}" class="changelog-release scroll-mt-32 {{ if gt $i 0 }}mt-6 sm:mt-10{{ end }}">
+            <div class="rounded-2xl border border-neutral-200 bg-neutral-50 shadow-sm overflow-hidden">
+
+              <header class="flex flex-col gap-3 px-4 sm:px-6 lg:px-8 py-5 sm:py-6 bg-neutral-100/60 border-b border-neutral-200">
+                <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
+                  <h2 class="text-3xl font-bold tracking-tight text-neutral-900 tabular-nums">{{ $r.version }}</h2>
+                  {{ partial "changelog/badges.html" $r }}
+                  <time class="ml-auto text-sm text-neutral-500 shrink-0" datetime="{{ $r.date.Format "2006-01-02" }}">
+                    {{ $r.date.Format "January 2, 2006" }}
+                  </time>
+                </div>
+
+                {{ with $r.summary }}
+                  <p class="text-[15px] text-neutral-700 leading-relaxed max-w-[75ch]">{{ . }}</p>
+                {{ end }}
+
+                {{ partial "changelog/release-links.html" $r }}
+              </header>
+
+              <div class="px-4 sm:px-6 lg:px-8 py-6 sm:py-7">
+                {{ with $r.content }}
+                  <div class="changelog-body prose max-w-[75ch]">{{ . }}</div>
+                {{ else }}
+                  <p class="text-sm text-neutral-500 max-w-[75ch]">
+                    Curated notes for this release have not been written yet.
+                  </p>
+                {{ end }}
+              </div>
+
+            </div>
+          </article>
+        {{ end }}
+      </div>
+    {{ else }}
+      <div class="mt-8 sm:mt-12 text-center py-12 sm:py-16 px-4 sm:px-6 bg-neutral-50 border border-dashed border-primary-100 rounded-2xl shadow-sm">
+        <h2 class="text-xl font-semibold text-neutral-900 mb-2">No release notes yet</h2>
+        <p class="text-neutral-600 mb-5 max-w-md mx-auto">
+          Nothing has been written up for {{ $proj.title }} so far.
+        </p>
+        {{ with $proj.releasesURL }}
+          <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold border border-neutral-200 text-neutral-900 hover:border-neutral-400">
+            Releases on GitHub
+            <span class="w-4 h-4">{{ partial "icon.html" "ri/external-link-line" }}</span>
+          </a>
+        {{ end }}
+      </div>
+    {{ end }}
+
+  </main>
+</div>
+
+{{ end }}

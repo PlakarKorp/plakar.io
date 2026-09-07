@@ -1,0 +1,21 @@
+{{- $current := .project -}}
+
+<div class="relative changelog-switcher">
+  <button type="button"
+          class="changelog-switcher-btn w-full flex items-center justify-between gap-2 px-3 py-2 border border-neutral-200 rounded-lg text-neutral-700 hover:border-neutral-300 bg-neutral-50"
+          aria-haspopup="true" aria-expanded="false">
+    <span class="truncate text-sm font-medium">{{ $current.title }}</span>
+    <span class="w-4 h-4 shrink-0 flex items-center justify-center">
+      {{ partial "icon.html" "chevron-down" }}
+    </span>
+  </button>
+  <div class="changelog-switcher-menu hidden absolute top-full mt-1 w-full bg-neutral-50 border border-neutral-200 rounded-lg z-50 overflow-hidden max-h-80 overflow-y-auto">
+    {{ range .projects }}
+      <a href="{{ .RelPermalink }}"
+         class="block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500
+         {{ if eq .RelPermalink $current.url }}text-primary-500 bg-neutral-100{{ end }}">
+        {{ .Title }}
+      </a>
+    {{ end }}
+  </div>
+</div>

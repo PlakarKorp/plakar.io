@@ -1,0 +1,38 @@
+{{- $page := . -}}
+{{- $repo := $page.Params.repo | default "" -}}
+
+{{- $ranked := slice -}}
+{{- range where $page.RegularPages "Params.version" "!=" nil -}}
+  {{- $v := index (split (trim .Params.version "v") "-") 0 -}}
+  {{- $parts := split $v "." -}}
+  {{- $maj := int (index $parts 0) -}}
+  {{- $min := cond (ge (len $parts) 2) (int (index $parts 1)) 0 -}}
+  {{- $pat := cond (ge (len $parts) 3) (int (index $parts 2)) 0 -}}
+  {{- $score := add (mul $maj 1000000) (mul $min 1000) $pat -}}
+  {{- $rank := add (mul $score 100000) (div .Date.Unix 86400) -}}
+  {{- $ranked = $ranked | append (dict "page" . "rank" $rank) -}}
+{{- end -}}
+
+{{- $releases := slice -}}
+{{- range sort $ranked "rank" "desc" -}}
+  {{- $releases = $releases | append .page -}}
+{{- end -}}
+
+{{- $latest := "" -}}
+{{- $latestDate := "" -}}
+{{- with $releases -}}
+  {{- $latest = (index . 0).Params.version -}}
+  {{- $latestDate = (index . 0).Date -}}
+{{- end -}}
+
+{{- return (dict
+  "title"       $page.Title
+  "url"         $page.RelPermalink
+  "tagline"     ($page.Params.tagline | default "")
+  "repo"        $repo
+  "releasesURL" (cond (ne $repo "") (printf "https://github.com/%s/releases" $repo) "")
+  "releases"    $releases
+  "count"       (len $releases)
+  "latest"      $latest
+  "latestDate"  $latestDate
+) -}}
