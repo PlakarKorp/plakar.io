@@ -375,6 +375,31 @@ table.Nm {
   outline-offset: 2px;
 }
 
+/* Changelog release notes */
+.changelog-body h2 {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: rgb(var(--color-neutral-500));
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgb(var(--color-neutral-200));
+}
+
+.changelog-body > :first-child {
+  margin-top: 0;
+}
+
+.changelog-body h3 {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
 /* Integrations */
 .integrations-stat-card {
   transition-property: transform;

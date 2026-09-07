@@ -1,0 +1,27 @@
+{{- $r := .release -}}
+{{- $repo := .project.repo -}}
+{{- $version := $r.Params.version -}}
+
+{{- $releaseURL := "" -}}
+{{- if $repo -}}
+  {{- $releaseURL = printf "https://github.com/%s/releases/tag/%s" $repo $version -}}
+{{- end -}}
+
+{{- $announcement := "" -}}
+{{- with $r.Params.announcement_page -}}
+  {{- with site.GetPage . -}}
+    {{- $announcement = .RelPermalink -}}
+  {{- end -}}
+{{- end -}}
+
+{{- return (dict
+  "version"      $version
+  "anchor"       (replace $version "." "-")
+  "date"         $r.Date
+  "stage"        ($r.Params.stage | default "stable")
+  "summary"      ($r.Params.summary | default "")
+  "content"      $r.Content
+  "releaseURL"   $releaseURL
+  "announcement" $announcement
+  "downloadURL"  ($r.Params.download_url | default "")
+) -}}

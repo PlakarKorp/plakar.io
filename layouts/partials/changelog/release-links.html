@@ -1,0 +1,25 @@
+{{- $link := "inline-flex items-center gap-1.5 text-[13px] font-semibold text-neutral-600 hover:text-primary-500 transition-colors" -}}
+{{- $icon := "w-3.5 h-3.5 shrink-0" -}}
+
+<div class="flex flex-wrap items-center gap-x-5 gap-y-2">
+  {{ with .releaseURL }}
+    <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="{{ $link }}">
+      <span class="{{ $icon }}">{{ partial "icon.html" "github" }}</span>
+      Release
+    </a>
+  {{ end }}
+
+  {{ with .announcement }}
+    <a href="{{ . }}" class="{{ $link }}">
+      <span class="{{ $icon }}">{{ partial "icon.html" "ri/megaphone-line" }}</span>
+      Announcement
+    </a>
+  {{ end }}
+
+  {{ with .downloadURL }}
+    <a href="{{ . }}" class="{{ $link }}">
+      <span class="{{ $icon }}">{{ partial "icon.html" "download" }}</span>
+      Download
+    </a>
+  {{ end }}
+</div>

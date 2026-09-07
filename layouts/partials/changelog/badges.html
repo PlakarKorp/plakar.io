@@ -1,0 +1,14 @@
+{{- $stageColors := dict
+  "stable"     "text-green-800 bg-green-50 ring-green-200"
+  "rc"         "text-blue-800 bg-blue-50 ring-blue-200"
+  "beta"       "text-amber-800 bg-amber-50 ring-amber-200"
+  "alpha"      "text-orange-800 bg-orange-50 ring-orange-200"
+  "devel"      "text-neutral-600 bg-neutral-100 ring-neutral-200"
+  "deprecated" "text-red-800 bg-red-50 ring-red-200"
+-}}
+
+{{- with .stage -}}
+  <span class="inline-flex items-center gap-1.5 text-xxs font-semibold uppercase tracking-wide px-2.5 py-1 rounded-full ring-1 ring-inset shrink-0 {{ index $stageColors (lower .) | default "text-neutral-600 bg-neutral-100 ring-neutral-200" }}">
+    <span class="w-1.5 h-1.5 rounded-full bg-current shrink-0"></span>{{ . }}
+  </span>
+{{- end -}}
