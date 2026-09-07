@@ -68,7 +68,7 @@ Active Directory is the one you restore first when ransomware takes the domain, 
 
 Download Plakar to try the VSS and SQL Server backups. Several installation methods are available depending on your operating system. [Choose the method that best suits your environment](/docs/community/v1.1.0/quickstart/installation/).
 
-If you want to try Windows Active Directory, Plakar Control Plane has a free plan including up to 500GB of managed data, making it well suited for small configurations, personal use, or evaluating the platform before committing to a larger deployment.
+If you want to [try Windows Active Directory](/docs/control-plane/intro/installation/), Plakar Control Plane has a free plan including up to 500GB of managed data, making it well suited for small configurations, personal use, or evaluating the platform before committing to a larger deployment.
 
 As always, tell us what you think. Come hang out on our [Discord](https://discord.gg/uuegtnF2Q5) or [GitHub](https://github.com/PlakarKorp/plakar) if you want to follow along or help shape what comes next.
 
