@@ -139,6 +139,11 @@
 
 
 
+## [Changelog](https://www.plakar.io/changelog/index.md)
+
+- [Plakar](https://www.plakar.io/changelog/plakar/index.md)
+
+
 ## [Community](https://www.plakar.io/community/index.md)
 
 
