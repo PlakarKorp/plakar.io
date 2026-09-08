@@ -1,17 +1,22 @@
 ---
 title: "Build a Docs Wayback Machine with Astro"
-date: "2026-09-07T00:00:00Z"
-weight: 17
+slug: "docs-wayback-machine"
+date: 2026-09-07T00:00:00Z
+authors:
+  - "rishi-raj-jain"
 summary: "Serve any past version of your documentation at a URL, decrypted from a Plakar snapshot on demand, with pages, images, and PDFs restored version-correct."
-aliases:
-  - /docs/v1.1.0/guides/docs-wayback-machine/
+categories:
+  - technology
+tags:
+  - plakar
+  - astro
+  - documentation
+  - backup
 ---
 
-# Build a Docs Wayback Machine with Astro
+What if you could open your documentation as it stood on any past date, not just today's page or an old commit's raw markdown? When a customer on a previous release follows your install guide, or support reproduces their ticket, both need the steps, screenshots, and default config exactly as they were in that version. Yes, you can find those by hand, reading the old markdown on GitHub and then browsing to each image and PDF it references at that commit, but it is slow manual work for something you only need once in a while, on-demand.
 
-What if you could open your documentation as it stood on any past date, not just today's page or an old commit's raw markdown? When a customer on last year's release follows your install guide, or support reproduces their ticket, both need the steps, screenshots, and default config exactly as they were in that version. You can find those by hand, reading the old markdown on GitHub and then browsing to each image and PDF it references at that commit, but it is slow manual work for something you only need once in a while, on demand.
-
-This is where Plakar comes in. It can snapshot the whole docs site, its pages, images, PDFs, and stylesheet, into an encrypted, content-addressed [Kloset store](https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/) where every snapshot is fully restorable on-demand. This guide builds "Nimbus Docs", an Astro application that serves any past version back at a URL (`/archive/2026-03-01/getting-started`, for example).
+This is where Plakar comes in. It can snapshot the whole docs site, its pages, images, PDFs, and stylesheet, into an encrypted, content-addressed, immutable [Kloset store](https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/) where every snapshot is fully restorable on-demand. This guide builds "Nimbus Docs", an Astro application that serves any past version back at an archive URL (`/archive/2026-03-01/getting-started`, for example).
 
 You will use Plakar for the snapshots, an Astro server application for the retrieval, and Cloudflare R2 to keep the encrypted store offsite.
 
@@ -25,7 +30,7 @@ Try it at [astro-plakar-wayback.fly.dev](https://astro-plakar-wayback.fly.dev/).
 
 v5 is the live version, read from `src/docs` on disk. The panel on the right shows the breakdown of the plakar commands it ran to load the version, and the store card below it shows how much size the version added after deduplication.
 
-![The Nimbus Docs current version, read live from disk](../images/wayback-current-version.png)
+![The Nimbus Docs current version, read live from disk](wayback-current-version.png)
 
 {{< /tab >}}
 
@@ -33,7 +38,7 @@ v5 is the live version, read from `src/docs` on disk. The panel on the right sho
 
 Opening v1 retrieves that snapshot from the encrypted backup. The page, its version-correct screenshot, its PDFs, and its stylesheet all come out of the same snapshot.
 
-![An archived version restored from a Plakar snapshot on demand](../images/wayback-archived-version.png)
+![An archived version restored from a Plakar snapshot on demand](wayback-archived-version.png)
 
 {{< /tab >}}
 
@@ -41,7 +46,7 @@ Opening v1 retrieves that snapshot from the encrypted backup. The page, its vers
 
 `plakar diff` reads both encrypted snapshots and returns a unified diff for text, marks binaries as changed, and leaves unchanged files sharing their stored chunks.
 
-![A unified diff between two versions, computed by plakar diff](../images/wayback-diff.png)
+![A unified diff between two versions, computed by plakar diff](wayback-diff.png)
 
 {{< /tab >}}
 
@@ -49,7 +54,7 @@ Opening v1 retrieves that snapshot from the encrypted backup. The page, its vers
 
 The store card compares the logical size against the real on-disk footprint, reports the deduplication ratio between versions, and names the encryption, compression, and chunking in use.
 
-![The encrypted Kloset store properties and deduplication ratio](../images/wayback-store.png)
+![The encrypted Kloset store properties and deduplication ratio](wayback-store.png)
 
 {{< /tab >}}
 
