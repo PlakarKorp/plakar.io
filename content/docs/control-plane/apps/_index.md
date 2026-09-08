@@ -14,6 +14,10 @@ An app links a resource in your inventory to Plakar Control Plane so it can be
 used as part of a backup workflow. A resource can have multiple apps. The app
 type is selected during app setup.
 
+Apps belong to a single organization. You work only with the apps of the
+organization you signed in to, and what you can do with them is determined by
+the [permissions](../administration/permissions) you hold there.
+
 Plakar Control Plane supports three app types:
 
 - **Source** - the resource being backed up

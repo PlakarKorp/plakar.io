@@ -9,6 +9,11 @@ aliases:
 
 # Scheduling
 
+Schedulers and the tasks attached to them belong to a single organization. You
+work only with the schedulers of the organization you signed in to, and what you
+can do with them is determined by the
+[permissions](../../administration/permissions) you hold there.
+
 Plakar Control Plane supports three ways to schedule backup operations:
 
 - **Manual scheduler**: create tasks manually from the UI and attach one or more

@@ -36,6 +36,10 @@ flowchart TD
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
+Policies belong to a single organization. You work only with the policies of the
+organization you signed in to, and what you can do with them is determined by
+the [permissions](../../administration/permissions) you hold there.
+
 ## Creating a policy
 
 To create a policy, provide a name, then define the backup requirements and
@@ -79,10 +83,12 @@ the environment and data class filters.
 
 Supported scope filters include:
 
-- **Environment** - the environment the policy applies to. Environments can be
-  managed from the [settings](<>).
+- **Environment** - the environment the policy applies to. Environments are
+  managed from the organization's
+  [classification settings](#managing-environments--data-classes).
 - **Data Class** - one or more data classes the policy applies to. Data classes
-  can be managed from the [settings](<>).
+  are managed from the organization's
+  [classification settings](#managing-environments--data-classes).
 - **Tag** - narrows the matched sources down further to only those carrying the
   specified tag. Useful when environment and data class alone would match more
   sources than intended.
@@ -111,7 +117,13 @@ details.
 ## Managing environments & data classes
 
 Environments and data classes used by the SLA system to scope resources are
-managed from **Settings > Classification**. From there, you can create new
-environments and data classes, or delete existing ones.
+managed per organization, from **Settings** > **Organizations** > the
+organization you want to configure > **Classification**. From there, you can
+create new environments and data classes, or delete existing ones.
+
+Because they belong to an organization, the environments and data classes
+available to a policy are the ones defined in the organization that policy lives
+in. See [Managing Organizations](../../administration/organizations) for more
+information about how organizations isolate configuration.
 
 ![Creating and deleting environments and data classes](../images/managing-classification.png)

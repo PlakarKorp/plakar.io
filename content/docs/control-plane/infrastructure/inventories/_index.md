@@ -15,6 +15,11 @@ resources available for management. Resources are the individual entities you
 can back up, use as storage, or restore to, for example, EC2 instances, S3
 buckets, and their equivalents across other supported cloud providers.
 
+Inventories belong to a single organization. You work only with the inventories
+of the organization you signed in to, and what you can do with them is
+determined by the [permissions](../../administration/permissions) you hold
+there.
+
 Inventory providers are delivered as integrations. Before creating an inventory,
 install the required provider from the **Integrations** page or directly from
 the **Add inventory** dialog. The dialog displays providers that are already

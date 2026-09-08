@@ -1,7 +1,7 @@
 ---
 title: "Configuration Bundles"
 date: "2026-07-22T00:00:00Z"
-weight: 6
+weight: 9
 summary:
   "How to use configuration bundles to share credentials and settings across
   resources."
@@ -26,9 +26,10 @@ There are two kinds of configuration bundles. They work identically in every
 other respect (same scope filters, same configuration fields, same behavior);
 the only difference is where they're created and how broadly they apply:
 
-- **Organization bundles** are created under **Settings > Configuration
-  Bundles** and apply to matching resources across every inventory in the
-  organization.
+- **Organization bundles** are created under **Settings > Your Organization >
+  Configuration Bundles** and apply to matching resources across every inventory
+  in the organization. Each organization has its own set of bundles, and a
+  bundle never applies outside the organization it was created in.
 
   ![Inventory configuration bundles](../images/organization-config-bundles.png)
 
@@ -42,12 +43,16 @@ If a resource matches both an organization bundle and an inventory bundle, and
 both provide a value for the same field, the **inventory bundle takes
 priority**.
 
+Both kinds live inside an organization, since an inventory belongs to one too.
+What you can do with either is determined by the [permissions](../permissions)
+you hold in that organization.
+
 ## Creating a configuration bundle
 
-Open the relevant location (**Settings > Configuration Bundles** for an
-organization bundle, or an inventory's **Configuration Bundles** tab for an
-inventory bundle) and click **Add bundle**. The bundle form has two sections:
-**Scope** and **Configuration fields**.
+Open the relevant location (**Settings > Your Organization > Configuration
+Bundles** for an organization bundle, or an inventory's **Configuration
+Bundles** tab for an inventory bundle) and click **Add bundle**. The bundle form
+has two sections: **Scope** and **Configuration fields**.
 
 ![Creating a configuration bundle](../images/creating-config-bundle.png)
 
@@ -100,8 +105,18 @@ provider** next to that field to source the value from a
 
 Bundles take effect when you assign a source or destination app, or create a
 store app, on a matching resource. See the [apps](../../apps) documentation for
-more on how apps work. Any configuration fields already supplied by a matching
-bundle are filled in for you; you only need to fill in the remaining fields
-yourself. If every required field for the selected integration ends up filled,
-whether from the bundle or manually, Control Plane creates the app
-automatically.
+more on how apps work.
+
+Any configuration field already supplied by a matching bundle is filled in for
+you, and the form indicates which fields came from a bundle. You only need to
+fill in the remaining fields yourself.
+
+A value provided by a bundle is not fixed. You can override any individual field
+by entering a custom value instead, which applies only to the app you are
+setting up. The bundle itself and every other resource it matches are
+unaffected.
+
+{{< figure src="../images/config-bundle-override.png" alt="" class="mx-auto max-w-130" >}}
+
+If every required field for the selected integration ends up filled, whether
+from the bundle or manually, Control Plane creates the app automatically.

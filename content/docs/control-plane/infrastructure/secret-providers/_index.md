@@ -23,6 +23,11 @@ credential, Plakar Control Plane gives you two options.
 
 ![](./images/secrets1.png)
 
+Secret providers belong to a single organization. You work only with the secret
+providers of the organization you signed in to, and what you can do with them is
+determined by the [permissions](../../administration/permissions) you hold
+there.
+
 Using a secret provider is recommended if your organization already manages
 credentials centrally, or if you want to avoid storing sensitive values in the
 database.

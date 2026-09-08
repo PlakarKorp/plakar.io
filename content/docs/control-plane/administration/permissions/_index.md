@@ -1,0 +1,78 @@
+---
+title: "Permissions"
+date: "2026-09-08T00:00:00Z"
+weight: 4
+summary:
+  "How access is granted in Plakar Control Plane, and what each role can reach."
+---
+
+# Permissions
+
+Permissions in Plakar Control Plane are scoped to an organization. A user who
+belongs to several organizations holds a separate set of permissions in each
+one, and nothing granted in one organization carries over to another. See
+[Managing Users](../users) for how membership works.
+
+A user who has just been added to an organization has no permissions at all.
+They can sign in, but they cannot reach any resource or perform any operation
+until permissions are granted to them.
+
+## Permission families
+
+Permissions are grouped into three families, based on what the access reaches.
+
+### Organization
+
+Applies across the whole organization rather than to any individual resource. It
+covers the organization itself and the administrative records attached to it:
+
+- Organization
+- Members
+- Audit log
+- Data residency
+- Restore points legal holds
+- Inventory resources legal holds
+
+### Resources
+
+Applies to the resources that belong to the organization. Access is expressed
+per resource class:
+
+- Inventories
+- Apps
+- Restore point data
+- Secret Providers
+- Integrations
+- Policies
+- Settings
+- Edges
+- Configuration bundles
+- Data classes
+- Environments
+- Schedules
+
+### Deployment
+
+Applies to the instance itself, which belongs to no organization. Access granted
+here reaches every organization hosted on the instance, not only the one the
+permission was granted in:
+
+- Control plane
+- License
+
+## Access levels
+
+Every permission in a family is held at one of four levels:
+
+- **No access**, the permission cannot be reached at all.
+- **View**, it can be read but not changed.
+- **Configure**, it can be read and changed, but not deleted, and who else can
+  reach it cannot be changed either.
+- **Full**, everything above, including deleting and granting access to it.
+
+## Roles
+
+Access is granted by assigning a role. A role is a preset set of capabilities,
+and the access it comes to is always expressed in the three families above.
+
+{{< children description="true" >}}
