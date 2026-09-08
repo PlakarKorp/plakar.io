@@ -6,6 +6,7 @@
 
 ## [Plakar Blog](https://www.plakar.io/posts/index.md)
 
+- [Agentless VSS and SQL Server backup now available in Plakar](https://www.plakar.io/posts/2026-09-08/agentless-vss-sql-server-backup/index.md): VSS and SQL Server backups are now free for registered Plakar users: agentless over SSH, encrypted and deduplicated into an open, portable Kloset store. The connectors are closed source, built for Control Plane. Active Directory recovery is a Plakar Control Plane capability.
 - [Plakar v1.1.5 is out](https://www.plakar.io/posts/2026-09-06/plakar-v1.1.5-is-out/index.md): plakar v1.1.5 is out: a security-focused patch release. Unencrypted stores are now refused unless you explicitly opt in, plugins are signature-checked at install time, and the HTTP store and server got hardened. Fully backward compatible, nothing to migrate.
 - [10 Reasons You Need an Independent, Offsite Backup in 2026](https://www.plakar.io/posts/2026-08-12/independent-backup-reasons/index.md): Cloud storage isn&rsquo;t a backup strategy. 10 reasons you need an independent, offsite backup you control, from ransomware and rogue AI agents to climate, conflict, and storage cost.
 - [Portable Backups for Managed Postgres with pg_dump and Plakar](https://www.plakar.io/posts/2026-07-17/portable-backups-for-managed-postgres-with-pgdump-and-plakar/index.md): Managed Postgres backups can&rsquo;t be downloaded. Here&rsquo;s how Plakar wraps pg_dump into encrypted and deduplicated snapshots you can own.

@@ -4,6 +4,10 @@
 
 
 
+## [Agentless VSS and SQL Server backup now available in Plakar](https://www.plakar.io/posts/2026-09-08/agentless-vss-sql-server-backup/index.md)
+
+
+
 ## [Plakar v1.1.5 is out](https://www.plakar.io/posts/2026-09-06/plakar-v1.1.5-is-out/index.md)
 
 
