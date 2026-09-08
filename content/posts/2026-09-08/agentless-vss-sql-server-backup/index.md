@@ -31,7 +31,7 @@ Every other layer of your stack has an open format you can read and an API you c
 
 Plakar's [VSS](/integrations/vss/) and [SQL Server](/integrations/mssql/) integrations now run at no cost with Plakar: agentless, self-hosted, no per-VM license, no vendor standing between you and your own recovery. Everything lands in an encrypted, deduplicated [Kloset store](/posts/2025-04-29/kloset-the-immutable-data-store/) that lives nowhere near the machine it protects.
 
-These two connectors are built for Plakar Control Plane and are free to use for registered Plakar users. We are not open-sourcing their code for now. The Plakar CLI and the Kloset format stay open source.
+These two connectors are built for Plakar Control Plane and are free to use for any registered Plakar user. Their code stays closed for now, but that changes nothing about how your data is stored or who controls it: everything they capture lands in the same open, portable, client-side encrypted Kloset store as the rest of Plakar, and the Plakar CLI and the Kloset format remain fully open source. There is no proprietary archive and no vendor-locked vault. Any snapshot these connectors create stays readable with the open-source Plakar CLI, the keys never leave your side, and you can always get your data back without a closed-source tool.
 
 {{< mermaid >}}
 flowchart LR
