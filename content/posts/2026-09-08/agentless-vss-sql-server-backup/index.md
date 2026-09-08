@@ -3,7 +3,7 @@ title: "Agentless VSS and SQL Server backup now available in Plakar"
 slug: "agentless-vss-sql-server-backup"
 date: 2026-09-08T10:00:00+0100
 authors:
-  - "gilles"
+  - "victor"
 summary:
   "VSS and SQL Server backups are now free for registered Plakar users: agentless
   over SSH, encrypted and deduplicated into an open, portable Kloset store. The
