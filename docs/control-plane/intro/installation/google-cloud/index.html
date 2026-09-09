@@ -27,7 +27,7 @@
     
   
   
-    <meta name="description" content="How to install Plakar Control Plane on Google Cloud">
+    <meta name="description" content="How to install Plakar Control Plane on Google Cloud Platform">
   
   
     <meta name="keywords" content="backup,open-source,deduplication,encryption,plakar,cloud backup,database backup,">
@@ -90,17 +90,17 @@
   <meta property="og:url" content="https://www.plakar.io/docs/control-plane/intro/installation/google-cloud/">
   <meta property="og:site_name" content="Plakar | The Open Standard for Backup and Restore">
   <meta property="og:title" content="Google Cloud">
-  <meta property="og:description" content="How to install Plakar Control Plane on Google Cloud">
+  <meta property="og:description" content="How to install Plakar Control Plane on Google Cloud Platform">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-07-14T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-09-09T10:13:01+03:00">
+    <meta property="article:modified_time" content="2026-09-09T16:05:10+03:00">
 
   
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Google Cloud">
-  <meta name="twitter:description" content="How to install Plakar Control Plane on Google Cloud">
+  <meta name="twitter:description" content="How to install Plakar Control Plane on Google Cloud Platform">
 
   
   
@@ -215,6 +215,11 @@
 
 
 
+  
+  
+    <script src="/js/shortcodes/tabs.min.b9b8a6b2cf6c81163025e44a18c0ccce600efe2dfc29d2d11515fe41b8e1e8e00896759b9e55eab7032ab15d1bec124c32e8996685e563de84ad243eb61ec236.js" integrity="sha512-ubimss9sgRYwJeRKGMDMzmAO/i38KdLRFRX&#43;Qbjh6OAIlnWbnlXqtwMqsV0b7BJMMuiZZoXlY96ErSQ&#43;th7CNg==" crossorigin="anonymous"></script>
+  
+
 
 
 
@@ -253,12 +258,12 @@
     "dateCreated": "2026-07-14T00:00:00\u002b00:00",
     "datePublished": "2026-07-14T00:00:00\u002b00:00",
     
-    "dateModified": "2026-09-09T10:13:01\u002b03:00",
+    "dateModified": "2026-09-09T16:05:10\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/intro/installation/google-cloud/",
-    "wordCount": "31"
+    "wordCount": "1096"
   }]
   </script>
 
@@ -6865,11 +6870,11 @@
       <article class="docs-font prose max-w-none mt-8">
         
 
-<h1 id="google-cloud-installation" class="group pr-8">Google Cloud Installation
+<h1 id="google-cloud-platform-installation" class="group pr-8">Google Cloud Platform Installation
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="google-cloud-installation"
+      data-anchor="google-cloud-platform-installation"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6880,16 +6885,374 @@
     </button>
   
 </h1>
-<div class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm" data-type="note">
-      <div class="flex items-center gap-2 font-semibold text-inherit">
+<p>Plakar Control Plane is distributed on Google Cloud Platform as a custom image
+hosted under the (<code>plakar-images</code>) project. Because the image lives outside your
+own project, GCP requires explicit authorization before it can be used, and this
+authorization works differently depending on whether you deploy through the
+Console or the <code>gcloud</code> CLI.</p>
+
+
+<h2 id="getting-access-to-the-image" class="group pr-8">Getting access to the image
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="getting-access-to-the-image"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>GCP images can only be shared with projects, domains, or individual accounts
+that the image owner has explicitly authorized. The Console&rsquo;s instance-creation
+flow relies on this authorization to browse and select an image, so it only
+works for accounts Plakar has whitelisted, either by domain or by an email
+address.</p>
+<ul>
+<li><strong><code>gcloud</code> CLI:</strong> works without any whitelisting, because referencing an image
+by name and project doesn&rsquo;t require the browsing permissions the Console UI
+needs. This is the recommended path for most users, since it doesn&rsquo;t depend on
+Plakar granting access first.</li>
+<li><strong>Console (UI):</strong> <a href="/contact/" >contact us</a> to have your Google account or
+Workspace domain added to the <code>plakar-images</code> project&rsquo;s IAM policy. Once
+whitelisted, the project appears when browsing custom images, and the rest of
+the deployment can be done by clicking through the Console.</li>
+</ul>
+<div class="tab__container w-full">
+<div class="tab__nav overflow-x-auto" role="tablist">
+<div class="flex gap-1 min-w-max"><button class="tab__button px-3 py-2 text-sm font-semibold border-b-2 border-transparent rounded-t-md bg-neutral-100 hover:bg-neutral-300 tab--active" role="tab" aria-selected="true" data-tab-index="0" data-tab-label="gcloud CLI"><span class="flex items-center gap-1">gcloud CLI</span></button><button class="tab__button px-3 py-2 text-sm font-semibold border-b-2 border-transparent rounded-t-md bg-neutral-100 hover:bg-neutral-300" role="tab" aria-selected="false" data-tab-index="1" data-tab-label="Console (UI)"><span class="flex items-center gap-1">Console (UI)</span></button></div>
+</div>
+<div class="tab__content mt-4"><div class="tab__panel tab--active" data-tab-index="0">
+<p>The <code>gcloud</code> CLI can reference the <code>plakar-images</code> project directly, without
+requiring the domain-whitelisting the Console needs:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">gcloud compute instances create &lt;INSTANCE_NAME&gt; <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --project<span class="o">=</span>&lt;YOUR_PROJECT&gt; <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --zone<span class="o">=</span>&lt;ZONE&gt; <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --machine-type<span class="o">=</span>n2-standard-4 <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --image<span class="o">=</span>control-plane-v-0-0-3 <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --image-project<span class="o">=</span>plakar-images <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --boot-disk-size<span class="o">=</span>10GB <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --boot-disk-type<span class="o">=</span>pd-balanced <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --create-disk<span class="o">=</span><span class="nv">name</span><span class="o">=</span>&lt;INSTANCE_NAME&gt;-data,size<span class="o">=</span>1024GB,type<span class="o">=</span>pd-balanced <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --tags<span class="o">=</span>http-server</span></span></code></pre></div></div>
+<ul>
+<li>
+<p><code>--machine-type=n2-standard-4</code> provides the recommended 4 vCPUs and 16 GiB
+RAM. For evaluation or testing, a smaller machine type is fine.</p>
+</li>
+<li>
+<p><code>--image</code> and <code>--image-project</code> reference the Plakar Control Plane image by
+name, which works regardless of whitelisting.</p>
+</li>
+<li>
+<p><code>--create-disk</code> provisions the 1 TB data disk that holds the database, logs,
+and all Plakar state, separate from wherever you configure backups themselves
+to be stored. For evaluation or testing, a smaller size is fine.</p>
+</li>
+<li>
+<p><code>--tags=http-server</code> applies the tag GCP&rsquo;s default network firewall rule uses
+to allow inbound HTTP traffic. If your project doesn&rsquo;t have that default rule,
+create one explicitly:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">gcloud compute firewall-rules create allow-http <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --network<span class="o">=</span>&lt;NETWORK&gt; <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --allow<span class="o">=</span>tcp:80 <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --target-tags<span class="o">=</span>http-server <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --source-ranges<span class="o">=</span>0.0.0.0/0</span></span></code></pre></div></div>
+<details
+      class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
+      data-type="warning"
+      open>
+      <summary class="flex items-center gap-2 font-semibold text-inherit cursor-pointer">
+        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"/></svg>
+</span></div>
+        <div class="grow">
+          Warning
+        </div>
+        <div
+          class="ms-auto flex h-5 w-5 items-center justify-center transition-transform ease-in-out -rotate-90 group-open:rotate-0 print:hidden"><span class="relative block icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+</span></div>
+      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Restrict <code>--source-ranges</code> to trusted IP ranges, your organization&rsquo;s
+gateway, or a VPN in production. <code>0.0.0.0/0</code> allows access from any address
+and should only be used for testing or temporary deployments.</p></div></details></li>
+<li>
+<p>To use Spot provisioning instead of Standard, add <code>--provisioning-model=SPOT</code>.
+Spot instances run until preempted by GCP, which makes them a fit for
+fault-tolerant workloads but not for a Control Plane instance, which needs to
+run continuously.</p>
+</li>
+</ul>
+<p>Once the instance is created, it can be viewed and managed from <strong>Compute Engine
+→ VM instances</strong> in the Console like any other instance.</p>
+
+</div><div class="tab__panel" data-tab-index="1">
+<details
+      class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
+      data-type="note"
+      open>
+      <summary class="flex items-center gap-2 font-semibold text-inherit cursor-pointer">
         <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"/></svg>
 </span></div>
         <div class="grow">
           Note
         </div>
-      </div><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>This documentation is currently being worked on. If you need assistance in the
-meantime, you can reach out in the Plakar Discord community.</p>
-<p><a href="https://discord.gg/uuegtnF2Q5"  target="_blank" rel="noreferrer">Join the Discord server</a></p></div></div>
+        <div
+          class="ms-auto flex h-5 w-5 items-center justify-center transition-transform ease-in-out -rotate-90 group-open:rotate-0 print:hidden"><span class="relative block icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+</span></div>
+      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>This path requires your Google account or domain to already be whitelisted on
+the <code>plakar-images</code> project. If it isn&rsquo;t, use the CLI tab instead, or
+<a href="/contact/" >contact us</a> to request access.</p></div></details><p>Compute instances can be created from <strong>Compute Engine → VM instances</strong> then
+click on <strong>Create Instance</strong> to create a new instance.</p>
+
+
+<h3 id="machine-configuration" class="group pr-8">Machine configuration
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="machine-configuration"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Provide the instance a name, and choose the region and zone where it should run.
+You then need to select an instance type for running control plane on.</p>
+<figure><img class="my-0 rounded-md mx-auto max-w-120" loading="lazy" decoding="async" fetchpriority="auto" alt="" width="1329" height="1465" src="/docs/control-plane/intro/installation/images/gcp-1_hu_e24a88f6d8424637.webp" srcset="/docs/control-plane/intro/installation/images/gcp-1_hu_e24a88f6d8424637.webp 400w, /docs/control-plane/intro/installation/images/gcp-1_hu_82bfa99e7df7a4b9.webp 800w, /docs/control-plane/intro/installation/images/gcp-1_hu_7e23076424001c1b.webp 1200w" sizes="(min-width: 768px) 50vw, 65vw" data-zoom-src="/docs/control-plane/intro/installation/images/gcp-1_hu_7e23076424001c1b.webp" /></figure>
+<p>Plakar Control Plane requires the following recommended setup:</p>
+<ul>
+<li><strong>4 vCPUs</strong></li>
+<li><strong>16 GiB RAM</strong></li>
+<li><strong>1 TB of additional storage</strong>, on top of the boot disk</li>
+</ul>
+<p>These are recommendations for a production deployment. For evaluation or
+testing, a smaller machine type is fine. A preset such as <code>n2-standard-4</code>
+satisfies the CPU and RAM requirement.</p>
+<p>Under <strong>Provisioning model</strong>, choose <strong>Standard</strong> for a persistent deployment.
+<strong>Spot VMs</strong> run until preempted by GCP, which makes them a fit for
+fault-tolerant workloads but not for a Control Plane instance, which needs to
+run continuously.</p>
+<figure><img class="my-0 rounded-md mx-auto max-w-120" loading="lazy" decoding="async" fetchpriority="auto" alt="" width="1313" height="760" src="/docs/control-plane/intro/installation/images/gcp-2_hu_a2172df292287832.webp" srcset="/docs/control-plane/intro/installation/images/gcp-2_hu_a2172df292287832.webp 400w, /docs/control-plane/intro/installation/images/gcp-2_hu_e63f0d905888c9e3.webp 800w, /docs/control-plane/intro/installation/images/gcp-2_hu_83ef838a31fb554f.webp 1200w" sizes="(min-width: 768px) 50vw, 65vw" data-zoom-src="/docs/control-plane/intro/installation/images/gcp-2_hu_83ef838a31fb554f.webp" /></figure>
+
+
+<h3 id="os-and-storage" class="group pr-8">OS and storage
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="os-and-storage"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>By default, GCP proposes a generic Debian image. This needs to be replaced with
+the Plakar Control Plane image:</p>
+<figure><img class="my-0 rounded-md mx-auto max-w-120" loading="lazy" decoding="async" fetchpriority="auto" alt="" width="1372" height="601" src="/docs/control-plane/intro/installation/images/gcp-3_hu_ff48e13da5b2e542.webp" srcset="/docs/control-plane/intro/installation/images/gcp-3_hu_ff48e13da5b2e542.webp 400w, /docs/control-plane/intro/installation/images/gcp-3_hu_50c94f57f5be5d18.webp 800w, /docs/control-plane/intro/installation/images/gcp-3_hu_3fce11f729330554.webp 1200w" sizes="(min-width: 768px) 50vw, 65vw" data-zoom-src="/docs/control-plane/intro/installation/images/gcp-3_hu_3fce11f729330554.webp" /></figure>
+<ol>
+<li>Under <strong>Boot disk</strong>, click <strong>Change</strong>.</li>
+<li>Select the <strong>Custom images</strong> tab.</li>
+<li>Under <strong>Source project for image</strong>, click <strong>Change</strong>, and select
+<code>plakar-images</code> from the list of projects your account has been granted
+access to. If the project doesn&rsquo;t appear here, your account hasn&rsquo;t been
+whitelisted yet. See
+<a href="/docs/control-plane/intro/installation/google-cloud/#getting-access-to-the-image" >getting access to the image</a> above.</li>
+<li>Select the latest available image (currently <code>control-plane-v-0-0-3</code>).</li>
+</ol>
+<p>For the boot disk itself, any of the available persistent disk types (Balanced,
+SSD, Extreme, or Standard) will work; a size of <strong>10 GB</strong> is enough, since the
+appliance&rsquo;s actual state is stored on a separate data disk.</p>
+<figure><img class="my-0 rounded-md mx-auto max-w-120" loading="lazy" decoding="async" fetchpriority="auto" alt="" width="1244" height="1013" src="/docs/control-plane/intro/installation/images/gcp-4_hu_2577d657fc50855e.webp" srcset="/docs/control-plane/intro/installation/images/gcp-4_hu_2577d657fc50855e.webp 400w, /docs/control-plane/intro/installation/images/gcp-4_hu_628390fa08daef49.webp 800w, /docs/control-plane/intro/installation/images/gcp-4_hu_8f2971058fd2b5a.webp 1200w" sizes="(min-width: 768px) 50vw, 65vw" data-zoom-src="/docs/control-plane/intro/installation/images/gcp-4_hu_8f2971058fd2b5a.webp" /></figure>
+
+
+<h3 id="additional-disk" class="group pr-8">Additional disk
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="additional-disk"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>The database, logs, and all Plakar state are stored on a dedicated data disk,
+separate from wherever you configure backups to be stored:</p>
+<ol>
+<li>Under <strong>Additional disks</strong>, click <strong>Add new disk</strong>.</li>
+<li>Leave the disk source blank so GCP creates a new, empty disk.</li>
+<li>Set the size to <strong>1024 GB</strong>.</li>
+<li>Choose a disk type. Balanced, SSD, Extreme, Standard, and Hyperdisk are all
+supported; pick whichever matches your performance and cost requirements.</li>
+</ol>
+<p>The remaining disk settings (snapshot schedule and deletion behavior) can be
+left at their defaults.</p>
+<figure><img class="my-0 rounded-md mx-auto max-w-120" loading="lazy" decoding="async" fetchpriority="auto" alt="" width="956" height="1650" src="/docs/control-plane/intro/installation/images/gcp-5_hu_be0bb6a49f61046.webp" srcset="/docs/control-plane/intro/installation/images/gcp-5_hu_be0bb6a49f61046.webp 400w, /docs/control-plane/intro/installation/images/gcp-5_hu_6ac1ba187830ad70.webp 800w, /docs/control-plane/intro/installation/images/gcp-5_hu_6c6d3dfd217dc205.webp 956w" sizes="(min-width: 768px) 50vw, 65vw" data-zoom-src="/docs/control-plane/intro/installation/images/gcp-5_hu_6c6d3dfd217dc205.webp" /></figure>
+
+
+<h3 id="data-protection" class="group pr-8">Data protection
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="data-protection"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Choose the snapshot or backup schedule that matches your organization&rsquo;s data
+protection requirements for this instance.</p>
+
+
+<h3 id="networking" class="group pr-8">Networking
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="networking"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Plakar Control Plane is served through a web UI over HTTP. For HTTPS, place a
+load balancer in front of the instance to handle TLS termination. Configure
+firewall rules, network tags, and IP settings according to your organization&rsquo;s
+network policy. At minimum, <strong>Allow HTTP traffic</strong> needs to be enabled for the
+web UI to be reachable once the instance is running.</p>
+<p>The <strong>Observability</strong>, <strong>Security</strong>, and <strong>Advanced</strong> tabs can be configured
+according to your organization&rsquo;s standards as none of them are required for a
+working deployment.</p>
+<p>Click <strong>Create</strong> once the configuration is complete.</p>
+
+</div></div>
+</div>
+
+
+
+<h2 id="accessing-plakar-control-plane" class="group pr-8">Accessing Plakar Control Plane
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="accessing-plakar-control-plane"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>Once the instance is running and reachable, open it from a browser using its
+assigned external IP address:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">http://&lt;EXTERNAL-IP&gt;</span></span></code></pre></div></div>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt=""
+    width="2584"
+    height="511"
+    src="/docs/control-plane/intro/installation/images/gcp-6_hu_89156d5ec07a0eb5.webp"
+    srcset="/docs/control-plane/intro/installation/images/gcp-6_hu_89156d5ec07a0eb5.webp 400w, /docs/control-plane/intro/installation/images/gcp-6_hu_6d366f9c61a2361e.webp 800w, /docs/control-plane/intro/installation/images/gcp-6_hu_bba622c8b99a9512.webp 1200w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/docs/control-plane/intro/installation/images/gcp-6_hu_615ecf5498216a2c.webp"></figure>
+<p>For new installations, you will be guided through the enrollment process to:</p>
+<ul>
+<li>Register the instance with Plakar services for licensing and billing</li>
+<li>Create the initial administrator account</li>
+</ul>
+<p>See the <a href="../../enrollment" >enrollment</a> documentation for more details.</p>
+
+
+<h2 id="limitations" class="group pr-8">Limitations
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="limitations"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>The Google Cloud image does not yet support two capabilities available on the
+other platforms.</p>
+<ul>
+<li>
+<p><strong>SSH access:</strong> The instance cannot be reached over SSH. It is administered
+entirely through the web interface, so plan for the appliance to be managed
+that way.</p>
+</li>
+<li>
+<p><strong>Proxy and registry mirror configuration:</strong> Other platforms accept an HTTP
+proxy and a Harbor registry mirror through cloud-init user data. The Google
+Cloud image does not read that configuration, so the instance needs direct
+outbound access to:</p>
+<ul>
+<li><code>*.plakar.io</code>, for runtime configuration, license validation, and plugin
+downloads.</li>
+<li><code>*.docker.io</code>, <code>*.docker.com</code>, <code>*.ghcr.io</code>, and <code>*.githubusercontent.com</code>,
+for the container images the appliance runs.</li>
+</ul>
+<p>Without that access, the instance cannot validate its license or pull the
+images it needs to start.</p>
+</li>
+</ul>
+
       </article>
       <footer class="mt-12 flex flex-col gap-6 docs-font border-t border-neutral-200 pt-6">
 
@@ -6966,6 +7329,28 @@ meantime, you can reach out in the Plakar Discord community.</p>
     <aside class="hidden xl:block w-48 shrink-0">
       <div class="sticky top-24">
         
+  <nav class="toc docs-font text-sm">
+    <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
+    <div class="toc-content text-neutral-600">
+      <ul><li><a href="#getting-access-to-the-image">Getting access to the image</a><ul><li><a href="#machine-configuration">Machine configuration</a></li><li><a href="#os-and-storage">OS and storage</a></li><li><a href="#additional-disk">Additional disk</a></li><li><a href="#data-protection">Data protection</a></li><li><a href="#networking">Networking</a></li></ul></li><li><a href="#accessing-plakar-control-plane">Accessing Plakar Control Plane</a></li><li><a href="#limitations">Limitations</a></li></ul>
+    </div>
+
+    
+      
+        <div class="border-t border-neutral-200 mt-4 pt-4">
+          <a href="https://github.com/PlakarKorp/plakar.io/edit/main/content/docs/control-plane/intro/installation/google-cloud.md" target="_blank"
+            class="flex items-center gap-2 text-xs hover:underline">
+            Edit this page on GitHub
+            <span class="w-3 h-3 -mt-1 flex items-center justify-center">
+              <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V11H19L18.9999 6.413L11.2071 14.2071L9.79289 12.7929L17.5849 5H13V3H21Z"></path></svg>
+</span>
+            </span>
+          </a>
+        </div>
+      
+    
+  </nav>
+
 
       </div>
     </aside>
