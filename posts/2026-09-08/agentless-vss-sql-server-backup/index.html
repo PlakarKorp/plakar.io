@@ -95,7 +95,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2026-09-08T10:00:00+01:00">
-    <meta property="article:modified_time" content="2026-09-08T19:36:12+03:00">
+    <meta property="article:modified_time" content="2026-09-09T10:13:01+03:00">
     <meta property="article:tag" content="Windows">
     <meta property="article:tag" content="Active-Directory">
     <meta property="article:tag" content="Sql-Server">
@@ -257,7 +257,7 @@
     "dateCreated": "2026-09-08T10:00:00\u002b01:00",
     "datePublished": "2026-09-08T10:00:00\u002b01:00",
     
-    "dateModified": "2026-09-08T19:36:12\u002b03:00",
+    "dateModified": "2026-09-09T10:13:01\u002b03:00",
     
     "keywords": ["windows","active-directory","sql-server","vss","backup","ransomware","control-plane"],
     
@@ -2152,9 +2152,23 @@
 
       
       <div class="prose docs-font max-w-full">
-        <p>For twenty years, backing up Windows meant paying the same tax: an agent on every machine or a vendor holding the keys to your own data. VSS, the Windows service that quietly makes a consistent copy of a running system, and SQL Server are front and center, reachable mostly through an enterprise backup suite or a tool you have to install on every host.</p>
-<p>Everything else moved on. We went from monoliths to microservices, from physical hardware to containers and Kubernetes, from one on-prem data center to multi clouds. Infrastructure is now run as code: you declare it in Git, it scales dynamically and includes self-healing mechanisms and multi-region disaster recovery (DR) strategies, managed programmatically. That pace is only accelerating as companies integrate AI into their development process. We&rsquo;ve built a world of automated, cloud-native infrastructure resilience, but the data protection layer remains obsolete.</p>
-<p>Every other layer of your stack has an open format you can read and an API you can call. Backup should too. It should be declared as code, agentless, fully encrypted, deduplicated and portable. That is proper resilience, and today it comes to Windows!</p>
+        <p>For twenty years, backing up Windows meant paying the same tax: an agent on
+every machine or a vendor holding the keys to your own data. VSS, the Windows
+service that quietly makes a consistent copy of a running system, and SQL Server
+are front and center, reachable mostly through an enterprise backup suite or a
+tool you have to install on every host.</p>
+<p>Everything else moved on. We went from monoliths to microservices, from physical
+hardware to containers and Kubernetes, from one on-prem data center to multi
+clouds. Infrastructure is now run as code: you declare it in Git, it scales
+dynamically and includes self-healing mechanisms and multi-region disaster
+recovery (DR) strategies, managed programmatically. That pace is only
+accelerating as companies integrate AI into their development process. We&rsquo;ve
+built a world of automated, cloud-native infrastructure resilience, but the data
+protection layer remains obsolete.</p>
+<p>Every other layer of your stack has an open format you can read and an API you
+can call. Backup should too. It should be declared as code, agentless, fully
+encrypted, deduplicated and portable. That is proper resilience, and today it
+comes to Windows!</p>
 
 
 <h2 id="vss-and-sql-server-free-in-plakar" class="group pr-8">VSS and SQL Server: free in Plakar
@@ -2172,8 +2186,22 @@
     </button>
   
 </h2>
-<p>Plakar&rsquo;s <a href="/integrations/vss/" >VSS</a> and <a href="/integrations/mssql/" >SQL Server</a> integrations now run at no cost with Plakar: agentless, self-hosted, no per-VM license, no vendor standing between you and your own recovery. Everything lands in an encrypted, deduplicated <a href="/posts/2025-04-29/kloset-the-immutable-data-store/" >Kloset store</a> that lives nowhere near the machine it protects.</p>
-<p>These two connectors are built for Plakar Control Plane and are free to use for any registered Plakar user. Their code stays closed for now, but that changes nothing about how your data is stored or who controls it: everything they capture lands in the same open, portable, client-side encrypted Kloset store as the rest of Plakar, and the Plakar CLI and the Kloset format remain fully open source. There is no proprietary archive and no vendor-locked vault. Any snapshot these connectors create stays readable with the open-source Plakar CLI, the keys never leave your side, and you can always get your data back without a closed-source tool.</p>
+<p>Plakar&rsquo;s <a href="/integrations/vss/" >VSS</a> and <a href="/integrations/mssql/" >SQL Server</a>
+integrations now run at no cost with Plakar: agentless, self-hosted, no per-VM
+license, no vendor standing between you and your own recovery. Everything lands
+in an encrypted, deduplicated
+<a href="/posts/2025-04-29/kloset-the-immutable-data-store/" >Kloset store</a> that lives
+nowhere near the machine it protects.</p>
+<p>These two connectors are built for Plakar Control Plane and are free to use for
+any registered Plakar user. Their code stays closed for now, but that changes
+nothing about how your data is stored or who controls it: everything they
+capture lands in the same open, portable, client-side encrypted Kloset store as
+the rest of Plakar, and the Plakar CLI and the Kloset format remain fully open
+source. There is no proprietary archive and no vendor-locked vault. Any snapshot
+these connectors create stays readable with the open-source Plakar CLI, the keys
+never leave your side, and you can always get your data back without a
+closed-source tool.</p>
+<!-- prettier-ignore-start -->
 <pre class="not-prose mermaid">
 flowchart LR
   subgraph dom["Windows domain"]
@@ -2185,6 +2213,7 @@ flowchart LR
   plakar -->|"encrypted +<br/>deduplicated"| kloset[("Kloset store<br/>outside the domain")]
 </pre>
 
+<!-- prettier-ignore-end -->
 
 
 <h2 id="how-agentless-vss-backup-works" class="group pr-8">How agentless VSS backup works
@@ -2202,8 +2231,16 @@ flowchart LR
     </button>
   
 </h2>
-<p>In a nutshell, Plakar connects to the Windows host over SSH and asks VSS for a snapshot. VSS puts the volume in a consistent state first, streams the result over SFTP, splits it into small chunks, removes the duplicates, compresses them, and encrypts them. The storage only ever sees encrypted data, and the keys stay on your side.</p>
-<p>Data is <a href="/posts/2025-02-28/audit-of-plakar-cryptography/" >encrypted client-side</a>, the Kloset store sits outside the domain, and the account Plakar connects with is not your domain admin. If the domain is compromised, the copy remains completely safe.</p>
+<p>In a nutshell, Plakar connects to the Windows host over SSH and asks VSS for a
+snapshot. VSS puts the volume in a consistent state first, streams the result
+over SFTP, splits it into small chunks, removes the duplicates, compresses them,
+and encrypts them. The storage only ever sees encrypted data, and the keys stay
+on your side.</p>
+<p>Data is
+<a href="/posts/2025-02-28/audit-of-plakar-cryptography/" >encrypted client-side</a>, the
+Kloset store sits outside the domain, and the account Plakar connects with is
+not your domain admin. If the domain is compromised, the copy remains completely
+safe.</p>
 
 
 <h2 id="unlocking-mssql-backup" class="group pr-8">Unlocking MSSQL Backup
@@ -2221,8 +2258,16 @@ flowchart LR
     </button>
   
 </h2>
-<p>Database backups are the request we hear most, and SQL Server is near the top of the list. Databases are the most painful thing to lose and the hardest thing to restore correctly, which is why so many teams still run them through hand-written scripts and scheduled tasks nobody wants to own.</p>
-<p>After <a href="/integrations/postgres/" >Postgres</a> and <a href="/integrations/mysql/" >MySQL</a>, you can now back up your SQL Server database with Plakar. Plakar asks VSS for an application-consistent, point-in-time snapshot of the volume the database sits on, so the copy is clean and complete without taking the database offline. No dump scripts, no agent, no downtime, and you restore it onto the original server or a fresh one.</p>
+<p>Database backups are the request we hear most, and SQL Server is near the top of
+the list. Databases are the most painful thing to lose and the hardest thing to
+restore correctly, which is why so many teams still run them through
+hand-written scripts and scheduled tasks nobody wants to own.</p>
+<p>After <a href="/integrations/postgres/" >Postgres</a> and <a href="/integrations/mysql/" >MySQL</a>, you
+can now back up your SQL Server database with Plakar. Plakar asks VSS for an
+application-consistent, point-in-time snapshot of the volume the database sits
+on, so the copy is clean and complete without taking the database offline. No
+dump scripts, no agent, no downtime, and you restore it onto the original server
+or a fresh one.</p>
 
 
 <h2 id="active-directory-available-in-plakar-control-plane" class="group pr-8">Active Directory available in Plakar Control Plane
@@ -2240,9 +2285,20 @@ flowchart LR
     </button>
   
 </h2>
-<p>If you are running Windows workloads in a regulated environment, you are probably wondering about Active Directory. In a Windows environment, almost everything runs through Active Directory. Who can log in, what they can touch, and which systems they can reach all depend on it being up and correct.</p>
-<p>In case you missed it, <a href="/integrations/msad/" >Active Directory</a> is already covered through the Plakar Control Plane. While a Domain Controller is still healthy, Plakar takes an encrypted System State backup (everything Windows needs to bring that controller back) and stores it outside the domain. So even if every Domain Controller is lost at once, you can rebuild your whole Active Directory from a clean, off-domain copy.</p>
-<p>Active Directory is the one you restore first when ransomware takes the domain, because nothing else works until it is back. The restore is the normal Windows path (System State via Directory Services Restore Mode); full steps are in the <a href="/docs/control-plane/resources/identity/msad/" >Active Directory docs</a>.</p>
+<p>If you are running Windows workloads in a regulated environment, you are
+probably wondering about Active Directory. In a Windows environment, almost
+everything runs through Active Directory. Who can log in, what they can touch,
+and which systems they can reach all depend on it being up and correct.</p>
+<p>In case you missed it, <a href="/integrations/msad/" >Active Directory</a> is already
+covered through the Plakar Control Plane. While a Domain Controller is still
+healthy, Plakar takes an encrypted System State backup (everything Windows needs
+to bring that controller back) and stores it outside the domain. So even if
+every Domain Controller is lost at once, you can rebuild your whole Active
+Directory from a clean, off-domain copy.</p>
+<p>Active Directory is the one you restore first when ransomware takes the domain,
+because nothing else works until it is back. The restore is the normal Windows
+path (System State via Directory Services Restore Mode); full steps are in the
+<a href="/docs/control-plane/resources/identity/msad/" >Active Directory docs</a>.</p>
 
 
 <h2 id="get-started" class="group pr-8">Get started
@@ -2260,9 +2316,18 @@ flowchart LR
     </button>
   
 </h2>
-<p>Download Plakar to try the VSS and SQL Server backups. Several installation methods are available depending on your operating system. <a href="/docs/community/v1.1.0/quickstart/installation/" >Choose the method that best suits your environment</a>.</p>
-<p>If you want to <a href="/docs/control-plane/intro/installation/" >try Windows Active Directory</a>, Plakar Control Plane has a free plan including up to 500GB of managed data, making it well suited for small configurations, personal use, or evaluating the platform before committing to a larger deployment.</p>
-<p>As always, tell us what you think. Come hang out on our <a href="https://discord.gg/uuegtnF2Q5"  target="_blank" rel="noreferrer">Discord</a> or <a href="https://github.com/PlakarKorp/plakar"  target="_blank" rel="noreferrer">GitHub</a> if you want to follow along or help shape what comes next.</p>
+<p>Download Plakar to try the VSS and SQL Server backups. Several installation
+methods are available depending on your operating system.
+<a href="/docs/community/v1.1.0/quickstart/installation/" >Choose the method that best suits your environment</a>.</p>
+<p>If you want to
+<a href="/docs/control-plane/intro/installation/" >try Windows Active Directory</a>, Plakar
+Control Plane has a free plan including up to 500GB of managed data, making it
+well suited for small configurations, personal use, or evaluating the platform
+before committing to a larger deployment.</p>
+<p>As always, tell us what you think. Come hang out on our
+<a href="https://discord.gg/uuegtnF2Q5"  target="_blank" rel="noreferrer">Discord</a> or
+<a href="https://github.com/PlakarKorp/plakar"  target="_blank" rel="noreferrer">GitHub</a> if you want to follow along or
+help shape what comes next.</p>
 <p>Happy hacking 🚀</p>
 
       </div>

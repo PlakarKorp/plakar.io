@@ -95,7 +95,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="legal">
     <meta property="article:published_time" content="2025-05-05T10:00:00+00:00">
-    <meta property="article:modified_time" content="2026-09-08T19:36:12+03:00">
+    <meta property="article:modified_time" content="2026-09-09T10:13:01+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -253,7 +253,7 @@
     "dateCreated": "2025-05-05T10:00:00\u002b00:00",
     "datePublished": "2025-05-05T10:00:00\u002b00:00",
     
-    "dateModified": "2026-09-08T19:36:12\u002b03:00",
+    "dateModified": "2026-09-09T10:13:01\u002b03:00",
     
     
     
@@ -1975,37 +1975,37 @@
     </button>
   
 </h2>
-<p>Plakar is designed so that a backup can be stored in a location that is not fully
-trusted — a shared system, a rented bucket, a provider whose administrator can read
-or modify what is stored there.</p>
-<p>The line we draw is this: plakar makes the data it writes confidential, and makes any
-corruption or alteration of that data evident and non-usable. It does not make the
-surrounding deployment safe. An insecure transfer protocol, a storage endpoint that
-authenticates nobody, or an over-broad ACL on a source or a bucket remains the
-operator&rsquo;s problem, and no property below compensates for one. We assume a multi-site
-deployment with properly isolated stores in which no single client can reach all of
-them.</p>
-<p>This document states what we assume, what we guarantee under those assumptions, and
-what an adversary can still achieve at each level of access. It is written to be
-falsifiable: every guarantee below is a claim that can be broken, and a report that
-breaks one is a valid finding.</p>
+<p>Plakar is designed so that a backup can be stored in a location that is not
+fully trusted — a shared system, a rented bucket, a provider whose administrator
+can read or modify what is stored there.</p>
+<p>The line we draw is this: plakar makes the data it writes confidential, and
+makes any corruption or alteration of that data evident and non-usable. It does
+not make the surrounding deployment safe. An insecure transfer protocol, a
+storage endpoint that authenticates nobody, or an over-broad ACL on a source or
+a bucket remains the operator&rsquo;s problem, and no property below compensates for
+one. We assume a multi-site deployment with properly isolated stores in which no
+single client can reach all of them.</p>
+<p>This document states what we assume, what we guarantee under those assumptions,
+and what an adversary can still achieve at each level of access. It is written
+to be falsifiable: every guarantee below is a claim that can be broken, and a
+report that breaks one is a valid finding.</p>
 <p>It also serves as the scope boundary for the
 <a href="https://plakar.io/legal-notice/bounty-policy/"  target="_blank" rel="noreferrer">Feature and Bug Bounty Program</a>.
-A report is in scope when it defeats a <strong>guarantee</strong> in section 2 without violating an
-<strong>assumption</strong> in section 1, in code and in a release that section 4 covers. A report
-that only demonstrates the consequence of a violated assumption is not a vulnerability
-in plakar, and is triaged as out of scope.</p>
+A report is in scope when it defeats a <strong>guarantee</strong> in section 2 without
+violating an <strong>assumption</strong> in section 1, in code and in a release that section
+4 covers. A report that only demonstrates the consequence of a violated
+assumption is not a vulnerability in plakar, and is triaged as out of scope.</p>
 <p><strong>The assumptions are a scope boundary, not a statement of ambition.</strong> Listing
-something as an assumption means we do not currently claim to defend against it and
-will not pay a bounty for demonstrating it. It does not mean we consider it
-acceptable, uninteresting, or permanently out of reach. Several items in section 1
-and most of section 6 are things we intend to narrow or eliminate; when we do, this
-document changes and the bounty scope widens with it. Researchers who want to work on
-those areas are welcome to write to <a href="mailto:security@plakar.io" >security@plakar.io</a> first — we would rather tell
-you in advance whether something is in scope than have you spend a week on a report we
-have to close.</p>
-<p>This document is largely inspired by that of other opensource projects and does not
-make assumptions that aren&rsquo;t already standard in other projects.</p>
+something as an assumption means we do not currently claim to defend against it
+and will not pay a bounty for demonstrating it. It does not mean we consider it
+acceptable, uninteresting, or permanently out of reach. Several items in section
+1 and most of section 6 are things we intend to narrow or eliminate; when we do,
+this document changes and the bounty scope widens with it. Researchers who want
+to work on those areas are welcome to write to <a href="mailto:security@plakar.io" >security@plakar.io</a> first — we
+would rather tell you in advance whether something is in scope than have you
+spend a week on a report we have to close.</p>
+<p>This document is largely inspired by that of other opensource projects and does
+not make assumptions that aren&rsquo;t already standard in other projects.</p>
 <hr>
 
 
@@ -2024,59 +2024,66 @@ make assumptions that aren&rsquo;t already standard in other projects.</p>
     </button>
   
 </h2>
-<p>These conditions are taken as given. Everything in section 2 holds only while they do.</p>
-<p><strong>A1 — The host creating the backup is trusted.</strong>
-This is the most basic requirement and it is essential to creating a trustworthy backup.
-A machine that is compromised at the time a snapshot is taken cannot produce a snapshot we can vouch for.
-In the context of the control plane, unless the attack compromises it, we consider the host as trusted:
-a vulnerability should be demonstrable on the latest stable version we deploy and point you at.</p>
+<p>These conditions are taken as given. Everything in section 2 holds only while
+they do.</p>
+<p><strong>A1 — The host creating the backup is trusted.</strong> This is the most basic
+requirement and it is essential to creating a trustworthy backup. A machine that
+is compromised at the time a snapshot is taken cannot produce a snapshot we can
+vouch for. In the context of the control plane, unless the attack compromises
+it, we consider the host as trusted: a vulnerability should be demonstrable on
+the latest stable version we deploy and point you at.</p>
 <p><strong>A2 — The user runs an authentic copy of plakar, and authentic plugins.</strong>
-Obtaining plakar or a connector from a channel the user has not verified is outside this model.
-Similarly, crafting custom destructive plugins and installing them is the equivalent of assuming a user runs an untrusted executable from the internet,
-and plakar does not defend against that.</p>
-<p><strong>A3 — The user does not share the repository passphrase or a decrypted key with an adversary.</strong></p>
-<p><strong>A4 — plakar is not designed to protect against an adversary deleting, overwriting or
-otherwise altering files at the storage location.</strong> Corruption and modification are
-made <em>evident</em> — see G2 and G3, and this is a real property, not a consolation — but
-evident is not prevented.
-A client cannot stop a party with write access to the store from destroying what is there.
-Plakar will make it detectable but not preventable.</p>
-<p>The expected mitigation is architectural, not cryptographic: <strong>run a multi-copy policy
-in which no single client has access to every store.</strong> The reference shape is a client
-that pushes to store 1, with store 1 synchronised onward to stores 2 and 3 whose keys
-are not disclosed to that client. A client — or whoever compromises it — can then
-damage only the copy it can reach, and the copies it cannot reach remain both intact
-and unreadable to it. Deployments that point every client at every store, or that share
-one key across all of them, are outside what this model defends.</p>
-<p><strong>A5 — The whole repository is re-encrypted if a key is leaked.</strong> Under the current
-key management design it is not possible to securely revoke a leaked key without
-re-encrypting the repository. Changing the passphrase does not help: the passphrase
-protects the wrapped subkeys, and an adversary holding an unwrapped subkey keeps it.</p>
-<p><strong>A6 — No practical cryptanalytic advance has occurred against the primitives plakar
-uses</strong> — AES-GCM-SIV, AES-KW (RFC 3394), Argon2id and BLAKE3. Such an advance would
-render the confidentiality or integrity properties below useless.</p>
-<p><strong>A7 — No advance in computing has made brute-force attack against those primitives,
-or against a high-entropy passphrase, feasible.</strong></p>
-<p><strong>A8 — The deployment around plakar is soundly operated.</strong>
-plakar protects the data it writes. It does not protect the environment it runs in, and
-it cannot compensate for that environment being misconfigured. Specifically, we assume:</p>
+Obtaining plakar or a connector from a channel the user has not verified is
+outside this model. Similarly, crafting custom destructive plugins and
+installing them is the equivalent of assuming a user runs an untrusted
+executable from the internet, and plakar does not defend against that.</p>
+<p><strong>A3 — The user does not share the repository passphrase or a decrypted key with
+an adversary.</strong></p>
+<p><strong>A4 — plakar is not designed to protect against an adversary deleting,
+overwriting or otherwise altering files at the storage location.</strong> Corruption
+and modification are made <em>evident</em> — see G2 and G3, and this is a real
+property, not a consolation — but evident is not prevented. A client cannot stop
+a party with write access to the store from destroying what is there. Plakar
+will make it detectable but not preventable.</p>
+<p>The expected mitigation is architectural, not cryptographic: <strong>run a multi-copy
+policy in which no single client has access to every store.</strong> The reference
+shape is a client that pushes to store 1, with store 1 synchronised onward to
+stores 2 and 3 whose keys are not disclosed to that client. A client — or
+whoever compromises it — can then damage only the copy it can reach, and the
+copies it cannot reach remain both intact and unreadable to it. Deployments that
+point every client at every store, or that share one key across all of them, are
+outside what this model defends.</p>
+<p><strong>A5 — The whole repository is re-encrypted if a key is leaked.</strong> Under the
+current key management design it is not possible to securely revoke a leaked key
+without re-encrypting the repository. Changing the passphrase does not help: the
+passphrase protects the wrapped subkeys, and an adversary holding an unwrapped
+subkey keeps it.</p>
+<p><strong>A6 — No practical cryptanalytic advance has occurred against the primitives
+plakar uses</strong> — AES-GCM-SIV, AES-KW (RFC 3394), Argon2id and BLAKE3. Such an
+advance would render the confidentiality or integrity properties below useless.</p>
+<p><strong>A7 — No advance in computing has made brute-force attack against those
+primitives, or against a high-entropy passphrase, feasible.</strong></p>
+<p><strong>A8 — The deployment around plakar is soundly operated.</strong> plakar protects the
+data it writes. It does not protect the environment it runs in, and it cannot
+compensate for that environment being misconfigured. Specifically, we assume:</p>
 <ul>
-<li>Transfers run over a trusted channel. Where a backend speaks TLS, TLS is used and
-its certificates are verified. Data at rest stays confidential and tamper-evident
-even over a hostile transport, but availability, endpoint authenticity and
-correlation resistance do not.</li>
-<li>Storage endpoints and data sources authenticate their callers, and their ACLs grant
-each identity only what it needs. A bucket writable by anyone, a database replicating
-without credentials, or a share exported to the world is a deployment fault.</li>
-<li>Stores are isolated across sites, and no single client holds access to all of them
-(see A4).</li>
+<li>Transfers run over a trusted channel. Where a backend speaks TLS, TLS is used
+and its certificates are verified. Data at rest stays confidential and
+tamper-evident even over a hostile transport, but availability, endpoint
+authenticity and correlation resistance do not.</li>
+<li>Storage endpoints and data sources authenticate their callers, and their ACLs
+grant each identity only what it needs. A bucket writable by anyone, a
+database replicating without credentials, or a share exported to the world is
+a deployment fault.</li>
+<li>Stores are isolated across sites, and no single client holds access to all of
+them (see A4).</li>
 </ul>
-<p>Reports whose root cause is a plaintext transport, an absent or unverified credential,
-or an over-broad ACL describe a deployment fault rather than a defect in plakar, and
-are triaged accordingly. A place where plakar <em>causes</em> one of those conditions — a
-backend that silently downgrades to plaintext, a certificate check that does not
-happen, a default that is broader than documented — is very much a defect, and in
-scope.</p>
+<p>Reports whose root cause is a plaintext transport, an absent or unverified
+credential, or an over-broad ACL describe a deployment fault rather than a
+defect in plakar, and are triaged accordingly. A place where plakar <em>causes</em> one
+of those conditions — a backend that silently downgrades to plaintext, a
+certificate check that does not happen, a default that is broader than
+documented — is very much a defect, and in scope.</p>
 <hr>
 
 
@@ -2100,25 +2107,25 @@ scope.</p>
 Chunks, packfiles, the virtual filesystem index and snapshot manifests are all
 encrypted at the source. The storage backend receives opaque blobs. Metadata is
 encrypted, not merely the file content.</p>
-<p><strong>G2 — Modification of stored data is detected.</strong>
-Every stored object is content-addressed by a keyed MAC. An object whose bytes have
-changed — through disk corruption, a faulty transfer, or deliberate modification by
-someone without the key — does not match its address and is rejected.</p>
-<p><strong>G3 — Tampered data is not decrypted.</strong>
-Authentication precedes use. Data failing its MAC check is never returned to the
-caller as valid plaintext.</p>
-<p><strong>G4 — A stored object cannot be located by knowing its cleartext.</strong>
-Objects are addressed by keyed MAC, not by a bare digest of the plaintext. An
-adversary with read access to the store who suspects a particular file is present
-cannot confirm it by computing its hash. (
+<p><strong>G2 — Modification of stored data is detected.</strong> Every stored object is
+content-addressed by a keyed MAC. An object whose bytes have changed — through
+disk corruption, a faulty transfer, or deliberate modification by someone
+without the key — does not match its address and is rejected.</p>
+<p><strong>G3 — Tampered data is not decrypted.</strong> Authentication precedes use. Data
+failing its MAC check is never returned to the caller as valid plaintext.</p>
+<p><strong>G4 — A stored object cannot be located by knowing its cleartext.</strong> Objects are
+addressed by keyed MAC, not by a bare digest of the plaintext. An adversary with
+read access to the store who suspects a particular file is present cannot
+confirm it by computing its hash. (
 <a href="https://plakar.io/posts/2025-02-28/audit-of-plakar-cryptography/"  target="_blank" rel="noreferrer">2025 cryptography audit</a>)</p>
-<p><strong>G5 — Writes are append-only at the format level.</strong>
-Once written, a stream is never modified in place. A repository is advanced by adding objects, not by rewriting them.</p>
-<p><strong>G6 — Snapshots are independent.</strong>
-A snapshot does not depend on another snapshot to be restorable. Deleting or losing
-any one snapshot does not impair the restore of any other. There is no chain to break.</p>
-<p><strong>G7 — A snapshot can be verified without being restored, and without contacting us.</strong>
-Integrity is checkable offline against the repository alone.</p>
+<p><strong>G5 — Writes are append-only at the format level.</strong> Once written, a stream is
+never modified in place. A repository is advanced by adding objects, not by
+rewriting them.</p>
+<p><strong>G6 — Snapshots are independent.</strong> A snapshot does not depend on another
+snapshot to be restorable. Deleting or losing any one snapshot does not impair
+the restore of any other. There is no chain to break.</p>
+<p><strong>G7 — A snapshot can be verified without being restored, and without contacting
+us.</strong> Integrity is checkable offline against the repository alone.</p>
 <hr>
 
 
@@ -2137,9 +2144,9 @@ Integrity is checkable offline against the repository alone.</p>
     </button>
   
 </h2>
-<p>The following are things an adversary can achieve <strong>without</strong> breaking any guarantee
-above. They are known, accepted, and not eligible for bounty unless the report shows
-more than what is described here.</p>
+<p>The following are things an adversary can achieve <strong>without</strong> breaking any
+guarantee above. They are known, accepted, and not eligible for bounty unless
+the report shows more than what is described here.</p>
 
 
 <h3 id="31-read-access-to-the-storage-location" class="group pr-8">3.1 Read access to the storage location
@@ -2158,15 +2165,15 @@ more than what is described here.</p>
   
 </h3>
 <ul>
-<li>Attempt an offline brute-force attack against the passphrase. Argon2id (t=4, m=256MB)
-raises the cost per guess; it does not rescue a weak passphrase. <strong>Use a passphrase
-with real entropy.</strong></li>
-<li>Infer which packfiles probably hold index or tree structures from access patterns
-and size distribution.</li>
-<li>Infer the approximate size, frequency and timing of backups from object creation
-timestamps and counts.</li>
-<li>Observe repository growth over time, and from it infer roughly how much data changed
-between two points.</li>
+<li>Attempt an offline brute-force attack against the passphrase. Argon2id (t=4,
+m=256MB) raises the cost per guess; it does not rescue a weak passphrase.
+<strong>Use a passphrase with real entropy.</strong></li>
+<li>Infer which packfiles probably hold index or tree structures from access
+patterns and size distribution.</li>
+<li>Infer the approximate size, frequency and timing of backups from object
+creation timestamps and counts.</li>
+<li>Observe repository growth over time, and from it infer roughly how much data
+changed between two points.</li>
 </ul>
 
 
@@ -2190,13 +2197,13 @@ between two points.</li>
 <li>Determine where backups originate (source address) and where they are sent
 (provider, bucket, region).</li>
 <li>Infer backup size and cadence from traffic volume and timing.</li>
-<li>Interfere with the flow outright where it is not carried over a trusted channel:
-drop, delay, reorder or replay it, redirect it to an endpoint of their choosing, and
-substitute the bytes in transit. Encryption and content addressing mean substituted
-bytes are rejected rather than trusted — the transfer fails loudly instead of
-silently corrupting a snapshot — but a plaintext transport still hands the adversary
-full control over whether the backup completes at all, and over the metadata in 3.1
-and 3.2. Use TLS (A8).</li>
+<li>Interfere with the flow outright where it is not carried over a trusted
+channel: drop, delay, reorder or replay it, redirect it to an endpoint of
+their choosing, and substitute the bytes in transit. Encryption and content
+addressing mean substituted bytes are rejected rather than trusted — the
+transfer fails loudly instead of silently corrupting a snapshot — but a
+plaintext transport still hands the adversary full control over whether the
+backup completes at all, and over the metadata in 3.1 and 3.2. Use TLS (A8).</li>
 </ul>
 
 
@@ -2217,11 +2224,12 @@ and 3.2. Use TLS (A8).</li>
 </h3>
 <ul>
 <li>Delete or corrupt stored objects, impairing or preventing restore. This is A4.</li>
-<li>Correlate objects by creation timestamp to identify which ones a given snapshot
-introduced, and delete exactly those. The snapshot disappears; other snapshots that
-deduplicated against its chunks lose the data those chunks held. plakar detects that
-the objects are <em>missing</em> — <code>check</code> will report it — but cannot prevent it and does
-not treat selective deletion as distinguishable from ordinary loss.</li>
+<li>Correlate objects by creation timestamp to identify which ones a given
+snapshot introduced, and delete exactly those. The snapshot disappears; other
+snapshots that deduplicated against its chunks lose the data those chunks
+held. plakar detects that the objects are <em>missing</em> — <code>check</code> will report it —
+but cannot prevent it and does not treat selective deletion as distinguishable
+from ordinary loss.</li>
 <li>Roll a repository back to an earlier state by restoring an older copy of its
 metadata, silently discarding recent snapshots.</li>
 </ul>
@@ -2243,12 +2251,13 @@ metadata, silently discarding recent snapshots.</li>
   
 </h3>
 <ul>
-<li>Intercept the passphrase as it is entered or as it is held by a running agent, copy
-files before they are backed up, and manipulate what is written into new snapshots.</li>
-<li>Create snapshots full of garbage covering every modified file, then wait for the
-retention policy to age out the legitimate ones.</li>
-<li>Create one bogus snapshot per legitimate snapshot at a slightly offset timestamp, so
-that a single retention pass discards all the real ones at once.</li>
+<li>Intercept the passphrase as it is entered or as it is held by a running agent,
+copy files before they are backed up, and manipulate what is written into new
+snapshots.</li>
+<li>Create snapshots full of garbage covering every modified file, then wait for
+the retention policy to age out the legitimate ones.</li>
+<li>Create one bogus snapshot per legitimate snapshot at a slightly offset
+timestamp, so that a single retention pass discards all the real ones at once.</li>
 </ul>
 <p>Both retention attacks are real and we do not currently defend against them
 client-side. See section 6.</p>
@@ -2271,12 +2280,13 @@ client-side. See section 6.</p>
 </h3>
 <ul>
 <li>Capture the passphrase and decrypt past <em>and</em> future backups.</li>
-<li>Make every snapshot taken after the compromise untrustworthy. Snapshots taken before
-it remain intact and restorable — this is the property append-only access buys, and
-it is worth having.</li>
-<li>Drive retention (<code>rm</code>, policy-based pruning) so that legitimate snapshots are removed
-and only attacker-authored ones survive. Append-only storage does not prevent this,
-because the deletion is requested by a legitimately keyed client.</li>
+<li>Make every snapshot taken after the compromise untrustworthy. Snapshots taken
+before it remain intact and restorable — this is the property append-only
+access buys, and it is worth having.</li>
+<li>Drive retention (<code>rm</code>, policy-based pruning) so that legitimate snapshots are
+removed and only attacker-authored ones survive. Append-only storage does not
+prevent this, because the deletion is requested by a legitimately keyed
+client.</li>
 </ul>
 
 
@@ -2299,9 +2309,9 @@ because the deletion is requested by a legitimately keyed client.</li>
 <li>Decrypt all existing and all future data in that repository.</li>
 <li>Where several hosts back up into one repository, read every host&rsquo;s data — the
 repository has one master key and no per-host isolation.</li>
-<li>Write validly encrypted, validly authenticated objects into the repository. G2 and
-G3 protect against modification by someone <em>without</em> the key; they say nothing about
-an adversary who has it.</li>
+<li>Write validly encrypted, validly authenticated objects into the repository. G2
+and G3 protect against modification by someone <em>without</em> the key; they say
+nothing about an adversary who has it.</li>
 </ul>
 
 
@@ -2320,34 +2330,38 @@ an adversary who has it.</li>
     </button>
   
 </h3>
-<p>These ship with plakar and fall under section 4, though what follows describes intended
-properties rather than proven ones.</p>
+<p>These ship with plakar and fall under section 4, though what follows describes
+intended properties rather than proven ones.</p>
 <ul>
-<li><strong>Agent.</strong> The agent holds unlocked key material in memory so subsequent commands do
-not re-derive it. Anything that can reach its control socket can act as the user.
-Local privilege boundaries around that socket are the security control; a way to
-reach it from another local user, another container, or the network is a valid
-finding.</li>
-<li><strong>Web UI.</strong> <code>plakar ui</code> serves a local interface over the repository. It exposes
-decrypted snapshot content. Binding beyond loopback without explicit intent, missing
-origin checks, a request-forgery path from a page the user has open, or content from
-a snapshot escaping into the UI&rsquo;s own execution context are valid findings.</li>
-<li><strong><code>sync</code>.</strong> Two Kloset stores exchange objects. A malicious remote is an untrusted
-peer: it must not be able to induce the local side to accept objects it cannot
-authenticate, to consume unbounded memory, or to write outside the store.</li>
-<li><strong><code>ptar</code>.</strong> A self-contained archive is a file that travels. Anything that turns
-opening one into code execution, path traversal on extraction, or a decompression
-bomb is a valid finding.</li>
-<li><strong>Plugins and connectors (<code>pkg</code>).</strong> Installed plugins run with the user&rsquo;s authority.
-How plakar loads, isolates, feeds and trusts them is ours; where a given connector
-came from is A2; what a third-party connector does with the authority it was given is
-its author&rsquo;s (4.1). Custom connectors that do not originate from our distribution
-channels are out of scope as they only demonstrate that voluntarily installing a
-malware allows executing that malware.</li>
-<li><strong>Restore path.</strong> A repository is data, and a client browsing or restoring from one
-parses it. Authenticated-but-hostile input — from a leaked-key adversary, a malicious
-<code>sync</code> peer, or a shared repository — must not yield path traversal outside the
-restore target, symlink-following writes, resource exhaustion, or memory unsafety.</li>
+<li><strong>Agent.</strong> The agent holds unlocked key material in memory so subsequent
+commands do not re-derive it. Anything that can reach its control socket can
+act as the user. Local privilege boundaries around that socket are the
+security control; a way to reach it from another local user, another
+container, or the network is a valid finding.</li>
+<li><strong>Web UI.</strong> <code>plakar ui</code> serves a local interface over the repository. It
+exposes decrypted snapshot content. Binding beyond loopback without explicit
+intent, missing origin checks, a request-forgery path from a page the user has
+open, or content from a snapshot escaping into the UI&rsquo;s own execution context
+are valid findings.</li>
+<li><strong><code>sync</code>.</strong> Two Kloset stores exchange objects. A malicious remote is an
+untrusted peer: it must not be able to induce the local side to accept objects
+it cannot authenticate, to consume unbounded memory, or to write outside the
+store.</li>
+<li><strong><code>ptar</code>.</strong> A self-contained archive is a file that travels. Anything that
+turns opening one into code execution, path traversal on extraction, or a
+decompression bomb is a valid finding.</li>
+<li><strong>Plugins and connectors (<code>pkg</code>).</strong> Installed plugins run with the user&rsquo;s
+authority. How plakar loads, isolates, feeds and trusts them is ours; where a
+given connector came from is A2; what a third-party connector does with the
+authority it was given is its author&rsquo;s (4.1). Custom connectors that do not
+originate from our distribution channels are out of scope as they only
+demonstrate that voluntarily installing a malware allows executing that
+malware.</li>
+<li><strong>Restore path.</strong> A repository is data, and a client browsing or restoring
+from one parses it. Authenticated-but-hostile input — from a leaked-key
+adversary, a malicious <code>sync</code> peer, or a shared repository — must not yield
+path traversal outside the restore target, symlink-following writes, resource
+exhaustion, or memory unsafety.</li>
 </ul>
 <hr>
 
@@ -2367,8 +2381,8 @@ restore target, symlink-following writes, resource exhaustion, or memory unsafet
     </button>
   
 </h2>
-<p>Sections 1 to 3 say what counts as a defect. This section says which code and which
-builds it has to be found in.</p>
+<p>Sections 1 to 3 say what counts as a defect. This section says which code and
+which builds it has to be found in.</p>
 
 
 <h3 id="41-code" class="group pr-8">4.1 Code
@@ -2386,17 +2400,19 @@ builds it has to be found in.</p>
     </button>
   
 </h3>
-<p>In scope: everything we write and ship. Kloset, the plakar CLI, the agent, the web UI,
-<code>sync</code>, <code>ptar</code>, the plugin machinery itself, and the integrations authored by our team.</p>
-<p>Out of scope: <strong>integrations contributed by community or third-party authors.</strong> We do
-not own that code and cannot commit to fixing it or to a timeline. Send those to us
-anyway — we will forward the report to the maintainer and help coordinate disclosure —
-but the outcome is theirs to decide and the report is not eligible for a reward from
-us. The only action we can take is unlink them from our hub if fixes do not land timely.</p>
-<p>The dividing line runs through the plugin boundary rather than around it. A flaw in how
-plakar loads, isolates, feeds or trusts a plugin is ours, and stays in scope even when
-you found it through somebody else&rsquo;s connector. A flaw in what that connector does with
-the authority it was legitimately given is theirs.</p>
+<p>In scope: everything we write and ship. Kloset, the plakar CLI, the agent, the
+web UI, <code>sync</code>, <code>ptar</code>, the plugin machinery itself, and the integrations
+authored by our team.</p>
+<p>Out of scope: <strong>integrations contributed by community or third-party authors.</strong>
+We do not own that code and cannot commit to fixing it or to a timeline. Send
+those to us anyway — we will forward the report to the maintainer and help
+coordinate disclosure — but the outcome is theirs to decide and the report is
+not eligible for a reward from us. The only action we can take is unlink them
+from our hub if fixes do not land timely.</p>
+<p>The dividing line runs through the plugin boundary rather than around it. A flaw
+in how plakar loads, isolates, feeds or trusts a plugin is ours, and stays in
+scope even when you found it through somebody else&rsquo;s connector. A flaw in what
+that connector does with the authority it was legitimately given is theirs.</p>
 
 
 <h3 id="42-releases" class="group pr-8">4.2 Releases
@@ -2414,16 +2430,16 @@ the authority it was legitimately given is theirs.</p>
     </button>
   
 </h3>
-<p>We follow semantic versioning, and the suffix tells you whether a build is meant for
-users or for us.</p>
-<p>In scope: <strong>any <code>v1.y.z</code> and any <code>v1.y.z-rc</code>.</strong> A release candidate is offered to users
-as something they may reasonably run, so it carries the same obligations as a stable
-release.</p>
+<p>We follow semantic versioning, and the suffix tells you whether a build is meant
+for users or for us.</p>
+<p>In scope: <strong>any <code>v1.y.z</code> and any <code>v1.y.z-rc</code>.</strong> A release candidate is offered
+to users as something they may reasonably run, so it carries the same
+obligations as a stable release.</p>
 <p>Out of scope: <strong><code>-alpha</code> and <code>-beta</code> builds, and untagged branches.</strong> These are
-development artefacts published for developers. They are expected to be incomplete,
-they may ship code that has not been reviewed yet, and finding that they are is not a
-finding. If the same defect also reaches a stable or rc build, it is in scope through
-that build — report it against the released version.</p>
+development artefacts published for developers. They are expected to be
+incomplete, they may ship code that has not been reviewed yet, and finding that
+they are is not a finding. If the same defect also reaches a stable or rc build,
+it is in scope through that build — report it against the released version.</p>
 <p>Security updates are provided for the 1.x line.</p>
 <hr>
 
@@ -2443,16 +2459,16 @@ that build — report it against the released version.</p>
     </button>
   
 </h2>
-<p>Send findings to <strong><a href="mailto:security@plakar.io" >security@plakar.io</a></strong>. We can arrange a secure channel or exchange
-public keys for anything sensitive. Do not test against production systems you do not
-own.</p>
-<p>A report is most useful when it names the guarantee it breaks (G1–G7), the access level
-it assumes (section 3), and gives a reproduction. If your finding requires violating an
-assumption, say so and explain why the assumption should be narrower — we would rather
-have that argument than not hear about it.</p>
-<p>Please do not disclose publicly before a fix is available. We will keep you involved
-through analysis and remediation and credit you on publication, unless you prefer
-otherwise.</p>
+<p>Send findings to <strong><a href="mailto:security@plakar.io" >security@plakar.io</a></strong>. We can arrange a secure channel or
+exchange public keys for anything sensitive. Do not test against production
+systems you do not own.</p>
+<p>A report is most useful when it names the guarantee it breaks (G1–G7), the
+access level it assumes (section 3), and gives a reproduction. If your finding
+requires violating an assumption, say so and explain why the assumption should
+be narrower — we would rather have that argument than not hear about it.</p>
+<p>Please do not disclose publicly before a fix is available. We will keep you
+involved through analysis and remediation and credit you on publication, unless
+you prefer otherwise.</p>
 <p>Rewards, eligibility and safe-harbour terms are in the
 <a href="https://plakar.io/legal-notice/bounty-policy/"  target="_blank" rel="noreferrer">bounty policy</a>.</p>
 <hr>
@@ -2473,28 +2489,28 @@ otherwise.</p>
     </button>
   
 </h2>
-<p>These are design gaps we are aware of, stated here so that nobody has to discover them
-by writing a report. They are not currently eligible for bounty. They <em>are</em> on the
-engineering agenda, and this section is the list against which this document will be
-revised.</p>
-<p><strong>5.1 One master key per repository; no write-only credential.</strong>
-A host that can write to a repository can also read everything in it, including other
-hosts&rsquo; snapshots. There is no asymmetric mode in which an agent contributes data it
-cannot decrypt. This is the single change that would most reduce the blast radius of
-section 3.4 and 3.6.</p>
-<p><strong>5.2 Key revocation requires re-encryption.</strong>
-A5. Rotation today means moving the data to a repository with a new master key.</p>
-<p><strong>5.3 Retention is not defended against poisoning.</strong>
-Section 3.4. There is no bound on snapshot churn, no anomaly signal, and no policy that
-lives somewhere the compromised host cannot reach.</p>
-<p><strong>5.4 Metadata leakage is mitigated to the best of our abilities.</strong>
-Sizes, timing and access patterns (3.1, 3.2) are observable.
-We randomize, pad and batch to obfuscate and make it harder to study access patterns,
-but these are opportunistic not fool-proof approaches.</p>
-<p><strong>5.5 Immutability is inherited, not enforced.</strong>
-G5 is a property of the format: plakar never rewrites. It is not a property the
-repository imposes on whoever holds the credentials. Real immutability currently comes
-from the storage layer beneath us (object lock, append-only ACLs), not from Kloset.</p>
+<p>These are design gaps we are aware of, stated here so that nobody has to
+discover them by writing a report. They are not currently eligible for bounty.
+They <em>are</em> on the engineering agenda, and this section is the list against which
+this document will be revised.</p>
+<p><strong>5.1 One master key per repository; no write-only credential.</strong> A host that can
+write to a repository can also read everything in it, including other hosts'
+snapshots. There is no asymmetric mode in which an agent contributes data it
+cannot decrypt. This is the single change that would most reduce the blast
+radius of section 3.4 and 3.6.</p>
+<p><strong>5.2 Key revocation requires re-encryption.</strong> A5. Rotation today means moving
+the data to a repository with a new master key.</p>
+<p><strong>5.3 Retention is not defended against poisoning.</strong> Section 3.4. There is no
+bound on snapshot churn, no anomaly signal, and no policy that lives somewhere
+the compromised host cannot reach.</p>
+<p><strong>5.4 Metadata leakage is mitigated to the best of our abilities.</strong> Sizes,
+timing and access patterns (3.1, 3.2) are observable. We randomize, pad and
+batch to obfuscate and make it harder to study access patterns, but these are
+opportunistic not fool-proof approaches.</p>
+<p><strong>5.5 Immutability is inherited, not enforced.</strong> G5 is a property of the format:
+plakar never rewrites. It is not a property the repository imposes on whoever
+holds the credentials. Real immutability currently comes from the storage layer
+beneath us (object lock, append-only ACLs), not from Kloset.</p>
 <hr>
 
 
@@ -2513,10 +2529,10 @@ from the storage layer beneath us (object lock, append-only ACLs), not from Klos
     </button>
   
 </h2>
-<p>This document is versioned with the code it describes. Any change to the assumptions or
-guarantees is a change to the bounty scope and will be dated here. If a released
-version&rsquo;s behaviour and this document disagree, that discrepancy is itself worth
-reporting.</p>
+<p>This document is versioned with the code it describes. Any change to the
+assumptions or guarantees is a change to the bounty scope and will be dated
+here. If a released version&rsquo;s behaviour and this document disagree, that
+discrepancy is itself worth reporting.</p>
 
   </article>
 </section>
