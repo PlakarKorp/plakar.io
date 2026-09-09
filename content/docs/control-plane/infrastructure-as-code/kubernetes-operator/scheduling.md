@@ -16,8 +16,8 @@ Control Plane:
 - `ScheduleSync`
 
 These resources are the declarative equivalents of the scheduled tasks that can
-be configured through the [Scheduling](../../../operations/scheduling/) section
-of Plakar Control Plane.
+be configured through the [Scheduling](../../../scheduling/) section of Plakar
+Control Plane.
 
 All three resources use the same `periodicity` field, which specifies the
 execution interval in seconds. Rather than referencing Plakar Control Plane
@@ -201,8 +201,8 @@ The operator authenticates as an Application user, and creates a scheduler for
 that user in Plakar Control Plane if one doesn't already exist. Every
 `ScheduleBackup`, `ScheduleCheck`, and `ScheduleSync` resource it manages then
 appears under that user's entry in the **User schedulers** view described in
-[User Schedulers](../../../operations/scheduling/user-schedulers).
+[User Schedulers](../../../scheduling/user-schedulers).
 
 These resources only cover recurring tasks. For one-off restores, see the
 [Restore Resource](../restore). For any other task run once, use the
-[manual scheduler](../../../operations/scheduling/manual-scheduler).
+[manual scheduler](../../../scheduling/manual-scheduler).

@@ -113,7 +113,7 @@ frequency and protection rules.
 
 Plakar Control Plane gives you multiple ways to define and drive resilience
 posture, depending on how your team works.
-[Backup policies](/docs/control-plane/operations/policies/) can be configured
+[Backup policies](/docs/control-plane/compliance/policies/) can be configured
 manually through the interface, derived automatically from resource tags, or
 defined programmatically through code-based rules. You are not locked into a
 single console-driven workflow; the model adapts to how your infrastructure is
@@ -122,13 +122,13 @@ already managed.
 ![Plakar Control Plane — create and schedule a backup task](task-scheduling.png)
 
 The same flexibility applies to
-[scheduling](/docs/control-plane/operations/scheduling/#scheduling). Some
-schedulers are driven from the UI, others are steered programmatically through
-the API or infrastructure-as-code tooling. What makes this different from a
-standard scheduler is that the Control Plane dashboard gives you unified
-visibility and control across all of them. Programmatic control and a single
-pane of observability are not separate concerns; they converge in one place,
-which is what actually makes resilience manageable at scale.
+[scheduling](/docs/control-plane/scheduling/#scheduling). Some schedulers are
+driven from the UI, others are steered programmatically through the API or
+infrastructure-as-code tooling. What makes this different from a standard
+scheduler is that the Control Plane dashboard gives you unified visibility and
+control across all of them. Programmatic control and a single pane of
+observability are not separate concerns; they converge in one place, which is
+what actually makes resilience manageable at scale.
 
 There is also a graph view of scheduled tasks, so you can easily visualize the
 background jobs keeping your infrastructure secure.

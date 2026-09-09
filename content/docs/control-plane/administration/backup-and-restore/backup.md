@@ -66,8 +66,7 @@ can do this from the app's dashboard or from **Operations > Scheduling**.
 Select your PCP source app as the source and choose a store app as the
 destination. Configure a schedule that fits your recovery point objective.
 
-See [Scheduling](../../../operations/scheduling) for full details on creating
-tasks.
+See [Scheduling](../../../scheduling) for full details on creating tasks.
 
 ![Schedule a backup task for the PCP app](../images/schedule-task.png)
 

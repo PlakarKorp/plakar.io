@@ -1,7 +1,7 @@
 ---
 title: "Infrastructure as Code"
 date: "2026-07-15T00:00:00Z"
-weight: 8
+weight: 9
 summary:
   "Ways to manage Plakar Control Plane declaratively, from code, instead of the
   web interface."

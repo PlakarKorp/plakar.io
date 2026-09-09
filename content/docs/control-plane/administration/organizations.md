@@ -41,7 +41,7 @@ requirements.
 
 Every object in Plakar Control Plane belongs to a single organization. This
 includes [inventories](../../infrastructure/inventories), [apps](../../apps),
-[policies](../../operations/policies), and most other configuration and
+[policies](../../compliance/policies), and most other configuration and
 operational objects.
 
 [Users](../users) are the exception. A user identity is shared across the whole
@@ -158,7 +158,7 @@ you hold there:
 - **Configuration bundles**, the organization's
   [configuration bundles](../configuration-bundles).
 - **Classification**, the environments and data classes used to scope
-  [SLA policies](../../operations/policies).
+  [SLA policies](../../compliance/policies).
 - **Quota**, what the organization is allowed to consume, and what it has
   consumed so far.
 - **Audit log**, a record of activity in the organization.

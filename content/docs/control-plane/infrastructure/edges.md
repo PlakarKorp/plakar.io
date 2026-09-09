@@ -400,5 +400,5 @@ that task rather than the Control Plane appliance.
 This allows you to choose where an operation runs based on the network location
 of the resources it protects.
 
-See [Scheduled Tasks](../../operations/scheduling/tasks) for information about
-configuring scheduled operations.
+See [Scheduled Tasks](../../scheduling/tasks) for information about configuring
+scheduled operations.

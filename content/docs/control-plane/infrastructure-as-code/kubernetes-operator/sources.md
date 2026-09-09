@@ -35,7 +35,7 @@ up and specify which [integration](../../../resources) is responsible for
 accessing it.
 
 The `environment` and `dataClasses` fields provide metadata about the resource.
-These values are used by the [policy engine](../../../operations/policies) when
+These values are used by the [policy engine](../../../compliance/policies) when
 evaluating which backup policies apply to the source.
 
 The `fields` and `fieldsFrom` sections contain the configuration values required

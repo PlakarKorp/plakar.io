@@ -109,7 +109,10 @@ tab.
 ![](../images/view-snapshots.png)
 
 From there, you can view the files contained in each restore point and download
-individual files without performing a full restore.
+individual files without performing a full restore. You can also download the
+whole restore point directly,
+[check its integrity](../../scheduling/tasks/#check-task), or manage its
+[legal hold](../compliance/legal-hold).
 
 ![](../images/browse-snapshots.png)
 
@@ -117,5 +120,5 @@ individual files without performing a full restore.
 
 Tasks can be created directly from the store app dashboard or from the
 **Operations > Scheduling** section. See the
-[scheduling documentation](../../operations/scheduling) for details on creating
-and managing tasks and schedules.
+[scheduling documentation](../../scheduling) for details on creating and
+managing tasks and schedules.

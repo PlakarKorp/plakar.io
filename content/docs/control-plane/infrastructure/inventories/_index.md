@@ -64,6 +64,18 @@ individually or in bulk. This approach is useful when:
   MinIO instance)
 - You require full control over how resources are defined and managed
 
+## Data residency
+
+An inventory can have a **residency**, which is inherited by every resource it
+exposes. This gives those resources a country in which their data must remain.
+
+When you configure an operation, PCP only allows resources with the same
+residency to be used together. For example, resources from an inventory with a
+French residency can only be backed up to, restored from, or synchronized with
+resources that also have a French residency.
+
+See [data residency](../../compliance/residency) for more information.
+
 ## Configuration bundles
 
 Configuration bundles let you define shared credentials and settings at the

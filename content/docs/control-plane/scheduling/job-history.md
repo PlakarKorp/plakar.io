@@ -4,6 +4,8 @@ date: "2026-06-25T00:00:00Z"
 weight: 6
 summary:
   "How to monitor job history and view job details in Plakar Control Plane."
+aliases:
+  - /docs/control-plane/operations/scheduling/job-history/
 ---
 
 # Job History
@@ -50,8 +52,8 @@ scheduler, as those are fully managed by the policies engine.
 
 ## Jobs and Schedules on Apps
 
-Each app ([sources](../../apps/sources), [stores](../../apps/stores) &
-[destinations](../../apps/destinations)) also surfaces scheduling information on
+Each app ([sources](../apps/sources), [stores](../apps/stores) &
+[destinations](../apps/destinations)) also surfaces scheduling information on
 its own details page:
 
 - The **Dashboard** tab lists all past and upcoming jobs involving that app,

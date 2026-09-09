@@ -36,7 +36,7 @@ Next, select the **Environment** and **Data Class** for the source:
   the resource contains more than one type of data.
 
 These values are used by the policies engine to determine which policies apply
-to this source. See the [policies documentation](../../operations/policies) for
+to this source. See the [policies documentation](../../compliance/policies) for
 more details.
 
 Plakar Control Plane then checks the resource `class` and `subclass` to find
@@ -82,5 +82,5 @@ and download individual files without performing a full restore.
 
 Tasks can be created directly from the source app dashboard or from the
 **Operations > Scheduling** section. See the
-[scheduling documentation](../../operations/scheduling) for details on creating
-and managing tasks and schedules.
+[scheduling documentation](../../scheduling) for details on creating and
+managing tasks and schedules.

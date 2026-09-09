@@ -103,7 +103,7 @@ backup requirements based on environment and data class combinations. For
 example, a policy might require that all production sources tagged as critical
 are backed up every hour and retained for 90 days. The policies engine uses
 these values to determine which policies apply to the source and what protection
-rules are enforced. See the [policies documentation](../operations/policies) for
+rules are enforced. See the [policies documentation](../compliance/policies) for
 more details.
 
 ### Destination apps
@@ -115,6 +115,15 @@ additional fields are needed beyond what is described in
 ![](./images/destination-app.png)
 
 ## Managing apps
+
+Apps can only be used together when the resources they connect to have the same
+[residency](../compliance/residency). For example, a source can only be backed
+up to a store with the same residency, and a restore can only write to a
+destination that matches the store it restores from. A sync can only run between
+stores with the same residency.
+
+Residency belongs to the resource, not the app. An app therefore takes on the
+residency of the resource it is connected to.
 
 The following pages provide detailed configuration and management information
 for each app type.

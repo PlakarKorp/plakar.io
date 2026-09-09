@@ -4,6 +4,8 @@ date: "2026-06-25T00:00:00Z"
 weight: 2
 summary:
   "How to run a task immediately as a one-off operation in Plakar Control Plane."
+aliases:
+  - /docs/control-plane/operations/scheduling/one-off-tasks/
 ---
 
 # One-off Tasks
@@ -16,15 +18,14 @@ One-off tasks can be created directly from **Operations > Scheduling** or from
 the various pages as a quick way to setup tasks. This includes:
 
 - Each app pages have quick actions to run tasks supported by the app. See the
-  [apps documentation](../../apps)
+  [apps documentation](../apps)
 - When browsing restore points in a store or a source you can quickly setup a
   restore or check task on each restore point. See the
-  [store app](../../apps/stores) and [source app](../../apps/sources)
-  documentation
+  [store app](../apps/stores) and [source app](../apps/sources) documentation
 - From the resources list you can easily run a backup or restore involving the
   apps connected to that resource.
 
 All of these lead to the same task UI. From there you can run the task
 immediately as a one-off, or attach a schedule to it and have it run repeatedly.
-See the [scheduler documentation](../scheduler) for details on attaching
-schedules and monitoring job progress.
+See the [manual scheduler documentation](../manual-scheduler) for details on
+attaching schedules and monitoring job progress.

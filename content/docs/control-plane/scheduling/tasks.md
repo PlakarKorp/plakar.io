@@ -3,6 +3,8 @@ title: "Scheduled Tasks"
 date: "2026-06-25T00:00:00Z"
 weight: 1
 summary: "The different types of tasks you can run in Plakar Control Plane."
+aliases:
+  - /docs/control-plane/operations/scheduling/tasks/
 ---
 
 # Scheduled Tasks
@@ -10,6 +12,12 @@ summary: "The different types of tasks you can run in Plakar Control Plane."
 Plakar Control Plane runs operations as tasks. There are four types of tasks,
 each requiring a different combination of apps. Any task can be run once as a
 one-off operation or attached to a schedule so that it repeats automatically.
+
+Tasks that move data between two apps are constrained by
+[data residency](../compliance/residency). Once the first app is selected, only
+apps whose resource carries the same residency are offered for the second, so a
+task cannot be defined that would take data out of its country. A check task
+reads a single store, so nothing is narrowed.
 
 ## Backup Task
 
@@ -25,7 +33,7 @@ restore points and can later be used as filters for your restore points.
 
 - **Run on**: Enables you to select a remote edge executor to run the task on.
   If left empty, the task runs on the local executor in your Control Plane
-  instance. Check the [edge documentation](../../infrastructure/edges) for more
+  instance. Check the [edge documentation](../infrastructure/edges) for more
   information on remote executors for Control Plane.
 - **Concurrency**: This controls how many operations the backup task runs in
   parallel. Plakar Control Plane automatically sets a recommended concurrency
@@ -55,7 +63,7 @@ showing only restore points that match the specified environment and data class.
 
 - **Run on**: Enables you to select a remote edge executor to run the task on.
   If left empty, the task runs on the local executor in your Control Plane
-  instance. Check the [edge documentation](../../infrastructure/edges) for more
+  instance. Check the [edge documentation](../infrastructure/edges) for more
   information on remote executors for Control Plane.
 - **Concurrency**: This controls how many operations the backup task runs in
   parallel. Plakar Control Plane automatically sets a recommended concurrency
@@ -77,7 +85,7 @@ matching all the provided labels will be synced to the other store.
 
 - **Run on**: Enables you to select a remote edge executor to run the task on.
   If left empty, the task runs on the local executor in your Control Plane
-  instance. Check the [edge documentation](../../infrastructure/edges) for more
+  instance. Check the [edge documentation](../infrastructure/edges) for more
   information on remote executors for Control Plane.
 - **Concurrency**: This controls how many operations the backup task runs in
   parallel. Plakar Control Plane automatically sets a recommended concurrency
@@ -112,7 +120,7 @@ checked, not the entire store.
 
 - **Run on**: Enables you to select a remote edge executor to run the task on.
   If left empty, the task runs on the local executor in your Control Plane
-  instance. Check the [edge documentation](../../infrastructure/edges) for more
+  instance. Check the [edge documentation](../infrastructure/edges) for more
   information on remote executors for Control Plane.
 - **Concurrency**: This controls how many operations the backup task runs in
   parallel. Plakar Control Plane automatically sets a recommended concurrency

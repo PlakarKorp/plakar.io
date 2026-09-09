@@ -11,9 +11,9 @@ summary:
 
 `plakar-operator` is a Kubernetes controller that lets you manage Plakar Control
 Plane (PCP) using Kubernetes custom resources instead of the web interface. You
-describe the [apps](../../apps) and [tasks](../../operations/scheduling/tasks)
-you want as YAML, apply them with `kubectl apply`, and the operator reconciles
-them by calling the real PCP API on your behalf.
+describe the [apps](../../apps) and [tasks](../../scheduling/tasks) you want as
+YAML, apply them with `kubectl apply`, and the operator reconciles them by
+calling the real PCP API on your behalf.
 
 The operator doesn't run PCP and doesn't move any backup data itself. It only
 creates, updates, and reads objects through PCP's API. PCP itself does all the
@@ -47,7 +47,7 @@ concepts you'll already know from the PCP web interface:
   [destination](../../apps/destinations) apps.
 - **ScheduleBackup, ScheduleCheck, ScheduleSync**: declarative equivalents of
   the recurring backup, check, and sync tasks covered in
-  [Scheduling](../../operations/scheduling).
+  [Scheduling](../../scheduling).
 - **Restore**: a one-off restore job from a `Store` into a `Destination`. See
   [Restore Resource](./restore).
 

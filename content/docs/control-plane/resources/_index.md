@@ -50,7 +50,12 @@ can also filter resources by inventories or by resource class.
 
 ## Resource settings
 
-Resource settings can be updated from the **Settings** tab under each resource.
+Resource settings can be updated from the **Settings** tab under each resource,
+which is split between **General** and **Residency**. General holds the settings
+described below. Residency ties the resource to a country and restricts
+operations to resources in that same country. See
+[data residency](../compliance/residency) for details.
+
 For managed inventories, most settings are read-only since the resource is
 managed by the inventory. For self-managed inventories, all settings can be
 modified. Backup coverage can be modified for any resource regardless of
