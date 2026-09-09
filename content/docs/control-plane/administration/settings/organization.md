@@ -32,13 +32,16 @@ same value in each organization and trusting it to stay.
 
 ## Authentication
 
-Controls how authentication badges behave in this organization.
+Controls how long credentials remain valid in this organization.
 
-### Authentication badge TTL
+### Token lifetimes
 
-The authentication badge indicates the current authentication status of a
-session. Configure how long the badge remains valid after authentication, then
-apply the new time-to-live (TTL).
+Two time-to-live (TTL) durations are configured together here:
+
+- **Authentication badge TTL:** how long an authentication badge remains valid.
+  The badge indicates the current authentication status of a session.
+- **API key rotation TTL:** how long an API key remains valid after its owner
+  rotates it.
 
 ## System
 
