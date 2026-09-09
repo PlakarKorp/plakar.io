@@ -20,7 +20,7 @@ Control Plane, including installation, enrollment, and billing.
 - [OVHcloud](https://www.stg.plakar.io/docs/control-plane/intro/installation/ovhcloud/index.md): How to install Plakar Control Plane on OVHcloud
 - [Scaleway](https://www.stg.plakar.io/docs/control-plane/intro/installation/scaleway/index.md): How to install Plakar Control Plane on Scaleway
 - [Exoscale](https://www.stg.plakar.io/docs/control-plane/intro/installation/exoscale/index.md): How to install Plakar Control Plane on Exoscale
-- [Google Cloud](https://www.stg.plakar.io/docs/control-plane/intro/installation/google-cloud/index.md): How to install Plakar Control Plane on Google Cloud
+- [Google Cloud](https://www.stg.plakar.io/docs/control-plane/intro/installation/google-cloud/index.md): How to install Plakar Control Plane on Google Cloud Platform
 - [Kubernetes](https://www.stg.plakar.io/docs/control-plane/intro/installation/kubernetes/index.md): How to install Plakar Control Plane on Kubernetes
 - [Virtual Machines](https://www.stg.plakar.io/docs/control-plane/intro/installation/virtual-machines/index.md): How to install Plakar Control Plane on a virtual machine
 

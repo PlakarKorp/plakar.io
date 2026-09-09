@@ -108,6 +108,28 @@ explicitly:
 $ plakar at /var/backups server -allow-delete
 ```
 
+## Requiring an authentication token
+
+By default, any client that can reach the listening address can interact with
+the served store, provided it has the repository passphrase. The `-token` flag
+requires clients to present a bearer token before the server accepts a request:
+
+```bash
+$ plakar at /var/backups server -token <token>
+```
+
+Clients supply the same token through the `auth_token` store option:
+
+```bash
+$ plakar store add remote https://backup.example.com auth_token=<token>
+```
+
+Over a plaintext HTTP connection, clients do not send the token unless
+`insecure=true` is also set on the store, since it would otherwise travel in
+clear text. See
+[Creating a Kloset Store](../../guides/create-kloset-repository#http-and-https-stores)
+for the other options available on `http://` and `https://` stores.
+
 ## Enabling HTTPS
 
 `plakar server` can serve the store over HTTPS using a TLS certificate and
@@ -128,12 +150,14 @@ $ plakar at https://backup.example.com ls
 
 If either `-cert` or `-key` is missing, the server falls back to plain HTTP.
 
-Note that HTTPS doesn't add much protection here: as mentioned above, all
-snapshot data is already fully encrypted end-to-end with the repository
-passphrase, regardless of the transport. Plain HTTP does not expose your
-backups. HTTPS is still worth enabling if you want to hide metadata like request
-patterns from network observers, or if you're bridging environments that require
-TLS for other reasons (e.g. a corporate proxy).
+> [!NOTE]+
+>
+> HTTPS doesn't add much protection here: as mentioned above, all snapshot data
+> is already fully encrypted end-to-end with the repository passphrase,
+> regardless of the transport. Plain HTTP does not expose your backups. HTTPS is
+> still worth enabling if you want to hide metadata like request patterns from
+> network observers, or if you're bridging environments that require TLS for
+> other reasons (e.g. a corporate proxy).
 
 ## Serving remote stores
 
@@ -156,4 +180,9 @@ $ plakar at sftp://example.org server
   [How Maintenance Works](../../explanations/how-maintenance-works) for details
   on the grace period, packfile-level garbage collection, and checkpoints that
   govern when reclamation actually happens.
+
+## See also
+
+- [HTTP(S) integration](../../integrations/http)
+- [Creating a Kloset Store](../../guides/create-kloset-repository#http-and-https-stores)
 

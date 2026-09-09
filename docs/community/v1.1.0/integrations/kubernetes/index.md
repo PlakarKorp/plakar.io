@@ -44,7 +44,7 @@ $ plakar pkg add k8s
 Verify installation:
 
 ```bash
-$ plakar pkg list
+$ plakar pkg show
 ```
 
 {{< /tab >}} {{< tab label="Building from source" >}}
@@ -74,7 +74,7 @@ $ plakar pkg add ./k8s_v1.1.0-beta.6_darwin_arm64.ptar
 Verify installation:
 
 ```bash
-$ plakar pkg list
+$ plakar pkg show
 ```
 
 {{< /tab >}}

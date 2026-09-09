@@ -40,7 +40,7 @@ $ plakar pkg add azblob
 Verify installation:
 
 ```bash
-$ plakar pkg list
+$ plakar pkg show
 ```
 
 {{< /tab >}}
@@ -72,7 +72,7 @@ $ plakar pkg add ./azblob_v1.0.0_darwin_arm64.ptar
 Verify installation:
 
 ```bash
-$ plakar pkg list
+$ plakar pkg show
 ```
 
 {{< /tab >}}

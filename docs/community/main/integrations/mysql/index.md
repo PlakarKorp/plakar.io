@@ -43,7 +43,7 @@ $ plakar pkg add mysql
 Verify installation:
 
 ```bash
-$ plakar pkg list
+$ plakar pkg show
 ```
 
 {{< /tab >}}
