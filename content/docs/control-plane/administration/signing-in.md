@@ -63,3 +63,13 @@ set a new password before they can continue.
 If two-factor authentication is enabled on the account, a verification code is
 requested after the password. See
 [Two-factor authentication](../two-factor-authentication) for details.
+
+If the organization
+[requires two-factor authentication](../settings/organization#two-factor-authentication)
+for all of its members, members without an enrolled second factor must set one
+up the next time they sign in. They must complete enrollment before they can
+access Plakar Control Plane. If a password change is also required, such as
+during a user's first sign-in, the second-factor enrollment is completed before
+the password change.
+
+{{< figure src="../images/2fa-required.png" alt="" class="mx-auto max-w-100" >}}

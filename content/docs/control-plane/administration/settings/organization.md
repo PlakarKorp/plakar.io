@@ -32,7 +32,8 @@ same value in each organization and trusting it to stay.
 
 ## Authentication
 
-Controls how long credentials remain valid in this organization.
+Controls how members authenticate in this organization and how long their
+credentials remain valid.
 
 ### Token lifetimes
 
@@ -42,6 +43,15 @@ Two time-to-live (TTL) durations are configured together here:
   The badge indicates the current authentication status of a session.
 - **API key rotation TTL:** how long an API key remains valid after its owner
   rotates it.
+
+### Two-factor authentication
+
+Require the members of this organization to sign in with a second factor.
+Members who already hold one are unaffected. Members without one are taken
+through the setup the next time they sign in, and cannot reach Plakar Control
+Plane until a factor is enrolled. See
+[Two-factor authentication](../../two-factor-authentication) for what a member
+sets up and how it is used at sign-in.
 
 ## System
 
