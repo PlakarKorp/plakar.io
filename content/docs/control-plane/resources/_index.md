@@ -46,6 +46,11 @@ All resources discovered across all inventories are available under
 a [source](../apps/sources) or a [destination](../apps/destinations) app. You
 can also filter resources by inventories or by resource class.
 
+The actions on each resource include placing a
+[legal hold](../compliance/legal-hold) on it. A resource under a legal hold
+cannot be used by any task, so backups, restores, checks, and prunes involving
+it are refused until the hold is removed.
+
 ![](./images/view-resources.png)
 
 ## Resource settings

@@ -11,8 +11,8 @@ summary:
 
 The **Administrator** covers everything inside the organization except the
 organization itself. It holds full access to every resource class, and to the
-rest of the organization family, which is members, the audit log, data
-residency, and both kinds of legal hold.
+rest of the organization: members, audit logs, data residency, and both the
+resource and inventory legal hold.
 
 The **Organization** permission is the one exception, and an **Administrator**
 has no access to it. This means the

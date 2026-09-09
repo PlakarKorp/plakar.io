@@ -37,7 +37,10 @@ organization's short identifier, separated by a slash:
 
 Organizations are identified internally by a UUID, but signing in uses the short
 identifier, not the full UUID. An organization's short identifier is shown under
-[Settings > Organizations](../settings/organization).
+[Settings -> Organizations](../settings/organization) as well as when a member
+is added to an organization.
+
+{{< figure src="../images/add-member.png" alt="" class="mx-auto max-w-80" >}}
 
 The password is the same in both cases. The prefix selects the organization, not
 a different account.

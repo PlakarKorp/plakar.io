@@ -62,7 +62,7 @@ permission was granted in:
 
 ## Access levels
 
-Every permission in a family is held at one of four levels:
+Every resource in a family is held at one of four levels:
 
 - **No access**, the permission cannot be reached at all.
 - **View**, it can be read but not changed.
@@ -73,6 +73,7 @@ Every permission in a family is held at one of four levels:
 ## Roles
 
 Access is granted by assigning a role. A role is a preset set of capabilities,
-and the access it comes to is always expressed in the three families above.
+and the accesses it grants are always a combination of capabilities described in
+the three families.
 
 {{< children description="true" >}}

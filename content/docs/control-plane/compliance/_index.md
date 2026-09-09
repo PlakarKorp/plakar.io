@@ -20,9 +20,10 @@ Three mechanisms cover different obligations:
   classes, so every matching source is covered automatically.
 - **Data residency:** constrains where backup data is allowed to live, so data
   stays within a given country.
-- **Legal hold:** protects an individual restore point from deletion. Pruning
-  skips a held restore point instead of deleting it, even once it falls outside
-  the retention its policy defines.
+- **Legal hold:** preserves restore points or resources that must not be deleted
+  or used respectively. A held restore point is excluded from pruning even after
+  it passes its policy retention period, while a held resource cannot be used by
+  [tasks](../scheduling/tasks) that would otherwise access it.
 
 Policies and residency describe requirements the system applies going forward. A
 legal hold applies to restore points that already exist.

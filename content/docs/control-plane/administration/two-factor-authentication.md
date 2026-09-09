@@ -34,8 +34,8 @@ to sign in if you lose access to your authenticator application.
 
 After entering your [account and password](../signing-in), Plakar Control Plane
 prompts for the current verification code from your authenticator application.
-If the application is unavailable, you can sign in using one of your unused
-recovery codes instead.
+If the authenticator application is unavailable, you can sign in using one of
+your unused recovery codes instead.
 
 {{< figure src="../images/2fa-signin.png" alt="Two-factor authentication sign-in" class="mx-auto max-w-80" >}}
 

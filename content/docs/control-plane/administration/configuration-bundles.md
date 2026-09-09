@@ -26,10 +26,10 @@ There are two kinds of configuration bundles. They work identically in every
 other respect (same scope filters, same configuration fields, same behavior);
 the only difference is where they're created and how broadly they apply:
 
-- **Organization bundles** are created under **Settings > Your Organization >
-  Configuration Bundles** and apply to matching resources across every inventory
-  in the organization. Each organization has its own set of bundles, and a
-  bundle never applies outside the organization it was created in.
+- **Organization bundles** are created under **Settings -> [your organization]
+  -> Configuration Bundles** and apply to matching resources across every
+  inventory in the organization. Each organization has its own set of bundles,
+  and a bundle never applies outside the organization it was created in.
 
   ![Inventory configuration bundles](../images/organization-config-bundles.png)
 
@@ -49,7 +49,7 @@ you hold in that organization.
 
 ## Creating a configuration bundle
 
-Open the relevant location (**Settings > Your Organization > Configuration
+Open the relevant location (**Settings -> [your organization] -> Configuration
 Bundles** for an organization bundle, or an inventory's **Configuration
 Bundles** tab for an inventory bundle) and click **Add bundle**. The bundle form
 has two sections: **Scope** and **Configuration fields**.
