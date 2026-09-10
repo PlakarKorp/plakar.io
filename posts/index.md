@@ -8,6 +8,10 @@
 
 
 
+## [Build a Docs Wayback Machine with Astro](https://www.plakar.io/posts/2026-09-07/docs-wayback-machine/index.md)
+
+
+
 ## [Plakar v1.1.5 is out](https://www.plakar.io/posts/2026-09-06/plakar-v1.1.5-is-out/index.md)
 
 
