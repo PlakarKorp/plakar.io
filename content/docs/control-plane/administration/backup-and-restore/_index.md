@@ -1,7 +1,7 @@
 ---
 title: "Backup and Restore"
 date: "2026-06-11T00:00:00Z"
-weight: 5
+weight: 11
 summary:
   "How to back up and restore the Plakar Control Plane configuration and data."
 ---

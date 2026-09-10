@@ -5,6 +5,7 @@ weight: 1
 summary: "How to create and manage SLA policies in Plakar Control Plane."
 aliases:
   - /control-plane-docs/operations/policies/
+  - /docs/control-plane/operations/policies/
 ---
 
 # SLA Policies
@@ -36,6 +37,10 @@ flowchart TD
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
+Policies belong to a single organization. You work only with the policies of the
+organization you signed in to, and what you can do with them is determined by
+the [permissions](../../administration/permissions) you hold there.
+
 ## Creating a policy
 
 To create a policy, provide a name, then define the backup requirements and
@@ -53,13 +58,13 @@ combination of these:
 
 For each granularity you enable, you configure:
 
-- **Frequency** - how often a backup should be taken within that period, for
+- **Frequency:** how often a backup should be taken within that period, for
   example 4 times or once a day
-- **Retention** - how long backup restore points should be kept
+- **Retention:** how long backup restore points should be kept
 
 You then select a [store](../../apps/stores) where the backup will be stored and
-toggle whether you want to run a [check task](../scheduling/tasks#check-task) on
-the after each. It's recommended to leave this on.
+toggle whether you want to run a [check task](../../scheduling/tasks#check-task)
+on the after each. It's recommended to leave this on.
 
 ![](../images/create-policy.png)
 
@@ -79,11 +84,13 @@ the environment and data class filters.
 
 Supported scope filters include:
 
-- **Environment** - the environment the policy applies to. Environments can be
-  managed from the [settings](<>).
-- **Data Class** - one or more data classes the policy applies to. Data classes
-  can be managed from the [settings](<>).
-- **Tag** - narrows the matched sources down further to only those carrying the
+- **Environment:** the environment the policy applies to. Environments are
+  managed from the organization's
+  [classification settings](#managing-environments--data-classes).
+- **Data Class:** one or more data classes the policy applies to. Data classes
+  are managed from the organization's
+  [classification settings](#managing-environments--data-classes).
+- **Tag:** narrows the matched sources down further to only those carrying the
   specified tag. Useful when environment and data class alone would match more
   sources than intended.
 
@@ -92,6 +99,10 @@ source app whose environment and data class match the policy is automatically
 scheduled according to the policy rules. When a new source app is added with
 matching values, it is automatically picked up by the policy without any
 additional configuration.
+
+Scope is not the only condition. A policy also respects
+[data residency](./residency): a matched source is only scheduled when it and
+the policy's store share the same residency.
 
 A source app can be covered by multiple policies if their scopes overlap. This
 allows policies to be layered for example, a general policy covering all
@@ -105,13 +116,19 @@ databases.
 Once a policy is scoped, the policy scheduler automatically creates backup
 schedules for all matching sources using the store app selected when the policy
 was created. See the
-[policy scheduler documentation](../scheduling/policy-scheduler) for more
+[policy scheduler documentation](../../scheduling/policy-scheduler) for more
 details.
 
 ## Managing environments & data classes
 
 Environments and data classes used by the SLA system to scope resources are
-managed from **Settings > Classification**. From there, you can create new
+managed per organization, from **Settings** -> **Organizations** -> **[your
+organization]** -> **Classification**. From there, you can create new
 environments and data classes, or delete existing ones.
+
+Because they belong to an organization, the environments and data classes
+available to a policy are the ones defined in the organization that policy lives
+in. See [Managing Organizations](../../administration/organizations) for more
+information about how organizations isolate configuration.
 
 ![Creating and deleting environments and data classes](../images/managing-classification.png)

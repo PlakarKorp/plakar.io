@@ -5,12 +5,14 @@ weight: 5
 summary:
   "How Application users get their own scheduler through the Plakar Control
   Plane API."
+aliases:
+  - /docs/control-plane/operations/scheduling/user-schedulers/
 ---
 
 # User Schedulers
 
-Every [Application user](../../administration/users#application-users) can have
-its own scheduler. Unlike the [manual](../manual-scheduler) and
+Every [Application user](../administration/users#application-users) can have its
+own scheduler. Unlike the [manual](../manual-scheduler) and
 [policy](../policy-scheduler) schedulers, a user scheduler is not created from
 the UI. Application users authenticate with an API key rather than signing in,
 so their scheduler can currently only be created and managed through the Plakar
@@ -34,12 +36,12 @@ progress, viewing job output, and finding jobs on app pages.
 
 ## Kubernetes Operator
 
-The [Kubernetes Operator](../../infrastructure-as-code/kubernetes-operator) is
+The [Kubernetes Operator](../infrastructure-as-code/kubernetes-operator) is
 currently the only client that creates a user scheduler. It authenticates as an
 Application user and, when it connects to Plakar Control Plane, creates a
 scheduler for that user if one doesn't already exist. From then on, every
 `ScheduleBackup`, `ScheduleCheck`, and `ScheduleSync` resource it manages
 appears under that user's entry in the **User schedulers** tab. See
-[Scheduling](../../infrastructure-as-code/kubernetes-operator/scheduling) for
-how the operator represents these tasks and their job history as Kubernetes
+[Scheduling](../infrastructure-as-code/kubernetes-operator/scheduling) for how
+the operator represents these tasks and their job history as Kubernetes
 resources.

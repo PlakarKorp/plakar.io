@@ -1,7 +1,7 @@
 ---
 title: "References"
 date: "2026-07-15T00:00:00Z"
-weight: 9
+weight: 10
 summary:
   "Reference material for Plakar Control Plane: API keys, custom resource
   fields, and other lookup information."

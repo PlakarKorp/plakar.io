@@ -40,7 +40,7 @@ When adding a resource manually, you need to provide:
 - **Subclass** - a more specific type within the class. See
   [Resource classes](#resource-classes)
 - **Tags** - provide several tags to the resource. Can be later used by
-  [policies](../../operations/policies) or
+  [policies](../../compliance/policies) or
   [configuration bundles](../../administration/configuration-bundles#scope) to
   filter resources
 - **Hostname** - the address used to reach the resource (hostname or IP

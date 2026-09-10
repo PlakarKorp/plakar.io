@@ -48,10 +48,10 @@ server. The repository must preserve the directory structure downloaded from
 `plakar.io`.
 
 Unlike the releases repository, the integrations repository is configured from
-Plakar Control Plane rather than from the appliance user-data. Open **Settings >
-General** and enter the URL of the server hosting your mirrored files in the
-[package repository](../../administration/general-settings#package-repository)
-field, for example `https://dist.corp.example/integrations`.
+Plakar Control Plane rather than from the appliance user-data. Open the
+[settings](../../administration/settings) and enter the URL of the server
+hosting your mirrored files in the package repository field, for example
+`https://dist.corp.example/integrations`.
 
 Plakar Control Plane retrieves the integrations index and `.ptar` packages from
 that server instead of `plakar.io`. Leaving the field empty restores the default

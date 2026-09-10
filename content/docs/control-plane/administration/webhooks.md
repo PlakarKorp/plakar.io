@@ -1,7 +1,7 @@
 ---
 title: "Webhook Setup"
 date: "2026-08-05T00:00:00Z"
-weight: 3
+weight: 8
 summary:
   "Configure webhooks to receive event notifications from Plakar Control Plane."
 ---
@@ -9,7 +9,8 @@ summary:
 # Webhook Setup
 
 Plakar Control Plane can send event notifications to an external HTTP endpoint
-using webhooks. Webhooks can be configured from **General Settings** page.
+using webhooks. Webhooks are configured per organization, from the
+[organization settings](../settings/organization#webhook).
 
 Enable the **Enabled** switch to activate webhook delivery. When disabled,
 Plakar Control Plane does not send any webhook requests.

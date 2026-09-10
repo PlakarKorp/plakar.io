@@ -5,6 +5,8 @@ weight: 3
 summary:
   "How to attach schedules to tasks and monitor job history in Plakar Control
   Plane."
+aliases:
+  - /docs/control-plane/operations/scheduling/manual-scheduler/
 ---
 
 # Manual Scheduler
