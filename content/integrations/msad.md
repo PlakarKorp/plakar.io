@@ -41,9 +41,12 @@ links:
     url: /docs/control-plane/resources/identity/msad/
 
 edition:
+  - community
   - control-plane
 
 stage: stable
+
+binary: true
 
 author:
   - type: official
