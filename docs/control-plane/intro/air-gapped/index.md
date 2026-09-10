@@ -44,6 +44,9 @@ enroll the instance.
 Because there is no owner email verification step in air-gapped mode, the admin
 account created here also acts as the instance owner.
 
+This account holds the **Superuser** role, which is currently required to change
+[Control Plane settings](../../administration/settings/control-plane).
+
 {{< /step >}}
 
 {{< /steps >}}
@@ -51,15 +54,16 @@ account created here also acts as the instance owner.
 ## License renewal
 
 Offline licenses includes an expiry date. You can view the current license,
-plan, and expiry date under **Settings > General**.
+plan, and expiry date in the
+[Control Plane settings](../../administration/settings/control-plane#instance).
 
 ![Managing your license and plan](../images/managing-licence.png)
 
 Unlike online instances, air-gapped instances do not renew their license
 automatically. To renew an offline license, [contact us](/contact) to obtain a
-new license for your instance. Then, on the **General** settings page, paste the
-new license into the **Replace with** field or load it from a license file, and
-select **Replace license**.
+new license for your instance. Then, in the **Control Plane settings**, paste
+the new license into the **Replace with** field or load it from a license file,
+and select **Replace license**.
 
 Replacing the license does not require re-enrollment and does not affect your
 existing configuration or backups.

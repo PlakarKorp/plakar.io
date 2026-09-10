@@ -44,23 +44,36 @@
 - [Service](https://www.plakar.io/docs/control-plane/resources/service/index.md): An overview of service resources in Plakar Control Plane.
 
 
-## [Operations](https://www.plakar.io/docs/control-plane/operations/index.md)
+## [Scheduling](https://www.plakar.io/docs/control-plane/scheduling/index.md)
 
-- [SLA Policies](https://www.plakar.io/docs/control-plane/operations/policies/index.md): How to create and manage SLA policies in Plakar Control Plane.
-- [Scheduling](https://www.plakar.io/docs/control-plane/operations/scheduling/index.md): How to create and manage tasks and schedules in Plakar Control Plane.
+- [Scheduled Tasks](https://www.plakar.io/docs/control-plane/scheduling/tasks/index.md): The different types of tasks you can run in Plakar Control Plane.
+- [One-off Tasks](https://www.plakar.io/docs/control-plane/scheduling/one-off-tasks/index.md): How to run a task immediately as a one-off operation in Plakar Control Plane.
+- [Manual Scheduler](https://www.plakar.io/docs/control-plane/scheduling/manual-scheduler/index.md): How to attach schedules to tasks and monitor job history in Plakar Control Plane.
+- [Policy Scheduler](https://www.plakar.io/docs/control-plane/scheduling/policy-scheduler/index.md): How policies automatically schedule tasks in Plakar Control Plane.
+- [User Schedulers](https://www.plakar.io/docs/control-plane/scheduling/user-schedulers/index.md): How Application users get their own scheduler through the Plakar Control Plane API.
+- [Job History](https://www.plakar.io/docs/control-plane/scheduling/job-history/index.md): How to monitor job history and view job details in Plakar Control Plane.
+
+
+## [Compliance](https://www.plakar.io/docs/control-plane/compliance/index.md)
+
+- [SLA Policies](https://www.plakar.io/docs/control-plane/compliance/policies/index.md): How to create and manage SLA policies in Plakar Control Plane.
+- [Data Residency](https://www.plakar.io/docs/control-plane/compliance/residency/index.md): Constrain where backup data is allowed to live in Plakar Control Plane.
+- [Legal Hold](https://www.plakar.io/docs/control-plane/compliance/legal-hold/index.md): Protect a restore point from deletion, or a resource from being used, while a hold is in place.
 
 
 ## [Administration](https://www.plakar.io/docs/control-plane/administration/index.md)
 
-- [General Settings](https://www.plakar.io/docs/control-plane/administration/general-settings/index.md): Configure your Plakar Control Plane instance from Settings &gt; General.
+- [Signing In to Control Plane](https://www.plakar.io/docs/control-plane/administration/signing-in/index.md): Sign in to Plakar Control Plane and select the organization you want to work in.
+- [Managing Organizations](https://www.plakar.io/docs/control-plane/administration/organizations/index.md): Organize and isolate resources, configuration, and administration within Plakar Control Plane.
+- [Managing Users](https://www.plakar.io/docs/control-plane/administration/users/index.md): Manage users and application identities in Plakar Control Plane.
+- [Permissions](https://www.plakar.io/docs/control-plane/administration/permissions/index.md): How access is granted in Plakar Control Plane, and what each role can reach.
+- [Two-factor authentication](https://www.plakar.io/docs/control-plane/administration/two-factor-authentication/index.md): Secure your Plakar Control Plane account with two-factor authentication.
+- [Managing Settings](https://www.plakar.io/docs/control-plane/administration/settings/index.md): Instance-wide and per-organization settings in Plakar Control Plane.
 - [Email & SMTP Setup](https://www.plakar.io/docs/control-plane/administration/email-and-smtp/index.md): Configure SMTP for email notifications.
 - [Webhook Setup](https://www.plakar.io/docs/control-plane/administration/webhooks/index.md): Configure webhooks to receive event notifications from Plakar Control Plane.
+- [Configuration Bundles](https://www.plakar.io/docs/control-plane/administration/configuration-bundles/index.md): How to use configuration bundles to share credentials and settings across resources.
 - [Updating Control Plane](https://www.plakar.io/docs/control-plane/administration/updating-control-plane/index.md): How to update Plakar Control Plane and its underlying deployment infrastructure.
 - [Backup and Restore](https://www.plakar.io/docs/control-plane/administration/backup-and-restore/index.md): How to back up and restore the Plakar Control Plane configuration and data.
-- [Configuration Bundles](https://www.plakar.io/docs/control-plane/administration/configuration-bundles/index.md): How to use configuration bundles to share credentials and settings across resources.
-- [Managing Users](https://www.plakar.io/docs/control-plane/administration/users/index.md): Manage users and application identities in Plakar Control Plane.
-- [Managing Organizations](https://www.plakar.io/docs/control-plane/administration/organizations/index.md): Organize and isolate resources, configuration, and administration within Plakar Control Plane.
-- [Two-factor authentication](https://www.plakar.io/docs/control-plane/administration/two-factor-authentication/index.md): Secure your Plakar Control Plane account with two-factor authentication.
 
 
 ## [General Guides](https://www.plakar.io/docs/control-plane/guides/index.md)

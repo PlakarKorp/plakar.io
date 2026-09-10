@@ -50,6 +50,6 @@ become available from the dashboard:
 
 Tasks can be created directly from the destination app dashboard or from the
 **Operations > Scheduling** section. See the
-[scheduling documentation](../../operations/scheduling) for details on creating
-and managing tasks and schedules.
+[scheduling documentation](../../scheduling) for details on creating and
+managing tasks and schedules.
 

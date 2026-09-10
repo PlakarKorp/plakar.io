@@ -68,11 +68,10 @@ infrastructure teams four benefits legacy tooling can't:
 - **Safe, cost-efficient copies**: client-side deduplication and zero-trust
   encryption, stored on the provider of your choice.
 - **Declarative policies**:
-  [SLA policies](/docs/control-plane/operations/policies/) work like contracts:
+  [SLA policies](/docs/control-plane/compliance/policies/) work like contracts:
   declare frequency, retention, and scope once, and the
-  [policy scheduler](/docs/control-plane/operations/scheduling/policy-scheduler/)
-  enforces them across every matching source. No per-source configuration to
-  drift.
+  [policy scheduler](/docs/control-plane/scheduling/policy-scheduler/) enforces
+  them across every matching source. No per-source configuration to drift.
 - **Strategic autonomy**: self-hosted, keys you control, an auditable codebase.
   No vendor sits between you and your recovery.
 
@@ -112,7 +111,7 @@ with cron and hope.
 2. **Connect an [inventory](/docs/control-plane/infrastructure/inventories/)**:
    point Control Plane at your AWS credentials and it syncs your resources
    automatically.
-3. **Apply an [SLA policy](/docs/control-plane/operations/policies/)**: set
+3. **Apply an [SLA policy](/docs/control-plane/compliance/policies/)**: set
    frequency and retention, scope it by environment, data class, or tag; every
    matching source is scheduled automatically.
 4. **Watch the first snapshots land**: deduplicated, encrypted under your keys,

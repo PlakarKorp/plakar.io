@@ -161,6 +161,6 @@ details on using secrets from a secret manager inside Plakar Control Plane.
 ## See also
 
 - [Store apps](../apps/stores)
-- [Scheduling tasks](../operations/scheduling)
+- [Scheduling tasks](../scheduling)
 - [Secret Providers](../infrastructure/secret-providers)
 

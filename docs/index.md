@@ -10,7 +10,8 @@
 - [Infrastructure](https://www.plakar.io/docs/control-plane/infrastructure/index.md): Configure and manage inventories and secret providers used by Plakar Control Plane.
 - [Apps](https://www.plakar.io/docs/control-plane/apps/index.md): How apps work in Plakar Control Plane and how to configure them.
 - [Resources](https://www.plakar.io/docs/control-plane/resources/index.md): Resources are the systems and storage targets that Plakar Control Plane backs up, stores data in, or restores to. Learn how to configure each resource type and manage resource settings.
-- [Operations](https://www.plakar.io/docs/control-plane/operations/index.md): Manage scheduling and policies in Plakar Control Plane.
+- [Scheduling](https://www.plakar.io/docs/control-plane/scheduling/index.md): How to create and manage tasks and schedules in Plakar Control Plane.
+- [Compliance](https://www.plakar.io/docs/control-plane/compliance/index.md): Enforce backup requirements, data location, and retention obligations in Plakar Control Plane.
 - [Administration](https://www.plakar.io/docs/control-plane/administration/index.md): Manage settings, updates, backups, and logs in Plakar Control Plane.
 - [General Guides](https://www.plakar.io/docs/control-plane/guides/index.md): General purpose guides, walkthroughs, and platform-specific tutorials.
 - [Infrastructure as Code](https://www.plakar.io/docs/control-plane/infrastructure-as-code/index.md): Ways to manage Plakar Control Plane declaratively, from code, instead of the web interface.
