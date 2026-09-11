@@ -5,6 +5,8 @@ summary: "generate a self-contained Kloset archive (.ptar)"
 aliases:
   - /docs/main/references/commands/plakar-ptar/
   - /docs/main/commands/plakar-ptar/
+  - /docs/main/references/ptar/
+  - /docs/community/main/references/ptar
 ---
 
 <div class="head" role="doc-pageheader" aria-label="Manual header
