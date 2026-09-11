@@ -280,6 +280,18 @@ the next reboot.
 
 {{< /tabs >}}
 
+### Connect over SSH
+
+If you configured an SSH key, connect to the booted appliance with the `plakar`
+user:
+
+```sh
+ssh plakar@<ASSIGNED-IP>
+```
+
+Replace `<ASSIGNED-IP>` with the appliance's configured or DHCP-assigned IP
+address.
+
 ## Start the appliance and complete enrollment
 
 Power on the virtual machine. Once the appliance has booted and is reachable on
