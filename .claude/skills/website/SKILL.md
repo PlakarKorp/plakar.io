@@ -277,7 +277,7 @@ Never edit CLI command documentation manually.
 Run:
 
 ```bash
-scripts/update-doc.sh <version> <git-tag>
+scripts/update-cli-doc.sh <version> <git-tag>
 ```
 
 This regenerates:
