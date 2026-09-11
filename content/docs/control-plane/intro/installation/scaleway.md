@@ -170,6 +170,22 @@ The allowed source can be:
 > Using `0.0.0.0/0` allows access from any IP address and should only be used
 > for testing or temporary deployments.
 
+## Connect over SSH
+
+An instance receives the SSH keys registered in its Scaleway project, and the
+appliance accepts connections from those keys as the `plakar` user. Keys are
+registered in the **SSH keys** section of the instance creation flow, below the
+network configuration.
+
+![](../images/scaleway-ssh.png)
+
+```sh
+ssh plakar@<public-ipv4-address>
+```
+
+Reaching the instance on SSH also requires an inbound rule for TCP port `22` on
+the security group, alongside the port `80` rule configured above.
+
 ## Accessing Plakar Control Plane
 
 After the instance has started and the security group has been configured,

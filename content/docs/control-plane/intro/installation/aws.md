@@ -150,6 +150,19 @@ For testing purposes, you can temporarily use `0.0.0.0/0`
 > Using `0.0.0.0/0` allows access from any IP address and should only be used
 > for testing or temporary deployments.
 
+## Connect over SSH
+
+The appliance accepts SSH connections as the `plakar` user, authenticated with
+the key pair selected at launch:
+
+```sh
+ssh plakar@<public-ipv4-address>
+```
+
+Replace `<public-ipv4-address>` with the public IPv4 address assigned to the EC2
+instance. The security group attached to the instance has to allow inbound TCP
+traffic on port `22` from wherever you connect.
+
 ## Assigning an IAM Role
 
 Plakar Control Plane requires AWS permissions to discover and classify resources
