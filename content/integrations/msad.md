@@ -37,6 +37,8 @@ seo_tags:
   - encrypted backup
 
 links:
+  - type: community
+    url: /docs/community/main/integrations/msad/
   - type: control-plane
     url: /docs/control-plane/resources/identity/msad/
 
