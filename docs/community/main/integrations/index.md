@@ -110,4 +110,8 @@ Below is a list of links to the documentation for each supported integration.
 
 
 
+## [Microsoft Active Directory](https://www.plakar.io/docs/community/main/integrations/msad/index.md)
+
+
+
 

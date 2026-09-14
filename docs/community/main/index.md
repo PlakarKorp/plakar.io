@@ -62,6 +62,7 @@
 - [STDIO](https://www.plakar.io/docs/community/main/integrations/stdio/index.md): Back up from stdin and restore to stdout or stderr with Plakar.
 - [FTP](https://www.plakar.io/docs/community/main/integrations/ftp/index.md): Back up remote directories over FTP, and restore snapshots to FTP destinations.
 - [IMAP](https://www.plakar.io/docs/community/main/integrations/imap/index.md): Back up and restore mailboxes over IMAP.
+- [Microsoft Active Directory](https://www.plakar.io/docs/community/main/integrations/msad/index.md): Back up and restore Windows System State of Active Directory Domain Controllers with Plakar.
 
 
 ## [Explanations](https://www.plakar.io/docs/community/main/explanations/index.md)
