@@ -95,7 +95,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-05-12T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-09-14T14:50:14+02:00">
+    <meta property="article:modified_time" content="2026-09-14T14:52:12+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -253,12 +253,12 @@
     "dateCreated": "2026-05-12T00:00:00\u002b00:00",
     "datePublished": "2026-05-12T00:00:00\u002b00:00",
     
-    "dateModified": "2026-09-14T14:50:14\u002b02:00",
+    "dateModified": "2026-09-14T14:52:12\u002b02:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/intro/installation/aws/",
-    "wordCount": "736"
+    "wordCount": "790"
   }]
   </script>
 
@@ -7612,6 +7612,29 @@ the Plakar Control Plane web interface:</p>
       </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Using <code>0.0.0.0/0</code> allows access from any IP address and should only be used
 for testing or temporary deployments.</p></div></details>
 
+<h2 id="connect-over-ssh" class="group pr-8">Connect over SSH
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="connect-over-ssh"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>The appliance accepts SSH connections as the <code>plakar</code> user, authenticated with
+the key pair selected at launch:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">ssh plakar@&lt;public-ipv4-address&gt;</span></span></code></pre></div></div>
+<p>Replace <code>&lt;public-ipv4-address&gt;</code> with the public IPv4 address assigned to the EC2
+instance. The security group attached to the instance has to allow inbound TCP
+traffic on port <code>22</code> from wherever you connect.</p>
+
+
 <h2 id="assigning-an-iam-role" class="group pr-8">Assigning an IAM Role
     <button
       type="button"
@@ -7731,7 +7754,7 @@ instance.</p>
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#launching-the-instance">Launching the instance</a></li><li><a href="#proxy-and-harbor-configuration">Proxy and Harbor Configuration</a><ul><li><a href="#what-needs-to-be-reachable">What needs to be reachable</a></li><li><a href="#user-data-configuration">User data configuration</a></li></ul></li><li><a href="#security-groups">Security Groups</a></li><li><a href="#assigning-an-iam-role">Assigning an IAM Role</a></li><li><a href="#accessing-plakar-control-plane">Accessing Plakar Control Plane</a></li></ul>
+      <ul><li><a href="#launching-the-instance">Launching the instance</a></li><li><a href="#proxy-and-harbor-configuration">Proxy and Harbor Configuration</a><ul><li><a href="#what-needs-to-be-reachable">What needs to be reachable</a></li><li><a href="#user-data-configuration">User data configuration</a></li></ul></li><li><a href="#security-groups">Security Groups</a></li><li><a href="#connect-over-ssh">Connect over SSH</a></li><li><a href="#assigning-an-iam-role">Assigning an IAM Role</a></li><li><a href="#accessing-plakar-control-plane">Accessing Plakar Control Plane</a></li></ul>
     </div>
 
     
