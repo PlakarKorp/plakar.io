@@ -34,6 +34,8 @@ seo_tags:
   - SQL Server recovery
 
 links:
+  - type: community
+    url: /docs/community/main/integrations/mssql/
   - type: control-plane
     url: /docs/control-plane/resources/database/mssql/
 
