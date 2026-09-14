@@ -66,6 +66,15 @@ for man in "$TMPDIR/manpages/"*; do
   summary="$(grep -m1 ^\.Nd "$man" | sed 's/^.Nd //')"
   echo "generating documentation for ${name}"
   dest="${OUTDIR}/${name}.md"
+
+  extra_aliases=""
+  case "${VERSION}:${name}" in
+  main:plakar-ptar | v1.0.6:plakar-ptar | v1.1.0:plakar-ptar)
+    extra_aliases="  - /docs/${VERSION}/references/ptar/
+  - /docs/community/${VERSION}/references/ptar"
+    ;;
+  esac
+
   cat <<EOF > "$dest"
 ---
 date: "$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
@@ -74,6 +83,13 @@ summary: "${summary}"
 aliases:
   - /docs/${VERSION}/references/commands/${name}/
   - /docs/${VERSION}/commands/${name}/
+EOF
+
+  if [ -n "${extra_aliases}" ]; then
+    echo "${extra_aliases}" >> "$dest"
+  fi
+
+  cat <<EOF >> "$dest"
 ---
 
 EOF
