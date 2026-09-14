@@ -50,6 +50,8 @@
 
 ## [Plakar Integrations](https://www.plakar.io/integrations/index.md)
 
+- [Impossible Cloud](https://www.plakar.io/integrations/impossible-cloud/index.md): Protect your data with Plakar on Impossible Cloud. Immutable, encrypted snapshots stored on fully S3-compatible object storage built under European data jurisdiction, with no egress fees, no API charges, and enterprise-grade compliance.
+
 - [Google Cloud (GCP)](https://www.plakar.io/integrations/gcp/index.md): Connect a Google Cloud project to Plakar Control Plane and automatically discover the resources running in it, keeping an up-to-date inventory as Cloud Storage buckets and CloudSQL instances are created or removed.
 
 - [Amazon Web Services (AWS)](https://www.plakar.io/integrations/aws/index.md): Manage AWS resources and credentials from Plakar Control Plane. Discover  resources automatically as your AWS account changes, and manage secrets  through AWS Secrets Manager instead of scattering credentials across scripts  and tools.

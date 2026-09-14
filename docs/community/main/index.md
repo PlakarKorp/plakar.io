@@ -62,6 +62,8 @@
 - [STDIO](https://www.plakar.io/docs/community/main/integrations/stdio/index.md): Back up from stdin and restore to stdout or stderr with Plakar.
 - [FTP](https://www.plakar.io/docs/community/main/integrations/ftp/index.md): Back up remote directories over FTP, and restore snapshots to FTP destinations.
 - [IMAP](https://www.plakar.io/docs/community/main/integrations/imap/index.md): Back up and restore mailboxes over IMAP.
+- [Windows VSS](https://www.plakar.io/docs/community/main/integrations/vss/index.md): Back up and restore live Windows systems through Volume Shadow Copy Service.
+- [Microsoft SQL Server](https://www.plakar.io/docs/community/main/integrations/mssql/index.md): Back up and restore a Microsoft SQL Server installation on a live Windows host.
 - [Microsoft Active Directory](https://www.plakar.io/docs/community/main/integrations/msad/index.md): Back up and restore Windows System State of Active Directory Domain Controllers with Plakar.
 
 
@@ -77,7 +79,6 @@
 
 ## [References](https://www.plakar.io/docs/community/main/references/index.md)
 
-- [Plakar Ptar](https://www.plakar.io/docs/community/main/references/ptar/index.md): Command reference for creating and accessing Ptar archives: syntax, options, and examples for plakar ptar and related commands.
 - [Command line syntax](https://www.plakar.io/docs/community/main/references/command-line-syntax/index.md): How Plakar commands are structured, why flag order matters, and how to get help from the CLI.
 - [Go Kloset SDK](https://www.plakar.io/docs/community/main/references/sdk/index.md): Go SDK reference for building Plakar integrations.
 - [Commands](https://www.plakar.io/docs/community/main/references/commands/index.md): Reference for all Plakar commands. Browse detailed documentation for each command, including usage, options, and examples. Access help online or directly from your terminal.

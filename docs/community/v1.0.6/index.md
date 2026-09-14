@@ -66,7 +66,6 @@
 
 ## [References](https://www.plakar.io/docs/community/v1.0.6/references/index.md)
 
-- [Plakar Ptar](https://www.plakar.io/docs/community/v1.0.6/references/ptar/index.md): Command reference for creating and accessing Ptar archives: syntax, options, and examples for plakar ptar and related commands.
 - [Command line syntax](https://www.plakar.io/docs/community/v1.0.6/references/command-line-syntax/index.md): How Plakar commands are structured, why flag order matters, and how to get help from the CLI.
 - [Commands](https://www.plakar.io/docs/community/v1.0.6/references/commands/index.md): Reference for all Plakar commands. Browse detailed documentation for each command, including usage, options, and examples. Access help online or directly from your terminal.
 
