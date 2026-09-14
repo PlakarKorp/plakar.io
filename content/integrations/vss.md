@@ -38,6 +38,8 @@ seo_tags:
   - Windows disaster recovery
 
 links:
+  - type: community
+    url: /docs/community/main/integrations/vss/
   - type: control-plane
     url: /docs/control-plane/resources/compute/vss/
 
