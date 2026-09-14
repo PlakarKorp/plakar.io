@@ -135,6 +135,7 @@
 - [Plakar v1.1.3](index.md): Download binaries and packages for Plakar v1.1.3. All links are served from plakar.io.
 - [Plakar v1.1.4](index.md): Download binaries and packages for Plakar v1.1.4. All links are served from plakar.io.
 - [Plakar v1.1.5](index.md): Download binaries and packages for Plakar v1.1.5. All links are served from plakar.io.
+- [Plakar v1.1.6](index.md): Download binaries and packages for Plakar v1.1.6. All links are served from plakar.io.
 
 
 ## [Branding](https://www.plakar.io/branding/index.md)
