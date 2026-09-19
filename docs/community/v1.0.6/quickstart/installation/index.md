@@ -17,7 +17,7 @@ repository's GPG key:
 ```bash
 $ sudo apt-get update
 $ sudo apt-get install -y curl gnupg2
-$ curl -fsSL https://plakar.io/dist/keys/community-v1.0.0.gpg | sudo gpg --dearmor -o /usr/share/keyrings/plakar.gpg
+$ curl -fsSL https://plakar.io/dist/keys/plakar-packages.gpg | sudo gpg --dearmor -o /usr/share/keyrings/plakar.gpg
 $ echo "deb [signed-by=/usr/share/keyrings/plakar.gpg] https://plakar.io/dist/repos/deb/ stable main" | sudo tee /etc/apt/sources.list.d/plakar.list
 ```
 
@@ -44,7 +44,8 @@ name=Plakar Repository
 baseurl=https://plakar.io/dist/repos/rpm/$(uname -m)/
 enabled=1
 gpgcheck=0
-gpgkey=https://plakar.io/dist/keys/community-v1.0.0.gpg
+repo_gpgcheck=1
+gpgkey=https://plakar.io/dist/keys/plakar-packages.gpg
 EOF
 ```
 

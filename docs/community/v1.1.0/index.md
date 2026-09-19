@@ -1,9 +1,9 @@
 
 
-# Plakar: v1.1.x (latest: v1.1.5)
+# Plakar: v1.1.x (latest: v1.1.6)
 
 This documentation covers all releases in the `v1.1.x` major, from `v1.1.0`
-through `v1.1.5`.
+through `v1.1.6`.
 
 
 
@@ -65,6 +65,9 @@ through `v1.1.5`.
 - [STDIO](https://www.stg.plakar.io/docs/community/v1.1.0/integrations/stdio/index.md): Back up from stdin and restore to stdout or stderr with Plakar.
 - [FTP](https://www.stg.plakar.io/docs/community/v1.1.0/integrations/ftp/index.md): Back up remote directories over FTP, and restore snapshots to FTP destinations.
 - [IMAP](https://www.stg.plakar.io/docs/community/v1.1.0/integrations/imap/index.md): Back up and restore mailboxes over IMAP.
+- [Windows VSS](https://www.stg.plakar.io/docs/community/v1.1.0/integrations/vss/index.md): Back up and restore live Windows systems through Volume Shadow Copy Service.
+- [Microsoft SQL Server](https://www.stg.plakar.io/docs/community/v1.1.0/integrations/mssql/index.md): Back up and restore a Microsoft SQL Server installation on a live Windows host.
+- [Microsoft Active Directory](https://www.stg.plakar.io/docs/community/v1.1.0/integrations/msad/index.md): Back up and restore Windows System State of Active Directory Domain Controllers with Plakar.
 
 
 ## [Explanations](https://www.stg.plakar.io/docs/community/v1.1.0/explanations/index.md)
@@ -79,7 +82,6 @@ through `v1.1.5`.
 
 ## [References](https://www.stg.plakar.io/docs/community/v1.1.0/references/index.md)
 
-- [Plakar Ptar](https://www.stg.plakar.io/docs/community/v1.1.0/references/ptar/index.md): Command reference for creating and accessing Ptar archives: syntax, options, and examples for plakar ptar and related commands.
 - [Command line syntax](https://www.stg.plakar.io/docs/community/v1.1.0/references/command-line-syntax/index.md): How Plakar commands are structured, why flag order matters, and how to get help from the CLI.
 - [Go Kloset SDK](https://www.stg.plakar.io/docs/community/v1.1.0/references/sdk/index.md): Go SDK reference for building Plakar integrations.
 - [Commands](https://www.stg.plakar.io/docs/community/v1.1.0/references/commands/index.md): Reference for all Plakar commands. Browse detailed documentation for each command, including usage, options, and examples. Access help online or directly from your terminal.

@@ -5,6 +5,10 @@ Integrations extend Plakar Control Plane with support for external services,
 platforms, storage systems, and inventory providers. Before an integration can
 be used, it must be installed from the **Integrations** page.
 
+Access to the **Integrations** page is determined by the
+[permissions](../../administration/permissions) you hold in the organization you
+signed in to.
+
 Installed integrations become available automatically wherever they are
 supported. For example:
 

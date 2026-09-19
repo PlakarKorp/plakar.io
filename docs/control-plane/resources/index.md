@@ -36,11 +36,21 @@ All resources discovered across all inventories are available under
 a [source](../apps/sources) or a [destination](../apps/destinations) app. You
 can also filter resources by inventories or by resource class.
 
+The actions on each resource include placing a
+[legal hold](../compliance/legal-hold) on it. A resource under a legal hold
+cannot be used by any task, so backups, restores, checks, and prunes involving
+it are refused until the hold is removed.
+
 ![](./images/view-resources.png)
 
 ## Resource settings
 
-Resource settings can be updated from the **Settings** tab under each resource.
+Resource settings can be updated from the **Settings** tab under each resource,
+which is split between **General** and **Residency**. General holds the settings
+described below. Residency ties the resource to a country and restricts
+operations to resources in that same country. See
+[data residency](../compliance/residency) for details.
+
 For managed inventories, most settings are read-only since the resource is
 managed by the inventory. For self-managed inventories, all settings can be
 modified. Backup coverage can be modified for any resource regardless of

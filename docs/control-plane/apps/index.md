@@ -6,6 +6,10 @@ An app links a resource in your inventory to Plakar Control Plane so it can be
 used as part of a backup workflow. A resource can have multiple apps. The app
 type is selected during app setup.
 
+Apps belong to a single organization. You work only with the apps of the
+organization you signed in to, and what you can do with them is determined by
+the [permissions](../administration/permissions) you hold there.
+
 Plakar Control Plane supports three app types:
 
 - **Source** - the resource being backed up
@@ -91,7 +95,7 @@ backup requirements based on environment and data class combinations. For
 example, a policy might require that all production sources tagged as critical
 are backed up every hour and retained for 90 days. The policies engine uses
 these values to determine which policies apply to the source and what protection
-rules are enforced. See the [policies documentation](../operations/policies) for
+rules are enforced. See the [policies documentation](../compliance/policies) for
 more details.
 
 ### Destination apps
@@ -103,6 +107,15 @@ additional fields are needed beyond what is described in
 ![](./images/destination-app.png)
 
 ## Managing apps
+
+Apps can only be used together when the resources they connect to have the same
+[residency](../compliance/residency). For example, a source can only be backed
+up to a store with the same residency, and a restore can only write to a
+destination that matches the store it restores from. A sync can only run between
+stores with the same residency.
+
+Residency belongs to the resource, not the app. An app therefore takes on the
+residency of the resource it is connected to.
 
 The following pages provide detailed configuration and management information
 for each app type.

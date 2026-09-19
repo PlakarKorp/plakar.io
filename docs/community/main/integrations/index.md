@@ -110,4 +110,16 @@ Below is a list of links to the documentation for each supported integration.
 
 
 
+## [Windows VSS](https://www.stg.plakar.io/docs/community/main/integrations/vss/index.md)
+
+
+
+## [Microsoft SQL Server](https://www.stg.plakar.io/docs/community/main/integrations/mssql/index.md)
+
+
+
+## [Microsoft Active Directory](https://www.stg.plakar.io/docs/community/main/integrations/msad/index.md)
+
+
+
 

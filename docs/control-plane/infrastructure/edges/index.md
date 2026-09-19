@@ -1,31 +1,61 @@
 
 # Edges
 
-By default, Plakar Control Plane (PCP) executes all scheduled operations from
-the Control Plane appliance itself. This is suitable for small deployments, but
-larger or geographically distributed environments often benefit from executing
-tasks closer to the systems being protected.
+By default, Plakar Control Plane (PCP) runs scheduled operations from the
+Control Plane appliance. This works well when the resources you want to protect
+are reachable from the appliance.
 
-An **edge** is a remote lightweight executor that registers with PCP and
-performs operations on its behalf. Rather than requiring the Control Plane to
-have direct network access to every source and destination, edges are deployed
-inside the networks where the data resides and execute tasks locally.
+For environments where resources are spread across different networks, or where
+the Control Plane should not have direct access to them, you can run operations
+through an **edge**.
 
-Using edges provides several benefits:
+An edge is a lightweight executor that runs in the environment where the
+resources you want to protect are located. It connects to PCP, receives work
+from the Control Plane, performs the operation locally, and reports the result
+back.
 
-- Execute tasks close to the protected resources, reducing latency and network
-  traffic.
-- Back up resources located behind private networks, firewalls, or NAT gateways.
-- Scale horizontally by distributing work across multiple edge executors.
-- Keep the Control Plane isolated while extending protection to remote
-  environments.
+This lets the Control Plane coordinate protection without needing direct
+connectivity to every source and destination.
 
-![list of remote edge executors registered on a control plane instance](../images/edges-list.png)
+## When to use an edge
+
+An edge is useful when the systems being protected are not directly reachable
+from the Control Plane, when it is more efficient to run the operation close to
+those systems, or when the appliance on its own cannot keep up with the work.
+
+For example, you might deploy an edge inside a datacenter containing virtual
+machines and databases, while the Control Plane runs elsewhere. The edge can
+then access those resources locally without exposing them to the Control Plane
+network.
+
+Edges are also how a deployment scales. Every operation an edge runs is work the
+appliance does not run itself, so adding edges increases how much protection a
+single deployment can carry out at once, without resizing the appliance.
+
+Edges are particularly useful for:
+
+- Protecting resources behind private networks, firewalls, or NAT gateways.
+- Running operations close to the data to reduce unnecessary network traffic and
+  latency.
+- Distributing work across multiple executors so that protection scales beyond
+  what one appliance can run.
+- Keeping the Control Plane isolated from networks containing protected
+  resources.
+
+An edge belongs to a single organization. You can only access the edges
+belonging to the organization you are signed in to, subject to your permissions
+for that organization.
 
 ## Architecture
 
-In a typical deployment, the Control Plane coordinates work while one or more
-edges execute tasks within their local environments.
+The Control Plane remains responsible for coordinating protection. It schedules
+operations, manages inventories, stores metadata, and resolves the secrets
+required to perform a task.
+
+The edge is responsible for executing the operation. It connects to the Control
+Plane and accesses the source or destination from its own network.
+
+A deployment can contain multiple edges in different environments:
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -55,16 +85,21 @@ flowchart LR
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-The Control Plane is responsible for scheduling work, managing inventories,
-storing metadata, and resolving secrets. Edges receive work from the Control
-Plane, execute it locally, and report the results back to Control Plane.
+The important part of this architecture is that **the Control Plane does not
+need direct access to the protected resources**. It only needs to communicate
+with the edges. Each edge must be able to reach both the Control Plane and the
+resources it is responsible for.
 
-## How edges work
+## How an edge works
 
-Edge enrollment is a one-time operation. Once enrolled, the edge continuously
-polls the Control Plane for work. Whenever a scheduled task is assigned, the
-Control Plane resolves any required secrets, the edge performs the operation
-locally, and the result is reported back.
+An edge is enrolled once with the Control Plane. During enrollment, PCP gives
+the edge an authentication token that it stores locally.
+
+After enrollment, the edge maintains its connection to PCP by polling for work.
+When a scheduled operation is assigned to it, PCP provides the information and
+secrets required to perform the operation. The edge then connects directly to
+the source, store or destination, performs the operation, and reports its status
+to PCP.
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -86,146 +121,279 @@ sequenceDiagram
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
+Because the edge initiates communication with PCP, you do not need to expose an
+edge to inbound connections from the Control Plane. This also makes it suitable
+for environments where inbound connectivity is restricted.
+
 ## Requirements
 
-Each edge must be able to communicate with:
+An edge needs network access to two things:
 
-- The **Plakar Control Plane** over HTTP or HTTPS.
-- The systems or services it is expected to protect.
+- The **Plakar Control Plane**, over HTTP or HTTPS.
+- The systems and services it is expected to protect.
 
-The Control Plane does not require direct connectivity to those protected
-resources. Instead, it dispatches work to an edge, which executes the operation
-locally and reports the outcome back.
+The Control Plane itself does not need network access to those systems. The edge
+provides that connectivity when it executes a task.
 
-{{< steps >}}
+## Enable edge enrollment
 
-{{< step >}}
+Before an edge can join an organization, **edge enrollment** must be enabled for
+that organization. Enrollment is disabled by default.
 
-## Installing plakar-edge
+New edges authenticate using an enrollment key generated by the Control Plane.
+The key is used when an edge connects to PCP for the first time and exchanges it
+for an authentication token.
 
-The `plakar-edge` source code is available from
-[PlakarKorp/plakar-edge](https://github.com/PlakarKorp/plakar-edge).
+Edges work within an organization. You work only with the edges of the
+organization you signed in to, and what you can do with them is determined by
+the [permissions](../../administration/permissions) your application user has on
+the organization.
 
-Currently, the edge must be built from source:
+To enable enrollment, open the organization's settings and enable **Edge
+enrollment** under **Settings -> Organizations -> [your organization] ->
+Settings**. Enable it for the organization where the new edge should be
+registered.
+
+![](../images/edge-enrollment.png)
+
+Keep enrollment enabled while you are adding edges. Once an edge has
+successfully enrolled, it no longer depends on the enrollment setting. PCP has
+issued it an authentication token, which the edge stores locally and uses for
+subsequent connections.
+
+You can therefore **disable edge enrollment after you have finished registering
+your edges**. Disabling enrollment prevents new edges from joining the
+organization, but does not affect edges that are already enrolled.
+
+If you need to add another edge later, enable enrollment again before starting
+its first connection to PCP.
+
+You can regenerate the enrollment key at any time. If you regenerate it, use the
+new key when enrolling subsequent edges.
+
+## Installing an edge
+
+An edge can run either as a standalone binary or as a Kubernetes workload.
+Choose the deployment method that best fits the environment where the edge will
+run.
+
+{{< tabs >}}
+
+{{< tab label="Binary" >}}
+
+### Build `plakar-edge`
+
+The standalone edge is currently built from source. The source code is available
+in the [PlakarKorp/plakar-edge](https://github.com/PlakarKorp/plakar-edge)
+repository.
+
+Build it with:
 
 ```sh
 $ make
-
-# or
-
+# OR
 $ go build -o plakar-edge .
 ```
 
-Future releases will provide prebuilt binaries, and edge functionality will
-eventually be integrated directly into the `plakar` CLI.
+Prebuilt binaries will be provided in a future release, and edge functionality
+will eventually be integrated directly into the `plakar` CLI.
 
-{{< /step >}}
+### Enroll the edge
 
-{{< step >}}
-
-## Enabling edge enrollment
-
-New edges authenticate using an enrollment key generated by the Control Plane.
-Edge enrollment is disabled by default.
-
-To enable enrollment:
-
-1. Open **Settings**.
-2. Select the **General** tab.
-3. Under **Edge Enrollment**, click **Configure**.
-4. Enable enrollment.
-
-![control plane general settings](../images/general-settings.png)
-
-Once enabled, PCP generates an enrollment key. New edges use this key during
-their first startup to obtain an authentication token. You can regenerate the
-key at any time.
-
-Enrollment only needs to remain enabled while new edges are joining the Control
-Plane and can be disabled once all required edges have been registered. Existing
-edges continue to authenticate using their stored token even after enrollment
-has been disabled.
-
-{{< /step >}}
-
-{{< step >}}
-
-## Enrolling an edge
-
-Start the edge for the first time using the enrollment key:
+Start the edge with the Control Plane URL, enrollment key, and organization it
+should join:
 
 ```sh
 $ plakar-edge \
   -control-plane https://plakman.example.com \
   -enroll <enrollment-key> \
+  -organization <organization-id> \
   -name edge-paris-1 \
   -tags env:prod,zone:eu-1 \
   -state-dir /var/lib/plakar-edge \
   -pkg /var/lib/plakar-edge/pkgs
 ```
 
-- **`-control-plane`**: **Required.** Base URL of the Plakar Control Plane.
-- **`-enroll`**: **Required on first run only.** Enrollment key. Not needed on
-  subsequent restarts once the edge has stored its token. Can also be supplied
-  via the `PLAKAR_EDGE_ENROLL_KEY` environment variable instead of the flag.
-- **`-name`**: **Optional.** Defaults to the hostname. Display name shown in the
-  Control Plane.
-- **`-tags`**: **Optional.** Comma-separated list of tags self-reported to the
-  Control Plane on every poll (e.g. `env:prod,zone:eu-1`), letting it target
-  this edge by tag match.
-- **`-state-dir`**: **Optional.** Defaults to `/var/lib/plakar-edge`. Directory
-  used to store the edge identity and authentication token.
-- **`-pkg`**: **Optional.** Defaults to `<state-dir>/pkg`. Base directory used
-  to store downloaded connector packages.
-- **`-poll-hold`**: **Optional.** Defaults to `30s`. Expected server-side
-  long-poll duration.
-- **`-listen`**: **Optional.** Defaults to `127.0.0.1:9877`. Address for the
-  supervision HTTP server (`/health`, `/ready`, `/metrics`). Can be set to an
-  empty string to disable it.
-- **`-metrics`**: **Optional.** Defaults to `true`. Enable Prometheus metrics on
-  the supervision endpoint.
+The enrollment key and organization are only required for the first startup.
+After successful enrollment, the edge stores its identity and authentication
+token in its state directory and reuses them on subsequent starts.
 
-After a successful enrollment, the edge stores its identity and authentication
-token in `-state-dir`.
+For subsequent starts, you can therefore run:
 
-{{< /step >}}
+```sh
+$ plakar-edge \
+  -control-plane https://plakman.example.com \
+  -name edge-paris-1 \
+  -tags env:prod,zone:eu-1 \
+  -state-dir /var/lib/plakar-edge \
+  -pkg /var/lib/plakar-edge/pkgs
+```
 
-{{< /steps >}}
+### Configure the edge
 
-## Restarting an enrolled edge
+The most important options are:
 
-Once enrolled, the edge no longer requires the `-enroll` option. On subsequent
-starts, the stored authentication token is reused automatically.
+| Option           | Required  | Description                                                                                                            |
+| ---------------- | --------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `-control-plane` | Yes       | Base URL of the Plakar Control Plane.                                                                                  |
+| `-enroll`        | First run | Enrollment key used to register the edge. It can also be provided through `PLAKAR_EDGE_ENROLL_KEY`.                    |
+| `-organization`  | First run | Identifier of the organization the edge joins. It can also be provided through `PLAKAR_EDGE_ORGANIZATION`.             |
+| `-name`          | No        | Name displayed for the edge in PCP. Defaults to the hostname.                                                          |
+| `-tags`          | No        | Comma-separated tags reported by the edge on each poll. Tags can be used to target work to matching edges.             |
+| `-state-dir`     | No        | Directory used to store the edge identity and authentication token. Defaults to `/var/lib/plakar-edge`.                |
+| `-pkg`           | No        | Directory used for downloaded connector packages. Defaults to `<state-dir>/pkg`.                                       |
+| `-poll-hold`     | No        | Expected server-side long-poll duration. Defaults to `30s`.                                                            |
+| `-listen`        | No        | Address of the supervision HTTP server. Defaults to `127.0.0.1:9877`. Set it to an empty string to disable the server. |
+| `-metrics`       | No        | Enables the Prometheus `/metrics` endpoint. Defaults to `true`.                                                        |
+
+Tags are useful when you have multiple edges and want PCP to select an edge
+based on its environment. For example:
+
+```text
+env:prod,zone:eu-1
+```
+
+An edge can report multiple tags, and PCP can use those tags when assigning
+work.
+
+{{< /tab >}}
+
+{{< tab label="Kubernetes" >}}
+
+### Deploy the edge
+
+Each release provides a container image and Helm chart:
+
+```text
+ghcr.io/plakarkorp/plakar-edge
+oci://ghcr.io/plakarkorp/charts/plakar-edge
+```
+
+The Helm chart runs each edge as an independent StatefulSet replica. Each
+replica receives its own identity when it enrolls with the Control Plane.
+
+The edge stores its identity and package cache on persistent storage. This is
+important because restarting a pod should not cause it to enroll as a new edge.
+
+Each replica also has a stable hostname, which is used as its edge name by
+default.
+
+### Store the enrollment key
+
+Store the enrollment key in a Kubernetes Secret rather than putting it directly
+in the Helm values:
+
+```sh
+$ kubectl create secret generic plakar-edge-enroll-key \
+  --from-literal=enroll-key=<enrollment-key>
+```
+
+The chart references the Secret by name, keeping the enrollment key out of
+`values.yaml`, rendered manifests, and Helm history.
+
+### Install the chart
+
+For example, to run three edges:
+
+```sh
+$ helm install my-edges oci://ghcr.io/plakarkorp/charts/plakar-edge \
+  --set controlPlane=https://plakman.example.com \
+  --set organization=<organization-id> \
+  --set enrollKey.secretName=plakar-edge-enroll-key \
+  --set replicaCount=3
+```
+
+Each replica enrolls independently and appears as a separate edge in the Control
+Plane.
+
+Without `--version`, Helm installs the latest published chart. To pin a release,
+specify the chart version:
+
+```sh
+--version <version>
+```
+
+The chart automatically uses the image version associated with the selected
+chart release.
+
+### Configure the chart
+
+The main values for an edge deployment are:
+
+| Value                          | Default                          | Description                                                                     |
+| ------------------------------ | -------------------------------- | ------------------------------------------------------------------------------- |
+| `controlPlane`                 | `""`                             | Base URL of the Plakar Control Plane. Required.                                 |
+| `organization`                 | `""`                             | Identifier of the organization the edges should join. Required.                 |
+| `enrollKey.secretName`         | `""`                             | Existing Secret containing the enrollment key. Required.                        |
+| `enrollKey.secretKey`          | `enroll-key`                     | Key containing the enrollment key inside the Secret.                            |
+| `replicaCount`                 | `1`                              | Number of independent edges to run.                                             |
+| `tags`                         | `""`                             | Tags reported by every edge.                                                    |
+| `pollHold`                     | `""`                             | Long-poll duration. An empty value uses the binary default.                     |
+| `persistence.size`             | `5Gi`                            | Storage allocated to each edge.                                                 |
+| `persistence.storageClassName` | `""`                             | StorageClass used for the edge volume. An empty value uses the cluster default. |
+| `persistence.mountPath`        | `/data`                          | Mount point for the edge's persistent data.                                     |
+| `image.repository`             | `ghcr.io/plakarkorp/plakar-edge` | Edge container image repository.                                                |
+| `image.tag`                    | `""`                             | Edge image tag. An empty value uses the chart's application version.            |
+
+The chart also supports standard Kubernetes scheduling and resource settings
+such as `resources`, `serviceAccount`, `nodeSelector`, `tolerations`, and
+`affinity`.
+
+To see all available values:
+
+```sh
+$ helm show values oci://ghcr.io/plakarkorp/charts/plakar-edge
+```
+
+{{< /tab >}}
+
+{{< /tabs >}}
 
 ## Supervision and metrics
 
-The edge exposes a lightweight HTTP server for supervision and monitoring.
+An edge can expose a small HTTP server for health checks and monitoring.
 
-By default, this server listens on `127.0.0.1:9877`. Configure `-listen` with a
-different address if external monitoring systems need to reach it, or set it to
-an empty string to disable the server entirely.
+The server listens on `127.0.0.1:9877` by default. If an external monitoring
+system needs to access it, configure `-listen` with an address reachable from
+that system.
 
-- **`/health`**: Returns `200 OK` while the edge process is running. Suitable
-  for liveness checks.
-- **`/ready`**: Returns `200 OK` only after the edge has successfully enrolled
-  and is polling the Control Plane. Returns `503` otherwise. Suitable for
-  readiness checks.
-- **`/metrics`**: Exposes host, process, Go runtime, and node-exporter metrics
-  in Prometheus format.
+The server provides three endpoints:
 
-The `-metrics` flag controls whether the `/metrics` endpoint is exposed.
+- `/health` reports whether the edge process is running. It returns `200 OK`
+  while the process is alive.
+- `/ready` reports whether the edge has successfully enrolled and is polling the
+  Control Plane. It returns `200 OK` when ready and `503` otherwise.
+- `/metrics` exposes host, process, Go runtime, and node-exporter metrics in
+  Prometheus format.
+
+The `/metrics` endpoint can be disabled with `-metrics=false`.
+
+For Kubernetes deployments, these endpoints are primarily useful for external
+monitoring. The edge itself does not require inbound connectivity to perform its
+normal work.
 
 ## Secrets
 
-When an edge executes a task, PCP resolves the required secrets and securely
-provides them to the edge for the duration of that task. This includes
-repository credentials such as the repository passphrase.
+Secrets required by a task remain managed by the Control Plane.
 
-## Running tasks on an edge
+When PCP assigns a task to an edge, it resolves the secrets required for that
+operation and provides them to the edge for the duration of the task. This can
+include repository credentials such as a repository passphrase.
 
-Scheduled tasks run on the PCP appliance by default. To execute a task on an
-edge instead, select the desired edge in the **Advanced** section when creating
-or editing a scheduled task. See
-[Scheduled Tasks](../../operations/scheduling/tasks) documentation for more
-information.
+The edge therefore does not need to maintain a separate copy of the credentials
+required by every task it executes.
+
+## Run tasks on an edge
+
+Scheduled tasks run on the Control Plane by default.
+
+To execute a task through an edge, configure the task to use the desired edge
+when creating or editing the schedule. The edge then becomes the executor for
+that task rather than the Control Plane appliance.
+
+This allows you to choose where an operation runs based on the network location
+of the resources it protects.
+
+See [Scheduled Tasks](../../scheduling/tasks) for information about configuring
+scheduled operations.
 

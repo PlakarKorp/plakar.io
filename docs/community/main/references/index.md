@@ -16,10 +16,6 @@ If you're looking for learning materials or conceptual explanations, see the
 
 
 
-## [Plakar Ptar](https://www.stg.plakar.io/docs/community/main/references/ptar/index.md)
-
-
-
 ## [Command line syntax](https://www.stg.plakar.io/docs/community/main/references/command-line-syntax/index.md)
 
 

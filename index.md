@@ -7,6 +7,7 @@
 ## [Plakar Blog](https://www.stg.plakar.io/posts/index.md)
 
 - [Agentless VSS and SQL Server backup now available in Plakar](https://www.stg.plakar.io/posts/2026-09-08/agentless-vss-sql-server-backup/index.md): VSS and SQL Server backups are now free for registered Plakar users: agentless over SSH, encrypted and deduplicated into an open, portable Kloset store. The connectors are closed source, built for Control Plane. Active Directory recovery is a Plakar Control Plane capability.
+- [Build a Docs Wayback Machine with Astro](https://www.stg.plakar.io/posts/2026-09-07/docs-wayback-machine/index.md): Serve any past version of your documentation at a URL, decrypted from a Plakar snapshot on demand, with pages, images, and PDFs restored version-correct.
 - [Plakar v1.1.5 is out](https://www.stg.plakar.io/posts/2026-09-06/plakar-v1.1.5-is-out/index.md): plakar v1.1.5 is out: a security-focused patch release. Unencrypted stores are now refused unless you explicitly opt in, plugins are signature-checked at install time, and the HTTP store and server got hardened. Fully backward compatible, nothing to migrate.
 - [10 Reasons You Need an Independent, Offsite Backup in 2026](https://www.stg.plakar.io/posts/2026-08-12/independent-backup-reasons/index.md): Cloud storage isn&rsquo;t a backup strategy. 10 reasons you need an independent, offsite backup you control, from ransomware and rogue AI agents to climate, conflict, and storage cost.
 - [Portable Backups for Managed Postgres with pg_dump and Plakar](https://www.stg.plakar.io/posts/2026-07-17/portable-backups-for-managed-postgres-with-pgdump-and-plakar/index.md): Managed Postgres backups can&rsquo;t be downloaded. Here&rsquo;s how Plakar wraps pg_dump into encrypted and deduplicated snapshots you can own.
@@ -48,6 +49,8 @@
 
 
 ## [Plakar Integrations](https://www.stg.plakar.io/integrations/index.md)
+
+- [Impossible Cloud](https://www.stg.plakar.io/integrations/impossible-cloud/index.md): Protect your data with Plakar on Impossible Cloud. Immutable, encrypted snapshots stored on fully S3-compatible object storage built under European data jurisdiction, with no egress fees, no API charges, and enterprise-grade compliance.
 
 - [Google Cloud (GCP)](https://www.stg.plakar.io/integrations/gcp/index.md): Connect a Google Cloud project to Plakar Control Plane and automatically discover the resources running in it, keeping an up-to-date inventory as Cloud Storage buckets and CloudSQL instances are created or removed.
 
@@ -134,6 +137,7 @@
 - [Plakar v1.1.3](index.md): Download binaries and packages for Plakar v1.1.3. All links are served from plakar.io.
 - [Plakar v1.1.4](index.md): Download binaries and packages for Plakar v1.1.4. All links are served from plakar.io.
 - [Plakar v1.1.5](index.md): Download binaries and packages for Plakar v1.1.5. All links are served from plakar.io.
+- [Plakar v1.1.6](index.md): Download binaries and packages for Plakar v1.1.6. All links are served from plakar.io.
 
 
 ## [Branding](https://www.stg.plakar.io/branding/index.md)

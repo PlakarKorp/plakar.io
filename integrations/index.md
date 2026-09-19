@@ -4,6 +4,10 @@
 
 
 
+## [Impossible Cloud](https://www.stg.plakar.io/integrations/impossible-cloud/index.md)
+
+
+
 ## [Google Cloud (GCP)](https://www.stg.plakar.io/integrations/gcp/index.md)
 
 
