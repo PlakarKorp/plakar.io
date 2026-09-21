@@ -63,7 +63,7 @@ date: 2026-09-11
 
 resource: S3
 
-image: img/integrations/impossible-cloud.jpeg
+image: img/integrations/impossible-cloud.png
 ---
 
 ## Why Impossible Cloud is a natural fit for backup storage
