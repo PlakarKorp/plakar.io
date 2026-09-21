@@ -43,8 +43,8 @@ The integration includes two connectors:
 
 ## Installation
 
-The MSSQL integration is distributed as a pre-built package only. Unlike most
-Community integrations, it has no public source repository, so
+The Microsoft SQL Server integration is distributed as a pre-built package only.
+Unlike most Community integrations, it has no public source repository, so
 `plakar pkg build` cannot produce it. It remains free to install with a Plakar
 account. See
 [source availability](../../guides/managing-packages#source-availability) for
@@ -78,13 +78,21 @@ connects as. See
 [Setting Up OpenSSH Server on Windows](/docs/control-plane/guides/windows/windows-openssh-setup)
 for the full procedure.
 
+### Host key verification
+
+The MSSQL integration verifies the Windows host against the `known_hosts` file
+of the account running `plakar`. The host key must be verified and recorded in
+that file before running a backup. See
+[SSH host key verification](/docs/control-plane/guides/windows/windows-openssh-setup/#community-integrations-ssh-host-key-verification)
+documentation for more information.
+
 ## Configuration options
 
 The same options apply to the source and destination connectors.
 
 | Option                | Required | Description                                                                                                                                                                  |
 | --------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `location`            | Yes      | An SFTP-style URL to the Windows host, drive, and path. Must begin with `mssql://`.                                                             |
+| `location`            | Yes      | An SFTP-style URL to the Windows host, drive, and path. Must begin with `mssql://`.                                                                                          |
 | `username`            | Yes      | The name of an administrative user account to perform the operation with.                                                                                                    |
 | `port`                | No       | The SSH server port. Defaults to `22`.                                                                                                                                       |
 | `root`                | No       | The absolute path to the Windows drive and directory to back up. Defaults to `/C:/Program Files/Microsoft SQL Server`. Use a subdirectory to target a single instance.       |
