@@ -46,9 +46,9 @@ With Resilience as Code, backup is no longer a separate process added on top of 
 - **Encrypted end to end, so the storage sees nothing.** Keys stay under your control, and your hosting provider cannot read your data.
 - **Proven continuously.** Recovery is not a test you run once and hope it still works when you need it. Snapshots are verified on an ongoing basis, and you can browse into one and pull back exactly what you need.
 
-A few months back, we took a first step in that direction by introducing a [Kubernetes integration](/posts/2026-02-18/backing-up-kubernetes-clusters-with-plakar/). Today, we're taking another step towards making that vision a reality by introducing the **Plakar Kubernetes Operator**. It exposes the entire Plakar Control Plane as Kubernetes Custom Resources and keeps them continuously reconciled, so you declare resilience for everything you run in the same way you already manage your infrastructure.
-
 {{< figure src="slide-3-the-model.png" alt="The four terms of the resilience model: inventory, policy, reconciliation, assertion." caption="Inventory, policy, reconciliation, assertion: the Custom Resources below map onto these four terms." >}}
+
+A few months back, we took a first step in that direction by introducing a [Kubernetes integration](/posts/2026-02-18/backing-up-kubernetes-clusters-with-plakar/). Today, we're taking another step towards making that vision a reality by introducing the **Plakar Kubernetes Operator**. It exposes the entire Plakar Control Plane as Kubernetes Custom Resources and keeps them continuously reconciled, so you declare resilience for everything you run in the same way you already manage your infrastructure.
 
 ## Declare it, and let the operator reconcile it
 
