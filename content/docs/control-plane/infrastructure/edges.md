@@ -248,9 +248,13 @@ The most important options are:
 | `-tags`          | No        | Comma-separated tags reported by the edge on each poll. Tags can be used to target work to matching edges.             |
 | `-state-dir`     | No        | Directory used to store the edge identity and authentication token. Defaults to `/var/lib/plakar-edge`.                |
 | `-pkg`           | No        | Directory used for downloaded connector packages. Defaults to `<state-dir>/pkg`.                                       |
+| `-max-parallel`  | No        | Maximum number of tasks the edge runs concurrently. Defaults to `5`.                                                   |
 | `-poll-hold`     | No        | Expected server-side long-poll duration. Defaults to `30s`.                                                            |
 | `-listen`        | No        | Address of the supervision HTTP server. Defaults to `127.0.0.1:9877`. Set it to an empty string to disable the server. |
 | `-metrics`       | No        | Enables the Prometheus `/metrics` endpoint. Defaults to `true`.                                                        |
+
+`-max-parallel` caps how much work one edge takes on at a time. Tasks assigned
+beyond that limit wait until a running one finishes.
 
 Tags are useful when you have multiple edges and want PCP to select an edge
 based on its environment. For example:
@@ -259,8 +263,8 @@ based on its environment. For example:
 env:prod,zone:eu-1
 ```
 
-An edge can report multiple tags, and PCP can use those tags when assigning
-work.
+An edge can report multiple tags. See [Selecting an edge](#selecting-an-edge)
+for how PCP matches them when assigning work.
 
 {{< /tab >}}
 
@@ -402,3 +406,32 @@ of the resources it protects.
 
 See [Scheduled Tasks](../../scheduling/tasks) for information about configuring
 scheduled operations.
+
+## Selecting an edge
+
+A task can be pinned to a specific edge. When you schedule the task, you can
+specify which edge should run it, and the task is then dispatched to that edge.
+
+Edges can also report tags to the Control Plane. Tags are intended to let tasks
+describe which edges they can run on rather than naming one specific edge. For
+example, a task could eventually target edges tagged `env:prod`, allowing the
+Control Plane to choose any matching edge.
+
+Tag-based task selection is not currently configurable from the Control Plane
+interface. As a result, tasks do not currently carry tag selectors and cannot be
+explicitly targeted using tags.
+
+When a task is not pinned to a specific edge, the Control Plane looks for an
+available edge to run it on. If multiple edges are available, the Control Plane
+distributes tasks across them, preferring the edge that has run a task least
+recently. This allows work to be spread across available edges rather than
+repeatedly using the same one.
+
+The Control Plane also prefers dispatching a task to an edge rather than running
+the task on the Control Plane itself.
+
+> [!NOTE]
+>
+> Edge selection is being improved to provide more flexible task scheduling and
+> horizontal scaling. Tag-based selection and task dispatch are being expanded,
+> which will make it easier to distribute workloads across multiple edges.
