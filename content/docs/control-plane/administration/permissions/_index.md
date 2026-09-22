@@ -62,10 +62,12 @@ permission was granted in:
 
 ## Access levels
 
-Every resource in a family is held at one of four levels:
+Every resource in a family is held at one of five levels:
 
 - **No access**, the permission cannot be reached at all.
 - **View**, it can be read but not changed.
+- **Run**, it can be read and the work it defines can be started, but it cannot
+  be changed.
 - **Configure**, it can be read and changed, but not deleted, and who else can
   reach it cannot be changed either.
 - **Full**, everything above, including deleting and granting access to it.
@@ -75,5 +77,12 @@ Every resource in a family is held at one of four levels:
 Access is granted by assigning a role. A role is a preset set of capabilities,
 and the accesses it grants are always a combination of capabilities described in
 the three families.
+
+Roles are offered in two sets. **Standard** holds the four that cover most
+cases: [Owner](./owner), [Administrator](./administrator),
+[Operator](./operator), and [Auditor](./auditor). **Advanced** holds every other
+role, each of which narrows access to one area of the system, such as policies,
+secret providers, or edges, or is meant for a non-human identity. Switching to
+the advanced set is what makes those available to grant.
 
 {{< children description="true" >}}

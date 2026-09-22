@@ -1,7 +1,7 @@
 ---
 title: "Owner"
 date: "2026-09-08T00:00:00Z"
-weight: 2
+weight: 3
 summary: "Full control over one organization, and nothing on the deployment."
 ---
 

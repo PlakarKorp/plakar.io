@@ -17,10 +17,14 @@ It holds full access to every permission in all three families. Its resource
 access is not restricted to a subset, it covers every resource of every class in
 the organization.
 
-The **Superuser** is the only role that reaches the deployment family. Because
-the instance belongs to no organization, that access extends to every
-organization hosted on it, and it is what allows the **Superuser** to change
-[Control Plane settings](../../settings/control-plane) and manage the license.
+The **Superuser** reaches the deployment family, which is what allows it to
+change [Control Plane settings](../../settings/control-plane) and manage the
+license. Because the instance belongs to no organization, that access extends to
+every organization hosted on it.
+
+The [Platform Admin](../platform-admin) holds that same deployment access and
+nothing else. It maintains the instance and administers no organization, which
+is what separates it from the **Superuser**.
 
 ## Organization
 

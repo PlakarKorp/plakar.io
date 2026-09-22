@@ -48,8 +48,10 @@ You then create an admin account for this specific instance. This is a local
 account on the appliance, separate from the [owner email](#owner-email). You can
 use the same email address or a different one.
 
-This account holds the **Superuser** role, which is currently required to change
-[Control Plane settings](../../administration/settings/control-plane).
+This account holds the **Superuser** role, which grants access to
+[Control Plane settings](../../administration/settings/control-plane) and the
+license. The [Platform Admin](../../administration/permissions/platform-admin)
+role grants the same access and can be assigned later.
 
 {{< /step >}}
 
