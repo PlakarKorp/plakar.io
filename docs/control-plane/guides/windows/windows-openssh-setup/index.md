@@ -127,5 +127,34 @@ accepting.
 
 {{< /step >}}
 
+{{< step >}}
+
+## Community integrations: SSH host key verification
+
+> [!NOTE]
+>
+> This section applies only to the community VSS, MSSQL, and Active Directory
+> integrations. Plakar Control Plane handles host key verification itself.
+
+The community integrations use the `known_hosts` file of the account running
+`plakar` to verify the Windows host. Before running a backup, you must establish
+this trust yourself.
+
+On the Windows host, display the fingerprint of its SSH host key:
+
+```powershell
+ssh-keygen -lf C:\ProgramData\ssh\ssh_host_ed25519_key.pub
+```
+
+Then, from the machine running `plakar`, connect to the Windows host using the
+account that will run the backup. Compare the fingerprint presented by the SSH
+client with the fingerprint shown above. Accept the host key only when the
+fingerprints match.
+
+This records the verified host key in that account's `known_hosts` file, which
+the community integrations use for subsequent connections.
+
+{{< /step >}}
+
 {{< /steps >}}
 

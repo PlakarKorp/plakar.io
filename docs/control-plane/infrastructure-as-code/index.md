@@ -30,4 +30,12 @@ see the [installation documentation](../intro/installation).
 - [Scheduling](https://www.plakar.io/docs/control-plane/infrastructure-as-code/kubernetes-operator/scheduling/index.md): Define scheduled backup, check, and sync tasks using the plakar-operator.
 
 
+## [Terraform Provider](https://www.plakar.io/docs/control-plane/infrastructure-as-code/terraform/index.md)
+
+- [Stores and Connectors](https://www.plakar.io/docs/control-plane/infrastructure-as-code/terraform/stores-and-connectors/index.md): Declaring store, source and destination apps with plakar_store and plakar_connector.
+- [Scheduling](https://www.plakar.io/docs/control-plane/infrastructure-as-code/terraform/scheduling/index.md): Declaring backup, prune, sync and check schedules with plakar_schedule.
+- [Inventories](https://www.plakar.io/docs/control-plane/infrastructure-as-code/terraform/inventories/index.md): Declaring managed and self-managed inventories, and the resources inside them.
+- [Organizations and Access](https://www.plakar.io/docs/control-plane/infrastructure-as-code/terraform/organizations/index.md): Declaring organizations, their members, and the roles those members hold.
+
+
 

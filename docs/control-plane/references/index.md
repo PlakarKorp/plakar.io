@@ -16,4 +16,8 @@ of the documentation instead.
 
 
 
+## [Terraform Provider](https://www.plakar.io/docs/control-plane/references/terraform-provider/index.md)
+
+
+
 
