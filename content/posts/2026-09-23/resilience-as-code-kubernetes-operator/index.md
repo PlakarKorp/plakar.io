@@ -26,7 +26,7 @@ Platform teams run their clusters, networking, secrets and policies as code. All
 
 Backup is the exception. For most engineering teams it is still done manually in a complex UI console, unversioned and managed in silos. And because it is manual, it drifts. Your data surface keeps growing on its own: a team ships a service with a new PersistentVolumeClaim, someone stands up a database in a namespace the backup admin has never heard of. The configuration in the console does not know any of it exists, so it silently falls behind. That makes your backups impossible to reconstruct from source, hard to audit and slow to operate.
 
-{{< figure src="slide-1-blind-spot.png" alt="Two-column comparison of modern infrastructure practice against traditional data protection." caption="Infrastructure is declared, measured and rebuilt. Data is still scheduled and hoped for." >}}
+{{< figure src="slide-1-blind-spot.png" alt="Two-column comparison of modern infrastructure practice against traditional data protection." caption="Infrastructure is declared, measured and rebuilt. Data is still lagging behind." >}}
 
 GitOps already solved this for the rest of your infrastructure. There is no good reason to leave data protection out. At Plakar, we believe **resilience as code is the future of backup**. A future where backup is no longer a separate process, it is driven from the tools that run your platform.
 
