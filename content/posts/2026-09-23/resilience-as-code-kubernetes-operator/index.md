@@ -30,6 +30,10 @@ Backup is the exception. For most engineering teams it is still done manually in
 
 GitOps already solved this for the rest of your infrastructure. There is no good reason to leave data protection out. At Plakar, we believe **resilience as code is the future of backup**. A future where backup is no longer a separate process, it is driven from the tools that run your platform.
 
+It is worth being precise about why that model works. What made infrastructure reliable was never the YAML, it was the loop behind it: a controller that continuously reconciles reality against the declared state, notices drift and corrects it. Teams stopped hoping their systems were correct and started proving it, continuously. Backup should be driven by the same loop.
+
+{{< figure src="slide-2-infrastructure-became-code.png" alt="Continuous loop diagram: declare, reconcile, observe drift, correct." caption="The control loop, not the YAML, is what made infrastructure reliable." >}}
+
 ## Where are you on the resilience maturity curve?
 
 That's a question we often ask our users. The responses we get vary quite a bit in terms of level of encryption, immutability, restorability, number of copies and operational automations.
@@ -83,8 +87,6 @@ Three details matter here. `protocol: k8s+csi` reads the volume straight through
 Add a `Store` and a `ScheduleBackup`, and that is the entire backup policy for the app: four files, in Git, reviewed together.
 
 ## Reconciliation, not a cron job
-
-{{< figure src="slide-2-infrastructure-became-code.png" alt="Continuous loop diagram: declare, reconcile, observe drift, correct." caption="The control loop, not the YAML, is what made infrastructure reliable." >}}
 
 The point is not that you can apply a YAML file. It is that the operator runs a control loop. Your desired state lives in Git. Argo CD or Flux syncs it into the cluster. The operator watches those resources and continuously drives the Control Plane toward the declared state, then reports back. Each resource exposes its Control Plane identity through `status.id` and its health through standard conditions (`Available`, `Progressing`, `Degraded`), so `kubectl get` and `kubectl describe` work exactly as you expect.
 
