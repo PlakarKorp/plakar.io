@@ -117,7 +117,7 @@ On success, a `.ptar` archive is generated in the current directory. Install it
 with:
 
 ```bash
-$ plakar pkg add ./s3_v1.0.0_darwin_arm64.ptar
+$ plakar pkg add -allow-unsigned ./s3_v1.0.0_darwin_arm64.ptar
 ```
 
 ### Source availability

@@ -85,7 +85,7 @@ A package archive will be created in the current directory (e.g.,
 Install the package:
 
 ```bash
-$ plakar pkg add ./rclone_v1.0.0_darwin_arm64.ptar
+$ plakar pkg add -allow-unsigned ./rclone_v1.0.0_darwin_arm64.ptar
 ```
 
 Verify installation:
