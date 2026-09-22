@@ -63,7 +63,7 @@ date: 2026-09-11
 
 resource: S3
 
-image: img/integrations/impossible-cloud.jpeg
+image: img/integrations/impossible-cloud.png
 ---
 
 ## Why Impossible Cloud is a natural fit for backup storage
@@ -102,11 +102,9 @@ or shared across services remain a risk:
 - **No recovery path**: Without an independent layer of protection, there is
   nothing to restore from if backup data is tampered with.
 
-Plakar mitigates these risks by adding end-to-end encryption and immutable
-snapshots on top of Impossible Cloud. Even if account credentials are
-compromised, Plakar's encryption ensures backup data cannot be read or silently
-tampered with, independent of any Object Lock policy configured on the bucket
-itself.
+Plakar encrypts snapshots end to end before they reach the bucket, so their
+contents stay unreadable to anyone holding the API key, and verification reports
+any alteration to a stored snapshot.
 
 ## How Plakar works with Impossible Cloud
 
