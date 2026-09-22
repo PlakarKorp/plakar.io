@@ -102,9 +102,11 @@ Unlike Velero which protects what runs inside the cluster, Plakar lets your clus
 
 ## Terraform and Ansible, too
 
-The Kubernetes Operator is not the only way to declare resilience as code. Plakar also ships [Terraform](/docs/control-plane/infrastructure-as-code/terraform/) and [Ansible](/docs/control-plane/infrastructure-as-code/ansible/) providers, so you can express the same policies from whichever tool your platform already standardizes on. Sources, stores and schedules become resources you version and review alongside the rest of your infrastructure.
+The Kubernetes Operator is not the only way to declare resilience as code. Plakar also ships [Terraform](/docs/control-plane/infrastructure-as-code/terraform/) and [Ansible](/docs/control-plane/infrastructure-as-code/ansible/) providers that configure the Plakar Control Plane from code. Stores, connectors, schedules, inventories, organizations and the roles held within them are declared in `.tf` or Ansible files and reconciled with `terraform apply` (or its Ansible equivalent), instead of being created by hand in the web interface.
 
 {{< figure src="terraform-ansible-providers.png" alt="The Policy concept: desired state expressed as intent in a policy.yaml, available through the Terraform and Ansible providers." caption="Policy is intent, not procedure. Declare it once and apply it through the Terraform or Ansible provider." >}}
+
+Under the hood, both providers call the Control Plane API to create, update and read those objects. Plakar still performs every backup, restore, sync and check itself, so you version and review your resilience like the rest of your infrastructure, whichever front-end your platform team prefers.
 
 ## Getting Started
 
