@@ -27,4 +27,8 @@ resources:
 
 
 
+## [MongoDB](https://www.plakar.io/docs/control-plane/resources/database/mongodb/index.md)
+
+
+
 

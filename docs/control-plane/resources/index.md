@@ -103,6 +103,7 @@ required to use each one as a source, store, or destination.
 - [MySQL](https://www.plakar.io/docs/control-plane/resources/database/mysql/index.md): How to configure a MySQL resource in Plakar Control Plane.
 - [PostgreSQL](https://www.plakar.io/docs/control-plane/resources/database/postgres/index.md): How to configure a PostgreSQL resource in Plakar Control Plane.
 - [etcd](https://www.plakar.io/docs/control-plane/resources/database/etcd/index.md): How to configure an etcd resource in Plakar Control Plane.
+- [MongoDB](https://www.plakar.io/docs/control-plane/resources/database/mongodb/index.md): How to configure a MongoDB resource in Plakar Control Plane.
 
 
 ## [File Storage](https://www.plakar.io/docs/control-plane/resources/file-storage/index.md)
