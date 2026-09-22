@@ -28,11 +28,11 @@ Backup is the exception. For most engineering teams it is still done manually in
 
 {{< figure src="slide-1-blind-spot.png" alt="Two-column comparison of modern infrastructure practice against traditional data protection." caption="Infrastructure is declared, measured and rebuilt. Data is still lagging behind." >}}
 
-GitOps already solved this for the rest of your infrastructure. There is no good reason to leave data protection out. At Plakar, we believe **resilience as code is the future of backup**. A future where backup is no longer a separate process, it is driven from the tools that run your platform.
-
-It is worth being precise about why that model works. What made infrastructure reliable was never the YAML, it was the loop behind it: a controller that continuously reconciles reality against the declared state, notices drift and corrects it. Teams stopped hoping their systems were correct and started proving it, continuously. Backup should be driven by the same loop.
+GitOps already solved this for the rest of your infrastructure. There is no good reason to leave data protection out. What made infrastructure as code popular was never the YAML, it was the loop behind it: a controller that continuously reconciles reality against the declared state, notices drift and corrects it.
 
 {{< figure src="slide-2-infrastructure-became-code.png" alt="Continuous loop diagram: declare, reconcile, observe drift, correct." caption="The control loop, not the YAML, is what made infrastructure reliable." >}}
+
+Backup should be driven by the same loop. That's why we believe **resilience as code is the future of backup**. A future where backup is no longer a separate process, it is driven from the tools that run your platform.
 
 ## Where are you on the resilience maturity curve?
 
