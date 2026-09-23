@@ -27,7 +27,8 @@ connectivity to every source and destination.
 
 An edge is useful when the systems being protected are not directly reachable
 from the Control Plane, when it is more efficient to run the operation close to
-those systems, or when the appliance on its own cannot keep up with the work.
+those systems, when the appliance on its own cannot keep up with the work, or
+when an integration needs tools that the appliance does not carry.
 
 For example, you might deploy an edge inside a datacenter containing virtual
 machines and databases, while the Control Plane runs elsewhere. The edge can
@@ -47,6 +48,8 @@ Edges are particularly useful for:
   what one appliance can run.
 - Keeping the Control Plane isolated from networks containing protected
   resources.
+- Running the few integrations that depend on external tools, which can be
+  installed on the edge host.
 
 An edge belongs to a single organization. You can only access the edges
 belonging to the organization you are signed in to, subject to your permissions
@@ -140,6 +143,31 @@ An edge needs network access to two things:
 
 The Control Plane itself does not need network access to those systems. The edge
 provides that connectivity when it executes a task.
+
+### Integrations that need external tools
+
+Most integrations are agentless. They communicate directly with the resource
+they manage and do not require additional software on the machine running the
+task. For example, the [Windows VSS integration](../../resources/compute/vss)
+connects to the Windows host over SSH and does not require any additional tools
+on the Control Plane or edge.
+
+Some integrations such as MongoDB, PostgreSQL and MySQL instead rely on
+utilities provided by the vendor. These utilities must be installed on the
+machine that executes the task. The
+[MongoDB integration](../../resources/database/mongodb), for example, uses
+`mongosh`, `mongodump`, and `mongorestore`, which must be available in the
+`PATH` of the process running the task.
+
+These utilities are not included in the appliance, and the appliance is not
+intended to be extended with additional software. Tasks that require external
+tools should therefore run on an [edge](../../infrastructure/edges) where the
+required tools can be installed.
+
+Install the tools required by the integration on the edge host, then configure
+the task to run on that edge. As deployments grow, edges can be equipped with
+different sets of tools so that workloads can be distributed to the machines
+capable of running them.
 
 ## Enable edge enrollment
 
