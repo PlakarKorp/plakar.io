@@ -506,7 +506,10 @@ Control Plane can choose among them instead of depending on a single edge.
 A task is pinned to an edge with the **Run on** field when it is
 [scheduled](../../scheduling/tasks). Targeting by tags is not available in the
 Control Plane interface. It is currently only possible through the `edge_tags`
-option of the [Ansible collection](../../references/ansible-collection).
+option of the [Ansible collection](../../references/ansible-collection) and the
+`edgeTags` field of the
+[Kubernetes operator](../../infrastructure-as-code/kubernetes-operator/scheduling#running-tasks-on-a-remote-edge)
+schedule resources.
 
 > [!NOTE]
 >
