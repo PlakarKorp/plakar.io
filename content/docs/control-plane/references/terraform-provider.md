@@ -1,6 +1,6 @@
 ---
 title: "Terraform Provider"
-date: "2026-09-11T10:13:41Z"
+date: "2026-09-23T06:42:38Z"
 weight: 2
 summary:
   "Argument-by-argument reference for every resource and data source in the
@@ -10,8 +10,8 @@ summary:
 # Terraform provider reference
 
 This page lists every argument and attribute of every resource and data source
-in the `plakarkorp/plakar` Terraform provider. For an introduction to what these
-resources are and how to use them, see
+in the `plakarkorp/plakar` Terraform provider, version 0.10.1. For an
+introduction to what these resources are and how to use them, see
 [Terraform Provider](../../infrastructure-as-code/terraform).
 
 ## Provider
@@ -82,16 +82,10 @@ resource "plakar_connector" "web" {
 
 | Attribute | Type   | Description                            |
 | --------- | ------ | -------------------------------------- |
-| `id`      | String | The ID of this resource.               |
+| `id`      | String |                                        |
 | `urn_id`  | String | Resolved id of the inventory resource. |
 
 #### Import
-
-Import is supported using the following syntax:
-
-The
-[`terraform import` command](https://developer.hashicorp.com/terraform/cli/commands/import)
-can be used, for example:
 
 ```shell
 terraform import plakar_connector.example <uuid>
@@ -141,12 +135,6 @@ resource "plakar_grant" "nightly_runs" {
 
 #### Import
 
-Import is supported using the following syntax:
-
-The
-[`terraform import` command](https://developer.hashicorp.com/terraform/cli/commands/import)
-can be used, for example:
-
 ```shell
 # <organization_id>/<grant_id>
 terraform import plakar_grant.alice_audits 3f1e4a2c-9b7d-4e0f-8a11-2c5d6e7f8a90/9d8e7f6a-5b4c-4d3e-8f2a-1b0c9d8e7f6a
@@ -193,26 +181,24 @@ resource "plakar_inventory" "aws" {
 
 **Optional**
 
-| Argument   | Type            | Description                                                                                    |
-| ---------- | --------------- | ---------------------------------------------------------------------------------------------- |
-| `aws`      | Block, Optional | Configuration of an aws inventory. (see [below for nested schema](#nestedblock--aws))          |
-| `gcp`      | Block, Optional | Configuration of a gcp inventory. (see [below for nested schema](#nestedblock--gcp))           |
-| `k8s`      | Block, Optional | Configuration of a k8s inventory. (see [below for nested schema](#nestedblock--k8s))           |
-| `ovh`      | Block, Optional | Configuration of an ovh inventory. (see [below for nested schema](#nestedblock--ovh))          |
-| `scaleway` | Block, Optional | Configuration of a scaleway inventory. (see [below for nested schema](#nestedblock--scaleway)) |
-| `vmware`   | Block, Optional | Configuration of a vmware inventory. (see [below for nested schema](#nestedblock--vmware))     |
+| Argument   | Type  | Description                            |
+| ---------- | ----- | -------------------------------------- |
+| `aws`      | Block | Configuration of an aws inventory.     |
+| `gcp`      | Block | Configuration of a gcp inventory.      |
+| `k8s`      | Block | Configuration of a k8s inventory.      |
+| `ovh`      | Block | Configuration of an ovh inventory.     |
+| `scaleway` | Block | Configuration of a scaleway inventory. |
+| `vmware`   | Block | Configuration of a vmware inventory.   |
 
 **Read-Only**
 
-| Attribute | Type   | Description              |
-| --------- | ------ | ------------------------ |
-| `id`      | String | The ID of this resource. |
-
-<a id="nestedblock--aws"></a>
+| Attribute | Type   | Description |
+| --------- | ------ | ----------- |
+| `id`      | String |             |
 
 #### Nested Schema for `aws`
 
-Optional:
+**Optional**
 
 | Argument            | Type              | Description                                             |
 | ------------------- | ----------------- | ------------------------------------------------------- |
@@ -221,32 +207,26 @@ Optional:
 | `region`            | String            | AWS region the discovery runs against.                  |
 | `secret_access_key` | String, Sensitive | Secret access key, when credentials_type is access_key. |
 
-<a id="nestedblock--gcp"></a>
-
 #### Nested Schema for `gcp`
 
-Optional:
+**Optional**
 
 | Argument               | Type              | Description                                                            |
 | ---------------------- | ----------------- | ---------------------------------------------------------------------- |
 | `project_id`           | String            |                                                                        |
 | `service_account_json` | String, Sensitive | Service account key, as JSON. Unset falls back to ambient credentials. |
 
-<a id="nestedblock--k8s"></a>
-
 #### Nested Schema for `k8s`
 
-Optional:
+**Optional**
 
 | Argument     | Type              | Description                                                                            |
 | ------------ | ----------------- | -------------------------------------------------------------------------------------- |
 | `kubeconfig` | String, Sensitive | Kubeconfig granting access to the cluster. Unset falls back to in-cluster credentials. |
 
-<a id="nestedblock--ovh"></a>
-
 #### Nested Schema for `ovh`
 
-Optional:
+**Optional**
 
 | Argument             | Type              | Description                    |
 | -------------------- | ----------------- | ------------------------------ |
@@ -255,11 +235,9 @@ Optional:
 | `consumer_key`       | String, Sensitive |                                |
 | `endpoint`           | String            | OVH API endpoint, e.g. ovh-eu. |
 
-<a id="nestedblock--scaleway"></a>
-
 #### Nested Schema for `scaleway`
 
-Optional:
+**Optional**
 
 | Argument     | Type              | Description |
 | ------------ | ----------------- | ----------- |
@@ -267,11 +245,9 @@ Optional:
 | `project_id` | String            |             |
 | `secret_key` | String, Sensitive |             |
 
-<a id="nestedblock--vmware"></a>
-
 #### Nested Schema for `vmware`
 
-Optional:
+**Optional**
 
 | Argument          | Type              | Description                                          |
 | ----------------- | ----------------- | ---------------------------------------------------- |
@@ -282,12 +258,6 @@ Optional:
 | `username`        | String            |                                                      |
 
 #### Import
-
-Import is supported using the following syntax:
-
-The
-[`terraform import` command](https://developer.hashicorp.com/terraform/cli/commands/import)
-can be used, for example:
 
 ```shell
 terraform import plakar_inventory.fleet 3f1e4a2c-9b7d-4e0f-8a11-2c5d6e7f8a90
@@ -358,12 +328,6 @@ resource "plakar_connector" "db1_dump" {
 
 #### Import
 
-Import is supported using the following syntax:
-
-The
-[`terraform import` command](https://developer.hashicorp.com/terraform/cli/commands/import)
-can be used, for example:
-
 ```shell
 # <inventory_id>/<urn_id>
 terraform import plakar_inventory_resource.db1 3f1e4a2c-9b7d-4e0f-8a11-2c5d6e7f8a90/7b2c1d0e-4f5a-4b6c-9d8e-0a1b2c3d4e5f
@@ -419,12 +383,6 @@ resource "plakar_member" "nightly" {
 
 #### Import
 
-Import is supported using the following syntax:
-
-The
-[`terraform import` command](https://developer.hashicorp.com/terraform/cli/commands/import)
-can be used, for example:
-
 ```shell
 # <organization_id>/<user_id>
 terraform import plakar_member.alice 3f1e4a2c-9b7d-4e0f-8a11-2c5d6e7f8a90/7b2c1d0e-4f5a-4b6c-9d8e-0a1b2c3d4e5f
@@ -468,17 +426,11 @@ resource "plakar_organization" "lyon_production" {
 
 **Read-Only**
 
-| Attribute | Type   | Description              |
-| --------- | ------ | ------------------------ |
-| `id`      | String | The ID of this resource. |
+| Attribute | Type   | Description |
+| --------- | ------ | ----------- |
+| `id`      | String |             |
 
 #### Import
-
-Import is supported using the following syntax:
-
-The
-[`terraform import` command](https://developer.hashicorp.com/terraform/cli/commands/import)
-can be used, for example:
 
 ```shell
 terraform import plakar_organization.lyon 3f1e4a2c-9b7d-4e0f-8a11-2c5d6e7f8a90
@@ -538,26 +490,24 @@ resource "plakar_schedule" "retention" {
 | `ignores`     | List of String | For a backup: path patterns to exclude.                                                                                                                                                |
 | `labels`      | List of String | For a backup: labels stamped on the snapshots. For the other types: only snapshots carrying these tags are considered.                                                                 |
 | `retention`   | Map of Number  | For a prune: the retention rule, as bucket options — minute, hour, day, week, month, year for how many recent buckets to keep, per_minute ... per_year for how many snapshots in each. |
-| `rule`        | Block List     | A recurrence of the schedule. At least one. (see [below for nested schema](#nestedblock--rule))                                                                                        |
 | `target_id`   | String         | Id of the target connector: the store for a backup, the destination store for a sync. A check has none.                                                                                |
+| `rule`        | Block List     | A recurrence of the schedule. At least one.                                                                                                                                            |
 
 **Read-Only**
 
-| Attribute | Type   | Description              |
-| --------- | ------ | ------------------------ |
-| `id`      | String | The ID of this resource. |
-
-<a id="nestedblock--rule"></a>
+| Attribute | Type   | Description |
+| --------- | ------ | ----------- |
+| `id`      | String |             |
 
 #### Nested Schema for `rule`
 
-Required:
+**Required**
 
 | Argument      | Type   | Description           |
 | ------------- | ------ | --------------------- |
 | `periodicity` | Number | Seconds between runs. |
 
-Optional:
+**Optional**
 
 | Argument  | Type    | Description                               |
 | --------- | ------- | ----------------------------------------- |
@@ -565,19 +515,13 @@ Optional:
 | `jitter`  | Number  | Seconds of random spread around each run. |
 | `start`   | String  | RFC3339 time the rule starts from.        |
 
-Read-Only:
+**Read-Only**
 
 | Attribute | Type   | Description              |
 | --------- | ------ | ------------------------ |
 | `id`      | String | Server-assigned rule id. |
 
 #### Import
-
-Import is supported using the following syntax:
-
-The
-[`terraform import` command](https://developer.hashicorp.com/terraform/cli/commands/import)
-can be used, for example:
 
 ```shell
 terraform import plakar_schedule.example <uuid>
@@ -607,38 +551,32 @@ resource "plakar_store" "offsite" {
 
 **Required**
 
-| Argument      | Type                     | Description                                                                                                                 |
-| ------------- | ------------------------ | --------------------------------------------------------------------------------------------------------------------------- |
-| `fields`      | Map of String, Sensitive | Integration-specific configuration. Only the keys declared here are managed; anything else set server-side keeps its value. |
-| `integration` | String                   | Name of the installed integration backing the store, e.g. s3.                                                               |
-| `name`        | String                   | Name of the store, unique among stores in the organization.                                                                 |
-| `resource`    | String                   | URN or name of the inventory resource the store attaches to.                                                                |
+| Argument      | Type                     | Description                                                                                                                                                                                                                        |
+| ------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `fields`      | Map of String, Sensitive | Integration-specific configuration. Must carry a non-empty `passphrase` when the store is initialized here: it encrypts the store at rest. Only the keys declared here are managed; anything else set server-side keeps its value. |
+| `integration` | String                   | Name of the installed integration backing the store, e.g. s3.                                                                                                                                                                      |
+| `name`        | String                   | Name of the store, unique among stores in the organization.                                                                                                                                                                        |
+| `resource`    | String                   | URN or name of the inventory resource the store attaches to.                                                                                                                                                                       |
 
 **Optional**
 
-| Argument       | Type           | Description                                                                                                     |
-| -------------- | -------------- | --------------------------------------------------------------------------------------------------------------- |
-| `compression`  | String         | Compression for the store at initialization (GZIP, LZ4, ZSTD). Unset keeps the engine's default.                |
-| `data_classes` | List of String | Data classes the store accepts.                                                                                 |
-| `environment`  | String         | Environment label, e.g. production.                                                                             |
-| `initialize`   | Boolean        | Initialize the underlying storage at creation. Never re-runs on update.                                         |
-| `protocol`     | String         | Protocol spoken to the resource. Defaults to the integration name, which matches for the standard integrations. |
-| `temperature`  | String         | Storage temperature. Computed by the server when not set.                                                       |
+| Argument       | Type           | Description                                                                                                                                                                             |
+| -------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `compression`  | String         | Compression for the store at initialization (GZIP, LZ4, ZSTD). Unset keeps the engine's default.                                                                                        |
+| `data_classes` | List of String | Data classes the store accepts.                                                                                                                                                         |
+| `environment`  | String         | Environment label, e.g. production.                                                                                                                                                     |
+| `initialize`   | Boolean        | Initialize the underlying storage at creation. Never re-runs on update. Set it to false when the storage is already initialized elsewhere, which also lifts the passphrase requirement. |
+| `protocol`     | String         | Protocol spoken to the resource. Defaults to the integration name, which matches for the standard integrations.                                                                         |
+| `temperature`  | String         | Storage temperature. Computed by the server when not set.                                                                                                                               |
 
 **Read-Only**
 
 | Attribute | Type   | Description                            |
 | --------- | ------ | -------------------------------------- |
-| `id`      | String | The ID of this resource.               |
+| `id`      | String |                                        |
 | `urn_id`  | String | Resolved id of the inventory resource. |
 
 #### Import
-
-Import is supported using the following syntax:
-
-The
-[`terraform import` command](https://developer.hashicorp.com/terraform/cli/commands/import)
-can be used, for example:
 
 ```shell
 terraform import plakar_store.example <uuid>
@@ -668,12 +606,12 @@ data "plakar_connector" "db" {
 
 **Read-Only**
 
-| Attribute     | Type   | Description              |
-| ------------- | ------ | ------------------------ |
-| `environment` | String |                          |
-| `id`          | String | The ID of this resource. |
-| `protocol`    | String |                          |
-| `urn_id`      | String |                          |
+| Attribute     | Type   | Description |
+| ------------- | ------ | ----------- |
+| `environment` | String |             |
+| `id`          | String |             |
+| `protocol`    | String |             |
+| `urn_id`      | String |             |
 
 ### plakar_integration (Data Source)
 
@@ -695,9 +633,9 @@ data "plakar_integration" "s3" {
 
 **Read-Only**
 
-| Attribute | Type   | Description              |
-| --------- | ------ | ------------------------ |
-| `id`      | String | The ID of this resource. |
+| Attribute | Type   | Description |
+| --------- | ------ | ----------- |
+| `id`      | String |             |
 
 ### plakar_inventory (Data Source)
 
@@ -721,7 +659,7 @@ data "plakar_inventory" "fleet" {
 
 | Attribute | Type   | Description                                           |
 | --------- | ------ | ----------------------------------------------------- |
-| `id`      | String | The ID of this resource.                              |
+| `id`      | String |                                                       |
 | `type`    | String | aws, ovh, scaleway, gcp, vmware, k8s or self-managed. |
 
 ### plakar_member (Data Source)
@@ -781,11 +719,11 @@ data "plakar_organization" "lyon" {
 
 **Read-Only**
 
-| Attribute   | Type   | Description              |
-| ----------- | ------ | ------------------------ |
-| `id`        | String | The ID of this resource. |
-| `parent_id` | String |                          |
-| `type`      | String |                          |
+| Attribute   | Type   | Description |
+| ----------- | ------ | ----------- |
+| `id`        | String |             |
+| `parent_id` | String |             |
+| `type`      | String |             |
 
 ### plakar_resource (Data Source)
 
@@ -833,10 +771,10 @@ data "plakar_store" "existing" {
 
 **Read-Only**
 
-| Attribute     | Type   | Description              |
-| ------------- | ------ | ------------------------ |
-| `environment` | String |                          |
-| `id`          | String | The ID of this resource. |
-| `protocol`    | String |                          |
-| `type`        | String |                          |
-| `urn_id`      | String |                          |
+| Attribute     | Type   | Description |
+| ------------- | ------ | ----------- |
+| `environment` | String |             |
+| `id`          | String |             |
+| `protocol`    | String |             |
+| `type`        | String |             |
+| `urn_id`      | String |             |
