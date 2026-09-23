@@ -31,7 +31,10 @@ next to everything else, instead of switching to a separate UI to set them up.
 ## Prerequisites
 
 - A running, [enrolled](../../intro/enrollment) PCP instance
-- A PCP API key
+- A PCP API key belonging to an application user with at least the
+  [Operator](../../administration/permissions/operator) role
+- The [integrations](../../apps/integrations) your resources rely on, installed
+  in PCP. For example, backing up to an S3 bucket requires the S3 integration.
 - A Kubernetes cluster with access to that PCP instance's API endpoint
 
 ## Core concepts
