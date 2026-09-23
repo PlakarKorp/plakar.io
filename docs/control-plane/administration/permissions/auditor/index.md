@@ -7,8 +7,8 @@ organization family and every resource class is held at the view level, so an
 its resources without being able to alter any of them. It holds nothing in the
 deployment family.
 
-This is the role to grant for review and compliance work, where visibility is
-the requirement and any ability to make a change is a liability.
+It fits review and compliance work, where the requirement is to inspect the
+state of an organization rather than change it.
 
 ## Organization
 

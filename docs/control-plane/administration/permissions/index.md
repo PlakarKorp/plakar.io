@@ -56,10 +56,12 @@ permission was granted in:
 
 ## Access levels
 
-Every resource in a family is held at one of four levels:
+Every resource in a family is held at one of five levels:
 
 - **No access**, the permission cannot be reached at all.
 - **View**, it can be read but not changed.
+- **Run**, it can be read and the work it defines can be started, but it cannot
+  be changed.
 - **Configure**, it can be read and changed, but not deleted, and who else can
   reach it cannot be changed either.
 - **Full**, everything above, including deleting and granting access to it.
@@ -70,12 +72,23 @@ Access is granted by assigning a role. A role is a preset set of capabilities,
 and the accesses it grants are always a combination of capabilities described in
 the three families.
 
+Roles are offered in two sets. **Standard** holds the four that cover most
+cases: [Owner](./owner), [Administrator](./administrator),
+[Operator](./operator), and [Auditor](./auditor). **Advanced** holds every other
+role, each of which narrows access to one area of the system, such as policies,
+secret providers, or edges, or is meant for a non-human identity. Switching to
+the advanced set is what makes those available to grant.
+
 
 
 
 
 
 ## [Superuser](https://www.stg.plakar.io/docs/control-plane/administration/permissions/superuser/index.md)
+
+
+
+## [Platform Admin](https://www.stg.plakar.io/docs/control-plane/administration/permissions/platform-admin/index.md)
 
 
 
@@ -87,11 +100,67 @@ the three families.
 
 
 
+## [Organization Admin](https://www.stg.plakar.io/docs/control-plane/administration/permissions/organization-admin/index.md)
+
+
+
 ## [Operator](https://www.stg.plakar.io/docs/control-plane/administration/permissions/operator/index.md)
 
 
 
+## [API Automation Account](https://www.stg.plakar.io/docs/control-plane/administration/permissions/api-automation/index.md)
+
+
+
+## [Backup Operator](https://www.stg.plakar.io/docs/control-plane/administration/permissions/backup-operator/index.md)
+
+
+
+## [Policy Admin](https://www.stg.plakar.io/docs/control-plane/administration/permissions/policy-admin/index.md)
+
+
+
+## [Compliance Officer](https://www.stg.plakar.io/docs/control-plane/administration/permissions/compliance-officer/index.md)
+
+
+
+## [Residency Admin](https://www.stg.plakar.io/docs/control-plane/administration/permissions/residency-admin/index.md)
+
+
+
+## [Secrets Admin](https://www.stg.plakar.io/docs/control-plane/administration/permissions/secrets-admin/index.md)
+
+
+
+## [Edge Admin](https://www.stg.plakar.io/docs/control-plane/administration/permissions/edge-admin/index.md)
+
+
+
 ## [Auditor](https://www.stg.plakar.io/docs/control-plane/administration/permissions/auditor/index.md)
+
+
+
+## [Monitoring / SIEM Collector](https://www.stg.plakar.io/docs/control-plane/administration/permissions/siem-collector/index.md)
+
+
+
+## [Backup Auditor](https://www.stg.plakar.io/docs/control-plane/administration/permissions/backup-auditor/index.md)
+
+
+
+## [Key Manager](https://www.stg.plakar.io/docs/control-plane/administration/permissions/key-manager/index.md)
+
+
+
+## [Restore Approver](https://www.stg.plakar.io/docs/control-plane/administration/permissions/restore-approver/index.md)
+
+
+
+## [Restore Operator](https://www.stg.plakar.io/docs/control-plane/administration/permissions/restore-operator/index.md)
+
+
+
+## [Backup Migration Admin](https://www.stg.plakar.io/docs/control-plane/administration/permissions/migration-admin/index.md)
 
 
 

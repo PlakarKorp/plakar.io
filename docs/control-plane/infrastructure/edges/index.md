@@ -21,7 +21,8 @@ connectivity to every source and destination.
 
 An edge is useful when the systems being protected are not directly reachable
 from the Control Plane, when it is more efficient to run the operation close to
-those systems, or when the appliance on its own cannot keep up with the work.
+those systems, when the appliance on its own cannot keep up with the work, or
+when an integration needs tools that the appliance does not carry.
 
 For example, you might deploy an edge inside a datacenter containing virtual
 machines and databases, while the Control Plane runs elsewhere. The edge can
@@ -41,6 +42,8 @@ Edges are particularly useful for:
   what one appliance can run.
 - Keeping the Control Plane isolated from networks containing protected
   resources.
+- Running the few integrations that depend on external tools, which can be
+  installed on the edge host.
 
 An edge belongs to a single organization. You can only access the edges
 belonging to the organization you are signed in to, subject to your permissions
@@ -134,6 +137,31 @@ An edge needs network access to two things:
 
 The Control Plane itself does not need network access to those systems. The edge
 provides that connectivity when it executes a task.
+
+### Integrations that need external tools
+
+Most integrations are agentless. They communicate directly with the resource
+they manage and do not require additional software on the machine running the
+task. For example, the [Windows VSS integration](../../resources/compute/vss)
+connects to the Windows host over SSH and does not require any additional tools
+on the Control Plane or edge.
+
+Some integrations such as MongoDB, PostgreSQL and MySQL instead rely on
+utilities provided by the vendor. These utilities must be installed on the
+machine that executes the task. The
+[MongoDB integration](../../resources/database/mongodb), for example, uses
+`mongosh`, `mongodump`, and `mongorestore`, which must be available in the
+`PATH` of the process running the task.
+
+These utilities are not included in the appliance, and the appliance is not
+intended to be extended with additional software. Tasks that require external
+tools should therefore run on an [edge](../../infrastructure/edges) where the
+required tools can be installed.
+
+Install the tools required by the integration on the edge host, then configure
+the task to run on that edge. As deployments grow, edges can be equipped with
+different sets of tools so that workloads can be distributed to the machines
+capable of running them.
 
 ## Enable edge enrollment
 
@@ -233,18 +261,23 @@ $ plakar-edge \
 
 The most important options are:
 
-| Option           | Required  | Description                                                                                                            |
-| ---------------- | --------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `-control-plane` | Yes       | Base URL of the Plakar Control Plane.                                                                                  |
-| `-enroll`        | First run | Enrollment key used to register the edge. It can also be provided through `PLAKAR_EDGE_ENROLL_KEY`.                    |
-| `-organization`  | First run | Identifier of the organization the edge joins. It can also be provided through `PLAKAR_EDGE_ORGANIZATION`.             |
-| `-name`          | No        | Name displayed for the edge in PCP. Defaults to the hostname.                                                          |
-| `-tags`          | No        | Comma-separated tags reported by the edge on each poll. Tags can be used to target work to matching edges.             |
-| `-state-dir`     | No        | Directory used to store the edge identity and authentication token. Defaults to `/var/lib/plakar-edge`.                |
-| `-pkg`           | No        | Directory used for downloaded connector packages. Defaults to `<state-dir>/pkg`.                                       |
-| `-poll-hold`     | No        | Expected server-side long-poll duration. Defaults to `30s`.                                                            |
-| `-listen`        | No        | Address of the supervision HTTP server. Defaults to `127.0.0.1:9877`. Set it to an empty string to disable the server. |
-| `-metrics`       | No        | Enables the Prometheus `/metrics` endpoint. Defaults to `true`.                                                        |
+| Option           | Required  | Description                                                                                                                  |
+| ---------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `-control-plane` | Yes       | Base URL of the Plakar Control Plane.                                                                                        |
+| `-enroll`        | First run | Enrollment key used to register the edge. It can also be provided through `PLAKAR_EDGE_ENROLL_KEY`.                          |
+| `-organization`  | First run | Identifier of the organization the edge joins. It can also be provided through `PLAKAR_EDGE_ORGANIZATION`.                   |
+| `-name`          | No        | Name displayed for the edge in PCP. Defaults to the hostname.                                                                |
+| `-tags`          | No        | Comma-separated tags reported by the edge on each poll. Tags can be used to target work to matching edges.                   |
+| `-state-dir`     | No        | Directory used to store the edge identity and authentication token. Defaults to `/var/lib/plakar-edge`.                      |
+| `-pkg`           | No        | Directory used for downloaded connector packages. Defaults to `<state-dir>/pkg`.                                             |
+| `-max-parallel`  | No        | Maximum number of tasks the edge runs concurrently. Defaults to `5`.                                                         |
+| `-poll-hold`     | No        | Expected server-side long-poll duration. Defaults to `30s`.                                                                  |
+| `-listen`        | No        | Address of the supervision HTTP server. Defaults to `127.0.0.1:9877`. Set it to an empty string to disable the server.       |
+| `-metrics`       | No        | Enables the Prometheus `/metrics` endpoint. Defaults to `true`.                                                              |
+| `-scripts-dir`   | No        | Directory holding the [hook scripts](#pre-job-and-post-job-hooks) tasks may run. Empty by default, which refuses every hook. |
+
+`-max-parallel` caps how much work one edge takes on at a time. Tasks assigned
+beyond that limit wait until a running one finishes.
 
 Tags are useful when you have multiple edges and want PCP to select an edge
 based on its environment. For example:
@@ -253,8 +286,8 @@ based on its environment. For example:
 env:prod,zone:eu-1
 ```
 
-An edge can report multiple tags, and PCP can use those tags when assigning
-work.
+An edge can report multiple tags. See [Selecting an edge](#selecting-an-edge)
+for how PCP matches them when assigning work.
 
 {{< /tab >}}
 
@@ -320,20 +353,22 @@ chart release.
 
 The main values for an edge deployment are:
 
-| Value                          | Default                          | Description                                                                     |
-| ------------------------------ | -------------------------------- | ------------------------------------------------------------------------------- |
-| `controlPlane`                 | `""`                             | Base URL of the Plakar Control Plane. Required.                                 |
-| `organization`                 | `""`                             | Identifier of the organization the edges should join. Required.                 |
-| `enrollKey.secretName`         | `""`                             | Existing Secret containing the enrollment key. Required.                        |
-| `enrollKey.secretKey`          | `enroll-key`                     | Key containing the enrollment key inside the Secret.                            |
-| `replicaCount`                 | `1`                              | Number of independent edges to run.                                             |
-| `tags`                         | `""`                             | Tags reported by every edge.                                                    |
-| `pollHold`                     | `""`                             | Long-poll duration. An empty value uses the binary default.                     |
-| `persistence.size`             | `5Gi`                            | Storage allocated to each edge.                                                 |
-| `persistence.storageClassName` | `""`                             | StorageClass used for the edge volume. An empty value uses the cluster default. |
-| `persistence.mountPath`        | `/data`                          | Mount point for the edge's persistent data.                                     |
-| `image.repository`             | `ghcr.io/plakarkorp/plakar-edge` | Edge container image repository.                                                |
-| `image.tag`                    | `""`                             | Edge image tag. An empty value uses the chart's application version.            |
+| Value                          | Default                          | Description                                                                                                     |
+| ------------------------------ | -------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `controlPlane`                 | `""`                             | Base URL of the Plakar Control Plane. Required.                                                                 |
+| `organization`                 | `""`                             | Identifier of the organization the edges should join. Required.                                                 |
+| `enrollKey.secretName`         | `""`                             | Existing Secret containing the enrollment key. Required.                                                        |
+| `enrollKey.secretKey`          | `enroll-key`                     | Key containing the enrollment key inside the Secret.                                                            |
+| `replicaCount`                 | `1`                              | Number of independent edges to run.                                                                             |
+| `tags`                         | `""`                             | Tags reported by every edge.                                                                                    |
+| `pollHold`                     | `""`                             | Long-poll duration. An empty value uses the binary default.                                                     |
+| `persistence.size`             | `5Gi`                            | Storage allocated to each edge.                                                                                 |
+| `persistence.storageClassName` | `""`                             | StorageClass used for the edge volume. An empty value uses the cluster default.                                 |
+| `persistence.mountPath`        | `/data`                          | Mount point for the edge's persistent data.                                                                     |
+| `image.repository`             | `ghcr.io/plakarkorp/plakar-edge` | Edge container image repository.                                                                                |
+| `image.tag`                    | `""`                             | Edge image tag. An empty value uses the chart's application version.                                            |
+| `scripts.configMapName`        | `""`                             | Existing ConfigMap whose entries are the [hook scripts](#pre-job-and-post-job-hooks). Empty refuses every hook. |
+| `scripts.mountPath`            | `/scripts`                       | Mount point of the hook scripts, passed to the edge as `-scripts-dir`.                                          |
 
 The chart also supports standard Kubernetes scheduling and resource settings
 such as `resources`, `serviceAccount`, `nodeSelector`, `tolerations`, and
@@ -385,15 +420,94 @@ required by every task it executes.
 
 ## Run tasks on an edge
 
-Scheduled tasks run on the Control Plane by default.
+A task that is not pinned to an edge is dispatched by the Control Plane, which
+prefers an available edge over running the task itself. See
+[Selecting an edge](#selecting-an-edge).
 
-To execute a task through an edge, configure the task to use the desired edge
-when creating or editing the schedule. The edge then becomes the executor for
-that task rather than the Control Plane appliance.
+To run a task on a specific edge, pin it to that edge when creating or editing
+the schedule.
 
 This allows you to choose where an operation runs based on the network location
 of the resources it protects.
 
 See [Scheduled Tasks](../../scheduling/tasks) for information about configuring
 scheduled operations.
+
+## Pre-job and post-job hooks
+
+Backup and restore tasks running on an edge can use **pre-job** and **post-job
+hooks** to perform actions immediately before and after the task. Hooks are
+useful when a workload needs preparation before a backup or restore, or cleanup
+afterward. For example, a pre-job hook can quiesce a database or mount a
+snapshot, while a post-job hook can resume the database or remove the snapshot.
+
+Hooks are scripts that are managed on the edge host. The edge only executes
+scripts from the directory configured with `-scripts-dir`. The task refers to a
+script by its file name; it cannot provide an arbitrary path. File names
+containing path separators, `.` or `..` are rejected. An edge without a
+configured scripts directory does not accept hooks.
+
+The pre-job hook runs before the backup or restore begins. If it fails, the task
+is aborted and the backup or restore does not start. The post-job hook runs
+after the job once a pre-job hook has completed, regardless of whether the
+backup or restore itself succeeded. This ensures that cleanup or recovery
+actions can still take place after a failed job.
+
+A failure in the post-job hook causes the task to be reported as failed, even if
+the backup or restore itself succeeded. The backup is not discarded in this
+case. For example, if a post-job hook is responsible for resuming a database and
+that operation fails, the task reports the hook failure so that the resulting
+state can be investigated.
+
+Hook scripts inherit the environment of the edge process and receive additional
+variables describing the current task:
+
+- `PLAKAR_WORK_ID`: identifier of the work item.
+- `PLAKAR_OP`: operation being performed.
+- `PLAKAR_HOOK`: `pre_job` or `post_job`.
+
+This allows the same script to be used by multiple tasks and to distinguish
+between the pre-job and post-job phases.
+
+When a hook fails, the end of its output is included in the error reported to
+the Control Plane, providing context for diagnosing the failure.
+
+### Hooks on Kubernetes
+
+On Kubernetes, hook scripts are provided through a ConfigMap configured with
+`scripts.configMapName`. The chart mounts the ConfigMap as a read-only,
+executable directory at `scripts.mountPath` and passes that path to the edge
+using `-scripts-dir`.
+
+## Selecting an edge
+
+The Control Plane decides where a task runs when the task is dispatched. A task
+can name one edge or a set of tags, but not both.
+
+Tags let a task describe which edges it can run on rather than naming one
+specific edge. Each edge reports its tags to the Control Plane on every poll. A
+task targeting `env:prod` can run on any online edge tagged `env:prod`, so the
+Control Plane can choose among them instead of depending on a single edge.
+
+- **Pinned to an edge**: the task runs on that edge. It fails if the edge is
+  offline.
+- **Targeted by tags**: the task runs on an online edge that reports every tag
+  in the set. It fails if no online edge matches.
+- **Neither**: the task runs on any online edge. When several are online, the
+  Control Plane prefers the one that has run a task least recently. When no edge
+  is online, the task runs on the Control Plane itself.
+
+A task is pinned to an edge with the **Run on** field when it is
+[scheduled](../../scheduling/tasks). Targeting by tags is not available in the
+Control Plane interface. It is currently only possible through the `edge_tags`
+option of the [Ansible collection](../../references/ansible-collection) and the
+`edgeTags` field of the
+[Kubernetes operator](../../infrastructure-as-code/kubernetes-operator/scheduling#running-tasks-on-a-remote-edge)
+schedule resources.
+
+> [!NOTE]
+>
+> Edge selection is being improved to provide more flexible task scheduling and
+> horizontal scaling. Tag-based selection and task dispatch are being expanded,
+> which will make it easier to distribute workloads across multiple edges.
 

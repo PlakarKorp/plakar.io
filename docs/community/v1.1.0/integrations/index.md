@@ -122,4 +122,8 @@ Below is a list of links to the documentation for each supported integration.
 
 
 
+## [MongoDB](https://www.stg.plakar.io/docs/community/v1.1.0/integrations/mongodb/index.md)
+
+
+
 

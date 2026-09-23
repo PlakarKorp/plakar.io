@@ -6,6 +6,7 @@
 
 ## [Plakar Blog](https://www.stg.plakar.io/posts/index.md)
 
+- [Resilience as Code, because backup should be Infrastructure.](https://www.stg.plakar.io/posts/2026-09-23/resilience-as-code-kubernetes-operator/index.md): Backup is the last layer of your stack still clicked into a console. The Plakar Kubernetes Operator makes it code: declare resilience as Custom Resources, reconciled from Git, for everything you run.
 - [Agentless VSS and SQL Server backup now available in Plakar](https://www.stg.plakar.io/posts/2026-09-08/agentless-vss-sql-server-backup/index.md): VSS and SQL Server backups are now free for registered Plakar users: agentless over SSH, encrypted and deduplicated into an open, portable Kloset store. The connectors are closed source, built for Control Plane. Active Directory recovery is a Plakar Control Plane capability.
 - [Build a Docs Wayback Machine with Astro](https://www.stg.plakar.io/posts/2026-09-07/docs-wayback-machine/index.md): Serve any past version of your documentation at a URL, decrypted from a Plakar snapshot on demand, with pages, images, and PDFs restored version-correct.
 - [Plakar v1.1.5 is out](https://www.stg.plakar.io/posts/2026-09-06/plakar-v1.1.5-is-out/index.md): plakar v1.1.5 is out: a security-focused patch release. Unencrypted stores are now refused unless you explicitly opt in, plugins are signature-checked at install time, and the HTTP store and server got hardened. Fully backward compatible, nothing to migrate.
@@ -49,6 +50,8 @@
 
 
 ## [Plakar Integrations](https://www.stg.plakar.io/integrations/index.md)
+
+- [MongoDB](https://www.stg.plakar.io/integrations/mongodb/index.md): Protect your MongoDB deployments against accidental deletion, ransomware, and operator error. Plakar captures encrypted, deduplicated snapshots of a running server and restores them to any environment.
 
 - [Impossible Cloud](https://www.stg.plakar.io/integrations/impossible-cloud/index.md): Protect your data with Plakar on Impossible Cloud. Immutable, encrypted snapshots stored on fully S3-compatible object storage built under European data jurisdiction, with no egress fees, no API charges, and enterprise-grade compliance.
 

@@ -61,7 +61,7 @@ $ plakar pkg build mysql
 Install the resulting archive:
 
 ```bash
-$ plakar pkg add ./mysql_v1.0.0_linux_amd64.ptar
+$ plakar pkg add -allow-unsigned ./mysql_v1.0.0_linux_amd64.ptar
 ```
 
 {{< /tab >}}

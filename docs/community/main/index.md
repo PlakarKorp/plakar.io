@@ -65,6 +65,7 @@
 - [Windows VSS](https://www.stg.plakar.io/docs/community/main/integrations/vss/index.md): Back up and restore live Windows systems through Volume Shadow Copy Service.
 - [Microsoft SQL Server](https://www.stg.plakar.io/docs/community/main/integrations/mssql/index.md): Back up and restore a Microsoft SQL Server installation on a live Windows host.
 - [Microsoft Active Directory](https://www.stg.plakar.io/docs/community/main/integrations/msad/index.md): Back up and restore Windows System State of Active Directory Domain Controllers with Plakar.
+- [MongoDB](https://www.stg.plakar.io/docs/community/main/integrations/mongodb/index.md): Back up and restore MongoDB databases with Plakar.
 
 
 ## [Explanations](https://www.stg.plakar.io/docs/community/main/explanations/index.md)

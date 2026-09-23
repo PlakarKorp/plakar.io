@@ -6,8 +6,9 @@ organization. They cover the instance identity and version, appliance
 networking, diagnostics, and early-access features.
 
 Because these settings affect every organization hosted on the instance, they
-require the **Superuser** role. The **Superuser** is the admin account created
-when the instance is first set up, either during
+require the [Superuser](../../permissions/superuser) or
+[Platform Admin](../../permissions/platform-admin) role. The **Superuser** is
+the admin account created when the instance is first set up, either during
 [enrollment](../../../intro/enrollment#admin-account) or
 [air-gapped enrollment](../../../intro/air-gapped#organization-and-admin-account).
 

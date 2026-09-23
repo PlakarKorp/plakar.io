@@ -92,7 +92,7 @@ A package archive will be created in the current directory (e.g.
 Install the package:
 
 ```bash
-$ plakar pkg add ./msad_v1.1.0_darwin_arm64.ptar
+$ plakar pkg add -allow-unsigned ./msad_v1.1.0_darwin_arm64.ptar
 ```
 
 Verify installation:
@@ -141,6 +141,14 @@ Microsoft's
 Authorize a dedicated SSH key for the account Plakar connects as, rather than
 reusing an existing one. See Microsoft's
 [OpenSSH key management](https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh_keymanagement).
+
+### Host key verification
+
+The Microsoft Active Directory integration verifies the Domain Controller's host
+key against the `known_hosts` file of the account running `plakar`. The host key
+must be verified and recorded in that file before running a backup. See
+[SSH host key verification](/docs/control-plane/guides/windows/windows-openssh-setup/#community-integrations-ssh-host-key-verification)
+documentation for more information.
 
 ## Configuration
 

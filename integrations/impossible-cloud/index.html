@@ -98,7 +98,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="integrations">
     <meta property="article:published_time" content="2026-09-11T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-09-14T17:39:18+02:00">
+    <meta property="article:modified_time" content="2026-09-23T19:55:37+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -256,12 +256,12 @@
     "dateCreated": "2026-09-11T00:00:00\u002b00:00",
     "datePublished": "2026-09-11T00:00:00\u002b00:00",
     
-    "dateModified": "2026-09-14T17:39:18\u002b02:00",
+    "dateModified": "2026-09-23T19:55:37\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.stg.plakar.io/integrations/impossible-cloud/",
-    "wordCount": "451"
+    "wordCount": "437"
   }]
   </script>
 
@@ -2092,8 +2092,8 @@
           <div class="hidden lg:flex flex-row lg:-mt-24 items-center justify-end gap-4 w-full max-w-[50%]">
             
               <img
-      src="/img/integrations/impossible-cloud_hu_59b596d19bf0623e.webp"
-      srcset="/img/integrations/impossible-cloud_hu_59b596d19bf0623e.webp 200w, /img/integrations/impossible-cloud_hu_8cff5fd9afe8af86.webp 400w" sizes="auto"
+      src="/img/integrations/impossible-cloud_hu_f80e9cf0873f6038.webp"
+      srcset="/img/integrations/impossible-cloud_hu_f80e9cf0873f6038.webp 200w, /img/integrations/impossible-cloud_hu_3b84e7c8504bfe4.webp 400w" sizes="auto"
       width="200"
       height="200"
       alt="Impossible Cloud"
@@ -2209,11 +2209,9 @@ content, making it inaccessible without paying a ransom.</li>
 <li><strong>No recovery path</strong>: Without an independent layer of protection, there is
 nothing to restore from if backup data is tampered with.</li>
 </ul>
-<p>Plakar mitigates these risks by adding end-to-end encryption and immutable
-snapshots on top of Impossible Cloud. Even if account credentials are
-compromised, Plakar&rsquo;s encryption ensures backup data cannot be read or silently
-tampered with, independent of any Object Lock policy configured on the bucket
-itself.</p>
+<p>Plakar encrypts snapshots end to end before they reach the bucket, so their
+contents stay unreadable to anyone holding the API key, and verification reports
+any alteration to a stored snapshot.</p>
 
 
 <h2 id="how-plakar-works-with-impossible-cloud" class="group pr-8">How Plakar works with Impossible Cloud

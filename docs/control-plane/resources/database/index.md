@@ -27,4 +27,8 @@ resources:
 
 
 
+## [MongoDB](https://www.stg.plakar.io/docs/control-plane/resources/database/mongodb/index.md)
+
+
+
 

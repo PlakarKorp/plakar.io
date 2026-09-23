@@ -30,4 +30,20 @@ see the [installation documentation](../intro/installation).
 - [Scheduling](https://www.stg.plakar.io/docs/control-plane/infrastructure-as-code/kubernetes-operator/scheduling/index.md): Define scheduled backup, check, and sync tasks using the plakar-operator.
 
 
+## [Terraform Provider](https://www.stg.plakar.io/docs/control-plane/infrastructure-as-code/terraform/index.md)
+
+- [Stores and Connectors](https://www.stg.plakar.io/docs/control-plane/infrastructure-as-code/terraform/stores-and-connectors/index.md): Declaring store, source and destination apps with plakar_store and plakar_connector.
+- [Scheduling](https://www.stg.plakar.io/docs/control-plane/infrastructure-as-code/terraform/scheduling/index.md): Declaring backup, prune, sync and check schedules with plakar_schedule.
+- [Inventories](https://www.stg.plakar.io/docs/control-plane/infrastructure-as-code/terraform/inventories/index.md): Declaring managed and self-managed inventories, and the resources inside them.
+- [Organizations and Access](https://www.stg.plakar.io/docs/control-plane/infrastructure-as-code/terraform/organizations/index.md): Declaring organizations, their members, and the roles those members hold.
+
+
+## [Ansible Collection](https://www.stg.plakar.io/docs/control-plane/infrastructure-as-code/ansible/index.md)
+
+- [Running Operations](https://www.stg.plakar.io/docs/control-plane/infrastructure-as-code/ansible/operations/index.md): Triggering backups, restores, syncs, checks and prunes, and reading the jobs they create.
+- [Stores and Connectors](https://www.stg.plakar.io/docs/control-plane/infrastructure-as-code/ansible/stores-and-connectors/index.md): Declaring store, source and destination apps with the store and connector modules.
+- [Inventories](https://www.stg.plakar.io/docs/control-plane/infrastructure-as-code/ansible/inventories/index.md): Declaring provider-backed and self-managed inventories, and mirroring an Ansible fleet into one.
+- [Organizations and Access](https://www.stg.plakar.io/docs/control-plane/infrastructure-as-code/ansible/organizations/index.md): Declaring organizations, their members, and the roles those members hold.
+
+
 

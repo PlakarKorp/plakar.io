@@ -4,6 +4,10 @@
 
 
 
+## [Resilience as Code, because backup should be Infrastructure.](https://www.stg.plakar.io/posts/2026-09-23/resilience-as-code-kubernetes-operator/index.md)
+
+
+
 ## [Agentless VSS and SQL Server backup now available in Plakar](https://www.stg.plakar.io/posts/2026-09-08/agentless-vss-sql-server-backup/index.md)
 
 
