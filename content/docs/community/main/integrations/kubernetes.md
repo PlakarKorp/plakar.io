@@ -79,7 +79,7 @@ A package archive will be created in the current directory (e.g.,
 Install the package:
 
 ```bash
-$ plakar pkg add ./k8s_v1.1.0-beta.6_darwin_arm64.ptar
+$ plakar pkg add -allow-unsigned ./k8s_v1.1.0-beta.6_darwin_arm64.ptar
 ```
 
 Verify installation:
