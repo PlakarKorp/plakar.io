@@ -44,8 +44,10 @@ enroll the instance.
 Because there is no owner email verification step in air-gapped mode, the admin
 account created here also acts as the instance owner.
 
-This account holds the **Superuser** role, which is currently required to change
-[Control Plane settings](../../administration/settings/control-plane).
+This account holds the **Superuser** role, which grants access to
+[Control Plane settings](../../administration/settings/control-plane) and the
+license. The [Platform Admin](../../administration/permissions/platform-admin)
+role grants the same access and can be assigned later.
 
 {{< /step >}}
 
@@ -63,7 +65,9 @@ Unlike online instances, air-gapped instances do not renew their license
 automatically. To renew an offline license, [contact us](/contact) to obtain a
 new license for your instance. Then, in the **Control Plane settings**, paste
 the new license into the **Replace with** field or load it from a license file,
-and select **Replace license**.
+and select **Replace license**. A
+[Platform Admin](../../administration/permissions/platform-admin) can do this as
+well as the **Superuser**, since both hold the license permission.
 
 Replacing the license does not require re-enrollment and does not affect your
 existing configuration or backups.

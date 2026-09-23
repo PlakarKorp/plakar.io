@@ -94,8 +94,8 @@ remaining centrally managed.
 
 A few things belong to the instance rather than to any organization, such as
 [Control Plane settings](../settings/control-plane) and the license. Those are
-reached only by the **Superuser**, the admin account created when the instance
-was first set up.
+reached by the **Superuser**, the admin account created when the instance was
+first set up, and by the [Platform Admin](../permissions/platform-admin).
 
 ## Roles and permissions
 
@@ -117,8 +117,8 @@ tabs.
 
 The **Control plane** tab holds the
 [Control Plane settings](../settings/control-plane), which apply to the instance
-rather than to any organization. Only a [Superuser](../permissions/superuser)
-can see or open them.
+rather than to any organization. Only a [Superuser](../permissions/superuser) or
+a [Platform Admin](../permissions/platform-admin) can see or open them.
 
 The **Organizations** tab is where organizations themselves are managed. It
 carries a dropdown listing every organization you have access to, and selecting
