@@ -1,7 +1,7 @@
 ---
 title: "Administrator"
 date: "2026-09-08T00:00:00Z"
-weight: 3
+weight: 4
 summary:
   "Everything inside an organization, except the organization settings
   themselves."
@@ -15,11 +15,9 @@ rest of the organization: members, audit logs, data residency, and both the
 resource and inventory legal hold.
 
 The **Organization** permission is the one exception, and an **Administrator**
-has no access to it. This means the
-[organization settings](../../settings/organization) are out of reach entirely,
-neither visible nor editable. An **Administrator** administers what the
-organization contains and the members using it, but not the organization itself.
-Like the [Owner](../owner), it holds nothing in the deployment family.
+has no access to it. The [organization settings](../../settings/organization)
+are therefore out of reach, neither visible nor editable. Like the
+[Owner](../owner), it holds nothing in the deployment family.
 
 ## Organization
 
