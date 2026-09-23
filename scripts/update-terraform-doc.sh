@@ -1,20 +1,18 @@
 #!/bin/sh
 #
 # Regenerates content/docs/control-plane/references/terraform-provider.md from
-# the tfplugindocs output in PlakarKorp/terraform-provider-plakar.
+# the schema `terraform providers schema -json` reports for the published
+# plakarkorp/plakar provider, and the example files in the provider repository
+# at the matching tag.
 #
-# The transformation below depends on the shape of that output. When the
-# provider changes it, this script warns rather than writing a page that looks
-# right and is not, and fails outright when the result cannot be trusted at
-# all. Read the warnings: each one names the file and the line that no longer
-# matches what this script expects.
+# Usage: scripts/update-terraform-doc.sh [version]
 #
-# Usage: scripts/update-terraform-doc.sh [ref]
+# Without a version, Terraform resolves the latest release.
 
-# PLAKAR_TF_REPO points the generator at a local clone or a fork, which is how
-# a change to this script is tested against modified tfplugindocs output.
 REPO=${PLAKAR_TF_REPO:-https://github.com/PlakarKorp/terraform-provider-plakar.git}
-REF=${1:-main}
+TERRAFORM=${TERRAFORM:-terraform}
+PYTHON=${PYTHON:-python3}
+VERSION=${1:-}
 
 PROG=$(basename "$0")
 WARNINGS=0
@@ -29,12 +27,14 @@ die() {
   exit 1
 }
 
+command -v "$TERRAFORM" >/dev/null 2>&1 ||
+  die "${TERRAFORM} is required: install it, or set TERRAFORM"
+command -v "$PYTHON" >/dev/null 2>&1 || die "${PYTHON} is required, set PYTHON to override"
 command -v git >/dev/null 2>&1 || die "git is required"
 
 TMPDIR=$(mktemp -d "/tmp/${PROG}.XXXXXX") || die "could not create a temporary directory"
 
-# Preserve the exit status. A cleanup trap that exits 0 would report success
-# for every failure below.
+# A cleanup trap that exited 0 would report success for every failure below.
 cleanup() {
   status=$?
   rm -rf "$TMPDIR"
@@ -46,135 +46,243 @@ trap 'exit 143' TERM
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
-git clone --depth 1 "$REPO" -b "$REF" "$TMPDIR" ||
-  die "could not clone ${REPO} at ref '${REF}'"
+WORKDIR="${TMPDIR}/workspace"
+mkdir -p "$WORKDIR" || die "could not create ${WORKDIR}"
 
-SRCDIR="${TMPDIR}/docs"
-[ -d "$SRCDIR" ] || die "no docs/ directory in terraform-provider-plakar @ ${REF}, tfplugindocs output is expected there"
-[ -f "${SRCDIR}/index.md" ] || die "docs/index.md not found in terraform-provider-plakar @ ${REF}"
+{
+  echo 'terraform {'
+  echo '  required_providers {'
+  echo '    plakar = {'
+  echo '      source = "plakarkorp/plakar"'
+  [ -n "$VERSION" ] && echo "      version = \"${VERSION}\""
+  echo '    }'
+  echo '  }'
+  echo '}'
+} > "${WORKDIR}/main.tf"
 
-# An empty glob would otherwise be emitted as a literal path.
-RESOURCES=$(find "${SRCDIR}/resources" -name '*.md' 2>/dev/null | sort)
-DATASOURCES=$(find "${SRCDIR}/data-sources" -name '*.md' 2>/dev/null | sort)
-[ -n "$RESOURCES" ] || die "no resource pages in docs/resources/, nothing to generate"
-[ -n "$DATASOURCES" ] || warn "no data source pages in docs/data-sources/"
+(cd "$WORKDIR" && "$TERRAFORM" init -no-color) > "${TMPDIR}/init.log" 2>&1 ||
+  die "terraform init failed: $(tail -3 "${TMPDIR}/init.log")"
 
-N_RESOURCES=$(printf '%s\n' "$RESOURCES" | grep -c .)
-N_DATASOURCES=$(printf '%s\n' "$DATASOURCES" | grep -c . || true)
+RESOLVED=$(cd "$WORKDIR" && "$TERRAFORM" version -json |
+  "$PYTHON" -c 'import json, sys; print(json.load(sys.stdin)["provider_selections"]["registry.terraform.io/plakarkorp/plakar"])') ||
+  die "could not determine which provider version terraform selected"
+
+(cd "$WORKDIR" && "$TERRAFORM" providers schema -json) > "${TMPDIR}/schema.json" 2>"${TMPDIR}/schema.err" ||
+  die "terraform providers schema failed: $(cat "${TMPDIR}/schema.err")"
+
+# The examples are files in the repository rather than part of the schema, so
+# they come from the tag that matches the provider terraform just resolved.
+EXAMPLES="${TMPDIR}/src/examples"
+if git clone --depth 1 -q "$REPO" -b "v${RESOLVED}" "${TMPDIR}/src" 2>"${TMPDIR}/clone.err"; then
+  [ -d "$EXAMPLES" ] || {
+    warn "no examples/ directory at v${RESOLVED}, the page will carry no examples"
+    EXAMPLES=""
+  }
+else
+  warn "could not clone ${REPO} at v${RESOLVED}, the page will carry no examples: $(cat "${TMPDIR}/clone.err")"
+  EXAMPLES=""
+fi
 
 OUTDIR="${SCRIPT_DIR}/../content/docs/control-plane/references"
 mkdir -p "$OUTDIR" || die "could not create ${OUTDIR}"
 DEST="${OUTDIR}/terraform-provider.md"
 
-echo "${PROG}: generating from ${REF}: ${N_RESOURCES} resources, ${N_DATASOURCES} data sources"
+echo "${PROG}: generating from plakarkorp/plakar ${RESOLVED}"
 
-# Drop the source file's front matter and the tfplugindocs markers, then push
-# every heading down two levels so the page keeps a single H1 of its own.
-#
-# Three exceptions keep the page off H5, which the theme renders at body size,
-# leaving those headings indistinguishable from the text around them.
-# "Required", "Optional" and "Read-Only" label the list right below them
-# rather than opening a section, so they become bold text, matching the plain
-# "Optional:" labels tfplugindocs already writes inside nested schema blocks.
-# The "Schema" heading above them is then redundant and is dropped. "Nested
-# Schema for x" moves down one level instead of two, which keeps it visible as
-# a heading next to the example it qualifies.
-#
-# Every schema entry tfplugindocs writes has the same shape, a name, a type
-# and an optional description, so each run of them becomes a table. A run that
-# holds an entry in any other shape is left as the original list and reported.
-#
-# Lines inside fenced code blocks are left alone: a `#` there is a comment in
-# the example, not a heading.
-emit() {
-  awk -v file="$(basename "$1")" '
-    function warn(msg) { print "warning: " file ": " msg > "/dev/stderr" }
+"$PYTHON" - "${TMPDIR}/schema.json" "$EXAMPLES" > "$DEST" 2> "${TMPDIR}/warnings" <<'PY'
+import json
+import pathlib
+import sys
 
-    function reset(   i) { for (i = 1; i <= n; i++) delete buf[i]; n = 0 }
+PROVIDER = "registry.terraform.io/plakarkorp/plakar"
 
-    # Split "- `name` (Type) description" into its three parts. Returns 0 when
-    # the line is a list item of any other shape.
-    function parse(line,   rest, tick, paren) {
-      if (substr(line, 1, 3) != "- `") return 0
-      rest = substr(line, 4)
-      tick = index(rest, "`")
-      if (tick == 0) return 0
-      pname = substr(rest, 1, tick - 1)
-      rest = substr(rest, tick + 1)
-      if (substr(rest, 1, 2) != " (") return 0
-      paren = index(rest, ")")
-      if (paren == 0) return 0
-      ptype = substr(rest, 3, paren - 3)
-      pdesc = substr(rest, paren + 1)
-      sub(/^ +/, "", pdesc)
-      return 1
-    }
+schema = json.loads(pathlib.Path(sys.argv[1]).read_text())
+examples = pathlib.Path(sys.argv[2]) if sys.argv[2] else None
+out = []
 
-    function flush(   i, head) {
-      if (n == 0) return
-      head = (label == "Read-Only") ? "Attribute" : "Argument"
-      if (tabular) {
-        tables++
-        print "| " head " | Type | Description |"
-        print "| --- | --- | --- |"
-        for (i = 1; i <= n; i++) print rows[i]
-      } else {
-        for (i = 1; i <= n; i++) print buf[i]
-      }
-      reset()
-      tabular = 1
-    }
 
-    BEGIN {
-      fm = 0; fence = 0; n = 0; tabular = 1
-      label = ""; tables = 0; entries = 0; sawschema = 0; title = 0
-    }
+def warn(message):
+  print("warning: " + message, file=sys.stderr)
 
-    /^---$/ { if (fence == 0) { fm++; next } }
-    fm < 2 { next }
-    /^```/ { flush(); fence = !fence; print; next }
-    fence { print; next }
 
-    /^- / {
-      n++
-      buf[n] = $0
-      if (parse($0)) {
-        entries++
-        gsub(/\|/, "\\|", pdesc)
-        rows[n] = "| `" pname "` | " ptype " | " pdesc " |"
-      } else {
-        if (tabular) warn("schema entry not recognised, group left as a list: " $0)
-        tabular = 0
-      }
-      next
-    }
+def cell(text):
+  return " ".join(str(text).split()).replace("|", "\\|")
 
-    { flush() }
 
-    /^<!-- schema generated by tfplugindocs -->$/ { next }
-    /^## Schema$/ { sawschema = 1; next }
-    /^### (Required|Optional|Read-Only)$/ {
-      sub(/^### /, "")
-      label = $0
-      print "**" $0 "**"
-      next
-    }
-    /^(Required|Optional|Read-Only):$/ { label = substr($0, 1, length($0) - 1) }
-    /^### Nested Schema for / { print "#" $0; next }
-    /^# / { title++ }
-    /^#### / { warn("heading is deeper than this script rewrites: " $0) }
-    /^#/ { print "##" $0; next }
-    { print }
+def typename(spec):
+  if isinstance(spec, str):
+    return {"string": "String", "bool": "Boolean", "number": "Number"}.get(
+      spec, spec.title()
+    )
+  if isinstance(spec, list) and spec:
+    kind = spec[0]
+    if kind in ("list", "set", "map") and len(spec) > 1:
+      return "%s of %s" % (kind.title(), typename(spec[1]))
+    return kind.title()
+  return "Object"
 
-    END {
-      flush()
-      if (fence) warn("code fence left open at end of file")
-      if (title != 1) warn("expected exactly one H1, found " title)
-      if (sawschema && entries == 0) warn("a Schema section produced no entries, the schema format has probably changed")
-      if (tables == 0 && sawschema) warn("no tables were generated")
-    }
-  ' "$1"
-}
+
+def attribute_type(spec):
+  name = typename(spec.get("type", "string"))
+  return name + ", Sensitive" if spec.get("sensitive") else name
+
+
+def group(name, spec):
+  if spec.get("required"):
+    return "Required"
+  if spec.get("optional"):
+    return "Optional"
+  return "Read-Only"
+
+
+def block_type(spec):
+  mode = spec.get("nesting_mode", "single")
+  return "Block List" if mode in ("list", "set") else "Block"
+
+
+def block_group(spec):
+  return "Required" if spec.get("min_items") else "Optional"
+
+
+undescribed = []
+
+
+def rows(block, owner):
+  grouped = {"Required": [], "Optional": [], "Read-Only": []}
+  for name, spec in sorted((block.get("attributes") or {}).items()):
+    description = spec.get("description", "")
+    if not description:
+      undescribed.append("%s.%s" % (owner, name))
+    grouped[group(name, spec)].append((name, attribute_type(spec), description))
+  for name, spec in sorted((block.get("block_types") or {}).items()):
+    grouped[block_group(spec)].append(
+      (name, block_type(spec), (spec.get("block") or {}).get("description", ""))
+    )
+  return grouped
+
+
+def emit_tables(block, owner):
+  grouped = rows(block, owner)
+  if not any(grouped.values()):
+    warn("a block has neither arguments nor attributes")
+  for label in ("Required", "Optional", "Read-Only"):
+    entries = grouped[label]
+    if not entries:
+      continue
+    out.append("**%s**" % label)
+    out.append("")
+    out.append(
+      "| %s | Type | Description |" % ("Attribute" if label == "Read-Only" else "Argument")
+    )
+    out.append("| --- | --- | --- |")
+    for name, kind, description in entries:
+      out.append("| `%s` | %s | %s |" % (cell(name), cell(kind), cell(description)))
+    out.append("")
+
+  for name, spec in sorted((block.get("block_types") or {}).items()):
+    out.append("#### Nested Schema for `%s`" % name)
+    out.append("")
+    emit_tables(spec.get("block") or {}, "%s.%s" % (owner, name))
+
+
+def emit_example(path, language, heading):
+  if examples is None:
+    return
+  source = examples / path
+  if not source.is_file():
+    return
+  body = source.read_text().strip()
+  if not body:
+    return
+  if heading:
+    out.append("#### %s" % heading)
+    out.append("")
+  out.append("```%s" % language)
+  out.append(body)
+  out.append("```")
+  out.append("")
+
+
+def emit(title, block, example_dir, example_file, language):
+  out.append("### %s" % title)
+  out.append("")
+  description = (block.get("description") or "").strip()
+  if description:
+    out.append(description)
+    out.append("")
+  else:
+    warn("%s has no description" % title)
+  if example_dir:
+    emit_example("%s/%s" % (example_dir, example_file), language, "Example Usage")
+  emit_tables(block, title)
+  if example_dir:
+    emit_example("%s/import.sh" % example_dir, "shell", "Import")
+
+
+provider = schema.get("provider_schemas", {}).get(PROVIDER)
+if provider is None:
+  warn("the schema holds no %s" % PROVIDER)
+  provider = {}
+
+out.append("## Provider")
+out.append("")
+provider_block = (provider.get("provider") or {}).get("block") or {}
+if provider_block.get("description"):
+  out.append(provider_block["description"].strip())
+  out.append("")
+emit_example("provider/provider.tf", "terraform", "Example Usage")
+emit_tables(provider_block, "provider")
+
+resources = provider.get("resource_schemas") or {}
+datasources = provider.get("data_source_schemas") or {}
+if not resources:
+  warn("the schema holds no resources")
+
+out.append("## Resources")
+out.append("")
+for name in sorted(resources):
+  emit(
+    "%s (Resource)" % name,
+    resources[name].get("block") or {},
+    "resources/%s" % name,
+    "resource.tf",
+    "terraform",
+  )
+
+out.append("## Data sources")
+out.append("")
+for name in sorted(datasources):
+  emit(
+    "%s (Data Source)" % name,
+    datasources[name].get("block") or {},
+    "data-sources/%s" % name,
+    "data-source.tf",
+    "terraform",
+  )
+
+if undescribed:
+  warn(
+    "%d attributes carry no description in the schema, so their cells are empty: %s"
+    % (len(undescribed), ", ".join(sorted(undescribed)[:5]) + ", ...")
+  )
+
+print("\n".join(out).rstrip())
+PY
+
+status=$?
+[ "$status" -eq 0 ] || die "generation failed, ${DEST} may be incomplete"
+
+# The renderer runs in a subshell, so its warnings are counted here.
+while IFS= read -r line; do
+  [ -n "$line" ] || continue
+  WARNINGS=$((WARNINGS + 1))
+  echo "${PROG}: ${line}" >&2
+done < "${TMPDIR}/warnings"
+
+[ -s "$DEST" ] || die "generated ${DEST} is empty"
+
+BODY="${TMPDIR}/body.md"
+mv "$DEST" "$BODY"
 
 {
   cat <<EOF
@@ -188,56 +296,26 @@ summary: "Argument-by-argument reference for every resource and data source in t
 # Terraform provider reference
 
 This page lists every argument and attribute of every resource and data source
-in the \`plakarkorp/plakar\` Terraform provider. For an introduction to what
-these resources are and how to use them, see
+in the \`plakarkorp/plakar\` Terraform provider, version ${RESOLVED}. For an
+introduction to what these resources are and how to use them, see
 [Terraform Provider](../../infrastructure-as-code/terraform).
 
-## Provider
 EOF
+  cat "$BODY"
+} > "$DEST" || die "could not write ${DEST}"
 
-  # The provider page's own title duplicates the section heading above it.
-  emit "${SRCDIR}/index.md" | grep -v '^### plakar Provider$'
-
-  echo
-  echo "## Resources"
-  echo
-
-  for f in $RESOURCES; do
-    emit "$f"
-    echo
-  done
-
-  echo "## Data sources"
-  echo
-
-  for f in $DATASOURCES; do
-    emit "$f"
-    echo
-  done
-} > "$DEST" 2> "${TMPDIR}/warnings" || die "generation failed, ${DEST} may be incomplete"
-
-# emit() runs in a subshell, so its warnings are collected here rather than
-# counted as they are produced.
-while IFS= read -r line; do
-  [ -n "$line" ] || continue
-  WARNINGS=$((WARNINGS + 1))
-  echo "${PROG}: ${line}" >&2
-done < "${TMPDIR}/warnings"
-
-# The page is only useful if every source file made it through, so check the
-# result rather than trusting the pipeline above.
-[ -s "$DEST" ] || die "generated ${DEST} is empty"
-
-expected=$((N_RESOURCES + N_DATASOURCES))
+expected=$(
+  "$PYTHON" -c '
+import json, sys
+p = json.load(open(sys.argv[1]))["provider_schemas"]["registry.terraform.io/plakarkorp/plakar"]
+print(len(p.get("resource_schemas") or {}) + len(p.get("data_source_schemas") or {}))
+' "${TMPDIR}/schema.json"
+)
 found=$(grep -c '^### ' "$DEST")
 [ "$found" -eq "$expected" ] ||
-  die "expected ${expected} resource and data source sections, found ${found} in ${DEST}"
+  die "the schema holds ${expected} resources and data sources, ${found} sections were written"
 
 grep -q '^## Resources$' "$DEST" || die "generated page has no Resources section"
-if deep=$(grep -n '^##### ' "$DEST"); then
-  warn "headings below H4 survived, the theme renders them at body size:
-${deep}"
-fi
 
 if npx --no-install prettier --write "$DEST"; then
   :
@@ -245,7 +323,8 @@ else
   warn "prettier is not installed here, ${DEST} is unformatted and will fail the repository format check, run 'npm install' and retry"
 fi
 
+# prettier pads the cells, so the header is matched loosely.
 tables=$(grep -cE '^\| *(Argument|Attribute) *\| *Type *\|' "$DEST")
-echo "${PROG}: wrote ${DEST} (${expected} sections, ${tables} schema tables, ${WARNINGS} warnings)"
+echo "${PROG}: wrote ${DEST} (${found} sections, ${tables} schema tables, ${WARNINGS} warnings)"
 
 [ "$WARNINGS" -eq 0 ] || echo "${PROG}: review the warnings above before committing" >&2
