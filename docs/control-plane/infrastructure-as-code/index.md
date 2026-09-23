@@ -38,4 +38,12 @@ see the [installation documentation](../intro/installation).
 - [Organizations and Access](https://www.plakar.io/docs/control-plane/infrastructure-as-code/terraform/organizations/index.md): Declaring organizations, their members, and the roles those members hold.
 
 
+## [Ansible Collection](https://www.plakar.io/docs/control-plane/infrastructure-as-code/ansible/index.md)
+
+- [Running Operations](https://www.plakar.io/docs/control-plane/infrastructure-as-code/ansible/operations/index.md): Triggering backups, restores, syncs, checks and prunes, and reading the jobs they create.
+- [Stores and Connectors](https://www.plakar.io/docs/control-plane/infrastructure-as-code/ansible/stores-and-connectors/index.md): Declaring store, source and destination apps with the store and connector modules.
+- [Inventories](https://www.plakar.io/docs/control-plane/infrastructure-as-code/ansible/inventories/index.md): Declaring provider-backed and self-managed inventories, and mirroring an Ansible fleet into one.
+- [Organizations and Access](https://www.plakar.io/docs/control-plane/infrastructure-as-code/ansible/organizations/index.md): Declaring organizations, their members, and the roles those members hold.
+
+
 

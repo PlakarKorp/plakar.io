@@ -20,4 +20,8 @@ of the documentation instead.
 
 
 
+## [Ansible Collection](https://www.plakar.io/docs/control-plane/references/ansible-collection/index.md)
+
+
+
 

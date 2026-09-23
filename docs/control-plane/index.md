@@ -94,12 +94,14 @@
 
 - [Kubernetes Operator](https://www.plakar.io/docs/control-plane/infrastructure-as-code/kubernetes-operator/index.md): Manage Plakar Control Plane declaratively from Kubernetes using the plakar-operator.
 - [Terraform Provider](https://www.plakar.io/docs/control-plane/infrastructure-as-code/terraform/index.md): Manage Plakar Control Plane declaratively with the plakarkorp/plakar Terraform provider.
+- [Ansible Collection](https://www.plakar.io/docs/control-plane/infrastructure-as-code/ansible/index.md): Drive Plakar Control Plane from playbooks with the plakarkorp.plakar Ansible collection.
 
 
 ## [References](https://www.plakar.io/docs/control-plane/references/index.md)
 
 - [Kubernetes Operator](https://www.plakar.io/docs/control-plane/references/kubernetes-operator/index.md): Field-by-field reference for every custom resource defined by plakar-operator.
 - [Terraform Provider](https://www.plakar.io/docs/control-plane/references/terraform-provider/index.md): Argument-by-argument reference for every resource and data source in the plakar Terraform provider.
+- [Ansible Collection](https://www.plakar.io/docs/control-plane/references/ansible-collection/index.md): Option-by-option reference for every module in the plakarkorp.plakar Ansible collection.
 
 
 
