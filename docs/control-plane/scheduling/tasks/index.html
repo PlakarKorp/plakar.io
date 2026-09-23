@@ -95,7 +95,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-06-25T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-09-23T09:52:19+02:00">
+    <meta property="article:modified_time" content="2026-09-23T19:49:48+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -253,12 +253,12 @@
     "dateCreated": "2026-06-25T00:00:00\u002b00:00",
     "datePublished": "2026-06-25T00:00:00\u002b00:00",
     
-    "dateModified": "2026-09-23T09:52:19\u002b02:00",
+    "dateModified": "2026-09-23T19:49:48\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/scheduling/tasks/",
-    "wordCount": "861"
+    "wordCount": "965"
   }]
   </script>
 
@@ -7935,12 +7935,12 @@ restore points and can later be used as filters for your restore points.</p>
     decoding="async"
     fetchpriority="auto"
     alt=""
-    width="2784"
-    height="1656"
-    src="/docs/control-plane/scheduling/images/backup-task_hu_2007fad06bbaa42f.webp"
-    srcset="/docs/control-plane/scheduling/images/backup-task_hu_2007fad06bbaa42f.webp 400w, /docs/control-plane/scheduling/images/backup-task_hu_75d1393a7140e1f1.webp 800w, /docs/control-plane/scheduling/images/backup-task_hu_e9dbd59e85266a1d.webp 1200w"
+    width="2808"
+    height="1852"
+    src="/docs/control-plane/scheduling/images/backup-task_hu_4318459a6373e49b.webp"
+    srcset="/docs/control-plane/scheduling/images/backup-task_hu_4318459a6373e49b.webp 400w, /docs/control-plane/scheduling/images/backup-task_hu_9848eac5bc223725.webp 800w, /docs/control-plane/scheduling/images/backup-task_hu_e9233a96c6a24011.webp 1200w"
     sizes="(min-width: 768px) 50vw, 65vw"
-    data-zoom-src="/docs/control-plane/scheduling/images/backup-task_hu_54f4344f58bbfc21.webp"></figure>
+    data-zoom-src="/docs/control-plane/scheduling/images/backup-task_hu_9c98b8f1f7cb3709.webp"></figure>
 
 
 <h3 id="advanced-config" class="group pr-8">Advanced Config
@@ -7959,10 +7959,17 @@ restore points and can later be used as filters for your restore points.</p>
   
 </h3>
 <ul>
-<li><strong>Run on</strong>: Enables you to select a remote edge executor to run the task on.
-If left empty, the task runs on the local executor in your Control Plane
-instance. Check the <a href="/docs/control-plane/infrastructure/edges/" >edge documentation</a> for more
-information on remote executors for Control Plane.</li>
+<li><strong>Run on</strong>: Pins the task to a specific edge. If left empty, the Control Plane
+picks an available edge, preferring an edge over running the task itself.
+Targeting edges by tags is currently only possible through the
+<a href="../references/ansible-collection" >Ansible collection</a> and the
+<a href="/docs/control-plane/infrastructure-as-code/kubernetes-operator/scheduling/#running-tasks-on-a-remote-edge" >Kubernetes operator</a>.
+See <a href="/docs/control-plane/infrastructure/edges/#selecting-an-edge" >selecting an edge</a>.</li>
+<li><strong>Pre-job script</strong> and <strong>Post-job script</strong>: File names of scripts in the
+edge&rsquo;s scripts directory, run before and after the job. The task fails if the
+pre-job script fails, and the post-job script runs whether the job succeeds or
+fails. See
+<a href="/docs/control-plane/infrastructure/edges/#pre-job-and-post-job-hooks" >pre-job and post-job hooks</a>.</li>
 <li><strong>Concurrency</strong>: This controls how many operations the backup task runs in
 parallel. Plakar Control Plane automatically sets a recommended concurrency
 for each operation its doing. Only change this if you have a specific reason
@@ -8002,12 +8009,12 @@ showing only restore points that match the specified environment and data class.
     decoding="async"
     fetchpriority="auto"
     alt=""
-    width="2786"
-    height="1848"
-    src="/docs/control-plane/scheduling/images/restore-task_hu_c749119668ea0572.webp"
-    srcset="/docs/control-plane/scheduling/images/restore-task_hu_c749119668ea0572.webp 400w, /docs/control-plane/scheduling/images/restore-task_hu_d5c01a417d77b732.webp 800w, /docs/control-plane/scheduling/images/restore-task_hu_43824b0b91477604.webp 1200w"
+    width="2806"
+    height="2052"
+    src="/docs/control-plane/scheduling/images/restore-task_hu_b98c4c06dce57a2.webp"
+    srcset="/docs/control-plane/scheduling/images/restore-task_hu_b98c4c06dce57a2.webp 400w, /docs/control-plane/scheduling/images/restore-task_hu_a34cfe2e0586736d.webp 800w, /docs/control-plane/scheduling/images/restore-task_hu_8e225f349d7cb50c.webp 1200w"
     sizes="(min-width: 768px) 50vw, 65vw"
-    data-zoom-src="/docs/control-plane/scheduling/images/restore-task_hu_9aba982db3d5630c.webp"></figure>
+    data-zoom-src="/docs/control-plane/scheduling/images/restore-task_hu_7a3dc8c2136c949e.webp"></figure>
 
 
 <h3 id="advanced-config-1" class="group pr-8">Advanced Config
@@ -8026,10 +8033,17 @@ showing only restore points that match the specified environment and data class.
   
 </h3>
 <ul>
-<li><strong>Run on</strong>: Enables you to select a remote edge executor to run the task on.
-If left empty, the task runs on the local executor in your Control Plane
-instance. Check the <a href="/docs/control-plane/infrastructure/edges/" >edge documentation</a> for more
-information on remote executors for Control Plane.</li>
+<li><strong>Run on</strong>: Pins the task to a specific edge. If left empty, the Control Plane
+picks an available edge, preferring an edge over running the task itself.
+Targeting edges by tags is currently only possible through the
+<a href="../references/ansible-collection" >Ansible collection</a> and the
+<a href="/docs/control-plane/infrastructure-as-code/kubernetes-operator/scheduling/#running-tasks-on-a-remote-edge" >Kubernetes operator</a>.
+See <a href="/docs/control-plane/infrastructure/edges/#selecting-an-edge" >selecting an edge</a>.</li>
+<li><strong>Pre-job script</strong> and <strong>Post-job script</strong>: File names of scripts in the
+edge&rsquo;s scripts directory, run before and after the job. The task fails if the
+pre-job script fails, and the post-job script runs whether the job succeeds or
+fails. See
+<a href="/docs/control-plane/infrastructure/edges/#pre-job-and-post-job-hooks" >pre-job and post-job hooks</a>.</li>
 <li><strong>Concurrency</strong>: This controls how many operations the backup task runs in
 parallel. Plakar Control Plane automatically sets a recommended concurrency
 for each operation its doing. Only change this if you have a specific reason
@@ -8087,10 +8101,12 @@ matching all the provided labels will be synced to the other store.</p>
   
 </h3>
 <ul>
-<li><strong>Run on</strong>: Enables you to select a remote edge executor to run the task on.
-If left empty, the task runs on the local executor in your Control Plane
-instance. Check the <a href="/docs/control-plane/infrastructure/edges/" >edge documentation</a> for more
-information on remote executors for Control Plane.</li>
+<li><strong>Run on</strong>: Pins the task to a specific edge. If left empty, the Control Plane
+picks an available edge, preferring an edge over running the task itself.
+Targeting edges by tags is currently only possible through the
+<a href="../references/ansible-collection" >Ansible collection</a> and the
+<a href="/docs/control-plane/infrastructure-as-code/kubernetes-operator/scheduling/#running-tasks-on-a-remote-edge" >Kubernetes operator</a>.
+See <a href="/docs/control-plane/infrastructure/edges/#selecting-an-edge" >selecting an edge</a>.</li>
 <li><strong>Concurrency</strong>: This controls how many operations the backup task runs in
 parallel. Plakar Control Plane automatically sets a recommended concurrency
 for each operation its doing. Only change this if you have a specific reason
@@ -8159,10 +8175,12 @@ checked, not the entire store.</p>
   
 </h3>
 <ul>
-<li><strong>Run on</strong>: Enables you to select a remote edge executor to run the task on.
-If left empty, the task runs on the local executor in your Control Plane
-instance. Check the <a href="/docs/control-plane/infrastructure/edges/" >edge documentation</a> for more
-information on remote executors for Control Plane.</li>
+<li><strong>Run on</strong>: Pins the task to a specific edge. If left empty, the Control Plane
+picks an available edge, preferring an edge over running the task itself.
+Targeting edges by tags is currently only possible through the
+<a href="../references/ansible-collection" >Ansible collection</a> and the
+<a href="/docs/control-plane/infrastructure-as-code/kubernetes-operator/scheduling/#running-tasks-on-a-remote-edge" >Kubernetes operator</a>.
+See <a href="/docs/control-plane/infrastructure/edges/#selecting-an-edge" >selecting an edge</a>.</li>
 <li><strong>Concurrency</strong>: This controls how many operations the backup task runs in
 parallel. Plakar Control Plane automatically sets a recommended concurrency
 for each operation its doing. Only change this if you have a specific reason

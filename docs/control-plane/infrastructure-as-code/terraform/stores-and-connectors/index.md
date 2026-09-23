@@ -34,14 +34,24 @@ resource "plakar_store" "offsite" {
 A store app describes where backup data should go. The
 [Kloset store](../../../apps/stores#testing-and-initializing) itself is a
 structure that has to exist at that location before anything can be written to
-it. Setting `initialize` creates that structure when the resource is created,
-and `compression` selects the algorithm used while doing so. Initialization runs
-at creation only, so a location that already holds a store is never touched by a
-later apply.
+it. The provider creates that structure at creation unless `initialize` is set
+to `false`, and `compression` selects the algorithm used while doing so.
+Initialization runs at creation only, so a location that already holds a store
+is never touched by a later apply.
+
+A store is encrypted at rest with the `passphrase` in `fields`, so the provider
+refuses to initialize one without it. A missing key, an empty string, and a
+whitespace-only string are all rejected. A passphrase written in the
+configuration is caught while the plan is made. One that comes from a variable
+or another resource has no value until apply, and is checked then, so a plan
+that succeeds is not on its own proof that the passphrase is set.
+
+Set `initialize = false` when the storage was initialized elsewhere. Its
+passphrase was set there, so the provider does not ask for one here.
 
 Destroying the resource removes the store from PCP. The backup data in the
 underlying storage is left in place, and can be reattached by declaring the
-store again without `initialize`.
+store again with `initialize = false`.
 
 ## Connectors
 

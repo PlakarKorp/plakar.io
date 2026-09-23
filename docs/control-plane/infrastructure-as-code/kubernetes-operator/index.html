@@ -253,12 +253,12 @@
     "dateCreated": "2026-07-15T00:00:00\u002b00:00",
     "datePublished": "2026-07-15T00:00:00\u002b00:00",
     
-    "dateModified": "2026-09-23T09:52:19\u002b02:00",
+    "dateModified": "2026-09-23T19:49:48\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/infrastructure-as-code/kubernetes-operator/",
-    "wordCount": "430"
+    "wordCount": "462"
   }]
   </script>
 
@@ -7950,7 +7950,10 @@ next to everything else, instead of switching to a separate UI to set them up.</
 </h2>
 <ul>
 <li>A running, <a href="/docs/control-plane/intro/enrollment/" >enrolled</a> PCP instance</li>
-<li>A PCP API key</li>
+<li>A PCP API key belonging to an application user with at least the
+<a href="/docs/control-plane/administration/permissions/operator/" >Operator</a> role</li>
+<li>The <a href="/docs/control-plane/apps/integrations/" >integrations</a> your resources rely on, installed
+in PCP. For example, backing up to an S3 bucket requires the S3 integration.</li>
 <li>A Kubernetes cluster with access to that PCP instance&rsquo;s API endpoint</li>
 </ul>
 

@@ -57,6 +57,10 @@ provider can do. When an apply fails on a single resource with an authorization
 error, the role granted to the application user does not reach that part of the
 organization.
 
+Stores, connectors and schedules are the resources most configurations declare,
+and reaching them at the configure level or above requires at least the
+[Operator](../../administration/permissions/operator) role.
+
 ## Secrets in Terraform state
 
 The `fields` of a store or a connector hold the credentials Plakar Control Plane

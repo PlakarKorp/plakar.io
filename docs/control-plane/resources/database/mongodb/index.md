@@ -7,6 +7,16 @@ MongoDB command line utilities, so a snapshot is a logical export of the server
 rather than a copy of its data files, and a reachable server is required for
 both backup and restore.
 
+## Running MongoDB tasks on an edge
+
+The MongoDB integration relies on `mongosh`, `mongodump`, and `mongorestore`,
+which must be installed on the machine that executes the task. These utilities
+are not included in the appliance, so MongoDB tasks run on an
+[edge](../../infrastructure/edges) rather than on the Control Plane.
+
+Install the required MongoDB utilities on the edge host, then configure the task
+to run on that edge.
+
 ## Inventory Management
 
 Currently no

@@ -14,20 +14,20 @@ spec:
   endpoint: bucket1.s3.eu-west-3.amazonaws.com
   protocol: s3
   integration:
-    name: aws
+    name: s3
   fields:
     region:
       value: eu-west-1
-    accessKey:
+    access_key:
       valueFrom:
         secretKeyRef:
           name: aws-credentials
-          key: accessKey
-    secretAccessKey:
+          key: access_key
+    secret_access_key:
       valueFrom:
         secretKeyRef:
           name: aws-credentials
-          key: secretAccessKey
+          key: secret_access_key
 ```
 
 The `endpoint` and `protocol` identify the storage location, just as you would

@@ -253,12 +253,12 @@
     "dateCreated": "2026-09-11T00:00:00\u002b00:00",
     "datePublished": "2026-09-11T00:00:00\u002b00:00",
     
-    "dateModified": "2026-09-23T09:52:19\u002b02:00",
+    "dateModified": "2026-09-23T19:49:48\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/infrastructure-as-code/terraform/",
-    "wordCount": "798"
+    "wordCount": "823"
   }]
   </script>
 
@@ -7975,6 +7975,9 @@ several organizations.</p>
 provider can do. When an apply fails on a single resource with an authorization
 error, the role granted to the application user does not reach that part of the
 organization.</p>
+<p>Stores, connectors and schedules are the resources most configurations declare,
+and reaching them at the configure level or above requires at least the
+<a href="/docs/control-plane/administration/permissions/operator/" >Operator</a> role.</p>
 
 
 <h2 id="secrets-in-terraform-state" class="group pr-8">Secrets in Terraform state

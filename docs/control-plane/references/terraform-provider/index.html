@@ -94,8 +94,8 @@
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
-    <meta property="article:published_time" content="2026-09-11T10:13:41+00:00">
-    <meta property="article:modified_time" content="2026-09-23T09:52:19+02:00">
+    <meta property="article:published_time" content="2026-09-23T06:42:38+00:00">
+    <meta property="article:modified_time" content="2026-09-23T19:49:48+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -250,15 +250,15 @@
       "sameAs": ["https://bsky.app/profile/plakar.bsky.social", "https://www.linkedin.com/company/plakarkorp", "https://reddit.com/r/plakar", "https://twitter.com/PlakarKorp", "https://twitter.com/PlakarKorp", "https://github.com/PlakarKorp"]
     },
     "copyrightYear": "2026",
-    "dateCreated": "2026-09-11T10:13:41\u002b00:00",
-    "datePublished": "2026-09-11T10:13:41\u002b00:00",
+    "dateCreated": "2026-09-23T06:42:38\u002b00:00",
+    "datePublished": "2026-09-23T06:42:38\u002b00:00",
     
-    "dateModified": "2026-09-23T09:52:19\u002b02:00",
+    "dateModified": "2026-09-23T19:49:48\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/references/terraform-provider/",
-    "wordCount": "2734"
+    "wordCount": "2551"
   }]
   </script>
 
@@ -7901,8 +7901,8 @@
   
 </h1>
 <p>This page lists every argument and attribute of every resource and data source
-in the <code>plakarkorp/plakar</code> Terraform provider. For an introduction to what these
-resources are and how to use them, see
+in the <code>plakarkorp/plakar</code> Terraform provider, version 0.10.1. For an
+introduction to what these resources are and how to use them, see
 <a href="../../infrastructure-as-code/terraform" >Terraform Provider</a>.</p>
 
 
@@ -8117,7 +8117,7 @@ the Plakar management API.</p>
       <tr>
           <td><code>id</code></td>
           <td>String</td>
-          <td>The ID of this resource.</td>
+          <td></td>
       </tr>
       <tr>
           <td><code>urn_id</code></td>
@@ -8143,10 +8143,6 @@ the Plakar management API.</p>
     </button>
   
 </h4>
-<p>Import is supported using the following syntax:</p>
-<p>The
-<a href="https://developer.hashicorp.com/terraform/cli/commands/import"  target="_blank" rel="noreferrer"><code>terraform import</code> command</a>
-can be used, for example:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">terraform import plakar_connector.example &lt;uuid&gt;</span></span></code></pre></div></div>
 
 
@@ -8270,10 +8266,6 @@ catalogue, the standard tier being owner, administrator, operator and auditor.</
     </button>
   
 </h4>
-<p>Import is supported using the following syntax:</p>
-<p>The
-<a href="https://developer.hashicorp.com/terraform/cli/commands/import"  target="_blank" rel="noreferrer"><code>terraform import</code> command</a>
-can be used, for example:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># &lt;organization_id&gt;/&lt;grant_id&gt;</span>
 </span></span><span class="line"><span class="cl">terraform import plakar_grant.alice_audits 3f1e4a2c-9b7d-4e0f-8a11-2c5d6e7f8a90/9d8e7f6a-5b4c-4d3e-8f2a-1b0c9d8e7f6a</span></span></code></pre></div></div>
 
@@ -8368,33 +8360,33 @@ resources declared by hand, e.g. with plakar_inventory_resource.</p>
   <tbody>
       <tr>
           <td><code>aws</code></td>
-          <td>Block, Optional</td>
-          <td>Configuration of an aws inventory. (see <a href="/docs/control-plane/references/terraform-provider/#nestedblock--aws" >below for nested schema</a>)</td>
+          <td>Block</td>
+          <td>Configuration of an aws inventory.</td>
       </tr>
       <tr>
           <td><code>gcp</code></td>
-          <td>Block, Optional</td>
-          <td>Configuration of a gcp inventory. (see <a href="/docs/control-plane/references/terraform-provider/#nestedblock--gcp" >below for nested schema</a>)</td>
+          <td>Block</td>
+          <td>Configuration of a gcp inventory.</td>
       </tr>
       <tr>
           <td><code>k8s</code></td>
-          <td>Block, Optional</td>
-          <td>Configuration of a k8s inventory. (see <a href="/docs/control-plane/references/terraform-provider/#nestedblock--k8s" >below for nested schema</a>)</td>
+          <td>Block</td>
+          <td>Configuration of a k8s inventory.</td>
       </tr>
       <tr>
           <td><code>ovh</code></td>
-          <td>Block, Optional</td>
-          <td>Configuration of an ovh inventory. (see <a href="/docs/control-plane/references/terraform-provider/#nestedblock--ovh" >below for nested schema</a>)</td>
+          <td>Block</td>
+          <td>Configuration of an ovh inventory.</td>
       </tr>
       <tr>
           <td><code>scaleway</code></td>
-          <td>Block, Optional</td>
-          <td>Configuration of a scaleway inventory. (see <a href="/docs/control-plane/references/terraform-provider/#nestedblock--scaleway" >below for nested schema</a>)</td>
+          <td>Block</td>
+          <td>Configuration of a scaleway inventory.</td>
       </tr>
       <tr>
           <td><code>vmware</code></td>
-          <td>Block, Optional</td>
-          <td>Configuration of a vmware inventory. (see <a href="/docs/control-plane/references/terraform-provider/#nestedblock--vmware" >below for nested schema</a>)</td>
+          <td>Block</td>
+          <td>Configuration of a vmware inventory.</td>
       </tr>
   </tbody>
 </table>
@@ -8411,11 +8403,10 @@ resources declared by hand, e.g. with plakar_inventory_resource.</p>
       <tr>
           <td><code>id</code></td>
           <td>String</td>
-          <td>The ID of this resource.</td>
+          <td></td>
       </tr>
   </tbody>
 </table>
-<p><a id="nestedblock--aws"></a></p>
 
 
 <h4 id="nested-schema-for-aws" class="group pr-8">Nested Schema for <code>aws</code>
@@ -8433,7 +8424,7 @@ resources declared by hand, e.g. with plakar_inventory_resource.</p>
     </button>
   
 </h4>
-<p>Optional:</p>
+<p><strong>Optional</strong></p>
 <table>
   <thead>
       <tr>
@@ -8465,7 +8456,6 @@ resources declared by hand, e.g. with plakar_inventory_resource.</p>
       </tr>
   </tbody>
 </table>
-<p><a id="nestedblock--gcp"></a></p>
 
 
 <h4 id="nested-schema-for-gcp" class="group pr-8">Nested Schema for <code>gcp</code>
@@ -8483,7 +8473,7 @@ resources declared by hand, e.g. with plakar_inventory_resource.</p>
     </button>
   
 </h4>
-<p>Optional:</p>
+<p><strong>Optional</strong></p>
 <table>
   <thead>
       <tr>
@@ -8505,7 +8495,6 @@ resources declared by hand, e.g. with plakar_inventory_resource.</p>
       </tr>
   </tbody>
 </table>
-<p><a id="nestedblock--k8s"></a></p>
 
 
 <h4 id="nested-schema-for-k8s" class="group pr-8">Nested Schema for <code>k8s</code>
@@ -8523,7 +8512,7 @@ resources declared by hand, e.g. with plakar_inventory_resource.</p>
     </button>
   
 </h4>
-<p>Optional:</p>
+<p><strong>Optional</strong></p>
 <table>
   <thead>
       <tr>
@@ -8540,7 +8529,6 @@ resources declared by hand, e.g. with plakar_inventory_resource.</p>
       </tr>
   </tbody>
 </table>
-<p><a id="nestedblock--ovh"></a></p>
 
 
 <h4 id="nested-schema-for-ovh" class="group pr-8">Nested Schema for <code>ovh</code>
@@ -8558,7 +8546,7 @@ resources declared by hand, e.g. with plakar_inventory_resource.</p>
     </button>
   
 </h4>
-<p>Optional:</p>
+<p><strong>Optional</strong></p>
 <table>
   <thead>
       <tr>
@@ -8590,7 +8578,6 @@ resources declared by hand, e.g. with plakar_inventory_resource.</p>
       </tr>
   </tbody>
 </table>
-<p><a id="nestedblock--scaleway"></a></p>
 
 
 <h4 id="nested-schema-for-scaleway" class="group pr-8">Nested Schema for <code>scaleway</code>
@@ -8608,7 +8595,7 @@ resources declared by hand, e.g. with plakar_inventory_resource.</p>
     </button>
   
 </h4>
-<p>Optional:</p>
+<p><strong>Optional</strong></p>
 <table>
   <thead>
       <tr>
@@ -8635,7 +8622,6 @@ resources declared by hand, e.g. with plakar_inventory_resource.</p>
       </tr>
   </tbody>
 </table>
-<p><a id="nestedblock--vmware"></a></p>
 
 
 <h4 id="nested-schema-for-vmware" class="group pr-8">Nested Schema for <code>vmware</code>
@@ -8653,7 +8639,7 @@ resources declared by hand, e.g. with plakar_inventory_resource.</p>
     </button>
   
 </h4>
-<p>Optional:</p>
+<p><strong>Optional</strong></p>
 <table>
   <thead>
       <tr>
@@ -8707,10 +8693,6 @@ resources declared by hand, e.g. with plakar_inventory_resource.</p>
     </button>
   
 </h4>
-<p>Import is supported using the following syntax:</p>
-<p>The
-<a href="https://developer.hashicorp.com/terraform/cli/commands/import"  target="_blank" rel="noreferrer"><code>terraform import</code> command</a>
-can be used, for example:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">terraform import plakar_inventory.fleet 3f1e4a2c-9b7d-4e0f-8a11-2c5d6e7f8a90</span></span></code></pre></div></div>
 
 
@@ -8883,10 +8865,6 @@ plakar_resource data source.</p>
     </button>
   
 </h4>
-<p>Import is supported using the following syntax:</p>
-<p>The
-<a href="https://developer.hashicorp.com/terraform/cli/commands/import"  target="_blank" rel="noreferrer"><code>terraform import</code> command</a>
-can be used, for example:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># &lt;inventory_id&gt;/&lt;urn_id&gt;</span>
 </span></span><span class="line"><span class="cl">terraform import plakar_inventory_resource.db1 3f1e4a2c-9b7d-4e0f-8a11-2c5d6e7f8a90/7b2c1d0e-4f5a-4b6c-9d8e-0a1b2c3d4e5f</span></span></code></pre></div></div>
 
@@ -9026,10 +9004,6 @@ not the person&rsquo;s account.</p>
     </button>
   
 </h4>
-<p>Import is supported using the following syntax:</p>
-<p>The
-<a href="https://developer.hashicorp.com/terraform/cli/commands/import"  target="_blank" rel="noreferrer"><code>terraform import</code> command</a>
-can be used, for example:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># &lt;organization_id&gt;/&lt;user_id&gt;</span>
 </span></span><span class="line"><span class="cl">terraform import plakar_member.alice 3f1e4a2c-9b7d-4e0f-8a11-2c5d6e7f8a90/7b2c1d0e-4f5a-4b6c-9d8e-0a1b2c3d4e5f</span></span></code></pre></div></div>
 
@@ -9137,7 +9111,7 @@ deletes the tenant and everything scoped to it.</p>
       <tr>
           <td><code>id</code></td>
           <td>String</td>
-          <td>The ID of this resource.</td>
+          <td></td>
       </tr>
   </tbody>
 </table>
@@ -9158,10 +9132,6 @@ deletes the tenant and everything scoped to it.</p>
     </button>
   
 </h4>
-<p>Import is supported using the following syntax:</p>
-<p>The
-<a href="https://developer.hashicorp.com/terraform/cli/commands/import"  target="_blank" rel="noreferrer"><code>terraform import</code> command</a>
-can be used, for example:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">terraform import plakar_organization.lyon 3f1e4a2c-9b7d-4e0f-8a11-2c5d6e7f8a90</span></span></code></pre></div></div>
 
 
@@ -9293,14 +9263,14 @@ scheduled prune carries the retention rule.</p>
           <td>For a prune: the retention rule, as bucket options — minute, hour, day, week, month, year for how many recent buckets to keep, per_minute &hellip; per_year for how many snapshots in each.</td>
       </tr>
       <tr>
-          <td><code>rule</code></td>
-          <td>Block List</td>
-          <td>A recurrence of the schedule. At least one. (see <a href="/docs/control-plane/references/terraform-provider/#nestedblock--rule" >below for nested schema</a>)</td>
-      </tr>
-      <tr>
           <td><code>target_id</code></td>
           <td>String</td>
           <td>Id of the target connector: the store for a backup, the destination store for a sync. A check has none.</td>
+      </tr>
+      <tr>
+          <td><code>rule</code></td>
+          <td>Block List</td>
+          <td>A recurrence of the schedule. At least one.</td>
       </tr>
   </tbody>
 </table>
@@ -9317,11 +9287,10 @@ scheduled prune carries the retention rule.</p>
       <tr>
           <td><code>id</code></td>
           <td>String</td>
-          <td>The ID of this resource.</td>
+          <td></td>
       </tr>
   </tbody>
 </table>
-<p><a id="nestedblock--rule"></a></p>
 
 
 <h4 id="nested-schema-for-rule" class="group pr-8">Nested Schema for <code>rule</code>
@@ -9339,7 +9308,7 @@ scheduled prune carries the retention rule.</p>
     </button>
   
 </h4>
-<p>Required:</p>
+<p><strong>Required</strong></p>
 <table>
   <thead>
       <tr>
@@ -9356,7 +9325,7 @@ scheduled prune carries the retention rule.</p>
       </tr>
   </tbody>
 </table>
-<p>Optional:</p>
+<p><strong>Optional</strong></p>
 <table>
   <thead>
       <tr>
@@ -9383,7 +9352,7 @@ scheduled prune carries the retention rule.</p>
       </tr>
   </tbody>
 </table>
-<p>Read-Only:</p>
+<p><strong>Read-Only</strong></p>
 <table>
   <thead>
       <tr>
@@ -9417,10 +9386,6 @@ scheduled prune carries the retention rule.</p>
     </button>
   
 </h4>
-<p>Import is supported using the following syntax:</p>
-<p>The
-<a href="https://developer.hashicorp.com/terraform/cli/commands/import"  target="_blank" rel="noreferrer"><code>terraform import</code> command</a>
-can be used, for example:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">terraform import plakar_schedule.example &lt;uuid&gt;</span></span></code></pre></div></div>
 
 
@@ -9483,7 +9448,7 @@ store from Plakar; data in the underlying storage is not touched.</p>
       <tr>
           <td><code>fields</code></td>
           <td>Map of String, Sensitive</td>
-          <td>Integration-specific configuration. Only the keys declared here are managed; anything else set server-side keeps its value.</td>
+          <td>Integration-specific configuration. Must carry a non-empty <code>passphrase</code> when the store is initialized here: it encrypts the store at rest. Only the keys declared here are managed; anything else set server-side keeps its value.</td>
       </tr>
       <tr>
           <td><code>integration</code></td>
@@ -9530,7 +9495,7 @@ store from Plakar; data in the underlying storage is not touched.</p>
       <tr>
           <td><code>initialize</code></td>
           <td>Boolean</td>
-          <td>Initialize the underlying storage at creation. Never re-runs on update.</td>
+          <td>Initialize the underlying storage at creation. Never re-runs on update. Set it to false when the storage is already initialized elsewhere, which also lifts the passphrase requirement.</td>
       </tr>
       <tr>
           <td><code>protocol</code></td>
@@ -9557,7 +9522,7 @@ store from Plakar; data in the underlying storage is not touched.</p>
       <tr>
           <td><code>id</code></td>
           <td>String</td>
-          <td>The ID of this resource.</td>
+          <td></td>
       </tr>
       <tr>
           <td><code>urn_id</code></td>
@@ -9583,10 +9548,6 @@ store from Plakar; data in the underlying storage is not touched.</p>
     </button>
   
 </h4>
-<p>Import is supported using the following syntax:</p>
-<p>The
-<a href="https://developer.hashicorp.com/terraform/cli/commands/import"  target="_blank" rel="noreferrer"><code>terraform import</code> command</a>
-can be used, for example:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">terraform import plakar_store.example &lt;uuid&gt;</span></span></code></pre></div></div>
 
 
@@ -9684,7 +9645,7 @@ can be used, for example:</p>
       <tr>
           <td><code>id</code></td>
           <td>String</td>
-          <td>The ID of this resource.</td>
+          <td></td>
       </tr>
       <tr>
           <td><code>protocol</code></td>
@@ -9766,7 +9727,7 @@ can be used, for example:</p>
       <tr>
           <td><code>id</code></td>
           <td>String</td>
-          <td>The ID of this resource.</td>
+          <td></td>
       </tr>
   </tbody>
 </table>
@@ -9838,7 +9799,7 @@ can be used, for example:</p>
       <tr>
           <td><code>id</code></td>
           <td>String</td>
-          <td>The ID of this resource.</td>
+          <td></td>
       </tr>
       <tr>
           <td><code>type</code></td>
@@ -10016,7 +9977,7 @@ account, which has no address).</p>
       <tr>
           <td><code>id</code></td>
           <td>String</td>
-          <td>The ID of this resource.</td>
+          <td></td>
       </tr>
       <tr>
           <td><code>parent_id</code></td>
@@ -10185,7 +10146,7 @@ account, which has no address).</p>
       <tr>
           <td><code>id</code></td>
           <td>String</td>
-          <td>The ID of this resource.</td>
+          <td></td>
       </tr>
       <tr>
           <td><code>protocol</code></td>
