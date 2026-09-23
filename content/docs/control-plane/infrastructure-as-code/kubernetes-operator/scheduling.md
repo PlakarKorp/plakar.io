@@ -180,6 +180,10 @@ Status:
 Events:          <none>
 ```
 
+`TaskRun` resources mirror the job history reported by Plakar Control Plane.
+They are not a permanent record. When Plakar Control Plane stops reporting a
+job, the operator prunes its `TaskRun`.
+
 The `historyLimit` field caps how many `TaskRun` resources are kept for a given
 schedule. It defaults to 5 and can be set up to 20:
 

@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes Operator"
-date: "2026-08-13T15:53:35Z"
+date: "2026-09-23T15:38:32Z"
 weight: 1
 summary:
   "Field-by-field reference for every custom resource defined by
