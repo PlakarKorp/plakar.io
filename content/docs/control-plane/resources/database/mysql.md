@@ -10,6 +10,19 @@ summary: "How to configure a MySQL resource in Plakar Control Plane."
 The MySQL integration allows Plakar Control Plane to back up and restore MySQL
 and MariaDB databases. The integration supports multiple protocols.
 
+## Running MySQL tasks on an edge
+
+The MySQL integration relies on the MySQL or MariaDB client tools, which must be
+installed on the machine that executes the task. These tools are not included in
+the appliance, so MySQL and MariaDB tasks run on an
+[edge](../../infrastructure/edges) rather than on the Control Plane.
+
+Install the tools on the edge host, then configure the task to run on that edge.
+They must be in the `$PATH` of the process running the task:
+
+- MySQL 5.7 or 8.x: `mysqldump` and `mysql`
+- MariaDB 10.x or 11.x: `mariadb-dump` and `mariadb`
+
 ## Inventory Management
 
 [Managed inventories](../../infrastructure/inventories#managed-inventories) can

@@ -10,6 +10,19 @@ summary: "How to configure a PostgreSQL resource in Plakar Control Plane."
 The PostgreSQL integration allows Plakar Control Plane to back up and restore
 PostgreSQL databases. The integration supports multiple protocols.
 
+## Running PostgreSQL tasks on an edge
+
+The PostgreSQL integration relies on the PostgreSQL client tools, which must be
+installed on the machine that executes the task. These tools are not included in
+the appliance, so PostgreSQL tasks run on an [edge](../../infrastructure/edges)
+rather than on the Control Plane.
+
+Install the tools on the edge host, then configure the task to run on that edge.
+They are usually provided by the `postgresql-client` package and must be in the
+`$PATH` of the process running the task. The `postgres` and `postgres+aws`
+protocols back up with `pg_dump` and `pg_dumpall` and restore with `pg_restore`
+and `psql`. The `postgres+bin` protocol backs up with `pg_basebackup`.
+
 ## Inventory Management
 
 [Managed inventories](../../infrastructure/inventories#managed-inventories) can
