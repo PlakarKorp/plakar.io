@@ -84,6 +84,14 @@ destination apps using the `vmware` protocol.
 - **vSphere Username**: Required. The username used to authenticate with the
   vCenter Server or ESXi host.
 
+> [!NOTE]
+>
+> The `vmware` protocol also exposes NSX settings (**Nsx Url**, **Nsx
+> Username**, **Nsx Password** and **Nsx Skip Verify**). When they are set, the
+> backup also includes the NSX configuration. Plakar Control Plane cannot
+> currently restore NSX configuration, so these settings are not documented here
+> and do not need to be set.
+
 ### Destination configuration
 
 The following extra settings are available when configuring a destination app
