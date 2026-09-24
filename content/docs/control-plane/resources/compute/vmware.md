@@ -206,33 +206,14 @@ destination apps using the `vmware+nbd` protocol.
   for details.
 - **Nbd Ssh Private Key**: Required. The private key used to authenticate over
   SSH with the NBD server.
-- **Nbd Uri**: The TLS NBD URI used for direct disk data transfer, e.g.
+- **Nbd Url**: The TLS NBD URI used for direct disk data transfer, e.g.
   `nbds://[<user>:<password>@]<host>:<port>`. Defaults to the host of Nbd Ssh
   Url when omitted. Credentials in the URI default to Vsphere Username / Vsphere
   Password when omitted.
 - **Nbd Tls Ca Bundle**: Required. The PEM CA bundle used by the client to
   verify the NBD server's TLS certificate.
-- **Nbd Tls Certificates Dir**: The remote directory on the NBD server
-  containing the TLS certificate files (`ca-cert.pem`, `server-cert.pem`, and
-  `server-key.pem`).
-- **Nbd Tls Client Cert**: The PEM client certificate used for mutual TLS
-  authentication with the NBD server, if required.
-- **Nbd Tls Client Key**: The PEM client private key used for mutual TLS
-  authentication with the NBD server, if required.
-- **Nbd Tls Server Name**: Overrides the TLS server name used to verify the NBD
-  server's certificate.
 - **Nbd Tls Skip Verify**: Skip TLS certificate verification for the direct NBD
   connection.
-- **Nbd Username**: The username used to authenticate with the NBD server.
-  Defaults to **Vsphere Username** when omitted.
-- **Nbd Password**: The password used to authenticate with the NBD server.
-  Defaults to **Vsphere Password** when omitted.
-- **Nbd Listen Address**: The address `nbdkit` binds for TLS NBD. Defaults to
-  the host of **Nbd Uri** when omitted.
-- **Nbd Remote Runtime Dir**: The remote runtime directory used by `nbdkit` on
-  the NBD server.
-- **Nbd Vix Library Path**: The path to the VDDK libraries on the NBD server,
-  e.g. `/usr/lib/vmware-vix-disklib`.
 
 ### Source configuration
 
