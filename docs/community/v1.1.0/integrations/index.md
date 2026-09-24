@@ -122,6 +122,14 @@ Below is a list of links to the documentation for each supported integration.
 
 
 
+## [SMB / CIFS](https://www.stg.plakar.io/docs/community/v1.1.0/integrations/smb/index.md)
+
+
+
+## [NFS](https://www.stg.plakar.io/docs/community/v1.1.0/integrations/nfs/index.md)
+
+
+
 ## [MongoDB](https://www.stg.plakar.io/docs/community/v1.1.0/integrations/mongodb/index.md)
 
 

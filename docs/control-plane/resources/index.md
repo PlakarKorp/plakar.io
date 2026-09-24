@@ -111,6 +111,8 @@ required to use each one as a source, store, or destination.
 - [SFTP](https://www.stg.plakar.io/docs/control-plane/resources/file-storage/sftp/index.md): How to configure SFTP resource in Plakar Control Plane.
 - [FTP](https://www.stg.plakar.io/docs/control-plane/resources/file-storage/ftp/index.md): How to configure an FTP resource in Plakar Control Plane.
 - [WebDAV](https://www.stg.plakar.io/docs/control-plane/resources/file-storage/webdav/index.md): How to configure a WebDAV resource in Plakar Control Plane.
+- [SMB](https://www.stg.plakar.io/docs/control-plane/resources/file-storage/smb/index.md): How to configure an SMB resource in Plakar Control Plane.
+- [NFS](https://www.stg.plakar.io/docs/control-plane/resources/file-storage/nfs/index.md): How to configure an NFS resource in Plakar Control Plane.
 
 
 ## [Hypervisor](https://www.stg.plakar.io/docs/control-plane/resources/hypervisor/index.md)

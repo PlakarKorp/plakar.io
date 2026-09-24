@@ -8,6 +8,14 @@
 
 
 
+## [NFS](https://www.stg.plakar.io/integrations/nfs/index.md)
+
+
+
+## [SMB](https://www.stg.plakar.io/integrations/smb/index.md)
+
+
+
 ## [Impossible Cloud](https://www.stg.plakar.io/integrations/impossible-cloud/index.md)
 
 
