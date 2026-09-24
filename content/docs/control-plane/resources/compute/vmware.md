@@ -97,6 +97,11 @@ destination apps using the `vmware` protocol.
 The following extra settings are available when configuring a destination app
 using the `vmware` protocol.
 
+- **Network Adapter Restore Mode**: How network adapters on the restored virtual
+  machine are handled. One of `preserve`, `disconnected` or `remove`. Defaults
+  to `preserve`.
+- **Network Recovery Port Group**: A compatible recovery or quarantine port
+  group. Required when Network Adapter Restore Mode is `disconnected`.
 - **Tmp Dir**: The temporary directory used by VDDK and NBDKit during restore
   operations. Defaults to `/home/plakar/tmp`.
 
@@ -231,5 +236,10 @@ the `vmware+nbd` protocol.
 The following extra settings are available when configuring a destination app
 using the `vmware+nbd` protocol.
 
+- **Network Adapter Restore Mode**: How network adapters on the restored virtual
+  machine are handled. One of `preserve`, `disconnected` or `remove`. Defaults
+  to `preserve`.
+- **Network Recovery Port Group**: A compatible recovery or quarantine port
+  group. Required when Network Adapter Restore Mode is `disconnected`.
 - **Tmp Dir**: The temporary directory (local file copy) used during restore
   operations. Defaults to `/var/lib/plakman/pkgs`
