@@ -8,6 +8,10 @@
 
 
 
+## [NFS](https://www.plakar.io/integrations/nfs/index.md)
+
+
+
 ## [Impossible Cloud](https://www.plakar.io/integrations/impossible-cloud/index.md)
 
 
