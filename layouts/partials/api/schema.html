@@ -1,0 +1,44 @@
+{{ $r := partial "api/resolve.html" (dict "schema" .schema "spec" .spec "seen" .seen) }}
+{{ $s := $r.schema }}
+{{ $depth := .depth | default 0 }}
+
+{{ $fields := $s }}
+{{ $seen := $r.seen }}
+{{ if eq $s.type "array" }}
+  {{ $ir := partial "api/resolve.html" (dict "schema" ($s.items | default dict) "spec" .spec "seen" $seen) }}
+  {{ $fields = $ir.schema }}
+  {{ $seen = $ir.seen }}
+{{ else if and (reflect.IsMap $s.additionalProperties) (not $s.properties) }}
+  {{ $ar := partial "api/resolve.html" (dict "schema" $s.additionalProperties "spec" .spec "seen" $seen) }}
+  {{ $fields = $ar.schema }}
+  {{ $seen = $ar.seen }}
+{{ end }}
+
+{{ if and $fields.properties (not $r.circular) (lt $depth 15) }}
+  {{ $top := eq $depth 0 }}
+  <ul class="list-none m-0 p-0 {{ if $top }}divide-y divide-neutral-200{{ else }}mt-0.5 pl-3 border-l border-neutral-200{{ end }}">
+    {{ range $name, $prop := $fields.properties }}
+      {{ $pr := partial "api/resolve.html" (dict "schema" $prop "spec" $.spec "seen" $seen) }}
+      {{ $children := partial "api/schema.html" (dict "schema" $prop "spec" $.spec "seen" $seen "depth" (add $depth 1)) }}
+      {{ $children = trim $children " \n\t" }}
+      {{ $row := partial "api/field.html" (dict "name" $name "schema" $prop "resolved" $pr.schema "required" (in $fields.required $name) "spec" $.spec "circular" $pr.circular) }}
+      {{ $rowClass := cond $top "flex items-start gap-1.5 px-3 py-1.5" "flex items-start gap-1.5 py-1" }}
+      <li class="m-0 p-0">
+        {{ if $children }}
+          <details {{ if eq $depth 0 }}open{{ end }} class="group/f">
+            <summary class="{{ $rowClass }} cursor-pointer list-none [&::-webkit-details-marker]:hidden hover:bg-neutral-100/70">
+              <span class="w-3.5 h-3.5 mt-1 shrink-0 text-neutral-400 transition-transform -rotate-90 group-open/f:rotate-0">{{ partial "icon.html" "chevron-down" }}</span>
+              {{ $row }}
+            </summary>
+            <div class="{{ cond $top "px-3 pb-1.5 pl-6" "pb-0.5 pl-4" }}">{{ $children | safeHTML }}</div>
+          </details>
+        {{ else }}
+          <div class="{{ $rowClass }}">
+            <span class="w-3.5 shrink-0"></span>
+            {{ $row }}
+          </div>
+        {{ end }}
+      </li>
+    {{ end }}
+  </ul>
+{{ end }}

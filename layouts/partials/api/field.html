@@ -1,0 +1,32 @@
+{{ $s := .resolved | default dict }}
+{{ $type := partial "api/type.html" (dict "schema" .schema "spec" .spec) }}
+{{ $description := .description | default $s.description }}
+{{ if and $description (findRE `^\w+ schema$` $description) }}
+  {{ $description = "" }}
+{{ end }}
+{{ $value := "font-mono text-neutral-700" }}
+<div class="min-w-0 flex-1">
+  <div class="flex flex-wrap items-baseline gap-x-2 text-xs">
+    <code class="text-sm font-semibold text-neutral-900">{{ .name }}</code>
+    {{ with $type }}<span class="font-mono text-neutral-500">{{ . }}</span>{{ end }}
+    {{ if $s.nullable }}<span class="text-neutral-400">nullable</span>{{ end }}
+    {{ if .circular }}<span class="text-neutral-400">recursive</span>{{ end }}
+    {{ if .required }}<span class="ml-auto pl-2 font-medium text-secondary-700">required</span>{{ end }}
+  </div>
+  {{ with $description }}
+    <div class="mt-0.5 text-sm text-neutral-600 [&>p]:m-0 [&_a]:text-primary-500 [&_a]:underline [&_code]:font-mono [&_code]:text-xs">{{ . | markdownify }}</div>
+  {{ end }}
+  {{ if or $s.enum (isset $s "default") $s.minimum $s.maximum $s.maxLength }}
+    <div class="mt-0.5 flex flex-wrap gap-x-3 gap-y-0.5 text-xs text-neutral-500">
+      {{ with $s.enum }}
+        <span>Allowed:
+          {{ range $i, $v := . }}{{ if $i }}, {{ end }}<span class="{{ $value }}">{{ $v }}</span>{{ end }}
+        </span>
+      {{ end }}
+      {{ if isset $s "default" }}<span>Default: <span class="{{ $value }}">{{ $s.default | jsonify }}</span></span>{{ end }}
+      {{ with $s.minimum }}<span>Min: <span class="{{ $value }}">{{ . }}</span></span>{{ end }}
+      {{ with $s.maximum }}<span>Max: <span class="{{ $value }}">{{ . }}</span></span>{{ end }}
+      {{ with $s.maxLength }}<span>Max length: <span class="{{ $value }}">{{ . }}</span></span>{{ end }}
+    </div>
+  {{ end }}
+</div>
