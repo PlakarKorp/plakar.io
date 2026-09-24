@@ -47,7 +47,9 @@ gcloud compute instances create <INSTANCE_NAME> \
   --boot-disk-size=10GB \
   --boot-disk-type=pd-balanced \
   --create-disk=name=<INSTANCE_NAME>-data,size=1024GB,type=pd-balanced \
-  --tags=http-server
+  --tags=http-server \
+  --service-account=<SERVICE_ACCOUNT_EMAIL> \
+  --scopes=cloud-platform
 ```
 
 - `--machine-type=n2-standard-4` provides the recommended 4 vCPUs and 16 GiB
@@ -56,6 +58,14 @@ gcloud compute instances create <INSTANCE_NAME> \
   name, which works regardless of whitelisting.
 - `--create-disk` provisions the 1 TB data disk that holds the database, logs,
   and all Plakar state, separate from wherever you configure backups themselves
+- `--service-account` and `--scopes` attach a service account to the instance,
+  which lets Plakar Control Plane authenticate to Google Cloud services such as
+  inventories and secret providers without a service account key. Both flags are
+  optional if you plan to use service account keys instead. When attaching a
+  service account, `--scopes=cloud-platform` is required: without it, the
+  instance uses the default access scopes, which block some APIs regardless of
+  the service account's IAM roles. See
+  [Attaching the Service Account to an Instance](../../../guides/google-cloud/iam-roles-and-service-accounts#attaching-the-service-account-to-an-instance).
   to be stored. For evaluation or testing, a smaller size is fine.
 - `--tags=http-server` applies the tag GCP's default network firewall rule uses
   to allow inbound HTTP traffic. If your project doesn't have that default rule,
@@ -171,9 +181,26 @@ firewall rules, network tags, and IP settings according to your organization's
 network policy. At minimum, **Allow HTTP traffic** needs to be enabled for the
 web UI to be reachable once the instance is running.
 
-The **Observability**, **Security**, and **Advanced** tabs can be configured
-according to your organization's standards as none of them are required for a
-working deployment.
+### Security
+
+To let Plakar Control Plane authenticate to Google Cloud services without a
+service account key, select the service account under **Identity and API
+access**, and set access scopes to allow full access to all Cloud APIs. The
+default access scopes block some APIs regardless of the service account's IAM
+roles. See
+[Attaching the Service Account to an Instance](../../../guides/google-cloud/iam-roles-and-service-accounts#attaching-the-service-account-to-an-instance).
+This is optional if you plan to use service account keys instead.
+
+> [!NOTE]
+>
+> Full access only allows the instance to reach Google Cloud APIs. It does not
+> grant any permissions: what the instance can actually do is still determined
+> by the IAM roles assigned to its service account.
+
+{{< figure src="../images/gcp-7.png" alt="" class="mx-auto max-w-120" >}}
+
+The **Observability** and **Advanced** tabs can be configured according to your
+organization's standards, as neither is required for a working deployment.
 
 Click **Create** once the configuration is complete.
 

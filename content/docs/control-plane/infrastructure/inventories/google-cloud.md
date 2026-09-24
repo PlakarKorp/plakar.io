@@ -25,22 +25,25 @@ and makes them available for management directly within Plakar Control Plane.
 
 ## Authentication
 
-Google Cloud inventories authenticate using a service account key. The service
-account must have a custom IAM role with the permissions required to discover
-resources in the Google Cloud project you want to inventory.
+Google Cloud inventories authenticate as a service account. The service account
+must have a custom IAM role with the permissions required to discover resources
+in the Google Cloud project you want to inventory.
 
 When creating a Google Cloud inventory in Plakar Control Plane, you must
 provide:
 
 - **Name** for the inventory
 - **Project ID**
-- **Service account key** (JSON)
 
-The service account key can be pasted directly as JSON or the JSON file can be
-uploaded directly.
+The **Service account key** (JSON) can be pasted directly or uploaded as a file.
+Leave it empty when Plakar Control Plane runs on a Compute Engine instance with
+an attached service account: the inventory then uses the instance's service
+account automatically. The instance must use the `cloud-platform` access scope,
+shown as **Allow full access to all Cloud APIs** in the Google Cloud Console, as
+described in the
+[Google Cloud installation](../../../intro/installation/google-cloud) guide.
 
-For more information on creating custom IAM roles, service accounts, and service
-account keys, see
+For more information on creating custom IAM roles and service accounts, see
 [Managing IAM Roles and Service Accounts](../../../guides/google-cloud/iam-roles-and-service-accounts).
 
 ## Required Permissions
@@ -48,8 +51,8 @@ account keys, see
 Plakar Control Plane requires read access to Google Cloud resources so it can
 discover and classify them during inventory synchronization.
 
-The custom IAM role assigned to the service account must include the following
-permissions:
+The custom IAM role assigned to the service account, whether it is provided as a
+key or attached to the instance, must include the following permissions:
 
 | Permission                             | Description                                   |
 | -------------------------------------- | --------------------------------------------- |
@@ -62,7 +65,8 @@ permissions:
 ## Adding the Google Cloud Inventory
 
 When creating a new Google Cloud inventory, provide the inventory name, project
-ID, and the service account key JSON.
+ID, and, unless the instance has an attached service account, the service
+account key JSON.
 
 The service account key can be entered in two ways:
 
