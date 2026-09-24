@@ -23,6 +23,10 @@ Plakar Control Plane supports the following file storage resources:
 
 
 
+## [SMB](https://www.plakar.io/docs/control-plane/resources/file-storage/smb/index.md)
+
+
+
 ## [NFS](https://www.plakar.io/docs/control-plane/resources/file-storage/nfs/index.md)
 
 

@@ -55,6 +55,8 @@
 
 - [NFS](https://www.plakar.io/integrations/nfs/index.md): Protect the shared storage your infrastructure runs on against accidental deletion, ransomware, and appliance failure. Plakar captures immutable, encrypted snapshots of NFS exports on NAS appliances and Unix file servers, restorable to any export or environment.
 
+- [SMB](https://www.plakar.io/integrations/smb/index.md): Protect the file shares your teams work from every day against accidental deletion, ransomware, and hardware failure. Plakar captures immutable, encrypted snapshots of SMB shares on Windows servers, NAS appliances, and Samba hosts, restorable to any share or environment.
+
 - [Impossible Cloud](https://www.plakar.io/integrations/impossible-cloud/index.md): Protect your data with Plakar on Impossible Cloud. Immutable, encrypted snapshots stored on fully S3-compatible object storage built under European data jurisdiction, with no egress fees, no API charges, and enterprise-grade compliance.
 
 - [Google Cloud (GCP)](https://www.plakar.io/integrations/gcp/index.md): Connect a Google Cloud project to Plakar Control Plane and automatically discover the resources running in it, keeping an up-to-date inventory as Cloud Storage buckets and CloudSQL instances are created or removed.

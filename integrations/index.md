@@ -12,6 +12,10 @@
 
 
 
+## [SMB](https://www.plakar.io/integrations/smb/index.md)
+
+
+
 ## [Impossible Cloud](https://www.plakar.io/integrations/impossible-cloud/index.md)
 
 

@@ -122,6 +122,10 @@ Below is a list of links to the documentation for each supported integration.
 
 
 
+## [SMB / CIFS](https://www.plakar.io/docs/community/main/integrations/smb/index.md)
+
+
+
 ## [NFS](https://www.plakar.io/docs/community/main/integrations/nfs/index.md)
 
 
