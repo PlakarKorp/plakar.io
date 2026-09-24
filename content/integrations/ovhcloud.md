@@ -59,6 +59,15 @@ resource: Public Cloud
 image: img/integrations/ovhcloud.png
 ---
 
+## Available on the OVHcloud Marketplace
+
+{{< figure src="img/logos/partners/ovhcloud-marketplace.png" alt="OVHcloud Marketplace" href="https://marketplace.ovhcloud.com/fr/product/plakar-control-plane-plateforme-de-sauvegarde-et-de-r-silience-des-donn-es/d0iduxct490ld" class="max-h-10 w-auto my-2" figureClass="mb-4" nozoom="true" >}}
+
+Plakar Control Plane is available on the **OVHcloud Marketplace**, so you can
+subscribe directly from your OVHcloud Public Cloud project and deploy it in a
+few clicks, alongside the resources it protects.
+[**Get it on the OVHcloud Marketplace →**](https://marketplace.ovhcloud.com/fr/product/plakar-control-plane-plateforme-de-sauvegarde-et-de-r-silience-des-donn-es/d0iduxct490ld)
+
 ## Why protecting OVHcloud Public Cloud matters
 
 Public Cloud instances are often provisioned, scaled, and torn down quickly.
