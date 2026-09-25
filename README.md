@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Join our Discord community](https://img.shields.io/badge/Discord-Join%20Us-purple?logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/A2yvjS6r2C)
+[![Join our Discord community](https://img.shields.io/badge/Discord-Join%20Us-purple?logo=discord&logoColor=white&style=for-the-badge)](https://plakar.io/discord)
 [![Subscribe on YouTube](https://img.shields.io/badge/YouTube-Subscribe-red?logo=youtube&logoColor=white&style=for-the-badge)](https://www.youtube.com/@PlakarKorp)
 [![Join our Subreddit](https://img.shields.io/badge/Reddit-Join%20r%2Fplakar-orange?logo=reddit&logoColor=white&style=for-the-badge)](https://www.reddit.com/r/plakar/)
 
@@ -12,33 +12,29 @@
 
 ### Getting Started (Tutorials)
 
-**For**: Brand new users  
-**Goal**: Teach basics, build confidence  
-**Examples**: Installation, first backup
+**For**: Brand new users **Goal**: Teach basics, build confidence **Examples**:
+Installation, first backup
 
 ### Guides (How-to)
 
-**For**: Users solving specific problems  
-**Goal**: Step-by-step recipes assuming basic knowledge  
-**Examples**: Back up PostgreSQL, create Kloset store, automate backups
+**For**: Users solving specific problems **Goal**: Step-by-step recipes assuming
+basic knowledge **Examples**: Back up PostgreSQL, create Kloset store, automate
+backups
 
 ### References
 
-**For**: Looking up technical details  
-**Goal**: Describe commands, options, APIs  
+**For**: Looking up technical details **Goal**: Describe commands, options, APIs
 **Examples**: CLI commands, configuration files, flags
 
 ### Explanations
 
-**For**: Understanding concepts  
-**Goal**: Provide context, discuss trade-offs  
+**For**: Understanding concepts **Goal**: Provide context, discuss trade-offs
 **Examples**: How Plakar works, backup strategies
 
 ### Integrations
 
-**For**: Connecting Plakar to other services  
-**Goal**: Setup and configuration for integrations  
-**Examples**: S3, SFTP, tar, Notion, Google Drive, Proton Drive
+**For**: Connecting Plakar to other services **Goal**: Setup and configuration
+for integrations **Examples**: S3, SFTP, tar, Notion, Google Drive, Proton Drive
 
 ---
 

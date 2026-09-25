@@ -248,7 +248,7 @@ policy engines, more UI improvements, and better cross-platform support.
 But we need you:
 
 - ⭐ [Star us on GitHub](https://github.com/PlakarKorp/plakar)
-- 💬 [Join the chat on Discord](https://discord.com/invite/uqdP9Wfzx3)
+- 💬 [Join the chat on Discord](/discord)
 - 🚀 Try the new release, push it to its limits, and tell us what you think of
   it !
 

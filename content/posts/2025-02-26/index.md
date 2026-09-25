@@ -523,13 +523,12 @@ your friends. Word of mouth is essential for us at this point to gain traction
 and popularity, as every recommendation helps build a community of engaged users
 invested in the project's success.
 
-Finally, feel free to join our [Discord](https://discord.com/invite/uuegtnF2Q5)
-server, where development takes place almost transparently every weekday (and
-sometimes in the evenings for night owls). There, you can chat with our
-community, ask both general and technical questions, and observe discussions
-among developers in our virtual hackrooms. You might even catch parts of our
-technical meetings in public vocal rooms, providing you with unique insights
-into our development process.
+Finally, feel free to join our [Discord](/discord) server, where development
+takes place almost transparently every weekday (and sometimes in the evenings
+for night owls). There, you can chat with our community, ask both general and
+technical questions, and observe discussions among developers in our virtual
+hackrooms. You might even catch parts of our technical meetings in public vocal
+rooms, providing you with unique insights into our development process.
 
 Together, these actions—testing, sharing, and engaging—are the pillars that help
 `plakar` evolve into a robust and user-friendly tool for everyone.

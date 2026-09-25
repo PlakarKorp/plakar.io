@@ -132,8 +132,7 @@ Control Plane has a free plan including up to 500GB of managed data, making it
 well suited for small configurations, personal use, or evaluating the platform
 before committing to a larger deployment.
 
-As always, tell us what you think. Come hang out on our
-[Discord](https://discord.gg/uuegtnF2Q5) or
+As always, tell us what you think. Come hang out on our [Discord](/discord) or
 [GitHub](https://github.com/PlakarKorp/plakar) if you want to follow along or
 help shape what comes next.
 

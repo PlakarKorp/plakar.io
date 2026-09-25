@@ -30,9 +30,10 @@
 
   <div class="flex flex-col gap-3 p-4 pt-1 flex-1">
     {{ if $cats }}
-      <div class="flex flex-wrap gap-2">
-        {{ range $cats }}
-          <span class="text-sm text-primary-500 font-medium capitalize">{{ replace . "-" " " }}</span>
+      <div class="flex flex-wrap items-center gap-2">
+        {{ range $i, $c := $cats }}
+          {{ if $i }}<span class="text-sm text-primary-500 font-medium" aria-hidden="true">/</span>{{ end }}
+          <span class="text-sm text-primary-500 font-medium capitalize">{{ replace $c "-" " " }}</span>
         {{ end }}
       </div>
     {{ end }}

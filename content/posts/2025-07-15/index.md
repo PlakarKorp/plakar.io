@@ -191,8 +191,7 @@ know what’s dropping _tomorrow_ and _Friday_... but we’re keeping it a surpr
 for now 😏
 
 > ⭐ Star us on [GitHub](https://github.com/PlakarKorp/plakar), join our
-> community on [Discord](https://discord.com/invite/uqdP9Wfzx3), and be part of
-> shaping the future of plakar.
+> community on [Discord](/discord), and be part of shaping the future of plakar.
 
 See you tomorrow!
 

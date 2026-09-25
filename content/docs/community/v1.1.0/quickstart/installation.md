@@ -227,7 +227,7 @@ If you encounter any issues during installation:
 - Ensure you are following the instructions for the correct version of plakar.
 - Open an issue on the
   [GitHub issue tracker](https://github.com/PlakarKorp/plakar/issues).
-- Ask for help on the [Discord server](https://discord.gg/uuegtnF2Q5).
+- Ask for help on the [Discord server](/discord).
 
 ## Next Steps: Getting Started
 

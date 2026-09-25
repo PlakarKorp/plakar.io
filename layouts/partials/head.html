@@ -60,14 +60,11 @@
   {{ with .Site.Params.Author.name }}
     <meta name="author" content="{{ . }}">
   {{ end }}
-  {{ with .Site.Params.Author.links }}
-    {{ range $links := . }}
-      {{ range $name, $url := $links }}
-        {{ if not (strings.HasPrefix $url "mailto:") }}
-          <link href="{{ $url }}" rel="me">
-        {{ end }}
-      {{ end }}
-    {{ end }}
+  {{ range .Site.Params.socials }}
+    <link href="{{ . }}" rel="me">
+  {{ end }}
+  {{ with .Site.Params.github.organization }}
+    <link href="{{ . }}" rel="me">
   {{ end }}
 
   {{/* Social */}}

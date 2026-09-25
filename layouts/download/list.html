@@ -2,28 +2,13 @@
 
 <!-- JS: assets/js/main/download.js -->
 
-{{ $latest := .Site.Params.docs.latestVersion }}
 {{ $nestorRocket := resources.Get "img/nestor/nestor-rocket.png" }}
 {{ $gradientBlue := resources.Get "img/general/gradient-blue.png" }}
 
 {{/* --- OSS Plakar versions --- */}}
-{{ $raw := where site.RegularPages "Section" "download" }}
-{{ $raw = where $raw "Params.version" "!=" nil }}
-{{ $packed := slice }}
-{{ range $raw }}
-  {{ $v := replace .Params.version "v" "" }}
-  {{ $parts := split $v "." }}
-  {{ $maj := int (index $parts 0) }}
-  {{ $min := cond (ge (len $parts) 2) (int (index $parts 1)) 0 }}
-  {{ $pat := cond (ge (len $parts) 3) (int (index $parts 2)) 0 }}
-  {{ $score := add (mul $maj 1000000) (mul $min 1000) $pat }}
-  {{ $packed = $packed | append (dict "page" . "score" $score) }}
-{{ end }}
-{{ $versions := slice }}
-{{ range sort $packed "score" "desc" }}
-  {{ $versions = $versions | append .page }}
-{{ end }}
+{{ $versions := partial "utils/sort-by-version.html" (where site.RegularPages "Section" "download") }}
 {{ $latestPage := index $versions 0 }}
+{{ $latest := $latestPage.Params.version }}
 
 {{/* --- Control Plane --- */}}
 {{ $cpPage := site.GetPage "/download/control-plane" }}

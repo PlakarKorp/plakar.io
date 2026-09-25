@@ -1,0 +1,31 @@
+{{- $stages := dict "alpha" 1 "beta" 2 "rc" 3 -}}
+{{- $ranked := slice -}}
+{{- range where . "Params.version" "!=" nil -}}
+  {{- $core := trim .Params.version "v" -}}
+  {{- $pre := "" -}}
+  {{- with findRESubmatch `^([^-]+)-(.+)$` $core 1 -}}
+    {{- $core = index (index . 0) 1 -}}
+    {{- $pre = lower (index (index . 0) 2) -}}
+  {{- end -}}
+  {{- $parts := split $core "." -}}
+  {{- $maj := int (index $parts 0) -}}
+  {{- $min := cond (ge (len $parts) 2) (int (index $parts 1)) 0 -}}
+  {{- $pat := cond (ge (len $parts) 3) (int (index $parts 2)) 0 -}}
+  {{- $stage := 9 -}}
+  {{- $preNum := 0 -}}
+  {{- with $pre -}}
+    {{- $stage = index $stages (replaceRE `[^a-z]` "" .) | default 0 -}}
+    {{- with findRE `[0-9]+` . -}}
+      {{- $preNum = int (index . (sub (len .) 1)) -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $score := add (mul $maj 1000000) (mul $min 1000) $pat -}}
+  {{- $rank := add (mul $score 1000000) (mul $stage 1000) $preNum -}}
+  {{- $ranked = $ranked | append (dict "page" . "rank" $rank) -}}
+{{- end -}}
+
+{{- $sorted := slice -}}
+{{- range sort $ranked "rank" "desc" -}}
+  {{- $sorted = $sorted | append .page -}}
+{{- end -}}
+{{- return $sorted -}}
