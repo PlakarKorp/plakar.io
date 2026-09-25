@@ -29,6 +29,6 @@ care about. I hope you've found it useful, maybe even interesting, and who
 knows, maybe will even inspire you to hack a bit on React someday.
 
 If you have questions, want to dig into something we glossed over, or just want
-to say hi, come find us on [Discord](https://discord.gg/uuegtnF2Q5). Oh, and if
-you want to let me know that you read this series, write a message on the
-#general channel to tell us that Plakar is "FANTAST-UI-C"!
+to say hi, come find us on [Discord](/discord). Oh, and if you want to let me
+know that you read this series, write a message on the #general channel to tell
+us that Plakar is "FANTAST-UI-C"!

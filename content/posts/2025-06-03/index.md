@@ -148,7 +148,7 @@ Want to help us ?
 
 - <a class="github-button" href="https://github.com/PlakarKorp/plakar" data-color-scheme="no-preference: light; light: light; dark: light;" data-icon="octicon-star" aria-label="Star PlakarKorp/plakar on GitHub">Star</a>
   us on Github (yes, it matters !)
-- Join our developers and users on [Discord](https://discord.gg/uuegtnF2Q5)
+- Join our developers and users on [Discord](/discord)
 
 Special thanks to all early users, contributors, and supporters who have helped
 shape this first release—your involvement has been invaluable!

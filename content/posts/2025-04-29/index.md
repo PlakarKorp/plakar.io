@@ -576,5 +576,4 @@ Kloset is fully integrated into the Plakar beta and will be getting:
 **Curious about Kloset?**
 
 Explore [Plakar](https://github.com/PlakarKorp/plakar), join our community on
-[Discord](https://discord.com/invite/uuegtnF2Q5) and start building your own
-connectors and integrations.
+[Discord](/discord) and start building your own connectors and integrations.

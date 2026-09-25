@@ -39,7 +39,7 @@
     <div class="flex flex-col items-center py-16">
       {{ partial "components/buttons/base-button.html" (dict
         "label" "Join Plakar Community on Discord"
-        "href" "https://discord.gg/uuegtnF2Q5"
+        "href" site.Params.socials.discord
         "target" "_blank"
         "icon" "discord"
       ) }}
@@ -184,7 +184,7 @@
     </p>
     <p class="text-base text-neutral-600 max-w-4xl">
       You can read the full, detailed version of this Code of Conduct on our
-      <a href="https://github.com/PlakarKorp/plakar/blob/main/CODE_OF_CONDUCT.md"
+      <a href="{{ site.Params.github.plakar }}/blob/main/CODE_OF_CONDUCT.md"
          target="_blank"
          rel="noopener noreferrer"
          class="text-secondary-500 underline font-medium">
@@ -240,7 +240,7 @@
       Your input helps Plakar grow and improve for the entire community.
       Below is a quick overview of how to get involved.
       For full details, please read our
-      <a href="https://github.com/PlakarKorp/plakar/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer" class="text-secondary-500 underline font-medium">
+      <a href="{{ site.Params.github.plakar }}/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer" class="text-secondary-500 underline font-medium">
         Contributing Guide
       </a>.
     </p>
@@ -261,7 +261,7 @@
           <li>Write clear commit messages and include relevant tests when applicable.</li>
           <li>Run tests and linters before submitting your changes.</li>
           <li>
-            Respect our <a href="https://github.com/PlakarKorp/plakar/blob/main/CODE_OF_CONDUCT.md" target="_blank" rel="noopener noreferrer" class="text-secondary-500 underline">Code of Conduct</a> in all interactions.
+            Respect our <a href="{{ site.Params.github.plakar }}/blob/main/CODE_OF_CONDUCT.md" target="_blank" rel="noopener noreferrer" class="text-secondary-500 underline">Code of Conduct</a> in all interactions.
           </li>
         </ul>
       </div>
@@ -332,13 +332,13 @@
     <div class="flex flex-row items-center gap-4">
       {{ partial "components/buttons/base-button.html" (dict
         "label" "Join us on Discord"
-        "href" "https://discord.gg/uuegtnF2Q5"
+        "href" site.Params.socials.discord
         "target" "_blank"
         "icon" "discord"
       ) }}
       {{ partial "components/buttons/base-button.html" (dict
         "label" "Join us on Reddit"
-        "href" "https://www.reddit.com/r/plakar"
+        "href" site.Params.socials.reddit
         "target" "_blank"
         "icon" "ri/reddit-line"
       ) }}
@@ -356,7 +356,7 @@
         <a href="{{ .Site.Params.socials.linkedin | default "#" }}" target="_blank" class="w-7 h-7 text-neutral-900">
           {{ partial "icon.html" "ri/linkedin-box-fill" }}
         </a>
-        <a href="{{ .Site.Params.socials.github | default "#" }}" target="_blank" class="w-6 h-6 text-neutral-900">
+        <a href="{{ .Site.Params.github.organization | default "#" }}" target="_blank" class="w-6 h-6 text-neutral-900">
           {{ partial "icon.html" "github" }}
         </a>
       </div>

@@ -12,4 +12,4 @@ summary: "How to install Plakar Control Plane on Kubernetes"
 > This feature is currently being worked on. If you need assistance in the
 > meantime, you can reach out in the Plakar Discord community.
 >
-> [Join the Discord server](https://discord.gg/uuegtnF2Q5)
+> [Join the Discord server](/discord)

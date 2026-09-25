@@ -302,25 +302,7 @@ Otherwise the version selector will appear in the wrong order.
 
 ---
 
-## 5. Update the latest version
-
-Update:
-
-```
-config/_default/params.toml
-```
-
-Set:
-
-```
-latestVersion
-```
-
-to the latest released version.
-
----
-
-## 6. Update the documentation redirect
+## 5. Update the documentation redirect
 
 Update:
 
@@ -338,7 +320,7 @@ so it points to the latest documentation.
 
 ---
 
-## 7. Update hardcoded version links
+## 6. Update hardcoded version links
 
 Search the repository for links referencing the previous documentation version.
 
@@ -348,7 +330,7 @@ Do not rely on a fixed list of files—always search the repository.
 
 ---
 
-## 8. Create a download page
+## 7. Create a download page
 
 Create:
 
@@ -362,9 +344,11 @@ Always use the actual release SHA256 checksums.
 
 Never invent release metadata.
 
+The download page marks the highest version as latest automatically.
+
 ---
 
-## 9. Verify the release
+## 8. Verify the release
 
 Run:
 

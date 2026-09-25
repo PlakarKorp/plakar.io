@@ -229,5 +229,5 @@ present in your backups, so there's that.
 > contribute patches.
 
 - ⭐ Star us on [GitHub](https://github.com/PlakarKorp/plakar)
-- 💬 Join the chat on [Discord](https://discord.com/invite/uqdP9Wfzx3)
+- 💬 Join the chat on [Discord](/discord)
 - 🚀 Stay tuned for another integration dropping tomorrow
