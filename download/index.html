@@ -253,7 +253,7 @@
     "dateCreated": "2026-04-03T00:00:00\u002b00:00",
     "datePublished": "2026-04-03T00:00:00\u002b00:00",
     
-    "dateModified": "2026-09-24T08:29:21\u002b03:00",
+    "dateModified": "2026-09-25T12:09:04\u002b03:00",
     
     
     
@@ -2029,7 +2029,17 @@
   
   
 
+  
+  
+  
+  
+  
+  
+  
 
+
+
+  
 
   
 
@@ -2323,12 +2333,12 @@
     <div class="flex flex-col gap-4 p-6 bg-neutral-50 rounded-xl border border-neutral-200">
       <div class="flex items-center justify-between flex-wrap gap-4">
         <h3 class="text-lg font-medium text-neutral-900">
-          Current version: <span id="current-version-display" class="text-primary-500">v1.1.6</span>
+          Current version: <span id="current-version-display" class="text-primary-500">v1.1.7</span>
         </h3>
 
         <div class="flex flex-row gap-3 items-center flex-wrap">
           
-            <a id="release-notes-link" href="https://github.com/PlakarKorp/plakar/releases/tag/v1.1.6" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-neutral-100 hover:bg-neutral-200 text-neutral-900 rounded-lg transition-colors">
+            <a id="release-notes-link" href="https://github.com/PlakarKorp/plakar/releases/tag/v1.1.7" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-neutral-100 hover:bg-neutral-200 text-neutral-900 rounded-lg transition-colors">
               <span>Release Notes</span>
               <span class="w-4 h-4"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V11H19L18.9999 6.413L11.2071 14.2071L9.79289 12.7929L17.5849 5H13V3H21Z"></path></svg>
 </span></span>
@@ -2363,10 +2373,15 @@
             </button>
             <div id="version-dropdown-menu" class="hidden absolute right-0 mt-2 w-48 rounded-lg shadow-lg bg-neutral-50 border border-neutral-200 z-10 max-h-96 overflow-y-auto">
               
-                <button class="version-option w-full flex items-center justify-between px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100 text-left" data-version="v1.1.6" data-release-notes-url="https://github.com/PlakarKorp/plakar/releases/tag/v1.1.6">
-                  v1.1.6
+                <button class="version-option w-full flex items-center justify-between px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100 text-left" data-version="v1.1.7" data-release-notes-url="https://github.com/PlakarKorp/plakar/releases/tag/v1.1.7">
+                  v1.1.7
                   
                     <span class="text-xs bg-green-100 text-green-800 px-2 py-0.5 rounded-full font-medium">Latest</span>
+                  
+                </button>
+              
+                <button class="version-option w-full flex items-center justify-between px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-100 text-left" data-version="v1.1.6" data-release-notes-url="https://github.com/PlakarKorp/plakar/releases/tag/v1.1.6">
+                  v1.1.6
                   
                 </button>
               
@@ -2418,7 +2433,7 @@
       
       
         
-        <div class="version-badge" data-version="v1.1.6" style="display:none;">
+        <div class="version-badge" data-version="v1.1.7" style="display:none;">
           
             <div class="bg-green-50 border border-green-200 rounded-lg p-4 text-green-800 flex items-center gap-2">
               <span class="w-5 h-5 shrink-0"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
@@ -2429,12 +2444,23 @@
         </div>
       
         
+        <div class="version-badge" data-version="v1.1.6" style="display:none;">
+          
+            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-yellow-800 flex items-center gap-2">
+              <span class="w-5 h-5 shrink-0"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12.8659 3.00017L22.3922 19.5002C22.6684 19.9785 22.5045 20.5901 22.0262 20.8662C21.8742 20.954 21.7017 21.0002 21.5262 21.0002H2.47363C1.92135 21.0002 1.47363 20.5525 1.47363 20.0002C1.47363 19.8246 1.51984 19.6522 1.60761 19.5002L11.1339 3.00017C11.41 2.52187 12.0216 2.358 12.4999 2.63414C12.6519 2.72191 12.7782 2.84815 12.8659 3.00017ZM4.20568 19.0002H19.7941L11.9999 5.50017L4.20568 19.0002ZM10.9999 16.0002H12.9999V18.0002H10.9999V16.0002ZM10.9999 9.00017H12.9999V14.0002H10.9999V9.00017Z"></path></svg>
+</span></span>
+              <span>You are viewing an older version of Plakar. The latest version is <strong>v1.1.7</strong>.</span>
+            </div>
+          
+        </div>
+      
+        
         <div class="version-badge" data-version="v1.1.5" style="display:none;">
           
             <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-yellow-800 flex items-center gap-2">
               <span class="w-5 h-5 shrink-0"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12.8659 3.00017L22.3922 19.5002C22.6684 19.9785 22.5045 20.5901 22.0262 20.8662C21.8742 20.954 21.7017 21.0002 21.5262 21.0002H2.47363C1.92135 21.0002 1.47363 20.5525 1.47363 20.0002C1.47363 19.8246 1.51984 19.6522 1.60761 19.5002L11.1339 3.00017C11.41 2.52187 12.0216 2.358 12.4999 2.63414C12.6519 2.72191 12.7782 2.84815 12.8659 3.00017ZM4.20568 19.0002H19.7941L11.9999 5.50017L4.20568 19.0002ZM10.9999 16.0002H12.9999V18.0002H10.9999V16.0002ZM10.9999 9.00017H12.9999V14.0002H10.9999V9.00017Z"></path></svg>
 </span></span>
-              <span>You are viewing an older version of Plakar. The latest version is <strong>v1.1.6</strong>.</span>
+              <span>You are viewing an older version of Plakar. The latest version is <strong>v1.1.7</strong>.</span>
             </div>
           
         </div>
@@ -2445,7 +2471,7 @@
             <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-yellow-800 flex items-center gap-2">
               <span class="w-5 h-5 shrink-0"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12.8659 3.00017L22.3922 19.5002C22.6684 19.9785 22.5045 20.5901 22.0262 20.8662C21.8742 20.954 21.7017 21.0002 21.5262 21.0002H2.47363C1.92135 21.0002 1.47363 20.5525 1.47363 20.0002C1.47363 19.8246 1.51984 19.6522 1.60761 19.5002L11.1339 3.00017C11.41 2.52187 12.0216 2.358 12.4999 2.63414C12.6519 2.72191 12.7782 2.84815 12.8659 3.00017ZM4.20568 19.0002H19.7941L11.9999 5.50017L4.20568 19.0002ZM10.9999 16.0002H12.9999V18.0002H10.9999V16.0002ZM10.9999 9.00017H12.9999V14.0002H10.9999V9.00017Z"></path></svg>
 </span></span>
-              <span>You are viewing an older version of Plakar. The latest version is <strong>v1.1.6</strong>.</span>
+              <span>You are viewing an older version of Plakar. The latest version is <strong>v1.1.7</strong>.</span>
             </div>
           
         </div>
@@ -2456,7 +2482,7 @@
             <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-yellow-800 flex items-center gap-2">
               <span class="w-5 h-5 shrink-0"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12.8659 3.00017L22.3922 19.5002C22.6684 19.9785 22.5045 20.5901 22.0262 20.8662C21.8742 20.954 21.7017 21.0002 21.5262 21.0002H2.47363C1.92135 21.0002 1.47363 20.5525 1.47363 20.0002C1.47363 19.8246 1.51984 19.6522 1.60761 19.5002L11.1339 3.00017C11.41 2.52187 12.0216 2.358 12.4999 2.63414C12.6519 2.72191 12.7782 2.84815 12.8659 3.00017ZM4.20568 19.0002H19.7941L11.9999 5.50017L4.20568 19.0002ZM10.9999 16.0002H12.9999V18.0002H10.9999V16.0002ZM10.9999 9.00017H12.9999V14.0002H10.9999V9.00017Z"></path></svg>
 </span></span>
-              <span>You are viewing an older version of Plakar. The latest version is <strong>v1.1.6</strong>.</span>
+              <span>You are viewing an older version of Plakar. The latest version is <strong>v1.1.7</strong>.</span>
             </div>
           
         </div>
@@ -2467,7 +2493,7 @@
             <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-yellow-800 flex items-center gap-2">
               <span class="w-5 h-5 shrink-0"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12.8659 3.00017L22.3922 19.5002C22.6684 19.9785 22.5045 20.5901 22.0262 20.8662C21.8742 20.954 21.7017 21.0002 21.5262 21.0002H2.47363C1.92135 21.0002 1.47363 20.5525 1.47363 20.0002C1.47363 19.8246 1.51984 19.6522 1.60761 19.5002L11.1339 3.00017C11.41 2.52187 12.0216 2.358 12.4999 2.63414C12.6519 2.72191 12.7782 2.84815 12.8659 3.00017ZM4.20568 19.0002H19.7941L11.9999 5.50017L4.20568 19.0002ZM10.9999 16.0002H12.9999V18.0002H10.9999V16.0002ZM10.9999 9.00017H12.9999V14.0002H10.9999V9.00017Z"></path></svg>
 </span></span>
-              <span>You are viewing an older version of Plakar. The latest version is <strong>v1.1.6</strong>.</span>
+              <span>You are viewing an older version of Plakar. The latest version is <strong>v1.1.7</strong>.</span>
             </div>
           
         </div>
@@ -2478,7 +2504,7 @@
             <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-yellow-800 flex items-center gap-2">
               <span class="w-5 h-5 shrink-0"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12.8659 3.00017L22.3922 19.5002C22.6684 19.9785 22.5045 20.5901 22.0262 20.8662C21.8742 20.954 21.7017 21.0002 21.5262 21.0002H2.47363C1.92135 21.0002 1.47363 20.5525 1.47363 20.0002C1.47363 19.8246 1.51984 19.6522 1.60761 19.5002L11.1339 3.00017C11.41 2.52187 12.0216 2.358 12.4999 2.63414C12.6519 2.72191 12.7782 2.84815 12.8659 3.00017ZM4.20568 19.0002H19.7941L11.9999 5.50017L4.20568 19.0002ZM10.9999 16.0002H12.9999V18.0002H10.9999V16.0002ZM10.9999 9.00017H12.9999V14.0002H10.9999V9.00017Z"></path></svg>
 </span></span>
-              <span>You are viewing an older version of Plakar. The latest version is <strong>v1.1.6</strong>.</span>
+              <span>You are viewing an older version of Plakar. The latest version is <strong>v1.1.7</strong>.</span>
             </div>
           
         </div>
@@ -2489,7 +2515,7 @@
             <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-yellow-800 flex items-center gap-2">
               <span class="w-5 h-5 shrink-0"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12.8659 3.00017L22.3922 19.5002C22.6684 19.9785 22.5045 20.5901 22.0262 20.8662C21.8742 20.954 21.7017 21.0002 21.5262 21.0002H2.47363C1.92135 21.0002 1.47363 20.5525 1.47363 20.0002C1.47363 19.8246 1.51984 19.6522 1.60761 19.5002L11.1339 3.00017C11.41 2.52187 12.0216 2.358 12.4999 2.63414C12.6519 2.72191 12.7782 2.84815 12.8659 3.00017ZM4.20568 19.0002H19.7941L11.9999 5.50017L4.20568 19.0002ZM10.9999 16.0002H12.9999V18.0002H10.9999V16.0002ZM10.9999 9.00017H12.9999V14.0002H10.9999V9.00017Z"></path></svg>
 </span></span>
-              <span>You are viewing an older version of Plakar. The latest version is <strong>v1.1.6</strong>.</span>
+              <span>You are viewing an older version of Plakar. The latest version is <strong>v1.1.7</strong>.</span>
             </div>
           
         </div>
@@ -2500,7 +2526,7 @@
             <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-yellow-800 flex items-center gap-2">
               <span class="w-5 h-5 shrink-0"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12.8659 3.00017L22.3922 19.5002C22.6684 19.9785 22.5045 20.5901 22.0262 20.8662C21.8742 20.954 21.7017 21.0002 21.5262 21.0002H2.47363C1.92135 21.0002 1.47363 20.5525 1.47363 20.0002C1.47363 19.8246 1.51984 19.6522 1.60761 19.5002L11.1339 3.00017C11.41 2.52187 12.0216 2.358 12.4999 2.63414C12.6519 2.72191 12.7782 2.84815 12.8659 3.00017ZM4.20568 19.0002H19.7941L11.9999 5.50017L4.20568 19.0002ZM10.9999 16.0002H12.9999V18.0002H10.9999V16.0002ZM10.9999 9.00017H12.9999V14.0002H10.9999V9.00017Z"></path></svg>
 </span></span>
-              <span>You are viewing an older version of Plakar. The latest version is <strong>v1.1.6</strong>.</span>
+              <span>You are viewing an older version of Plakar. The latest version is <strong>v1.1.7</strong>.</span>
             </div>
           
         </div>
@@ -2511,7 +2537,7 @@
             <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-yellow-800 flex items-center gap-2">
               <span class="w-5 h-5 shrink-0"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12.8659 3.00017L22.3922 19.5002C22.6684 19.9785 22.5045 20.5901 22.0262 20.8662C21.8742 20.954 21.7017 21.0002 21.5262 21.0002H2.47363C1.92135 21.0002 1.47363 20.5525 1.47363 20.0002C1.47363 19.8246 1.51984 19.6522 1.60761 19.5002L11.1339 3.00017C11.41 2.52187 12.0216 2.358 12.4999 2.63414C12.6519 2.72191 12.7782 2.84815 12.8659 3.00017ZM4.20568 19.0002H19.7941L11.9999 5.50017L4.20568 19.0002ZM10.9999 16.0002H12.9999V18.0002H10.9999V16.0002ZM10.9999 9.00017H12.9999V14.0002H10.9999V9.00017Z"></path></svg>
 </span></span>
-              <span>You are viewing an older version of Plakar. The latest version is <strong>v1.1.6</strong>.</span>
+              <span>You are viewing an older version of Plakar. The latest version is <strong>v1.1.7</strong>.</span>
             </div>
           
         </div>
@@ -2519,6 +2545,332 @@
     </div>
 
     
+    
+      
+      
+      
+      <div class="version-panel" data-version="v1.1.7" style="display:none;">
+        
+          <div class="flex items-center justify-between gap-4 flex-wrap p-4 mb-6 bg-primary-50 border border-primary-200 rounded-lg">
+            <div class="flex items-center gap-3">
+              <span class="w-5 h-5 shrink-0 text-primary-600"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
+</span></span>
+              <span class="text-neutral-800">Prefer package managers such as apt, dnf, or Homebrew, or an OS-specific setup? See the full installation guide.</span>
+            </div>
+            <a href="/docs/community/v1.1.0/quickstart/installation/" class="shrink-0 text-primary-600 font-medium hover:underline">
+              View installation guide →
+            </a>
+          </div>
+        
+
+        
+          <div class="overflow-x-auto rounded-lg">
+            <table class="w-full">
+              <thead class="border-b">
+                <tr>
+                  <th class="text-left px-4 py-3 font-bold">Platform</th>
+                  <th class="text-left px-4 py-3 font-bold">File</th>
+                  <th class="text-left px-4 py-3 font-bold">Download</th>
+                  <th class="text-left px-4 py-3 font-bold">SHA256</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-neutral-200">
+                
+                  <tr class="hover:bg-neutral-50 overscroll-x-none">
+                    <td class="px-4 py-3 text-neutral-700">macOS (x86_64)</td>
+                    <td class="px-4 py-3 text-neutral-600">plakar_1.1.7_darwin_amd64.tar.gz</td>
+                    <td class="px-4 py-3">
+                      <a href="https://plakar.io/dl/plakar_1.1.7_darwin_amd64.tar.gz" class="text-primary-500 hover:underline">download</a>
+                    </td>
+                    <td class="px-4 py-3">
+                      <span class="inline-flex items-center gap-2">
+                        <code class="text-xs text-neutral-800">017a650e275e…</code>
+                        <button class="sha-copy-btn inline-block w-16 text-center text-xs px-2 py-1 border border-neutral-300 rounded hover:bg-neutral-100 transition-colors" data-sha="017a650e275e84be1cfa641ed06b3712138c422d95d216d0ab310dcd4e7df2d6">
+                          Copy
+                        </button>
+                      </span>
+                    </td>
+                  </tr>
+                
+                  <tr class="hover:bg-neutral-50 overscroll-x-none">
+                    <td class="px-4 py-3 text-neutral-700">macOS (arm64)</td>
+                    <td class="px-4 py-3 text-neutral-600">plakar_1.1.7_darwin_arm64.tar.gz</td>
+                    <td class="px-4 py-3">
+                      <a href="https://plakar.io/dl/plakar_1.1.7_darwin_arm64.tar.gz" class="text-primary-500 hover:underline">download</a>
+                    </td>
+                    <td class="px-4 py-3">
+                      <span class="inline-flex items-center gap-2">
+                        <code class="text-xs text-neutral-800">dca354321757…</code>
+                        <button class="sha-copy-btn inline-block w-16 text-center text-xs px-2 py-1 border border-neutral-300 rounded hover:bg-neutral-100 transition-colors" data-sha="dca3543217576abd3edfe88e8f5b308a4be439eec5ae3997be719f3e931b2a7f">
+                          Copy
+                        </button>
+                      </span>
+                    </td>
+                  </tr>
+                
+                  <tr class="hover:bg-neutral-50 overscroll-x-none">
+                    <td class="px-4 py-3 text-neutral-700">FreeBSD (x86_64)</td>
+                    <td class="px-4 py-3 text-neutral-600">plakar_1.1.7_freebsd_amd64.tar.gz</td>
+                    <td class="px-4 py-3">
+                      <a href="https://plakar.io/dl/plakar_1.1.7_freebsd_amd64.tar.gz" class="text-primary-500 hover:underline">download</a>
+                    </td>
+                    <td class="px-4 py-3">
+                      <span class="inline-flex items-center gap-2">
+                        <code class="text-xs text-neutral-800">75269c5d1f9d…</code>
+                        <button class="sha-copy-btn inline-block w-16 text-center text-xs px-2 py-1 border border-neutral-300 rounded hover:bg-neutral-100 transition-colors" data-sha="75269c5d1f9d4e922add9f4dc29e212326e014b07161f3ccb058a00fd6ba2e44">
+                          Copy
+                        </button>
+                      </span>
+                    </td>
+                  </tr>
+                
+                  <tr class="hover:bg-neutral-50 overscroll-x-none">
+                    <td class="px-4 py-3 text-neutral-700">FreeBSD (arm64)</td>
+                    <td class="px-4 py-3 text-neutral-600">plakar_1.1.7_freebsd_arm64.tar.gz</td>
+                    <td class="px-4 py-3">
+                      <a href="https://plakar.io/dl/plakar_1.1.7_freebsd_arm64.tar.gz" class="text-primary-500 hover:underline">download</a>
+                    </td>
+                    <td class="px-4 py-3">
+                      <span class="inline-flex items-center gap-2">
+                        <code class="text-xs text-neutral-800">d307a45fb5a7…</code>
+                        <button class="sha-copy-btn inline-block w-16 text-center text-xs px-2 py-1 border border-neutral-300 rounded hover:bg-neutral-100 transition-colors" data-sha="d307a45fb5a7c75f0fefee3c3cf1c7caf849b856ba89d26da235ccf96ae3f19f">
+                          Copy
+                        </button>
+                      </span>
+                    </td>
+                  </tr>
+                
+                  <tr class="hover:bg-neutral-50 overscroll-x-none">
+                    <td class="px-4 py-3 text-neutral-700">Alpine (x86_64)</td>
+                    <td class="px-4 py-3 text-neutral-600">plakar_1.1.7_linux_amd64.apk</td>
+                    <td class="px-4 py-3">
+                      <a href="https://plakar.io/dl/plakar_1.1.7_linux_amd64.apk" class="text-primary-500 hover:underline">download</a>
+                    </td>
+                    <td class="px-4 py-3">
+                      <span class="inline-flex items-center gap-2">
+                        <code class="text-xs text-neutral-800">d8298ebc8494…</code>
+                        <button class="sha-copy-btn inline-block w-16 text-center text-xs px-2 py-1 border border-neutral-300 rounded hover:bg-neutral-100 transition-colors" data-sha="d8298ebc84942daf7e672b7017efb0a76d8385b8b972710b4339b971924972e7">
+                          Copy
+                        </button>
+                      </span>
+                    </td>
+                  </tr>
+                
+                  <tr class="hover:bg-neutral-50 overscroll-x-none">
+                    <td class="px-4 py-3 text-neutral-700">Alpine (arm64)</td>
+                    <td class="px-4 py-3 text-neutral-600">plakar_1.1.7_linux_arm64.apk</td>
+                    <td class="px-4 py-3">
+                      <a href="https://plakar.io/dl/plakar_1.1.7_linux_arm64.apk" class="text-primary-500 hover:underline">download</a>
+                    </td>
+                    <td class="px-4 py-3">
+                      <span class="inline-flex items-center gap-2">
+                        <code class="text-xs text-neutral-800">9d30cdd8648e…</code>
+                        <button class="sha-copy-btn inline-block w-16 text-center text-xs px-2 py-1 border border-neutral-300 rounded hover:bg-neutral-100 transition-colors" data-sha="9d30cdd8648eab75bc67297015b3eb79892ae734b83dfb2a06f81e54f20d27d8">
+                          Copy
+                        </button>
+                      </span>
+                    </td>
+                  </tr>
+                
+                  <tr class="hover:bg-neutral-50 overscroll-x-none">
+                    <td class="px-4 py-3 text-neutral-700">Debian (x86_64)</td>
+                    <td class="px-4 py-3 text-neutral-600">plakar_1.1.7_linux_amd64.deb</td>
+                    <td class="px-4 py-3">
+                      <a href="https://plakar.io/dl/plakar_1.1.7_linux_amd64.deb" class="text-primary-500 hover:underline">download</a>
+                    </td>
+                    <td class="px-4 py-3">
+                      <span class="inline-flex items-center gap-2">
+                        <code class="text-xs text-neutral-800">f85d91cb9359…</code>
+                        <button class="sha-copy-btn inline-block w-16 text-center text-xs px-2 py-1 border border-neutral-300 rounded hover:bg-neutral-100 transition-colors" data-sha="f85d91cb93595b69a04af61b003f77c4cba43e409a45baf7910b235dff810a67">
+                          Copy
+                        </button>
+                      </span>
+                    </td>
+                  </tr>
+                
+                  <tr class="hover:bg-neutral-50 overscroll-x-none">
+                    <td class="px-4 py-3 text-neutral-700">Debian (arm64)</td>
+                    <td class="px-4 py-3 text-neutral-600">plakar_1.1.7_linux_arm64.deb</td>
+                    <td class="px-4 py-3">
+                      <a href="https://plakar.io/dl/plakar_1.1.7_linux_arm64.deb" class="text-primary-500 hover:underline">download</a>
+                    </td>
+                    <td class="px-4 py-3">
+                      <span class="inline-flex items-center gap-2">
+                        <code class="text-xs text-neutral-800">d1266dd972cd…</code>
+                        <button class="sha-copy-btn inline-block w-16 text-center text-xs px-2 py-1 border border-neutral-300 rounded hover:bg-neutral-100 transition-colors" data-sha="d1266dd972cd52977f31d2d822bbbd9f451e81999fd56e09440af9e300bcec62">
+                          Copy
+                        </button>
+                      </span>
+                    </td>
+                  </tr>
+                
+                  <tr class="hover:bg-neutral-50 overscroll-x-none">
+                    <td class="px-4 py-3 text-neutral-700">Arch (x86_64)</td>
+                    <td class="px-4 py-3 text-neutral-600">plakar_1.1.7_linux_amd64.pkg.tar.zst</td>
+                    <td class="px-4 py-3">
+                      <a href="https://plakar.io/dl/plakar_1.1.7_linux_amd64.pkg.tar.zst" class="text-primary-500 hover:underline">download</a>
+                    </td>
+                    <td class="px-4 py-3">
+                      <span class="inline-flex items-center gap-2">
+                        <code class="text-xs text-neutral-800">32318b843fa0…</code>
+                        <button class="sha-copy-btn inline-block w-16 text-center text-xs px-2 py-1 border border-neutral-300 rounded hover:bg-neutral-100 transition-colors" data-sha="32318b843fa05d719ac3f2245cdb241c5b88e3f6dd0aa514af1286dad98e14d1">
+                          Copy
+                        </button>
+                      </span>
+                    </td>
+                  </tr>
+                
+                  <tr class="hover:bg-neutral-50 overscroll-x-none">
+                    <td class="px-4 py-3 text-neutral-700">Arch (arm64)</td>
+                    <td class="px-4 py-3 text-neutral-600">plakar_1.1.7_linux_arm64.pkg.tar.zst</td>
+                    <td class="px-4 py-3">
+                      <a href="https://plakar.io/dl/plakar_1.1.7_linux_arm64.pkg.tar.zst" class="text-primary-500 hover:underline">download</a>
+                    </td>
+                    <td class="px-4 py-3">
+                      <span class="inline-flex items-center gap-2">
+                        <code class="text-xs text-neutral-800">4b7d4042e451…</code>
+                        <button class="sha-copy-btn inline-block w-16 text-center text-xs px-2 py-1 border border-neutral-300 rounded hover:bg-neutral-100 transition-colors" data-sha="4b7d4042e45197e4e194cd88fbd294022c09593cfd36c77a74417350e6781407">
+                          Copy
+                        </button>
+                      </span>
+                    </td>
+                  </tr>
+                
+                  <tr class="hover:bg-neutral-50 overscroll-x-none">
+                    <td class="px-4 py-3 text-neutral-700">RPM (x86_64)</td>
+                    <td class="px-4 py-3 text-neutral-600">plakar_1.1.7_linux_amd64.rpm</td>
+                    <td class="px-4 py-3">
+                      <a href="https://plakar.io/dl/plakar_1.1.7_linux_amd64.rpm" class="text-primary-500 hover:underline">download</a>
+                    </td>
+                    <td class="px-4 py-3">
+                      <span class="inline-flex items-center gap-2">
+                        <code class="text-xs text-neutral-800">aa65001cde33…</code>
+                        <button class="sha-copy-btn inline-block w-16 text-center text-xs px-2 py-1 border border-neutral-300 rounded hover:bg-neutral-100 transition-colors" data-sha="aa65001cde33a64c74caaa06a9ca67ba9fc9217e16d2875ce429d0640db04273">
+                          Copy
+                        </button>
+                      </span>
+                    </td>
+                  </tr>
+                
+                  <tr class="hover:bg-neutral-50 overscroll-x-none">
+                    <td class="px-4 py-3 text-neutral-700">RPM (arm64)</td>
+                    <td class="px-4 py-3 text-neutral-600">plakar_1.1.7_linux_arm64.rpm</td>
+                    <td class="px-4 py-3">
+                      <a href="https://plakar.io/dl/plakar_1.1.7_linux_arm64.rpm" class="text-primary-500 hover:underline">download</a>
+                    </td>
+                    <td class="px-4 py-3">
+                      <span class="inline-flex items-center gap-2">
+                        <code class="text-xs text-neutral-800">3114d04eb107…</code>
+                        <button class="sha-copy-btn inline-block w-16 text-center text-xs px-2 py-1 border border-neutral-300 rounded hover:bg-neutral-100 transition-colors" data-sha="3114d04eb10761acd9e659ef72ab3130bc8ec354c778f5fac9563f1fc61fdcbe">
+                          Copy
+                        </button>
+                      </span>
+                    </td>
+                  </tr>
+                
+                  <tr class="hover:bg-neutral-50 overscroll-x-none">
+                    <td class="px-4 py-3 text-neutral-700">Linux (x86_64)</td>
+                    <td class="px-4 py-3 text-neutral-600">plakar_1.1.7_linux_amd64.tar.gz</td>
+                    <td class="px-4 py-3">
+                      <a href="https://plakar.io/dl/plakar_1.1.7_linux_amd64.tar.gz" class="text-primary-500 hover:underline">download</a>
+                    </td>
+                    <td class="px-4 py-3">
+                      <span class="inline-flex items-center gap-2">
+                        <code class="text-xs text-neutral-800">95a6a3654606…</code>
+                        <button class="sha-copy-btn inline-block w-16 text-center text-xs px-2 py-1 border border-neutral-300 rounded hover:bg-neutral-100 transition-colors" data-sha="95a6a36546064df033a8f9bae0837c625de3fbcb209b9795d7f2034a733e85fa">
+                          Copy
+                        </button>
+                      </span>
+                    </td>
+                  </tr>
+                
+                  <tr class="hover:bg-neutral-50 overscroll-x-none">
+                    <td class="px-4 py-3 text-neutral-700">Linux (arm64)</td>
+                    <td class="px-4 py-3 text-neutral-600">plakar_1.1.7_linux_arm64.tar.gz</td>
+                    <td class="px-4 py-3">
+                      <a href="https://plakar.io/dl/plakar_1.1.7_linux_arm64.tar.gz" class="text-primary-500 hover:underline">download</a>
+                    </td>
+                    <td class="px-4 py-3">
+                      <span class="inline-flex items-center gap-2">
+                        <code class="text-xs text-neutral-800">b2886861abcc…</code>
+                        <button class="sha-copy-btn inline-block w-16 text-center text-xs px-2 py-1 border border-neutral-300 rounded hover:bg-neutral-100 transition-colors" data-sha="b2886861abcce04ad8098317f3b5259905285287438aeff22d544a8cff18fc66">
+                          Copy
+                        </button>
+                      </span>
+                    </td>
+                  </tr>
+                
+                  <tr class="hover:bg-neutral-50 overscroll-x-none">
+                    <td class="px-4 py-3 text-neutral-700">OpenBSD (x86_64)</td>
+                    <td class="px-4 py-3 text-neutral-600">plakar_1.1.7_openbsd_amd64.tar.gz</td>
+                    <td class="px-4 py-3">
+                      <a href="https://plakar.io/dl/plakar_1.1.7_openbsd_amd64.tar.gz" class="text-primary-500 hover:underline">download</a>
+                    </td>
+                    <td class="px-4 py-3">
+                      <span class="inline-flex items-center gap-2">
+                        <code class="text-xs text-neutral-800">067f387be944…</code>
+                        <button class="sha-copy-btn inline-block w-16 text-center text-xs px-2 py-1 border border-neutral-300 rounded hover:bg-neutral-100 transition-colors" data-sha="067f387be944cf15d07b0afba52775590829e60dd251319aa0ba648790174eec">
+                          Copy
+                        </button>
+                      </span>
+                    </td>
+                  </tr>
+                
+                  <tr class="hover:bg-neutral-50 overscroll-x-none">
+                    <td class="px-4 py-3 text-neutral-700">OpenBSD (arm64)</td>
+                    <td class="px-4 py-3 text-neutral-600">plakar_1.1.7_openbsd_arm64.tar.gz</td>
+                    <td class="px-4 py-3">
+                      <a href="https://plakar.io/dl/plakar_1.1.7_openbsd_arm64.tar.gz" class="text-primary-500 hover:underline">download</a>
+                    </td>
+                    <td class="px-4 py-3">
+                      <span class="inline-flex items-center gap-2">
+                        <code class="text-xs text-neutral-800">0261205cf865…</code>
+                        <button class="sha-copy-btn inline-block w-16 text-center text-xs px-2 py-1 border border-neutral-300 rounded hover:bg-neutral-100 transition-colors" data-sha="0261205cf865536ecc657e8020f09418ce0acc4658d5629c380bde7af8f84e46">
+                          Copy
+                        </button>
+                      </span>
+                    </td>
+                  </tr>
+                
+                  <tr class="hover:bg-neutral-50 overscroll-x-none">
+                    <td class="px-4 py-3 text-neutral-700">Windows (x86_64)</td>
+                    <td class="px-4 py-3 text-neutral-600">plakar_1.1.7_windows_amd64.tar.gz</td>
+                    <td class="px-4 py-3">
+                      <a href="https://plakar.io/dl/plakar_1.1.7_windows_amd64.tar.gz" class="text-primary-500 hover:underline">download</a>
+                    </td>
+                    <td class="px-4 py-3">
+                      <span class="inline-flex items-center gap-2">
+                        <code class="text-xs text-neutral-800">21a0f339f3cd…</code>
+                        <button class="sha-copy-btn inline-block w-16 text-center text-xs px-2 py-1 border border-neutral-300 rounded hover:bg-neutral-100 transition-colors" data-sha="21a0f339f3cdb762c18672150f3b4e98e06bc27fbb4abd5f28217d0dda3569f6">
+                          Copy
+                        </button>
+                      </span>
+                    </td>
+                  </tr>
+                
+                  <tr class="hover:bg-neutral-50 overscroll-x-none">
+                    <td class="px-4 py-3 text-neutral-700">Windows (arm64)</td>
+                    <td class="px-4 py-3 text-neutral-600">plakar_1.1.7_windows_arm64.tar.gz</td>
+                    <td class="px-4 py-3">
+                      <a href="https://plakar.io/dl/plakar_1.1.7_windows_arm64.tar.gz" class="text-primary-500 hover:underline">download</a>
+                    </td>
+                    <td class="px-4 py-3">
+                      <span class="inline-flex items-center gap-2">
+                        <code class="text-xs text-neutral-800">f3dc470b718d…</code>
+                        <button class="sha-copy-btn inline-block w-16 text-center text-xs px-2 py-1 border border-neutral-300 rounded hover:bg-neutral-100 transition-colors" data-sha="f3dc470b718d2b73721532bf2d6c105ea5d1bc55707cfbb6590b683353fe1686">
+                          Copy
+                        </button>
+                      </span>
+                    </td>
+                  </tr>
+                
+              </tbody>
+            </table>
+          </div>
+        
+
+        
+      </div>
     
       
       
@@ -5477,6 +5829,55 @@
       
         
         
+        <div class="version-panel" data-version="v1.1.7" style="display:none;">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a href="/docs/community/v1.1.0/quickstart/installation/" target="_self" class="flex items-center ">
+
+  <div class="text-neutral-50   bg-primary-500 text-neutral-50 inline-flex relative
+    group overflow-hidden min-h-7 lg:min-h-12 px-4 pr-4 rounded-lg items-center gap-2 transition-all
+    duration-150 ease-out hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1 active:shadow-inner">
+
+    
+    <div class="absolute inset-0 bg-primary-600 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-0"></div>
+
+    
+    <div class="relative z-10 flex items-center gap-2">
+      
+        <span class="w-5 h-5 flex items-center justify-center">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4.99989 13.9999L4.99976 5L6.99976 4.99997L6.99986 11.9999L17.1717 12L13.222 8.05024L14.6362 6.63603L21.0001 13L14.6362 19.364L13.222 17.9497L17.1717 14L4.99989 13.9999Z"></path></svg>
+</span>
+        </span>
+      
+      <span class="hidden xl:block">Installation Guide</span>
+      <span class="block xl:hidden">Installation Guide</span>
+    </div>
+  </div>
+
+</a>
+
+
+        </div>
+      
+        
+        
         <div class="version-panel" data-version="v1.1.6" style="display:none;">
           
 
@@ -6053,7 +6454,7 @@
               
                 <option value="main">Plakar: Developer branch</option>
               
-                <option value="v1.1.0">Plakar: v1.1.x (latest: v1.1.6)</option>
+                <option value="v1.1.0">Plakar: v1.1.x (latest: v1.1.7)</option>
               
                 <option value="v1.0.6">Plakar: v1.0.6</option>
               
