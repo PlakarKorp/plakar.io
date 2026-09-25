@@ -1,0 +1,11 @@
+{{ $spec := index site.Data.openapi "v1" }}
+{{ range $i, $tag := $spec.tags }}
+  {{ $.AddPage (dict
+    "path" (urlize $tag.name)
+    "title" $tag.name
+    "kind" "page"
+    "weight" (add $i 1)
+    "params" (dict "apiVersion" "v1" "apiTag" $tag.name "summary" $tag.description)
+    "dates" (dict "date" (time.AsTime "2026-09-24"))
+  ) }}
+{{ end }}
