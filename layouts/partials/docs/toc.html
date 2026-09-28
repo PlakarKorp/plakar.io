@@ -63,10 +63,10 @@
       {{ . | safeHTML | emojify }}
     </div>
 
-    {{ with $.Site.Params.docs.docsRepo }}
+    {{ with $.Site.Params.github.website }}
       {{ with $.File }}
         <div class="border-t border-neutral-200 mt-4 pt-4">
-          <a href="{{ $.Site.Params.docs.docsRepo }}/edit/main/content/{{ .Path }}" target="_blank"
+          <a href="{{ $.Site.Params.github.website }}/edit/main/content/{{ .Path }}" target="_blank"
             class="flex items-center gap-2 text-xs hover:underline">
             Edit this page on GitHub
             <span class="w-3 h-3 -mt-1 flex items-center justify-center">

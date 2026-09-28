@@ -329,6 +329,5 @@ $ go get github.com/PlakarKorp/go-cdc-chunkers@v1.1.0
 [v1.0.3...v1.1.0](https://github.com/PlakarKorp/go-cdc-chunkers/compare/v1.0.3...v1.1.0)
 
 As always, if you find a bug, a deviation from a spec, or a way to make it
-faster, come find us on [Discord](https://discord.gg/uqdP9Wfzx3) or open an
-issue. This is the layer where small improvements compound across every backup
-anyone ever takes.
+faster, come find us on [Discord](/discord) or open an issue. This is the layer
+where small improvements compound across every backup anyone ever takes.

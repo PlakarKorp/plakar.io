@@ -141,19 +141,19 @@
         <div class="flex flex-wrap gap-3">
           {{ partial "components/buttons/base-button.html" (dict
             "label" "Star us on GitHub"
-            "href" (printf "https://github.com/%s/%s" .Site.Params.github.organization .Site.Params.github.repository)
+            "href" .Site.Params.github.plakar
             "target" "_blank"
             "icon" "github"
           ) }}
           {{ partial "components/buttons/base-button.html" (dict
             "label" "Join Discord"
-            "href" (printf "https://discord.gg/%s" .Site.Params.discord.inviteCode)
+            "href" .Site.Params.socials.discord
             "target" "_blank"
             "icon" "discord"
           ) }}
           {{ partial "components/buttons/base-button.html" (dict
             "label" "Join Reddit"
-            "href" (printf .Site.Params.socials.reddit)
+            "href" .Site.Params.socials.reddit
             "target" "_blank"
             "icon" "ri/reddit-line"
           ) }}

@@ -404,10 +404,10 @@
           <!-- interchangeable destinations -->
           <div class="grid grid-cols-3 gap-2 w-full max-w-xs">
             <span class="flex items-center justify-center gap-1.5 bg-white border border-neutral-200 rounded-lg px-2.5 py-2 text-[12px] font-medium text-neutral-700">On-prem</span>
-            <span class="flex items-center justify-center gap-1.5 bg-white border border-neutral-200 rounded-lg px-2.5 py-2 text-[12px] font-medium text-neutral-700"><img src="/img/providers/favicon-aws-amazon-com.png" alt="" class="w-4 h-4 rounded-sm">AWS</span>
-            <span class="flex items-center justify-center gap-1.5 bg-white border border-neutral-200 rounded-lg px-2.5 py-2 text-[12px] font-medium text-neutral-700"><img src="/img/providers/favicon-ovhcloud-com.png" alt="" class="w-4 h-4 rounded-sm">OVHcloud</span>
-            <span class="flex items-center justify-center gap-1.5 bg-white border border-neutral-200 rounded-lg px-2.5 py-2 text-[12px] font-medium text-neutral-700"><img src="/img/providers/favicon-scaleway-com.png" alt="" class="w-4 h-4 rounded-sm">Scaleway</span>
-            <span class="flex items-center justify-center gap-1.5 bg-white border border-neutral-200 rounded-lg px-2.5 py-2 text-[12px] font-medium text-neutral-700"><img src="/img/providers/favicon-minio.png" alt="" class="w-4 h-4 rounded-sm">MinIO</span>
+            <span class="flex items-center justify-center gap-1.5 bg-white border border-neutral-200 rounded-lg px-2.5 py-2 text-[12px] font-medium text-neutral-700"><img src="{{ (resources.Get "img/providers/aws.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">AWS</span>
+            <span class="flex items-center justify-center gap-1.5 bg-white border border-neutral-200 rounded-lg px-2.5 py-2 text-[12px] font-medium text-neutral-700"><img src="{{ (resources.Get "img/providers/ovhcloud.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">OVHcloud</span>
+            <span class="flex items-center justify-center gap-1.5 bg-white border border-neutral-200 rounded-lg px-2.5 py-2 text-[12px] font-medium text-neutral-700"><img src="{{ (resources.Get "img/providers/scaleway.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">Scaleway</span>
+            <span class="flex items-center justify-center gap-1.5 bg-white border border-neutral-200 rounded-lg px-2.5 py-2 text-[12px] font-medium text-neutral-700"><img src="{{ (resources.Get "img/providers/minio.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">MinIO</span>
             <span class="flex items-center justify-center gap-1.5 bg-white border border-dashed border-neutral-300 rounded-lg px-2.5 py-2 text-[12px] font-medium text-neutral-500">+ any S3</span>
           </div>
           <span class="text-xs text-neutral-500 text-center">Switch providers without re-architecting. No lock-in.</span>
@@ -481,13 +481,13 @@
         <div class="flex flex-wrap gap-2">
           <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5">On-prem</span>
           <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5">Private cloud</span>
-          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="/img/providers/favicon-aws-amazon-com.png" alt="" class="w-4 h-4 rounded-sm">AWS</span>
-          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="/img/providers/favicon-cloud-google-com.png" alt="" class="w-4 h-4 rounded-sm">GCP</span>
-          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="/img/providers/favicon-azure.png" alt="" class="w-4 h-4 rounded-sm">Azure</span>
-          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="/img/providers/favicon-ovhcloud-com.png" alt="" class="w-4 h-4 rounded-sm">OVHcloud</span>
-          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="/img/providers/favicon-scaleway-com.png" alt="" class="w-4 h-4 rounded-sm">Scaleway</span>
-          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="/img/providers/favicon-vmware-com.png" alt="" class="w-4 h-4 rounded-sm">VMware</span>
-          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="/img/providers/favicon-proxmox-com.png" alt="" class="w-4 h-4 rounded-sm">Proxmox</span>
+          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/aws.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">AWS</span>
+          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/google-cloud.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">GCP</span>
+          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/azure.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">Azure</span>
+          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/ovhcloud.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">OVHcloud</span>
+          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/scaleway.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">Scaleway</span>
+          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/vmware.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">VMware</span>
+          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/proxmox.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">Proxmox</span>
           <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5">Bare metal</span>
           <span class="inline-flex items-center text-[12.5px] font-medium text-neutral-400 bg-neutral-900 border border-dashed border-neutral-600 rounded-lg px-3 py-1.5">and more…</span>
         </div>
@@ -498,14 +498,14 @@
         <h3 class="text-xl font-extrabold tracking-tight text-neutral-50 mb-2">Storage provider agnostic</h3>
         <p class="text-sm text-neutral-400 mb-5 leading-relaxed">Snapshots land on storage you own, always with zero plaintext: any S3-compatible backend, local disk, or filesystem. On S3-compatible backends, object-lock immutability and append-only keep them tamper-proof.</p>
         <div class="flex flex-wrap gap-2">
-          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="/img/providers/amazon-s3.svg" alt="" class="w-4 h-4">AWS S3</span>
-          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="/img/providers/favicon-azure.png" alt="" class="w-4 h-4 rounded-sm">Azure Blob</span>
-          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="/img/providers/favicon-cloud-google-com.png" alt="" class="w-4 h-4 rounded-sm">Google Cloud</span>
-          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="/img/providers/favicon-minio.png" alt="" class="w-4 h-4 rounded-sm">MinIO</span>
-          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="/img/providers/favicon-backblaze.png" alt="" class="w-4 h-4 rounded-sm">Backblaze B2</span>
-          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="/img/providers/favicon-cloudflare.png" alt="" class="w-4 h-4 rounded-sm">Cloudflare R2</span>
-          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="/img/providers/favicon-netapp.png" alt="" class="w-4 h-4 rounded-sm">NetApp</span>
-          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="/img/providers/icon-filesystem.svg" alt="" class="w-4 h-4">Local disk</span>
+          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/amazon-s3.svg").RelPermalink }}" alt="" class="w-4 h-4">AWS S3</span>
+          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/azure.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">Azure Blob</span>
+          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/google-cloud.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">Google Cloud</span>
+          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/minio.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">MinIO</span>
+          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/backblaze.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">Backblaze B2</span>
+          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/cloudflare.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">Cloudflare R2</span>
+          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/netapp.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">NetApp</span>
+          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/filesystem.svg").RelPermalink }}" alt="" class="w-4 h-4">Local disk</span>
           <span class="inline-flex items-center text-[12.5px] font-medium text-neutral-400 bg-neutral-900 border border-dashed border-neutral-600 rounded-lg px-3 py-1.5">and more…</span>
         </div>
       </div>
@@ -567,12 +567,12 @@
       <!-- Featured: S3 -->
       <div class="bg-primary-50 border border-primary-500 rounded-xl p-5 flex flex-col gap-2.5">
         <div class="flex flex-wrap gap-1.5 mb-1">
-          <img src="/img/providers/amazon-s3.svg" alt="AWS S3" class="w-5 h-5">
-          <img src="/img/providers/favicon-azure.png" alt="Azure Blob" class="w-5 h-5 rounded-sm">
-          <img src="/img/providers/favicon-cloud-google-com.png" alt="Google Cloud" class="w-5 h-5 rounded-sm">
-          <img src="/img/providers/favicon-minio.png" alt="MinIO" class="w-5 h-5 rounded-sm">
-          <img src="/img/providers/favicon-backblaze.png" alt="Backblaze B2" class="w-5 h-5 rounded-sm">
-          <img src="/img/providers/favicon-netapp.png" alt="NetApp" class="w-5 h-5 rounded-sm">
+          <img src="{{ (resources.Get "img/providers/amazon-s3.svg").RelPermalink }}" alt="AWS S3" class="w-5 h-5">
+          <img src="{{ (resources.Get "img/providers/azure.png").RelPermalink }}" alt="Azure Blob" class="w-5 h-5 rounded-sm">
+          <img src="{{ (resources.Get "img/providers/google-cloud.png").RelPermalink }}" alt="Google Cloud" class="w-5 h-5 rounded-sm">
+          <img src="{{ (resources.Get "img/providers/minio.png").RelPermalink }}" alt="MinIO" class="w-5 h-5 rounded-sm">
+          <img src="{{ (resources.Get "img/providers/backblaze.png").RelPermalink }}" alt="Backblaze B2" class="w-5 h-5 rounded-sm">
+          <img src="{{ (resources.Get "img/providers/netapp.png").RelPermalink }}" alt="NetApp" class="w-5 h-5 rounded-sm">
         </div>
         <h4 class="text-[14.5px] font-bold text-primary-500">S3-compatible storage</h4>
         <span class="text-[12.5px] text-neutral-600">Object-lock immutable, append-only destinations on storage you own.</span>
@@ -581,11 +581,11 @@
       <!-- Featured: Cloud providers -->
       <div class="bg-primary-50 border border-primary-500 rounded-xl p-5 flex flex-col gap-2.5">
         <div class="flex flex-wrap gap-1.5 mb-1">
-          <img src="/img/providers/favicon-aws-amazon-com.png" alt="AWS" class="w-5 h-5 rounded-sm">
-          <img src="/img/providers/favicon-azure.png" alt="Azure" class="w-5 h-5 rounded-sm">
-          <img src="/img/providers/favicon-cloud-google-com.png" alt="Google Cloud" class="w-5 h-5 rounded-sm">
-          <img src="/img/providers/favicon-ovhcloud-com.png" alt="OVHcloud" class="w-5 h-5 rounded-sm">
-          <img src="/img/providers/favicon-scaleway-com.png" alt="Scaleway" class="w-5 h-5 rounded-sm">
+          <img src="{{ (resources.Get "img/providers/aws.png").RelPermalink }}" alt="AWS" class="w-5 h-5 rounded-sm">
+          <img src="{{ (resources.Get "img/providers/azure.png").RelPermalink }}" alt="Azure" class="w-5 h-5 rounded-sm">
+          <img src="{{ (resources.Get "img/providers/google-cloud.png").RelPermalink }}" alt="Google Cloud" class="w-5 h-5 rounded-sm">
+          <img src="{{ (resources.Get "img/providers/ovhcloud.png").RelPermalink }}" alt="OVHcloud" class="w-5 h-5 rounded-sm">
+          <img src="{{ (resources.Get "img/providers/scaleway.png").RelPermalink }}" alt="Scaleway" class="w-5 h-5 rounded-sm">
         </div>
         <h4 class="text-[14.5px] font-bold text-primary-500">Cloud providers</h4>
         <span class="text-[12.5px] text-neutral-600">Agentless VM-level snapshots across your cloud estate.</span>
@@ -593,42 +593,42 @@
       </div>
       <!-- PostgreSQL -->
       <div class="bg-white border border-neutral-200 rounded-xl p-5 flex flex-col gap-2">
-        <span class="w-9 h-9 rounded-lg bg-neutral-100 flex items-center justify-center mb-1"><img src="/img/providers/icon-postgresql.svg" alt="" class="w-5 h-5"></span>
+        <span class="w-9 h-9 rounded-lg bg-neutral-100 flex items-center justify-center mb-1"><img src="{{ (resources.Get "img/providers/postgresql.svg").RelPermalink }}" alt="" class="w-5 h-5"></span>
         <h4 class="text-[14.5px] font-bold text-neutral-900">PostgreSQL</h4>
         <span class="text-[12.5px] text-neutral-600">Consistent full-database snapshots &amp; dumps</span>
         <span class="text-[10px] font-bold uppercase tracking-wide text-green-700 bg-green-100 rounded px-2 py-0.5 self-start mt-auto">Live</span>
       </div>
       <!-- MySQL -->
       <div class="bg-white border border-neutral-200 rounded-xl p-5 flex flex-col gap-2">
-        <span class="w-9 h-9 rounded-lg bg-neutral-100 flex items-center justify-center mb-1"><img src="/img/providers/mysql.png" alt="" class="w-5 h-5 object-contain"></span>
+        <span class="w-9 h-9 rounded-lg bg-neutral-100 flex items-center justify-center mb-1"><img src="{{ (resources.Get "img/providers/mysql.png").RelPermalink }}" alt="" class="w-5 h-5 object-contain"></span>
         <h4 class="text-[14.5px] font-bold text-neutral-900">MySQL / MariaDB</h4>
         <span class="text-[12.5px] text-neutral-600">Encrypted, deduplicated database snapshots</span>
         <span class="text-[10px] font-bold uppercase tracking-wide text-green-700 bg-green-100 rounded px-2 py-0.5 self-start mt-auto">Live</span>
       </div>
       <!-- Kubernetes -->
       <div class="bg-white border border-neutral-200 rounded-xl p-5 flex flex-col gap-2">
-        <span class="w-9 h-9 rounded-lg bg-neutral-100 flex items-center justify-center mb-1"><img src="/img/providers/favicon-kubernetes.png" alt="" class="w-5 h-5"></span>
+        <span class="w-9 h-9 rounded-lg bg-neutral-100 flex items-center justify-center mb-1"><img src="{{ (resources.Get "img/providers/kubernetes.png").RelPermalink }}" alt="" class="w-5 h-5"></span>
         <h4 class="text-[14.5px] font-bold text-neutral-900">Kubernetes</h4>
         <span class="text-[12.5px] text-neutral-600">Cluster-native snapshots, GitOps-ready</span>
         <span class="text-[10px] font-bold uppercase tracking-wide text-green-700 bg-green-100 rounded px-2 py-0.5 self-start mt-auto">Live</span>
       </div>
       <!-- Proxmox -->
       <div class="bg-white border border-neutral-200 rounded-xl p-5 flex flex-col gap-2">
-        <span class="w-9 h-9 rounded-lg bg-neutral-100 flex items-center justify-center mb-1"><img src="/img/providers/favicon-proxmox-com.png" alt="" class="w-5 h-5"></span>
+        <span class="w-9 h-9 rounded-lg bg-neutral-100 flex items-center justify-center mb-1"><img src="{{ (resources.Get "img/providers/proxmox.png").RelPermalink }}" alt="" class="w-5 h-5"></span>
         <h4 class="text-[14.5px] font-bold text-neutral-900">Proxmox</h4>
         <span class="text-[12.5px] text-neutral-600">Agentless VM &amp; container snapshots</span>
         <span class="text-[10px] font-bold uppercase tracking-wide text-green-700 bg-green-100 rounded px-2 py-0.5 self-start mt-auto">Live</span>
       </div>
       <!-- VMware -->
       <div class="bg-white border border-neutral-200 rounded-xl p-5 flex flex-col gap-2">
-        <span class="w-9 h-9 rounded-lg bg-neutral-100 flex items-center justify-center mb-1"><img src="/img/providers/favicon-vmware-com.png" alt="" class="w-5 h-5"></span>
+        <span class="w-9 h-9 rounded-lg bg-neutral-100 flex items-center justify-center mb-1"><img src="{{ (resources.Get "img/providers/vmware.png").RelPermalink }}" alt="" class="w-5 h-5"></span>
         <h4 class="text-[14.5px] font-bold text-neutral-900">VMware vSphere</h4>
         <span class="text-[12.5px] text-neutral-600">Agentless VM protection for hybrid estates</span>
         <span class="text-[10px] font-bold uppercase tracking-wide text-green-700 bg-green-100 rounded px-2 py-0.5 self-start mt-auto">Live</span>
       </div>
       <!-- Docker -->
       <div class="bg-white border border-neutral-200 rounded-xl p-5 flex flex-col gap-2">
-        <span class="w-9 h-9 rounded-lg bg-neutral-100 flex items-center justify-center mb-1"><img src="/img/providers/favicon-docker.png" alt="" class="w-5 h-5"></span>
+        <span class="w-9 h-9 rounded-lg bg-neutral-100 flex items-center justify-center mb-1"><img src="{{ (resources.Get "img/providers/docker.png").RelPermalink }}" alt="" class="w-5 h-5"></span>
         <h4 class="text-[14.5px] font-bold text-neutral-900">Docker</h4>
         <span class="text-[12.5px] text-neutral-600">Snapshot container volumes &amp; state</span>
         <span class="text-[10px] font-bold uppercase tracking-wide text-green-700 bg-green-100 rounded px-2 py-0.5 self-start mt-auto">Live</span>
@@ -657,7 +657,7 @@
         {{ partial "components/buttons/base-button.html" (dict
           "label" "Join us on Discord"
           "labelShort" "Discord"
-          "href" "https://discord.gg/uuegtnF2Q5"
+          "href" site.Params.socials.discord
           "target" "_blank"
           "icon" "discord"
           "bgColor" "bg-white"
@@ -760,7 +760,7 @@
             {{ partial "components/buttons/base-button.html" (dict
               "label" "Chat with us"
               "icon" "discord"
-              "href" "https://discord.gg/uuegtnF2Q5"
+              "href" site.Params.socials.discord
               "target" "_blank"
               "bgColor" "bg-secondary-500/50"
               "bgHoverColor" "bg-neutral-900"
@@ -774,7 +774,7 @@
               "bgHoverColor" "bg-neutral-50"
               "textColor" "text-neutral-50"
               "textHoverColor" "hover:text-neutral-900"
-              "href" "https://github.com/PlakarKorp/plakar"
+              "href" site.Params.github.plakar
               "target" "_blank"
             ) }}
           </div>

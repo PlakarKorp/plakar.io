@@ -33,7 +33,7 @@
   <div class="flex items-center justify-between border-t border-primary-400 pt-4">
     <span class="text-base">Join us</span>
     <div class="flex items-center gap-3">
-      <a href="https://discord.gg/{{ .Site.Params.discord.inviteCode }}" target="_blank" class="w-6 h-6 translate-y-1 text-neutral-50">
+      <a href="{{ .Site.Params.socials.discord }}" target="_blank" class="w-6 h-6 translate-y-1 text-neutral-50">
         {{ partial "icon.html" "discord" }}
       </a>
       <a href="{{ .Site.Params.socials.reddit }}" target="_blank" class="w-6 h-6 text-neutral-50">
@@ -46,7 +46,7 @@
   <div class="flex items-center justify-between border-t border-primary-400 pt-4">
     <span class="text-base">Help us</span>
     <div class="flex items-center gap-3">
-      <a href="https://github.com/{{ .Site.Params.github.organization }}/{{ .Site.Params.github.repository }}" target="_blank" class="w-5.5 h-5.5 text-neutral-50">
+      <a href="{{ .Site.Params.github.plakar }}" target="_blank" class="w-5.5 h-5.5 text-neutral-50">
         {{ partial "icon.html" "github" }}
       </a>
     </div>

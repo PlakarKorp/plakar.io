@@ -16,6 +16,8 @@ tags:
   - backup
   - gitops
   - cloud-native
+featured-scope:
+  - header
 ---
 
 Platform teams run their clusters, networking, secrets and policies as code. All
