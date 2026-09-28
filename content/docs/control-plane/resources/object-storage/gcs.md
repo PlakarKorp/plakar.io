@@ -77,7 +77,12 @@ The following settings are available when configuring source, store, or
 destination apps.
 
 - **Credentials JSON**: Upload a Google Cloud service account JSON key file or
-  paste its contents directly.
+  paste its contents directly. Leave empty when Plakar Control Plane runs on a
+  Compute Engine instance with an attached service account: the app then uses
+  the instance's service account automatically. The instance must use the
+  `cloud-platform` access scope, shown as **Allow full access to all Cloud
+  APIs** in the Google Cloud Console, as described in the
+  [Google Cloud installation](../../../intro/installation/google-cloud) guide.
 - **Endpoint**: Overrides the default Google Cloud Storage API endpoint. Only
   needed when connecting to a non-standard endpoint such as a local GCS emulator
   for development and testing.
@@ -96,10 +101,11 @@ The following extra settings are available when configuring a store app.
 
 Plakar Control Plane requires a set of IAM permissions to access your GCS
 bucket. These permissions should be granted to the service account that Plakar
-Control Plane will use to authenticate. See the documentation on
+Control Plane uses to authenticate, whether it is provided as a key or attached
+to the instance. See the documentation on
 [Managing IAM Roles and Service Accounts on Google Cloud](../../../guides/google-cloud/iam-roles-and-service-accounts)
 for instructions on how to create a custom role with these permissions and
-generate a service account key.
+assign it to a service account.
 
 | Permission               | Description                               |
 | ------------------------ | ----------------------------------------- |

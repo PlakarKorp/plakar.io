@@ -21,7 +21,7 @@ credential, Plakar Control Plane gives you two options.
   path that points to the secret in your secret manager, and resolves it at
   runtime.
 
-![](./images/secrets1.png)
+![](./images/vault3.png)
 
 Secret providers belong to a single organization. You work only with the secret
 providers of the organization you signed in to, and what you can do with them is
