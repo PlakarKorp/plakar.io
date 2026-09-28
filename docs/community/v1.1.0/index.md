@@ -1,9 +1,9 @@
 
 
-# Plakar: v1.1.x (latest: v1.1.6)
+# Plakar: v1.1.x (latest: v1.1.7)
 
 This documentation covers all releases in the `v1.1.x` major, from `v1.1.0`
-through `v1.1.6`.
+through `v1.1.7`.
 
 
 

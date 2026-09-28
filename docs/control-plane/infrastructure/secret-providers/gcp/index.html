@@ -27,7 +27,7 @@
     
   
   
-    <meta name="description" content="How to configure and use GCP Secret Manager as a secret provider in Plakar Control Plane.">
+    <meta name="description" content="How to configure and use Google Cloud Secret Manager as a secret provider in Plakar Control Plane.">
   
   
     <meta name="keywords" content="backup,open-source,deduplication,encryption,plakar,cloud backup,database backup,">
@@ -49,60 +49,35 @@
     <meta name="author" content="PlakarKorp">
   
   
-    
-      
-        
-          <link href="https://bsky.app/profile/plakar.bsky.social" rel="me">
-        
-      
-    
-      
-        
-          <link href="https://www.linkedin.com/company/plakarkorp" rel="me">
-        
-      
-    
-      
-        
-          <link href="https://reddit.com/r/plakar" rel="me">
-        
-      
-    
-      
-        
-          <link href="https://twitter.com/PlakarKorp" rel="me">
-        
-      
-    
-      
-        
-          <link href="https://twitter.com/PlakarKorp" rel="me">
-        
-      
-    
-      
-        
-          <link href="https://github.com/PlakarKorp" rel="me">
-        
-      
-    
+    <link href="https://bsky.app/profile/plakar.bsky.social" rel="me">
+  
+    <link href="https://discord.gg/uuegtnF2Q5" rel="me">
+  
+    <link href="https://www.linkedin.com/company/plakarkorp" rel="me">
+  
+    <link href="https://www.reddit.com/r/plakar" rel="me">
+  
+    <link href="https://x.com/PlakarKorp" rel="me">
+  
+  
+    <link href="https://github.com/PlakarKorp" rel="me">
   
 
   
   <meta property="og:url" content="https://www.stg.plakar.io/docs/control-plane/infrastructure/secret-providers/gcp/">
   <meta property="og:site_name" content="Plakar | The Open Standard for Backup and Restore">
   <meta property="og:title" content="GCP Secret Manager">
-  <meta property="og:description" content="How to configure and use GCP Secret Manager as a secret provider in Plakar Control Plane.">
+  <meta property="og:description" content="How to configure and use Google Cloud Secret Manager as a secret provider in Plakar Control Plane.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
-    <meta property="article:published_time" content="2026-05-15T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-09-24T08:29:21+03:00">
+    <meta property="article:published_time" content="2026-09-24T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-28T12:10:59+03:00">
 
   
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="GCP Secret Manager">
-  <meta name="twitter:description" content="How to configure and use GCP Secret Manager as a secret provider in Plakar Control Plane.">
+  <meta name="twitter:description" content="How to configure and use Google Cloud Secret Manager as a secret provider in Plakar Control Plane.">
 
   
   
@@ -151,8 +126,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.61d846707055edd90f457771b4dcd22e74a879e05db6ad869faee7dbf720fb5a820d22d9ed5cfee21487f9b1fc9871cb7eac08d55777acca9a1b542d64bd1998.css"
-    integrity="sha512-YdhGcHBV7dkPRXdxtNzSLnSoeeBdtq2Gn67n2/cg&#43;1qCDSLZ7Vz&#43;4hSH&#43;bH8mHHLfqwI1Vd3rMqaG1QtZL0ZmA==">
+    href="/css/main.bundle.min.bfd5b702e85f363c88e8701384ebd97393a2e3825e8eefb3b64404504ea4b4bf87fac8aff4e32805f0ec06c0e9e7e617679f1b71b0dbb32595365335d8be3a51.css"
+    integrity="sha512-v9W3AuhfNjyI6HAThOvZc5Oi44Jeju&#43;ztkQEUE6ktL&#43;H&#43;siv9OMoBfDsBsDp5&#43;YXZ58bcbDbsyWVNlM12L46UQ==">
   
     
     <script defer src="/lib/zoom/zoom.min.umd.a527109b68c082a70f3697716dd72a9d5aa8b545cf800cecbbc7399f2ca6f6e0ce3e431f2062b48bbfa47c9ea42822714060bef309be073f49b9c0e30d318d7b.js" integrity="sha512-pScQm2jAgqcPNpdxbdcqnVqotUXPgAzsu8c5nyym9uDOPkMfIGK0i7&#43;kfJ6kKCJxQGC&#43;8wm&#43;Bz9JucDjDTGNew=="></script>
@@ -178,6 +153,16 @@
 
   
   
+
+  
+  
+  
+  
+  <script
+    defer
+    type="text/javascript"
+    src="/js/mermaid.bundle.3d46857991a1358fecc3046ee1acc4011a5c20d91646e4fae572719eea2de65d43e691c0349b4bfa9a669fe04b1f4f8cc17282292a26dd3fbfec200bd501fae4.js"
+    integrity="sha512-PUaFeZGhNY/swwRu4azEARpcINkWRuT65XJxnuot5l1D5pHANJtL&#43;ppmn&#43;BLH0&#43;MwXKCKSom3T&#43;/7CAL1QH65A=="></script>
 
 
 
@@ -248,19 +233,18 @@
     "url" : "https://www.stg.plakar.io/docs/control-plane/infrastructure/secret-providers/gcp/",
     "author" : {
       "@type": "Person",
-      "name": "PlakarKorp",
-      "sameAs": ["https://bsky.app/profile/plakar.bsky.social", "https://www.linkedin.com/company/plakarkorp", "https://reddit.com/r/plakar", "https://twitter.com/PlakarKorp", "https://twitter.com/PlakarKorp", "https://github.com/PlakarKorp"]
+      "name": "PlakarKorp"
     },
     "copyrightYear": "2026",
-    "dateCreated": "2026-05-15T00:00:00\u002b00:00",
-    "datePublished": "2026-05-15T00:00:00\u002b00:00",
+    "dateCreated": "2026-09-24T00:00:00\u002b00:00",
+    "datePublished": "2026-09-24T00:00:00\u002b00:00",
     
-    "dateModified": "2026-09-24T08:29:21\u002b03:00",
+    "dateModified": "2026-09-28T12:10:59\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.stg.plakar.io/docs/control-plane/infrastructure/secret-providers/gcp/",
-    "wordCount": "31"
+    "wordCount": "615"
   }]
   </script>
 
@@ -362,25 +346,24 @@
 
 
   
-    
-
-    
-      <a href="https://github.com/PlakarKorp/plakar" target="_blank"
-         class="github-stars hidden xl:flex items-stretch min-h-7 xl:min-h-12 border border-neutral-300 bg-neutral-50 rounded-lg overflow-hidden">
-        <div class="flex items-center justify-center px-3 bg-neutral-100 text-primary-500">
-          <span class="w-6 h-6 flex items-center justify-center">
-            <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
-</span>
-          </span>
-        </div>
-        <div class="flex items-center justify-center px-3 border-l border-neutral-300">
-          <span class="github-stars-count text-neutral-900" data-repo="PlakarKorp/plakar"></span>
-        </div>
-      </a>
-
-    
+  
 
   
+    <a href="https://github.com/PlakarKorp/plakar" target="_blank"
+       class="github-stars hidden xl:flex items-stretch min-h-7 xl:min-h-12 border border-neutral-300 bg-neutral-50 rounded-lg overflow-hidden">
+      <div class="flex items-center justify-center px-3 bg-neutral-100 text-primary-500">
+        <span class="w-6 h-6 flex items-center justify-center">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+</span>
+        </span>
+      </div>
+      <div class="flex items-center justify-center px-3 border-l border-neutral-300">
+        <span class="github-stars-count text-neutral-900" data-repo="PlakarKorp/plakar"></span>
+      </div>
+    </a>
+
+  
+
 
 
 
@@ -8179,33 +8162,206 @@
     </button>
   
 </h1>
-<details
-      class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
-      data-type="note"
-      open>
-      <summary class="flex items-center gap-2 font-semibold text-inherit cursor-pointer">
-        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"/></svg>
-</span></div>
-        <div class="grow">
-          Note
-        </div>
-        <div
-          class="ms-auto flex h-5 w-5 items-center justify-center transition-transform ease-in-out -rotate-90 group-open:rotate-0 print:hidden"><span class="relative block icon"><svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 20 20"
-  fill="currentColor"
-  aria-hidden="true"
->
-  <path
-    fill-rule="evenodd"
-    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-    clip-rule="evenodd"
-  />
-</svg>
-</span></div>
-      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>This documentation is currently being worked on. If you need assistance in the
-meantime, you can reach out in the Plakar Discord community.</p>
-<p><a href="https://discord.gg/uuegtnF2Q5"  target="_blank" rel="noreferrer">Join the Discord server</a></p></div></details>
+<p>Google Cloud Secret Manager can be added as a secret provider in Plakar Control
+Plane by selecting <code>gcp</code> as the integration type when creating a new secret
+provider.</p>
+<!-- prettier-ignore-start -->
+<pre class="not-prose mermaid">
+flowchart TB
+  subgraph Plakar["Plakar Control Plane"]
+    App["Any configuration field<br/>(passwords, keys, certs, ...)"]
+  end
+
+  SA["Service account<br/>(attached to the instance or provided as a key)"]
+  SM["GCP Secret Manager"]
+
+  App -->|"authenticate via"| SA
+  SA -->|"read secret"| SM
+  SM -->|"secret value"| App
+</pre>
+
+<!-- prettier-ignore-end -->
+
+
+<h2 id="authentication" class="group pr-8">Authentication
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="authentication"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>Plakar Control Plane authenticates to Secret Manager as a Google Cloud service
+account. The service account can be provided in two ways:</p>
+<ul>
+<li><strong>Attached service account:</strong> when Plakar Control Plane runs on a Compute
+Engine instance with a service account attached, no credentials need to be
+provided. The secret provider uses the instance&rsquo;s service account
+automatically. The instance must use the <code>cloud-platform</code> access scope, shown
+as <strong>Allow full access to all Cloud APIs</strong> in the Google Cloud Console, as
+described in the
+<a href="../../../intro/installation/google-cloud" >Google Cloud installation</a> guide.</li>
+<li><strong>Service account key:</strong> when Plakar Control Plane runs outside Google Cloud,
+or when a different identity is needed, provide a service account key in the
+<strong>Credentials Json</strong> field.</li>
+</ul>
+<p>For more information on creating service accounts, generating keys, and
+attaching a service account to an instance, see
+<a href="../../../guides/google-cloud/iam-roles-and-service-accounts" >Managing IAM Roles and Service Accounts</a>.</p>
+
+
+<h2 id="configuration" class="group pr-8">Configuration
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="configuration"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>When adding the secret provider, you must provide a name for the secret
+provider. The remaining fields are optional and depend on how Plakar Control
+Plane is deployed and where your secrets are stored.</p>
+<ul>
+<li>
+<p><strong>Credentials Json:</strong> The service account key, in JSON format. Leave empty to
+use the service account attached to the Plakar Control Plane instance. |</p>
+</li>
+<li>
+<p><strong>Gcp Location:</strong> The location of regional secrets, for example
+<code>europe-west1</code>. Leave empty for global secrets. When set, the secret provider
+reads secrets from that location using the regional Secret Manager endpoint.</p>
+</li>
+<li>
+<p><strong>Endpoint:</strong> A custom Secret Manager API endpoint, for example when access
+goes through Private Service Connect. Leave empty to use the default endpoint,
+or the regional endpoint when <strong>Gcp Location</strong> is set.</p>
+</li>
+<li>
+<p><strong>Use Rest Client:</strong> Uses the Secret Manager REST API instead of gRPC. Enabled
+by default. Disable it only if your network or endpoint requires gRPC.</p>
+</li>
+</ul>
+<p>Google Cloud Secret Manager supports two kinds of secrets: global secrets, which
+are replicated according to their replication policy, and regional secrets,
+which are stored in a single location. A secret provider reads either global
+secrets or the regional secrets of one location, depending on <strong>Gcp Location</strong>.</p>
+
+
+<h2 id="required-permissions" class="group pr-8">Required Permissions
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="required-permissions"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>The service account used by the secret provider needs the
+<code>secretmanager.versions.access</code> permission on the secrets it reads.</p>
+<p>For more information on creating a custom role with this permission and
+assigning it to a service account, see
+<a href="../../../guides/google-cloud/iam-roles-and-service-accounts" >Managing IAM Roles and Service Accounts</a>.</p>
+
+
+<h2 id="creating-secrets" class="group pr-8">Creating Secrets
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="creating-secrets"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>In Secret Manager, a secret holds a single value. Each credential used by Plakar
+Control Plane, such as a password or an access key, is therefore stored in its
+own secret.</p>
+<p>When creating the secret, choose between a global and a regional secret. A
+regional secret requires the matching location to be set in <strong>Gcp Location</strong> on
+the secret provider. As an example, the access key of a Cloud Storage bucket
+might be stored in a secret named <code>staging-gcs-bucket1-access-key</code>.</p>
+<figure><img class="my-0 rounded-md mx-auto max-w-120" src="../images/gcp-1.png" alt="" loading="lazy" decoding="async" /></figure>
+
+
+<h2 id="secret-path-format" class="group pr-8">Secret Path Format
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="secret-path-format"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>The path format used by Plakar Control Plane is:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">{project_id}#{secret_name}</span></span></code></pre></div></div>
+<p>The path format is the same for global and regional secrets. Using the example
+above, in a project named <code>my-project</code>:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">my-project#staging-gcs-bucket1-access-key</span></span></code></pre></div></div>
+
+
+<h2 id="using-secrets-in-plakar-control-plane" class="group pr-8">Using Secrets in Plakar Control Plane
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="using-secrets-in-plakar-control-plane"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>Once GCP Secret Manager is configured as a secret provider, you can use it in
+any form field that requires a credential. Switch the field from direct value to
+secret provider, select your secret provider from the dropdown, and enter the
+path to the secret you want to use.</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt=""
+    width="1563"
+    height="134"
+    src="/docs/control-plane/infrastructure/secret-providers/images/gcp2_hu_bc1c215a3fb73494.webp"
+    srcset="/docs/control-plane/infrastructure/secret-providers/images/gcp2_hu_bc1c215a3fb73494.webp 400w, /docs/control-plane/infrastructure/secret-providers/images/gcp2_hu_7866a91781469602.webp 800w, /docs/control-plane/infrastructure/secret-providers/images/gcp2_hu_9b701c5be664f7dc.webp 1200w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/docs/control-plane/infrastructure/secret-providers/images/gcp2_hu_9b701c5be664f7dc.webp"></figure>
+
       </article>
       <footer class="mt-12 flex flex-col gap-6 docs-font border-t border-neutral-200 pt-6">
 
@@ -8261,7 +8417,7 @@ meantime, you can reach out in the Plakar Discord community.</p>
   
   <div class="flex items-center justify-between text-xs text-neutral-400">
     
-      <span>Last updated: September 24, 2026</span>
+      <span>Last updated: September 28, 2026</span>
     
     
       <a href="https://github.com/PlakarKorp/plakar.io/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">
@@ -8278,6 +8434,28 @@ meantime, you can reach out in the Plakar Discord community.</p>
     <aside class="hidden xl:block w-48 shrink-0">
       <div class="sticky top-24">
         
+  <nav class="toc docs-font text-sm">
+    <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
+    <div class="toc-content text-neutral-600">
+      <ul><li><a href="#authentication">Authentication</a></li><li><a href="#configuration">Configuration</a></li><li><a href="#required-permissions">Required Permissions</a></li><li><a href="#creating-secrets">Creating Secrets</a></li><li><a href="#secret-path-format">Secret Path Format</a></li><li><a href="#using-secrets-in-plakar-control-plane">Using Secrets in Plakar Control Plane</a></li></ul>
+    </div>
+
+    
+      
+        <div class="border-t border-neutral-200 mt-4 pt-4">
+          <a href="https://github.com/PlakarKorp/plakar.io/edit/main/content/docs/control-plane/infrastructure/secret-providers/gcp.md" target="_blank"
+            class="flex items-center gap-2 text-xs hover:underline">
+            Edit this page on GitHub
+            <span class="w-3 h-3 -mt-1 flex items-center justify-center">
+              <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V11H19L18.9999 6.413L11.2071 14.2071L9.79289 12.7929L17.5849 5H13V3H21Z"></path></svg>
+</span>
+            </span>
+          </a>
+        </div>
+      
+    
+  </nav>
+
 
       </div>
     </aside>
@@ -8372,7 +8550,7 @@ meantime, you can reach out in the Plakar Discord community.</p>
               
                 <option value="main">Plakar: Developer branch</option>
               
-                <option value="v1.1.0">Plakar: v1.1.x (latest: v1.1.6)</option>
+                <option value="v1.1.0">Plakar: v1.1.x (latest: v1.1.7)</option>
               
                 <option value="v1.0.6">Plakar: v1.0.6</option>
               
