@@ -70,7 +70,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-06-21T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-09-28T10:35:08+02:00">
+    <meta property="article:modified_time" content="2026-09-28T12:10:59+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -227,12 +227,12 @@
     "dateCreated": "2026-06-21T00:00:00\u002b00:00",
     "datePublished": "2026-06-21T00:00:00\u002b00:00",
     
-    "dateModified": "2026-09-28T10:35:08\u002b02:00",
+    "dateModified": "2026-09-28T12:10:59\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/guides/google-cloud/iam-roles-and-service-accounts/",
-    "wordCount": "554"
+    "wordCount": "930"
   }]
   </script>
 
@@ -8175,8 +8175,19 @@ accounts. A custom role defines the exact permissions granted, and a service
 account acts as the identity that holds that role. A service account key is then
 generated and used by external services such as Plakar Control Plane to
 authenticate against Google Cloud APIs.</p>
+<p>Plakar Control Plane can authenticate to Google Cloud in two ways:</p>
+<ul>
+<li><strong>Service account key:</strong> a JSON key generated for the service account and
+provided to Plakar Control Plane. This works wherever Plakar Control Plane
+runs, including outside Google Cloud.</li>
+<li><strong>Attached service account:</strong> when Plakar Control Plane runs on a Compute
+Engine instance, the service account can be attached to the instance itself.
+Plakar Control Plane then obtains credentials from the instance, and no key
+needs to be generated, stored, or rotated.</li>
+</ul>
 <p>This guide walks through creating a custom IAM role, creating a service account,
-assigning the role to it, and generating a service account key.</p>
+and assigning the role to it. It then covers both ways of using the service
+account: generating a key, or attaching it to the Plakar Control Plane instance.</p>
 <div class="steps">
 
 <div class="step">
@@ -8208,7 +8219,7 @@ or destination.</p>
 Console and click <strong>Create Custom Role</strong> under the <strong>Custom</strong> roles tab. Provide
 a name and description for the role. You&rsquo;ll also need to select a role launch
 stage. The launch stage indicates the maturity of the role and is for
-organizational tracking purposes only — it does not affect what the role can do.
+organizational tracking purposes only, it does not affect what the role can do.
 For a role used with Plakar Control Plane, select <strong>General Availability</strong>. Then
 add the required permissions. You can search for permissions by name to find the
 ones you need.</p>
@@ -8273,6 +8284,9 @@ custom role we created before.</p>
     </button>
   
 </h2>
+<p>A key is only required when the service account is not attached to the Plakar
+Control Plane instance. If you are using an attached service account, skip to
+<a href="/docs/control-plane/guides/google-cloud/iam-roles-and-service-accounts/#attaching-the-service-account-to-an-instance" >Attaching the Service Account to an Instance</a>.</p>
 <p>After creating the service account and assigning the role, generate a key for
 the service account. This key is what Plakar Control Plane uses to authenticate
 with Google Cloud APIs.</p>
@@ -8312,6 +8326,52 @@ credential.</p></div></details></div>
 
 </div>
 
+
+
+<h2 id="attaching-the-service-account-to-an-instance" class="group pr-8">Attaching the Service Account to an Instance
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="attaching-the-service-account-to-an-instance"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>When Plakar Control Plane runs on a Compute Engine instance, the service account
+can be attached to the instance instead of using a key. Credentials are then
+issued by the instance and refreshed automatically.</p>
+<p>Access from an attached service account is limited by two independent controls:</p>
+<ul>
+<li><strong>IAM roles:</strong> the permissions granted to the service account, such as the
+custom role created above.</li>
+<li><strong>Access scopes:</strong> a per-instance setting that restricts which Google Cloud
+APIs the instance&rsquo;s credentials can be used for.</li>
+</ul>
+<p>A request succeeds only if both allow it. The default access scopes do not
+include every API Plakar Control Plane uses. For example, Secret Manager is not
+included. With the default scopes, requests fail with a permission error even
+when the IAM role grants the required permissions. Set the access scope to
+<code>cloud-platform</code>, which allows all APIs, and use IAM roles to control what the
+service account can actually do.</p>
+<p>The service account and access scopes can be set when the instance is created,
+as described in the
+<a href="../../../intro/installation/google-cloud" >Google Cloud installation</a> guide. To
+change them on an existing instance, the instance must be stopped first:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">gcloud compute instances stop &lt;INSTANCE_NAME&gt; --zone<span class="o">=</span>&lt;ZONE&gt;
+</span></span><span class="line"><span class="cl">gcloud compute instances set-service-account &lt;INSTANCE_NAME&gt; <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --zone<span class="o">=</span>&lt;ZONE&gt; <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --service-account<span class="o">=</span>&lt;SERVICE_ACCOUNT_EMAIL&gt; <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --scopes<span class="o">=</span>cloud-platform
+</span></span><span class="line"><span class="cl">gcloud compute instances start &lt;INSTANCE_NAME&gt; --zone<span class="o">=</span>&lt;ZONE&gt;</span></span></code></pre></div></div>
+<p>Access scopes only apply to credentials issued by the instance. When a service
+account key is provided, the key&rsquo;s credentials are used instead and access
+scopes have no effect.</p>
 
       </article>
       <footer class="mt-12 flex flex-col gap-6 docs-font border-t border-neutral-200 pt-6">
@@ -8362,7 +8422,7 @@ credential.</p></div></details></div>
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#creating-a-custom-role">Creating a Custom Role</a></li><li><a href="#creating-a-service-account">Creating a Service Account</a></li><li><a href="#generating-a-service-account-key">Generating a Service Account Key</a></li></ul>
+      <ul><li><a href="#creating-a-custom-role">Creating a Custom Role</a></li><li><a href="#creating-a-service-account">Creating a Service Account</a></li><li><a href="#generating-a-service-account-key">Generating a Service Account Key</a></li><li><a href="#attaching-the-service-account-to-an-instance">Attaching the Service Account to an Instance</a></li></ul>
     </div>
 
     
