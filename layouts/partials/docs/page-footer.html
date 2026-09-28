@@ -44,7 +44,7 @@
     {{ if not .Lastmod.IsZero }}
       <span>Last updated: {{ .Lastmod.Format "January 2, 2006" }}</span>
     {{ end }}
-    {{ with $.Site.Params.docs.docsRepo }}
+    {{ with $.Site.Params.github.website }}
       <a href="{{ . }}/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">
         Report a bug
       </a>

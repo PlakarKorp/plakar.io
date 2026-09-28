@@ -317,7 +317,7 @@ our community forums.
 Get started with Plakar today and become part of our community:
 
 - Try Plakar now with [our quickstart](https://plakar.io/docs/community)
-- Join our developers and users on [Discord](https://discord.gg/uuegtnF2Q5)
+- Join our developers and users on [Discord](/discord)
 
 Special thanks to all early users, contributors, and supporters who have helped
 shape this first release—your involvement has been invaluable!

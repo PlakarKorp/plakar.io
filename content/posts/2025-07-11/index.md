@@ -819,9 +819,9 @@ so...here's some R&D for you straight from Plakar Korp's lab :-)
 Our package is open source and distributed under the permissive ISC-license. It
 is free for you to use in any application, including commercial ones.
 
-Feel free to [hop in our Discord channel](https://discord.gg/uuegtnF2Q5) and ask
-for help if you want to integrate it somewhere, make improvements to it, or add
-support for new algorithms.
+Feel free to [hop in our Discord channel](/discord) and ask for help if you want
+to integrate it somewhere, make improvements to it, or add support for new
+algorithms.
 
 It can be used for a wide range of use-cases, so we are curious to see what you
 can build with it!

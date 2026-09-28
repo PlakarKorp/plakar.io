@@ -17,7 +17,6 @@ will guide you through the initial setup and basic operations.
 
 ## Join the Community
 
-- [Discord](https://discord.gg/uuegtnF2Q5): Get help, ask questions, and join
-  live discussions.
+- [Discord](/discord): Get help, ask questions, and join live discussions.
 - [GitHub](https://github.com/PlakarKorp/plakar): Report bugs, request features,
   and… don't forget to star the repo!

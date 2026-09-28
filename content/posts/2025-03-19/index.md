@@ -27,8 +27,7 @@ bugs reported by early adopters.
 $ go install github.com/PlakarKorp/plakar/cmd/plakar@v1.0.1-beta.13
 ```
 
-We hope you will give it a try and
-[give us with feedback](https://discord.com/invite/uuegtnF2Q5) !
+We hope you will give it a try and [give us with feedback](/discord) !
 
 ---
 
@@ -341,7 +340,7 @@ As we are heading to our first stable release in a few weeks, we are working
 hard on squashing last bugs, polishing our tool, as well as implementing some
 features that we consider essential for our first release.
 
-Feel free to [hop on our discord](https://discord.com/invite/uuegtnF2Q5) (we're
-friendly), talk to us, test and report bugs. All help is appreciated...
+Feel free to [hop on our discord](/discord) (we're friendly), talk to us, test
+and report bugs. All help is appreciated...
 
 Also, there's a bunch of social media share buttons below, just saying !

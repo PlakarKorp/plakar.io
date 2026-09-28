@@ -30,7 +30,7 @@ join, participate, and stay informed.
 
 Choose the channel that matches your intent:
 
-- [Discord (real-time chat & open work sessions)](https://discord.gg/uuegtnF2Q5)
+- [Discord (real-time chat & open work sessions)](/discord)
 - [Reddit (asynchronous discussions & feedback)](https://www.reddit.com/r/plakar)
 - [X (announcements & progress)](https://x.com/plakar_io)
 - [Bluesky (announcements & progress)](https://bsky.app/profile/plakar.io)

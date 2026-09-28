@@ -201,7 +201,7 @@
         {{ partial "components/buttons/base-button.html" (dict
           "label" "Join the Discord"
           "labelShort" "Discord"
-          "href" (printf "https://discord.gg/%s" .Site.Params.discord.inviteCode)
+          "href" .Site.Params.socials.discord
           "target" "_blank"
           "icon" "discord"
           "bgColor" "bg-neutral-50"
@@ -243,7 +243,7 @@
       {{ partial "components/buttons/base-button.html" (dict
         "label" "Join the Discord"
         "labelShort" "Discord"
-        "href" (printf "https://discord.gg/%s" .Site.Params.discord.inviteCode)
+        "href" .Site.Params.socials.discord
         "target" "_blank"
         "icon" "discord"
         "bgColor" "bg-transparent"
