@@ -104,6 +104,11 @@ secrets required to perform the operation. The edge then connects directly to
 the source, store or destination, performs the operation, and reports its status
 to PCP.
 
+A task runs through an integration, such as the S3 integration when backing up
+an S3 bucket. The edge installs the integrations its tasks need from the Control
+Plane, not from the internet, so an edge never needs internet access to obtain
+them.
+
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
 sequenceDiagram
@@ -118,6 +123,7 @@ sequenceDiagram
   Note over Edge,PCP: Task execution
   PCP->>Edge: Assign task
   PCP-->>Edge: Resolve and provide required secrets
+  Edge->>PCP: Install required integration
   Edge->>Target: Execute operation locally
   Target-->>Edge: Result
   Edge-->>PCP: Report task status
@@ -137,6 +143,12 @@ An edge needs network access to two things:
 
 The Control Plane itself does not need network access to those systems. The edge
 provides that connectivity when it executes a task.
+
+An edge installs integrations from the Control Plane, so reaching PCP is all it
+needs to run any integration installed there. It only needs internet access if
+the systems it protects are on the internet. The exception is the external tools
+some integrations depend on, described below, which must be installed on the
+edge host separately.
 
 ### Integrations that need external tools
 

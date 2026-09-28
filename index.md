@@ -165,6 +165,10 @@
 
 
 
+## [Discord](https://www.plakar.io/discord/index.md)
+
+
+
 ## [Documentation](https://www.plakar.io/docs/index.md)
 
 - [Control Plane Docs](https://www.plakar.io/docs/control-plane/index.md): Plakar Control Plane documentation hub, find guides, references, and resources for working with Plakar Control Plane.
