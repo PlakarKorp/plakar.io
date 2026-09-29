@@ -1,0 +1,4 @@
+{{ $spec := index site.Data.openapi (.Get "version") }}
+{{ $ref := printf "#/components/schemas/%s" (.Get "name") }}
+{{ $example := partial "api/example.html" (dict "schema" (dict "$ref" $ref) "spec" $spec) }}
+<div class="highlight-wrapper">{{ transform.Highlight (jsonify (dict "indent" "  ") $example) "json" "" }}</div>
