@@ -1,0 +1,15 @@
+{{ $schema := .schema | default dict }}
+{{ $seen := .seen | default slice }}
+{{ $name := "" }}
+{{ $circular := false }}
+{{ with index $schema "$ref" }}
+  {{ $name = path.Base . }}
+  {{ if in $seen $name }}
+    {{ $circular = true }}
+    {{ $schema = dict }}
+  {{ else }}
+    {{ $schema = index $.spec.components.schemas $name | default dict }}
+    {{ $seen = $seen | append $name }}
+  {{ end }}
+{{ end }}
+{{ return (dict "schema" $schema "name" $name "seen" $seen "circular" $circular) }}
