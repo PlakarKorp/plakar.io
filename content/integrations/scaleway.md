@@ -40,13 +40,18 @@ seo_tags:
   - cloud inventory management
 
 links:
+  - type: community
+    url: /docs/community/main/integrations/scaleway/
   - type: control-plane
     url: /docs/control-plane/resources/compute/scaleway/
 
 edition:
+  - community
   - control-plane
 
 stage: stable
+
+binary: true
 
 author:
   - type: official
