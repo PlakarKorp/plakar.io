@@ -84,6 +84,15 @@ destination apps using the `vmware` protocol.
 - **vSphere Username**: Required. The username used to authenticate with the
   vCenter Server or ESXi host.
 
+> [!WARNING]+ TLS Certificate Verification
+>
+> Enabling **vSphere TLS Skip Verify** disables verification of the vCenter
+> Server or ESXi certificate, leaving the connection open to man-in-the-middle
+> attacks. An attacker in that position can capture the vSphere credentials and
+> read or alter virtual machine disks in transit. Prefer setting **vSphere TLS
+> CA Bundle** for self-signed certificates. The same applies to **NSX Skip
+> Verify** for the NSX manager. Never skip verification in production.
+
 ### Source configuration
 
 The following extra settings are available when configuring a source app using
@@ -214,6 +223,15 @@ destination apps using the `vmware+nbd` protocol.
   verify the NBD server's TLS certificate.
 - **Nbd Tls Skip Verify**: Skip TLS certificate verification for the direct NBD
   connection.
+
+> [!WARNING]+ TLS Certificate Verification
+>
+> Enabling **Vsphere Tls Skip Verify** or **Nbd Tls Skip Verify** disables
+> certificate verification for the vCenter Server or the NBD server, leaving the
+> connection open to man-in-the-middle attacks. An attacker in that position can
+> capture the vSphere credentials and read or alter virtual machine disks in
+> transit. Prefer setting the matching CA bundle for self-signed certificates.
+> Never skip verification in production.
 
 ### Source configuration
 
