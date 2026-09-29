@@ -1,0 +1,194 @@
+{{ $op := .op }}
+{{ $spec := .spec }}
+{{ $method := upper .method }}
+{{ $id := $op.operationId | default (anchorize (printf "%s %s" .method .path)) }}
+
+{{ $schemes := slice }}
+{{ range $op.security }}
+  {{ range $name, $_ := . }}{{ $schemes = $schemes | append $name }}{{ end }}
+{{ end }}
+{{ $schemeLabels := dict "badge" "Badge" "edge" "Edge token" "agent" "Agent token" }}
+
+{{ $params := $op.parameters | default slice }}
+
+{{ $body := $op.requestBody | default dict }}
+{{ $bodyType := "" }}
+{{ $bodySchema := dict }}
+{{ range $type, $media := $body.content }}
+  {{ if not $bodyType }}
+    {{ $bodyType = $type }}
+    {{ $bodySchema = $media.schema | default dict }}
+  {{ end }}
+{{ end }}
+
+{{ $successes := slice }}
+{{ $errors := slice }}
+{{ range $code, $resp := $op.responses }}
+  {{ $type := "" }}
+  {{ $schema := dict }}
+  {{ range $t, $media := $resp.content }}
+    {{ if not $type }}{{ $type = $t }}{{ $schema = $media.schema | default dict }}{{ end }}
+  {{ end }}
+  {{ $entry := dict "code" $code "type" $type "schema" $schema "description" ($resp.description | default "") }}
+  {{ if strings.HasPrefix $code "2" }}
+    {{ $successes = $successes | append $entry }}
+  {{ else if or $type $entry.description }}
+    {{ $errors = $errors | append $entry }}
+  {{ end }}
+{{ end }}
+
+{{ $url := printf "https://pcp.example.com%s" .path }}
+{{ $lines := slice (cond (eq $method "GET") (printf "curl '%s'" $url) (printf "curl -X %s '%s'" $method $url)) }}
+{{ if in $schemes "badge" }}
+  {{ $lines = $lines | append "  -H 'Authorization: Bearer <badge>'" }}
+{{ else if in $schemes "edge" }}
+  {{ $lines = $lines | append "  -H 'Authorization: Bearer <edge-token>'" }}
+{{ else if in $schemes "agent" }}
+  {{ $lines = $lines | append "  -H 'Plakman-Agent-Token: <agent-token>'" }}
+{{ end }}
+{{ $bodyExample := "" }}
+{{ if eq $bodyType "application/json" }}
+  {{ $bodyExample = jsonify (dict "indent" "  ") (partial "api/example.html" (dict "schema" $bodySchema "spec" $spec)) }}
+  {{ $lines = $lines | append
+    "  -H 'Content-Type: application/json'"
+    (printf "  -d '%s'" (replace $bodyExample "'" `'\''`)) }}
+{{ else if $bodyType }}
+  {{ $lines = $lines | append (printf "  -H 'Content-Type: %s'" $bodyType) "  --data-binary @file" }}
+{{ end }}
+{{ $curl := delimit $lines " \\\n" }}
+
+
+{{ $methodColor := index (dict
+  "GET" "bg-emerald-600"
+  "POST" "bg-primary-500"
+  "PUT" "bg-secondary-600"
+  "PATCH" "bg-secondary-600"
+  "DELETE" "bg-red-600"
+) $method | default "bg-neutral-600" }}
+{{ $pill := "inline-block shrink-0 text-center font-mono text-xs font-bold leading-5 px-1.5 py-px rounded text-white" }}
+{{ $heading := "text-sm font-semibold text-neutral-900 mt-4 mb-2 md:mt-5 flex flex-wrap items-center gap-x-2 gap-y-1 first:mt-0" }}
+{{ $panel := "rounded-lg border border-neutral-200 overflow-hidden" }}
+{{ $treePanel := "rounded-lg border border-neutral-200 max-h-120 overflow-auto overscroll-contain" }}
+
+<section id="{{ $id }}" class="not-prose scroll-mt-24 mt-8 pt-6 md:mt-10 md:pt-8 border-t border-neutral-200">
+
+  <h2 class="text-xl font-semibold text-neutral-900 m-0">{{ $op.summary | default (printf "%s %s" $method .path) }}</h2>
+
+  <div class="flex flex-wrap items-center justify-between gap-x-3 gap-y-1.5 mt-3 py-1.5 px-2 rounded-lg bg-neutral-100">
+    <div class="flex items-start gap-2.5 min-w-0">
+      <span class="{{ $pill }} min-w-14 {{ $methodColor }}">{{ $method }}</span>
+      <code class="min-w-0 text-sm font-medium leading-5 text-neutral-800 wrap-break-word">{{ replace (htmlEscape .path) "/" "/<wbr>" | safeHTML }}</code>
+    </div>
+    <span class="flex items-center gap-1.5 pr-1 text-xs {{ if $schemes }}text-neutral-600{{ else }}text-neutral-400{{ end }}">
+      <span class="w-3.5 h-3.5 shrink-0">{{ partial "icon.html" (cond (gt (len $schemes) 0) "ri/lock-2-line" "ri/lock-unlock-line") }}</span>
+      {{ if $schemes }}
+        {{ range $i, $s := $schemes }}{{ if $i }}, {{ end }}<a href="../#authentication" class="text-inherit hover:text-primary-500">{{ index $schemeLabels $s | default $s }}</a>{{ end }}
+      {{ else }}
+        No authentication
+      {{ end }}
+    </span>
+  </div>
+
+  {{ if $op.deprecated }}
+    <p class="mt-3 text-sm font-medium text-secondary-700">This endpoint is deprecated.</p>
+  {{ end }}
+
+  {{ with $op.description }}
+    <div class="prose max-w-none mt-4 text-sm">{{ . | markdownify }}</div>
+  {{ end }}
+
+  <div class="grid grid-cols-1 xl:grid-cols-2 gap-x-8 gap-y-4 mt-4 md:gap-y-5 md:mt-5 items-start">
+    <div class="min-w-0">
+
+      {{ range $group := slice (dict "title" "Path parameters" "in" "path") (dict "title" "Query parameters" "in" "query") }}
+        {{ with where $params "in" $group.in }}
+          <h3 class="{{ $heading }}">{{ $group.title }}</h3>
+          <div class="{{ $panel }}">
+            <ul class="list-none m-0 p-0 divide-y divide-neutral-200">
+              {{ range . }}
+                <li class="m-0 p-0 flex items-start gap-1.5 px-3 py-2">
+                  <span class="w-3.5 shrink-0"></span>
+                  {{ partial "api/field.html" (dict
+                    "name" .name "schema" (.schema | default dict) "resolved" (.schema | default dict)
+                    "required" .required "description" .description "spec" $spec) }}
+                </li>
+              {{ end }}
+            </ul>
+          </div>
+        {{ end }}
+      {{ end }}
+
+      {{ if $bodyType }}
+        <h3 class="{{ $heading }}">
+          Request body
+          <span class="font-mono text-xs font-normal text-neutral-500">{{ $bodyType }}</span>
+          {{ if $body.required }}<span class="text-[11px] font-medium text-secondary-700">required</span>{{ end }}
+        </h3>
+        {{ $tree := trim (partial "api/schema.html" (dict "schema" $bodySchema "spec" $spec)) " \n\t" }}
+        {{ if $tree }}
+          <div class="{{ $treePanel }}">{{ $tree | safeHTML }}</div>
+        {{ else }}
+          <p class="m-0 text-sm text-neutral-500">
+            {{ if eq $bodyType "application/json" }}
+              {{ partial "api/type.html" (dict "schema" $bodySchema "spec" $spec) | default "any" }}
+            {{ else }}
+              Raw request body.
+            {{ end }}
+          </p>
+        {{ end }}
+      {{ end }}
+
+      {{ range $successes }}
+        <h3 class="{{ $heading }}">
+          Response
+          <span class="{{ $pill }} bg-emerald-600">{{ .code }}</span>
+          {{ with .description }}<span class="text-sm font-normal text-neutral-600">{{ . | markdownify | plainify }}</span>{{ end }}
+          {{ with .type }}<span class="font-mono text-xs font-normal text-neutral-500">{{ . }}</span>{{ end }}
+        </h3>
+        {{ $tree := "" }}
+        {{ if eq .type "application/json" }}
+          {{ $tree = trim (partial "api/schema.html" (dict "schema" .schema "spec" $spec)) " \n\t" }}
+        {{ end }}
+        {{ if $tree }}
+          <div class="{{ $treePanel }}">{{ $tree | safeHTML }}</div>
+        {{ else if not .type }}
+          <p class="m-0 text-sm text-neutral-500">No response body.</p>
+        {{ end }}
+      {{ end }}
+
+      {{ with $errors }}
+        <h3 class="{{ $heading }}">Errors</h3>
+        <div class="{{ $panel }}">
+          <ul class="list-none m-0 p-0 divide-y divide-neutral-200">
+            {{ range . }}
+              <li class="m-0 flex items-baseline gap-2.5 px-3 py-2 text-sm">
+                <span class="{{ $pill }} {{ cond (strings.HasPrefix .code "4") "bg-secondary-600" "bg-red-600" }}">{{ .code }}</span>
+                <span class="text-neutral-600 [&>p]:m-0">{{ .description | markdownify }}</span>
+              </li>
+            {{ end }}
+          </ul>
+        </div>
+        <p class="mt-2 mb-0 text-xs text-neutral-500">
+          Every error returns the <a href="../#errors" class="text-primary-500 hover:underline">standard error body</a>.
+        </p>
+      {{ end }}
+    </div>
+
+    {{ $sampleCode := "my-0! rounded-lg border border-neutral-200 shadow-none [&_pre]:m-0 [&_pre]:px-4 [&_pre]:py-3 [&_pre]:max-h-120 [&_pre]:overflow-auto [&_pre]:overscroll-contain [&_pre]:text-xs [&_pre]:leading-relaxed" }}
+    <div class="min-w-0 flex flex-col gap-4 md:gap-5">
+      <div>
+        <h3 class="{{ $heading }}">Request</h3>
+        <div class="highlight-wrapper {{ $sampleCode }}">{{ transform.Highlight $curl "sh" "" }}</div>
+      </div>
+      {{ range $successes }}
+        {{ if eq .type "application/json" }}
+          {{ $example := partial "api/example.html" (dict "schema" .schema "spec" $spec) }}
+          <div>
+            <h3 class="{{ $heading }}">Response <span class="{{ $pill }} bg-emerald-600">{{ .code }}</span></h3>
+            <div class="highlight-wrapper {{ $sampleCode }}">{{ transform.Highlight (jsonify (dict "indent" "  ") $example) "json" "" }}</div>
+          </div>
+        {{ end }}
+      {{ end }}
+    </div>
+  </div>
+</section>
