@@ -82,6 +82,11 @@ flowchart TD
 The following settings are available when configuring a source, store, or
 destination app.
 
+- **Host Key**: The SSH host public key entry of the remote machine, used to
+  verify its identity before connecting, for example
+  `example.com ssh-rsa AAAAB3NzaC1yc2E...`. You can get the entry by running
+  `ssh-keyscan <host>` from a trusted network, and check its fingerprint against
+  the remote machine before using it.
 - **Port**: The TCP/UDP port number the SSH service is listening on. Defaults to
   `22`.
 - **Root**: The absolute filesystem path to use as the root for backup
