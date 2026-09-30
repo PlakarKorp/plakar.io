@@ -14,6 +14,12 @@ the contents of Kubernetes PersistentVolumeClaims. Kubernetes integration
 supports multiple protocols for backup, either via the CSI driver snapshot
 feature (preferred) or by reading the volume directly.
 
+The kubeconfig used by the app must grant the permissions required by the
+protocol. Both protocols use the
+[PVC backup and restore role](../../../guides/kubernetes/kubernetes-rbac#pvc-backup-and-restore).
+When Plakar runs outside the cluster, they also need the
+[port forwarding role](../../../guides/kubernetes/kubernetes-rbac#port-forwarding).
+
 ## 1. `k8s+csi` protocol
 
 The `k8s+csi` protocol backs up a PVC by creating a `VolumeSnapshot` through the

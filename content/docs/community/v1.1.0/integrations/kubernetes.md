@@ -23,6 +23,9 @@ provides two connectors accessible via two URI schemes:
 
 - Plakar v1.1.0-beta or later.
 - A Kubernetes cluster accessible
+- Credentials with the permissions required by each operation. See
+  [Kubernetes Service Accounts and RBAC](/docs/control-plane/guides/kubernetes/kubernetes-rbac)
+  for least-privilege roles.
 
 **Typical use cases**
 

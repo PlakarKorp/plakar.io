@@ -1,9 +1,11 @@
 ---
 title: "Plakar with Kubernetes"
 date: "2026-07-28T00:00:00Z"
-weight: 8
+weight: 1
 summary:
   "An overview of the Kubernetes components available in the Plakar ecosystem."
+aliases:
+  - /docs/control-plane/guides/plakar-with-kubernetes/
 ---
 
 # Plakar with Kubernetes
@@ -14,16 +16,16 @@ your deployment model, you can use one or all of these components together.
 
 ## Kubernetes Inventory
 
-The [Kubernetes inventory](../infrastructure/inventories/kubernetes) is a
+The [Kubernetes inventory](../../infrastructure/inventories/kubernetes) is a
 managed inventory that discovers resources running inside one or more Kubernetes
 clusters. Like other managed inventories, such as the
-[AWS inventory](../infrastructure/inventories/aws), it synchronizes with the
+[AWS inventory](../../infrastructure/inventories/aws), it synchronizes with the
 cluster and imports discovered resources into Plakar Control Plane.
 
 Once discovered, resources can be managed through the Plakar Control Plane UI,
 assigned apps, and protected by backup policies.
 
-See the [Kubernetes Inventory](../infrastructure/inventories/kubernetes)
+See the [Kubernetes Inventory](../../infrastructure/inventories/kubernetes)
 documentation for configuration instructions.
 
 ## Kubernetes Integration
@@ -43,7 +45,7 @@ inventories, apps, policies, and other configuration can be managed through
 Kubernetes manifests and integrated into GitOps workflows.
 
 See the
-[Operator Installation](../infrastructure-as-code/kubernetes-operator/installation)
+[Operator Installation](../../infrastructure-as-code/kubernetes-operator/installation)
 guide to get started.
 
 ## Plakar Edge
@@ -53,7 +55,7 @@ Kubernetes cluster. It executes backup and restore operations close to the data
 while Plakar Control Plane continues to provide centralized orchestration and
 management.
 
-See the [Edges](../infrastructure/edges) documentation for more information.
+See the [Edges](../../infrastructure/edges) documentation for more information.
 
 ## Plakar Control Plane on Kubernetes
 

@@ -24,7 +24,9 @@ directly from Plakar Control Plane.
 Kubernetes inventories authenticate using a kubeconfig file. The kubeconfig
 determines which cluster Plakar Control Plane connects to and which permissions
 it has, so the associated user or service account must have read access to
-`PersistentVolumeClaims` in the namespaces you want to discover.
+`PersistentVolumeClaims` in the namespaces you want to discover. See
+[Kubernetes Service Accounts and RBAC](../../../guides/kubernetes/kubernetes-rbac#inventory)
+for a least-privilege role.
 
 When creating an Kubernetes inventory in Plakar Control Plane, you must provide:
 
