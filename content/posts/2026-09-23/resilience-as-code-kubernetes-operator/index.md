@@ -18,6 +18,7 @@ tags:
   - cloud-native
 featured-scope:
   - header
+  - hero-page
 ---
 
 Platform teams run their clusters, networking, secrets and policies as code. All

@@ -12,6 +12,8 @@ categories:
   - announcement
   - release-notes
   - community
+featured-scope:
+  - hero-page
 tags:
   - plakar
   - open-source
