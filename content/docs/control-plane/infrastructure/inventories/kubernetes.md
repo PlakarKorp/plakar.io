@@ -17,7 +17,7 @@ directly from Plakar Control Plane.
 
 | Resource                     | Source | Store | Destination |
 | ---------------------------- | ------ | ----- | ----------- |
-| PersistentVolumeClaims (PVC) | Yes    | No    | No          |
+| PersistentVolumeClaims (PVC) | Yes    | No    | Yes         |
 
 ## Authentication
 
@@ -34,6 +34,8 @@ When creating an Kubernetes inventory in Plakar Control Plane, you must provide:
   Plane runs inside the cluster, in which case it uses the in-cluster
   configuration instead. The kubeconfig can also be loaded from a
   [secret provider](../secret-providers).
+- **Namespaces**: namespaces to discover resources from. Leave it empty for the
+  inventory to discover resources in every namespace in the cluster.
 
 ## Adding the Kubernetes Inventory
 
