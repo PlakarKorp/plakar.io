@@ -115,6 +115,13 @@ an S3 bucket. The edge installs the integrations its tasks need from the Control
 Plane, not from the internet, so an edge never needs internet access to obtain
 them.
 
+While a task runs, the edge streams its progress back to PCP. The
+[job details](../../scheduling/job-history#job-details) of a task run on an edge
+therefore show the same information as for a task run on the Control Plane:
+progress, resource and network graphs, recent paths, and output. The output
+carries what the task writes to `stderr`, along with the output of its
+[pre-job and post-job hooks](#pre-job-and-post-job-hooks).
+
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
 sequenceDiagram
@@ -131,6 +138,7 @@ sequenceDiagram
   PCP-->>Edge: Resolve and provide required secrets
   Edge->>PCP: Install required integration
   Edge->>Target: Execute operation locally
+  Edge-->>PCP: Stream progress and output
   Target-->>Edge: Result
   Edge-->>PCP: Report task status
 {{< /mermaid >}}
@@ -499,8 +507,9 @@ variables describing the current task:
 This allows the same script to be used by multiple tasks and to distinguish
 between the pre-job and post-job phases.
 
-When a hook fails, the end of its output is included in the error reported to
-the Control Plane, providing context for diagnosing the failure.
+The output of each hook appears in the job's output alongside the task's own.
+When a hook fails, the end of its output is also included in the error reported
+to the Control Plane, providing context for diagnosing the failure.
 
 ### Hooks on Kubernetes
 
