@@ -161,8 +161,8 @@ edge host separately.
 Most integrations are agentless. They communicate directly with the resource
 they manage and do not require additional software on the machine running the
 task. For example, the [Windows VSS integration](../../resources/compute/vss)
-connects to the Windows host over SSH and does not require any additional tools
-on the Control Plane or edge.
+connects to the Windows host over SSH and needs nothing on the edge beyond the
+SSH client described in [SSH keys](#ssh-keys).
 
 Some integrations such as MongoDB, PostgreSQL and MySQL instead rely on
 utilities provided by the vendor. These utilities must be installed on the
@@ -180,6 +180,18 @@ Install the tools required by the integration on the edge host, then configure
 the task to run on that edge. As deployments grow, edges can be equipped with
 different sets of tools so that workloads can be distributed to the machines
 capable of running them.
+
+### SSH keys
+
+Some integrations, such as [SFTP](../../resources/file-storage/sftp) and
+[Windows VSS](../../resources/compute/vss), authenticate over SSH with a private
+key. The edge loads that key into its own SSH agent, which runs for as long as
+the edge does. The OpenSSH client (`ssh`, `ssh-add` and `ssh-agent`) must
+therefore be installed on the edge host.
+
+An edge without `ssh-agent` still starts and logs a warning. Tasks that
+authenticate with an SSH private key fail on that edge, and every other task
+runs normally.
 
 ## Enable edge enrollment
 
