@@ -83,6 +83,34 @@ The `class` describes the general category the resource belongs to, while the
 Plane uses this classification to determine which integrations are compatible
 with a resource.
 
+## Environment and data class tags
+
+A resource can carry its environment and data class as tags. When a
+[source app](../apps/sources) is created for the resource, Plakar Control Plane
+fills in its **Environment** and **Data Class** from those tags. Both fields can
+still be changed before the app is saved or even later on.
+
+A tag is a prefix followed by the value. The prefix has a long and a short form,
+and either `:` or `=` separates it from the value:
+
+| Field       | Tag forms                                                                                                |
+| ----------- | -------------------------------------------------------------------------------------------------------- |
+| Environment | `plakar:environment:<value>`, `plakar:environment=<value>`, `plakar:env:<value>`, `plakar:env=<value>`   |
+| Data Class  | `plakar:data-class:<value>`, `plakar:data-class=<value>`, `plakar:class:<value>`, `plakar:class=<value>` |
+
+For example, a resource tagged `plakar:env=production` and
+`plakar:class=database` gets `production` as the environment and `database` as
+the data class of its source apps.
+
+The tags can be set in two places:
+
+- On a resource in a
+  [self-managed inventory](../infrastructure/inventories/self-managed), in its
+  **Tags** field.
+- On the resource at the cloud provider, as a tag or label. A
+  [managed inventory](../infrastructure/inventories#managed-inventories) picks
+  them up when it discovers the resource.
+
 ## Supported resources
 
 The following pages document the supported resource types and the configuration
