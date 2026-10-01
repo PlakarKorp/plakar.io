@@ -120,6 +120,9 @@ The following extra settings are available when configuring a destination app.
 - **Set Owner**: Sets the owner and group of restored files to match the
   original snapshot. Requires the SSH user configured for PCP to have superuser
   permissions on the remote machine.
+- **Skip Permissions**: Skips restoring permission bits, including the setuid,
+  setgid and sticky bits, on restored files and directories. Disabled by
+  default.
 
 ## Permissions
 

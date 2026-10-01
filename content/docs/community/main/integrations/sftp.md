@@ -257,11 +257,12 @@ on Windows.
 
 ### Destination configuration
 
-The following extra option is available to the destination connector.
+The following extra options are available to the destination connector.
 
-| Option      | Required | Description                                                                                                   |
-| ----------- | -------- | ------------------------------------------------------------------------------------------------------------- |
-| `set_owner` | No       | Set the owner and group of restored files. Requires superuser permissions on the server. Defaults to `false`. |
+| Option             | Required | Description                                                                                                                           |
+| ------------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `set_owner`        | No       | Set the owner and group of restored files. Requires superuser permissions on the server. Defaults to `false`.                         |
+| `skip_permissions` | No       | Skip restoring permission bits, including the setuid, setgid and sticky bits, on restored files and directories. Defaults to `false`. |
 
 ### Store configuration
 
