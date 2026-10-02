@@ -7,9 +7,8 @@ business units, customers, or environments while keeping their configuration and
 operational data separate.
 
 Every Plakar Control Plane deployment contains a root organization that is
-created during the [initial setup (enrollment)](../../intro/enrollment), or
-during [air-gapped enrollment](../../intro/air-gapped) on instances without
-outbound connectivity. Additional organizations can be created beneath it,
+created during the [initial setup (enrollment)](../../intro/enrollment).
+Additional organizations can be created beneath it,
 forming a hierarchy. Each organization has a single parent and may contain any
 number of child organizations.
 

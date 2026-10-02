@@ -12,7 +12,6 @@
 - [Overview](https://www.plakar.io/docs/control-plane/intro/overview/index.md): An introduction to Plakar Control Plane, its core concepts, and how to get started.
 - [Installation](https://www.plakar.io/docs/control-plane/intro/installation/index.md): How to deploy Plakar Control Plane as a virtual appliance on your infrastructure.
 - [Enrollment](https://www.plakar.io/docs/control-plane/intro/enrollment/index.md): How to enroll your Plakar Control Plane instance on first setup.
-- [Air-gapped enrollment](https://www.plakar.io/docs/control-plane/intro/air-gapped/index.md): How to enroll an air-gapped Plakar Control Plane instance using an offline license.
 - [Billing & Plans](https://www.plakar.io/docs/control-plane/intro/billing/index.md): Plakar Control Plane plans and how to manage your license.
 
 

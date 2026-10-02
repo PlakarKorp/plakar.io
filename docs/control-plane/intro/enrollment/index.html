@@ -70,7 +70,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-04-20T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-10-02T12:42:17+02:00">
+    <meta property="article:modified_time" content="2026-10-02T12:44:31+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -190,6 +190,11 @@
 
 
 
+  
+  
+    <script src="/js/shortcodes/tabs.min.b9b8a6b2cf6c81163025e44a18c0ccce600efe2dfc29d2d11515fe41b8e1e8e00896759b9e55eab7032ab15d1bec124c32e8996685e563de84ad243eb61ec236.js" integrity="sha512-ubimss9sgRYwJeRKGMDMzmAO/i38KdLRFRX&#43;Qbjh6OAIlnWbnlXqtwMqsV0b7BJMMuiZZoXlY96ErSQ&#43;th7CNg==" crossorigin="anonymous"></script>
+  
+
 
 
 
@@ -227,12 +232,12 @@
     "dateCreated": "2026-04-20T00:00:00\u002b00:00",
     "datePublished": "2026-04-20T00:00:00\u002b00:00",
     
-    "dateModified": "2026-10-02T12:42:17\u002b02:00",
+    "dateModified": "2026-10-02T12:44:31\u002b02:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/intro/enrollment/",
-    "wordCount": "257"
+    "wordCount": "625"
   }]
   </script>
 
@@ -572,8 +577,6 @@
   
     
   
-    
-  
   
 
   
@@ -879,15 +882,6 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          text-primary-500 bg-neutral-100 font-medium">
         Enrollment
-      </a>
-    
-  
-    
-    
-      <a href="/docs/control-plane/intro/air-gapped/"
-         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
-         ">
-        Air-gapped enrollment
       </a>
     
   
@@ -4440,8 +4434,6 @@
   
     
   
-    
-  
   
 
   
@@ -4747,15 +4739,6 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          text-primary-500 bg-neutral-100 font-medium">
         Enrollment
-      </a>
-    
-  
-    
-    
-      <a href="/docs/control-plane/intro/air-gapped/"
-         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
-         ">
-        Air-gapped enrollment
       </a>
     
   
@@ -8298,14 +8281,77 @@
   
 </h1>
 <p>When you first access your Plakar Control Plane instance, you are taken through
-a one-time enrollment process. Enrollment registers your appliance with
-<code>plakar.io</code> to retrieve your license and set up billing reporting. No backup
+a one-time enrollment process. Enrollment registers the instance with Plakar,
+creates its root organization, and creates the first admin account. No backup
 data is ever transferred, only the consumption metrics needed for billing.</p>
+<p>An instance is registered either with an email or with a license. Licenses come
+in two types, online and air-gapped, which gives three ways to enroll:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Method</th>
+          <th>Reaches <code>plakar.io</code></th>
+          <th>Use it when</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Email</td>
+          <td>Yes</td>
+          <td>You are setting up a single instance by hand.</td>
+      </tr>
+      <tr>
+          <td>Online license</td>
+          <td>Yes</td>
+          <td>You are enrolling several instances or automating enrollment.</td>
+      </tr>
+      <tr>
+          <td>Air-gapped license</td>
+          <td>No</td>
+          <td>The instance cannot make outbound connections.</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Email</strong> enrollment verifies an owner email with <code>plakar.io</code>, then asks you to
+create the organization. It needs no license, but the verification has to be
+repeated for every instance.</p>
+<p><strong>License</strong> enrollment uses a license that Plakar issues for your organization.
+The same license can enroll many instances without any email verification.
+<a href="/contact/" >Contact us</a> to get one. Both license types are entered the same way,
+and the instance detects which type it has been given:</p>
+<ul>
+<li>An <strong>online license</strong> still requires the instance to reach <code>plakar.io</code>.</li>
+<li>An <strong>air-gapped license</strong> is validated locally, so the instance never contacts
+<code>plakar.io</code>. It suits air-gapped or PCI-DSS environments, needs a
+<a href="../../guides/self-hosted-package-repository" >self-hosted package repository</a>,
+and is renewed by hand. See <a href="/docs/control-plane/intro/enrollment/#air-gapped-instances" >air-gapped instances</a>.</li>
+</ul>
+<figure><img class="my-0 rounded-md mx-auto max-w-120" loading="lazy" decoding="async" fetchpriority="auto" alt="Choosing how to register an instance" width="1162" height="1073" src="/docs/control-plane/intro/images/enrollment-method_hu_e19e57dc1906f620.webp" srcset="/docs/control-plane/intro/images/enrollment-method_hu_e19e57dc1906f620.webp 400w, /docs/control-plane/intro/images/enrollment-method_hu_d071f21d3ce8b4ae.webp 800w, /docs/control-plane/intro/images/enrollment-method_hu_46e3afa7369248e2.webp 1162w" sizes="(min-width: 768px) 50vw, 65vw" data-zoom-src="/docs/control-plane/intro/images/enrollment-method_hu_46e3afa7369248e2.webp" /></figure>
+
+
+<h2 id="registering-the-instance" class="group pr-8">Registering the instance
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="registering-the-instance"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<div class="tab__container w-full">
+<div class="tab__nav overflow-x-auto" role="tablist">
+<div class="flex gap-1 min-w-max"><button class="tab__button px-3 py-2 text-sm font-semibold border-b-2 border-transparent rounded-t-md bg-neutral-100 hover:bg-neutral-300 tab--active" role="tab" aria-selected="true" data-tab-index="0" data-tab-label="Email"><span class="flex items-center gap-1">Email</span></button><button class="tab__button px-3 py-2 text-sm font-semibold border-b-2 border-transparent rounded-t-md bg-neutral-100 hover:bg-neutral-300" role="tab" aria-selected="false" data-tab-index="1" data-tab-label="License"><span class="flex items-center gap-1">License</span></button></div>
+</div>
+<div class="tab__content mt-4"><div class="tab__panel tab--active" data-tab-index="0">
 <div class="steps">
-
 <div class="step">
-
-<h2 id="owner-email" class="group pr-8">Owner email
+<h3 id="owner-email" class="group pr-8">Owner email
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
@@ -8318,19 +8364,32 @@ data is ever transferred, only the consumption metrics needed for billing.</p>
       <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
 </span></span>
     </button>
-  
-</h2>
-<p>The first thing you enter is an owner email address. This is the email
-<code>plakar.io</code> uses for billing, license reporting, and any account-level
-communication. A verification link is sent to this address, click it, then
-return to the setup page and continue.</p>
-<p>Ownership can be transferred later if needed.</p>
-<figure><img class="my-0 rounded-md mx-auto max-w-120" loading="lazy" decoding="async" fetchpriority="auto" alt="Enrolling an instance" width="1170" height="1112" src="/docs/control-plane/intro/images/enrollment-1_hu_4f26a6efb531bf8.webp" srcset="/docs/control-plane/intro/images/enrollment-1_hu_4f26a6efb531bf8.webp 400w, /docs/control-plane/intro/images/enrollment-1_hu_328ac0527df893ce.webp 800w, /docs/control-plane/intro/images/enrollment-1_hu_fe2558212078052f.webp 1170w" sizes="(min-width: 768px) 50vw, 65vw" data-zoom-src="/docs/control-plane/intro/images/enrollment-1_hu_fe2558212078052f.webp" /></figure></div>
-
-
+</h3>
+<p>Enter an owner email address. This is the email <code>plakar.io</code> uses for billing,
+license reporting, and any account-level communication. Ownership can be
+transferred later if needed.</p>
+</div>
 <div class="step">
-
-<h2 id="organization" class="group pr-8">Organization
+<h3 id="confirmation-code" class="group pr-8">Confirmation code
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="confirmation-code"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+</h3>
+<p>A verification link is sent to the owner email. Opening it shows a confirmation
+code on the sign-in page. Enter that code on the setup page to confirm the
+email.</p>
+<figure><img class="my-0 rounded-md mx-auto max-w-120" loading="lazy" decoding="async" fetchpriority="auto" alt="Entering the confirmation code" width="1161" height="1143" src="/docs/control-plane/intro/images/enrollment-confirmation-code_hu_b2dcf2db45f0f751.webp" srcset="/docs/control-plane/intro/images/enrollment-confirmation-code_hu_b2dcf2db45f0f751.webp 400w, /docs/control-plane/intro/images/enrollment-confirmation-code_hu_f96223214a78c929.webp 800w, /docs/control-plane/intro/images/enrollment-confirmation-code_hu_d241c2a12d99a155.webp 1161w" sizes="(min-width: 768px) 50vw, 65vw" data-zoom-src="/docs/control-plane/intro/images/enrollment-confirmation-code_hu_d241c2a12d99a155.webp" /></figure></div>
+<div class="step">
+<h3 id="organization" class="group pr-8">Organization
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
@@ -8343,14 +8402,26 @@ return to the setup page and continue.</p>
       <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
 </span></span>
     </button>
-  
-</h2>
-<p>Next you create an organization. This is the account that groups your backups,
-team members, and billing together. Use your company name or team name.</p>
+</h3>
+<p>Create the root organization of the instance. This is the account that groups
+your backups, team members, and billing together. Use your company name or team
+name.</p>
+</div>
+</div>
+</div><div class="tab__panel" data-tab-index="1">
+<p>Paste the license into the setup page or load it from the license file. The
+instance detects whether it is an online or air-gapped license, then shows its
+organization, plan, mode, and expiry date. For an air-gapped license, read
+<a href="/docs/control-plane/intro/enrollment/#air-gapped-instances" >air-gapped instances</a> before enrolling.</p>
+<figure><img class="my-0 rounded-md mx-auto max-w-120" loading="lazy" decoding="async" fetchpriority="auto" alt="" width="1159" height="1230" src="/docs/control-plane/intro/images/enrollment-license_hu_52fcb94872e897f9.webp" srcset="/docs/control-plane/intro/images/enrollment-license_hu_52fcb94872e897f9.webp 400w, /docs/control-plane/intro/images/enrollment-license_hu_dc4eff3d14c5b0ae.webp 800w, /docs/control-plane/intro/images/enrollment-license_hu_eccdf830a331da63.webp 1159w" sizes="(min-width: 768px) 50vw, 65vw" data-zoom-src="/docs/control-plane/intro/images/enrollment-license_hu_eccdf830a331da63.webp" /></figure>
+<p>The license names your organization, so there is no separate organization step.
+If the license does not name an organization, you will be asked to enter one
+before continuing.</p>
+
+</div></div>
 </div>
 
 
-<div class="step">
 
 <h2 id="admin-account" class="group pr-8">Admin account
     <button
@@ -8367,23 +8438,21 @@ team members, and billing together. Use your company name or team name.</p>
     </button>
   
 </h2>
-<p>You then create an admin account for this specific instance. This is a local
-account on the appliance, separate from the <a href="/docs/control-plane/intro/enrollment/#owner-email" >owner email</a>. You can
-use the same email address or a different one.</p>
+<p>The last step creates an admin account for this specific instance. This is a
+local account on the appliance, separate from the owner email. You can use the
+same email address or a different one.</p>
+<figure><img class="my-0 rounded-md mx-auto max-w-120" loading="lazy" decoding="async" fetchpriority="auto" alt="Creating the admin account" width="1158" height="1465" src="/docs/control-plane/intro/images/enrollment-admin-account_hu_9e5298c8f3967f5.webp" srcset="/docs/control-plane/intro/images/enrollment-admin-account_hu_9e5298c8f3967f5.webp 400w, /docs/control-plane/intro/images/enrollment-admin-account_hu_1f322e28efdc03c4.webp 800w, /docs/control-plane/intro/images/enrollment-admin-account_hu_4ddc9217a88949f4.webp 1158w" sizes="(min-width: 768px) 50vw, 65vw" data-zoom-src="/docs/control-plane/intro/images/enrollment-admin-account_hu_4ddc9217a88949f4.webp" /></figure>
 <p>This account holds the <strong>Superuser</strong> role, which grants access to
 <a href="../../administration/settings/control-plane" >Control Plane settings</a> and the
 license. The <a href="../../administration/permissions/platform-admin" >Platform Admin</a>
 role grants the same access and can be assigned later.</p>
-</div>
 
 
-<div class="step">
-
-<h2 id="all-set" class="group pr-8">All set
+<h2 id="air-gapped-instances" class="group pr-8">Air-gapped instances
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="all-set"
+      data-anchor="air-gapped-instances"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -8394,21 +8463,20 @@ role grants the same access and can be assigned later.</p>
     </button>
   
 </h2>
-<p>Once the admin account is created, you are shown a confirmation screen with your
-organization name, admin details, and the current Plakar Control Plane version.
-From here you can go straight to the dashboard.</p>
-<figure><img class="my-0 rounded-md mx-auto max-w-120" loading="lazy" decoding="async" fetchpriority="auto" alt="Successful enrollment" width="1168" height="1490" src="/docs/control-plane/intro/images/enrollment-2_hu_5ebcfeef27275035.webp" srcset="/docs/control-plane/intro/images/enrollment-2_hu_5ebcfeef27275035.webp 400w, /docs/control-plane/intro/images/enrollment-2_hu_d2327959d36e57e5.webp 800w, /docs/control-plane/intro/images/enrollment-2_hu_2623bb1f6f2f9caa.webp 1168w" sizes="(min-width: 768px) 50vw, 65vw" data-zoom-src="/docs/control-plane/intro/images/enrollment-2_hu_2623bb1f6f2f9caa.webp" /></figure></div>
+<p>An air-gapped instance never reaches <code>plakar.io</code>. It enrolls entirely from its
+license, which is validated locally. Since there is no owner email in this mode,
+the admin account also acts as the instance owner.</p>
+<p>The instance also cannot reach <code>plakar.io</code> to fetch integrations and appliance
+components. Before enrolling, set up a
+<a href="../../guides/self-hosted-package-repository" >self-hosted package repository</a> so
+the instance can retrieve these files from your own network instead.</p>
 
 
-</div>
-
-
-
-<h2 id="offline-mode" class="group pr-8">Offline mode
+<h3 id="license-renewal" class="group pr-8">License renewal
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="offline-mode"
+      data-anchor="license-renewal"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -8418,10 +8486,30 @@ From here you can go straight to the dashboard.</p>
 </span></span>
     </button>
   
-</h2>
-<p>If you operate in an air-gapped or PCI-DSS environment and cannot allow outbound
-connections to <code>plakar.io</code>, use <a href="/docs/control-plane/intro/air-gapped/" >air-gapped enrollment</a> instead
-and <a href="/contact/" >contact us</a> to get a licence for your air-gapped instance.</p>
+</h3>
+<p>Air-gapped licenses include an expiry date. You can view the current license,
+plan, and expiry date in the
+<a href="../../administration/settings/control-plane#instance" >Control Plane settings</a>.</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt="Managing your license and plan"
+    width="2781"
+    height="1042"
+    src="/docs/control-plane/intro/images/managing-license_hu_8b58f89216c631f2.webp"
+    srcset="/docs/control-plane/intro/images/managing-license_hu_8b58f89216c631f2.webp 400w, /docs/control-plane/intro/images/managing-license_hu_596fc64370437613.webp 800w, /docs/control-plane/intro/images/managing-license_hu_a55f88f17cd7c438.webp 1200w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/docs/control-plane/intro/images/managing-license_hu_50f2444671a02a84.webp"></figure>
+<p>Unlike online instances, air-gapped instances do not renew their license
+automatically. To renew, <a href="/contact/" >contact us</a> to obtain a new license. Then,
+in the <strong>Control Plane settings</strong>, paste the new license into the <strong>Replace
+with</strong> field or load it from a license file, and select <strong>Replace license</strong>. A
+<a href="../../administration/permissions/platform-admin" >Platform Admin</a> can do this as
+well as the <strong>Superuser</strong>, since both hold the license permission.</p>
+<p>Replacing the license does not require re-enrollment and does not affect your
+existing configuration or backups.</p>
 
       </article>
       <footer class="mt-12 flex flex-col gap-6 docs-font border-t border-neutral-200 pt-6">
@@ -8436,8 +8524,6 @@ and <a href="/contact/" >contact us</a> to get a licence for your air-gapped ins
   
     
       
-    
-  
     
   
     
@@ -8462,10 +8548,10 @@ and <a href="/contact/" >contact us</a> to get a licence for your air-gapped ins
       </div>
       <div class="flex-1">
         
-          <a href="/docs/control-plane/intro/air-gapped/" class="group w-full flex flex-col gap-1 p-3 rounded-lg border border-neutral-200 bg-neutral-50 hover:border-primary-200 hover:bg-primary-50 transition-all duration-150">
+          <a href="/docs/control-plane/intro/billing/" class="group w-full flex flex-col gap-1 p-3 rounded-lg border border-neutral-200 bg-neutral-50 hover:border-primary-200 hover:bg-primary-50 transition-all duration-150">
             <span class="text-xs text-neutral-400 text-right block">Next</span>
             <span class="text-sm font-medium text-neutral-700 group-hover:text-primary-500 text-right transition-colors flex items-center justify-end gap-2">
-              Air-gapped enrollment
+              Billing &amp; Plans
               <span class="w-3 h-3"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
 </span></span>
             </span>
@@ -8498,7 +8584,7 @@ and <a href="/contact/" >contact us</a> to get a licence for your air-gapped ins
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#owner-email">Owner email</a></li><li><a href="#organization">Organization</a></li><li><a href="#admin-account">Admin account</a></li><li><a href="#all-set">All set</a></li><li><a href="#offline-mode">Offline mode</a></li></ul>
+      <ul><li><a href="#registering-the-instance">Registering the instance</a><ul><li><a href="#owner-email">Owner email</a></li><li><a href="#confirmation-code">Confirmation code</a></li><li><a href="#organization">Organization</a></li></ul></li><li><a href="#admin-account">Admin account</a></li><li><a href="#air-gapped-instances">Air-gapped instances</a><ul><li><a href="#license-renewal">License renewal</a></li></ul></li></ul>
     </div>
 
     
