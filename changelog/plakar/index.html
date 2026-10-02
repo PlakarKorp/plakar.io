@@ -227,7 +227,7 @@
     "dateCreated": "2026-09-07T00:00:00\u002b00:00",
     "datePublished": "2026-09-07T00:00:00\u002b00:00",
     
-    "dateModified": "2026-10-02T12:41:50\u002b02:00",
+    "dateModified": "2026-10-02T12:42:17\u002b02:00",
     
     
     
@@ -2178,7 +2178,7 @@
                 </div>
 
                 
-                  <p class="text-[15px] text-neutral-700 leading-relaxed max-w-[75ch]">A follow-up to the v1.1.6 authentication changes. Signing in from the Plakar UI now uses the confirmation code flow.</p>
+                  <p class="text-[15px] text-neutral-700 leading-relaxed max-w-[75ch]">A follow-up to the v1.1.6 authentication changes. Signing in from the Plakar UI now uses the confirmation code flow. This release also adds new `fs` exporter options and fixes backup lock handling and several Windows issues.</p>
                 
 
                 <div class="flex flex-wrap items-center gap-x-5 gap-y-2">
@@ -2212,6 +2212,42 @@
 <ul>
 <li>Signing in from the Plakar UI now presents the confirmation code introduced in
 v1.1.6 for <code>plakar login</code>, so both sign-in paths use the same hardened flow.</li>
+</ul>
+
+
+<h2 id="new" class="group">New
+</h2>
+<ul>
+<li>The <code>fs</code> exporter accepts new <code>skip_ownership</code>, <code>skip_permissions</code>,
+<code>skip_times</code> and <code>skip_root_perms_and_time</code> options.</li>
+<li>The UI shows <code>sync</code> progress.</li>
+<li>Deleting several snapshots at once takes a single state write.</li>
+</ul>
+
+
+<h2 id="fixes" class="group">Fixes
+</h2>
+<ul>
+<li>Malformed sign-in requests to the API (bad body, invalid email, invalid poll
+ID) return 400 instead of 500. An expired sign-in returns 404.</li>
+<li><code>plakar login</code> handles HTTP 429 (too many requests) from the backend
+correctly.</li>
+<li><code>backup</code> lock handling is more robust:
+<ul>
+<li>Lock refresh errors are no longer dropped silently. Plakar retries, then
+aborts the backup, so a lock can no longer go stale unnoticed.</li>
+<li>Unlocking waits for the lock to be deleted, so slow storage is not left with
+a stale lock.</li>
+<li>A transient lock read failure no longer aborts the backup early.</li>
+<li>Stale lock detection skips the backup&rsquo;s own lock.</li>
+</ul>
+</li>
+<li>A race that could crash Plakar at the end of a <code>restore</code> is fixed.</li>
+<li>On Windows, the <code>/</code> entry of snapshots made with the <code>fs</code> integration is
+fixed. Snapshots already affected can be browsed and maintained again.</li>
+<li>On Windows, the <code>fs</code> importer applies exclusions correctly and names the <code>C:\</code>
+entry correctly.</li>
+<li>Package installation on Windows is fixed.</li>
 </ul>
 </div>
                 
