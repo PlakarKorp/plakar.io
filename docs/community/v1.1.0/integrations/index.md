@@ -134,6 +134,10 @@ Below is a list of links to the documentation for each supported integration.
 
 
 
+## [VMware](https://www.plakar.io/docs/community/v1.1.0/integrations/vmware/index.md)
+
+
+
 ## [Scaleway](https://www.plakar.io/docs/community/v1.1.0/integrations/scaleway/index.md)
 
 

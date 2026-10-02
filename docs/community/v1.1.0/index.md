@@ -71,6 +71,7 @@ through `v1.1.7`.
 - [SMB / CIFS](https://www.plakar.io/docs/community/v1.1.0/integrations/smb/index.md): Back up and restore SMB shares with Plakar.
 - [NFS](https://www.plakar.io/docs/community/v1.1.0/integrations/nfs/index.md): Back up and restore NFS exports with Plakar.
 - [MongoDB](https://www.plakar.io/docs/community/v1.1.0/integrations/mongodb/index.md): Back up and restore MongoDB databases with Plakar.
+- [VMware](https://www.plakar.io/docs/community/v1.1.0/integrations/vmware/index.md): Back up and restore VMware vSphere virtual machines with Plakar.
 - [Scaleway](https://www.plakar.io/docs/community/v1.1.0/integrations/scaleway/index.md): Back up and restore Scaleway instances, block volumes and Secret Manager secrets with Plakar.
 
 
