@@ -35,6 +35,10 @@ Next, select the **Environment** and **Data Class** for the source:
   database, financial records, or PII. Multiple data classes can be selected if
   the resource contains more than one type of data.
 
+When the resource carries
+[environment and data class tags](../../resources#environment-and-data-class-tags),
+both fields are already filled in from them but can still be changed.
+
 These values are used by the policies engine to determine which policies apply
 to this source. See the [policies documentation](../../compliance/policies) for
 more details.
