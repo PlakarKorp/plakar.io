@@ -1,18 +1,23 @@
 
 # S3
 
-The **S3 integration** enables backup and restoration of S3 buckets through
-S3-compatible APIs. All bucket contents including objects, metadata, and folder
-hierarchies are captured and stored in a Kloset store with encryption and
-deduplication.
+The S3 integration backs up and restores S3 buckets through S3-compatible APIs,
+and can host a Kloset store in an S3 bucket. A backup captures the bucket
+contents, including objects, metadata and folder hierarchies, and stores them in
+a Kloset store with encryption and deduplication.
 
-The S3 integration provides three connectors:
+The integration includes three connectors:
 
 | Connector type            | Description                                             |
 | ------------------------- | ------------------------------------------------------- |
 | **Source connector**      | Back up S3 buckets into a Kloset store.                 |
-| **Storage connector**     | Use S3-compatible storage as a Kloset store backend.    |
 | **Destination connector** | Restore bucket contents from a Kloset store back to S3. |
+| **Store connector**       | Use S3-compatible storage as a Kloset store backend.    |
+
+**Requirements**
+
+- An S3-compatible endpoint reachable from the machine running Plakar.
+- An access key ID and secret access key for the bucket.
 
 ## Installation
 
@@ -82,54 +87,39 @@ $ plakar pkg show
 To list, upgrade, or remove the package, see
 [managing packages guide](../../guides/managing-packages/).
 
-## Configuration
+## Addressing styles
 
-### Addressing styles
+S3-compatible services address buckets in one of two styles. The `location` of a
+source, destination or store must use the style the service supports.
 
-S3-compatible services use one of two addressing styles for buckets.
-
-**Path-style** (default) — the bucket name is part of the URL path:
+With **path-style** addressing, the bucket name is part of the URL path. This is
+the default:
 
 ```bash
 s3://<S3_ENDPOINT>/<BUCKET_NAME>
 ```
 
-**Virtual-hosted-style** — the bucket name is part of the hostname. Required by
-some services that do not support path-style access (such as AWS S3 in certain
-regions):
+With **virtual-hosted-style** addressing, the bucket name is part of the
+hostname. Some services that do not support path-style access require it, such
+as AWS S3 in certain regions:
 
 ```bash
 s3://<BUCKET_NAME>.<S3_ENDPOINT>
 ```
 
-Set `virtual_host=true` when using virtual-hosted-style addressing.
+Set `virtual_host=true` when using virtual-hosted-style addressing. The bucket
+name is then taken from the hostname, and a prefix within the bucket is set with
+`root` rather than in the `location` path. A `location` path that conflicts with
+`root` is rejected with an error.
 
-### Configuration options
+## Configuration
 
-These options apply to all three connectors (source, storage, destination).
+All three connectors use the `s3` protocol. The source connector retrieves
+objects from a bucket through the S3 API. The destination connector writes them
+back to a bucket. The store connector keeps all Kloset store data, including
+snapshots, chunks and metadata, as objects in a bucket.
 
-| Option                   | Required | Description                                                                                 |
-| ------------------------ | -------- | ------------------------------------------------------------------------------------------- |
-| `location`               | Yes      | S3 endpoint and bucket. See [Addressing styles](#addressing-styles) above.                  |
-| `access_key`             | Yes      | S3 Access Key ID.                                                                           |
-| `secret_access_key`      | Yes      | S3 Secret Access Key.                                                                       |
-| `region`                 | No       | Region for request signing. Only needed if the provider rejects automatic region discovery. |
-| `passphrase`             | No       | Encryption passphrase. If not set, Plakar will prompt interactively. Source connector only. |
-| `use_tls`                | No       | Enable TLS. Recommended for all internet-facing connections.                                |
-| `virtual_host`           | No       | Use virtual-hosted-style addressing. Defaults to `false`.                                   |
-| `tls_insecure_no_verify` | No       | Skip TLS certificate verification. Defaults to `false`. See warning below.                  |
-
-> [!WARNING]+ TLS Certificate Verification
->
-> Setting `tls_insecure_no_verify=true` disables TLS certificate verification,
-> leaving your connection open to man-in-the-middle attacks. Only use this in
-> controlled environments with self-signed certificates on trusted networks.
-> Never use it with AWS S3, public cloud storage, or any production data.
-
-## Source connector
-
-The source connector retrieves objects from S3 buckets and stores them in a
-Kloset store with encryption and deduplication.
+#### Backup flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -152,22 +142,31 @@ Transform --> Store
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-Register the source and run a backup:
+#### Restore flow
 
-```bash
-$ plakar source add my-s3-bucket \
-  location=s3://<S3_ENDPOINT>/<BUCKET_NAME> \
-  access_key=<YOUR_ACCESS_KEY_ID> \
-  secret_access_key=<YOUR_SECRET_ACCESS_KEY> \
-  use_tls=true
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+flowchart LR
 
-$ plakar at /var/backups backup "@my-s3-bucket"
-```
+Store["Kloset Store"]
 
-## Storage connector
+subgraph Plakar["Plakar"]
+  Transform["Decrypt & reconstruct"]
+  Connector["Restore via<br/>S3 API"]
+  Transform --> Connector
+end
 
-The storage connector uses S3-compatible storage as the backend for a Kloset
-store. All Plakar data—snapshots, chunks, metadata—is stored as S3 objects.
+Store --> Transform
+
+subgraph Destination["S3 Bucket"]
+  FS["Objects"]
+end
+
+Connector --> Destination
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
+
+#### Store flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -193,7 +192,66 @@ Connector --> Store
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-Register the store, initialize it, and run a backup:
+### Shared configuration
+
+The following options apply to the source, destination and store connectors.
+
+| Option                   | Required | Description                                                                                                                                                                                                                                                                                                     |
+| ------------------------ | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `location`               | Yes      | The S3 endpoint and bucket, for example `s3://s3.fr-par.scw.cloud/my-bucket` on Scaleway or `s3://my-bucket.s3.eu-west-3.amazonaws.com` on AWS. See [Addressing styles](#addressing-styles).                                                                                                                    |
+| `access_key`             | Yes      | The access key ID used to authenticate with the S3 endpoint.                                                                                                                                                                                                                                                    |
+| `secret_access_key`      | Yes      | The secret access key used to authenticate with the S3 endpoint.                                                                                                                                                                                                                                                |
+| `endpoint`               | No       | The S3 service URL. Only needed when the bucket name contains a dot, which breaks virtual-hosted-style URL resolution. For example, for an AWS S3 bucket named `eu.mybucket`, set this to `https://s3.amazonaws.com` and set `virtual_host=true`.                                                               |
+| `region`                 | No       | The S3 region used to sign requests. Only needed for S3-compatible providers that reject automatic region discovery.                                                                                                                                                                                            |
+| `port`                   | No       | The TCP port to connect on. Only needed when the endpoint runs on a non-standard port, for example `9000` for a local MinIO instance. AWS S3 and Scaleway Object Storage use the standard HTTPS port.                                                                                                           |
+| `root`                   | No       | The path prefix within the bucket used when reading and writing objects. Defaults to `/`.                                                                                                                                                                                                                       |
+| `use_tls`                | No       | Connect to the endpoint over TLS. Defaults to `true`. Keep it enabled whenever the endpoint is reached over the internet, such as AWS S3 or Scaleway Object Storage. It can be disabled for a local endpoint such as MinIO on `localhost:9000`.                                                                 |
+| `tls_insecure_no_verify` | No       | Skip TLS certificate verification. Defaults to `false`. See the warning below.                                                                                                                                                                                                                                  |
+| `virtual_host`           | No       | Use virtual-hosted-style addressing, where the bucket name is part of the hostname. Defaults to `false`. Enable it for AWS S3, where the hostname has the form `my-bucket.s3.eu-west-3.amazonaws.com`. Leave it disabled for Scaleway Object Storage, where the hostname is the endpoint `s3.fr-par.scw.cloud`. |
+| `sse_customer_key`       | No       | A Base64-encoded 256-bit (32-byte) AES-256 key for server-side encryption with customer-provided keys (SSE-C). Only needed if the bucket requires customer-provided encryption keys.                                                                                                                            |
+
+> [!WARNING]+ TLS Certificate Verification
+>
+> Setting `tls_insecure_no_verify=true` disables TLS certificate verification,
+> leaving your connection open to man-in-the-middle attacks. Only use this in
+> controlled environments with self-signed certificates on trusted networks.
+> Never use it with AWS S3, public cloud storage, or any production data.
+
+### Store configuration
+
+The following extra options are available to the store connector.
+
+| Option          | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                   |
+| --------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `storage_class` | No       | The S3 storage class of the objects written to the bucket. One of `STANDARD`, `REDUCED_REDUNDANCY`, `STANDARD_IA`, `ONEZONE_IA`, `INTELLIGENT_TIERING`, `GLACIER`, `GLACIER_IR` or `DEEP_ARCHIVE`. Defaults to `STANDARD`, which keeps data immediately accessible. Archival classes such as `GLACIER` lower storage cost, but archived data has to be retrieved from the provider before it can be restored. |
+
+### Example
+
+Back up a bucket:
+
+```bash
+$ plakar source add my-s3-bucket \
+  location=s3://<S3_ENDPOINT>/<BUCKET_NAME> \
+  access_key=<YOUR_ACCESS_KEY_ID> \
+  secret_access_key=<YOUR_SECRET_ACCESS_KEY> \
+  use_tls=true
+
+$ plakar at /var/backups backup "@my-s3-bucket"
+```
+
+Restore a snapshot to a bucket:
+
+```bash
+$ plakar destination add my-s3-restore \
+  location=s3://<S3_ENDPOINT>/<BUCKET_NAME> \
+  access_key=<YOUR_ACCESS_KEY_ID> \
+  secret_access_key=<YOUR_SECRET_ACCESS_KEY> \
+  use_tls=true
+
+$ plakar at /var/backups restore -to "@my-s3-restore" <snapshot_id>
+```
+
+Host a Kloset store in a bucket, initialize it and run a backup:
 
 ```bash
 $ plakar store add my-s3-store \
@@ -206,41 +264,8 @@ $ plakar at "@my-s3-store" create
 $ plakar at "@my-s3-store" backup /var/www
 ```
 
-## Destination connector
+## See also
 
-Restores objects from a Kloset store back to an S3 bucket.
-
-<!-- prettier-ignore-start -->
-{{< mermaid >}}
-flowchart LR
-
-Store["Kloset Store"]
-
-subgraph Plakar["Plakar"]
-  Transform["Decrypt & reconstruct"]
-  Connector["Restore via<br/>S3 API"]
-  Transform --> Connector
-end
-
-Store --> Transform
-
-subgraph Destination["S3 Bucket"]
-  FS["Objects"]
-end
-
-Connector --> Destination
-{{< /mermaid >}}
-<!-- prettier-ignore-end -->
-
-Register the destination and restore a snapshot:
-
-```bash
-$ plakar destination add my-s3-restore \
-  location=s3://<S3_ENDPOINT>/<BUCKET_NAME> \
-  access_key=<YOUR_ACCESS_KEY_ID> \
-  secret_access_key=<YOUR_SECRET_ACCESS_KEY> \
-  use_tls=true
-
-$ plakar at /var/backups restore -to "@my-s3-restore" <snapshot_id>
-```
+- [Creating a Kloset Store](../../guides/create-kloset-repository)
+- [Managing packages](../../guides/managing-packages)
 
