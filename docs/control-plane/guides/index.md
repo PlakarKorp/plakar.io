@@ -46,8 +46,10 @@ tutorials related to Plakar and supported platforms.
 - [Setting Up OpenSSH Server](https://www.plakar.io/docs/control-plane/guides/windows/windows-openssh-setup/index.md): Learn how to install, configure, and authorize OpenSSH Server on a Windows host so Plakar Control Plane can connect to it over SSH.
 
 
-## [Plakar with Kubernetes](https://www.plakar.io/docs/control-plane/guides/plakar-with-kubernetes/index.md)
+## [Kubernetes](https://www.plakar.io/docs/control-plane/guides/kubernetes/index.md)
 
+- [Plakar with Kubernetes](https://www.plakar.io/docs/control-plane/guides/kubernetes/plakar-with-kubernetes/index.md): An overview of the Kubernetes components available in the Plakar ecosystem.
+- [Kubernetes Service Accounts and RBAC](https://www.plakar.io/docs/control-plane/guides/kubernetes/kubernetes-rbac/index.md): Create least-privilege Kubernetes service accounts for the Kubernetes integration and inventory.
 
 
 ## [MTU and Jumbo Frames](https://www.plakar.io/docs/control-plane/guides/mtu-and-jumbo-frames/index.md)

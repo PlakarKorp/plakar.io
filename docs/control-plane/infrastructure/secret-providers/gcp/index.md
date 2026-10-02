@@ -48,9 +48,9 @@ provider. The remaining fields are optional and depend on how Plakar Control
 Plane is deployed and where your secrets are stored.
 
 - **Credentials Json:** The service account key, in JSON format. Leave empty to
-  use the service account attached to the Plakar Control Plane instance. |
+  use the service account attached to the Plakar Control Plane instance.
 
-- **Gcp Location:** The location of regional secrets, for example
+- **GCP Location:** The location of regional secrets, for example
   `europe-west1`. Leave empty for global secrets. When set, the secret provider
   reads secrets from that location using the regional Secret Manager endpoint.
 

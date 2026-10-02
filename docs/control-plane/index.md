@@ -85,7 +85,7 @@
 - [OVHcloud](https://www.plakar.io/docs/control-plane/guides/ovhcloud/index.md): Guides and tutorials for configuring OVHcloud services with Plakar.
 - [VMware](https://www.plakar.io/docs/control-plane/guides/vmware/index.md): Guides and tutorials for configuring VMware services with Plakar.
 - [Windows](https://www.plakar.io/docs/control-plane/guides/windows/index.md): Guides and tutorials for configuring Windows hosts for use with Plakar.
-- [Plakar with Kubernetes](https://www.plakar.io/docs/control-plane/guides/plakar-with-kubernetes/index.md): An overview of the Kubernetes components available in the Plakar ecosystem.
+- [Kubernetes](https://www.plakar.io/docs/control-plane/guides/kubernetes/index.md): Guides and tutorials for using Plakar with Kubernetes.
 - [MTU and Jumbo Frames](https://www.plakar.io/docs/control-plane/guides/mtu-and-jumbo-frames/index.md): Background on Ethernet MTU, jumbo frames, and TCP MSS, and why they matter for control plane deployments.
 - [Hosting a Package Repository](https://www.plakar.io/docs/control-plane/guides/self-hosted-package-repository/index.md): Set up self-hosted repositories so Plakar Control Plane can fetch integrations and appliance components without reaching plakar.io.
 

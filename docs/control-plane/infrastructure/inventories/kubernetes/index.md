@@ -11,14 +11,16 @@ directly from Plakar Control Plane.
 
 | Resource                     | Source | Store | Destination |
 | ---------------------------- | ------ | ----- | ----------- |
-| PersistentVolumeClaims (PVC) | Yes    | No    | No          |
+| PersistentVolumeClaims (PVC) | Yes    | No    | Yes         |
 
 ## Authentication
 
 Kubernetes inventories authenticate using a kubeconfig file. The kubeconfig
 determines which cluster Plakar Control Plane connects to and which permissions
 it has, so the associated user or service account must have read access to
-`PersistentVolumeClaims` in the namespaces you want to discover.
+`PersistentVolumeClaims` in the namespaces you want to discover. See
+[Kubernetes Service Accounts and RBAC](../../../guides/kubernetes/kubernetes-rbac#inventory)
+for a least-privilege role.
 
 When creating an Kubernetes inventory in Plakar Control Plane, you must provide:
 
@@ -28,6 +30,8 @@ When creating an Kubernetes inventory in Plakar Control Plane, you must provide:
   Plane runs inside the cluster, in which case it uses the in-cluster
   configuration instead. The kubeconfig can also be loaded from a
   [secret provider](../secret-providers).
+- **Namespaces**: namespaces to discover resources from. Leave it empty for the
+  inventory to discover resources in every namespace in the cluster.
 
 ## Adding the Kubernetes Inventory
 
