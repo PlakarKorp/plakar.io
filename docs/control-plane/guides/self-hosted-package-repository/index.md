@@ -4,49 +4,79 @@
 By default, Plakar Control Plane downloads
 [integrations](../../apps/integrations) and appliance components from
 `plakar.io`. In an air-gapped environment, you can host these files on your own
-network and configure the appliance to use them instead.
+network and configure the appliance and Plakar Control Plane to use them
+instead.
 
 Air-gapped deployments use two separate repositories:
 
 - **Integrations repository**: contains the integration index and `.ptar`
   packages that Plakar Control Plane uses after it starts.
-- **Releases repository**: contains the component definitions that the appliance
-  uses to configure Plakar Control Plane during its initial boot and when it is
-  being updated.
+- **Releases repository**: contains the component definitions used by the
+  appliance to configure Plakar Control Plane during its initial boot and
+  subsequent updates.
 
 Both repositories are plain directory trees served over HTTP or HTTPS. They can
 be hosted on the same server or on separate servers.
 
 ## Integrations repository
 
-The integrations repository contains the `.ptar` packages and the JSON index
-that Plakar Control Plane uses to discover available integrations.
+The integrations repository contains the integrations distribution files
+published at `https://www.plakar.io/dist/plugins/kloset/enterprise`. The
+repository uses a slightly different layout: the `integrations-v1.0.0.json`
+index is moved to the repository root, while the integration packages remain
+under the `enterprise` directory.
 
-You can mirror the required version directly from `plakar.io`. Replace `v1.1.0`
-with the version you want to make available:
-
-```sh
-wget --mirror --no-parent --no-host-directories --cut-dirs=5 \
-  --accept '*.ptar,*.json' \
-  -e robots=off \
-  https://www.plakar.io/dist/releases/plakar/offline/v1.1.0/
+```text
+<air-gapped-package-repository>/
+├── integrations-v1.0.0.json
+└── enterprise/
+  └── v1.1.0/
+    ├── aws/
+    │ ├── aws_v1.1.3_linux_amd64.ptar
+    │ ├── aws_v1.1.3_linux_amd64.ptar.sum
+    │ ├── aws_v1.1.3_linux_amd64.ptar.sum.sig
+    │ ├── recipe.yaml
+    │ ├── recipe.yaml.sum
+    │ ├── recipe.yaml.sum.sig
+    │ └── ...
+    ├── postgresql/
+    └── ...
 ```
 
-The `--accept` option limits the mirror to `.ptar` packages and JSON files,
-excluding the generated directory listing pages.
+The `enterprise` directory contains one directory for each integration API
+version. Each integration directory contains the integration packages, recipe,
+checksums, and signatures.
+
+Plakar Control Plane verifies package signatures before installing them, so the
+`.sum` and `.sig` files must also be mirrored.
+
+Mirror the tree from `plakar.io`, then move the index to the repository root:
+
+```sh
+wget --mirror --no-parent --no-host-directories --cut-dirs=3 \
+  --accept '*.ptar,*.yaml,*.sum,*.sig,*.json' \
+  -e robots=off \
+  https://www.plakar.io/dist/plugins/kloset/enterprise/
+mv enterprise/integrations-v1.0.0.json .
+```
+
+The `--accept` option limits the mirror to the repository files and excludes the
+generated directory listing pages.
 
 After mirroring the files, serve the resulting directory from your HTTP or HTTPS
-server. The repository must preserve the directory structure downloaded from
-`plakar.io`.
+server.
 
-Unlike the releases repository, the integrations repository is configured from
-Plakar Control Plane rather than from the appliance user-data. Open the
+Unlike the releases repository, the integrations repository is configured in
+Plakar Control Plane rather than in the appliance user-data. Open the
 [settings](../../administration/settings) and enter the URL of the server
-hosting your mirrored files in the package repository field, for example
+hosting the mirrored files in the package repository field, for example
 `https://dist.corp.example/integrations`.
 
+The URL must point to the root of the repository, where
+`integrations-v1.0.0.json` is located, and not to the `enterprise` directory.
+
 Plakar Control Plane retrieves the integrations index and `.ptar` packages from
-that server instead of `plakar.io`. Leaving the field empty restores the default
+this server instead of `plakar.io`. Leave the field empty to use the default
 `plakar.io` repository.
 
 ![Updating package repository](../images/package-repo-setup.png)
@@ -55,7 +85,9 @@ that server instead of `plakar.io`. Leaving the field empty restores the default
 
 The appliance also needs access to the component definitions used to deploy
 Plakar Control Plane. These files are separate from the integrations repository
-and must be mirrored independently. The releases are available under:
+and must be mirrored independently.
+
+The releases are available under:
 
 ```text
 https://www.plakar.io/dist/releases/plakar/enterprise/
@@ -74,11 +106,11 @@ wget --mirror --no-parent --no-host-directories --cut-dirs=4 \
   https://www.plakar.io/dist/releases/plakar/enterprise/v1.1.2/
 ```
 
-The `--accept` option limits the mirror to the component definition files,
-excluding the generated directory listing pages.
+The `--accept` option limits the mirror to the component definition files and
+excludes the generated directory listing pages.
 
 When a new version is released, mirror it into the same repository alongside the
-versions you already host then
+versions you already host, then
 [upgrade to the new version](../../administration/updating-control-plane#updating-an-air-gapped-plakar-control-plane).
 
 ### Configure the appliance
@@ -123,5 +155,5 @@ serves the releases repository.
 
 You can also host the repositories on separate servers. In either case, make
 sure the appliance and Plakar Control Plane can reach the configured repository
-over your internal network.
+over the internal network.
 
