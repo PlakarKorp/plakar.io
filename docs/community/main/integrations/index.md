@@ -134,4 +134,8 @@ Below is a list of links to the documentation for each supported integration.
 
 
 
+## [Scaleway](https://www.plakar.io/docs/community/main/integrations/scaleway/index.md)
+
+
+
 

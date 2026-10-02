@@ -4,9 +4,20 @@
 Scaleway block storage resources represent persistent block volumes managed by
 Scaleway. Plakar Control Plane backs up block storages by triggering a Scaleway
 snapshot export, which saves the volume as a QCOW2 image to a Scaleway Object
-Storage bucket, then backs up that image into the Kloset store. Scaleway Block
-Storage resources currently support backup only; restoring a block volume is not
-available.
+Storage bucket, then backs up that image into the Kloset store.
+
+Plakar Control Plane currently supports backing up Scaleway Block Storage
+resources but not restoring them.
+
+> [!NOTE]
+>
+> This is a limitation of the Plakar Control Plane interface only, and restore
+> support is planned for an upcoming release. The Scaleway integration itself
+> already restores block volumes: it creates a new volume from the snapshot and
+> either leaves it detached or attaches it to an instance. Existing volumes are
+> never overwritten. Until the interface supports it, block volume restores are
+> available through the
+> [Community integration](/docs/community/main/integrations/scaleway/#2-scaleway-block-protocol).
 
 A dedicated Scaleway Object Storage bucket is required for this process. We
 recommend creating a bucket specifically for this purpose, as it is also used
