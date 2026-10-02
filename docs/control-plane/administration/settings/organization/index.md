@@ -11,16 +11,34 @@ A setting is not confined to the organization it is set in. Alongside its value,
 each setting carries a choice about what the organizations beneath it inherit:
 
 - **Not handed down**, the value applies only to the organization it is set in.
-  Child organizations do not inherit it.
-- **Handed down**, child organizations inherit the value but can override it
-  with one of their own.
-- **Handed down, locked**, child organizations inherit the value and cannot
-  override it.
+  The organizations below it do not inherit it.
+- **Handed down**, every organization below inherits the value, at any depth,
+  and any of them can override it with one of its own.
+- **Handed down, locked**, every organization below inherits the value and none
+  of them can override it.
 
 The choice is made per setting, so an organization can hand down its SMTP server
 while keeping its webhook to itself. Locking a setting lets an organization high
 in the hierarchy fix a value for everything beneath it, rather than setting the
 same value in each organization and trusting it to stay.
+
+### How an organization resolves a setting
+
+Without a lock, an organization uses its own value for a setting. When it has
+none, it inherits the value of the nearest organization above it that hands the
+setting down, whether that is its parent or an organization several levels up.
+When no organization above hands the setting down, the organization has no value
+for it.
+
+Only values that are handed down are inherited. The organizations beneath one
+that keeps a value to itself skip it and inherit from further up. If the root
+organization hands down an SMTP server and organization A below it sets its own
+without handing it down, A uses its own server and organization B below A uses
+the root organization's.
+
+A lock overrides this order. Every organization below a locked value uses it,
+and none of them can set its own. A value one of them set before the lock is
+ignored while the lock is in place, and applies again if the lock is removed.
 
 ![Organization settings](../images/organization-settings.png)
 
@@ -74,6 +92,11 @@ Plakar Control Plane. Enrollment is disabled by default. Once enabled, an
 enrollment key is generated for the initial registration process, and it can be
 regenerated at any time. See [Edges](../../../infrastructure/edges)
 documentation for more information.
+
+This setting also decides which edges an organization can use. An organization
+that inherits it can run tasks on the edges of the organization that set it, in
+addition to its own, however many levels above that organization is. See
+[Sharing edges with child organizations](../../../infrastructure/edges#sharing-edges-with-child-organizations).
 
 ## Notifications
 

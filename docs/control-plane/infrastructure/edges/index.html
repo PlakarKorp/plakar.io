@@ -70,7 +70,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-07-13T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-09-30T20:11:38+03:00">
+    <meta property="article:modified_time" content="2026-10-02T12:21:36+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -242,12 +242,12 @@
     "dateCreated": "2026-07-13T00:00:00\u002b00:00",
     "datePublished": "2026-07-13T00:00:00\u002b00:00",
     
-    "dateModified": "2026-09-30T20:11:38\u002b03:00",
+    "dateModified": "2026-10-02T12:21:36\u002b02:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/infrastructure/edges/",
-    "wordCount": "2938"
+    "wordCount": "3371"
   }]
   </script>
 
@@ -8218,9 +8218,10 @@ resources.</li>
 <li>Running the few integrations that depend on external tools, which can be
 installed on the edge host.</li>
 </ul>
-<p>An edge belongs to a single organization. You can only access the edges
-belonging to the organization you are signed in to, subject to your permissions
-for that organization.</p>
+<p>An edge belongs to the organization it enrolled into. That organization can run
+tasks on it, and so can the organizations below it that inherit its edge
+enrollment setting. See
+<a href="/docs/control-plane/infrastructure/edges/#sharing-edges-with-child-organizations" >Sharing edges with child organizations</a>.</p>
 
 
 <h2 id="architecture" class="group pr-8">Architecture
@@ -8304,6 +8305,12 @@ to PCP.</p>
 an S3 bucket. The edge installs the integrations its tasks need from the Control
 Plane, not from the internet, so an edge never needs internet access to obtain
 them.</p>
+<p>While a task runs, the edge streams its progress back to PCP. The
+<a href="../../scheduling/job-history#job-details" >job details</a> of a task run on an edge
+therefore show the same information as for a task run on the Control Plane:
+progress, resource and network graphs, recent paths, and output. The output
+carries what the task writes to <code>stderr</code>, along with the output of its
+<a href="/docs/control-plane/infrastructure/edges/#pre-job-and-post-job-hooks" >pre-job and post-job hooks</a>.</p>
 <!-- prettier-ignore-start -->
 <pre class="not-prose mermaid">
 sequenceDiagram
@@ -8320,6 +8327,7 @@ sequenceDiagram
   PCP-->>Edge: Resolve and provide required secrets
   Edge->>PCP: Install required integration
   Edge->>Target: Execute operation locally
+  Edge-->>PCP: Stream progress and output
   Target-->>Edge: Result
   Edge-->>PCP: Report task status
 </pre>
@@ -8377,8 +8385,8 @@ edge host separately.</p>
 <p>Most integrations are agentless. They communicate directly with the resource
 they manage and do not require additional software on the machine running the
 task. For example, the <a href="../../resources/compute/vss" >Windows VSS integration</a>
-connects to the Windows host over SSH and does not require any additional tools
-on the Control Plane or edge.</p>
+connects to the Windows host over SSH and needs nothing on the edge beyond the
+SSH client described in <a href="/docs/control-plane/infrastructure/edges/#ssh-keys" >SSH keys</a>.</p>
 <p>Some integrations such as MongoDB, PostgreSQL and MySQL instead rely on
 utilities provided by the vendor. These utilities must be installed on the
 machine that executes the task. The
@@ -8393,6 +8401,31 @@ required tools can be installed.</p>
 the task to run on that edge. As deployments grow, edges can be equipped with
 different sets of tools so that workloads can be distributed to the machines
 capable of running them.</p>
+
+
+<h3 id="ssh-keys" class="group pr-8">SSH keys
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="ssh-keys"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Some integrations, such as <a href="../../resources/file-storage/sftp" >SFTP</a> and
+<a href="../../resources/compute/vss" >Windows VSS</a>, authenticate over SSH with a private
+key. The edge loads that key into its own SSH agent, which runs for as long as
+the edge does. The OpenSSH client (<code>ssh</code>, <code>ssh-add</code> and <code>ssh-agent</code>) must
+therefore be installed on the edge host.</p>
+<p>An edge without <code>ssh-agent</code> still starts and logs a warning. Tasks that
+authenticate with an SSH private key fail on that edge, and every other task
+runs normally.</p>
 
 
 <h2 id="enable-edge-enrollment" class="group pr-8">Enable edge enrollment
@@ -8415,10 +8448,10 @@ that organization. Enrollment is disabled by default.</p>
 <p>New edges authenticate using an enrollment key generated by the Control Plane.
 The key is used when an edge connects to PCP for the first time and exchanges it
 for an authentication token.</p>
-<p>Edges work within an organization. You work only with the edges of the
-organization you signed in to, and what you can do with them is determined by
-the <a href="../../administration/permissions" >permissions</a> your application user has on
-the organization.</p>
+<p>You work with the edges available to the organization you signed in to, and what
+you can do with them is determined by the
+<a href="../../administration/permissions" >permissions</a> your application user has on the
+organization.</p>
 <p>To enable enrollment, open the organization&rsquo;s settings and enable <strong>Edge
 enrollment</strong> under <strong>Settings -&gt; Organizations -&gt; [your organization] -&gt;
 Settings</strong>. Enable it for the organization where the new edge should be
@@ -8446,6 +8479,46 @@ organization, but does not affect edges that are already enrolled.</p>
 its first connection to PCP.</p>
 <p>You can regenerate the enrollment key at any time. If you regenerate it, use the
 new key when enrolling subsequent edges.</p>
+
+
+<h3 id="sharing-edges-with-child-organizations" class="group pr-8">Sharing edges with child organizations
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="sharing-edges-with-child-organizations"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>An organization shares its edges with the organizations below it by handing down
+its edge enrollment setting. Every organization that inherits the setting, at
+any depth, can use the edges of the organization that set it. The setting is
+inherited like any other organization setting, as described in
+<a href="../../administration/settings/organization#handing-settings-down" >handing settings down</a>.</p>
+<p>A shared edge runs tasks like one of the organization&rsquo;s own. It appears in the
+organization&rsquo;s list of edges, tasks can be pinned to it, and PCP can pick it
+when it <a href="/docs/control-plane/infrastructure/edges/#selecting-an-edge" >selects an edge</a> for a task. Only the organization
+that enrolled the edge can manage it.</p>
+<p>An organization gets edges from one organization above it at most: the one it
+inherits the edge enrollment setting from. For example, the root organization
+hands the setting down, and organization A below it sets its own and hands that
+down too. Organization B below A then uses A&rsquo;s edges along with its own, but not
+the root organization&rsquo;s.</p>
+<p>The edges are shared for as long as the setting is inherited, whether or not
+enrollment is enabled in it. Disabling enrollment only stops new edges from
+joining.</p>
+<p>An edge joins the organization that owns the enrollment key it presents. An edge
+enrolled with an inherited key therefore joins the organization that handed the
+setting down, even when it was set up for an organization below. An organization
+enrolls edges of its own by setting its own edge enrollment value. A locked
+setting prevents this, so the organizations below share the edges of the
+organization that locked it and cannot enroll any of their own.</p>
 
 
 <h2 id="installing-an-edge" class="group pr-8">Installing an edge
@@ -8948,8 +9021,9 @@ variables describing the current task:</p>
 </ul>
 <p>This allows the same script to be used by multiple tasks and to distinguish
 between the pre-job and post-job phases.</p>
-<p>When a hook fails, the end of its output is included in the error reported to
-the Control Plane, providing context for diagnosing the failure.</p>
+<p>The output of each hook appears in the job&rsquo;s output alongside the task&rsquo;s own.
+When a hook fails, the end of its output is also included in the error reported
+to the Control Plane, providing context for diagnosing the failure.</p>
 
 
 <h3 id="hooks-on-kubernetes" class="group pr-8">Hooks on Kubernetes
@@ -9062,7 +9136,7 @@ which will make it easier to distribute workloads across multiple edges.</p></di
   
   <div class="flex items-center justify-between text-xs text-neutral-400">
     
-      <span>Last updated: September 30, 2026</span>
+      <span>Last updated: October 2, 2026</span>
     
     
       <a href="https://github.com/PlakarKorp/plakar.io/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">
@@ -9082,7 +9156,7 @@ which will make it easier to distribute workloads across multiple edges.</p></di
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#when-to-use-an-edge">When to use an edge</a></li><li><a href="#architecture">Architecture</a></li><li><a href="#how-an-edge-works">How an edge works</a></li><li><a href="#requirements">Requirements</a><ul><li><a href="#integrations-that-need-external-tools">Integrations that need external tools</a></li></ul></li><li><a href="#enable-edge-enrollment">Enable edge enrollment</a></li><li><a href="#installing-an-edge">Installing an edge</a><ul><li><a href="#build-plakar-edge">Build plakar-edge</a></li><li><a href="#enroll-the-edge">Enroll the edge</a></li><li><a href="#configure-the-edge">Configure the edge</a></li><li><a href="#deploy-the-edge">Deploy the edge</a></li><li><a href="#store-the-enrollment-key">Store the enrollment key</a></li><li><a href="#install-the-chart">Install the chart</a></li><li><a href="#configure-the-chart">Configure the chart</a></li></ul></li><li><a href="#supervision-and-metrics">Supervision and metrics</a></li><li><a href="#secrets">Secrets</a></li><li><a href="#run-tasks-on-an-edge">Run tasks on an edge</a></li><li><a href="#pre-job-and-post-job-hooks">Pre-job and post-job hooks</a><ul><li><a href="#hooks-on-kubernetes">Hooks on Kubernetes</a></li></ul></li><li><a href="#selecting-an-edge">Selecting an edge</a></li></ul>
+      <ul><li><a href="#when-to-use-an-edge">When to use an edge</a></li><li><a href="#architecture">Architecture</a></li><li><a href="#how-an-edge-works">How an edge works</a></li><li><a href="#requirements">Requirements</a><ul><li><a href="#integrations-that-need-external-tools">Integrations that need external tools</a></li><li><a href="#ssh-keys">SSH keys</a></li></ul></li><li><a href="#enable-edge-enrollment">Enable edge enrollment</a><ul><li><a href="#sharing-edges-with-child-organizations">Sharing edges with child organizations</a></li></ul></li><li><a href="#installing-an-edge">Installing an edge</a><ul><li><a href="#build-plakar-edge">Build plakar-edge</a></li><li><a href="#enroll-the-edge">Enroll the edge</a></li><li><a href="#configure-the-edge">Configure the edge</a></li><li><a href="#deploy-the-edge">Deploy the edge</a></li><li><a href="#store-the-enrollment-key">Store the enrollment key</a></li><li><a href="#install-the-chart">Install the chart</a></li><li><a href="#configure-the-chart">Configure the chart</a></li></ul></li><li><a href="#supervision-and-metrics">Supervision and metrics</a></li><li><a href="#secrets">Secrets</a></li><li><a href="#run-tasks-on-an-edge">Run tasks on an edge</a></li><li><a href="#pre-job-and-post-job-hooks">Pre-job and post-job hooks</a><ul><li><a href="#hooks-on-kubernetes">Hooks on Kubernetes</a></li></ul></li><li><a href="#selecting-an-edge">Selecting an edge</a></li></ul>
     </div>
 
     
