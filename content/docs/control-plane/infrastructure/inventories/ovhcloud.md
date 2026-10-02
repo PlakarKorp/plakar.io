@@ -10,7 +10,7 @@ aliases:
 # OVHcloud Inventory
 
 The OVHcloud inventory allows Plakar Control Plane to connect to your OVHcloud
-account and discover resources across your projects.
+account and discover resources across all of its projects.
 
 Once connected, Plakar Control Plane discovers supported OVHcloud resources and
 makes them available for management directly within Plakar Control Plane.
@@ -72,34 +72,14 @@ the GET method only.
 When generating credentials through the OVHcloud token creation portal, add the
 following paths with the GET method:
 
-| Path                            | Description                                         |
-| ------------------------------- | --------------------------------------------------- |
-| `/cloud/project`                | Lists all OVHcloud projects in the account          |
-| `/cloud/project/*`              | Accesses a specific project and its metadata        |
-| `/cloud/project/*/instance`     | Lists compute instances in a project                |
-| `/cloud/project/*/instance/*`   | Retrieves details of a specific instance            |
-| `/cloud/project/*/volume`       | Lists block storage volumes in a project            |
-| `/cloud/project/*/volume/*`     | Retrieves details of a specific volume              |
-| `/cloud/project/*/snapshot`     | Lists block storage snapshots in a project          |
-| `/cloud/project/*/snapshot/*`   | Retrieves details of a specific snapshot            |
-| `/cloud/project/*/storage/s3`   | Lists S3-compatible object storage buckets          |
-| `/cloud/project/*/storage/s3/*` | Retrieves details of a specific S3 bucket           |
-| `/cloud/project/*/storage`      | Lists Swift (legacy) object storage containers      |
-| `/cloud/project/*/storage/*`    | Retrieves details of a specific Swift container     |
-| `/cloud/project/*/database`     | Lists managed database services in a project        |
-| `/cloud/project/*/database/*`   | Retrieves details of a specific database service    |
-| `/cloud/project/*/database/*/*` | Retrieves database cluster details by engine and ID |
+| Path              | Description                                           |
+| ----------------- | ----------------------------------------------------- |
+| `/me`             | Reads the account the credentials belong to           |
+| `/cloud/project*` | Lists all projects in the account and their resources |
 
-The `/cloud/project` and `/cloud/project/*` paths are always required, as Plakar
-Control Plane uses them to enumerate which projects exist before querying
-resources within them.
-
-The three-level database path (`/cloud/project/*/database/*/*`) is required
-because the OVHcloud database API nests the engine type and cluster ID together,
-for example `/cloud/project/{id}/database/mysql/{clusterId}`.
-
-If you only need to discover a subset of resource types, you can omit the paths
-for resource types you do not use.
+The inventory discovers resources in every project of the account. Restricting
+the credentials to a single project is not supported. Synchronization still
+tries to list resources in all projects.
 
 ## Adding the OVHcloud Inventory
 
