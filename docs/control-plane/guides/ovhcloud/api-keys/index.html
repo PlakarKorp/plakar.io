@@ -70,7 +70,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-06-29T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-10-02T12:37:46+02:00">
+    <meta property="article:modified_time" content="2026-10-02T12:41:50+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -227,12 +227,12 @@
     "dateCreated": "2026-06-29T00:00:00\u002b00:00",
     "datePublished": "2026-06-29T00:00:00\u002b00:00",
     
-    "dateModified": "2026-10-02T12:37:46\u002b02:00",
+    "dateModified": "2026-10-02T12:41:50\u002b02:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/guides/ovhcloud/api-keys/",
-    "wordCount": "546"
+    "wordCount": "444"
   }]
   </script>
 
@@ -8310,14 +8310,11 @@
   
 </h1>
 <p>Plakar Control Plane requires an application key, application secret, and
-consumer key to authenticate against OVHcloud APIs. These credentials are used
-by the OVHcloud inventory to discover resources in your account, and by
-integrations that need access to OVHcloud services such as Object Storage.</p>
-<p>In OVHcloud, API credentials are generated through a token creation portal.
-Unlike IAM-based systems, OVHcloud&rsquo;s legacy API authentication model ties three
-tokens together: an application key that identifies the application, an
-application secret that authenticates it, and a consumer key that authorizes it
-to act on a specific account with a defined set of permissions.</p>
+consumer key to authenticate against OVHcloud APIs. The OVHcloud inventory uses
+these credentials to discover resources in your account.</p>
+<p>The three tokens work together. The application key identifies the application.
+The application secret authenticates it. The consumer key authorizes it to act
+on your account with a defined set of permissions.</p>
 <p>This guide walks through generating the three tokens Plakar Control Plane needs.</p>
 <div class="steps">
 
@@ -8343,9 +8340,9 @@ credentials in a single step. You can reach it in two ways:</p>
 <ul>
 <li>Navigate directly to the region-specific URL:
 <ul>
-<li><strong>Europe</strong>: <code>https://eu.api.ovh.com/createToken</code></li>
-<li><strong>US</strong>: <code>https://us.ovhcloud.com/auth/api/createToken</code></li>
-<li><strong>Canada</strong>: <code>https://ca.api.ovh.com/createToken</code></li>
+<li><strong>Europe</strong>: <code>https://auth.eu.ovhcloud.com/api/createToken</code></li>
+<li><strong>US</strong>: <code>https://auth.us.ovhcloud.com/api/createToken</code></li>
+<li><strong>Canada</strong>: <code>https://auth.ca.ovhcloud.com/api/createToken</code></li>
 </ul>
 </li>
 <li>From the OVHcloud Control Panel, go to <strong>IAM / Security</strong> &gt; <strong>Identities and
@@ -8353,9 +8350,8 @@ Access Management</strong> &gt; <strong>API keys</strong> and click <strong>Crea
 screenshot in <a href="/docs/control-plane/guides/ovhcloud/api-keys/#managing-and-revoking-credentials" >last section</a></li>
 </ul>
 <p>Open the portal for your region and log in with your OVHcloud account
-credentials. If your account is a sub-user, enter the account ID in the format
-<code>XXXX-XXXX-XX/user</code> along with the password. If two-factor authentication is
-enabled, you will also be prompted for a one-time code.</p>
+credentials. If two-factor authentication is enabled, you will also be prompted
+for a one-time code.</p>
 <figure><img class="my-0 rounded-md mx-auto max-w-100" loading="lazy" decoding="async" fetchpriority="auto" alt="" width="986" height="974" src="/docs/control-plane/guides/ovhcloud/images/create-api-keys_hu_2cb3fd40453757fb.webp" srcset="/docs/control-plane/guides/ovhcloud/images/create-api-keys_hu_2cb3fd40453757fb.webp 400w, /docs/control-plane/guides/ovhcloud/images/create-api-keys_hu_f519ce4ae4bc14a6.webp 800w, /docs/control-plane/guides/ovhcloud/images/create-api-keys_hu_7a71ee8a5f84900c.webp 986w" sizes="(min-width: 768px) 50vw, 65vw" data-zoom-src="/docs/control-plane/guides/ovhcloud/images/create-api-keys_hu_7a71ee8a5f84900c.webp" /></figure>
 <p>Once logged in, fill in the token form:</p>
 <ul>
@@ -8370,17 +8366,14 @@ left unlimited, the credentials will not expire on their own.</p>
 </li>
 <li>
 <p><strong>Rights</strong>: Define which API paths and HTTP methods the credentials are
-allowed to use. The required paths depend on the OVHcloud service you are
-configuring. The required paths are documented in each OVHcloud integration
-guide. For example, the
-<a href="../../../infrastructure/inventories/ovhcloud" >OVHcloud inventory</a>
-documentation lists the paths needed to discover resources.</p>
+allowed to use. The
+<a href="../../../infrastructure/inventories/ovhcloud#required-permissions" >OVHcloud inventory</a>
+documentation lists the paths it needs.</p>
 </li>
 </ul>
-<p>To grant access to all paths under a product, you can use a wildcard. For
-example, entering <code>/*</code> with GET, POST, PUT, and DELETE grants full access to all
-OVHcloud APIs. Use wildcards with caution and prefer scoping access to only the
-paths your use case requires.</p>
+<p>A path can end with a wildcard. For example, <code>/cloud/project*</code> covers
+<code>/cloud/project</code> and every path under it. Grant only the paths and methods your
+use case requires.</p>
 <p>Click <strong>Create</strong> once the form is complete.</p>
 <details
       class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
@@ -8462,8 +8455,9 @@ Treat this as a secret and store it securely.</li>
 </svg>
 </span></div>
       </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>The application secret and consumer key are only shown once. Copy and store
-them somewhere safe before leaving the page.</p></div></details><p>Enter these three values into the relevant Plakar Control Plane integration or
-inventory configuration.</p>
+them somewhere safe before leaving the page.</p></div></details><p>Enter these three values when creating the
+<a href="../../../infrastructure/inventories/ovhcloud" >OVHcloud inventory</a> in Plakar
+Control Plane.</p>
 </div>
 
 

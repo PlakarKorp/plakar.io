@@ -29,23 +29,16 @@ Control Plane supports three app types:
 ## Managed inventories
 
 Managed inventories connect to a provider using credentials. Plakar Control
-Plane then automatically discovers and classifies resources in your account.
+Plane discovers the resources in your account and classifies them by type. In an
+AWS inventory, for example, EC2 instances are classified as compute resources
+and S3 buckets as storage resources.
 
-Each managed inventory provider must be installed before it can be created.
+The provider is the source of truth. Resources cannot be created or deleted
+manually in a managed inventory. Synchronize the inventory to pick up changes
+made in the provider.
 
-For example, in an AWS inventory:
-
-- EC2 instances are classified as compute resources
-- S3 buckets are classified as storage resources
-
-Managed inventories are supported for:
-
-- AWS
-- OVHcloud
-- Scaleway
-- Google Cloud
-- VMware
-- Kubernetes
+Each provider page lists the supported resources and the permissions the
+credentials need.
 
 ## Self-managed inventories
 

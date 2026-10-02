@@ -227,12 +227,12 @@
     "dateCreated": "2026-05-03T00:00:00\u002b00:00",
     "datePublished": "2026-05-03T00:00:00\u002b00:00",
     
-    "dateModified": "2026-10-02T12:37:46\u002b02:00",
+    "dateModified": "2026-10-02T12:41:50\u002b02:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/infrastructure/inventories/",
-    "wordCount": "479"
+    "wordCount": "498"
   }]
   </script>
 
@@ -8346,22 +8346,14 @@ Control Plane supports three app types:</p>
   
 </h2>
 <p>Managed inventories connect to a provider using credentials. Plakar Control
-Plane then automatically discovers and classifies resources in your account.</p>
-<p>Each managed inventory provider must be installed before it can be created.</p>
-<p>For example, in an AWS inventory:</p>
-<ul>
-<li>EC2 instances are classified as compute resources</li>
-<li>S3 buckets are classified as storage resources</li>
-</ul>
-<p>Managed inventories are supported for:</p>
-<ul>
-<li>AWS</li>
-<li>OVHcloud</li>
-<li>Scaleway</li>
-<li>Google Cloud</li>
-<li>VMware</li>
-<li>Kubernetes</li>
-</ul>
+Plane discovers the resources in your account and classifies them by type. In an
+AWS inventory, for example, EC2 instances are classified as compute resources
+and S3 buckets as storage resources.</p>
+<p>The provider is the source of truth. Resources cannot be created or deleted
+manually in a managed inventory. Synchronize the inventory to pick up changes
+made in the provider.</p>
+<p>Each provider page lists the supported resources and the permissions the
+credentials need.</p>
 
 
 <h2 id="self-managed-inventories" class="group pr-8">Self-managed inventories
