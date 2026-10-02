@@ -73,6 +73,11 @@ flowchart TD
 The following settings are available when configuring a source, store, or
 destination app.
 
+- **Host Key**: The SSH host public key entry of the remote machine, used to
+  verify its identity before connecting, for example
+  `example.com ssh-rsa AAAAB3NzaC1yc2E...`. You can get the entry by running
+  `ssh-keyscan <host>` from a trusted network, and check its fingerprint against
+  the remote machine before using it.
 - **Port**: The TCP/UDP port number the SSH service is listening on. Defaults to
   `22`.
 - **Root**: The absolute filesystem path to use as the root for backup
@@ -106,6 +111,9 @@ The following extra settings are available when configuring a destination app.
 - **Set Owner**: Sets the owner and group of restored files to match the
   original snapshot. Requires the SSH user configured for PCP to have superuser
   permissions on the remote machine.
+- **Skip Permissions**: Skips restoring permission bits, including the setuid,
+  setgid and sticky bits, on restored files and directories. Disabled by
+  default.
 
 ## Permissions
 

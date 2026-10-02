@@ -70,7 +70,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-03-19T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-10-02T12:31:44+02:00">
+    <meta property="article:modified_time" content="2026-10-02T12:34:39+02:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -242,12 +242,12 @@
     "dateCreated": "2026-03-19T00:00:00\u002b00:00",
     "datePublished": "2026-03-19T00:00:00\u002b00:00",
     
-    "dateModified": "2026-10-02T12:31:44\u002b02:00",
+    "dateModified": "2026-10-02T12:34:39\u002b02:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/community/main/integrations/sftp/",
-    "wordCount": "1079"
+    "wordCount": "1198"
   }]
   </script>
 
@@ -4599,8 +4599,10 @@
     </button>
   
 </h1>
-<p>SFTP is a protocol for securely transferring files over SSH. The SFTP
-integration includes three connectors:</p>
+<p>The SFTP integration backs up and restores directories on remote servers over
+SFTP, the file transfer protocol that runs over SSH. It can also host a Kloset
+store on an SFTP server.</p>
+<p>The integration includes three connectors:</p>
 <table>
   <thead>
       <tr>
@@ -4610,10 +4612,6 @@ integration includes three connectors:</p>
   </thead>
   <tbody>
       <tr>
-          <td><strong>Storage connector</strong></td>
-          <td>Host a Kloset store on any SFTP-accessible server.</td>
-      </tr>
-      <tr>
           <td><strong>Source connector</strong></td>
           <td>Back up a remote directory reachable over SFTP into a Kloset store.</td>
       </tr>
@@ -4621,27 +4619,16 @@ integration includes three connectors:</p>
           <td><strong>Destination connector</strong></td>
           <td>Restore data from a Kloset store to an SFTP target.</td>
       </tr>
+      <tr>
+          <td><strong>Store connector</strong></td>
+          <td>Host a Kloset store on any SFTP-accessible server.</td>
+      </tr>
   </tbody>
 </table>
+<p>The connectors can be combined with each other and with other Plakar connectors.</p>
 <p><strong>Requirements</strong></p>
 <ul>
 <li>An SFTP/SSH server with appropriate read and write permissions.</li>
-</ul>
-<p><strong>Typical use cases</strong></p>
-<ul>
-<li>Encrypted backups of remote Linux/BSD/application servers over SSH.</li>
-<li>Offsite or air-gapped snapshot storage by hosting a Kloset store on an SFTP
-server.</li>
-<li>Data recovery workflows: restore server trees over SSH to warm or cold
-standby.</li>
-<li>Centralized archiving of distributed environments into one Kloset.</li>
-</ul>
-<p><strong>Compatibility</strong></p>
-<ul>
-<li>Works with standard OpenSSH SFTP.</li>
-<li>On‑prem, cloud, and hybrid deployments supported.</li>
-<li>Legacy or proprietary SFTP variants that diverge from SSH/SFTP standards are
-not supported.</li>
 </ul>
 
 
@@ -4721,11 +4708,11 @@ customization is required.</p>
 <a href="../../guides/managing-packages/" >managing packages guide</a>.</p>
 
 
-<h2 id="connectors" class="group pr-8">Connectors
+<h2 id="ssh-access" class="group pr-8">SSH access
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="connectors"
+      data-anchor="ssh-access"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -4736,18 +4723,16 @@ customization is required.</p>
     </button>
   
 </h2>
-<p>The SFTP package provides three connectors: a storage connector for hosting
-Kloset stores on SFTP servers, a source connector for backing up remote
-directories over SFTP, and a destination connector for restoring data over SFTP.</p>
-<p>You can use any combination of these connectors together with other supported
-Plakar connectors.</p>
+<p>Plakar connects to the server over SSH. The username, port and identity file are
+best set in the SSH configuration (<code>~/.ssh/config</code>) under a host alias, which
+Plakar then references in its URLs.</p>
 
 
-<h3 id="storage-connector" class="group pr-8">Storage connector
+<h3 id="host-aliases" class="group pr-8">Host aliases
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="storage-connector"
+      data-anchor="host-aliases"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -4758,104 +4743,26 @@ Plakar connectors.</p>
     </button>
   
 </h3>
-<p>The Plakar SFTP package provides a storage connector to host Kloset stores on
-SFTP servers.</p>
-<!-- prettier-ignore-start -->
-<pre class="not-prose mermaid">
-flowchart LR
-
-Source["Source data"]
-
-Source --> Plakar["Plakar"]
-
-Via["Store snapshot via<br/>SFTP storage connector"]
-
-subgraph Store["SFTP Server"]
-  Kloset["Kloset Store"]
-end
-
-Plakar --> Via --> Kloset
-</pre>
-
-<!-- prettier-ignore-end -->
+<p>A host alias in <code>~/.ssh/config</code> keeps Plakar commands short and independent of
+the actual host details:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Host sftp-prod
+</span></span><span class="line"><span class="cl">  HostName host.example.com
+</span></span><span class="line"><span class="cl">  User sftpuser
+</span></span><span class="line"><span class="cl">  Port <span class="m">22</span>
+</span></span><span class="line"><span class="cl">  IdentityFile ~/.ssh/id_ed25519_plakar</span></span></code></pre></div></div>
+<p>Test the alias:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sftp sftp-prod</span></span></code></pre></div></div>
+<p>Then reference it in Plakar URLs:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar store add sftp_store sftp://sftp-prod/backups
+</span></span><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add sftp_src sftp://sftp-prod/srv/data
+</span></span><span class="line"><span class="cl">$ plakar destination add sftp_dst sftp://sftp-prod/srv/restore</span></span></code></pre></div></div>
 
 
-<h4 id="configure" class="group pr-8">Configure
+<h3 id="key-based-authentication" class="group pr-8">Key-based authentication
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="configure"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h4>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Configure the Kloset store</span>
-</span></span><span class="line"><span class="cl">$ plakar store add sftp_store sftp://sftp-prod/backups
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Initialize the Kloset store</span>
-</span></span><span class="line"><span class="cl">$ plakar at <span class="s2">&#34;@sftp_store&#34;</span> create
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># List snapshots in the Kloset store</span>
-</span></span><span class="line"><span class="cl">$ plakar at <span class="s2">&#34;@sftp_store&#34;</span> ls
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Verify integrity of the Kloset store</span>
-</span></span><span class="line"><span class="cl">$ plakar at <span class="s2">&#34;@sftp_store&#34;</span> check
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Backup a local folder to the Kloset store</span>
-</span></span><span class="line"><span class="cl">$ plakar at <span class="s2">&#34;@sftp_store&#34;</span> backup /etc
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Backup a source configured in Plakar to the Kloset store</span>
-</span></span><span class="line"><span class="cl">$ plakar at <span class="s2">&#34;@sftp_store&#34;</span> backup <span class="s2">&#34;@my_source&#34;</span></span></span></code></pre></div></div>
-
-
-<h4 id="options" class="group pr-8">Options
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="options"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h4>
-<p>These options can be set when configuring the storage connector with
-<code>plakar store add</code> or <code>plakar store set</code>:</p>
-<table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>location</code></td>
-          <td><code>sftp://[user@]host[:port]/path</code></td>
-      </tr>
-      <tr>
-          <td><code>passphrase</code></td>
-          <td>The Kloset store passphrase</td>
-      </tr>
-  </tbody>
-</table>
-
-
-<h3 id="source-connector" class="group pr-8">Source connector
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="source-connector"
+      data-anchor="key-based-authentication"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -4866,8 +4773,77 @@ Plakar --> Via --> Kloset
     </button>
   
 </h3>
-<p>The Plakar SFTP package provides a source connector to back up remote
-directories reachable over SFTP.</p>
+<p>Unattended jobs must not prompt for passwords, so SSH authentication must be
+key-based and passwordless:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519_plakar -C plakar@backup
+</span></span><span class="line"><span class="cl">$ ssh-copy-id -i ~/.ssh/id_ed25519_plakar.pub sftpuser@host.example.com
+</span></span><span class="line"><span class="cl">$ sftp -i ~/.ssh/id_ed25519_plakar sftpuser@host.example.com</span></span></code></pre></div></div>
+<p>If the private key is encrypted, load it into an SSH agent:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nb">eval</span> <span class="s2">&#34;</span><span class="k">$(</span>ssh-agent -s<span class="k">)</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">$ ssh-add ~/.ssh/id_ed25519_plakar</span></span></code></pre></div></div>
+<p>The key can also be set on the connector itself. <code>identity</code> points to a private
+key file. <code>ssh_private_key</code> passes the key material directly, and Plakar loads
+it into the SSH agent for the duration set by <code>ssh_private_key_ttl</code>.
+<code>ssh_auth_sock</code> selects the agent socket to use.</p>
+
+
+<h3 id="host-keys" class="group pr-8">Host keys
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="host-keys"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>The server&rsquo;s host key is verified before connecting, against
+<code>~/.ssh/known_hosts</code> or against the entry given in <code>host_key</code>. In production,
+keep verification enabled and manage <code>~/.ssh/known_hosts</code> normally.
+<code>insecure_ignore_host_key=true</code> disables verification and should only be used in
+isolated test environments.</p>
+
+
+<h2 id="configuration" class="group pr-8">Configuration
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="configuration"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>The SFTP connectors read from and write to a directory on the server, addressed
+by an <code>sftp://</code> URL. The same URL format is used whether the directory is backed
+up, restored to, or used to host a Kloset store.</p>
+
+
+<h4 id="backup-flow" class="group pr-8">Backup flow
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="backup-flow"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h4>
 <!-- prettier-ignore-start -->
 <pre class="not-prose mermaid">
 flowchart LR
@@ -4888,11 +4864,11 @@ FS --> Via --> Plakar --> Store
 <!-- prettier-ignore-end -->
 
 
-<h4 id="configure-1" class="group pr-8">Configure
+<h4 id="restore-flow" class="group pr-8">Restore flow
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="configure-1"
+      data-anchor="restore-flow"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -4903,66 +4879,6 @@ FS --> Via --> Plakar --> Store
     </button>
   
 </h4>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Configure a source pointing to the remote SFTP directory</span>
-</span></span><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add sftp_src sftp://sftp-prod:/srv/data
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Back up the remote directory to the Kloset store on the filesystem</span>
-</span></span><span class="line"><span class="cl">$ plakar at /var/backups backup <span class="s2">&#34;@sftp_src&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Or back up the remote directory to the Kloset store on SFTP created above</span>
-</span></span><span class="line"><span class="cl">$ plakar at <span class="s2">&#34;@sftp_store&#34;</span> backup <span class="s2">&#34;@sftp_src&#34;</span></span></span></code></pre></div></div>
-
-
-<h4 id="options-1" class="group pr-8">Options
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="options-1"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h4>
-<p>These options can be set when configuring the source connector with
-<code>plakar source add</code> or <code>plakar source set</code>:</p>
-<table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Purpose</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>location</code></td>
-          <td><code>sftp://[user@]host[:port]/path</code> of the remote directory to back up</td>
-      </tr>
-  </tbody>
-</table>
-
-
-<h3 id="destination-connector" class="group pr-8">Destination connector
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="destination-connector"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
-<p>The Plakar SFTP package provides a destination connector to restore snapshots to
-remote directories reachable over SFTP.</p>
 <!-- prettier-ignore-start -->
 <pre class="not-prose mermaid">
 flowchart LR
@@ -4983,11 +4899,11 @@ Store --> Plakar --> Via --> FS
 <!-- prettier-ignore-end -->
 
 
-<h4 id="configure-2" class="group pr-8">Configure
+<h4 id="store-flow" class="group pr-8">Store flow
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="configure-2"
+      data-anchor="store-flow"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -4998,137 +4914,262 @@ Store --> Plakar --> Via --> FS
     </button>
   
 </h4>
+<!-- prettier-ignore-start -->
+<pre class="not-prose mermaid">
+flowchart LR
+
+Source["Source data"]
+
+Source --> Plakar["Plakar"]
+
+Via["Store snapshot via<br/>SFTP storage connector"]
+
+subgraph Store["SFTP Server"]
+  Kloset["Kloset Store"]
+end
+
+Plakar --> Via --> Kloset
+</pre>
+
+<!-- prettier-ignore-end -->
+
+
+<h3 id="shared-configuration" class="group pr-8">Shared configuration
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="shared-configuration"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>The following options apply to the source, destination and store connectors.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Option</th>
+          <th>Required</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>location</code></td>
+          <td>Yes</td>
+          <td><code>sftp://[user@]host[:port][/path]</code>. The remote directory to back up, the remote directory to restore to, or the store directory.</td>
+      </tr>
+      <tr>
+          <td><code>username</code></td>
+          <td>No</td>
+          <td>SSH username. Cannot be set when <code>location</code> already includes <code>user@</code>.</td>
+      </tr>
+      <tr>
+          <td><code>port</code></td>
+          <td>No</td>
+          <td>SSH port. Defaults to <code>22</code>.</td>
+      </tr>
+      <tr>
+          <td><code>root</code></td>
+          <td>No</td>
+          <td>Absolute path on the server. Defaults to <code>/</code>.</td>
+      </tr>
+      <tr>
+          <td><code>identity</code></td>
+          <td>No</td>
+          <td>Path to the SSH private key file.</td>
+      </tr>
+      <tr>
+          <td><code>ssh_private_key</code></td>
+          <td>No</td>
+          <td>SSH private key material in PEM or OpenSSH format, loaded into the SSH agent.</td>
+      </tr>
+      <tr>
+          <td><code>ssh_private_key_ttl</code></td>
+          <td>No</td>
+          <td>How long the key loaded from <code>ssh_private_key</code> stays in the agent, for example <code>5s</code>, <code>1m</code> or <code>1h</code>. Defaults to <code>5s</code>.</td>
+      </tr>
+      <tr>
+          <td><code>ssh_auth_sock</code></td>
+          <td>No</td>
+          <td>Path to the SSH agent socket.</td>
+      </tr>
+      <tr>
+          <td><code>host_key</code></td>
+          <td>No</td>
+          <td>Host key entry used to verify the server, for example <code>example.com ssh-rsa AAAAB3NzaC1yc2E...</code>.</td>
+      </tr>
+      <tr>
+          <td><code>insecure_ignore_host_key</code></td>
+          <td>No</td>
+          <td>Disable host key verification. Defaults to <code>false</code>. Use only for testing.</td>
+      </tr>
+  </tbody>
+</table>
+<p><code>ssh_private_key</code>, <code>ssh_private_key_ttl</code> and <code>ssh_auth_sock</code> are not supported
+on Windows.</p>
+<details
+      class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
+      data-type="warning"
+      open>
+      <summary class="flex items-center gap-2 font-semibold text-inherit cursor-pointer">
+        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"/></svg>
+</span></div>
+        <div class="grow">
+          Host Key Verification
+        </div>
+        <div
+          class="ms-auto flex h-5 w-5 items-center justify-center transition-transform ease-in-out -rotate-90 group-open:rotate-0 print:hidden"><span class="relative block icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+</span></div>
+      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Setting <code>insecure_ignore_host_key=true</code> disables host key verification, so
+Plakar connects to any server that answers at the configured address,
+including one impersonating it. That server can then read and alter all data
+transferred, including backed-up files and Kloset store contents. Only use
+this in disposable test environments. Never use it with production servers,
+servers reached over the internet, or any production data.</p></div></details>
+
+<h3 id="destination-configuration" class="group pr-8">Destination configuration
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="destination-configuration"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>The following extra options are available to the destination connector.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Option</th>
+          <th>Required</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>set_owner</code></td>
+          <td>No</td>
+          <td>Set the owner and group of restored files. Requires superuser permissions on the server. Defaults to <code>false</code>.</td>
+      </tr>
+      <tr>
+          <td><code>skip_permissions</code></td>
+          <td>No</td>
+          <td>Skip restoring permission bits, including the setuid, setgid and sticky bits, on restored files and directories. Defaults to <code>false</code>.</td>
+      </tr>
+  </tbody>
+</table>
+
+
+<h3 id="store-configuration" class="group pr-8">Store configuration
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="store-configuration"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>The following extra option is available to the store connector.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Option</th>
+          <th>Required</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>passphrase</code></td>
+          <td>No</td>
+          <td>Passphrase of the Kloset store. If not set, Plakar prompts for it.</td>
+      </tr>
+  </tbody>
+</table>
+
+
+<h3 id="example" class="group pr-8">Example
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="example"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Create a Kloset store on an SFTP server and use it:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Configure the Kloset store</span>
+</span></span><span class="line"><span class="cl">$ plakar store add sftp_store sftp://sftp-prod/backups
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Initialize the Kloset store</span>
+</span></span><span class="line"><span class="cl">$ plakar at <span class="s2">&#34;@sftp_store&#34;</span> create
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># List snapshots in the Kloset store</span>
+</span></span><span class="line"><span class="cl">$ plakar at <span class="s2">&#34;@sftp_store&#34;</span> ls
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Verify integrity of the Kloset store</span>
+</span></span><span class="line"><span class="cl">$ plakar at <span class="s2">&#34;@sftp_store&#34;</span> check
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Backup a local folder to the Kloset store</span>
+</span></span><span class="line"><span class="cl">$ plakar at <span class="s2">&#34;@sftp_store&#34;</span> backup /etc
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Backup a source configured in Plakar to the Kloset store</span>
+</span></span><span class="line"><span class="cl">$ plakar at <span class="s2">&#34;@sftp_store&#34;</span> backup <span class="s2">&#34;@my_source&#34;</span></span></span></code></pre></div></div>
+<p>Back up a remote directory:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Configure a source pointing to the remote SFTP directory</span>
+</span></span><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add sftp_src sftp://sftp-prod/srv/data
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Back up the remote directory to the Kloset store on the filesystem</span>
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups backup <span class="s2">&#34;@sftp_src&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Or back up the remote directory to the Kloset store on SFTP created above</span>
+</span></span><span class="line"><span class="cl">$ plakar at <span class="s2">&#34;@sftp_store&#34;</span> backup <span class="s2">&#34;@sftp_src&#34;</span></span></span></code></pre></div></div>
+<p>Restore a snapshot to a remote directory:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Configure a destination pointing to the remote SFTP directory</span>
-</span></span><span class="line"><span class="cl">$ plakar destination add sftp_dst sftp://sftp-prod:/srv/restore
+</span></span><span class="line"><span class="cl">$ plakar destination add sftp_dst sftp://sftp-prod/srv/restore
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># Restore a snapshot from a filesystem-hosted Kloset store to the remote SFTP directory</span>
 </span></span><span class="line"><span class="cl">$ plakar at /var/backups restore -to <span class="s2">&#34;@sftp_dst&#34;</span> &lt;snapshot_id&gt;
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># Or restore a snapshot from the Kloset store on SFTP created above to the remote SFTP directory</span>
 </span></span><span class="line"><span class="cl">$ plakar at <span class="s2">&#34;@sftp_store&#34;</span> restore -to <span class="s2">&#34;@sftp_dst&#34;</span> &lt;snapshot_id&gt;</span></span></code></pre></div></div>
-
-
-<h4 id="options-2" class="group pr-8">Options
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="options-2"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h4>
-<p>These options can be set when configuring the destination connector with
-<code>plakar destination add</code> or <code>plakar destination set</code>:</p>
-<table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Purpose</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>location</code></td>
-          <td><code>sftp://[user@]host[:port]/path</code> of the remote directory to restore to</td>
-      </tr>
-  </tbody>
-</table>
-
-
-<h2 id="ssh-best-practices-for-reliability" class="group pr-8">SSH best practices for reliability
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="ssh-best-practices-for-reliability"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h2>
-
-
-<h3 id="create-a-host-alias-recommended" class="group pr-8">Create a host alias (recommended)
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="create-a-host-alias-recommended"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
-<p>Define an alias in <code>~/.ssh/config</code> so Plakar commands stay concise and stable:</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Host sftp-prod
-</span></span><span class="line"><span class="cl">  HostName host.example.com
-</span></span><span class="line"><span class="cl">  User sftpuser
-</span></span><span class="line"><span class="cl">  Port <span class="m">22</span>
-</span></span><span class="line"><span class="cl">  IdentityFile ~/.ssh/id_ed25519_plakar</span></span></code></pre></div></div>
-<p>Test the alias:</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sftp sftp-prod</span></span></code></pre></div></div>
-<p>Then reference it in Plakar URLs:</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar store add sftp_store sftp://sftp-prod/backups
-</span></span><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add sftp_src sftp://sftp-prod:/srv/data
-</span></span><span class="line"><span class="cl">$ plakar destination add sftp_dst sftp://sftp-prod:/srv/restore</span></span></code></pre></div></div>
-
-
-<h3 id="use-keybased-passwordless-ssh" class="group pr-8">Use key‑based, passwordless SSH
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="use-keybased-passwordless-ssh"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
-<p>Unattended jobs must not prompt for passwords.</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519_plakar -C plakar@backup
-</span></span><span class="line"><span class="cl">$ ssh-copy-id -i ~/.ssh/id_ed25519_plakar.pub sftpuser@host.example.com
-</span></span><span class="line"><span class="cl">$ sftp -i ~/.ssh/id_ed25519_plakar sftpuser@host.example.com</span></span></code></pre></div></div>
-<p>If your private key is encrypted, run an agent:</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nb">eval</span> <span class="s2">&#34;</span><span class="k">$(</span>ssh-agent -s<span class="k">)</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl">$ ssh-add ~/.ssh/id_ed25519_plakar</span></span></code></pre></div></div>
-
-
-<h3 id="host-keys-and-trust" class="group pr-8">Host keys and trust
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="host-keys-and-trust"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
-<p>For production, keep strict host key checking enabled and manage
-<code>~/.ssh/known_hosts</code> normally. Avoid disabling host key checks except in
-isolated test environments.</p>
+<p>Snapshots can be moved between two SFTP-hosted stores by defining both stores
+and synchronizing them with <code>plakar at &quot;@store1&quot; sync to &quot;@store2&quot;</code>.</p>
 
 
 <h2 id="limitations-and-scope" class="group pr-8">Limitations and scope
@@ -5146,22 +5187,9 @@ isolated test environments.</p>
     </button>
   
 </h2>
-<p><strong>What is captured during backup</strong></p>
-<ul>
-<li>Files and directories reachable under the specified SFTP path</li>
-<li>File metadata (timestamps, permissions, sizes)</li>
-</ul>
-<p><strong>What is not captured</strong></p>
-<ul>
-<li>System configuration outside the backed‑up path (e.g., SSHD config, firewall
-rules)</li>
-<li>OS user and group database, running processes, or service state</li>
-<li>SSH server settings and <code>known_hosts</code></li>
-</ul>
-<p><strong>Snapshot consistency</strong></p>
-<p>Changes during backup (creates, updates, deletes) may result in a snapshot that
-reflects different points in time for different files. For highly dynamic paths,
-consider quiescing the workload or backing up from a read‑only replica.</p>
+<p>Files that change during a backup can leave the snapshot reflecting different
+points in time for different files. For highly dynamic paths, quiesce the
+workload or back up from a read-only replica.</p>
 
 
 <h2 id="troubleshooting" class="group pr-8">Troubleshooting
@@ -5179,49 +5207,12 @@ consider quiescing the workload or backing up from a read‑only replica.</p>
     </button>
   
 </h2>
-<p><strong>Authentication or permission errors</strong></p>
 <ul>
-<li>Validate the SSH key, username, and target path permissions.</li>
-<li>Ensure the SFTP subsystem is enabled on the server.</li>
+<li><strong>SSH works but SFTP fails</strong>: the SFTP subsystem must be enabled on the
+server.</li>
+<li><strong>Path not found on a chrooted account</strong>: the path in <code>location</code> is relative
+to the chroot, not to the server&rsquo;s filesystem root.</li>
 </ul>
-<p><strong>Host key verification failed</strong></p>
-<ul>
-<li>Connect once interactively to record the host key in <code>~/.ssh/known_hosts</code>.</li>
-<li>Only use <code>insecure_ignore_host_key=true</code>-style options in disposable test
-environments.</li>
-</ul>
-<p><strong>Chroot or path issues</strong></p>
-<ul>
-<li>If the server uses chrooted SFTP, verify the effective path inside the chroot
-matches your URL.</li>
-</ul>
-<p><strong>Passphrase prompts</strong></p>
-<ul>
-<li>Use <code>ssh-agent</code> to cache the key, or deploy a dedicated non‑encrypted key
-restricted to the backup account.</li>
-</ul>
-
-
-<h2 id="faq" class="group pr-8">FAQ
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="faq"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h2>
-<p><strong>How do I set username, port, or identity file?</strong></p>
-<p>Prefer SSH config (<code>~/.ssh/config</code>) with a host alias.</p>
-<p><strong>Can I move snapshots between two SFTP‑hosted stores?</strong></p>
-<p>Yes. Define two stores, then use <code>plakar at &quot;@store1&quot; sync to &quot;@store2&quot;</code> to
-synchronize them.</p>
 
 
 <h2 id="see-also" class="group pr-8">See also
@@ -5369,7 +5360,7 @@ synchronize them.</p>
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#installation">Installation</a></li><li><a href="#connectors">Connectors</a><ul><li><a href="#storage-connector">Storage connector</a><ul><li><a href="#configure">Configure</a></li><li><a href="#options">Options</a></li></ul></li><li><a href="#source-connector">Source connector</a><ul><li><a href="#configure-1">Configure</a></li><li><a href="#options-1">Options</a></li></ul></li><li><a href="#destination-connector">Destination connector</a><ul><li><a href="#configure-2">Configure</a></li><li><a href="#options-2">Options</a></li></ul></li></ul></li><li><a href="#ssh-best-practices-for-reliability">SSH best practices for reliability</a><ul><li><a href="#create-a-host-alias-recommended">Create a host alias (recommended)</a></li><li><a href="#use-keybased-passwordless-ssh">Use key‑based, passwordless SSH</a></li><li><a href="#host-keys-and-trust">Host keys and trust</a></li></ul></li><li><a href="#limitations-and-scope">Limitations and scope</a></li><li><a href="#troubleshooting">Troubleshooting</a></li><li><a href="#faq">FAQ</a></li><li><a href="#see-also">See also</a></li></ul>
+      <ul><li><a href="#installation">Installation</a></li><li><a href="#ssh-access">SSH access</a><ul><li><a href="#host-aliases">Host aliases</a></li><li><a href="#key-based-authentication">Key-based authentication</a></li><li><a href="#host-keys">Host keys</a></li></ul></li><li><a href="#configuration">Configuration</a><ul><ul><li><a href="#backup-flow">Backup flow</a></li><li><a href="#restore-flow">Restore flow</a></li><li><a href="#store-flow">Store flow</a></li></ul></li><li><a href="#shared-configuration">Shared configuration</a></li><li><a href="#destination-configuration">Destination configuration</a></li><li><a href="#store-configuration">Store configuration</a></li><li><a href="#example">Example</a></li></ul></li><li><a href="#limitations-and-scope">Limitations and scope</a></li><li><a href="#troubleshooting">Troubleshooting</a></li><li><a href="#see-also">See also</a></li></ul>
     </div>
 
     

@@ -257,8 +257,8 @@ $ ssh source-1 'echo "Alias works"'
 Add source connectors for each server:
 
 ```bash
-$ plakar source add web-server-1 sftp://source-1:/var/www
-$ plakar source add web-server-2 sftp://source-2:/var/www
+$ plakar source add web-server-1 sftp://source-1/var/www
+$ plakar source add web-server-2 sftp://source-2/var/www
 ```
 
 Verify:
