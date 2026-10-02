@@ -22,6 +22,17 @@ does not create a new instance. The destination app must point at an existing
 Scaleway Compute instance, and restored disks are added to it as additional
 attached volumes rather than replacing its own boot volume.
 
+> [!NOTE]
+>
+> Restoring onto an existing instance is currently the only restore mode
+> available in Plakar Control Plane. This is a limitation of the Plakar Control
+> Plane interface only, and support for creating a new instance is planned for
+> an upcoming release. The Scaleway integration itself can already create a new
+> instance from a backup, reusing the name, type and boot layout of the
+> backed-up instance, and start it. Until the interface supports it, this
+> restore mode is available through the
+> [Community integration](/docs/community/main/integrations/scaleway/#1-scaleway-instance-protocol).
+
 A dedicated Scaleway Object Storage bucket is required for this process. We
 recommend using the same dedicated bucket used for other Scaleway resources such
 as block storage.
