@@ -39,13 +39,18 @@ seo_tags:
   - VMware inventory management
 
 links:
+  - type: community
+    url: /docs/community/main/integrations/vmware/
   - type: control-plane
     url: /docs/control-plane/resources/compute/vmware/
 
 edition:
+  - community
   - control-plane
 
 stage: stable
+
+binary: true
 
 author:
   - type: official
