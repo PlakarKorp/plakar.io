@@ -68,6 +68,8 @@
 - [SMB / CIFS](https://www.stg.plakar.io/docs/community/main/integrations/smb/index.md): Back up and restore SMB shares with Plakar.
 - [NFS](https://www.stg.plakar.io/docs/community/main/integrations/nfs/index.md): Back up and restore NFS exports with Plakar.
 - [MongoDB](https://www.stg.plakar.io/docs/community/main/integrations/mongodb/index.md): Back up and restore MongoDB databases with Plakar.
+- [VMware](https://www.stg.plakar.io/docs/community/main/integrations/vmware/index.md): Back up and restore VMware vSphere virtual machines with Plakar.
+- [Scaleway](https://www.stg.plakar.io/docs/community/main/integrations/scaleway/index.md): Back up and restore Scaleway instances, block volumes and Secret Manager secrets with Plakar.
 
 
 ## [Explanations](https://www.stg.plakar.io/docs/community/main/explanations/index.md)

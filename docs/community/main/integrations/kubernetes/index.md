@@ -1,25 +1,30 @@
 
 # Kubernetes
 
-The Kubernetes integration backs up cluster resources and persistent volumes. It
-provides two connectors accessible via two URI schemes:
+The Kubernetes integration backs up the resources of a cluster and the contents
+of its persistent volumes, and restores them to a cluster.
 
-| URI scheme   | What it backs up                                           |
-| ------------ | ---------------------------------------------------------- |
-| `k8s://`     | Kubernetes manifests and resource state across namespaces. |
-| `k8s+csi://` | Persistent volume contents via CSI VolumeSnapshot.         |
-| `k8s+pvc://` | Persistent volume contents without a VolumeSnapshot.       |
+The integration includes two connectors:
+
+| Connector type            | Description                                                                                  |
+| ------------------------- | -------------------------------------------------------------------------------------------- |
+| **Source connector**      | Back up Kubernetes resources or persistent volume contents into a Kloset store.              |
+| **Destination connector** | Restore Kubernetes resources or persistent volume contents from a Kloset store to a cluster. |
+
+Each protocol covers a different kind of data:
+
+| Protocol  | Description                                                                |
+| --------- | -------------------------------------------------------------------------- |
+| `k8s`     | Back up and restore Kubernetes manifests and resource state.               |
+| `k8s+csi` | Back up persistent volume contents through a CSI `VolumeSnapshot`.         |
+| `k8s+pvc` | Back up and restore persistent volume contents without a `VolumeSnapshot`. |
 
 **Requirements**
 
-- Plakar v1.1.0-beta or later.
-- A Kubernetes cluster accessible
-
-**Typical use cases**
-
-- Namespace or resource-level restore from manifest snapshots.
-- Incident investigation by browsing cluster state at a point in time.
-- Persistent volume backup and cross-environment data portability.
+- An accessible Kubernetes cluster.
+- Credentials with the permissions required by each operation. See
+  [Kubernetes Service Accounts and RBAC](/docs/control-plane/guides/kubernetes/kubernetes-rbac)
+  for least-privilege roles.
 
 ## Installation
 
@@ -30,9 +35,9 @@ provides two connectors accessible via two URI schemes:
 Pre-compiled packages are available for common platforms and provide the
 simplest installation method.
 
-> [!NOTE]+
+> [!NOTE]+ Logging In
 >
-> Logging In Pre-built packages require Plakar authentication. See
+> Pre-built packages require Plakar authentication. See
 > [Logging in to Plakar](../../guides/logging-in-to-plakar) for details.
 
 Install the Kubernetes package:
@@ -86,16 +91,33 @@ $ plakar pkg show
 To list, upgrade, or remove the package, see
 [managing packages guide](../../guides/managing-packages/).
 
-## Manifest backup and restore
+## Cluster access
 
-The `k8s://` connector fetches all Kubernetes resources across the cluster and
-stores them as a Plakar snapshot. This enables browsing, diffing, and restoring
-cluster configuration at any level of granularity — full cluster, single
-namespace, or individual resource.
+All three protocols reach the cluster through a kube config. By default, the
+integration uses the default context defined in `~/.kube/config`. Use the
+`kubeconfig_file` option to point at a different kube config, or `kubeconfig` to
+provide a configuration inline.
 
-Snapshots include resource status metadata, making them useful for incident
-investigation — you can browse the Plakar UI to inspect the state of
-deployments, nodes, and other resources at any point in time.
+The following options apply to every protocol, for both source and destination
+connectors.
+
+| Option            | Required | Description                                              |
+| ----------------- | -------- | -------------------------------------------------------- |
+| `kubeconfig_file` | No       | Path to a kube config file, defaults to `~/.kube/config` |
+| `kubeconfig`      | No       | Content of a kube config file passed inline              |
+
+## 1. `k8s` protocol
+
+The `k8s` protocol fetches all Kubernetes resources across the cluster and
+stores them as a Plakar snapshot. Cluster configuration can then be browsed,
+diffed and restored at any level of granularity: the full cluster, a single
+namespace, or an individual resource.
+
+Snapshots include resource status metadata. Browsing a snapshot in the Plakar UI
+shows the state of deployments, nodes and other resources at the time of the
+backup, which is useful for incident investigation.
+
+#### Backup flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -117,11 +139,25 @@ API --> Via --> Plakar --> Transform --> Store
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-### Back up manifests
+### Source configuration
 
-By default, the integration will use the default context defined at
-`~/.kube/config`. Use the `kubeconfig_file` option to point at a different kube
-config or `kubeconfig` to provide a configuration in-line.
+The following options are available to source connectors using the `k8s`
+protocol, in addition to those in [Cluster access](#cluster-access).
+
+| Option   | Required | Description                                                                    |
+| -------- | -------- | ------------------------------------------------------------------------------ |
+| `labels` | No       | Kubernetes label selector. Only manifests matching the selector are backed up. |
+
+### Destination configuration
+
+The following options are available to destination connectors using the `k8s`
+protocol, in addition to those in [Cluster access](#cluster-access).
+
+| Option             | Required | Description                                                                                                                                                                                                     |
+| ------------------ | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ignore_resources` | No       | Semicolon-separated list of `group/Kind` to leave out of the restore, for example `apps/Deployment;cert-manager.io/Certificate;/ConfigMap`. Leave the group empty for the core group. Kinds are case-sensitive. |
+
+### Example
 
 Back up all resources across the entire cluster:
 
@@ -135,28 +171,26 @@ Back up resources in a specific namespace:
 $ plakar backup k8s:/foo
 ```
 
-### Restore manifests
-
 Restore all `StatefulSet` resources in the `foo` namespace:
 
 ```bash
 $ plakar restore -to k8s: abcd:/foo/apps/StatefulSet
 ```
 
-## Persistent volume backup and restore
+## 2. `k8s+csi` protocol
 
-The `k8s+csi://` connector backs up the contents of persistent volumes by
-creating a `VolumeSnapshot`, mounting it in a temporary pod running a helper
-importer, and ingesting the data into a Kloset store. The snapshot is deleted
-from the cluster once ingestion completes.
+The `k8s+csi` protocol backs up the contents of a persistent volume by creating
+a `VolumeSnapshot`, mounting it in a temporary pod running a helper importer,
+and ingesting the data into a Kloset store. The snapshot is deleted from the
+cluster once ingestion completes.
 
-Otherwise, PVCs can be backed up without a VolumeSnapshot with the `k8s+pvc://`
-connector. The PVC access mode is critical in this case though; for example,
-ReadWriteOnce does not permit concurrent backups of an already mounted PVC.
+This protocol is available for backup only. Data backed up with `k8s+csi` is
+restored with the [`k8s+pvc`](#3-k8spvc-protocol) protocol.
 
-Restore works in reverse: data is written into a target PVC using the same
-helper pod mechanism. The target can be an existing PVC or a freshly created
-one.
+A VolumeSnapshotClass is required for CSI-based backups. Depending on the
+provider, one may already be available, or it may need to be created explicitly.
+
+#### Backup flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -180,16 +214,56 @@ Snap --> Via --> Plakar --> Transform --> Store
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-### Back up a PVC
+### Source configuration
 
-A VolumeSnapshotClass is required for CSI-based backups. Depending on the
-provider, one may already be available, or it may need to be created explicitly.
+The following options are available to source connectors using the `k8s+csi`
+protocol, in addition to those in [Cluster access](#cluster-access).
+
+| Option                  | Required | Description                                                                                                                                       |
+| ----------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `kubelet_image`         | No       | Container image for the helper pod. Leave unset. It exists only so that Plakar support can supply a replacement image while diagnosing a problem. |
+| `volume_snapshot_class` | Yes      | Name of the `VolumeSnapshotClass` to use for CSI snapshots.                                                                                       |
+| `fs_access`             | No       | File access capabilities granted to the helper pod. See [File access](#file-access). Defaults to `read`.                                          |
+
+### Example
+
+Back up the `my-pvc` PVC in the `storage` namespace:
 
 ```bash
 $ plakar backup -o volume_snapshot_class=my-snapclass k8s+csi:/storage/my-pvc
 ```
 
-### Restore a PVC
+## 3. `k8s+pvc` protocol
+
+The `k8s+pvc` protocol backs up and restores the contents of a PVC without a
+VolumeSnapshot. The PVC access mode is critical when backing up this way. For
+example, ReadWriteOnce does not permit concurrent backups of an already mounted
+PVC.
+
+A restore writes the data into a target PVC through the same helper pod
+mechanism used for backups. The target can be an existing PVC or a freshly
+created one, and must have sufficient capacity.
+
+### Shared configuration
+
+The following options apply to both source and destination connectors using the
+`k8s+pvc` protocol, in addition to those in [Cluster access](#cluster-access).
+
+| Option          | Required | Description                                                                                                                                       |
+| --------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `kubelet_image` | No       | Container image for the helper pod. Leave unset. It exists only so that Plakar support can supply a replacement image while diagnosing a problem. |
+| `fs_access`     | No       | File access capabilities granted to the helper pod. See [File access](#file-access). Defaults to `read` for backups and `full` for restores.      |
+
+### File access
+
+The `fs_access` option sets the file access capabilities granted to the helper
+pod:
+
+- `default`: the pod gains no extra capabilities.
+- `read`: the pod gains read capabilities only.
+- `full`: the pod gains read and write capabilities.
+
+### Example
 
 Restore into a new, empty PVC:
 
@@ -210,32 +284,14 @@ spec:
 $ plakar restore -to k8s+pvc:/storage/pristine abcdef:
 ```
 
-Restore into an existing PVC by referencing it in the same way. The target PVC
-must have sufficient capacity.
-
-### Options
-
-| Option                  | Required | Description                                                             |
-| ----------------------- | -------- | ----------------------------------------------------------------------- |
-| `kubeconfig_file`       | No       | Path to a kube config file, defaults to `~/.kube/config`                |
-| `kubecnofig`            | No       | Content of a kube config file passed inline                             |
-| `kubelet_image`         | No       | Container image for the helper pod. Defaults to a recent kubelet image. |
-| `labels`                | No       | Limits the manifests to bac up to the ones matching the given labels    |
-| `volume_snapshot_class` | Yes      | Name of the `VolumeSnapshotClass` to use for CSI snapshots.             |
+Restore into an existing PVC by referencing it in the same way.
 
 ## Limitations and scope
 
-**What is captured**
-
-- All Kubernetes resource manifests and status metadata (`k8s://`).
-- Persistent volume contents (`k8s+csi://` and `k8s+pvc://`).
-
-**What is not captured**
-
-- Node-level configuration (OS, kubelet config, network setup).
-- In-flight workload state (open connections, in-memory data).
-
-**Snapshot consistency**
+Backups capture all Kubernetes resource manifests and status metadata with
+`k8s`, and persistent volume contents with `k8s+csi` and `k8s+pvc`. Node-level
+configuration (OS, kubelet config, network setup) and in-flight workload state
+(open connections, in-memory data) are not captured.
 
 Manifest snapshots reflect the state of the API server at the time of backup.
 For PVCs, consistency depends on the CSI driver and whether the workload was
@@ -245,5 +301,6 @@ quiesced before the snapshot was taken.
 
 - [Kubernetes integration demo](https://www.youtube.com/watch?v=b8fOwCLSTiU)
 - [etcd integration](/docs/community/main/integrations/etcd/)
-- [Kubernetes documentation — VolumeSnapshots](https://kubernetes.io/docs/concepts/storage/volume-snapshots/)
+- [Kubernetes PVC in Plakar Control Plane](/docs/control-plane/resources/block-storage/pvc)
+- [VolumeSnapshots in the Kubernetes documentation](https://kubernetes.io/docs/concepts/storage/volume-snapshots/)
 

@@ -1,11 +1,8 @@
 
 # Superuser
 
-The **Superuser** is the admin account created when the instance is first set
-up, either during [enrollment](../../../intro/enrollment#admin-account) or
-during
-[air-gapped enrollment](../../../intro/air-gapped#organization-and-admin-account)
-on instances without outbound connectivity.
+The **Superuser** is the admin account created during
+[enrollment](../../../intro/enrollment#admin-account).
 
 It holds full access to every permission in all three families. Its resource
 access is not restricted to a subset, it covers every resource of every class in

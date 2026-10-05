@@ -90,6 +90,10 @@ When configuring a source app, you must also provide:
 
 ![](./images/source-app-environment-and-data-class.png)
 
+When the resource carries
+[environment and data class tags](../resources#environment-and-data-class-tags),
+both fields are filled in from them but can still be changed.
+
 These values tie directly into the policies and SLA system. Policies define
 backup requirements based on environment and data class combinations. For
 example, a policy might require that all production sources tagged as critical

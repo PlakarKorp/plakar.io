@@ -31,6 +31,18 @@ request comes from Plakar Control Plane.
   so the receiving service can verify the integrity and authenticity of the
   request.
 
+The signature is computed over the raw request body. The following example
+Python function can be used to verify it:
+
+```python
+import hashlib
+import hmac
+
+def verify(secret: bytes, body: bytes, signature: str) -> bool:
+  expected = "sha256=" + hmac.new(secret, body, hashlib.sha256).hexdigest()
+  return hmac.compare_digest(expected, signature)
+```
+
 ## Event selection
 
 Events are grouped into domains that follow the areas of Plakar Control Plane.
