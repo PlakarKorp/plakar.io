@@ -3,7 +3,7 @@ title: "Backing up VMware for free with Plakar OSS"
 slug: "backing-up-vmware-with-plakar-oss"
 date: 2026-10-08T10:00:00+0100
 authors:
-  - "victor"
+  - "paul"
 summary:
   "Plakar's VMware integration, previously only in the Plakar Control Plane, is
   now available in Plakar OSS: free for registered Plakar users, with encrypted,
@@ -39,31 +39,18 @@ plakar login -github
 plakar pkg add vmware
 plakar source add myvm vmware://<instance-uuid> \
   vsphere_server=vcenter.example.com \
-  vsphere_datacenter=Datacenter \
+  vsphere_datacenter=datacenter-moref \
   vsphere_username=<username> \
   vsphere_password=<password>
 plakar at /var/backups create
 plakar at /var/backups backup "@myvm"
 ```
 
-Each source is one VM, and you find its instance UUID with a tool like govc. There is one protocol, `vmware`, and it reads the disks in `nbd` transport mode by default. See the [VMware integration docs](/docs/community/main/integrations/vmware/), the [guide to logging in to Plakar](/docs/community/main/guides/logging-in-to-plakar/), and the [guide to managing packages](/docs/community/main/guides/managing-packages/).
+Each source is one VM, and you find its instance UUID with a tool like govc, make sure to pick the vCenter UUID. There is one protocol, `vmware`, and it reads the disks in `nbd` transport mode by default. See the [VMware integration docs](/docs/community/main/integrations/vmware/), the [guide to logging in to Plakar](/docs/community/main/guides/logging-in-to-plakar/), and the [guide to managing packages](/docs/community/main/guides/managing-packages/).
 
 ## Two ways to read the disks
 
 Plakar can read the disks in two ways, set with the `transport_mode` option. The default is `nbd`: Plakar reads the raw disk from the ESXi host. The alternative is `nfchttp`: vSphere exports each disk as a compressed, stream-optimized VMDK file that travels over your production network, and it only needs network access to your vCenter. Pick the transport that fits your network.
-
-Default (`nbd`), same commands as above:
-
-```bash
-plakar source add myvm vmware://<instance-uuid> \
-  vsphere_server=vcenter.example.com \
-  vsphere_datacenter=Datacenter \
-  vsphere_username=<username> \
-  vsphere_password=<password>
-plakar at /var/backups backup "@myvm"
-```
-
-<!-- TODO: add the `nfchttp` source add command once Paul confirms the option name (transport_mode=nfchttp?). -->
 
 ## How it works
 
