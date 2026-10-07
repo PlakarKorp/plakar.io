@@ -91,4 +91,6 @@ Your VMware backups can live in the same kind of store as the rest of your Plaka
 
 ## Try it
 
-Back up VMware with an open source backup tool. Install the integration, back up a VM, and tell us what breaks. Questions or war stories? Come and say hi on [Discord](https://discord.gg/uuegtnF2Q5). If you want to build an integration of your own, start from the [integration example repo](https://github.com/PlakarKorp/integration-example).
+Back up VMware with an open source backup tool. Install the integration, back up a VM, and tell us what breaks. Questions or war stories? Come and say hi on [Discord](https://discord.gg/uuegtnF2Q5).
+
+New to Plakar? [Download it](/download/) for macOS, FreeBSD, Alpine, Debian, other Linux distributions, Windows and more.
