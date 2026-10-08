@@ -1,7 +1,7 @@
 ---
 title: "Backing up VMware for free with Plakar OSS"
 slug: "backing-up-vmware-with-plakar-oss"
-date: 2026-10-08T10:00:00+0100
+date: "2026-10-08T00:00:00Z"
 authors:
   - "paul"
 summary:
