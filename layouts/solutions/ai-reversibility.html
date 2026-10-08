@@ -1,0 +1,159 @@
+{{ define "main" }}
+
+{{/* Built on documented building blocks: minute-level and one-off scheduling, API-driven tasks (Ansible backup
+     module, user schedulers, API Automation role), deduplication, diff, mount, granular restore, and legal hold.
+     Not documented yet, so not claimed: MCP, and snapshots triggered by agent events. owner: victor@plakar.io */}}
+
+<!-- SECTION: hero -->
+<section class="section-light-2 grid-background pt-38 pb-20 relative overflow-hidden">
+  <div class="absolute top-0 right-0 p-64 bg-primary-900/10 rounded-full blur-[120px] pointer-events-none"></div>
+  <div class="max-w-350 mx-auto px-4 flex flex-col items-center text-center gap-8 relative z-10">
+    <div class="max-w-5xl flex flex-col gap-4">
+      <h2 class="text-primary-600 font-mono text-sm font-bold uppercase tracking-widest">AI reversibility</h2>
+      <h1 class="font-medium text-4xl lg:text-6xl text-neutral-900 leading-tighter">
+        Let agents move fast.<br/>
+        <span class="text-primary-500">Keep the undo button.</span>
+      </h1>
+    </div>
+    <p class="max-w-2xl text-neutral-600 text-lg lg:text-xl">
+      AI agents now write code, change infrastructure, and touch production data. Frequent, deduplicated snapshots give you a known-good state to compare against and restore when an agent gets it wrong.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 mt-2 items-center">
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "Start free" "labelShort" "Start free" "href" "/docs/control-plane/intro/installation/" "icon" "ri/flashlight-line"
+      ) }}
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "Book a demo" "labelShort" "Demo" "class" "book-a-demo-modal-open" "icon" "ri/calendar-event-line"
+        "bgColor" "bg-white" "bgHoverColor" "bg-neutral-100" "textColor" "text-neutral-900" "textHoverColor" "text-neutral-900" "border" "border" "borderColor" "border-neutral-300"
+      ) }}
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: problem -->
+<section class="section-dark-1 py-14 lg:py-24 border-y border-neutral-800 relative overflow-hidden">
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-150 h-75 bg-primary-900/20 blur-[100px] rounded-full pointer-events-none"></div>
+  <div class="max-w-350 mx-auto px-4 relative z-10 flex flex-col gap-12">
+    <div class="text-center max-w-3xl mx-auto space-y-4">
+      <h2 class="text-primary-500 font-mono text-sm font-bold uppercase tracking-widest">The problem</h2>
+      <p class="font-medium text-3xl lg:text-5xl text-white leading-tighter">Agents act faster than anyone can review.</p>
+      <p class="text-lg text-neutral-400">Giving an agent write access is a bet that it will not make a mistake. Reversibility is how you stop betting.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {{ range (slice
+        (dict "icon" "ri/cpu-line" "title" "Mistakes at machine speed" "body" "An agent with write access can drop a table, overwrite a bucket, or misapply a migration in seconds, often across many resources at once.")
+        (dict "icon" "ri/time-line" "title" "Nightly backups are too coarse" "body" "When agents change things every few minutes, a nightly backup loses everything between the last copy and the mistake.")
+        (dict "icon" "ri/search-line" "title" "What exactly changed?" "body" "Without a precise before and after, teams spend hours working out what the agent touched before they can fix it.")
+      ) }}
+        <div class="bg-neutral-800/50 border border-neutral-700 p-6 rounded-xl flex flex-col gap-4">
+          <div class="w-10 h-10 p-2 bg-neutral-900 rounded-lg flex items-center justify-center text-primary-400 border border-neutral-700">{{ partial "icon.html" .icon }}</div>
+          <h3 class="text-white font-bold text-lg">{{ .title }}</h3>
+          <p class="text-neutral-400 text-sm leading-relaxed">{{ .body }}</p>
+        </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: how-it-works -->
+<section class="section-light-1 grid-background py-14 lg:py-28">
+  <div class="max-w-350 mx-auto px-4 flex flex-col gap-12">
+    <div class="text-center max-w-3xl mx-auto space-y-4">
+      <h2 class="text-primary-600 font-mono text-sm font-bold uppercase tracking-widest">How it works</h2>
+      <p class="font-medium text-3xl lg:text-5xl text-neutral-900 leading-tighter">Snapshot, compare, roll back.</p>
+      <p class="text-lg text-neutral-600">A safety net that keeps pace with the agents it protects.</p>
+    </div>
+    <ol class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {{ range $i, $s := (slice
+        (dict "icon" "ri/calendar-event-line" "title" "Snapshot often" "body" "Schedule snapshots every few minutes, or trigger one on demand from the console or through the API, for example with the Ansible backup module, right before an agent runs a risky task.")
+        (dict "icon" "ri/stack-line" "title" "Store only what changed" "body" "Content-defined chunking and encrypted deduplication store only new chunks, so frequent snapshots stay cheap. Each one is still complete and independent.")
+        (dict "icon" "ri/git-merge-line" "title" "See what changed" "body" "Diff two snapshots to see exactly which files and lines were modified, or mount a snapshot read-only to inspect it.")
+        (dict "icon" "ri/arrow-go-back-line" "title" "Roll back precisely" "body" "Restore a single file, a directory, or a whole resource, to its original location or a separate one, without touching the rest.")
+      ) }}
+        <li class="bg-white border border-neutral-200 p-6 rounded-2xl flex flex-col gap-4 shadow-sm">
+          <div class="flex items-center justify-between">
+            <div class="w-11 h-11 p-1.5 bg-primary-50 text-primary-600 rounded-lg flex items-center justify-center">{{ partial "icon.html" $s.icon }}</div>
+            <span class="font-mono text-sm font-bold text-neutral-300">0{{ add $i 1 }}</span>
+          </div>
+          <h3 class="font-bold text-lg text-neutral-900">{{ $s.title }}</h3>
+          <p class="text-neutral-600 text-sm">{{ $s.body }}</p>
+        </li>
+      {{ end }}
+    </ol>
+  </div>
+</section>
+
+<!-- SECTION: proof -->
+<section class="section-dark-1 py-14 lg:py-20 relative overflow-hidden">
+  <div class="max-w-350 mx-auto px-4 relative z-10 grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 items-center">
+    <div class="space-y-3 max-w-2xl">
+      <h2 class="text-primary-500 font-mono text-sm font-bold uppercase tracking-widest">Why frequent snapshots stay affordable</h2>
+      <p class="font-medium text-2xl lg:text-4xl text-white leading-tighter">Twelve monthly Wikipedia dumps: about 1.35 TB of data, 463 GB on disk.</p>
+      <p class="text-neutral-400">Encrypted deduplication stores what is new and nothing else, so taking snapshots more often costs far less than it sounds.</p>
+    </div>
+    <a href="/posts/2026-05-22/backing-up-12-months-of-wikipedia-with-plakar/" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg border border-neutral-600 bg-white/5 text-white font-medium hover:bg-white/10 transition-colors justify-self-start">
+      Read the benchmark <span class="w-4 h-4">{{ partial "icon.html" "ri/arrow-right-line" }}</span>
+    </a>
+  </div>
+</section>
+
+<!-- SECTION: features -->
+<section class="section-light-2 py-14 lg:py-28">
+  <div class="max-w-350 mx-auto px-4 flex flex-col gap-12">
+    <div class="text-center max-w-3xl mx-auto space-y-4">
+      <h2 class="text-primary-600 font-mono text-sm font-bold uppercase tracking-widest">What you get</h2>
+      <p class="font-medium text-3xl lg:text-5xl text-neutral-900 leading-tighter">The building blocks of an undo button.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {{ range (slice
+        (dict "icon" "ri/time-line" "title" "Minute-level schedules" "body" "Custom recurrence in days, hours, or minutes." "href" "/docs/control-plane/scheduling/manual-scheduler/")
+        (dict "icon" "ri/flashlight-line" "title" "On-demand snapshots" "body" "Run a backup right before a risky change, from the console or the API." "href" "/docs/control-plane/scheduling/one-off-tasks/")
+        (dict "icon" "ri/user-line" "title" "Scoped automation keys" "body" "Give pipelines and agents an API key that can run tasks, never change settings." "href" "/docs/control-plane/administration/permissions/api-automation/")
+        (dict "icon" "ri/stack-line" "title" "Encrypted deduplication" "body" "Only new chunks are stored, every snapshot stays complete." "href" "/docs/community/v1.1.0/explanations/how-plakar-works/")
+        (dict "icon" "ri/git-merge-line" "title" "Snapshot diff" "body" "A unified diff between two snapshots or two files." "href" "/docs/community/v1.1.0/references/commands/plakar-diff/")
+        (dict "icon" "ri/folder-2-line" "title" "Read-only mount" "body" "Inspect any snapshot before you restore it." "href" "/docs/community/v1.1.0/references/commands/plakar-mount/")
+        (dict "icon" "ri/arrow-go-back-line" "title" "Granular restore" "body" "A file, a directory, or a whole resource." "href" "/docs/community/v1.1.0/references/commands/plakar-restore/")
+        (dict "icon" "ri/file-lock-line" "title" "Legal hold" "body" "Keep the last known-good restore point from being pruned while you investigate." "href" "/docs/control-plane/compliance/legal-hold/")
+      ) }}
+        <article class="bg-white border border-neutral-200 p-6 rounded-2xl flex flex-col gap-3 shadow-sm hover:border-primary-300 transition-colors">
+          <div class="w-11 h-11 p-1.5 bg-primary-50 text-primary-600 rounded-lg flex items-center justify-center">{{ partial "icon.html" .icon }}</div>
+          <h3 class="font-bold text-lg text-neutral-900">{{ .title }}</h3>
+          <p class="text-neutral-600 text-sm flex-1">{{ .body }}</p>
+          <a href="{{ .href }}" class="inline-flex items-center gap-1.5 text-primary-600 font-semibold text-sm hover:text-primary-700 transition-colors">
+            Learn more <span class="w-4 h-4">{{ partial "icon.html" "ri/arrow-right-line" }}</span>
+          </a>
+        </article>
+      {{ end }}
+    </div>
+    <div class="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm">
+      <span class="font-mono text-xs uppercase tracking-widest text-neutral-500 font-bold">Further reading</span>
+      <a href="/posts/2025-07-11/introducing-go-cdc-chunkers-chunk-and-deduplicate-everything/" class="text-primary-600 font-semibold hover:text-primary-700">Chunk and deduplicate everything</a>
+      <a href="/posts/2026-06-16/plakar-v1.1.3-is-here/" class="text-primary-600 font-semibold hover:text-primary-700">Plakar v1.1.3: faster restores</a>
+    </div>
+  </div>
+</section>
+
+{{ partial "components/common/use-cases-related.html" (dict "current" "/solutions/ai-reversibility/") }}
+
+<!-- SECTION: final-cta -->
+<section class="section-light-1 py-20 border-t border-neutral-200">
+  <div class="max-w-350 mx-auto px-4 flex flex-col items-center text-center gap-8">
+    <div class="flex flex-col gap-4 max-w-3xl mx-auto">
+      <h2 class="text-primary-600 font-mono text-sm font-bold uppercase tracking-widest">Get started</h2>
+      <p class="font-medium text-3xl lg:text-5xl text-neutral-900 leading-tighter">Give your agents a safety net.</p>
+      <p class="text-neutral-600 text-lg">Start on the free plan, or design your rollback strategy with our team.</p>
+    </div>
+    <div class="flex flex-col sm:flex-row gap-4 items-center">
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "Start free" "labelShort" "Start free" "href" "/docs/control-plane/intro/installation/" "icon" "ri/flashlight-line"
+      ) }}
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "Book a demo" "labelShort" "Demo" "class" "book-a-demo-modal-open" "icon" "ri/calendar-event-line"
+        "bgColor" "bg-white" "bgHoverColor" "bg-neutral-100" "textColor" "text-neutral-900" "textHoverColor" "text-neutral-900" "border" "border" "borderColor" "border-neutral-300"
+      ) }}
+    </div>
+    <p class="text-neutral-500 text-sm">See how it fits together on the <a href="/solutions/control-plane/" class="text-primary-600 font-semibold hover:text-primary-700">Control Plane</a> page.</p>
+  </div>
+</section>
+
+{{ end }}
