@@ -36,11 +36,6 @@ tutorials related to Plakar and supported platforms.
 - [Managing API Applications and Credentials](https://www.plakar.io/docs/control-plane/guides/ovhcloud/api-keys/index.md): How to generate OVHcloud API credentials for use with Plakar Control Plane.
 
 
-## [VMware](https://www.plakar.io/docs/control-plane/guides/vmware/index.md)
-
-- [Setting up an NBD Server for VMware Backups](https://www.plakar.io/docs/control-plane/guides/vmware/nbd-server-setup/index.md): Learn how to deploy an NBD server backed by VMware VDDK on a plain compute instance, so Plakar Control Plane can back up and restore VMware resources over TLS.
-
-
 ## [Windows](https://www.plakar.io/docs/control-plane/guides/windows/index.md)
 
 - [Setting Up OpenSSH Server](https://www.plakar.io/docs/control-plane/guides/windows/windows-openssh-setup/index.md): Learn how to install, configure, and authorize OpenSSH Server on a Windows host so Plakar Control Plane can connect to it over SSH.

@@ -70,7 +70,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-07-17T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-10-08T10:19:53+03:00">
+    <meta property="article:modified_time" content="2026-10-08T13:28:37+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -237,12 +237,12 @@
     "dateCreated": "2026-07-17T00:00:00\u002b00:00",
     "datePublished": "2026-07-17T00:00:00\u002b00:00",
     
-    "dateModified": "2026-10-08T10:19:53\u002b03:00",
+    "dateModified": "2026-10-08T13:28:37\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/resources/compute/vmware/",
-    "wordCount": "1034"
+    "wordCount": "603"
   }]
   </script>
 
@@ -3206,8 +3206,6 @@
   
     
   
-    
-  
   
 
   
@@ -3514,77 +3512,6 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         Managing API Applications and Credentials
-      </a>
-    
-  
-
-  
-    </div>
-  
-
-
-          </div>
-        </div>
-
-      
-
-    
-  
-    
-    
-      
-      
-
-      
-        <div class="sidebar-accordion ">
-          <div class="flex items-center rounded-lg hover:bg-neutral-100 ">
-            <a href="/docs/control-plane/guides/vmware/"
-               class="flex-1 px-2 py-1.5 font-medium text-neutral-700 hover:text-primary-500
-               ">
-              VMware
-            </a>
-            <button class="sidebar-accordion-btn px-2 py-1.5 shrink-0 text-neutral-400 hover:text-neutral-700">
-              <span class="sidebar-accordion-chevron w-4 h-4 flex items-center justify-center transition-transform duration-200 ">
-                <span class="relative block icon"><svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 20 20"
-  fill="currentColor"
-  aria-hidden="true"
->
-  <path
-    fill-rule="evenodd"
-    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-    clip-rule="evenodd"
-  />
-</svg>
-</span>
-              </span>
-            </button>
-          </div>
-          <div class="sidebar-accordion-content hidden">
-            
-  
-  
-  
-  
-
-  
-  
-    
-  
-  
-
-  
-    <div class="border-l border-neutral-200 ml-3 pl-1 flex flex-col gap-0.5">
-  
-
-  
-    
-    
-      <a href="/docs/control-plane/guides/vmware/nbd-server-setup/"
-         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
-         ">
-        Setting up an NBD Server for VMware Backups
       </a>
     
   
@@ -7063,8 +6990,6 @@
   
     
   
-    
-  
   
 
   
@@ -7371,77 +7296,6 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         Managing API Applications and Credentials
-      </a>
-    
-  
-
-  
-    </div>
-  
-
-
-          </div>
-        </div>
-
-      
-
-    
-  
-    
-    
-      
-      
-
-      
-        <div class="sidebar-accordion ">
-          <div class="flex items-center rounded-lg hover:bg-neutral-100 ">
-            <a href="/docs/control-plane/guides/vmware/"
-               class="flex-1 px-2 py-1.5 font-medium text-neutral-700 hover:text-primary-500
-               ">
-              VMware
-            </a>
-            <button class="sidebar-accordion-btn px-2 py-1.5 shrink-0 text-neutral-400 hover:text-neutral-700">
-              <span class="sidebar-accordion-chevron w-4 h-4 flex items-center justify-center transition-transform duration-200 ">
-                <span class="relative block icon"><svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 20 20"
-  fill="currentColor"
-  aria-hidden="true"
->
-  <path
-    fill-rule="evenodd"
-    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-    clip-rule="evenodd"
-  />
-</svg>
-</span>
-              </span>
-            </button>
-          </div>
-          <div class="sidebar-accordion-content hidden">
-            
-  
-  
-  
-  
-
-  
-  
-    
-  
-  
-
-  
-    <div class="border-l border-neutral-200 ml-3 pl-1 flex flex-col gap-0.5">
-  
-
-  
-    
-    
-      <a href="/docs/control-plane/guides/vmware/nbd-server-setup/"
-         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
-         ">
-        Setting up an NBD Server for VMware Backups
       </a>
     
   
@@ -8297,16 +8151,17 @@
     </button>
   
 </h1>
-<p>The VMware integration allows Plakar Control Plane to discover, back up, and
-restore virtual machines managed by VMware vSphere. VMware integration supports
-multiple protocols.</p>
+<p>The VMware integration allows Plakar Control Plane to back up and restore
+virtual machines managed by VMware vSphere. Plakar connects to vCenter through
+the vSphere API to drive each operation, and transfers virtual machine disks
+directly from vSphere without requiring any additional infrastructure.</p>
 
 
-<h2 id="1-vmware-protocol" class="group pr-8">1. <code>vmware</code> protocol
+<h2 id="inventory-management" class="group pr-8">Inventory Management
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="1-vmware-protocol"
+      data-anchor="inventory-management"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -8317,11 +8172,11 @@ multiple protocols.</p>
     </button>
   
 </h2>
-<p>The <code>vmware</code> protocol transfers virtual machine disk data over HTTPS using the
-vSphere API. It supports both backup and restore operations without requiring
-any additional infrastructure.</p>
-<p>This is the simplest protocol to deploy, but throughput is typically limited to
-around <strong>30 MB/s</strong>.</p>
+<p>Virtual machines are discovered by the
+<a href="/docs/control-plane/infrastructure/inventories/vmware/" >VMware inventory</a>, which connects to a
+vCenter Server and loads its compute instances each time it synchronizes.
+Resources in a VMware inventory are managed by the inventory and cannot be
+created or deleted manually.</p>
 
 
 <h4 id="backup-flow" class="group pr-8">Backup flow
@@ -8356,7 +8211,7 @@ flowchart TD
 
   Source -->|"vSphere API over HTTPS"| VCenter
   VCenter --> VM
-  VM -->|"disk data transfer"| Source
+  VM -->|"Disk data: nbd or nfchttp"| Source
   Source --> Backup
   Backup --> Store
 </pre>
@@ -8405,7 +8260,50 @@ flowchart TD
 <!-- prettier-ignore-end -->
 
 
-<h3 id="shared-configuration" class="group pr-8">Shared configuration
+<h2 id="transport-modes" class="group pr-8">Transport modes
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="transport-modes"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>A source app transfers disks in one of two modes, and the mode decides the
+format the disks are stored in.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Mode</th>
+          <th>Disk format</th>
+          <th>Transfer</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>nbd</code></td>
+          <td>Raw disk contents</td>
+          <td>Streamed over the ESXi NFC socket.</td>
+      </tr>
+      <tr>
+          <td><code>nfchttp</code></td>
+          <td>Stream-optimized VMDK</td>
+          <td>Downloaded over vCenter HTTP NFC.</td>
+      </tr>
+  </tbody>
+</table>
+<p><code>nbd</code> is the default. It replaces the former <code>vmware+nbd</code> protocol, and no
+longer needs a separate NBD server. <code>nfchttp</code> produces the stream-optimized VMDK
+files earlier versions of the integration produced.</p>
+
+
+<h2 id="shared-configuration" class="group pr-8">Shared configuration
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
@@ -8419,17 +8317,21 @@ flowchart TD
 </span></span>
     </button>
   
-</h3>
+</h2>
 <p>The following settings are available when configuring both source and
-destination apps using the <code>vmware</code> protocol.</p>
+destination apps.</p>
 <ul>
+<li><strong>vSphere Server</strong>: Required. The hostname or IP address of the vCenter Server
+or ESXi host.</li>
+<li><strong>vSphere Datacenter</strong>: Required. The vSphere datacenter that holds the
+virtual machine.</li>
+<li><strong>vSphere Username</strong>: Required. The username used to authenticate with the
+vCenter Server or ESXi host.</li>
 <li><strong>vSphere Password</strong>: Required. The password for the vSphere account.</li>
 <li><strong>vSphere TLS CA Bundle</strong>: The CA certificate bundle used to verify the
 vCenter Server or ESXi TLS certificate.</li>
 <li><strong>vSphere TLS Skip Verify</strong>: Skip TLS certificate verification when connecting
-to the vCenter Server or ESXi host.</li>
-<li><strong>vSphere Username</strong>: Required. The username used to authenticate with the
-vCenter Server or ESXi host.</li>
+to the vCenter Server or ESXi host. Defaults to <code>false</code>.</li>
 </ul>
 <details
       class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
@@ -8462,7 +8364,7 @@ read or alter virtual machine disks in transit. Prefer setting <strong>vSphere T
 CA Bundle</strong> for self-signed certificates. The same applies to <strong>NSX Skip
 Verify</strong> for the NSX manager. Never skip verification in production.</p></div></details>
 
-<h3 id="source-configuration" class="group pr-8">Source configuration
+<h2 id="source-configuration" class="group pr-8">Source configuration
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
@@ -8476,18 +8378,18 @@ Verify</strong> for the NSX manager. Never skip verification in production.</p><
 </span></span>
     </button>
   
-</h3>
-<p>The following extra settings are available when configuring a source app using
-the <code>vmware</code> protocol. When an NSX manager is configured, the backup also
-includes the NSX configuration.</p>
+</h2>
+<p>The following extra settings are available when configuring a source app.</p>
 <ul>
-<li><strong>NSX Password</strong>: The password for the NSX account. Defaults to <strong>vSphere
-Password</strong> when omitted.</li>
-<li><strong>NSX Skip Verify</strong>: Skip TLS certificate verification when connecting to the
-NSX manager.</li>
+<li><strong>Transport Mode</strong>: How disks are transferred and stored, either <code>nbd</code> or
+<code>nfchttp</code>. Defaults to <code>nbd</code>. See <a href="/docs/control-plane/resources/compute/vmware/#transport-modes" >Transport modes</a>.</li>
 <li><strong>NSX URL</strong>: The NSX manager endpoint address.</li>
 <li><strong>NSX Username</strong>: The username used to authenticate with the NSX manager.
 Defaults to <strong>vSphere Username</strong> when omitted.</li>
+<li><strong>NSX Password</strong>: The password for the NSX account. Defaults to <strong>vSphere
+Password</strong> when omitted.</li>
+<li><strong>NSX Skip Verify</strong>: Skip TLS certificate verification when connecting to the
+NSX manager. Defaults to <code>false</code>.</li>
 </ul>
 <div class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm" data-type="note">
       <div class="flex items-center gap-2 font-semibold text-inherit">
@@ -8496,9 +8398,10 @@ Defaults to <strong>vSphere Username</strong> when omitted.</li>
         <div class="grow">
           Note
         </div>
-      </div><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Plakar Control Plane cannot currently restore NSX configuration.</p></div></div>
+      </div><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>NSX configuration is backed up only when <strong>NSX URL</strong> is set. Plakar Control
+Plane does not restore NSX configurations.</p></div></div>
 
-<h3 id="destination-configuration" class="group pr-8">Destination configuration
+<h2 id="destination-configuration" class="group pr-8">Destination configuration
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
@@ -8512,9 +8415,8 @@ Defaults to <strong>vSphere Username</strong> when omitted.</li>
 </span></span>
     </button>
   
-</h3>
-<p>The following extra settings are available when configuring a destination app
-using the <code>vmware</code> protocol.</p>
+</h2>
+<p>The following extra settings are available when configuring a destination app.</p>
 <ul>
 <li><strong>Network Adapter Restore Mode</strong>: How network adapters on the restored virtual
 machine are handled. One of <code>preserve</code>, <code>disconnected</code> or <code>remove</code>. Defaults
@@ -8523,244 +8425,6 @@ to <code>preserve</code>.</li>
 group. Required when Network Adapter Restore Mode is <code>disconnected</code>.</li>
 <li><strong>Tmp Dir</strong>: The temporary directory used by VDDK and NBDKit during restore
 operations. Defaults to <code>/home/plakar/tmp</code>.</li>
-</ul>
-
-
-<h2 id="2-vmwarenbd-protocol" class="group pr-8">2. <code>vmware+nbd</code> protocol
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="2-vmwarenbd-protocol"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h2>
-<p>The <code>vmware+nbd</code> protocol transfers virtual machine disk data through a
-dedicated NBD server running <code>nbdkit</code> with the VDDK plugin, connected to over
-TLS. It supports both backup and restore operations, and is significantly faster
-than the <code>vmware</code> protocol, but requires setting up an NBD server first. See
-<a href="../../../guides/vmware/nbd-server-setup" >Setting up an NBD Server for VMware Backups</a>
-for instructions.</p>
-
-
-<h4 id="backup-flow-1" class="group pr-8">Backup flow
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="backup-flow-1"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h4>
-<!-- prettier-ignore-start -->
-<pre class="not-prose mermaid">
-flowchart TD
-  subgraph VMware["VMware vSphere"]
-    VCenter["vCenter / ESXi"]
-    VM["Virtual Machine"]
-  end
-
-  subgraph NBDServer["NBD Server"]
-    Nbdkit["nbdkit + VDDK plugin"]
-  end
-
-  subgraph Plakar["Plakar Control Plane"]
-    Source["VMware Compute<br/>Source app"]
-    Backup["Backup process<br/>Encrypt & deduplicate"]
-  end
-
-  Store["Kloset Store"]
-
-  Source -->|"SSH: orchestration"| Nbdkit
-  Nbdkit -->|"VDDK API"| VCenter
-  VCenter --> VM
-  Nbdkit -->|"NBD over TLS: disk bytes"| Source
-  Source --> Backup
-  Backup --> Store
-</pre>
-
-<!-- prettier-ignore-end -->
-
-
-<h4 id="restore-flow-1" class="group pr-8">Restore flow
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="restore-flow-1"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h4>
-<!-- prettier-ignore-start -->
-<pre class="not-prose mermaid">
-flowchart TD
-  Store["Kloset Store"]
-
-  subgraph Plakar["Plakar Control Plane"]
-    Destination["VMware Compute<br/>Destination app"]
-    Restore["Restore process"]
-  end
-
-  subgraph NBDServer["NBD Server"]
-    Nbdkit["nbdkit + VDDK plugin"]
-  end
-
-  subgraph VMware["VMware vSphere"]
-    VCenter["vCenter / ESXi"]
-    VM["Restored Virtual Machine"]
-  end
-
-  Store --> Restore
-  Destination --> Restore
-
-  Destination -->|"SSH: orchestration"| Nbdkit
-  Destination -->|"NBD over TLS: disk bytes"| Nbdkit
-  Nbdkit -->|"VDDK API"| VCenter
-  VCenter --> VM
-</pre>
-
-<!-- prettier-ignore-end -->
-
-
-<h3 id="shared-configuration-1" class="group pr-8">Shared configuration
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="shared-configuration-1"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
-<p>The following settings are available when configuring both source and
-destination apps using the <code>vmware+nbd</code> protocol.</p>
-<ul>
-<li><strong>Vsphere Username</strong>: Required. The username used to authenticate with the
-vCenter Server or ESXi host.</li>
-<li><strong>Vsphere Password</strong>: Required. The password for the vSphere account.</li>
-<li><strong>Vsphere Tls Skip Verify</strong>: Skip TLS certificate verification when connecting
-to the vCenter Server or ESXi host.</li>
-<li><strong>Vsphere Tls Ca Bundle</strong>: The CA certificate bundle used to verify the
-vCenter Server or ESXi TLS certificate.</li>
-<li><strong>Nbd Ssh Url</strong>: Required. The SSH URL used to reach the NBD server for
-orchestration, e.g. <code>ssh://&lt;user&gt;@&lt;host&gt;:&lt;port&gt;</code>. This is also the account
-that runs <code>nbdkit</code> on the NBD server: a regular account is sufficient for
-NBD/NBDSSL transport, but <code>root</code> is required if the NBD server is used for
-HotAdd, e.g. <code>ssh://root@&lt;host&gt;:&lt;port&gt;</code>. See
-<a href="../../../guides/vmware/nbd-server-setup#hotadd-and-root-access" >HotAdd and root access</a>
-for details.</li>
-<li><strong>Nbd Ssh Private Key</strong>: Required. The private key used to authenticate over
-SSH with the NBD server.</li>
-<li><strong>Nbd Url</strong>: The TLS NBD URI used for direct disk data transfer, e.g.
-<code>nbds://[&lt;user&gt;:&lt;password&gt;@]&lt;host&gt;:&lt;port&gt;</code>. Defaults to the host of Nbd Ssh
-Url when omitted. Credentials in the URI default to Vsphere Username / Vsphere
-Password when omitted.</li>
-<li><strong>Nbd Tls Ca Bundle</strong>: Required. The PEM CA bundle used by the client to
-verify the NBD server&rsquo;s TLS certificate.</li>
-<li><strong>Nbd Tls Skip Verify</strong>: Skip TLS certificate verification for the direct NBD
-connection.</li>
-</ul>
-<details
-      class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
-      data-type="warning"
-      open>
-      <summary class="flex items-center gap-2 font-semibold text-inherit cursor-pointer">
-        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"/></svg>
-</span></div>
-        <div class="grow">
-          TLS Certificate Verification
-        </div>
-        <div
-          class="ms-auto flex h-5 w-5 items-center justify-center transition-transform ease-in-out -rotate-90 group-open:rotate-0 print:hidden"><span class="relative block icon"><svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 20 20"
-  fill="currentColor"
-  aria-hidden="true"
->
-  <path
-    fill-rule="evenodd"
-    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-    clip-rule="evenodd"
-  />
-</svg>
-</span></div>
-      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Enabling <strong>Vsphere Tls Skip Verify</strong> or <strong>Nbd Tls Skip Verify</strong> disables
-certificate verification for the vCenter Server or the NBD server, leaving the
-connection open to man-in-the-middle attacks. An attacker in that position can
-capture the vSphere credentials and read or alter virtual machine disks in
-transit. Prefer setting the matching CA bundle for self-signed certificates.
-Never skip verification in production.</p></div></details>
-
-<h3 id="source-configuration-1" class="group pr-8">Source configuration
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="source-configuration-1"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
-<p>The following extra settings are available when configuring a source app using
-the <code>vmware+nbd</code> protocol.</p>
-<ul>
-<li><strong>Nbd Verbose</strong>: Enable verbose <code>nbdkit</code> logging.</li>
-</ul>
-
-
-<h3 id="destination-configuration-1" class="group pr-8">Destination configuration
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="destination-configuration-1"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
-<p>The following extra settings are available when configuring a destination app
-using the <code>vmware+nbd</code> protocol.</p>
-<ul>
-<li><strong>Network Adapter Restore Mode</strong>: How network adapters on the restored virtual
-machine are handled. One of <code>preserve</code>, <code>disconnected</code> or <code>remove</code>. Defaults
-to <code>preserve</code>.</li>
-<li><strong>Network Recovery Port Group</strong>: A compatible recovery or quarantine port
-group. Required when Network Adapter Restore Mode is <code>disconnected</code>.</li>
-<li><strong>Tmp Dir</strong>: The temporary directory (local file copy) used during restore
-operations. Defaults to <code>/var/lib/plakman/pkgs</code></li>
 </ul>
 
       </article>
@@ -8836,7 +8500,7 @@ operations. Defaults to <code>/var/lib/plakman/pkgs</code></li>
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#1-vmware-protocol">1. vmware protocol</a><ul><ul><li><a href="#backup-flow">Backup flow</a></li><li><a href="#restore-flow">Restore flow</a></li></ul></li><li><a href="#shared-configuration">Shared configuration</a></li><li><a href="#source-configuration">Source configuration</a></li><li><a href="#destination-configuration">Destination configuration</a></li></ul></li><li><a href="#2-vmwarenbd-protocol">2. vmware+nbd protocol</a><ul><ul><li><a href="#backup-flow-1">Backup flow</a></li><li><a href="#restore-flow-1">Restore flow</a></li></ul></li><li><a href="#shared-configuration-1">Shared configuration</a></li><li><a href="#source-configuration-1">Source configuration</a></li><li><a href="#destination-configuration-1">Destination configuration</a></li></ul></li></ul>
+      <ul><li><a href="#inventory-management">Inventory Management</a><ul><ul><li><a href="#backup-flow">Backup flow</a></li><li><a href="#restore-flow">Restore flow</a></li></ul></li></ul></li><li><a href="#transport-modes">Transport modes</a></li><li><a href="#shared-configuration">Shared configuration</a></li><li><a href="#source-configuration">Source configuration</a></li><li><a href="#destination-configuration">Destination configuration</a></li></ul>
     </div>
 
     

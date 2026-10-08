@@ -82,7 +82,6 @@
 - [AWS](https://www.plakar.io/docs/control-plane/guides/aws/index.md): Guides and tutorials for configuring AWS services with Plakar.
 - [Google Cloud](https://www.plakar.io/docs/control-plane/guides/google-cloud/index.md): Guides and tutorials for configuring Google Cloud services with Plakar.
 - [OVHcloud](https://www.plakar.io/docs/control-plane/guides/ovhcloud/index.md): Guides and tutorials for configuring OVHcloud services with Plakar.
-- [VMware](https://www.plakar.io/docs/control-plane/guides/vmware/index.md): Guides and tutorials for configuring VMware services with Plakar.
 - [Windows](https://www.plakar.io/docs/control-plane/guides/windows/index.md): Guides and tutorials for configuring Windows hosts for use with Plakar.
 - [Kubernetes](https://www.plakar.io/docs/control-plane/guides/kubernetes/index.md): Guides and tutorials for using Plakar with Kubernetes.
 - [MTU and Jumbo Frames](https://www.plakar.io/docs/control-plane/guides/mtu-and-jumbo-frames/index.md): Background on Ethernet MTU, jumbo frames, and TCP MSS, and why they matter for control plane deployments.

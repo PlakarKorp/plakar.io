@@ -12,20 +12,10 @@ The integration includes two connectors:
 | **Source connector**      | Back up a virtual machine from vSphere into a Kloset store.    |
 | **Destination connector** | Restore a virtual machine from a Kloset store back to vSphere. |
 
-Both connectors support two protocols. They capture the same data and differ
-only in how disk data is transferred:
-
-| Protocol     | Transfer path                                                    |
-| ------------ | ---------------------------------------------------------------- |
-| `vmware`     | Disk data over HTTPS through the vSphere API.                    |
-| `vmware+nbd` | Disk data over TLS from a dedicated NBD server running `nbdkit`. |
-
 **Requirements**
 
 - A vCenter Server reachable from the machine running Plakar.
 - vSphere credentials for that vCenter Server.
-- For `vmware+nbd`, an NBD server reachable over SSH and TLS. See
-  [Setting up an NBD Server for VMware Backups](/docs/control-plane/guides/vmware/nbd-server-setup).
 
 ## Installation
 
@@ -68,7 +58,19 @@ virtual machine page belongs to the vCenter Server, not to the virtual machine,
 and the UUID reported inside the guest operating system is a different
 identifier. Retrieve the instance UUID with a vSphere API tool such as
 [`govc`](https://github.com/vmware/govmomi/tree/main/govc), where it is exposed
-as the `config.instanceUuid` property of the virtual machine.
+as the `config.instanceUuid` property of the virtual machine. For a virtual
+machine named `myvm` in the `Datacenter` datacenter:
+
+```bash
+$ export GOVC_URL=vcenter.example.com
+$ export GOVC_USERNAME=<username>
+$ export GOVC_PASSWORD=<password>
+$ govc object.collect -s /Datacenter/vm/myvm config.instanceUuid
+421b9d3a-8c2e-4f1a-9b7d-3e5f6a7b8c9d
+```
+
+A virtual machine inside a folder is addressed by its full inventory path, such
+as `/Datacenter/vm/production/myvm`.
 
 ## How a backup works
 
@@ -76,6 +78,20 @@ A backup starts by taking a temporary vSphere snapshot of the virtual machine.
 Plakar reads the disks from that snapshot, so the virtual machine keeps running
 during the backup. Alongside the disks, it stores the configuration needed to
 recreate the virtual machine. The snapshot is removed once the backup completes.
+
+### Transport modes
+
+A backup transfers disks in one of two modes, set with `transport_mode`, and the
+mode decides the format the disks are stored in.
+
+| Mode      | Disk format           | Transfer                           |
+| --------- | --------------------- | ---------------------------------- |
+| `nbd`     | Raw disk contents     | Streamed over the ESXi NFC socket. |
+| `nfchttp` | Stream-optimized VMDK | Downloaded over vCenter HTTP NFC.  |
+
+`nbd` is the default. It replaces the former `vmware+nbd` protocol, and no
+longer needs a separate NBD server. `nfchttp` produces the stream-optimized VMDK
+files earlier versions of the integration produced.
 
 ## How a restore works
 
@@ -92,9 +108,6 @@ existing virtual machine or creates a new one:
   original name, adding a suffix if that name is already in use. The new virtual
   machine is left powered off.
 
-Both modes work with either protocol, using `vmware+nbd://` in place of
-`vmware://`.
-
 ### Network adapters
 
 A virtual machine restored as new is attached to networks in the target
@@ -109,13 +122,9 @@ environment according to `network_adapter_restore_mode`:
   after a ransomware incident.
 - `remove` creates the virtual machine without network adapters.
 
-## 1. `vmware` protocol
+## Data flow
 
-The `vmware` protocol transfers disk data over HTTPS through the vSphere API. It
-requires only network access to vCenter. Throughput is typically limited to
-around 30 MB/s.
-
-#### Backup flow
+### Backup flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -127,7 +136,7 @@ subgraph Source["vSphere"]
   VM --> Snap
 end
 
-Via["vSphere API<br/>over HTTPS"]
+Via["Disk transfer<br/>nbd or nfchttp"]
 
 Plakar["Plakar"]
 
@@ -139,7 +148,7 @@ Snap --> Via --> Plakar --> Transform --> Store
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-#### Restore flow
+### Restore flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -161,10 +170,11 @@ Store --> Plakar --> Transform --> Via --> VM
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
+## Configuration
+
 ### Shared configuration
 
-The following options apply to both source and destination connectors using the
-`vmware` protocol.
+The following options apply to both source and destination connectors.
 
 | Option                    | Required | Description                                                                                           |
 | ------------------------- | -------- | ----------------------------------------------------------------------------------------------------- |
@@ -188,30 +198,27 @@ The following options apply to both source and destination connectors using the
 ### Source configuration
 
 When `nsx_url` is set, the backup also captures the NSX network state of the
-virtual machine from the NSX Manager. NSX capture is only available with the
-`vmware` protocol.
+virtual machine from the NSX Manager.
 
-| Option            | Required | Description                                                 |
-| ----------------- | -------- | ----------------------------------------------------------- |
-| `nsx_url`         | No       | NSX Manager endpoint.                                       |
-| `nsx_username`    | No       | NSX account username. Defaults to `vsphere_username`.       |
-| `nsx_password`    | No       | NSX account password. Defaults to `vsphere_password`.       |
-| `nsx_skip_verify` | No       | Skip NSX TLS certificate verification. Defaults to `false`. |
+| Option            | Required | Description                                                                     |
+| ----------------- | -------- | ------------------------------------------------------------------------------- |
+| `transport_mode`  | No       | `nbd` or `nfchttp`. See [Transport modes](#transport-modes). Defaults to `nbd`. |
+| `nsx_url`         | No       | NSX Manager endpoint.                                                           |
+| `nsx_username`    | No       | NSX account username. Defaults to `vsphere_username`.                           |
+| `nsx_password`    | No       | NSX account password. Defaults to `vsphere_password`.                           |
+| `nsx_skip_verify` | No       | Skip NSX TLS certificate verification. Defaults to `false`.                     |
 
 ### Destination configuration
-
-The following extra options are available to destination connectors using the
-`vmware` protocol.
 
 | Option                         | Required    | Description                                                                                                |
 | ------------------------------ | ----------- | ---------------------------------------------------------------------------------------------------------- |
 | `network_adapter_restore_mode` | No          | `preserve`, `disconnected` or `remove`. See [Network adapters](#network-adapters). Defaults to `preserve`. |
 | `network_recovery_port_group`  | Conditional | Port group used by `network_adapter_restore_mode=disconnected`. Required in that mode.                     |
-| `tmp_dir`                      | No          | Local directory used to stage disk data during the restore.                                                |
+| `tmp_dir`                      | No          | Local directory used to stage disk data during the restore. Defaults to `/home/plakar/tmp`.                |
 
-### Example
+## Examples
 
-Back up a virtual machine:
+Back up a virtual machine as raw disks, the default:
 
 ```bash
 $ plakar source add myvm vmware://421b9d3a-8c2e-4f1a-9b7d-3e5f6a7b8c9d \
@@ -221,6 +228,29 @@ $ plakar source add myvm vmware://421b9d3a-8c2e-4f1a-9b7d-3e5f6a7b8c9d \
   vsphere_password=<password>
 
 $ plakar at /var/backups backup "@myvm"
+```
+
+Back up the same virtual machine as stream-optimized VMDK instead:
+
+```bash
+$ plakar source add myvm-vmdk vmware://421b9d3a-8c2e-4f1a-9b7d-3e5f6a7b8c9d \
+  vsphere_server=vcenter.example.com \
+  vsphere_datacenter=Datacenter \
+  vsphere_username=<username> \
+  vsphere_password=<password> \
+  transport_mode=nfchttp
+```
+
+Restore a snapshot in place onto the virtual machine it was taken from:
+
+```bash
+$ plakar destination add myvm-inplace vmware://421b9d3a-8c2e-4f1a-9b7d-3e5f6a7b8c9d \
+  vsphere_server=vcenter.example.com \
+  vsphere_datacenter=Datacenter \
+  vsphere_username=<username> \
+  vsphere_password=<password>
+
+$ plakar at /var/backups restore -to "@myvm-inplace" <snapshot_id>
 ```
 
 Restore a snapshot as a new virtual machine with its network adapters
@@ -238,157 +268,8 @@ $ plakar destination add myvm-restore vmware://spawn \
 $ plakar at /var/backups restore -to "@myvm-restore" <snapshot_id>
 ```
 
-## 2. `vmware+nbd` protocol
-
-The `vmware+nbd` protocol transfers disk data through an NBD server running
-`nbdkit` with the VMware VDDK plugin. It is used when the throughput of the
-`vmware` protocol is not sufficient, and requires an NBD server set up
-beforehand, as described in
-[Setting up an NBD Server for VMware Backups](/docs/control-plane/guides/vmware/nbd-server-setup).
-
-Plakar reaches the NBD server over SSH to manage `nbdkit`, and over TLS to
-transfer disk data.
-
-#### Backup flow
-
-<!-- prettier-ignore-start -->
-{{< mermaid >}}
-flowchart LR
-
-subgraph Source["vSphere"]
-  VM["Virtual Machine"]
-  Snap["Temporary snapshot"]
-  VM --> Snap
-end
-
-subgraph NBDServer["NBD Server"]
-  Nbdkit["nbdkit + VDDK"]
-end
-
-Plakar["Plakar"]
-
-Transform["Encrypt & deduplicate"]
-
-Store["Kloset Store"]
-
-Plakar -->|"SSH"| Nbdkit
-Snap -->|"VDDK"| Nbdkit
-Nbdkit -->|"NBD over TLS"| Plakar
-Plakar --> Transform --> Store
-{{< /mermaid >}}
-<!-- prettier-ignore-end -->
-
-#### Restore flow
-
-<!-- prettier-ignore-start -->
-{{< mermaid >}}
-flowchart LR
-
-Store["Kloset Store"]
-
-Plakar["Plakar"]
-
-Transform["Decrypt & reconstruct"]
-
-subgraph NBDServer["NBD Server"]
-  Nbdkit["nbdkit + VDDK"]
-end
-
-subgraph Destination["vSphere"]
-  VM["Existing or new<br/>Virtual Machine"]
-end
-
-Store --> Plakar --> Transform
-Transform -->|"SSH"| Nbdkit
-Transform -->|"NBD over TLS"| Nbdkit
-Nbdkit -->|"VDDK"| VM
-{{< /mermaid >}}
-<!-- prettier-ignore-end -->
-
-### Shared configuration
-
-The following options apply to both source and destination connectors using the
-`vmware+nbd` protocol.
-
-| Option                    | Required | Description                                                                                                                                             |
-| ------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `location`                | Yes      | `vmware+nbd://<instance-uuid>`, or `vmware+nbd://spawn` for a destination restoring as a new virtual machine.                                           |
-| `vsphere_server`          | Yes      | Hostname or IP address of the vCenter Server.                                                                                                           |
-| `vsphere_datacenter`      | Yes      | Name of the vSphere datacenter containing the virtual machine.                                                                                          |
-| `vsphere_username`        | Yes      | vSphere account username.                                                                                                                               |
-| `vsphere_password`        | Yes      | vSphere account password.                                                                                                                               |
-| `vsphere_tls_ca_bundle`   | No       | PEM CA certificate used to verify the vCenter TLS certificate.                                                                                          |
-| `vsphere_tls_skip_verify` | No       | Skip vCenter TLS certificate verification. Defaults to `false`.                                                                                         |
-| `nbd_ssh_url`             | Yes      | SSH URL of the NBD server, for example `ssh://<user>@<host>:<port>`. This account runs `nbdkit` on the NBD server.                                      |
-| `nbd_ssh_private_key`     | Yes      | SSH private key used to authenticate to the NBD server.                                                                                                 |
-| `nbd_tls_ca_bundle`       | Yes      | PEM CA bundle used to verify the TLS certificate of the NBD server.                                                                                     |
-| `nbd_url`                 | No       | TLS NBD URI, for example `nbds://[<user>:<password>@]<host>:<port>`. Defaults to the host of `nbd_ssh_url`. Credentials default to the vSphere account. |
-| `nbd_tls_skip_verify`     | No       | Skip TLS certificate verification of the NBD server.                                                                                                    |
-
-> [!WARNING]+ TLS Certificate Verification
->
-> Setting `vsphere_tls_skip_verify=true` or `nbd_tls_skip_verify=true` disables
-> certificate verification for the vCenter Server or the NBD server, leaving the
-> connection open to man-in-the-middle attacks. An attacker in that position can
-> capture the vSphere credentials and read or alter virtual machine disks in
-> transit. Prefer setting `vsphere_tls_ca_bundle` and `nbd_tls_ca_bundle` for
-> self-signed certificates. Never skip verification in production.
-
-### Source configuration
-
-The following extra options are available to source connectors using the
-`vmware+nbd` protocol.
-
-| Option        | Required | Description                      |
-| ------------- | -------- | -------------------------------- |
-| `nbd_verbose` | No       | Enable verbose `nbdkit` logging. |
-
-### Destination configuration
-
-The following extra options are available to destination connectors using the
-`vmware+nbd` protocol.
-
-| Option                         | Required    | Description                                                                                                |
-| ------------------------------ | ----------- | ---------------------------------------------------------------------------------------------------------- |
-| `network_adapter_restore_mode` | No          | `preserve`, `disconnected` or `remove`. See [Network adapters](#network-adapters). Defaults to `preserve`. |
-| `network_recovery_port_group`  | Conditional | Port group used by `network_adapter_restore_mode=disconnected`. Required in that mode.                     |
-| `tmp_dir`                      | No          | Local directory used to stage disk data during the restore.                                                |
-
-### Example
-
-Back up a virtual machine:
-
-```bash
-$ plakar source add myvm-nbd vmware+nbd://421b9d3a-8c2e-4f1a-9b7d-3e5f6a7b8c9d \
-  vsphere_server=vcenter.example.com \
-  vsphere_datacenter=Datacenter \
-  vsphere_username=<username> \
-  vsphere_password=<password> \
-  nbd_ssh_url=ssh://plakar@nbd.example.com \
-  nbd_ssh_private_key="$(cat ~/.ssh/nbd_ed25519)" \
-  nbd_tls_ca_bundle="$(cat ca-cert.pem)"
-
-$ plakar at /var/backups backup "@myvm-nbd"
-```
-
-Restore a snapshot in place onto the virtual machine it was taken from:
-
-```bash
-$ plakar destination add myvm-nbd vmware+nbd://421b9d3a-8c2e-4f1a-9b7d-3e5f6a7b8c9d \
-  vsphere_server=vcenter.example.com \
-  vsphere_datacenter=Datacenter \
-  vsphere_username=<username> \
-  vsphere_password=<password> \
-  nbd_ssh_url=ssh://plakar@nbd.example.com \
-  nbd_ssh_private_key="$(cat ~/.ssh/nbd_ed25519)" \
-  nbd_tls_ca_bundle="$(cat ca-cert.pem)"
-
-$ plakar at /var/backups restore -to "@myvm-nbd" <snapshot_id>
-```
-
 ## See also
 
-- [Setting up an NBD Server for VMware Backups](/docs/control-plane/guides/vmware/nbd-server-setup)
 - [VMware in Plakar Control Plane](/docs/control-plane/resources/compute/vmware)
 - [Managing packages](../../guides/managing-packages)
 
