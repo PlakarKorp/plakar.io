@@ -42,7 +42,7 @@ flowchart TD
 
   Source -->|"vSphere API over HTTPS"| VCenter
   VCenter --> VM
-  VM -->|"NFC: disk data"| Source
+  VM -->|"Disk data: nbd or nfchttp"| Source
   Source --> Backup
   Backup --> Store
 {{< /mermaid >}}

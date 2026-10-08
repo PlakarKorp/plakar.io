@@ -142,7 +142,7 @@ subgraph Source["vSphere"]
   VM --> Snap
 end
 
-Via["NFC<br/>disk transfer"]
+Via["Disk transfer<br/>nbd or nfchttp"]
 
 Plakar["Plakar"]
 
