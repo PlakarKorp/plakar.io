@@ -6,6 +6,7 @@
 
 ## [Plakar Blog](https://www.plakar.io/posts/index.md)
 
+- [Backing up VMware for free with Plakar OSS](https://www.plakar.io/posts/2026-10-08/backing-up-vmware-with-plakar-oss/index.md): Plakar&rsquo;s VMware integration, previously only in the Plakar Control Plane, is now available in Plakar OSS: free for registered Plakar users, with encrypted, deduplicated backups of running VMs stored in an open, portable format.
 - [Resilience as Code, because backup should be Infrastructure.](https://www.plakar.io/posts/2026-09-23/resilience-as-code-kubernetes-operator/index.md): Backup is the last layer of your stack still clicked into a console. The Plakar Kubernetes Operator makes it code: declare resilience as Custom Resources, reconciled from Git, for everything you run.
 - [Agentless VSS and SQL Server backup now available in Plakar](https://www.plakar.io/posts/2026-09-08/agentless-vss-sql-server-backup/index.md): VSS and SQL Server backups are now free for registered Plakar users: agentless over SSH, encrypted and deduplicated into an open, portable Kloset store. The connectors are closed source, built for Control Plane. Active Directory recovery is a Plakar Control Plane capability.
 - [Build a Docs Wayback Machine with Astro](https://www.plakar.io/posts/2026-09-07/docs-wayback-machine/index.md): Serve any past version of your documentation at a URL, decrypted from a Plakar snapshot on demand, with pages, images, and PDFs restored version-correct.
