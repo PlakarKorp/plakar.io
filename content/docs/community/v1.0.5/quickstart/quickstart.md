@@ -8,7 +8,6 @@ summary:
   perform essential backup operations."
 aliases:
   - /docs/v1.0.5/quickstart/quickstart/
-  - /docs/v1.0.5/quickstart/
   - /docs/v1.0.5/quickstart/overview/
   - /docs/v1.0.5/quickstart/installation/
   - /docs/v1.0.5/quickstart/synchronize-copies/

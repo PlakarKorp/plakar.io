@@ -63,7 +63,7 @@ the permissions required to read resources in the Scaleway project you want to
 discover.
 
 For more information on creating IAM applications, policies, and API keys, see
-[Managing IAM Policies and API Keys on Scaleway](../../../guides/scaleway/scaleway-iam-api-keys).
+[Managing IAM Policies and API Keys on Scaleway](../../../guides/scaleway/iam-and-api-keys).
 
 ## Required Permissions
 

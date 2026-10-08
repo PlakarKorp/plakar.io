@@ -99,7 +99,8 @@ extra key-value pairs beyond what an integration prefills.
 
 Each field's value can be entered directly, or you can click **Use secret
 provider** next to that field to source the value from a
-[secret provider](../../secret-providers) instead of storing it as plain text.
+[secret provider](../../infrastructure/secret-providers) instead of storing it
+as plain text.
 
 ## App setup
 
