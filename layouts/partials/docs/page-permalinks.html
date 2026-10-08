@@ -1,0 +1,5 @@
+{{ $s := newScratch }}
+{{ range site.Pages }}
+  {{ $s.SetInMap "paths" .RelPermalink true }}
+{{ end }}
+{{ return $s.Get "paths" }}

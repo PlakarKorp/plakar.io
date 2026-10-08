@@ -57,10 +57,19 @@
         </span>
       </button>
       <div class="version-selector-menu hidden absolute top-full mt-1 w-full bg-neutral-50 border border-neutral-200 rounded-lg z-50 overflow-hidden">
+        {{ $pagePaths := partialCached "docs/page-permalinks.html" . }}
         {{ range $versions }}
           {{ $versionPath := .RelPermalink }}
           {{ $samePage := replace $currentPage.RelPermalink $currentVersion.RelPermalink $versionPath }}
-          <a href="{{ $samePage }}"
+          {{ $target := $versionPath }}
+          {{ $segments := split (strings.Trim $samePage "/") "/" }}
+          {{ range $i := seq (len $segments) }}
+            {{ $candidate := printf "/%s/" (delimit (first $i $segments) "/") }}
+            {{ if and (strings.HasPrefix $candidate $versionPath) (index $pagePaths $candidate) }}
+              {{ $target = $candidate }}
+            {{ end }}
+          {{ end }}
+          <a href="{{ $target }}"
              class="version-selector-option block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500
              {{ if eq .RelPermalink $currentVersion.RelPermalink }}text-primary-500 bg-neutral-100{{ end }}">
             {{ .Title }}
