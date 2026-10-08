@@ -1,0 +1,364 @@
+{{ define "main" }}
+
+{{ $dashboard := resources.Get "img/general/control-plane-dashboard.jpg" }}
+{{ $pierrick := resources.Get "img/general/pierrick-gicquelais.png" }}
+{{ $alan := resources.Get "img/general/alan-logo.png" }}
+
+<!-- SECTION: hero -->
+<section class="section-light-2 grid-background pt-38 pb-20 relative overflow-hidden">
+  <div class="absolute top-0 right-0 p-64 bg-primary-900/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+  <div class="max-w-350 mx-auto px-4 flex flex-col items-center text-center gap-8 relative z-10">
+    <div class="max-w-5xl flex flex-col gap-4">
+      <h2 class="text-primary-600 font-mono text-sm font-bold uppercase tracking-widest">Plakar Control Plane</h2>
+      <h1 class="font-medium text-4xl lg:text-6xl text-neutral-900 leading-tighter">
+        The resilience control plane<br/>
+        <span class="text-primary-500">you actually own.</span>
+      </h1>
+    </div>
+
+    <p class="max-w-2xl text-neutral-600 text-lg lg:text-xl">
+      Centralized, policy-driven backup orchestration across your entire estate.
+      Self-hosted, zero-knowledge, no appliance lock-in.
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-4 mt-2 items-center">
+      {{/* Confirm the "Start free" destination (console signup / free plan) before publish. owner: victor@plakar.io */}}
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "Start free"
+        "labelShort" "Start free"
+        "href" "/docs/control-plane/intro/installation/"
+        "icon" "ri/flashlight-line"
+      ) }}
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "Book a demo"
+        "labelShort" "Demo"
+        "class" "book-a-demo-modal-open"
+        "icon" "ri/calendar-event-line"
+        "bgColor" "bg-white"
+        "bgHoverColor" "bg-neutral-100"
+        "textColor" "text-neutral-900"
+        "textHoverColor" "text-neutral-900"
+        "border" "border"
+        "borderColor" "border-neutral-300"
+      ) }}
+    </div>
+
+    <!-- Big product visual: Plakar Control Plane -->
+    <div class="w-full max-w-5xl mx-auto mt-10">
+      <div class="rounded-xl border border-neutral-200 bg-white/80 backdrop-blur-sm shadow-2xl overflow-hidden">
+        <div class="h-9 bg-neutral-100 border-b border-neutral-200 flex items-center px-4 gap-2">
+          <span class="w-3 h-3 rounded-full bg-red-500/20 border border-red-500/50"></span>
+          <span class="w-3 h-3 rounded-full bg-yellow-500/20 border border-yellow-500/50"></span>
+          <span class="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/50"></span>
+          <span class="ml-4 text-xs font-mono text-neutral-500">Plakar Control Plane</span>
+        </div>
+        <div class="p-2 md:p-3">
+          {{ if $dashboard }}
+            <img src="{{ $dashboard.RelPermalink }}" alt="Plakar Control Plane unified dashboard" class="w-full h-auto rounded" loading="lazy">
+          {{ else }}
+            <div class="landing-ph w-full" style="aspect-ratio:16/9" role="img" aria-label="Placeholder for the Control Plane dashboard screenshot">
+              <span class="landing-ph__tag">Screenshot</span>
+              <span class="landing-ph__label">Unified dashboard</span>
+              <span class="landing-ph__hint">Every backup, every resource, one view</span>
+            </div>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: problem -->
+<section class="section-dark-1 py-14 lg:py-24 border-y border-neutral-800 relative overflow-hidden">
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-150 h-75 bg-primary-900/20 blur-[100px] rounded-full pointer-events-none"></div>
+  <div class="max-w-350 mx-auto px-4 relative z-10 flex flex-col gap-12">
+    <div class="text-center max-w-3xl mx-auto space-y-4">
+      <h2 class="text-primary-500 font-mono text-sm font-bold uppercase tracking-widest">The problem</h2>
+      <p class="font-medium text-3xl lg:text-5xl text-white leading-tighter">Backing up one system is solved. Orchestrating the resilience of the entire estate is the hard part.</p>
+      <p class="text-lg text-neutral-400">Plakar protects any single source. The Control Plane is what makes resilience provable, consistent, and governable across all of them.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-neutral-800/50 border border-neutral-700 p-6 rounded-xl flex flex-col gap-4">
+        <div class="w-10 h-10 p-2 bg-neutral-900 rounded-lg flex items-center justify-center text-primary-400 border border-neutral-700">{{ partial "icon.html" "ri/search-line" }}</div>
+        <h3 class="text-white font-bold text-lg">No single view of the estate</h3>
+        <p class="text-neutral-400 text-sm leading-relaxed">Every host, team, and cloud runs its own backups. Nothing shows what is protected and what is not, so coverage gaps surface only during an incident.</p>
+      </div>
+      <div class="bg-neutral-800/50 border border-neutral-700 p-6 rounded-xl flex flex-col gap-4">
+        <div class="w-10 h-10 p-2 bg-neutral-900 rounded-lg flex items-center justify-center text-primary-400 border border-neutral-700">{{ partial "icon.html" "ri/flow-chart" }}</div>
+        <h3 class="text-white font-bold text-lg">Policy that does not scale by hand</h3>
+        <p class="text-neutral-400 text-sm leading-relaxed">Retention, schedules, and encryption set resource by resource drift the moment the estate grows to hundreds of sources across clouds and clusters.</p>
+      </div>
+      <div class="bg-neutral-800/50 border border-neutral-700 p-6 rounded-xl flex flex-col gap-4">
+        <div class="w-10 h-10 p-2 bg-neutral-900 rounded-lg flex items-center justify-center text-primary-400 border border-neutral-700">{{ partial "icon.html" "ri/shield-keyhole-line" }}</div>
+        <h3 class="text-white font-bold text-lg">Keys and credentials sprawl</h3>
+        <p class="text-neutral-400 text-sm leading-relaxed">Encryption keys and storage credentials end up scattered across scripts, hosts, and CI, with no central, audited place to manage them.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: how-it-works -->
+<section class="section-light-1 grid-background py-14 lg:py-28">
+  <div class="max-w-350 mx-auto px-4 flex flex-col gap-12">
+    <div class="text-center max-w-3xl mx-auto space-y-4">
+      <h2 class="text-primary-600 font-mono text-sm font-bold uppercase tracking-widest">How it works</h2>
+      <p class="font-medium text-3xl lg:text-5xl text-neutral-900 leading-tighter">The Control Plane orchestrates. Your Edges do the work.</p>
+    </div>
+    <div class="max-w-3xl mx-auto w-full">
+      <!-- Architecture diagram (built from the deck architecture, slides 8-9 and 13-14) -->
+      <div class="flex flex-col gap-2" role="img" aria-label="Plakar Control Plane architecture: teams declare and drive resilience from their own tools (the Kubernetes operator, Terraform, Ansible, the API) or the web console; the self-hosted Control Plane orchestrates; Plakar Edges run next to your sources, connect outbound only, and encrypt data at the source; encrypted snapshots land in a Kloset on your storage, never routing through Plakar.">
+        <!-- Tier 0: Resilience as Code, driven from each team's tools -->
+        <div class="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-2">
+          <div class="rounded-xl border border-dashed border-primary-400 bg-white p-4">
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+              <span class="w-6 h-6 text-primary-600">{{ partial "icon.html" "ri/terminal-box-line" }}</span>
+              <span class="font-bold text-neutral-900">Resilience as Code</span>
+              <span class="ml-auto font-mono text-[0.58rem] uppercase tracking-wider text-neutral-500 bg-neutral-100 border border-neutral-200 rounded px-2 py-0.5">Each team, its own tools</span>
+            </div>
+            <div class="flex flex-wrap gap-1.5">
+              {{/* Slide 14 also lists CLI and MCP; add them back once documented. owner: victor@plakar.io */}}
+              {{ range (slice "Kubernetes Operator" "Terraform" "Ansible" "API") }}<span class="inline-flex items-center rounded border border-neutral-200 bg-neutral-50 text-neutral-800 font-mono text-[0.66rem] font-semibold px-2 py-1">{{ . }}</span>{{ end }}
+            </div>
+          </div>
+          <div class="rounded-xl border border-neutral-300 bg-white p-4 flex sm:flex-col items-center sm:justify-center gap-2 text-center">
+            <span class="w-6 h-6 text-primary-600">{{ partial "icon.html" "ri/macbook-line" }}</span>
+            <span class="font-bold text-neutral-900 text-sm">Web console</span>
+            <span class="font-mono text-[0.56rem] uppercase tracking-wider text-neutral-500">No code</span>
+          </div>
+        </div>
+        <!-- connector -->
+        <div class="flex items-center justify-center gap-2 text-neutral-400 text-[0.66rem] font-mono uppercase tracking-wider">
+          <span class="w-px h-4 bg-neutral-300"></span>declare and drive<span class="w-px h-4 bg-neutral-300"></span>
+        </div>
+        <!-- Tier 1: Control Plane -->
+        <div class="rounded-xl border-2 border-primary-500 bg-primary-50 p-5">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="w-6 h-6 text-primary-600">{{ partial "icon.html" "ri/dashboard-3-line" }}</span>
+            <span class="font-bold text-neutral-900">Plakar Control Plane</span>
+            <span class="ml-auto font-mono text-[0.58rem] uppercase tracking-wider text-primary-700 bg-white border border-primary-200 rounded px-2 py-0.5">Management</span>
+          </div>
+          <p class="text-sm text-neutral-600">Policies, scheduling, posture, inventory and permissions. Self-hosted, it orchestrates the estate and hands secrets to Edges only for the duration of a task.</p>
+          <div class="flex flex-wrap gap-1.5 mt-3">
+            {{ range (slice "Inventory" "Multi-tenancy" "Data localization" "Access control" "Data exploration" "Orchestration") }}<span class="inline-flex items-center rounded border border-primary-200 bg-white text-primary-700 text-[0.66rem] font-semibold px-2 py-0.5">{{ . }}</span>{{ end }}
+          </div>
+        </div>
+        <!-- connector -->
+        <div class="flex items-center justify-center gap-2 text-neutral-400 text-[0.66rem] font-mono uppercase tracking-wider">
+          <span class="w-px h-4 bg-neutral-300"></span>orchestrates, outbound only<span class="w-px h-4 bg-neutral-300"></span>
+        </div>
+        <!-- Tier 2: Edges in your environment (horizontal scale) -->
+        <div class="rounded-xl border border-neutral-300 bg-white p-5 shadow-sm">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="w-6 h-6 text-primary-600">{{ partial "icon.html" "ri/share-forward-line" }}</span>
+            <span class="font-bold text-neutral-900">Plakar Edges</span>
+            <span class="ml-auto font-mono text-[0.58rem] uppercase tracking-wider text-neutral-500 bg-neutral-100 border border-neutral-200 rounded px-2 py-0.5">In your environment, no inbound ports</span>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            {{ range (slice "Zone A" "Zone B" "Region EU") }}
+              <div class="rounded-lg border border-primary-200 bg-primary-50/60 p-3 flex flex-col items-center text-center gap-1">
+                <span class="w-5 h-5 text-primary-600">{{ partial "icon.html" "ri/share-forward-line" }}</span>
+                <span class="text-xs font-bold text-neutral-900">Edge</span>
+                <span class="font-mono text-[0.56rem] uppercase tracking-wider text-neutral-500">{{ . }}</span>
+              </div>
+            {{ end }}
+            <div class="rounded-lg border border-dashed border-neutral-300 bg-neutral-50 p-3 flex items-center justify-center text-neutral-400 font-mono text-sm">+ Edge</div>
+          </div>
+          <p class="text-xs text-neutral-600 mt-3">Each Edge sits close to the sources it protects (filesystems, databases, VMs, Kubernetes, SaaS, cloud), then chunks, deduplicates and encrypts at the source. Add Edges across zones and regions to scale horizontally at low cost.</p>
+        </div>
+        <!-- connector -->
+        <div class="flex items-center justify-center gap-2 text-neutral-400 text-[0.66rem] font-mono uppercase tracking-wider">
+          <span class="w-px h-4 bg-neutral-300"></span>encrypted snapshots<span class="w-px h-4 bg-neutral-300"></span>
+        </div>
+        <!-- Tier 3: Kloset on your storage -->
+        <div class="rounded-xl border border-neutral-800 bg-neutral-900 p-5">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="w-6 h-6 text-primary-400">{{ partial "icon.html" "ri/database-2-line" }}</span>
+            <span class="font-bold text-white">Kloset, on your storage</span>
+            <span class="ml-auto font-mono text-[0.58rem] uppercase tracking-wider text-primary-300 bg-white/10 border border-white/15 rounded px-2 py-0.5">Zero plaintext</span>
+          </div>
+          <p class="text-sm text-neutral-400">Deduplicated, compressed, tamper-evident snapshots on the storage you choose. Your data never routes through Plakar.</p>
+        </div>
+      </div>
+      <p class="mt-6 text-center text-neutral-600">Your tools declare. The Control Plane orchestrates. Edges do the work, next to your data. Nothing routes through Plakar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: use-cases -->
+<section class="section-dark-1 py-14 lg:py-28 relative overflow-hidden">
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-150 h-75 bg-primary-900/20 blur-[100px] rounded-full pointer-events-none"></div>
+  <div class="max-w-350 mx-auto px-4 relative z-10 flex flex-col gap-12">
+    <div class="text-center max-w-3xl mx-auto space-y-4">
+      <h2 class="text-primary-500 font-mono text-sm font-bold uppercase tracking-widest">Use cases</h2>
+      <p class="font-medium text-3xl lg:text-5xl text-white leading-tighter">Beyond backup jobs.</p>
+      <p class="text-lg text-neutral-400">Teams reach for the Control Plane to solve problems a backup tool alone cannot.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {{ range (slice
+        (dict "icon" "ri/terminal-box-line" "title" "Resilience as Code" "href" "/solutions/resilience-as-code/" "body" "Each team protects its data with its own tools. Declare stores, sources, and schedules with the Kubernetes operator, Terraform, Ansible, or the API, versioned in Git.")
+        (dict "icon" "ri/global-line" "title" "Strategic autonomy" "href" "/solutions/strategic-autonomy/" "body" "Reclaim control of data hosted by any provider. Keep an encrypted copy outside production, independent of the host, with stronger security, lower cost, and no lock-in.")
+        (dict "icon" "ri/search-line" "title" "Posture management" "href" "/solutions/posture-management/" "body" "A 360 view of what must be protected across clouds and on-prem. Verify coverage against SLAs, surface unprotected resources, and let policies cover new ones automatically.")
+        (dict "icon" "ri/arrow-go-back-line" "title" "AI reversibility" "href" "/solutions/ai-reversibility/" "body" "A safety net for autonomous agents. Frequent, low-cost snapshots on a schedule or through the API before an agent acts, so you can roll back what it changed.")
+      ) }}
+        {{/* Link only once the use-case page exists, so this page can ship before them. */}}
+        {{ $live := site.GetPage (strings.TrimSuffix "/" .href) }}
+        {{ if $live }}<a href="{{ .href }}" class="group bg-neutral-800/50 border border-neutral-700 p-6 rounded-xl flex flex-col gap-4 hover:border-primary-500 transition-colors">{{ else }}<div class="bg-neutral-800/50 border border-neutral-700 p-6 rounded-xl flex flex-col gap-4">{{ end }}
+          <div class="w-10 h-10 p-2 bg-neutral-900 rounded-lg flex items-center justify-center text-primary-400 border border-neutral-700">{{ partial "icon.html" .icon }}</div>
+          <h3 class="text-white font-bold text-lg">{{ .title }}</h3>
+          <p class="text-neutral-400 text-sm leading-relaxed flex-1">{{ .body }}</p>
+          {{ if $live }}<span class="inline-flex items-center gap-1.5 text-primary-400 font-semibold text-sm group-hover:text-primary-300 transition-colors">Learn more <span class="w-4 h-4">{{ partial "icon.html" "ri/arrow-right-line" }}</span></span>{{ end }}
+        {{ if $live }}</a>{{ else }}</div>{{ end }}
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: features -->
+<section class="section-light-2 py-14 lg:py-28">
+  <div class="max-w-350 mx-auto px-4 flex flex-col gap-12">
+    <div class="text-center max-w-3xl mx-auto space-y-4">
+      <h2 class="text-primary-600 font-mono text-sm font-bold uppercase tracking-widest">What you get</h2>
+      <p class="font-medium text-3xl lg:text-5xl text-neutral-900 leading-tighter">One control plane for your entire resilience posture.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {{ range (slice
+        (dict "icon" "ri/dashboard-3-line" "title" "Unified dashboard" "body" "Every backup, every resource, one view." "href" "/docs/control-plane/intro/overview/")
+        (dict "icon" "ri/flow-chart" "title" "Policy-driven orchestration" "body" "Declare retention and schedule once, apply everywhere." "href" "/docs/control-plane/compliance/policies/")
+        (dict "icon" "ri/search-line" "title" "Inventories (auto-discovery)" "body" "Find what is unprotected across clouds and clusters." "href" "/docs/control-plane/infrastructure/inventories/")
+        (dict "icon" "ri/calendar-event-line" "title" "Scheduling" "body" "Managed, one-off, and policy schedulers." "href" "/docs/control-plane/scheduling/")
+        (dict "icon" "ri/team-line" "title" "RBAC + multi-tenancy" "body" "Organizations, quotas, and granular roles." "href" "/docs/control-plane/administration/permissions/")
+        (dict "icon" "ri/shield-keyhole-line" "title" "Secret providers" "body" "Vault, AWS, GCP, Scaleway, OVHcloud." "href" "/docs/control-plane/infrastructure/secret-providers/")
+        (dict "icon" "ri/terminal-box-line" "title" "Infrastructure as code" "body" "Kubernetes operator, Terraform, and Ansible." "href" "/docs/control-plane/infrastructure-as-code/")
+        (dict "icon" "ri/global-line" "title" "Run it anywhere" "body" "Cloud, your hypervisor, or air-gapped edge." "href" "/docs/control-plane/intro/installation/")
+      ) }}
+        <article class="bg-white border border-neutral-200 p-6 rounded-2xl flex flex-col gap-3 shadow-sm hover:border-primary-300 transition-colors">
+          <div class="w-11 h-11 p-1.5 bg-primary-50 text-primary-600 rounded-lg flex items-center justify-center">{{ partial "icon.html" .icon }}</div>
+          <h3 class="font-bold text-lg text-neutral-900">{{ .title }}</h3>
+          <p class="text-neutral-600 text-sm flex-1">{{ .body }}</p>
+          <a href="{{ .href }}" class="inline-flex items-center gap-1.5 text-primary-600 font-semibold text-sm hover:text-primary-700 transition-colors">
+            Learn more <span class="w-4 h-4">{{ partial "icon.html" "ri/arrow-right-line" }}</span>
+          </a>
+        </article>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: for-whom -->
+<section class="section-light-1 py-14 lg:py-28">
+  <div class="max-w-350 mx-auto px-4 flex flex-col gap-12">
+    <div class="text-center max-w-3xl mx-auto space-y-4">
+      <h2 class="text-primary-600 font-mono text-sm font-bold uppercase tracking-widest">Who it's for</h2>
+      <p class="font-medium text-3xl lg:text-5xl text-neutral-900 leading-tighter">Run it, consume it, or deliver it.</p>
+      <p class="text-lg text-neutral-600">Platform teams run resilience as an internal service, application teams consume it on their own, and agencies deliver it to every client.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-white border border-neutral-200 p-8 rounded-2xl flex flex-col gap-4 shadow-sm">
+        <div class="w-11 h-11 p-1.5 bg-primary-50 text-primary-600 rounded-lg flex items-center justify-center">{{ partial "icon.html" "ri/shield-check-line" }}</div>
+        <span class="font-mono text-xs uppercase tracking-widest text-primary-600 font-bold">For the platform and backup team</span>
+        <h3 class="font-bold text-xl text-neutral-900">A new mandate: guarantee the company is protected</h3>
+        <p class="text-neutral-600">Stop running everyone else's backups. Own the coverage rate and the quality of the service, not the day-to-day jobs.</p>
+      </div>
+      <div class="bg-white border border-neutral-200 p-8 rounded-2xl flex flex-col gap-4 shadow-sm">
+        <div class="w-11 h-11 p-1.5 bg-primary-50 text-primary-600 rounded-lg flex items-center justify-center">{{ partial "icon.html" "ri/team-line" }}</div>
+        <span class="font-mono text-xs uppercase tracking-widest text-primary-600 font-bold">For the application teams</span>
+        <h3 class="font-bold text-xl text-neutral-900">A clear view of what is protected, self-service</h3>
+        <p class="text-neutral-600">See exactly what is covered on every app, then back up and restore on your own, with no real operational overhead because Plakar plugs into your existing tools.</p>
+      </div>
+      <div class="bg-white border border-neutral-200 p-8 rounded-2xl flex flex-col gap-4 shadow-sm hover:border-primary-300 transition-colors">
+        <div class="w-11 h-11 p-1.5 bg-primary-50 text-primary-600 rounded-lg flex items-center justify-center">{{ partial "icon.html" "ri/building-line" }}</div>
+        <span class="font-mono text-xs uppercase tracking-widest text-primary-600 font-bold">For DevOps agencies and consultancies</span>
+        <h3 class="font-bold text-xl text-neutral-900">The resilience layer you run for every client</h3>
+        <p class="text-neutral-600 flex-1">Plakar is a natural fit for agencies: protect many clients from one place, each fully isolated, on the storage and tools you already manage, and bill it back.</p>
+        {{ if site.GetPage "/solutions/agencies" }}<a href="/solutions/agencies/" class="inline-flex items-center gap-1.5 text-primary-600 font-semibold text-sm hover:text-primary-700 transition-colors">Plakar for agencies <span class="w-4 h-4">{{ partial "icon.html" "ri/arrow-right-line" }}</span></a>{{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: quote -->
+<section class="section-light-2 py-16 lg:py-24">
+  <div class="max-w-350 mx-auto px-4">
+    <figure class="max-w-3xl mx-auto text-center flex flex-col items-center gap-6">
+      <span class="font-mono text-xs uppercase tracking-widest text-primary-600 font-bold">Proven in production</span>
+      <blockquote class="text-xl lg:text-2xl text-neutral-900 leading-relaxed font-medium">
+        &ldquo;We manage everything as code, with AI across our development workflow, so we wanted resilience orchestrated the same way, on our own schedule. Plakar&rsquo;s deduplication lets us take as many snapshots as we want without the storage bill climbing, and running on infrastructure and software we control has unlocked a full compliance track for us with French providers.&rdquo;
+      </blockquote>
+      <figcaption class="flex items-center justify-center gap-4 flex-wrap">
+        {{ with $pierrick }}<img src="{{ .RelPermalink }}" alt="Pierrick Gicquelais" class="w-14 h-14 rounded-full object-cover" loading="lazy">{{ end }}
+        <div class="text-left">
+          <span class="block font-bold text-neutral-900">Pierrick Gicquelais</span>
+          <span class="block text-neutral-500 text-sm">Lead Infrastructure &amp; AI Platform</span>
+        </div>
+        {{ with $alan }}
+          <span class="w-px h-10 bg-neutral-200 hidden sm:block"></span>
+          <img src="{{ .RelPermalink }}" alt="Alan" class="h-7 w-auto" loading="lazy">
+        {{ end }}
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- SECTION: where-it-runs -->
+<section class="section-dark-1 py-14 lg:py-28 relative overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none opacity-20">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-100 bg-linear-to-r from-primary-900 to-primary-700 blur-[100px] rounded-full"></div>
+  </div>
+  <div class="max-w-350 mx-auto px-4 relative z-10 flex flex-col gap-12">
+    <div class="text-center max-w-3xl mx-auto space-y-4">
+      <h2 class="text-primary-500 font-mono text-sm font-bold uppercase tracking-widest">Where it runs</h2>
+      <p class="font-medium text-3xl lg:text-5xl text-white leading-tighter">Deploy it as a virtual appliance, on your terms.</p>
+      <p class="text-lg text-neutral-400">One appliance, every major cloud and hypervisor. The same images you will find on the download page.</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {{/* Providers and formats mirror content/download/control-plane.md. owner: victor@plakar.io */}}
+      {{ range (slice
+        (dict "icon" "corporate/aws" "name" "Amazon Web Services" "fmt" "Marketplace" "href" "https://aws.amazon.com/marketplace/pp/prodview-n3wsyckyby6vq" "ext" true)
+        (dict "icon" "corporate/scaleway" "name" "Scaleway" "fmt" "QCOW2" "href" "/download/" "ext" false)
+        (dict "icon" "corporate/exoscale" "name" "Exoscale" "fmt" "QCOW2" "href" "/download/" "ext" false)
+        (dict "icon" "corporate/ovhcloud" "name" "OVHcloud" "fmt" "QCOW2" "href" "/download/" "ext" false)
+        (dict "icon" "corporate/vmware" "name" "VMware" "fmt" "OVA" "href" "/download/" "ext" false)
+        (dict "icon" "corporate/proxmox" "name" "Proxmox VE" "fmt" "ISO" "href" "/download/" "ext" false)
+      ) }}
+        <a href="{{ .href }}"{{ if .ext }} target="_blank" rel="noopener"{{ end }} class="bg-neutral-800/50 border border-neutral-700 p-4 rounded-xl flex items-center gap-3 hover:border-primary-500 transition-colors">
+          <span class="w-10 h-10 rounded-lg bg-white p-2 flex items-center justify-center shrink-0">{{ partial "icon.html" .icon }}</span>
+          <span class="flex-1 min-w-0">
+            <span class="block text-white font-semibold text-sm truncate">{{ .name }}</span>
+            <span class="block font-mono text-[0.62rem] uppercase tracking-wider text-neutral-500">{{ .fmt }}</span>
+          </span>
+          {{ if .ext }}<span class="w-4 h-4 text-primary-400 shrink-0">{{ partial "icon.html" "ri/external-link-line" }}</span>{{ else }}<span class="w-4 h-4 text-neutral-500 shrink-0">{{ partial "icon.html" "ri/arrow-right-line" }}</span>{{ end }}
+        </a>
+      {{ end }}
+    </div>
+    <div>
+      <a href="/docs/control-plane/intro/installation/" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg border border-neutral-600 bg-white/5 text-white font-medium hover:bg-white/10 transition-colors">
+        Read the installation guide <span class="w-4 h-4">{{ partial "icon.html" "ri/arrow-right-line" }}</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: final-cta -->
+<section class="section-light-1 py-20 border-t border-neutral-200">
+  <div class="max-w-350 mx-auto px-4 flex flex-col items-center text-center gap-8">
+    <div class="flex flex-col gap-4 max-w-3xl mx-auto">
+      <h2 class="text-primary-600 font-mono text-sm font-bold uppercase tracking-widest">Get started</h2>
+      <p class="font-medium text-3xl lg:text-5xl text-neutral-900 leading-tighter">Bring your resilience strategy home.</p>
+      <p class="text-neutral-600 text-lg">Start on the free plan, or walk through it live with our team. Deploy in your environment, keep your keys, own your control plane.</p>
+    </div>
+    <div class="flex flex-col sm:flex-row gap-4 items-center">
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "Start free" "labelShort" "Start free" "href" "/docs/control-plane/intro/installation/" "icon" "ri/flashlight-line"
+      ) }}
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "Book a demo" "labelShort" "Demo" "class" "book-a-demo-modal-open" "icon" "ri/calendar-event-line"
+        "bgColor" "bg-white" "bgHoverColor" "bg-neutral-100" "textColor" "text-neutral-900" "textHoverColor" "text-neutral-900" "border" "border" "borderColor" "border-neutral-300"
+      ) }}
+    </div>
+    {{ if site.GetPage "/solutions/plakar" }}<p class="text-neutral-500 text-sm">Just need the engine? <a href="/solutions/plakar/" class="text-primary-600 font-semibold hover:text-primary-700">Plakar Community</a> is the free, self-hosted core the Control Plane orchestrates.</p>{{ end }}
+  </div>
+</section>
+
+{{ end }}
