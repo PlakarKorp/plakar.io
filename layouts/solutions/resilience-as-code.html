@@ -1,0 +1,227 @@
+{{ define "main" }}
+
+{{ $pierrick := resources.Get "img/general/pierrick-gicquelais.png" }}
+{{ $alan := resources.Get "img/general/alan-logo.png" }}
+
+{{/* Checked against /docs/control-plane/infrastructure-as-code/ and /references/. The deck also lists MCP, a
+     Control Plane CLI, and OpenShift; none is documented yet, so they are left out. IaC covers stores, connectors,
+     schedules, inventories, organizations, and access, not SLA policies. owner: victor@plakar.io */}}
+
+<!-- SECTION: hero -->
+<section class="section-light-2 grid-background pt-38 pb-20 relative overflow-hidden">
+  <div class="absolute top-0 right-0 p-64 bg-primary-900/10 rounded-full blur-[120px] pointer-events-none"></div>
+  <div class="max-w-350 mx-auto px-4 flex flex-col items-center text-center gap-8 relative z-10">
+    <div class="max-w-5xl flex flex-col gap-4">
+      <h2 class="text-primary-600 font-mono text-sm font-bold uppercase tracking-widest">Resilience as Code</h2>
+      <h1 class="font-medium text-4xl lg:text-6xl text-neutral-900 leading-tighter">
+        Backup is no longer a side process.<br/>
+        <span class="text-primary-500">Drive it from the tools that run your platform.</span>
+      </h1>
+    </div>
+    <p class="max-w-2xl text-neutral-600 text-lg lg:text-xl">
+      Each team protects its data with its own tools. Declare stores, sources, and schedules in code, review them like any other change, and let the Control Plane run them across the estate.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 mt-2 items-center">
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "Start free" "labelShort" "Start free" "href" "/docs/control-plane/intro/installation/" "icon" "ri/flashlight-line"
+      ) }}
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "Book a demo" "labelShort" "Demo" "class" "book-a-demo-modal-open" "icon" "ri/calendar-event-line"
+        "bgColor" "bg-white" "bgHoverColor" "bg-neutral-100" "textColor" "text-neutral-900" "textHoverColor" "text-neutral-900" "border" "border" "borderColor" "border-neutral-300"
+      ) }}
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: problem -->
+<section class="section-dark-1 py-14 lg:py-24 border-y border-neutral-800 relative overflow-hidden">
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-150 h-75 bg-primary-900/20 blur-[100px] rounded-full pointer-events-none"></div>
+  <div class="max-w-350 mx-auto px-4 relative z-10 flex flex-col gap-12">
+    <div class="text-center max-w-3xl mx-auto space-y-4">
+      <h2 class="text-primary-500 font-mono text-sm font-bold uppercase tracking-widest">The problem</h2>
+      <p class="font-medium text-3xl lg:text-5xl text-white leading-tighter">Backup drifts when it lives outside the platform.</p>
+      <p class="text-lg text-neutral-400">Infrastructure, deployments, and access are all code now. Backup is often the last thing still configured by hand.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {{ range (slice
+        (dict "icon" "ri/time-line" "title" "Configured after the fact" "body" "Backups set up in a console once a service is live drift from what is actually deployed. New services ship unprotected.")
+        (dict "icon" "ri/team-line" "title" "One team as a bottleneck" "body" "Every new database or bucket waits on a ticket to the backup team, so protection lags behind delivery.")
+        (dict "icon" "ri/git-merge-line" "title" "No review, no history" "body" "Retention and schedules changed by hand skip code review. Nobody can say who changed what, or why.")
+      ) }}
+        <div class="bg-neutral-800/50 border border-neutral-700 p-6 rounded-xl flex flex-col gap-4">
+          <div class="w-10 h-10 p-2 bg-neutral-900 rounded-lg flex items-center justify-center text-primary-400 border border-neutral-700">{{ partial "icon.html" .icon }}</div>
+          <h3 class="text-white font-bold text-lg">{{ .title }}</h3>
+          <p class="text-neutral-400 text-sm leading-relaxed">{{ .body }}</p>
+        </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: how-it-works -->
+<section class="section-light-1 grid-background py-14 lg:py-28">
+  <div class="max-w-350 mx-auto px-4 flex flex-col gap-12">
+    <div class="text-center max-w-3xl mx-auto space-y-4">
+      <h2 class="text-primary-600 font-mono text-sm font-bold uppercase tracking-widest">How it works</h2>
+      <p class="font-medium text-3xl lg:text-5xl text-neutral-900 leading-tighter">In code, or from the console.</p>
+      <p class="text-lg text-neutral-600">Platform teams declare. Operations teams click. The Control Plane runs the same stores, sources, and schedules either way.</p>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+      <ol class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {{ range $i, $s := (slice
+          (dict "icon" "ri/stack-line" "tag" "In code" "title" "Kubernetes operator" "body" "CRDs for Source, Store, and Destination, plus ScheduleBackup, ScheduleCheck, ScheduleSync, and Restore. Protection is declared in the cluster, next to the app.")
+          (dict "icon" "ri/box-3-line" "tag" "In code" "title" "Terraform & Ansible" "body" "A Terraform provider and an Ansible collection for stores, connectors, schedules, inventories, organizations, and access, reviewed like the rest of your infrastructure.")
+          (dict "icon" "ri/terminal-box-line" "tag" "In code" "title" "API keys" "body" "Application users with their own API keys and an API Automation role, for CI/CD pipelines and your own tooling.")
+          (dict "icon" "ri/macbook-line" "tag" "From the console" "title" "Web console" "body" "For operations teams: policies, monitoring, and restores in a few clicks, no code required.")
+        ) }}
+          <li class="bg-white border border-neutral-200 p-5 rounded-2xl flex flex-col gap-3 shadow-sm">
+            <div class="flex items-center justify-between">
+              <div class="w-10 h-10 p-1.5 bg-primary-50 text-primary-600 rounded-lg flex items-center justify-center">{{ partial "icon.html" $s.icon }}</div>
+              <span class="font-mono text-[0.6rem] uppercase tracking-widest text-neutral-400 font-bold">0{{ add $i 1 }} · {{ $s.tag }}</span>
+            </div>
+            <h3 class="font-bold text-neutral-900">{{ $s.title }}</h3>
+            <p class="text-neutral-600 text-sm">{{ $s.body }}</p>
+          </li>
+        {{ end }}
+      </ol>
+      {{/* Both examples are copied from the docs: kubernetes-operator/scheduling and terraform/scheduling. */}}
+      <div class="landing-terminal" data-landing-tabs>
+        <div class="landing-terminal__bar">
+          <span class="landing-dot landing-dot--r"></span>
+          <span class="landing-dot landing-dot--y"></span>
+          <span class="landing-dot landing-dot--g"></span>
+          <span class="landing-terminal__title">nightly backup, as code</span>
+        </div>
+        <div class="landing-tabs" role="tablist" aria-label="Infrastructure as code examples">
+          <button class="landing-tab" role="tab" id="rac-tab-k8s" aria-controls="rac-panel-k8s" aria-selected="true">Kubernetes</button>
+          <button class="landing-tab" role="tab" id="rac-tab-tf" aria-controls="rac-panel-tf" aria-selected="false" tabindex="-1">Terraform</button>
+        </div>
+        <div class="landing-panel" role="tabpanel" id="rac-panel-k8s" aria-labelledby="rac-tab-k8s">
+          <p class="landing-panel__lead">A ScheduleBackup resource, applied with kubectl or your GitOps tool.</p>
+          <div class="landing-cmd">
+            <pre><span class="tok-key">apiVersion</span>: task.plakar.io/v1alpha1
+<span class="tok-key">kind</span>: ScheduleBackup
+<span class="tok-key">metadata</span>:
+  <span class="tok-key">name</span>: nightly-database-backup
+<span class="tok-key">spec</span>:
+  <span class="tok-key">periodicity</span>: 86400
+  <span class="tok-key">source</span>:
+    <span class="tok-key">name</span>: production-database
+  <span class="tok-key">store</span>:
+    <span class="tok-key">name</span>: production-s3</pre>
+            <button class="landing-copy" type="button" data-clip="apiVersion: task.plakar.io/v1alpha1&#10;kind: ScheduleBackup&#10;metadata:&#10;  name: nightly-database-backup&#10;spec:&#10;  periodicity: 86400&#10;  source:&#10;    name: production-database&#10;  store:&#10;    name: production-s3" aria-label="Copy Kubernetes example">
+              <span class="w-3.5 h-3.5 ic-copy">{{ partial "icon.html" "ri/file-copy-line" }}</span>
+              <span class="w-3.5 h-3.5 ic-check">{{ partial "icon.html" "ri/check-line" }}</span>
+              <span class="landing-copy__label">Copy</span>
+            </button>
+          </div>
+          <p class="landing-panel__note"><a href="/docs/control-plane/infrastructure-as-code/kubernetes-operator/" class="text-primary-300 underline">Kubernetes operator docs</a></p>
+        </div>
+        <div class="landing-panel" role="tabpanel" id="rac-panel-tf" aria-labelledby="rac-tab-tf" hidden>
+          <p class="landing-panel__lead">The same schedule with the plakarkorp/plakar provider.</p>
+          <div class="landing-cmd">
+            <pre><span class="tok-key">resource</span> <span class="tok-str">"plakar_schedule"</span> <span class="tok-str">"nightly"</span> {
+  name      = <span class="tok-str">"Nightly database backup"</span>
+  type      = <span class="tok-str">"backup"</span>
+  origin_id = data.plakar_connector.db.id
+  target_id = plakar_store.offsite.id
+
+  <span class="tok-key">rule</span> {
+    periodicity = 86400
+  }
+}</pre>
+            <button class="landing-copy" type="button" data-clip="resource &quot;plakar_schedule&quot; &quot;nightly&quot; {&#10;  name      = &quot;Nightly database backup&quot;&#10;  type      = &quot;backup&quot;&#10;  origin_id = data.plakar_connector.db.id&#10;  target_id = plakar_store.offsite.id&#10;&#10;  rule {&#10;    periodicity = 86400&#10;  }&#10;}" aria-label="Copy Terraform example">
+              <span class="w-3.5 h-3.5 ic-copy">{{ partial "icon.html" "ri/file-copy-line" }}</span>
+              <span class="w-3.5 h-3.5 ic-check">{{ partial "icon.html" "ri/check-line" }}</span>
+              <span class="landing-copy__label">Copy</span>
+            </button>
+          </div>
+          <p class="landing-panel__note"><a href="/docs/control-plane/infrastructure-as-code/terraform/" class="text-primary-300 underline">Terraform provider docs</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: features -->
+<section class="section-light-2 py-14 lg:py-28">
+  <div class="max-w-350 mx-auto px-4 flex flex-col gap-12">
+    <div class="text-center max-w-3xl mx-auto space-y-4">
+      <h2 class="text-primary-600 font-mono text-sm font-bold uppercase tracking-widest">What you get</h2>
+      <p class="font-medium text-3xl lg:text-5xl text-neutral-900 leading-tighter">Every tool your platform already speaks.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {{ range (slice
+        (dict "icon" "ri/stack-line" "title" "Kubernetes operator" "body" "Install with Helm, then declare sources, stores, schedules, and restores as Kubernetes resources." "href" "/docs/control-plane/infrastructure-as-code/kubernetes-operator/")
+        (dict "icon" "ri/box-3-line" "title" "Terraform provider" "body" "Stores, connectors, schedules, inventories, organizations, members, and grants." "href" "/docs/control-plane/references/terraform-provider/")
+        (dict "icon" "ri/terminal-window-line" "title" "Ansible collection" "body" "Sixteen modules, from backup, restore, and sync to inventories and grants. Works with Red Hat AAP." "href" "/docs/control-plane/references/ansible-collection/")
+        (dict "icon" "ri/flow-chart" "title" "Policies scoped by tag" "body" "Tag connectors with an environment and data class in code, and matching SLA policies pick them up automatically." "href" "/docs/control-plane/compliance/policies/")
+        (dict "icon" "ri/file-copy-line" "title" "Configuration bundles" "body" "Defaults applied by organization or inventory, scoped by environment, resource class, and tag." "href" "/docs/control-plane/administration/configuration-bundles/")
+        (dict "icon" "ri/user-line" "title" "Scoped API keys" "body" "Application users with keys bound to one organization and an API Automation role for CI/CD." "href" "/docs/control-plane/administration/permissions/api-automation/")
+      ) }}
+        <article class="bg-white border border-neutral-200 p-6 rounded-2xl flex flex-col gap-3 shadow-sm hover:border-primary-300 transition-colors">
+          <div class="w-11 h-11 p-1.5 bg-primary-50 text-primary-600 rounded-lg flex items-center justify-center">{{ partial "icon.html" .icon }}</div>
+          <h3 class="font-bold text-lg text-neutral-900">{{ .title }}</h3>
+          <p class="text-neutral-600 text-sm flex-1">{{ .body }}</p>
+          <a href="{{ .href }}" class="inline-flex items-center gap-1.5 text-primary-600 font-semibold text-sm hover:text-primary-700 transition-colors">
+            Learn more <span class="w-4 h-4">{{ partial "icon.html" "ri/arrow-right-line" }}</span>
+          </a>
+        </article>
+      {{ end }}
+    </div>
+    <div class="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm">
+      <span class="font-mono text-xs uppercase tracking-widest text-neutral-500 font-bold">Further reading</span>
+      <a href="/posts/2026-02-18/backing-up-kubernetes-clusters-with-plakar/" class="text-primary-600 font-semibold hover:text-primary-700">Backing up Kubernetes clusters with Plakar</a>
+      <a href="/posts/2025-07-15/go-kloset-sdk-is-live/" class="text-primary-600 font-semibold hover:text-primary-700">The Go Kloset SDK is live</a>
+      <a href="/posts/2026-06-24/introducing-plakar-control-plane-free-plan/" class="text-primary-600 font-semibold hover:text-primary-700">Introducing the Control Plane free plan</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: quote -->
+<section class="section-light-1 py-16 lg:py-24">
+  <div class="max-w-350 mx-auto px-4">
+    <figure class="max-w-3xl mx-auto text-center flex flex-col items-center gap-6">
+      <span class="font-mono text-xs uppercase tracking-widest text-primary-600 font-bold">Proven in production</span>
+      <blockquote class="text-xl lg:text-2xl text-neutral-900 leading-relaxed font-medium">
+        &ldquo;We manage everything as code, with AI across our development workflow, so we wanted resilience orchestrated the same way, on our own schedule.&rdquo;
+      </blockquote>
+      <figcaption class="flex items-center justify-center gap-4 flex-wrap">
+        {{ with $pierrick }}<img src="{{ .RelPermalink }}" alt="Pierrick Gicquelais" class="w-14 h-14 rounded-full object-cover" loading="lazy">{{ end }}
+        <div class="text-left">
+          <span class="block font-bold text-neutral-900">Pierrick Gicquelais</span>
+          <span class="block text-neutral-500 text-sm">Lead Infrastructure &amp; AI Platform</span>
+        </div>
+        {{ with $alan }}
+          <span class="w-px h-10 bg-neutral-200 hidden sm:block"></span>
+          <img src="{{ .RelPermalink }}" alt="Alan" class="h-7 w-auto" loading="lazy">
+        {{ end }}
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+{{ partial "components/common/use-cases-related.html" (dict "current" "/solutions/resilience-as-code/") }}
+
+<!-- SECTION: final-cta -->
+<section class="section-light-1 py-20 border-t border-neutral-200">
+  <div class="max-w-350 mx-auto px-4 flex flex-col items-center text-center gap-8">
+    <div class="flex flex-col gap-4 max-w-3xl mx-auto">
+      <h2 class="text-primary-600 font-mono text-sm font-bold uppercase tracking-widest">Get started</h2>
+      <p class="font-medium text-3xl lg:text-5xl text-neutral-900 leading-tighter">Put your backup posture in Git.</p>
+      <p class="text-neutral-600 text-lg">Start on the free plan, or see it running with your stack in a live demo.</p>
+    </div>
+    <div class="flex flex-col sm:flex-row gap-4 items-center">
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "Start free" "labelShort" "Start free" "href" "/docs/control-plane/intro/installation/" "icon" "ri/flashlight-line"
+      ) }}
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "Book a demo" "labelShort" "Demo" "class" "book-a-demo-modal-open" "icon" "ri/calendar-event-line"
+        "bgColor" "bg-white" "bgHoverColor" "bg-neutral-100" "textColor" "text-neutral-900" "textHoverColor" "text-neutral-900" "border" "border" "borderColor" "border-neutral-300"
+      ) }}
+    </div>
+    <p class="text-neutral-500 text-sm">See how it fits together on the <a href="/solutions/control-plane/" class="text-primary-600 font-semibold hover:text-primary-700">Control Plane</a> page.</p>
+  </div>
+</section>
+
+{{ end }}
