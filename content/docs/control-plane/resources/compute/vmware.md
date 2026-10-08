@@ -3,22 +3,25 @@ title: "VMware Compute"
 date: "2026-07-17T00:00:00Z"
 weight: 2
 summary: "How to configure a VMware compute resource in Plakar Control Plane."
+aliases:
+  - /docs/control-plane/guides/vmware/
+  - /docs/control-plane/guides/vmware/nbd-server-setup/
 ---
 
 # VMware Compute
 
-The VMware integration allows Plakar Control Plane to discover, back up, and
-restore virtual machines managed by VMware vSphere. VMware integration supports
-multiple protocols.
+The VMware integration allows Plakar Control Plane to back up and restore
+virtual machines managed by VMware vSphere. Plakar connects to vCenter through
+the vSphere API to drive each operation, and transfers virtual machine disks
+directly from vSphere without requiring any additional infrastructure.
 
-## 1. `vmware` protocol
+## Inventory Management
 
-The `vmware` protocol transfers virtual machine disk data over HTTPS using the
-vSphere API. It supports both backup and restore operations without requiring
-any additional infrastructure.
-
-This is the simplest protocol to deploy, but throughput is typically limited to
-around **30 MB/s**.
+Virtual machines are discovered by the
+[VMware inventory](../../infrastructure/inventories/vmware), which connects to a
+vCenter Server and loads its compute instances each time it synchronizes.
+Resources in a VMware inventory are managed by the inventory and cannot be
+created or deleted manually.
 
 #### Backup flow
 
@@ -39,7 +42,7 @@ flowchart TD
 
   Source -->|"vSphere API over HTTPS"| VCenter
   VCenter --> VM
-  VM -->|"disk data transfer"| Source
+  VM -->|"Disk data: nbd or nfchttp"| Source
   Source --> Backup
   Backup --> Store
 {{< /mermaid >}}
@@ -71,18 +74,36 @@ flowchart TD
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-### Shared configuration
+## Transport modes
+
+A source app transfers disks in one of two modes, and the mode decides the
+format the disks are stored in.
+
+| Mode      | Disk format           | Transfer                           |
+| --------- | --------------------- | ---------------------------------- |
+| `nbd`     | Raw disk contents     | Streamed over the ESXi NFC socket. |
+| `nfchttp` | Stream-optimized VMDK | Downloaded over vCenter HTTP NFC.  |
+
+`nbd` is the default. It replaces the former `vmware+nbd` protocol, and no
+longer needs a separate NBD server. `nfchttp` produces the stream-optimized VMDK
+files earlier versions of the integration produced.
+
+## Shared configuration
 
 The following settings are available when configuring both source and
-destination apps using the `vmware` protocol.
+destination apps.
 
+- **vSphere Server**: Required. The hostname or IP address of the vCenter Server
+  or ESXi host.
+- **vSphere Datacenter**: Required. The vSphere datacenter that holds the
+  virtual machine.
+- **vSphere Username**: Required. The username used to authenticate with the
+  vCenter Server or ESXi host.
 - **vSphere Password**: Required. The password for the vSphere account.
 - **vSphere TLS CA Bundle**: The CA certificate bundle used to verify the
   vCenter Server or ESXi TLS certificate.
 - **vSphere TLS Skip Verify**: Skip TLS certificate verification when connecting
-  to the vCenter Server or ESXi host.
-- **vSphere Username**: Required. The username used to authenticate with the
-  vCenter Server or ESXi host.
+  to the vCenter Server or ESXi host. Defaults to `false`.
 
 > [!WARNING]+ TLS Certificate Verification
 >
@@ -93,28 +114,28 @@ destination apps using the `vmware` protocol.
 > CA Bundle** for self-signed certificates. The same applies to **NSX Skip
 > Verify** for the NSX manager. Never skip verification in production.
 
-### Source configuration
+## Source configuration
 
-The following extra settings are available when configuring a source app using
-the `vmware` protocol. When an NSX manager is configured, the backup also
-includes the NSX configuration.
+The following extra settings are available when configuring a source app.
 
-- **NSX Password**: The password for the NSX account. Defaults to **vSphere
-  Password** when omitted.
-- **NSX Skip Verify**: Skip TLS certificate verification when connecting to the
-  NSX manager.
+- **Transport Mode**: How disks are transferred and stored, either `nbd` or
+  `nfchttp`. Defaults to `nbd`. See [Transport modes](#transport-modes).
 - **NSX URL**: The NSX manager endpoint address.
 - **NSX Username**: The username used to authenticate with the NSX manager.
   Defaults to **vSphere Username** when omitted.
+- **NSX Password**: The password for the NSX account. Defaults to **vSphere
+  Password** when omitted.
+- **NSX Skip Verify**: Skip TLS certificate verification when connecting to the
+  NSX manager. Defaults to `false`.
 
 > [!NOTE]
 >
-> Plakar Control Plane cannot currently restore NSX configuration.
+> NSX configuration is backed up only when **NSX URL** is set. Plakar Control
+> Plane does not restore NSX configurations.
 
-### Destination configuration
+## Destination configuration
 
-The following extra settings are available when configuring a destination app
-using the `vmware` protocol.
+The following extra settings are available when configuring a destination app.
 
 - **Network Adapter Restore Mode**: How network adapters on the restored virtual
   machine are handled. One of `preserve`, `disconnected` or `remove`. Defaults
@@ -123,132 +144,3 @@ using the `vmware` protocol.
   group. Required when Network Adapter Restore Mode is `disconnected`.
 - **Tmp Dir**: The temporary directory used by VDDK and NBDKit during restore
   operations. Defaults to `/home/plakar/tmp`.
-
-## 2. `vmware+nbd` protocol
-
-The `vmware+nbd` protocol transfers virtual machine disk data through a
-dedicated NBD server running `nbdkit` with the VDDK plugin, connected to over
-TLS. It supports both backup and restore operations, and is significantly faster
-than the `vmware` protocol, but requires setting up an NBD server first. See
-[Setting up an NBD Server for VMware Backups](../../../guides/vmware/nbd-server-setup)
-for instructions.
-
-#### Backup flow
-
-<!-- prettier-ignore-start -->
-{{< mermaid >}}
-flowchart TD
-  subgraph VMware["VMware vSphere"]
-    VCenter["vCenter / ESXi"]
-    VM["Virtual Machine"]
-  end
-
-  subgraph NBDServer["NBD Server"]
-    Nbdkit["nbdkit + VDDK plugin"]
-  end
-
-  subgraph Plakar["Plakar Control Plane"]
-    Source["VMware Compute<br/>Source app"]
-    Backup["Backup process<br/>Encrypt & deduplicate"]
-  end
-
-  Store["Kloset Store"]
-
-  Source -->|"SSH: orchestration"| Nbdkit
-  Nbdkit -->|"VDDK API"| VCenter
-  VCenter --> VM
-  Nbdkit -->|"NBD over TLS: disk bytes"| Source
-  Source --> Backup
-  Backup --> Store
-{{< /mermaid >}}
-<!-- prettier-ignore-end -->
-
-#### Restore flow
-
-<!-- prettier-ignore-start -->
-{{< mermaid >}}
-flowchart TD
-  Store["Kloset Store"]
-
-  subgraph Plakar["Plakar Control Plane"]
-    Destination["VMware Compute<br/>Destination app"]
-    Restore["Restore process"]
-  end
-
-  subgraph NBDServer["NBD Server"]
-    Nbdkit["nbdkit + VDDK plugin"]
-  end
-
-  subgraph VMware["VMware vSphere"]
-    VCenter["vCenter / ESXi"]
-    VM["Restored Virtual Machine"]
-  end
-
-  Store --> Restore
-  Destination --> Restore
-
-  Destination -->|"SSH: orchestration"| Nbdkit
-  Destination -->|"NBD over TLS: disk bytes"| Nbdkit
-  Nbdkit -->|"VDDK API"| VCenter
-  VCenter --> VM
-{{< /mermaid >}}
-<!-- prettier-ignore-end -->
-
-### Shared configuration
-
-The following settings are available when configuring both source and
-destination apps using the `vmware+nbd` protocol.
-
-- **Vsphere Username**: Required. The username used to authenticate with the
-  vCenter Server or ESXi host.
-- **Vsphere Password**: Required. The password for the vSphere account.
-- **Vsphere Tls Skip Verify**: Skip TLS certificate verification when connecting
-  to the vCenter Server or ESXi host.
-- **Vsphere Tls Ca Bundle**: The CA certificate bundle used to verify the
-  vCenter Server or ESXi TLS certificate.
-- **Nbd Ssh Url**: Required. The SSH URL used to reach the NBD server for
-  orchestration, e.g. `ssh://<user>@<host>:<port>`. This is also the account
-  that runs `nbdkit` on the NBD server: a regular account is sufficient for
-  NBD/NBDSSL transport, but `root` is required if the NBD server is used for
-  HotAdd, e.g. `ssh://root@<host>:<port>`. See
-  [HotAdd and root access](../../../guides/vmware/nbd-server-setup#hotadd-and-root-access)
-  for details.
-- **Nbd Ssh Private Key**: Required. The private key used to authenticate over
-  SSH with the NBD server.
-- **Nbd Url**: The TLS NBD URI used for direct disk data transfer, e.g.
-  `nbds://[<user>:<password>@]<host>:<port>`. Defaults to the host of Nbd Ssh
-  Url when omitted. Credentials in the URI default to Vsphere Username / Vsphere
-  Password when omitted.
-- **Nbd Tls Ca Bundle**: Required. The PEM CA bundle used by the client to
-  verify the NBD server's TLS certificate.
-- **Nbd Tls Skip Verify**: Skip TLS certificate verification for the direct NBD
-  connection.
-
-> [!WARNING]+ TLS Certificate Verification
->
-> Enabling **Vsphere Tls Skip Verify** or **Nbd Tls Skip Verify** disables
-> certificate verification for the vCenter Server or the NBD server, leaving the
-> connection open to man-in-the-middle attacks. An attacker in that position can
-> capture the vSphere credentials and read or alter virtual machine disks in
-> transit. Prefer setting the matching CA bundle for self-signed certificates.
-> Never skip verification in production.
-
-### Source configuration
-
-The following extra settings are available when configuring a source app using
-the `vmware+nbd` protocol.
-
-- **Nbd Verbose**: Enable verbose `nbdkit` logging.
-
-### Destination configuration
-
-The following extra settings are available when configuring a destination app
-using the `vmware+nbd` protocol.
-
-- **Network Adapter Restore Mode**: How network adapters on the restored virtual
-  machine are handled. One of `preserve`, `disconnected` or `remove`. Defaults
-  to `preserve`.
-- **Network Recovery Port Group**: A compatible recovery or quarantine port
-  group. Required when Network Adapter Restore Mode is `disconnected`.
-- **Tmp Dir**: The temporary directory (local file copy) used during restore
-  operations. Defaults to `/var/lib/plakman/pkgs`
