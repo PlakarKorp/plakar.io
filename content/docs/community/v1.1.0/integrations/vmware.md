@@ -68,10 +68,15 @@ as the `config.instanceUuid` property of the virtual machine. For a virtual
 machine named `myvm` in the `Datacenter` datacenter:
 
 ```bash
-$ export GOVC_URL=vcenter.example.com
-$ export GOVC_USERNAME=<username>
-$ export GOVC_PASSWORD=<password>
-$ govc object.collect -s /Datacenter/vm/myvm config.instanceUuid
+export GOVC_URL=vcenter.example.com
+export GOVC_USERNAME=<username>
+export GOVC_PASSWORD=<password>
+govc object.collect -s /Datacenter/vm/myvm config.instanceUuid
+```
+
+The output is similar to:
+
+```sh
 421b9d3a-8c2e-4f1a-9b7d-3e5f6a7b8c9d
 ```
 

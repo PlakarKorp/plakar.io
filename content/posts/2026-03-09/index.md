@@ -159,15 +159,19 @@ go install github.com/PlakarKorp/plakar@v1.1.0-beta.7
 You can then either use our prebuilt package by authenticating to our platform:
 
 ```bash
-$ plakar login
-[...]
-$ plakar pkg add proxmox
+plakar login
+plakar pkg add proxmox
 ```
 
 Or build the integration yourself...
 
 ```bash
-$ plakar pkg build proxmox
+plakar pkg build proxmox
+```
+
+The output is similar to:
+
+```sh
 /usr/bin/make -C /var/folders/9x/9k0f6mc10sbd0_kfx63__fvc0000gn/T/build-proxmox-v1.1.0-rc.1-4157532844
 83b7da91: OK ✓ /
 83b7da91: OK ✓ /manifest.yaml

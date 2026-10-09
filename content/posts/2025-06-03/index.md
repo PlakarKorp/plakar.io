@@ -38,7 +38,12 @@ go install github.com/PlakarKorp/plakar@v1.0.2
 Via installer:
 
 ```bash
-$ curl https://plakar.io/install.sh | sh
+curl https://plakar.io/install.sh | sh
+```
+
+The output is similar to:
+
+```sh
 Downloading plakar 1.0.2 signature file...
 Downloading plakar 1.0.2 release file...
 Downloading plakar 1.0.2 public key...

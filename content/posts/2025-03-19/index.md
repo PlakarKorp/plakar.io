@@ -319,7 +319,12 @@ harder than just having the fixed base offset and it comes for free.
 Here's an example of it applied to a file access:
 
 ```bash
-$ ./plakar cat 2f:/private/etc/passwd >/dev/null
+./plakar cat 2f:/private/etc/passwd >/dev/null
+```
+
+The output is similar to:
+
+```sh
 off=126916 (-7) length=1085 (+17)
 off=116762 (-1) length=91 (+4)
 off=235207 (-1) length=87 (+0)

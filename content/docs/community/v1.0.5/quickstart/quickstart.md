@@ -265,7 +265,12 @@ for various **Plakar** commands.
 You can verify that the backup exists:
 
 ```bash
-$ plakar at $HOME/backups ls
+plakar at $HOME/backups ls
+```
+
+The output is similar to:
+
+```sh
 2025-09-02T15:38:16Z   9abc3294    3.1 MB      0s   /private/etc
 ```
 
@@ -276,7 +281,12 @@ the backup.
 Verify the integrity of the contents:
 
 ```bash
-$ plakar at $HOME/backups check 9abc3294
+plakar at $HOME/backups check 9abc3294
+```
+
+The output is similar to:
+
+```sh
 9abc3294: ✓ /private/etc/afpovertcp.cfg
 9abc3294: ✓ /private/etc/apache2/extra/httpd-autoindex.conf
 9abc3294: ✓ /private/etc/apache2/extra/httpd-dav.conf

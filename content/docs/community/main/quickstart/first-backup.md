@@ -125,7 +125,12 @@ You can verify that the backup exists with the `ls` command, which returns the
 backups in that Kloset Store:
 
 ```bash
-$ plakar at $HOME/backups ls
+plakar at $HOME/backups ls
+```
+
+The output is similar to:
+
+```sh
 2026-01-14T06:45:32Z   dd62691d   6.4 KiB        0s /home/user/Documents
 ```
 
@@ -144,7 +149,12 @@ with the `check` command. This will read back the data from the Kloset Store,
 decrypt it and verify its integrity by recomputing checksums.
 
 ```bash
-$ plakar at $HOME/backups check dd62691d
+plakar at $HOME/backups check dd62691d
+```
+
+The output is similar to:
+
+```sh
 info: dd62691d: ✓ /home/user/Documents
 info: dd62691d: ✓ /home/user/Documents/Obsidian
 info: dd62691d: ✓ /home/user/Documents/code_samples
@@ -171,7 +181,12 @@ we are restoring the snapshot we just created to another directory called
 `restored`.
 
 ```bash
-$ plakar at $HOME/backups restore -to $HOME/restored dd62691d
+plakar at $HOME/backups restore -to $HOME/restored dd62691d
+```
+
+The output is similar to:
+
+```sh
 info: dd62691d: OK ✓ /home/user/Documents
 info: dd62691d: OK ✓ /home/user/Documents/Obsidian
 info: dd62691d: OK ✓ /home/user/Documents/budget.xlsx
@@ -188,7 +203,12 @@ to. Note that the properties of the restored files, such as timestamps and
 permissions, will match the original files:
 
 ```bash
-$ ls -l $HOME/restored/Documents/
+ls -l $HOME/restored/Documents/
+```
+
+The output is similar to:
+
+```sh
 total 36
 -rw-r--r-- 1 user user   30 Jan 14 06:31 budget.xlsx
 drwxr-xr-x 2 user user 4096 Jan 14 06:31 code_samples

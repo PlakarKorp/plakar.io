@@ -152,6 +152,11 @@ Or build it yourself from the
 [source repository](https://github.com/PlakarKorp/integration-postgresql):
 
 ```sh
+plakar pkg build postgresql
+plakar pkg add ./postgresql_v1.1.0-beta.2_darwin_arm64.ptar
+```
+
+```sh
 $ plakar pkg build postgresql
 postgresql_v1.1.0-beta.2_darwin_arm64.ptar
 $ plakar pkg add ./postgresql_v1.1.0-beta.2_darwin_arm64.ptar

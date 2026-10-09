@@ -48,6 +48,12 @@ implemented as an agentless and zero-configuration tool.
 In other words: you install, you run, it works right away.
 
 ```sh
+go install github.com/PlakarKorp/kapsul@v0.0.0-beta.10
+kapsul -f /tmp/bleh.ptar create /private/etc
+kapsul -f /tmp/bleh.ptar ls
+```
+
+```sh
 $ go install github.com/PlakarKorp/kapsul@v0.0.0-beta.10
 go: downloading github.com/PlakarKorp/kapsul v0.0.0-beta.10
 
@@ -103,6 +109,14 @@ You can craft a ptar, list or display its content, launch a `ui`, preview files
 (including media), ...
 
 ```sh
+kapsul -f /tmp/bleh.ptar create ~/Downloads
+kapsul -f /tmp/bleh.ptar ls
+kapsul -f /tmp/bleh.ptar ls 2a92ad6f | tail -5
+kapsul -f /tmp/bleh.ptar cat 2a92ad6f:plakar_1.0.0-throwaway.0_checksums.txt
+kapsul -f /tmp/bleh.ptar ui
+```
+
+```sh
 $ kapsul -f /tmp/bleh.ptar create ~/Downloads
 repository passphrase:
 repository passphrase (confirm):
@@ -148,6 +162,11 @@ Oooooh, and maybe I'm the only one finding that cool, but...
 It even supports accessing a remote `ptar` over http/https for random access
 fetching. Accessing a remote .ptar over HTTP/HTTPS allows you to fetch specific
 parts of an archive without downloading it in full:
+
+```sh
+kapsul -f https://poolp.org/test.ptar ls
+kapsul -f https://poolp.org/test.ptar ui
+```
 
 ```sh
 $ kapsul -f https://poolp.org/test.ptar ls

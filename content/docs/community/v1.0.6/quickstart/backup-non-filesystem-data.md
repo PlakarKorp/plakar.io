@@ -97,7 +97,12 @@ To verify that the backup was created successfully, you can list the snapshots
 in the local Kloset Store:
 
 ```bash
-$ plakar at $HOME/backups ls
+plakar at $HOME/backups ls
+```
+
+The output is similar to:
+
+```sh
 2025-12-16T12:55:30Z   842de8b1     496 B        0s /            # the backup of the S3 bucket we just created
 2025-12-15T21:09:32Z   772fba5f   2.9 MiB        0s /private/etc # the previous backup, from Part 1
 ```
@@ -127,7 +132,12 @@ S3-compatible services that use TLS._
 And then, restore the snapshot to that destination:
 
 ```bash
-$ plakar at $HOME/backups restore -to "@mydata" 842de8b1
+plakar at $HOME/backups restore -to "@mydata" 842de8b1
+```
+
+The output is similar to:
+
+```sh
 repository passphrase:
 info: 842de8b1: OK ✓ /
 info: 842de8b1: OK ✓ /Makefile

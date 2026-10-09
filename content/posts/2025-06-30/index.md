@@ -107,6 +107,11 @@ Here is what it gives you:
 Suppose I have 11 GB in my Documents and two copies of the same folder:
 
 ```sh
+du -sh ~/Documents
+tar -czf test.tgz ~/Documents ~/Documents
+```
+
+```sh
 $ du -sh ~/Documents
 11G     /Users/julien/Documents
 $ tar -czf test.tgz ~/Documents ~/Documents

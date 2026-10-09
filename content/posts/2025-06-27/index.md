@@ -102,7 +102,12 @@ packed with a ton of user-friendly features, well... it's built for that too ðŸ˜
 Creating a `.ptar` archive is as simple as the following command:
 
 ```sh
-$ plakar ptar -o test.ptar ~/Downloads
+plakar ptar -o test.ptar ~/Downloads
+```
+
+The output is similar to:
+
+```sh
 passphrase:
 passphrase (confirm):
 ```
@@ -110,6 +115,11 @@ passphrase (confirm):
 The resulting file contains all of `~/Downloads`, deduplicated, compressed,
 encrypted, cryptographically authenticated, easily transportable and immediately
 usable for restore:
+
+```sh
+plakar at test.ptar ls
+plakar at test.ptar restore a2650f13:/
+```
 
 ```sh
 $ plakar at test.ptar ls
@@ -172,6 +182,16 @@ at the data level: any redundant data is duplicated inside the archive.
 Yeah, no, it won't.
 
 ```sh
+du -sh ~/Downloads
+time tar -czf test.tar.gz ~/Downloads
+du -sh test.tar.gz
+time tar -czf test.tar.gz ~/Downloads ~/Downloads
+du -sh test.tar.gz
+time tar -czf test.tar.gz ~/Downloads ~/Downloads ~/Downloads
+du -sh test.tar.gz
+```
+
+```sh
 $ du -sh ~/Downloads
  11G    /Users/gilles/Downloads
 
@@ -206,6 +226,15 @@ readings, me likey writing :-) <!-- codespell:ignore likey -->
 Anyways, that's a sharp contrast with `.ptar`:
 
 ```sh
+time plakar ptar -plaintext -o test.ptar ~/Downloads
+du -sh test.ptar
+time plakar ptar -plaintext -o test.ptar ~/Downloads ~/Downloads
+du -sh test.ptar
+time plakar ptar -plaintext -o test.ptar ~/Downloads ~/Downloads ~/Downloads
+du -sh test.ptar
+```
+
+```sh
 $ time plakar ptar -plaintext -o test.ptar ~/Downloads
 [...] 135.80s user 31.42s system 439% cpu 38.073 total
 $ du -sh test.ptar
@@ -228,7 +257,12 @@ see even on the very first backup a gain is already visible **when there's
 redundancy** in the source data:
 
 ```sh
-$ ls ~/Downloads|grep '('
+ls ~/Downloads|grep '('
+```
+
+The output is similar to:
+
+```sh
 update the btree even when the file was found in the cache #272 (1).mp3
 update the btree even when the file was found in the cache #272 (2).mp3
 ```
@@ -267,7 +301,12 @@ plakar at ptar+https://plakar.io/test.ptar ui
 either through the UI as shown here or through the CLI for some terminal action:
 
 ```sh
-$ ./plakar at ptar+https://plakar.io/test.ptar ls
+./plakar at ptar+https://plakar.io/test.ptar ls
+```
+
+The output is similar to:
+
+```sh
 2025-06-02T19:43:53Z   ed0f6603    3.1 MB        0s /private/etc
 ```
 
@@ -426,7 +465,12 @@ The following command creates an encrypted snapshot of my `~/Downloads`
 directory into the file `downloads.ptar`:
 
 ```sh
-$ plakar ptar -o downloads.ptar ~/Downloads
+plakar ptar -o downloads.ptar ~/Downloads
+```
+
+The output is similar to:
+
+```sh
 passphrase:
 passphrase (confirm):
 ```
@@ -447,6 +491,12 @@ plakar ptar -plaintext -o downloads.ptar ~/Downloads
 A `.ptar` can be browsed without extracting the actual data.
 
 ```sh
+plakar at downloads.ptar ls
+plakar at test.ptar ls 3055ddc3:media/
+plakar at test.ptar ls 3055ddc3:media/audio | grep hiphop
+```
+
+```sh
 $ plakar at downloads.ptar ls
 repository passphrase:
 repository passphrase (confirm):
@@ -458,7 +508,6 @@ $ plakar at test.ptar ls 3055ddc3:media/
 $ plakar at test.ptar ls 3055ddc3:media/audio | grep hiphop
 2025-05-03T19:15:39Z -rw-r--r--   gilles    staff   4.6 MB hiphop1.mp3
 2025-05-03T19:18:35Z -rw-r--r--   gilles    staff   4.3 MB hiphop2.mp3
-$
 ```
 
 This gives you a tree view of all files, snapshot info, timestamps, and version
@@ -468,7 +517,12 @@ Of course, you can also use the UI, providing you with a **local** web-based
 filesystem browser, preview, search and more:
 
 ```sh
-$ plakar at downloads.ptar ui
+plakar at downloads.ptar ui
+```
+
+The output is similar to:
+
+```sh
 repository passphrase:
 repository passphrase (confirm):
 ```
@@ -483,7 +537,12 @@ Inspecting a single file is as simple as using `cat` on a specific
 snapshot:file, as shown below:
 
 ```sh
-$ plakar at downloads.ptar cat 3055ddc3:dragon.txt
+plakar at downloads.ptar cat 3055ddc3:dragon.txt
+```
+
+The output is similar to:
+
+```sh
 repository passphrase:
 repository passphrase (confirm):
 

@@ -146,9 +146,9 @@ docker run --rm -ti \
 
 Ouch, it immediately fails:
 
-```bash
-$ chmod: changing permissions of '/var/lib/postgresql/data': Read-only file system
-$ chown: changing ownership of '/var/lib/postgresql/data': Read-only file system
+```sh
+chmod: changing permissions of '/var/lib/postgresql/data': Read-only file system
+chown: changing ownership of '/var/lib/postgresql/data': Read-only file system
 ...
 ```
 

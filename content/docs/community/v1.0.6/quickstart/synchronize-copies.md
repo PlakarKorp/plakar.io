@@ -100,7 +100,12 @@ You can list all installed integrations to confirm the S3 integration was
 installed successfully:
 
 ```bash
-$ plakar pkg list
+plakar pkg list
+```
+
+The output is similar to:
+
+```sh
 s3@v1.0.7
 ```
 
@@ -188,7 +193,12 @@ Kloset Store we just created.
 Run the following command:
 
 ```bash
-$ plakar at $HOME/backups sync to "@s3-backups"
+plakar at $HOME/backups sync to "@s3-backups"
+```
+
+The output is similar to:
+
+```sh
 info: Synchronizing snapshot 772fba5f575272ba8742e63c6ec1878623900d158c5de4b20b854a0aa15a7b47 from fs:///Users/niluje/backups to s3://localhost:9000/mybucket
 info: Synchronization of 772fba5f575272ba8742e63c6ec1878623900d158c5de4b20b854a0aa15a7b47 finished
 info: sync: synchronization from fs:///Users/niluje/backups to s3://localhost:9000/mybucket completed: 1 snapshots synchronized
@@ -201,7 +211,12 @@ To verify that the synchronization was successful, you can list the snapshots in
 the S3 Kloset Store again:
 
 ```bash
-$ plakar at "@s3-backups" ls
+plakar at "@s3-backups" ls
+```
+
+The output is similar to:
+
+```sh
 2025-12-15T21:09:32Z   772fba5f   2.9 MiB        0s /private/etc
 ```
 
@@ -213,7 +228,12 @@ because the destination store already contains all the snapshots from the source
 store.
 
 ```bash
-$ plakar at $HOME/backups sync to "@s3-backups"
+plakar at $HOME/backups sync to "@s3-backups"
+```
+
+The output is similar to:
+
+```sh
 destination store passphrase:
 info: sync: synchronization from fs:///Users/niluje/backups to s3://localhost:9000/mybucket completed: 0 snapshots synchronized
 ```
