@@ -329,6 +329,32 @@ Readers should understand a feature before configuring it.
 
 ---
 
+# Code Blocks
+
+The copy button copies a block exactly as written. Write command blocks so they
+run when pasted.
+
+- Do not prefix commands with `$`. The block title already marks it as shell.
+- Put commands in a `bash` or `sh` block. Comments are fine. The shell ignores
+  them.
+- Put output in its own `sh` block, introduced by "The output is similar to:".
+
+````md
+```bash
+plakar at $HOME/backups ls
+```
+
+The output is similar to:
+
+```sh
+2026-01-14T06:45:32Z   dd62691d   6.4 KiB        0s /home/user/Documents
+```
+````
+
+Use `text` for content that is neither a command nor terminal output.
+
+---
+
 # Good Documentation
 
 Good documentation explains things readers cannot discover by simply looking at
