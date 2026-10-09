@@ -111,14 +111,22 @@
         </article>
       {{ end }}
     </div>
-    <div class="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm">
-      <span class="font-mono text-xs uppercase tracking-widest text-neutral-500 font-bold">Further reading</span>
-      <a href="/posts/2025-02-11/the-3-2-1-backup-rule-a-proven-strategy-for-data-protection/" class="text-primary-600 font-semibold hover:text-primary-700">The 3-2-1 backup rule</a>
-      <a href="/posts/2025-02-10/why-replication-is-not-backup/" class="text-primary-600 font-semibold hover:text-primary-700">Why replication is not backup</a>
-      <a href="/posts/2025-02-12/understanding-rto-and-rpo-in-disaster-recovery/" class="text-primary-600 font-semibold hover:text-primary-700">Understanding RTO and RPO</a>
-    </div>
   </div>
 </section>
+
+<!-- SECTION: blog -->
+{{ partial "components/common/related-posts.html" (dict
+  "title" "Go deeper on ransomware resilience."
+  "bg" "section-light-1"
+  "posts" (slice
+    "/posts/2026-08-12-independent-backup-reasons"
+    "/posts/2026-09-08/agentless-vss-sql-server-backup"
+    "/posts/2025-09-17"
+    "/posts/2025-02-28"
+    "/posts/2025-02-11"
+    "/posts/2025-04-29"
+  )
+) }}
 
 {{ partial "components/common/use-cases-related.html" (dict "current" "/solutions/ransomware-recovery/") }}
 
