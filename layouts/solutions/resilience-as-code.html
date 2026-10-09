@@ -169,12 +169,6 @@
         </article>
       {{ end }}
     </div>
-    <div class="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm">
-      <span class="font-mono text-xs uppercase tracking-widest text-neutral-500 font-bold">Further reading</span>
-      <a href="/posts/2026-02-18/backing-up-kubernetes-clusters-with-plakar/" class="text-primary-600 font-semibold hover:text-primary-700">Backing up Kubernetes clusters with Plakar</a>
-      <a href="/posts/2025-07-15/go-kloset-sdk-is-live/" class="text-primary-600 font-semibold hover:text-primary-700">The Go Kloset SDK is live</a>
-      <a href="/posts/2026-06-24/introducing-plakar-control-plane-free-plan/" class="text-primary-600 font-semibold hover:text-primary-700">Introducing the Control Plane free plan</a>
-    </div>
   </div>
 </section>
 
@@ -200,6 +194,17 @@
     </figure>
   </div>
 </section>
+
+<!-- SECTION: blog -->
+{{ partial "components/common/related-posts.html" (dict
+  "title" "Go deeper on Resilience as Code."
+  "bg" "section-light-2"
+  "posts" (slice
+    "/posts/2026-09-23/resilience-as-code-kubernetes-operator"
+    "/posts/2026-02-18"
+    "/posts/2026-06-24-introducing-plakar-control-plane-free-plan"
+  )
+) }}
 
 {{ partial "components/common/use-cases-related.html" (dict "current" "/solutions/resilience-as-code/") }}
 
