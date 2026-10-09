@@ -19,7 +19,7 @@
       </h1>
     </div>
     <p class="max-w-2xl text-neutral-600 text-lg lg:text-xl">
-      Each team protects its data with its own tools. Declare stores, sources, and schedules in code, review them like any other change, and let the Control Plane run them across the estate.
+      App teams own their resilience: they declare backups next to their manifests or Terraform, with no tickets to the backup team. The Control Plane runs them across the estate.
     </p>
     <div class="flex flex-col sm:flex-row gap-4 mt-2 items-center">
       {{ partial "components/buttons/base-button.html" (dict
@@ -139,6 +139,39 @@
           <p class="landing-panel__note"><a href="/docs/control-plane/infrastructure-as-code/terraform/" class="text-primary-300 underline">Terraform provider docs</a></p>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: velero -->
+{{/* Plakar-side facts only, from /docs/control-plane/guides/kubernetes/kubernetes-rbac/ and the Kubernetes
+     inventory and resources docs. Do not add claims about Velero itself. owner: victor@plakar.io */}}
+<section class="section-dark-1 py-14 lg:py-24 relative overflow-hidden">
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-150 h-75 bg-primary-900/20 blur-[100px] rounded-full pointer-events-none"></div>
+  <div class="max-w-350 mx-auto px-4 relative z-10 flex flex-col gap-12">
+    <div class="text-center max-w-3xl mx-auto space-y-4">
+      <h2 class="text-primary-500 font-mono text-sm font-bold uppercase tracking-widest">Already on Velero?</h2>
+      <p class="font-medium text-3xl lg:text-5xl text-white leading-tighter">Keep the workflow. Widen the coverage.</p>
+      <p class="text-lg text-neutral-400">Backups stay declarative and live in the cluster, and Plakar protects what runs around it.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {{ range (slice
+        (dict "icon" "ri/user-line" "title" "Least privilege" "body" "Volume and VM backups run with namespaced roles, one per target namespace, not cluster-admin.")
+        (dict "icon" "ri/server-line" "title" "KubeVirt virtual machines" "body" "Back up and restore KubeVirt VMs and their disks alongside volumes and manifests.")
+        (dict "icon" "ri/database-2-line" "title" "Beyond the cluster" "body" "Databases, buckets, and VMs outside Kubernetes land in the same encrypted Kloset, under the same policies.")
+        (dict "icon" "ri/dashboard-3-line" "title" "Every cluster, one view" "body" "Kubernetes inventories, coverage, and organizations for all your clusters in the Control Plane.")
+      ) }}
+        <div class="bg-neutral-800/50 border border-neutral-700 p-6 rounded-xl flex flex-col gap-4">
+          <div class="w-10 h-10 p-2 bg-neutral-900 rounded-lg flex items-center justify-center text-primary-400 border border-neutral-700">{{ partial "icon.html" .icon }}</div>
+          <h3 class="text-white font-bold text-lg">{{ .title }}</h3>
+          <p class="text-neutral-400 text-sm leading-relaxed">{{ .body }}</p>
+        </div>
+      {{ end }}
+    </div>
+    <div>
+      <a href="/docs/control-plane/guides/kubernetes/kubernetes-rbac/" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg border border-neutral-600 bg-white/5 text-white font-medium hover:bg-white/10 transition-colors">
+        Read the Kubernetes RBAC guide <span class="w-4 h-4">{{ partial "icon.html" "ri/arrow-right-line" }}</span>
+      </a>
     </div>
   </div>
 </section>
