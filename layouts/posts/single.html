@@ -18,7 +18,7 @@
       <div class="flex flex-wrap items-center mt-2 gap-2 text-xs text-neutral-400 uppercase">
         {{ range .GetTerms "authors" }}
           {{ $authorKey := . | urlize | strings.TrimPrefix "/authors/" }}
-          {{ $authorData := index site.Data.authors $authorKey }}
+          {{ $authorData := index hugo.Data.authors $authorKey }}
           {{ with $authorData }}
             <span class="text-neutral-900 normal-case">{{ .name }}</span>
             <span>•</span>
@@ -83,7 +83,7 @@
       <!-- Author -->
       {{ range .GetTerms "authors" }}
         {{ $authorKey := . | urlize | strings.TrimPrefix "/authors/" }}
-        {{ $authorData := index site.Data.authors $authorKey }}
+        {{ $authorData := index hugo.Data.authors $authorKey }}
         {{ with $authorData }}
           <div class="flex items-start gap-4">
             {{ $authorImg := resources.Get .image }}
