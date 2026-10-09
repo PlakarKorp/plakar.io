@@ -107,6 +107,11 @@ Here is what it gives you:
 Suppose I have 11 GB in my Documents and two copies of the same folder:
 
 ```sh
+du -sh ~/Documents
+tar -czf test.tgz ~/Documents ~/Documents
+```
+
+```sh
 $ du -sh ~/Documents
 11G     /Users/julien/Documents
 $ tar -czf test.tgz ~/Documents ~/Documents
@@ -117,7 +122,7 @@ Result: about 22 GB compressed.
 With `.ptar`:
 
 ```sh
-$ plakar ptar -plaintext -o test.ptar ~/Documents ~/Documents
+plakar ptar -plaintext -o test.ptar ~/Documents ~/Documents
 ```
 
 Result: about 8 GB. Why? `.ptar` sees the duplicate folder once.
@@ -145,7 +150,7 @@ But when you need trust, speed, and scale, `.ptar` is built for 2025.
 Get the dev build:
 
 ```sh
-$ go install github.com/PlakarKorp/plakar@v1.0.3-devel.c7a66f1
+go install github.com/PlakarKorp/plakar@v1.0.3-devel.c7a66f1
 ```
 
 Then:
@@ -153,36 +158,36 @@ Then:
 - archive a folder:
 
   ```sh
-  $ plakar ptar -o backup.ptar ~/Documents
+  plakar ptar -o backup.ptar ~/Documents
   ```
 
 - archive an S3 bucket:
 
   ```sh
-  $ plakar ptar -o backup.ptar s3://my-bucket
+  plakar ptar -o backup.ptar s3://my-bucket
   ```
 
 - list contents:
 
   ```sh
-  $ plakar at backup.ptar ls
+  plakar at backup.ptar ls
   ```
 
 - restore files:
 
   ```sh
-  $ plakar at backup.ptar restore -to ./restore /Documents/config.yaml
+  plakar at backup.ptar restore -to ./restore /Documents/config.yaml
   ```
 
 - inspect one file:
 
   ```sh
-  $ plakar at backup.ptar cat snapshotid:/path/to/file
+  plakar at backup.ptar cat snapshotid:/path/to/file
   ```
 
 - mount a UI:
   ```sh
-  $ plakar at backup.ptar ui
+  plakar at backup.ptar ui
   ```
 
 ![ui.png](ui.png)

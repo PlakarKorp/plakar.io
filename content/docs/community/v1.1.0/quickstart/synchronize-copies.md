@@ -93,21 +93,26 @@ login.
 Run the following command to install the S3 integration:
 
 ```bash
-$ plakar pkg add s3
+plakar pkg add s3
 ```
 
 If you already have the S3 integration installed and want to update it, you can
 run:
 
 ```bash
-$ plakar pkg add -u s3
+plakar pkg add -u s3
 ```
 
 You can list all installed integrations to confirm the S3 integration was
 installed successfully:
 
 ```bash
-$ plakar pkg show
+plakar pkg show
+```
+
+The output is similar to:
+
+```sh
 s3@v1.0.7
 ```
 
@@ -125,7 +130,7 @@ credentials provided by your service provider instead.
 Run the following command to start a MinIO instance using Docker:
 
 ```bash
-$ docker run -d --name minio -p 9000:9000 -p 9001:9001 quay.io/minio/minio server /data --console-address ":9001"
+docker run -d --name minio -p 9000:9000 -p 9001:9001 quay.io/minio/minio server /data --console-address ":9001"
 ```
 
 This command starts a MinIO server accessible at `http://localhost:9000`, with a
@@ -144,7 +149,7 @@ We will call this store `s3-backups`.
 Run the following command to create the new store:
 
 ```bash
-$ plakar store add s3-backups \
+plakar store add s3-backups \
   location=s3://localhost:9000/mybucket \
   access_key=minioadmin \
   secret_access_key=minioadmin \
@@ -169,7 +174,7 @@ For now, the Kloset Store points to a bucket that does not exist yet. We need to
 create it by initializing the store:
 
 ```bash
-$ plakar at "@s3-backups" create
+plakar at "@s3-backups" create
 ```
 
 This command initializes the Kloset Store at the S3 location, creating the
@@ -215,7 +220,12 @@ Kloset Store we just created.
 Run the following command:
 
 ```bash
-$ plakar at $HOME/backups sync to "@s3-backups"
+plakar at $HOME/backups sync to "@s3-backups"
+```
+
+The output is similar to:
+
+```sh
 info: Synchronizing snapshot 772fba5f575272ba8742e63c6ec1878623900d158c5de4b20b854a0aa15a7b47 from fs:///Users/niluje/backups to s3://localhost:9000/mybucket
 info: Synchronization of 772fba5f575272ba8742e63c6ec1878623900d158c5de4b20b854a0aa15a7b47 finished
 info: sync: synchronization from fs:///Users/niluje/backups to s3://localhost:9000/mybucket completed: 1 snapshots synchronized
@@ -228,7 +238,12 @@ To verify that the synchronization was successful, you can list the snapshots in
 the S3 Kloset Store again:
 
 ```bash
-$ plakar at "@s3-backups" ls
+plakar at "@s3-backups" ls
+```
+
+The output is similar to:
+
+```sh
 2025-12-15T21:09:32Z   772fba5f   2.9 MiB        0s /private/etc
 ```
 
@@ -240,7 +255,12 @@ because the destination store already contains all the snapshots from the source
 store.
 
 ```bash
-$ plakar at $HOME/backups sync to "@s3-backups"
+plakar at $HOME/backups sync to "@s3-backups"
+```
+
+The output is similar to:
+
+```sh
 destination store passphrase:
 info: sync: synchronization from fs:///Users/niluje/backups to s3://localhost:9000/mybucket completed: 0 snapshots synchronized
 ```

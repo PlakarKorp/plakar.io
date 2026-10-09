@@ -68,13 +68,13 @@ simplest installation method.
 Install the MS AD package:
 
 ```bash
-$ plakar pkg add msad
+plakar pkg add msad
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg show
+plakar pkg show
 ```
 
 {{< /tab >}}
@@ -91,7 +91,7 @@ customization is required.
 Build the package:
 
 ```bash
-$ plakar pkg build msad
+plakar pkg build msad
 ```
 
 A package archive will be created in the current directory (e.g.
@@ -100,13 +100,13 @@ A package archive will be created in the current directory (e.g.
 Install the package:
 
 ```bash
-$ plakar pkg add -allow-unsigned ./msad_v1.1.0_darwin_arm64.ptar
+plakar pkg add -allow-unsigned ./msad_v1.1.0_darwin_arm64.ptar
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg show
+plakar pkg show
 ```
 
 {{< /tab >}}
@@ -177,24 +177,24 @@ Confirm SSH access to the Windows host first, since the integration depends on
 it:
 
 ```bash
-$ eval `ssh-agent`
-$ ssh-add
-$ ssh Administrator@192.168.1.42
+eval `ssh-agent`
+ssh-add
+ssh Administrator@192.168.1.42
 ```
 
 Configure the source and back it up:
 
 ```bash
-$ plakar source set adserver location="msad://Administrator@192.168.1.42/D:/"
-$ plakar backup @adserver
+plakar source set adserver location="msad://Administrator@192.168.1.42/D:/"
+plakar backup @adserver
 ```
 
 Configure the matching destination and restore a snapshot to the `D:` drive,
 which should be empty:
 
 ```bash
-$ plakar destination set adserver location="msad://Administrator@192.168.1.42/D:/"
-$ plakar restore -to @adserver <snapid>
+plakar destination set adserver location="msad://Administrator@192.168.1.42/D:/"
+plakar restore -to @adserver <snapid>
 ```
 
 ## Recovering a Domain Controller

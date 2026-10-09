@@ -52,13 +52,13 @@ how this differs from the other integrations.
 Install the VSS package:
 
 ```bash
-$ plakar pkg add vss
+plakar pkg add vss
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg show
+plakar pkg show
 ```
 
 To list, upgrade, or remove the package, see
@@ -124,10 +124,10 @@ FS --> VSS --> Via --> Plakar --> Store
 
 ```bash
 # Configure the D: drive on a Windows machine as a backup source
-$ plakar source add mywindowsbox location=vss://Administrator@192.168.1.42/D:/
+plakar source add mywindowsbox location=vss://Administrator@192.168.1.42/D:/
 
 # Back up the source to a Kloset store
-$ plakar at /var/backups backup "@mywindowsbox"
+plakar at /var/backups backup "@mywindowsbox"
 ```
 
 ## Destination connector
@@ -157,10 +157,10 @@ Store --> Plakar --> Via --> FS
 
 ```bash
 # Configure a backup destination corresponding to the backup source
-$ plakar destination add mywindowsbox location=vss://Administrator@192.168.1.42/D:/
+plakar destination add mywindowsbox location=vss://Administrator@192.168.1.42/D:/
 
 # Restore a snapshot to the D: drive
-$ plakar at /var/backups restore -to "@mywindowsbox" <snapshot_id>
+plakar at /var/backups restore -to "@mywindowsbox" <snapshot_id>
 ```
 
 ## See also

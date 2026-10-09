@@ -125,5 +125,5 @@ A prune in check mode deletes nothing. It reports what the rule would delete,
 what it would keep, and what it held back:
 
 ```sh
-$ ansible-playbook retention.yml --check
+ansible-playbook retention.yml --check
 ```

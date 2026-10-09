@@ -32,9 +32,9 @@ For logical dumps using `mysqldump` or `mariadb-dump`, see
 The safest method. Stop MySQL, back up the data directory, then restart:
 
 ```bash
-$ sudo systemctl stop mysql.service
-$ sudo plakar at /var/backups backup /var/lib/mysql
-$ sudo systemctl start mysql.service
+sudo systemctl stop mysql.service
+sudo plakar at /var/backups backup /var/lib/mysql
+sudo systemctl start mysql.service
 ```
 
 ## Back up with a read lock
@@ -43,7 +43,7 @@ Minimize downtime using `FLUSH TABLES WITH READ LOCK`. All writes are blocked
 for the duration:
 
 ```bash
-$ mysql -u root -p << 'EOF'
+mysql -u root -p << 'EOF'
 FLUSH TABLES WITH READ LOCK;
 SYSTEM sudo plakar at /var/backups backup /var/lib/mysql
 UNLOCK TABLES;
@@ -53,7 +53,7 @@ EOF
 ## List snapshots
 
 ```bash
-$ plakar at /var/backups ls
+plakar at /var/backups ls
 ```
 
 ## Restore the data directory
@@ -62,19 +62,19 @@ Stop MySQL, move aside the existing data directory, restore, fix permissions,
 and restart:
 
 ```bash
-$ sudo systemctl stop mysql.service
-$ sudo mv /var/lib/mysql /var/lib/mysql.old
-$ sudo plakar at /var/backups restore -to /var/lib/mysql <snapshot_id>
-$ sudo chown -R mysql:mysql /var/lib/mysql
-$ sudo systemctl start mysql.service
+sudo systemctl stop mysql.service
+sudo mv /var/lib/mysql /var/lib/mysql.old
+sudo plakar at /var/backups restore -to /var/lib/mysql <snapshot_id>
+sudo chown -R mysql:mysql /var/lib/mysql
+sudo systemctl start mysql.service
 ```
 
 ## Restore and run with Docker
 
 ```bash
-$ plakar at /var/backups restore -to ./mydb <snapshot_id>
-$ sudo chown -R 999:999 ./mydb
-$ docker run --rm -ti \
+plakar at /var/backups restore -to ./mydb <snapshot_id>
+sudo chown -R 999:999 ./mydb
+docker run --rm -ti \
   -v ./mydb:/var/lib/mysql \
   mysql:<version>
 ```

@@ -47,7 +47,7 @@ This feature only works on our development branch for the time being, you can
 give it a try by installing our latest devel release:
 
 ```sh
-$ go install github.com/PlakarKorp/plakar@v1.0.3-devel.889b4b6
+go install github.com/PlakarKorp/plakar@v1.0.3-devel.889b4b6
 ```
 
 ## Install in seconds
@@ -60,7 +60,12 @@ Typing the following command will fetch the latest version of the integration
 and build a plugin out of it:
 
 ```sh
-$ plakar pkg build notion
+plakar pkg build notion
+```
+
+The output is similar to:
+
+```sh
 /usr/bin/make -C /tmp/build-notion-v0.1.0-devel.b66af0a-644909591
 ea7b3ad6: OK ✓ /manifest.yaml
 ea7b3ad6: OK ✓ /notion-importer
@@ -74,13 +79,18 @@ plugin that's exactly like the ones that will be pre-built and distributed by
 us, ready to be installed:
 
 ```sh
-$ plakar pkg add ./notion-v0.1.0-devel.b66af0a_darwin_arm64.ptar
+plakar pkg add ./notion-v0.1.0-devel.b66af0a_darwin_arm64.ptar
 ```
 
 You can verify that it's properly installed (see how notion appears now):
 
 ```sh
-$ plakar version
+plakar version
+```
+
+The output is similar to:
+
+```sh
 plakar/v1.0.3-devel
 
 importers: fs, ftp, notion, s3, sftp, stdin, tar, tar+gz, tgz
@@ -117,20 +127,25 @@ Once everything is ready at Notion, you need to provide `plakar` with a source
 configuration for it to know where to fetch the data.
 
 ```sh
-$ plakar source set mynotion notion:// \
+plakar source set mynotion notion:// \
   token=ntn_1234567890123456789012345678901234567890123456
 ```
 
 Reload the agent configuration (this step will soon become optional):
 
 ```sh
-$ plakar agent reload
+plakar agent reload
 ```
 
 ... and run your backup !
 
 ```sh
-$ plakar backup @mynotion
+plakar backup @mynotion
+```
+
+The output is similar to:
+
+```sh
 /Users/gilles/.cache/plakar/plugins/notion_v0.1.0_darwin_arm64
 30b99763: OK ✓ /e2fdfe56-536a-4172-8974-78b14b351df7/page.json
 30b99763: OK ✓ /e2fdfe56-536a-4172-8974-78b14b351df7/9ccb9414-066f-4743-a694-6589cce600b6/page.json
@@ -155,7 +170,7 @@ Then you can do the `plakar` setup as was done for backup, but now for the
 destination side:
 
 ```sh
-$ plakar destination set mynotion notion:// \
+plakar destination set mynotion notion:// \
   token=ntn_1234567890123456789012345678901234567890123456 \
   rootID=1ea782d6899380dd96c2f88f20f68635
 ```
@@ -163,13 +178,18 @@ $ plakar destination set mynotion notion:// \
 Reload the agent config:
 
 ```sh
-$ plakar agent reload
+plakar agent reload
 ```
 
 ... and restore !
 
 ```sh
-$ plakar restore -to @mynotion 30b99763
+plakar restore -to @mynotion 30b99763
+```
+
+The output is similar to:
+
+```sh
 30b99763: OK ✓ /e2fdfe56-536a-4172-8974-78b14b351df7/page.json
 30b99763: OK ✓ /e2fdfe56-536a-4172-8974-78b14b351df7/9ccb9414-066f-4743-a694-6589cce600b6/page.json
 30b99763: OK ✓ /e2fdfe56-536a-4172-8974-78b14b351df7/8ea2b894-7caa-4f57-8695-803e3c09369c/page.json
@@ -182,7 +202,12 @@ Note that you can also restore to a local directory or an alternate target, the
 restored data will maintain the original structure.
 
 ```sh
-$ plakar restore -to /tmp/notion-backup 30b99763
+plakar restore -to /tmp/notion-backup 30b99763
+```
+
+The output is similar to:
+
+```sh
 30b99763: OK ✓ /e2fdfe56-536a-4172-8974-78b14b351df7/page.json
 30b99763: OK ✓ /e2fdfe56-536a-4172-8974-78b14b351df7/9ccb9414-066f-4743-a694-6589cce600b6/page.json
 30b99763: OK ✓ /e2fdfe56-536a-4172-8974-78b14b351df7/8ea2b894-7caa-4f57-8695-803e3c09369c/page.json
@@ -194,7 +219,7 @@ $ plakar restore -to /tmp/notion-backup 30b99763
 Now let's run the UI:
 
 ```sh
-$ plakar ui
+plakar ui
 ```
 
 ![](notion-ui-1.png) ![](notion-ui-2.png)

@@ -40,13 +40,13 @@ how this differs from the other integrations.
 Install the VMware package:
 
 ```bash
-$ plakar pkg add vmware
+plakar pkg add vmware
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg show
+plakar pkg show
 ```
 
 To list, upgrade, or remove the package, see
@@ -68,10 +68,15 @@ as the `config.instanceUuid` property of the virtual machine. For a virtual
 machine named `myvm` in the `Datacenter` datacenter:
 
 ```bash
-$ export GOVC_URL=vcenter.example.com
-$ export GOVC_USERNAME=<username>
-$ export GOVC_PASSWORD=<password>
-$ govc object.collect -s /Datacenter/vm/myvm config.instanceUuid
+export GOVC_URL=vcenter.example.com
+export GOVC_USERNAME=<username>
+export GOVC_PASSWORD=<password>
+govc object.collect -s /Datacenter/vm/myvm config.instanceUuid
+```
+
+The output is similar to:
+
+```sh
 421b9d3a-8c2e-4f1a-9b7d-3e5f6a7b8c9d
 ```
 
@@ -227,19 +232,19 @@ virtual machine from the NSX Manager.
 Back up a virtual machine as raw disks, the default:
 
 ```bash
-$ plakar source add myvm vmware://421b9d3a-8c2e-4f1a-9b7d-3e5f6a7b8c9d \
+plakar source add myvm vmware://421b9d3a-8c2e-4f1a-9b7d-3e5f6a7b8c9d \
   vsphere_server=vcenter.example.com \
   vsphere_datacenter=Datacenter \
   vsphere_username=<username> \
   vsphere_password=<password>
 
-$ plakar at /var/backups backup "@myvm"
+plakar at /var/backups backup "@myvm"
 ```
 
 Back up the same virtual machine as stream-optimized VMDK instead:
 
 ```bash
-$ plakar source add myvm-vmdk vmware://421b9d3a-8c2e-4f1a-9b7d-3e5f6a7b8c9d \
+plakar source add myvm-vmdk vmware://421b9d3a-8c2e-4f1a-9b7d-3e5f6a7b8c9d \
   vsphere_server=vcenter.example.com \
   vsphere_datacenter=Datacenter \
   vsphere_username=<username> \
@@ -250,20 +255,20 @@ $ plakar source add myvm-vmdk vmware://421b9d3a-8c2e-4f1a-9b7d-3e5f6a7b8c9d \
 Restore a snapshot in place onto the virtual machine it was taken from:
 
 ```bash
-$ plakar destination add myvm-inplace vmware://421b9d3a-8c2e-4f1a-9b7d-3e5f6a7b8c9d \
+plakar destination add myvm-inplace vmware://421b9d3a-8c2e-4f1a-9b7d-3e5f6a7b8c9d \
   vsphere_server=vcenter.example.com \
   vsphere_datacenter=Datacenter \
   vsphere_username=<username> \
   vsphere_password=<password>
 
-$ plakar at /var/backups restore -to "@myvm-inplace" <snapshot_id>
+plakar at /var/backups restore -to "@myvm-inplace" <snapshot_id>
 ```
 
 Restore a snapshot as a new virtual machine with its network adapters
 disconnected:
 
 ```bash
-$ plakar destination add myvm-restore vmware://spawn \
+plakar destination add myvm-restore vmware://spawn \
   vsphere_server=vcenter.example.com \
   vsphere_datacenter=Datacenter \
   vsphere_username=<username> \
@@ -271,7 +276,7 @@ $ plakar destination add myvm-restore vmware://spawn \
   network_adapter_restore_mode=disconnected \
   network_recovery_port_group=quarantine
 
-$ plakar at /var/backups restore -to "@myvm-restore" <snapshot_id>
+plakar at /var/backups restore -to "@myvm-restore" <snapshot_id>
 ```
 
 ## See also

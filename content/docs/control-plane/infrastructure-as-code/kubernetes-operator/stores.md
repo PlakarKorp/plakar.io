@@ -65,13 +65,23 @@ Since `Store` is an ordinary Kubernetes custom resource, `kubectl get` and
 object:
 
 ```sh
-$ kubectl get Store
+kubectl get Store
+```
+
+The output is similar to:
+
+```sh
 NAME       AGE
 s3bucket   111m
 ```
 
 ```sh
-$ kubectl describe Store s3bucket
+kubectl describe Store s3bucket
+```
+
+The output is similar to:
+
+```sh
 ...
 Status:
   Conditions:

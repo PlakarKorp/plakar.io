@@ -60,14 +60,14 @@ minio:
 Then import it with:
 
 ```bash
-$ plakar store import -config my-stores.yaml
+plakar store import -config my-stores.yaml
 ```
 
 Similarly for sources and destinations:
 
 ```bash
-$ plakar source import -config my-sources.yaml
-$ plakar destination import -config my-destinations.yaml
+plakar source import -config my-sources.yaml
+plakar destination import -config my-destinations.yaml
 ```
 
 The configuration files should be in YAML format with named sections for each
@@ -79,13 +79,13 @@ You can pipe configuration data directly from other commands:
 
 ```bash
 # Import a specific source configuration as a destination
-$ plakar source show -secrets | plakar destination import mybucket
+plakar source show -secrets | plakar destination import mybucket
 
 # Import all sources as destinations
-$ plakar source show -secrets | plakar destination import
+plakar source show -secrets | plakar destination import
 
 # Import from rclone configuration
-$ rclone config show -secrets | plakar store import -rclone koofr
+rclone config show -secrets | plakar store import -rclone koofr
 ```
 
 ### Section Selection
@@ -95,10 +95,10 @@ renamed during import by appending `:newname`.
 
 ```bash
 # Import only specific sections
-$ plakar store import -config stores.yaml section1 section2
+plakar store import -config stores.yaml section1 section2
 
 # Import and rename sections
-$ plakar store import -config stores.yaml oldname:newname
+plakar store import -config stores.yaml oldname:newname
 ```
 
 ## Configuration File Format
@@ -150,10 +150,10 @@ If you have rclone configurations, you can easily import them as Plakar stores:
 
 ```bash
 # Show available rclone remotes
-$ rclone config show
+rclone config show
 
 # Import a specific rclone remote as a Plakar store
-$ rclone config show | plakar store import -rclone myremote
+rclone config show | plakar store import -rclone myremote
 ```
 
 ### Bulk Configuration Management
@@ -162,10 +162,10 @@ You can export and import configurations between different Plakar installations:
 
 ```bash
 # Export current store configurations
-$ plakar store show -secrets > stores-backup.yaml
+plakar store show -secrets > stores-backup.yaml
 
 # Import on another machine
-$ plakar store import -config stores-backup.yaml
+plakar store import -config stores-backup.yaml
 ```
 
 ### Converting Sources to Destinations
@@ -175,10 +175,10 @@ restore destinations:
 
 ```bash
 # Import all sources as destinations
-$ plakar source show -secrets | plakar destination import
+plakar source show -secrets | plakar destination import
 
 # Import a specific source as a destination with a new name
-$ plakar source show -secrets | plakar destination import mysource:myrestore
+plakar source show -secrets | plakar destination import mysource:myrestore
 ```
 
 ### Verification
@@ -186,17 +186,17 @@ $ plakar source show -secrets | plakar destination import mysource:myrestore
 After importing, verify the configuration was imported correctly:
 
 ```bash
-$ plakar store show
-$ plakar source show
-$ plakar destination show
+plakar store show
+plakar source show
+plakar destination show
 ```
 
 Use the `check` subcommand to validate configurations:
 
 ```bash
-$ plakar store check mystore
-$ plakar source check mysource
-$ plakar destination check mydest
+plakar store check mystore
+plakar source check mysource
+plakar destination check mydest
 ```
 
 ## Troubleshooting

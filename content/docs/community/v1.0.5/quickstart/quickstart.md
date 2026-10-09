@@ -40,17 +40,17 @@ is to use our APT repository. First, install necessary dependencies and add the
 repository's GPG key:
 
 ```bash
-$ sudo apt-get update
-$ sudo apt-get install -y curl gnupg2
-$ curl -fsSL https://plakar.io/dist/keys/plakar-packages.gpg | sudo gpg --dearmor -o /usr/share/keyrings/plakar.gpg
-$ echo "deb [signed-by=/usr/share/keyrings/plakar.gpg] https://plakar.io/dist/repos/deb/ stable main" | sudo tee /etc/apt/sources.list.d/plakar.list
+sudo apt-get update
+sudo apt-get install -y curl gnupg2
+curl -fsSL https://plakar.io/dist/keys/plakar-packages.gpg | sudo gpg --dearmor -o /usr/share/keyrings/plakar.gpg
+echo "deb [signed-by=/usr/share/keyrings/plakar.gpg] https://plakar.io/dist/repos/deb/ stable main" | sudo tee /etc/apt/sources.list.d/plakar.list
 ```
 
 Then update the package list and install plakar:
 
 ```bash
-$ sudo apt-get update
-$ sudo apt-get install plakar
+sudo apt-get update
+sudo apt-get install plakar
 ```
 
 {{< /tab >}}
@@ -63,7 +63,7 @@ way is to use our DNF repository.
 First, set up the repository:
 
 ```bash
-$ cat <<EOF | sudo tee /etc/yum.repos.d/plakar.repo
+cat <<EOF | sudo tee /etc/yum.repos.d/plakar.repo
 [plakar]
 name=Plakar Repository
 baseurl=https://plakar.io/dist/repos/rpm/$(uname -m)/
@@ -77,7 +77,7 @@ EOF
 Then install plakar with:
 
 ```bash
-$ sudo dnf install plakar
+sudo dnf install plakar
 ```
 
 {{< /tab >}}
@@ -89,7 +89,7 @@ The simplest way to install Plakar on macOS is with
 Plakar tap and install Plakar with:
 
 ```bash
-$ brew install plakarkorp/tap/plakar
+brew install plakarkorp/tap/plakar
 ```
 
 > If you prefer not to use our tap, you can install from the default Homebrew
@@ -123,7 +123,7 @@ To install using the Go toolchain, use `go install` with the version you want to
 install, or `latest`:
 
 ```bash
-$ go install "github.com/PlakarKorp/plakar@v1.0.5"
+go install "github.com/PlakarKorp/plakar@v1.0.5"
 ```
 
 This will install the binary into your `$GOPATH/bin` directory, which you may
@@ -139,7 +139,7 @@ Plakar is available on the Arch User Repository (AUR). If you use an AUR helper
 such as `yay`, you can install it with:
 
 ```bash
-$ yay -S plakar
+yay -S plakar
 ```
 
 ### Building from Source
@@ -155,18 +155,18 @@ You can build Plakar from source. You will need:
 Clone the repository and run `make`:
 
 ```bash
-$ git clone https://github.com/PlakarKorp/plakar.git
-$ cd plakar
-$ make
+git clone https://github.com/PlakarKorp/plakar.git
+cd plakar
+make
 ```
 
 This produces a `plakar` binary in the current directory. To build a specific
 release version, check out the corresponding tag before running `make`:
 
 ```bash
-$ git fetch --tags
-$ git checkout tags/v1.0.5
-$ make
+git fetch --tags
+git checkout tags/v1.0.5
+make
 ```
 
 ### Other Platforms
@@ -185,7 +185,7 @@ documentation for how to install them.
 Verify the installation by running:
 
 ```bash
-$ plakar version
+plakar version
 ```
 
 This should return the expected version number, for example 'plakar/v1.0.5'.
@@ -204,7 +204,7 @@ different physical device, so substitute in a better location if you have one.
 In the CLI enter the following command:
 
 ```bash
-$ plakar at $HOME/backups create
+plakar at $HOME/backups create
 ```
 
 **Plakar** will then ask you to enter a passphrase, and repeat it to confirm.
@@ -231,7 +231,7 @@ a command is to take place.
 To create a simple example backup, try running:
 
 ```bash
-$ plakar at $HOME/backups backup /private/etc
+plakar at $HOME/backups backup /private/etc
 ```
 
 **Plakar** will process the files it finds at that location and pass them to the
@@ -265,7 +265,12 @@ for various **Plakar** commands.
 You can verify that the backup exists:
 
 ```bash
-$ plakar at $HOME/backups ls
+plakar at $HOME/backups ls
+```
+
+The output is similar to:
+
+```sh
 2025-09-02T15:38:16Z   9abc3294    3.1 MB      0s   /private/etc
 ```
 
@@ -276,7 +281,12 @@ the backup.
 Verify the integrity of the contents:
 
 ```bash
-$ plakar at $HOME/backups check 9abc3294
+plakar at $HOME/backups check 9abc3294
+```
+
+The output is similar to:
+
+```sh
 9abc3294: ✓ /private/etc/afpovertcp.cfg
 9abc3294: ✓ /private/etc/apache2/extra/httpd-autoindex.conf
 9abc3294: ✓ /private/etc/apache2/extra/httpd-dav.conf
@@ -291,7 +301,7 @@ check: verification of 9abc3294:/private/etc completed successfully
 And restore it to a local directory:
 
 ```bash
-$ plakar at $HOME/backups restore -to /tmp/restore 9abc3294
+plakar at $HOME/backups restore -to /tmp/restore 9abc3294
 ```
 
 In this case we are restoring to temporary storage as it is just a test. The
@@ -313,7 +323,7 @@ To verify the files have been re-created, list the directory they were restored
 to:
 
 ```bash
-$ ls -l /tmp/restore
+ls -l /tmp/restore
 ```
 
 This will list the restored files. Note that the properties of the restored
@@ -350,7 +360,7 @@ authentication.
 To log in using the CLI:
 
 ```bash
-$ plakar login -email <youremailaddress@example.com>
+plakar login -email <youremailaddress@example.com>
 ```
 
 Substitute in your own email address and follow the prompt. You can then check
@@ -359,7 +369,7 @@ your email and follow the link sent from plakar.io.
 To check that you are now logged in you can run:
 
 ```bash
-$ plakar login -status
+plakar login -status
 ```
 
 ## Access the UI
@@ -368,7 +378,7 @@ Plakar provides a web interface to view the backups and their content. To start
 the web interface, run:
 
 ```bash
-$ plakar at $HOME/backups ui
+plakar at $HOME/backups ui
 ```
 
 Your default browser will open a new tab. You can navigate through the

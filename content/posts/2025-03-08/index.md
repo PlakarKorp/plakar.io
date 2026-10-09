@@ -26,7 +26,7 @@ We are excited to announce our new beta release and warmly invite you to test
 it!
 
 ```bash
-$ go install github.com/PlakarKorp/plakar/cmd/plakar@v1.0.0-beta.4
+go install github.com/PlakarKorp/plakar/cmd/plakar@v1.0.0-beta.4
 ```
 
 During our pre-beta phase, we concentrated on building the core of

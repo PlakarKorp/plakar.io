@@ -400,6 +400,46 @@ table.Nm {
   margin-bottom: 0.5rem;
 }
 
+/* Code blocks rework */
+.codeblock-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 2.5rem;
+  padding-top: 0;
+  padding-bottom: 0;
+  font-size: 0.875rem;
+  color: rgb(var(--color-neutral-500));
+}
+
+.codeblock-icon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+.highlight-wrapper > .copy-button {
+  visibility: visible;
+  height: 2.5rem;
+  width: auto;
+  padding: 0 1rem;
+  font-family: inherit;
+  background-color: transparent;
+  color: rgb(var(--color-neutral-500));
+  border-radius: 0;
+}
+
+.highlight-wrapper > .copy-button:hover,
+.highlight-wrapper > .copy-button:focus {
+  background-color: transparent;
+  color: rgb(var(--color-primary-600));
+}
+
+.dark .highlight-wrapper > .copy-button:hover,
+.dark .highlight-wrapper > .copy-button:focus {
+  color: rgb(var(--color-primary-400));
+}
+
 /* Integrations */
 .integrations-stat-card {
   transition-property: transform;

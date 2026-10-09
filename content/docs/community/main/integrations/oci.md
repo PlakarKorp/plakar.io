@@ -43,13 +43,13 @@ simplest installation method.
 Install the OCI Registry package:
 
 ```bash
-$ plakar pkg add oci
+plakar pkg add oci
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg show
+plakar pkg show
 ```
 
 {{< /tab >}}
@@ -66,7 +66,7 @@ customization is required.
 Build the package:
 
 ```bash
-$ plakar pkg build oci
+plakar pkg build oci
 ```
 
 A package archive will be created in the current directory (e.g.,
@@ -75,13 +75,13 @@ A package archive will be created in the current directory (e.g.,
 Install the package:
 
 ```bash
-$ plakar pkg add -allow-unsigned ./oci_v1.0.0_darwin_arm64.ptar
+plakar pkg add -allow-unsigned ./oci_v1.0.0_darwin_arm64.ptar
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg show
+plakar pkg show
 ```
 
 {{< /tab >}}
@@ -137,7 +137,7 @@ Connector --> Store
 Start a local test registry:
 
 ```bash
-$ docker run -d --name oci-registry \
+docker run -d --name oci-registry \
   -p 5000:5000 \
   -v $(pwd)/registry-data:/var/lib/registry \
   registry:2
@@ -146,15 +146,15 @@ $ docker run -d --name oci-registry \
 Initialize the store and run a backup:
 
 ```bash
-$ plakar at oci://localhost:5000/my-org/plakar-store create
-$ plakar at oci://localhost:5000/my-org/plakar-store backup /var/www
+plakar at oci://localhost:5000/my-org/plakar-store create
+plakar at oci://localhost:5000/my-org/plakar-store backup /var/www
 ```
 
 List snapshots and restore:
 
 ```bash
-$ plakar at oci://localhost:5000/my-org/plakar-store ls
-$ plakar at oci://localhost:5000/my-org/plakar-store restore <snapshot_id>
+plakar at oci://localhost:5000/my-org/plakar-store ls
+plakar at oci://localhost:5000/my-org/plakar-store restore <snapshot_id>
 ```
 
 ## Notes

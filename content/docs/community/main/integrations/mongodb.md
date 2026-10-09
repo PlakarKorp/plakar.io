@@ -43,13 +43,13 @@ simplest installation method.
 Install the MongoDB package:
 
 ```bash
-$ plakar pkg add mongodb
+plakar pkg add mongodb
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg show
+plakar pkg show
 ```
 
 {{< /tab >}}
@@ -66,7 +66,7 @@ customization is required.
 Build the package:
 
 ```bash
-$ plakar pkg build mongodb
+plakar pkg build mongodb
 ```
 
 A package archive will be created in the current directory (e.g.,
@@ -75,13 +75,13 @@ A package archive will be created in the current directory (e.g.,
 Install the package:
 
 ```bash
-$ plakar pkg add -allow-unsigned ./mongodb_v1.0.0_darwin_arm64.ptar
+plakar pkg add -allow-unsigned ./mongodb_v1.0.0_darwin_arm64.ptar
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg show
+plakar pkg show
 ```
 
 {{< /tab >}}
@@ -132,12 +132,12 @@ Transform --> Store
 Register the source and run a backup:
 
 ```bash
-$ plakar source add my-mongodb \
+plakar source add my-mongodb \
   location=mongodb://<MONGODB_HOST> \
   username=<YOUR_USERNAME> \
   password=<YOUR_PASSWORD>
 
-$ plakar at /var/backups backup "@my-mongodb"
+plakar at /var/backups backup "@my-mongodb"
 ```
 
 ## Destination connector
@@ -169,10 +169,10 @@ Connector --> Destination
 Register the destination and restore a snapshot:
 
 ```bash
-$ plakar destination add my-mongodb-restore \
+plakar destination add my-mongodb-restore \
   location=mongodb://<MONGODB_HOST> \
   username=<YOUR_USERNAME> \
   password=<YOUR_PASSWORD>
 
-$ plakar at /var/backups restore -to "@my-mongodb-restore" <snapshot_id>
+plakar at /var/backups restore -to "@my-mongodb-restore" <snapshot_id>
 ```

@@ -24,7 +24,7 @@ bugs reported by early adopters.
 
 ```bash
 
-$ go install github.com/PlakarKorp/plakar/cmd/plakar@v1.0.1-beta.13
+go install github.com/PlakarKorp/plakar/cmd/plakar@v1.0.1-beta.13
 ```
 
 We hope you will give it a try and [give us with feedback](/discord) !
@@ -112,13 +112,13 @@ I feel almost ashamed to put that here, but hey... it's a new core feature.
 We already supported creating a backup from a remote FTP server:
 
 ```bash
-$ plakar backup ftp://ftp.eu.OpenBSD.org/pub/OpenBSD/7.6/arm64
+plakar backup ftp://ftp.eu.OpenBSD.org/pub/OpenBSD/7.6/arm64
 ```
 
 We now can also restore a backup _to_ a remote FTP server:
 
 ```bash
-$ plakar restore -to ftp://192.168.1.110/pub/OpenBSD/7.6/arm64 1f2a43a1
+plakar restore -to ftp://192.168.1.110/pub/OpenBSD/7.6/arm64 1f2a43a1
 ```
 
 So, yes, I guess we're back in the 90s...
@@ -319,7 +319,12 @@ harder than just having the fixed base offset and it comes for free.
 Here's an example of it applied to a file access:
 
 ```bash
-$ ./plakar cat 2f:/private/etc/passwd >/dev/null
+./plakar cat 2f:/private/etc/passwd >/dev/null
+```
+
+The output is similar to:
+
+```sh
 off=126916 (-7) length=1085 (+17)
 off=116762 (-1) length=91 (+4)
 off=235207 (-1) length=87 (+0)

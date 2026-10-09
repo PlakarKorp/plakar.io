@@ -91,8 +91,8 @@ BackupCompute -->|Store Snapshots| Kloset
 1. Generate SSH key locally and copy the public key:
 
 ```bash
-$ ssh-keygen -t ed25519 -f ~/.ssh/id_exoscale -C "exoscale-backup"
-$ cat ~/.ssh/id_exoscale.pub
+ssh-keygen -t ed25519 -f ~/.ssh/id_exoscale -C "exoscale-backup"
+cat ~/.ssh/id_exoscale.pub
 ```
 
 2. In the Exoscale portal, navigate to **Compute** → **SSH Keys**
@@ -148,7 +148,7 @@ $ cat ~/.ssh/id_exoscale.pub
 Once instance is running, note the public IP and connect:
 
 ```bash
-$ ssh ubuntu@<instance-ip>
+ssh ubuntu@<instance-ip>
 ```
 
 {{< /step >}}
@@ -169,14 +169,14 @@ Install Plakar on the instance using the
 ### Install S3 integration
 
 ```bash
-$ plakar login -email you@example.com
-$ plakar pkg add s3
+plakar login -email you@example.com
+plakar pkg add s3
 ```
 
 ### Add storage connector
 
 ```bash
-$ plakar store add exoscale-sos-backups \
+plakar store add exoscale-sos-backups \
   location=s3://<SOS_ENDPOINT>/<BUCKET_NAME> \
   access_key=<YOUR_ACCESS_KEY> \
   secret_access_key=<YOUR_SECRET_KEY> \
@@ -200,7 +200,7 @@ Replace:
 ### Initialize Kloset Store
 
 ```bash
-$ plakar at "@exoscale-sos-backups" create
+plakar at "@exoscale-sos-backups" create
 ```
 
 {{< /step >}}
@@ -212,13 +212,13 @@ $ plakar at "@exoscale-sos-backups" create
 ### Install SFTP integration
 
 ```bash
-$ plakar pkg add sftp
+plakar pkg add sftp
 ```
 
 ### Generate SSH keys for backups
 
 ```bash
-$ ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519_plakar -C "plakar@backup"
+ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519_plakar -C "plakar@backup"
 ```
 
 Press Enter for no passphrase.
@@ -226,20 +226,20 @@ Press Enter for no passphrase.
 ### Copy keys to source servers
 
 ```bash
-$ ssh-copy-id -i ~/.ssh/id_ed25519_plakar.pub user@source-server-1
-$ ssh-copy-id -i ~/.ssh/id_ed25519_plakar.pub user@source-server-2
+ssh-copy-id -i ~/.ssh/id_ed25519_plakar.pub user@source-server-1
+ssh-copy-id -i ~/.ssh/id_ed25519_plakar.pub user@source-server-2
 ```
 
 Test access:
 
 ```bash
-$ ssh -i ~/.ssh/id_ed25519_plakar user@source-server-1 'echo "Success"'
+ssh -i ~/.ssh/id_ed25519_plakar user@source-server-1 'echo "Success"'
 ```
 
 ### Create SSH aliases
 
 ```bash
-$ cat >> ~/.ssh/config << 'EOF'
+cat >> ~/.ssh/config << 'EOF'
 Host source-1
   HostName source-server-1.example.com
   User backupuser
@@ -257,7 +257,7 @@ EOF
 Test:
 
 ```bash
-$ ssh source-1 'echo "Alias works"'
+ssh source-1 'echo "Alias works"'
 ```
 
 {{< /step >}}
@@ -269,14 +269,14 @@ $ ssh source-1 'echo "Alias works"'
 Add source connectors for each server:
 
 ```bash
-$ plakar source add web-server-1 sftp://source-1/var/www
-$ plakar source add web-server-2 sftp://source-2/var/www
+plakar source add web-server-1 sftp://source-1/var/www
+plakar source add web-server-2 sftp://source-2/var/www
 ```
 
 Verify:
 
 ```bash
-$ plakar source show
+plakar source show
 ```
 
 {{< /step >}}
@@ -289,16 +289,16 @@ Run a manual backup to verify configuration:
 
 ```bash
 # Single source
-$ plakar at "@exoscale-sos-backups" backup "@web-server-1"
+plakar at "@exoscale-sos-backups" backup "@web-server-1"
 
 # Multiple sources
-$ plakar at "@exoscale-sos-backups" backup "@web-server-1" "@web-server-2"
+plakar at "@exoscale-sos-backups" backup "@web-server-1" "@web-server-2"
 ```
 
 List snapshots:
 
 ```bash
-$ plakar at "@exoscale-sos-backups" ls
+plakar at "@exoscale-sos-backups" ls
 ```
 
 {{< /step >}}

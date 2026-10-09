@@ -125,21 +125,25 @@ and is **only available for plakar v1.1.0-beta**.
 To test it, you first need to install our latest beta of plakar:
 
 ```sh
-$ go install github.com/PlakarKorp/plakar@v1.1.0-beta.4
+go install github.com/PlakarKorp/plakar@v1.1.0-beta.4
 ```
 
 You can their either use our prebuilt package by authenticating to our platform:
 
 ```sh
-$ plakar login
-[...]
-$ plakar pkg add oci
+plakar login
+plakar pkg add oci
 ```
 
 Or build the integration yourself...
 
 ```sh
-$ plakar pkg build oci
+plakar pkg build oci
+```
+
+The output is similar to:
+
+```sh
 /usr/bin/make -C /var/folders/9x/9k0f6mc10sbd0_kfx63__fvc0000gn/T/build-oci-v1.1.0-beta.4-510526837
 48317f2d: OK ✓ /
 48317f2d: OK ✓ /manifest.yaml
@@ -150,7 +154,7 @@ Plugin created successfully: oci_v1.1.0-beta.4_darwin_arm64.ptar
 ... and install the resulting ptar:
 
 ```sh
-$ plakar pkg add ./oci_v1.1.0-beta.4_darwin_arm64.ptar
+plakar pkg add ./oci_v1.1.0-beta.4_darwin_arm64.ptar
 ```
 
 That's it, you're good to go !
@@ -164,10 +168,15 @@ This can be done with this simple command, which will run the container and bind
 the registry to port 5000 on localhost:
 
 ```sh
-$ docker run -d --name oci-registry \
+docker run -d --name oci-registry \
   -p 5000:5000 \
   -v $(pwd)/registry-data:/var/lib/registry \
   registry:2
+```
+
+The output is similar to:
+
+```sh
 b61a4bc5df40307b6301d30f692cd276db64acd8448258ba49f2a4c6c760cb8c
 ```
 
@@ -178,32 +187,42 @@ start by setting the `PLAKAR_PASSPHRASE` environment variable to a key that I
 generated with `openssl rand -hex 32`:
 
 ```sh
-$ export PLAKAR_PASSPHRASE=6292d531ecede679b5e4afbbe9ce994a78c9c7986c742e97232f2730b8bfb5df
+export PLAKAR_PASSPHRASE=6292d531ecede679b5e4afbbe9ce994a78c9c7986c742e97232f2730b8bfb5df
 ```
 
 Once this is done, I can create the store:
 
 ```sh
-$ plakar at oci://localhost:5000/helloworld create
+plakar at oci://localhost:5000/helloworld create
 ```
 
 Then backup my current directory:
 
 ```sh
-$ plakar -silent at oci://localhost:5000/helloworld backup
+plakar -silent at oci://localhost:5000/helloworld backup
 ```
 
 The snapshot is now in store and can be inspected as usual:
 
 ```sh
-$ plakar at oci://localhost:5000/helloworld ls
+plakar at oci://localhost:5000/helloworld ls
+```
+
+The output is similar to:
+
+```sh
 2026-01-16T22:22:25Z   d61ae1c6   216 MiB        1s /Users/gilles/Wip/github.com/PlakarKorp/plakar
 ```
 
 Including its content:
 
 ```sh
-$ ./plakar at oci://localhost:5134/helloworld cat d61:LICENSE
+./plakar at oci://localhost:5134/helloworld cat d61:LICENSE
+```
+
+The output is similar to:
+
+```sh
 Copyright (c) 2021 Gilles Chehade <gilles@poolp.org>
 
 Permission to use, copy, modify, and distribute this software for any
@@ -222,7 +241,7 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 Everything is browsable as with any other storage through our UI:
 
 ```sh
-$ plakar at oci://localhost:5000/helloworld ui
+plakar at oci://localhost:5000/helloworld ui
 ```
 
 ![](oci-registry.png)

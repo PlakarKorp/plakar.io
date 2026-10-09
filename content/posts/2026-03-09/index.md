@@ -153,21 +153,25 @@ and is **only available for plakar starting with v1.1.0-beta**.
 To test it, you first need to install our latest beta of plakar:
 
 ```bash
-$ go install github.com/PlakarKorp/plakar@v1.1.0-beta.7
+go install github.com/PlakarKorp/plakar@v1.1.0-beta.7
 ```
 
 You can then either use our prebuilt package by authenticating to our platform:
 
 ```bash
-$ plakar login
-[...]
-$ plakar pkg add proxmox
+plakar login
+plakar pkg add proxmox
 ```
 
 Or build the integration yourself...
 
 ```bash
-$ plakar pkg build proxmox
+plakar pkg build proxmox
+```
+
+The output is similar to:
+
+```sh
 /usr/bin/make -C /var/folders/9x/9k0f6mc10sbd0_kfx63__fvc0000gn/T/build-proxmox-v1.1.0-rc.1-4157532844
 83b7da91: OK ✓ /
 83b7da91: OK ✓ /manifest.yaml
@@ -179,7 +183,7 @@ Plugin created successfully: proxmox_v1.1.0-rc.1_darwin_arm64.ptar
 ... and install the resulting ptar:
 
 ```bash
-$ plakar pkg add ./proxmox_v1.1.0-rc.1_darwin_arm64.ptar
+plakar pkg add ./proxmox_v1.1.0-rc.1_darwin_arm64.ptar
 ```
 
 Aaaaaand that's it.
@@ -226,7 +230,7 @@ containers becomes straightforward.
 First, we configure a Proxmox source:
 
 ```bash
-$ plakar source add myProxmox proxmox+backup://10.0.0.10 \
+plakar source add myProxmox proxmox+backup://10.0.0.10 \
   mode=remote \
   conn_username=root \
   conn_identity_file=/path/to/key \
@@ -238,13 +242,13 @@ Then we can start backing up workloads.
 For example, to back up a single virtual machine:
 
 ```bash
-$ plakar backup -o vmid=101 @myProxmox
+plakar backup -o vmid=101 @myProxmox
 ```
 
 Or all the machines in a pool:
 
 ```bash
-$ plakar backup -o pool=prod @myProxmox
+plakar backup -o pool=prod @myProxmox
 ```
 
 <video controls width="100%">
@@ -255,7 +259,7 @@ $ plakar backup -o pool=prod @myProxmox
 Or even the entire hypervisor:
 
 ```bash
-$ plakar backup -o all @myProxmox
+plakar backup -o all @myProxmox
 ```
 
 Under the hood, the integration invokes `vzdump`, collects the resulting
@@ -275,7 +279,7 @@ Restoring workloads is equally straightforward.
 First, configure a Proxmox destination:
 
 ```bash
-$ plakar destination add myProxmox \
+plakar destination add myProxmox \
   proxmox+backup://10.0.0.10 \
   mode=remote \
   conn_username=root \
@@ -286,7 +290,7 @@ $ plakar destination add myProxmox \
 Then restore a snapshot:
 
 ```bash
-$ plakar restore -to @myProxmox <snapid>
+plakar restore -to @myProxmox <snapid>
 ```
 
 The integration uploads the dump archive to the Proxmox node and restores it
@@ -299,7 +303,7 @@ It is also possible to restore **only one VM from a snapshot containing multiple
 machines**:
 
 ```bash
-$ plakar restore -to @myProxmox <snapid>:/backup/qemu/101_myvm
+plakar restore -to @myProxmox <snapid>:/backup/qemu/101_myvm
 ```
 
 <video controls width="100%">

@@ -44,13 +44,13 @@ simplest installation method.
 Install the NFS package:
 
 ```bash
-$ plakar pkg add nfs
+plakar pkg add nfs
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg show
+plakar pkg show
 ```
 
 {{< /tab >}}
@@ -67,7 +67,7 @@ customization is required.
 Build the package:
 
 ```bash
-$ plakar pkg build nfs
+plakar pkg build nfs
 ```
 
 A package archive will be created in the current directory (e.g.,
@@ -76,13 +76,13 @@ A package archive will be created in the current directory (e.g.,
 Install the package:
 
 ```bash
-$ plakar pkg add ./nfs_v1.0.0_darwin_arm64.ptar
+plakar pkg add ./nfs_v1.0.0_darwin_arm64.ptar
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg show
+plakar pkg show
 ```
 
 {{< /tab >}}
@@ -147,10 +147,10 @@ Transform --> Store
 Register the source and run a backup:
 
 ```bash
-$ plakar source add my-nfs-export \
+plakar source add my-nfs-export \
   location=nfs://nas.example.com/exports/data
 
-$ plakar at /var/backups backup "@my-nfs-export"
+plakar at /var/backups backup "@my-nfs-export"
 ```
 
 To back up a subtree rather than the whole export, extend the location with the
@@ -158,7 +158,7 @@ path inside the export. The `uid` and `gid` presented to the server decide what
 the walk is allowed to read:
 
 ```bash
-$ plakar source add my-nfs-home \
+plakar source add my-nfs-home \
   location=nfs://nas.example.com/exports/home/alice \
   uid=1000 gid=1000
 ```
@@ -166,9 +166,9 @@ $ plakar source add my-nfs-home \
 A location can also be passed directly to `backup`:
 
 ```bash
-$ plakar at /var/backups backup nfs://nas.example.com/exports/data
+plakar at /var/backups backup nfs://nas.example.com/exports/data
 
-$ plakar at /var/backups backup \
+plakar at /var/backups backup \
   -o uid=1000 -o gid=1000 \
   nfs://nas.example.com/exports/home/alice
 ```
@@ -203,10 +203,10 @@ Connector --> Destination
 Register the destination and restore a snapshot:
 
 ```bash
-$ plakar destination add my-nfs-restore \
+plakar destination add my-nfs-restore \
   location=nfs://nas.example.com/exports/restore
 
-$ plakar at /var/backups restore -to "@my-nfs-restore" <snapshot_id>
+plakar at /var/backups restore -to "@my-nfs-restore" <snapshot_id>
 ```
 
 ## Limitations

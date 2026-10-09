@@ -24,14 +24,14 @@ backends.
 ## Create a store with a path
 
 ```bash
-$ plakar at /var/backups create
+plakar at /var/backups create
 ```
 
 Plakar prompts for an encryption passphrase. To avoid the prompt, set:
 
 ```bash
-$ export PLAKAR_PASSPHRASE="my-secret-passphrase"
-$ plakar at /var/backups create
+export PLAKAR_PASSPHRASE="my-secret-passphrase"
+plakar at /var/backups create
 ```
 
 Plakar encrypts the store by default. A few flags modify this behaviour:
@@ -47,7 +47,7 @@ Plakar encrypts the store by default. A few flags modify this behaviour:
 Without specifying a path, `plakar create` uses `~/.plakar`:
 
 ```bash
-$ plakar create
+plakar create
 ```
 
 ## Create a store with an alias
@@ -55,20 +55,20 @@ $ plakar create
 Configure a store once, then reference it by alias in all subsequent commands:
 
 ```bash
-$ plakar store add mybackups /var/backups passphrase=xxx
+plakar store add mybackups /var/backups passphrase=xxx
 ```
 
 Use the configured store:
 
 ```bash
-$ plakar at @mybackups create
-$ plakar at @mybackups ls
+plakar at @mybackups create
+plakar at @mybackups ls
 ```
 
 ## Update store configuration
 
 ```bash
-$ plakar store set mybackups passphrase=yyy
+plakar store set mybackups passphrase=yyy
 ```
 
 > [!WARNING]+ Passphrase changes

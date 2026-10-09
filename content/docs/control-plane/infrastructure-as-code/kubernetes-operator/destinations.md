@@ -52,13 +52,23 @@ Since `Destination` is an ordinary Kubernetes custom resource, `kubectl get` and
 object:
 
 ```sh
-$ kubectl get Destination
+kubectl get Destination
+```
+
+The output is similar to:
+
+```sh
 NAME                AGE
 recovery-database   17m
 ```
 
 ```sh
-$ kubectl describe Destination recovery-database
+kubectl describe Destination recovery-database
+```
+
+The output is similar to:
+
+```sh
 ...
 Status:
   Conditions:

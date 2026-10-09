@@ -57,13 +57,23 @@ Since `Source` is an ordinary Kubernetes custom resource, `kubectl get` and
 object:
 
 ```sh
-$ kubectl get Source
+kubectl get Source
+```
+
+The output is similar to:
+
+```sh
 NAME                  AGE
 production-database   42m
 ```
 
 ```sh
-$ kubectl describe Source production-database
+kubectl describe Source production-database
+```
+
+The output is similar to:
+
+```sh
 ...
 Status:
   Conditions:

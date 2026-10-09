@@ -52,13 +52,13 @@ simplest installation method.
 Install the Kubernetes package:
 
 ```bash
-$ plakar pkg add k8s
+plakar pkg add k8s
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg show
+plakar pkg show
 ```
 
 {{< /tab >}}
@@ -75,7 +75,7 @@ customization is required.
 Build the package:
 
 ```bash
-$ plakar pkg build k8s
+plakar pkg build k8s
 ```
 
 A package archive will be created in the current directory (e.g.,
@@ -84,13 +84,13 @@ A package archive will be created in the current directory (e.g.,
 Install the package:
 
 ```bash
-$ plakar pkg add -allow-unsigned ./k8s_v1.1.0-beta.6_darwin_arm64.ptar
+plakar pkg add -allow-unsigned ./k8s_v1.1.0-beta.6_darwin_arm64.ptar
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg show
+plakar pkg show
 ```
 
 {{< /tab >}}
@@ -171,19 +171,19 @@ protocol, in addition to those in [Cluster access](#cluster-access).
 Back up all resources across the entire cluster:
 
 ```bash
-$ plakar backup k8s:/
+plakar backup k8s:/
 ```
 
 Back up resources in a specific namespace:
 
 ```bash
-$ plakar backup k8s:/foo
+plakar backup k8s:/foo
 ```
 
 Restore all `StatefulSet` resources in the `foo` namespace:
 
 ```bash
-$ plakar restore -to k8s: abcd:/foo/apps/StatefulSet
+plakar restore -to k8s: abcd:/foo/apps/StatefulSet
 ```
 
 ## 2. `k8s+csi` protocol
@@ -239,7 +239,7 @@ protocol, in addition to those in [Cluster access](#cluster-access).
 Back up the `my-pvc` PVC in the `storage` namespace:
 
 ```bash
-$ plakar backup -o volume_snapshot_class=my-snapclass k8s+csi:/storage/my-pvc
+plakar backup -o volume_snapshot_class=my-snapclass k8s+csi:/storage/my-pvc
 ```
 
 ## 3. `k8s+pvc` protocol
@@ -277,7 +277,7 @@ pod:
 Restore into a new, empty PVC:
 
 ```bash
-$ kubectl create -f -
+kubectl create -f - <<EOF
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -289,8 +289,9 @@ spec:
       storage: 1Gi
   accessModes:
     - ReadWriteOnce
+EOF
 
-$ plakar restore -to k8s+pvc:/storage/pristine abcdef:
+plakar restore -to k8s+pvc:/storage/pristine abcdef:
 ```
 
 Restore into an existing PVC by referencing it in the same way.

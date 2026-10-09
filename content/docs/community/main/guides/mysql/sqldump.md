@@ -32,19 +32,19 @@ MySQL-specific considerations, see the
 Install the MySQL package:
 
 ```bash
-$ plakar pkg add mysql
+plakar pkg add mysql
 ```
 
 ## Back up a single database
 
 ```bash
 # MySQL
-$ plakar source add mydb mysql://dbuser:secret@db.example.com/mydb
-$ plakar at /var/backups backup @mydb
+plakar source add mydb mysql://dbuser:secret@db.example.com/mydb
+plakar at /var/backups backup @mydb
 
 # MariaDB
-$ plakar source add mydb mysql+mariadb://dbuser:secret@db.example.com/mydb
-$ plakar at /var/backups backup @mydb
+plakar source add mydb mysql+mariadb://dbuser:secret@db.example.com/mydb
+plakar at /var/backups backup @mydb
 ```
 
 ## Back up all databases
@@ -53,18 +53,18 @@ Omit the database name from the URI to use `--all-databases`:
 
 ```bash
 # MySQL
-$ plakar source add alldb mysql://root:secret@db.example.com
-$ plakar at /var/backups backup @alldb
+plakar source add alldb mysql://root:secret@db.example.com
+plakar at /var/backups backup @alldb
 
 # MariaDB
-$ plakar source add alldb mysql+mariadb://root:secret@db.example.com
-$ plakar at /var/backups backup @alldb
+plakar source add alldb mysql+mariadb://root:secret@db.example.com
+plakar at /var/backups backup @alldb
 ```
 
 ## List snapshots
 
 ```bash
-$ plakar at /var/backups ls
+plakar at /var/backups ls
 ```
 
 ## Restore a single database
@@ -72,23 +72,23 @@ $ plakar at /var/backups ls
 The target database must already exist:
 
 ```bash
-$ plakar destination add mydbdst mysql://dbuser:secret@target.example.com/mydb
-$ plakar at /var/backups restore -to @mydbdst <snapshot_id>
+plakar destination add mydbdst mysql://dbuser:secret@target.example.com/mydb
+plakar at /var/backups restore -to @mydbdst <snapshot_id>
 ```
 
 To have Plakar create the database automatically:
 
 ```bash
-$ plakar destination add mydbdst mysql://dbuser:secret@target.example.com/mydb \
+plakar destination add mydbdst mysql://dbuser:secret@target.example.com/mydb \
   create_db=true
-$ plakar at /var/backups restore -to @mydbdst <snapshot_id>
+plakar at /var/backups restore -to @mydbdst <snapshot_id>
 ```
 
 ## Restore all databases
 
 ```bash
-$ plakar destination add mydbdst mysql://root:secret@target.example.com
-$ plakar at /var/backups restore -to @mydbdst <snapshot_id>
+plakar destination add mydbdst mysql://root:secret@target.example.com
+plakar at /var/backups restore -to @mydbdst <snapshot_id>
 ```
 
 ## Considerations
@@ -101,7 +101,7 @@ which is not compatible with MySQL 8 for all-databases backups. Verify you have
 the correct binary:
 
 ```bash
-$ mysqldump --version
+mysqldump --version
 # MySQL:   mysqldump  Ver 8.x Distrib 8.x, for Linux (x86_64)
 # MariaDB: mysqldump from 11.x.x-MariaDB ...
 ```

@@ -23,13 +23,13 @@ fail.
 ### Using GitHub
 
 ```bash
-$ plakar login -github
+plakar login -github
 ```
 
 ### Using Email
 
 ```bash
-$ plakar login -email myemail@domain.com
+plakar login -email myemail@domain.com
 ```
 
 ## Enabling Alerting
@@ -38,13 +38,13 @@ After logging in, enable alerting to send backup metadata to Plakar's servers
 for reporting:
 
 ```bash
-$ plakar service enable alerting
+plakar service enable alerting
 ```
 
 Enable email notifications:
 
 ```bash
-$ plakar service set alerting report.email=true
+plakar service set alerting report.email=true
 ```
 
 Alerting sends non-sensitive metadata (backup status, timestamps, sizes) to
@@ -61,8 +61,8 @@ isn't possible, use token-based authentication.
 On a machine where you can log in interactively:
 
 ```bash
-$ plakar login
-$ plakar token create
+plakar login
+plakar token create
 ```
 
 This outputs a token:
@@ -76,7 +76,7 @@ eyJhbGc......
 On the non-interactive system, set the environment variable:
 
 ```bash
-$ export PLAKAR_TOKEN=eyJhbGc......
+export PLAKAR_TOKEN=eyJhbGc......
 ```
 
 Plakar automatically uses this token for authentication.
@@ -86,7 +86,7 @@ Plakar automatically uses this token for authentication.
 To save the token in the local configuration:
 
 ```bash
-$ plakar login -env
+plakar login -env
 ```
 
 This reads `PLAKAR_TOKEN` from the environment and stores it in Plakar's
@@ -98,9 +98,9 @@ Once logged in, you install pre-built integration packages hosted on Plakar's
 servers:
 
 ```bash
-$ plakar pkg add s3
-$ plakar pkg add sftp
-$ plakar pkg add rclone
+plakar pkg add s3
+plakar pkg add sftp
+plakar pkg add rclone
 ```
 
 Without logging in, you can still build these integrations from source.
@@ -110,7 +110,7 @@ Without logging in, you can still build these integrations from source.
 Check if you're logged in:
 
 ```bash
-$ plakar login --status
+plakar login --status
 ```
 
 This displays your login status.

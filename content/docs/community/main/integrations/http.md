@@ -29,13 +29,13 @@ a Kloset store.
 
 ```bash
 # Initialize a Kloset store at the HTTP endpoint
-$ plakar at http://example.com/data create
+plakar at http://example.com/data create
 
 # Back up a local directory to the store
-$ plakar at http://example.com/data backup /var/www
+plakar at http://example.com/data backup /var/www
 
 # List snapshots in the store
-$ plakar at http://example.com/data ls
+plakar at http://example.com/data ls
 ```
 
 When the endpoint requires a bearer token, for example a `plakar server` started
@@ -43,10 +43,10 @@ with `-token`, configure the store as an alias so the token is stored with it:
 
 ```bash
 # Register the endpoint along with its token
-$ plakar store add remote https://example.com/data auth_token=<token>
+plakar store add remote https://example.com/data auth_token=<token>
 
 # Use the alias, the token is sent on every request
-$ plakar at @remote ls
+plakar at @remote ls
 ```
 
 #### Options

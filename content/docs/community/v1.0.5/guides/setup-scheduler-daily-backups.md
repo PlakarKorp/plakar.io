@@ -28,13 +28,13 @@ Create a configuration for your Kloset store. This ensures the scheduler can
 later retrieve the store passphrase:
 
 ```bash
-$ plakar store add mybackups /var/backups passphrase=mysuperpassphrase
+plakar store add mybackups /var/backups passphrase=mysuperpassphrase
 ```
 
 Then, create the store referencing the configuration:
 
 ```bash
-$ plakar at "@mybackups" create
+plakar at "@mybackups" create
 ```
 
 ## Configuration
@@ -68,11 +68,11 @@ This configuration file defines a task for the Plakar scheduler, where:
 You can start the scheduler by running:
 
 ```bash
-$ plakar scheduler start -tasks ./scheduler.yaml
+plakar scheduler start -tasks ./scheduler.yaml
 ```
 
 The scheduler runs in the background. To stop it, run:
 
 ```bash
-$ plakar scheduler stop
+plakar scheduler stop
 ```

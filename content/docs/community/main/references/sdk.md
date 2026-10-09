@@ -19,7 +19,7 @@ Plugins communicate with Plakar over gRPC through stdin/stdout and can provide:
 ## Installation
 
 ```bash
-$ go get github.com/PlakarKorp/go-kloset-sdk
+go get github.com/PlakarKorp/go-kloset-sdk
 ```
 
 ## Entry Points
