@@ -93,7 +93,7 @@ EOF
 ---
 
 EOF
-  mandoc -I os=Plakar -Thtml -Ofragment,man=../%N/ "$man" >> "$dest"
+  mandoc -I os=Plakar -Thtml -Ofragment,man='../%N/;https://man.openbsd.org/%N.%s' "$man" >> "$dest"
 
   case $(uname) in
   Darwin|FreeBSD) i='-i ""' ;;
