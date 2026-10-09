@@ -1,5 +1,5 @@
 ---
-date: "2026-09-03T15:16:40Z"
+date: "2026-10-09T12:35:28Z"
 title: locate
 summary: "Find filenames in a Plakar snapshot"
 aliases:
@@ -39,8 +39,8 @@ aliases:
   snapshots.</p>
 <p class="Pp">In addition to the flags described below, <code class="Nm">plakar
     locate</code> supports the location flags documented in
-    <a class="Xr" href="../plakar-query/" aria-label="plakar-query, section
-    7">plakar-query(7)</a> to precisely select snapshots.</p>
+    <a class="Xr" href="https://man.openbsd.org/plakar-query.%s" aria-label="plakar-query,
+    section 7">plakar-query(7)</a> to precisely select snapshots.</p>
 <p class="Pp">The options are as follows:</p>
 <dl class="Bl-tag">
   <dt id="snapshot"><a class="permalink" href="#snapshot"><code class="Fl">-snapshot</code></a>
@@ -66,12 +66,12 @@ abc123:/etc/passwd</pre>
 <section class="Sh">
 <h2 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
   ALSO</a></h2>
-<p class="Pp"><a class="Xr" href="../plakar/" aria-label="plakar, section
-    1">plakar(1)</a>,
-    <a class="Xr" href="../plakar-backup/" aria-label="plakar-backup, section
-    1">plakar-backup(1)</a>,
-    <a class="Xr" href="../plakar-query/" aria-label="plakar-query, section
-    7">plakar-query(7)</a></p>
+<p class="Pp"><a class="Xr" href="https://man.openbsd.org/plakar.%s" aria-label="plakar,
+    section 1">plakar(1)</a>,
+    <a class="Xr" href="https://man.openbsd.org/plakar-backup.%s" aria-label="plakar-backup,
+    section 1">plakar-backup(1)</a>,
+    <a class="Xr" href="https://man.openbsd.org/plakar-query.%s" aria-label="plakar-query,
+    section 7">plakar-query(7)</a></p>
 </section>
 <section class="Sh">
 <h2 class="Sh" id="CAVEATS"><a class="permalink" href="#CAVEATS">CAVEATS</a></h2>

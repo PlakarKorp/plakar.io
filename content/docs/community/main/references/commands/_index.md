@@ -1,6 +1,6 @@
 ---
 title: "Commands"
-date: "2026-09-03T15:16:40Z"
+date: "2026-10-09T12:35:27Z"
 weight: 5
 summary:
   "Reference for all Plakar commands. Browse detailed documentation for each

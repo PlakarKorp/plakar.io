@@ -1,5 +1,5 @@
 ---
-date: "2026-09-03T15:16:40Z"
+date: "2026-10-09T12:35:28Z"
 title: pkg-build
 summary: "Build Plakar plugins from source"
 aliases:
@@ -32,7 +32,7 @@ aliases:
 <h2 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h2>
 <p class="Pp">The <code class="Nm">plakar pkg build</code> fetches the sources
     and builds the plugin as specified in the given
-    <a class="Xr" href="../plakar-pkg-recipe.yaml/" aria-label="plakar-pkg-recipe.yaml,
+    <a class="Xr" href="https://man.openbsd.org/plakar-pkg-recipe.yaml.%s" aria-label="plakar-pkg-recipe.yaml,
     section 5">plakar-pkg-recipe.yaml(5)</a>. If it builds successfully, the
     resulting plugin will be created in the current working directory.</p>
 </section>
@@ -58,15 +58,15 @@ aliases:
 <section class="Sh">
 <h2 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
   ALSO</a></h2>
-<p class="Pp"><a class="Xr" href="../plakar-pkg-add/" aria-label="plakar-pkg-add,
+<p class="Pp"><a class="Xr" href="https://man.openbsd.org/plakar-pkg-add.%s" aria-label="plakar-pkg-add,
     section 1">plakar-pkg-add(1)</a>,
-    <a class="Xr" href="../plakar-pkg-create/" aria-label="plakar-pkg-create,
+    <a class="Xr" href="https://man.openbsd.org/plakar-pkg-create.%s" aria-label="plakar-pkg-create,
     section 1">plakar-pkg-create(1)</a>,
-    <a class="Xr" href="../plakar-pkg-rm/" aria-label="plakar-pkg-rm, section
-    1">plakar-pkg-rm(1)</a>,
-    <a class="Xr" href="../plakar-pkg-show/" aria-label="plakar-pkg-show,
+    <a class="Xr" href="https://man.openbsd.org/plakar-pkg-rm.%s" aria-label="plakar-pkg-rm,
+    section 1">plakar-pkg-rm(1)</a>,
+    <a class="Xr" href="https://man.openbsd.org/plakar-pkg-show.%s" aria-label="plakar-pkg-show,
     section 1">plakar-pkg-show(1)</a>,
-    <a class="Xr" href="../plakar-pkg-recipe.yaml/" aria-label="plakar-pkg-recipe.yaml,
+    <a class="Xr" href="https://man.openbsd.org/plakar-pkg-recipe.yaml.%s" aria-label="plakar-pkg-recipe.yaml,
     section 5">plakar-pkg-recipe.yaml(5)</a></p>
 </section>
 </main>

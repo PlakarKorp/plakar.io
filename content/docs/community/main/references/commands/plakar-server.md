@@ -1,5 +1,5 @@
 ---
-date: "2026-09-03T15:16:41Z"
+date: "2026-10-09T12:35:28Z"
 title: server
 summary: "Start a Plakar server"
 aliases:
@@ -89,8 +89,8 @@ aliases:
 <section class="Sh">
 <h2 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
   ALSO</a></h2>
-<p class="Pp"><a class="Xr" href="../plakar/" aria-label="plakar, section
-    1">plakar(1)</a></p>
+<p class="Pp"><a class="Xr" href="https://man.openbsd.org/plakar.%s" aria-label="plakar,
+    section 1">plakar(1)</a></p>
 </section>
 <section class="Sh">
 <h2 class="Sh" id="CAVEATS"><a class="permalink" href="#CAVEATS">CAVEATS</a></h2>
