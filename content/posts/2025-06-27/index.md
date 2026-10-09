@@ -33,7 +33,7 @@ You will be able to test it right away by installing our latest development
 release:
 
 ```sh
-$ go install github.com/PlakarKorp/plakar@v1.0.3-devel.c7a66f1
+go install github.com/PlakarKorp/plakar@v1.0.3-devel.c7a66f1
 ```
 
 If you like this reading and want more of these tech articles about our work...
@@ -258,7 +258,7 @@ full read, something just not doable with a `.tar` or `.zip`, and which proves
 interesting with large archives for which you only need specific contents:
 
 ```sh
-$ plakar at ptar+https://plakar.io/test.ptar ui
+plakar at ptar+https://plakar.io/test.ptar ui
 ```
 
 ![](remote-ptar.png) ![](remote-ptar2.png)
@@ -437,7 +437,7 @@ self-verifying. No need to bundle external metadata or config files.
 A non-encrypted version can be produced by passing the `-plaintext` option:
 
 ```sh
-$ plakar ptar -plaintext -o downloads.ptar ~/Downloads
+plakar ptar -plaintext -o downloads.ptar ~/Downloads
 ```
 
 ---
@@ -516,7 +516,7 @@ the whole archive.
 ### Restore files from archive
 
 ```sh
-$ plakar at test.ptar restore -to ./recovery /etc/nginx/nginx.conf
+plakar at test.ptar restore -to ./recovery /etc/nginx/nginx.conf
 ```
 
 You can restore full trees, subdirectories or single files.
@@ -528,7 +528,7 @@ You can restore full trees, subdirectories or single files.
 `.ptar` can also be used as a mean to import data into a regular kloset:
 
 ```sh
-$ plakar at /var/backups sync from test.ptar
+plakar at /var/backups sync from test.ptar
 ```
 
 This makes it easy to sync or relocate backups between machines, zones, or

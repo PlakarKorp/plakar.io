@@ -32,7 +32,7 @@ For full reference on all options and snapshot layout see the
 Install the PostgreSQL package:
 
 ```bash
-$ plakar pkg add postgresql
+plakar pkg add postgresql
 ```
 
 ### Configure pg_hba.conf
@@ -50,14 +50,14 @@ Restart PostgreSQL after making changes.
 ## Back up the cluster
 
 ```bash
-$ plakar source add mypg postgres+bin://replicator:secret@db.example.com
-$ plakar at /var/backups backup @mypg
+plakar source add mypg postgres+bin://replicator:secret@db.example.com
+plakar at /var/backups backup @mypg
 ```
 
 ## List snapshots
 
 ```bash
-$ plakar at /var/backups ls
+plakar at /var/backups ls
 ```
 
 ## Restore the cluster
@@ -67,8 +67,8 @@ files to a local directory using the standard filesystem restore, then start
 PostgreSQL against it:
 
 ```bash
-$ plakar at /var/backups restore -to ./pgdata <snapshot_id>
-$ docker run --rm \
+plakar at /var/backups restore -to ./pgdata <snapshot_id>
+docker run --rm \
   -v "$PWD/pgdata:/var/lib/postgresql/data" \
   postgres:<version>
 ```
@@ -79,9 +79,9 @@ the backup was taken.
 To restore directly to a remote host via SFTP:
 
 ```bash
-$ plakar at /var/backups restore -to sftp://user@host/var/lib/postgresql/data <snapshot_id>
+plakar at /var/backups restore -to sftp://user@host/var/lib/postgresql/data <snapshot_id>
 # then on the remote host:
-$ pg_ctl -D /var/lib/postgresql/data start
+pg_ctl -D /var/lib/postgresql/data start
 ```
 
 ## Considerations

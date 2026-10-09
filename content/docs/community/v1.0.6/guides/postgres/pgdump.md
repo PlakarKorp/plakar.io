@@ -38,18 +38,18 @@ pg_dump <dbname> | plakar at /var/backups backup stdin:dump.sql
 ## Restore Single Database
 
 ```bash
-$ export PGUSER=xxx
-$ export PGPORT=5432
-$ export PGHOST=xxx
-$ export PGPASSWORD=xxx
+export PGUSER=xxx
+export PGPORT=5432
+export PGHOST=xxx
+export PGPASSWORD=xxx
 
-$ plakar at /var/backups cat <SNAPSHOT_ID>:dump.sql | psql -X <dbname>
+plakar at /var/backups cat <SNAPSHOT_ID>:dump.sql | psql -X <dbname>
 ```
 
 List snapshots:
 
 ```bash
-$ plakar at /var/backups ls
+plakar at /var/backups ls
 ```
 
 ## Back Up Entire Cluster
@@ -57,23 +57,23 @@ $ plakar at /var/backups ls
 Use `pg_dumpall` to include all databases, roles, and tablespaces:
 
 ```bash
-$ export PGUSER=xxx
-$ export PGPORT=5432
-$ export PGHOST=xxx
-$ export PGPASSWORD=xxx
+export PGUSER=xxx
+export PGPORT=5432
+export PGHOST=xxx
+export PGPASSWORD=xxx
 
-$ pg_dumpall | plakar at /var/backups backup stdin:dump.sql
+pg_dumpall | plakar at /var/backups backup stdin:dump.sql
 ```
 
 ## Restore Entire Cluster
 
 ```bash
-$ export PGUSER=xxx
-$ export PGPORT=5432
-$ export PGHOST=xxx
-$ export PGPASSWORD=xxx
+export PGUSER=xxx
+export PGPORT=5432
+export PGHOST=xxx
+export PGPASSWORD=xxx
 
-$ plakar at /var/backups cat <SNAPSHOT_ID>:dump.sql | psql -X
+plakar at /var/backups cat <SNAPSHOT_ID>:dump.sql | psql -X
 ```
 
 ## Considerations

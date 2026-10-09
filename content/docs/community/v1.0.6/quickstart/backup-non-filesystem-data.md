@@ -66,7 +66,7 @@ know about the S3 source we want to back up.
 Run the following command to create the new **source**:
 
 ```bash
-$ plakar source add mydata \
+plakar source add mydata \
   location=s3://localhost:9000/mydata \
   access_key=minioadmin \
   secret_access_key=minioadmin \
@@ -114,7 +114,7 @@ It is also possible to restore a snapshot directly to an S3 location.
 To do so, first configure a new **destination**:
 
 ```bash
-$ plakar destination add mydata \
+plakar destination add mydata \
   location=s3://localhost:9000/mydata \
   access_key=minioadmin \
   secret_access_key=minioadmin \

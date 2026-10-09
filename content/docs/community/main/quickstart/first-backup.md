@@ -50,7 +50,7 @@ different physical device, so substitute in a better location if you have one.
 In your terminal, run the following command:
 
 ```bash
-$ plakar at $HOME/backups create
+plakar at $HOME/backups create
 ```
 
 > [!WARNING]+ Don't Lose or Forget your Passphrase
@@ -79,7 +79,7 @@ Kloset Store to use.
 To create a simple example backup, try running:
 
 ```bash
-$ plakar at $HOME/backups backup $HOME/Documents
+plakar at $HOME/backups backup $HOME/Documents
 ```
 
 This backs up your Documents folder into the `$HOME/backups`. Replace the paths
@@ -210,7 +210,7 @@ Plakar provides a web interface to view the backups and their content. To start
 the web interface, run:
 
 ```bash
-$ plakar at $HOME/backups ui
+plakar at $HOME/backups ui
 ```
 
 Your default browser will open a new tab. You can navigate through the

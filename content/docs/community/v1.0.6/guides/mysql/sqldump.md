@@ -29,10 +29,10 @@ recommend reading the
 Set environment variables to avoid exposing credentials on command line:
 
 ```bash
-$ export MYSQL_HOST=xxxx
-$ export MYSQL_TCP_PORT=3306
-$ export MYSQL_USER=xxxx
-$ export MYSQL_PWD=xxxx
+export MYSQL_HOST=xxxx
+export MYSQL_TCP_PORT=3306
+export MYSQL_USER=xxxx
+export MYSQL_PWD=xxxx
 ```
 
 ## Back Up Single Database
@@ -40,13 +40,13 @@ $ export MYSQL_PWD=xxxx
 ### Basic backup
 
 ```bash
-$ mysqldump <dbname> | plakar at /var/backups backup stdin:dump.sql
+mysqldump <dbname> | plakar at /var/backups backup stdin:dump.sql
 ```
 
 ### InnoDB with all objects (recommended)
 
 ```bash
-$ mysqldump --single-transaction \
+mysqldump --single-transaction \
   --routines \
   --triggers \
   --events \
@@ -63,7 +63,7 @@ Options:
 ## Back Up All Databases
 
 ```bash
-$ mysqldump --all-databases \
+mysqldump --all-databases \
   --single-transaction \
   --routines \
   --triggers \
@@ -80,19 +80,19 @@ configurations.
 ### Single database
 
 ```bash
-$ plakar at /var/backups cat <SNAPSHOT_ID>:dump.sql | mysql <dbname>
+plakar at /var/backups cat <SNAPSHOT_ID>:dump.sql | mysql <dbname>
 ```
 
 ### All databases
 
 ```bash
-$ plakar at /var/backups cat <SNAPSHOT_ID>:all_databases.sql | mysql
+plakar at /var/backups cat <SNAPSHOT_ID>:all_databases.sql | mysql
 ```
 
 List snapshots:
 
 ```bash
-$ plakar at /var/backups ls
+plakar at /var/backups ls
 ```
 
 ## Mixed Storage Engines
@@ -100,7 +100,7 @@ $ plakar at /var/backups ls
 For databases using both InnoDB and MyISAM, use `--lock-all-tables`:
 
 ```bash
-$ mysqldump --all-databases --lock-all-tables | \
+mysqldump --all-databases --lock-all-tables | \
   plakar at /var/backups backup stdin:dump.sql
 ```
 

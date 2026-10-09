@@ -105,8 +105,8 @@ To benefit from the fix, update plakar to v1.0.6 then run `plakar pkg rm` and
 `plakar pkg add` for each of the integrations you use:
 
 ```sh
-$ plakar pkg rm s3
-$ plakar pkg add s3
+plakar pkg rm s3
+plakar pkg add s3
 ```
 
 This will fetch the new version of the integration, linked against the corrected

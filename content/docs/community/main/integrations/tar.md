@@ -44,10 +44,10 @@ The archive format is specified via the URI scheme:
 
 ```bash
 # Import an uncompressed archive
-$ plakar at /var/backups backup tar:///home/user/backup.tar
+plakar at /var/backups backup tar:///home/user/backup.tar
 
 # Import a gzip-compressed archive
-$ plakar at /var/backups backup tgz:///home/user/backup.tar.gz
+plakar at /var/backups backup tgz:///home/user/backup.tar.gz
 ```
 
 ## Use cases
@@ -58,12 +58,12 @@ If a command generates a single output stream, you can pipe it directly into
 Plakar using the [STDIO integration](../stdio):
 
 ```bash
-$ some-command | plakar at /var/backups backup stdio://
+some-command | plakar at /var/backups backup stdio://
 ```
 
 If the command produces multiple files, have it generate a TAR archive and
 ingest it with the TAR integration instead:
 
 ```bash
-$ some-command --output-format=tar | plakar at /var/backups backup tar://
+some-command --output-format=tar | plakar at /var/backups backup tar://
 ```

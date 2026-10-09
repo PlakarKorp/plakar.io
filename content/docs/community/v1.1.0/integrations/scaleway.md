@@ -53,13 +53,13 @@ how this differs from the other integrations.
 Install the Scaleway package:
 
 ```bash
-$ plakar pkg add scaleway
+plakar pkg add scaleway
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg show
+plakar pkg show
 ```
 
 To list, upgrade, or remove the package, see
@@ -186,27 +186,27 @@ The following options apply to both source and destination connectors using the
 Back up an instance:
 
 ```bash
-$ plakar source add myinstance scaleway-instance://<server-id> \
+plakar source add myinstance scaleway-instance://<server-id> \
   access_key=<access_key> \
   secret_key=<secret_key> \
   project_id=<project_id> \
   bucket=plakar-temp \
   zone=fr-par-1
 
-$ plakar at /var/backups backup "@myinstance"
+plakar at /var/backups backup "@myinstance"
 ```
 
 Restore a snapshot as a new instance:
 
 ```bash
-$ plakar destination add myinstance-restore scaleway-instance://spawn \
+plakar destination add myinstance-restore scaleway-instance://spawn \
   access_key=<access_key> \
   secret_key=<secret_key> \
   project_id=<project_id> \
   bucket=plakar-temp \
   zone=fr-par-1
 
-$ plakar at /var/backups restore -to "@myinstance-restore" <snapshot_id>
+plakar at /var/backups restore -to "@myinstance-restore" <snapshot_id>
 ```
 
 ## 2. `scaleway-block` protocol
@@ -295,27 +295,27 @@ The following options apply to both source and destination connectors using the
 Back up a volume:
 
 ```bash
-$ plakar source add myvolume scaleway-block://<volume-id> \
+plakar source add myvolume scaleway-block://<volume-id> \
   access_key=<access_key> \
   secret_key=<secret_key> \
   project_id=<project_id> \
   bucket=plakar-temp \
   zone=fr-par-1
 
-$ plakar at /var/backups backup "@myvolume"
+plakar at /var/backups backup "@myvolume"
 ```
 
 Restore a snapshot as a new volume attached to an instance:
 
 ```bash
-$ plakar destination add myvolume-restore scaleway-block://<instance-id> \
+plakar destination add myvolume-restore scaleway-block://<instance-id> \
   access_key=<access_key> \
   secret_key=<secret_key> \
   project_id=<project_id> \
   bucket=plakar-temp \
   zone=fr-par-1
 
-$ plakar at /var/backups restore -to "@myvolume-restore" <snapshot_id>
+plakar at /var/backups restore -to "@myvolume-restore" <snapshot_id>
 ```
 
 ## 3. `scaleway-secret` protocol
@@ -389,25 +389,25 @@ The following options apply to both source and destination connectors using the
 Back up the secrets of a project:
 
 ```bash
-$ plakar source add mysecrets scaleway-secret:// \
+plakar source add mysecrets scaleway-secret:// \
   access_key=<access_key> \
   secret_key=<secret_key> \
   project_id=<project_id> \
   region=fr-par
 
-$ plakar at /var/backups backup "@mysecrets"
+plakar at /var/backups backup "@mysecrets"
 ```
 
 Restore them into another project:
 
 ```bash
-$ plakar destination add mysecrets-restore scaleway-secret:// \
+plakar destination add mysecrets-restore scaleway-secret:// \
   access_key=<access_key> \
   secret_key=<secret_key> \
   project_id=<target_project_id> \
   region=fr-par
 
-$ plakar at /var/backups restore -to "@mysecrets-restore" <snapshot_id>
+plakar at /var/backups restore -to "@mysecrets-restore" <snapshot_id>
 ```
 
 ## See also

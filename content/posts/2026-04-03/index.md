@@ -38,7 +38,7 @@ ingest anything piped into it, so it was already possible to back up a
 PostgreSQL database by doing something like:
 
 ```sh
-$ pg_dump mydb | plakar backup stdin://dump.sql
+pg_dump mydb | plakar backup stdin://dump.sql
 ```
 
 It works.
@@ -139,13 +139,13 @@ The integration is **only available for plakar v1.1.0-beta.7 and above**.
 First, install plakar:
 
 ```sh
-$ go install github.com/PlakarKorp/plakar@v1.1.0-beta.7
+go install github.com/PlakarKorp/plakar@v1.1.0-beta.7
 ```
 
 Then install the integration:
 
 ```sh
-$ plakar pkg add postgresql
+plakar pkg add postgresql
 ```
 
 Or build it yourself from the
@@ -173,9 +173,9 @@ The `postgres://` URI scheme triggers logical backups using `pg_dump` or
 Point the URI at a specific database and Plakar does the rest:
 
 ```sh
-$ plakar source add mypg \
+plakar source add mypg \
   postgres://postgres:secret@db.example.com/myapp
-$ plakar at /var/backups backup @mypg
+plakar at /var/backups backup @mypg
 ```
 
 Three records are stored in the snapshot:
@@ -191,8 +191,8 @@ Three records are stored in the snapshot:
 Omit the database name from the URI to back up everything:
 
 ```sh
-$ plakar source add mypg postgres://postgres:secret@db.example.com/
-$ plakar backup @mypg
+plakar source add mypg postgres://postgres:secret@db.example.com/
+plakar backup @mypg
 ```
 
 This runs `pg_dumpall` and stores two records: `/manifest.json` and `/all.sql`,
@@ -209,8 +209,8 @@ The server must have `wal_level = replica` or higher in `postgresql.conf`, and
 the backup user must have the `REPLICATION` privilege (or be a superuser).
 
 ```sh
-$ plakar source add mypg postgres+bin://replicator:secret@db.example.com
-$ plakar backup @mypg
+plakar source add mypg postgres+bin://replicator:secret@db.example.com
+plakar backup @mypg
 ```
 
 The entire data directory is streamed file by file into the snapshot, preserving
@@ -227,18 +227,18 @@ Logical restores go through the `postgres://` exporter:
 
 ```sh
 # Restore a single database (created automatically if it doesn't exist)
-$ plakar destination add mypgdst postgres://postgres:secret@db.example.com/myapp \
+plakar destination add mypgdst postgres://postgres:secret@db.example.com/myapp \
   create_db=true
-$ plakar restore -to @mypgdst <snapid>
+plakar restore -to @mypgdst <snapid>
 
 # Restore all databases to a fresh server
-$ plakar destination add mypgdst postgres://postgres:secret@db.example.com/
-$ plakar restore -to @mypgdst <snapid>
+plakar destination add mypgdst postgres://postgres:secret@db.example.com/
+plakar restore -to @mypgdst <snapid>
 
 # Restore, skipping ownership changes (when roles differ on the target)
-$ plakar destination add mypgdst postgres://postgres:secret@db.example.com/myapp \
+plakar destination add mypgdst postgres://postgres:secret@db.example.com/myapp \
   no_owner=true
-$ plakar restore -to @mypgdst <snapid>
+plakar restore -to @mypgdst <snapid>
 ```
 
 ### Physical backups
@@ -248,8 +248,8 @@ contains plain files, so any file-restore connector works. The simplest option
 is restoring directly to a local directory:
 
 ```sh
-$ plakar restore -to ./restored <snapid>
-$ docker run --rm -v "$PWD/restored/data:/var/lib/postgresql/data" postgres:17
+plakar restore -to ./restored <snapid>
+docker run --rm -v "$PWD/restored/data:/var/lib/postgresql/data" postgres:17
 ```
 
 The data directory must not be in use by a running PostgreSQL instance before

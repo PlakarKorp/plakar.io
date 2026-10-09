@@ -48,13 +48,13 @@ simplest installation method.
 Install the SFTP package:
 
 ```bash
-$ plakar pkg add sftp
+plakar pkg add sftp
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg show
+plakar pkg show
 ```
 
 {{< /tab >}}
@@ -71,7 +71,7 @@ customization is required.
 Build the package:
 
 ```bash
-$ plakar pkg build sftp
+plakar pkg build sftp
 ```
 
 A package archive will be created in the current directory (e.g.,
@@ -80,13 +80,13 @@ A package archive will be created in the current directory (e.g.,
 Install the package:
 
 ```bash
-$ plakar pkg add -allow-unsigned ./sftp_v1.0.0_darwin_arm64.ptar
+plakar pkg add -allow-unsigned ./sftp_v1.0.0_darwin_arm64.ptar
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg show
+plakar pkg show
 ```
 
 {{< /tab >}}
@@ -118,15 +118,15 @@ Host sftp-prod
 Test the alias:
 
 ```bash
-$ sftp sftp-prod
+sftp sftp-prod
 ```
 
 Then reference it in Plakar URLs:
 
 ```bash
-$ plakar store add sftp_store sftp://sftp-prod/backups
-$ plakar source add sftp_src sftp://sftp-prod/srv/data
-$ plakar destination add sftp_dst sftp://sftp-prod/srv/restore
+plakar store add sftp_store sftp://sftp-prod/backups
+plakar source add sftp_src sftp://sftp-prod/srv/data
+plakar destination add sftp_dst sftp://sftp-prod/srv/restore
 ```
 
 ### Key-based authentication
@@ -135,16 +135,16 @@ Unattended jobs must not prompt for passwords, so SSH authentication must be
 key-based and passwordless:
 
 ```bash
-$ ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519_plakar -C plakar@backup
-$ ssh-copy-id -i ~/.ssh/id_ed25519_plakar.pub sftpuser@host.example.com
-$ sftp -i ~/.ssh/id_ed25519_plakar sftpuser@host.example.com
+ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519_plakar -C plakar@backup
+ssh-copy-id -i ~/.ssh/id_ed25519_plakar.pub sftpuser@host.example.com
+sftp -i ~/.ssh/id_ed25519_plakar sftpuser@host.example.com
 ```
 
 If the private key is encrypted, load it into an SSH agent:
 
 ```bash
-$ eval "$(ssh-agent -s)"
-$ ssh-add ~/.ssh/id_ed25519_plakar
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519_plakar
 ```
 
 The key can also be set on the connector itself. `identity` points to a private
@@ -278,48 +278,48 @@ Create a Kloset store on an SFTP server and use it:
 
 ```bash
 # Configure the Kloset store
-$ plakar store add sftp_store sftp://sftp-prod/backups
+plakar store add sftp_store sftp://sftp-prod/backups
 
 # Initialize the Kloset store
-$ plakar at "@sftp_store" create
+plakar at "@sftp_store" create
 
 # List snapshots in the Kloset store
-$ plakar at "@sftp_store" ls
+plakar at "@sftp_store" ls
 
 # Verify integrity of the Kloset store
-$ plakar at "@sftp_store" check
+plakar at "@sftp_store" check
 
 # Backup a local folder to the Kloset store
-$ plakar at "@sftp_store" backup /etc
+plakar at "@sftp_store" backup /etc
 
 # Backup a source configured in Plakar to the Kloset store
-$ plakar at "@sftp_store" backup "@my_source"
+plakar at "@sftp_store" backup "@my_source"
 ```
 
 Back up a remote directory:
 
 ```bash
 # Configure a source pointing to the remote SFTP directory
-$ plakar source add sftp_src sftp://sftp-prod/srv/data
+plakar source add sftp_src sftp://sftp-prod/srv/data
 
 # Back up the remote directory to the Kloset store on the filesystem
-$ plakar at /var/backups backup "@sftp_src"
+plakar at /var/backups backup "@sftp_src"
 
 # Or back up the remote directory to the Kloset store on SFTP created above
-$ plakar at "@sftp_store" backup "@sftp_src"
+plakar at "@sftp_store" backup "@sftp_src"
 ```
 
 Restore a snapshot to a remote directory:
 
 ```bash
 # Configure a destination pointing to the remote SFTP directory
-$ plakar destination add sftp_dst sftp://sftp-prod/srv/restore
+plakar destination add sftp_dst sftp://sftp-prod/srv/restore
 
 # Restore a snapshot from a filesystem-hosted Kloset store to the remote SFTP directory
-$ plakar at /var/backups restore -to "@sftp_dst" <snapshot_id>
+plakar at /var/backups restore -to "@sftp_dst" <snapshot_id>
 
 # Or restore a snapshot from the Kloset store on SFTP created above to the remote SFTP directory
-$ plakar at "@sftp_store" restore -to "@sftp_dst" <snapshot_id>
+plakar at "@sftp_store" restore -to "@sftp_dst" <snapshot_id>
 ```
 
 Snapshots can be moved between two SFTP-hosted stores by defining both stores

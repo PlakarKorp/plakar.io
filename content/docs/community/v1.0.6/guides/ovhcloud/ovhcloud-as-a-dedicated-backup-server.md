@@ -126,13 +126,13 @@ Follow the
 ### Install S3 integration
 
 ```bash
-$ plakar pkg add s3
+plakar pkg add s3
 ```
 
 ### Add storage connector
 
 ```bash
-$ plakar store add ovhcloud-s3-backups \
+plakar store add ovhcloud-s3-backups \
   location=s3://<S3_ENDPOINT>/<BUCKET_NAME> \
   access_key=<YOUR_ACCESS_KEY_ID> \
   secret_access_key=<YOUR_SECRET_ACCESS_KEY> \
@@ -155,7 +155,7 @@ Replace:
 ### Initialize Kloset Store
 
 ```bash
-$ plakar at "@ovhcloud-s3-backups" create
+plakar at "@ovhcloud-s3-backups" create
 ```
 
 ## Configure SSH Access
@@ -163,13 +163,13 @@ $ plakar at "@ovhcloud-s3-backups" create
 ### Install SFTP integration
 
 ```bash
-$ plakar pkg add sftp
+plakar pkg add sftp
 ```
 
 ### Generate SSH keys
 
 ```bash
-$ ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519_plakar -C "plakar@backup"
+ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519_plakar -C "plakar@backup"
 ```
 
 Press Enter for no passphrase.
@@ -177,20 +177,20 @@ Press Enter for no passphrase.
 ### Copy keys to source servers
 
 ```bash
-$ ssh-copy-id -i ~/.ssh/id_ed25519_plakar.pub user@source-server-1
-$ ssh-copy-id -i ~/.ssh/id_ed25519_plakar.pub user@source-server-2
+ssh-copy-id -i ~/.ssh/id_ed25519_plakar.pub user@source-server-1
+ssh-copy-id -i ~/.ssh/id_ed25519_plakar.pub user@source-server-2
 ```
 
 Test access:
 
 ```bash
-$ ssh -i ~/.ssh/id_ed25519_plakar user@source-server-1 'echo "Success"'
+ssh -i ~/.ssh/id_ed25519_plakar user@source-server-1 'echo "Success"'
 ```
 
 ### Create SSH aliases
 
 ```bash
-$ cat >> ~/.ssh/config << 'EOF'
+cat >> ~/.ssh/config << 'EOF'
 Host source-1
   HostName source-server-1.example.com
   User backupuser
@@ -208,7 +208,7 @@ EOF
 Test:
 
 ```bash
-$ ssh source-1 'echo "Alias works"'
+ssh source-1 'echo "Alias works"'
 ```
 
 ## Configure Backup Sources
@@ -216,14 +216,14 @@ $ ssh source-1 'echo "Alias works"'
 Add source connectors for each server:
 
 ```bash
-$ plakar source add web-server-1 sftp://source-1:/var/www
-$ plakar source add web-server-2 sftp://source-2:/var/www
+plakar source add web-server-1 sftp://source-1:/var/www
+plakar source add web-server-2 sftp://source-2:/var/www
 ```
 
 Verify:
 
 ```bash
-$ plakar source show
+plakar source show
 ```
 
 ## Test Backup
@@ -232,16 +232,16 @@ Run a manual backup to verify configuration:
 
 ```bash
 # Single source
-$ plakar at "@ovhcloud-s3-backups" backup "@web-server-1"
+plakar at "@ovhcloud-s3-backups" backup "@web-server-1"
 
 # Multiple sources
-$ plakar at "@ovhcloud-s3-backups" backup "@web-server-1" "@web-server-2"
+plakar at "@ovhcloud-s3-backups" backup "@web-server-1" "@web-server-2"
 ```
 
 List snapshots:
 
 ```bash
-$ plakar at "@ovhcloud-s3-backups" ls
+plakar at "@ovhcloud-s3-backups" ls
 ```
 
 ## Schedule Automatic Backups
@@ -249,7 +249,7 @@ $ plakar at "@ovhcloud-s3-backups" ls
 ### Create scheduler configuration
 
 ```bash
-$ cat > ~/scheduler.yaml << 'EOF'
+cat > ~/scheduler.yaml << 'EOF'
 agent:
   tasks:
     - name: Backup web-server-1
@@ -275,7 +275,7 @@ EOF
 ### Start scheduler
 
 ```bash
-$ plakar scheduler start -tasks ~/scheduler.yaml
+plakar scheduler start -tasks ~/scheduler.yaml
 ```
 
 See
@@ -287,7 +287,7 @@ for more scheduling options.
 ### Create scheduler service
 
 ```bash
-$ cat << 'EOF' | sudo tee /etc/systemd/system/plakar-scheduler.service > /dev/null
+cat << 'EOF' | sudo tee /etc/systemd/system/plakar-scheduler.service > /dev/null
 [Unit]
 Description=Plakar Scheduler
 After=network.target
@@ -308,7 +308,7 @@ EOF
 ### Create UI service
 
 ```bash
-$ cat << 'EOF' | sudo tee /etc/systemd/system/plakar-ui.service > /dev/null
+cat << 'EOF' | sudo tee /etc/systemd/system/plakar-ui.service > /dev/null
 [Unit]
 Description=Plakar Web UI
 After=network.target
@@ -333,16 +333,16 @@ EOF
 ### Enable and start services
 
 ```bash
-$ sudo systemctl daemon-reload
-$ sudo systemctl enable plakar-scheduler plakar-ui
-$ sudo systemctl start plakar-scheduler plakar-ui
+sudo systemctl daemon-reload
+sudo systemctl enable plakar-scheduler plakar-ui
+sudo systemctl start plakar-scheduler plakar-ui
 ```
 
 Check status:
 
 ```bash
-$ sudo systemctl status plakar-scheduler
-$ sudo systemctl status plakar-ui
+sudo systemctl status plakar-scheduler
+sudo systemctl status plakar-ui
 ```
 
 ## Access Web UI
@@ -351,7 +351,7 @@ When the UI service starts, Plakar automatically generates an access token.
 Retrieve it from the service logs:
 
 ```bash
-$ sudo journalctl -u plakar-ui -n 100 --no-pager | grep -i token
+sudo journalctl -u plakar-ui -n 100 --no-pager | grep -i token
 ```
 
 You should see output similar to:

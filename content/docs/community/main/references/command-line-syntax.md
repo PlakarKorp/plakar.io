@@ -15,7 +15,7 @@ aliases:
 Every Plakar invocation follows this pattern:
 
 ```bash
-$ plakar [OPTIONS] [at REPOSITORY] COMMAND [COMMAND_OPTIONS]...
+plakar [OPTIONS] [at REPOSITORY] COMMAND [COMMAND_OPTIONS]...
 ```
 
 | Component         | Required | Description                                                                                            |
@@ -29,13 +29,13 @@ A few examples to make the structure concrete:
 
 ```bash
 # Simplest form: just a command
-$ plakar version
+plakar version
 
 # Operating on a repository
-$ plakar at /backup ls
+plakar at /backup ls
 
 # Global option + repository + command + command options
-$ plakar -time at /backup ls -tag daily-backups
+plakar -time at /backup ls -tag daily-backups
 ```
 
 ## Global options
@@ -70,10 +70,10 @@ command options go after the command.
 
 ```bash
 # Correct: -tag is a command option for ls
-$ plakar -time at /backup ls -tag daily-backups
+plakar -time at /backup ls -tag daily-backups
 
 # Wrong: -tag is placed before the command, plakar sees it as the command name
-$ plakar -time at /backup -tag daily-backups ls
+plakar -time at /backup -tag daily-backups ls
 # command not found: -tag
 ```
 
@@ -86,11 +86,11 @@ Plakar has built-in help at every level.
 
 ```bash
 # Show global usage, all options and available commands
-$ plakar -h
-$ plakar help
+plakar -h
+plakar help
 
 # Show the manual page for a specific command
-$ plakar help <command>
+plakar help <command>
 ```
 
 The built-in help is always in sync with the version of Plakar you have

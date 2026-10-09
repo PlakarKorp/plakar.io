@@ -32,7 +32,7 @@ release—here’s how to grab it.
 Via Go:
 
 ```bash
-$ go install github.com/PlakarKorp/plakar@v1.0.2
+go install github.com/PlakarKorp/plakar@v1.0.2
 ```
 
 Via installer:

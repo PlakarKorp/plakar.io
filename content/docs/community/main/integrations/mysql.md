@@ -45,13 +45,13 @@ The MySQL / MariaDB integration is distributed as a Plakar package.
 > [Logging in to Plakar](../../guides/logging-in-to-plakar) for details.
 
 ```bash
-$ plakar pkg add mysql
+plakar pkg add mysql
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg show
+plakar pkg show
 ```
 
 {{< /tab >}}
@@ -63,13 +63,13 @@ $ plakar pkg show
 - Go toolchain compatible with your **Plakar** version
 
 ```bash
-$ plakar pkg build mysql
+plakar pkg build mysql
 ```
 
 Install the resulting archive:
 
 ```bash
-$ plakar pkg add -allow-unsigned ./mysql_v1.0.0_linux_amd64.ptar
+plakar pkg add -allow-unsigned ./mysql_v1.0.0_linux_amd64.ptar
 ```
 
 {{< /tab >}}
@@ -167,17 +167,17 @@ Transform --> Store
 
 ```bash
 # Back up a single database
-$ plakar source add mydb mysql://dbuser:secret@db.example.com/mydb
-$ plakar at /var/backups backup "@mydb"
+plakar source add mydb mysql://dbuser:secret@db.example.com/mydb
+plakar at /var/backups backup "@mydb"
 
 # Back up all databases
-$ plakar source add alldb mysql://root:secret@db.example.com
-$ plakar at /var/backups backup "@alldb"
+plakar source add alldb mysql://root:secret@db.example.com
+plakar at /var/backups backup "@alldb"
 
 # Schema only
-$ plakar source add mydb mysql://dbuser:secret@db.example.com/mydb \
+plakar source add mydb mysql://dbuser:secret@db.example.com/mydb \
   no_data=true
-$ plakar at /var/backups backup "@mydb"
+plakar at /var/backups backup "@mydb"
 ```
 
 #### Source options
@@ -231,17 +231,17 @@ Connector --> DB
 
 ```bash
 # Restore into an existing database
-$ plakar destination add mydbdst mysql://dbuser:secret@target.example.com/mydb
-$ plakar at /var/backups restore -to "@mydbdst" <snapshot_id>
+plakar destination add mydbdst mysql://dbuser:secret@target.example.com/mydb
+plakar at /var/backups restore -to "@mydbdst" <snapshot_id>
 
 # Create the database and restore
-$ plakar destination add mydbdst mysql://dbuser:secret@target.example.com/mydb \
+plakar destination add mydbdst mysql://dbuser:secret@target.example.com/mydb \
   create_db=true
-$ plakar at /var/backups restore -to "@mydbdst" <snapshot_id>
+plakar at /var/backups restore -to "@mydbdst" <snapshot_id>
 
 # Restore all databases
-$ plakar destination add mydbdst mysql://root:secret@target.example.com
-$ plakar at /var/backups restore -to "@mydbdst" <snapshot_id>
+plakar destination add mydbdst mysql://root:secret@target.example.com
+plakar at /var/backups restore -to "@mydbdst" <snapshot_id>
 ```
 
 #### Destination options
@@ -270,17 +270,17 @@ MariaDB server to avoid binary-compatibility issues.
 
 ```bash
 # Back up a single MariaDB database
-$ plakar source add mydb mysql+mariadb://dbuser:secret@db.example.com/mydb
-$ plakar at /var/backups backup "@mydb"
+plakar source add mydb mysql+mariadb://dbuser:secret@db.example.com/mydb
+plakar at /var/backups backup "@mydb"
 
 # Back up all MariaDB databases
-$ plakar source add alldb mysql+mariadb://root:secret@db.example.com
-$ plakar at /var/backups backup "@alldb"
+plakar source add alldb mysql+mariadb://root:secret@db.example.com
+plakar at /var/backups backup "@alldb"
 
 # Restore
-$ plakar destination add mydbdst mysql+mariadb://dbuser:secret@target.example.com/mydb \
+plakar destination add mydbdst mysql+mariadb://dbuser:secret@target.example.com/mydb \
   create_db=true
-$ plakar at /var/backups restore -to "@mydbdst" <snapshot_id>
+plakar at /var/backups restore -to "@mydbdst" <snapshot_id>
 ```
 
 `mysql+mariadb://` supports the same source and destination options as
@@ -306,8 +306,8 @@ and port before Plakar connects.
 
 ```bash
 # Assuming the proxy is running on localhost:3306
-$ plakar source add mygcs mysql+gcsql://dbuser:secret@127.0.0.1:3306/mydb
-$ plakar at /var/backups backup "@mygcs"
+plakar source add mygcs mysql+gcsql://dbuser:secret@127.0.0.1:3306/mydb
+plakar at /var/backups backup "@mygcs"
 ```
 
 ## Snapshot manifest

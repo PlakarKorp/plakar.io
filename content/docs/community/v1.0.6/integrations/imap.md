@@ -53,13 +53,13 @@ simplest installation method.
 Install the IMAP package:
 
 ```bash
-$ plakar pkg add imap
+plakar pkg add imap
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg list
+plakar pkg list
 ```
 
 {{< /tab >}}
@@ -76,7 +76,7 @@ customization is required.
 Build the package:
 
 ```bash
-$ plakar pkg build imap
+plakar pkg build imap
 ```
 
 A package archive will be created in the current directory (e.g.,
@@ -85,13 +85,13 @@ A package archive will be created in the current directory (e.g.,
 Install the package:
 
 ```bash
-$ plakar pkg add ./imap_v1.0.0_darwin_arm64.ptar
+plakar pkg add ./imap_v1.0.0_darwin_arm64.ptar
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg list
+plakar pkg list
 ```
 
 {{< /tab >}}
@@ -134,18 +134,18 @@ FS --> Via --> Plakar --> Store
 
 ```bash
 # Configure an IMAP source connector
-$ plakar source add myIMAPsrc imap://imap.mydomain.com:143 \
+plakar source add myIMAPsrc imap://imap.mydomain.com:143 \
   username=myuser \
   password=mypassword \
   tls=starttls
 
 # Back up the mailbox
-$ plakar at /var/backups backup "@myIMAPsrc"
+plakar at /var/backups backup "@myIMAPsrc"
 
 # Back up only a specific folder (and its sub-folders)
-$ plakar source add myArchive imap://imap.mydomain.com/Archive \
+plakar source add myArchive imap://imap.mydomain.com/Archive \
   username=myuser password=mypassword tls=starttls
-$ plakar at /var/backups backup "@myArchive"
+plakar at /var/backups backup "@myArchive"
 ```
 
 #### Options
@@ -189,11 +189,11 @@ Store --> Plakar --> Via --> FS
 
 ```bash
 # Configure an IMAP destination connector
-$ plakar destination add myIMAPdst imap://imap.alsomydomain.com:143 \
+plakar destination add myIMAPdst imap://imap.alsomydomain.com:143 \
   username=alsomyuser password=alsomypassword tls=starttls
 
 # Restore the snapshot to the destination
-$ plakar at /var/backups restore -to "@myIMAPdst" <snapshot_id>
+plakar at /var/backups restore -to "@myIMAPdst" <snapshot_id>
 ```
 
 #### Options

@@ -85,15 +85,15 @@ login.
 Run the following command to install the S3 integration:
 
 ```bash
-$ plakar pkg add s3
+plakar pkg add s3
 ```
 
 If you already have the S3 integration installed and want to update it, remove
 the existing version first and then install the latest one:
 
 ```bash
-$ plakar pkg rm s3
-$ plakar pkg add s3
+plakar pkg rm s3
+plakar pkg add s3
 ```
 
 You can list all installed integrations to confirm the S3 integration was
@@ -114,7 +114,7 @@ credentials provided by your service provider instead.
 Run the following command to start a MinIO instance using Docker:
 
 ```bash
-$ docker run -d --name minio -p 9000:9000 -p 9001:9001 quay.io/minio/minio server /data --console-address ":9001"
+docker run -d --name minio -p 9000:9000 -p 9001:9001 quay.io/minio/minio server /data --console-address ":9001"
 ```
 
 This command starts a MinIO server accessible at `http://localhost:9000`, with a
@@ -129,7 +129,7 @@ We will call this store `s3-backups`.
 Run the following command to create the new store:
 
 ```bash
-$ plakar store add s3-backups \
+plakar store add s3-backups \
   location=s3://localhost:9000/mybucket \
   access_key=minioadmin \
   secret_access_key=minioadmin \
@@ -150,7 +150,7 @@ For now, the Kloset Store points to a bucket that does not exist yet. We need to
 create it by initializing the store:
 
 ```bash
-$ plakar at "@s3-backups" create
+plakar at "@s3-backups" create
 ```
 
 This command initializes the Kloset Store at the S3 location, creating the

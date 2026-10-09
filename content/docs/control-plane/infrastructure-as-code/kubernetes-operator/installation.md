@@ -30,7 +30,7 @@ Install the operator's CRDs and controller with Helm. Without `--version`, this
 installs the latest published chart:
 
 ```sh
-$ helm install plakar-operator \
+helm install plakar-operator \
   oci://ghcr.io/plakarkorp/charts/plakar-operator \
   --namespace plakar-operator-system \
   --create-namespace
@@ -41,13 +41,13 @@ To pin a specific version instead, add `--version <version>`.
 To see which values the chart accepts:
 
 ```sh
-$ helm show values oci://ghcr.io/plakarkorp/charts/plakar-operator
+helm show values oci://ghcr.io/plakarkorp/charts/plakar-operator
 ```
 
 Once installed, verify that the operator is running:
 
 ```sh
-$ kubectl get pods -n plakar-operator-system
+kubectl get pods -n plakar-operator-system
 ```
 
 {{< /step >}}
@@ -95,7 +95,7 @@ Plakar Control Plane automatically, so no manual inventory setup is required.
 Start by storing the PCP API key in a Kubernetes Secret:
 
 ```sh
-$ kubectl -n plakar-operator-system create secret generic plakar-credentials \
+kubectl -n plakar-operator-system create secret generic plakar-credentials \
   --from-literal=apikey=<your-pcp-api-key>
 ```
 
@@ -149,7 +149,7 @@ Status:
 Verify that the operator successfully connected to Plakar Control Plane:
 
 ```sh
-$ kubectl -n plakar-operator-system describe plakar my-pcp
+kubectl -n plakar-operator-system describe plakar my-pcp
 ```
 
 A successful connection reports an `Available` condition with a status of `True`

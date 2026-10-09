@@ -23,14 +23,14 @@ path, a remote S3 bucket, another server via SFTP, or other supported backends.
 ## Create Store with Path
 
 ```bash
-$ plakar at /var/backups create
+plakar at /var/backups create
 ```
 
 Plakar prompts for an encryption passphrase. To avoid the prompt, set:
 
 ```bash
-$ export PLAKAR_PASSPHRASE="my-secret-passphrase"
-$ plakar at /var/backups create
+export PLAKAR_PASSPHRASE="my-secret-passphrase"
+plakar at /var/backups create
 ```
 
 ## Create Store with Alias
@@ -38,20 +38,20 @@ $ plakar at /var/backups create
 Configure store once, reference by alias in all commands:
 
 ```bash
-$ plakar store add mybackups /var/backups passphrase=xxx
+plakar store add mybackups /var/backups passphrase=xxx
 ```
 
 Use the configured store:
 
 ```bash
-$ plakar at @mybackups create
-$ plakar at @mybackups ls
+plakar at @mybackups create
+plakar at @mybackups ls
 ```
 
 ## Update store configuration
 
 ```bash
-$ plakar store set mybackups passphrase=yyy
+plakar store set mybackups passphrase=yyy
 ```
 
 > [!WARNING]+ Passphrase Changes
@@ -64,7 +64,7 @@ $ plakar store set mybackups passphrase=yyy
 Without specifying a path, `plakar create` uses `~/.plakar`:
 
 ```bash
-$ plakar create
+plakar create
 ```
 
 ## When to Use Aliases

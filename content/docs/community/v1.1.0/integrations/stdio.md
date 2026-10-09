@@ -38,13 +38,13 @@ The source connector reads from standard input and stores the data in a Kloset
 store with encryption and deduplication.
 
 ```bash
-$ cat myfile.txt | plakar at /var/backups backup stdio://
+cat myfile.txt | plakar at /var/backups backup stdio://
 ```
 
 This works with any command that writes to stdout:
 
 ```bash
-$ pg_dump mydb | plakar at /var/backups backup stdio://
+pg_dump mydb | plakar at /var/backups backup stdio://
 ```
 
 ## Destination connector
@@ -54,8 +54,8 @@ standard output or standard error.
 
 ```bash
 # Restore to stdout
-$ plakar at /var/backups restore -to stdout:// <snapshot_id>
+plakar at /var/backups restore -to stdout:// <snapshot_id>
 
 # Restore to stderr
-$ plakar at /var/backups restore -to stderr:// <snapshot_id>
+plakar at /var/backups restore -to stderr:// <snapshot_id>
 ```

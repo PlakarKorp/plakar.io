@@ -24,14 +24,14 @@ backends.
 ## Create a store with a path
 
 ```bash
-$ plakar at /var/backups create
+plakar at /var/backups create
 ```
 
 Plakar prompts for an encryption passphrase. To avoid the prompt, set:
 
 ```bash
-$ export PLAKAR_PASSPHRASE="my-secret-passphrase"
-$ plakar at /var/backups create
+export PLAKAR_PASSPHRASE="my-secret-passphrase"
+plakar at /var/backups create
 ```
 
 Plakar encrypts the store by default. A few flags modify this behaviour:
@@ -47,7 +47,7 @@ Plakar encrypts the store by default. A few flags modify this behaviour:
 Without specifying a path, `plakar create` uses `~/.plakar`:
 
 ```bash
-$ plakar create
+plakar create
 ```
 
 ## Create a store with an alias
@@ -55,14 +55,14 @@ $ plakar create
 Configure a store once, then reference it by alias in all subsequent commands:
 
 ```bash
-$ plakar store add mybackups /var/backups passphrase=xxx
+plakar store add mybackups /var/backups passphrase=xxx
 ```
 
 Use the configured store:
 
 ```bash
-$ plakar at @mybackups create
-$ plakar at @mybackups ls
+plakar at @mybackups create
+plakar at @mybackups ls
 ```
 
 ## HTTP and HTTPS stores
@@ -76,7 +76,7 @@ These locations accept additional options, configured like any other store
 option:
 
 ```bash
-$ plakar store add remote https://backup.example.com auth_token=xxx
+plakar store add remote https://backup.example.com auth_token=xxx
 ```
 
 - `auth_token`: bearer token sent in the `Authorization` header on every
@@ -98,13 +98,13 @@ Given an alias `foobar` configured as `sftp://localhost/tmp`:
 
 ```bash
 # Use the configured root as-is
-$ plakar at @foobar
+plakar at @foobar
 
 # Append a relative subdirectory: resolves to sftp://localhost/tmp/etc
-$ plakar at @foobar:etc
+plakar at @foobar:etc
 
 # Override with an absolute path: resolves to sftp://localhost/etc
-$ plakar at @foobar:/etc
+plakar at @foobar:/etc
 ```
 
 The same override syntax applies when specifying a **backup source**. Given an
@@ -112,13 +112,13 @@ alias `foobar` configured as `sftp://localhost/etc`:
 
 ```bash
 # Use the configured source root
-$ plakar backup @foobar
+plakar backup @foobar
 
 # Append a relative path: resolves to sftp://localhost/etc/uucp
-$ plakar backup @foobar:uucp
+plakar backup @foobar:uucp
 
 # Override with an absolute path: resolves to sftp://localhost/etc/uucp
-$ plakar backup @foobar:/etc/uucp
+plakar backup @foobar:/etc/uucp
 ```
 
 ## Back up multiple directories
@@ -127,7 +127,7 @@ You can back up more than one directory in a single snapshot by passing multiple
 paths to `plakar backup`:
 
 ```bash
-$ plakar backup /etc /home
+plakar backup /etc /home
 ```
 
 > [!NOTE]+ Cross-connector sources
@@ -139,7 +139,7 @@ $ plakar backup /etc /home
 ## Update store configuration
 
 ```bash
-$ plakar store set mybackups passphrase=yyy
+plakar store set mybackups passphrase=yyy
 ```
 
 > [!WARNING]+ Passphrase changes

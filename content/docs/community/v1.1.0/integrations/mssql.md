@@ -58,13 +58,13 @@ how this differs from the other integrations.
 Install the MSSQL package:
 
 ```bash
-$ plakar pkg add mssql
+plakar pkg add mssql
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg show
+plakar pkg show
 ```
 
 To list, upgrade, or remove the package, see
@@ -130,17 +130,17 @@ FS --> VSS --> Via --> Plakar --> Store
 
 ```bash
 # Configure a SQL Server installation as a backup source
-$ plakar source add sqlserver location="mssql://Administrator@192.168.1.42/C:/Program Files/Microsoft SQL Server"
+plakar source add sqlserver location="mssql://Administrator@192.168.1.42/C:/Program Files/Microsoft SQL Server"
 
 # Back up the source to a Kloset store
-$ plakar at /var/backups backup "@sqlserver"
+plakar at /var/backups backup "@sqlserver"
 ```
 
 To back up the data directory of a specific instance, point the location at the
 corresponding subdirectory:
 
 ```bash
-$ plakar source add sqlserver location="mssql://Administrator@192.168.1.42/C:/Program Files/Microsoft SQL Server/MSSQL17.MSSQLSERVER/"
+plakar source add sqlserver location="mssql://Administrator@192.168.1.42/C:/Program Files/Microsoft SQL Server/MSSQL17.MSSQLSERVER/"
 ```
 
 ## Destination connector
@@ -176,10 +176,10 @@ for the full list of services and how to confirm they are stopped.
 
 ```bash
 # Configure a destination corresponding to the backup source
-$ plakar destination add sqlserver location="mssql://Administrator@192.168.1.42/C:/Program Files/Microsoft SQL Server"
+plakar destination add sqlserver location="mssql://Administrator@192.168.1.42/C:/Program Files/Microsoft SQL Server"
 
 # Restore a snapshot to the Windows host
-$ plakar at /var/backups restore -to "@sqlserver" <snapshot_id>
+plakar at /var/backups restore -to "@sqlserver" <snapshot_id>
 ```
 
 ## See also

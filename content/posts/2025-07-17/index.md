@@ -47,7 +47,7 @@ This feature only works on our development branch for the time being, you can
 give it a try by installing our latest devel release:
 
 ```sh
-$ go install github.com/PlakarKorp/plakar@v1.0.3-devel.889b4b6
+go install github.com/PlakarKorp/plakar@v1.0.3-devel.889b4b6
 ```
 
 ## Install in seconds
@@ -74,7 +74,7 @@ plugin that's exactly like the ones that will be pre-built and distributed by
 us, ready to be installed:
 
 ```sh
-$ plakar pkg add ./notion-v0.1.0-devel.b66af0a_darwin_arm64.ptar
+plakar pkg add ./notion-v0.1.0-devel.b66af0a_darwin_arm64.ptar
 ```
 
 You can verify that it's properly installed (see how notion appears now):
@@ -117,14 +117,14 @@ Once everything is ready at Notion, you need to provide `plakar` with a source
 configuration for it to know where to fetch the data.
 
 ```sh
-$ plakar source set mynotion notion:// \
+plakar source set mynotion notion:// \
   token=ntn_1234567890123456789012345678901234567890123456
 ```
 
 Reload the agent configuration (this step will soon become optional):
 
 ```sh
-$ plakar agent reload
+plakar agent reload
 ```
 
 ... and run your backup !
@@ -155,7 +155,7 @@ Then you can do the `plakar` setup as was done for backup, but now for the
 destination side:
 
 ```sh
-$ plakar destination set mynotion notion:// \
+plakar destination set mynotion notion:// \
   token=ntn_1234567890123456789012345678901234567890123456 \
   rootID=1ea782d6899380dd96c2f88f20f68635
 ```
@@ -163,7 +163,7 @@ $ plakar destination set mynotion notion:// \
 Reload the agent config:
 
 ```sh
-$ plakar agent reload
+plakar agent reload
 ```
 
 ... and restore !
@@ -194,7 +194,7 @@ $ plakar restore -to /tmp/notion-backup 30b99763
 Now let's run the UI:
 
 ```sh
-$ plakar ui
+plakar ui
 ```
 
 ![](notion-ui-1.png) ![](notion-ui-2.png)

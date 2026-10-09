@@ -125,7 +125,7 @@ and is **only available for plakar v1.1.0-beta**.
 To test it, you first need to install our latest beta of plakar:
 
 ```sh
-$ go install github.com/PlakarKorp/plakar@v1.1.0-beta.4
+go install github.com/PlakarKorp/plakar@v1.1.0-beta.4
 ```
 
 You can their either use our prebuilt package by authenticating to our platform:
@@ -150,7 +150,7 @@ Plugin created successfully: oci_v1.1.0-beta.4_darwin_arm64.ptar
 ... and install the resulting ptar:
 
 ```sh
-$ plakar pkg add ./oci_v1.1.0-beta.4_darwin_arm64.ptar
+plakar pkg add ./oci_v1.1.0-beta.4_darwin_arm64.ptar
 ```
 
 That's it, you're good to go !
@@ -178,19 +178,19 @@ start by setting the `PLAKAR_PASSPHRASE` environment variable to a key that I
 generated with `openssl rand -hex 32`:
 
 ```sh
-$ export PLAKAR_PASSPHRASE=6292d531ecede679b5e4afbbe9ce994a78c9c7986c742e97232f2730b8bfb5df
+export PLAKAR_PASSPHRASE=6292d531ecede679b5e4afbbe9ce994a78c9c7986c742e97232f2730b8bfb5df
 ```
 
 Once this is done, I can create the store:
 
 ```sh
-$ plakar at oci://localhost:5000/helloworld create
+plakar at oci://localhost:5000/helloworld create
 ```
 
 Then backup my current directory:
 
 ```sh
-$ plakar -silent at oci://localhost:5000/helloworld backup
+plakar -silent at oci://localhost:5000/helloworld backup
 ```
 
 The snapshot is now in store and can be inspected as usual:
@@ -222,7 +222,7 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 Everything is browsable as with any other storage through our UI:
 
 ```sh
-$ plakar at oci://localhost:5000/helloworld ui
+plakar at oci://localhost:5000/helloworld ui
 ```
 
 ![](oci-registry.png)

@@ -45,13 +45,13 @@ simplest installation method.
 Install the PostgreSQL package:
 
 ```bash
-$ plakar pkg add postgresql
+plakar pkg add postgresql
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg show
+plakar pkg show
 ```
 
 {{< /tab >}}
@@ -68,7 +68,7 @@ customization is required.
 Build the package:
 
 ```bash
-$ plakar pkg build postgresql
+plakar pkg build postgresql
 ```
 
 A package archive will be created in the current directory (e.g.,
@@ -77,13 +77,13 @@ A package archive will be created in the current directory (e.g.,
 Install the package:
 
 ```bash
-$ plakar pkg add -allow-unsigned ./postgresql_v1.0.0_darwin_arm64.ptar
+plakar pkg add -allow-unsigned ./postgresql_v1.0.0_darwin_arm64.ptar
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg show
+plakar pkg show
 ```
 
 {{< /tab >}}
@@ -172,12 +172,12 @@ Transform --> Store
 
 ```bash
 # Back up a single database
-$ plakar source add mypg postgres://postgres:secret@db.example.com/myapp
-$ plakar at /var/backups backup "@mypg"
+plakar source add mypg postgres://postgres:secret@db.example.com/myapp
+plakar at /var/backups backup "@mypg"
 
 # Back up all databases (roles, tablespaces, and data)
-$ plakar source add mypg postgres://postgres:secret@db.example.com/
-$ plakar at /var/backups backup "@mypg"
+plakar source add mypg postgres://postgres:secret@db.example.com/
+plakar at /var/backups backup "@mypg"
 ```
 
 #### Source options
@@ -228,28 +228,28 @@ Connector --> DB
 
 ```bash
 # Restore into an existing database (database must already exist)
-$ plakar destination add mypgdst postgres://postgres:secret@db.example.com/myapp
-$ plakar at /var/backups restore -to "@mypgdst" <snapshot_id>
+plakar destination add mypgdst postgres://postgres:secret@db.example.com/myapp
+plakar at /var/backups restore -to "@mypgdst" <snapshot_id>
 
 # Drop objects first, then restore (database must exist)
-$ plakar destination add mypgdst postgres://postgres:secret@db.example.com/myapp \
+plakar destination add mypgdst postgres://postgres:secret@db.example.com/myapp \
   clean=true
-$ plakar at /var/backups restore -to "@mypgdst" <snapshot_id>
+plakar at /var/backups restore -to "@mypgdst" <snapshot_id>
 
 # Drop and recreate the database entirely (safe for fresh or existing clusters)
-$ plakar destination add mypgdst postgres://postgres:secret@db.example.com/ \
+plakar destination add mypgdst postgres://postgres:secret@db.example.com/ \
   recreate=true
-$ plakar at /var/backups restore -to "@mypgdst" <snapshot_id>
+plakar at /var/backups restore -to "@mypgdst" <snapshot_id>
 
 # Restore a single database from a full backup
-$ plakar destination add mypgdst postgres://postgres:secret@db.example.com/ \
+plakar destination add mypgdst postgres://postgres:secret@db.example.com/ \
   databases=myapp recreate=true
-$ plakar at /var/backups restore -to "@mypgdst" <snapshot_id>
+plakar at /var/backups restore -to "@mypgdst" <snapshot_id>
 
 # Restore, skipping owner assignment (useful when roles differ on the target)
-$ plakar destination add mypgdst postgres://postgres:secret@db.example.com/myapp \
+plakar destination add mypgdst postgres://postgres:secret@db.example.com/myapp \
   no_owner=true
-$ plakar at /var/backups restore -to "@mypgdst" <snapshot_id>
+plakar at /var/backups restore -to "@mypgdst" <snapshot_id>
 ```
 
 #### Destination options
@@ -418,10 +418,10 @@ to be configured. The SDK retrieves short-lived credentials from the instance
 metadata service automatically.
 
 ```bash
-$ plakar source add myrds \
+plakar source add myrds \
   postgres+aws://myuser@mydb.cluster-xyz.eu-west-3.rds.amazonaws.com/myapp \
   region=eu-west-3 ssl_mode=require
-$ plakar at /var/backups backup "@myrds"
+plakar at /var/backups backup "@myrds"
 ```
 
 {{< /tab >}}
@@ -432,16 +432,16 @@ $ plakar at /var/backups backup "@myrds"
 
 ```bash
 # Back up a single RDS database
-$ plakar source add myrds \
+plakar source add myrds \
   postgres+aws://myuser@mydb.cluster-xyz.us-east-1.rds.amazonaws.com/myapp \
   region=us-east-1 ssl_mode=require
-$ plakar at /var/backups backup "@myrds"
+plakar at /var/backups backup "@myrds"
 
 # Back up all databases on an RDS instance
-$ plakar source add myrds \
+plakar source add myrds \
   postgres+aws://myuser@mydb.cluster-xyz.us-east-1.rds.amazonaws.com/ \
   region=us-east-1 ssl_mode=require
-$ plakar at /var/backups backup "@myrds"
+plakar at /var/backups backup "@myrds"
 ```
 
 #### Source options
@@ -475,22 +475,22 @@ automatically and used as the connection password.
 
 ```bash
 # Restore into an existing database on RDS
-$ plakar destination add myrds \
+plakar destination add myrds \
   postgres+aws://myuser@mydb.cluster-xyz.us-east-1.rds.amazonaws.com/myapp \
   region=us-east-1 ssl_mode=require
-$ plakar at /var/backups restore -to "@myrds" <snapshot_id>
+plakar at /var/backups restore -to "@myrds" <snapshot_id>
 
 # Drop and recreate the database entirely
-$ plakar destination add myrds \
+plakar destination add myrds \
   postgres+aws://myuser@mydb.cluster-xyz.us-east-1.rds.amazonaws.com/ \
   region=us-east-1 ssl_mode=require recreate=true
-$ plakar at /var/backups restore -to "@myrds" <snapshot_id>
+plakar at /var/backups restore -to "@myrds" <snapshot_id>
 
 # Restore, skipping owner assignment
-$ plakar destination add myrds \
+plakar destination add myrds \
   postgres+aws://myuser@mydb.cluster-xyz.us-east-1.rds.amazonaws.com/myapp \
   region=us-east-1 ssl_mode=require no_owner=true
-$ plakar at /var/backups restore -to "@myrds" <snapshot_id>
+plakar at /var/backups restore -to "@myrds" <snapshot_id>
 ```
 
 #### Destination options
@@ -576,8 +576,8 @@ Transform --> Store
 
 ```bash
 # Back up the entire cluster
-$ plakar source add mypg postgres+bin://replicator:secret@db.example.com
-$ plakar at /var/backups backup "@mypg"
+plakar source add mypg postgres+bin://replicator:secret@db.example.com
+plakar at /var/backups backup "@mypg"
 ```
 
 #### Source options
@@ -613,17 +613,17 @@ started directly.
 
 ```bash
 # Restore the data directory locally
-$ plakar at /var/backups restore -to ./pgdata <snapshot_id>
+plakar at /var/backups restore -to ./pgdata <snapshot_id>
 
 # Start PostgreSQL against the restored data directory
-$ docker run --rm \
+docker run --rm \
   -v "$PWD/pgdata:/var/lib/postgresql/data" \
   postgres:<postgres_version>
 
 # Restore to a remote host via SFTP
-$ plakar at /var/backups restore -to sftp://user@host/var/lib/postgresql/data <snapshot_id>
+plakar at /var/backups restore -to sftp://user@host/var/lib/postgresql/data <snapshot_id>
 # then on the remote host:
-$ pg_ctl -D /var/lib/postgresql/data start
+pg_ctl -D /var/lib/postgresql/data start
 ```
 
 Replace `<postgres_version>` with the **same major version** that was running
