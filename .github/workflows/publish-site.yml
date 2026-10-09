@@ -42,7 +42,7 @@ jobs:
         run: npm ci
 
       - name: Cache Hugo resources
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: resources/_gen
           key: hugo-resources-v1-${{ github.ref_name }}-${{ hashFiles('assets/**', 'content/**', 'layouts/**') }}
