@@ -301,6 +301,17 @@
   </div>
 </section>
 
+<!-- SECTION: blog -->
+{{ partial "components/common/related-posts.html" (dict
+  "title" "Go deeper on the Control Plane."
+  "bg" "section-light-1"
+  "posts" (slice
+    "/posts/2026-06-24-introducing-plakar-control-plane-free-plan"
+    "/posts/2026-07-10-plakar-control-plane-aws-marketplace"
+    "/posts/2026-09-23/resilience-as-code-kubernetes-operator"
+  )
+) }}
+
 <!-- SECTION: where-it-runs -->
 <section class="section-dark-1 py-14 lg:py-28 relative overflow-hidden">
   <div class="absolute inset-0 pointer-events-none opacity-20">
