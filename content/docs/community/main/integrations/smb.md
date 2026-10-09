@@ -43,13 +43,13 @@ simplest installation method.
 Install the SMB package:
 
 ```bash
-$ plakar pkg add smb
+plakar pkg add smb
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg show
+plakar pkg show
 ```
 
 {{< /tab >}}
@@ -66,7 +66,7 @@ customization is required.
 Build the package:
 
 ```bash
-$ plakar pkg build smb
+plakar pkg build smb
 ```
 
 A package archive will be created in the current directory (e.g.,
@@ -75,13 +75,13 @@ A package archive will be created in the current directory (e.g.,
 Install the package:
 
 ```bash
-$ plakar pkg add ./smb_v1.0.0_darwin_arm64.ptar
+plakar pkg add ./smb_v1.0.0_darwin_arm64.ptar
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg show
+plakar pkg show
 ```
 
 {{< /tab >}}
@@ -148,19 +148,19 @@ Transform --> Store
 Register the source and run a backup:
 
 ```bash
-$ plakar source add my-smb-share \
+plakar source add my-smb-share \
   location=smb://nas.example.com/documents \
   username=<YOUR_USERNAME> \
   password=<YOUR_PASSWORD>
 
-$ plakar at /var/backups backup "@my-smb-share"
+plakar at /var/backups backup "@my-smb-share"
 ```
 
 To back up a subtree rather than the whole share, extend the location with the
 path inside the share:
 
 ```bash
-$ plakar source add my-smb-projects \
+plakar source add my-smb-projects \
   location=smb://nas.example.com/documents/projects \
   username=<YOUR_USERNAME> \
   password=<YOUR_PASSWORD>
@@ -170,9 +170,9 @@ A location can also be passed directly to `backup`, with credentials in the URL
 or as options:
 
 ```bash
-$ plakar at /var/backups backup smb://alice:secret@nas.example.com/documents
+plakar at /var/backups backup smb://alice:secret@nas.example.com/documents
 
-$ plakar at /var/backups backup \
+plakar at /var/backups backup \
   -o username=alice -o password=secret \
   smb://nas.example.com/documents/projects
 ```
@@ -207,12 +207,12 @@ Connector --> Destination
 Register the destination and restore a snapshot:
 
 ```bash
-$ plakar destination add my-smb-restore \
+plakar destination add my-smb-restore \
   location=smb://nas.example.com/restore \
   username=<YOUR_USERNAME> \
   password=<YOUR_PASSWORD>
 
-$ plakar at /var/backups restore -to "@my-smb-restore" <snapshot_id>
+plakar at /var/backups restore -to "@my-smb-restore" <snapshot_id>
 ```
 
 ## Limitations

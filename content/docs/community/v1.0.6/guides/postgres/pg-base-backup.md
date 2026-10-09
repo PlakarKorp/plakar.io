@@ -58,14 +58,14 @@ directory can be stored with Plakar, like any other directory.
 Run the following commands:
 
 ```bash
-$ export PGUSER=xxx
-$ export PGPORT=5432
-$ export PGHOST=xxx
-$ export PGPASSWORD=xxx
+export PGUSER=xxx
+export PGPORT=5432
+export PGHOST=xxx
+export PGPASSWORD=xxx
 
-$ pg_basebackup -D ./database
-$ plakar at /var/backups backup ./database
-$ rm -rf ./database
+pg_basebackup -D ./database
+plakar at /var/backups backup ./database
+rm -rf ./database
 ```
 
 This sequence of commands:
@@ -87,14 +87,14 @@ Alternatively, `pg_basebackup` can create a tarball. This tarball can be backed
 up using the `tar` source importer of Plakar.
 
 ```bash
-$ export PGUSER=xxx
-$ export PGPORT=5432
-$ export PGHOST=xxx
-$ export PGPASSWORD=xxx
+export PGUSER=xxx
+export PGPORT=5432
+export PGHOST=xxx
+export PGPASSWORD=xxx
 
-$ pg_basebackup -D - -F tar -X fetch > /tmp/pg_backup.tar
-$ plakar at /var/backups backup tar:///tmp/pg_backup.tar
-$ rm /tmp/pg_backup.tar
+pg_basebackup -D - -F tar -X fetch > /tmp/pg_backup.tar
+plakar at /var/backups backup tar:///tmp/pg_backup.tar
+rm /tmp/pg_backup.tar
 ```
 
 > This method may be slower than a directory-based backup as it requires
@@ -107,7 +107,7 @@ To restore a physical backup created with `pg_basebackup`, use the
 `plakar restore` command to extract the backup to a local directory.
 
 ```bash
-$ plakar at /var/backups restore -to ./mydb 3bcb4fd8
+plakar at /var/backups restore -to ./mydb 3bcb4fd8
 ```
 
 This command restores the snapshot with ID `3bcb4fd8` from the Kloset store
@@ -122,7 +122,7 @@ With a physical backup, you can easily run a PostgreSQL instance using Docker,
 provided the PostgreSQL version matches the one used to create the backup.
 
 ```bash
-$ docker run --rm -ti --name pg -v ./mydb:/var/lib/postgresql/data postgres
+docker run --rm -ti --name pg -v ./mydb:/var/lib/postgresql/data postgres
 ```
 
 This command starts a PostgreSQL container using the official `postgres` image,
@@ -135,7 +135,7 @@ version.
 To connect to the running PostgreSQL instance, use:
 
 ```bash
-$ docker exec -ti pg psql -U postgres -c '\l'
+docker exec -ti pg psql -U postgres -c '\l'
 ```
 
 ## Considerations

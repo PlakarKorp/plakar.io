@@ -94,7 +94,7 @@ reporting any issues you encounter. Your feedback is invaluable and directly
 helps shape the final release.
 
 ```sh
-$ go install github.com/PlakarKorp/plakar@v1.1.0-beta.3
+go install github.com/PlakarKorp/plakar@v1.1.0-beta.3
 ```
 
 Active testers can earn a contributor role, allowing them to talk in our
@@ -142,7 +142,7 @@ progressively cover more commands, such as `check` or `sync` as we go.
 The v1.1.0 branch introduces **support for multi-directory backups**.
 
 ```sh
-$ plakar backup /etc /home
+plakar backup /etc /home
 ```
 
 Early versions of plakar only supported filesystem-based backups, which made

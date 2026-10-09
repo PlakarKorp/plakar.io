@@ -47,15 +47,34 @@ implemented as an agentless and zero-configuration tool.
 
 In other words: you install, you run, it works right away.
 
-```sh
-$ go install github.com/PlakarKorp/kapsul@v0.0.0-beta.10
-go: downloading github.com/PlakarKorp/kapsul v0.0.0-beta.10
+```bash
+go install github.com/PlakarKorp/kapsul@v0.0.0-beta.10
+```
 
-$ kapsul -f /tmp/bleh.ptar create /private/etc
+The output is similar to:
+
+```sh
+go: downloading github.com/PlakarKorp/kapsul v0.0.0-beta.10
+```
+
+```bash
+kapsul -f /tmp/bleh.ptar create /private/etc
+```
+
+The output is similar to:
+
+```sh
 repository passphrase:
 repository passphrase (confirm):
+```
 
-$ kapsul -f /tmp/bleh.ptar ls
+```bash
+kapsul -f /tmp/bleh.ptar ls
+```
+
+The output is similar to:
+
+```sh
 repository passphrase:
 2025-07-07T21:51:57Z   bff68fc7    3.1 MB        0s /private/etc
 ```
@@ -102,25 +121,50 @@ _MOST_ of what `plakar` can do... `kapsul` can do.
 You can craft a ptar, list or display its content, launch a `ui`, preview files
 (including media), ...
 
+```bash
+kapsul -f /tmp/bleh.ptar create ~/Downloads
+```
+
+The output is similar to:
+
 ```sh
-$ kapsul -f /tmp/bleh.ptar create ~/Downloads
 repository passphrase:
 repository passphrase (confirm):
+```
 
-$ kapsul -f /tmp/bleh.ptar ls
+```bash
+kapsul -f /tmp/bleh.ptar ls
+```
+
+The output is similar to:
+
+```sh
 repository passphrase:
 2025-07-07T23:18:33Z   2a92ad6f     23 GB       55s /Users/gilles/Downloads
+```
 
+```bash
+kapsul -f /tmp/bleh.ptar ls 2a92ad6f | tail -5
+```
 
-$ kapsul -f /tmp/bleh.ptar ls 2a92ad6f | tail -5
+The output is similar to:
+
+```sh
 repository passphrase:
 2025-01-07T08:54:15Z -rw-r--r--   gilles    staff    75 kB d0f1_01.pdf
 2025-01-07T08:54:40Z -rw-r--r--   gilles    staff    75 kB d0f1_02.pdf
 2025-01-07T08:54:56Z -rw-r--r--   gilles    staff    75 kB d0f1_03.pdf
 2025-01-07T08:55:10Z -rw-r--r--   gilles    staff    75 kB d0f1_04.pdf
 2025-04-01T21:41:59Z -rw-r--r--   gilles    staff   1.9 MB we-simpsons.png
+```
 
-$ kapsul -f /tmp/bleh.ptar cat 2a92ad6f:plakar_1.0.0-throwaway.0_checksums.txt
+```bash
+kapsul -f /tmp/bleh.ptar cat 2a92ad6f:plakar_1.0.0-throwaway.0_checksums.txt
+```
+
+The output is similar to:
+
+```sh
 repository passphrase:
 ffdbd5e4f9748038917b7f7d3307292bd8492ba1849f8ef12a6f1937900e6a6f  plakar_1.0.0-throwaway.0_darwin_amd64.tar.gz
 0402b978646105478e530010ff3d2c182885f083775842d881df7101b2abe142  plakar_1.0.0-throwaway.0_darwin_arm64.tar.gz
@@ -132,8 +176,15 @@ cefdee40f6caa7b261129fc423a96783f0923c764f8340ee2675889f1141ba75  plakar_1.0.0-t
 175c57268939065985acc0cd606ac71446c36f45b0f2ba01546baa0c786208d3  plakar_1.0.0-throwaway.0_linux_arm64.tar.gz
 d32091ad7552bb2c36f75caa4ae74dcf14fe2a53f70d593232a33f69abbb0359  plakar_1.0.0-throwaway.0_openbsd_amd64.tar.gz
 d4d6e8661b34dffed96dc12b71b1070de3a8ce679177dea62661800e49d75184  plakar_1.0.0-throwaway.0_openbsd_arm64.tar.gz
+```
 
-$ kapsul -f /tmp/bleh.ptar ui
+```bash
+kapsul -f /tmp/bleh.ptar ui
+```
+
+The output is similar to:
+
+```sh
 repository passphrase:
 ```
 
@@ -149,11 +200,18 @@ It even supports accessing a remote `ptar` over http/https for random access
 fetching. Accessing a remote .ptar over HTTP/HTTPS allows you to fetch specific
 parts of an archive without downloading it in full:
 
-```sh
-$ kapsul -f https://poolp.org/test.ptar ls
-2025-06-02T19:43:53Z   ed0f6603    3.1 MB        0s /private/etc
+```bash
+kapsul -f https://poolp.org/test.ptar ls
+```
 
-$ kapsul -f https://poolp.org/test.ptar ui
+The output is similar to:
+
+```sh
+2025-06-02T19:43:53Z   ed0f6603    3.1 MB        0s /private/etc
+```
+
+```bash
+kapsul -f https://poolp.org/test.ptar ui
 ```
 
 ![](preview2.png)

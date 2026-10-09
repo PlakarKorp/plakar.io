@@ -25,7 +25,7 @@ result.
 ## Installing the collection
 
 ```sh
-$ ansible-galaxy collection install plakarkorp.plakar
+ansible-galaxy collection install plakarkorp.plakar
 ```
 
 The collection requires `ansible-core` 2.15 or later.
@@ -35,7 +35,7 @@ environment. The collection repository ships an `execution-environment.yml` for
 this:
 
 ```sh
-$ ansible-builder build -t plakar-ee .
+ansible-builder build -t plakar-ee .
 ```
 
 Point your job templates at the resulting image, and supply `PLAKAR_API_URL` and
@@ -107,7 +107,7 @@ Every option of every module is listed in the
 module documents itself:
 
 ```sh
-$ ansible-doc plakarkorp.plakar.backup
+ansible-doc plakarkorp.plakar.backup
 ```
 
 Beyond the options particular to a module, all of them take `api_url`,

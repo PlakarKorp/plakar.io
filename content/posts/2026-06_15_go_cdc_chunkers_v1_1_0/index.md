@@ -322,7 +322,7 @@ which is exactly the point.
 [github.com/PlakarKorp/go-cdc-chunkers](https://github.com/PlakarKorp/go-cdc-chunkers)
 
 ```terminal
-$ go get github.com/PlakarKorp/go-cdc-chunkers@v1.1.0
+go get github.com/PlakarKorp/go-cdc-chunkers@v1.1.0
 ```
 
 **Full changelog:**

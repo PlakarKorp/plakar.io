@@ -180,7 +180,12 @@ In the sample below, I blindly modified a random byte in the backup repository
 which tampered with a random file, and performed a check on the backup:
 
 ```bash
-$ plakar check ec6f019c
+plakar check ec6f019c
+```
+
+The output is similar to:
+
+```sh
 repository passphrase:
 ec6f019c: ✓ /private/etc/afpovertcp.cfg
 ec6f019c: ✓ /private/etc/apache2/extra/httpd-autoindex.conf
@@ -264,11 +269,23 @@ the actual repository size is only 28G which is smaller than even a single
 snapshot by over 15%.
 
 ```bash
-$ plakar info |grep ^Size
+plakar info |grep ^Size
+```
+
+The output is similar to:
+
+```sh
 repository passphrase:
 Size: 327 GB (326968934310 bytes)
+```
 
-$ du -sh ~/.plakar
+```bash
+du -sh ~/.plakar
+```
+
+The output is similar to:
+
+```sh
 28G    /Users/gilles/.plakar
 ```
 

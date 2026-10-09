@@ -38,13 +38,13 @@ simplest installation method.
 Install the WebDAV package:
 
 ```bash
-$ plakar pkg add webdav
+plakar pkg add webdav
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg show
+plakar pkg show
 ```
 
 {{< /tab >}}
@@ -61,7 +61,7 @@ customization is required.
 Build the package:
 
 ```bash
-$ plakar pkg build webdav
+plakar pkg build webdav
 ```
 
 A package archive will be created in the current directory (e.g.,
@@ -70,13 +70,13 @@ A package archive will be created in the current directory (e.g.,
 Install the package:
 
 ```bash
-$ plakar pkg add -allow-unsigned ./webdav_v1.0.0_darwin_arm64.ptar
+plakar pkg add -allow-unsigned ./webdav_v1.0.0_darwin_arm64.ptar
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg show
+plakar pkg show
 ```
 
 {{< /tab >}}
@@ -139,29 +139,29 @@ Transform --> Store
 Register the source and run a backup:
 
 ```bash
-$ plakar source add my-webdav \
+plakar source add my-webdav \
   davs://<webdav-host>/path/to/files \
   username=<YOUR_USERNAME> \
   password=<YOUR_PASSWORD>
 
-$ plakar at /var/backups backup "@my-webdav"
+plakar at /var/backups backup "@my-webdav"
 ```
 
 To back up a specific path:
 
 ```bash
-$ plakar at /var/backups backup "@my-webdav:subpath"
+plakar at /var/backups backup "@my-webdav:subpath"
 ```
 
 ### Example: Nextcloud
 
 ```bash
-$ plakar source add nextcloud \
+plakar source add nextcloud \
   davs://<nextcloud-url>/remote.php/dav/files/<your-user> \
   username=<YOUR_USERNAME> \
   password=<YOUR_PASSWORD>
 
-$ plakar at /var/backups backup "@nextcloud"
+plakar at /var/backups backup "@nextcloud"
 ```
 
 ## Destination connector
@@ -193,12 +193,12 @@ Connector --> Destination
 Register the destination and restore a snapshot:
 
 ```bash
-$ plakar destination add my-webdav-restore \
+plakar destination add my-webdav-restore \
   davs://<webdav-host>/path/to/files \
   username=<YOUR_USERNAME> \
   password=<YOUR_PASSWORD>
 
-$ plakar at /var/backups restore -to "@my-webdav-restore" <snapshot_id>
+plakar at /var/backups restore -to "@my-webdav-restore" <snapshot_id>
 ```
 
 ## Notes

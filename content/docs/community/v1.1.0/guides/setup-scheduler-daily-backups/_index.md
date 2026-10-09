@@ -35,8 +35,8 @@ Create a configuration entry for your Kloset store, then create the store
 itself:
 
 ```bash
-$ plakar store add mybackups /var/backups passphrase=mysuperpassphrase
-$ plakar at "@mybackups" create
+plakar store add mybackups /var/backups passphrase=mysuperpassphrase
+plakar at "@mybackups" create
 ```
 
 ### Make the passphrase available without a prompt
@@ -55,7 +55,7 @@ supply the passphrase non-interactively. Pick one of the following:
   rather than a file:
 
   ```bash
-  $ plakar store add mybackups /var/backups passphrase_cmd="gopass show mystore/passphrase"
+  plakar store add mybackups /var/backups passphrase_cmd="gopass show mystore/passphrase"
   ```
 
 - **Use a key file.** Pass `-keyfile /path/to/key` as a flag . Plakar reads the
@@ -70,7 +70,7 @@ Every scheduler below runs the same command. Back up a path into the store and
 verify the result:
 
 ```bash
-$ plakar at "@mybackups" backup -check /var/www
+plakar at "@mybackups" backup -check /var/www
 ```
 
 `-check` runs a full integrity check after the backup is completed.
@@ -92,7 +92,7 @@ Follow the guide for the scheduler on your platform:
 After the first scheduled run, confirm snapshots are being created:
 
 ```bash
-$ plakar at "@mybackups" ls
+plakar at "@mybackups" ls
 ```
 
 For monitoring and alerting, rely on the exit status: `plakar backup` returns

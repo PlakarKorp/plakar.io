@@ -38,13 +38,13 @@ simplest installation method.
 Install the SFTP package:
 
 ```bash
-$ plakar pkg add http
+plakar pkg add http
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg list
+plakar pkg list
 ```
 
 {{< /tab >}}
@@ -61,7 +61,7 @@ customization is required.
 Build the package:
 
 ```bash
-$ plakar pkg build http
+plakar pkg build http
 ```
 
 A package archive will be created in the current directory (e.g.,
@@ -70,13 +70,13 @@ A package archive will be created in the current directory (e.g.,
 Install the package:
 
 ```bash
-$ plakar pkg add ./http_v1.0.0_darwin_arm64.ptar
+plakar pkg add ./http_v1.0.0_darwin_arm64.ptar
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg list
+plakar pkg list
 ```
 
 {{< /tab >}}
@@ -97,13 +97,13 @@ store.
 
 ```bash
 # Initialize a Kloset store at the HTTP endpoint
-$ plakar at http://example.com/data create
+plakar at http://example.com/data create
 
 # Back up a local directory to the store
-$ plakar at http://example.com/data backup /var/www
+plakar at http://example.com/data backup /var/www
 
 # List snapshots in the store
-$ plakar at http://example.com/data ls
+plakar at http://example.com/data ls
 ```
 
 #### Options

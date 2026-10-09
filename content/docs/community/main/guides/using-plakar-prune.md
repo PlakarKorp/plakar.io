@@ -33,7 +33,7 @@ store can be located anywhere else.
 Before removing anything, check which snapshots would be affected:
 
 ```sh
-$ plakar at $HOME/backups prune -days 30
+plakar at $HOME/backups prune -days 30
 ```
 
 No snapshots are deleted without `-apply`. The output shows what _would_ be
@@ -44,7 +44,7 @@ removed.
 To delete snapshots older than 30 days:
 
 ```sh
-$ plakar at $HOME/backups prune -days 30 -apply
+plakar at $HOME/backups prune -days 30 -apply
 ```
 
 You can use other flags like `-weeks`, `-months`, or `-years` to specify age.
@@ -54,7 +54,7 @@ You can use other flags like `-weeks`, `-months`, or `-years` to specify age.
 To delete snapshots older than 30 days that carry a specific tag:
 
 ```sh
-$ plakar at $HOME/backups prune -days 30 -tag daily-backup -apply
+plakar at $HOME/backups prune -days 30 -tag daily-backup -apply
 ```
 
 Only snapshots matching the tag are considered. Others are left untouched.
@@ -66,7 +66,7 @@ windows and deletes everything else. This is the most common way to keep a store
 bounded over time.
 
 ```sh
-$ plakar at $HOME/backups prune \
+plakar at $HOME/backups prune \
   -days 1 -per-day 7 \
   -weeks 4 -per-week 1 \
   -months 12 -per-month 1 \
@@ -99,7 +99,7 @@ _per name_ for the day.
 The general form is:
 
 ```sh
-$ plakar at $HOME/backups prune -days 30 -per-day 1 -group-by <key> -apply
+plakar at $HOME/backups prune -days 30 -per-day 1 -group-by <key> -apply
 ```
 
 Supported keys:
@@ -129,7 +129,7 @@ A store holds snapshots from several different backup jobs, each identified by a
 distinct name. To keep the most recent snapshot per name for the last 30 days:
 
 ```sh
-$ plakar at $HOME/backups prune -days 30 -per-day 1 -group-by name -apply
+plakar at $HOME/backups prune -days 30 -per-day 1 -group-by name -apply
 ```
 
 Without `-group-by name`, only a single snapshot across all jobs would be kept
@@ -140,7 +140,7 @@ per day.
 To apply the same per-week retention independently to each environment:
 
 ```sh
-$ plakar at $HOME/backups prune -weeks 4 -per-week 1 -group-by environment -apply
+plakar at $HOME/backups prune -weeks 4 -per-week 1 -group-by environment -apply
 ```
 
 ### Using `-group-by` with a named policy
@@ -148,7 +148,7 @@ $ plakar at $HOME/backups prune -weeks 4 -per-week 1 -group-by environment -appl
 `-group-by` composes naturally with `-policy`:
 
 ```sh
-$ plakar at $HOME/backups prune -policy weekly -group-by name -apply
+plakar at $HOME/backups prune -policy weekly -group-by name -apply
 ```
 
 ## Using a named policy
@@ -159,26 +159,26 @@ named policy can be defined once and reused.
 You can create a policy and configure its retention parameters:
 
 ```sh
-$ plakar policy add weekly
-$ plakar policy set weekly since='3 months'
-$ plakar policy set weekly per-week=1
+plakar policy add weekly
+plakar policy set weekly since='3 months'
+plakar policy set weekly per-week=1
 ```
 
 Then apply the policy:
 
 ```sh
-$ plakar at $HOME/backups prune -policy weekly -apply
+plakar at $HOME/backups prune -policy weekly -apply
 ```
 
 ### Managing policies
 
 ```sh
-$ plakar policy show              # list all policies (YAML by default)
-$ plakar policy show -json        # output as JSON
-$ plakar policy show weekly       # inspect a specific policy
-$ plakar policy set weekly per-week=2   # update a parameter
-$ plakar policy unset weekly per-week   # remove a parameter
-$ plakar policy rm weekly         # delete a policy
+plakar policy show              # list all policies (YAML by default)
+plakar policy show -json        # output as JSON
+plakar policy show weekly       # inspect a specific policy
+plakar policy set weekly per-week=2   # update a parameter
+plakar policy unset weekly per-week   # remove a parameter
+plakar policy rm weekly         # delete a policy
 ```
 
 ## Reclaiming storage after pruning
@@ -191,7 +191,7 @@ until `plakar maintenance` runs (also consider the maintenance
 After pruning, run `plakar maintenance` to reclaim the freed space:
 
 ```sh
-$ plakar maintenance
+plakar maintenance
 ```
 
 ## See also

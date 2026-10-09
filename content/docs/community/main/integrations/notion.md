@@ -49,13 +49,13 @@ simplest installation method.
 Install the Notion package:
 
 ```bash
-$ plakar pkg add notion
+plakar pkg add notion
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg show
+plakar pkg show
 ```
 
 {{< /tab >}}
@@ -72,7 +72,7 @@ customization is required.
 Build the package:
 
 ```bash
-$ plakar pkg build notion
+plakar pkg build notion
 ```
 
 A package archive will be created in the current directory (e.g.,
@@ -81,13 +81,13 @@ A package archive will be created in the current directory (e.g.,
 Install the package:
 
 ```bash
-$ plakar pkg add -allow-unsigned ./notion_v1.0.0_darwin_arm64.ptar
+plakar pkg add -allow-unsigned ./notion_v1.0.0_darwin_arm64.ptar
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg show
+plakar pkg show
 ```
 
 {{< /tab >}}
@@ -197,13 +197,13 @@ Before configuring the source connector, ensure you have:
 Create a Notion source configuration:
 
 ```bash
-$ plakar source add mynotion location=notion:// token=$NOTION_API_TOKEN
+plakar source add mynotion location=notion:// token=$NOTION_API_TOKEN
 ```
 
 Back up the workspace to a Kloset store:
 
 ```bash
-$ plakar at /var/backups backup "@mynotion"
+plakar at /var/backups backup "@mynotion"
 ```
 
 ### Configuration options
@@ -276,19 +276,19 @@ the Page ID is `1234567890abcdef1234567890abcdef`.
 Create a Notion destination configuration:
 
 ```bash
-$ plakar destination add mynotion location=notion:// token=$NOTION_API_TOKEN
+plakar destination add mynotion location=notion:// token=$NOTION_API_TOKEN
 ```
 
 Set the target page ID for restoration:
 
 ```bash
-$ plakar destination set mynotion rootID=$NOTION_PAGE_ID
+plakar destination set mynotion rootID=$NOTION_PAGE_ID
 ```
 
 Restore a snapshot:
 
 ```bash
-$ plakar at /var/backups restore -to "@mynotion" <snapshot_id>
+plakar at /var/backups restore -to "@mynotion" <snapshot_id>
 ```
 
 ### Configuration options

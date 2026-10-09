@@ -76,7 +76,7 @@ Assume you have a Kloset Store located at `/var/backups`. To expose it over
 HTTP, run:
 
 ```bash
-$ plakar at /var/backups server
+plakar at /var/backups server
 ```
 
 By default, `plakar server` listens on `http://localhost:9876`.
@@ -90,7 +90,7 @@ to be able to access stores over the network. See the
 Once installed, you can access the store through the network address:
 
 ```bash
-$ plakar at http://localhost:9876 ls
+plakar at http://localhost:9876 ls
 ```
 
 ## Listening on a different address
@@ -99,19 +99,19 @@ Use the `-listen` flag to change the listening address and port. To listen on
 all interfaces on port `12345`:
 
 ```bash
-$ plakar at /var/backups server -listen :12345
+plakar at /var/backups server -listen :12345
 ```
 
 To listen on a specific address, for example `192.168.1.10`:
 
 ```bash
-$ plakar at /var/backups server -listen 192.168.1.10:12345
+plakar at /var/backups server -listen 192.168.1.10:12345
 ```
 
 Remote clients on the same network can then reach the store using:
 
 ```bash
-$ plakar at http://192.168.1.10:12345 ls
+plakar at http://192.168.1.10:12345 ls
 ```
 
 ## Enabling destructive operations
@@ -122,7 +122,7 @@ packfiles, and locks) stored inside a store. This is what happens during
 explicitly:
 
 ```bash
-$ plakar at /var/backups server -allow-delete
+plakar at /var/backups server -allow-delete
 ```
 
 ## Serving remote stores
@@ -131,7 +131,7 @@ $ plakar at /var/backups server -allow-delete
 SFTP-backed store over HTTP:
 
 ```bash
-$ plakar at sftp://example.org server
+plakar at sftp://example.org server
 ```
 
 ## Limitations

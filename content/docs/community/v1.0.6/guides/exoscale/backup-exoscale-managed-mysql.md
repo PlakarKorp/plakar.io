@@ -77,8 +77,8 @@ Plakar -->|Snapshots| SOS
 Install MySQL client:
 
 ```bash
-$ sudo apt update
-$ sudo apt install mysql-client
+sudo apt update
+sudo apt install mysql-client
 ```
 
 Install Plakar using the [installation guide](../../../quickstart/installation).
@@ -88,36 +88,36 @@ Install Plakar using the [installation guide](../../../quickstart/installation).
 Set environment variables from connection details:
 
 ```bash
-$ export MYSQL_HOST=<DB_HOST>
-$ export MYSQL_TCP_PORT=21699
-$ export MYSQL_USER=<DB_USER>
-$ export MYSQL_PWD=<DB_PASSWORD>
+export MYSQL_HOST=<DB_HOST>
+export MYSQL_TCP_PORT=21699
+export MYSQL_USER=<DB_USER>
+export MYSQL_PWD=<DB_PASSWORD>
 ```
 
 Configure SSL/TLS with CA certificate:
 
 ```bash
 # Place CA certificate in a secure location
-$ sudo mkdir -p /etc/mysql/certs
-$ sudo cp ca.pem /etc/mysql/certs/
-$ sudo chmod 644 /etc/mysql/certs/ca.pem
+sudo mkdir -p /etc/mysql/certs
+sudo cp ca.pem /etc/mysql/certs/
+sudo chmod 644 /etc/mysql/certs/ca.pem
 ```
 
 Create MySQL configuration file:
 
 ```bash
-$ cat > ~/.my.cnf << 'EOF'
+cat > ~/.my.cnf << 'EOF'
 [client]
 ssl-ca=/etc/mysql/certs/ca.pem
 ssl-mode=REQUIRED
 EOF
-$ chmod 600 ~/.my.cnf
+chmod 600 ~/.my.cnf
 ```
 
 Test connection:
 
 ```bash
-$ mysql -e "SELECT VERSION();"
+mysql -e "SELECT VERSION();"
 ```
 
 ## Configure Object Storage
@@ -125,8 +125,8 @@ $ mysql -e "SELECT VERSION();"
 ### Install S3 integration
 
 ```bash
-$ plakar login -email you@example.com
-$ plakar pkg add s3
+plakar login -email you@example.com
+plakar pkg add s3
 ```
 
 ### Create Object Storage bucket
@@ -137,7 +137,7 @@ If not already configured, follow:
 ### Add storage connector
 
 ```bash
-$ plakar store add exoscale-sos-mysql \
+plakar store add exoscale-sos-mysql \
   location=s3://<SOS_ENDPOINT>/<BUCKET_NAME> \
   access_key=<ACCESS_KEY> \
   secret_access_key=<SECRET_KEY> \
@@ -153,13 +153,13 @@ Replace:
 ### Initialize store
 
 ```bash
-$ plakar at "@exoscale-sos-mysql" create
+plakar at "@exoscale-sos-mysql" create
 ```
 
 ## Back Up Database
 
 ```bash
-$ mysqldump --single-transaction \
+mysqldump --single-transaction \
   --routines \
   --triggers \
   --events \
@@ -169,7 +169,7 @@ $ mysqldump --single-transaction \
 Verify:
 
 ```bash
-$ plakar at "@exoscale-sos-mysql" ls
+plakar at "@exoscale-sos-mysql" ls
 ```
 
 ## Restore Database
@@ -177,13 +177,13 @@ $ plakar at "@exoscale-sos-mysql" ls
 Retrieve snapshot ID:
 
 ```bash
-$ plakar at "@exoscale-sos-mysql" ls
+plakar at "@exoscale-sos-mysql" ls
 ```
 
 ### Restore single database
 
 ```bash
-$ plakar at "@exoscale-sos-mysql" cat <SNAPSHOT_ID>:dump.sql | mysql <DB_NAME>
+plakar at "@exoscale-sos-mysql" cat <SNAPSHOT_ID>:dump.sql | mysql <DB_NAME>
 ```
 
 ## Troubleshooting

@@ -55,13 +55,13 @@ simplest installation method.
 Install the Rclone package:
 
 ```bash
-$ plakar pkg add rclone
+plakar pkg add rclone
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg list
+plakar pkg list
 ```
 
 {{< /tab >}}
@@ -78,7 +78,7 @@ customization is required.
 Build the package:
 
 ```bash
-$ plakar pkg build rclone
+plakar pkg build rclone
 ```
 
 A package archive will be created in the current directory (e.g.,
@@ -87,13 +87,13 @@ A package archive will be created in the current directory (e.g.,
 Install the package:
 
 ```bash
-$ plakar pkg add ./rclone_v1.0.0_darwin_arm64.ptar
+plakar pkg add ./rclone_v1.0.0_darwin_arm64.ptar
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg list
+plakar pkg list
 ```
 
 {{< /tab >}}
@@ -111,7 +111,7 @@ Install Rclone on your system by following the instructions at
 Then, run the following command to configure Rclone with OpenDrive:
 
 ```bash
-$ rclone config
+rclone config
 ```
 
 You will be guided through a series of prompts to set up a new remote for
@@ -128,13 +128,13 @@ For Rclone v1.72.1, the configuration flow is as follows:
 To verify that the remote is configured, run:
 
 ```bash
-$ rclone config show mydrive
+rclone config show mydrive
 ```
 
 And to verify you have access to your OpenDrive files, run:
 
 ```bash
-$ rclone ls mydrive:
+rclone ls mydrive:
 ```
 
 The output should list the files and folders in your OpenDrive.
@@ -175,22 +175,22 @@ Source --> Plakar --> Via --> Kloset
 ```bash
 # Import the rclone configuration as a storage configuration.
 # Replace "mydrive" with your Rclone remote name.
-$ rclone config show | plakar store import -rclone mydrive
+rclone config show | plakar store import -rclone mydrive
 
 # Initialize the Kloset store
-$ plakar at "@mydrive" create
+plakar at "@mydrive" create
 
 # List snapshots in the Kloset store
-$ plakar at "@mydrive" ls
+plakar at "@mydrive" ls
 
 # Verify integrity of the Kloset store
-$ plakar at "@mydrive" check
+plakar at "@mydrive" check
 
 # Back up a local folder to the Kloset store
-$ plakar at "@mydrive" backup /etc
+plakar at "@mydrive" backup /etc
 
 # Back up a source configured in Plakar to the Kloset store
-$ plakar at "@mydrive" backup "@my_source"
+plakar at "@mydrive" backup "@my_source"
 ```
 
 #### Options
@@ -230,13 +230,13 @@ FS --> Via --> Plakar --> Store
 ```bash
 # Import the rclone configuration as a source configuration.
 # Replace "mydrive" with your Rclone remote name.
-$ rclone config show | plakar source import -rclone mydrive
+rclone config show | plakar source import -rclone mydrive
 
 # Back up the remote directory to the Kloset store on the filesystem
-$ plakar at /var/backups backup "@mydrive"
+plakar at /var/backups backup "@mydrive"
 
 # Or back up the remote directory to a Kloset store configured with "plakar store add"
-$ plakar at "@store" backup "@mydrive"
+plakar at "@store" backup "@mydrive"
 ```
 
 #### Options
@@ -271,13 +271,13 @@ Store --> Plakar --> Via --> FS
 ```bash
 # Import the rclone configuration as a destination configuration.
 # Replace "mydrive" with your Rclone remote name.
-$ rclone config show | plakar destination import -rclone mydrive
+rclone config show | plakar destination import -rclone mydrive
 
 # Restore a snapshot from a filesystem-hosted Kloset store to the Rclone remote
-$ plakar at /var/backups restore -to "@mydrive" <snapshot_id>
+plakar at /var/backups restore -to "@mydrive" <snapshot_id>
 
 # Or restore a snapshot from the Kloset store configured with "plakar store add store …"
-$ plakar at "@store" restore -to "@mydrive" <snapshot_id>
+plakar at "@store" restore -to "@mydrive" <snapshot_id>
 ```
 
 #### Options
