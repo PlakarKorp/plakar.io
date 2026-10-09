@@ -125,13 +125,19 @@
         </article>
       {{ end }}
     </div>
-    <div class="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm">
-      <span class="font-mono text-xs uppercase tracking-widest text-neutral-500 font-bold">Further reading</span>
-      <a href="/posts/2025-07-11/introducing-go-cdc-chunkers-chunk-and-deduplicate-everything/" class="text-primary-600 font-semibold hover:text-primary-700">Chunk and deduplicate everything</a>
-      <a href="/posts/2026-06-16/plakar-v1.1.3-is-here/" class="text-primary-600 font-semibold hover:text-primary-700">Plakar v1.1.3: faster restores</a>
-    </div>
   </div>
 </section>
+
+<!-- SECTION: blog -->
+{{ partial "components/common/related-posts.html" (dict
+  "title" "The engineering behind cheap, frequent snapshots."
+  "bg" "section-light-1"
+  "posts" (slice
+    "/posts/2026-05-22"
+    "/posts/2026-06_15_go_cdc_chunkers_v1_1_0"
+    "/posts/2026-06_05_plakar_1_1_0_release"
+  )
+) }}
 
 {{ partial "components/common/use-cases-related.html" (dict "current" "/solutions/ai-reversibility/") }}
 
