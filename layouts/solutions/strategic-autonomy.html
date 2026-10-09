@@ -163,14 +163,22 @@
         </article>
       {{ end }}
     </div>
-    <div class="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm">
-      <span class="font-mono text-xs uppercase tracking-widest text-neutral-500 font-bold">Further reading</span>
-      <a href="/posts/2026-06-24/introducing-plakar-control-plane-free-plan/" class="text-primary-600 font-semibold hover:text-primary-700">Introducing the Control Plane free plan</a>
-      <a href="/posts/2026-01-07/plakar-joins-the-linux-foundation-and-cloud-native-computing-foundation/" class="text-primary-600 font-semibold hover:text-primary-700">Plakar joins the Linux Foundation and CNCF</a>
-      <a href="/posts/2025-02-28/audit-of-plakar-cryptography/" class="text-primary-600 font-semibold hover:text-primary-700">Audit of Plakar cryptography</a>
-    </div>
   </div>
 </section>
+
+<!-- SECTION: blog -->
+{{ partial "components/common/related-posts.html" (dict
+  "title" "Go deeper on strategic autonomy."
+  "bg" "section-light-1"
+  "posts" (slice
+    "/posts/2026-07-10-plakar-control-plane-aws-marketplace"
+    "/posts/2026-06-24-introducing-plakar-control-plane-free-plan"
+    "/posts/2026-08-12-independent-backup-reasons"
+    "/posts/2026-01-07"
+    "/posts/2026-07-17"
+    "/posts/2025-04-29"
+  )
+) }}
 
 {{ partial "components/common/use-cases-related.html" (dict "current" "/solutions/strategic-autonomy/") }}
 
