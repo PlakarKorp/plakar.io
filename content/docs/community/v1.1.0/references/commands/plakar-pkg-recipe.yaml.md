@@ -1,5 +1,5 @@
 ---
-date: "2026-09-03T13:08:13Z"
+date: "2026-10-09T12:34:20Z"
 title: pkg-recipe.yaml
 summary: "Recipe to build Plakar plugins from source"
 aliases:
@@ -48,7 +48,7 @@ repository: https://github.com/PlakarKorp/integrations-fs</pre>
 <section class="Sh">
 <h2 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
   ALSO</a></h2>
-<p class="Pp"><a class="Xr" href="../plakar-pkg-build/" aria-label="plakar-pkg-build,
+<p class="Pp"><a class="Xr" href="https://man.openbsd.org/plakar-pkg-build.%s" aria-label="plakar-pkg-build,
     section 1">plakar-pkg-build(1)</a></p>
 </section>
 </main>

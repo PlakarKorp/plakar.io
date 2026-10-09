@@ -1,5 +1,5 @@
 ---
-date: "2026-09-03T13:08:13Z"
+date: "2026-10-09T12:34:20Z"
 title: check
 summary: "Check data integrity in a Plakar repository"
 aliases:
@@ -37,8 +37,8 @@ aliases:
     <var class="Ar">snapshotID</var> or location flags is given.</p>
 <p class="Pp">In addition to the flags described below, <code class="Nm">plakar
     check</code> supports the location flags documented in
-    <a class="Xr" href="../plakar-query/" aria-label="plakar-query, section
-    7">plakar-query(7)</a> to precisely select snapshots.</p>
+    <a class="Xr" href="https://man.openbsd.org/plakar-query.%s" aria-label="plakar-query,
+    section 7">plakar-query(7)</a> to precisely select snapshots.</p>
 <p class="Pp">The options are as follows:</p>
 <dl class="Bl-tag">
   <dt id="fast"><a class="permalink" href="#fast"><code class="Fl">-fast</code></a></dt>
@@ -70,10 +70,10 @@ aliases:
 <section class="Sh">
 <h2 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
   ALSO</a></h2>
-<p class="Pp"><a class="Xr" href="../plakar/" aria-label="plakar, section
-    1">plakar(1)</a>,
-    <a class="Xr" href="../plakar-query/" aria-label="plakar-query, section
-    7">plakar-query(7)</a></p>
+<p class="Pp"><a class="Xr" href="https://man.openbsd.org/plakar.%s" aria-label="plakar,
+    section 1">plakar(1)</a>,
+    <a class="Xr" href="https://man.openbsd.org/plakar-query.%s" aria-label="plakar-query,
+    section 7">plakar-query(7)</a></p>
 </section>
 </main>
 <div class="foot" role="doc-pagefooter" aria-label="Manual footer

@@ -1,5 +1,5 @@
 ---
-date: "2026-09-03T13:08:13Z"
+date: "2026-10-09T12:34:20Z"
 title: policy
 summary: "Manage Plakar retention policies"
 aliases:
@@ -31,8 +31,8 @@ aliases:
 <h2 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h2>
 <p class="Pp">The <code class="Nm">plakar policy</code> command manages the
     retention policies for
-    <a class="Xr" href="../plakar-prune/" aria-label="plakar-prune, section
-    1">plakar-prune(1)</a>.</p>
+    <a class="Xr" href="https://man.openbsd.org/plakar-prune.%s" aria-label="plakar-prune,
+    section 1">plakar-prune(1)</a>.</p>
 <p class="Pp">The configuration consists in a set of named entries, each of them
     describing a retention policy.</p>
 <p class="Pp">The subcommands are as follows:</p>
@@ -68,9 +68,9 @@ aliases:
       <var class="Ar">name</var>.</dd>
 </dl>
 <p class="Pp">The available options as described in
-    <a class="Xr" href="../plakar-query/" aria-label="plakar-query, section
-    7">plakar-query(7)</a>: each option corresponds the similarly named
-  flag.</p>
+    <a class="Xr" href="https://man.openbsd.org/plakar-query.%s" aria-label="plakar-query,
+    section 7">plakar-query(7)</a>: each option corresponds the similarly named
+    flag.</p>
 </section>
 <section class="Sh">
 <h2 class="Sh" id="EXIT_STATUS"><a class="permalink" href="#EXIT_STATUS">EXIT
@@ -96,10 +96,10 @@ $ plakar policy set weekly per-week=1</pre>
 <section class="Sh">
 <h2 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
   ALSO</a></h2>
-<p class="Pp"><a class="Xr" href="../plakar/" aria-label="plakar, section
-    1">plakar(1)</a>,
-    <a class="Xr" href="../plakar-prune/" aria-label="plakar-prune, section
-    1">plakar-prune(1)</a></p>
+<p class="Pp"><a class="Xr" href="https://man.openbsd.org/plakar.%s" aria-label="plakar,
+    section 1">plakar(1)</a>,
+    <a class="Xr" href="https://man.openbsd.org/plakar-prune.%s" aria-label="plakar-prune,
+    section 1">plakar-prune(1)</a></p>
 </section>
 </main>
 <div class="foot" role="doc-pagefooter" aria-label="Manual footer
