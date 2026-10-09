@@ -194,12 +194,11 @@
       <p class="font-medium text-3xl lg:text-5xl text-white leading-tighter">Beyond backup jobs.</p>
       <p class="text-lg text-neutral-400">Teams reach for the Control Plane to solve problems a backup tool alone cannot.</p>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       {{ range (slice
         (dict "icon" "ri/terminal-box-line" "title" "Resilience as Code" "href" "/solutions/resilience-as-code/" "body" "Each team protects its data with its own tools. Declare stores, sources, and schedules with the Kubernetes operator, Terraform, Ansible, or the API, versioned in Git.")
         (dict "icon" "ri/global-line" "title" "Strategic autonomy" "href" "/solutions/strategic-autonomy/" "body" "Reclaim control of data hosted by any provider. Keep an encrypted copy outside production, independent of the host, with stronger security, lower cost, and no lock-in.")
         (dict "icon" "ri/search-line" "title" "Posture management" "href" "/solutions/posture-management/" "body" "A 360 view of what must be protected across clouds and on-prem. Verify coverage against SLAs, surface unprotected resources, and let policies cover new ones automatically.")
-        (dict "icon" "ri/arrow-go-back-line" "title" "AI reversibility" "href" "/solutions/ai-reversibility/" "body" "A safety net for autonomous agents. Frequent, low-cost snapshots on a schedule or through the API before an agent acts, so you can roll back what it changed.")
       ) }}
         {{/* Link only once the use-case page exists, so this page can ship before them. */}}
         {{ $live := site.GetPage (strings.TrimSuffix "/" .href) }}
