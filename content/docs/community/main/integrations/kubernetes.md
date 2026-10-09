@@ -277,11 +277,7 @@ pod:
 Restore into a new, empty PVC:
 
 ```bash
-<<<<<<< HEAD
 kubectl create -f -
-=======
-kubectl create -f - <<EOF
->>>>>>> 2f5010a64 (content: fix code blocks that fail when copied and run)
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
