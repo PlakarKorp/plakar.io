@@ -28,8 +28,11 @@ enableEmoji = true
 
 [imaging]
   anchor = 'Center'
-  quality = 80
   resampleFilter = 'CatmullRom'
+  [imaging.jpeg]
+    quality = 80
+  [imaging.webp]
+    quality = 80
 
 [taxonomies]
   tag = "tags"
