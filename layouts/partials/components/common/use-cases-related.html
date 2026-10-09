@@ -1,7 +1,7 @@
 {{/* Cross-links between the use-case pages. Pass the current page URL to leave it out:
      {{ partial "components/common/use-cases-related.html" (dict "current" "/solutions/ransomware-recovery/") }}
-     Pages that do not exist yet are skipped, and the section is hidden when none is left,
-     so the use-case pages can ship one at a time. */}}
+     Pages that do not exist yet are skipped (AI reversibility is parked, so it is skipped until its page
+     ships), and the section is hidden when none is left, so the use-case pages can ship one at a time. */}}
 {{ $current := .current }}
 {{ $cards := slice }}
 {{ range (slice
@@ -23,7 +23,8 @@
       <h2 class="text-primary-500 font-mono text-sm font-bold uppercase tracking-widest">More use cases</h2>
       <p class="font-medium text-3xl lg:text-4xl text-white leading-tighter">One Control Plane, many ways to stay resilient.</p>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    {{/* Four or more cards use four columns; fewer use three so the row stays full. */}}
+    <div class="grid grid-cols-1 {{ cond (ge (len .) 4) "md:grid-cols-2 lg:grid-cols-4" "md:grid-cols-3" }} gap-6">
       {{ range . }}
         <a href="{{ .href }}" class="group bg-neutral-800/50 border border-neutral-700 p-6 rounded-xl flex flex-col gap-3 hover:border-primary-500 transition-colors">
           <div class="w-10 h-10 p-2 bg-neutral-900 rounded-lg flex items-center justify-center text-primary-400 border border-neutral-700">{{ partial "icon.html" .icon }}</div>
