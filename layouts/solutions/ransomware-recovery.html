@@ -16,7 +16,7 @@
       </h1>
     </div>
     <p class="max-w-2xl text-neutral-600 text-lg lg:text-xl">
-      Attackers go after backups first. Plakar keeps encrypted, tamper-evident snapshots they cannot read or silently alter, plus a second copy kept out of reach, so you restore clean data on your terms.
+      Attackers go after backups first. Plakar keeps encrypted, tamper-evident snapshots they cannot read or silently alter, plus an off-site copy at another provider, so your disaster recovery plan holds when it matters.
     </p>
     <div class="flex flex-col sm:flex-row gap-4 mt-2 items-center">
       {{ partial "components/buttons/base-button.html" (dict
@@ -43,7 +43,7 @@
       {{ range (slice
         (dict "icon" "ri/alert-line" "title" "Backups in the same blast radius" "body" "Backups reachable with the same credentials as production fall with production. One compromised admin account is enough to wipe both.")
         (dict "icon" "ri/spy-line" "title" "Readable backups are a second breach" "body" "Unencrypted backups hand attackers a full copy of your data to exfiltrate and leak, even after you have restored.")
-        (dict "icon" "ri/questionnaire-line" "title" "No proof the copy is clean" "body" "Without integrity checks, corrupted or tampered backups surface in the middle of the incident, when it is too late to fix them.")
+        (dict "icon" "ri/questionnaire-line" "title" "Restores nobody has tested" "body" "Backups that were never verified or restored fail in the middle of the incident, when it is too late to fix them.")
       ) }}
         <div class="bg-neutral-800/50 border border-neutral-700 p-6 rounded-xl flex flex-col gap-4">
           <div class="w-10 h-10 p-2 bg-neutral-900 rounded-lg flex items-center justify-center text-primary-400 border border-neutral-700">{{ partial "icon.html" .icon }}</div>
@@ -67,8 +67,8 @@
       {{ range $i, $s := (slice
         (dict "icon" "ri/lock-2-line" "title" "Encrypt at the source" "body" "Data is chunked, deduplicated and encrypted before it leaves your environment. Storage only ever holds ciphertext, and passphrases live in your Control Plane or your own secret manager.")
         (dict "icon" "ri/shield-check-line" "title" "Detect any tampering" "body" "Every snapshot is signed and every chunk carries a MAC, so any change is detected. A check task can run after each backup to prove the Kloset is intact.")
-        (dict "icon" "ri/archive-line" "title" "Keep a copy out of reach" "body" "Sync snapshots to a second Kloset on another provider, account or storage tier, or export a self-contained, encrypted .ptar archive to keep offline.")
-        (dict "icon" "ri/arrow-go-back-line" "title" "Restore what you need" "body" "Browse any snapshot, download a single file, or restore a whole resource to its original location or a clean one, from the console or the CLI.")
+        (dict "icon" "ri/archive-line" "title" "Keep a copy out of reach" "body" "Sync snapshots to an off-site Kloset on another provider, account or storage tier, or export a self-contained, encrypted .ptar archive to keep offline.")
+        (dict "icon" "ri/arrow-go-back-line" "title" "Restore what you need" "body" "Browse any snapshot, download a single file, or restore a whole resource to its original location or an isolated one, so you can rehearse recovery without touching production.")
       ) }}
         <li class="bg-white border border-neutral-200 p-6 rounded-2xl flex flex-col gap-4 shadow-sm">
           <div class="flex items-center justify-between">
@@ -80,6 +80,7 @@
         </li>
       {{ end }}
     </ol>
+    <p class="max-w-3xl mx-auto text-center text-neutral-600"><strong class="text-neutral-900">Truly immutable?</strong> Plakar snapshots are never modified in place, and any change is detected. For immutability enforced by the storage itself, pair them with object lock, WORM, or an offline .ptar copy.</p>
   </div>
 </section>
 
