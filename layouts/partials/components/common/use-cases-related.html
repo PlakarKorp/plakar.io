@@ -1,0 +1,39 @@
+{{/* Cross-links between the use-case pages. Pass the current page URL to leave it out:
+     {{ partial "components/common/use-cases-related.html" (dict "current" "/solutions/ransomware-recovery/") }}
+     Pages that do not exist yet are skipped (AI reversibility is parked, so it is skipped until its page
+     ships), and the section is hidden when none is left, so the use-case pages can ship one at a time. */}}
+{{ $current := .current }}
+{{ $cards := slice }}
+{{ range (slice
+  (dict "icon" "ri/shield-check-line" "title" "Ransomware recovery" "href" "/solutions/ransomware-recovery/" "body" "Encrypted, tamper-evident snapshots and a copy kept out of the attacker's reach.")
+  (dict "icon" "ri/global-line" "title" "Strategic autonomy" "href" "/solutions/strategic-autonomy/" "body" "An independent, encrypted copy on infrastructure you choose, with keys you hold.")
+  (dict "icon" "ri/terminal-box-line" "title" "Resilience as Code" "href" "/solutions/resilience-as-code/" "body" "Declare backup posture with the tools that already run your platform.")
+  (dict "icon" "ri/search-line" "title" "Posture management" "href" "/solutions/posture-management/" "body" "Discover resources, apply SLA policies, and see what is covered.")
+  (dict "icon" "ri/arrow-go-back-line" "title" "AI reversibility" "href" "/solutions/ai-reversibility/" "body" "Frequent, low-cost snapshots to diff and roll back what an agent changed.")
+) }}
+  {{ if and (ne .href $current) (site.GetPage (strings.TrimSuffix "/" .href)) }}
+    {{ $cards = $cards | append . }}
+  {{ end }}
+{{ end }}
+{{ with $cards }}
+<section class="section-dark-1 py-14 lg:py-24 relative overflow-hidden">
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-150 h-75 bg-primary-900/20 blur-[100px] rounded-full pointer-events-none"></div>
+  <div class="max-w-350 mx-auto px-4 relative z-10 flex flex-col gap-12">
+    <div class="text-center max-w-3xl mx-auto space-y-4">
+      <h2 class="text-primary-500 font-mono text-sm font-bold uppercase tracking-widest">More use cases</h2>
+      <p class="font-medium text-3xl lg:text-4xl text-white leading-tighter">One Control Plane, many ways to stay resilient.</p>
+    </div>
+    {{/* Four or more cards use four columns; fewer use three so the row stays full. */}}
+    <div class="grid grid-cols-1 {{ cond (ge (len .) 4) "md:grid-cols-2 lg:grid-cols-4" "md:grid-cols-3" }} gap-6">
+      {{ range . }}
+        <a href="{{ .href }}" class="group bg-neutral-800/50 border border-neutral-700 p-6 rounded-xl flex flex-col gap-3 hover:border-primary-500 transition-colors">
+          <div class="w-10 h-10 p-2 bg-neutral-900 rounded-lg flex items-center justify-center text-primary-400 border border-neutral-700">{{ partial "icon.html" .icon }}</div>
+          <h3 class="text-white font-bold text-lg">{{ .title }}</h3>
+          <p class="text-neutral-400 text-sm leading-relaxed flex-1">{{ .body }}</p>
+          <span class="inline-flex items-center gap-1.5 text-primary-400 font-semibold text-sm group-hover:text-primary-300 transition-colors">Learn more <span class="w-4 h-4">{{ partial "icon.html" "ri/arrow-right-line" }}</span></span>
+        </a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
