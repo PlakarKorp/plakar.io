@@ -18,8 +18,8 @@
     </div>
 
     <p class="max-w-2xl text-neutral-600 text-lg lg:text-xl">
-      Centralized, policy-driven backup orchestration across your entire estate.
-      Self-hosted, zero-knowledge, no appliance lock-in.
+      One console for every zone, cloud, and security level, including air-gapped networks.
+      Self-hosted in your environment, zero-knowledge, no appliance lock-in.
     </p>
 
     <div class="flex flex-col sm:flex-row gap-4 mt-2 items-center">
@@ -240,6 +240,37 @@
           </a>
         </article>
       {{ end }}
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: multi-tenant -->
+<section class="section-dark-1 py-14 lg:py-24 relative overflow-hidden">
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-150 h-75 bg-primary-900/20 blur-[100px] rounded-full pointer-events-none"></div>
+  <div class="max-w-350 mx-auto px-4 relative z-10 flex flex-col gap-12">
+    <div class="text-center max-w-3xl mx-auto space-y-4">
+      <h2 class="text-primary-500 font-mono text-sm font-bold uppercase tracking-widest">Multi-tenant by design</h2>
+      <p class="font-medium text-3xl lg:text-5xl text-white leading-tighter">Backup as a service, for every team, subsidiary, or client.</p>
+      <p class="text-lg text-neutral-400">Organizations nest to any depth. Each one gets its own stores, users, and roles, and self-serves within the quota its parent sets.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {{ range (slice
+        (dict "icon" "ri/organization-chart" "title" "Isolated organizations" "body" "Objects are isolated per organization, in a hierarchy as deep as your company or client base.")
+        (dict "icon" "ri/price-tag-3-line" "title" "Quotas you can bill" "body" "Meter storage and data processed each month, with warning thresholds and hard limits.")
+        (dict "icon" "ri/user-line" "title" "Granular roles" "body" "Grant each team exactly what it needs, from Owner to Auditor, with two-factor authentication you can enforce.")
+        (dict "icon" "ri/share-forward-line" "title" "Shared Edges and defaults" "body" "Share Edges with child organizations, and set defaults once with configuration bundles.")
+      ) }}
+        <div class="bg-neutral-800/50 border border-neutral-700 p-6 rounded-xl flex flex-col gap-4">
+          <div class="w-10 h-10 p-2 bg-neutral-900 rounded-lg flex items-center justify-center text-primary-400 border border-neutral-700">{{ partial "icon.html" .icon }}</div>
+          <h3 class="text-white font-bold text-lg">{{ .title }}</h3>
+          <p class="text-neutral-400 text-sm leading-relaxed">{{ .body }}</p>
+        </div>
+      {{ end }}
+    </div>
+    <div>
+      <a href="/docs/control-plane/administration/organizations/" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg border border-neutral-600 bg-white/5 text-white font-medium hover:bg-white/10 transition-colors">
+        Read about organizations <span class="w-4 h-4">{{ partial "icon.html" "ri/arrow-right-line" }}</span>
+      </a>
     </div>
   </div>
 </section>
