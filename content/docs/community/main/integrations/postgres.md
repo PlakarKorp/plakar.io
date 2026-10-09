@@ -370,10 +370,10 @@ export AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
 export AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 export AWS_REGION=eu-west-3
 
-$ plakar source add myrds \
+plakar source add myrds \
   postgres+aws://myuser@mydb.cluster-xyz.eu-west-3.rds.amazonaws.com/myapp \
   region=eu-west-3 ssl_mode=require
-$ plakar at /var/backups backup "@myrds"
+plakar at /var/backups backup "@myrds"
 ```
 
 If your IAM user requires a session token (assumed role, temporary credentials):
@@ -405,7 +405,7 @@ The SDK picks up the profile automatically. To use a named profile:
 
 ```bash
 export AWS_PROFILE=myprofile
-$ plakar at /var/backups backup "@myrds"
+plakar at /var/backups backup "@myrds"
 ```
 
 {{< /tab >}}

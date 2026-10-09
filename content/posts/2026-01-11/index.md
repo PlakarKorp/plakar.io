@@ -138,9 +138,9 @@ gigabytes of data just to run a few read-only queries.
 Let's try to run PostgreSQL on top of the mounted Kloset snapshot:
 
 ```bash
-$ docker run --rm -ti \
+docker run --rm -ti \
   --name pg \
-  -v /mnt/mysnapshot:/var/lib/postgresql/data:ro
+  -v /mnt/mysnapshot:/var/lib/postgresql/data:ro \
   postgres
 ```
 

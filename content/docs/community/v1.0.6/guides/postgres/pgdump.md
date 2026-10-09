@@ -27,10 +27,10 @@ recommend reading the
 ## Back Up Single Database
 
 ```bash
-$ export PGUSER=xxx
-$ export PGPORT=5432
-$ export PGHOST=xxx
-$ export PGPASSWORD=xxx
+export PGUSER=xxx
+export PGPORT=5432
+export PGHOST=xxx
+export PGPASSWORD=xxx
 
 pg_dump <dbname> | plakar at /var/backups backup stdin:dump.sql
 ```

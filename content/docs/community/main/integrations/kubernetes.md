@@ -277,7 +277,7 @@ pod:
 Restore into a new, empty PVC:
 
 ```bash
-$ kubectl create -f -
+kubectl create -f - <<EOF
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -289,8 +289,9 @@ spec:
       storage: 1Gi
   accessModes:
     - ReadWriteOnce
+EOF
 
-$ plakar restore -to k8s+pvc:/storage/pristine abcdef:
+plakar restore -to k8s+pvc:/storage/pristine abcdef:
 ```
 
 Restore into an existing PVC by referencing it in the same way.
