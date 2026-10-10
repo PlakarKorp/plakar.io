@@ -20,9 +20,11 @@
       [<code class="Fl">-job</code> <var class="Ar">job</var>]
       [<code class="Fl">-name</code> <var class="Ar">name</var>]
       [<code class="Fl">-perimeter</code> <var class="Ar">perimeter</var>]
-      [<code class="Fl">-skip-permissions</code>] [<code class="Fl">-tag</code>
-      <var class="Ar">tag</var>] [<code class="Fl">-to</code>
-      <var class="Ar">directory</var>] [<code class="Fl">-o</code>
+      [<code class="Fl">-post-hook</code> <var class="Ar">command</var>]
+      [<code class="Fl">-pre-hook</code> <var class="Ar">command</var>]
+      [<code class="Fl">-tag</code> <var class="Ar">tag</var>]
+      [<code class="Fl">-to</code> <var class="Ar">directory</var>]
+      [<code class="Fl">-o</code>
       <var class="Ar">option</var><span class="No">=</span><var class="Ar">value</var>]
       [<var class="Ar">snapshotID</var>:<var class="Ar">path ...</var>]</td>
   </tr>
@@ -61,9 +63,15 @@
   <dt id="tag"><a class="permalink" href="#tag"><code class="Fl">-tag</code></a>
     <var class="Ar">string</var></dt>
   <dd>Only apply command to snapshots that match <var class="Ar">tag</var>.</dd>
-  <dt id="skip-permissions"><a class="permalink" href="#skip-permissions"><code class="Fl">-skip-permissions</code></a></dt>
-  <dd>Skip restoring file permissions and ownership during restore, defaulting
-      to 0750 for directories and 0640 for files.</dd>
+  <dt id="pre-hook"><a class="permalink" href="#pre-hook"><code class="Fl">-pre-hook</code></a>
+    <var class="Ar">command</var></dt>
+  <dd>Run <var class="Ar">command</var> in a shell before starting the restore.
+      If the command exits with a non-zero status, restore is aborted.</dd>
+  <dt id="post-hook"><a class="permalink" href="#post-hook"><code class="Fl">-post-hook</code></a>
+    <var class="Ar">command</var></dt>
+  <dd>Run <var class="Ar">command</var> in a shell after a successful restore.
+      If the command exits with a non-zero status, a warning is logged and the
+      restore still succeeds.</dd>
   <dt id="to"><a class="permalink" href="#to"><code class="Fl">-to</code></a>
     <var class="Ar">directory</var></dt>
   <dd>Specify the base directory to which the files will be restored. If
@@ -108,10 +116,10 @@
 <section class="Sh">
 <h2 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
   ALSO</a></h2>
-<p class="Pp"><a class="Xr" href="../plakar/" aria-label="plakar, section
-    1">plakar(1)</a>,
-    <a class="Xr" href="../plakar-backup/" aria-label="plakar-backup, section
-    1">plakar-backup(1)</a></p>
+<p class="Pp"><a class="Xr" href="https://man.openbsd.org/plakar.%s" aria-label="plakar,
+    section 1">plakar(1)</a>,
+    <a class="Xr" href="https://man.openbsd.org/plakar-backup.%s" aria-label="plakar-backup,
+    section 1">plakar-backup(1)</a></p>
 </section>
 </main>
 <div class="foot" role="doc-pagefooter" aria-label="Manual footer

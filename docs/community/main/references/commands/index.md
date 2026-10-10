@@ -15,7 +15,87 @@ documentation.
 
 
 
+## [diff](https://www.plakar.io/docs/community/main/references/commands/plakar-diff/index.md)
+
+
+
+## [digest](https://www.plakar.io/docs/community/main/references/commands/plakar-digest/index.md)
+
+
+
+## [dup](https://www.plakar.io/docs/community/main/references/commands/plakar-dup/index.md)
+
+
+
+## [info](https://www.plakar.io/docs/community/main/references/commands/plakar-info/index.md)
+
+
+
+## [locate](https://www.plakar.io/docs/community/main/references/commands/plakar-locate/index.md)
+
+
+
+## [login](https://www.plakar.io/docs/community/main/references/commands/plakar-login/index.md)
+
+
+
+## [logout](https://www.plakar.io/docs/community/main/references/commands/plakar-logout/index.md)
+
+
+
+## [ls](https://www.plakar.io/docs/community/main/references/commands/plakar-ls/index.md)
+
+
+
+## [maintenance](https://www.plakar.io/docs/community/main/references/commands/plakar-maintenance/index.md)
+
+
+
+## [mount](https://www.plakar.io/docs/community/main/references/commands/plakar-mount/index.md)
+
+
+
+## [pkg-add](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-add/index.md)
+
+
+
+## [pkg-build](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-build/index.md)
+
+
+
+## [pkg-create](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-create/index.md)
+
+
+
+## [pkg-manifest.yaml](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-manifest.yaml/index.md)
+
+
+
+## [pkg-recipe.yaml](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-recipe.yaml/index.md)
+
+
+
+## [pkg-rm](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-rm/index.md)
+
+
+
+## [pkg-show](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-show/index.md)
+
+
+
 ## [plakar](https://www.plakar.io/docs/community/main/references/commands/plakar/index.md)
+
+
+
+## [policy](https://www.plakar.io/docs/community/main/references/commands/plakar-policy/index.md)
+
+
+
+## [prune](https://www.plakar.io/docs/community/main/references/commands/plakar-prune/index.md)
+
+
+
+## [ptar](https://www.plakar.io/docs/community/main/references/commands/plakar-ptar/index.md)
 
 
 
@@ -88,86 +168,6 @@ documentation.
 
 
 ## [diag](https://www.plakar.io/docs/community/main/references/commands/plakar-diag/index.md)
-
-
-
-## [diff](https://www.plakar.io/docs/community/main/references/commands/plakar-diff/index.md)
-
-
-
-## [digest](https://www.plakar.io/docs/community/main/references/commands/plakar-digest/index.md)
-
-
-
-## [dup](https://www.plakar.io/docs/community/main/references/commands/plakar-dup/index.md)
-
-
-
-## [info](https://www.plakar.io/docs/community/main/references/commands/plakar-info/index.md)
-
-
-
-## [locate](https://www.plakar.io/docs/community/main/references/commands/plakar-locate/index.md)
-
-
-
-## [login](https://www.plakar.io/docs/community/main/references/commands/plakar-login/index.md)
-
-
-
-## [logout](https://www.plakar.io/docs/community/main/references/commands/plakar-logout/index.md)
-
-
-
-## [ls](https://www.plakar.io/docs/community/main/references/commands/plakar-ls/index.md)
-
-
-
-## [maintenance](https://www.plakar.io/docs/community/main/references/commands/plakar-maintenance/index.md)
-
-
-
-## [mount](https://www.plakar.io/docs/community/main/references/commands/plakar-mount/index.md)
-
-
-
-## [pkg-add](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-add/index.md)
-
-
-
-## [pkg-build](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-build/index.md)
-
-
-
-## [pkg-create](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-create/index.md)
-
-
-
-## [pkg-manifest.yaml](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-manifest.yaml/index.md)
-
-
-
-## [pkg-recipe.yaml](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-recipe.yaml/index.md)
-
-
-
-## [pkg-rm](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-rm/index.md)
-
-
-
-## [pkg-show](https://www.plakar.io/docs/community/main/references/commands/plakar-pkg-show/index.md)
-
-
-
-## [policy](https://www.plakar.io/docs/community/main/references/commands/plakar-policy/index.md)
-
-
-
-## [prune](https://www.plakar.io/docs/community/main/references/commands/plakar-prune/index.md)
-
-
-
-## [ptar](https://www.plakar.io/docs/community/main/references/commands/plakar-ptar/index.md)
 
 
 

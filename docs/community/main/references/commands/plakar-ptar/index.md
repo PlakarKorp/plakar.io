@@ -43,8 +43,8 @@
   archive.</p>
 <p class="Pp">In addition to the flags described below, <code class="Nm">plakar
     ptar</code> supports the location flags documented in
-    <a class="Xr" href="../plakar-query/" aria-label="plakar-query, section
-    7">plakar-query(7)</a> to precisely select which snapshots of the
+    <a class="Xr" href="https://man.openbsd.org/plakar-query.%s" aria-label="plakar-query,
+    section 7">plakar-query(7)</a> to precisely select which snapshots of the
     <code class="Fl">-k</code> klosets are bundled. Without any of them every
     snapshot is included. They do not affect the <var class="Ar">path</var>
     arguments, which are always backed up in full.</p>
@@ -97,12 +97,12 @@
 <section class="Sh">
 <h2 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
   ALSO</a></h2>
-<p class="Pp"><a class="Xr" href="../plakar/" aria-label="plakar, section
-    1">plakar(1)</a>,
-    <a class="Xr" href="../plakar-backup/" aria-label="plakar-backup, section
-    1">plakar-backup(1)</a>,
-    <a class="Xr" href="../plakar-create/" aria-label="plakar-create, section
-    1">plakar-create(1)</a></p>
+<p class="Pp"><a class="Xr" href="https://man.openbsd.org/plakar.%s" aria-label="plakar,
+    section 1">plakar(1)</a>,
+    <a class="Xr" href="https://man.openbsd.org/plakar-backup.%s" aria-label="plakar-backup,
+    section 1">plakar-backup(1)</a>,
+    <a class="Xr" href="https://man.openbsd.org/plakar-create.%s" aria-label="plakar-create,
+    section 1">plakar-create(1)</a></p>
 </section>
 </main>
 <div class="foot" role="doc-pagefooter" aria-label="Manual footer

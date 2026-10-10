@@ -44,7 +44,7 @@ Set **Type of OS** to **Custom**, then select **Bring your own image**.
 
 Provide a publicly accessible URL for the Plakar Control Plane `QCOW2` image in
 **Image URL**. You can use the download link from the
-[Downloads Page](/downloads), or host the image yourself on publicly accessible
+[Downloads Page](/download/), or host the image yourself on publicly accessible
 storage such as an S3 bucket. and set the **Image Type** to **qcow2**.
 
 You can optionally provide a checksum to verify the image during installation.

@@ -26,10 +26,10 @@ When adding a resource manually, you need to provide:
 
 - **Name** - a display name for the resource
 - **URN** - a unique identifier for the resource
-- **Class** - the type of resource. See [Resource classes](#resource-classes)
-  for the full list
+- **Class** - the type of resource. See
+  [Resource classes](#resource-class-and-sub-class) for the full list
 - **Subclass** - a more specific type within the class. See
-  [Resource classes](#resource-classes)
+  [Resource classes](#resource-class-and-sub-class)
 - **Tags** - provide several tags to the resource. Can be later used by
   [policies](../../compliance/policies) or
   [configuration bundles](../../administration/configuration-bundles#scope) to

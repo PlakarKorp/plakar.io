@@ -86,7 +86,7 @@ regional secret requires the matching location to be set in **Gcp Location** on
 the secret provider. As an example, the access key of a Cloud Storage bucket
 might be stored in a secret named `staging-gcs-bucket1-access-key`.
 
-{{< figure src="../images/gcp-1.png" alt="" class="mx-auto max-w-120" >}}
+{{< figure src="../images/gcp1.png" alt="" class="mx-auto max-w-120" >}}
 
 ## Secret Path Format
 
