@@ -1,0 +1,22 @@
+{{ $r := partial "api/resolve.html" (dict "schema" .schema "spec" .spec) }}
+{{ $s := $r.schema }}
+{{ $label := $s.type | default "" }}
+{{ if and (not $label) $s.properties }}
+  {{ $label = "object" }}
+{{ end }}
+{{ with $s.format }}
+  {{ $label = printf "%s<%s>" $label . }}
+{{ end }}
+{{ if eq $s.type "array" }}
+  {{ with $s.items }}
+    {{ $item := partial "api/type.html" (dict "schema" . "spec" $.spec) }}
+    {{ $label = printf "array[%s]" ($item | default "any") }}
+  {{ end }}
+{{ else if and (reflect.IsMap $s.additionalProperties) (not $s.properties) }}
+  {{ $value := partial "api/type.html" (dict "schema" $s.additionalProperties "spec" $.spec) }}
+  {{ $label = printf "map[%s]" ($value | default "any") }}
+{{ end }}
+{{ if $r.circular }}
+  {{ $label = "object" }}
+{{ end }}
+{{ return $label }}

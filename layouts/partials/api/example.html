@@ -1,0 +1,45 @@
+{{ $r := partial "api/resolve.html" (dict "schema" .schema "spec" .spec "seen" .seen) }}
+{{ $s := $r.schema }}
+{{ $depth := .depth | default 0 }}
+{{ $result := "" }}
+
+{{ if or $r.circular (gt $depth 15) }}
+  {{ $result = dict }}
+{{ else if isset $s "example" }}
+  {{ $result = $s.example }}
+{{ else if $s.enum }}
+  {{ $result = index $s.enum 0 }}
+{{ else if or (eq $s.type "object") $s.properties $s.additionalProperties }}
+  {{ $obj := newScratch }}
+  {{ $obj.Set "value" dict }}
+  {{ range $name, $prop := $s.properties }}
+    {{ $v := partial "api/example.html" (dict "schema" $prop "spec" $.spec "seen" $r.seen "depth" (add $depth 1)) }}
+    {{ $obj.SetInMap "value" $name $v }}
+  {{ end }}
+  {{ if and (reflect.IsMap $s.additionalProperties) (not $s.properties) }}
+    {{ $v := partial "api/example.html" (dict "schema" $s.additionalProperties "spec" $.spec "seen" $r.seen "depth" (add $depth 1)) }}
+    {{ $obj.SetInMap "value" "key" $v }}
+  {{ end }}
+  {{ $result = $obj.Get "value" }}
+{{ else if eq $s.type "array" }}
+  {{ $item := partial "api/example.html" (dict "schema" ($s.items | default dict) "spec" $.spec "seen" $r.seen "depth" (add $depth 1)) }}
+  {{ $result = slice $item }}
+{{ else if eq $s.type "string" }}
+  {{ $formats := dict
+    "date-time" "2026-01-01T00:00:00Z"
+    "date" "2026-01-01"
+    "uuid" "3f1e4a2c-9b7d-4e0f-8a11-2c5d6e7f8a90"
+    "email" "user@example.com"
+    "uri" "https://example.com"
+    "byte" "U3dhZ2dlciByb2Nrcw=="
+    "binary" "<binary>"
+  }}
+  {{ $result = index $formats ($s.format | default "") | default "string" }}
+{{ else if or (eq $s.type "integer") (eq $s.type "number") }}
+  {{ $result = $s.minimum | default 0 }}
+{{ else if eq $s.type "boolean" }}
+  {{ $result = true }}
+{{ else }}
+  {{ $result = dict }}
+{{ end }}
+{{ return $result }}
