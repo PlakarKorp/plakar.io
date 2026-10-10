@@ -1,5 +1,5 @@
 ---
-date: "2026-09-03T13:08:13Z"
+date: "2026-10-09T12:34:20Z"
 title: ui
 summary: "Serve the Plakar web user interface"
 aliases:
@@ -85,8 +85,8 @@ Create a https server with a custom certificate:
 <section class="Sh">
 <h2 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
   ALSO</a></h2>
-<p class="Pp"><a class="Xr" href="../plakar/" aria-label="plakar, section
-    1">plakar(1)</a></p>
+<p class="Pp"><a class="Xr" href="https://man.openbsd.org/plakar.%s" aria-label="plakar,
+    section 1">plakar(1)</a></p>
 </section>
 </main>
 <div class="foot" role="doc-pagefooter" aria-label="Manual footer

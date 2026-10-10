@@ -112,7 +112,7 @@ estate:
 | **Kubernetes**       | [Cluster workloads](/integrations/kubernetes/), plus a dedicated Kubernetes operator                                                                                                  |
 | **VMs & containers** | [Proxmox](/integrations/proxmox/), Docker volumes, [OCI images](/integrations/oci/)                                                                                                   |
 | **Files & NAS**      | [Local filesystems](/integrations/fs/), [SFTP](/integrations/sftp/), [FTP](/integrations/ftp/), [WebDAV](/integrations/webdav/), and anything [rclone](https://rclone.org/) can reach |
-| **SaaS & apps**      | [Notion](/integrations/notion/), [IMAP mailboxes](/integrations/imap/), [CalDAV](/integrations/caldav/), with more landing through the open [integrations](/integrations/) ecosystem  |
+| **SaaS & apps**      | [Notion](/integrations/notion/), [IMAP mailboxes](/integrations/imap/), with more landing through the open [integrations](/integrations/) ecosystem                                   |
 
 On AWS specifically,
 [managed inventories](/docs/control-plane/infrastructure/inventories/aws/)

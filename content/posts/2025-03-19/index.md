@@ -204,7 +204,7 @@ co-authored a paper on attacks targeting CDC backup solutions:
 
 In this paper, they described Parameter Extraction attacks and
 Post-Parametrization attacks against CDC backup solutions including
-[Tarsnap](Tarsnap), [Restic](https://restic.net) and
+[Tarsnap](https://www.tarsnap.com), [Restic](https://restic.net) and
 [Borg](https://borgbackup.org).
 
 > The attacker’s general goal is to find out what files the user has uploaded,

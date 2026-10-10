@@ -1,0 +1,58 @@
+name: Check Links
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: check-links-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v6
+        with:
+          submodules: recursive
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: ".node-version"
+          cache: "npm"
+
+      - name: Install Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "0.160.1"
+          extended: true
+
+      - name: Install Blowfish dependencies
+        run: npm install
+        working-directory: themes/blowfish
+
+      - name: Install root dependencies
+        run: npm ci
+
+      - name: Cache Hugo resources
+        uses: actions/cache@v4
+        with:
+          path: resources/_gen
+          key: hugo-resources-v1-${{ github.ref_name }}-${{ hashFiles('assets/**', 'content/**', 'layouts/**') }}
+          restore-keys: |
+            hugo-resources-v1-${{ github.ref_name }}-
+            hugo-resources-v1-
+
+      - name: Build site
+        run: npm run build
+
+      - name: Check internal links
+        run: node scripts/check-links.mjs public

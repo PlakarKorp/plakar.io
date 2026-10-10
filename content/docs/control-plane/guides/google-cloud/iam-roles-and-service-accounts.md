@@ -66,8 +66,6 @@ After adding the required permissions, click **Create** to save the role.
 
 {{< figure src="../images/create-google-cloud-role.png" class="mx-auto max-w-100" >}}
 
-![](../images/adding-permissions-to-role.png)
-
 {{< /step >}}
 
 {{< step >}}

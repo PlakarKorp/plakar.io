@@ -1,5 +1,5 @@
 ---
-date: "2026-09-03T15:16:40Z"
+date: "2026-10-09T12:35:28Z"
 title: pkg-create
 summary: "Package a plugin"
 aliases:
@@ -31,7 +31,7 @@ aliases:
 <h2 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h2>
 <p class="Pp">The <code class="Nm">plakar pkg create</code> assembles a plugin
     using the provided
-    <a class="Xr" href="../plakar-pkg-manifest.yaml/" aria-label="plakar-pkg-manifest.yaml,
+    <a class="Xr" href="https://man.openbsd.org/plakar-pkg-manifest.yaml.%s" aria-label="plakar-pkg-manifest.yaml,
     section 5">plakar-pkg-manifest.yaml(5)</a> and version.</p>
 <p class="Pp">All the files needed for the plugin need to be already available,
     i.e. executables must be already be built.</p>
@@ -41,15 +41,15 @@ aliases:
 <section class="Sh">
 <h2 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
   ALSO</a></h2>
-<p class="Pp"><a class="Xr" href="../plakar-pkg-add/" aria-label="plakar-pkg-add,
+<p class="Pp"><a class="Xr" href="https://man.openbsd.org/plakar-pkg-add.%s" aria-label="plakar-pkg-add,
     section 1">plakar-pkg-add(1)</a>,
-    <a class="Xr" href="../plakar-pkg-build/" aria-label="plakar-pkg-build,
+    <a class="Xr" href="https://man.openbsd.org/plakar-pkg-build.%s" aria-label="plakar-pkg-build,
     section 1">plakar-pkg-build(1)</a>,
-    <a class="Xr" href="../plakar-pkg-rm/" aria-label="plakar-pkg-rm, section
-    1">plakar-pkg-rm(1)</a>,
-    <a class="Xr" href="../plakar-pkg-show/" aria-label="plakar-pkg-show,
+    <a class="Xr" href="https://man.openbsd.org/plakar-pkg-rm.%s" aria-label="plakar-pkg-rm,
+    section 1">plakar-pkg-rm(1)</a>,
+    <a class="Xr" href="https://man.openbsd.org/plakar-pkg-show.%s" aria-label="plakar-pkg-show,
     section 1">plakar-pkg-show(1)</a>,
-    <a class="Xr" href="../plakar-pkg-manifest.yaml/" aria-label="plakar-pkg-manifest.yaml,
+    <a class="Xr" href="https://man.openbsd.org/plakar-pkg-manifest.yaml.%s" aria-label="plakar-pkg-manifest.yaml,
     section 5">plakar-pkg-manifest.yaml(5)</a></p>
 </section>
 </main>

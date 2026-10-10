@@ -1,5 +1,5 @@
 ---
-date: "2026-09-03T13:08:13Z"
+date: "2026-10-09T12:34:20Z"
 title: backup
 summary: "Create a new snapshot in a Kloset store"
 aliases:
@@ -51,8 +51,8 @@ aliases:
 <p class="Pp"><var class="Ar">place</var> can be either a path, an URI, or a
     label with the form &#x201C;@<var class="Ar">name</var>&#x201D; to reference
     a source connector configured with
-    <a class="Xr" href="../plakar-source/" aria-label="plakar-source, section
-    1">plakar-source(1)</a>.</p>
+    <a class="Xr" href="https://man.openbsd.org/plakar-source.%s" aria-label="plakar-source,
+    section 1">plakar-source(1)</a>.</p>
 <p class="Pp">The alias can also be in the form of
     &#x201C;@<var class="Ar">name</var>[:path-override]&#x201D; to override the
     alias path on the command line. If <var class="Ar">path-override</var>
@@ -173,10 +173,10 @@ $ plakar backup @bucket:/assets @bucket:/uploads @bucket:/logs</pre>
 <section class="Sh">
 <h2 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
   ALSO</a></h2>
-<p class="Pp"><a class="Xr" href="../plakar/" aria-label="plakar, section
-    1">plakar(1)</a>,
-    <a class="Xr" href="../plakar-source/" aria-label="plakar-source, section
-    1">plakar-source(1)</a></p>
+<p class="Pp"><a class="Xr" href="https://man.openbsd.org/plakar.%s" aria-label="plakar,
+    section 1">plakar(1)</a>,
+    <a class="Xr" href="https://man.openbsd.org/plakar-source.%s" aria-label="plakar-source,
+    section 1">plakar-source(1)</a></p>
 </section>
 </main>
 <div class="foot" role="doc-pagefooter" aria-label="Manual footer

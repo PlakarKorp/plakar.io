@@ -74,7 +74,8 @@ See [data residency](../../compliance/residency) for more information.
 Configuration bundles let you define shared credentials and settings at the
 inventory level and apply them automatically to matching resources. This avoids
 having to configure the same credentials individually on each discovered
-resource. See [configuration bundles](./configuration-bundles) for details.
+resource. See
+[configuration bundles](../../administration/configuration-bundles) for details.
 
 ## Provider-specific instructions
 

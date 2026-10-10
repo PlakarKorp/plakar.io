@@ -1,5 +1,5 @@
 ---
-date: "2026-09-03T13:08:13Z"
+date: "2026-10-09T12:34:20Z"
 title: service
 summary: "Manage optional Plakar-connected services"
 aliases:
@@ -98,20 +98,20 @@ aliases:
 <p class="Pp">The <code class="Nm">plakar service</code> command allows you to
     enable, disable, and inspect additional services that integrate with the
     <code class="Nm">plakar</code> platform via
-    <a class="Xr" href="../plakar-login/" aria-label="plakar-login, section
-    1">plakar-login(1)</a> authentication. These services connect to the
+    <a class="Xr" href="https://man.openbsd.org/plakar-login.%s" aria-label="plakar-login,
+    section 1">plakar-login(1)</a> authentication. These services connect to the
     plakar.io infrastructure, and should only be enabled if you agree to
     transmit non-sensitive operational data to plakar.io.</p>
 <p class="Pp">All subcommands require prior authentication via
-    <a class="Xr" href="../plakar-login/" aria-label="plakar-login, section
-    1">plakar-login(1)</a>.</p>
+    <a class="Xr" href="https://man.openbsd.org/plakar-login.%s" aria-label="plakar-login,
+    section 1">plakar-login(1)</a>.</p>
 <p class="Pp">Services are managed by the backend and discovered at runtime. For
     example, when the &#x201C;alerting&#x201D; service is enable, it will:</p>
 <ol class="Bl-enum">
   <li>Send email notifications when operations fail.</li>
   <li>Expose the latest alerting reports in the Plakar UI (see
-      <a class="Xr" href="../plakar-ui/" aria-label="plakar-ui, section
-      1">plakar-ui(1)</a>).</li>
+      <a class="Xr" href="https://man.openbsd.org/plakar-ui.%s" aria-label="plakar-ui,
+      section 1">plakar-ui(1)</a>).</li>
 </ol>
 <p class="Pp">By default, all services are disabled.</p>
 </section>
@@ -177,10 +177,10 @@ aliases:
 <section class="Sh">
 <h2 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
   ALSO</a></h2>
-<p class="Pp"><a class="Xr" href="../plakar-login/" aria-label="plakar-login,
+<p class="Pp"><a class="Xr" href="https://man.openbsd.org/plakar-login.%s" aria-label="plakar-login,
     section 1">plakar-login(1)</a>,
-    <a class="Xr" href="../plakar-ui/" aria-label="plakar-ui, section
-    1">plakar-ui(1)</a></p>
+    <a class="Xr" href="https://man.openbsd.org/plakar-ui.%s" aria-label="plakar-ui,
+    section 1">plakar-ui(1)</a></p>
 </section>
 </main>
 <div class="foot" role="doc-pagefooter" aria-label="Manual footer

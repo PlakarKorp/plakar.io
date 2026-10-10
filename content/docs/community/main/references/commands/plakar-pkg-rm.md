@@ -1,5 +1,5 @@
 ---
-date: "2026-09-03T15:16:40Z"
+date: "2026-10-09T12:35:28Z"
 title: pkg-rm
 summary: "Uninstall Plakar plugins"
 aliases:
@@ -31,10 +31,10 @@ aliases:
 <h2 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h2>
 <p class="Pp">The <code class="Nm">plakar pkg rm</code> command removes plugins
     that have been previously installed with
-    <a class="Xr" href="../plakar-pkg-add/" aria-label="plakar-pkg-add, section
-    1">plakar-pkg-add(1)</a> command.</p>
+    <a class="Xr" href="https://man.openbsd.org/plakar-pkg-add.%s" aria-label="plakar-pkg-add,
+    section 1">plakar-pkg-add(1)</a> command.</p>
 <p class="Pp">The list of plugins can be obtained with
-    <a class="Xr" href="../plakar-pkg-show/" aria-label="plakar-pkg-show,
+    <a class="Xr" href="https://man.openbsd.org/plakar-pkg-show.%s" aria-label="plakar-pkg-show,
     section 1">plakar-pkg-show(1)</a>.</p>
 </section>
 <section class="Sh">
@@ -49,13 +49,13 @@ $ plakar pkg rm epic-v1.2.3</pre>
 <section class="Sh">
 <h2 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
   ALSO</a></h2>
-<p class="Pp"><a class="Xr" href="../plakar-pkg-add/" aria-label="plakar-pkg-add,
+<p class="Pp"><a class="Xr" href="https://man.openbsd.org/plakar-pkg-add.%s" aria-label="plakar-pkg-add,
     section 1">plakar-pkg-add(1)</a>,
-    <a class="Xr" href="../plakar-pkg-build/" aria-label="plakar-pkg-build,
+    <a class="Xr" href="https://man.openbsd.org/plakar-pkg-build.%s" aria-label="plakar-pkg-build,
     section 1">plakar-pkg-build(1)</a>,
-    <a class="Xr" href="../plakar-pkg-create/" aria-label="plakar-pkg-create,
+    <a class="Xr" href="https://man.openbsd.org/plakar-pkg-create.%s" aria-label="plakar-pkg-create,
     section 1">plakar-pkg-create(1)</a>,
-    <a class="Xr" href="../plakar-pkg-show/" aria-label="plakar-pkg-show,
+    <a class="Xr" href="https://man.openbsd.org/plakar-pkg-show.%s" aria-label="plakar-pkg-show,
     section 1">plakar-pkg-show(1)</a></p>
 </section>
 </main>

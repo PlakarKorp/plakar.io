@@ -1,5 +1,5 @@
 ---
-date: "2026-09-03T15:16:41Z"
+date: "2026-10-09T12:35:28Z"
 title: query
 summary: "query flags shared among many Plakar subcommands"
 aliases:
@@ -21,8 +21,8 @@ aliases:
 <section class="Sh">
 <h2 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h2>
 <p class="Pp">What follows is a set of command line arguments that many
-    <a class="Xr" href="../plakar/" aria-label="plakar, section 1">plakar(1)</a>
-    subcommands provide to filter snapshots.</p>
+    <a class="Xr" href="https://man.openbsd.org/plakar.%s" aria-label="plakar,
+    section 1">plakar(1)</a> subcommands provide to filter snapshots.</p>
 <p class="Pp">There are two kind of flags:</p>
 <dl class="Bl-tag">
   <dt>matchers</dt>

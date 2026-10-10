@@ -1,5 +1,5 @@
 ---
-date: "2026-09-03T13:08:13Z"
+date: "2026-10-09T12:34:20Z"
 title: plakar
 summary: "effortless backups"
 aliases:
@@ -96,8 +96,8 @@ aliases:
       path, an URI, or a label in the form
       &#x201C;@<var class="Ar">name</var>&#x201D; to reference a configuration
       created with
-      <a class="Xr" href="../plakar-store/" aria-label="plakar-store, section
-      1">plakar-store(1)</a>.</dd>
+      <a class="Xr" href="https://man.openbsd.org/plakar-store.%s" aria-label="plakar-store,
+      section 1">plakar-store(1)</a>.</dd>
 </dl>
 <section class="Ss">
 <h3 class="Ss" id="General_Commands"><a class="permalink" href="#General_Commands">General
@@ -107,24 +107,25 @@ aliases:
   <dd>Show this manpage and the ones for the subcommands.</dd>
   <dt id="login"><a class="permalink" href="#login"><code class="Cm">login</code></a></dt>
   <dd>Authenticate to Plakar services, refer to
-      <a class="Xr" href="../plakar-login/" aria-label="plakar-login, section
-      1">plakar-login(1)</a>.</dd>
+      <a class="Xr" href="https://man.openbsd.org/plakar-login.%s" aria-label="plakar-login,
+      section 1">plakar-login(1)</a>.</dd>
   <dt id="logout"><a class="permalink" href="#logout"><code class="Cm">logout</code></a></dt>
   <dd>Log out from Plakar services, refer to
-      <a class="Xr" href="../plakar-logout/" aria-label="plakar-logout, section
-      1">plakar-logout(1)</a>.</dd>
+      <a class="Xr" href="https://man.openbsd.org/plakar-logout.%s" aria-label="plakar-logout,
+      section 1">plakar-logout(1)</a>.</dd>
   <dt id="service"><a class="permalink" href="#service"><code class="Cm">service</code></a></dt>
   <dd>Manage additional Plakar services that require you to be logged in, refer
-      to <a class="Xr" href="../plakar-service/" aria-label="plakar-service,
+      to
+      <a class="Xr" href="https://man.openbsd.org/plakar-service.%s" aria-label="plakar-service,
       section 1">plakar-service(1)</a>.</dd>
   <dt id="token"><a class="permalink" href="#token"><code class="Cm">token
     create</code></a></dt>
   <dd>Generate a token to interact with Plakar services, refer to
-      <a class="Xr" href="../plakar-token-create/" aria-label="plakar-token-create,
+      <a class="Xr" href="https://man.openbsd.org/plakar-token-create.%s" aria-label="plakar-token-create,
       section 1">plakar-token-create(1)</a>.</dd>
   <dt id="version"><a class="permalink" href="#version"><code class="Cm">version</code></a></dt>
   <dd>Display the current Plakar version, refer to
-      <a class="Xr" href="../plakar-version/" aria-label="plakar-version,
+      <a class="Xr" href="https://man.openbsd.org/plakar-version.%s" aria-label="plakar-version,
       section 1">plakar-version(1)</a>.</dd>
 </dl>
 </section>
@@ -134,16 +135,16 @@ aliases:
 <dl class="Bl-tag">
   <dt id="destination"><a class="permalink" href="#destination"><code class="Cm">destination</code></a></dt>
   <dd>Manage configurations for the destination connectors, refer to
-      <a class="Xr" href="../plakar-destination/" aria-label="plakar-destination,
+      <a class="Xr" href="https://man.openbsd.org/plakar-destination.%s" aria-label="plakar-destination,
       section 1">plakar-destination(1)</a>.</dd>
   <dt id="source"><a class="permalink" href="#source"><code class="Cm">source</code></a></dt>
   <dd>Manage configurations for the source connectors, refer to
-      <a class="Xr" href="../plakar-source/" aria-label="plakar-source, section
-      1">plakar-source(1)</a>.</dd>
+      <a class="Xr" href="https://man.openbsd.org/plakar-source.%s" aria-label="plakar-source,
+      section 1">plakar-source(1)</a>.</dd>
   <dt id="store"><a class="permalink" href="#store"><code class="Cm">store</code></a></dt>
   <dd>Manage configurations for storage connectors, refer to
-      <a class="Xr" href="../plakar-store/" aria-label="plakar-store, section
-      1">plakar-store(1)</a>.</dd>
+      <a class="Xr" href="https://man.openbsd.org/plakar-store.%s" aria-label="plakar-store,
+      section 1">plakar-store(1)</a>.</dd>
 </dl>
 </section>
 <section class="Ss">
@@ -152,40 +153,40 @@ aliases:
 <dl class="Bl-tag">
   <dt id="check"><a class="permalink" href="#check"><code class="Cm">check</code></a></dt>
   <dd>Check data integrity in a Kloset store, refer to
-      <a class="Xr" href="../plakar-check/" aria-label="plakar-check, section
-      1">plakar-check(1)</a>.</dd>
+      <a class="Xr" href="https://man.openbsd.org/plakar-check.%s" aria-label="plakar-check,
+      section 1">plakar-check(1)</a>.</dd>
   <dt id="create"><a class="permalink" href="#create"><code class="Cm">create</code></a></dt>
   <dd>Create a new Kloset store, refer to
-      <a class="Xr" href="../plakar-create/" aria-label="plakar-create, section
-      1">plakar-create(1)</a>.</dd>
+      <a class="Xr" href="https://man.openbsd.org/plakar-create.%s" aria-label="plakar-create,
+      section 1">plakar-create(1)</a>.</dd>
   <dt id="info"><a class="permalink" href="#info"><code class="Cm">info</code></a></dt>
   <dd>Display detailed information about internal structures, refer to
-      <a class="Xr" href="../plakar-info/" aria-label="plakar-info, section
-      1">plakar-info(1)</a>.</dd>
+      <a class="Xr" href="https://man.openbsd.org/plakar-info.%s" aria-label="plakar-info,
+      section 1">plakar-info(1)</a>.</dd>
   <dt id="maintenance"><a class="permalink" href="#maintenance"><code class="Cm">maintenance</code></a></dt>
   <dd>Remove unused data from a Kloset store, refer to
-      <a class="Xr" href="../plakar-maintenance/" aria-label="plakar-maintenance,
+      <a class="Xr" href="https://man.openbsd.org/plakar-maintenance.%s" aria-label="plakar-maintenance,
       section 1">plakar-maintenance(1)</a>.</dd>
   <dt id="prune"><a class="permalink" href="#prune"><code class="Cm">prune</code></a></dt>
   <dd>Prune snapshots according to a policy, refer to
-      <a class="Xr" href="../plakar-prune/" aria-label="plakar-prune, section
-      1">plakar-prune(1)</a>.</dd>
+      <a class="Xr" href="https://man.openbsd.org/plakar-prune.%s" aria-label="plakar-prune,
+      section 1">plakar-prune(1)</a>.</dd>
   <dt id="ptar"><a class="permalink" href="#ptar"><code class="Cm">ptar</code></a></dt>
   <dd>Create a .ptar archive, refer to
-      <a class="Xr" href="../plakar-ptar/" aria-label="plakar-ptar, section
-      1">plakar-ptar(1)</a>.</dd>
+      <a class="Xr" href="https://man.openbsd.org/plakar-ptar.%s" aria-label="plakar-ptar,
+      section 1">plakar-ptar(1)</a>.</dd>
   <dt id="server"><a class="permalink" href="#server"><code class="Cm">server</code></a></dt>
   <dd>Start a Plakar server, refer to
-      <a class="Xr" href="../plakar-server/" aria-label="plakar-server, section
-      1">plakar-server(1)</a>.</dd>
+      <a class="Xr" href="https://man.openbsd.org/plakar-server.%s" aria-label="plakar-server,
+      section 1">plakar-server(1)</a>.</dd>
   <dt id="sync"><a class="permalink" href="#sync"><code class="Cm">sync</code></a></dt>
   <dd>Synchronize snapshots between Kloset stores, refer to
-      <a class="Xr" href="../plakar-sync/" aria-label="plakar-sync, section
-      1">plakar-sync(1)</a>.</dd>
+      <a class="Xr" href="https://man.openbsd.org/plakar-sync.%s" aria-label="plakar-sync,
+      section 1">plakar-sync(1)</a>.</dd>
   <dt id="ui"><a class="permalink" href="#ui"><code class="Cm">ui</code></a></dt>
   <dd>Serve the Plakar web user interface, refer to
-      <a class="Xr" href="../plakar-ui/" aria-label="plakar-ui, section
-      1">plakar-ui(1)</a>.</dd>
+      <a class="Xr" href="https://man.openbsd.org/plakar-ui.%s" aria-label="plakar-ui,
+      section 1">plakar-ui(1)</a>.</dd>
 </dl>
 </section>
 <section class="Ss">
@@ -194,48 +195,48 @@ aliases:
 <dl class="Bl-tag Bl-compact">
   <dt id="archive"><a class="permalink" href="#archive"><code class="Cm">archive</code></a></dt>
   <dd>Create an archive from a Kloset snapshot, refer to
-      <a class="Xr" href="../plakar-archive/" aria-label="plakar-archive,
+      <a class="Xr" href="https://man.openbsd.org/plakar-archive.%s" aria-label="plakar-archive,
       section 1">plakar-archive(1)</a>.</dd>
   <dt id="backup"><a class="permalink" href="#backup"><code class="Cm">backup</code></a></dt>
   <dd>Create a new Kloset snapshot, refer to
-      <a class="Xr" href="../plakar-backup/" aria-label="plakar-backup, section
-      1">plakar-backup(1)</a>.</dd>
+      <a class="Xr" href="https://man.openbsd.org/plakar-backup.%s" aria-label="plakar-backup,
+      section 1">plakar-backup(1)</a>.</dd>
   <dt id="cat"><a class="permalink" href="#cat"><code class="Cm">cat</code></a></dt>
   <dd>Display file contents from a Kloset snapshot, refer to
-      <a class="Xr" href="../plakar-cat/" aria-label="plakar-cat, section
-      1">plakar-cat(1)</a>.</dd>
+      <a class="Xr" href="https://man.openbsd.org/plakar-cat.%s" aria-label="plakar-cat,
+      section 1">plakar-cat(1)</a>.</dd>
   <dt id="diff"><a class="permalink" href="#diff"><code class="Cm">diff</code></a></dt>
   <dd>Show differences between files in a Kloset snapshot, refer to
-      <a class="Xr" href="../plakar-diff/" aria-label="plakar-diff, section
-      1">plakar-diff(1)</a>.</dd>
+      <a class="Xr" href="https://man.openbsd.org/plakar-diff.%s" aria-label="plakar-diff,
+      section 1">plakar-diff(1)</a>.</dd>
   <dt id="digest"><a class="permalink" href="#digest"><code class="Cm">digest</code></a></dt>
   <dd>Compute digests for files in a Kloset snapshot, refer to
-      <a class="Xr" href="../plakar-digest/" aria-label="plakar-digest, section
-      1">plakar-digest(1)</a>.</dd>
+      <a class="Xr" href="https://man.openbsd.org/plakar-digest.%s" aria-label="plakar-digest,
+      section 1">plakar-digest(1)</a>.</dd>
   <dt id="dup"><a class="permalink" href="#dup"><code class="Cm">dup</code></a></dt>
   <dd>Duplicate an existing snapshot with a different ID, refer to
-      <a class="Xr" href="../plakar-dup/" aria-label="plakar-dup, section
-      1">plakar-dup(1)</a>.</dd>
+      <a class="Xr" href="https://man.openbsd.org/plakar-dup.%s" aria-label="plakar-dup,
+      section 1">plakar-dup(1)</a>.</dd>
   <dt id="locate"><a class="permalink" href="#locate"><code class="Cm">locate</code></a></dt>
   <dd>Find filenames in a Kloset snapshot, refer to
-      <a class="Xr" href="../plakar-locate/" aria-label="plakar-locate, section
-      1">plakar-locate(1)</a>.</dd>
+      <a class="Xr" href="https://man.openbsd.org/plakar-locate.%s" aria-label="plakar-locate,
+      section 1">plakar-locate(1)</a>.</dd>
   <dt id="ls"><a class="permalink" href="#ls"><code class="Cm">ls</code></a></dt>
   <dd>List snapshots and their contents in a Kloset store, refer to
-      <a class="Xr" href="../plakar-ls/" aria-label="plakar-ls, section
-      1">plakar-ls(1)</a>.</dd>
+      <a class="Xr" href="https://man.openbsd.org/plakar-ls.%s" aria-label="plakar-ls,
+      section 1">plakar-ls(1)</a>.</dd>
   <dt id="mount"><a class="permalink" href="#mount"><code class="Cm">mount</code></a></dt>
   <dd>Mount Kloset snapshots as a read-only filesystem, refer to
-      <a class="Xr" href="../plakar-mount/" aria-label="plakar-mount, section
-      1">plakar-mount(1)</a>.</dd>
+      <a class="Xr" href="https://man.openbsd.org/plakar-mount.%s" aria-label="plakar-mount,
+      section 1">plakar-mount(1)</a>.</dd>
   <dt id="restore"><a class="permalink" href="#restore"><code class="Cm">restore</code></a></dt>
   <dd>Restore files from a Kloset snapshot, refer to
-      <a class="Xr" href="../plakar-restore/" aria-label="plakar-restore,
+      <a class="Xr" href="https://man.openbsd.org/plakar-restore.%s" aria-label="plakar-restore,
       section 1">plakar-restore(1)</a>.</dd>
   <dt id="rm"><a class="permalink" href="#rm"><code class="Cm">rm</code></a></dt>
   <dd>Remove snapshots from a Kloset store, refer to
-      <a class="Xr" href="../plakar-rm/" aria-label="plakar-rm, section
-      1">plakar-rm(1)</a>.</dd>
+      <a class="Xr" href="https://man.openbsd.org/plakar-rm.%s" aria-label="plakar-rm,
+      section 1">plakar-rm(1)</a>.</dd>
 </dl>
 </section>
 <section class="Ss">
@@ -245,27 +246,27 @@ aliases:
   <dt id="pkg"><a class="permalink" href="#pkg"><code class="Cm">pkg
     add</code></a></dt>
   <dd>Install a plugin, refer to
-      <a class="Xr" href="../plakar-pkg-add/" aria-label="plakar-pkg-add,
+      <a class="Xr" href="https://man.openbsd.org/plakar-pkg-add.%s" aria-label="plakar-pkg-add,
       section 1">plakar-pkg-add(1)</a>.</dd>
   <dt id="pkg~2"><a class="permalink" href="#pkg~2"><code class="Cm">pkg
     build</code></a></dt>
   <dd>Build a plugin from source, refer to
-      <a class="Xr" href="../plakar-pkg-build/" aria-label="plakar-pkg-build,
+      <a class="Xr" href="https://man.openbsd.org/plakar-pkg-build.%s" aria-label="plakar-pkg-build,
       section 1">plakar-pkg-build(1)</a>.</dd>
   <dt id="pkg~3"><a class="permalink" href="#pkg~3"><code class="Cm">pkg
     create</code></a></dt>
   <dd>Package a plugin, refer to
-      <a class="Xr" href="../plakar-pkg-create/" aria-label="plakar-pkg-create,
+      <a class="Xr" href="https://man.openbsd.org/plakar-pkg-create.%s" aria-label="plakar-pkg-create,
       section 1">plakar-pkg-create(1)</a>.</dd>
   <dt id="pkg~4"><a class="permalink" href="#pkg~4"><code class="Cm">pkg
     rm</code></a></dt>
   <dd>Uninstall a plugin, refer to
-      <a class="Xr" href="../plakar-pkg-rm/" aria-label="plakar-pkg-rm, section
-      1">plakar-pkg-rm(1)</a>.</dd>
+      <a class="Xr" href="https://man.openbsd.org/plakar-pkg-rm.%s" aria-label="plakar-pkg-rm,
+      section 1">plakar-pkg-rm(1)</a>.</dd>
   <dt id="pkg~5"><a class="permalink" href="#pkg~5"><code class="Cm">pkg
     show</code></a></dt>
   <dd>List installed plugins, refer to
-      <a class="Xr" href="../plakar-pkg-show/" aria-label="plakar-pkg-show,
+      <a class="Xr" href="https://man.openbsd.org/plakar-pkg-show.%s" aria-label="plakar-pkg-show,
       section 1">plakar-pkg-show(1)</a>.</dd>
 </dl>
 </section>
@@ -307,8 +308,8 @@ aliases:
 <h2 class="Sh" id="EXIT_STATUS"><a class="permalink" href="#EXIT_STATUS">EXIT
   STATUS</a></h2>
 <p class="Pp">The following exit codes are aligned with
-    <a class="Xr" href="../sysexits/" aria-label="sysexits, section
-    3">sysexits(3)</a> where applicable:</p>
+    <a class="Xr" href="https://man.openbsd.org/sysexits.%s" aria-label="sysexits,
+    section 3">sysexits(3)</a> where applicable:</p>
 <dl class="Bl-tag">
   <dt>0</dt>
   <dd>Command completed successfully.</dd>

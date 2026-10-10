@@ -1,5 +1,5 @@
 ---
-date: "2026-09-03T15:16:40Z"
+date: "2026-10-09T12:35:28Z"
 title: login
 summary: "Authenticate to Plakar services"
 aliases:
@@ -35,8 +35,8 @@ aliases:
     authentication flow with the Plakar platform. Login is optional for most
     <code class="Nm">plakar</code> commands but required to enable certain
     services, such as alerting. See also
-    <a class="Xr" href="../plakar-service/" aria-label="plakar-service, section
-    1">plakar-service(1)</a>.</p>
+    <a class="Xr" href="https://man.openbsd.org/plakar-service.%s" aria-label="plakar-service,
+    section 1">plakar-service(1)</a>.</p>
 <p class="Pp">Only one authentication method may be specified per invocation:
     the <code class="Fl">-email</code>, <code class="Fl">-env</code>, and
     <code class="Fl">-github</code> options are mutually exclusive. If neither
@@ -50,7 +50,7 @@ aliases:
   <dt id="env"><a class="permalink" href="#env"><code class="Fl">-env</code></a></dt>
   <dd>Persist the value of the <code class="Ev">PLAKAR_TOKEN</code> environment
       variable into the configuration. Generate this token with
-      <a class="Xr" href="../plakar-token-create/" aria-label="plakar-token-create,
+      <a class="Xr" href="https://man.openbsd.org/plakar-token-create.%s" aria-label="plakar-token-create,
       section 1">plakar-token-create(1)</a>.</dd>
   <dt id="github"><a class="permalink" href="#github"><code class="Fl">-github</code></a></dt>
   <dd>Use GitHub OAuth to authenticate. A browser will be spawned to initiate
@@ -76,12 +76,12 @@ aliases:
 <section class="Sh">
 <h2 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
   ALSO</a></h2>
-<p class="Pp"><a class="Xr" href="../plakar/" aria-label="plakar, section
-    1">plakar(1)</a>,
-    <a class="Xr" href="../plakar-logout/" aria-label="plakar-logout, section
-    1">plakar-logout(1)</a>,
-    <a class="Xr" href="../plakar-service/" aria-label="plakar-service, section
-    1">plakar-service(1)</a></p>
+<p class="Pp"><a class="Xr" href="https://man.openbsd.org/plakar.%s" aria-label="plakar,
+    section 1">plakar(1)</a>,
+    <a class="Xr" href="https://man.openbsd.org/plakar-logout.%s" aria-label="plakar-logout,
+    section 1">plakar-logout(1)</a>,
+    <a class="Xr" href="https://man.openbsd.org/plakar-service.%s" aria-label="plakar-service,
+    section 1">plakar-service(1)</a></p>
 </section>
 </main>
 <div class="foot" role="doc-pagefooter" aria-label="Manual footer

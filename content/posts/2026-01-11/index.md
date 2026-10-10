@@ -61,7 +61,7 @@ images today.
 ## Performing the backup
 
 We wrote a
-[PostgreSQL backup guide](https://plakar.io/docs/community/main/guides/postgresql/pg_base_backup/)
+[PostgreSQL backup guide](/docs/community/main/guides/postgres/pg-base-backup/)
 that explains how to perform a physical backup of a PostgreSQL database using
 `pg_basebackup` and Plakar.
 
@@ -88,7 +88,7 @@ restore the snapshot to a local directory and run a PostgreSQL Docker container
 using that directory as a data volume.
 
 As explained in the
-[PostgreSQL backup guide](https://plakar.io/docs/community/main/guides/postgresql/pg_base_backup/),
+[PostgreSQL backup guide](/docs/community/main/guides/postgres/pg-base-backup/),
 you could first restore the snapshot:
 
 ```bash

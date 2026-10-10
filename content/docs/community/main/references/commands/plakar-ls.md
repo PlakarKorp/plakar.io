@@ -1,5 +1,5 @@
 ---
-date: "2026-09-03T15:16:40Z"
+date: "2026-10-09T12:35:28Z"
 title: ls
 summary: "List snapshots and their contents in a Plakar repository"
 aliases:
@@ -34,10 +34,16 @@ aliases:
 <p class="Pp">The <code class="Nm">plakar ls</code> command lists snapshots
     stored in a Plakar repository, and optionally displays the contents of
     <var class="Ar">path</var> in a specified snapshot.</p>
+<p class="Pp">Files that could not be read when the snapshot was made are
+    missing from the listing. When listing the contents of a snapshot,
+    <code class="Nm">plakar ls</code> reports the errors recorded for them on
+    standard error, interleaved with the listing. Errors recorded below the
+    listed directory are only reported when <code class="Fl">-recursive</code>
+    is given.</p>
 <p class="Pp">In addition to the flags described below, <code class="Nm">plakar
     ls</code> supports the location flags documented in
-    <a class="Xr" href="../plakar-query/" aria-label="plakar-query, section
-    7">plakar-query(7)</a> to precisely select snapshots.</p>
+    <a class="Xr" href="https://man.openbsd.org/plakar-query.%s" aria-label="plakar-query,
+    section 7">plakar-query(7)</a> to precisely select snapshots.</p>
 <p class="Pp">The options are as follows:</p>
 <dl class="Bl-tag">
   <dt id="uuid"><a class="permalink" href="#uuid"><code class="Fl">-uuid</code></a></dt>
@@ -81,10 +87,10 @@ aliases:
 <section class="Sh">
 <h2 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
   ALSO</a></h2>
-<p class="Pp"><a class="Xr" href="../plakar/" aria-label="plakar, section
-    1">plakar(1)</a>,
-    <a class="Xr" href="../plakar-query/" aria-label="plakar-query, section
-    7">plakar-query(7)</a></p>
+<p class="Pp"><a class="Xr" href="https://man.openbsd.org/plakar.%s" aria-label="plakar,
+    section 1">plakar(1)</a>,
+    <a class="Xr" href="https://man.openbsd.org/plakar-query.%s" aria-label="plakar-query,
+    section 7">plakar-query(7)</a></p>
 </section>
 </main>
 <div class="foot" role="doc-pagefooter" aria-label="Manual footer
