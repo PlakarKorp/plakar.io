@@ -111,6 +111,11 @@ A destination restores an instance in one of two ways, depending on its
   instance from the snapshot, reusing the name, type and boot layout of the
   backed-up instance where available, and starts it.
 
+Restoring onto an existing instance does not change its IP addresses. A new
+instance has no public IP. The IP addresses of the backed-up instance are not
+reused. You'll need to attach a public IP or a private network to it after the
+restore.
+
 #### Backup flow
 
 <!-- prettier-ignore-start -->
@@ -177,9 +182,10 @@ The following options apply to both source and destination connectors using the
 
 ### Destination configuration
 
-| Option     | Required | Description                                                                                                                                      |
-| ---------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `location` | Yes      | `scaleway-instance://<server-id>` to attach the restored disks to an existing instance, or `scaleway-instance://spawn` to create a new instance. |
+| Option       | Required | Description                                                                                                                                                                                                 |
+| ------------ | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `location`   | Yes      | `scaleway-instance://<server-id>` to attach the restored disks to an existing instance, or `scaleway-instance://spawn` to create a new instance.                                                            |
+| `ssh_key_id` | No       | ID of a Scaleway SSH key, as a UUID. Used only when `spawn` creates a Windows instance. Scaleway encrypts the generated Administrator password with this key. Only the matching private key can decrypt it. |
 
 ### Example
 

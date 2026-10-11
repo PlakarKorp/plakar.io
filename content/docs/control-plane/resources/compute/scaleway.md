@@ -29,7 +29,9 @@ attached volumes rather than replacing its own boot volume.
 > Plane interface only, and support for creating a new instance is planned for
 > an upcoming release. The Scaleway integration itself can already create a new
 > instance from a backup, reusing the name, type and boot layout of the
-> backed-up instance, and start it. Until the interface supports it, this
+> backed-up instance, and start it. The new instance has no public IP. The IP
+> addresses of the backed-up instance are not reused. Attach a public IP or a
+> private network to it after the restore. Until the interface supports it, this
 > restore mode is available through the
 > [Community integration](/docs/community/main/integrations/scaleway/#1-scaleway-instance-protocol).
 
@@ -122,6 +124,16 @@ destination apps.
   This bucket must exist before configuring the resource. We recommend using a
   dedicated bucket for Plakar Control Plane operations rather than a
   general-purpose bucket.
+
+## Destination Configuration
+
+The following setting is only available when configuring destination apps.
+
+- **SSH Key ID**: Optional. The ID of a Scaleway SSH key. It is used only when a
+  restore creates a new Windows instance. Scaleway generates the Administrator
+  password of the new instance and encrypts it with this key. Only the matching
+  private key can decrypt the password. The setting has no effect on Linux
+  instances or when restoring onto an existing instance.
 
 ## Permissions
 
