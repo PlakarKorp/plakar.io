@@ -54,7 +54,7 @@
         <div class="flex flex-wrap gap-2 text-xs font-medium text-neutral-500">
           {{ range .GetTerms "authors" }}
             {{ $authorKey := . | urlize | strings.TrimPrefix "/authors/" }}
-            {{ $authorData := index site.Data.authors $authorKey }}
+            {{ $authorData := index hugo.Data.authors $authorKey }}
             {{ with $authorData }}
               <span class="text-neutral-900">{{ .name }}</span>
               <span>•</span>
