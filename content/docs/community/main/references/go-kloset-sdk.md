@@ -10,8 +10,8 @@ aliases:
 
 # Go Kloset SDK
 
-The Go Kloset SDK is used to write Plakar integrations as standalone plugins. A
-plugin provides one connector:
+The Go Kloset SDK is used to build Plakar integrations. An integration is a
+package of one or more connectors:
 
 - **Importer** - Reads data from a source during backup
 - **Exporter** - Writes data to a destination during restore
@@ -19,7 +19,8 @@ plugin provides one connector:
 
 The connector interfaces and helper types live in the
 [kloset](https://github.com/PlakarKorp/kloset) module. The SDK turns an
-implementation of those interfaces into a plugin that Plakar can run.
+implementation of one of those interfaces into an executable that Plakar can
+run.
 
 ## Installation
 
@@ -28,7 +29,7 @@ go get github.com/PlakarKorp/go-kloset-sdk
 go get github.com/PlakarKorp/kloset
 ```
 
-## How plugins run
+## How integrations run
 
 Each connector is a separate executable. Plakar starts it and talks to it over
 gRPC on stdin and stdout. An integration that provides an importer, an exporter,
@@ -86,8 +87,8 @@ func main() {
 ```
 
 `InterruptableContext` returns a context that is cancelled when the process
-receives an interrupt signal, so the plugin stops cleanly. Once the context is
-cancelled, later interrupts are no longer caught.
+receives an interrupt signal, so the connector stops cleanly. Once the context
+is cancelled, later interrupts are no longer caught.
 
 ```go
 func InterruptableContext(ctx context.Context) context.Context
@@ -151,14 +152,14 @@ type Options struct {
 
 Every connector implements these methods:
 
-| Method                   | Description                                                                                                |
-| ------------------------ | ---------------------------------------------------------------------------------------------------------- |
+| Method                   | Description                                                                                                           |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------- |
 | `Origin() string`        | Identifies the host and resource, using a path-like `host/resource` convention, for example `s3.example.com/mybucket` |
-| `Type() string`          | Protocol name, for example `s3`                                                                            |
-| `Root() string`          | Root path within the location, for example `/`                                                             |
-| `Flags() location.Flags` | Location flags, see [Location flags](#location-flags)                                                      |
-| `Ping(ctx) error`        | Tests connectivity before the operation begins                                                             |
-| `Close(ctx) error`       | Releases resources after the operation completes                                                           |
+| `Type() string`          | Protocol name, for example `s3`                                                                                       |
+| `Root() string`          | Root path within the location, for example `/`                                                                        |
+| `Flags() location.Flags` | Location flags, see [Location flags](#location-flags)                                                                 |
+| `Ping(ctx) error`        | Tests connectivity before the operation begins                                                                        |
+| `Close(ctx) error`       | Releases resources after the operation completes                                                                      |
 
 ### Location flags
 
@@ -423,9 +424,9 @@ if storage.Flag(ctx)&storage.StorageHot != 0 {
 
 ## Packaging
 
-Plakar installs plugins from a package, a `.ptar` archive holding the manifest
-and every file it references. Packaging does not compile anything, so build one
-executable per connector first:
+Plakar installs integrations from a package, a `.ptar` archive holding the
+manifest and every file it references. Packaging does not compile anything, so
+build one executable per connector first:
 
 ```bash
 go build -o example-importer ./cmd/importer
