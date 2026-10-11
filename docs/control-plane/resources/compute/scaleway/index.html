@@ -70,7 +70,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-05-19T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-10-10T13:48:26+03:00">
+    <meta property="article:modified_time" content="2026-10-11T11:18:00+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -124,8 +124,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.bfd5b702e85f363c88e8701384ebd97393a2e3825e8eefb3b64404504ea4b4bf87fac8aff4e32805f0ec06c0e9e7e617679f1b71b0dbb32595365335d8be3a51.css"
-    integrity="sha512-v9W3AuhfNjyI6HAThOvZc5Oi44Jeju&#43;ztkQEUE6ktL&#43;H&#43;siv9OMoBfDsBsDp5&#43;YXZ58bcbDbsyWVNlM12L46UQ==">
+    href="/css/main.bundle.min.356b96a31e74656a7f36a6a626e2de5bd7cf6d4cdb7d28a8d6554ade92d0e324cc3f76688ba1777600644c3f2eb7b60ba04b48412e729438ecf68d5b7e6ebdc4.css"
+    integrity="sha512-NWuWox50ZWp/NqamJuLeW9fPbUzbfSio1lVK3pLQ4yTMP3Zoi6F3dgBkTD8ut7YLoEtIQS5ylDjs9o1bfm69xA==">
   
     
     <script defer src="/lib/zoom/zoom.min.umd.a527109b68c082a70f3697716dd72a9d5aa8b545cf800cecbbc7399f2ca6f6e0ce3e431f2062b48bbfa47c9ea42822714060bef309be073f49b9c0e30d318d7b.js" integrity="sha512-pScQm2jAgqcPNpdxbdcqnVqotUXPgAzsu8c5nyym9uDOPkMfIGK0i7&#43;kfJ6kKCJxQGC&#43;8wm&#43;Bz9JucDjDTGNew=="></script>
@@ -159,8 +159,8 @@
   <script
     defer
     type="text/javascript"
-    src="/js/mermaid.bundle.3d46857991a1358fecc3046ee1acc4011a5c20d91646e4fae572719eea2de65d43e691c0349b4bfa9a669fe04b1f4f8cc17282292a26dd3fbfec200bd501fae4.js"
-    integrity="sha512-PUaFeZGhNY/swwRu4azEARpcINkWRuT65XJxnuot5l1D5pHANJtL&#43;ppmn&#43;BLH0&#43;MwXKCKSom3T&#43;/7CAL1QH65A=="></script>
+    src="/js/mermaid.bundle.ceb61d1b03724873f4afba209d5f9a6d9db9f2aa8bea1de39196f6ebe8b4f076c85e46f12ab9ec8bfc33bb7c2b063894c8f91e6199f07a1cac975892cd77823b.js"
+    integrity="sha512-zrYdGwNySHP0r7ognV&#43;abZ258qqL6h3jkZb26&#43;i08HbIXkbxKrnsi/wzu3wrBjiUyPkeYZnwehysl1iSzXeCOw=="></script>
 
 
 
@@ -237,12 +237,12 @@
     "dateCreated": "2026-05-19T00:00:00\u002b00:00",
     "datePublished": "2026-05-19T00:00:00\u002b00:00",
     
-    "dateModified": "2026-10-10T13:48:26\u002b03:00",
+    "dateModified": "2026-10-11T11:18:00\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/resources/compute/scaleway/",
-    "wordCount": "631"
+    "wordCount":  735 
   }]
   </script>
 
@@ -8174,7 +8174,9 @@ available in Plakar Control Plane. This is a limitation of the Plakar Control
 Plane interface only, and support for creating a new instance is planned for
 an upcoming release. The Scaleway integration itself can already create a new
 instance from a backup, reusing the name, type and boot layout of the
-backed-up instance, and start it. Until the interface supports it, this
+backed-up instance, and start it. The new instance has no public IP. The IP
+addresses of the backed-up instance are not reused. Attach a public IP or a
+private network to it after the restore. Until the interface supports it, this
 restore mode is available through the
 <a href="/docs/community/main/integrations/scaleway/#1-scaleway-instance-protocol" >Community integration</a>.</p></div></div><p>A dedicated Scaleway Object Storage bucket is required for this process. We
 recommend using the same dedicated bucket used for other Scaleway resources such
@@ -8326,6 +8328,31 @@ general-purpose bucket.</li>
 </ul>
 
 
+<h2 id="destination-configuration" class="group pr-8">Destination Configuration
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="destination-configuration"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>The following setting is only available when configuring destination apps.</p>
+<ul>
+<li><strong>SSH Key ID</strong>: Optional. The ID of a Scaleway SSH key. It is used only when a
+restore creates a new Windows instance. Scaleway generates the Administrator
+password of the new instance and encrypts it with this key. Only the matching
+private key can decrypt the password. The setting has no effect on Linux
+instances or when restoring onto an existing instance.</li>
+</ul>
+
+
 <h2 id="permissions" class="group pr-8">Permissions
     <button
       type="button"
@@ -8427,7 +8454,7 @@ secret key.</p>
   
   <div class="flex items-center justify-between text-xs text-neutral-400">
     
-      <span>Last updated: October 10, 2026</span>
+      <span>Last updated: October 11, 2026</span>
     
     
       <a href="https://github.com/PlakarKorp/plakar.io/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">
@@ -8447,7 +8474,7 @@ secret key.</p>
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#inventory-management">Inventory Management</a><ul><ul><li><a href="#backup-flow">Backup flow</a></li><li><a href="#restore-flow">Restore flow</a></li></ul></li></ul></li><li><a href="#shared-configuration">Shared Configuration</a></li><li><a href="#permissions">Permissions</a></li></ul>
+      <ul><li><a href="#inventory-management">Inventory Management</a><ul><ul><li><a href="#backup-flow">Backup flow</a></li><li><a href="#restore-flow">Restore flow</a></li></ul></li></ul></li><li><a href="#shared-configuration">Shared Configuration</a></li><li><a href="#destination-configuration">Destination Configuration</a></li><li><a href="#permissions">Permissions</a></li></ul>
     </div>
 
     
