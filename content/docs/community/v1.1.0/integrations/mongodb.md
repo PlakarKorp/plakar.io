@@ -111,7 +111,7 @@ connectors.
 | Option                 | Required | Description                                                                                                                                           |
 | ---------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `location`             | Yes      | URL of the MongoDB server. Must begin with `mongodb://` or `mongodb+srv://`.                                                                          |
-| `port`                 | No       | The MongoDB server port. Overrides a port given in `location`. Defaults to `27017`.                                                                   |
+| `port`                 | No       | The MongoDB server port. Overrides a port given in `location`. Defaults to `27017`. Ignored when using `mongodb+srv`.                                 |
 | `username`             | No       | Username for authentication to MongoDB.                                                                                                               |
 | `password`             | No       | Password for authentication to MongoDB.                                                                                                               |
 | `auth_mechanism`       | No       | Authentication mechanism to use with the server, such as `SCRAM-SHA-256` or `MONGODB-X509`.                                                           |
@@ -211,8 +211,9 @@ $ plakar at /var/backups restore -to "@my-mongodb-restore" <snapshot_id>
 
 The `mongodb+srv` protocol resolves the server addresses from DNS SRV records
 published for the host name, rather than connecting to that host name directly.
-Use it for deployments that publish their connection details through DNS, such
-as MongoDB Atlas clusters.
+The port is also obtained from DNS, and any configured port is ignored. Use it
+for deployments that publish their connection details through DNS, such as
+MongoDB Atlas clusters.
 
 #### Backup flow
 

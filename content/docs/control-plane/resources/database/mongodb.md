@@ -118,8 +118,9 @@ destination apps using the `mongodb` protocol.
 
 The `mongodb+srv` protocol resolves the server addresses from DNS SRV records
 published for the hostname, rather than connecting to that hostname directly.
-Use it for deployments that publish their connection details through DNS, such
-as MongoDB Atlas clusters. The resource endpoint is the SRV hostname of the
+The port is also obtained from DNS, and any configured port is ignored. Use it
+for deployments that publish their connection details through DNS, such as
+MongoDB Atlas clusters. The resource endpoint is the SRV hostname of the
 deployment.
 
 #### Backup flow
@@ -175,7 +176,8 @@ destination apps using the `mongodb+srv` protocol.
 - **Auth Mechanism**: The authentication mechanism used with the server, such as
   `SCRAM-SHA-256` or `MONGODB-X509`.
 - **Password**: The password used to authenticate to MongoDB.
-- **Port**: The MongoDB server port. Defaults to `27017`.
+- **Port**: Ignored when using this protocol. The port is obtained from DNS
+  along with the server addresses.
 - **Tls Ca Cert Data**: The PEM content of a custom CA certificate used to
   verify the server's certificate.
 - **Tls Client Cert Data**: The PEM content of a client certificate for mTLS
