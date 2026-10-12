@@ -51,8 +51,6 @@ document database to join them.
 
 ## How it works
 
-![How MongoDB backup works with Plakar: mongodump, chunk, dedup, encrypt, store in Kloset, restore with mongorestore](mongodb-backup-flow.png)
-
 Plakar runs `mongodump` against your server, over TLS by default. It works with
 self-hosted servers and with MongoDB Atlas (`mongodb+srv://` URLs). It cuts the
 dump into chunks, keeps only the chunks it has not seen before, then compresses
@@ -119,5 +117,3 @@ Tell us which database you want next on
 [Discord](https://discord.gg/uuegtnF2Q5). Redis? Cassandra? We are listening.
 
 Happy hacking,
-
-The Plakar team
