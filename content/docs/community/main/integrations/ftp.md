@@ -179,7 +179,11 @@ remote directories reachable over FTP.
 
 Restored files are written only inside the destination directory. A snapshot
 entry whose path would resolve outside it, for example through `..` components,
-is refused with an error.
+is reported as failed and skipped.
+
+Restore sets the permissions of each restored file and directory, including the
+setuid, setgid, and sticky bits, using the `SITE CHMOD` command. The destination
+directory itself keeps its existing permissions. File ownership is not restored.
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -214,13 +218,14 @@ $ plakar at /var/backups restore -to "@ftp_dst" <snapshot_id>
 These options can be set when configuring the destination connector with
 `plakar destination add` or `plakar destination set`:
 
-| Option                   | Purpose                                                                                               |
-| ------------------------ | ----------------------------------------------------------------------------------------------------- |
-| `location`               | `ftp://[user[:password]@]host[:port]/path` of the remote directory to restore to                      |
-| `username`               | The username to authenticate as. Overrides the URI user.                                              |
-| `password`               | The password to authenticate with. Overrides the URI password.                                        |
-| `tls`                    | TLS mode: `explicit` (default), `implicit`, or `none`. See [transport security](#transport-security). |
-| `tls_insecure_no_verify` | Set to `true` to skip server certificate verification. Required with `tls=none`.                      |
+| Option                   | Purpose                                                                                                                                  |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `location`               | `ftp://[user[:password]@]host[:port]/path` of the remote directory to restore to                                                         |
+| `username`               | The username to authenticate as. Overrides the URI user.                                                                                 |
+| `password`               | The password to authenticate with. Overrides the URI password.                                                                           |
+| `tls`                    | TLS mode: `explicit` (default), `implicit`, or `none`. See [transport security](#transport-security).                                    |
+| `tls_insecure_no_verify` | Set to `true` to skip server certificate verification. Required with `tls=none`.                                                         |
+| `skip_permissions`       | Set to `true` to restore without setting file and directory permissions. Defaults to `false`. See [limitations](#limitations-and-scope). |
 
 ## Limitations and scope
 
@@ -229,6 +234,16 @@ These options can be set when configuring the destination connector with
 Changes during backup (creates, updates, deletes) may result in a snapshot that
 reflects different points in time for different files. For highly dynamic paths,
 consider quiescing the workload or backing up from a read-only replica.
+
+**Permissions on servers without `SITE CHMOD`**
+
+`SITE CHMOD` is a common extension rather than part of the core FTP standard
+(RFC 959). On a server that lacks or refuses it, such as most Windows servers,
+every restored file and directory is reported as failed, even though the files
+are written. Earlier versions of the FTP package did not set permissions, so
+restores to such servers start reporting failures after upgrading to v1.1.3. Set
+`skip_permissions=true` on the destination to restore without setting
+permissions.
 
 ## See also
 
