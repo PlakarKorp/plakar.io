@@ -1,7 +1,7 @@
 ---
 title: "Changelog"
-layout: "redirect"
-redirectTo: "/changelog/plakar/"
+description:
+  "What shipped, release by release, for Plakar products and integrations."
 cascade:
   showHeadingAnchors: false
 ---
