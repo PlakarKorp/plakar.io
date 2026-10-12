@@ -18,17 +18,40 @@ connectors:
 | **Source connector**      | Back up a remote directory reachable over FTP into a Kloset store. |
 | **Destination connector** | Restore data from a Kloset store to an FTP target.                 |
 
-**Compatibility**
+## Transport security
 
-- Connects over plain FTP only. FTPS and SFTP are separate protocols; this
-  integration does not negotiate FTPS. See [SFTP / SSH](../sftp) for SSH-based
-  transfers.
+The connector encrypts the connection with FTPS by default. The `tls` option
+selects how TLS is negotiated:
 
-> [!WARNING]+ Plaintext protocol
+| Value      | Behaviour                                                                              |
+| ---------- | -------------------------------------------------------------------------------------- |
+| `explicit` | Default. Connects on the FTP port and upgrades the connection with `AUTH TLS`.         |
+| `implicit` | Starts TLS as soon as the connection opens. Servers usually expect this on port `990`. |
+| `none`     | Plain FTP. Credentials and data are sent unencrypted.                                  |
+
+With TLS enabled, the connector requires TLS 1.2 or later and verifies the
+server certificate against the system's trusted certificate authorities and the
+server hostname. Setting `tls_insecure_no_verify=true` skips this verification,
+for example for a server using a self-signed certificate.
+
+Plain FTP must be requested explicitly. The connector refuses `tls=none` unless
+`tls_insecure_no_verify=true` is also set to acknowledge that credentials and
+data travel unencrypted.
+
+> [!WARNING]+ Plain FTP requires opt-in
 >
-> This integration connects over plain FTP and does not support FTPS.
-> Credentials and data are transmitted unencrypted. Avoid using FTP over
-> untrusted networks, or use [SFTP](../sftp) instead when available.
+> Before v1.1.3, the FTP package connected over plain FTP only. Sources and
+> destinations configured before v1.1.3 now attempt FTPS and fail to connect to
+> servers that do not support it. To keep using plain FTP, set both options on
+> the existing configuration:
+>
+> ```bash
+> $ plakar source set ftp_src tls=none tls_insecure_no_verify=true
+> $ plakar destination set ftp_dst tls=none tls_insecure_no_verify=true
+> ```
+>
+> Avoid plain FTP over untrusted networks. Use [SFTP](../sftp) instead when the
+> server supports it.
 
 ## Installation
 
@@ -141,16 +164,22 @@ $ plakar at /var/backups backup "@ftp_src"
 These options can be set when configuring the source connector with
 `plakar source add` or `plakar source set`:
 
-| Option     | Purpose                                                                       |
-| ---------- | ----------------------------------------------------------------------------- |
-| `location` | `ftp://[user[:password]@]host[:port]/path` of the remote directory to back up |
-| `username` | The username to authenticate as. Overrides the URI user.                      |
-| `password` | The password to authenticate with. Overrides the URI password.                |
+| Option                   | Purpose                                                                                               |
+| ------------------------ | ----------------------------------------------------------------------------------------------------- |
+| `location`               | `ftp://[user[:password]@]host[:port]/path` of the remote directory to back up                         |
+| `username`               | The username to authenticate as. Overrides the URI user.                                              |
+| `password`               | The password to authenticate with. Overrides the URI password.                                        |
+| `tls`                    | TLS mode: `explicit` (default), `implicit`, or `none`. See [transport security](#transport-security). |
+| `tls_insecure_no_verify` | Set to `true` to skip server certificate verification. Required with `tls=none`.                      |
 
 ### Destination connector
 
 The Plakar FTP package provides a destination connector to restore snapshots to
 remote directories reachable over FTP.
+
+Restored files are written only inside the destination directory. A snapshot
+entry whose path would resolve outside it, for example through `..` components,
+is refused with an error.
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -185,11 +214,13 @@ $ plakar at /var/backups restore -to "@ftp_dst" <snapshot_id>
 These options can be set when configuring the destination connector with
 `plakar destination add` or `plakar destination set`:
 
-| Option     | Purpose                                                                          |
-| ---------- | -------------------------------------------------------------------------------- |
-| `location` | `ftp://[user[:password]@]host[:port]/path` of the remote directory to restore to |
-| `username` | The username to authenticate as. Overrides the URI user.                         |
-| `password` | The password to authenticate with. Overrides the URI password.                   |
+| Option                   | Purpose                                                                                               |
+| ------------------------ | ----------------------------------------------------------------------------------------------------- |
+| `location`               | `ftp://[user[:password]@]host[:port]/path` of the remote directory to restore to                      |
+| `username`               | The username to authenticate as. Overrides the URI user.                                              |
+| `password`               | The password to authenticate with. Overrides the URI password.                                        |
+| `tls`                    | TLS mode: `explicit` (default), `implicit`, or `none`. See [transport security](#transport-security). |
+| `tls_insecure_no_verify` | Set to `true` to skip server certificate verification. Required with `tls=none`.                      |
 
 ## Limitations and scope
 
