@@ -27,7 +27,12 @@ The connectors can be combined with each other and with other Plakar connectors.
 
 **Requirements**
 
-- An SFTP/SSH server with appropriate read and write permissions.
+- An SFTP server reachable over SSH.
+- Read access to the directories being backed up, and write access to the
+  directories being restored to.
+- To write to a Kloset store, write access to the store directory and support
+  for the `posix-rename@openssh.com` extension. See
+  [Store requirements](#store-requirements).
 
 ## Installation
 
@@ -180,9 +185,11 @@ Plakar["Plakar"]
 
 Via["Retrieve data via<br/>SFTP source connector"]
 
+Transform["Encrypt & deduplicate"]
+
 Store["Kloset Store"]
 
-FS --> Via --> Plakar --> Store
+FS --> Via --> Plakar --> Transform --> Store
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
@@ -194,15 +201,17 @@ flowchart LR
 
 Store["Kloset Store"]
 
+Transform["Decrypt & reconstruct"]
+
 Plakar["Plakar"]
 
 Via["Push data via<br/>SFTP destination connector"]
 
 subgraph Destination["SFTP Server"]
-  FS["/srv/data"]
+  FS["/srv/restore"]
 end
 
-Store --> Plakar --> Via --> FS
+Store --> Transform --> Plakar --> Via --> FS
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
@@ -214,15 +223,17 @@ flowchart LR
 
 Source["Source data"]
 
-Source --> Plakar["Plakar"]
+Plakar["Plakar"]
 
-Via["Store snapshot via<br/>SFTP storage connector"]
+Transform["Encrypt & deduplicate"]
+
+Via["Store snapshot via<br/>SFTP store connector"]
 
 subgraph Store["SFTP Server"]
   Kloset["Kloset Store"]
 end
 
-Plakar --> Via --> Kloset
+Source --> Plakar --> Transform --> Via --> Kloset
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
@@ -257,12 +268,43 @@ on Windows.
 
 ### Destination configuration
 
-The following extra options are available to the destination connector.
+The following options are available to the destination connector, in addition to
+those in [Shared configuration](#shared-configuration).
 
 | Option             | Required | Description                                                                                                                           |
 | ------------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------- |
 | `set_owner`        | No       | Set the owner and group of restored files. Requires superuser permissions on the server. Defaults to `false`.                         |
 | `skip_permissions` | No       | Skip restoring permission bits, including the setuid, setgid and sticky bits, on restored files and directories. Defaults to `false`. |
+
+### Restore behaviour
+
+Restored files and directories receive their final permissions when they are
+created, so restored content is never readable by more users than the snapshot
+allows, even while the restore is running. Directories keep owner read, write
+and execute permissions until the restore finishes, so that a read-only
+directory can still be populated, and then receive their final mode.
+
+Symbolic links are restored only if their target resolves inside the destination
+directory. Relative targets are resolved from the link's location, and absolute
+targets are compared as paths on the server. A link whose target falls outside
+the destination, such as `../../etc/passwd` or `/usr/bin/python3` restored under
+`/srv/restore`, is reported as failed and is not created.
+
+### Store requirements
+
+Writing to a Kloset store requires the server to support the
+`posix-rename@openssh.com` SFTP extension, which OpenSSH provides. Plakar checks
+for it on the first write to the store and fails with an error if it is missing.
+
+Reading from a store does not need the extension. A store on an OpenSSH server
+running in read-only mode (`sftp-server -R`), which does not advertise it, can
+be used as the source of a `sync` or browsed in the UI.
+
+> [!NOTE]+ Version requirement
+>
+> SFTP package v1.1.7 checks for the extension when connecting and refuses a
+> read-only server before anything is read. Use v1.1.8 or later to read from a
+> read-only store.
 
 ### Example
 
@@ -281,11 +323,8 @@ $ plakar at "@sftp_store" ls
 # Verify integrity of the Kloset store
 $ plakar at "@sftp_store" check
 
-# Backup a local folder to the Kloset store
+# Back up a local folder to the Kloset store
 $ plakar at "@sftp_store" backup /etc
-
-# Backup a source configured in Plakar to the Kloset store
-$ plakar at "@sftp_store" backup "@my_source"
 ```
 
 Back up a remote directory:
@@ -294,7 +333,7 @@ Back up a remote directory:
 # Configure a source pointing to the remote SFTP directory
 $ plakar source add sftp_src sftp://sftp-prod/srv/data
 
-# Back up the remote directory to the Kloset store on the filesystem
+# Back up the remote directory to a Kloset store on the filesystem
 $ plakar at /var/backups backup "@sftp_src"
 
 # Or back up the remote directory to the Kloset store on SFTP created above
