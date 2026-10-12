@@ -5,7 +5,7 @@ summary:
   collections land encrypted and deduplicated in a store you own. Our first
   NoSQL database, after PostgreSQL, MySQL, MariaDB and SQL Server."
 slug: "backing-up-mongodb-with-plakar"
-date: 2026-10-13T09:00:00+0200
+date: "2026-10-13T00:00:00Z"
 authors:
   - "stsp"
 tags:
