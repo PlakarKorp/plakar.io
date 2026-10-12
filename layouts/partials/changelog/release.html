@@ -4,7 +4,7 @@
 
 {{- $releaseURL := "" -}}
 {{- if $repo -}}
-  {{- $releaseURL = printf "https://github.com/%s/releases/tag/%s" $repo $version -}}
+  {{- $releaseURL = printf "https://github.com/%s/releases/tag/%s%s" $repo .project.tagPrefix $version -}}
 {{- end -}}
 
 {{- $announcement := "" -}}
