@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-09-02T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-10-13T07:23:57+03:00">
+    <meta property="article:modified_time" content="2026-10-13T15:01:56+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -126,8 +126,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.356b96a31e74656a7f36a6a626e2de5bd7cf6d4cdb7d28a8d6554ade92d0e324cc3f76688ba1777600644c3f2eb7b60ba04b48412e729438ecf68d5b7e6ebdc4.css"
-    integrity="sha512-NWuWox50ZWp/NqamJuLeW9fPbUzbfSio1lVK3pLQ4yTMP3Zoi6F3dgBkTD8ut7YLoEtIQS5ylDjs9o1bfm69xA==">
+    href="/css/main.bundle.min.0f4a3fc97df8fd147116c4b5d648bedf3613a4ef0183f9a813e663a07ae5d4419e2bf7dac8d6d53b661ff9dc9ed89c9dc9452ee8e5fb0897bf785bd310951ce7.css"
+    integrity="sha512-D0o/yX34/RRxFsS11ki&#43;3zYTpO8Bg/moE&#43;ZjoHrl1EGeK/fayNbVO2Yf&#43;dye2JydyUUu6OX7CJe/eFvTEJUc5w==">
   
     
     <script defer src="/lib/zoom/zoom.min.umd.a527109b68c082a70f3697716dd72a9d5aa8b545cf800cecbbc7399f2ca6f6e0ce3e431f2062b48bbfa47c9ea42822714060bef309be073f49b9c0e30d318d7b.js" integrity="sha512-pScQm2jAgqcPNpdxbdcqnVqotUXPgAzsu8c5nyym9uDOPkMfIGK0i7&#43;kfJ6kKCJxQGC&#43;8wm&#43;Bz9JucDjDTGNew=="></script>
@@ -244,12 +244,12 @@
     "dateCreated": "2026-09-02T00:00:00\u002b00:00",
     "datePublished": "2026-09-02T00:00:00\u002b00:00",
     
-    "dateModified": "2026-10-13T07:23:57\u002b03:00",
+    "dateModified": "2026-10-13T15:01:56\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.stg.plakar.io/docs/community/v1.1.0/integrations/ftp/",
-    "wordCount":  557 
+    "wordCount":  934 
   }]
   </script>
 
@@ -4826,9 +4826,11 @@
     </button>
   
 </h1>
-<p>FTP (File Transfer Protocol) is a standard protocol for transferring files
-between a client and a server over TCP/IP. The FTP integration includes two
-connectors:</p>
+<p>The FTP integration backs up directories from an FTP server and restores
+snapshots to an FTP server. It supports plain FTP and FTPS (FTP with TLS), with
+FTPS enabled by default. SFTP (SSH File Transfer Protocol) is a different
+protocol handled by the <a href="../sftp" >SFTP integration</a>.</p>
+<p>The integration includes two connectors:</p>
 <table>
   <thead>
       <tr>
@@ -4847,39 +4849,7 @@ connectors:</p>
       </tr>
   </tbody>
 </table>
-<p><strong>Compatibility</strong></p>
-<ul>
-<li>Connects over plain FTP only. FTPS and SFTP are separate protocols; this
-integration does not negotiate FTPS. See <a href="../sftp" >SFTP / SSH</a> for SSH-based
-transfers.</li>
-</ul>
-<details
-      class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
-      data-type="warning"
-      open>
-      <summary class="flex items-center gap-2 font-semibold text-inherit cursor-pointer">
-        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"/></svg>
-</span></div>
-        <div class="grow">
-          Plaintext protocol
-        </div>
-        <div
-          class="ms-auto flex h-5 w-5 items-center justify-center transition-transform ease-in-out -rotate-90 group-open:rotate-0 print:hidden"><span class="relative block icon"><svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 20 20"
-  fill="currentColor"
-  aria-hidden="true"
->
-  <path
-    fill-rule="evenodd"
-    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-    clip-rule="evenodd"
-  />
-</svg>
-</span></div>
-      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>This integration connects over plain FTP and does not support FTPS.
-Credentials and data are transmitted unencrypted. Avoid using FTP over
-untrusted networks, or use <a href="../sftp" >SFTP</a> instead when available.</p></div></details>
+
 
 <h2 id="installation" class="group pr-8">Installation
     <button
@@ -4957,11 +4927,11 @@ customization is required.</p>
 <a href="../../guides/managing-packages/" >managing packages guide</a>.</p>
 
 
-<h2 id="connectors" class="group pr-8">Connectors
+<h2 id="transport-security" class="group pr-8">Transport security
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="connectors"
+      data-anchor="transport-security"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -4972,16 +4942,75 @@ customization is required.</p>
     </button>
   
 </h2>
-<p>The FTP package provides two connectors: a source connector for backing up
-remote directories over FTP, and a destination connector for restoring data over
-FTP.</p>
+<p>The connector encrypts the connection with FTPS by default. The <code>tls</code> option
+selects how TLS is negotiated:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Value</th>
+          <th>Behaviour</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>explicit</code></td>
+          <td>Default. Connects on the FTP port and upgrades the connection with <code>AUTH TLS</code>.</td>
+      </tr>
+      <tr>
+          <td><code>implicit</code></td>
+          <td>Starts TLS as soon as the connection opens. Servers usually expect this on port <code>990</code>, which must be set with <code>port</code> or in <code>location</code>.</td>
+      </tr>
+      <tr>
+          <td><code>none</code></td>
+          <td>Plain FTP. Credentials and data are sent unencrypted.</td>
+      </tr>
+  </tbody>
+</table>
+<p>With TLS enabled, the connector requires TLS 1.2 or later and verifies the
+server certificate against the system&rsquo;s trusted certificate authorities and the
+server hostname. Setting <code>tls_insecure_no_verify=true</code> skips this verification,
+for example for a server using a self-signed certificate.</p>
+<p>Plain FTP must be requested explicitly. The connector refuses <code>tls=none</code> unless
+<code>tls_insecure_no_verify=true</code> is also set to acknowledge that credentials and
+data travel unencrypted.</p>
+<details
+      class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
+      data-type="warning"
+      open>
+      <summary class="flex items-center gap-2 font-semibold text-inherit cursor-pointer">
+        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"/></svg>
+</span></div>
+        <div class="grow">
+          Plain FTP requires opt-in
+        </div>
+        <div
+          class="ms-auto flex h-5 w-5 items-center justify-center transition-transform ease-in-out -rotate-90 group-open:rotate-0 print:hidden"><span class="relative block icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+</span></div>
+      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Before v1.1.3, the FTP package connected over plain FTP only. Sources and
+destinations configured before v1.1.3 now attempt FTPS and fail to connect to
+servers that do not support it. To keep using plain FTP, set both options on
+the existing configuration:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar <span class="nb">source</span> <span class="nb">set</span> ftp_src <span class="nv">tls</span><span class="o">=</span>none <span class="nv">tls_insecure_no_verify</span><span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl">$ plakar destination <span class="nb">set</span> ftp_dst <span class="nv">tls</span><span class="o">=</span>none <span class="nv">tls_insecure_no_verify</span><span class="o">=</span>true</span></span></code></pre></div></div>
+<p>Avoid plain FTP over untrusted networks. Use <a href="../sftp" >SFTP</a> instead when the
+server supports it.</p></div></details>
 
-
-<h3 id="source-connector" class="group pr-8">Source connector
+<h2 id="configuration" class="group pr-8">Configuration
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="source-connector"
+      data-anchor="configuration"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -4991,9 +5020,26 @@ FTP.</p>
 </span></span>
     </button>
   
-</h3>
-<p>The Plakar FTP package provides a source connector to back up remote directories
-reachable over FTP.</p>
+</h2>
+<p>Both connectors address a directory on the FTP server with an <code>ftp://</code> URL.
+Credentials can be given in the URL or as separate options.</p>
+
+
+<h4 id="backup-flow" class="group pr-8">Backup flow
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="backup-flow"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h4>
 <!-- prettier-ignore-start -->
 <pre class="not-prose mermaid">
 flowchart LR
@@ -5014,11 +5060,11 @@ FS --> Via --> Plakar --> Store
 <!-- prettier-ignore-end -->
 
 
-<h4 id="configure" class="group pr-8">Configure
+<h4 id="restore-flow" class="group pr-8">Restore flow
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="configure"
+      data-anchor="restore-flow"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -5029,71 +5075,6 @@ FS --> Via --> Plakar --> Store
     </button>
   
 </h4>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Configure a source pointing to the remote FTP directory</span>
-</span></span><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add ftp_src ftp://ftp.example.org/pub/somedirectory
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Back up the remote directory to a Kloset store on the filesystem</span>
-</span></span><span class="line"><span class="cl">$ plakar at /var/backups backup <span class="s2">&#34;@ftp_src&#34;</span></span></span></code></pre></div></div>
-
-
-<h4 id="options" class="group pr-8">Options
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="options"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h4>
-<p>These options can be set when configuring the source connector with
-<code>plakar source add</code> or <code>plakar source set</code>:</p>
-<table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Purpose</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>location</code></td>
-          <td><code>ftp://[user[:password]@]host[:port]/path</code> of the remote directory to back up</td>
-      </tr>
-      <tr>
-          <td><code>username</code></td>
-          <td>The username to authenticate as. Overrides the URI user.</td>
-      </tr>
-      <tr>
-          <td><code>password</code></td>
-          <td>The password to authenticate with. Overrides the URI password.</td>
-      </tr>
-  </tbody>
-</table>
-
-
-<h3 id="destination-connector" class="group pr-8">Destination connector
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="destination-connector"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
-<p>The Plakar FTP package provides a destination connector to restore snapshots to
-remote directories reachable over FTP.</p>
 <!-- prettier-ignore-start -->
 <pre class="not-prose mermaid">
 flowchart LR
@@ -5114,11 +5095,11 @@ Store --> Plakar --> Via --> FS
 <!-- prettier-ignore-end -->
 
 
-<h4 id="configure-1" class="group pr-8">Configure
+<h3 id="shared-configuration" class="group pr-8">Shared configuration
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="configure-1"
+      data-anchor="shared-configuration"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -5128,53 +5109,143 @@ Store --> Plakar --> Via --> FS
 </span></span>
     </button>
   
-</h4>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Configure a destination pointing to the remote FTP directory</span>
-</span></span><span class="line"><span class="cl">$ plakar destination add ftp_dst ftp://ftp.example.org/upload
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Restore a snapshot to the remote FTP directory</span>
-</span></span><span class="line"><span class="cl">$ plakar at /var/backups restore -to <span class="s2">&#34;@ftp_dst&#34;</span> &lt;snapshot_id&gt;</span></span></code></pre></div></div>
-
-
-<h4 id="options-1" class="group pr-8">Options
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="options-1"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h4>
-<p>These options can be set when configuring the destination connector with
-<code>plakar destination add</code> or <code>plakar destination set</code>:</p>
+</h3>
+<p>The following options apply to both source and destination connectors. They are
+set with <code>plakar source add</code> or <code>plakar destination add</code>, and changed with
+<code>plakar source set</code> or <code>plakar destination set</code>.</p>
 <table>
   <thead>
       <tr>
           <th>Option</th>
-          <th>Purpose</th>
+          <th>Required</th>
+          <th>Description</th>
       </tr>
   </thead>
   <tbody>
       <tr>
           <td><code>location</code></td>
-          <td><code>ftp://[user[:password]@]host[:port]/path</code> of the remote directory to restore to</td>
+          <td>Yes</td>
+          <td><code>ftp://[user[:password]@]host[:port]/path</code>. The remote directory to back up, or the remote directory to restore to.</td>
       </tr>
       <tr>
           <td><code>username</code></td>
-          <td>The username to authenticate as. Overrides the URI user.</td>
+          <td>No</td>
+          <td>The username to authenticate as. Ignored when <code>location</code> includes a user.</td>
       </tr>
       <tr>
           <td><code>password</code></td>
-          <td>The password to authenticate with. Overrides the URI password.</td>
+          <td>No</td>
+          <td>The password to authenticate with. Ignored when <code>location</code> includes a password.</td>
+      </tr>
+      <tr>
+          <td><code>port</code></td>
+          <td>No</td>
+          <td>FTP server port, used when <code>location</code> has no port. Defaults to <code>21</code>.</td>
+      </tr>
+      <tr>
+          <td><code>root</code></td>
+          <td>No</td>
+          <td>Absolute path of the remote directory. Overrides the path in <code>location</code>. Defaults to <code>/</code> when neither is set.</td>
+      </tr>
+      <tr>
+          <td><code>tls</code></td>
+          <td>No</td>
+          <td>TLS mode: <code>explicit</code>, <code>implicit</code> or <code>none</code>. Defaults to <code>explicit</code>. See <a href="/docs/community/v1.1.0/integrations/ftp/#transport-security" >Transport security</a>.</td>
+      </tr>
+      <tr>
+          <td><code>tls_insecure_no_verify</code></td>
+          <td>No</td>
+          <td>Set to <code>true</code> to skip server certificate verification. Required with <code>tls=none</code>. Defaults to <code>false</code>.</td>
       </tr>
   </tbody>
 </table>
+
+
+<h3 id="destination-configuration" class="group pr-8">Destination configuration
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="destination-configuration"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>The following option is available to the destination connector, in addition to
+those in <a href="/docs/community/v1.1.0/integrations/ftp/#shared-configuration" >Shared configuration</a>.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Option</th>
+          <th>Required</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>skip_permissions</code></td>
+          <td>No</td>
+          <td>Restore without setting file and directory permissions. Defaults to <code>false</code>. See <a href="/docs/community/v1.1.0/integrations/ftp/#limitations-and-scope" >Limitations and scope</a>.</td>
+      </tr>
+  </tbody>
+</table>
+
+
+<h3 id="restore-behaviour" class="group pr-8">Restore behaviour
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="restore-behaviour"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Restore sets the permissions of each restored file and directory, including the
+setuid, setgid, and sticky bits, using the <code>SITE CHMOD</code> command. The destination
+directory itself keeps its existing permissions. File ownership is not restored.</p>
+<p>Restored files are written only inside the destination directory. A snapshot
+entry whose path would resolve outside it, for example through <code>..</code> components,
+is reported as failed and skipped.</p>
+
+
+<h3 id="example" class="group pr-8">Example
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="example"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Back up a remote directory:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Configure a source pointing to the remote FTP directory</span>
+</span></span><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add ftp_src ftp://ftp.example.org/pub/somedirectory
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Back up the remote directory to a Kloset store on the filesystem</span>
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups backup <span class="s2">&#34;@ftp_src&#34;</span></span></span></code></pre></div></div>
+<p>Restore a snapshot to a remote directory:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Configure a destination pointing to the remote FTP directory</span>
+</span></span><span class="line"><span class="cl">$ plakar destination add ftp_dst ftp://ftp.example.org/upload
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Restore a snapshot to the remote FTP directory</span>
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups restore -to <span class="s2">&#34;@ftp_dst&#34;</span> &lt;snapshot_id&gt;</span></span></code></pre></div></div>
 
 
 <h2 id="limitations-and-scope" class="group pr-8">Limitations and scope
@@ -5192,10 +5263,17 @@ Store --> Plakar --> Via --> FS
     </button>
   
 </h2>
-<p><strong>Snapshot consistency</strong></p>
-<p>Changes during backup (creates, updates, deletes) may result in a snapshot that
-reflects different points in time for different files. For highly dynamic paths,
-consider quiescing the workload or backing up from a read-only replica.</p>
+<p>Files that are created, updated or deleted during a backup can leave the
+snapshot reflecting different points in time for different files. For highly
+dynamic paths, quiesce the workload or back up from a read-only replica.</p>
+<p><strong>Permissions on servers without <code>SITE CHMOD</code></strong></p>
+<p><code>SITE CHMOD</code> is a common extension rather than part of the core FTP standard
+(RFC 959). On a server that lacks or refuses it, such as most Windows servers,
+every restored file and directory is reported as failed, even though the files
+are written. Earlier versions of the FTP package did not set permissions, so
+restores to such servers start reporting failures after upgrading to v1.1.3. Set
+<code>skip_permissions=true</code> on the destination to restore without setting
+permissions.</p>
 
 
 <h2 id="see-also" class="group pr-8">See also
@@ -5346,7 +5424,7 @@ consider quiescing the workload or backing up from a read-only replica.</p>
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#installation">Installation</a></li><li><a href="#connectors">Connectors</a><ul><li><a href="#source-connector">Source connector</a><ul><li><a href="#configure">Configure</a></li><li><a href="#options">Options</a></li></ul></li><li><a href="#destination-connector">Destination connector</a><ul><li><a href="#configure-1">Configure</a></li><li><a href="#options-1">Options</a></li></ul></li></ul></li><li><a href="#limitations-and-scope">Limitations and scope</a></li><li><a href="#see-also">See also</a></li></ul>
+      <ul><li><a href="#installation">Installation</a></li><li><a href="#transport-security">Transport security</a></li><li><a href="#configuration">Configuration</a><ul><ul><li><a href="#backup-flow">Backup flow</a></li><li><a href="#restore-flow">Restore flow</a></li></ul></li><li><a href="#shared-configuration">Shared configuration</a></li><li><a href="#destination-configuration">Destination configuration</a></li><li><a href="#restore-behaviour">Restore behaviour</a></li><li><a href="#example">Example</a></li></ul></li><li><a href="#limitations-and-scope">Limitations and scope</a></li><li><a href="#see-also">See also</a></li></ul>
     </div>
 
     

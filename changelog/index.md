@@ -11,4 +11,63 @@
 - [Plakar v1.1.5](index.md): A security-focused patch release. Plakar now refuses to open an unencrypted Kloset store unless you opt in, plugins are signature-checked at install time, and the HTTP store and server were hardened.
 
 
+## [Plakar Operator](https://www.stg.plakar.io/changelog/plakar-operator/index.md)
+
+- [Plakar Operator v0.1.0](index.md): Adapts the operator to the new plakman API and fixes Helm chart image tagging.
+- [Plakar Operator v0.0.3](index.md): Adds a Restore CRD, TaskRun reporting, EdgeTags, and connector reachability checks.
+- [Plakar Operator v0.0.2](index.md): Adds Destination, task, and multi-group CRDs, a Helm chart, and a full regression test suite backed by a fake control plane.
+
+
+## [Kubernetes](https://www.stg.plakar.io/changelog/k8s/index.md)
+
+- [Kubernetes v1.1.11](index.md): Adds namespace remapping on restore, PVC ignore patterns, and cluster-level inventory entries.
+- [Kubernetes v1.1.10](index.md): Adds KubeVirt VM support, Block PVC, namespace filtering, and mTLS between Plakar and the pod.
+- [Kubernetes v1.1.9](index.md): Secures pod communication with mTLS, adds a readiness probe, and hardens resource cleanup and error handling.
+- [Kubernetes v1.1.8](index.md): Makes kubeconfig optional in the schema.
+- [Kubernetes v1.1.7](index.md): Fixes inventory endpoint paths, Root(), and PVC existence checks.
+- [Kubernetes v1.1.6](index.md): Exposes the inventory schema for the Plakar Control Plane.
+- [Kubernetes v1.1.5](index.md): Bundles the inventory and adds Endpoints to it.
+- [Kubernetes v1.1.3](index.md): Fixes the PVC exporter validator and adds manifest classes.
+
+
+## [FTP](https://www.stg.plakar.io/changelog/ftp/index.md)
+
+- [FTP v1.1.3](index.md): A security release. FTPS is now the default and restore sets file permissions.
+
+
+## [MySQL](https://www.stg.plakar.io/changelog/mysql/index.md)
+
+- [MySQL v1.1.0](index.md): Hardens Cloud SQL proxy support and dump filename validation.
+- [MySQL v1.1.1](index.md): Adds SSL file parameters and skips account listing for single-database backups.
+
+
+## [OpenStack](https://www.stg.plakar.io/changelog/openstack/index.md)
+
+- [OpenStack v1.1.1](index.md): Adds block storage and Nova instance backup and restore, and fixes encrypted volume handling.
+- [OpenStack v1.1.0](index.md): First release. Backs up and restores Nova, Cinder, Swift, Trove, and Glance resources.
+
+
+## [SFTP](https://www.stg.plakar.io/changelog/sftp/index.md)
+
+- [SFTP v1.1.9](index.md): A security release that hardens restores.
+- [SFTP v1.1.8](index.md): Read-only OpenSSH servers can be used as a store again.
+- [SFTP v1.1.7](index.md): Stores check for the rename extension they need, and <code>set_owner</code> keeps setuid and setgid bits.
+- [SFTP v1.1.6](index.md): A rework of the integration with faster restores, host key verification and path containment checks.
+- [SFTP v1.1.5](index.md): Adds the <code>set_owner</code> option and fixes hardlinks and Windows support.
+- [SFTP v1.1.4](index.md): Backups record file ownership.
+
+
+## [Rclone](https://www.stg.plakar.io/changelog/rclone/index.md)
+
+- [Rclone v1.1.2](index.md): Fixes a context lifecycle bug that could stall the rclone filesystem.
+- [Rclone v1.1.1](index.md): Skips partially written files during backup.
+- [Rclone v1.1.0](index.md): Full rewrite of the rclone integration with automated tests.
+
+
+## [S3](https://www.stg.plakar.io/changelog/s3/index.md)
+
+- [S3 v1.1.7](index.md): Increases connection pool size and fixes prefix handling in virtual-host mode.
+- [S3 v1.1.6](index.md): Adds optional region configuration, retry logic, and fixes silent errors during listing.
+
+
 

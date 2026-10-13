@@ -126,8 +126,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.356b96a31e74656a7f36a6a626e2de5bd7cf6d4cdb7d28a8d6554ade92d0e324cc3f76688ba1777600644c3f2eb7b60ba04b48412e729438ecf68d5b7e6ebdc4.css"
-    integrity="sha512-NWuWox50ZWp/NqamJuLeW9fPbUzbfSio1lVK3pLQ4yTMP3Zoi6F3dgBkTD8ut7YLoEtIQS5ylDjs9o1bfm69xA==">
+    href="/css/main.bundle.min.0f4a3fc97df8fd147116c4b5d648bedf3613a4ef0183f9a813e663a07ae5d4419e2bf7dac8d6d53b661ff9dc9ed89c9dc9452ee8e5fb0897bf785bd310951ce7.css"
+    integrity="sha512-D0o/yX34/RRxFsS11ki&#43;3zYTpO8Bg/moE&#43;ZjoHrl1EGeK/fayNbVO2Yf&#43;dye2JydyUUu6OX7CJe/eFvTEJUc5w==">
   
     
     <script defer src="/lib/zoom/zoom.min.umd.a527109b68c082a70f3697716dd72a9d5aa8b545cf800cecbbc7399f2ca6f6e0ce3e431f2062b48bbfa47c9ea42822714060bef309be073f49b9c0e30d318d7b.js" integrity="sha512-pScQm2jAgqcPNpdxbdcqnVqotUXPgAzsu8c5nyym9uDOPkMfIGK0i7&#43;kfJ6kKCJxQGC&#43;8wm&#43;Bz9JucDjDTGNew=="></script>
@@ -229,7 +229,7 @@
     "dateCreated": "2026-09-07T00:00:00\u002b00:00",
     "datePublished": "2026-09-07T00:00:00\u002b00:00",
     
-    "dateModified": "2026-10-13T07:23:57\u002b03:00",
+    "dateModified": "2026-10-13T15:01:56\u002b03:00",
     
     
     
@@ -2018,9 +2018,6 @@
 
 
 
-
-
-
   
 
   
@@ -2032,12 +2029,19 @@
 
   
   <aside class="hidden lg:block w-64 shrink-0">
-    <div class="sticky top-28 overflow-y-auto max-h-[calc(100vh-8rem)]">
+    <div class="sticky top-28">
       <aside class="flex flex-col gap-4 h-full">
+  <a href="/changelog/"
+     class="inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-500 hover:text-primary-500 transition-colors">
+    <span class="w-3.5 h-3.5 shrink-0"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M7.82843 10.9999H20V12.9999H7.82843L13.1924 18.3638L11.7782 19.778L4 11.9999L11.7782 4.22168L13.1924 5.63589L7.82843 10.9999Z"></path></svg>
+</span></span>
+    All changelogs
+  </a>
+
   <div class="relative changelog-switcher">
   <button type="button"
-          class="changelog-switcher-btn w-full flex items-center justify-between gap-2 px-3 py-2 border border-neutral-200 rounded-lg text-neutral-700 hover:border-neutral-300 bg-neutral-50"
-          aria-haspopup="true" aria-expanded="false">
+      class="changelog-switcher-btn w-full flex items-center justify-between gap-2 px-3 py-2 border border-neutral-200 rounded-lg text-neutral-700 hover:border-neutral-300 bg-neutral-50"
+      aria-haspopup="true" aria-expanded="false">
     <span class="truncate text-sm font-medium">Plakar</span>
     <span class="w-4 h-4 shrink-0 flex items-center justify-center">
       <span class="relative block icon"><svg
@@ -2055,13 +2059,53 @@
 </span>
     </span>
   </button>
-  <div class="changelog-switcher-menu hidden absolute top-full mt-1 w-full bg-neutral-50 border border-neutral-200 rounded-lg z-50 overflow-hidden max-h-80 overflow-y-auto">
+  <div class="changelog-switcher-menu hidden absolute top-full mt-1 w-full bg-neutral-50 border border-neutral-200 rounded-lg z-50 py-1 shadow-sm max-h-80 overflow-y-auto">
     
-      <a href="/changelog/plakar/"
-         class="block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500
-         text-primary-500 bg-neutral-100">
-        Plakar
-      </a>
+      
+        <p class="px-3 pt-2 pb-1 text-xxs font-semibold uppercase tracking-wide text-neutral-400">Products</p>
+        
+          <a href="/changelog/plakar/" class="block mx-1 px-2 py-1.5 rounded-md text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 text-primary-500 bg-neutral-100">
+            Plakar
+          </a>
+        
+          <a href="/changelog/plakar-operator/" class="block mx-1 px-2 py-1.5 rounded-md text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 ">
+            Plakar Operator
+          </a>
+        
+      
+    
+      
+        <p class="px-3 pt-2 pb-1 text-xxs font-semibold uppercase tracking-wide text-neutral-400">Integrations</p>
+        
+          <a href="/changelog/k8s/" class="block mx-1 px-2 py-1.5 rounded-md text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 ">
+            Kubernetes
+          </a>
+        
+          <a href="/changelog/ftp/" class="block mx-1 px-2 py-1.5 rounded-md text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 ">
+            FTP
+          </a>
+        
+          <a href="/changelog/mysql/" class="block mx-1 px-2 py-1.5 rounded-md text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 ">
+            MySQL
+          </a>
+        
+          <a href="/changelog/openstack/" class="block mx-1 px-2 py-1.5 rounded-md text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 ">
+            OpenStack
+          </a>
+        
+          <a href="/changelog/sftp/" class="block mx-1 px-2 py-1.5 rounded-md text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 ">
+            SFTP
+          </a>
+        
+          <a href="/changelog/rclone/" class="block mx-1 px-2 py-1.5 rounded-md text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 ">
+            Rclone
+          </a>
+        
+          <a href="/changelog/s3/" class="block mx-1 px-2 py-1.5 rounded-md text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 ">
+            S3
+          </a>
+        
+      
     
   </div>
 </div>
@@ -2070,7 +2114,7 @@
   
     <nav class="flex flex-col">
       <p class="text-xxs font-semibold uppercase tracking-[0.13em] text-neutral-400 mb-3">Releases</p>
-      <ul class="flex flex-col border-l border-neutral-200">
+      <ul class="flex flex-col border-l border-neutral-200 overflow-y-auto max-h-[calc(100vh-20rem)]">
         
           <li>
             <a href="#v1-1-7"
@@ -2117,7 +2161,11 @@
 
     
     <div class="flex flex-wrap items-start gap-5">
-      <img class="w-14 h-14 shrink-0 p-2 rounded-xl bg-primary-50 border border-primary-100" src="/img/logos/plakar-logo-icon.svg" alt="">
+      <div class="w-14 h-14 shrink-0 p-2 rounded-xl bg-primary-50 border border-primary-100 flex items-center justify-center">
+        
+          <img class="w-full h-full object-contain" src="/img/logos/plakar-logo-icon.svg" alt="">
+        
+      </div>
       <div class="flex-1 basis-80 min-w-0">
         <h1 class="text-3xl lg:text-4xl font-bold tracking-tight text-neutral-900">Plakar</h1>
         
@@ -2147,10 +2195,16 @@
 
     
     <div class="lg:hidden mt-8 flex flex-col gap-4">
+      <a href="/changelog/"
+         class="inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-500 hover:text-primary-500 transition-colors">
+        <span class="w-3.5 h-3.5 shrink-0"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M7.82843 10.9999H20V12.9999H7.82843L13.1924 18.3638L11.7782 19.778L4 11.9999L11.7782 4.22168L13.1924 5.63589L7.82843 10.9999Z"></path></svg>
+</span></span>
+        All changelogs
+      </a>
       <div class="relative changelog-switcher">
   <button type="button"
-          class="changelog-switcher-btn w-full flex items-center justify-between gap-2 px-3 py-2 border border-neutral-200 rounded-lg text-neutral-700 hover:border-neutral-300 bg-neutral-50"
-          aria-haspopup="true" aria-expanded="false">
+      class="changelog-switcher-btn w-full flex items-center justify-between gap-2 px-3 py-2 border border-neutral-200 rounded-lg text-neutral-700 hover:border-neutral-300 bg-neutral-50"
+      aria-haspopup="true" aria-expanded="false">
     <span class="truncate text-sm font-medium">Plakar</span>
     <span class="w-4 h-4 shrink-0 flex items-center justify-center">
       <span class="relative block icon"><svg
@@ -2168,13 +2222,53 @@
 </span>
     </span>
   </button>
-  <div class="changelog-switcher-menu hidden absolute top-full mt-1 w-full bg-neutral-50 border border-neutral-200 rounded-lg z-50 overflow-hidden max-h-80 overflow-y-auto">
+  <div class="changelog-switcher-menu hidden absolute top-full mt-1 w-full bg-neutral-50 border border-neutral-200 rounded-lg z-50 py-1 shadow-sm max-h-80 overflow-y-auto">
     
-      <a href="/changelog/plakar/"
-         class="block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500
-         text-primary-500 bg-neutral-100">
-        Plakar
-      </a>
+      
+        <p class="px-3 pt-2 pb-1 text-xxs font-semibold uppercase tracking-wide text-neutral-400">Products</p>
+        
+          <a href="/changelog/plakar/" class="block mx-1 px-2 py-1.5 rounded-md text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 text-primary-500 bg-neutral-100">
+            Plakar
+          </a>
+        
+          <a href="/changelog/plakar-operator/" class="block mx-1 px-2 py-1.5 rounded-md text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 ">
+            Plakar Operator
+          </a>
+        
+      
+    
+      
+        <p class="px-3 pt-2 pb-1 text-xxs font-semibold uppercase tracking-wide text-neutral-400">Integrations</p>
+        
+          <a href="/changelog/k8s/" class="block mx-1 px-2 py-1.5 rounded-md text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 ">
+            Kubernetes
+          </a>
+        
+          <a href="/changelog/ftp/" class="block mx-1 px-2 py-1.5 rounded-md text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 ">
+            FTP
+          </a>
+        
+          <a href="/changelog/mysql/" class="block mx-1 px-2 py-1.5 rounded-md text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 ">
+            MySQL
+          </a>
+        
+          <a href="/changelog/openstack/" class="block mx-1 px-2 py-1.5 rounded-md text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 ">
+            OpenStack
+          </a>
+        
+          <a href="/changelog/sftp/" class="block mx-1 px-2 py-1.5 rounded-md text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 ">
+            SFTP
+          </a>
+        
+          <a href="/changelog/rclone/" class="block mx-1 px-2 py-1.5 rounded-md text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 ">
+            Rclone
+          </a>
+        
+          <a href="/changelog/s3/" class="block mx-1 px-2 py-1.5 rounded-md text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 ">
+            S3
+          </a>
+        
+      
     
   </div>
 </div>
