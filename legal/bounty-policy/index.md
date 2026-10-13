@@ -312,5 +312,5 @@ On: [Current Date]
 
 **Signature of the Beneficiary:** [Your Signature]
 
-[bounty-roadmap]: /community/#bounty-program
+[bounty-roadmap]: /community
 

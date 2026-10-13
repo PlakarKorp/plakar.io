@@ -84,7 +84,7 @@ referenced by any snapshot. Those chunks are marked as candidates for deletion
 and held for a grace period before removal.
 
 Maintenance can be automated using the Plakar scheduler. See
-[Scheduling tasks](../../guides/scheduling) for details.
+[Scheduling tasks](../../guides/setup-scheduler-daily-backups) for details.
 
 ### The grace period
 

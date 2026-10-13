@@ -137,7 +137,8 @@ allocation.
 Configure the remaining instance options as needed for your environment.
 
 If your environment requires outbound traffic to pass through a proxy, configure
-it as described in the [Proxy Configuration](#proxy-configuration) section.
+it as described in the
+[Proxy and Harbor Configuration](#proxy-and-harbor-configuration) section.
 
 If SSH access was enabled when creating the custom template, select the SSH key
 pair to authorize for the instance.

@@ -61,7 +61,7 @@ When creating the new store:
 
 After the new store has been created, create a sync task from the old store to
 the new store. The old store is used as the source. The new store is used as the
-destination. See the [sync task documentation](../apps/stores#sync-store-task)
+destination. See the [sync task documentation](../scheduling/tasks#sync-task)
 for details on creating and running scheduled tasks. When configuring the sync
 task:
 

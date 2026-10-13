@@ -4,6 +4,14 @@
 
 
 
+## [Backing up MongoDB with Plakar](https://www.stg.plakar.io/posts/2026-10-13/backing-up-mongodb-with-plakar/index.md)
+
+
+
+## [Backing up VMware for free with Plakar OSS](https://www.stg.plakar.io/posts/2026-10-08/backing-up-vmware-with-plakar-oss/index.md)
+
+
+
 ## [Resilience as Code, because backup should be Infrastructure.](https://www.stg.plakar.io/posts/2026-09-23/resilience-as-code-kubernetes-operator/index.md)
 
 

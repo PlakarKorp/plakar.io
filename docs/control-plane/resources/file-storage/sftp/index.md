@@ -68,6 +68,28 @@ flowchart TD
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
+#### Store flow
+
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+flowchart TD
+  Source["Source data"]
+
+  subgraph Plakar["Plakar Control Plane"]
+    Backup["Backup process<br/>Encrypt & deduplicate"]
+    StoreApp["SFTP<br/>Store app"]
+  end
+
+  subgraph Remote["Remote Machine"]
+    Kloset["Kloset Store<br/>Root path"]
+  end
+
+  Source --> Backup
+  Backup --> StoreApp
+  StoreApp -->|"SSH/SFTP connection"| Kloset
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
+
 ## Shared configuration
 
 The following settings are available when configuring a source, store, or
@@ -104,6 +126,16 @@ The following extra settings are available when configuring a store app.
 - **Kloset Passphrase**: The passphrase Plakar Control Plane uses to encrypt the
   store. This passphrase is required to access the store and must be kept safe.
 
+## Store requirements
+
+Writing to a Kloset store requires the remote machine to support the
+`posix-rename@openssh.com` SFTP extension, which OpenSSH provides. Plakar checks
+for it on the first write to the store and fails with an error if it is missing.
+
+Reading from a store does not need the extension. A store on an OpenSSH server
+running in read-only mode (`sftp-server -R`), which does not advertise it, can
+be used as the source of a sync or browsed in the UI.
+
 ## Destination configuration
 
 The following extra settings are available when configuring a destination app.
@@ -115,10 +147,27 @@ The following extra settings are available when configuring a destination app.
   setgid and sticky bits, on restored files and directories. Disabled by
   default.
 
+## Restore behaviour
+
+Restored files and directories receive their final permissions when they are
+created, so restored content is never readable by more users than the snapshot
+allows, even while the restore is running. Directories keep owner read, write
+and execute permissions until the restore finishes, so that a read-only
+directory can still be populated, and then receive their final mode.
+
+Symbolic links are restored only if their target resolves inside the
+destination's root path. Relative targets are resolved from the link's location,
+and absolute targets are compared as paths on the remote machine. A link whose
+target falls outside the root path, such as `../../etc/passwd` or
+`/usr/bin/python3` restored under `/srv/restore`, is reported as failed and is
+not created.
+
 ## Permissions
 
 The SSH user configured for PCP must have read access to the paths being backed
-up. For store or destination use, write access is also required. It is
-recommended to create a dedicated user and keypair for Plakar Control Plane
-rather than reusing personal credentials.
+up. For destination use, write access is also required. A store needs write
+access to receive backups, but can be read from with read access only. See
+[Store requirements](#store-requirements). It is recommended to create a
+dedicated user and keypair for Plakar Control Plane rather than reusing personal
+credentials.
 

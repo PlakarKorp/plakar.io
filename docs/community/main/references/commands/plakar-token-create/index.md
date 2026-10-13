@@ -23,8 +23,8 @@
 <h2 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h2>
 <p class="Pp">The <code class="Nm">plakar token create</code> command generates
     a token that can be used to authenticate with
-    <a class="Xr" href="../plakar-login/" aria-label="plakar-login, section
-    1">plakar-login(1)</a>.</p>
+    <a class="Xr" href="https://man.openbsd.org/plakar-login.%s" aria-label="plakar-login,
+    section 1">plakar-login(1)</a>.</p>
 </section>
 <section class="Sh">
 <h2 class="Sh" id="EXAMPLES"><a class="permalink" href="#EXAMPLES">EXAMPLES</a></h2>
@@ -42,12 +42,12 @@ $ plakar login -env</pre>
 <section class="Sh">
 <h2 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
   ALSO</a></h2>
-<p class="Pp"><a class="Xr" href="../plakar/" aria-label="plakar, section
-    1">plakar(1)</a>,
-    <a class="Xr" href="../plakar-login/" aria-label="plakar-login, section
-    1">plakar-login(1)</a>,
-    <a class="Xr" href="../plakar-service/" aria-label="plakar-service, section
-    1">plakar-service(1)</a></p>
+<p class="Pp"><a class="Xr" href="https://man.openbsd.org/plakar.%s" aria-label="plakar,
+    section 1">plakar(1)</a>,
+    <a class="Xr" href="https://man.openbsd.org/plakar-login.%s" aria-label="plakar-login,
+    section 1">plakar-login(1)</a>,
+    <a class="Xr" href="https://man.openbsd.org/plakar-service.%s" aria-label="plakar-service,
+    section 1">plakar-service(1)</a></p>
 </section>
 </main>
 <div class="foot" role="doc-pagefooter" aria-label="Manual footer

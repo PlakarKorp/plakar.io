@@ -13,8 +13,8 @@
 <section class="Sh">
 <h2 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h2>
 <p class="Pp">What follows is a set of command line arguments that many
-    <a class="Xr" href="../plakar/" aria-label="plakar, section 1">plakar(1)</a>
-    subcommands provide to filter snapshots.</p>
+    <a class="Xr" href="https://man.openbsd.org/plakar.%s" aria-label="plakar,
+    section 1">plakar(1)</a> subcommands provide to filter snapshots.</p>
 <p class="Pp">There are two kind of flags:</p>
 <dl class="Bl-tag">
   <dt>matchers</dt>

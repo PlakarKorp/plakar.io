@@ -27,10 +27,10 @@
 <p class="Pp">If <var class="Ar">plugin</var> matches an existing local file, it
     is installed directly. Otherwise, it is treated as a recipe name and
     downloaded from the Plakar plugin server which requires a login via the
-    <a class="Xr" href="../plakar-login/" aria-label="plakar-login, section
-    1">plakar-login(1)</a> command.</p>
+    <a class="Xr" href="https://man.openbsd.org/plakar-login.%s" aria-label="plakar-login,
+    section 1">plakar-login(1)</a> command.</p>
 <p class="Pp">Installing plugins without logging in is possible via the
-    <a class="Xr" href="../plakar-pkg-build/" aria-label="plakar-pkg-build,
+    <a class="Xr" href="https://man.openbsd.org/plakar-pkg-build.%s" aria-label="plakar-pkg-build,
     section 1">plakar-pkg-build(1)</a> command, provided you have the necessary
     dependencies to build it locally (currently, official plugins require make
     and a working Go toolchain).</p>
@@ -62,15 +62,15 @@
 <section class="Sh">
 <h2 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
   ALSO</a></h2>
-<p class="Pp"><a class="Xr" href="../plakar-login/" aria-label="plakar-login,
+<p class="Pp"><a class="Xr" href="https://man.openbsd.org/plakar-login.%s" aria-label="plakar-login,
     section 1">plakar-login(1)</a>,
-    <a class="Xr" href="../plakar-pkg-build/" aria-label="plakar-pkg-build,
+    <a class="Xr" href="https://man.openbsd.org/plakar-pkg-build.%s" aria-label="plakar-pkg-build,
     section 1">plakar-pkg-build(1)</a>,
-    <a class="Xr" href="../plakar-pkg-create/" aria-label="plakar-pkg-create,
+    <a class="Xr" href="https://man.openbsd.org/plakar-pkg-create.%s" aria-label="plakar-pkg-create,
     section 1">plakar-pkg-create(1)</a>,
-    <a class="Xr" href="../plakar-pkg-rm/" aria-label="plakar-pkg-rm, section
-    1">plakar-pkg-rm(1)</a>,
-    <a class="Xr" href="../plakar-pkg-show/" aria-label="plakar-pkg-show,
+    <a class="Xr" href="https://man.openbsd.org/plakar-pkg-rm.%s" aria-label="plakar-pkg-rm,
+    section 1">plakar-pkg-rm(1)</a>,
+    <a class="Xr" href="https://man.openbsd.org/plakar-pkg-show.%s" aria-label="plakar-pkg-show,
     section 1">plakar-pkg-show(1)</a></p>
 </section>
 </main>

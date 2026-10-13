@@ -96,7 +96,7 @@ connectors:
 <section class="Sh">
 <h2 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
   ALSO</a></h2>
-<p class="Pp"><a class="Xr" href="../plakar-pkg-create/" aria-label="plakar-pkg-create,
+<p class="Pp"><a class="Xr" href="https://man.openbsd.org/plakar-pkg-create.%s" aria-label="plakar-pkg-create,
     section 1">plakar-pkg-create(1)</a></p>
 </section>
 </main>

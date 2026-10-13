@@ -15,7 +15,87 @@ documentation.
 
 
 
+## [diff](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-diff/index.md)
+
+
+
+## [digest](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-digest/index.md)
+
+
+
+## [dup](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-dup/index.md)
+
+
+
+## [info](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-info/index.md)
+
+
+
+## [locate](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-locate/index.md)
+
+
+
+## [login](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-login/index.md)
+
+
+
+## [logout](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-logout/index.md)
+
+
+
+## [ls](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-ls/index.md)
+
+
+
+## [maintenance](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-maintenance/index.md)
+
+
+
+## [mount](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-mount/index.md)
+
+
+
+## [pkg-add](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-pkg-add/index.md)
+
+
+
+## [pkg-build](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-pkg-build/index.md)
+
+
+
+## [pkg-create](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-pkg-create/index.md)
+
+
+
+## [pkg-manifest.yaml](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-pkg-manifest.yaml/index.md)
+
+
+
+## [pkg-recipe.yaml](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-pkg-recipe.yaml/index.md)
+
+
+
+## [pkg-rm](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-pkg-rm/index.md)
+
+
+
+## [pkg-show](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-pkg-show/index.md)
+
+
+
 ## [plakar](https://www.stg.plakar.io/docs/community/main/references/commands/plakar/index.md)
+
+
+
+## [policy](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-policy/index.md)
+
+
+
+## [prune](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-prune/index.md)
+
+
+
+## [ptar](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-ptar/index.md)
 
 
 
@@ -88,86 +168,6 @@ documentation.
 
 
 ## [diag](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-diag/index.md)
-
-
-
-## [diff](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-diff/index.md)
-
-
-
-## [digest](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-digest/index.md)
-
-
-
-## [dup](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-dup/index.md)
-
-
-
-## [info](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-info/index.md)
-
-
-
-## [locate](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-locate/index.md)
-
-
-
-## [login](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-login/index.md)
-
-
-
-## [logout](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-logout/index.md)
-
-
-
-## [ls](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-ls/index.md)
-
-
-
-## [maintenance](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-maintenance/index.md)
-
-
-
-## [mount](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-mount/index.md)
-
-
-
-## [pkg-add](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-pkg-add/index.md)
-
-
-
-## [pkg-build](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-pkg-build/index.md)
-
-
-
-## [pkg-create](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-pkg-create/index.md)
-
-
-
-## [pkg-manifest.yaml](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-pkg-manifest.yaml/index.md)
-
-
-
-## [pkg-recipe.yaml](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-pkg-recipe.yaml/index.md)
-
-
-
-## [pkg-rm](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-pkg-rm/index.md)
-
-
-
-## [pkg-show](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-pkg-show/index.md)
-
-
-
-## [policy](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-policy/index.md)
-
-
-
-## [prune](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-prune/index.md)
-
-
-
-## [ptar](https://www.stg.plakar.io/docs/community/main/references/commands/plakar-ptar/index.md)
 
 
 
