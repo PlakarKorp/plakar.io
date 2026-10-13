@@ -68,7 +68,7 @@ Create the project structure:
 ```
 .
 ├── connector.go        # Connector implementation
-├── plugin/
+├── cmd/
 │   └── importer/
 │       └── main.go     # Importer entry point
 ├── manifest.yaml       # Manifest describing the integration
@@ -95,16 +95,12 @@ import (
 	"path/filepath"
 
 	"github.com/PlakarKorp/kloset/connectors"
-	"github.com/PlakarKorp/kloset/connectors/importer"
 	"github.com/PlakarKorp/kloset/location"
+	"github.com/PlakarKorp/kloset/connectors/importer"
 	"github.com/PlakarKorp/kloset/objects"
 )
 
 const FILE = "/home/user/Documents/notes.md"
-
-func init() {
-	importer.Register("example", location.FLAG_LOCALFS, NewImporter)
-}
 
 type testConnector struct{}
 
@@ -143,7 +139,6 @@ func (f *testConnector) Import(ctx context.Context, records chan<- *connectors.R
 }
 ```
 
-The flags passed to `Register` and returned by `Flags()` must match.
 `FLAG_LOCALFS` tells Plakar the location is a local filesystem path. A file that
 cannot be read is reported with `connectors.NewError()` rather than failing the
 whole backup.
@@ -160,7 +155,7 @@ whole backup.
 
 ## Create the entry point
 
-Create `plugin/importer/main.go`:
+Create `cmd/importer/main.go`:
 
 ```go
 package main
@@ -219,22 +214,31 @@ for the optional fields.
 Create a `Makefile`:
 
 ```makefile
-VERSION ?= v1.0.0
+GO      = go
+PLAKAR  = plakar
+VERSION = v1.0.0
+
+all: build
 
 build:
-	go build -o example-importer ./plugin/importer
+	${GO} build -o example-importer ./cmd/importer
 
-create:
-	plakar pkg create manifest.yaml $(VERSION)
+package: build
+	rm -f example_${VERSION}_*.ptar
+	${PLAKAR} pkg create ./manifest.yaml ${VERSION}
 
-install:
-	plakar pkg add -allow-unsigned ./example_$(VERSION)_$$(go env GOOS)_$$(go env GOARCH).ptar
-```
+uninstall:
+	-${PLAKAR} pkg rm example
 
-Then build:
+install: package
+	${PLAKAR} pkg add -allow-unsigned ./example_${VERSION}_*.ptar
 
-```bash
-make build
+reinstall: uninstall install
+
+clean:
+	rm -f example-importer example_${VERSION}*.ptar
+
+.PHONY: all build package uninstall install reinstall clean
 ```
 
 {{< /step >}}
@@ -243,23 +247,24 @@ make build
 
 ## Package and install
 
-Package the integration into a `.ptar` file:
-
-```bash
-make create
-```
-
-This runs `plakar pkg create`, which writes `example_v1.0.0_<os>_<arch>.ptar` in
-the current directory, for example `example_v1.0.0_linux_amd64.ptar`.
-
-Install it:
+Package and install the integration in one step:
 
 ```bash
 make install
 ```
 
-`plakar pkg add` expects a signed package by default. A local build is unsigned,
-so the `install` target passes `-allow-unsigned`.
+This builds the binary, runs `plakar pkg create` to produce
+`example_v1.0.0_<os>_<arch>.ptar`, and installs it with `plakar pkg add`. A
+local build is unsigned, so the `install` target passes `-allow-unsigned`.
+
+To update an existing installation:
+
+```bash
+make reinstall
+```
+
+This removes the previously installed package with `plakar pkg rm` before
+installing the new one.
 
 Verify the installation:
 
@@ -303,8 +308,8 @@ from the `config` map passed to your constructor.
 `location.FLAG_STREAM` to your flags. Plakar then calls `Import` only once.
 
 **Adding exporter or storage connectors.** Implement the `Exporter` or `Store`
-interface, register it in `init()`, add an entry point under `plugin/`, and add
-a connector entry to `manifest.yaml`.
+interface, add an entry point under `cmd/`, and add a connector entry to
+`manifest.yaml`.
 
 See the [SDK reference](../../references/go-kloset-sdk) for the full interface
 definitions and the
