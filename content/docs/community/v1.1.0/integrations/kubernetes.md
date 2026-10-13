@@ -289,6 +289,7 @@ spec:
       storage: 1Gi
   accessModes:
     - ReadWriteOnce
+EOF
 
 plakar restore -to k8s+pvc:/storage/pristine abcdef:
 ```
