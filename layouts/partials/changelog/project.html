@@ -1,23 +1,39 @@
 {{- $page := . -}}
 {{- $repo := $page.Params.repo | default "" -}}
+{{- $category := $page.Params.category | default "product" -}}
 
 {{- $releases := partial "utils/sort-by-version.html" $page.RegularPages -}}
 
 {{- $latest := "" -}}
 {{- $latestDate := "" -}}
+{{- $latestStage := "" -}}
 {{- with $releases -}}
   {{- $latest = (index . 0).Params.version -}}
   {{- $latestDate = (index . 0).Date -}}
+  {{- $latestStage = (index . 0).Params.stage | default "stable" -}}
+{{- end -}}
+
+{{- $logo := "" -}}
+{{- with $page.Params.image -}}
+  {{- with resources.Get . -}}{{- $logo = . -}}{{- end -}}
+{{- else -}}
+  {{- if eq $category "product" -}}
+    {{- $logo = resources.Get "img/logos/plakar-logo-icon.svg" -}}
+  {{- end -}}
 {{- end -}}
 
 {{- return (dict
   "title"       $page.Title
   "url"         $page.RelPermalink
   "tagline"     ($page.Params.tagline | default "")
+  "category"    $category
+  "logo"        $logo
   "repo"        $repo
+  "tagPrefix"   ($page.Params.tag_prefix | default "")
   "releasesURL" (cond (ne $repo "") (printf "https://github.com/%s/releases" $repo) "")
   "releases"    $releases
   "count"       (len $releases)
   "latest"      $latest
   "latestDate"  $latestDate
+  "latestStage" $latestStage
 ) -}}

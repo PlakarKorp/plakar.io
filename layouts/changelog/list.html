@@ -1,0 +1,59 @@
+{{ define "main" }}
+<div data-pagefind-filter="section:Changelog" hidden></div>
+
+{{ $groups := partial "changelog/groups.html" . }}
+
+<!-- Hero -->
+<section class="section-light-2 grid-background px-4 pt-44 pb-16">
+  <div class="max-w-350 mx-auto flex flex-col items-center">
+    <h1 class="text-center font-bold tracking-tight leading-[1.05] text-4xl lg:text-6xl mb-4.5">
+      Plakar <span class="text-primary-500">Changelog</span>
+    </h1>
+    <p class="text-center text-neutral-700 text-[16.5px] max-w-[62ch]">
+      What shipped, release by release, for Plakar products and integrations.
+    </p>
+  </div>
+</section>
+
+<!-- Products -->
+<section class="section-light-2 px-4 pb-12">
+  <div class="max-w-350 mx-auto px-5 flex flex-col gap-5">
+    <div class="flex flex-col gap-1.5">
+      <h2 class="text-2xl lg:text-3xl font-bold tracking-tight text-neutral-900">Products</h2>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {{ range $groups.products }}
+        {{ partial "changelog/project-card.html" (dict "project" .) }}
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<!-- Integrations -->
+<section class="section-light-2 px-4 pb-16">
+  <div class="max-w-350 mx-auto px-5 flex flex-col gap-5">
+    <div class="flex flex-col gap-1.5">
+      <h2 class="text-2xl lg:text-3xl font-bold tracking-tight text-neutral-900">Integrations</h2>
+      <p class="text-neutral-600 max-w-[70ch]">
+        Integrations are released independently of Plakar, each with its own version.
+        Browse all of them on the <a href="/integrations/" class="text-primary-500 hover:underline">integrations page</a>.
+      </p>
+    </div>
+    {{ with $groups.integrations }}
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {{ range . }}
+          {{ partial "changelog/project-card.html" (dict "project" .) }}
+        {{ end }}
+      </div>
+    {{ else }}
+      <div class="text-center py-12 sm:py-16 px-4 sm:px-6 bg-neutral-50 border border-dashed border-primary-100 rounded-2xl shadow-sm">
+        <h3 class="text-xl font-semibold text-neutral-900 mb-2">No integration release notes yet</h3>
+        <p class="text-neutral-600 max-w-md mx-auto">
+          Release notes for integration packages will be listed here as they are written.
+        </p>
+      </div>
+    {{ end }}
+  </div>
+</section>
+
+{{ end }}

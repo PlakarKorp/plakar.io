@@ -1,12 +1,18 @@
 {{- $proj := .project -}}
 
 <aside class="flex flex-col gap-4 h-full">
-  {{ partial "changelog/project-switcher.html" (dict "project" $proj "projects" .projects) }}
+  <a href="/changelog/"
+     class="inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-500 hover:text-primary-500 transition-colors">
+    <span class="w-3.5 h-3.5 shrink-0">{{ partial "icon.html" "ri/arrow-left-line" }}</span>
+    All changelogs
+  </a>
+
+  {{ partial "changelog/project-switcher.html" (dict "project" $proj) }}
 
   {{ with .releases }}
     <nav class="flex flex-col">
       <p class="text-xxs font-semibold uppercase tracking-[0.13em] text-neutral-400 mb-3">Releases</p>
-      <ul class="flex flex-col border-l border-neutral-200">
+      <ul class="flex flex-col border-l border-neutral-200 overflow-y-auto max-h-[calc(100vh-20rem)]">
         {{ range . }}
           <li>
             <a href="#{{ .anchor }}"
