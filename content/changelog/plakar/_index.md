@@ -1,6 +1,7 @@
 ---
 title: "Plakar"
 layout: "project"
+category: "product"
 weight: 1
 date: "2026-09-07T00:00:00Z"
 repo: "PlakarKorp/plakar"
