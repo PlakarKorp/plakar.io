@@ -10,8 +10,8 @@ aliases:
 
 # Go Kloset SDK
 
-The Go Kloset SDK builds Plakar integrations as standalone plugins. A plugin
-provides one connector:
+The Go Kloset SDK is used to write Plakar integrations as standalone plugins. A
+plugin provides one connector:
 
 - **Importer** - Reads data from a source during backup
 - **Exporter** - Writes data to a destination during restore
@@ -38,7 +38,7 @@ the connector code in the package root and one `main` package per connector:
 ```
 example/
 ├── connector.go
-├── plugin/
+├── cmd/
 │   ├── importer/main.go
 │   ├── exporter/main.go
 │   └── storage/main.go
@@ -109,27 +109,10 @@ func RunStorageOn(ctx context.Context, ctor storage.StoreFn, listener net.Listen
 
 ## Connectors
 
-Importers, exporters, and storage backends share the same registration pattern,
-a similar constructor, and a common set of methods. The sections below cover
-what they have in common. The [Importers](#importers), [Exporters](#exporters),
-and [Storage](#storage) sections cover what differs.
-
-### Registration
-
-Each connector package provides a `Register` function that associates a protocol
-with a constructor. Integrations call it from `init()`.
-
-```go
-func Register(name string, flags location.Flags, backend ImporterFn) error // importer
-func Register(name string, flags location.Flags, backend ExporterFn) error // exporter
-func Register(name string, flags location.Flags, backend StoreFn) error    // storage
-```
-
-```go
-func init() {
-  importer.Register("myprotocol", 0, NewImporter)
-}
-```
+Importers, exporters, and storage backends share a similar constructor and a
+common set of methods. The sections below cover what they have in common. The
+[Importers](#importers), [Exporters](#exporters), and [Storage](#storage)
+sections cover what differs.
 
 ### Constructors
 
@@ -168,14 +151,14 @@ type Options struct {
 
 Every connector implements these methods:
 
-| Method                   | Description                                                   |
-| ------------------------ | ------------------------------------------------------------- |
-| `Origin() string`        | Source or destination identifier, such as a bucket name in S3 |
-| `Type() string`          | Protocol name                                                 |
-| `Root() string`          | Root path of the location                                     |
-| `Flags() location.Flags` | Location flags, see [Location flags](#location-flags)         |
-| `Ping(ctx) error`        | Tests connectivity before the operation begins                |
-| `Close(ctx) error`       | Releases resources after the operation completes              |
+| Method                   | Description                                                                                                |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------- |
+| `Origin() string`        | Identifies the host and resource, using a path-like `host/resource` convention, for example `s3.example.com/mybucket` |
+| `Type() string`          | Protocol name, for example `s3`                                                                            |
+| `Root() string`          | Root path within the location, for example `/`                                                             |
+| `Flags() location.Flags` | Location flags, see [Location flags](#location-flags)                                                      |
+| `Ping(ctx) error`        | Tests connectivity before the operation begins                                                             |
+| `Close(ctx) error`       | Releases resources after the operation completes                                                           |
 
 ### Location flags
 
@@ -445,9 +428,9 @@ and every file it references. Packaging does not compile anything, so build one
 executable per connector first:
 
 ```bash
-go build -o example-importer ./plugin/importer
-go build -o example-exporter ./plugin/exporter
-go build -o example-storage ./plugin/storage
+go build -o example-importer ./cmd/importer
+go build -o example-exporter ./cmd/exporter
+go build -o example-storage ./cmd/storage
 ```
 
 [`plakar pkg create`](../commands/plakar-pkg-create) then assembles the package
