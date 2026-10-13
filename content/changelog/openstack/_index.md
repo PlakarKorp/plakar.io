@@ -7,6 +7,6 @@ repo: "PlakarKorp/integrations"
 tag_prefix: "openstack/"
 image: "img/integrations/openstack.png"
 tagline:
-  "Back up and restore Nova instances, Cinder volumes, Swift containers,
-  Trove databases, and Glance images on OpenStack."
+  "Back up and restore Nova instances, Cinder volumes, Swift containers, Trove
+  databases, and Glance images on OpenStack."
 ---
