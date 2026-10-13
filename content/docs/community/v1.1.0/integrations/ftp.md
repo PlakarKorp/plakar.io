@@ -10,8 +10,9 @@ summary:
 # FTP
 
 The FTP integration backs up directories from an FTP server and restores
-snapshots to an FTP server. FTP (File Transfer Protocol) is a standard protocol
-for transferring files between a client and a server over TCP/IP.
+snapshots to an FTP server. It supports plain FTP and FTPS (FTP with TLS), with
+FTPS enabled by default. SFTP (SSH File Transfer Protocol) is a different
+protocol handled by the [SFTP integration](../sftp).
 
 The integration includes two connectors:
 
