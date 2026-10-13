@@ -1,6 +1,6 @@
 {{- $products := slice -}}
 {{- $integrations := slice -}}
-{{- range (site.GetPage "/changelog").Sections.ByWeight -}}
+{{- range (site.GetPage "/changelog").Sections -}}
   {{- $proj := partial "changelog/project.html" . -}}
   {{- if eq $proj.category "integration" -}}
     {{- $integrations = $integrations | append $proj -}}
@@ -10,6 +10,6 @@
 {{- end -}}
 
 {{- return (dict
-  "products"     $products
-  "integrations" (sort $integrations "title")
+  "products"     (sort $products "latestDate" "desc")
+  "integrations" (sort $integrations "latestDate" "desc")
 ) -}}
