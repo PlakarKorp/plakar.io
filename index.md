@@ -157,6 +157,14 @@
 ## [Changelog](https://www.plakar.io/changelog/index.md)
 
 - [Plakar](https://www.plakar.io/changelog/plakar/index.md)
+- [Plakar Operator](https://www.plakar.io/changelog/plakar-operator/index.md)
+- [Kubernetes](https://www.plakar.io/changelog/k8s/index.md)
+- [FTP](https://www.plakar.io/changelog/ftp/index.md)
+- [MySQL](https://www.plakar.io/changelog/mysql/index.md)
+- [OpenStack](https://www.plakar.io/changelog/openstack/index.md)
+- [SFTP](https://www.plakar.io/changelog/sftp/index.md)
+- [Rclone](https://www.plakar.io/changelog/rclone/index.md)
+- [S3](https://www.plakar.io/changelog/s3/index.md)
 
 
 ## [Community](https://www.plakar.io/community/index.md)
