@@ -70,7 +70,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-05-13T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-10-13T15:01:56+03:00">
+    <meta property="article:modified_time" content="2026-10-14T14:57:56+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -242,12 +242,12 @@
     "dateCreated": "2026-05-13T00:00:00\u002b00:00",
     "datePublished": "2026-05-13T00:00:00\u002b00:00",
     
-    "dateModified": "2026-10-13T15:01:56\u002b03:00",
+    "dateModified": "2026-10-14T14:57:56\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/community/v1.1.0/integrations/kubernetes/",
-    "wordCount":  1087 
+    "wordCount":  1561 
   }]
   </script>
 
@@ -4871,6 +4871,10 @@ of its persistent volumes, and restores them to a cluster.</p>
           <td><code>k8s+pvc</code></td>
           <td>Back up and restore persistent volume contents without a <code>VolumeSnapshot</code>.</td>
       </tr>
+      <tr>
+          <td><code>k8s+vm</code></td>
+          <td>Back up and restore KubeVirt virtual machines.</td>
+      </tr>
   </tbody>
 </table>
 <p><strong>Requirements</strong></p>
@@ -4972,10 +4976,13 @@ customization is required.</p>
     </button>
   
 </h2>
-<p>All three protocols reach the cluster through a kube config. By default, the
+<p>All protocols reach the cluster through a kube config. By default, the
 integration uses the default context defined in <code>~/.kube/config</code>. Use the
 <code>kubeconfig_file</code> option to point at a different kube config, or <code>kubeconfig</code> to
 provide a configuration inline.</p>
+<p>When Plakar runs inside a Kubernetes cluster and no kube config is available,
+the integration uses the in-cluster configuration instead. It then reaches the
+cluster it runs in with the permissions of its pod&rsquo;s ServiceAccount.</p>
 <p>The following options apply to every protocol, for both source and destination
 connectors.</p>
 <table>
@@ -5057,6 +5064,43 @@ Transform["Encrypt & deduplicate"]
 Store["Kloset Store"]
 
 API --> Via --> Plakar --> Transform --> Store
+</pre>
+
+<!-- prettier-ignore-end -->
+
+
+<h4 id="restore-flow" class="group pr-8">Restore flow
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="restore-flow"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h4>
+<!-- prettier-ignore-start -->
+<pre class="not-prose mermaid">
+flowchart LR
+
+Store["Kloset Store"]
+
+Transform["Decrypt & reconstruct"]
+
+Plakar["Plakar"]
+
+Via["Apply manifests via<br/>kubectl proxy"]
+
+subgraph Destination["Kubernetes Cluster"]
+  API["API Server"]
+end
+
+Store --> Transform --> Plakar --> Via --> API
 </pre>
 
 <!-- prettier-ignore-end -->
@@ -5248,7 +5292,7 @@ protocol, in addition to those in <a href="/docs/community/v1.1.0/integrations/k
       <tr>
           <td><code>kubelet_image</code></td>
           <td>No</td>
-          <td>Container image for the helper pod. Leave unset. It exists only so that Plakar support can supply a replacement image while diagnosing a problem.</td>
+          <td>Container image for the helper pod. Defaults to a recent kubelet image. Set it to pull the image from another registry, for example a local mirror in an air-gapped cluster.</td>
       </tr>
       <tr>
           <td><code>volume_snapshot_class</code></td>
@@ -5299,12 +5343,127 @@ protocol, in addition to those in <a href="/docs/community/v1.1.0/integrations/k
   
 </h2>
 <p>The <code>k8s+pvc</code> protocol backs up and restores the contents of a PVC without a
-VolumeSnapshot. The PVC access mode is critical when backing up this way. For
-example, ReadWriteOnce does not permit concurrent backups of an already mounted
-PVC.</p>
-<p>A restore writes the data into a target PVC through the same helper pod
+<code>VolumeSnapshot</code>, by reading the live volume directly.</p>
+<p>For backups, this protocol is a fallback for clusters where CSI snapshots are
+not available. Use <a href="/docs/community/v1.1.0/integrations/kubernetes/#2-k8scsi-protocol" ><code>k8s+csi</code></a> whenever the storage class
+supports <code>VolumeSnapshot</code>.</p>
+<details
+      class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
+      data-type="warning"
+      open>
+      <summary class="flex items-center gap-2 font-semibold text-inherit cursor-pointer">
+        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"/></svg>
+</span></div>
+        <div class="grow">
+          No point-in-time consistency
+        </div>
+        <div
+          class="ms-auto flex h-5 w-5 items-center justify-center transition-transform ease-in-out -rotate-90 group-open:rotate-0 print:hidden"><span class="relative block icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+</span></div>
+      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>A <code>k8s+pvc</code> backup reads files one after another while the workload keeps
+writing to the volume. Different files can therefore reflect different points
+in time. This is not safe for data that must be captured as a whole, such as
+the data directory of a database. It is generally acceptable for data that
+rarely changes, such as configuration files. Whether <code>k8s+pvc</code> is suitable
+depends on the application using the volume.</p></div></details><p>A <code>ReadWriteOnce</code> PVC can only be mounted on one node at a time. If a workload
+already mounts the PVC and the helper pod is scheduled on a different node, the
+helper pod cannot mount the volume and the backup fails.</p>
+<div class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm" data-type="note">
+      <div class="flex items-center gap-2 font-semibold text-inherit">
+        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"/></svg>
+</span></div>
+        <div class="grow">
+          Note
+        </div>
+      </div><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Support for backing up <code>ReadWriteOnce</code> PVCs that are already mounted is
+planned.</p></div></div><p>A restore writes the data into a target PVC through the same helper pod
 mechanism used for backups. The target can be an existing PVC or a freshly
 created one, and must have sufficient capacity.</p>
+
+
+<h4 id="backup-flow-2" class="group pr-8">Backup flow
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="backup-flow-2"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h4>
+<!-- prettier-ignore-start -->
+<pre class="not-prose mermaid">
+flowchart LR
+
+subgraph Source["Kubernetes Cluster"]
+  PVC["PVC"]
+end
+
+Plakar["Plakar"]
+
+Via["Ingest via<br/>helper pod"]
+
+Transform["Encrypt & deduplicate"]
+
+Store["Kloset Store"]
+
+PVC --> Via --> Plakar --> Transform --> Store
+</pre>
+
+<!-- prettier-ignore-end -->
+
+
+<h4 id="restore-flow-1" class="group pr-8">Restore flow
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="restore-flow-1"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h4>
+<!-- prettier-ignore-start -->
+<pre class="not-prose mermaid">
+flowchart LR
+
+Store["Kloset Store"]
+
+Transform["Decrypt & reconstruct"]
+
+Plakar["Plakar"]
+
+Via["Write via<br/>helper pod"]
+
+subgraph Destination["Kubernetes Cluster"]
+  PVC["PVC"]
+end
+
+Store --> Transform --> Plakar --> Via --> PVC
+</pre>
+
+<!-- prettier-ignore-end -->
 
 
 <h3 id="shared-configuration" class="group pr-8">Shared configuration
@@ -5336,7 +5495,7 @@ created one, and must have sufficient capacity.</p>
       <tr>
           <td><code>kubelet_image</code></td>
           <td>No</td>
-          <td>Container image for the helper pod. Leave unset. It exists only so that Plakar support can supply a replacement image while diagnosing a problem.</td>
+          <td>Container image for the helper pod. Defaults to a recent kubelet image. Set it to pull the image from another registry, for example a local mirror in an air-gapped cluster.</td>
       </tr>
       <tr>
           <td><code>fs_access</code></td>
@@ -5404,6 +5563,160 @@ pod:</p>
 <p>Restore into an existing PVC by referencing it in the same way.</p>
 
 
+<h2 id="4-k8svm-protocol" class="group pr-8">4. <code>k8s+vm</code> protocol
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="4-k8svm-protocol"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>The <code>k8s+vm</code> protocol backs up and restores KubeVirt virtual machines. KubeVirt
+must be installed in the cluster.</p>
+<p>The snapshot of the virtual machine is taken by KubeVirt, so no
+<code>VolumeSnapshotClass</code> is needed. The disk contents are then ingested into a
+Kloset store through a helper pod, as with the <code>k8s+pvc</code> protocol.</p>
+
+
+<h4 id="backup-flow-3" class="group pr-8">Backup flow
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="backup-flow-3"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h4>
+<!-- prettier-ignore-start -->
+<pre class="not-prose mermaid">
+flowchart LR
+
+subgraph Source["Kubernetes Cluster"]
+  VM["Virtual Machine"]
+  Snap["KubeVirt snapshot"]
+  VM --> Snap
+end
+
+Plakar["Plakar"]
+
+Via["Ingest via<br/>helper pod"]
+
+Transform["Encrypt & deduplicate"]
+
+Store["Kloset Store"]
+
+Snap --> Via --> Plakar --> Transform --> Store
+</pre>
+
+<!-- prettier-ignore-end -->
+
+
+<h4 id="restore-flow-2" class="group pr-8">Restore flow
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="restore-flow-2"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h4>
+<!-- prettier-ignore-start -->
+<pre class="not-prose mermaid">
+flowchart LR
+
+Store["Kloset Store"]
+
+Transform["Decrypt & reconstruct"]
+
+Plakar["Plakar"]
+
+Via["Write via<br/>helper pod"]
+
+subgraph Destination["Kubernetes Cluster"]
+  VM["Virtual Machine"]
+end
+
+Store --> Transform --> Plakar --> Via --> VM
+</pre>
+
+<!-- prettier-ignore-end -->
+
+
+<h3 id="shared-configuration-1" class="group pr-8">Shared configuration
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="shared-configuration-1"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>The following options apply to both source and destination connectors using the
+<code>k8s+vm</code> protocol, in addition to those in <a href="/docs/community/v1.1.0/integrations/kubernetes/#cluster-access" >Cluster access</a>.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Option</th>
+          <th>Required</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>kubelet_image</code></td>
+          <td>No</td>
+          <td>Container image for the helper pod. Defaults to a recent kubelet image. Set it to pull the image from another registry, for example a local mirror in an air-gapped cluster.</td>
+      </tr>
+  </tbody>
+</table>
+
+
+<h3 id="example-3" class="group pr-8">Example
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="example-3"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Back up the <code>my-vm</code> virtual machine in the <code>vms</code> namespace:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar backup k8s+vm:/vms/my-vm</span></span></code></pre></div></div>
+<p>Restore that virtual machine:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar restore -to k8s+vm: abcdef:</span></span></code></pre></div></div>
+
+
 <h2 id="limitations-and-scope" class="group pr-8">Limitations and scope
     <button
       type="button"
@@ -5420,9 +5733,10 @@ pod:</p>
   
 </h2>
 <p>Backups capture all Kubernetes resource manifests and status metadata with
-<code>k8s</code>, and persistent volume contents with <code>k8s+csi</code> and <code>k8s+pvc</code>. Node-level
-configuration (OS, kubelet config, network setup) and in-flight workload state
-(open connections, in-memory data) are not captured.</p>
+<code>k8s</code>, persistent volume contents with <code>k8s+csi</code> and <code>k8s+pvc</code>, and KubeVirt
+virtual machines with <code>k8s+vm</code>. Node-level configuration (OS, kubelet config,
+network setup) and in-flight workload state (open connections, in-memory data)
+are not captured.</p>
 <p>Manifest snapshots reflect the state of the API server at the time of backup.
 For PVCs, consistency depends on the CSI driver and whether the workload was
 quiesced before the snapshot was taken.</p>
@@ -5448,6 +5762,7 @@ quiesced before the snapshot was taken.</p>
 <li><a href="/docs/community/main/integrations/etcd/" >etcd integration</a></li>
 <li><a href="/docs/control-plane/resources/block-storage/pvc/" >Kubernetes PVC in Plakar Control Plane</a></li>
 <li><a href="https://kubernetes.io/docs/concepts/storage/volume-snapshots/"  target="_blank" rel="noreferrer">VolumeSnapshots in the Kubernetes documentation</a></li>
+<li><a href="https://kubevirt.io/user-guide/"  target="_blank" rel="noreferrer">KubeVirt documentation</a></li>
 </ul>
 
       </article>
@@ -5559,7 +5874,7 @@ quiesced before the snapshot was taken.</p>
   
   <div class="flex items-center justify-between text-xs text-neutral-400">
     
-      <span>Last updated: October 13, 2026</span>
+      <span>Last updated: October 14, 2026</span>
     
     
       <a href="https://github.com/PlakarKorp/plakar.io/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">
@@ -5579,7 +5894,7 @@ quiesced before the snapshot was taken.</p>
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#installation">Installation</a></li><li><a href="#cluster-access">Cluster access</a></li><li><a href="#1-k8s-protocol">1. k8s protocol</a><ul><ul><li><a href="#backup-flow">Backup flow</a></li></ul></li><li><a href="#source-configuration">Source configuration</a></li><li><a href="#destination-configuration">Destination configuration</a></li><li><a href="#example">Example</a></li></ul></li><li><a href="#2-k8scsi-protocol">2. k8s+csi protocol</a><ul><ul><li><a href="#backup-flow-1">Backup flow</a></li></ul></li><li><a href="#source-configuration-1">Source configuration</a></li><li><a href="#example-1">Example</a></li></ul></li><li><a href="#3-k8spvc-protocol">3. k8s+pvc protocol</a><ul><li><a href="#shared-configuration">Shared configuration</a></li><li><a href="#file-access">File access</a></li><li><a href="#example-2">Example</a></li></ul></li><li><a href="#limitations-and-scope">Limitations and scope</a></li><li><a href="#see-also">See also</a></li></ul>
+      <ul><li><a href="#installation">Installation</a></li><li><a href="#cluster-access">Cluster access</a></li><li><a href="#1-k8s-protocol">1. k8s protocol</a><ul><ul><li><a href="#backup-flow">Backup flow</a></li><li><a href="#restore-flow">Restore flow</a></li></ul></li><li><a href="#source-configuration">Source configuration</a></li><li><a href="#destination-configuration">Destination configuration</a></li><li><a href="#example">Example</a></li></ul></li><li><a href="#2-k8scsi-protocol">2. k8s+csi protocol</a><ul><ul><li><a href="#backup-flow-1">Backup flow</a></li></ul></li><li><a href="#source-configuration-1">Source configuration</a></li><li><a href="#example-1">Example</a></li></ul></li><li><a href="#3-k8spvc-protocol">3. k8s+pvc protocol</a><ul><ul><li><a href="#backup-flow-2">Backup flow</a></li><li><a href="#restore-flow-1">Restore flow</a></li></ul></li><li><a href="#shared-configuration">Shared configuration</a></li><li><a href="#file-access">File access</a></li><li><a href="#example-2">Example</a></li></ul></li><li><a href="#4-k8svm-protocol">4. k8s+vm protocol</a><ul><ul><li><a href="#backup-flow-3">Backup flow</a></li><li><a href="#restore-flow-2">Restore flow</a></li></ul></li><li><a href="#shared-configuration-1">Shared configuration</a></li><li><a href="#example-3">Example</a></li></ul></li><li><a href="#limitations-and-scope">Limitations and scope</a></li><li><a href="#see-also">See also</a></li></ul>
     </div>
 
     

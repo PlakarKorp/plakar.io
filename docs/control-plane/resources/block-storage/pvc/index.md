@@ -12,6 +12,23 @@ protocol. Both protocols use the
 When Plakar runs outside the cluster, they also need the
 [port forwarding role](../../../guides/kubernetes/kubernetes-rbac#port-forwarding).
 
+## Inventory Management
+
+[Managed inventories](../../infrastructure/inventories#managed-inventories) can
+discover PersistentVolumeClaims automatically once the
+[Kubernetes inventory](../../infrastructure/inventories/kubernetes) is connected
+to a cluster. You can instead set up a
+[self-managed inventory](../../infrastructure/inventories/self-managed) and add
+the PVC manually.
+
+### Adding a Kubernetes PVC as a resource
+
+When using a self-managed inventory, register the resource with `Block Storage`
+as the class and `PVC` as the subclass. For the endpoint, use the namespace
+followed by the PVC name, for example `/default/my-pvc`. See
+[resources documentation](../../resources) for more information on how to set up
+resources on a self-managed inventory.
+
 ## 1. `k8s+csi` protocol
 
 The `k8s+csi` protocol backs up a PVC by creating a `VolumeSnapshot` through the
@@ -58,9 +75,12 @@ The following settings are available when configuring a source app using the
 `k8s+csi` protocol.
 
 - **Kubeconfig**: Upload a kube config YAML file or paste its contents directly.
-- **Kubelet Image**: The container image used for the helper pod. Leave this
-  unset. It exists only so that Plakar support can supply a replacement image
-  while diagnosing a problem, and a working deployment never needs it.
+  Leave it empty when Plakar Control Plane runs inside the cluster to use the
+  in-cluster configuration. The kubeconfig can also be loaded from a
+  [secret provider](../../infrastructure/secret-providers).
+- **Kubelet Image**: The container image used for the helper pod. Defaults to a
+  recent kubelet image. Set it to pull the image from another registry, for
+  example a local mirror in an air-gapped cluster.
 - **Volume Snapshot Class**: Required. The name of the `VolumeSnapshotClass` to
   use when creating the CSI snapshot.
 - **FS Access**: The file access capabilities granted to the helper pod.
@@ -69,13 +89,32 @@ The following settings are available when configuring a source app using the
 
 ## 2. `k8s+pvc` protocol
 
-The `k8s+pvc` protocol reads a PVC's contents directly, without going through a
-CSI snapshot. It supports both backup and restore, and is the only protocol
-available for restoring PVC data, regardless of which protocol was used to back
-it up.
+The `k8s+pvc` protocol reads a PVC's contents directly from the live volume,
+without going through a CSI snapshot. It supports both backup and restore, and
+is the only protocol available for restoring PVC data, regardless of which
+protocol was used to back it up.
 
-Use this protocol for backup when the cluster's storage class has no
-`VolumeSnapshot` support.
+For backups, this protocol is a fallback for clusters where CSI snapshots are
+not available. Use `k8s+csi` whenever the storage class supports
+`VolumeSnapshot`.
+
+> [!WARNING]+ No point-in-time consistency
+>
+> A `k8s+pvc` backup reads files one after another while the workload keeps
+> writing to the volume. Different files can therefore reflect different points
+> in time. This is not safe for data that must be captured as a whole, such as
+> the data directory of a database. It is generally acceptable for data that
+> rarely changes, such as configuration files. Whether `k8s+pvc` is suitable
+> depends on the application using the volume.
+
+A `ReadWriteOnce` PVC can only be mounted on one node at a time. If a workload
+already mounts the PVC and the helper pod is scheduled on a different node, the
+helper pod cannot mount the volume and the backup fails.
+
+> [!NOTE]
+>
+> Support for backing up `ReadWriteOnce` PVCs that are already mounted is
+> planned.
 
 #### Backup flow
 
@@ -132,9 +171,12 @@ The following settings are available when configuring both source and
 destination apps using the `k8s+pvc` protocol.
 
 - **Kubeconfig**: Upload a kube config YAML file or paste its contents directly.
-- **Kubelet Image**: The container image used for the helper pod. Leave this
-  unset. It exists only so that Plakar support can supply a replacement image
-  while diagnosing a problem, and a working deployment never needs it.
+  Leave it empty when Plakar Control Plane runs inside the cluster to use the
+  in-cluster configuration. The kubeconfig can also be loaded from a
+  [secret provider](../../infrastructure/secret-providers).
+- **Kubelet Image**: The container image used for the helper pod. Defaults to a
+  recent kubelet image. Set it to pull the image from another registry, for
+  example a local mirror in an air-gapped cluster.
 - **FS Access**: The file access capabilities granted to the helper pod.
   `default` grants no extra capabilities, `read` grants read capabilities only,
   and `full` grants read and write capabilities. Defaults to `read` for source

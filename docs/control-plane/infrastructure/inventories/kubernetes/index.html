@@ -27,7 +27,7 @@
     
   
   
-    <meta name="description" content="How to connect and manage OVHcloud inventory in Plakar Control Plane.">
+    <meta name="description" content="How to connect and manage Kubernetes inventory in Plakar Control Plane.">
   
   
     <meta name="keywords" content="backup,open-source,deduplication,encryption,plakar,cloud backup,database backup,">
@@ -65,17 +65,17 @@
   <meta property="og:url" content="https://www.plakar.io/docs/control-plane/infrastructure/inventories/kubernetes/">
   <meta property="og:site_name" content="Plakar | The Open Standard for Backup and Restore">
   <meta property="og:title" content="Kubernetes">
-  <meta property="og:description" content="How to connect and manage OVHcloud inventory in Plakar Control Plane.">
+  <meta property="og:description" content="How to connect and manage Kubernetes inventory in Plakar Control Plane.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-08-03T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-10-13T15:01:56+03:00">
+    <meta property="article:modified_time" content="2026-10-14T14:57:56+03:00">
 
   
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Kubernetes">
-  <meta name="twitter:description" content="How to connect and manage OVHcloud inventory in Plakar Control Plane.">
+  <meta name="twitter:description" content="How to connect and manage Kubernetes inventory in Plakar Control Plane.">
 
   
   
@@ -227,12 +227,12 @@
     "dateCreated": "2026-08-03T00:00:00\u002b00:00",
     "datePublished": "2026-08-03T00:00:00\u002b00:00",
     
-    "dateModified": "2026-10-13T15:01:56\u002b03:00",
+    "dateModified": "2026-10-14T14:57:56\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/infrastructure/inventories/kubernetes/",
-    "wordCount":  443 
+    "wordCount":  491 
   }]
   </script>
 
@@ -1528,6 +1528,8 @@
   
     
   
+    
+  
   
 
   
@@ -1568,6 +1570,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         OVHcloud Compute
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/resources/compute/kubernetes-vm/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Kubernetes VM
       </a>
     
   
@@ -5312,6 +5323,8 @@
   
     
   
+    
+  
   
 
   
@@ -5352,6 +5365,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         OVHcloud Compute
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/resources/compute/kubernetes-vm/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Kubernetes VM
       </a>
     
   
@@ -8178,8 +8200,16 @@ directly from Plakar Control Plane.</p>
           <td>No</td>
           <td>Yes</td>
       </tr>
+      <tr>
+          <td>KubeVirt virtual machines</td>
+          <td>Yes</td>
+          <td>No</td>
+          <td>Yes</td>
+      </tr>
   </tbody>
 </table>
+<p>Virtual machines are discovered only when KubeVirt is installed in the cluster.
+On clusters without KubeVirt, the inventory discovers PVCs only.</p>
 
 
 <h2 id="authentication" class="group pr-8">Authentication
@@ -8200,7 +8230,9 @@ directly from Plakar Control Plane.</p>
 <p>Kubernetes inventories authenticate using a kubeconfig file. The kubeconfig
 determines which cluster Plakar Control Plane connects to and which permissions
 it has, so the associated user or service account must have read access to
-<code>PersistentVolumeClaims</code> in the namespaces you want to discover. See
+<code>PersistentVolumeClaims</code> in the namespaces you want to discover. To discover
+virtual machines, it also needs read access to KubeVirt <code>VirtualMachines</code> in
+those namespaces. See
 <a href="../../../guides/kubernetes/kubernetes-rbac#inventory" >Kubernetes Service Accounts and RBAC</a>
 for a least-privilege role.</p>
 <p>When creating an Kubernetes inventory in Plakar Control Plane, you must provide:</p>
@@ -8248,8 +8280,9 @@ empty and it will use the in-cluster configuration.</p>
     sizes="(min-width: 768px) 50vw, 65vw"
     data-zoom-src="/docs/control-plane/infrastructure/inventories/images/create-kubernetes-inventory_hu_3a0de650b1152bf1.webp"></figure>
 <p>After creating the inventory, trigger a synchronization to discover and load
-PVCs from the configured cluster. You can run synchronization again at any time
-to refresh the inventory, for example after creating new PVCs.</p>
+PVCs and virtual machines from the configured cluster. You can run
+synchronization again at any time to refresh the inventory, for example after
+creating new PVCs or virtual machines.</p>
 <p>All configuration details provided during inventory creation can be updated
 later by clicking the settings icon in the top right of the inventory page,
 which opens a settings popup.</p>
@@ -8371,7 +8404,7 @@ coverage reporting.</p>
   
   <div class="flex items-center justify-between text-xs text-neutral-400">
     
-      <span>Last updated: October 13, 2026</span>
+      <span>Last updated: October 14, 2026</span>
     
     
       <a href="https://github.com/PlakarKorp/plakar.io/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">
