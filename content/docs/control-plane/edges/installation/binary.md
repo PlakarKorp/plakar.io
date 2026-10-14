@@ -53,7 +53,7 @@ $ plakar-edge \
   -pkg /var/lib/plakar-edge/pkgs
 ```
 
-## Configure the edge
+## Configuring the edge
 
 The most important options are:
 
@@ -88,8 +88,8 @@ them when assigning work.
 
 `PLAKAR_EDGE_EXTRA_TAGS` adds tags to those given with `-tags`, and duplicates
 are dropped. It lets tags describing the edge host be set once, while `-tags`
-carries per-deployment tags. For example, a custom image that includes the
-PostgreSQL tools can set the following in its Dockerfile:
+carries per-deployment tags. For example, a [custom image](../custom-image) that
+includes the PostgreSQL tools can set the following in its Dockerfile:
 
 ```dockerfile
 ENV PLAKAR_EDGE_EXTRA_TAGS=postgresql,postgresql-18
