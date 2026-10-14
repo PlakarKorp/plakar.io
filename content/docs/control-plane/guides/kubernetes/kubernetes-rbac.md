@@ -30,7 +30,8 @@ only the roles required by your deployment.
 
 Keeping the ServiceAccounts separate limits the impact of each operation. For
 example, a backup ServiceAccount cannot modify the cluster, while the inventory
-ServiceAccount can discover PVCs without accessing their contents.
+ServiceAccount can discover PVCs and virtual machines without accessing their
+contents.
 
 > [!WARNING]
 >
@@ -48,7 +49,7 @@ ServiceAccount can discover PVCs without accessing their contents.
 | VM restore             | `plakar-vm-restore`        | Namespaced, write                        |
 | Manifest backup        | `plakar-resources-backup`  | Cluster-wide read, **including Secrets** |
 | Manifest restore       | `plakar-resources-restore` | Cluster-wide write                       |
-| Inventory              | `plakar-inventory`         | Cluster-wide read of PVCs only           |
+| Inventory              | `plakar-inventory`         | Cluster-wide read of PVCs and VMs        |
 
 The manifests use two placeholders:
 
@@ -183,10 +184,11 @@ the guest-side snapshot operation: it freezes the guest, creates a
 Plakar then reads each disk through a temporary PVC and pod, in the same way as
 a PVC backup. The virtual machine itself is only read.
 
-The `VirtualMachineSnapshot` and the underlying `VolumeSnapshot` resources are
-created by KubeVirt using its own credentials. The Plakar ServiceAccount only
-needs permission to create and read the `VirtualMachineSnapshot`, and to read
-the resulting `VolumeSnapshot` resources.
+Plakar creates the `VirtualMachineSnapshot` and deletes it once the disks have
+been read. The KubeVirt controller creates the `VolumeSnapshot` for each disk
+using its own credentials. The Plakar ServiceAccount only needs to read those
+`VolumeSnapshot` resources, along with the `VirtualMachineSnapshotContent` that
+maps each disk to its `VolumeSnapshot`.
 
 ```yaml
 apiVersion: v1
@@ -384,10 +386,13 @@ roleRef:
 
 This role is used by the
 [Kubernetes inventory](../../infrastructure/inventories/kubernetes) to discover
-PVCs across all namespaces.
+PVCs and KubeVirt virtual machines across all namespaces.
 
-It only reads PVC metadata and never accesses the contents of the volumes. It
-also reads the `kube-system` namespace, whose UID is used to identify the
+It only reads PVC and virtual machine metadata and never accesses the contents
+of volumes or disks. It also reads the `kube-system` namespace, whose UID is
+used to identify the cluster.
+
+The `virtualmachines` rule is only needed when KubeVirt is installed in the
 cluster.
 
 ```yaml
@@ -404,6 +409,9 @@ metadata:
 rules:
   - apiGroups: [""]
     resources: ["persistentvolumeclaims"]
+    verbs: ["get", "list"]
+  - apiGroups: ["kubevirt.io"]
+    resources: ["virtualmachines"]
     verbs: ["get", "list"]
   - apiGroups: [""]
     resources: ["namespaces"]
