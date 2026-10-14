@@ -14,8 +14,8 @@ and MariaDB databases. The integration supports multiple protocols.
 
 The MySQL integration relies on the MySQL or MariaDB client tools, which must be
 installed on the machine that executes the task. These tools are not included in
-the appliance, so MySQL and MariaDB tasks run on an
-[edge](../../infrastructure/edges) rather than on the Control Plane.
+the appliance, so MySQL and MariaDB tasks run on an [edge](../../edges) rather
+than on the Control Plane.
 
 Install the tools on the edge host, then configure the task to run on that edge.
 They must be in the `$PATH` of the process running the task:

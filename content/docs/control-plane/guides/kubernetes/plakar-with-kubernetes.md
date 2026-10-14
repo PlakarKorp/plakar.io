@@ -55,7 +55,7 @@ Kubernetes cluster. It executes backup and restore operations close to the data
 while Plakar Control Plane continues to provide centralized orchestration and
 management.
 
-See the [Edges](../../infrastructure/edges) documentation for more information.
+See the [Edges](../../edges) documentation for more information.
 
 ## Plakar Control Plane on Kubernetes
 

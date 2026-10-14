@@ -36,12 +36,11 @@ restore points and can later be used as filters for your restore points.
   Targeting edges by tags is currently only possible through the
   [Ansible collection](../references/ansible-collection) and the
   [Kubernetes operator](../infrastructure-as-code/kubernetes-operator/scheduling#running-tasks-on-a-remote-edge).
-  See [selecting an edge](../infrastructure/edges#selecting-an-edge).
+  See [selecting an edge](../../edges/running-tasks#selecting-an-edge).
 - **Pre-job script** and **Post-job script**: File names of scripts in the
   edge's scripts directory, run before and after the job. The task fails if the
   pre-job script fails, and the post-job script runs whether the job succeeds or
-  fails. See
-  [pre-job and post-job hooks](../infrastructure/edges#pre-job-and-post-job-hooks).
+  fails. See [pre-job and post-job hooks](../../edges/hooks).
 - **Concurrency**: This controls how many operations the backup task runs in
   parallel. Plakar Control Plane automatically sets a recommended concurrency
   for each operation its doing. Only change this if you have a specific reason
@@ -73,12 +72,11 @@ showing only restore points that match the specified environment and data class.
   Targeting edges by tags is currently only possible through the
   [Ansible collection](../references/ansible-collection) and the
   [Kubernetes operator](../infrastructure-as-code/kubernetes-operator/scheduling#running-tasks-on-a-remote-edge).
-  See [selecting an edge](../infrastructure/edges#selecting-an-edge).
+  See [selecting an edge](../../edges/running-tasks#selecting-an-edge).
 - **Pre-job script** and **Post-job script**: File names of scripts in the
   edge's scripts directory, run before and after the job. The task fails if the
   pre-job script fails, and the post-job script runs whether the job succeeds or
-  fails. See
-  [pre-job and post-job hooks](../infrastructure/edges#pre-job-and-post-job-hooks).
+  fails. See [pre-job and post-job hooks](../../edges/hooks).
 - **Concurrency**: This controls how many operations the backup task runs in
   parallel. Plakar Control Plane automatically sets a recommended concurrency
   for each operation its doing. Only change this if you have a specific reason
@@ -102,7 +100,7 @@ matching all the provided labels will be synced to the other store.
   Targeting edges by tags is currently only possible through the
   [Ansible collection](../references/ansible-collection) and the
   [Kubernetes operator](../infrastructure-as-code/kubernetes-operator/scheduling#running-tasks-on-a-remote-edge).
-  See [selecting an edge](../infrastructure/edges#selecting-an-edge).
+  See [selecting an edge](../../edges/running-tasks#selecting-an-edge).
 - **Concurrency**: This controls how many operations the backup task runs in
   parallel. Plakar Control Plane automatically sets a recommended concurrency
   for each operation its doing. Only change this if you have a specific reason
@@ -139,7 +137,7 @@ checked, not the entire store.
   Targeting edges by tags is currently only possible through the
   [Ansible collection](../references/ansible-collection) and the
   [Kubernetes operator](../infrastructure-as-code/kubernetes-operator/scheduling#running-tasks-on-a-remote-edge).
-  See [selecting an edge](../infrastructure/edges#selecting-an-edge).
+  See [selecting an edge](../../edges/running-tasks#selecting-an-edge).
 - **Concurrency**: This controls how many operations the backup task runs in
   parallel. Plakar Control Plane automatically sets a recommended concurrency
   for each operation its doing. Only change this if you have a specific reason

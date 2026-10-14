@@ -80,7 +80,7 @@ spec:
 ## Running tasks on a remote edge
 
 All three resources also accept an optional `edgeTags` field that restricts the
-task to [edges](../../../infrastructure/edges) reporting the listed tags:
+task to [edges](../../../edges) reporting the listed tags:
 
 ```yaml
 apiVersion: task.plakar.io/v1alpha1
@@ -102,7 +102,7 @@ When `edgeTags` is set, the task runs on an online edge that reports every
 listed tag. It fails if no online edge matches, and never runs on the Control
 Plane. When `edgeTags` is omitted, the task runs on any online edge, and only
 runs on the Control Plane itself when no edge is online. See
-[Selecting an edge](../../../infrastructure/edges#selecting-an-edge).
+[Selecting an edge](../../../edges/running-tasks#selecting-an-edge).
 
 After a scheduling resource is created, the corresponding scheduled task is
 created in Plakar Control Plane. Its UUID is exposed through `status.id`, while

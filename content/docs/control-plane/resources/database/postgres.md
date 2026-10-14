@@ -14,8 +14,8 @@ PostgreSQL databases. The integration supports multiple protocols.
 
 The PostgreSQL integration relies on the PostgreSQL client tools, which must be
 installed on the machine that executes the task. These tools are not included in
-the appliance, so PostgreSQL tasks run on an [edge](../../infrastructure/edges)
-rather than on the Control Plane.
+the appliance, so PostgreSQL tasks run on an [edge](../../edges) rather than on
+the Control Plane.
 
 Install the tools on the edge host, then configure the task to run on that edge.
 They are usually provided by the `postgresql-client` package and must be in the

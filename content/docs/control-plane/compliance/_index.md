@@ -1,7 +1,7 @@
 ---
 title: "Compliance"
 date: "2026-09-09T00:00:00Z"
-weight: 6
+weight: 7
 summary:
   "Enforce backup requirements, data location, and retention obligations in
   Plakar Control Plane."
