@@ -25,6 +25,28 @@ are not included in the appliance, so MongoDB tasks run on an
 Install the required MongoDB utilities on the edge host, then configure the task
 to run on that edge.
 
+### Running the edge in a container
+
+When the edge runs as a container, build a
+[custom edge image](../../edges/installation/custom-image) from the official
+MongoDB image. It already includes `mongosh`, `mongodump`, `mongorestore` and
+the CA certificates the edge needs to reach the Control Plane over HTTPS:
+
+```dockerfile
+FROM mongo:8
+COPY --from=ghcr.io/plakarkorp/plakar-edge:<version> /bin/plakar-edge /bin/
+ENV PLAKAR_EDGE_EXTRA_TAGS=mongodb
+ENTRYPOINT ["/bin/plakar-edge"]
+```
+
+Replace `<version>` with the edge version that matches your Control Plane, as
+described in
+[Choosing the edge version](../../edges/installation/custom-image#choosing-the-edge-version).
+
+Pin MongoDB tasks to the resulting edge with the **Run on** field when
+[scheduling them](../../scheduling/tasks), or target it by the `mongodb` tag.
+See [selecting an edge](../../edges/running-tasks#selecting-an-edge).
+
 ## Inventory Management
 
 Currently no
