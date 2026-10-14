@@ -33,8 +33,8 @@ The base image must provide:
 - **CA certificates**, so that the edge can connect to the Control Plane over
   HTTPS.
 - **The OpenSSH client** (`ssh`, `ssh-add` and `ssh-agent`), if the edge runs
-  integrations that authenticate over SSH. See
-  [SSH keys](../../requirements#ssh-keys).
+  SFTP or Windows VSS tasks, or tasks of the integrations built on VSS. See
+  [SSH client](../../requirements#ssh-client).
 
 The tools must also be compatible with the server they connect to. For example,
 `pg_dump` must be at least the same major version as the PostgreSQL server it

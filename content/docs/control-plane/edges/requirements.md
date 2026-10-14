@@ -36,7 +36,7 @@ Most integrations are agentless. They communicate directly with the resource
 they manage and do not require additional software on the machine running the
 task. For example, the [Windows VSS integration](../../resources/compute/vss)
 connects to the Windows host over SSH and needs nothing on the edge beyond the
-SSH client described in [SSH keys](#ssh-keys).
+SSH client described in [SSH client](#ssh-client).
 
 Some integrations such as MongoDB, PostgreSQL and MySQL instead rely on
 utilities provided by the vendor. These utilities must be installed on the
@@ -57,13 +57,24 @@ workloads can be distributed to the machines capable of running them. Tagging
 each edge with the tools it carries lets tasks target the edges that can run
 them. See [Selecting an edge](../running-tasks#selecting-an-edge).
 
-## SSH keys
+## SSH client
 
-Some integrations, such as [SFTP](../../resources/file-storage/sftp) and
-[Windows VSS](../../resources/compute/vss), authenticate over SSH with a private
-key. The edge loads that key into its own SSH agent, which runs for as long as
-the edge does. The OpenSSH client (`ssh`, `ssh-add` and `ssh-agent`) must
-therefore be installed on the edge host.
+The [SFTP](../../resources/file-storage/sftp) and
+[Windows VSS](../../resources/compute/vss) integrations, along with the
+integrations built on VSS such as
+[Microsoft SQL Server](../../resources/database/mssql) and
+[Microsoft Active Directory](../../resources/identity/msad), connect through the
+OpenSSH `ssh` client. It must be installed on any edge that runs their tasks,
+whatever the authentication method.
+
+When these integrations authenticate with a private key, the edge loads that key
+into its own SSH agent, which runs for as long as the edge does. Private key
+authentication therefore also requires `ssh-add` and `ssh-agent`, which are part
+of the OpenSSH client.
+
+The official edge image includes the OpenSSH client. On a binary host or in a
+[custom image](../installation/custom-image), install it with the distribution
+package, such as `openssh-client` on Debian and Ubuntu.
 
 An edge without `ssh-agent` still starts and logs a warning. Tasks that
 authenticate with an SSH private key fail on that edge, and every other task
