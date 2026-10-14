@@ -27,6 +27,7 @@ Each protocol covers a different kind of data:
 | `k8s`     | Back up and restore Kubernetes manifests and resource state.               |
 | `k8s+csi` | Back up persistent volume contents through a CSI `VolumeSnapshot`.         |
 | `k8s+pvc` | Back up and restore persistent volume contents without a `VolumeSnapshot`. |
+| `k8s+vm`  | Back up and restore KubeVirt virtual machines.                             |
 
 **Requirements**
 
@@ -102,7 +103,7 @@ To list, upgrade, or remove the package, see
 
 ## Cluster access
 
-All three protocols reach the cluster through a kube config. By default, the
+All protocols reach the cluster through a kube config. By default, the
 integration uses the default context defined in `~/.kube/config`. Use the
 `kubeconfig_file` option to point at a different kube config, or `kubeconfig` to
 provide a configuration inline.
@@ -361,12 +362,91 @@ $ plakar restore -to k8s+pvc:/storage/pristine abcdef:
 
 Restore into an existing PVC by referencing it in the same way.
 
+## 4. `k8s+vm` protocol
+
+The `k8s+vm` protocol backs up and restores KubeVirt virtual machines. KubeVirt
+must be installed in the cluster.
+
+The snapshot of the virtual machine is taken by KubeVirt, so no
+`VolumeSnapshotClass` is needed. The disk contents are then ingested into a
+Kloset store through a helper pod, as with the `k8s+pvc` protocol.
+
+#### Backup flow
+
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+flowchart LR
+
+subgraph Source["Kubernetes Cluster"]
+  VM["Virtual Machine"]
+  Snap["KubeVirt snapshot"]
+  VM --> Snap
+end
+
+Plakar["Plakar"]
+
+Via["Ingest via<br/>helper pod"]
+
+Transform["Encrypt & deduplicate"]
+
+Store["Kloset Store"]
+
+Snap --> Via --> Plakar --> Transform --> Store
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
+
+#### Restore flow
+
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+flowchart LR
+
+Store["Kloset Store"]
+
+Transform["Decrypt & reconstruct"]
+
+Plakar["Plakar"]
+
+Via["Write via<br/>helper pod"]
+
+subgraph Destination["Kubernetes Cluster"]
+  VM["Virtual Machine"]
+end
+
+Store --> Transform --> Plakar --> Via --> VM
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
+
+### Shared configuration
+
+The following options apply to both source and destination connectors using the
+`k8s+vm` protocol, in addition to those in [Cluster access](#cluster-access).
+
+| Option          | Required | Description                                                                                                                                       |
+| --------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `kubelet_image` | No       | Container image for the helper pod. Leave unset. It exists only so that Plakar support can supply a replacement image while diagnosing a problem. |
+
+### Example
+
+Back up the `my-vm` virtual machine in the `vms` namespace:
+
+```bash
+$ plakar backup k8s+vm:/vms/my-vm
+```
+
+Restore that virtual machine:
+
+```bash
+$ plakar restore -to k8s+vm: abcdef:
+```
+
 ## Limitations and scope
 
 Backups capture all Kubernetes resource manifests and status metadata with
-`k8s`, and persistent volume contents with `k8s+csi` and `k8s+pvc`. Node-level
-configuration (OS, kubelet config, network setup) and in-flight workload state
-(open connections, in-memory data) are not captured.
+`k8s`, persistent volume contents with `k8s+csi` and `k8s+pvc`, and KubeVirt
+virtual machines with `k8s+vm`. Node-level configuration (OS, kubelet config,
+network setup) and in-flight workload state (open connections, in-memory data)
+are not captured.
 
 Manifest snapshots reflect the state of the API server at the time of backup.
 For PVCs, consistency depends on the CSI driver and whether the workload was
@@ -378,3 +458,4 @@ quiesced before the snapshot was taken.
 - [etcd integration](/docs/community/main/integrations/etcd/)
 - [Kubernetes PVC in Plakar Control Plane](/docs/control-plane/resources/block-storage/pvc)
 - [VolumeSnapshots in the Kubernetes documentation](https://kubernetes.io/docs/concepts/storage/volume-snapshots/)
+- [KubeVirt documentation](https://kubevirt.io/user-guide/)
