@@ -45,7 +45,9 @@ tools should therefore run on an edge where the required tools can be installed.
 Install the tools required by the integration on the edge host, then configure
 the task to run on that edge. As deployments grow, edges can be equipped with
 different sets of tools so that workloads can be distributed to the machines
-capable of running them.
+capable of running them. Tagging each edge with the tools it carries lets tasks
+target the edges that can run them. See
+[Selecting an edge](../running-tasks#selecting-an-edge).
 
 ## SSH keys
 

@@ -86,6 +86,10 @@ The chart also supports standard Kubernetes scheduling and resource settings
 such as `resources`, `serviceAccount`, `nodeSelector`, `tolerations`, and
 `affinity`.
 
+When `image.repository` points at a custom image that sets
+`PLAKAR_EDGE_EXTRA_TAGS`, the edges report those tags along with the `tags`
+value. See [Configure the edge](../binary#configure-the-edge).
+
 To see all available values:
 
 ```sh
