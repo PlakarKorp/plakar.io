@@ -20,6 +20,23 @@ protocol. Both protocols use the
 When Plakar runs outside the cluster, they also need the
 [port forwarding role](../../../guides/kubernetes/kubernetes-rbac#port-forwarding).
 
+## Inventory Management
+
+[Managed inventories](../../infrastructure/inventories#managed-inventories) can
+discover PersistentVolumeClaims automatically once the
+[Kubernetes inventory](../../infrastructure/inventories/kubernetes) is connected
+to a cluster. You can instead set up a
+[self-managed inventory](../../infrastructure/inventories/self-managed) and add
+the PVC manually.
+
+### Adding a Kubernetes PVC as a resource
+
+When using a self-managed inventory, register the resource with `Block Storage`
+as the class and `PVC` as the subclass. For the endpoint, use the namespace
+followed by the PVC name, for example `/default/my-pvc`. See
+[resources documentation](../../resources) for more information on how to set up
+resources on a self-managed inventory.
+
 ## 1. `k8s+csi` protocol
 
 The `k8s+csi` protocol backs up a PVC by creating a `VolumeSnapshot` through the
