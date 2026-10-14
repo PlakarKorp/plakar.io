@@ -23,8 +23,9 @@ configured scripts directory does not accept hooks.
 The pre-job hook runs before the backup or restore begins. If it fails, the task
 is aborted and the backup or restore does not start. The post-job hook runs
 after the job once a pre-job hook has completed, regardless of whether the
-backup or restore itself succeeded. This ensures that cleanup or recovery
-actions can still take place after a failed job.
+backup or restore itself succeeded. It also runs when the job is cancelled. This
+ensures that cleanup or recovery actions can still take place after a failed or
+cancelled job.
 
 A failure in the post-job hook causes the task to be reported as failed, even if
 the backup or restore itself succeeded. The backup is not discarded in this
