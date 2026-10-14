@@ -23,6 +23,44 @@ They are usually provided by the `postgresql-client` package and must be in the
 protocols back up with `pg_dump` and `pg_dumpall` and restore with `pg_restore`
 and `psql`. The `postgres+bin` protocol backs up with `pg_basebackup`.
 
+### Running the edge in a container
+
+When the edge runs as a container, build a
+[custom edge image](../../edges/installation/custom-image) from the official
+PostgreSQL image. It includes `pg_dump`, `pg_dumpall`, `pg_restore`, `psql` and
+`pg_basebackup`, but not the CA certificates the edge needs to reach the Control
+Plane over HTTPS, so the image must install them:
+
+```dockerfile
+FROM postgres:17
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends ca-certificates \
+ && rm -rf /var/lib/apt/lists/*
+COPY --from=ghcr.io/plakarkorp/plakar-edge:<version> /bin/plakar-edge /bin/
+ENV PLAKAR_EDGE_EXTRA_TAGS=postgresql,postgresql-17
+ENTRYPOINT ["/bin/plakar-edge"]
+```
+
+Use the Debian-based tags of the image. The `-alpine` tags do not meet the
+[base image requirements](../../edges/installation/custom-image#base-image-requirements).
+
+Choose a tag at least as recent as the newest PostgreSQL server the edge backs
+up, since `pg_dump` and `pg_basebackup` cannot back up a server of a newer major
+version. Replace `<version>` with the edge version that matches your Control
+Plane, as described in
+[Choosing the edge version](../../edges/installation/custom-image#choosing-the-edge-version).
+
+Pin PostgreSQL tasks to the resulting edge with the **Run on** field when
+[scheduling them](../../scheduling/tasks), or target it by the `postgresql` tag.
+See [selecting an edge](../../edges/running-tasks#selecting-an-edge).
+
+The `postgres+aws` protocol generates its IAM token with the AWS credentials
+available to the edge. The edge picks them up from the standard AWS sources:
+environment variables such as `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`,
+the shared credentials file, or the IAM role of the instance or container it
+runs on. Provide them to every edge that runs `postgres+aws` tasks. See
+[`postgres+aws` protocol](#3-postgresaws-protocol).
+
 ## Inventory Management
 
 [Managed inventories](../../infrastructure/inventories#managed-inventories) can
@@ -185,7 +223,7 @@ whole cluster.
 >
 > The PostgreSQL server must have `wal_level = replica` (or higher), a user with
 > the `REPLICATION` privilege (or a superuser), and `pg_hba.conf` allowing a
-> replication connection from Plakar Control Plane.
+> replication connection from the edge that runs the task.
 
 #### Backup flow
 
@@ -246,18 +284,17 @@ major version that produced the backup.
 
 The `postgres+aws` protocol performs the same logical backup as `postgres`, but
 authenticates using a short-lived IAM token instead of a static password. The
-token is generated automatically from Plakar Control Plane's AWS credentials
-before `pg_dump`, `pg_dumpall`, `pg_restore`, or `psql` run, so no password is
-needed or accepted. The backup output is identical to `postgres` and can be
-restored with either protocol.
+token is generated automatically from the AWS credentials available to the edge
+that runs the task, before `pg_dump`, `pg_dumpall`, `pg_restore`, or `psql` run,
+so no password is needed or accepted. The backup output is identical to
+`postgres` and can be restored with either protocol.
 
 Using this protocol requires:
 
 - [IAM database authentication](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.Enabling.html)
   enabled on the RDS instance.
 - An IAM policy granting `rds-db:connect`, scoped to the RDS resource ID and
-  database user, attached to the credentials Plakar Control Plane uses to
-  authenticate with AWS. See
+  database user, attached to the AWS credentials the edge uses. See
   [Managing IAM Roles, Users, and Access Keys on AWS](../../../guides/aws/iam-users-roles-and-access-keys)
   for instructions on creating and attaching IAM policies.
 - A PostgreSQL user granted the `rds_iam` role, with no password set, since
@@ -323,8 +360,8 @@ destination apps using the `postgres+aws` protocol.
 
 - **Port**: RDS instance port. Defaults to `5432`. Overrides the port in the
   location URI.
-- **Region**: Required. AWS region of the RDS instance, e.g. `us-east-1`. Passed
-  to `aws rds generate-db-auth-token --region`.
+- **Region**: Required. AWS region of the RDS instance, e.g. `us-east-1`. Used
+  to generate the IAM token.
 - **Ssl Cert Data**: Inline PEM content of the client SSL certificate.
   Alternative to `ssl_cert`.
 - **Ssl Key Data**: Inline PEM content of the client SSL private key.

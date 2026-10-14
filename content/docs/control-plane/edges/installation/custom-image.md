@@ -74,8 +74,10 @@ ENV PLAKAR_EDGE_EXTRA_TAGS=mysql,postgresql
 ENTRYPOINT ["/bin/plakar-edge"]
 ```
 
-Unlike vendor images, distribution images do not include CA certificates, so
-`ca-certificates` must be installed explicitly.
+Distribution images such as `ubuntu` do not include CA certificates, so
+`ca-certificates` must be installed explicitly. Some vendor images, such as the
+official `postgres` image, also lack them. Check that the base image provides
+them before relying on it.
 
 ## Choosing the edge version
 
