@@ -97,13 +97,27 @@ The following settings are available when configuring a source app using the
 
 ## 2. `k8s+pvc` protocol
 
-The `k8s+pvc` protocol reads a PVC's contents directly, without going through a
-CSI snapshot. It supports both backup and restore, and is the only protocol
-available for restoring PVC data, regardless of which protocol was used to back
-it up.
+The `k8s+pvc` protocol reads a PVC's contents directly from the live volume,
+without going through a CSI snapshot. It supports both backup and restore, and
+is the only protocol available for restoring PVC data, regardless of which
+protocol was used to back it up.
 
-Use this protocol for backup when the cluster's storage class has no
-`VolumeSnapshot` support.
+For backups, this protocol is a fallback for clusters where CSI snapshots are
+not available, for example some Proxmox-based clusters. Use `k8s+csi` whenever
+the storage class supports `VolumeSnapshot`.
+
+> [!WARNING]+ No point-in-time consistency
+>
+> A `k8s+pvc` backup reads files one after another while the workload keeps
+> writing to the volume. Different files can therefore reflect different points
+> in time. This is not safe for data that must be captured as a whole, such as
+> the data directory of a database. It is generally acceptable for data that
+> rarely changes, such as configuration files. Whether `k8s+pvc` is suitable
+> depends on the application using the volume.
+
+A `ReadWriteOnce` PVC can only be mounted on one node at a time. If a workload
+already mounts the PVC and the helper pod is scheduled on a different node, the
+helper pod cannot mount the volume and the backup fails.
 
 #### Backup flow
 

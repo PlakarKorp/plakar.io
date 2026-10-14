@@ -268,9 +268,25 @@ $ plakar backup -o volume_snapshot_class=my-snapclass k8s+csi:/storage/my-pvc
 ## 3. `k8s+pvc` protocol
 
 The `k8s+pvc` protocol backs up and restores the contents of a PVC without a
-VolumeSnapshot. The PVC access mode is critical when backing up this way. For
-example, ReadWriteOnce does not permit concurrent backups of an already mounted
-PVC.
+`VolumeSnapshot`, by reading the live volume directly.
+
+For backups, this protocol is a fallback for clusters where CSI snapshots are
+not available, for example some Proxmox-based clusters. Use
+[`k8s+csi`](#2-k8scsi-protocol) whenever the storage class supports
+`VolumeSnapshot`.
+
+> [!WARNING]+ No point-in-time consistency
+>
+> A `k8s+pvc` backup reads files one after another while the workload keeps
+> writing to the volume. Different files can therefore reflect different points
+> in time. This is not safe for data that must be captured as a whole, such as
+> the data directory of a database. It is generally acceptable for data that
+> rarely changes, such as configuration files. Whether `k8s+pvc` is suitable
+> depends on the application using the volume.
+
+A `ReadWriteOnce` PVC can only be mounted on one node at a time. If a workload
+already mounts the PVC and the helper pod is scheduled on a different node, the
+helper pod cannot mount the volume and the backup fails.
 
 A restore writes the data into a target PVC through the same helper pod
 mechanism used for backups. The target can be an existing PVC or a freshly
