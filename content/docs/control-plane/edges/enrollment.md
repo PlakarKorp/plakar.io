@@ -24,9 +24,8 @@ organization.
 ## Enabling edge enrollment
 
 To enable enrollment, open the organization's settings and enable **Edge
-enrollment** under **Settings -> Organizations -> [your organization] ->
-Settings**. Enable it for the organization where the new edge should be
-registered.
+enrollment** under **Organizations -> Settings**. Enable it for the organization
+where the new edge should be registered.
 
 ![](../images/edge-enrollment.png)
 
