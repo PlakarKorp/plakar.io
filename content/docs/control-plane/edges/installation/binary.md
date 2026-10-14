@@ -72,8 +72,8 @@ The most important options are:
 | `-metrics`       | No        | Enables the Prometheus `/metrics` endpoint. Defaults to `true`.                                                                            |
 | `-scripts-dir`   | No        | Directory holding the [hook scripts](../../hooks) tasks may run. Empty by default, which refuses every hook.                               |
 
-`-max-parallel` caps how much work one edge takes on at a time. Tasks assigned
-beyond that limit wait until a running one finishes.
+`-max-parallel` caps how much work one edge takes on at a time. The Control
+Plane does not assign an edge more tasks than this limit at once.
 
 Tags are useful when you have multiple edges and want PCP to select an edge
 based on its environment. For example:
