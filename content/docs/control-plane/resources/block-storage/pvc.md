@@ -86,9 +86,9 @@ The following settings are available when configuring a source app using the
   Leave it empty when Plakar Control Plane runs inside the cluster to use the
   in-cluster configuration. The kubeconfig can also be loaded from a
   [secret provider](../../infrastructure/secret-providers).
-- **Kubelet Image**: The container image used for the helper pod. Leave this
-  unset. It exists only so that Plakar support can supply a replacement image
-  while diagnosing a problem, and a working deployment never needs it.
+- **Kubelet Image**: The container image used for the helper pod. Defaults to a
+  recent kubelet image. Set it to pull the image from another registry, for
+  example a local mirror in an air-gapped cluster.
 - **Volume Snapshot Class**: Required. The name of the `VolumeSnapshotClass` to
   use when creating the CSI snapshot.
 - **FS Access**: The file access capabilities granted to the helper pod.
@@ -103,8 +103,8 @@ is the only protocol available for restoring PVC data, regardless of which
 protocol was used to back it up.
 
 For backups, this protocol is a fallback for clusters where CSI snapshots are
-not available, for example some Proxmox-based clusters. Use `k8s+csi` whenever
-the storage class supports `VolumeSnapshot`.
+not available. Use `k8s+csi` whenever the storage class supports
+`VolumeSnapshot`.
 
 > [!WARNING]+ No point-in-time consistency
 >
@@ -118,6 +118,11 @@ the storage class supports `VolumeSnapshot`.
 A `ReadWriteOnce` PVC can only be mounted on one node at a time. If a workload
 already mounts the PVC and the helper pod is scheduled on a different node, the
 helper pod cannot mount the volume and the backup fails.
+
+> [!NOTE]
+>
+> Support for backing up `ReadWriteOnce` PVCs that are already mounted is
+> planned.
 
 #### Backup flow
 
@@ -177,9 +182,9 @@ destination apps using the `k8s+pvc` protocol.
   Leave it empty when Plakar Control Plane runs inside the cluster to use the
   in-cluster configuration. The kubeconfig can also be loaded from a
   [secret provider](../../infrastructure/secret-providers).
-- **Kubelet Image**: The container image used for the helper pod. Leave this
-  unset. It exists only so that Plakar support can supply a replacement image
-  while diagnosing a problem, and a working deployment never needs it.
+- **Kubelet Image**: The container image used for the helper pod. Defaults to a
+  recent kubelet image. Set it to pull the image from another registry, for
+  example a local mirror in an air-gapped cluster.
 - **FS Access**: The file access capabilities granted to the helper pod.
   `default` grants no extra capabilities, `read` grants read capabilities only,
   and `full` grants read and write capabilities. Defaults to `read` for source

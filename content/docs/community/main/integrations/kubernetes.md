@@ -108,6 +108,10 @@ integration uses the default context defined in `~/.kube/config`. Use the
 `kubeconfig_file` option to point at a different kube config, or `kubeconfig` to
 provide a configuration inline.
 
+When Plakar runs inside a Kubernetes cluster and no kube config is available,
+the integration uses the in-cluster configuration instead. It then reaches the
+cluster it runs in with the permissions of its pod's ServiceAccount.
+
 The following options apply to every protocol, for both source and destination
 connectors.
 
@@ -251,11 +255,11 @@ Snap --> Via --> Plakar --> Transform --> Store
 The following options are available to source connectors using the `k8s+csi`
 protocol, in addition to those in [Cluster access](#cluster-access).
 
-| Option                  | Required | Description                                                                                                                                       |
-| ----------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `kubelet_image`         | No       | Container image for the helper pod. Leave unset. It exists only so that Plakar support can supply a replacement image while diagnosing a problem. |
-| `volume_snapshot_class` | Yes      | Name of the `VolumeSnapshotClass` to use for CSI snapshots.                                                                                       |
-| `fs_access`             | No       | File access capabilities granted to the helper pod. See [File access](#file-access). Defaults to `read`.                                          |
+| Option                  | Required | Description                                                                                                                                                                  |
+| ----------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `kubelet_image`         | No       | Container image for the helper pod. Defaults to a recent kubelet image. Set it to pull the image from another registry, for example a local mirror in an air-gapped cluster. |
+| `volume_snapshot_class` | Yes      | Name of the `VolumeSnapshotClass` to use for CSI snapshots.                                                                                                                  |
+| `fs_access`             | No       | File access capabilities granted to the helper pod. See [File access](#file-access). Defaults to `read`.                                                                     |
 
 ### Example
 
@@ -271,9 +275,8 @@ The `k8s+pvc` protocol backs up and restores the contents of a PVC without a
 `VolumeSnapshot`, by reading the live volume directly.
 
 For backups, this protocol is a fallback for clusters where CSI snapshots are
-not available, for example some Proxmox-based clusters. Use
-[`k8s+csi`](#2-k8scsi-protocol) whenever the storage class supports
-`VolumeSnapshot`.
+not available. Use [`k8s+csi`](#2-k8scsi-protocol) whenever the storage class
+supports `VolumeSnapshot`.
 
 > [!WARNING]+ No point-in-time consistency
 >
@@ -287,6 +290,11 @@ not available, for example some Proxmox-based clusters. Use
 A `ReadWriteOnce` PVC can only be mounted on one node at a time. If a workload
 already mounts the PVC and the helper pod is scheduled on a different node, the
 helper pod cannot mount the volume and the backup fails.
+
+> [!NOTE]
+>
+> Support for backing up `ReadWriteOnce` PVCs that are already mounted is
+> planned.
 
 A restore writes the data into a target PVC through the same helper pod
 mechanism used for backups. The target can be an existing PVC or a freshly
@@ -341,10 +349,10 @@ Store --> Transform --> Plakar --> Via --> PVC
 The following options apply to both source and destination connectors using the
 `k8s+pvc` protocol, in addition to those in [Cluster access](#cluster-access).
 
-| Option          | Required | Description                                                                                                                                       |
-| --------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `kubelet_image` | No       | Container image for the helper pod. Leave unset. It exists only so that Plakar support can supply a replacement image while diagnosing a problem. |
-| `fs_access`     | No       | File access capabilities granted to the helper pod. See [File access](#file-access). Defaults to `read` for backups and `full` for restores.      |
+| Option          | Required | Description                                                                                                                                                                  |
+| --------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `kubelet_image` | No       | Container image for the helper pod. Defaults to a recent kubelet image. Set it to pull the image from another registry, for example a local mirror in an air-gapped cluster. |
+| `fs_access`     | No       | File access capabilities granted to the helper pod. See [File access](#file-access). Defaults to `read` for backups and `full` for restores.                                 |
 
 ### File access
 
@@ -438,9 +446,9 @@ Store --> Transform --> Plakar --> Via --> VM
 The following options apply to both source and destination connectors using the
 `k8s+vm` protocol, in addition to those in [Cluster access](#cluster-access).
 
-| Option          | Required | Description                                                                                                                                       |
-| --------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `kubelet_image` | No       | Container image for the helper pod. Leave unset. It exists only so that Plakar support can supply a replacement image while diagnosing a problem. |
+| Option          | Required | Description                                                                                                                                                                  |
+| --------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `kubelet_image` | No       | Container image for the helper pod. Defaults to a recent kubelet image. Set it to pull the image from another registry, for example a local mirror in an air-gapped cluster. |
 
 ### Example
 
