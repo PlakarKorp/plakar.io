@@ -35,10 +35,9 @@ mutually exclusive.
 
 `edgeTags` dispatches the restore to a remote [edge](../../../edges) instead of
 running it on the Control Plane appliance: all listed tags must be present on
-the edge for it to match. If omitted or empty, the restore matches any online
-edge, preferring one over local execution, and falls back to running on the
-Control Plane appliance if none are online. If `edgeTags` is set but matches no
-online edge, the restore fails instead of running locally.
+the edge for it to match. If omitted or empty, the restore runs on the Control
+Plane appliance. If `edgeTags` is set but matches no online edge, the restore
+fails instead of running locally.
 
 Once submitted, the job's identifier is exposed through `status.atID`, and
 `status.conditions` reports `Running`, `Completed`, or `Failed` as the job

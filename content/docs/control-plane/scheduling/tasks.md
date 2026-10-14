@@ -31,11 +31,10 @@ restore points and can later be used as filters for your restore points.
 
 ### Advanced Config
 
-- **Run on**: Pins the task to a specific edge. If left empty, the Control Plane
-  picks an available edge, preferring an edge over running the task itself.
-  Targeting edges by tags is currently only possible through the
-  [Ansible collection](../references/ansible-collection) and the
-  [Kubernetes operator](../infrastructure-as-code/kubernetes-operator/scheduling#running-tasks-on-a-remote-edge).
+- **Run on**: Pins the task to a specific edge. If left empty, the task runs on
+  the Control Plane itself. Targeting edges by tags is currently only possible
+  through the [Ansible collection](../../references/ansible-collection) and the
+  [Kubernetes operator](../../infrastructure-as-code/kubernetes-operator/scheduling#running-tasks-on-a-remote-edge).
   See [selecting an edge](../../edges/running-tasks#selecting-an-edge).
 - **Pre-job script** and **Post-job script**: File names of scripts in the
   edge's scripts directory, run before and after the job. The task fails if the
@@ -67,11 +66,10 @@ showing only restore points that match the specified environment and data class.
 
 ### Advanced Config
 
-- **Run on**: Pins the task to a specific edge. If left empty, the Control Plane
-  picks an available edge, preferring an edge over running the task itself.
-  Targeting edges by tags is currently only possible through the
-  [Ansible collection](../references/ansible-collection) and the
-  [Kubernetes operator](../infrastructure-as-code/kubernetes-operator/scheduling#running-tasks-on-a-remote-edge).
+- **Run on**: Pins the task to a specific edge. If left empty, the task runs on
+  the Control Plane itself. Targeting edges by tags is currently only possible
+  through the [Ansible collection](../../references/ansible-collection) and the
+  [Kubernetes operator](../../infrastructure-as-code/kubernetes-operator/scheduling#running-tasks-on-a-remote-edge).
   See [selecting an edge](../../edges/running-tasks#selecting-an-edge).
 - **Pre-job script** and **Post-job script**: File names of scripts in the
   edge's scripts directory, run before and after the job. The task fails if the
@@ -95,11 +93,10 @@ matching all the provided labels will be synced to the other store.
 
 ### Advanced Config
 
-- **Run on**: Pins the task to a specific edge. If left empty, the Control Plane
-  picks an available edge, preferring an edge over running the task itself.
-  Targeting edges by tags is currently only possible through the
-  [Ansible collection](../references/ansible-collection) and the
-  [Kubernetes operator](../infrastructure-as-code/kubernetes-operator/scheduling#running-tasks-on-a-remote-edge).
+- **Run on**: Pins the task to a specific edge. If left empty, the task runs on
+  the Control Plane itself. Targeting edges by tags is currently only possible
+  through the [Ansible collection](../../references/ansible-collection) and the
+  [Kubernetes operator](../../infrastructure-as-code/kubernetes-operator/scheduling#running-tasks-on-a-remote-edge).
   See [selecting an edge](../../edges/running-tasks#selecting-an-edge).
 - **Concurrency**: This controls how many operations the backup task runs in
   parallel. Plakar Control Plane automatically sets a recommended concurrency
@@ -132,11 +129,10 @@ checked, not the entire store.
 
 ### Advanced Config
 
-- **Run on**: Pins the task to a specific edge. If left empty, the Control Plane
-  picks an available edge, preferring an edge over running the task itself.
-  Targeting edges by tags is currently only possible through the
-  [Ansible collection](../references/ansible-collection) and the
-  [Kubernetes operator](../infrastructure-as-code/kubernetes-operator/scheduling#running-tasks-on-a-remote-edge).
+- **Run on**: Pins the task to a specific edge. If left empty, the task runs on
+  the Control Plane itself. Targeting edges by tags is currently only possible
+  through the [Ansible collection](../../references/ansible-collection) and the
+  [Kubernetes operator](../../infrastructure-as-code/kubernetes-operator/scheduling#running-tasks-on-a-remote-edge).
   See [selecting an edge](../../edges/running-tasks#selecting-an-edge).
 - **Concurrency**: This controls how many operations the backup task runs in
   parallel. Plakar Control Plane automatically sets a recommended concurrency
