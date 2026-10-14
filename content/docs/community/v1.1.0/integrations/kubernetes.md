@@ -148,6 +148,28 @@ API --> Via --> Plakar --> Transform --> Store
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
+#### Restore flow
+
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+flowchart LR
+
+Store["Kloset Store"]
+
+Transform["Decrypt & reconstruct"]
+
+Plakar["Plakar"]
+
+Via["Apply manifests via<br/>kubectl proxy"]
+
+subgraph Destination["Kubernetes Cluster"]
+  API["API Server"]
+end
+
+Store --> Transform --> Plakar --> Via --> API
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
+
 ### Source configuration
 
 The following options are available to source connectors using the `k8s`
@@ -252,6 +274,50 @@ PVC.
 A restore writes the data into a target PVC through the same helper pod
 mechanism used for backups. The target can be an existing PVC or a freshly
 created one, and must have sufficient capacity.
+
+#### Backup flow
+
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+flowchart LR
+
+subgraph Source["Kubernetes Cluster"]
+  PVC["PVC"]
+end
+
+Plakar["Plakar"]
+
+Via["Ingest via<br/>helper pod"]
+
+Transform["Encrypt & deduplicate"]
+
+Store["Kloset Store"]
+
+PVC --> Via --> Plakar --> Transform --> Store
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
+
+#### Restore flow
+
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+flowchart LR
+
+Store["Kloset Store"]
+
+Transform["Decrypt & reconstruct"]
+
+Plakar["Plakar"]
+
+Via["Write via<br/>helper pod"]
+
+subgraph Destination["Kubernetes Cluster"]
+  PVC["PVC"]
+end
+
+Store --> Transform --> Plakar --> Via --> PVC
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
 
 ### Shared configuration
 
