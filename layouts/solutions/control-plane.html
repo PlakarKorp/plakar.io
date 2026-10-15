@@ -23,7 +23,6 @@
     </p>
 
     <div class="flex flex-col sm:flex-row gap-4 mt-2 items-center">
-      {{/* Confirm the "Start free" destination (console signup / free plan) before publish. owner: victor@plakar.io */}}
       {{ partial "components/buttons/base-button.html" (dict
         "label" "Start free"
         "labelShort" "Start free"
@@ -54,14 +53,8 @@
           <span class="ml-4 text-xs font-mono text-neutral-500">Plakar Control Plane</span>
         </div>
         <div class="p-2 md:p-3">
-          {{ if $dashboard }}
-            <img src="{{ $dashboard.RelPermalink }}" alt="Plakar Control Plane unified dashboard" class="w-full h-auto rounded" loading="lazy">
-          {{ else }}
-            <div class="landing-ph w-full" style="aspect-ratio:16/9" role="img" aria-label="Placeholder for the Control Plane dashboard screenshot">
-              <span class="landing-ph__tag">Screenshot</span>
-              <span class="landing-ph__label">Unified dashboard</span>
-              <span class="landing-ph__hint">Every backup, every resource, one view</span>
-            </div>
+          {{ with $dashboard }}
+            <img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="Plakar Control Plane unified dashboard" class="w-full h-auto rounded" fetchpriority="high">
           {{ end }}
         </div>
       </div>
