@@ -26,18 +26,18 @@ To build Plakar from source. You will need:
 Clone the repository and run `make`:
 
 ```bash
-$ git clone https://github.com/PlakarKorp/plakar.git
-$ cd plakar
-$ make
+git clone https://github.com/PlakarKorp/plakar.git
+cd plakar
+make
 ```
 
 This produces a `plakar` binary in the current directory. To build a specific
 release version, check out the corresponding tag before running `make`:
 
 ```bash
-$ git fetch --tags
-$ git checkout tags/v1.1.3
-$ make
+git fetch --tags
+git checkout tags/v1.1.3
+make
 ```
 
 ## Verifying the Installation
@@ -45,7 +45,7 @@ $ make
 Verify the installation by running:
 
 ```bash
-$ plakar version
+plakar version
 ```
 
 This should return the expected version number, for example `plakar/v1.1.3`.

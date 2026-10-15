@@ -76,14 +76,14 @@ Assume you have a Kloset Store located at `/var/backups`. To expose it over
 HTTP, run:
 
 ```bash
-$ plakar at /var/backups server
+plakar at /var/backups server
 ```
 
 By default, `plakar server` listens on `http://localhost:9876`. You can then
 access the store from any Plakar client:
 
 ```bash
-$ plakar at http://localhost:9876 ls
+plakar at http://localhost:9876 ls
 ```
 
 ## Listening on a different address
@@ -92,19 +92,19 @@ Use the `-listen` flag to change the listening address and port. To listen on
 all interfaces on port `12345`:
 
 ```bash
-$ plakar at /var/backups server -listen :12345
+plakar at /var/backups server -listen :12345
 ```
 
 To listen on a specific address, for example `192.168.1.10`:
 
 ```bash
-$ plakar at /var/backups server -listen 192.168.1.10:12345
+plakar at /var/backups server -listen 192.168.1.10:12345
 ```
 
 Remote clients on the same network can then reach the store using:
 
 ```bash
-$ plakar at http://192.168.1.10:12345 ls
+plakar at http://192.168.1.10:12345 ls
 ```
 
 ## Enabling destructive operations
@@ -115,7 +115,7 @@ packfiles, and locks) stored inside a store. This is what happens during
 explicitly:
 
 ```bash
-$ plakar at /var/backups server -allow-delete
+plakar at /var/backups server -allow-delete
 ```
 
 ## Requiring an authentication token
@@ -125,13 +125,13 @@ the served store, provided it has the repository passphrase. The `-token` flag
 requires clients to present a bearer token before the server accepts a request:
 
 ```bash
-$ plakar at /var/backups server -token <token>
+plakar at /var/backups server -token <token>
 ```
 
 Clients supply the same token through the `auth_token` store option:
 
 ```bash
-$ plakar store add remote https://backup.example.com auth_token=<token>
+plakar store add remote https://backup.example.com auth_token=<token>
 ```
 
 Over a plaintext HTTP connection, clients do not send the token unless
@@ -146,7 +146,7 @@ for the other options available on `http://` and `https://` stores.
 private key:
 
 ```bash
-$ plakar at /var/backups server \
+plakar at /var/backups server \
   -listen :443 \
   -cert fullchain.pem \
   -key privkey.pem
@@ -155,7 +155,7 @@ $ plakar at /var/backups server \
 Clients connect using:
 
 ```bash
-$ plakar at https://backup.example.com ls
+plakar at https://backup.example.com ls
 ```
 
 If either `-cert` or `-key` is missing, the server falls back to plain HTTP.
@@ -175,7 +175,7 @@ If either `-cert` or `-key` is missing, the server falls back to plain HTTP.
 SFTP-backed store over HTTP:
 
 ```bash
-$ plakar at sftp://example.org server
+plakar at sftp://example.org server
 ```
 
 ## Limitations

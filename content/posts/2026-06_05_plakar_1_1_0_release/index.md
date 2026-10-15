@@ -145,7 +145,7 @@ detail when you actually want it.
 ### Multi-directory backups
 
 ```terminal
-$ plakar backup /etc /home
+plakar backup /etc /home
 ```
 
 Multi-directory backups are back, on a single source, now that we can handle
@@ -251,7 +251,7 @@ into the old local cache behaviour is there for you.
 ## Get it now
 
 ```terminal
-$ go install github.com/PlakarKorp/plakar@v1.1.3
+go install github.com/PlakarKorp/plakar@v1.1.3
 ```
 
 A note on upgrading: your existing stores keep working exactly as before. The
@@ -264,8 +264,8 @@ you want the full benefit, the simplest path is to **create a fresh store and
 sync your old one into it**:
 
 ```terminal
-$ plakar at /path/to/new-store create
-$ plakar at /path/to/new-store sync from /path/to/old-store
+plakar at /path/to/new-store create
+plakar at /path/to/new-store sync from /path/to/old-store
 ```
 
 Once everything has synced across, point your backups at the new store and keep
@@ -277,8 +277,8 @@ If you use third-party integrations such as SFTP or S3, this is also a good
 moment to refresh them so they link against the latest SDK:
 
 ```terminal
-$ plakar pkg rm s3
-$ plakar pkg add s3
+plakar pkg rm s3
+plakar pkg add s3
 ```
 
 ## Thank you

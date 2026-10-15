@@ -56,14 +56,24 @@ Since `Source` is an ordinary Kubernetes custom resource, `kubectl get` and
 `kubectl describe` work on it the same way they do on any built-in Kubernetes
 object:
 
+```bash
+kubectl get Source
+```
+
+The output is similar to:
+
 ```sh
-$ kubectl get Source
 NAME                  AGE
 production-database   42m
 ```
 
+```bash
+kubectl describe Source production-database
+```
+
+The output is similar to:
+
 ```sh
-$ kubectl describe Source production-database
 ...
 Status:
   Conditions:

@@ -117,7 +117,7 @@ schedule that produced it. A `TaskRun` reports the execution's phase (`queued`,
 stopped timestamps:
 
 ```sh
-$ kubectl get taskruns
+kubectl get taskruns
 ```
 
 `TaskRun` resources are read-only records owned by the schedule that created
@@ -127,7 +127,7 @@ resource also deletes its `TaskRun` history. Each one carries
 so you can list only the runs for a given schedule:
 
 ```sh
-$ kubectl get taskruns -l task.plakar.io/name=backup
+kubectl get taskruns -l task.plakar.io/name=backup
 ```
 
 ```txt
@@ -144,7 +144,7 @@ backup-f1788ce4   backup   schedulebackup   succeeded   76s           48s
 the timestamps reported by Plakar Control Plane for that execution:
 
 ```sh
-$ kubectl describe taskrun backup-0d2a6cd0
+kubectl describe taskrun backup-0d2a6cd0
 ```
 
 ```txt

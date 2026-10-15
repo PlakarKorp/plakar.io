@@ -64,14 +64,24 @@ Since `Store` is an ordinary Kubernetes custom resource, `kubectl get` and
 `kubectl describe` work on it the same way they do on any built-in Kubernetes
 object:
 
+```bash
+kubectl get Store
+```
+
+The output is similar to:
+
 ```sh
-$ kubectl get Store
 NAME       AGE
 s3bucket   111m
 ```
 
+```bash
+kubectl describe Store s3bucket
+```
+
+The output is similar to:
+
 ```sh
-$ kubectl describe Store s3bucket
 ...
 Status:
   Conditions:

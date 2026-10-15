@@ -190,14 +190,14 @@ over the last three months + 5 backup per week over the last four weeks + 3 per
 day over the last 2 days:
 
 ```sh
-$ plakar prune -days 2 -per-day 3 -weeks 4 -per-week 5 -months 3 -per-month 2
+plakar prune -days 2 -per-day 3 -weeks 4 -per-week 5 -months 3 -per-month 2
 ```
 
 But it also support filering on all our snapshot locating options, like
 filtering on tags:
 
 ```sh
-$ plakar prune -tags finance -per-day 5
+plakar prune -tags finance -per-day 5
 ```
 
 ---

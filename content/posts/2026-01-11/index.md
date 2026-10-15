@@ -68,12 +68,12 @@ that explains how to perform a physical backup of a PostgreSQL database using
 The command looks like this:
 
 ```bash
-$ export PGUSER=xxx
-$ export PGPORT=5432
-$ export PGHOST=xxx
-$ export PGPASSWORD=xxx
+export PGUSER=xxx
+export PGPORT=5432
+export PGHOST=xxx
+export PGPASSWORD=xxx
 
-$ pg_basebackup -D - -F tar -X fetch | \
+pg_basebackup -D - -F tar -X fetch | \
   plakar at /var/backups backup -no-progress tar:///dev/stdin
 ```
 
@@ -92,13 +92,13 @@ As explained in the
 you could first restore the snapshot:
 
 ```bash
-$ plakar at /var/backups restore -to ./mydir <snapshot_id>
+plakar at /var/backups restore -to ./mydir <snapshot_id>
 ```
 
 Then, start a PostgreSQL container using that directory as a data volume:
 
 ```bash
-$ docker run --rm -ti \
+docker run --rm -ti \
   --name pg \
   -v ./mydir:/var/lib/postgresql/data \
   postgres
@@ -117,7 +117,7 @@ The command `plakar mount` allows mounting a Kloset store as a local read-only
 filesystem:
 
 ```bash
-$ ./plakar mount -to /mnt/mysnapshot <snapshot_id>
+./plakar mount -to /mnt/mysnapshot <snapshot_id>
 ```
 
 This command is magical: it allows browsing the files inside a snapshot as if
@@ -138,17 +138,17 @@ gigabytes of data just to run a few read-only queries.
 Let's try to run PostgreSQL on top of the mounted Kloset snapshot:
 
 ```bash
-$ docker run --rm -ti \
+docker run --rm -ti \
   --name pg \
-  -v /mnt/mysnapshot:/var/lib/postgresql/data:ro
+  -v /mnt/mysnapshot:/var/lib/postgresql/data:ro \
   postgres
 ```
 
 Ouch, it immediately fails:
 
-```bash
-$ chmod: changing permissions of '/var/lib/postgresql/data': Read-only file system
-$ chown: changing ownership of '/var/lib/postgresql/data': Read-only file system
+```sh
+chmod: changing permissions of '/var/lib/postgresql/data': Read-only file system
+chown: changing ownership of '/var/lib/postgresql/data': Read-only file system
 ...
 ```
 
@@ -174,8 +174,8 @@ explore this option.
 First, create the required directories and mount the overlay filesystem:
 
 ```bash
-$ mkdir upper workdir merged
-$ mount -t overlay overlay \
+mkdir upper workdir merged
+mount -t overlay overlay \
   -o lowerdir=/mnt/mysnapshot,upperdir=./upper,workdir=./workdir \
   ./merged
 ```
@@ -231,7 +231,7 @@ still read from the Kloset snapshot on-demand.
 Let's try running PostgreSQL on top of overlayfs:
 
 ```bash
-$ docker run --rm -ti \
+docker run --rm -ti \
   --name pg \
   -v ./merged:/var/lib/postgresql/data \
   postgres
@@ -240,7 +240,7 @@ $ docker run --rm -ti \
 PostgreSQL starts successfully after some time, and you can run queries:
 
 ```bash
-$ docker exec -ti pg psql -U postgres -c '\l'
+docker exec -ti pg psql -U postgres -c '\l'
 ```
 
 It seems to work, but it doesn't. As we explained before, any write operation
@@ -281,19 +281,19 @@ are read from a backing file.
 Let's create a base qcow2 image with enough space to hold the PostgreSQL data:
 
 ```bash
-$ qemu-img create -f qcow2 base.qcow2 10G
+qemu-img create -f qcow2 base.qcow2 10G
 ```
 
 Format it, and copy the PostgreSQL data to the image:
 
 ```bash
-$ qemu-nbd --connect /dev/nbd0 ./base.qcow2
-$ mkfs.ext4 /dev/nbd0
-$ mkdir -p ./mnt && mount /dev/nbd0 ./mnt
-$ plakar at /var/backups restore -to ./mnt <snapshot_id>
+qemu-nbd --connect /dev/nbd0 ./base.qcow2
+mkfs.ext4 /dev/nbd0
+mkdir -p ./mnt && mount /dev/nbd0 ./mnt
+plakar at /var/backups restore -to ./mnt <snapshot_id>
 # Cleanup
-$ umount ./mnt
-$ qemu-nbd -d /dev/nbd0
+umount ./mnt
+qemu-nbd -d /dev/nbd0
 ```
 
 Now, `./base.qcow2` is a qcow2 image that contains a filesystem with the
@@ -307,9 +307,9 @@ PostgreSQL data.
 Now, let's create an overlay image using the base image as backing storage:
 
 ```bash
-$ qemu-img create -f qcow2 -b base.qcow2 -F qcow2 overlay.qcow2
-$ qemu-nbd --connect /dev/nbd0 ./overlay.qcow2
-$ mount /dev/nbd0 ./mnt
+qemu-img create -f qcow2 -b base.qcow2 -F qcow2 overlay.qcow2
+qemu-nbd --connect /dev/nbd0 ./overlay.qcow2
+mount /dev/nbd0 ./mnt
 ```
 
 Now, `./mnt` contains the PostgreSQL data directory, backed by `base.qcow2`. Any
@@ -349,7 +349,7 @@ flowchart TB
 Let's run PostgreSQL:
 
 ```bash
-$ docker run --name pg --rm -ti -v ./mnt:/var/lib/postgresql/data postgres
+docker run --name pg --rm -ti -v ./mnt:/var/lib/postgresql/data postgres
 ```
 
 PostgreSQL starts successfully, and queries work as expected.

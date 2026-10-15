@@ -51,7 +51,7 @@ This feature only works on our development branch for the time being, you can
 give it a try by installing our latest devel release:
 
 ```sh
-$ go install github.com/PlakarKorp/plakar@v1.0.3-devel.455ca52
+go install github.com/PlakarKorp/plakar@v1.0.3-devel.455ca52
 ```
 
 ## Introducing go-kloset-sdk
@@ -139,14 +139,14 @@ connectors:
 ### 4. Build the Package
 
 ```sh
-$ go build -o ftpImporter ./plugin/importer
-$ plakar pkg create manifest.yaml
+go build -o ftpImporter ./plugin/importer
+plakar pkg create manifest.yaml
 ```
 
 You’ll get a `ftp-v0.1.0.ptar` you can install:
 
 ```sh
-$ plakar pkg add ftp-v0.1.0.ptar
+plakar pkg add ftp-v0.1.0.ptar
 ```
 
 And voilà — `ftp://` becomes a fully-supported import source in your setup.
@@ -166,17 +166,17 @@ already lets you:
 ### Backup your email:
 
 ```sh
-$ plakar source add IMAPsrc imap://imap.mydomain.com:143 \
+plakar source add IMAPsrc imap://imap.mydomain.com:143 \
   username=myuser password=mypassword tls=starttls
-$ plakar backup @IMAPsrc
+plakar backup @IMAPsrc
 ```
 
 ### Restore your email:
 
 ```sh
-$ plakar destination add IMAPdst imap://imap.alsomydomain.com:143 \
+plakar destination add IMAPdst imap://imap.alsomydomain.com:143 \
   username=alsomyuser password=alsomypassword tls=starttls
-$ plakar restore -to @IMAPdst <snapid>
+plakar restore -to @IMAPdst <snapid>
 ```
 
 Full instructions are available in the integration’s README — we’d love your

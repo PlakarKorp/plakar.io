@@ -44,13 +44,13 @@ simplest installation method.
 Install the etcd package:
 
 ```bash
-$ plakar pkg add etcd
+plakar pkg add etcd
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg show
+plakar pkg show
 ```
 
 {{< /tab >}}
@@ -67,7 +67,7 @@ customization is required.
 Build the package:
 
 ```bash
-$ plakar pkg build etcd
+plakar pkg build etcd
 ```
 
 A package archive will be created in the current directory (e.g.,
@@ -76,13 +76,13 @@ A package archive will be created in the current directory (e.g.,
 Install the package:
 
 ```bash
-$ plakar pkg add -allow-unsigned ./etcd_v1.0.0_darwin_arm64.ptar
+plakar pkg add -allow-unsigned ./etcd_v1.0.0_darwin_arm64.ptar
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg show
+plakar pkg show
 ```
 
 {{< /tab >}}
@@ -122,19 +122,19 @@ DB --> Via --> Plakar --> Transform --> Store
 Back up by connecting to a node over HTTP:
 
 ```bash
-$ plakar backup etcd://node1:2379
+plakar backup etcd://node1:2379
 ```
 
 Back up using HTTPS with authentication:
 
 ```bash
-$ plakar backup -o username=myuser -o password=secret etcd+https://node1:2379
+plakar backup -o username=myuser -o password=secret etcd+https://node1:2379
 ```
 
 Back up by specifying multiple nodes:
 
 ```bash
-$ plakar backup -o endpoints=http://node1:2379,http://node2:2379 etcd://
+plakar backup -o endpoints=http://node1:2379,http://node2:2379 etcd://
 ```
 
 ### Options
@@ -153,7 +153,7 @@ retrieve the snapshot from the Kloset store to disk, then use `etcdutl` to
 provision a new etcd data directory from it.
 
 ```bash
-$ plakar at /var/backups restore -to ./etcd-snapshot <snapshot_id>
+plakar at /var/backups restore -to ./etcd-snapshot <snapshot_id>
 ```
 
 Then follow the upstream etcd recovery procedure to bring the cluster back up.

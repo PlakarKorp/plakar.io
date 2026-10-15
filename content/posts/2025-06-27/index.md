@@ -33,7 +33,7 @@ You will be able to test it right away by installing our latest development
 release:
 
 ```sh
-$ go install github.com/PlakarKorp/plakar@v1.0.3-devel.c7a66f1
+go install github.com/PlakarKorp/plakar@v1.0.3-devel.c7a66f1
 ```
 
 If you like this reading and want more of these tech articles about our work...
@@ -101,8 +101,13 @@ packed with a ton of user-friendly features, well... it's built for that too ðŸ˜
 
 Creating a `.ptar` archive is as simple as the following command:
 
+```bash
+plakar ptar -o test.ptar ~/Downloads
+```
+
+The output is similar to:
+
 ```sh
-$ plakar ptar -o test.ptar ~/Downloads
 passphrase:
 passphrase (confirm):
 ```
@@ -111,11 +116,23 @@ The resulting file contains all of `~/Downloads`, deduplicated, compressed,
 encrypted, cryptographically authenticated, easily transportable and immediately
 usable for restore:
 
-```sh
-$ plakar at test.ptar ls
-2025-06-24T20:12:53Z   a2650f13    11 GB        36s /Users/gilles/Downloads
+```bash
+plakar at test.ptar ls
+```
 
-$ plakar at test.ptar restore a2650f13:/
+The output is similar to:
+
+```sh
+2025-06-24T20:12:53Z   a2650f13    11 GB        36s /Users/gilles/Downloads
+```
+
+```bash
+plakar at test.ptar restore a2650f13:/
+```
+
+The output is similar to:
+
+```sh
 [...]
 ```
 
@@ -171,23 +188,73 @@ at the data level: any redundant data is duplicated inside the archive.
 
 Yeah, no, it won't.
 
+```bash
+du -sh ~/Downloads
+```
+
+The output is similar to:
+
 ```sh
-$ du -sh ~/Downloads
  11G    /Users/gilles/Downloads
+```
 
-$ time tar -czf test.tar.gz ~/Downloads
+```bash
+time tar -czf test.tar.gz ~/Downloads
+```
+
+The output is similar to:
+
+```sh
 [...] 166.48s user 14.07s system 99% cpu 3:01.53 total
-$ du -sh test.tar.gz
+```
+
+```bash
+du -sh test.tar.gz
+```
+
+The output is similar to:
+
+```sh
 8.8G    test.tar.gz
+```
 
-$ time tar -czf test.tar.gz ~/Downloads ~/Downloads
+```bash
+time tar -czf test.tar.gz ~/Downloads ~/Downloads
+```
+
+The output is similar to:
+
+```sh
 [...] 332.98s user 28.09s system 99% cpu 6:02.89 total
-$ du -sh test.tar.gz
- 18G    test.tar.gz
+```
 
-$ time tar -czf test.tar.gz ~/Downloads ~/Downloads ~/Downloads
+```bash
+du -sh test.tar.gz
+```
+
+The output is similar to:
+
+```sh
+ 18G    test.tar.gz
+```
+
+```bash
+time tar -czf test.tar.gz ~/Downloads ~/Downloads ~/Downloads
+```
+
+The output is similar to:
+
+```sh
 [...] 499.69s user 41.99s system 99% cpu 9:05.15 total
-$ du -sh test.tar.gz
+```
+
+```bash
+du -sh test.tar.gz
+```
+
+The output is similar to:
+
+```sh
  26G    test.tar.gz
 ```
 
@@ -205,20 +272,63 @@ readings, me likey writing :-) <!-- codespell:ignore likey -->
 
 Anyways, that's a sharp contrast with `.ptar`:
 
+```bash
+time plakar ptar -plaintext -o test.ptar ~/Downloads
+```
+
+The output is similar to:
+
 ```sh
-$ time plakar ptar -plaintext -o test.ptar ~/Downloads
 [...] 135.80s user 31.42s system 439% cpu 38.073 total
-$ du -sh test.ptar
-8.2G    test.ptar
+```
 
-$ time plakar ptar -plaintext -o test.ptar ~/Downloads ~/Downloads
+```bash
+du -sh test.ptar
+```
+
+The output is similar to:
+
+```sh
+8.2G    test.ptar
+```
+
+```bash
+time plakar ptar -plaintext -o test.ptar ~/Downloads ~/Downloads
+```
+
+The output is similar to:
+
+```sh
 [...] 134.91s user 31.09s system 438% cpu 37.892 total
-$ du -sh test.ptar
-8.2G    test.ptar
+```
 
-$ time plakar ptar -plaintext -o test.ptar ~/Downloads ~/Downloads ~/Downloads
+```bash
+du -sh test.ptar
+```
+
+The output is similar to:
+
+```sh
+8.2G    test.ptar
+```
+
+```bash
+time plakar ptar -plaintext -o test.ptar ~/Downloads ~/Downloads ~/Downloads
+```
+
+The output is similar to:
+
+```sh
 [...] 134.60s user 30.74s system 438% cpu 37.727 total
-$ du -sh test.ptar
+```
+
+```bash
+du -sh test.ptar
+```
+
+The output is similar to:
+
+```sh
 8.2G    test.ptar
 ```
 
@@ -227,8 +337,13 @@ Of course, I'm showing a `.tar` worst-case scenario here for
 see even on the very first backup a gain is already visible **when there's
 redundancy** in the source data:
 
+```bash
+ls ~/Downloads|grep '('
+```
+
+The output is similar to:
+
 ```sh
-$ ls ~/Downloads|grep '('
 update the btree even when the file was found in the cache #272 (1).mp3
 update the btree even when the file was found in the cache #272 (2).mp3
 ```
@@ -258,7 +373,7 @@ full read, something just not doable with a `.tar` or `.zip`, and which proves
 interesting with large archives for which you only need specific contents:
 
 ```sh
-$ plakar at ptar+https://plakar.io/test.ptar ui
+plakar at ptar+https://plakar.io/test.ptar ui
 ```
 
 ![](remote-ptar.png) ![](remote-ptar2.png)
@@ -266,8 +381,13 @@ $ plakar at ptar+https://plakar.io/test.ptar ui
 **Again**, no API, no backend, just a `.ptar` reader that you launch locally,
 either through the UI as shown here or through the CLI for some terminal action:
 
+```bash
+./plakar at ptar+https://plakar.io/test.ptar ls
+```
+
+The output is similar to:
+
 ```sh
-$ ./plakar at ptar+https://plakar.io/test.ptar ls
 2025-06-02T19:43:53Z   ed0f6603    3.1 MB        0s /private/etc
 ```
 
@@ -425,8 +545,13 @@ the CLI.
 The following command creates an encrypted snapshot of my `~/Downloads`
 directory into the file `downloads.ptar`:
 
+```bash
+plakar ptar -o downloads.ptar ~/Downloads
+```
+
+The output is similar to:
+
 ```sh
-$ plakar ptar -o downloads.ptar ~/Downloads
 passphrase:
 passphrase (confirm):
 ```
@@ -437,7 +562,7 @@ self-verifying. No need to bundle external metadata or config files.
 A non-encrypted version can be produced by passing the `-plaintext` option:
 
 ```sh
-$ plakar ptar -plaintext -o downloads.ptar ~/Downloads
+plakar ptar -plaintext -o downloads.ptar ~/Downloads
 ```
 
 ---
@@ -446,19 +571,37 @@ $ plakar ptar -plaintext -o downloads.ptar ~/Downloads
 
 A `.ptar` can be browsed without extracting the actual data.
 
+```bash
+plakar at downloads.ptar ls
+```
+
+The output is similar to:
+
 ```sh
-$ plakar at downloads.ptar ls
 repository passphrase:
 repository passphrase (confirm):
 2025-06-24T00:04:01Z   3055ddc3     12 GB       34s /Users/gilles/Downloads
+```
 
-$ plakar at test.ptar ls 3055ddc3:media/
+```bash
+plakar at test.ptar ls 3055ddc3:media/
+```
+
+The output is similar to:
+
+```sh
 2025-05-03T19:36:29Z drwxr-xr-x   gilles    staff    736 B audio
+```
 
-$ plakar at test.ptar ls 3055ddc3:media/audio | grep hiphop
+```bash
+plakar at test.ptar ls 3055ddc3:media/audio | grep hiphop
+```
+
+The output is similar to:
+
+```sh
 2025-05-03T19:15:39Z -rw-r--r--   gilles    staff   4.6 MB hiphop1.mp3
 2025-05-03T19:18:35Z -rw-r--r--   gilles    staff   4.3 MB hiphop2.mp3
-$
 ```
 
 This gives you a tree view of all files, snapshot info, timestamps, and version
@@ -467,8 +610,13 @@ diffs â€” similar to `ls`, but scoped inside the archive.
 Of course, you can also use the UI, providing you with a **local** web-based
 filesystem browser, preview, search and more:
 
+```bash
+plakar at downloads.ptar ui
+```
+
+The output is similar to:
+
 ```sh
-$ plakar at downloads.ptar ui
 repository passphrase:
 repository passphrase (confirm):
 ```
@@ -482,8 +630,13 @@ repository passphrase (confirm):
 Inspecting a single file is as simple as using `cat` on a specific
 snapshot:file, as shown below:
 
+```bash
+plakar at downloads.ptar cat 3055ddc3:dragon.txt
+```
+
+The output is similar to:
+
 ```sh
-$ plakar at downloads.ptar cat 3055ddc3:dragon.txt
 repository passphrase:
 repository passphrase (confirm):
 
@@ -516,7 +669,7 @@ the whole archive.
 ### Restore files from archive
 
 ```sh
-$ plakar at test.ptar restore -to ./recovery /etc/nginx/nginx.conf
+plakar at test.ptar restore -to ./recovery /etc/nginx/nginx.conf
 ```
 
 You can restore full trees, subdirectories or single files.
@@ -528,7 +681,7 @@ You can restore full trees, subdirectories or single files.
 `.ptar` can also be used as a mean to import data into a regular kloset:
 
 ```sh
-$ plakar at /var/backups sync from test.ptar
+plakar at /var/backups sync from test.ptar
 ```
 
 This makes it easy to sync or relocate backups between machines, zones, or

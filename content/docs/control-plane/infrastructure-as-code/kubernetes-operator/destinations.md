@@ -51,14 +51,24 @@ Since `Destination` is an ordinary Kubernetes custom resource, `kubectl get` and
 `kubectl describe` work on it the same way they do on any built-in Kubernetes
 object:
 
+```bash
+kubectl get Destination
+```
+
+The output is similar to:
+
 ```sh
-$ kubectl get Destination
 NAME                AGE
 recovery-database   17m
 ```
 
+```bash
+kubectl describe Destination recovery-database
+```
+
+The output is similar to:
+
 ```sh
-$ kubectl describe Destination recovery-database
 ...
 Status:
   Conditions:

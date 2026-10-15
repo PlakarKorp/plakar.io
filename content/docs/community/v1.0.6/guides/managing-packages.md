@@ -27,7 +27,7 @@ your setup.
 To see which packages are currently installed:
 
 ```bash
-$ plakar pkg list
+plakar pkg list
 ```
 
 ## List available packages
@@ -37,7 +37,7 @@ be installed on the current system, which is how you discover what a given
 platform and architecture can run before installing anything:
 
 ```bash
-$ plakar pkg show -available
+plakar pkg show -available
 ```
 
 ## Install a package
@@ -48,7 +48,7 @@ Pre-built packages are hosted on Plakar's infrastructure and require you to be
 logged in to download them. To log in:
 
 ```bash
-$ plakar login
+plakar login
 ```
 
 > [!NOTE]+ Passphrase
@@ -60,7 +60,7 @@ Once logged in, install a package by name from the official plugin registry
 (e.g. the S3 integration):
 
 ```bash
-$ plakar pkg add s3
+plakar pkg add s3
 ```
 
 ### Building from source
@@ -70,14 +70,14 @@ packages locally with `plakar pkg build`. This compiles the integration from its
 public repository, so it does not require a Plakar account.
 
 ```bash
-$ plakar pkg build s3
+plakar pkg build s3
 ```
 
 On success, a `.ptar` archive is generated in the current directory. Install it
 with:
 
 ```bash
-$ plakar pkg add ./s3_v1.0.0_darwin_arm64.ptar
+plakar pkg add ./s3_v1.0.0_darwin_arm64.ptar
 ```
 
 ### Source availability
@@ -99,8 +99,8 @@ To upgrade to the latest available version, remove the existing package and
 reinstall it:
 
 ```bash
-$ plakar pkg rm s3
-$ plakar pkg add s3
+plakar pkg rm s3
+plakar pkg add s3
 ```
 
 Upgrading preserves existing store, source, and destination configurations.
@@ -108,5 +108,5 @@ Upgrading preserves existing store, source, and destination configurations.
 ## Remove a package
 
 ```bash
-$ plakar pkg rm s3
+plakar pkg rm s3
 ```

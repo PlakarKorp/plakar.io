@@ -40,13 +40,13 @@ simplest installation method.
 Install the FTP package:
 
 ```bash
-$ plakar pkg add ftp
+plakar pkg add ftp
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg show
+plakar pkg show
 ```
 
 {{< /tab >}}
@@ -63,7 +63,7 @@ customization is required.
 Build the package:
 
 ```bash
-$ plakar pkg build ftp
+plakar pkg build ftp
 ```
 
 A package archive will be created in the current directory (e.g.,
@@ -72,13 +72,13 @@ A package archive will be created in the current directory (e.g.,
 Install the package:
 
 ```bash
-$ plakar pkg add -allow-unsigned ./ftp_v1.0.0_darwin_arm64.ptar
+plakar pkg add -allow-unsigned ./ftp_v1.0.0_darwin_arm64.ptar
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg show
+plakar pkg show
 ```
 
 {{< /tab >}}
@@ -116,8 +116,8 @@ data travel unencrypted.
 > the existing configuration:
 >
 > ```bash
-> $ plakar source set ftp_src tls=none tls_insecure_no_verify=true
-> $ plakar destination set ftp_dst tls=none tls_insecure_no_verify=true
+> plakar source set ftp_src tls=none tls_insecure_no_verify=true
+> plakar destination set ftp_dst tls=none tls_insecure_no_verify=true
 > ```
 >
 > Avoid plain FTP over untrusted networks. Use [SFTP](../sftp) instead when the
@@ -209,20 +209,20 @@ Back up a remote directory:
 
 ```bash
 # Configure a source pointing to the remote FTP directory
-$ plakar source add ftp_src ftp://ftp.example.org/pub/somedirectory
+plakar source add ftp_src ftp://ftp.example.org/pub/somedirectory
 
 # Back up the remote directory to a Kloset store on the filesystem
-$ plakar at /var/backups backup "@ftp_src"
+plakar at /var/backups backup "@ftp_src"
 ```
 
 Restore a snapshot to a remote directory:
 
 ```bash
 # Configure a destination pointing to the remote FTP directory
-$ plakar destination add ftp_dst ftp://ftp.example.org/upload
+plakar destination add ftp_dst ftp://ftp.example.org/upload
 
 # Restore a snapshot to the remote FTP directory
-$ plakar at /var/backups restore -to "@ftp_dst" <snapshot_id>
+plakar at /var/backups restore -to "@ftp_dst" <snapshot_id>
 ```
 
 ## Limitations and scope

@@ -34,9 +34,9 @@ For a deeper understanding of physical backups and backup methods, refer to the
 Stop MySQL, back up the data directory, then restart:
 
 ```bash
-$ sudo systemctl stop mysql.service
-$ sudo plakar at /var/backups backup /var/lib/mysql
-$ sudo systemctl start mysql.service
+sudo systemctl stop mysql.service
+sudo plakar at /var/backups backup /var/lib/mysql
+sudo systemctl start mysql.service
 ```
 
 > [!NOTE]+ Data Directory Location
@@ -49,7 +49,7 @@ $ sudo systemctl start mysql.service
 Minimize downtime using `FLUSH TABLES WITH READ LOCK`:
 
 ```bash
-$ mysql -u root -p << EOF
+mysql -u root -p << EOF
 FLUSH TABLES WITH READ LOCK;
 SYSTEM sudo plakar at /var/backups backup /var/lib/mysql
 UNLOCK TABLES;
@@ -66,9 +66,9 @@ EOF
 Back up individual database directories:
 
 ```bash
-$ sudo systemctl stop mysql.service
-$ sudo plakar at /var/backups backup /var/lib/mysql/<dbname>
-$ sudo systemctl start mysql.service
+sudo systemctl stop mysql.service
+sudo plakar at /var/backups backup /var/lib/mysql/<dbname>
+sudo systemctl start mysql.service
 ```
 
 Replace `<dbname>` with the target database name.
@@ -82,17 +82,17 @@ Replace `<dbname>` with the target database name.
 List snapshots:
 
 ```bash
-$ plakar at /var/backups ls
+plakar at /var/backups ls
 ```
 
 Restore:
 
 ```bash
-$ sudo systemctl stop mysql.service
-$ sudo mv /var/lib/mysql /var/lib/mysql.old
-$ sudo plakar at /var/backups restore -to /var/lib/mysql <SNAPSHOT_ID>
-$ sudo chown -R mysql:mysql /var/lib/mysql
-$ sudo systemctl start mysql.service
+sudo systemctl stop mysql.service
+sudo mv /var/lib/mysql /var/lib/mysql.old
+sudo plakar at /var/backups restore -to /var/lib/mysql <SNAPSHOT_ID>
+sudo chown -R mysql:mysql /var/lib/mysql
+sudo systemctl start mysql.service
 ```
 
 ## Restore Specific Databases
@@ -100,11 +100,11 @@ $ sudo systemctl start mysql.service
 Restore individual database directories:
 
 ```bash
-$ sudo systemctl stop mysql.service
-$ sudo rm -rf /var/lib/mysql/<dbname>
-$ sudo plakar at /var/backups restore -to /var/lib/mysql/<dbname> <SNAPSHOT_ID>
-$ sudo chown -R mysql:mysql /var/lib/mysql/<dbname>
-$ sudo systemctl start mysql.service
+sudo systemctl stop mysql.service
+sudo rm -rf /var/lib/mysql/<dbname>
+sudo plakar at /var/backups restore -to /var/lib/mysql/<dbname> <SNAPSHOT_ID>
+sudo chown -R mysql:mysql /var/lib/mysql/<dbname>
+sudo systemctl start mysql.service
 ```
 
 ## Run MySQL in Docker from Backup
@@ -112,9 +112,9 @@ $ sudo systemctl start mysql.service
 Restore backup and run MySQL in Docker (requires matching MySQL version):
 
 ```bash
-$ plakar at /var/backups restore -to ./mydb <SNAPSHOT_ID>
-$ sudo chown -R 999:999 ./mydb
-$ docker run --rm -ti --name mysql \
+plakar at /var/backups restore -to ./mydb <SNAPSHOT_ID>
+sudo chown -R 999:999 ./mydb
+docker run --rm -ti --name mysql \
   -v ./mydb:/var/lib/mysql \
   mysql:8.0
 ```
@@ -122,7 +122,7 @@ $ docker run --rm -ti --name mysql \
 Connect:
 
 ```bash
-$ docker exec -ti mysql mysql -u root -p -e 'SHOW DATABASES;'
+docker exec -ti mysql mysql -u root -p -e 'SHOW DATABASES;'
 ```
 
 ## Considerations

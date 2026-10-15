@@ -83,7 +83,7 @@ For the examples below, we assume the following directory structure in
 And we assume the backup command is:
 
 ```bash
-$ plakar at /var/backups backup -ignore-file ./excludes.txt /var/files
+plakar at /var/backups backup -ignore-file ./excludes.txt /var/files
 ```
 
 > You can use `-ignore` multiple times with different patterns, or use

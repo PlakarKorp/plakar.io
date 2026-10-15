@@ -33,7 +33,7 @@ manager itself.
 Pass `passphrase_cmd` when adding the store:
 
 ```bash
-$ plakar store add mystore \
+plakar store add mystore \
   location=/var/backups \
   passphrase_cmd='gopass show mystore/passphrase'
 ```
@@ -41,14 +41,14 @@ $ plakar store add mystore \
 Or update an existing store:
 
 ```bash
-$ plakar store set mystore passphrase_cmd='gopass show mystore/passphrase'
+plakar store set mystore passphrase_cmd='gopass show mystore/passphrase'
 ```
 
 When you access the store, Plakar executes the command, reads its stdout, and
 uses the result as the passphrase:
 
 ```bash
-$ plakar at "@mystore" ls
+plakar at "@mystore" ls
 ```
 
 ## Examples
@@ -56,19 +56,19 @@ $ plakar at "@mystore" ls
 ### gopass
 
 ```bash
-$ passphrase_cmd='gopass show mystore/passphrase'
+passphrase_cmd='gopass show mystore/passphrase'
 ```
 
 ### 1Password CLI
 
 ```bash
-$ passphrase_cmd='op read "op://Personal/mystore/password"'
+passphrase_cmd='op read "op://Personal/mystore/password"'
 ```
 
 ### HashiCorp Vault
 
 ```bash
-$ passphrase_cmd='vault kv get -field=password secret/mystore'
+passphrase_cmd='vault kv get -field=password secret/mystore'
 ```
 
 ## Limitation

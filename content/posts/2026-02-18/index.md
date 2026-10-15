@@ -55,7 +55,7 @@ to public repositories and are **only available for plakar v1.1.0-beta**.
 To test them, you first need to install our latest beta of plakar:
 
 ```bash
-$ go install github.com/PlakarKorp/plakar@v1.1.0-beta.4
+go install github.com/PlakarKorp/plakar@v1.1.0-beta.4
 ```
 
 This is needed for the commands of this article to succeed !
@@ -77,8 +77,8 @@ For this, we've just release a first version of the [etcd
 integration][etcd-integration]: backing up etcd is now as easy as:
 
 ```bash
-$ plakar pkg add etcd
-$ plakar backup etcd://node1:2379
+plakar pkg add etcd
+plakar backup etcd://node1:2379
 ```
 
 [etcd-integration]: https://github.com/PlakarKorp/integrations/tree/main/etcd
@@ -110,8 +110,8 @@ Plakar.
 [k8s-integration]: https://github.com/PlakarKorp/integrations/tree/main/k8s
 
 ```bash
-$ plakar pkg add k8s
-$ plakar backup k8s://localhost:8001
+plakar pkg add k8s
+plakar backup k8s://localhost:8001
 ```
 
 The presence of the status metadata in the backup also unlocks other uses: for
@@ -141,8 +141,8 @@ We started with <abbr title="Container Storage Interface">CSI</abbr>-backed
 facto standard for persistent storage in Kubernetes clusters.
 
 ```bash
-$ plakar pkg add k8s
-$ plakar backup k8s+csi://localhost:8001/prod/my-pvc
+plakar pkg add k8s
+plakar backup k8s+csi://localhost:8001/prod/my-pvc
 ```
 
 The integration works by first creating a snapshot of a given

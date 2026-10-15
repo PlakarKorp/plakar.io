@@ -39,13 +39,13 @@ simplest installation method.
 Install the Google Cloud Storage package:
 
 ```bash
-$ plakar pkg add gcs
+plakar pkg add gcs
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg show
+plakar pkg show
 ```
 
 {{< /tab >}}
@@ -62,7 +62,7 @@ customization is required.
 Build the package:
 
 ```bash
-$ plakar pkg build gcs
+plakar pkg build gcs
 ```
 
 A package archive will be created in the current directory (e.g.,
@@ -71,13 +71,13 @@ A package archive will be created in the current directory (e.g.,
 Install the package:
 
 ```bash
-$ plakar pkg add -allow-unsigned ./gcs_v1.0.0_darwin_arm64.ptar
+plakar pkg add -allow-unsigned ./gcs_v1.0.0_darwin_arm64.ptar
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg show
+plakar pkg show
 ```
 
 {{< /tab >}}
@@ -145,17 +145,17 @@ Transform --> Store
 Register the source and run a backup:
 
 ```bash
-$ plakar source add my-gcs-bucket \
+plakar source add my-gcs-bucket \
   gcs://bucket_name \
   credentials_file=<PATH_TO_CREDENTIALS_FILE>
 
-$ plakar at /var/backups backup "@my-gcs-bucket"
+plakar at /var/backups backup "@my-gcs-bucket"
 ```
 
 To back up a specific prefix within a bucket:
 
 ```bash
-$ plakar at /var/backups backup "@my-gcs-bucket:path"
+plakar at /var/backups backup "@my-gcs-bucket:path"
 ```
 
 ## Storage connector
@@ -190,12 +190,12 @@ Connector --> Store
 Register the store, initialize it, and run a backup:
 
 ```bash
-$ plakar store add my-gcs-store \
+plakar store add my-gcs-store \
   gcs://bucket_name \
   credentials_file=<PATH_TO_CREDENTIALS_FILE>
 
-$ plakar at "@my-gcs-store" create
-$ plakar at "@my-gcs-store" backup /var/www
+plakar at "@my-gcs-store" create
+plakar at "@my-gcs-store" backup /var/www
 ```
 
 ## Destination connector
@@ -227,11 +227,11 @@ Connector --> Destination
 Register the destination and restore a snapshot:
 
 ```bash
-$ plakar destination add my-gcs-restore \
+plakar destination add my-gcs-restore \
   gcs://bucket_name \
   credentials_file=<PATH_TO_CREDENTIALS_FILE>
 
-$ plakar at /var/backups restore -to "@my-gcs-restore" <snapshot_id>
+plakar at /var/backups restore -to "@my-gcs-restore" <snapshot_id>
 ```
 
 ## Notes

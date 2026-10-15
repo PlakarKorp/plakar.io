@@ -39,14 +39,14 @@ authentication, see the
 Install the PostgreSQL package:
 
 ```bash
-$ plakar pkg add postgresql
+plakar pkg add postgresql
 ```
 
 ## Back up a single database
 
 ```bash
-$ plakar source add mypg postgres://postgres:secret@db.example.com/myapp
-$ plakar at /var/backups backup @mypg
+plakar source add mypg postgres://postgres:secret@db.example.com/myapp
+plakar at /var/backups backup @mypg
 ```
 
 ## Back up all databases
@@ -54,14 +54,14 @@ $ plakar at /var/backups backup @mypg
 Omit the database name to back up the entire cluster with `pg_dumpall`:
 
 ```bash
-$ plakar source add mypg postgres://postgres:secret@db.example.com/
-$ plakar at /var/backups backup @mypg
+plakar source add mypg postgres://postgres:secret@db.example.com/
+plakar at /var/backups backup @mypg
 ```
 
 ## List snapshots
 
 ```bash
-$ plakar at /var/backups ls
+plakar at /var/backups ls
 ```
 
 ## Restore a single database
@@ -69,23 +69,23 @@ $ plakar at /var/backups ls
 The target database must already exist:
 
 ```bash
-$ plakar destination add mypgdst postgres://postgres:secret@db.example.com/myapp
-$ plakar at /var/backups restore -to @mypgdst <snapshot_id>
+plakar destination add mypgdst postgres://postgres:secret@db.example.com/myapp
+plakar at /var/backups restore -to @mypgdst <snapshot_id>
 ```
 
 To have Plakar create the database automatically:
 
 ```bash
-$ plakar destination add mypgdst postgres://postgres:secret@db.example.com/myapp \
+plakar destination add mypgdst postgres://postgres:secret@db.example.com/myapp \
   recreate=true
-$ plakar at /var/backups restore -to @mypgdst <snapshot_id>
+plakar at /var/backups restore -to @mypgdst <snapshot_id>
 ```
 
 ## Restore all databases
 
 ```bash
-$ plakar destination add mypgdst postgres://postgres:secret@db.example.com/
-$ plakar at /var/backups restore -to @mypgdst <snapshot_id>
+plakar destination add mypgdst postgres://postgres:secret@db.example.com/
+plakar at /var/backups restore -to @mypgdst <snapshot_id>
 ```
 
 ## Considerations

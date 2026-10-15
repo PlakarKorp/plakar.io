@@ -93,8 +93,8 @@ Plakar -->|Snapshots| S3
 Install PostgreSQL client:
 
 ```bash
-$ sudo apt update
-$ sudo apt install postgresql-client
+sudo apt update
+sudo apt install postgresql-client
 ```
 
 Install Plakar using the [installation guide](../../../quickstart/installation).
@@ -108,16 +108,16 @@ Install Plakar using the [installation guide](../../../quickstart/installation).
 Set environment variables from connection string:
 
 ```bash
-$ export PGHOST=<DB_HOST>
-$ export PGPORT=5432
-$ export PGUSER=<DB_USER>
-$ export PGPASSWORD=<DB_PASSWORD>
+export PGHOST=<DB_HOST>
+export PGPORT=5432
+export PGUSER=<DB_USER>
+export PGPASSWORD=<DB_PASSWORD>
 ```
 
 Test connection:
 
 ```bash
-$ psql -X <DB_NAME>
+psql -X <DB_NAME>
 ```
 
 Exit with `\q`.
@@ -131,8 +131,8 @@ Exit with `\q`.
 ### Install S3 integration
 
 ```bash
-$ plakar login -email you@example.com
-$ plakar pkg add s3
+plakar login -email you@example.com
+plakar pkg add s3
 ```
 
 ### Create Object Storage bucket
@@ -143,7 +143,7 @@ If not already configured, follow:
 ### Add Kloset store
 
 ```bash
-$ plakar store add ovhcloud-s3-postgres \
+plakar store add ovhcloud-s3-postgres \
   location=s3://<S3_ENDPOINT>/<BUCKET_NAME> \
   access_key=<ACCESS_KEY> \
   secret_access_key=<SECRET_KEY> \
@@ -159,7 +159,7 @@ Replace:
 ### Initialize store
 
 ```bash
-$ plakar at "@ovhcloud-s3-postgres" create
+plakar at "@ovhcloud-s3-postgres" create
 ```
 
 {{< /step >}}
@@ -171,13 +171,13 @@ $ plakar at "@ovhcloud-s3-postgres" create
 Run backup:
 
 ```bash
-$ pg_dump <DB_NAME> | plakar at "@ovhcloud-s3-postgres" backup stdin:dump.sql
+pg_dump <DB_NAME> | plakar at "@ovhcloud-s3-postgres" backup stdin:dump.sql
 ```
 
 Verify:
 
 ```bash
-$ plakar at "@ovhcloud-s3-postgres" ls
+plakar at "@ovhcloud-s3-postgres" ls
 ```
 
 {{< /step >}}
@@ -189,13 +189,13 @@ $ plakar at "@ovhcloud-s3-postgres" ls
 Retrieve snapshot ID:
 
 ```bash
-$ plakar at "@ovhcloud-s3-postgres" ls
+plakar at "@ovhcloud-s3-postgres" ls
 ```
 
 Restore:
 
 ```bash
-$ plakar at "@ovhcloud-s3-postgres" cat <SNAPSHOT_ID>:dump.sql | psql <DB_NAME>
+plakar at "@ovhcloud-s3-postgres" cat <SNAPSHOT_ID>:dump.sql | psql <DB_NAME>
 ```
 
 {{< /step >}}
@@ -207,7 +207,7 @@ $ plakar at "@ovhcloud-s3-postgres" cat <SNAPSHOT_ID>:dump.sql | psql <DB_NAME>
 Create cron job for daily backups:
 
 ```bash
-$ crontab -e
+crontab -e
 ```
 
 Add:

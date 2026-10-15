@@ -54,13 +54,13 @@ simplest installation method.
 Install the Proxmox package:
 
 ```bash
-$ plakar pkg add proxmox
+plakar pkg add proxmox
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg show
+plakar pkg show
 ```
 
 {{< /tab >}}
@@ -77,7 +77,7 @@ customization is required.
 Build the package:
 
 ```bash
-$ plakar pkg build proxmox
+plakar pkg build proxmox
 ```
 
 A package archive will be created in the current directory (e.g.,
@@ -86,13 +86,13 @@ A package archive will be created in the current directory (e.g.,
 Install the package:
 
 ```bash
-$ plakar pkg add -allow-unsigned ./proxmox_v1.0.0_darwin_arm64.ptar
+plakar pkg add -allow-unsigned ./proxmox_v1.0.0_darwin_arm64.ptar
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg show
+plakar pkg show
 ```
 
 {{< /tab >}}
@@ -161,7 +161,7 @@ Vzdump --> Via --> Plakar --> Transform --> Store
 Register a Proxmox source:
 
 ```bash
-$ plakar source add myProxmox proxmox+backup://10.0.0.10 \
+plakar source add myProxmox proxmox+backup://10.0.0.10 \
   mode=remote \
   conn_username=root \
   conn_identity_file=/path/to/key \
@@ -173,19 +173,19 @@ $ plakar source add myProxmox proxmox+backup://10.0.0.10 \
 Back up a single virtual machine by ID:
 
 ```bash
-$ plakar backup -o vmid=101 @myProxmox
+plakar backup -o vmid=101 @myProxmox
 ```
 
 Back up all machines in a pool:
 
 ```bash
-$ plakar backup -o pool=prod @myProxmox
+plakar backup -o pool=prod @myProxmox
 ```
 
 Back up the entire hypervisor:
 
 ```bash
-$ plakar backup -o all @myProxmox
+plakar backup -o all @myProxmox
 ```
 
 ### Options
@@ -229,7 +229,7 @@ Store --> Plakar --> Transform --> Via --> Restore
 Register a Proxmox destination:
 
 ```bash
-$ plakar destination add myProxmox \
+plakar destination add myProxmox \
   proxmox+backup://10.0.0.10 \
   mode=remote \
   conn_username=root \
@@ -242,13 +242,13 @@ $ plakar destination add myProxmox \
 Restore all machines in a snapshot:
 
 ```bash
-$ plakar restore -to @myProxmox <snapshot_id>
+plakar restore -to @myProxmox <snapshot_id>
 ```
 
 Restore a single VM from a snapshot containing multiple machines:
 
 ```bash
-$ plakar restore -to @myProxmox <snapshot_id>:/backup/qemu/101_myvm
+plakar restore -to @myProxmox <snapshot_id>:/backup/qemu/101_myvm
 ```
 
 ### Options

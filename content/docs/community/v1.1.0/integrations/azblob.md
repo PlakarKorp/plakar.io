@@ -42,13 +42,13 @@ simplest installation method.
 Install the Azure Blob Storage package:
 
 ```bash
-$ plakar pkg add azblob
+plakar pkg add azblob
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg show
+plakar pkg show
 ```
 
 {{< /tab >}}
@@ -65,7 +65,7 @@ customization is required.
 Build the package:
 
 ```bash
-$ plakar pkg build azblob
+plakar pkg build azblob
 ```
 
 A package archive will be created in the current directory (e.g.,
@@ -74,13 +74,13 @@ A package archive will be created in the current directory (e.g.,
 Install the package:
 
 ```bash
-$ plakar pkg add -allow-unsigned ./azblob_v1.0.0_darwin_arm64.ptar
+plakar pkg add -allow-unsigned ./azblob_v1.0.0_darwin_arm64.ptar
 ```
 
 Verify installation:
 
 ```bash
-$ plakar pkg show
+plakar pkg show
 ```
 
 {{< /tab >}}
@@ -148,17 +148,17 @@ Transform --> Store
 Register the source and run a backup:
 
 ```bash
-$ plakar source add my-az-container \
+plakar source add my-az-container \
   azblob://container_name \
   connection_string=<YOUR_CONN_STRING>
 
-$ plakar at /var/backups backup "@my-az-container"
+plakar at /var/backups backup "@my-az-container"
 ```
 
 To back up a specific prefix within a container:
 
 ```bash
-$ plakar at /var/backups backup "@my-az-container:path"
+plakar at /var/backups backup "@my-az-container:path"
 ```
 
 ## Storage connector
@@ -193,12 +193,12 @@ Connector --> Store
 Register the store, initialize it, and run a backup:
 
 ```bash
-$ plakar store add my-az-store \
+plakar store add my-az-store \
   azblob://container_name \
   connection_string=<YOUR_CONN_STRING>
 
-$ plakar at "@my-az-store" create
-$ plakar at "@my-az-store" backup /var/www
+plakar at "@my-az-store" create
+plakar at "@my-az-store" backup /var/www
 ```
 
 ## Destination connector
@@ -230,11 +230,11 @@ Connector --> Destination
 Register the destination and restore a snapshot:
 
 ```bash
-$ plakar destination add my-az-restore \
+plakar destination add my-az-restore \
   azblob://container_name \
   connection_string=<YOUR_CONN_STRING>
 
-$ plakar at /var/backups restore -to "@my-az-restore"
+plakar at /var/backups restore -to "@my-az-restore"
 ```
 
 ## Notes

@@ -287,9 +287,9 @@ repository.
 Build it with:
 
 ```sh
-$ make
+make
 # OR
-$ go build -o plakar-edge .
+go build -o plakar-edge .
 ```
 
 Prebuilt binaries will be provided in a future release, and edge functionality
@@ -301,7 +301,7 @@ Start the edge with the Control Plane URL, enrollment key, and organization it
 should join:
 
 ```sh
-$ plakar-edge \
+plakar-edge \
   -control-plane https://plakman.example.com \
   -enroll <enrollment-key> \
   -organization <organization-id> \
@@ -318,7 +318,7 @@ token in its state directory and reuses them on subsequent starts.
 For subsequent starts, you can therefore run:
 
 ```sh
-$ plakar-edge \
+plakar-edge \
   -control-plane https://plakman.example.com \
   -name edge-paris-1 \
   -tags env:prod,zone:eu-1 \
@@ -386,7 +386,7 @@ Store the enrollment key in a Kubernetes Secret rather than putting it directly
 in the Helm values:
 
 ```sh
-$ kubectl create secret generic plakar-edge-enroll-key \
+kubectl create secret generic plakar-edge-enroll-key \
   --from-literal=enroll-key=<enrollment-key>
 ```
 
@@ -398,7 +398,7 @@ The chart references the Secret by name, keeping the enrollment key out of
 For example, to run three edges:
 
 ```sh
-$ helm install my-edges oci://ghcr.io/plakarkorp/charts/plakar-edge \
+helm install my-edges oci://ghcr.io/plakarkorp/charts/plakar-edge \
   --set controlPlane=https://plakman.example.com \
   --set organization=<organization-id> \
   --set enrollKey.secretName=plakar-edge-enroll-key \
@@ -446,7 +446,7 @@ such as `resources`, `serviceAccount`, `nodeSelector`, `tolerations`, and
 To see all available values:
 
 ```sh
-$ helm show values oci://ghcr.io/plakarkorp/charts/plakar-edge
+helm show values oci://ghcr.io/plakarkorp/charts/plakar-edge
 ```
 
 {{< /tab >}}

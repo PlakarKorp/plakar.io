@@ -59,14 +59,14 @@ next wakes, so missed runs are picked up automatically.
 Load the agent so it becomes active:
 
 ```sh
-$ launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/io.plakar.backup.plist
+launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/io.plakar.backup.plist
 ```
 
 Trigger a run immediately to test it, and read the log:
 
 ```sh
-$ launchctl kickstart -k gui/$(id -u)/io.plakar.backup
-$ tail -f ~/Library/Logs/plakar-backup.log
+launchctl kickstart -k gui/$(id -u)/io.plakar.backup
+tail -f ~/Library/Logs/plakar-backup.log
 ```
 
 ## Power saving and battery (laptops)
@@ -103,6 +103,6 @@ the `ProgramArguments` block in `io.plakar.backup.plist`:
 Reload the agent to apply the change:
 
 ```bash
-$ launchctl bootout   gui/$(id -u)/io.plakar.backup
-$ launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/io.plakar.backup.plist
+launchctl bootout   gui/$(id -u)/io.plakar.backup
+launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/io.plakar.backup.plist
 ```

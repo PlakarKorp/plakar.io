@@ -20,7 +20,7 @@ want to schedule.
 Open your crontab:
 
 ```bash
-$ crontab -e
+crontab -e
 ```
 
 Add a line to run the backup every day at 02:00, sending all output to a log
@@ -78,16 +78,16 @@ scheduled time was missed while it was off. Adjust `OnCalendar` to taste
 Enable and start the timer:
 
 ```bash
-$ sudo systemctl daemon-reload
-$ sudo systemctl enable --now plakar-backup.timer
+sudo systemctl daemon-reload
+sudo systemctl enable --now plakar-backup.timer
 ```
 
 Inspect and verify it:
 
 ```bash
-$ systemctl list-timers plakar-backup.timer   # see the next run time
-$ journalctl -u plakar-backup.service         # read the backup logs
-$ sudo systemctl start plakar-backup.service  # trigger a run immediately to test
+systemctl list-timers plakar-backup.timer   # see the next run time
+journalctl -u plakar-backup.service         # read the backup logs
+sudo systemctl start plakar-backup.service  # trigger a run immediately to test
 ```
 
 The example above runs as root, which reads configuration from
