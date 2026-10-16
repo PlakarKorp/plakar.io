@@ -38,7 +38,7 @@ advanced configurations, so you can quickly find the instructions you need.
 
 
 
-## [Creating a custom connector](https://www.plakar.io/docs/community/main/guides/creating-a-custom-connector/index.md)
+## [Creating a custom integration](https://www.plakar.io/docs/community/main/guides/creating-a-custom-integration/index.md)
 
 
 
