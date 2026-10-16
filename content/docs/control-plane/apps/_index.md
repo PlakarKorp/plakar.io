@@ -1,7 +1,7 @@
 ---
 title: "Apps"
 date: "2026-05-07T00:00:00Z"
-weight: 3
+weight: 4
 summary: "How apps work in Plakar Control Plane and how to configure them."
 aliases:
   - /control-plane-docs/connectors/
@@ -64,7 +64,7 @@ information about installing additional integrations.
 
 Once the integration is selected, you must provide the configuration and
 credentials required for that integration. If a
-[configuration bundle](../administration/configuration-bundles) matches the
+[configuration bundle](../inventories/configuration-bundles) matches the
 resource, fields it already supplies are filled in automatically, and you only
 need to fill in the rest; if every required field ends up filled, the app is
 created automatically. After configuration, you can test the app directly from

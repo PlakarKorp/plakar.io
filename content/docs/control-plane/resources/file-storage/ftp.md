@@ -15,11 +15,10 @@ reads or writes files directly under the configured root path.
 
 ## Inventory Management
 
-Currently no
-[managed inventory](../../infrastructure/inventories#managed-inventories) has
-the capability of discovering FTP resources. You need to set up a
-[self-managed inventory](../../infrastructure/inventories/self-managed) before
-adding an FTP resource.
+Currently no [managed inventory](../../inventories#managed-inventories) has the
+capability of discovering FTP resources. You need to set up a
+[self-managed inventory](../../inventories/self-managed) before adding an FTP
+resource.
 
 ### Adding FTP as a resource
 

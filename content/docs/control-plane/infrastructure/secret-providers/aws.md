@@ -52,7 +52,8 @@ for more information on how to set up IAM role with the necessary permissions.
 To allow Plakar Control Plane to read secrets from AWS Secrets Manager, the IAM
 role attached to the instance must include the following permissions as well.
 This is added on top of the resource discovery permissions needed already and
-mentioned in the [aws-inventory](../../inventories/aws/#required-permissions)
+mentioned in the
+[aws-inventory](../../../inventories/managed/aws/#required-permissions)
 documentation:
 
 ```json

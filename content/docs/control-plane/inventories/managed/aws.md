@@ -5,15 +5,15 @@ weight: 1
 summary: "How to connect and manage AWS inventory in Plakar Control Plane."
 aliases:
   - /control-plane-docs/infrastructure/inventories/aws/
+  - /docs/control-plane/infrastructure/inventories/aws/
 ---
 
 # AWS Inventory
 
 The AWS inventory allows Plakar Control Plane to connect to your AWS account and
-discover and classify your resources.
-
-Once connected, Plakar Control Plane discovers all resources in your AWS account
-and makes them available for management directly within Plakar Control Plane.
+discover and classify your resources. Once connected, Plakar Control Plane
+discovers all resources in your AWS account and makes them available for
+management directly within Plakar Control Plane.
 
 ## Discovery flow
 
@@ -46,7 +46,6 @@ flowchart TD
 | Resource       | Source | Store | Destination |
 | -------------- | ------ | ----- | ----------- |
 | S3 Bucket      | Yes    | Yes   | Yes         |
-| EC2 Instance   | Yes    | No    | Yes         |
 | Database (RDS) | Yes    | No    | Yes         |
 
 ## Authentication
@@ -76,13 +75,10 @@ will use the permissions from the IAM role attached to the instance.
 
 ## Obtaining Access Keys
 
-To use the **Access Key** credential type, you must create an AWS IAM user with
-the required permissions and generate an access key for that user.
-
-Access keys consist of:
-
-- Access key ID
-- Secret access key
+The **Access Key** credential type authenticates as an AWS IAM user with the
+[required permissions](#required-permissions). An access key generated for that
+user consists of an access key ID and a secret access key, and both are provided
+to the inventory.
 
 > [!WARNING]+ SECRET KEYS
 >
@@ -134,49 +130,16 @@ Use the following IAM policy:
 | `rds:DescribeDBInstances`    | Discovers RDS database instances             |
 | `rds:DescribeDBClusters`     | Discovers RDS database clusters              |
 
-## Adding the AWS Inventory
+## Creating an AWS Inventory
 
-When creating a new AWS inventory, you must provide the following:
+An AWS inventory needs a name, a credential type and a region. The credential
+type is **IAM** when Plakar Control Plane runs on AWS and **Access Key**
+otherwise, as described in [Authentication](#authentication). With **Access
+Key**, the access key and secret key are entered directly or loaded from a
+[secret provider](../../infrastructure/secret-providers).
 
-- **Name** for the inventory
-- **Credential Type**
-  - **IAM** (use only when running on AWS)
-  - **Access Key** (for all other deployments)
-- **Access key and secret key** (for Access Key authentication). These can be
-  provided directly or loaded via a secret provider (see
-  [secret providers documentation](../secret-providers))
-- **Region**
+An inventory discovers its resources when it is synchronized, so a new inventory
+is empty until its first synchronization. Synchronizing again refreshes the
+inventory, for example after resources are added to the AWS account.
 
-![](../images/create-aws-inventory.png)
-
-After creating the inventory, you must trigger a **synchronization** to discover
-and load resources. You can run synchronization at any time to refresh the
-inventory, for example after adding new resources to your AWS account.
-
-All configuration details provided during inventory creation can be updated
-later by clicking the settings icon in the top right of the inventory page,
-which opens a settings popup.
-
-![](../images/aws-inventory.png)
-
-## Managing Resources
-
-Resources in an AWS inventory are automatically discovered and synchronized.
-They are managed by the inventory and cannot be manually created or deleted.
-
-You can expand a resource row to view its details. Each row expands to show
-three tabs:
-
-- **Apps** - lists latest 5 restore points available for this resource, apps
-  associated with the resource and and option to assign a new app to the
-  resource. See the [apps documentation](../../apps) on how to set them up on
-  resources.
-- **Settings** - configure the resource, including backup coverage
-
-Backup coverage tracks how many of your resources are protected by backups. If a
-resource does not need to be backed up (for example, a test database), you can
-exclude it from coverage using the **Exclude from backup coverage** option in
-the **Settings** tab. Excluded resources are omitted from protection status and
-coverage reporting.
-
-![](../images/manage-aws-inventory-resource.png)
+![Creating AWS inventory](../images/create-aws-inventory.png)

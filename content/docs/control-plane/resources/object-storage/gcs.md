@@ -13,12 +13,12 @@ Google Cloud.
 
 ## Inventory Management
 
-[Managed inventories](../../infrastructure/inventories#managed-inventories) can
-discover GCS buckets automatically for
-[Google Cloud](../../../infrastructure/inventories/google-cloud). For buckets
-not covered by managed discovery, you can instead set up a
-[self-managed inventory](../../infrastructure/inventories/self-managed) and add
-the resource manually.
+[Managed inventories](../../inventories#managed-inventories) can discover GCS
+buckets automatically for
+[Google Cloud](../../../inventories/managed/google-cloud). For buckets not
+covered by managed discovery, you can instead set up a
+[self-managed inventory](../../inventories/self-managed) and add the resource
+manually.
 
 ### Adding Google Cloud Storage as a resource
 

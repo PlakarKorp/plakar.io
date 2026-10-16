@@ -16,16 +16,16 @@ your deployment model, you can use one or all of these components together.
 
 ## Kubernetes Inventory
 
-The [Kubernetes inventory](../../infrastructure/inventories/kubernetes) is a
-managed inventory that discovers resources running inside one or more Kubernetes
+The [Kubernetes inventory](../../inventories/managed/kubernetes) is a managed
+inventory that discovers resources running inside one or more Kubernetes
 clusters. Like other managed inventories, such as the
-[AWS inventory](../../infrastructure/inventories/aws), it synchronizes with the
+[AWS inventory](../../inventories/managed/aws), it synchronizes with the
 cluster and imports discovered resources into Plakar Control Plane.
 
 Once discovered, resources can be managed through the Plakar Control Plane UI,
 assigned apps, and protected by backup policies.
 
-See the [Kubernetes Inventory](../../infrastructure/inventories/kubernetes)
+See the [Kubernetes Inventory](../../inventories/managed/kubernetes)
 documentation for configuration instructions.
 
 ## Kubernetes Integration
