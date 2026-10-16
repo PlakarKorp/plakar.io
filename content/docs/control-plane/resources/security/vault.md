@@ -21,11 +21,10 @@ credentials from.
 
 ## Inventory Management
 
-Currently no
-[managed inventory](../../infrastructure/inventories#managed-inventories) has
-the capability of discovering HashiCorp Vault resources. You must configure a
-[self-managed inventory](../../infrastructure/inventories/self-managed) before
-adding a HashiCorp Vault resource.
+Currently no [managed inventory](../../inventories#managed-inventories) has the
+capability of discovering HashiCorp Vault resources. You must configure a
+[self-managed inventory](../../inventories/self-managed) before adding a
+HashiCorp Vault resource.
 
 ### Adding HashiCorp Vault as a resource
 

@@ -1,7 +1,7 @@
 ---
 title: "Resources"
 date: "2026-05-19T00:00:00Z"
-weight: 4
+weight: 5
 summary:
   "Resources are the systems and storage targets that Plakar Control Plane backs
   up, stores data in, or restores to. Learn how to configure each resource type
@@ -104,12 +104,11 @@ the data class of its source apps.
 
 The tags can be set in two places:
 
-- On a resource in a
-  [self-managed inventory](../infrastructure/inventories/self-managed), in its
-  **Tags** field.
+- On a resource in a [self-managed inventory](../inventories/self-managed), in
+  its **Tags** field.
 - On the resource at the cloud provider, as a tag or label. A
-  [managed inventory](../infrastructure/inventories#managed-inventories) picks
-  them up when it discovers the resource.
+  [managed inventory](../inventories#managed-inventories) picks them up when it
+  discovers the resource.
 
 ## Supported resources
 

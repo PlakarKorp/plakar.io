@@ -1,11 +1,12 @@
 ---
 title: "Inventories"
 date: "2026-05-03T00:00:00Z"
-weight: 1
+weight: 2
 summary:
   "Understand how inventories work in Plakar Control Plane and how to use them."
 aliases:
   - /control-plane-docs/infrastructure/inventories/
+  - /docs/control-plane/infrastructure/inventories/
 ---
 
 # Inventories
@@ -17,15 +18,14 @@ buckets, and their equivalents across other supported cloud providers.
 
 Inventories belong to a single organization. You work only with the inventories
 of the organization you signed in to, and what you can do with them is
-determined by the [permissions](../../administration/permissions) you hold
-there.
+determined by the [permissions](../administration/permissions) you hold there.
 
 Inventory providers are delivered as integrations. Before creating an inventory,
 install the required provider from the **Integrations** page or directly from
 the **Add inventory** dialog. The dialog displays providers that are already
 installed alongside providers that can be installed and used immediately.
 
-![Creating a new inventory](./images/create-inventory.png)
+![Creating a new inventory](managed/images/create-inventory.png)
 
 Once an inventory is connected, you can attach apps to each resource. Plakar
 Control Plane supports three app types:
@@ -67,15 +67,14 @@ residency to be used together. For example, resources from an inventory with a
 French residency can only be backed up to, restored from, or synchronized with
 resources that also have a French residency.
 
-See [data residency](../../compliance/residency) for more information.
+See [data residency](../compliance/residency) for more information.
 
 ## Configuration bundles
 
 Configuration bundles let you define shared credentials and settings at the
 inventory level and apply them automatically to matching resources. This avoids
 having to configure the same credentials individually on each discovered
-resource. See
-[configuration bundles](../../administration/configuration-bundles) for details.
+resource. See [configuration bundles](configuration-bundles) for details.
 
 ## Provider-specific instructions
 

@@ -5,6 +5,7 @@ weight: 2
 summary: "How to connect and manage OVHcloud inventory in Plakar Control Plane."
 aliases:
   - /control-plane-docs/infrastructure/inventories/ovhcloud/
+  - /docs/control-plane/infrastructure/inventories/ovhcloud/
 ---
 
 # OVHcloud Inventory
@@ -85,7 +86,7 @@ tries to list resources in all projects.
 
 When creating a new OVHcloud inventory, provide the inventory name, application
 key, application secret, and consumer key. Credentials can be entered directly
-or loaded from a [secret provider](../secret-providers).
+or loaded from a [secret provider](../../infrastructure/secret-providers).
 
 ![](../images/create-ovhcloud-inventory.png)
 

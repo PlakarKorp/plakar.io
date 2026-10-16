@@ -5,6 +5,7 @@ weight: 1
 summary: "How to connect and manage AWS inventory in Plakar Control Plane."
 aliases:
   - /control-plane-docs/infrastructure/inventories/aws/
+  - /docs/control-plane/infrastructure/inventories/aws/
 ---
 
 # AWS Inventory
@@ -144,7 +145,7 @@ When creating a new AWS inventory, you must provide the following:
   - **Access Key** (for all other deployments)
 - **Access key and secret key** (for Access Key authentication). These can be
   provided directly or loaded via a secret provider (see
-  [secret providers documentation](../secret-providers))
+  [secret providers documentation](../../infrastructure/secret-providers))
 - **Region**
 
 ![](../images/create-aws-inventory.png)

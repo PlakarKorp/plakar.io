@@ -4,6 +4,8 @@ date: "2026-08-03T00:00:00Z"
 weight: 5
 summary:
   "How to connect and manage Kubernetes inventory in Plakar Control Plane."
+aliases:
+  - /docs/control-plane/infrastructure/inventories/kubernetes/
 ---
 
 # Kubernetes Inventory
@@ -42,7 +44,7 @@ When creating an Kubernetes inventory in Plakar Control Plane, you must provide:
   your kubeconfig file to use. You can leave this field empty if Plakar Control
   Plane runs inside the cluster, in which case it uses the in-cluster
   configuration instead. The kubeconfig can also be loaded from a
-  [secret provider](../secret-providers).
+  [secret provider](../../infrastructure/secret-providers).
 - **Namespaces**: namespaces to discover resources from. Leave it empty for the
   inventory to discover resources in every namespace in the cluster.
 

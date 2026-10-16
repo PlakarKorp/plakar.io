@@ -6,6 +6,7 @@ summary:
   "How to connect and manage Google Cloud inventory in Plakar Control Plane."
 aliases:
   - /control-plane-docs/infrastructure/inventories/google-cloud/
+  - /docs/control-plane/infrastructure/inventories/google-cloud/
 ---
 
 # Google Cloud Inventory

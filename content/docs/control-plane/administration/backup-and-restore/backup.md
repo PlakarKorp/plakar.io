@@ -22,8 +22,7 @@ and schedule a backup task.
 
 If you do not already have a self-managed inventory to hold the Plakar Control
 Plane resource, create one now. See
-[Self-Managed Inventory](../../../infrastructure/inventories/self-managed) for
-instructions.
+[Self-Managed Inventory](../../../inventories/self-managed) for instructions.
 
 {{< /step >}}
 

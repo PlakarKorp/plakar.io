@@ -39,7 +39,7 @@ requirements.
 ## Organization isolation
 
 Every object in Plakar Control Plane belongs to a single organization. This
-includes [inventories](../../infrastructure/inventories), [apps](../../apps),
+includes [inventories](../../inventories), [apps](../../apps),
 [policies](../../compliance/policies), and most other configuration and
 operational objects.
 
@@ -49,8 +49,8 @@ organization is the user's membership of it, along with the permissions granted
 there.
 
 An organization's [settings](../settings/organization) and
-[configuration bundles](../configuration-bundles) are scoped the same way, so
-each organization is configured independently of the others.
+[configuration bundles](../../inventories/configuration-bundles) are scoped the
+same way, so each organization is configured independently of the others.
 
 Every other object is scoped to the organization in which it was created. Users
 operating within an organization can view and manage only the objects that
@@ -155,7 +155,7 @@ you hold there:
   [handed down](../settings/organization#handing-settings-down) to the
   organizations beneath it.
 - **Configuration bundles**, the organization's
-  [configuration bundles](../configuration-bundles).
+  [configuration bundles](../../inventories/configuration-bundles).
 - **Classification**, the environments and data classes used to scope
   [SLA policies](../../compliance/policies).
 - **Quota**, what the organization is allowed to consume, and what it has

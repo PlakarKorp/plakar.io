@@ -1,10 +1,12 @@
 ---
 title: "Configuration Bundles"
 date: "2026-07-22T00:00:00Z"
-weight: 9
+weight: 3
 summary:
   "How to use configuration bundles to share credentials and settings across
   resources."
+aliases:
+  - /docs/control-plane/administration/configuration-bundles/
 ---
 
 # Configuration Bundles
@@ -44,8 +46,8 @@ both provide a value for the same field, the **inventory bundle takes
 priority**.
 
 Both kinds live inside an organization, since an inventory belongs to one too.
-What you can do with either is determined by the [permissions](../permissions)
-you hold in that organization.
+What you can do with either is determined by the
+[permissions](../../administration/permissions) you hold in that organization.
 
 ## Creating a configuration bundle
 
@@ -74,7 +76,7 @@ cumulative, meaning a resource must match all of them to receive the bundle:
   Multiple tags can be added. For managed inventories, Plakar Control Plane
   discovers resource tags automatically from the provider. For self-managed
   inventories, tags are set when
-  [adding a resource manually](../../infrastructure/inventories/self-managed/#adding-resources).
+  [adding a resource manually](../self-managed/#adding-resources).
 
 ### Configuration fields
 

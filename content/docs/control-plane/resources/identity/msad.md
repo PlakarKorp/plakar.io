@@ -31,11 +31,9 @@ to recover from through normal replication.
 
 ## Inventory Management
 
-Currently no
-[managed inventory](../../infrastructure/inventories#managed-inventories) has
-the capability of discovering Microsoft Active Directory resources. You must
-configure a
-[self-managed inventory](../../infrastructure/inventories/self-managed) before
+Currently no [managed inventory](../../inventories#managed-inventories) has the
+capability of discovering Microsoft Active Directory resources. You must
+configure a [self-managed inventory](../../inventories/self-managed) before
 adding an Active Directory resource.
 
 ### Adding an Active Directory resource
