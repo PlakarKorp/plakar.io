@@ -14,14 +14,50 @@ and MariaDB databases. The integration supports multiple protocols.
 
 The MySQL integration relies on the MySQL or MariaDB client tools, which must be
 installed on the machine that executes the task. These tools are not included in
-the appliance, so MySQL and MariaDB tasks run on an
-[edge](../../infrastructure/edges) rather than on the Control Plane.
+the appliance, so MySQL and MariaDB tasks run on an [edge](../../edges) rather
+than on the Control Plane.
 
 Install the tools on the edge host, then configure the task to run on that edge.
 They must be in the `$PATH` of the process running the task:
 
 - MySQL 5.7 or 8.x: `mysqldump` and `mysql`
 - MariaDB 10.x or 11.x: `mariadb-dump` and `mariadb`
+
+### Running the edge in a container
+
+When the edge runs as a container, build a
+[custom edge image](../../edges/installation/custom-image) from the official
+MySQL or MariaDB image. Both already include the client tools and the CA
+certificates the edge needs to reach the Control Plane over HTTPS.
+
+For MySQL:
+
+```dockerfile
+FROM mysql:8.4
+COPY --from=ghcr.io/plakarkorp/plakar-edge:<version> /bin/plakar-edge /bin/
+ENV PLAKAR_EDGE_EXTRA_TAGS=mysql
+ENTRYPOINT ["/bin/plakar-edge"]
+```
+
+For MariaDB:
+
+```dockerfile
+FROM mariadb:11
+COPY --from=ghcr.io/plakarkorp/plakar-edge:<version> /bin/plakar-edge /bin/
+ENV PLAKAR_EDGE_EXTRA_TAGS=mariadb
+ENTRYPOINT ["/bin/plakar-edge"]
+```
+
+Choose the image tag that matches the major version of the servers the edge
+backs up. Using the same major version for the client tools and the server
+avoids compatibility issues between them. Replace `<version>` with the edge
+version that matches your Control Plane, as described in
+[Choosing the edge version](../../edges/installation/custom-image#choosing-the-edge-version).
+
+Pin MySQL tasks to the resulting edge with the **Run on** field when
+[scheduling them](../../scheduling/tasks), or target it by the `mysql` or
+`mariadb` tag. See
+[selecting an edge](../../edges/running-tasks#selecting-an-edge).
 
 ## Inventory Management
 
@@ -180,9 +216,9 @@ exactly like the `mysql` protocol, using `mysqldump` and `mysql`.
 
 > [!NOTE]
 >
-> The Cloud SQL Auth Proxy must already be running and reachable at the
-> configured host and port before Plakar Control Plane connects. Since the proxy
-> handles encryption, there is no separate SSL mode setting for this protocol.
+> The Cloud SQL Auth Proxy must already be running and reachable from the edge
+> that runs the task, at the configured host and port. Since the proxy handles
+> encryption, there is no separate SSL mode setting for this protocol.
 
 #### Backup flow
 

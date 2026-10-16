@@ -25,7 +25,8 @@ they succeeded or failed, along with any jobs that are currently running.
 Each job has a details popup with the following information:
 
 - **Job ID** - a unique identifier for the job
-- **Status** - the current state of the job: `succeeded`, `failed`, or `running`
+- **Status** - the current state of the job: `succeeded`, `failed`, `running`,
+  or `canceled`
 - **Restore Point** - the restore point produced by the job, available once the
   backup job completes
 - **Progress** - the restore point ID, number of objects processed and bytes
@@ -42,10 +43,10 @@ Each job has a details popup with the following information:
 If a job is currently running, the output and recent paths update in real time.
 A **Cancel job** button is available to stop the job.
 
-A job run on an [edge](../../infrastructure/edges) shows the same details. The
-edge streams them back while the job runs, and its output also includes the
-output of the job's
-[pre-job and post-job hooks](../../infrastructure/edges#pre-job-and-post-job-hooks).
+A job run on an [edge](../../edges) shows the same details. The edge streams
+them back while the job runs, and its output also includes the output of the
+job's [pre-job and post-job hooks](../../edges/hooks). Cancelling a job on an
+edge still runs its post-job hook.
 
 Failed or successful jobs from the manual scheduler can be retried directly from
 the job history list. This is not available for jobs triggered by the policy

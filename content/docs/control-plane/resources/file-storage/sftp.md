@@ -15,6 +15,15 @@ any remote machine reachable over SSH. Plakar connects to the remote machine
 over SSH and reads or writes files directly under the configured root path using
 SFTP.
 
+## Running SFTP tasks on an edge
+
+The SFTP integration connects through the OpenSSH `ssh` client, and loads
+private keys with `ssh-add` into the SSH agent of the edge. The official edge
+image includes the OpenSSH client. When the task runs on a binary edge or on a
+[custom edge image](../../edges/installation/custom-image), install the OpenSSH
+client on it, for example with the `openssh-client` package on Debian and
+Ubuntu. See [SSH client](../../edges/requirements#ssh-client).
+
 ## Inventory Management
 
 Currently no

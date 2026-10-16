@@ -8,9 +8,9 @@ weight: 13
 # Edge Admin
 
 The **Edge Admin** manages the machines an organization runs its work on. The
-**Edges** resource class is held in full, so
-[edges](../../../infrastructure/edges) can be enrolled, listed, and
-decommissioned, and it is the only resource this role can change.
+**Edges** resource class is held in full, so [edges](../../../edges) can be
+enrolled, listed, and decommissioned, and it is the only resource this role can
+change.
 
 Inventories can be inspected but not changed. Every other resource class is out
 of reach, so this role configures none of the work the edges carry out. It holds
