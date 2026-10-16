@@ -30,8 +30,4 @@ secret providers.
 - [OVHcloud Secret Manager](https://www.plakar.io/docs/control-plane/infrastructure/secret-providers/ovhcloud/index.md): How to configure and use OVHcloud Secret Manager as a secret provider in Plakar Control Plane.
 
 
-## [Edges](https://www.plakar.io/docs/control-plane/infrastructure/edges/index.md)
-
-
-
 

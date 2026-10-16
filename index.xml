@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2026 PlakarKorp</copyright>
-    <lastBuildDate>Fri, 16 Oct 2026 01:14:34 +0200</lastBuildDate><atom:link href="https://www.plakar.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 16 Oct 2026 10:27:47 +0300</lastBuildDate><atom:link href="https://www.plakar.io/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Kubernetes Operator</title>
@@ -146,6 +146,26 @@
       
       <guid>https://www.plakar.io/docs/control-plane/infrastructure-as-code/kubernetes-operator/installation/</guid>
       <description>Install the plakar-operator into a Kubernetes cluster and connect it to a Plakar Control Plane instance.</description>
+      
+    </item>
+    
+    <item>
+      <title>Binary</title>
+      <link>https://www.plakar.io/docs/control-plane/edges/installation/binary/</link>
+      <pubDate>Mon, 13 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.plakar.io/docs/control-plane/edges/installation/binary/</guid>
+      <description>Build, enroll, and configure a standalone plakar-edge binary.</description>
+      
+    </item>
+    
+    <item>
+      <title>How Edges Work</title>
+      <link>https://www.plakar.io/docs/control-plane/edges/how-edges-work/</link>
+      <pubDate>Mon, 13 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.plakar.io/docs/control-plane/edges/how-edges-work/</guid>
+      <description>How edges connect to Plakar Control Plane, receive tasks, and access secrets.</description>
       
     </item>
     
@@ -810,6 +830,26 @@
     </item>
     
     <item>
+      <title>Edge Requirements</title>
+      <link>https://www.plakar.io/docs/control-plane/edges/requirements/</link>
+      <pubDate>Mon, 13 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.plakar.io/docs/control-plane/edges/requirements/</guid>
+      <description>Network access and host tools an edge needs to run tasks for Plakar Control Plane.</description>
+      
+    </item>
+    
+    <item>
+      <title>Kubernetes</title>
+      <link>https://www.plakar.io/docs/control-plane/edges/installation/kubernetes/</link>
+      <pubDate>Mon, 13 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.plakar.io/docs/control-plane/edges/installation/kubernetes/</guid>
+      <description>Deploy edges on Kubernetes with the plakar-edge Helm chart.</description>
+      
+    </item>
+    
+    <item>
       <title>macOS: launchd</title>
       <link>https://www.plakar.io/docs/community/main/guides/setup-scheduler-daily-backups/macos/</link>
       <pubDate>Fri, 26 Jun 2026 00:00:00 +0000</pubDate>
@@ -1210,6 +1250,16 @@
     </item>
     
     <item>
+      <title>Custom Image</title>
+      <link>https://www.plakar.io/docs/control-plane/edges/installation/custom-image/</link>
+      <pubDate>Wed, 14 Oct 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.plakar.io/docs/control-plane/edges/installation/custom-image/</guid>
+      <description>Build an edge container image that includes the tools required by integrations such as MySQL and PostgreSQL.</description>
+      
+    </item>
+    
+    <item>
       <title>Ansible Collection</title>
       <link>https://www.plakar.io/docs/control-plane/references/ansible-collection/</link>
       <pubDate>Wed, 23 Sep 2026 06:24:18 +0000</pubDate>
@@ -1330,12 +1380,12 @@
     </item>
     
     <item>
-      <title>Edges</title>
-      <link>https://www.plakar.io/docs/control-plane/infrastructure/edges/</link>
+      <title>Edge Enrollment</title>
+      <link>https://www.plakar.io/docs/control-plane/edges/enrollment/</link>
       <pubDate>Mon, 13 Jul 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/infrastructure/edges/</guid>
-      <description>Configure remote edge executors for Plakar Control Plane.</description>
+      <guid>https://www.plakar.io/docs/control-plane/edges/enrollment/</guid>
+      <description>Enable edge enrollment for an organization and share edges with child organizations.</description>
       
     </item>
     
@@ -1970,6 +2020,16 @@
     </item>
     
     <item>
+      <title>Running Tasks</title>
+      <link>https://www.plakar.io/docs/control-plane/edges/running-tasks/</link>
+      <pubDate>Mon, 13 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.plakar.io/docs/control-plane/edges/running-tasks/</guid>
+      <description>Run tasks on edges and how Plakar Control Plane selects an edge.</description>
+      
+    </item>
+    
+    <item>
       <title>Billing &amp; Plans</title>
       <link>https://www.plakar.io/docs/control-plane/intro/billing/</link>
       <pubDate>Wed, 29 Apr 2026 00:00:00 +0000</pubDate>
@@ -2170,6 +2230,16 @@
     </item>
     
     <item>
+      <title>Pre-job and Post-job Hooks</title>
+      <link>https://www.plakar.io/docs/control-plane/edges/hooks/</link>
+      <pubDate>Mon, 13 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.plakar.io/docs/control-plane/edges/hooks/</guid>
+      <description>Run scripts on an edge immediately before and after a backup or restore.</description>
+      
+    </item>
+    
+    <item>
       <title>Job History</title>
       <link>https://www.plakar.io/docs/control-plane/scheduling/job-history/</link>
       <pubDate>Thu, 25 Jun 2026 00:00:00 +0000</pubDate>
@@ -2366,6 +2436,16 @@
       
       <guid>https://www.plakar.io/docs/control-plane/administration/email-and-smtp/</guid>
       <description>Configure SMTP for email notifications.</description>
+      
+    </item>
+    
+    <item>
+      <title>Supervision and Metrics</title>
+      <link>https://www.plakar.io/docs/control-plane/edges/monitoring/</link>
+      <pubDate>Mon, 13 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.plakar.io/docs/control-plane/edges/monitoring/</guid>
+      <description>Health, readiness, and Prometheus metrics endpoints exposed by edges.</description>
       
     </item>
     

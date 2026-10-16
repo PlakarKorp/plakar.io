@@ -9,6 +9,16 @@ integration other Windows-specific integrations build on, such as
 [Microsoft SQL Server](../../database/mssql) and
 [Microsoft Active Directory](../../identity/msad).
 
+## Running VSS tasks on an edge
+
+The VSS integration connects to the Windows host through the OpenSSH `ssh`
+client, and loads private keys with `ssh-add` into the SSH agent of the edge.
+The same applies to the integrations built on VSS. The official edge image
+includes the OpenSSH client. When the task runs on a binary edge or on a
+[custom edge image](../../edges/installation/custom-image), install the OpenSSH
+client on it, for example with the `openssh-client` package on Debian and
+Ubuntu. See [SSH client](../../edges/requirements#ssh-client).
+
 ## Inventory Management
 
 Currently no

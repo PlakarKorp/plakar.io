@@ -146,7 +146,7 @@ a task stops managing it rather than clearing it.
 
 The play targets `localhost` because the modules call the PCP API rather than
 the database being backed up. PCP reaches the source itself, from the appliance
-or from an [edge](../../infrastructure/edges).
+or from an [edge](../../edges).
 
 ## Using the modules
 
