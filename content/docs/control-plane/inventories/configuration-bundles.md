@@ -11,115 +11,78 @@ aliases:
 
 # Configuration Bundles
 
-Configuration bundles let you define shared credentials and settings and apply
-them automatically to matching resources. Instead of configuring the same
-credentials on each resource individually, you define them once in a bundle and
-Plakar Control Plane distributes them across matching resources.
+Configuration bundles are defined on an inventory and declare configuration
+fields, such as credentials, for the resources of that inventory. When an app is
+set up on one of those resources, the fields declared in the bundle are applied
+to it, so they do not have to be entered again for every app.
 
-This is especially useful when many resources share the same credentials. For
-example, an AWS inventory might discover 20 S3 buckets that all use the same IAM
-access key and secret key; instead of entering those credentials on each bucket
-individually, a single bundle scoped to Object Storage resources applies them
-everywhere at once, and keeps them in sync if the credentials ever change.
+For example, an AWS inventory might discover 20 S3 buckets that all use the same
+access key and secret key. A single bundle on that inventory, scoped to the
+`Object Storage` class, declares those credentials once, and every app set up on
+one of the buckets receives them.
 
-## Organization vs. inventory bundles
+A bundle applies only to resources of the inventory it belongs to. Bundles are
+managed from the **Configuration bundles** tab of the inventory, and what can be
+done with them depends on the [permissions](../../administration/permissions)
+held in the organization the inventory belongs to.
 
-There are two kinds of configuration bundles. They work identically in every
-other respect (same scope filters, same configuration fields, same behavior);
-the only difference is where they're created and how broadly they apply:
+![Inventory configuration bundles](../images/config-bundle.png)
 
-- **Organization bundles** are created under **Settings -> [your organization]
-  -> Configuration Bundles** and apply to matching resources across every
-  inventory in the organization. Each organization has its own set of bundles,
-  and a bundle never applies outside the organization it was created in.
+## Matching resources
 
-  ![Inventory configuration bundles](../images/organization-config-bundles.png)
+The scope of a bundle determines which resources of the inventory it applies to.
+Without any filter, a bundle applies to every resource. Each filter narrows the
+scope, and a resource must match all of them to receive the bundle:
 
-- **Inventory bundles** are created from an inventory's details page, under its
-  **Configuration Bundles** tab, and apply only to matching resources within
-  that inventory.
-
-  ![Inventory configuration bundles](../images/inventory-config-bundles.png)
-
-If a resource matches both an organization bundle and an inventory bundle, and
-both provide a value for the same field, the **inventory bundle takes
-priority**.
-
-Both kinds live inside an organization, since an inventory belongs to one too.
-What you can do with either is determined by the
-[permissions](../../administration/permissions) you hold in that organization.
-
-## Creating a configuration bundle
-
-Open the relevant location (**Settings -> [your organization] -> Configuration
-Bundles** for an organization bundle, or an inventory's **Configuration
-Bundles** tab for an inventory bundle) and click **Add bundle**. The bundle form
-has two sections: **Scope** and **Configuration fields**.
+- **Environment**: resources with the selected environment.
+- **Resource classes**: resources of the selected classes, such as `Database` or
+  `Object Storage`.
+- **Resource subclasses**: resources of the selected subclasses, such as `MySQL`
+  or `S3`, within the selected classes.
+- **Tags**: resources that carry the listed tags. Managed inventories discover
+  tags from the provider. Self-managed inventories take them from the resource
+  definition, as described in
+  [adding resources](../self-managed/#adding-resources).
 
 ![Creating a configuration bundle](../images/creating-config-bundle.png)
 
-### Scope
+## Bundle fields
 
-Scope controls which resources the bundle applies to. By default a bundle
-applies to all sources (within the organization, or within the inventory,
-depending on bundle type); the following filters narrow that down and are
-cumulative, meaning a resource must match all of them to receive the bundle:
+A bundle targets one kind of app, set by its **Connector type**: `Source`,
+`Store` or `Destination`. It also targets one integration and, when the
+integration has several, one protocol. The bundle applies to apps of that type,
+integration and protocol on the resources in its scope.
 
-- **Environment**: restricts the bundle to sources with a matching environment
-  value.
-- **Resource classes**: restricts the bundle to specific resource classes, such
-  as Database or Object Storage. Multiple classes can be selected.
-- **Resource subclasses**: further narrows by subclass, for example `Mysql` or
-  `Azblob`. Only subclasses belonging to the resource classes you've selected
-  are available here.
-- **Tags**: restricts the bundle to resources that carry the specified tags.
-  Multiple tags can be added. For managed inventories, Plakar Control Plane
-  discovers resource tags automatically from the provider. For self-managed
-  inventories, tags are set when
-  [adding a resource manually](../self-managed/#adding-resources).
-
-### Configuration fields
-
-Configuration fields are the key-value pairs the bundle distributes to matching
-resources. There are two ways to add them:
+The fields of a bundle are chosen from the fields of the selected integration
+and protocol, either one at a time or all at once. A bundle only sets the fields
+it contains. Every other field is left as each app defines it, and a value set
+on the app itself takes precedence over the bundle.
 
 ![Filling in configuration bundle fields](../images/config-bundle-fields.png)
 
-**Add fields from an integration**
+## Applying a bundle to apps
 
-1. Choose the **Type**: `Source`, `Store` or `Destination`.
-2. Choose the **Integration**, for example `scaleway`.
-3. If the integration exposes more than one protocol (for example
-   `scaleway-instance` vs. `scaleway-block`), choose the **Protocol**.
-4. Click **Add fields**. This populates the field list with every key that
-   integration and protocol require, empty and ready to fill in.
+When a source, store or destination app is set up on a resource in the scope of
+a bundle, the fields of the bundle are filled in, and the form shows which
+fields come from the bundle. Only the remaining fields need to be entered. If
+the bundle provides every required field, the app is created without further
+input.
 
-**Add fields manually**
+A field provided by a bundle can be overridden for a single app by entering
+another value. The override applies only to that app. The bundle and the other
+apps it applies to are unaffected.
 
-Click **Add field** at the bottom of the Configuration fields section to add
-extra key-value pairs beyond what an integration prefills.
+![](../images/config-bundle-usage.png)
 
-Each field's value can be entered directly, or you can click **Use secret
-provider** next to that field to source the value from a
-[secret provider](../../infrastructure/secret-providers) instead of storing it
-as plain text.
+See the [apps](../../apps) documentation for how apps are set up on resources.
 
-## App setup
+## Auto-creating apps
 
-Bundles take effect when you assign a source or destination app, or create a
-store app, on a matching resource. See the [apps](../../apps) documentation for
-more on how apps work.
+A bundle can also create apps itself. With **Auto-create connectors** enabled,
+Plakar Control Plane creates an app for every resource in the scope of the
+bundle, using the configuration of the bundle. Apps are only created when the
+bundle supplies every field the integration requires. A bundle that leaves a
+required field empty creates no apps, and each app has to be set up by hand.
 
-Any configuration field already supplied by a matching bundle is filled in for
-you, and the form indicates which fields came from a bundle. You only need to
-fill in the remaining fields yourself.
-
-A value provided by a bundle is not fixed. You can override any individual field
-by entering a custom value instead, which applies only to the app you are
-setting up. The bundle itself and every other resource it matches are
-unaffected.
-
-{{< figure src="../images/config-bundle-override.png" alt="" class="mx-auto max-w-130" >}}
-
-If every required field for the selected integration ends up filled, whether
-from the bundle or manually, Control Plane creates the app automatically.
+Auto-creation suits inventories whose resources share the same credentials,
+where a single bundle can hold the complete configuration.
