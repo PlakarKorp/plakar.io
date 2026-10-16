@@ -1,7 +1,7 @@
 ---
 title: "Administration"
 date: "2026-05-14T00:00:00Z"
-weight: 8
+weight: 9
 summary: "Manage settings, updates, backups, and logs in Plakar Control Plane."
 aliases:
   - /control-plane-docs/administration/

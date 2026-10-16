@@ -31,12 +31,12 @@ Plakar runs outside the cluster, both also need the
 
 ## Inventory Management
 
-[Managed inventories](../../infrastructure/inventories#managed-inventories) can
-discover KubeVirt virtual machines automatically once the
-[Kubernetes inventory](../../infrastructure/inventories/kubernetes) is connected
-to a cluster with KubeVirt installed. You can instead set up a
-[self-managed inventory](../../infrastructure/inventories/self-managed) and add
-the virtual machine manually.
+[Managed inventories](../../inventories#managed-inventories) can discover
+KubeVirt virtual machines automatically once the
+[Kubernetes inventory](../../inventories/managed/kubernetes) is connected to a
+cluster with KubeVirt installed. You can instead set up a
+[self-managed inventory](../../inventories/self-managed) and add the virtual
+machine manually.
 
 ### Adding a Kubernetes VM as a resource
 

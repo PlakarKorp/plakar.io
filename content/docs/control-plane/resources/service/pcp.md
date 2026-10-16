@@ -25,9 +25,8 @@ and
 ## Inventory Management
 
 The PCP resource always represents the local appliance, so no
-[managed inventory](../../infrastructure/inventories#managed-inventories) can
-discover it. You must configure a
-[self-managed inventory](../../infrastructure/inventories/self-managed) before
+[managed inventory](../../inventories#managed-inventories) can discover it. You
+must configure a [self-managed inventory](../../inventories/self-managed) before
 adding it.
 
 ### Adding PCP as a resource

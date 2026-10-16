@@ -3,6 +3,8 @@ title: "VMware"
 date: "2026-07-17T00:00:00Z"
 weight: 5
 summary: "Connect and manage a VMware inventory in Plakar Control Plane."
+aliases:
+  - /docs/control-plane/infrastructure/inventories/vmware/
 ---
 
 # VMware Inventory

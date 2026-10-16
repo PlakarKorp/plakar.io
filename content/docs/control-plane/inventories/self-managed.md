@@ -1,14 +1,15 @@
 ---
-title: "Self Managed"
+title: "Self-Managed Inventories"
 date: "2026-05-06T00:00:00Z"
-weight: 6
+weight: 2
 summary:
-  "How to connect and manage a Self Managed inventory in Plakar Control Plane."
+  "How to connect and manage a self-managed inventory in Plakar Control Plane."
 aliases:
   - /control-plane-docs/infrastructure/inventories/self-managed/
+  - /docs/control-plane/infrastructure/inventories/self-managed/
 ---
 
-# Self-Managed Inventory
+# Self-Managed Inventories
 
 A self-managed inventory is a manually maintained inventory that acts as a
 container for resources you define yourself. It is useful when your
@@ -40,9 +41,8 @@ When adding a resource manually, you need to provide:
 - **Subclass** - a more specific type within the class. See
   [Resource classes](#resource-class-and-sub-class)
 - **Tags** - provide several tags to the resource. Can be later used by
-  [policies](../../compliance/policies) or
-  [configuration bundles](../../administration/configuration-bundles#scope) to
-  filter resources
+  [policies](../compliance/policies) or
+  [configuration bundles](configuration-bundles#scope) to filter resources
 - **Hostname** - the address used to reach the resource (hostname or IP
   address). A resource can have multiple hostnames.
 - **Exclude from backup coverage** - optionally exclude the resource from backup
@@ -74,7 +74,7 @@ three tabs:
 
 - **Apps** - lists latest 5 restore points available for this resource, apps
   associated with the resource and and option to assign a new app to the
-  resource. See the [apps documentation](../../apps) on how to set them up on
+  resource. See the [apps documentation](../apps) on how to set them up on
   resources.
 - **Settings** - edit resource details and configure backup coverage
 
@@ -88,7 +88,7 @@ immutable.
 When adding a resource, you select a class and optionally a subclass to describe
 the type of resource. The table below lists all supported classes and their
 subclasses. All resources managed by Plakar Control Plane are documented in the
-[resources documentation](../../resources)
+[resources documentation](../resources)
 
 ## Backup Coverage
 

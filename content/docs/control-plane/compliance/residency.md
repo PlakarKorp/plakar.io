@@ -16,11 +16,10 @@ remember each time they need to perform a task.
 
 ## Setting a residency
 
-Residency is set on an [inventory](../../infrastructure/inventories) by
-selecting the country its data belongs to. This can be modified from the
-inventory settings. Every resource discovered or added in that inventory
-inherits it, so an inventory that represents infrastructure in one country only
-has to be configured once.
+Residency is set on an [inventory](../../inventories) by selecting the country
+its data belongs to. This can be modified from the inventory settings. Every
+resource discovered or added in that inventory inherits it, so an inventory that
+represents infrastructure in one country only has to be configured once.
 
 ![](../images/inventory-residency.png)
 

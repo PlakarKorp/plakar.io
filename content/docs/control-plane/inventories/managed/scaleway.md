@@ -5,6 +5,7 @@ weight: 3
 summary: "How to connect and manage Scaleway inventory in Plakar Control Plane."
 aliases:
   - /control-plane-docs/infrastructure/inventories/scaleway/
+  - /docs/control-plane/infrastructure/inventories/scaleway/
 ---
 
 # Scaleway Inventory
