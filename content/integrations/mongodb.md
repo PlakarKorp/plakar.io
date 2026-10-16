@@ -49,8 +49,6 @@ author:
   - type: official
     name: Plakar
 
-new: true
-
 date: 2026-09-22
 
 resource: MongoDB
