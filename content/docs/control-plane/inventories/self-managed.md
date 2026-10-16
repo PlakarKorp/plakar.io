@@ -30,27 +30,29 @@ which opens a settings popup.
 
 Resources can be added individually or imported in bulk using a CSV file.
 
-### 1. Adding a resource manually
+{{< tabs >}}
+
+{{< tab label="Manually" >}}
 
 When adding a resource manually, you need to provide:
 
-- **Name** - a display name for the resource
-- **URN** - a unique identifier for the resource
-- **Class** - the type of resource. See
-  [Resource classes](#resource-class-and-sub-class) for the full list
-- **Subclass** - a more specific type within the class. See
-  [Resource classes](#resource-class-and-sub-class)
-- **Tags** - provide several tags to the resource. Can be later used by
-  [policies](../compliance/policies) or
+- **Name** and **Resource URN**: Required. The name is a human-readable label to
+  identify the resource in Plakar Control Plane. The URN is a unique and stable
+  identifier for the resource, and cannot be changed later.
+- **Class** and **Subclass**: Used to classify the resource, for example
+  `Object Storage` as the class and `S3` as the subclass for an S3 bucket.
+- **Tags**: tags used by [policies](../compliance/policies) and
   [configuration bundles](configuration-bundles#scope) to filter resources
-- **Hostname** - the address used to reach the resource (hostname or IP
-  address). A resource can have multiple hostnames.
-- **Exclude from backup coverage** - optionally exclude the resource from backup
-  coverage reporting (see [Backup Coverage](#backup-coverage))
+- **Endpoint**: Required. The address used to reach the resource, such as a
+  hostname or IP address. A resource can have several endpoints.
+- **Exclude from backup coverage**: Omits the resource from protection status
+  and coverage reporting.
 
 ![](../images/add-resource-to-self-managed-inventory.png)
 
-### 2. Importing resources via CSV
+{{< /tab >}}
+
+{{< tab label="CSV import" >}}
 
 To add multiple resources at once, you can import a CSV file. Each row should
 represent one resource in the following format. If a resource has multiple
@@ -60,43 +62,13 @@ hostnames, they can be specified by separating them with commas.
 Class;Name;URN;Hostname
 ```
 
+![](../images/add-resources-to-self-managed-inventory-in-bulk.png)
+
 > [!WARNING]+
 >
 > Importing a CSV file replaces all existing resources in the inventory. Make
 > sure to include both existing and new resources in the file.
 
-![](../images/add-resources-to-self-managed-inventory-in-bulk.png)
+{{< /tab >}}
 
-## Managing resources
-
-You can expand a resource row to view its details. Each row expands to show
-three tabs:
-
-- **Apps** - lists latest 5 restore points available for this resource, apps
-  associated with the resource and and option to assign a new app to the
-  resource. See the [apps documentation](../apps) on how to set them up on
-  resources.
-- **Settings** - edit resource details and configure backup coverage
-
-All fields can be modified in the **Settings** tab except the **URN**, which is
-immutable.
-
-![](../images/manage-self-managed-inventory-resource.png)
-
-## Resource class and sub-class
-
-When adding a resource, you select a class and optionally a subclass to describe
-the type of resource. The table below lists all supported classes and their
-subclasses. All resources managed by Plakar Control Plane are documented in the
-[resources documentation](../resources)
-
-## Backup Coverage
-
-By default, all resources in a self-managed inventory and all classified
-resources in a managed inventory are included in backup coverage reporting.
-
-Backup coverage tracks how many of your resources are protected by backups. If a
-resource does not need to be backed up (for example, a test database), you can
-exclude it from coverage. Excluded resources are omitted from protection status
-and coverage reporting. This option can be configured when creating or editing a
-resource.
+{{< /tabs >}}
