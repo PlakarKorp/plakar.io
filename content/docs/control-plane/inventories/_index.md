@@ -11,51 +11,45 @@ aliases:
 
 # Inventories
 
-An inventory connects Plakar Control Plane to a provider and exposes a list of
-resources available for management. Resources are the individual entities you
-can back up, use as storage, or restore to, for example, EC2 instances, S3
-buckets, and their equivalents across other supported cloud providers.
+An inventory holds the resources that Plakar Control Plane can manage. A
+resource is an individual entity that can be backed up, used as storage, or
+restored to, such as an EC2 instance or an S3 bucket. A managed inventory
+discovers its resources from a provider, while a self-managed inventory holds
+resources defined by hand.
 
-Inventories belong to a single organization. You work only with the inventories
-of the organization you signed in to, and what you can do with them is
-determined by the [permissions](../administration/permissions) you hold there.
+Each inventory belongs to one organization. Only the inventories of the
+organization you are signed in to are visible, and the
+[permissions](../administration/permissions) held in that organization determine
+what can be done with them.
 
-Inventory providers are delivered as integrations. Before creating an inventory,
-install the required provider from the **Integrations** page or directly from
-the **Add inventory** dialog. The dialog displays providers that are already
-installed alongside providers that can be installed and used immediately.
+Inventory providers are delivered as integrations, so a provider must be
+installed before an inventory can use it. Providers can be installed from the
+**Integrations** page or from the **Add inventory** dialog, which lists
+installed providers alongside those available to install.
 
-![Creating a new inventory](managed/images/create-inventory.png)
+![Creating a new inventory](./images/create-inventory.png)
 
-Once an inventory is connected, you can attach apps to each resource. Plakar
-Control Plane supports three app types:
+Backups and restores are configured by setting up [apps](../apps) on a resource.
+There are three types of app:
 
-- **Source**: the resource being backed up
-- **Store**: where backups are stored
-- **Destination**: where data is restored to
+- **Source**: the resource is backed up.
+- **Store**: the resource holds backups.
+- **Destination**: data is restored to the resource.
 
 ## Managed inventories
 
 Managed inventories connect to a provider using credentials. Plakar Control
-Plane discovers the resources in your account and classifies them by type. In an
-AWS inventory, for example, EC2 instances are classified as compute resources
-and S3 buckets as storage resources.
-
-The provider is the source of truth. Resources cannot be created or deleted
-manually in a managed inventory. Synchronize the inventory to pick up changes
-made in the provider.
-
-Each provider page lists the supported resources and the permissions the
-credentials need.
+Plane discovers the resources in your account and classifies them by type. The
+provider is the source of truth. Resources cannot be created or deleted manually
+in a managed inventory. Synchronize the inventory to pick up changes made by the
+provider.
 
 ## Self-managed inventories
 
-Self-managed inventories allow you to add resources manually, either
-individually or in bulk. This approach is useful when:
-
-- The infrastructure is not supported by managed inventories (e.g., a local
-  MinIO instance)
-- You require full control over how resources are defined and managed
+Self-managed inventories hold resources that are added by hand, one at a time or
+in bulk from a CSV file. They cover infrastructure that no managed inventory
+discovers, such as a local MinIO instance, and resources whose definition should
+stay fully under your control.
 
 ## Data residency
 
@@ -71,11 +65,6 @@ See [data residency](../compliance/residency) for more information.
 
 ## Configuration bundles
 
-Configuration bundles let you define shared credentials and settings at the
-inventory level and apply them automatically to matching resources. This avoids
-having to configure the same credentials individually on each discovered
-resource. See [configuration bundles](configuration-bundles) for details.
-
-## Provider-specific instructions
-
-{{< children description="true" >}}
+Configuration bundles declare shared fields, such as credentials, that are
+filled in when an app is set up on a matching resource of the inventory. See
+[configuration bundles](configuration-bundles) for details.
