@@ -72,7 +72,6 @@ The main values for an edge deployment are:
 | `enrollKey.secretName`         | `""`                             | Existing Secret containing the enrollment key. Required.                                        |
 | `enrollKey.secretKey`          | `enroll-key`                     | Key containing the enrollment key inside the Secret.                                            |
 | `replicaCount`                 | `1`                              | Number of independent edges to run.                                                             |
-| `tags`                         | `""`                             | Tags reported by every edge.                                                                    |
 | `pollHold`                     | `""`                             | Long-poll duration. An empty value uses the binary default.                                     |
 | `persistence.size`             | `5Gi`                            | Storage allocated to each edge.                                                                 |
 | `persistence.storageClassName` | `""`                             | StorageClass used for the edge volume. An empty value uses the cluster default.                 |
@@ -88,9 +87,7 @@ such as `resources`, `serviceAccount`, `nodeSelector`, `tolerations`, and
 
 To run edges that include the tools required by integrations such as MySQL or
 PostgreSQL, set `image.repository` and `image.tag` to a
-[custom image](../custom-image). When the custom image sets
-`PLAKAR_EDGE_EXTRA_TAGS`, the edges report those tags along with the `tags`
-value. See [Configuring the edge](../binary#configuring-the-edge).
+[custom image](../custom-image).
 
 To see all available values:
 

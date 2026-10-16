@@ -50,7 +50,6 @@ CA certificates:
 ```dockerfile
 FROM mysql:8.4
 COPY --from=ghcr.io/plakarkorp/plakar-edge:<version> /bin/plakar-edge /bin/
-ENV PLAKAR_EDGE_EXTRA_TAGS=mysql
 ENTRYPOINT ["/bin/plakar-edge"]
 ```
 
@@ -70,7 +69,6 @@ RUN apt-get update \
       ca-certificates openssh-client mysql-client postgresql-client \
  && rm -rf /var/lib/apt/lists/*
 COPY --from=ghcr.io/plakarkorp/plakar-edge:<version> /bin/plakar-edge /bin/
-ENV PLAKAR_EDGE_EXTRA_TAGS=mysql,postgresql
 ENTRYPOINT ["/bin/plakar-edge"]
 ```
 
@@ -85,14 +83,6 @@ Replace `<version>` with a released version of the edge image rather than
 `latest`, and keep it in line with your Control Plane. An edge whose protocol
 version differs from the Control Plane's still enrolls, but receives no tasks
 until it is upgraded.
-
-## Tagging the image
-
-`PLAKAR_EDGE_EXTRA_TAGS` records which tools the image carries. Every edge
-started from the image reports these tags, in addition to any given with
-`-tags`, so that tasks can target the edges able to run them. See
-[configuring the edge](../binary#configuring-the-edge) and
-[selecting an edge](../../running-tasks#selecting-an-edge).
 
 ## Running the image
 
