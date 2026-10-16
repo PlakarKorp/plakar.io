@@ -11,10 +11,8 @@ aliases:
 # Kubernetes Inventory
 
 The Kubernetes inventory lets Plakar Control Plane connect to a Kubernetes
-cluster and discover supported resources.
-
-Once connected, the discovered resources become available for management
-directly from Plakar Control Plane.
+cluster and discover supported resources. Once connected, the discovered
+resources become available for management directly from Plakar Control Plane.
 
 ## Supported Resources
 
@@ -48,45 +46,16 @@ When creating an Kubernetes inventory in Plakar Control Plane, you must provide:
 - **Namespaces**: namespaces to discover resources from. Leave it empty for the
   inventory to discover resources in every namespace in the cluster.
 
-## Adding the Kubernetes Inventory
+## Creating a Kubernetes Inventory
 
 When creating a new Kubernetes inventory, provide the inventory name and either
 paste in a kubeconfig or select a kubeconfig file. If Plakar Control Plane runs
 inside the cluster you want to inventory, you can leave the kubeconfig field
 empty and it will use the in-cluster configuration.
 
-![Creating a Kubernetes inventory](../images/create-kubernetes-inventory.png)
-
 After creating the inventory, trigger a synchronization to discover and load
 PVCs and virtual machines from the configured cluster. You can run
 synchronization again at any time to refresh the inventory, for example after
 creating new PVCs or virtual machines.
 
-All configuration details provided during inventory creation can be updated
-later by clicking the settings icon in the top right of the inventory page,
-which opens a settings popup.
-
-![Managing Kubernetes inventory](../images/kubernetes-inventory.png)
-
-## Managing Resources
-
-Resources in a Kubernetes inventory are automatically discovered and
-synchronized. They are managed by the inventory and cannot be manually created
-or deleted from Plakar Control Plane.
-
-You can expand a resource row to view its details. Each row expands to show two
-tabs:
-
-- **Apps**: lists latest 5 restore points available for this resource, apps
-  associated with the resource and an option to assign a new app to the
-  resource. See the [apps documentation](../../apps) on how to set them up on
-  resources.
-- **Settings**: configure the resource, including backup coverage.
-
-Backup coverage tracks how many of your resources are protected by backups. If a
-resource does not need to be backed up, for example a test PVC, you can exclude
-it from coverage using the **Exclude from backup coverage** option in the
-**Settings** tab. Excluded resources are omitted from protection status and
-coverage reporting.
-
-![Managing a resource discovered by the Kubernetes inventory](../images/manage-kubernetes-inventory-resource.png)
+![Creating Kubernetes inventory](../images/create-kubernetes-inventory.png)
