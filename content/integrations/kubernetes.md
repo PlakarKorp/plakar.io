@@ -59,8 +59,6 @@ author:
   - type: official
     name: Plakar
 
-new: true
-
 date: 2026-05-16
 
 resource: Kubernetes

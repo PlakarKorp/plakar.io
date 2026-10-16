@@ -8,7 +8,12 @@
 {{ $destConnectors := where $allIntegrations "Params.categories" "intersect" (slice "destination") }}
 {{ $storageConnectors := where $allIntegrations "Params.categories" "intersect" (slice "storage") }}
 {{ $connectors := union $sourceConnectors $destConnectors }}
-{{ $newIntegrations := where $allIntegrations "Params.new" true }}
+{{ $newIntegrations := slice }}
+{{ range $allIntegrations }}
+  {{ if partial "integrations/is-new.html" . }}
+    {{ $newIntegrations = $newIntegrations | append . }}
+  {{ end }}
+{{ end }}
 
 {{ $plakarLogo := resources.Get "img/logos/plakar-logo-icon.svg" }}
 

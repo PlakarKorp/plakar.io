@@ -42,8 +42,6 @@ author:
   - type: official
     name: Plakar
 
-new: true
-
 date: 2026-08-26
 
 resource: AWS
