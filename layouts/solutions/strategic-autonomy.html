@@ -1,0 +1,203 @@
+{{ define "main" }}
+
+{{ $pierrick := resources.Get "img/general/pierrick-gicquelais.png" }}
+{{ $alan := resources.Get "img/general/alan-logo.png" }}
+
+{{/* Plakar holds no certification and makes no compliance claim. Keep the regulation section framed as
+     building blocks, and have legal review the article references before publish. owner: victor@plakar.io */}}
+
+<!-- SECTION: hero -->
+<section class="section-light-2 grid-background pt-38 pb-20 relative overflow-hidden">
+  <div class="absolute top-0 right-0 p-64 bg-primary-900/10 rounded-full blur-[120px] pointer-events-none"></div>
+  <div class="max-w-350 mx-auto px-4 flex flex-col items-center text-center gap-8 relative z-10">
+    <div class="max-w-5xl flex flex-col gap-4">
+      <h2 class="text-primary-600 font-mono text-sm font-bold uppercase tracking-widest">Strategic autonomy</h2>
+      <h1 class="font-medium text-4xl lg:text-6xl text-neutral-900 leading-tighter">
+        Reclaim control of your data,<br/>
+        <span class="text-primary-500">whoever hosts it.</span>
+      </h1>
+    </div>
+    <p class="max-w-2xl text-neutral-600 text-lg lg:text-xl">
+      Keep a reversible, encrypted copy of your critical data at a provider you choose, with keys you hold. If a provider pulls the plug or reprices, you restart elsewhere.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 mt-2 items-center">
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "Start free" "labelShort" "Start free" "href" "/docs/control-plane/intro/installation/" "icon" "ri/flashlight-line"
+      ) }}
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "Book a demo" "labelShort" "Demo" "class" "book-a-demo-modal-open" "icon" "ri/calendar-event-line"
+        "bgColor" "bg-white" "bgHoverColor" "bg-neutral-100" "textColor" "text-neutral-900" "textHoverColor" "text-neutral-900" "border" "border" "borderColor" "border-neutral-300"
+      ) }}
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: problem -->
+<section class="section-dark-1 py-14 lg:py-24 border-y border-neutral-800 relative overflow-hidden">
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-150 h-75 bg-primary-900/20 blur-[100px] rounded-full pointer-events-none"></div>
+  <div class="max-w-350 mx-auto px-4 relative z-10 flex flex-col gap-12">
+    <div class="text-center max-w-3xl mx-auto space-y-4">
+      <h2 class="text-primary-500 font-mono text-sm font-bold uppercase tracking-widest">The problem</h2>
+      <p class="font-medium text-3xl lg:text-5xl text-white leading-tighter">Dependence is the risk nobody budgets for.</p>
+      <p class="text-lg text-neutral-400">Regulators, boards, and customers now ask the same question: if your provider fails, changes its terms, or receives a foreign legal request, can you still recover?</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {{ range (slice
+        (dict "icon" "ri/cloud-off-line" "title" "Backups tied to one provider" "body" "Native snapshots live in the same account, region, and vendor as production. An outage, a lockout, or a pricing change takes both.")
+        (dict "icon" "ri/lock-unlock-line" "title" "Keys held by someone else" "body" "When the provider manages your encryption keys, it can be compelled to hand over readable data. Your confidentiality depends on its policies.")
+        (dict "icon" "ri/price-tag-3-line" "title" "Licences that change under you" "body" "Per-socket, per-VM, or per-500 GB licences get repriced overnight, and your backups sit in a format only that vendor can read.")
+      ) }}
+        <div class="bg-neutral-800/50 border border-neutral-700 p-6 rounded-xl flex flex-col gap-4">
+          <div class="w-10 h-10 p-2 bg-neutral-900 rounded-lg flex items-center justify-center text-primary-400 border border-neutral-700">{{ partial "icon.html" .icon }}</div>
+          <h3 class="text-white font-bold text-lg">{{ .title }}</h3>
+          <p class="text-neutral-400 text-sm leading-relaxed">{{ .body }}</p>
+        </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: how-it-works -->
+<section class="section-light-1 grid-background py-14 lg:py-28">
+  <div class="max-w-350 mx-auto px-4 flex flex-col gap-12">
+    <div class="text-center max-w-3xl mx-auto space-y-4">
+      <h2 class="text-primary-600 font-mono text-sm font-bold uppercase tracking-widest">How it works</h2>
+      <p class="font-medium text-3xl lg:text-5xl text-neutral-900 leading-tighter">Autonomy built into the architecture.</p>
+      <p class="text-lg text-neutral-600">Not a policy you have to trust. A design that leaves you in control.</p>
+    </div>
+    <ol class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {{ range $i, $s := (slice
+        (dict "icon" "ri/server-line" "title" "Runs in your environment" "body" "The Control Plane is a virtual appliance you deploy in your own environment. Only consumption metrics go back to Plakar, never backup data, and nothing at all in air-gapped mode.")
+        (dict "icon" "ri/shield-keyhole-line" "title" "Keys stay with you" "body" "Data is encrypted at the source. Passphrases live in your Control Plane or your own secret manager: HashiCorp Vault, AWS, Google Cloud, Scaleway, or OVHcloud.")
+        (dict "icon" "ri/global-line" "title" "Data stays where it belongs" "body" "Write snapshots to storage you choose, on European providers such as OVHcloud and Scaleway or on-premises. Residency rules keep backups, restores, and copies in the right country.")
+        (dict "icon" "ri/open-source-line" "title" "An Open format" "body" "Kloset, the format your snapshots live in, is Open, with a public SDK. Your backups never depend on one vendor's roadmap, ours included.")
+      ) }}
+        <li class="bg-white border border-neutral-200 p-6 rounded-2xl flex flex-col gap-4 shadow-sm">
+          <div class="flex items-center justify-between">
+            <div class="w-11 h-11 p-1.5 bg-primary-50 text-primary-600 rounded-lg flex items-center justify-center">{{ partial "icon.html" $s.icon }}</div>
+            <span class="font-mono text-sm font-bold text-neutral-300">0{{ add $i 1 }}</span>
+          </div>
+          <h3 class="font-bold text-lg text-neutral-900">{{ $s.title }}</h3>
+          <p class="text-neutral-600 text-sm">{{ $s.body }}</p>
+        </li>
+      {{ end }}
+    </ol>
+  </div>
+</section>
+
+<!-- SECTION: features -->
+<section class="section-light-2 py-14 lg:py-28">
+  <div class="max-w-350 mx-auto px-4 flex flex-col gap-12">
+    <div class="text-center max-w-3xl mx-auto space-y-4">
+      <h2 class="text-primary-600 font-mono text-sm font-bold uppercase tracking-widest">What you get</h2>
+      <p class="font-medium text-3xl lg:text-5xl text-neutral-900 leading-tighter">Independence you can switch on today.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {{ range (slice
+        (dict "icon" "ri/server-line" "title" "Self-hosted appliance" "body" "AWS, Google Cloud, OVHcloud, Scaleway, Exoscale, VMware vSphere, or Proxmox VE." "href" "/docs/control-plane/intro/installation/")
+        (dict "icon" "ri/cloud-off-line" "title" "Air-gapped operation" "body" "An offline license and a self-hosted package repository for installs and updates." "href" "/docs/control-plane/guides/self-hosted-package-repository/")
+        (dict "icon" "ri/earth-line" "title" "Data residency" "body" "Tie resources to a country. Backups, restores, and copies stay within it." "href" "/docs/control-plane/compliance/residency/")
+        (dict "icon" "ri/shield-keyhole-line" "title" "Your secret manager" "body" "Vault, AWS, Google Cloud, Scaleway, or OVHcloud." "href" "/docs/control-plane/infrastructure/secret-providers/")
+        (dict "icon" "ri/search-line" "title" "European inventories" "body" "Discover OVHcloud, Scaleway, and VMware resources." "href" "/docs/control-plane/infrastructure/inventories/")
+        (dict "icon" "ri/refresh-line" "title" "Cross-provider copies" "body" "Sync a Kloset to another provider or storage tier." "href" "/docs/control-plane/scheduling/tasks/")
+        (dict "icon" "ri/file-lock-line" "title" "Legal hold" "body" "Keep restore points from deletion or pruning for as long as an investigation needs." "href" "/docs/control-plane/compliance/legal-hold/")
+        (dict "icon" "ri/user-line" "title" "Roles and audit log" "body" "Separate duties with granular roles, and see who changed what." "href" "/docs/control-plane/administration/permissions/")
+      ) }}
+        <article class="bg-white border border-neutral-200 p-6 rounded-2xl flex flex-col gap-3 shadow-sm hover:border-primary-300 transition-colors">
+          <div class="w-11 h-11 p-1.5 bg-primary-50 text-primary-600 rounded-lg flex items-center justify-center">{{ partial "icon.html" .icon }}</div>
+          <h3 class="font-bold text-lg text-neutral-900">{{ .title }}</h3>
+          <p class="text-neutral-600 text-sm flex-1">{{ .body }}</p>
+          <a href="{{ .href }}" class="inline-flex items-center gap-1.5 text-primary-600 font-semibold text-sm hover:text-primary-700 transition-colors">
+            Learn more <span class="w-4 h-4">{{ partial "icon.html" "ri/arrow-right-line" }}</span>
+          </a>
+        </article>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: quote -->
+<section class="section-light-1 py-16 lg:py-24">
+  <div class="max-w-350 mx-auto px-4">
+    <figure class="max-w-3xl mx-auto text-center flex flex-col items-center gap-6">
+      <span class="font-mono text-xs uppercase tracking-widest text-primary-600 font-bold">Proven in production</span>
+      <blockquote class="text-xl lg:text-2xl text-neutral-900 leading-relaxed font-medium">
+        &ldquo;Running on infrastructure and software we control has unlocked a full compliance track for us with French providers.&rdquo;
+      </blockquote>
+      <figcaption class="flex items-center justify-center gap-4 flex-wrap">
+        {{ with $pierrick }}<img src="{{ .RelPermalink }}" alt="Pierrick Gicquelais" class="w-14 h-14 rounded-full object-cover" loading="lazy">{{ end }}
+        <div class="text-left">
+          <span class="block font-bold text-neutral-900">Pierrick Gicquelais</span>
+          <span class="block text-neutral-500 text-sm">Lead Infrastructure &amp; AI Platform</span>
+        </div>
+        {{ with $alan }}
+          <span class="w-px h-10 bg-neutral-200 hidden sm:block"></span>
+          <img src="{{ .RelPermalink }}" alt="Alan" class="h-7 w-auto" loading="lazy">
+        {{ end }}
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- SECTION: regulation -->
+<section class="section-light-2 py-14 lg:py-28">
+  <div class="max-w-350 mx-auto px-4 flex flex-col gap-12">
+    <div class="text-center max-w-3xl mx-auto space-y-4">
+      <h2 class="text-primary-600 font-mono text-sm font-bold uppercase tracking-widest">Compliance</h2>
+      <p class="font-medium text-3xl lg:text-5xl text-neutral-900 leading-tighter">Compliance building blocks.</p>
+      <p class="text-lg text-neutral-600">No tool makes you compliant on its own, and Plakar holds no certification itself. It runs and stores inside the perimeter you choose, so backups stay within your ISO 27001, HDS, or SecNumCloud scope, and it gives you the controls NIS2 and DORA expect.</p>
+    </div>
+    <div class="max-w-5xl mx-auto w-full flex flex-col gap-3">
+      {{ range (slice
+        (dict "ref" "NIS2, Art. 21" "need" "Backup management and disaster recovery" "how" "SLA policies set frequency and retention per tier. Sync tasks keep a second copy, and check tasks verify every snapshot.")
+        (dict "ref" "NIS2, Art. 21" "need" "Cryptography and encryption" "how" "End-to-end encryption at the source, with independently audited cryptography and keys in your own secret manager.")
+        (dict "ref" "NIS2, Art. 21" "need" "Access control, asset management, and MFA" "how" "Granular roles, two-factor authentication you can require, an audit log, and inventories of what must be protected.")
+        (dict "ref" "DORA, Art. 12" "need" "Backup policies, restoration, and recovery" "how" "Policies show the RPO they deliver. Restore any snapshot to its original location or a separate one.")
+        (dict "ref" "DORA, Art. 12" "need" "Segregated backup copies" "how" "Copies on a different provider, account, or storage tier, or offline in a self-contained .ptar archive.")
+        (dict "ref" "DORA, Art. 28" "need" "Exit strategies for ICT providers" "how" "A self-hosted control plane, an Open format, and storage on any provider, so leaving one never means losing your backups.")
+      ) }}
+        <div class="bg-white border border-neutral-200 rounded-2xl p-5 grid grid-cols-1 md:grid-cols-[10rem_1fr_1.4fr] gap-2 md:gap-6 md:items-center shadow-sm">
+          <span class="font-mono text-xs uppercase tracking-widest text-primary-600 font-bold">{{ .ref }}</span>
+          <span class="font-bold text-neutral-900">{{ .need }}</span>
+          <span class="text-neutral-600 text-sm">{{ .how }}</span>
+        </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: blog -->
+{{ partial "components/common/related-posts.html" (dict
+  "title" "Go deeper on strategic autonomy."
+  "bg" "section-light-1"
+  "posts" (slice
+    "/posts/2026-06-24-introducing-plakar-control-plane-free-plan"
+    "/posts/2026-07-10-plakar-control-plane-aws-marketplace"
+    "/posts/2026-08-12-independent-backup-reasons"
+  )
+) }}
+
+{{ partial "components/common/use-cases-related.html" (dict "current" "/solutions/strategic-autonomy/") }}
+
+<!-- SECTION: final-cta -->
+<section class="section-light-1 py-20 border-t border-neutral-200">
+  <div class="max-w-350 mx-auto px-4 flex flex-col items-center text-center gap-8">
+    <div class="flex flex-col gap-4 max-w-3xl mx-auto">
+      <h2 class="text-primary-600 font-mono text-sm font-bold uppercase tracking-widest">Get started</h2>
+      <p class="font-medium text-3xl lg:text-5xl text-neutral-900 leading-tighter">Bring your resilience strategy home.</p>
+      <p class="text-neutral-600 text-lg">Start on the free plan, or map your NIS2 and DORA backup requirements with our team.</p>
+    </div>
+    <div class="flex flex-col sm:flex-row gap-4 items-center">
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "Start free" "labelShort" "Start free" "href" "/docs/control-plane/intro/installation/" "icon" "ri/flashlight-line"
+      ) }}
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "Book a demo" "labelShort" "Demo" "class" "book-a-demo-modal-open" "icon" "ri/calendar-event-line"
+        "bgColor" "bg-white" "bgHoverColor" "bg-neutral-100" "textColor" "text-neutral-900" "textHoverColor" "text-neutral-900" "border" "border" "borderColor" "border-neutral-300"
+      ) }}
+    </div>
+    <p class="text-neutral-500 text-sm">See how it fits together on the <a href="/solutions/control-plane/" class="text-primary-600 font-semibold hover:text-primary-700">Control Plane</a> page.</p>
+  </div>
+</section>
+
+{{ end }}
