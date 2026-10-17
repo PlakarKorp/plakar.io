@@ -104,7 +104,7 @@ To install using the Go toolchain, use `go install` with the version you want to
 install, or `latest`:
 
 ```bash
-$ go install "github.com/PlakarKorp/plakar@v1.1.3"
+$ go install "github.com/PlakarKorp/plakar@latest"
 ```
 
 This will install the binary into your `$GOPATH/bin` directory, which you may
@@ -146,9 +146,11 @@ release version, check out the corresponding tag before running `make`:
 
 ```bash
 $ git fetch --tags
-$ git checkout tags/v1.1.3
+$ git checkout tags/<version>
 $ make
 ```
+
+Replace `<version>` with a release tag from the [Download page](/download).
 
 ### Other Platforms
 
@@ -171,7 +173,7 @@ Verify the installation by running:
 $ plakar version
 ```
 
-This should return the expected version number, for example `plakar/v1.1.3`.
+This prints `plakar/` followed by the installed version number.
 
 ## Downloading Specific Versions
 
