@@ -44,16 +44,18 @@ way is to use our DNF repository.
 First, set up the repository:
 
 ```bash
-$ cat <<EOF | sudo tee /etc/yum.repos.d/plakar.repo
+$ cat <<'EOF' | sudo tee /etc/yum.repos.d/plakar.repo
 [plakar]
 name=Plakar Repository
-baseurl=https://plakar.io/dist/repos/rpm/$(uname -m)/
+baseurl=https://plakar.io/dist/repos/rpm/$basearch/
 enabled=1
 gpgcheck=0
 repo_gpgcheck=1
 gpgkey=https://plakar.io/dist/keys/plakar-packages.gpg
 EOF
 ```
+
+dnf replaces `$basearch` with your architecture (`x86_64` or `aarch64`).
 
 Then install plakar with:
 
