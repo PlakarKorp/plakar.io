@@ -7,6 +7,7 @@ summary:
   with Plakar."
 aliases:
   - /docs/v1.1.0/
+  - /docs/community/latest/
 ---
 
 # Plakar: v1.1.x (latest: v1.1.7)
