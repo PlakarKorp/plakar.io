@@ -10,12 +10,59 @@
 > minimal memory footprint and scales to petabyte-scale infrastructure. Plakar
 > Control Plane (PCP) is the enterprise product built on top of Plakar.
 
+Every page on plakar.io has a Markdown version. Add `index.md` to the end of a page URL to read it (for example `https://www.plakar.io/docs/community/v1.1.0/quickstart/installation/index.md`). The links in this file point to these Markdown versions where one exists.
+
 ## Overview
 
 - [Quick Start](https://www.plakar.io/docs/community/v1.1.0/quickstart/first-backup/index.md): Quick introduction to installing Plakar and running your first backup.
 - [How Plakar Works](https://www.plakar.io/docs/community/v1.1.0/explanations/how-plakar-works/index.md): Architectural overview of Plakar and Kloset.
 - [What is Kloset](https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/index.md): Kloset's immutable storage model, chunking, encryption, and snapshot architecture.
 - [What is Plakar Control Plane](https://www.plakar.io/docs/control-plane/intro/overview/index.md): Overview of PCP, the enterprise product built on top of Plakar.
+
+## Install
+
+Plakar is a command-line tool, `plakar`. Integrations such as S3 or SFTP are separate packages that you install with `plakar pkg add` (see [Managing Packages](https://www.plakar.io/docs/community/v1.1.0/guides/managing-packages/index.md)). Pick one install method, then run `plakar version` to check it. Full instructions with copy-paste commands: [Installation](https://www.plakar.io/docs/community/v1.1.0/quickstart/installation/index.md).
+
+- Homebrew: `brew install plakarkorp/tap/plakar` (Plakar tap, recommended by the docs) or `brew install plakar` (Homebrew core, which may not always have the latest release).
+- Debian and Ubuntu (apt): add the signing key from https://plakar.io/dist/keys/plakar-packages.gpg and the repository `deb [signed-by=/usr/share/keyrings/plakar.gpg] https://plakar.io/dist/repos/deb/ stable main`, then run `sudo apt-get install plakar`.
+- Fedora and other RPM systems (dnf): add the repository `https://plakar.io/dist/repos/rpm/$basearch/` with the same signing key, then run `sudo dnf install plakar`.
+- Go toolchain: `go install github.com/PlakarKorp/plakar@latest`.
+- Arch Linux: `yay -S plakar` (AUR).
+- Pre-built binaries and packages for macOS, Linux, FreeBSD, OpenBSD and Windows, with SHA256 checksums: [Download page](https://www.plakar.io/download/) (HTML only, no Markdown version) or [GitHub releases](https://github.com/PlakarKorp/plakar/releases).
+- Docker: not covered by the docs yet. The plakar repository includes a [Dockerfile](https://github.com/PlakarKorp/plakar/blob/main/Dockerfile) that you can build with `docker build`.
+
+## Automate backups
+
+Plakar 1.1 has no built-in scheduler (the `plakar scheduler` and `plakar agent` commands of 1.0 were removed). To run backups on a schedule, call `plakar backup` from the scheduler your operating system already has. On Linux, systemd timers are the recommended pattern: they log to the journal and catch up on runs missed while the machine was off. cron, launchd (macOS) and Windows Task Scheduler also work.
+
+- [Scheduling Backups](https://www.plakar.io/docs/community/v1.1.0/guides/setup-scheduler-daily-backups/index.md): prerequisites for every scheduler, including how to supply the store passphrase without a prompt (`passphrase` or `passphrase_cmd` in the store configuration, the `-keyfile` flag, or the `PLAKAR_PASSPHRASE` environment variable).
+- [Linux: cron and systemd timers](https://www.plakar.io/docs/community/v1.1.0/guides/setup-scheduler-daily-backups/linux/index.md): example crontab line, and `plakar-backup.service` plus `plakar-backup.timer` units with `Persistent=true`.
+- [macOS: launchd](https://www.plakar.io/docs/community/v1.1.0/guides/setup-scheduler-daily-backups/macos/index.md)
+- [Windows: Task Scheduler](https://www.plakar.io/docs/community/v1.1.0/guides/setup-scheduler-daily-backups/windows/index.md)
+
+The command to schedule is the same everywhere. Use the absolute path to the binary, because schedulers run with a minimal `PATH`:
+
+```bash
+/usr/local/bin/plakar at @mybackups backup -check /var/www
+```
+
+`-check` runs a full integrity check after the backup. `plakar backup` exits 0 on success and non-zero on failure, so alert on the exit status. Plakar Control Plane adds a built-in scheduler, see [Scheduling](https://www.plakar.io/docs/control-plane/scheduling/index.md).
+
+## Restore
+
+Reference: [plakar restore](https://www.plakar.io/docs/community/v1.1.0/references/commands/plakar-restore/index.md).
+
+```bash
+plakar at <store> restore [-to <directory> | -to @<destination>] [<snapshotID>[:<path>]]
+```
+
+- `-to <directory>` sets the base directory for the restored files. Without `-to`, files are restored into the current working directory. Original paths are kept under the base directory: in the quickstart, restoring a snapshot of `/home/user/Documents` with `-to /home/user/restored` recreates the files under `/home/user/restored/Documents/`.
+- `-to @<name>` restores into a configured destination connector instead of the local filesystem, for example an S3 bucket: `plakar restore -to @s3target abc123`.
+- `<snapshotID>:<path>` restores only that path from the snapshot (partial restore): `plakar restore -to /mnt/ abc123:/etc/apache2`. Without `:<path>`, the whole snapshot is restored. Without a snapshot ID, Plakar restores the current working directory from the last matching snapshot.
+- Use the short snapshot ID printed by `plakar backup` and `plakar ls`.
+- File permissions and ownership are restored unless you pass `-skip-permissions`.
+
+To find what to restore: [plakar ls](https://www.plakar.io/docs/community/v1.1.0/references/commands/plakar-ls/index.md) lists snapshots and their contents, [plakar locate](https://www.plakar.io/docs/community/v1.1.0/references/commands/plakar-locate/index.md) finds files by name in snapshots, [plakar cat](https://www.plakar.io/docs/community/v1.1.0/references/commands/plakar-cat/index.md) prints a single file without restoring it, and [plakar mount](https://www.plakar.io/docs/community/v1.1.0/references/commands/plakar-mount/index.md) mounts snapshots as a read-only filesystem.
 
 ## When to Use Plakar
 
@@ -36,7 +83,7 @@ How an agent should use Plakar:
 
 ## Plakar Community Docs
 
-Plakar Community version is open-source and free to use. Documentation is versioned to match releases. Replace the version segment in any `/docs/community/` URL to switch versions. Only use these four version identifiers — no others exist.
+Plakar Community version is open-source and free to use. Documentation is versioned to match releases. Replace the version segment in any `/docs/community/` URL to switch versions. Only use these four version identifiers. No others exist.
 
 - [main (development)](https://www.plakar.io/docs/community/main/index.md): Bleeding-edge branch, may be unstable.
 - [v1.1.0 (latest stable)](https://www.plakar.io/docs/community/v1.1.0/index.md): Latest stable release, recommended for all users.
