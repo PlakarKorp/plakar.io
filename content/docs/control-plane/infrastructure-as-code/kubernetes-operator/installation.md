@@ -77,7 +77,7 @@ The operator does not install integrations. Each `Source`, `Store` and
 and PCP can only use integrations that are already installed. A `Store` backed
 by an S3 bucket, for example, requires the S3 integration. Install the
 integrations your resources rely on from the
-[Integrations](../../../apps/integrations) page before applying those resources.
+[Integrations](../../../integrations) page before applying those resources.
 
 You'll use this API key in the next step when creating the Kubernetes Secret
 used by the operator to authenticate with Plakar Control Plane.

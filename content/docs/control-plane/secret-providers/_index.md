@@ -1,7 +1,7 @@
 ---
 title: "Secret Providers"
 date: "2026-04-23T00:00:00Z"
-weight: 3
+weight: 8
 summary:
   "How to manage credentials in Plakar Control Plane using secret providers."
 aliases:

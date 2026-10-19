@@ -1,14 +1,14 @@
 ---
-title: "Apps"
+title: "Resource Apps"
 date: "2026-05-07T00:00:00Z"
-weight: 4
+weight: 5
 summary: "How apps work in Plakar Control Plane and how to configure them."
 aliases:
   - /control-plane-docs/connectors/
   - /docs/control-plane/connectors/
 ---
 
-# Apps
+# Resource Apps
 
 An app links a resource in your inventory to Plakar Control Plane so it can be
 used as part of a backup workflow. A resource can have multiple apps. The app
@@ -59,7 +59,7 @@ compatible integrations, in this case just the S3 integration.
 
 In most cases, the integration is selected automatically. If multiple compatible
 integrations are available, you can choose the integration manually from the
-integration list. See [Managing Integrations](./integrations) documentation for
+integration list. See [Managing Integrations](../integrations) documentation for
 information about installing additional integrations.
 
 Once the integration is selected, you must provide the configuration and

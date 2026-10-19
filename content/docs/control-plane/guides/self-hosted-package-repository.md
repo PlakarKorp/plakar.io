@@ -9,11 +9,10 @@ summary:
 
 # Hosting a Package Repository
 
-By default, Plakar Control Plane downloads
-[integrations](../../apps/integrations) and appliance components from
-`plakar.io`. In an air-gapped environment, you can host these files on your own
-network and configure the appliance and Plakar Control Plane to use them
-instead.
+By default, Plakar Control Plane downloads [integrations](../../integrations)
+and appliance components from `plakar.io`. In an air-gapped environment, you can
+host these files on your own network and configure the appliance and Plakar
+Control Plane to use them instead.
 
 Air-gapped deployments use two separate repositories:
 

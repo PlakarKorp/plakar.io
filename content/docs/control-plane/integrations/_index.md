@@ -1,18 +1,20 @@
 ---
-title: "Managing Integrations"
+title: "Integrations"
 date: "2026-07-27T00:00:00Z"
-weight: 4
+weight: 2
 summary: "Managing integrations in Plakar Control Plane."
+aliases:
+  - /docs/control-plane/apps/integrations/
 ---
 
-# Managing Integrations
+# Integrations
 
 Integrations extend Plakar Control Plane with support for external services,
 platforms, storage systems, and inventory providers. Before an integration can
 be used, it must be installed from the **Integrations** page.
 
 Access to the **Integrations** page is determined by the
-[permissions](../../administration/permissions) you hold in the organization you
+[permissions](../administration/permissions) you hold in the organization you
 signed in to.
 
 Installed integrations become available automatically wherever they are
@@ -25,7 +27,7 @@ Plakar Control Plane automatically matches integrations to resources based on
 their `class` and `subclass`. If multiple compatible integrations are installed,
 you can choose which one an app should use during configuration.
 
-![Integrations page](../images/integrations.png)
+![Integrations page](images/integrations.png)
 
 ## Installing an integration
 

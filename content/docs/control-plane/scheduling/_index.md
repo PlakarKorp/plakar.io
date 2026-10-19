@@ -1,7 +1,7 @@
 ---
 title: "Scheduling"
 date: "2026-06-25T00:00:00Z"
-weight: 7
+weight: 6
 summary: "How to create and manage tasks and schedules in Plakar Control Plane."
 aliases:
   - /control-plane-docs/operations/

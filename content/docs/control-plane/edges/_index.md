@@ -1,7 +1,7 @@
 ---
 title: "Plakar Edge"
 date: "2026-07-13T00:00:00Z"
-weight: 6
+weight: 7
 summary: "Configure remote edge executors for Plakar Control Plane."
 aliases:
   - /docs/control-plane/infrastructure/edges/
