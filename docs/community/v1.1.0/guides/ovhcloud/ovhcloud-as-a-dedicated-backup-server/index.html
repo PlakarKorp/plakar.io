@@ -70,7 +70,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-03-19T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-10-18T22:59:56+02:00">
+    <meta property="article:modified_time" content="2026-10-19T09:02:09+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -237,12 +237,12 @@
     "dateCreated": "2026-03-19T00:00:00\u002b00:00",
     "datePublished": "2026-03-19T00:00:00\u002b00:00",
     
-    "dateModified": "2026-10-18T22:59:56\u002b02:00",
+    "dateModified": "2026-10-19T09:02:09\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/community/v1.1.0/guides/ovhcloud/ovhcloud-as-a-dedicated-backup-server/",
-    "wordCount":  812 
+    "wordCount":  897 
   }]
   </script>
 
@@ -5491,13 +5491,15 @@ without prompts.</p></div></details>
     </button>
   
 </h2>
+<p>Plakar has no built-in scheduler. Use a systemd timer to run <code>plakar backup</code>
+every day.</p>
 
 
-<h3 id="create-scheduler-configuration" class="group pr-8">Create scheduler configuration
+<h3 id="create-backup-service" class="group pr-8">Create backup service
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="create-scheduler-configuration"
+      data-anchor="create-backup-service"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -5508,23 +5510,22 @@ without prompts.</p></div></details>
     </button>
   
 </h3>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ cat &gt; ~/scheduler.yaml <span class="s">&lt;&lt; &#39;EOF&#39;
-</span></span></span><span class="line"><span class="cl"><span class="s">agent:
-</span></span></span><span class="line"><span class="cl"><span class="s">  tasks:
-</span></span></span><span class="line"><span class="cl"><span class="s">    - name: Backup web-server-1
-</span></span></span><span class="line"><span class="cl"><span class="s">      repository: &#34;@ovhcloud-s3-backups&#34;
-</span></span></span><span class="line"><span class="cl"><span class="s">      backup:
-</span></span></span><span class="line"><span class="cl"><span class="s">        path: &#34;@web-server-1&#34;
-</span></span></span><span class="line"><span class="cl"><span class="s">        interval: 24h
-</span></span></span><span class="line"><span class="cl"><span class="s">        check: true
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ cat <span class="s">&lt;&lt; &#39;EOF&#39; | sudo tee /etc/systemd/system/plakar-backup.service &gt; /dev/null
+</span></span></span><span class="line"><span class="cl"><span class="s">[Unit]
+</span></span></span><span class="line"><span class="cl"><span class="s">Description=Plakar backup of web servers
+</span></span></span><span class="line"><span class="cl"><span class="s">Wants=network-online.target
+</span></span></span><span class="line"><span class="cl"><span class="s">After=network-online.target
 </span></span></span><span class="line"><span class="cl"><span class="s">
-</span></span></span><span class="line"><span class="cl"><span class="s">    - name: Backup web-server-2
-</span></span></span><span class="line"><span class="cl"><span class="s">      repository: &#34;@ovhcloud-s3-backups&#34;
-</span></span></span><span class="line"><span class="cl"><span class="s">      backup:
-</span></span></span><span class="line"><span class="cl"><span class="s">        path: &#34;@web-server-2&#34;
-</span></span></span><span class="line"><span class="cl"><span class="s">        interval: 24h
-</span></span></span><span class="line"><span class="cl"><span class="s">        check: true
+</span></span></span><span class="line"><span class="cl"><span class="s">[Service]
+</span></span></span><span class="line"><span class="cl"><span class="s">Type=oneshot
+</span></span></span><span class="line"><span class="cl"><span class="s">User=ubuntu
+</span></span></span><span class="line"><span class="cl"><span class="s">WorkingDirectory=/home/ubuntu
+</span></span></span><span class="line"><span class="cl"><span class="s">ExecStart=/usr/bin/plakar at &#34;@ovhcloud-s3-backups&#34; backup -check &#34;@web-server-1&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">ExecStart=/usr/bin/plakar at &#34;@ovhcloud-s3-backups&#34; backup -check &#34;@web-server-2&#34;
 </span></span></span><span class="line"><span class="cl"><span class="s">EOF</span></span></span></code></pre></div></div>
+<p>Each <code>ExecStart</code> line creates one snapshot per source server. <code>-check</code> verifies
+the snapshot right after it is written. The store passphrase comes from the
+store configuration, so no prompt is needed.</p>
 <details
       class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
       data-type="note"
@@ -5549,13 +5550,14 @@ without prompts.</p></div></details>
   />
 </svg>
 </span></div>
-      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Scheduler The scheduler is basic and will be improved in future versions.</p></div></details>
+      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Use the absolute path to the <code>plakar</code> binary. Run <code>command -v plakar</code> to find
+it and adjust <code>/usr/bin/plakar</code> if needed.</p></div></details>
 
-<h3 id="start-scheduler" class="group pr-8">Start scheduler
+<h3 id="create-backup-timer" class="group pr-8">Create backup timer
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="start-scheduler"
+      data-anchor="create-backup-timer"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -5566,10 +5568,20 @@ without prompts.</p></div></details>
     </button>
   
 </h3>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar scheduler start -tasks ~/scheduler.yaml</span></span></code></pre></div></div>
-<p>See
-<a href="/docs/community/main/guides/setup-scheduler-daily-backups/" >Scheduler Documentation</a>
-for more scheduling options.</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ cat <span class="s">&lt;&lt; &#39;EOF&#39; | sudo tee /etc/systemd/system/plakar-backup.timer &gt; /dev/null
+</span></span></span><span class="line"><span class="cl"><span class="s">[Unit]
+</span></span></span><span class="line"><span class="cl"><span class="s">Description=Run the Plakar backup daily
+</span></span></span><span class="line"><span class="cl"><span class="s">
+</span></span></span><span class="line"><span class="cl"><span class="s">[Timer]
+</span></span></span><span class="line"><span class="cl"><span class="s">OnCalendar=daily
+</span></span></span><span class="line"><span class="cl"><span class="s">Persistent=true
+</span></span></span><span class="line"><span class="cl"><span class="s">
+</span></span></span><span class="line"><span class="cl"><span class="s">[Install]
+</span></span></span><span class="line"><span class="cl"><span class="s">WantedBy=timers.target
+</span></span></span><span class="line"><span class="cl"><span class="s">EOF</span></span></span></code></pre></div></div>
+<p><code>Persistent=true</code> runs a missed backup as soon as the VPS is back up. See
+<a href="../../setup-scheduler-daily-backups/" >Scheduling Backups</a> for cron and other
+scheduling options.</p>
 </div>
 
 
@@ -5592,11 +5604,11 @@ for more scheduling options.</p>
 </h2>
 
 
-<h3 id="create-scheduler-service" class="group pr-8">Create scheduler service
+<h3 id="enable-the-backup-timer" class="group pr-8">Enable the backup timer
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="create-scheduler-service"
+      data-anchor="enable-the-backup-timer"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -5607,22 +5619,11 @@ for more scheduling options.</p>
     </button>
   
 </h3>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ cat <span class="s">&lt;&lt; &#39;EOF&#39; | sudo tee /etc/systemd/system/plakar-scheduler.service &gt; /dev/null
-</span></span></span><span class="line"><span class="cl"><span class="s">[Unit]
-</span></span></span><span class="line"><span class="cl"><span class="s">Description=Plakar Scheduler
-</span></span></span><span class="line"><span class="cl"><span class="s">After=network.target
-</span></span></span><span class="line"><span class="cl"><span class="s">
-</span></span></span><span class="line"><span class="cl"><span class="s">[Service]
-</span></span></span><span class="line"><span class="cl"><span class="s">Type=forking
-</span></span></span><span class="line"><span class="cl"><span class="s">ExecStart=/usr/bin/plakar scheduler start -tasks /home/ubuntu/scheduler.yaml
-</span></span></span><span class="line"><span class="cl"><span class="s">ExecStop=/usr/bin/plakar scheduler stop
-</span></span></span><span class="line"><span class="cl"><span class="s">Restart=on-failure
-</span></span></span><span class="line"><span class="cl"><span class="s">User=ubuntu
-</span></span></span><span class="line"><span class="cl"><span class="s">WorkingDirectory=/home/ubuntu
-</span></span></span><span class="line"><span class="cl"><span class="s">
-</span></span></span><span class="line"><span class="cl"><span class="s">[Install]
-</span></span></span><span class="line"><span class="cl"><span class="s">WantedBy=multi-user.target
-</span></span></span><span class="line"><span class="cl"><span class="s">EOF</span></span></span></code></pre></div></div>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo systemctl daemon-reload
+</span></span><span class="line"><span class="cl">$ sudo systemctl <span class="nb">enable</span> --now plakar-backup.timer</span></span></code></pre></div></div>
+<p>Check the next run and trigger a first backup:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ systemctl list-timers plakar-backup.timer
+</span></span><span class="line"><span class="cl">$ sudo systemctl start plakar-backup.service</span></span></code></pre></div></div>
 </div>
 
 
@@ -5765,8 +5766,8 @@ proxy with SSL.</p></div></details></div>
 </ul>
 <p><strong>Services won&rsquo;t start</strong></p>
 <ul>
-<li>Check status: <code>systemctl status plakar-scheduler</code></li>
-<li>View logs: <code>journalctl -u plakar-scheduler</code> or <code>journalctl -u plakar-ui</code></li>
+<li>Check status: <code>systemctl status plakar-backup.timer</code></li>
+<li>View logs: <code>journalctl -u plakar-backup</code> or <code>journalctl -u plakar-ui</code></li>
 </ul>
 <p><strong>Alternative UI access</strong></p>
 <ul>
@@ -5814,7 +5815,7 @@ credentials to access backups without VPS connection</li>
   
   <div class="flex items-center justify-between text-xs text-neutral-400">
     
-      <span>Last updated: October 18, 2026</span>
+      <span>Last updated: October 19, 2026</span>
     
     
       <a href="https://github.com/PlakarKorp/plakar.io/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">
@@ -5834,7 +5835,7 @@ credentials to access backups without VPS connection</li>
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#architecture">Architecture</a></li><li><a href="#prerequisites">Prerequisites</a></li><li><a href="#create-object-storage">Create Object Storage</a><ul><li><a href="#create-storage-user">Create storage user</a></li><li><a href="#create-storage-container">Create storage container</a></li></ul></li><li><a href="#provision-backup-vps">Provision Backup VPS</a><ul><li><a href="#order-vps">Order VPS</a></li><li><a href="#initial-connection">Initial connection</a></li></ul></li><li><a href="#install-plakar">Install Plakar</a></li><li><a href="#configure-object-storage">Configure Object Storage</a><ul><li><a href="#install-s3-integration">Install S3 integration</a></li><li><a href="#add-storage-connector">Add storage connector</a></li><li><a href="#initialize-kloset-store">Initialize Kloset Store</a></li></ul></li><li><a href="#configure-ssh-access">Configure SSH Access</a><ul><li><a href="#install-sftp-integration">Install SFTP integration</a></li><li><a href="#generate-ssh-keys">Generate SSH keys</a></li><li><a href="#copy-keys-to-source-servers">Copy keys to source servers</a></li><li><a href="#create-ssh-aliases">Create SSH aliases</a></li></ul></li><li><a href="#configure-backup-sources">Configure Backup Sources</a></li><li><a href="#test-backup">Test Backup</a></li><li><a href="#schedule-automatic-backups">Schedule Automatic Backups</a><ul><li><a href="#create-scheduler-configuration">Create scheduler configuration</a></li><li><a href="#start-scheduler">Start scheduler</a></li></ul></li><li><a href="#configure-systemd-services">Configure Systemd Services</a><ul><li><a href="#create-scheduler-service">Create scheduler service</a></li></ul></li><li><a href="#access-web-ui">Access Web UI</a><ul><li><a href="#option-1-custom-token-recommended">Option 1: Custom token (recommended)</a></li><li><a href="#option-2-auto-generated-token">Option 2: Auto-generated token</a></li></ul></li><li><a href="#troubleshooting">Troubleshooting</a></li></ul>
+      <ul><li><a href="#architecture">Architecture</a></li><li><a href="#prerequisites">Prerequisites</a></li><li><a href="#create-object-storage">Create Object Storage</a><ul><li><a href="#create-storage-user">Create storage user</a></li><li><a href="#create-storage-container">Create storage container</a></li></ul></li><li><a href="#provision-backup-vps">Provision Backup VPS</a><ul><li><a href="#order-vps">Order VPS</a></li><li><a href="#initial-connection">Initial connection</a></li></ul></li><li><a href="#install-plakar">Install Plakar</a></li><li><a href="#configure-object-storage">Configure Object Storage</a><ul><li><a href="#install-s3-integration">Install S3 integration</a></li><li><a href="#add-storage-connector">Add storage connector</a></li><li><a href="#initialize-kloset-store">Initialize Kloset Store</a></li></ul></li><li><a href="#configure-ssh-access">Configure SSH Access</a><ul><li><a href="#install-sftp-integration">Install SFTP integration</a></li><li><a href="#generate-ssh-keys">Generate SSH keys</a></li><li><a href="#copy-keys-to-source-servers">Copy keys to source servers</a></li><li><a href="#create-ssh-aliases">Create SSH aliases</a></li></ul></li><li><a href="#configure-backup-sources">Configure Backup Sources</a></li><li><a href="#test-backup">Test Backup</a></li><li><a href="#schedule-automatic-backups">Schedule Automatic Backups</a><ul><li><a href="#create-backup-service">Create backup service</a></li><li><a href="#create-backup-timer">Create backup timer</a></li></ul></li><li><a href="#configure-systemd-services">Configure Systemd Services</a><ul><li><a href="#enable-the-backup-timer">Enable the backup timer</a></li></ul></li><li><a href="#access-web-ui">Access Web UI</a><ul><li><a href="#option-1-custom-token-recommended">Option 1: Custom token (recommended)</a></li><li><a href="#option-2-auto-generated-token">Option 2: Auto-generated token</a></li></ul></li><li><a href="#troubleshooting">Troubleshooting</a></li></ul>
     </div>
 
     

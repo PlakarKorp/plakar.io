@@ -270,41 +270,55 @@ $ plakar at "@ovhcloud-s3-backups" ls
 
 ## Schedule Automatic Backups
 
-### Create scheduler configuration
+Plakar has no built-in scheduler. Use a systemd timer to run `plakar backup`
+every day.
+
+### Create backup service
 
 ```bash
-$ cat > ~/scheduler.yaml << 'EOF'
-agent:
-  tasks:
-    - name: Backup web-server-1
-      repository: "@ovhcloud-s3-backups"
-      backup:
-        path: "@web-server-1"
-        interval: 24h
-        check: true
+$ cat << 'EOF' | sudo tee /etc/systemd/system/plakar-backup.service > /dev/null
+[Unit]
+Description=Plakar backup of web servers
+Wants=network-online.target
+After=network-online.target
 
-    - name: Backup web-server-2
-      repository: "@ovhcloud-s3-backups"
-      backup:
-        path: "@web-server-2"
-        interval: 24h
-        check: true
+[Service]
+Type=oneshot
+User=ubuntu
+WorkingDirectory=/home/ubuntu
+ExecStart=/usr/bin/plakar at "@ovhcloud-s3-backups" backup -check "@web-server-1"
+ExecStart=/usr/bin/plakar at "@ovhcloud-s3-backups" backup -check "@web-server-2"
 EOF
 ```
 
+Each `ExecStart` line creates one snapshot per source server. `-check` verifies
+the snapshot right after it is written. The store passphrase comes from the
+store configuration, so no prompt is needed.
+
 > [!NOTE]+
 >
-> Scheduler The scheduler is basic and will be improved in future versions.
+> Use the absolute path to the `plakar` binary. Run `command -v plakar` to find
+> it and adjust `/usr/bin/plakar` if needed.
 
-### Start scheduler
+### Create backup timer
 
 ```bash
-$ plakar scheduler start -tasks ~/scheduler.yaml
+$ cat << 'EOF' | sudo tee /etc/systemd/system/plakar-backup.timer > /dev/null
+[Unit]
+Description=Run the Plakar backup daily
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+EOF
 ```
 
-See
-[Scheduler Documentation](../../../../../docs/community/main/guides/setup-scheduler-daily-backups/)
-for more scheduling options.
+`Persistent=true` runs a missed backup as soon as the VPS is back up. See
+[Scheduling Backups](../../setup-scheduler-daily-backups/) for cron and other
+scheduling options.
 
 {{< /step >}}
 
@@ -312,25 +326,18 @@ for more scheduling options.
 
 ## Configure Systemd Services
 
-### Create scheduler service
+### Enable the backup timer
 
 ```bash
-$ cat << 'EOF' | sudo tee /etc/systemd/system/plakar-scheduler.service > /dev/null
-[Unit]
-Description=Plakar Scheduler
-After=network.target
+$ sudo systemctl daemon-reload
+$ sudo systemctl enable --now plakar-backup.timer
+```
 
-[Service]
-Type=forking
-ExecStart=/usr/bin/plakar scheduler start -tasks /home/ubuntu/scheduler.yaml
-ExecStop=/usr/bin/plakar scheduler stop
-Restart=on-failure
-User=ubuntu
-WorkingDirectory=/home/ubuntu
+Check the next run and trigger a first backup:
 
-[Install]
-WantedBy=multi-user.target
-EOF
+```bash
+$ systemctl list-timers plakar-backup.timer
+$ sudo systemctl start plakar-backup.service
 ```
 
 {{< /step >}}
@@ -413,8 +420,8 @@ Access: `http://your-vps-ip:8080` with the token from the URL.
 
 **Services won't start**
 
-- Check status: `systemctl status plakar-scheduler`
-- View logs: `journalctl -u plakar-scheduler` or `journalctl -u plakar-ui`
+- Check status: `systemctl status plakar-backup.timer`
+- View logs: `journalctl -u plakar-backup` or `journalctl -u plakar-ui`
 
 **Alternative UI access**
 

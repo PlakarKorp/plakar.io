@@ -174,7 +174,7 @@ to. Note that the properties of the restored files, such as timestamps and
 permissions, will match the original files:
 
 ```bash
-$ ls -l $HOME/restored/Documents/
+$ ls -l $HOME/restored/
 total 36
 -rw-r--r-- 1 user user   30 Jan 14 06:31 budget.xlsx
 drwxr-xr-x 2 user user 4096 Jan 14 06:31 code_samples
@@ -185,6 +185,16 @@ drwxr-xr-x 2 user user 4096 Jan 14 06:31 code_samples
 drwxr-xr-x 2 user user 4096 Jan 14 06:31 recipes
 -rw-r--r-- 1 user user   29 Jan 14 06:31 resume.pdf
 ```
+
+> [!NOTE]+ Where restored files land
+>
+> - `restore -to DIR <snapshot>` writes the contents of the backed-up directory
+>   directly under `DIR`. The original path is not recreated: here
+>   `/home/user/Documents/resume.pdf` becomes `$HOME/restored/resume.pdf`.
+> - `restore -to DIR <snapshot>:/absolute/sub/path` writes the contents of that
+>   sub-path directly under `DIR`.
+> - Without `-to`, Plakar creates a directory named `plakar-YYYYMMDDHHMMSS` in
+>   the current directory and restores there.
 
 {{< /step >}}
 

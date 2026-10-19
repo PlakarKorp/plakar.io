@@ -70,7 +70,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-03-11T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-10-18T22:59:56+02:00">
+    <meta property="article:modified_time" content="2026-10-19T09:02:09+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -227,12 +227,12 @@
     "dateCreated": "2026-03-11T00:00:00\u002b00:00",
     "datePublished": "2026-03-11T00:00:00\u002b00:00",
     
-    "dateModified": "2026-10-18T22:59:56\u002b02:00",
+    "dateModified": "2026-10-19T09:02:09\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/community/main/quickstart/first-backup/",
-    "wordCount":  1110 
+    "wordCount":  1166 
   }]
   </script>
 
@@ -5078,7 +5078,7 @@ we are restoring the snapshot we just created to another directory called
 <p>To verify the files have been re-created, list the directory they were restored
 to. Note that the properties of the restored files, such as timestamps and
 permissions, will match the original files:</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ls -l <span class="nv">$HOME</span>/restored/Documents/
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ls -l <span class="nv">$HOME</span>/restored/
 </span></span><span class="line"><span class="cl">total <span class="m">36</span>
 </span></span><span class="line"><span class="cl">-rw-r--r-- <span class="m">1</span> user user   <span class="m">30</span> Jan <span class="m">14</span> 06:31 budget.xlsx
 </span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">2</span> user user <span class="m">4096</span> Jan <span class="m">14</span> 06:31 code_samples
@@ -5088,7 +5088,39 @@ permissions, will match the original files:</p>
 </span></span><span class="line"><span class="cl">-rw-r--r-- <span class="m">1</span> user user   <span class="m">40</span> Jan <span class="m">14</span> 06:31 project_proposal.docx
 </span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">2</span> user user <span class="m">4096</span> Jan <span class="m">14</span> 06:31 recipes
 </span></span><span class="line"><span class="cl">-rw-r--r-- <span class="m">1</span> user user   <span class="m">29</span> Jan <span class="m">14</span> 06:31 resume.pdf</span></span></code></pre></div></div>
-</div>
+<details
+      class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
+      data-type="note"
+      open>
+      <summary class="flex items-center gap-2 font-semibold text-inherit cursor-pointer">
+        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"/></svg>
+</span></div>
+        <div class="grow">
+          Where restored files land
+        </div>
+        <div
+          class="ms-auto flex h-5 w-5 items-center justify-center transition-transform ease-in-out -rotate-90 group-open:rotate-0 print:hidden"><span class="relative block icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+</span></div>
+      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><ul>
+<li><code>restore -to DIR &lt;snapshot&gt;</code> writes the contents of the backed-up directory
+directly under <code>DIR</code>. The original path is not recreated: here
+<code>/home/user/Documents/resume.pdf</code> becomes <code>$HOME/restored/resume.pdf</code>.</li>
+<li><code>restore -to DIR &lt;snapshot&gt;:/absolute/sub/path</code> writes the contents of that
+sub-path directly under <code>DIR</code>.</li>
+<li>Without <code>-to</code>, Plakar creates a directory named <code>plakar-YYYYMMDDHHMMSS</code> in
+the current directory and restores there.</li>
+</ul></div></details></div>
 
 
 <div class="step">
@@ -5250,7 +5282,7 @@ multiple copies of your backups.</p>
   
   <div class="flex items-center justify-between text-xs text-neutral-400">
     
-      <span>Last updated: October 18, 2026</span>
+      <span>Last updated: October 19, 2026</span>
     
     
       <a href="https://github.com/PlakarKorp/plakar.io/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">
