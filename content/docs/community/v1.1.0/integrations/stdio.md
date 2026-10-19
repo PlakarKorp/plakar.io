@@ -26,26 +26,34 @@ The STDIO integration provides two connectors:
 
 The stream is specified directly via the URI scheme in the command:
 
-| URI         | Description                        |
-| ----------- | ---------------------------------- |
-| `stdio://`  | Read from standard input (`stdin`) |
-| `stdout://` | Write to standard output           |
-| `stderr://` | Write to standard error            |
+| URI               | Description                                                 |
+| ----------------- | ----------------------------------------------------------- |
+| `stdin:///<name>` | Read from standard input (`stdin`) and store it as `<name>` |
+| `stdout://`       | Write to standard output                                    |
+| `stderr://`       | Write to standard error                                     |
 
 ## Source connector
 
 The source connector reads from standard input and stores the data in a Kloset
-store with encryption and deduplication.
+store with encryption and deduplication. The path after `stdin://` is the file
+name in the snapshot, so you can find it with `ls` and restore it to a
+directory:
 
 ```bash
-$ cat myfile.txt | plakar at /var/backups backup stdio://
+$ cat myfile.txt | plakar at /var/backups backup stdin:///myfile.txt
 ```
 
 This works with any command that writes to stdout:
 
 ```bash
-$ pg_dump mydb | plakar at /var/backups backup stdio://
+$ pg_dump mydb | plakar at /var/backups backup stdin:///mydb.sql
 ```
+
+> [!NOTE]
+>
+> Always give the stream a name. A plain `stdin://` is accepted, but the
+> snapshot then holds a single unnamed entry that cannot be restored to a
+> directory.
 
 ## Destination connector
 
