@@ -45,7 +45,7 @@ discovers, such as a local MinIO instance or a self-hosted database.
 ## Resources
 
 A resource is identified by its resource URN, which cannot change once the
-resource exists. It also has a name, a class and tags.
+resource exists. It also has a name, a class, subclass and tags.
 [Configuration bundles](configuration-bundles) select resources by class and
 tags, and [policies](../compliance/policies) can narrow their scope by tag. In a
 managed inventory, the class and tags are discovered from the provider and
