@@ -18,6 +18,53 @@
 - [Plakar Operator v0.0.2](index.md): Adds Destination, task, and multi-group CRDs, a Helm chart, and a full regression test suite backed by a fake control plane.
 
 
+## [Azure Blob Storage](https://www.plakar.io/changelog/azblob/index.md)
+
+- [Azure Blob Storage v1.1.0](index.md): First stable release of the Azure Blob Storage integration.
+
+
+## [Filesystem](https://www.plakar.io/changelog/fs/index.md)
+
+- [Filesystem v1.1.8](index.md): Adds options to skip restoring ownership, permissions and times, and fixes backups on Windows.
+- [Filesystem v1.1.0-beta.7](index.md): Fixes a regression with <code>-ignore-file</code>.
+
+
+## [HTTP](https://www.plakar.io/changelog/http/index.md)
+
+- [HTTP v1.1.3](index.md): Hardens HTTP connections, refuses tokens over plain HTTP by default, and adds a request timeout.
+
+
+## [LDAP](https://www.plakar.io/changelog/ldap/index.md)
+
+- [LDAP v1.1.0-beta.2](index.md): Refuses cleartext binds by default, fixes StartTLS, and adds the <code>ldap+starttls</code> protocol.
+
+
+## [PostgreSQL](https://www.plakar.io/changelog/postgresql/index.md)
+
+- [PostgreSQL v1.1.1](index.md): Validates database names before backup and removes temporary SSL keys when a connector fails to start.
+
+
+## [PTAR](https://www.plakar.io/changelog/ptar/index.md)
+
+- [PTAR v1.1.1](index.md): Hardens reading .ptar archives over HTTP.
+
+
+## [RouterOS](https://www.plakar.io/changelog/routeros/index.md)
+
+- [RouterOS v1.1.0-alpha.2](index.md): Adds host key verification and SSH agent support, and redacts credentials from errors.
+- [RouterOS v1.1.0-alpha.1](index.md): First alpha release of the RouterOS integration.
+
+
+## [Scaleway](https://www.plakar.io/changelog/scaleway/index.md)
+
+- [Scaleway v1.1.11](index.md): Fixes restores that failed with a double close.
+
+
+## [Tar](https://www.plakar.io/changelog/tar/index.md)
+
+- [Tar v1.1.1](index.md): Fixes the handling of symbolic links and hard links in archives.
+
+
 ## [Kubernetes](https://www.plakar.io/changelog/k8s/index.md)
 
 - [Kubernetes v1.1.11](index.md): Adds namespace remapping on restore, PVC ignore patterns, and cluster-level inventory entries.
@@ -66,6 +113,7 @@
 
 ## [S3](https://www.plakar.io/changelog/s3/index.md)
 
+- [S3 v1.1.8](index.md): Adds ambient credentials, protects buckets with Object Lock from store re-creation, and makes <code>root</code> a prefix in every addressing mode.
 - [S3 v1.1.7](index.md): Increases connection pool size and fixes prefix handling in virtual-host mode.
 - [S3 v1.1.6](index.md): Adds optional region configuration, retry logic, and fixes silent errors during listing.
 

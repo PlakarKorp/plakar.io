@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2026 PlakarKorp</copyright>
-    <lastBuildDate>Mon, 19 Oct 2026 11:50:20 +0300</lastBuildDate><atom:link href="https://www.plakar.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 19 Oct 2026 14:59:29 +0300</lastBuildDate><atom:link href="https://www.plakar.io/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Kubernetes Operator</title>
@@ -3520,12 +3520,32 @@
     </item>
     
     <item>
+      <title>LDAP v1.1.0-beta.2</title>
+      <link></link>
+      <pubDate>Thu, 15 Oct 2026 00:00:00 +0000</pubDate>
+      
+      <guid></guid>
+      <description>Refuses cleartext binds by default, fixes StartTLS, and adds the &lt;code&gt;ldap+starttls&lt;/code&gt; protocol.</description>
+      
+    </item>
+    
+    <item>
       <title>Kubernetes v1.1.11</title>
       <link></link>
       <pubDate>Tue, 13 Oct 2026 00:00:00 +0000</pubDate>
       
       <guid></guid>
       <description>Adds namespace remapping on restore, PVC ignore patterns, and cluster-level inventory entries.</description>
+      
+    </item>
+    
+    <item>
+      <title>S3 v1.1.8</title>
+      <link></link>
+      <pubDate>Tue, 13 Oct 2026 00:00:00 +0000</pubDate>
+      
+      <guid></guid>
+      <description>Adds ambient credentials, protects buckets with Object Lock from store re-creation, and makes &lt;code&gt;root&lt;/code&gt; a prefix in every addressing mode.</description>
       
     </item>
     
@@ -4380,6 +4400,26 @@
     </item>
     
     <item>
+      <title>PostgreSQL v1.1.1</title>
+      <link></link>
+      <pubDate>Wed, 07 Oct 2026 00:00:00 +0000</pubDate>
+      
+      <guid></guid>
+      <description>Validates database names before backup and removes temporary SSL keys when a connector fails to start.</description>
+      
+    </item>
+    
+    <item>
+      <title>RouterOS v1.1.0-alpha.2</title>
+      <link></link>
+      <pubDate>Mon, 05 Oct 2026 00:00:00 +0000</pubDate>
+      
+      <guid></guid>
+      <description>Adds host key verification and SSH agent support, and redacts credentials from errors.</description>
+      
+    </item>
+    
+    <item>
       <title>SFTP v1.1.8</title>
       <link></link>
       <pubDate>Fri, 02 Oct 2026 00:00:00 +0000</pubDate>
@@ -4430,6 +4470,16 @@
     </item>
     
     <item>
+      <title>Scaleway v1.1.11</title>
+      <link></link>
+      <pubDate>Mon, 28 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid></guid>
+      <description>Fixes restores that failed with a double close.</description>
+      
+    </item>
+    
+    <item>
       <title>Plakar v1.1.7</title>
       <link></link>
       <pubDate>Thu, 24 Sep 2026 00:00:00 +0000</pubDate>
@@ -4476,6 +4526,16 @@
       
       <guid></guid>
       <description>A rework of the integration with faster restores, host key verification and path containment checks.</description>
+      
+    </item>
+    
+    <item>
+      <title>Filesystem v1.1.8</title>
+      <link></link>
+      <pubDate>Mon, 21 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid></guid>
+      <description>Adds options to skip restoring ownership, permissions and times, and fixes backups on Windows.</description>
       
     </item>
     
@@ -4580,6 +4640,36 @@
     </item>
     
     <item>
+      <title>HTTP v1.1.3</title>
+      <link></link>
+      <pubDate>Wed, 02 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid></guid>
+      <description>Hardens HTTP connections, refuses tokens over plain HTTP by default, and adds a request timeout.</description>
+      
+    </item>
+    
+    <item>
+      <title>PTAR v1.1.1</title>
+      <link></link>
+      <pubDate>Wed, 02 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid></guid>
+      <description>Hardens reading .ptar archives over HTTP.</description>
+      
+    </item>
+    
+    <item>
+      <title>Tar v1.1.1</title>
+      <link></link>
+      <pubDate>Wed, 02 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid></guid>
+      <description>Fixes the handling of symbolic links and hard links in archives.</description>
+      
+    </item>
+    
+    <item>
       <title>Plakar Operator v0.1.0</title>
       <link></link>
       <pubDate>Tue, 01 Sep 2026 00:00:00 +0000</pubDate>
@@ -4660,6 +4750,16 @@
     </item>
     
     <item>
+      <title>RouterOS v1.1.0-alpha.1</title>
+      <link></link>
+      <pubDate>Wed, 19 Aug 2026 00:00:00 +0000</pubDate>
+      
+      <guid></guid>
+      <description>First alpha release of the RouterOS integration.</description>
+      
+    </item>
+    
+    <item>
       <title>10 Reasons You Need an Independent, Offsite Backup in 2026</title>
       <link>https://www.plakar.io/posts/2026-08-12/independent-backup-reasons/</link>
       <pubDate>Wed, 12 Aug 2026 10:00:00 +0100</pubDate>
@@ -4716,6 +4816,16 @@
       
       <guid></guid>
       <description>Adds a Restore CRD, TaskRun reporting, EdgeTags, and connector reachability checks.</description>
+      
+    </item>
+    
+    <item>
+      <title>Azure Blob Storage v1.1.0</title>
+      <link></link>
+      <pubDate>Tue, 28 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid></guid>
+      <description>First stable release of the Azure Blob Storage integration.</description>
       
     </item>
     
@@ -4917,6 +5027,16 @@
       <guid>https://www.plakar.io/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/</guid>
       <description>go-cdc-chunkers v1.1.0 lands with a new spec-faithful JC variant topping the benchmarks at 3.7 GB/s, a caller-owned buffer API that cuts peak memory by a third and allocations by ~100×, 100% test coverage, fuzzing, and cross-language conformance vectors. Here is what changed and why it matters for Plakar.</description>
       <media:content xmlns:media="http://search.yahoo.com/mrss/" url="https://www.plakar.io/posts/2026-06-14/go-cdc-chunkers-v1.1.0-faster-leaner-and-provably-correct/featured.png" />
+    </item>
+    
+    <item>
+      <title>Filesystem v1.1.0-beta.7</title>
+      <link></link>
+      <pubDate>Thu, 28 May 2026 00:00:00 +0000</pubDate>
+      
+      <guid></guid>
+      <description>Fixes a regression with &lt;code&gt;-ignore-file&lt;/code&gt;.</description>
+      
     </item>
     
     <item>
