@@ -307,16 +307,16 @@ $ plakar at "@exoscale-sos-backups" ls
 
 ## Schedule Automatic Backups
 
-For scheduler configuration and systemd service setup, follow the same steps as
-the
+Plakar has no built-in scheduler. For the systemd service and timer setup,
+follow the same steps as the
 [OVHcloud backup server guide](../../ovhcloud/ovhcloud-as-a-dedicated-backup-server/#schedule-automatic-backups),
 replacing:
 
 - `@ovhcloud-s3-backups` with `@exoscale-sos-backups`
 - `ubuntu` with your actual username if different
 
-The scheduler configuration, systemd services, and web UI setup are identical on
-any Linux machine.
+The systemd timer, services, and web UI setup are identical on any Linux
+machine.
 
 {{< /step >}}
 
@@ -340,8 +340,8 @@ any Linux machine.
 
 **Services won't start**
 
-- Check status: `systemctl status plakar-scheduler`
-- View logs: `journalctl -u plakar-scheduler` or `journalctl -u plakar-ui`
+- Check status: `systemctl status plakar-backup.timer`
+- View logs: `journalctl -u plakar-backup` or `journalctl -u plakar-ui`
 
 **Alternative UI access**
 
