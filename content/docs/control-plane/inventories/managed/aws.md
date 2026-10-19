@@ -136,7 +136,7 @@ An AWS inventory needs a name, a credential type and a region. The credential
 type is **IAM** when Plakar Control Plane runs on AWS and **Access Key**
 otherwise, as described in [Authentication](#authentication). With **Access
 Key**, the access key and secret key are entered directly or loaded from a
-[secret provider](../../infrastructure/secret-providers).
+[secret provider](../../secret-providers).
 
 An inventory discovers its resources when it is synchronized, so a new inventory
 is empty until its first synchronization. Synchronizing again refreshes the

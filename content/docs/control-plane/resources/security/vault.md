@@ -13,11 +13,10 @@ snapshot backup, and stores them in the Kloset store. During restore, Plakar
 Control Plane writes the unseal keys back to a Vault server.
 
 This is the same Vault integration used to
-[reference Vault as a secret provider](../../../infrastructure/secret-providers/vault),
-used here with its importer and exporter capabilities instead of its secrets
-manager capability. As a resource, it treats the Vault server itself as
-something to back up and restore, rather than as a place to reference
-credentials from.
+[reference Vault as a secret provider](../../../secret-providers/vault), used
+here with its importer and exporter capabilities instead of its secrets manager
+capability. As a resource, it treats the Vault server itself as something to
+back up and restore, rather than as a place to reference credentials from.
 
 ## Inventory Management
 

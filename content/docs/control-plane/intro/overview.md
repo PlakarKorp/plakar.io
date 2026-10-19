@@ -51,8 +51,8 @@ needed for billing.
   backups are kept, and a destination is where data gets restored to.
 
 - **Secret providers** let you store credentials securely in an external manager
-  like [AWS Secrets Manager](../../infrastructure/secret-providers/aws) or
-  [HashiCorp Vault](../../infrastructure/secret-providers/vault).
+  like [AWS Secrets Manager](../../secret-providers/aws) or
+  [HashiCorp Vault](../../secret-providers/vault).
 
 - **Scheduling** defines when backup, restore, sync, and check jobs run. The
   scheduler handles concurrency automatically.

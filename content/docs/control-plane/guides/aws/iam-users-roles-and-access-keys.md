@@ -56,7 +56,7 @@ Once the role is attached, Plakar Control Plane can use the permissions granted
 to the EC2 instance without requiring an access key or secret key. Currently,
 IAM roles can be used to grant permissions for
 [AWS inventory](../../../inventories/managed/aws) and
-[AWS Secrets Manager](../../../infrastructure/secret-providers/aws).
+[AWS Secrets Manager](../../../secret-providers/aws).
 
 When creating a new role to use with Plakar Control Plane, select **AWS
 service** as the trusted entity type and **EC2** as the use case, since the role

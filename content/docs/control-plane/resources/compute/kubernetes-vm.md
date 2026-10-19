@@ -106,7 +106,7 @@ destination apps using the `k8s+vm` protocol.
 - **Kubeconfig**: Upload a kube config YAML file or paste its contents directly.
   Leave it empty when Plakar Control Plane runs inside the cluster to use the
   in-cluster configuration. The kubeconfig can also be loaded from a
-  [secret provider](../../infrastructure/secret-providers).
+  [secret provider](../../secret-providers).
 - **Kubelet Image**: The container image used for the helper pod. Defaults to a
   recent kubelet image. Set it to pull the image from another registry, for
   example a local mirror in an air-gapped cluster.

@@ -81,7 +81,7 @@ tries to list resources in all projects.
 
 When creating a new OVHcloud inventory, provide the inventory name, application
 key, application secret, and consumer key. Credentials can be entered directly
-or loaded from a [secret provider](../../infrastructure/secret-providers).
+or loaded from a [secret provider](../../secret-providers).
 
 After creating the inventory, trigger a synchronization to discover and load
 resources from your OVHcloud account. You can run synchronization again at any

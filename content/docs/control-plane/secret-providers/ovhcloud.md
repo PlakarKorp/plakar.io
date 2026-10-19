@@ -5,6 +5,8 @@ weight: 5
 summary:
   "How to configure and use OVHcloud Secret Manager as a secret provider in
   Plakar Control Plane."
+aliases:
+  - /docs/control-plane/infrastructure/secret-providers/ovhcloud/
 ---
 
 # OVHcloud Secret Manager

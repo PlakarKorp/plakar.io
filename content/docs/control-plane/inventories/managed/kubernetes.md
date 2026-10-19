@@ -42,7 +42,7 @@ When creating an Kubernetes inventory in Plakar Control Plane, you must provide:
   your kubeconfig file to use. You can leave this field empty if Plakar Control
   Plane runs inside the cluster, in which case it uses the in-cluster
   configuration instead. The kubeconfig can also be loaded from a
-  [secret provider](../../infrastructure/secret-providers).
+  [secret provider](../../secret-providers).
 - **Namespaces**: namespaces to discover resources from. Leave it empty for the
   inventory to discover resources in every namespace in the cluster.
 

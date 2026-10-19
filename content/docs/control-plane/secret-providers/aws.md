@@ -8,6 +8,7 @@ summary:
 aliases:
   - /control-plane-docs/infrastructure/secret-providers/aws/
   - /control-plane-docs/infrastructure/secret-providers/aws-sm
+  - /docs/control-plane/infrastructure/secret-providers/aws/
 ---
 
 # AWS Secrets Manager
@@ -44,7 +45,7 @@ When adding the secret provider, you must provide:
 Plakar Control Plane uses the permissions granted to the IAM role attached to
 the EC2 instance to authenticate and read secrets from AWS Secrets Manager. Read
 the documentation on
-[Managing IAM Roles, Users, and Access Keys on AWS](../../../guides/aws/iam-users-roles-and-access-keys)
+[Managing IAM Roles, Users, and Access Keys on AWS](../../guides/aws/iam-users-roles-and-access-keys)
 for more information on how to set up IAM role with the necessary permissions.
 
 ## Required Permissions
@@ -53,7 +54,7 @@ To allow Plakar Control Plane to read secrets from AWS Secrets Manager, the IAM
 role attached to the instance must include the following permissions as well.
 This is added on top of the resource discovery permissions needed already and
 mentioned in the
-[aws-inventory](../../../inventories/managed/aws/#required-permissions)
+[aws-inventory](../../inventories/managed/aws/#required-permissions)
 documentation:
 
 ```json

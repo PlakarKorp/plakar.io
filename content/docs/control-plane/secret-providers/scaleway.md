@@ -8,6 +8,7 @@ summary:
 aliases:
   - /control-plane-docs/infrastructure/secret-providers/scaleway/
   - /control-plane-docs/infrastructure/secret-providers/scaleway-sm
+  - /docs/control-plane/infrastructure/secret-providers/scaleway/
 ---
 
 # Scaleway Secret Manager
@@ -58,7 +59,7 @@ in Plakar Control Plane.
 
 A more detailed guide on configuring Scaleway IAM permissions and generating API
 keys is available in the
-[Managing IAM Policies and API Keys on Scaleway](../../../guides/scaleway/iam-and-api-keys)
+[Managing IAM Policies and API Keys on Scaleway](../../guides/scaleway/iam-and-api-keys)
 documentation.
 
 ## Creating Secrets

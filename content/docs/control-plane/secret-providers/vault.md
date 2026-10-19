@@ -8,6 +8,7 @@ summary:
 aliases:
   - /control-plane-docs/infrastructure/secret-providers/vault/
   - /control-plane-docs/infrastructure/secret-providers/vault-sm
+  - /docs/control-plane/infrastructure/secret-providers/vault/
 ---
 
 # HashiCorp Vault

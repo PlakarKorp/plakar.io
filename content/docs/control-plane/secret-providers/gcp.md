@@ -8,6 +8,7 @@ summary:
 aliases:
   - /control-plane-docs/infrastructure/secret-providers/gcp/
   - /control-plane-docs/infrastructure/secret-providers/gcp-sm
+  - /docs/control-plane/infrastructure/secret-providers/gcp/
 ---
 
 # GCP Secret Manager
@@ -43,14 +44,14 @@ account. The service account can be provided in two ways:
   automatically. The instance must use the `cloud-platform` access scope, shown
   as **Allow full access to all Cloud APIs** in the Google Cloud Console, as
   described in the
-  [Google Cloud installation](../../../intro/installation/google-cloud) guide.
+  [Google Cloud installation](../../intro/installation/google-cloud) guide.
 - **Service account key:** when Plakar Control Plane runs outside Google Cloud,
   or when a different identity is needed, provide a service account key in the
   **Credentials Json** field.
 
 For more information on creating service accounts, generating keys, and
 attaching a service account to an instance, see
-[Managing IAM Roles and Service Accounts](../../../guides/google-cloud/iam-roles-and-service-accounts).
+[Managing IAM Roles and Service Accounts](../../guides/google-cloud/iam-roles-and-service-accounts).
 
 ## Configuration
 
@@ -84,7 +85,7 @@ The service account used by the secret provider needs the
 
 For more information on creating a custom role with this permission and
 assigning it to a service account, see
-[Managing IAM Roles and Service Accounts](../../../guides/google-cloud/iam-roles-and-service-accounts).
+[Managing IAM Roles and Service Accounts](../../guides/google-cloud/iam-roles-and-service-accounts).
 
 ## Creating Secrets
 
