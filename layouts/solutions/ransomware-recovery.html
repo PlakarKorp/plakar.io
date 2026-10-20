@@ -145,7 +145,8 @@
         "bgColor" "bg-white" "bgHoverColor" "bg-neutral-100" "textColor" "text-neutral-900" "textHoverColor" "text-neutral-900" "border" "border" "borderColor" "border-neutral-300"
       ) }}
     </div>
-    <p class="text-neutral-500 text-sm">See how it fits together on the <a href="/solutions/control-plane/" class="text-primary-600 font-semibold hover:text-primary-700">Control Plane</a> page.</p>
+    {{/* Rendered only once the Control Plane page exists, so this page can ship before it. */}}
+    {{ if site.GetPage "/solutions/control-plane" }}<p class="text-neutral-500 text-sm">See how it fits together on the <a href="/solutions/control-plane/" class="text-primary-600 font-semibold hover:text-primary-700">Control Plane</a> page.</p>{{ end }}
   </div>
 </section>
 
