@@ -21,7 +21,7 @@ filesystems.
 {{< mermaid >}}
 flowchart TB
   subgraph Inventories
-    Managed["Managed inventory\n(AWS, Scaleway, ...)"]
+    Managed["Managed inventory\n(Scaleway, ...)"]
     SelfManaged["Self-managed inventory"]
   end
 
@@ -42,16 +42,17 @@ flowchart TB
 <!-- prettier-ignore-end -->
 
 All resources discovered across all inventories are available under
-**Infrastructure -> Resources**. From here a resource can be assigned to either
-a [source](../apps/sources) or a [destination](../apps/destinations) app. You
-can also filter resources by inventories or by resource class.
+**Infrastructure -> Inventory -> Resources**. From here a resource can be
+assigned to either a [source](../apps/sources) or a
+[destination](../apps/destinations) app. You can also filter resources by
+inventories or by resource class.
 
 The actions on each resource include placing a
 [legal hold](../compliance/legal-hold) on it. A resource under a legal hold
 cannot be used by any task, so backups, restores, checks, and prunes involving
 it are refused until the hold is removed.
 
-![](./images/view-resources.png)
+![](./images/resources.png)
 
 ## Resource settings
 
@@ -71,17 +72,15 @@ resource does not need to be backed up (for example, a test database), you can
 exclude it from coverage using the **Exclude from backup coverage**. Excluded
 resources are omitted from protection status and coverage reporting.
 
-![](./images/resource-settings.png)
+![](./images/resource.png)
 
 ## Resource classification
 
 Each resource is assigned a `class` and `subclass` that describe what kind of
-infrastructure it is.
-
-The `class` describes the general category the resource belongs to, while the
-`subclass` identifies the specific implementation or provider. Plakar Control
-Plane uses this classification to determine which integrations are compatible
-with a resource.
+infrastructure it is. The `class` describes the general category the resource
+belongs to, while the `subclass` identifies the specific implementation or
+provider. Plakar Control Plane uses this classification to determine which
+integrations are compatible with a resource.
 
 ## Environment and data class tags
 
@@ -93,10 +92,10 @@ still be changed before the app is saved or even later on.
 A tag is a prefix followed by the value. The prefix has a long and a short form,
 and either `:` or `=` separates it from the value:
 
-| Field       | Tag forms                                                                                                |
-| ----------- | -------------------------------------------------------------------------------------------------------- |
-| Environment | `plakar:environment:<value>`, `plakar:environment=<value>`, `plakar:env:<value>`, `plakar:env=<value>`   |
-| Data Class  | `plakar:data-class:<value>`, `plakar:data-class=<value>`, `plakar:class:<value>`, `plakar:class=<value>` |
+- **Environment**: `plakar:environment:<value>`, `plakar:environment=<value>`,
+  `plakar:env:<value>` or `plakar:env=<value>`
+- **Data Class**: `plakar:data-class:<value>`, `plakar:data-class=<value>`,
+  `plakar:class:<value>` or `plakar:class=<value>`
 
 For example, a resource tagged `plakar:env=production` and
 `plakar:class=database` gets `production` as the environment and `database` as
