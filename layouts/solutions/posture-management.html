@@ -85,7 +85,7 @@
     <div class="text-center max-w-3xl mx-auto space-y-4">
       <h2 class="text-primary-600 font-mono text-sm font-bold uppercase tracking-widest">What you get</h2>
       <p class="font-medium text-3xl lg:text-5xl text-neutral-900 leading-tighter">A provable resilience posture.</p>
-      <p class="text-lg text-neutral-600">Evidence for ISO 27001 and HDS audits, ANS requirements, and the backup section of every RFP security questionnaire.</p>
+      <p class="text-lg text-neutral-600">Evidence for ISO 27001 and HDS audits, French health-sector requirements, and the backup section of every RFP security questionnaire.</p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       {{ range (slice
@@ -141,7 +141,8 @@
         "bgColor" "bg-white" "bgHoverColor" "bg-neutral-100" "textColor" "text-neutral-900" "textHoverColor" "text-neutral-900" "border" "border" "borderColor" "border-neutral-300"
       ) }}
     </div>
-    <p class="text-neutral-500 text-sm">See how it fits together on the <a href="/solutions/control-plane/" class="text-primary-600 font-semibold hover:text-primary-700">Control Plane</a> page.</p>
+    {{/* Rendered only once the Control Plane page exists, so this page can ship before it. */}}
+    {{ if site.GetPage "/solutions/control-plane" }}<p class="text-neutral-500 text-sm">See how it fits together on the <a href="/solutions/control-plane/" class="text-primary-600 font-semibold hover:text-primary-700">Control Plane</a> page.</p>{{ end }}
   </div>
 </section>
 
