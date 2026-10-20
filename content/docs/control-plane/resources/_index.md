@@ -1,7 +1,7 @@
 ---
 title: "Resources"
 date: "2026-05-19T00:00:00Z"
-weight: 4
+weight: 5
 summary:
   "Resources are the systems and storage targets that Plakar Control Plane backs
   up, stores data in, or restores to. Learn how to configure each resource type

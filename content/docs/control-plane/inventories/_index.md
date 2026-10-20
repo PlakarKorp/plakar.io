@@ -51,6 +51,8 @@ tags, and [policies](../compliance/policies) can narrow their scope by tag. In a
 managed inventory, the class and tags are discovered from the provider and
 cannot be edited.
 
+![](./images/resources.png)
+
 Each resource also has one or more endpoints that identify where it is reached,
 such as a hostname, an IP address or a bucket name. In a self-managed inventory,
 the endpoints are entered with the resource. In a managed inventory, they are
@@ -70,6 +72,8 @@ Each resource has a protection status, which reflects whether it is covered by
 backups. A resource that does not need backups, such as a test database or a
 temporary bucket, can be excluded from backup coverage. An excluded resource is
 left out of protection status and coverage reporting.
+
+![](./images/resource.png)
 
 ## Data residency
 
