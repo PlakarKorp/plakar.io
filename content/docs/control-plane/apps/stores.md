@@ -45,7 +45,7 @@ Control Plane can reach the location and reports whether a Kloset store is
 already there. A location that has held a store before is recognized and needs
 no further preparation.
 
-![](../images/store-connector.png)
+![](../images/store-app.png)
 
 A location that has never held a Kloset store, such as a new S3 bucket, must be
 initialized before it can receive backups. Initializing writes the store

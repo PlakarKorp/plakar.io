@@ -75,7 +75,7 @@ server.
 
 Unlike the releases repository, the integrations repository is configured in
 Plakar Control Plane rather than in the appliance user-data. Open the
-[settings](../../administration/settings) and enter the URL of the server
+[settings](../../operations/control-plane-settings) and enter the URL of the server
 hosting the mirrored files in the package repository field, for example
 `https://dist.corp.example/integrations`.
 
@@ -118,7 +118,7 @@ excludes the generated directory listing pages.
 
 When a new version is released, mirror it into the same repository alongside the
 versions you already host, then
-[upgrade to the new version](../../administration/updating-control-plane#updating-an-air-gapped-plakar-control-plane).
+[upgrade to the new version](../../operations/updating#updating-an-air-gapped-plakar-control-plane).
 
 ### Configure the appliance
 

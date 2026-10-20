@@ -1,7 +1,7 @@
 ---
 title: "Inventories"
 date: "2026-05-03T00:00:00Z"
-weight: 3
+weight: 4
 summary:
   "Understand how inventories work in Plakar Control Plane and how to use them."
 aliases:
@@ -19,7 +19,7 @@ resources defined by hand.
 
 Each inventory belongs to one organization. Only the inventories of the
 organization you are signed in to are visible, and the
-[permissions](../administration/permissions) held in that organization determine
+[permissions](../access-control/permissions) held in that organization determine
 what can be done with them.
 
 Inventory providers are delivered as integrations, so a provider must be

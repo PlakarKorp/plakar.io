@@ -1,7 +1,7 @@
 ---
 title: "Resource Apps"
 date: "2026-05-07T00:00:00Z"
-weight: 4
+weight: 5
 summary: "How apps work in Plakar Control Plane and how to configure them."
 aliases:
   - /control-plane-docs/connectors/
@@ -41,7 +41,7 @@ flowchart LR
 A resource can have any number of apps, of any type. Each app has a name, which
 tells apart the apps of the same type on one resource. Apps belong to the
 organization of their inventory, and what can be done with them depends on the
-[permissions](../administration/permissions) held in that organization.
+[permissions](../access-control/permissions) held in that organization.
 
 ## Setting up an app
 

@@ -32,7 +32,7 @@ integrations match a resource, the one an app uses is chosen when the app is set
 up.
 
 Viewing, installing and upgrading integrations requires the matching
-[permissions](../administration/permissions).
+[permissions](../access-control/permissions).
 
 ![Integrations page](images/integrations.png)
 

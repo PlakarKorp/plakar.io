@@ -1,7 +1,7 @@
 ---
 title: "Secret Providers"
 date: "2026-04-23T00:00:00Z"
-weight: 8
+weight: 3
 summary:
   "How to manage credentials in Plakar Control Plane using secret providers."
 aliases:
@@ -28,7 +28,7 @@ credential, Plakar Control Plane gives you two options.
 
 Secret providers belong to a single organization. You work only with the secret
 providers of the organization you signed in to, and what you can do with them is
-determined by the [permissions](../administration/permissions) you hold there.
+determined by the [permissions](../access-control/permissions) you hold there.
 
 Using a secret provider is recommended if your organization already manages
 credentials centrally, or if you want to avoid storing sensitive values in the

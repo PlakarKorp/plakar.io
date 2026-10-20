@@ -1,7 +1,7 @@
 ---
-title: "Resources"
+title: "Resource Types"
 date: "2026-05-19T00:00:00Z"
-weight: 5
+weight: 6
 summary:
   "Resources are the systems and storage targets that Plakar Control Plane backs
   up, stores data in, or restores to. Learn how to configure each resource type
@@ -10,7 +10,7 @@ aliases:
   - /control-plane-docs/resources/
 ---
 
-# Resources
+# Resource Types
 
 Resources are the individual systems, services, or storage targets that Plakar
 Control Plane manages as part of a backup workflow. Examples of resources

@@ -23,7 +23,7 @@ one of the buckets receives them.
 
 A bundle applies only to resources of the inventory it belongs to. Bundles are
 managed from the **Configuration bundles** tab of the inventory, and what can be
-done with them depends on the [permissions](../../administration/permissions)
+done with them depends on the [permissions](../../access-control/permissions)
 held in the organization the inventory belongs to.
 
 ![Inventory configuration bundles](../images/config-bundle.png)
