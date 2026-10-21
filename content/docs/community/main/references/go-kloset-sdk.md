@@ -6,6 +6,10 @@ summary: "Go SDK reference for building Plakar integrations."
 aliases:
   - /docs/main/references/sdk/
   - /docs/community/main/references/sdk/
+  - /docs/community/main/guides/creating-a-custom-integration/
+  - /docs/community/main/guides/creating-a-custom-connector/
+  - /docs/main/guides/creating-a-custom-integration/
+  - /docs/main/guides/creating-a-custom-connector/
 ---
 
 # Go Kloset SDK
