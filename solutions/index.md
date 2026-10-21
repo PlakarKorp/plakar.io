@@ -28,6 +28,10 @@
 
 
 
+## [Resilience as Code](https://www.plakar.io/solutions/resilience-as-code/index.md)
+
+
+
 ## [Strategic autonomy](https://www.plakar.io/solutions/strategic-autonomy/index.md)
 
 
