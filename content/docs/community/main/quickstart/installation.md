@@ -17,7 +17,7 @@ aliases:
 
 To build Plakar from source. You will need:
 
-- [Go (Golang)](https://go.dev/doc/install)
+- [Go (Golang)](https://go.dev/doc/install) 1.26.10 or later
 - `make` (available by default on most Linux distributions; on macOS, install
   the Xcode command line tools with `xcode-select --install`; on Windows, use
   [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) or a tool like
