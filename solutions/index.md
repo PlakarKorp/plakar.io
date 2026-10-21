@@ -24,6 +24,10 @@
 
 
 
+## [Posture management](https://www.plakar.io/solutions/posture-management/index.md)
+
+
+
 ## [Ransomware recovery](https://www.plakar.io/solutions/ransomware-recovery/index.md)
 
 
