@@ -61,14 +61,14 @@ and an associated API key. Application users are intended for non-human clients,
 such as operators, automation, and other services that interact with the Plakar
 Control Plane API.
 
-See [Managing Users](../../../administration/users) for detailed instructions on
+See [Managing Users](../../../access-control/users) for detailed instructions on
 creating application users, assigning organizations, and generating API keys.
 
 Every change the operator makes in PCP is made as this application user. Each
 `Source`, `Store`, `Destination` and schedule resource in the cluster becomes an
 app or a scheduled task in PCP, created with the permissions the application
 user holds in its organization. The
-[Operator](../../../administration/permissions/operator) role is the minimum
+[Operator](../../../access-control/permissions/operator) role is the minimum
 that covers this work. It grants full access to apps and permission to configure
 schedules, without administering the organization or its members.
 
@@ -77,7 +77,7 @@ The operator does not install integrations. Each `Source`, `Store` and
 and PCP can only use integrations that are already installed. A `Store` backed
 by an S3 bucket, for example, requires the S3 integration. Install the
 integrations your resources rely on from the
-[Integrations](../../../apps/integrations) page before applying those resources.
+[Integrations](../../../integrations) page before applying those resources.
 
 You'll use this API key in the next step when creating the Kubernetes Secret
 used by the operator to authenticate with Plakar Control Plane.

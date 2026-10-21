@@ -49,11 +49,10 @@ See [selecting an edge](../../edges/running-tasks#selecting-an-edge).
 
 ## Inventory Management
 
-Currently no
-[managed inventory](../../infrastructure/inventories#managed-inventories) has
-the capability of discovering MongoDB resources. You need to set up a
-[self-managed inventory](../../infrastructure/inventories/self-managed) before
-adding a MongoDB resource.
+Currently no [managed inventory](../../inventories#managed-inventories) has the
+capability of discovering MongoDB resources. You need to set up a
+[self-managed inventory](../../inventories/self-managed) before adding a MongoDB
+resource.
 
 ### Adding MongoDB as a resource
 

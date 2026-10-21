@@ -1,7 +1,7 @@
 ---
 title: "Scheduling"
 date: "2026-06-25T00:00:00Z"
-weight: 6
+weight: 8
 summary: "How to create and manage tasks and schedules in Plakar Control Plane."
 aliases:
   - /control-plane-docs/operations/
@@ -15,7 +15,7 @@ aliases:
 Schedulers and the tasks attached to them belong to a single organization. You
 work only with the schedulers of the organization you signed in to, and what you
 can do with them is determined by the
-[permissions](../administration/permissions) you hold there.
+[permissions](../access-control/permissions) you hold there.
 
 Plakar Control Plane supports three ways to schedule backup operations:
 
@@ -24,7 +24,7 @@ Plakar Control Plane supports three ways to schedule backup operations:
 - **Policy scheduler**: policies automatically schedule tasks based on SLA rules
   defined for your sources
 - **User schedulers**: each
-  [Application user](../administration/users#application-users) can have its own
+  [Application user](../access-control/users#application-users) can have its own
   scheduler, created and managed through the Plakar Control Plane API using that
   user's API key
 

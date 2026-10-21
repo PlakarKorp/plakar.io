@@ -1,30 +1,26 @@
 ---
-title: "Apps"
+title: "Resource Apps"
 date: "2026-05-07T00:00:00Z"
-weight: 3
+weight: 5
 summary: "How apps work in Plakar Control Plane and how to configure them."
 aliases:
   - /control-plane-docs/connectors/
   - /docs/control-plane/connectors/
 ---
 
-# Apps
+# Resource Apps
 
-An app links a resource in your inventory to Plakar Control Plane so it can be
-used as part of a backup workflow. A resource can have multiple apps. The app
-type is selected during app setup.
+An app is what Plakar Control Plane uses to work with a resource of an
+[inventory](../inventories). It holds the integration and the configuration,
+such as credentials, needed to reach the resource, and its type defines what the
+resource is used for:
 
-Apps belong to a single organization. You work only with the apps of the
-organization you signed in to, and what you can do with them is determined by
-the [permissions](../administration/permissions) you hold there.
+- **Source**: the resource is backed up.
+- **Store**: the resource holds a Kloset store that backups are written to.
+- **Destination**: data is restored to the resource.
 
-Plakar Control Plane supports three app types:
-
-- **Source** - the resource being backed up
-- **Store** - where backups are kept
-- **Destination** - where backups are restored to
-
-**Backup**
+A backup reads from a source app and writes to a store app. A restore reads from
+a store app and writes to a destination app.
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -34,8 +30,6 @@ flowchart LR
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-**Restore**
-
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
 flowchart LR
@@ -44,95 +38,74 @@ flowchart LR
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-## How apps work
+A resource can have any number of apps, of any type. Each app has a name, which
+tells apart the apps of the same type on one resource. Apps belong to the
+organization of their inventory, and what can be done with them depends on the
+[permissions](../access-control/permissions) held in that organization.
 
-Each resource has a `class` and `subclass` that describe what kind of resource
-it is. For managed inventories, these are set automatically when resources are
-discovered. For self-managed inventories, you set them yourself when adding a
-resource. This is configured at the [resource](../resources) level, not on the
-app.
+## Setting up an app
 
-Plakar Control Plane uses the resource `class` and `subclass` to determine which
-integrations are compatible when attaching an app. For example, a resource with
-a class of `Object Storage` and a subclass of `S3` will automatically match
-compatible integrations, in this case just the S3 integration.
+Source and destination apps are set up on a resource, from the **Apps** tab of
+the resource in its inventory, with **Assign App**. Store apps are created from
+the **Stores** tab of the inventory instead. See more on [store app](stores)
+documentation.
 
-In most cases, the integration is selected automatically. If multiple compatible
-integrations are available, you can choose the integration manually from the
-integration list. See [Managing Integrations](./integrations) documentation for
-information about installing additional integrations.
+An app uses an [integration](../integrations) to reach its resource. The class
+and subclass of the resource narrow the installed integrations down to those
+that support it. When only one matches, it is selected automatically. When
+several match, one has to manually chosen from the list.
 
-Once the integration is selected, you must provide the configuration and
-credentials required for that integration. If a
-[configuration bundle](../administration/configuration-bundles) matches the
-resource, fields it already supplies are filled in automatically, and you only
-need to fill in the rest; if every required field ends up filled, the app is
-created automatically. After configuration, you can test the app directly from
-the UI to verify that Plakar Control Plane can successfully reach and
-authenticate with the resource before using it in a backup workflow.
+The same applies to the protocol of the integration. An integration with a
+single protocol uses it without asking. An integration with several protocols,
+such as `k8s+pvc` and `k8s+csi` for the Kubernetes integration, requires one to
+be chosen.
 
-### Store apps
+The integration then defines the configuration fields of the app. They are
+filled from three places, in order of precedence:
 
-When configuring a store app, you must select a **Storage Type** in addition to
-the integration credentials:
+1. **Resource endpoints and attributes.** A managed inventory discovers the
+   endpoints and attributes of the resource. Attributes fill the matching
+   fields, which are then not shown, since the inventory already knows their
+   value.
+2. **Configuration bundles.** A
+   [configuration bundle](../inventories/configuration-bundles) that matches the
+   resource fills the fields it declares. These values can be overridden for the
+   app.
+3. **Values entered for the app.** The remaining fields are entered when the app
+   is set up. The [resource pages](../resources) describe the fields of each
+   integration.
 
-- **Standard** - the store is available at all times and can be written to or
-  read from immediately
-- **Cold** - the store uses archival storage where data must be retrieved before
-  it can be accessed, such as Amazon S3 Glacier
+When a bundle has **Auto-create connectors** enabled and, together with the
+resource attributes, supplies every required field, its apps are created
+automatically, without being set up by hand.
 
-The storage type is used by the policies engine to infer the nature of the
-store. This setting does not affect the underlying storage itself.
+## Testing the connection
 
-![](./images/store-app-storage-type.png)
+Each app has a **Dashboard** tab with a **Test Connection** action. It checks
+that Plakar Control Plane can reach the resource with the configuration of the
+app. A failing test points at the configuration or the credentials of the app.
 
-### Source apps
+## Tasks
 
-When configuring a source app, you must also provide:
+Backups, restores and the other operations run as tasks that use apps. Tasks can
+be created from the dashboard of an app or from [scheduling](../scheduling).
 
-- **Environment** - the environment the resource belongs to, such as production,
-  development, or testing
-- **Data Class** - the type of data stored in the resource, such as critical,
-  database, financial records, or PII. Multiple data classes can be selected if
-  the resource contains more than one type of data.
+## Residency
 
-![](./images/source-app-environment-and-data-class.png)
+Apps can only be used together when their resources have the same
+[residency](../compliance/residency). A source can only be backed up to a store
+with the same residency, a restore can only write to a destination with the
+residency of its store, and a sync can only run between stores with the same
+residency. The residency belongs to the resource, so an app takes on the
+residency of its resource.
 
-When the resource carries
-[environment and data class tags](../resources#environment-and-data-class-tags),
-both fields are filled in from them but can still be changed.
+## Infrastructure as Code
 
-These values tie directly into the policies and SLA system. Policies define
-backup requirements based on environment and data class combinations. For
-example, a policy might require that all production sources tagged as critical
-are backed up every hour and retained for 90 days. The policies engine uses
-these values to determine which policies apply to the source and what protection
-rules are enforced. See the [policies documentation](../compliance/policies) for
-more details.
+Apps can also be managed declaratively with the
+[Kubernetes operator](../infrastructure-as-code/kubernetes-operator), the
+[Terraform provider](../infrastructure-as-code/terraform) and the
+[Ansible collection](../infrastructure-as-code/ansible).
 
-### Destination apps
-
-Destination apps only require the integration configuration and credentials. No
-additional fields are needed beyond what is described in
-[how apps work](#how-apps-work).
-
-![](./images/destination-app.png)
-
-## Managing apps
-
-Apps can only be used together when the resources they connect to have the same
-[residency](../compliance/residency). For example, a source can only be backed
-up to a store with the same residency, and a restore can only write to a
-destination that matches the store it restores from. A sync can only run between
-stores with the same residency.
-
-Residency belongs to the resource, not the app. An app therefore takes on the
-residency of the resource it is connected to.
-
-The following pages provide detailed configuration and management information
-for each app type.
+## App types
 
 {{% children description="true" %}}
-
-Apps can also be managed declaratively from Kubernetes instead of the web
-interface. See [Infrastructure as Code](../infrastructure-as-code).

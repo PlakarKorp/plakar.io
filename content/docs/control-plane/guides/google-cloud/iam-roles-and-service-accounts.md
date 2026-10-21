@@ -13,7 +13,7 @@ Plakar Control Plane requires permissions to access Google Cloud services in
 different situations. For example, when using Google Cloud Storage, Plakar
 Control Plane needs permission to read from and write to buckets. Credentials
 are also used by
-[Google Cloud Inventory](../../../infrastructure/inventories/google-cloud) to
+[Google Cloud Inventory](../../../inventories/managed/google-cloud) to
 discover resources in your project, and by integrations to manage different
 resources.
 
@@ -47,7 +47,7 @@ The first step is to create a custom IAM role with the permissions required by
 the Google Cloud service you want Plakar to use.
 
 The exact permissions depend on the feature you are configuring. For example,
-the [Google Cloud inventory](../../../infrastructure/inventories/google-cloud)
+the [Google Cloud inventory](../../../inventories/managed/google-cloud)
 documentation lists the permissions required to discover Google Cloud resources,
 while the [GCS resource](../../../resources/object-storage/gcs) documentation
 lists the permissions required to use a Cloud Storage bucket as a source, store,

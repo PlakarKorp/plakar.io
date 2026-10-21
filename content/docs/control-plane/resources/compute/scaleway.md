@@ -41,11 +41,11 @@ as block storage.
 
 ## Inventory Management
 
-[Managed inventories](../../infrastructure/inventories#managed-inventories) can
-discover Scaleway Compute instances automatically once connected to your
-Scaleway project. Scaleway Compute resources are only discovered by the
-[Scaleway inventory](../../infrastructure/inventories/scaleway) and cannot be
-setup by a self-managed inventory.
+[Managed inventories](../../inventories#managed-inventories) can discover
+Scaleway Compute instances automatically once connected to your Scaleway
+project. Scaleway Compute resources are only discovered by the
+[Scaleway inventory](../../inventories/managed/scaleway) and cannot be setup
+by a self-managed inventory.
 
 #### Backup flow
 

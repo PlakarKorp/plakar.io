@@ -160,8 +160,8 @@ passphrase.
 Store passphrases should be kept in a secure password manager or secret
 management system used by your organization.
 
-See the [Secret Providers documentation](../infrastructure/secret-providers) for
-details on using secrets from a secret manager inside Plakar Control Plane.
+See the [Secret Providers documentation](../secret-providers) for details on
+using secrets from a secret manager inside Plakar Control Plane.
 
 > [!WARNING]+
 >
@@ -172,4 +172,4 @@ details on using secrets from a secret manager inside Plakar Control Plane.
 
 - [Store apps](../apps/stores)
 - [Scheduling tasks](../scheduling)
-- [Secret Providers](../infrastructure/secret-providers)
+- [Secret Providers](../secret-providers)

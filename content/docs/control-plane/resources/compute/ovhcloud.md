@@ -15,11 +15,11 @@ directly into the Kloset store and recreates the instance during a restore.
 
 ## Inventory Management
 
-[Managed inventories](../../infrastructure/inventories#managed-inventories) can
-discover OVHcloud Compute instances automatically once connected to your
-OVHcloud Public Cloud project. OVHcloud Compute resources are only discovered by
-the [OVHcloud inventory](../../infrastructure/inventories/ovhcloud) and cannot
-be setup by a self-managed inventory.
+[Managed inventories](../../inventories#managed-inventories) can discover
+OVHcloud Compute instances automatically once connected to your OVHcloud Public
+Cloud project. OVHcloud Compute resources are only discovered by the
+[OVHcloud inventory](../../inventories/managed/ovhcloud) and cannot be setup
+by a self-managed inventory.
 
 #### Backup flow
 
