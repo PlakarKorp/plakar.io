@@ -8,9 +8,10 @@ summary:
 
 # OpenStack Block Storage
 
-OpenStack block storage resources are Cinder volumes. Plakar Control Plane backs
-up a volume by capturing a snapshot of it and reading the snapshot's disk, and
-restores a backup into a new Cinder volume. The original volume is never
+OpenStack Block Storage resources represent Cinder volumes, backed up and
+restored through the `openstack-block` protocol of the OpenStack integration.
+Plakar Control Plane backs up a volume by snapshotting it and reading its disk,
+and restores a backup into a new Cinder volume. The original volume is never
 modified by a restore.
 
 ## Inventory Management
@@ -19,7 +20,9 @@ modified by a restore.
 volumes automatically once the
 [OpenStack inventory](../../inventories/managed/openstack) is connected to a
 project. The inventory discovers volumes in every region the credentials can
-reach.
+reach. Openstack Block Storage resources are only discovered by the
+[OpenStack inventory](../../inventories/managed/openstack) and cannot be setup
+by a self-managed inventory.
 
 ## Backup and restore
 
