@@ -1,6 +1,7 @@
 {{ define "main" }}
 
 {{ $ui := resources.Get "img/general/plakar-ui-demo.png" }}
+{{ $nestor := resources.Get "img/nestor/dance.svg" }}
 
 <!-- SECTION: hero -->
 <section class="section-light-2 grid-background pt-38 pb-20 relative overflow-hidden">
@@ -218,7 +219,7 @@
       {{ range (slice
         (dict "quote" "Finally a pragmatic, modern replacement for TAR. It is called PTAR, and it looks dope." "name" "Solomon Hykes" "title" "Founder, Docker" "photo" "img/general/solomon-hykes.jpg" "initials" "SH" "logo" "corporate/docker")
         (dict "quote" "Plakar's architecture replicates a lot of the infrastructure Apple built for iCloud Backup: chunking and encryption client-side." "name" "Olivier Bonnet" "title" "VP Engineering, Datadog (ex-Apple iCloud Backup)" "photo" "img/general/olivier-bonnet.jpg" "initials" "OB" "logo" "corporate/datadog")
-        (dict "quote" "The rise of agentic AI compels us to rethink the resilience primitives of large, dynamic, and distributed infrastructures." "name" "Matthieu Blumberg" "title" "SVP Infrastructure, Security and IT, Criteo" "photo" "img/general/matthieu-blumberg.jpg" "initials" "MB" "logoText" "Criteo")
+        (dict "quote" "The rise of agentic AI compels us to rethink the resilience primitives of large, dynamic, and distributed infrastructures." "name" "Matthieu Blumberg" "title" "SVP Infrastructure, Security and IT, Criteo" "photo" "img/general/matthieu-blumberg.png" "initials" "MB" "logoText" "Criteo")
       ) }}
         {{ $photo := resources.Get .photo }}
         <figure class="bg-white border border-neutral-200 rounded-2xl p-6 flex flex-col gap-4 shadow-sm">
@@ -260,17 +261,19 @@
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       {{ range (slice
-        (dict "icon" "ri/macbook-line" "title" "Any OS" "body" "One binary for Linux, macOS, and Windows." "tags" (slice "Linux" "macOS" "Windows"))
-        (dict "icon" "ri/database-2-line" "title" "Any storage" "body" "Any S3-compatible backend, local disk, or filesystem, always with zero plaintext." "tags" (slice "S3" "MinIO" "Local" "Object-lock"))
-        (dict "icon" "ri/connector-line" "title" "Any source" "body" "Filesystems, databases, and SaaS through a growing set of integrations." "tags" (slice "Postgres" "MySQL" "SFTP" "Notion"))
-        (dict "icon" "ri/global-line" "title" "Anywhere you run it" "body" "On-prem, private or sovereign cloud, or fully air-gapped." "tags" (slice "On-prem" "Cloud" "Air-gapped"))
+        (dict "icon" "ri/macbook-line" "title" "Any OS" "body" "One binary for Linux, macOS, and Windows." "tags" (slice (dict "t" "Linux" "img" "img/logo-technologies/logo-linux.png") (dict "t" "macOS" "img" "img/logo-technologies/logo-macos.png") (dict "t" "Windows" "img" "img/logo-technologies/logo-windows.png")))
+        (dict "icon" "ri/database-2-line" "title" "Any storage" "body" "Any S3-compatible backend, local disk, or filesystem, always with zero plaintext." "tags" (slice (dict "t" "Amazon S3" "img" "img/providers/amazon-s3.svg") (dict "t" "MinIO" "img" "img/providers/minio.png") (dict "t" "Backblaze" "img" "img/providers/backblaze.png") (dict "t" "Cloudflare" "img" "img/providers/cloudflare.png") (dict "t" "Local disk" "img" "img/providers/filesystem.svg")))
+        (dict "icon" "ri/connector-line" "title" "Any source" "body" "Filesystems, databases, and SaaS through a growing set of integrations." "tags" (slice (dict "t" "PostgreSQL" "img" "img/integrations/postgres.png") (dict "t" "MySQL" "img" "img/integrations/mysql.png") (dict "t" "SFTP" "img" "img/integrations/sftp.png") (dict "t" "Notion" "img" "img/integrations/notion.png")))
+        (dict "icon" "ri/global-line" "title" "Anywhere you run it" "body" "On-prem, private or sovereign cloud, or fully air-gapped." "tags" (slice (dict "t" "On-prem" "img" "") (dict "t" "AWS" "img" "img/providers/aws.png") (dict "t" "OVHcloud" "img" "img/providers/ovhcloud.png") (dict "t" "Scaleway" "img" "img/providers/scaleway.png") (dict "t" "Air-gapped" "img" "")))
       ) }}
         <div class="bg-neutral-800/50 border border-neutral-700 p-6 rounded-xl flex flex-col gap-3">
           <div class="w-11 h-11 p-2 bg-neutral-900 rounded-lg flex items-center justify-center text-secondary-400 border border-neutral-700">{{ partial "icon.html" .icon }}</div>
           <h3 class="text-white font-bold text-lg">{{ .title }}</h3>
           <p class="text-neutral-400 text-sm flex-1">{{ .body }}</p>
           <div class="flex flex-wrap gap-2 mt-1">
-            {{ range .tags }}<span class="font-mono text-[0.68rem] px-2 py-1 rounded border border-neutral-700 text-neutral-400">{{ . }}</span>{{ end }}
+            {{ range .tags }}
+              <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5">{{ with .img }}{{ with resources.Get . }}<img src="{{ .RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">{{ end }}{{ end }}{{ .t }}</span>
+            {{ end }}
           </div>
         </div>
       {{ end }}
@@ -279,6 +282,34 @@
       <a href="/docs/community/v1.1.0/quickstart/first-backup/" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg border border-neutral-600 bg-white/5 text-white font-medium hover:bg-white/10 transition-colors">
         Read the quickstart <span class="w-4 h-4">{{ partial "icon.html" "ri/arrow-right-line" }}</span>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: community -->
+<section class="section-light-2 py-14 lg:py-24">
+  <div class="max-w-350 mx-auto px-4">
+    <div class="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-14 items-center max-w-5xl mx-auto">
+      <div class="flex flex-col gap-5">
+        <h2 class="text-secondary-600 font-mono text-sm font-bold uppercase tracking-widest">Join the community</h2>
+        <p class="font-medium text-3xl lg:text-5xl text-neutral-900 leading-tighter">Nestor saved you a seat.</p>
+        <p class="text-lg text-neutral-600">Plakar is built in public. Drop into a weekly community call or a hackroom, organize a meetup, improve the docs, or ship your first integration. Nestor will be there, probably counting chunks.</p>
+        <div class="border-l-[3px] border-secondary-500 bg-secondary-50 rounded-r-lg px-5 py-3">
+          <p class="text-[15px] text-neutral-800 italic">"You wrote your own backup script? Bring it to the next community call. We need to talk."</p>
+          <span class="block text-[12.5px] text-neutral-500 mt-2">Nestor, every single week</span>
+        </div>
+        <div>
+          {{ partial "components/buttons/base-button.html" (dict
+            "label" "Join the community" "labelShort" "Join" "href" "/community/" "icon" "ri/team-line"
+            "bgColor" "bg-secondary-500" "bgHoverColor" "bg-secondary-600"
+          ) }}
+        </div>
+      </div>
+      {{ with $nestor }}
+        <div class="shrink-0 w-56 lg:w-64 mx-auto">
+          <img src="{{ .RelPermalink }}" alt="Nestor, Plakar's chipmunk mascot, dancing" class="w-full h-auto block" loading="lazy">
+        </div>
+      {{ end }}
     </div>
   </div>
 </section>
