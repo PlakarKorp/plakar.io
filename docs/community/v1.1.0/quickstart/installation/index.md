@@ -36,16 +36,18 @@ way is to use our DNF repository.
 First, set up the repository:
 
 ```bash
-$ cat <<EOF | sudo tee /etc/yum.repos.d/plakar.repo
+$ cat <<'EOF' | sudo tee /etc/yum.repos.d/plakar.repo
 [plakar]
 name=Plakar Repository
-baseurl=https://plakar.io/dist/repos/rpm/$(uname -m)/
+baseurl=https://plakar.io/dist/repos/rpm/$basearch/
 enabled=1
 gpgcheck=0
 repo_gpgcheck=1
 gpgkey=https://plakar.io/dist/keys/plakar-packages.gpg
 EOF
 ```
+
+dnf replaces `$basearch` with your architecture (`x86_64` or `aarch64`).
 
 Then install plakar with:
 
@@ -96,7 +98,7 @@ To install using the Go toolchain, use `go install` with the version you want to
 install, or `latest`:
 
 ```bash
-$ go install "github.com/PlakarKorp/plakar@v1.1.3"
+$ go install "github.com/PlakarKorp/plakar@latest"
 ```
 
 This will install the binary into your `$GOPATH/bin` directory, which you may
@@ -138,9 +140,11 @@ release version, check out the corresponding tag before running `make`:
 
 ```bash
 $ git fetch --tags
-$ git checkout tags/v1.1.3
+$ git checkout tags/<version>
 $ make
 ```
+
+Replace `<version>` with a release tag from the [Download page](/download).
 
 ### Other Platforms
 
@@ -163,7 +167,7 @@ Verify the installation by running:
 $ plakar version
 ```
 
-This should return the expected version number, for example `plakar/v1.1.3`.
+This prints `plakar/` followed by the installed version number.
 
 ## Downloading Specific Versions
 

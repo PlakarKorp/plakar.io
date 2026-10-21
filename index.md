@@ -125,6 +125,8 @@
 
 - [Proton Drive](https://www.stg.plakar.io/integrations/protondrive/index.md): Back up your Proton Drive workloads with Plakar to protect against data loss, corruption, and ransomware. Immutable, encrypted, and restorable even offline and across environments.
 
+- [Rclone](https://www.stg.plakar.io/integrations/rclone/index.md): Back up and restore cloud storage services such as Google Drive, Dropbox, OneDrive and Proton Drive with Plakar, using rclone to reach them. Create immutable, encrypted, and verifiable backups of your cloud files.
+
 - [S3](https://www.stg.plakar.io/integrations/s3/index.md): Protect your object storage against accidental deletion, ransomware, and cloud misconfigurations. Plakar provides immutable, encrypted snapshots for S3, restorable across any provider or environment.
 
 - [SFTP](https://www.stg.plakar.io/integrations/sftp/index.md): Back up and restore directories to and from remote servers over SFTP. Plakar ensures encrypted, deduplicated, and verifiable snapshots across Linux, BSD, and NAS environments.
@@ -158,6 +160,15 @@
 
 - [Plakar](https://www.stg.plakar.io/changelog/plakar/index.md)
 - [Plakar Operator](https://www.stg.plakar.io/changelog/plakar-operator/index.md)
+- [Azure Blob Storage](https://www.stg.plakar.io/changelog/azblob/index.md)
+- [Filesystem](https://www.stg.plakar.io/changelog/fs/index.md)
+- [HTTP](https://www.stg.plakar.io/changelog/http/index.md)
+- [LDAP](https://www.stg.plakar.io/changelog/ldap/index.md)
+- [PostgreSQL](https://www.stg.plakar.io/changelog/postgresql/index.md)
+- [PTAR](https://www.stg.plakar.io/changelog/ptar/index.md)
+- [RouterOS](https://www.stg.plakar.io/changelog/routeros/index.md)
+- [Scaleway](https://www.stg.plakar.io/changelog/scaleway/index.md)
+- [Tar](https://www.stg.plakar.io/changelog/tar/index.md)
 - [Kubernetes](https://www.stg.plakar.io/changelog/k8s/index.md)
 - [FTP](https://www.stg.plakar.io/changelog/ftp/index.md)
 - [MySQL](https://www.stg.plakar.io/changelog/mysql/index.md)
@@ -189,8 +200,13 @@
 
 - [AWS](https://www.stg.plakar.io/solutions/aws/index.md)
 - [Compare](https://www.stg.plakar.io/solutions/compare/index.md)
+- [Control Plane](https://www.stg.plakar.io/solutions/control-plane/index.md)
 - [Cost Efficiency](https://www.stg.plakar.io/solutions/cost-efficiency/index.md)
 - [On-Premises](https://www.stg.plakar.io/solutions/on-premises/index.md)
+- [Posture management](https://www.stg.plakar.io/solutions/posture-management/index.md)
+- [Ransomware recovery](https://www.stg.plakar.io/solutions/ransomware-recovery/index.md)
+- [Resilience as Code](https://www.stg.plakar.io/solutions/resilience-as-code/index.md)
+- [Strategic autonomy](https://www.stg.plakar.io/solutions/strategic-autonomy/index.md)
 
 
 ## [The Nestor Sticker Collection](https://www.stg.plakar.io/community/goodies/index.md)

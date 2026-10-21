@@ -123,6 +123,7 @@ required to use each one as a source, store, or destination.
 - [VMware Compute](https://www.stg.plakar.io/docs/control-plane/resources/compute/vmware/index.md): How to configure a VMware compute resource in Plakar Control Plane.
 - [Windows VSS](https://www.stg.plakar.io/docs/control-plane/resources/compute/vss/index.md): How to configure a Volume Shadow Copy Service (VSS) resource in Plakar Control Plane.
 - [OVHcloud Compute](https://www.stg.plakar.io/docs/control-plane/resources/compute/ovhcloud/index.md): How to configure an OVHcloud Compute resource in Plakar Control Plane.
+- [Kubernetes VM](https://www.stg.plakar.io/docs/control-plane/resources/compute/kubernetes-vm/index.md): How to configure a KubeVirt virtual machine resource in Plakar Control Plane.
 
 
 ## [Database](https://www.stg.plakar.io/docs/control-plane/resources/database/index.md)

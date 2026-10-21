@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-03-11T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-10-13T15:01:56+03:00">
+    <meta property="article:modified_time" content="2026-10-21T10:59:46+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -126,8 +126,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.0f4a3fc97df8fd147116c4b5d648bedf3613a4ef0183f9a813e663a07ae5d4419e2bf7dac8d6d53b661ff9dc9ed89c9dc9452ee8e5fb0897bf785bd310951ce7.css"
-    integrity="sha512-D0o/yX34/RRxFsS11ki&#43;3zYTpO8Bg/moE&#43;ZjoHrl1EGeK/fayNbVO2Yf&#43;dye2JydyUUu6OX7CJe/eFvTEJUc5w==">
+    href="/css/main.bundle.min.e0ed2bb68e59470fddf07b0cb45d4a59da701d2dba9b061b471980a293e0fda8831c61e5364492e3cde75f31e619fb7cac436208b61edd2b6de24f1c94474780.css"
+    integrity="sha512-4O0rto5ZRw/d8HsMtF1KWdpwHS26mwYbRxmAopPg/aiDHGHlNkSS483nXzHmGft8rENiCLYe3Stt4k8clEdHgA==">
   
     
     <script defer src="/lib/zoom/zoom.min.umd.a527109b68c082a70f3697716dd72a9d5aa8b545cf800cecbbc7399f2ca6f6e0ce3e431f2062b48bbfa47c9ea42822714060bef309be073f49b9c0e30d318d7b.js" integrity="sha512-pScQm2jAgqcPNpdxbdcqnVqotUXPgAzsu8c5nyym9uDOPkMfIGK0i7&#43;kfJ6kKCJxQGC&#43;8wm&#43;Bz9JucDjDTGNew=="></script>
@@ -229,12 +229,12 @@
     "dateCreated": "2026-03-11T00:00:00\u002b00:00",
     "datePublished": "2026-03-11T00:00:00\u002b00:00",
     
-    "dateModified": "2026-10-13T15:01:56\u002b03:00",
+    "dateModified": "2026-10-21T10:59:46\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.stg.plakar.io/docs/community/v1.1.0/quickstart/first-backup/",
-    "wordCount":  1110 
+    "wordCount":  1166 
   }]
   </script>
 
@@ -267,7 +267,7 @@
 
 
 
-<script src="/js/compiled/bundle.min.e9dbefdbd39e7434405fbce2f92314bdaed8019be3950508142f9e6dc8e51624.js" defer></script>
+<script src="/js/compiled/bundle.min.fd8d31898a23830495c3b642c5f14eef1414ed473fc3d3a90da0edc74500e6d5.js" defer></script>
 
   
 
@@ -1005,10 +1005,10 @@
   
     
     
-      <a href="/docs/community/v1.1.0/guides/creating-a-custom-connector/"
+      <a href="/docs/community/v1.1.0/guides/creating-a-custom-integration/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Creating a custom connector
+        Creating a custom integration
       </a>
     
   
@@ -2000,7 +2000,7 @@
   
     
     
-      <a href="/docs/community/v1.1.0/references/sdk/"
+      <a href="/docs/community/v1.1.0/references/go-kloset-sdk/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         Go Kloset SDK
@@ -3122,10 +3122,10 @@
   
     
     
-      <a href="/docs/community/v1.1.0/guides/creating-a-custom-connector/"
+      <a href="/docs/community/v1.1.0/guides/creating-a-custom-integration/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
-        Creating a custom connector
+        Creating a custom integration
       </a>
     
   
@@ -4117,7 +4117,7 @@
   
     
     
-      <a href="/docs/community/v1.1.0/references/sdk/"
+      <a href="/docs/community/v1.1.0/references/go-kloset-sdk/"
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         Go Kloset SDK
@@ -5066,7 +5066,7 @@ we are restoring the snapshot we just created to another directory called
 <p>To verify the files have been re-created, list the directory they were restored
 to. Note that the properties of the restored files, such as timestamps and
 permissions, will match the original files:</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ls -l <span class="nv">$HOME</span>/restored/Documents/
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ls -l <span class="nv">$HOME</span>/restored/
 </span></span><span class="line"><span class="cl">total <span class="m">36</span>
 </span></span><span class="line"><span class="cl">-rw-r--r-- <span class="m">1</span> user user   <span class="m">30</span> Jan <span class="m">14</span> 06:31 budget.xlsx
 </span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">2</span> user user <span class="m">4096</span> Jan <span class="m">14</span> 06:31 code_samples
@@ -5076,7 +5076,39 @@ permissions, will match the original files:</p>
 </span></span><span class="line"><span class="cl">-rw-r--r-- <span class="m">1</span> user user   <span class="m">40</span> Jan <span class="m">14</span> 06:31 project_proposal.docx
 </span></span><span class="line"><span class="cl">drwxr-xr-x <span class="m">2</span> user user <span class="m">4096</span> Jan <span class="m">14</span> 06:31 recipes
 </span></span><span class="line"><span class="cl">-rw-r--r-- <span class="m">1</span> user user   <span class="m">29</span> Jan <span class="m">14</span> 06:31 resume.pdf</span></span></code></pre></div></div>
-</div>
+<details
+      class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
+      data-type="note"
+      open>
+      <summary class="flex items-center gap-2 font-semibold text-inherit cursor-pointer">
+        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"/></svg>
+</span></div>
+        <div class="grow">
+          Where restored files land
+        </div>
+        <div
+          class="ms-auto flex h-5 w-5 items-center justify-center transition-transform ease-in-out -rotate-90 group-open:rotate-0 print:hidden"><span class="relative block icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+</span></div>
+      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><ul>
+<li><code>restore -to DIR &lt;snapshot&gt;</code> writes the contents of the backed-up directory
+directly under <code>DIR</code>. The original path is not recreated: here
+<code>/home/user/Documents/resume.pdf</code> becomes <code>$HOME/restored/resume.pdf</code>.</li>
+<li><code>restore -to DIR &lt;snapshot&gt;:/absolute/sub/path</code> writes the contents of that
+sub-path directly under <code>DIR</code>.</li>
+<li>Without <code>-to</code>, Plakar creates a directory named <code>plakar-YYYYMMDDHHMMSS</code> in
+the current directory and restores there.</li>
+</ul></div></details></div>
 
 
 <div class="step">
@@ -5238,7 +5270,7 @@ multiple copies of your backups.</p>
   
   <div class="flex items-center justify-between text-xs text-neutral-400">
     
-      <span>Last updated: October 13, 2026</span>
+      <span>Last updated: October 21, 2026</span>
     
     
       <a href="https://github.com/PlakarKorp/plakar.io/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">
@@ -5284,9 +5316,7 @@ multiple copies of your backups.</p>
   </div>
 
       <div>
-        
-
-<div id="toast-container" aria-live="assertive" class="pointer-events-none fixed inset-0 flex items-end px-4 py-6 sm:items-start sm:pt-16 z-50">
+        <div id="toast-container" aria-live="assertive" class="pointer-events-none fixed inset-0 flex items-end px-4 py-6 sm:items-start sm:pt-16 z-50">
   <div class="flex w-full flex-col items-center gap-3 sm:items-end"></div>
 </div>
 

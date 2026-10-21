@@ -16,7 +16,7 @@ secret providers.
 - [OVHcloud](https://www.stg.plakar.io/docs/control-plane/infrastructure/inventories/ovhcloud/index.md): How to connect and manage OVHcloud inventory in Plakar Control Plane.
 - [Scaleway](https://www.stg.plakar.io/docs/control-plane/infrastructure/inventories/scaleway/index.md): How to connect and manage Scaleway inventory in Plakar Control Plane.
 - [Google Cloud](https://www.stg.plakar.io/docs/control-plane/infrastructure/inventories/google-cloud/index.md): How to connect and manage Google Cloud inventory in Plakar Control Plane.
-- [Kubernetes](https://www.stg.plakar.io/docs/control-plane/infrastructure/inventories/kubernetes/index.md): How to connect and manage OVHcloud inventory in Plakar Control Plane.
+- [Kubernetes](https://www.stg.plakar.io/docs/control-plane/infrastructure/inventories/kubernetes/index.md): How to connect and manage Kubernetes inventory in Plakar Control Plane.
 - [VMware](https://www.stg.plakar.io/docs/control-plane/infrastructure/inventories/vmware/index.md): Connect and manage a VMware inventory in Plakar Control Plane.
 - [Self Managed](https://www.stg.plakar.io/docs/control-plane/infrastructure/inventories/self-managed/index.md): How to connect and manage a Self Managed inventory in Plakar Control Plane.
 
@@ -28,10 +28,6 @@ secret providers.
 - [Scaleway Secret Manager](https://www.stg.plakar.io/docs/control-plane/infrastructure/secret-providers/scaleway/index.md): How to configure and use Scaleway Secret Manager as a secret provider in Plakar Control Plane.
 - [GCP Secret Manager](https://www.stg.plakar.io/docs/control-plane/infrastructure/secret-providers/gcp/index.md): How to configure and use Google Cloud Secret Manager as a secret provider in Plakar Control Plane.
 - [OVHcloud Secret Manager](https://www.stg.plakar.io/docs/control-plane/infrastructure/secret-providers/ovhcloud/index.md): How to configure and use OVHcloud Secret Manager as a secret provider in Plakar Control Plane.
-
-
-## [Edges](https://www.stg.plakar.io/docs/control-plane/infrastructure/edges/index.md)
-
 
 
 

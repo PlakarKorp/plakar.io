@@ -52,7 +52,7 @@ If a command generates a single output stream, you can pipe it directly into
 Plakar using the [STDIO integration](../stdio):
 
 ```bash
-$ some-command | plakar at /var/backups backup stdio://
+$ some-command | plakar at /var/backups backup stdin:///output.txt
 ```
 
 If the command produces multiple files, have it generate a TAR archive and

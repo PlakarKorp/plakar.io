@@ -12,13 +12,19 @@ directly from Plakar Control Plane.
 | Resource                     | Source | Store | Destination |
 | ---------------------------- | ------ | ----- | ----------- |
 | PersistentVolumeClaims (PVC) | Yes    | No    | Yes         |
+| KubeVirt virtual machines    | Yes    | No    | Yes         |
+
+Virtual machines are discovered only when KubeVirt is installed in the cluster.
+On clusters without KubeVirt, the inventory discovers PVCs only.
 
 ## Authentication
 
 Kubernetes inventories authenticate using a kubeconfig file. The kubeconfig
 determines which cluster Plakar Control Plane connects to and which permissions
 it has, so the associated user or service account must have read access to
-`PersistentVolumeClaims` in the namespaces you want to discover. See
+`PersistentVolumeClaims` in the namespaces you want to discover. To discover
+virtual machines, it also needs read access to KubeVirt `VirtualMachines` in
+those namespaces. See
 [Kubernetes Service Accounts and RBAC](../../../guides/kubernetes/kubernetes-rbac#inventory)
 for a least-privilege role.
 
@@ -43,8 +49,9 @@ empty and it will use the in-cluster configuration.
 ![Creating a Kubernetes inventory](../images/create-kubernetes-inventory.png)
 
 After creating the inventory, trigger a synchronization to discover and load
-PVCs from the configured cluster. You can run synchronization again at any time
-to refresh the inventory, for example after creating new PVCs.
+PVCs and virtual machines from the configured cluster. You can run
+synchronization again at any time to refresh the inventory, for example after
+creating new PVCs or virtual machines.
 
 All configuration details provided during inventory creation can be updated
 later by clicking the settings icon in the top right of the inventory page,

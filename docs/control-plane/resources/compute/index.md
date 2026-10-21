@@ -26,4 +26,8 @@ Plane supports the following compute resources:
 
 
 
+## [Kubernetes VM](https://www.stg.plakar.io/docs/control-plane/resources/compute/kubernetes-vm/index.md)
+
+
+
 

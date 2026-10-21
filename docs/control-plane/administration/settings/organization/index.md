@@ -90,13 +90,13 @@ Enter the target instance's address as `host:port` to apply it.
 Enable edge enrollment to allow remote `plakar-edge` executors to register with
 Plakar Control Plane. Enrollment is disabled by default. Once enabled, an
 enrollment key is generated for the initial registration process, and it can be
-regenerated at any time. See [Edges](../../../infrastructure/edges)
-documentation for more information.
+regenerated at any time. See [Edge enrollment](../../../edges/enrollment) for
+more information.
 
 This setting also decides which edges an organization can use. An organization
 that inherits it can run tasks on the edges of the organization that set it, in
 addition to its own, however many levels above that organization is. See
-[Sharing edges with child organizations](../../../infrastructure/edges#sharing-edges-with-child-organizations).
+[Sharing edges with child organizations](../../../edges/enrollment#sharing-edges-with-child-organizations).
 
 ## Notifications
 

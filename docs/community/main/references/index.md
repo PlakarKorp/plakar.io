@@ -20,7 +20,7 @@ If you're looking for learning materials or conceptual explanations, see the
 
 
 
-## [Go Kloset SDK](https://www.stg.plakar.io/docs/community/main/references/sdk/index.md)
+## [Go Kloset SDK](https://www.stg.plakar.io/docs/community/main/references/go-kloset-sdk/index.md)
 
 
 

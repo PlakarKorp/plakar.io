@@ -27,7 +27,7 @@ through `v1.1.7`.
 - [Serving a Kloset Store over the Network](https://www.stg.plakar.io/docs/community/v1.1.0/guides/serving-a-kloset-store-over-the-network/index.md): Expose a Kloset Store over HTTP using the plakar server command.
 - [Excluding files from a backup](https://www.stg.plakar.io/docs/community/v1.1.0/guides/excluding-files-from-a-backup/index.md): Learn how to exclude files from a backup in Plakar
 - [Retrieving secrets via external command](https://www.stg.plakar.io/docs/community/v1.1.0/guides/retrieve-passphrase-kloset-store/index.md): The passphrase for accessing an encrypted Kloset Store can be stored in the environment, a file, or in the configuration. It can also be retrieved via an external command, for example your password manager.
-- [Creating a custom connector](https://www.stg.plakar.io/docs/community/v1.1.0/guides/creating-a-custom-connector/index.md): Step-by-step guide to implement and install your own Plakar connector (importer) in Go.
+- [Creating a custom integration](https://www.stg.plakar.io/docs/community/v1.1.0/guides/creating-a-custom-integration/index.md): Step-by-step guide to implement and install your own Plakar integration in Go.
 - [Logging In to Plakar](https://www.stg.plakar.io/docs/community/v1.1.0/guides/logging-in-to-plakar/index.md): Log in to unlock optional features like pre-built package installation and alerting.
 - [Managing packages](https://www.stg.plakar.io/docs/community/v1.1.0/guides/managing-packages/index.md): How to install, upgrade, and remove Plakar integration packages.
 - [Pruning snapshots](https://www.stg.plakar.io/docs/community/v1.1.0/guides/using-plakar-prune/index.md): Remove old snapshots from a Kloset store using age, tags, or retention policies.
@@ -88,7 +88,7 @@ through `v1.1.7`.
 ## [References](https://www.stg.plakar.io/docs/community/v1.1.0/references/index.md)
 
 - [Command line syntax](https://www.stg.plakar.io/docs/community/v1.1.0/references/command-line-syntax/index.md): How Plakar commands are structured, why flag order matters, and how to get help from the CLI.
-- [Go Kloset SDK](https://www.stg.plakar.io/docs/community/v1.1.0/references/sdk/index.md): Go SDK reference for building Plakar integrations.
+- [Go Kloset SDK](https://www.stg.plakar.io/docs/community/v1.1.0/references/go-kloset-sdk/index.md): Go SDK reference for building Plakar integrations.
 - [Commands](https://www.stg.plakar.io/docs/community/v1.1.0/references/commands/index.md): Reference for all Plakar commands. Browse detailed documentation for each command, including usage, options, and examples. Access help online or directly from your terminal.
 
 

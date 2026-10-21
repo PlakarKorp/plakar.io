@@ -27,7 +27,7 @@
     
   
   
-    <meta name="description" content="How to connect and manage OVHcloud inventory in Plakar Control Plane.">
+    <meta name="description" content="How to connect and manage Kubernetes inventory in Plakar Control Plane.">
   
   
     <meta name="keywords" content="backup,open-source,deduplication,encryption,plakar,cloud backup,database backup,">
@@ -67,17 +67,17 @@
   <meta property="og:url" content="https://www.stg.plakar.io/docs/control-plane/infrastructure/inventories/kubernetes/">
   <meta property="og:site_name" content="Plakar | The Open Standard for Backup and Restore">
   <meta property="og:title" content="Kubernetes">
-  <meta property="og:description" content="How to connect and manage OVHcloud inventory in Plakar Control Plane.">
+  <meta property="og:description" content="How to connect and manage Kubernetes inventory in Plakar Control Plane.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-08-03T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-10-13T15:01:56+03:00">
+    <meta property="article:modified_time" content="2026-10-21T10:59:46+03:00">
 
   
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Kubernetes">
-  <meta name="twitter:description" content="How to connect and manage OVHcloud inventory in Plakar Control Plane.">
+  <meta name="twitter:description" content="How to connect and manage Kubernetes inventory in Plakar Control Plane.">
 
   
   
@@ -126,8 +126,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.0f4a3fc97df8fd147116c4b5d648bedf3613a4ef0183f9a813e663a07ae5d4419e2bf7dac8d6d53b661ff9dc9ed89c9dc9452ee8e5fb0897bf785bd310951ce7.css"
-    integrity="sha512-D0o/yX34/RRxFsS11ki&#43;3zYTpO8Bg/moE&#43;ZjoHrl1EGeK/fayNbVO2Yf&#43;dye2JydyUUu6OX7CJe/eFvTEJUc5w==">
+    href="/css/main.bundle.min.e0ed2bb68e59470fddf07b0cb45d4a59da701d2dba9b061b471980a293e0fda8831c61e5364492e3cde75f31e619fb7cac436208b61edd2b6de24f1c94474780.css"
+    integrity="sha512-4O0rto5ZRw/d8HsMtF1KWdpwHS26mwYbRxmAopPg/aiDHGHlNkSS483nXzHmGft8rENiCLYe3Stt4k8clEdHgA==">
   
     
     <script defer src="/lib/zoom/zoom.min.umd.a527109b68c082a70f3697716dd72a9d5aa8b545cf800cecbbc7399f2ca6f6e0ce3e431f2062b48bbfa47c9ea42822714060bef309be073f49b9c0e30d318d7b.js" integrity="sha512-pScQm2jAgqcPNpdxbdcqnVqotUXPgAzsu8c5nyym9uDOPkMfIGK0i7&#43;kfJ6kKCJxQGC&#43;8wm&#43;Bz9JucDjDTGNew=="></script>
@@ -229,12 +229,12 @@
     "dateCreated": "2026-08-03T00:00:00\u002b00:00",
     "datePublished": "2026-08-03T00:00:00\u002b00:00",
     
-    "dateModified": "2026-10-13T15:01:56\u002b03:00",
+    "dateModified": "2026-10-21T10:59:46\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.stg.plakar.io/docs/control-plane/infrastructure/inventories/kubernetes/",
-    "wordCount":  443 
+    "wordCount":  491 
   }]
   </script>
 
@@ -267,7 +267,7 @@
 
 
 
-<script src="/js/compiled/bundle.min.e9dbefdbd39e7434405fbce2f92314bdaed8019be3950508142f9e6dc8e51624.js" defer></script>
+<script src="/js/compiled/bundle.min.fd8d31898a23830495c3b642c5f14eef1414ed473fc3d3a90da0edc74500e6d5.js" defer></script>
 
   
 
@@ -487,6 +487,8 @@
   
 
   
+  
+    
   
     
   
@@ -935,8 +937,6 @@
   
     
   
-    
-  
   
 
   
@@ -1194,15 +1194,6 @@
 
       
 
-    
-  
-    
-    
-      <a href="/docs/control-plane/infrastructure/edges/"
-         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
-         ">
-        Edges
-      </a>
     
   
 
@@ -1517,6 +1508,8 @@
   
     
   
+    
+  
   
 
   
@@ -1557,6 +1550,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         OVHcloud Compute
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/resources/compute/kubernetes-vm/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Kubernetes VM
       </a>
     
   
@@ -2200,6 +2202,227 @@
 
       
 
+    
+  
+
+  
+    </div>
+  
+
+
+          </div>
+        </div>
+
+      
+
+    
+  
+    
+    
+      
+      
+
+      
+        <div class="sidebar-accordion ">
+          <div class="flex items-center rounded-lg hover:bg-neutral-100 ">
+            <a href="/docs/control-plane/edges/"
+               class="flex-1 px-2 py-1.5 font-medium text-neutral-700 hover:text-primary-500
+               ">
+              Plakar Edge
+            </a>
+            <button class="sidebar-accordion-btn px-2 py-1.5 shrink-0 text-neutral-400 hover:text-neutral-700">
+              <span class="sidebar-accordion-chevron w-4 h-4 flex items-center justify-center transition-transform duration-200 ">
+                <span class="relative block icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+</span>
+              </span>
+            </button>
+          </div>
+          <div class="sidebar-accordion-content hidden">
+            
+  
+  
+  
+  
+
+  
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+  
+
+  
+    <div class="border-l border-neutral-200 ml-3 pl-1 flex flex-col gap-0.5">
+  
+
+  
+    
+    
+      <a href="/docs/control-plane/edges/how-edges-work/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        How Edges Work
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/edges/requirements/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Edge Requirements
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/edges/enrollment/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Edge Enrollment
+      </a>
+    
+  
+    
+    
+      
+      
+
+      
+        <div class="sidebar-accordion ">
+          <div class="flex items-center rounded-lg hover:bg-neutral-100 ">
+            <a href="/docs/control-plane/edges/installation/"
+               class="flex-1 px-2 py-1.5 font-medium text-neutral-700 hover:text-primary-500
+               ">
+              Edges Installation
+            </a>
+            <button class="sidebar-accordion-btn px-2 py-1.5 shrink-0 text-neutral-400 hover:text-neutral-700">
+              <span class="sidebar-accordion-chevron w-4 h-4 flex items-center justify-center transition-transform duration-200 ">
+                <span class="relative block icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+</span>
+              </span>
+            </button>
+          </div>
+          <div class="sidebar-accordion-content hidden">
+            
+  
+  
+  
+  
+
+  
+  
+    
+  
+    
+  
+    
+  
+  
+
+  
+    <div class="border-l border-neutral-200 ml-3 pl-1 flex flex-col gap-0.5">
+  
+
+  
+    
+    
+      <a href="/docs/control-plane/edges/installation/binary/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Binary
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/edges/installation/kubernetes/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Kubernetes
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/edges/installation/custom-image/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Custom Image
+      </a>
+    
+  
+
+  
+    </div>
+  
+
+
+          </div>
+        </div>
+
+      
+
+    
+  
+    
+    
+      <a href="/docs/control-plane/edges/running-tasks/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Running Tasks
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/edges/hooks/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Pre-job and Post-job Hooks
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/edges/monitoring/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Supervision and Metrics
+      </a>
     
   
 
@@ -4292,6 +4515,8 @@
   
     
   
+    
+  
   
 
   
@@ -4719,8 +4944,6 @@
   
     
   
-    
-  
   
 
   
@@ -4978,15 +5201,6 @@
 
       
 
-    
-  
-    
-    
-      <a href="/docs/control-plane/infrastructure/edges/"
-         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
-         ">
-        Edges
-      </a>
     
   
 
@@ -5301,6 +5515,8 @@
   
     
   
+    
+  
   
 
   
@@ -5341,6 +5557,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         OVHcloud Compute
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/resources/compute/kubernetes-vm/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Kubernetes VM
       </a>
     
   
@@ -5984,6 +6209,227 @@
 
       
 
+    
+  
+
+  
+    </div>
+  
+
+
+          </div>
+        </div>
+
+      
+
+    
+  
+    
+    
+      
+      
+
+      
+        <div class="sidebar-accordion ">
+          <div class="flex items-center rounded-lg hover:bg-neutral-100 ">
+            <a href="/docs/control-plane/edges/"
+               class="flex-1 px-2 py-1.5 font-medium text-neutral-700 hover:text-primary-500
+               ">
+              Plakar Edge
+            </a>
+            <button class="sidebar-accordion-btn px-2 py-1.5 shrink-0 text-neutral-400 hover:text-neutral-700">
+              <span class="sidebar-accordion-chevron w-4 h-4 flex items-center justify-center transition-transform duration-200 ">
+                <span class="relative block icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+</span>
+              </span>
+            </button>
+          </div>
+          <div class="sidebar-accordion-content hidden">
+            
+  
+  
+  
+  
+
+  
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+  
+
+  
+    <div class="border-l border-neutral-200 ml-3 pl-1 flex flex-col gap-0.5">
+  
+
+  
+    
+    
+      <a href="/docs/control-plane/edges/how-edges-work/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        How Edges Work
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/edges/requirements/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Edge Requirements
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/edges/enrollment/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Edge Enrollment
+      </a>
+    
+  
+    
+    
+      
+      
+
+      
+        <div class="sidebar-accordion ">
+          <div class="flex items-center rounded-lg hover:bg-neutral-100 ">
+            <a href="/docs/control-plane/edges/installation/"
+               class="flex-1 px-2 py-1.5 font-medium text-neutral-700 hover:text-primary-500
+               ">
+              Edges Installation
+            </a>
+            <button class="sidebar-accordion-btn px-2 py-1.5 shrink-0 text-neutral-400 hover:text-neutral-700">
+              <span class="sidebar-accordion-chevron w-4 h-4 flex items-center justify-center transition-transform duration-200 ">
+                <span class="relative block icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+</span>
+              </span>
+            </button>
+          </div>
+          <div class="sidebar-accordion-content hidden">
+            
+  
+  
+  
+  
+
+  
+  
+    
+  
+    
+  
+    
+  
+  
+
+  
+    <div class="border-l border-neutral-200 ml-3 pl-1 flex flex-col gap-0.5">
+  
+
+  
+    
+    
+      <a href="/docs/control-plane/edges/installation/binary/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Binary
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/edges/installation/kubernetes/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Kubernetes
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/edges/installation/custom-image/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Custom Image
+      </a>
+    
+  
+
+  
+    </div>
+  
+
+
+          </div>
+        </div>
+
+      
+
+    
+  
+    
+    
+      <a href="/docs/control-plane/edges/running-tasks/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Running Tasks
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/edges/hooks/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Pre-job and Post-job Hooks
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/edges/monitoring/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Supervision and Metrics
+      </a>
     
   
 
@@ -8167,8 +8613,16 @@ directly from Plakar Control Plane.</p>
           <td>No</td>
           <td>Yes</td>
       </tr>
+      <tr>
+          <td>KubeVirt virtual machines</td>
+          <td>Yes</td>
+          <td>No</td>
+          <td>Yes</td>
+      </tr>
   </tbody>
 </table>
+<p>Virtual machines are discovered only when KubeVirt is installed in the cluster.
+On clusters without KubeVirt, the inventory discovers PVCs only.</p>
 
 
 <h2 id="authentication" class="group pr-8">Authentication
@@ -8189,7 +8643,9 @@ directly from Plakar Control Plane.</p>
 <p>Kubernetes inventories authenticate using a kubeconfig file. The kubeconfig
 determines which cluster Plakar Control Plane connects to and which permissions
 it has, so the associated user or service account must have read access to
-<code>PersistentVolumeClaims</code> in the namespaces you want to discover. See
+<code>PersistentVolumeClaims</code> in the namespaces you want to discover. To discover
+virtual machines, it also needs read access to KubeVirt <code>VirtualMachines</code> in
+those namespaces. See
 <a href="../../../guides/kubernetes/kubernetes-rbac#inventory" >Kubernetes Service Accounts and RBAC</a>
 for a least-privilege role.</p>
 <p>When creating an Kubernetes inventory in Plakar Control Plane, you must provide:</p>
@@ -8237,8 +8693,9 @@ empty and it will use the in-cluster configuration.</p>
     sizes="(min-width: 768px) 50vw, 65vw"
     data-zoom-src="/docs/control-plane/infrastructure/inventories/images/create-kubernetes-inventory_hu_3a0de650b1152bf1.webp"></figure>
 <p>After creating the inventory, trigger a synchronization to discover and load
-PVCs from the configured cluster. You can run synchronization again at any time
-to refresh the inventory, for example after creating new PVCs.</p>
+PVCs and virtual machines from the configured cluster. You can run
+synchronization again at any time to refresh the inventory, for example after
+creating new PVCs or virtual machines.</p>
 <p>All configuration details provided during inventory creation can be updated
 later by clicking the settings icon in the top right of the inventory page,
 which opens a settings popup.</p>
@@ -8360,7 +8817,7 @@ coverage reporting.</p>
   
   <div class="flex items-center justify-between text-xs text-neutral-400">
     
-      <span>Last updated: October 13, 2026</span>
+      <span>Last updated: October 21, 2026</span>
     
     
       <a href="https://github.com/PlakarKorp/plakar.io/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">
@@ -8406,9 +8863,7 @@ coverage reporting.</p>
   </div>
 
       <div>
-        
-
-<div id="toast-container" aria-live="assertive" class="pointer-events-none fixed inset-0 flex items-end px-4 py-6 sm:items-start sm:pt-16 z-50">
+        <div id="toast-container" aria-live="assertive" class="pointer-events-none fixed inset-0 flex items-end px-4 py-6 sm:items-start sm:pt-16 z-50">
   <div class="flex w-full flex-col items-center gap-3 sm:items-end"></div>
 </div>
 

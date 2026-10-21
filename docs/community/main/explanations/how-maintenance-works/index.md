@@ -83,8 +83,9 @@ maintenance run, Plakar scans the store and identifies chunks that are no longer
 referenced by any snapshot. Those chunks are marked as candidates for deletion
 and held for a grace period before removal.
 
-Maintenance can be automated using the Plakar scheduler. See
-[Scheduling tasks](../../guides/setup-scheduler-daily-backups) for details.
+Maintenance can be automated with your operating system's scheduler (cron, a
+systemd timer, launchd or Windows Task Scheduler), the same way as backups. See
+[Scheduling Backups](../../guides/setup-scheduler-daily-backups) for details.
 
 ### The grace period
 

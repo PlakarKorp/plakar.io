@@ -38,7 +38,7 @@ advanced configurations, so you can quickly find the instructions you need.
 
 
 
-## [Creating a custom connector](https://www.stg.plakar.io/docs/community/v1.1.0/guides/creating-a-custom-connector/index.md)
+## [Creating a custom integration](https://www.stg.plakar.io/docs/community/v1.1.0/guides/creating-a-custom-integration/index.md)
 
 
 

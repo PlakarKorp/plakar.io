@@ -28,9 +28,11 @@ release version, check out the corresponding tag before running `make`:
 
 ```bash
 $ git fetch --tags
-$ git checkout tags/v1.1.3
+$ git checkout tags/<version>
 $ make
 ```
+
+Replace `<version>` with a release tag from the [Download page](/download).
 
 ## Verifying the Installation
 
@@ -40,7 +42,7 @@ Verify the installation by running:
 $ plakar version
 ```
 
-This should return the expected version number, for example `plakar/v1.1.3`.
+This prints `plakar/` followed by the installed version number.
 
 ## Downloading Specific Versions
 

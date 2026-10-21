@@ -148,6 +148,10 @@
 
 
 
+## [Rclone](https://www.stg.plakar.io/integrations/rclone/index.md)
+
+
+
 ## [S3](https://www.stg.plakar.io/integrations/s3/index.md)
 
 
