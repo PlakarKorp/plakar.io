@@ -28,4 +28,8 @@
 
 
 
+## [Strategic autonomy](https://www.plakar.io/solutions/strategic-autonomy/index.md)
+
+
+
 

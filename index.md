@@ -204,6 +204,7 @@
 - [Cost Efficiency](https://www.plakar.io/solutions/cost-efficiency/index.md)
 - [On-Premises](https://www.plakar.io/solutions/on-premises/index.md)
 - [Ransomware recovery](https://www.plakar.io/solutions/ransomware-recovery/index.md)
+- [Strategic autonomy](https://www.plakar.io/solutions/strategic-autonomy/index.md)
 
 
 ## [The Nestor Sticker Collection](https://www.plakar.io/community/goodies/index.md)
