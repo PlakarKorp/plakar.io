@@ -50,7 +50,7 @@ flowchart TD
 | Compute (Nova servers)            | Yes    | No    | Yes         |
 | Object Storage (Swift containers) | No     | No    | No          |
 | Images (Glance images)            | No     | No    | No          |
-| Database (Trove databases)        | No     | No    | No          |
+| Database (Trove databases)        | Yes    | No    | Yes         |
 
 Only the Glance images owned by the project are discovered.
 
