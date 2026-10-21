@@ -47,6 +47,7 @@ flowchart TD
 | -------------- | ------ | ----- | ----------- |
 | S3 Bucket      | Yes    | Yes   | Yes         |
 | Database (RDS) | Yes    | No    | Yes         |
+| EC2 Instances  | No     | No    | No          |
 
 ## Authentication
 
