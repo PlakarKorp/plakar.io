@@ -8,7 +8,6 @@ slug: "backing-up-openstack-with-plakar"
 date: "2026-10-21T00:00:00+14:00"
 authors:
   - "peeyush"
-  - "paul"
 tags:
   - integration
   - openstack
