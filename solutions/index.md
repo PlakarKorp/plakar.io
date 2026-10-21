@@ -24,4 +24,8 @@
 
 
 
+## [Ransomware recovery](https://www.plakar.io/solutions/ransomware-recovery/index.md)
+
+
+
 
