@@ -1,0 +1,307 @@
+{{ define "main" }}
+
+{{ $ui := resources.Get "img/general/plakar-ui-demo.png" }}
+
+<!-- SECTION: hero -->
+<section class="section-light-2 grid-background pt-38 pb-20 relative overflow-hidden">
+  <div class="absolute top-0 right-0 p-64 bg-secondary-900/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+  <div class="max-w-350 mx-auto px-4 flex flex-col items-center text-center gap-8 relative z-10">
+    <div class="max-w-5xl flex flex-col gap-4">
+      <h2 class="text-secondary-600 font-mono text-sm font-bold uppercase tracking-widest">Plakar Community</h2>
+      <h1 class="font-medium text-4xl lg:text-6xl text-neutral-900 leading-tighter">
+        The open backup engine<br/>
+        <span class="text-secondary-500">you actually control.</span>
+      </h1>
+    </div>
+
+    <p class="max-w-2xl text-neutral-600 text-lg lg:text-xl">
+      Plakar creates encrypted, deduplicated, self-contained snapshots on storage you own.
+      One binary, zero-knowledge, no lock-in.
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-4 mt-2 items-center">
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "Install Plakar" "labelShort" "Install" "href" "/download/" "icon" "ri/flashlight-line"
+        "bgColor" "bg-secondary-500" "bgHoverColor" "bg-secondary-600"
+      ) }}
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "Read the docs" "labelShort" "Docs" "href" "/docs/community/" "icon" "ri/book-open-line"
+        "bgColor" "bg-white" "bgHoverColor" "bg-neutral-100" "textColor" "text-neutral-900" "textHoverColor" "text-neutral-900" "border" "border" "borderColor" "border-neutral-300"
+      ) }}
+    </div>
+
+    <!-- Big product visual: the Plakar UI -->
+    <div class="w-full max-w-5xl mx-auto mt-10">
+      <div class="rounded-xl border border-neutral-200 bg-white/80 backdrop-blur-sm shadow-2xl overflow-hidden">
+        <div class="h-9 bg-neutral-100 border-b border-neutral-200 flex items-center px-4 gap-2">
+          <span class="w-3 h-3 rounded-full bg-red-500/20 border border-red-500/50"></span>
+          <span class="w-3 h-3 rounded-full bg-yellow-500/20 border border-yellow-500/50"></span>
+          <span class="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/50"></span>
+          <span class="ml-4 text-xs font-mono text-neutral-500">plakar ui</span>
+        </div>
+        <div class="p-2 md:p-3">
+          {{ with $ui }}
+            <img src="{{ .RelPermalink }}" alt="Browse and restore snapshots in the built-in Plakar web UI" class="w-full h-auto rounded" loading="lazy">
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: problem -->
+<section class="section-dark-1 py-14 lg:py-24 border-y border-neutral-800 relative overflow-hidden">
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-150 h-75 bg-secondary-900/20 blur-[100px] rounded-full pointer-events-none"></div>
+  <div class="max-w-350 mx-auto px-4 relative z-10 flex flex-col gap-12">
+    <div class="text-center max-w-3xl mx-auto space-y-4">
+      <h2 class="text-secondary-500 font-mono text-sm font-bold uppercase tracking-widest">The problem</h2>
+      <p class="font-medium text-3xl lg:text-5xl text-white leading-tighter">Backups fail exactly when you need them most.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-neutral-800/50 border border-neutral-700 p-6 rounded-xl flex flex-col gap-4">
+        <div class="w-10 h-10 p-2 bg-neutral-900 rounded-lg flex items-center justify-center text-secondary-500 border border-neutral-700">{{ partial "icon.html" "ri/spy-line" }}</div>
+        <h3 class="text-white font-bold text-lg">You have to trust your infrastructure</h3>
+        <p class="text-neutral-400 text-sm leading-relaxed">Legacy tools encrypt at rest, so the backup server, the network, and the storage provider still see your data and hold your keys. Zero-trust can't be an afterthought.</p>
+      </div>
+      <div class="bg-neutral-800/50 border border-neutral-700 p-6 rounded-xl flex flex-col gap-4">
+        <div class="w-10 h-10 p-2 bg-neutral-900 rounded-lg flex items-center justify-center text-secondary-500 border border-neutral-700">{{ partial "icon.html" "ri/hard-drive-2-line" }}</div>
+        <h3 class="text-white font-bold text-lg">Encryption kills deduplication</h3>
+        <p class="text-neutral-400 text-sm leading-relaxed">Encrypt with traditional tools and they can no longer deduplicate, so every backup is a full transfer and storage and egress costs balloon.</p>
+      </div>
+      <div class="bg-neutral-800/50 border border-neutral-700 p-6 rounded-xl flex flex-col gap-4">
+        <div class="w-10 h-10 p-2 bg-neutral-900 rounded-lg flex items-center justify-center text-secondary-500 border border-neutral-700">{{ partial "icon.html" "ri/lock-2-line" }}</div>
+        <h3 class="text-white font-bold text-lg">Proprietary formats hold you hostage</h3>
+        <p class="text-neutral-400 text-sm leading-relaxed">Closed archives and appliances put a vendor between you and your own data. Your backup should outlive any vendor, cloud, or appliance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: how-it-works -->
+<section class="section-light-1 grid-background py-14 lg:py-28">
+  <div class="max-w-350 mx-auto px-4 flex flex-col gap-12">
+    <div class="text-center max-w-3xl mx-auto space-y-4">
+      <h2 class="text-secondary-600 font-mono text-sm font-bold uppercase tracking-widest">How it works</h2>
+      <p class="font-medium text-3xl lg:text-5xl text-neutral-900 leading-tighter">Your data becomes a Kloset.</p>
+      <p class="text-lg text-neutral-600">Plakar reads from your sources, then chunks, deduplicates, compresses, and encrypts in a single pass. The result is a Kloset: an open, self-contained store of snapshots on storage you own. Keys never leave your machine, and every snapshot is a logical full you can verify.</p>
+    </div>
+    <div class="max-w-6xl mx-auto w-full">
+      <div class="flex flex-col lg:flex-row items-stretch gap-4 lg:gap-0">
+
+        <!-- Sources -->
+        <div class="flex-1 rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm flex flex-col gap-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 p-2 bg-neutral-100 text-neutral-700 rounded-lg flex items-center justify-center">{{ partial "icon.html" "ri/stack-line" }}</div>
+            <div>
+              <h3 class="font-bold text-neutral-900 leading-tight">Your sources</h3>
+              <p class="text-xs text-neutral-500">What you protect</p>
+            </div>
+          </div>
+          <ul class="flex flex-col gap-2 text-sm text-neutral-600">
+            {{ range (slice
+              (dict "i" "ri/folder-2-line" "t" "Filesystems")
+              (dict "i" "ri/database-2-line" "t" "Databases")
+              (dict "i" "ri/cloud-line" "t" "Object storage and S3")
+              (dict "i" "ri/server-line" "t" "Virtual machines")
+              (dict "i" "ri/apps-2-line" "t" "SaaS and connectors")
+            ) }}
+              <li class="flex items-center gap-2"><span class="w-4 h-4 text-secondary-500">{{ partial "icon.html" .i }}</span>{{ .t }}</li>
+            {{ end }}
+          </ul>
+        </div>
+
+        <!-- connector -->
+        <div class="flex items-center justify-center shrink-0 lg:px-3 py-1">
+          <div class="flex flex-col items-center gap-1 text-secondary-400">
+            <span class="hidden lg:inline-block w-6 h-6">{{ partial "icon.html" "ri/arrow-left-right-line" }}</span>
+            <span class="lg:hidden w-6 h-6 rotate-90">{{ partial "icon.html" "ri/arrow-left-right-line" }}</span>
+            <span class="hidden lg:block text-[0.6rem] font-mono uppercase tracking-wider text-neutral-400 text-center leading-tight">backup<br/>restore</span>
+          </div>
+        </div>
+
+        <!-- Plakar engine -->
+        <div class="flex-1 rounded-2xl border-2 border-secondary-200 bg-secondary-50/40 p-6 shadow-sm flex flex-col gap-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 p-2 bg-secondary-600 text-white rounded-lg flex items-center justify-center">{{ partial "icon.html" "ri/terminal-box-line" }}</div>
+            <div>
+              <h3 class="font-bold text-neutral-900 leading-tight">Plakar engine</h3>
+              <p class="text-xs text-neutral-500">One open binary</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-1.5">
+            {{ range (slice "chunk" "deduplicate" "compress" "encrypt") }}
+              <span class="font-mono text-xs px-2 py-1 rounded-md bg-white border border-secondary-200 text-secondary-700">{{ . }}</span>
+            {{ end }}
+          </div>
+          <p class="text-xs text-neutral-600 flex items-start gap-1.5"><span class="w-4 h-4 text-secondary-500 shrink-0 mt-0.5">{{ partial "icon.html" "ri/key-2-line" }}</span>Keys never leave your machine.</p>
+          <div class="border-t border-secondary-100 pt-3">
+            <p class="text-[0.6rem] font-mono uppercase tracking-wider text-neutral-400 mb-2">Every action is a command</p>
+            <div class="flex flex-wrap gap-1.5">
+              {{ range (slice "backup" "restore" "sync" "check" "ls" "diff" "mount") }}
+                <span class="font-mono text-xs px-2 py-0.5 rounded bg-neutral-900 text-neutral-100">{{ . }}</span>
+              {{ end }}
+            </div>
+          </div>
+        </div>
+
+        <!-- connector -->
+        <div class="flex items-center justify-center shrink-0 lg:px-3 py-1">
+          <div class="flex flex-col items-center gap-1 text-secondary-400">
+            <span class="hidden lg:inline-block w-6 h-6">{{ partial "icon.html" "ri/arrow-left-right-line" }}</span>
+            <span class="lg:hidden w-6 h-6 rotate-90">{{ partial "icon.html" "ri/arrow-left-right-line" }}</span>
+            <span class="hidden lg:block text-[0.6rem] font-mono uppercase tracking-wider text-neutral-400 text-center leading-tight">write<br/>read</span>
+          </div>
+        </div>
+
+        <!-- Kloset store -->
+        <div class="flex-1 rounded-2xl border border-neutral-900 bg-neutral-900 p-6 shadow-sm flex flex-col gap-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 p-2 bg-white/10 text-white rounded-lg flex items-center justify-center border border-white/10">{{ partial "icon.html" "ri/archive-2-line" }}</div>
+            <div>
+              <h3 class="font-bold text-white leading-tight">Kloset store</h3>
+              <p class="text-xs text-neutral-400">On storage you own</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-1.5">
+            {{ range (slice "Autonomous" "Portable" "Immutable" "Verifiable" "Encrypted" "Deduplicated" "Compressed" "Browsable" "Queryable") }}
+              <span class="text-xs px-2 py-1 rounded-md bg-white/5 border border-white/10 text-neutral-200">{{ . }}</span>
+            {{ end }}
+          </div>
+          <p class="text-xs text-neutral-400 flex items-start gap-1.5 border-t border-white/10 pt-3"><span class="w-4 h-4 text-secondary-400 shrink-0 mt-0.5">{{ partial "icon.html" "ri/open-source-line" }}</span>Open format. Readable and restorable without Plakar.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: features -->
+<section class="section-light-2 py-14 lg:py-28">
+  <div class="max-w-350 mx-auto px-4 flex flex-col gap-12">
+    <div class="text-center max-w-3xl mx-auto space-y-4">
+      <h2 class="text-secondary-600 font-mono text-sm font-bold uppercase tracking-widest">What you get</h2>
+      <p class="font-medium text-3xl lg:text-5xl text-neutral-900 leading-tighter">Everything you need to back up and restore with confidence.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {{ range (slice
+        (dict "icon" "ri/box-3-line" "title" "Kloset store" "body" "An immutable, encrypted store for your snapshots, on storage you own." "href" "/docs/community/v1.1.0/guides/create-kloset-repository/")
+        (dict "icon" "ri/stack-line" "title" "Encrypted deduplication" "body" "Deduplicate and compress before data leaves your system, so each new snapshot stores only what changed." "href" "/docs/community/v1.1.0/explanations/how-plakar-works/")
+        (dict "icon" "ri/archive-line" "title" "Self-contained snapshots" "body" "Independent, tamper-evident snapshots you can delete without breaking newer ones." "href" "/docs/community/v1.1.0/quickstart/first-backup/")
+        (dict "icon" "ri/arrow-go-back-line" "title" "Restore anywhere" "body" "Restore to the original location or a new destination, a single file or a full snapshot." "href" "/docs/community/v1.1.0/references/command-line-syntax/")
+        (dict "icon" "ri/puzzle-2-line" "title" "Broad integrations" "body" "Back up filesystems, PostgreSQL, MySQL, S3, SFTP, Notion, and more." "href" "/docs/community/v1.1.0/integrations/")
+        (dict "icon" "ri/apps-2-line" "title" "Built-in UI" "body" "Browse, search, and restore snapshots from a local web UI with plakar ui." "href" "/docs/community/v1.1.0/guides/using-plakar-ui/")
+        (dict "icon" "ri/time-line" "title" "Schedules and retention" "body" "Schedule backups with cron, systemd, launchd, or Task Scheduler, and enforce retention with plakar prune." "href" "/docs/community/v1.1.0/guides/setup-scheduler-daily-backups/")
+        (dict "icon" "ri/open-source-line" "title" "Open and programmatic" "body" "Open under a permissive license. One binary with a clean CLI, API, and SDK." "href" "https://github.com/PlakarKorp/plakar")
+      ) }}
+        <article class="bg-white border border-neutral-200 p-6 rounded-2xl flex flex-col gap-3 shadow-sm hover:border-secondary-300 transition-colors">
+          <div class="w-11 h-11 p-1.5 bg-secondary-50 text-secondary-600 rounded-lg flex items-center justify-center">{{ partial "icon.html" .icon }}</div>
+          <h3 class="font-bold text-lg text-neutral-900">{{ .title }}</h3>
+          <p class="text-neutral-600 text-sm flex-1">{{ .body }}</p>
+          <a href="{{ .href }}"{{ if hasPrefix .href "http" }} target="_blank" rel="noopener"{{ end }} class="inline-flex items-center gap-1.5 text-secondary-600 font-semibold text-sm hover:text-secondary-700 transition-colors">
+            Learn more <span class="w-4 h-4">{{ partial "icon.html" "ri/arrow-right-line" }}</span>
+          </a>
+        </article>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: social-proof -->
+<section class="section-light-2 py-16 lg:py-24">
+  <div class="max-w-350 mx-auto px-4 flex flex-col gap-12">
+    <div class="text-center max-w-3xl mx-auto space-y-4">
+      <h2 class="text-secondary-600 font-mono text-sm font-bold uppercase tracking-widest">Trusted by the ecosystem</h2>
+      <p class="font-medium text-3xl lg:text-5xl text-neutral-900 leading-tighter">Backed by the people who built modern infrastructure.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {{ range (slice
+        (dict "quote" "Finally a pragmatic, modern replacement for TAR. It is called PTAR, and it looks dope." "name" "Solomon Hykes" "title" "Founder, Docker" "photo" "img/general/solomon-hykes.jpg" "initials" "SH" "logo" "corporate/docker")
+        (dict "quote" "Plakar's architecture replicates a lot of the infrastructure Apple built for iCloud Backup: chunking and encryption client-side." "name" "Olivier Bonnet" "title" "VP Engineering, Datadog (ex-Apple iCloud Backup)" "photo" "img/general/olivier-bonnet.jpg" "initials" "OB" "logo" "corporate/datadog")
+        (dict "quote" "The rise of agentic AI compels us to rethink the resilience primitives of large, dynamic, and distributed infrastructures." "name" "Matthieu Blumberg" "title" "SVP Infrastructure, Security and IT, Criteo" "photo" "img/general/matthieu-blumberg.jpg" "initials" "MB" "logoText" "Criteo")
+      ) }}
+        {{ $photo := resources.Get .photo }}
+        <figure class="bg-white border border-neutral-200 rounded-2xl p-6 flex flex-col gap-4 shadow-sm">
+          <span class="text-4xl font-mono text-secondary-500/40 leading-none">&ldquo;</span>
+          <blockquote class="text-neutral-700 leading-relaxed flex-1">{{ .quote }}</blockquote>
+          <figcaption class="border-t border-neutral-100 pt-4 flex items-center gap-3">
+            {{ if $photo }}
+              <img src="{{ $photo.RelPermalink }}" alt="{{ .name }}" class="w-11 h-11 rounded-full object-cover shrink-0" loading="lazy">
+            {{ else }}
+              <span class="w-11 h-11 rounded-full bg-secondary-100 text-secondary-700 font-bold text-sm flex items-center justify-center shrink-0" aria-hidden="true">{{ .initials }}</span>
+            {{ end }}
+            <div class="min-w-0 flex-1">
+              <span class="block font-bold text-neutral-900 text-sm">{{ .name }}</span>
+              <span class="block text-neutral-500 text-xs leading-tight">{{ .title }}</span>
+            </div>
+            {{ with .logo }}
+              <span class="w-7 h-7 shrink-0 text-neutral-500 flex items-center justify-center">{{ partial "icon.html" . }}</span>
+            {{ end }}
+            {{ with .logoText }}
+              <span class="font-bold text-neutral-400 text-base shrink-0">{{ . }}</span>
+            {{ end }}
+          </figcaption>
+        </figure>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: where-it-runs -->
+<section class="section-dark-1 py-14 lg:py-28 relative overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none opacity-20">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-100 bg-linear-to-r from-secondary-900 to-secondary-700 blur-[100px] rounded-full"></div>
+  </div>
+  <div class="max-w-350 mx-auto px-4 relative z-10 flex flex-col gap-12">
+    <div class="text-center max-w-3xl mx-auto space-y-4">
+      <h2 class="text-secondary-500 font-mono text-sm font-bold uppercase tracking-widest">Where it runs</h2>
+      <p class="font-medium text-3xl lg:text-5xl text-white leading-tighter">Runs on your machines, writes to your storage.</p>
+      <p class="text-lg text-neutral-400">Self-hosted by design. Your data and keys stay on infrastructure you control.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {{ range (slice
+        (dict "icon" "ri/macbook-line" "title" "Any OS" "body" "One binary for Linux, macOS, and Windows." "tags" (slice "Linux" "macOS" "Windows"))
+        (dict "icon" "ri/database-2-line" "title" "Any storage" "body" "Any S3-compatible backend, local disk, or filesystem, always with zero plaintext." "tags" (slice "S3" "MinIO" "Local" "Object-lock"))
+        (dict "icon" "ri/connector-line" "title" "Any source" "body" "Filesystems, databases, and SaaS through a growing set of integrations." "tags" (slice "Postgres" "MySQL" "SFTP" "Notion"))
+        (dict "icon" "ri/global-line" "title" "Anywhere you run it" "body" "On-prem, private or sovereign cloud, or fully air-gapped." "tags" (slice "On-prem" "Cloud" "Air-gapped"))
+      ) }}
+        <div class="bg-neutral-800/50 border border-neutral-700 p-6 rounded-xl flex flex-col gap-3">
+          <div class="w-11 h-11 p-2 bg-neutral-900 rounded-lg flex items-center justify-center text-secondary-400 border border-neutral-700">{{ partial "icon.html" .icon }}</div>
+          <h3 class="text-white font-bold text-lg">{{ .title }}</h3>
+          <p class="text-neutral-400 text-sm flex-1">{{ .body }}</p>
+          <div class="flex flex-wrap gap-2 mt-1">
+            {{ range .tags }}<span class="font-mono text-[0.68rem] px-2 py-1 rounded border border-neutral-700 text-neutral-400">{{ . }}</span>{{ end }}
+          </div>
+        </div>
+      {{ end }}
+    </div>
+    <div class="flex justify-center">
+      <a href="/docs/community/v1.1.0/quickstart/first-backup/" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg border border-neutral-600 bg-white/5 text-white font-medium hover:bg-white/10 transition-colors">
+        Read the quickstart <span class="w-4 h-4">{{ partial "icon.html" "ri/arrow-right-line" }}</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: final-cta -->
+<section class="section-light-1 py-20 border-t border-neutral-200">
+  <div class="max-w-350 mx-auto px-4 flex flex-col items-center text-center gap-8">
+    <div class="flex flex-col gap-4 max-w-3xl mx-auto">
+      <h2 class="text-secondary-600 font-mono text-sm font-bold uppercase tracking-widest">Get started</h2>
+      <p class="font-medium text-3xl lg:text-5xl text-neutral-900 leading-tighter">Your first snapshot is one command away.</p>
+      <p class="text-neutral-600 text-lg">Install Plakar, create a Kloset, and back up a folder in under a minute. Open, self-hosted, and yours to keep.</p>
+    </div>
+    <div class="flex flex-col sm:flex-row gap-4 items-center">
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "Install Plakar" "labelShort" "Install" "href" "/download/" "icon" "ri/flashlight-line"
+        "bgColor" "bg-secondary-500" "bgHoverColor" "bg-secondary-600"
+      ) }}
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "Read the docs" "labelShort" "Docs" "href" "/docs/community/" "icon" "ri/book-open-line"
+        "bgColor" "bg-white" "bgHoverColor" "bg-neutral-100" "textColor" "text-neutral-900" "textHoverColor" "text-neutral-900" "border" "border" "borderColor" "border-neutral-300"
+      ) }}
+    </div>
+  </div>
+</section>
+
+{{ end }}
