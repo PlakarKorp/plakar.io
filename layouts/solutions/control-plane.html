@@ -193,7 +193,6 @@
         (dict "icon" "ri/global-line" "title" "Strategic autonomy" "href" "/solutions/strategic-autonomy/" "body" "Reclaim control of data hosted by any provider. Keep an encrypted copy outside production, independent of the host, with stronger security, lower cost, and no lock-in.")
         (dict "icon" "ri/search-line" "title" "Posture management" "href" "/solutions/posture-management/" "body" "A 360 view of what must be protected across clouds and on-prem. Verify coverage against SLAs, surface unprotected resources, and let policies cover new ones automatically.")
       ) }}
-        {{/* Link only once the use-case page exists, so this page can ship before them. */}}
         {{ $live := site.GetPage (strings.TrimSuffix "/" .href) }}
         {{ if $live }}<a href="{{ .href }}" class="group bg-neutral-800/50 border border-neutral-700 p-6 rounded-xl flex flex-col gap-4 hover:border-primary-500 transition-colors">{{ else }}<div class="bg-neutral-800/50 border border-neutral-700 p-6 rounded-xl flex flex-col gap-4">{{ end }}
           <div class="w-10 h-10 p-2 bg-neutral-900 rounded-lg flex items-center justify-center text-primary-400 border border-neutral-700">{{ partial "icon.html" .icon }}</div>
@@ -347,7 +346,6 @@
       <p class="text-lg text-neutral-400">One appliance, every major cloud and hypervisor. The same images you will find on the download page.</p>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {{/* Providers and formats mirror content/download/control-plane.md. owner: victor@plakar.io */}}
       {{ range (slice
         (dict "icon" "corporate/aws" "name" "Amazon Web Services" "fmt" "Marketplace" "href" "https://aws.amazon.com/marketplace/pp/prodview-n3wsyckyby6vq" "ext" true)
         (dict "icon" "corporate/scaleway" "name" "Scaleway" "fmt" "QCOW2" "href" "/download/" "ext" false)

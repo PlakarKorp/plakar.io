@@ -1,7 +1,3 @@
-{{/* Cross-links between the use-case pages. Pass the current page URL to leave it out:
-     {{ partial "components/common/use-cases-related.html" (dict "current" "/solutions/ransomware-recovery/") }}
-     Pages that do not exist yet are skipped (AI reversibility is parked, so it is skipped until its page
-     ships), and the section is hidden when none is left, so the use-case pages can ship one at a time. */}}
 {{ $current := .current }}
 {{ $cards := slice }}
 {{ range (slice

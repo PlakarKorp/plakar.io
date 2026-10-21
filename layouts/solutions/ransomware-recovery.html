@@ -1,9 +1,5 @@
 {{ define "main" }}
 
-{{/* Claims are limited to documented behavior. Not documented yet, so not claimed: object lock or WORM enforced by
-     Plakar (the legal-hold docs point to the storage's own object lock), malware scanning, automated restore
-     testing, and restore approval (the Restore Approver role is "coming soon"). owner: victor@plakar.io */}}
-
 <!-- SECTION: hero -->
 <section class="section-light-2 grid-background pt-38 pb-20 relative overflow-hidden">
   <div class="absolute top-0 right-0 p-64 bg-primary-900/10 rounded-full blur-[120px] pointer-events-none"></div>
@@ -145,7 +141,6 @@
         "bgColor" "bg-white" "bgHoverColor" "bg-neutral-100" "textColor" "text-neutral-900" "textHoverColor" "text-neutral-900" "border" "border" "borderColor" "border-neutral-300"
       ) }}
     </div>
-    {{/* Rendered only once the Control Plane page exists, so this page can ship before it. */}}
     {{ if site.GetPage "/solutions/control-plane" }}<p class="text-neutral-500 text-sm">See how it fits together on the <a href="/solutions/control-plane/" class="text-primary-600 font-semibold hover:text-primary-700">Control Plane</a> page.</p>{{ end }}
   </div>
 </section>
