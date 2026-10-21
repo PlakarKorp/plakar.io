@@ -102,8 +102,8 @@ same email address or a different one.
 {{< figure src="../images/enrollment-admin-account.png" alt="Creating the admin account" class="mx-auto max-w-120" >}}
 
 This account holds the **Superuser** role, which grants access to
-[Control Plane settings](../../administration/settings/control-plane) and the
-license. The [Platform Admin](../../administration/permissions/platform-admin)
+[Control Plane settings](../../operations/control-plane-settings) and the
+license. The [Platform Admin](../../access-control/permissions/platform-admin)
 role grants the same access and can be assigned later.
 
 ## Air-gapped instances
@@ -121,7 +121,7 @@ the instance can retrieve these files from your own network instead.
 
 Air-gapped licenses include an expiry date. You can view the current license,
 plan, and expiry date in the
-[Control Plane settings](../../administration/settings/control-plane#instance).
+[Control Plane settings](../../operations/control-plane-settings#instance).
 
 ![Managing your license and plan](../images/managing-license.png)
 
@@ -129,7 +129,7 @@ Unlike online instances, air-gapped instances do not renew their license
 automatically. To renew, [contact us](/contact) to obtain a new license. Then,
 in the **Control Plane settings**, paste the new license into the **Replace
 with** field or load it from a license file, and select **Replace license**. A
-[Platform Admin](../../administration/permissions/platform-admin) can do this as
+[Platform Admin](../../access-control/permissions/platform-admin) can do this as
 well as the **Superuser**, since both hold the license permission.
 
 Replacing the license does not require re-enrollment and does not affect your

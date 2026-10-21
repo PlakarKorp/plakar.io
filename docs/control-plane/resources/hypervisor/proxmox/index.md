@@ -17,11 +17,10 @@ for details.
 
 ## Inventory Management
 
-Currently no
-[managed inventory](../../infrastructure/inventories#managed-inventories) has
-the capability of discovering Proxmox resources. You must configure a
-[self-managed inventory](../../infrastructure/inventories/self-managed) before
-adding a Proxmox resource.
+Currently no [managed inventory](../../inventories#managed-inventories) has the
+capability of discovering Proxmox resources. You must configure a
+[self-managed inventory](../../inventories/self-managed) before adding a Proxmox
+resource.
 
 ### Adding Proxmox as a resource
 

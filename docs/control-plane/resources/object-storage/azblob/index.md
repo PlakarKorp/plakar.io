@@ -6,11 +6,10 @@ Microsoft Azure.
 
 ## Inventory Management
 
-Currently no
-[managed inventory](../../infrastructure/inventories#managed-inventories) has
-the capability of discovering Azure Blob Storage resources. You must configure a
-[self-managed inventory](../../infrastructure/inventories/self-managed) before
-adding an Azure Blob Storage resource.
+Currently no [managed inventory](../../inventories#managed-inventories) has the
+capability of discovering Azure Blob Storage resources. You must configure a
+[self-managed inventory](../../inventories/self-managed) before adding an Azure
+Blob Storage resource.
 
 ### Adding Azure Blob Storage as a resource
 

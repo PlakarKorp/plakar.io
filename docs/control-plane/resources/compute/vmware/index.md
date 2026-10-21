@@ -9,7 +9,7 @@ directly from vSphere without requiring any additional infrastructure.
 ## Inventory Management
 
 Virtual machines are discovered by the
-[VMware inventory](../../infrastructure/inventories/vmware), which connects to a
+[VMware inventory](../../inventories/managed/vmware), which connects to a
 vCenter Server and loads its compute instances each time it synchronizes.
 Resources in a VMware inventory are managed by the inventory and cannot be
 created or deleted manually.

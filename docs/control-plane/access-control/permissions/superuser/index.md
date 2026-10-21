@@ -1,0 +1,54 @@
+
+# Superuser
+
+The **Superuser** is the admin account created during
+[enrollment](../../../intro/enrollment#admin-account).
+
+It holds full access to every permission in all three families. Its resource
+access is not restricted to a subset, it covers every resource of every class in
+the organization.
+
+The **Superuser** reaches the deployment family, which is what allows it to
+change [Control Plane settings](../../../operations/control-plane-settings) and
+manage the license. Because the instance belongs to no organization, that access
+extends to every organization hosted on it.
+
+The [Platform Admin](../platform-admin) holds that same deployment access and
+nothing else. It maintains the instance and administers no organization, which
+is what separates it from the **Superuser**.
+
+## Organization
+
+| Permission                      | Access |
+| ------------------------------- | ------ |
+| Organization                    | Full   |
+| Members                         | Full   |
+| Audit log                       | Full   |
+| Data residency                  | Full   |
+| Restore points legal holds      | Full   |
+| Inventory resources legal holds | Full   |
+
+## Resources
+
+| Permission            | Access |
+| --------------------- | ------ |
+| Inventories           | Full   |
+| Apps                  | Full   |
+| Restore point data    | Full   |
+| Secret Providers      | Full   |
+| Integrations          | Full   |
+| Policies              | Full   |
+| Settings              | Full   |
+| Edges                 | Full   |
+| Configuration bundles | Full   |
+| Data classes          | Full   |
+| Environments          | Full   |
+| Schedules             | Full   |
+
+## Deployment
+
+| Permission    | Access |
+| ------------- | ------ |
+| Control plane | Full   |
+| License       | Full   |
+

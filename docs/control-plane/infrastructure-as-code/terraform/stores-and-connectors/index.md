@@ -8,10 +8,10 @@ resources. `plakar_store` creates a store, where backup data is written.
 [destination](../../../apps/destinations), selected by its `type` argument.
 
 Both require the same three things: the installed
-[integration](../../../apps/integrations) that speaks to the resource, the
-resource itself, and the `fields` that integration needs in order to reach it.
-The resource is named by its URN or by its name, and a name only resolves when
-it is unique within the inventory.
+[integration](../../../integrations) that speaks to the resource, the resource
+itself, and the `fields` that integration needs in order to reach it. The
+resource is named by its URN or by its name, and a name only resolves when it is
+unique within the inventory.
 
 ## Stores
 

@@ -24,12 +24,12 @@ Plakar runs outside the cluster, both also need the
 
 ## Inventory Management
 
-[Managed inventories](../../infrastructure/inventories#managed-inventories) can
-discover KubeVirt virtual machines automatically once the
-[Kubernetes inventory](../../infrastructure/inventories/kubernetes) is connected
-to a cluster with KubeVirt installed. You can instead set up a
-[self-managed inventory](../../infrastructure/inventories/self-managed) and add
-the virtual machine manually.
+[Managed inventories](../../inventories#managed-inventories) can discover
+KubeVirt virtual machines automatically once the
+[Kubernetes inventory](../../inventories/managed/kubernetes) is connected to a
+cluster with KubeVirt installed. You can instead set up a
+[self-managed inventory](../../inventories/self-managed) and add the virtual
+machine manually.
 
 ### Adding a Kubernetes VM as a resource
 
@@ -99,7 +99,7 @@ destination apps using the `k8s+vm` protocol.
 - **Kubeconfig**: Upload a kube config YAML file or paste its contents directly.
   Leave it empty when Plakar Control Plane runs inside the cluster to use the
   in-cluster configuration. The kubeconfig can also be loaded from a
-  [secret provider](../../infrastructure/secret-providers).
+  [secret provider](../../secret-providers).
 - **Kubelet Image**: The container image used for the helper pod. Defaults to a
   recent kubelet image. Set it to pull the image from another registry, for
   example a local mirror in an air-gapped cluster.

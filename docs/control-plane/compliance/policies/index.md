@@ -11,7 +11,7 @@ creates backup schedules for all source apps that match.
 flowchart TD
   subgraph Policy["SLA Policy"]
     Requirements["Frequency & retention"]
-    Scope["Scope\nenvironment · data class · tag"]
+    Scope["Scope\n(environment, data class, tag)"]
     PolicyStore["Store app"]
   end
 
@@ -30,7 +30,7 @@ flowchart TD
 
 Policies belong to a single organization. You work only with the policies of the
 organization you signed in to, and what you can do with them is determined by
-the [permissions](../../administration/permissions) you hold there.
+the [permissions](../../access-control/permissions) you hold there.
 
 ## Creating a policy
 
@@ -113,13 +113,12 @@ details.
 ## Managing environments & data classes
 
 Environments and data classes used by the SLA system to scope resources are
-managed per organization, from **Settings** -> **Organizations** -> **[your
-organization]** -> **Classification**. From there, you can create new
-environments and data classes, or delete existing ones.
+managed per organization, from **Organization -> Classification**. From there,
+you can create new environments and data classes, or delete existing ones.
 
 Because they belong to an organization, the environments and data classes
 available to a policy are the ones defined in the organization that policy lives
-in. See [Managing Organizations](../../administration/organizations) for more
+in. See [Managing Organizations](../../access-control/organizations) for more
 information about how organizations isolate configuration.
 
 ![Creating and deleting environments and data classes](../images/managing-classification.png)

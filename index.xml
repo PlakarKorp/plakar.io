@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© 2026 PlakarKorp</copyright>
-    <lastBuildDate>Wed, 21 Oct 2026 18:12:48 +0300</lastBuildDate><atom:link href="https://www.plakar.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 21 Oct 2026 19:56:42 +0200</lastBuildDate><atom:link href="https://www.plakar.io/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Kubernetes Operator</title>
@@ -41,31 +41,21 @@
     
     <item>
       <title>Control Plane Settings</title>
-      <link>https://www.plakar.io/docs/control-plane/administration/settings/control-plane/</link>
+      <link>https://www.plakar.io/docs/control-plane/operations/control-plane-settings/</link>
       <pubDate>Tue, 08 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/administration/settings/control-plane/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/operations/control-plane-settings/</guid>
       <description>Configure the Plakar Control Plane instance itself, from version and networking to diagnostics.</description>
       
     </item>
     
     <item>
       <title>Superuser</title>
-      <link>https://www.plakar.io/docs/control-plane/administration/permissions/superuser/</link>
+      <link>https://www.plakar.io/docs/control-plane/access-control/permissions/superuser/</link>
       <pubDate>Tue, 08 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/administration/permissions/superuser/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/access-control/permissions/superuser/</guid>
       <description>Full access to every organization and to the instance itself.</description>
-      
-    </item>
-    
-    <item>
-      <title>Signing In to Control Plane</title>
-      <link>https://www.plakar.io/docs/control-plane/administration/signing-in/</link>
-      <pubDate>Mon, 07 Sep 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.plakar.io/docs/control-plane/administration/signing-in/</guid>
-      <description>Sign in to Plakar Control Plane and select the organization you want to work in.</description>
       
     </item>
     
@@ -126,6 +116,16 @@
       
       <guid>https://www.plakar.io/docs/control-plane/guides/windows/windows-openssh-setup/</guid>
       <description>Learn how to install, configure, and authorize OpenSSH Server on a Windows host so Plakar Control Plane can connect to it over SSH.</description>
+      
+    </item>
+    
+    <item>
+      <title>Managing Organizations</title>
+      <link>https://www.plakar.io/docs/control-plane/access-control/organizations/</link>
+      <pubDate>Mon, 27 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.plakar.io/docs/control-plane/access-control/organizations/</guid>
+      <description>Organize and isolate resources, configuration, and administration within Plakar Control Plane.</description>
       
     </item>
     
@@ -240,11 +240,11 @@
     </item>
     
     <item>
-      <title>Backing Up Plakar Control Plane</title>
-      <link>https://www.plakar.io/docs/control-plane/administration/backup-and-restore/backup/</link>
+      <title>Backing Up PCP</title>
+      <link>https://www.plakar.io/docs/control-plane/operations/backup-and-restore/backup/</link>
       <pubDate>Thu, 11 Jun 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/administration/backup-and-restore/backup/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/operations/backup-and-restore/backup/</guid>
       <description>Step-by-step guide to back up Plakar Control Plane configuration and data using the UI.</description>
       
     </item>
@@ -321,20 +321,20 @@
     
     <item>
       <title>Updating AWS AMI</title>
-      <link>https://www.plakar.io/docs/control-plane/administration/updating-control-plane/aws/</link>
+      <link>https://www.plakar.io/docs/control-plane/operations/updating/aws/</link>
       <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/administration/updating-control-plane/aws/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/operations/updating/aws/</guid>
       <description>How to update Plakar Control Plane AMI on AWS.</description>
       
     </item>
     
     <item>
       <title>AWS Secrets Manager</title>
-      <link>https://www.plakar.io/docs/control-plane/infrastructure/secret-providers/aws/</link>
+      <link>https://www.plakar.io/docs/control-plane/secret-providers/aws/</link>
       <pubDate>Wed, 13 May 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/infrastructure/secret-providers/aws/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/secret-providers/aws/</guid>
       <description>How to configure and use AWS Secrets Manager as a secret provider in Plakar Control Plane.</description>
       
     </item>
@@ -371,10 +371,10 @@
     
     <item>
       <title>AWS</title>
-      <link>https://www.plakar.io/docs/control-plane/infrastructure/inventories/aws/</link>
+      <link>https://www.plakar.io/docs/control-plane/inventories/managed/aws/</link>
       <pubDate>Sun, 03 May 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/infrastructure/inventories/aws/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/inventories/managed/aws/</guid>
       <description>How to connect and manage AWS inventory in Plakar Control Plane.</description>
       
     </item>
@@ -691,10 +691,10 @@
     
     <item>
       <title>Platform Admin</title>
-      <link>https://www.plakar.io/docs/control-plane/administration/permissions/platform-admin/</link>
+      <link>https://www.plakar.io/docs/control-plane/access-control/permissions/platform-admin/</link>
       <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/administration/permissions/platform-admin/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/access-control/permissions/platform-admin/</guid>
       <description>Maintains the instance itself, and administers no organization.</description>
       
     </item>
@@ -721,10 +721,10 @@
     
     <item>
       <title>Organization Settings</title>
-      <link>https://www.plakar.io/docs/control-plane/administration/settings/organization/</link>
+      <link>https://www.plakar.io/docs/control-plane/access-control/organization-settings/</link>
       <pubDate>Tue, 08 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/administration/settings/organization/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/access-control/organization-settings/</guid>
       <description>Configure a single organization in Plakar Control Plane.</description>
       
     </item>
@@ -790,16 +790,6 @@
     </item>
     
     <item>
-      <title>Managing Organizations</title>
-      <link>https://www.plakar.io/docs/control-plane/administration/organizations/</link>
-      <pubDate>Mon, 27 Jul 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.plakar.io/docs/control-plane/administration/organizations/</guid>
-      <description>Organize and isolate resources, configuration, and administration within Plakar Control Plane.</description>
-      
-    </item>
-    
-    <item>
       <title>Proxmox VE</title>
       <link>https://www.plakar.io/docs/control-plane/intro/installation/virtual-machines/proxmox/</link>
       <pubDate>Fri, 17 Jul 2026 00:00:00 +0000</pubDate>
@@ -836,6 +826,16 @@
       
       <guid>https://www.plakar.io/docs/control-plane/edges/requirements/</guid>
       <description>Network access and host tools an edge needs to run tasks for Plakar Control Plane.</description>
+      
+    </item>
+    
+    <item>
+      <title>Email &amp; SMTP Setup</title>
+      <link>https://www.plakar.io/docs/control-plane/operations/email-and-smtp/</link>
+      <pubDate>Mon, 13 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.plakar.io/docs/control-plane/operations/email-and-smtp/</guid>
+      <description>Configure SMTP for email notifications.</description>
       
     </item>
     
@@ -900,31 +900,31 @@
     </item>
     
     <item>
-      <title>Restoring Plakar Control Plane</title>
-      <link>https://www.plakar.io/docs/control-plane/administration/backup-and-restore/restore/</link>
+      <title>Restoring PCP</title>
+      <link>https://www.plakar.io/docs/control-plane/operations/backup-and-restore/restore/</link>
       <pubDate>Thu, 11 Jun 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/administration/backup-and-restore/restore/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/operations/backup-and-restore/restore/</guid>
       <description>How to restore Plakar Control Plane from a backup snapshot to a new appliance.</description>
       
     </item>
     
     <item>
       <title>Updating Scaleway QCOW2</title>
-      <link>https://www.plakar.io/docs/control-plane/administration/updating-control-plane/scaleway/</link>
+      <link>https://www.plakar.io/docs/control-plane/operations/updating/scaleway/</link>
       <pubDate>Mon, 18 May 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/administration/updating-control-plane/scaleway/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/operations/updating/scaleway/</guid>
       <description>How to update the Plakar Control Plane Scaleway installation image.</description>
       
     </item>
     
     <item>
       <title>OVHcloud</title>
-      <link>https://www.plakar.io/docs/control-plane/infrastructure/inventories/ovhcloud/</link>
+      <link>https://www.plakar.io/docs/control-plane/inventories/managed/ovhcloud/</link>
       <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/infrastructure/inventories/ovhcloud/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/inventories/managed/ovhcloud/</guid>
       <description>How to connect and manage OVHcloud inventory in Plakar Control Plane.</description>
       
     </item>
@@ -940,11 +940,21 @@
     </item>
     
     <item>
+      <title>Self-Managed Inventories</title>
+      <link>https://www.plakar.io/docs/control-plane/inventories/self-managed/</link>
+      <pubDate>Wed, 06 May 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.plakar.io/docs/control-plane/inventories/self-managed/</guid>
+      <description>How to connect and manage a self-managed inventory in Plakar Control Plane.</description>
+      
+    </item>
+    
+    <item>
       <title>HashiCorp Vault</title>
-      <link>https://www.plakar.io/docs/control-plane/infrastructure/secret-providers/vault/</link>
+      <link>https://www.plakar.io/docs/control-plane/secret-providers/vault/</link>
       <pubDate>Fri, 24 Apr 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/infrastructure/secret-providers/vault/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/secret-providers/vault/</guid>
       <description>How to configure and use HashiCorp Vault as a secret provider in Plakar Control Plane.</description>
       
     </item>
@@ -1301,10 +1311,10 @@
     
     <item>
       <title>Owner</title>
-      <link>https://www.plakar.io/docs/control-plane/administration/permissions/owner/</link>
+      <link>https://www.plakar.io/docs/control-plane/access-control/permissions/owner/</link>
       <pubDate>Tue, 08 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/administration/permissions/owner/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/access-control/permissions/owner/</guid>
       <description>Full control over one organization, and nothing on the deployment.</description>
       
     </item>
@@ -1331,20 +1341,20 @@
     
     <item>
       <title>Updating vSphere</title>
-      <link>https://www.plakar.io/docs/control-plane/administration/updating-control-plane/vsphere/</link>
+      <link>https://www.plakar.io/docs/control-plane/operations/updating/vsphere/</link>
       <pubDate>Wed, 19 Aug 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/administration/updating-control-plane/vsphere/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/operations/updating/vsphere/</guid>
       <description>How to update the Plakar Control Plane vSphere installation</description>
       
     </item>
     
     <item>
       <title>Updating Proxmox ISO</title>
-      <link>https://www.plakar.io/docs/control-plane/administration/updating-control-plane/proxmox/</link>
+      <link>https://www.plakar.io/docs/control-plane/operations/updating/proxmox/</link>
       <pubDate>Mon, 10 Aug 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/administration/updating-control-plane/proxmox/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/operations/updating/proxmox/</guid>
       <description>How to update the Plakar Control Plane Proxmox installation image.</description>
       
     </item>
@@ -1360,12 +1370,32 @@
     </item>
     
     <item>
+      <title>Webhook Setup</title>
+      <link>https://www.plakar.io/docs/control-plane/operations/webhooks/</link>
+      <pubDate>Wed, 05 Aug 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.plakar.io/docs/control-plane/operations/webhooks/</guid>
+      <description>Configure webhooks to receive event notifications from Plakar Control Plane.</description>
+      
+    </item>
+    
+    <item>
       <title>Managing Users</title>
-      <link>https://www.plakar.io/docs/control-plane/administration/users/</link>
+      <link>https://www.plakar.io/docs/control-plane/access-control/users/</link>
       <pubDate>Mon, 27 Jul 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/administration/users/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/access-control/users/</guid>
       <description>Manage users and application identities in Plakar Control Plane.</description>
+      
+    </item>
+    
+    <item>
+      <title>Configuration Bundles</title>
+      <link>https://www.plakar.io/docs/control-plane/inventories/configuration-bundles/</link>
+      <pubDate>Wed, 22 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.plakar.io/docs/control-plane/inventories/configuration-bundles/</guid>
+      <description>How to use configuration bundles to share credentials and settings across resources.</description>
       
     </item>
     
@@ -1461,16 +1491,6 @@
     
     <item>
       <title>Scaleway</title>
-      <link>https://www.plakar.io/docs/control-plane/infrastructure/inventories/scaleway/</link>
-      <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.plakar.io/docs/control-plane/infrastructure/inventories/scaleway/</guid>
-      <description>How to connect and manage Scaleway inventory in Plakar Control Plane.</description>
-      
-    </item>
-    
-    <item>
-      <title>Scaleway</title>
       <link>https://www.plakar.io/docs/control-plane/intro/installation/scaleway/</link>
       <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
       
@@ -1480,11 +1500,21 @@
     </item>
     
     <item>
-      <title>Scaleway Secret Manager</title>
-      <link>https://www.plakar.io/docs/control-plane/infrastructure/secret-providers/scaleway/</link>
+      <title>Scaleway</title>
+      <link>https://www.plakar.io/docs/control-plane/inventories/managed/scaleway/</link>
       <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/infrastructure/secret-providers/scaleway/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/inventories/managed/scaleway/</guid>
+      <description>How to connect and manage Scaleway inventory in Plakar Control Plane.</description>
+      
+    </item>
+    
+    <item>
+      <title>Scaleway Secret Manager</title>
+      <link>https://www.plakar.io/docs/control-plane/secret-providers/scaleway/</link>
+      <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.plakar.io/docs/control-plane/secret-providers/scaleway/</guid>
       <description>How to configure and use Scaleway Secret Manager as a secret provider in Plakar Control Plane.</description>
       
     </item>
@@ -1660,11 +1690,21 @@
     </item>
     
     <item>
+      <title>Audit Log</title>
+      <link>https://www.plakar.io/docs/control-plane/compliance/audit-log/</link>
+      <pubDate>Tue, 20 Oct 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.plakar.io/docs/control-plane/compliance/audit-log/</guid>
+      <description>The record of administrative and configuration activity in an organization.</description>
+      
+    </item>
+    
+    <item>
       <title>GCP Secret Manager</title>
-      <link>https://www.plakar.io/docs/control-plane/infrastructure/secret-providers/gcp/</link>
+      <link>https://www.plakar.io/docs/control-plane/secret-providers/gcp/</link>
       <pubDate>Thu, 24 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/infrastructure/secret-providers/gcp/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/secret-providers/gcp/</guid>
       <description>How to configure and use Google Cloud Secret Manager as a secret provider in Plakar Control Plane.</description>
       
     </item>
@@ -1701,11 +1741,21 @@
     
     <item>
       <title>Administrator</title>
-      <link>https://www.plakar.io/docs/control-plane/administration/permissions/administrator/</link>
+      <link>https://www.plakar.io/docs/control-plane/access-control/permissions/administrator/</link>
       <pubDate>Tue, 08 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/administration/permissions/administrator/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/access-control/permissions/administrator/</guid>
       <description>Everything inside an organization, except the organization settings themselves.</description>
+      
+    </item>
+    
+    <item>
+      <title>Signing In to Control Plane</title>
+      <link>https://www.plakar.io/docs/control-plane/intro/signing-in/</link>
+      <pubDate>Mon, 07 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.plakar.io/docs/control-plane/intro/signing-in/</guid>
+      <description>Sign in to Plakar Control Plane and select the organization you want to work in.</description>
       
     </item>
     
@@ -1720,12 +1770,12 @@
     </item>
     
     <item>
-      <title>Managing Integrations</title>
-      <link>https://www.plakar.io/docs/control-plane/apps/integrations/</link>
-      <pubDate>Mon, 27 Jul 2026 00:00:00 +0000</pubDate>
+      <title>Two-factor authentication</title>
+      <link>https://www.plakar.io/docs/control-plane/access-control/two-factor-authentication/</link>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/apps/integrations/</guid>
-      <description>Managing integrations in Plakar Control Plane.</description>
+      <guid>https://www.plakar.io/docs/control-plane/access-control/two-factor-authentication/</guid>
+      <description>Secure your Plakar Control Plane account with two-factor authentication.</description>
       
     </item>
     
@@ -1761,10 +1811,10 @@
     
     <item>
       <title>Google Cloud</title>
-      <link>https://www.plakar.io/docs/control-plane/infrastructure/inventories/google-cloud/</link>
+      <link>https://www.plakar.io/docs/control-plane/inventories/managed/google-cloud/</link>
       <pubDate>Fri, 15 May 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/infrastructure/inventories/google-cloud/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/inventories/managed/google-cloud/</guid>
       <description>How to connect and manage Google Cloud inventory in Plakar Control Plane.</description>
       
     </item>
@@ -1921,10 +1971,10 @@
     
     <item>
       <title>Organization Admin</title>
-      <link>https://www.plakar.io/docs/control-plane/administration/permissions/organization-admin/</link>
+      <link>https://www.plakar.io/docs/control-plane/access-control/permissions/organization-admin/</link>
       <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/administration/permissions/organization-admin/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/access-control/permissions/organization-admin/</guid>
       <description>Administers one organization, and cannot see or act outside it.</description>
       
     </item>
@@ -1951,21 +2001,11 @@
     
     <item>
       <title>OVHcloud Secret Manager</title>
-      <link>https://www.plakar.io/docs/control-plane/infrastructure/secret-providers/ovhcloud/</link>
+      <link>https://www.plakar.io/docs/control-plane/secret-providers/ovhcloud/</link>
       <pubDate>Wed, 26 Aug 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/infrastructure/secret-providers/ovhcloud/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/secret-providers/ovhcloud/</guid>
       <description>How to configure and use OVHcloud Secret Manager as a secret provider in Plakar Control Plane.</description>
-      
-    </item>
-    
-    <item>
-      <title>Two-factor authentication</title>
-      <link>https://www.plakar.io/docs/control-plane/administration/two-factor-authentication/</link>
-      <pubDate>Thu, 06 Aug 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.plakar.io/docs/control-plane/administration/two-factor-authentication/</guid>
-      <description>Secure your Plakar Control Plane account with two-factor authentication.</description>
       
     </item>
     
@@ -1981,20 +2021,20 @@
     
     <item>
       <title>Kubernetes</title>
-      <link>https://www.plakar.io/docs/control-plane/infrastructure/inventories/kubernetes/</link>
+      <link>https://www.plakar.io/docs/control-plane/inventories/managed/kubernetes/</link>
       <pubDate>Mon, 03 Aug 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/infrastructure/inventories/kubernetes/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/inventories/managed/kubernetes/</guid>
       <description>How to connect and manage Kubernetes inventory in Plakar Control Plane.</description>
       
     </item>
     
     <item>
       <title>VMware</title>
-      <link>https://www.plakar.io/docs/control-plane/infrastructure/inventories/vmware/</link>
+      <link>https://www.plakar.io/docs/control-plane/inventories/managed/vmware/</link>
       <pubDate>Fri, 17 Jul 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/infrastructure/inventories/vmware/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/inventories/managed/vmware/</guid>
       <description>Connect and manage a VMware inventory in Plakar Control Plane.</description>
       
     </item>
@@ -2201,10 +2241,10 @@
     
     <item>
       <title>Operator</title>
-      <link>https://www.plakar.io/docs/control-plane/administration/permissions/operator/</link>
+      <link>https://www.plakar.io/docs/control-plane/access-control/permissions/operator/</link>
       <pubDate>Tue, 08 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/administration/permissions/operator/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/access-control/permissions/operator/</guid>
       <description>Runs and defines the backup chain, without administering the organization.</description>
       
     </item>
@@ -2246,16 +2286,6 @@
       
       <guid>https://www.plakar.io/docs/control-plane/scheduling/job-history/</guid>
       <description>How to monitor job history and view job details in Plakar Control Plane.</description>
-      
-    </item>
-    
-    <item>
-      <title>Self Managed</title>
-      <link>https://www.plakar.io/docs/control-plane/infrastructure/inventories/self-managed/</link>
-      <pubDate>Wed, 06 May 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.plakar.io/docs/control-plane/infrastructure/inventories/self-managed/</guid>
-      <description>How to connect and manage a Self Managed inventory in Plakar Control Plane.</description>
       
     </item>
     
@@ -2421,21 +2451,11 @@
     
     <item>
       <title>API Automation Account</title>
-      <link>https://www.plakar.io/docs/control-plane/administration/permissions/api-automation/</link>
+      <link>https://www.plakar.io/docs/control-plane/access-control/permissions/api-automation/</link>
       <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/administration/permissions/api-automation/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/access-control/permissions/api-automation/</guid>
       <description>Non-human identity for CI/CD and orchestrators, which runs what is already defined.</description>
-      
-    </item>
-    
-    <item>
-      <title>Email &amp; SMTP Setup</title>
-      <link>https://www.plakar.io/docs/control-plane/administration/email-and-smtp/</link>
-      <pubDate>Mon, 13 Jul 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.plakar.io/docs/control-plane/administration/email-and-smtp/</guid>
-      <description>Configure SMTP for email notifications.</description>
       
     </item>
     
@@ -2511,21 +2531,11 @@
     
     <item>
       <title>Backup Operator</title>
-      <link>https://www.plakar.io/docs/control-plane/administration/permissions/backup-operator/</link>
+      <link>https://www.plakar.io/docs/control-plane/access-control/permissions/backup-operator/</link>
       <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/administration/permissions/backup-operator/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/access-control/permissions/backup-operator/</guid>
       <description>Runs and supervises backup jobs, and defines none of them.</description>
-      
-    </item>
-    
-    <item>
-      <title>Webhook Setup</title>
-      <link>https://www.plakar.io/docs/control-plane/administration/webhooks/</link>
-      <pubDate>Wed, 05 Aug 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.plakar.io/docs/control-plane/administration/webhooks/</guid>
-      <description>Configure webhooks to receive event notifications from Plakar Control Plane.</description>
       
     </item>
     
@@ -2611,10 +2621,10 @@
     
     <item>
       <title>Policy Admin</title>
-      <link>https://www.plakar.io/docs/control-plane/administration/permissions/policy-admin/</link>
+      <link>https://www.plakar.io/docs/control-plane/access-control/permissions/policy-admin/</link>
       <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/administration/permissions/policy-admin/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/access-control/permissions/policy-admin/</guid>
       <description>Owns the shared backup vocabulary, and runs no backup.</description>
       
     </item>
@@ -2626,16 +2636,6 @@
       
       <guid>https://www.plakar.io/docs/control-plane/guides/mtu-and-jumbo-frames/</guid>
       <description>Background on Ethernet MTU, jumbo frames, and TCP MSS, and why they matter for control plane deployments.</description>
-      
-    </item>
-    
-    <item>
-      <title>Configuration Bundles</title>
-      <link>https://www.plakar.io/docs/control-plane/administration/configuration-bundles/</link>
-      <pubDate>Wed, 22 Jul 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.plakar.io/docs/control-plane/administration/configuration-bundles/</guid>
-      <description>How to use configuration bundles to share credentials and settings across resources.</description>
       
     </item>
     
@@ -2721,10 +2721,10 @@
     
     <item>
       <title>Compliance Officer</title>
-      <link>https://www.plakar.io/docs/control-plane/administration/permissions/compliance-officer/</link>
+      <link>https://www.plakar.io/docs/control-plane/access-control/permissions/compliance-officer/</link>
       <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/administration/permissions/compliance-officer/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/access-control/permissions/compliance-officer/</guid>
       <description>Places and releases legal holds, and reads the state they apply to.</description>
       
     </item>
@@ -2821,10 +2821,10 @@
     
     <item>
       <title>Residency Admin</title>
-      <link>https://www.plakar.io/docs/control-plane/administration/permissions/residency-admin/</link>
+      <link>https://www.plakar.io/docs/control-plane/access-control/permissions/residency-admin/</link>
       <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/administration/permissions/residency-admin/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/access-control/permissions/residency-admin/</guid>
       <description>Decides where the data of an organization is allowed to live.</description>
       
     </item>
@@ -2901,10 +2901,10 @@
     
     <item>
       <title>Secrets Admin</title>
-      <link>https://www.plakar.io/docs/control-plane/administration/permissions/secrets-admin/</link>
+      <link>https://www.plakar.io/docs/control-plane/access-control/permissions/secrets-admin/</link>
       <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/administration/permissions/secrets-admin/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/access-control/permissions/secrets-admin/</guid>
       <description>Owns the secret providers an organization&amp;rsquo;s credentials come from.</description>
       
     </item>
@@ -2971,10 +2971,10 @@
     
     <item>
       <title>Edge Admin</title>
-      <link>https://www.plakar.io/docs/control-plane/administration/permissions/edge-admin/</link>
+      <link>https://www.plakar.io/docs/control-plane/access-control/permissions/edge-admin/</link>
       <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/administration/permissions/edge-admin/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/access-control/permissions/edge-admin/</guid>
       <description>Manages the machines an organization runs its work on.</description>
       
     </item>
@@ -3021,10 +3021,10 @@
     
     <item>
       <title>Auditor</title>
-      <link>https://www.plakar.io/docs/control-plane/administration/permissions/auditor/</link>
+      <link>https://www.plakar.io/docs/control-plane/access-control/permissions/auditor/</link>
       <pubDate>Tue, 08 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/administration/permissions/auditor/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/access-control/permissions/auditor/</guid>
       <description>Reads everything in an organization and changes nothing.</description>
       
     </item>
@@ -3071,10 +3071,10 @@
     
     <item>
       <title>Monitoring / SIEM Collector</title>
-      <link>https://www.plakar.io/docs/control-plane/administration/permissions/siem-collector/</link>
+      <link>https://www.plakar.io/docs/control-plane/access-control/permissions/siem-collector/</link>
       <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/administration/permissions/siem-collector/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/access-control/permissions/siem-collector/</guid>
       <description>Non-human identity that reads metrics and exports logs.</description>
       
     </item>
@@ -3111,10 +3111,10 @@
     
     <item>
       <title>Backup Auditor</title>
-      <link>https://www.plakar.io/docs/control-plane/administration/permissions/backup-auditor/</link>
+      <link>https://www.plakar.io/docs/control-plane/access-control/permissions/backup-auditor/</link>
       <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/administration/permissions/backup-auditor/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/access-control/permissions/backup-auditor/</guid>
       <description>Reads how backups are configured and what has run, and nothing else.</description>
       
     </item>
@@ -3141,10 +3141,10 @@
     
     <item>
       <title>Key Manager</title>
-      <link>https://www.plakar.io/docs/control-plane/administration/permissions/key-manager/</link>
+      <link>https://www.plakar.io/docs/control-plane/access-control/permissions/key-manager/</link>
       <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/administration/permissions/key-manager/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/access-control/permissions/key-manager/</guid>
       <description>Manages the KMS or HSM integration behind secret providers. Coming soon.</description>
       
     </item>
@@ -3171,10 +3171,10 @@
     
     <item>
       <title>Restore Approver</title>
-      <link>https://www.plakar.io/docs/control-plane/administration/permissions/restore-approver/</link>
+      <link>https://www.plakar.io/docs/control-plane/access-control/permissions/restore-approver/</link>
       <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/administration/permissions/restore-approver/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/access-control/permissions/restore-approver/</guid>
       <description>Approves critical restores and chooses the authorised target. Coming soon.</description>
       
     </item>
@@ -3201,10 +3201,10 @@
     
     <item>
       <title>Restore Operator</title>
-      <link>https://www.plakar.io/docs/control-plane/administration/permissions/restore-operator/</link>
+      <link>https://www.plakar.io/docs/control-plane/access-control/permissions/restore-operator/</link>
       <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/administration/permissions/restore-operator/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/access-control/permissions/restore-operator/</guid>
       <description>Triggers restores onto authorised targets within its perimeter. Coming soon.</description>
       
     </item>
@@ -3231,10 +3231,10 @@
     
     <item>
       <title>Backup Migration Admin</title>
-      <link>https://www.plakar.io/docs/control-plane/administration/permissions/migration-admin/</link>
+      <link>https://www.plakar.io/docs/control-plane/access-control/permissions/migration-admin/</link>
       <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://www.plakar.io/docs/control-plane/administration/permissions/migration-admin/</guid>
+      <guid>https://www.plakar.io/docs/control-plane/access-control/permissions/migration-admin/</guid>
       <description>Exports and imports backup data during a migration. Coming soon.</description>
       
     </item>

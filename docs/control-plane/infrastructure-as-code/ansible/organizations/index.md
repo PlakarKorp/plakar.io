@@ -2,7 +2,7 @@
 # Organizations and Access
 
 Under an owner's key, a playbook declares
-[organizations](../../../administration/organizations) beneath its own, who
+[organizations](../../../access-control/organizations) beneath its own, who
 belongs to them, and what those members may do. Three modules cover it:
 `organization`, `member` and `grant`.
 
@@ -48,7 +48,7 @@ it:
 
 A service account is declared with `service: true` and no address. Its API key
 is minted from the web interface, because an
-[application user](../../../administration/users#application-users) cannot mint
+[application user](../../../access-control/users#application-users) cannot mint
 its own:
 
 ```yaml
@@ -69,7 +69,7 @@ its own:
 
 `role` names a role from the server's catalogue. The standard set is `owner`,
 `administrator`, `operator` and `auditor`, described in
-[Permissions](../../../administration/permissions). A name the server does not
+[Permissions](../../../access-control/permissions). A name the server does not
 know fails the task and reports the names it does know.
 
 `organization_info` reads a tenant back, with `include_members` and

@@ -21,11 +21,10 @@ Ubuntu. See [SSH client](../../edges/requirements#ssh-client).
 
 ## Inventory Management
 
-Currently no
-[managed inventory](../../infrastructure/inventories#managed-inventories) has
-the capability of discovering Windows resources. You need to set up a
-[self-managed inventory](../../infrastructure/inventories/self-managed) before
-adding a VSS resource.
+Currently no [managed inventory](../../inventories#managed-inventories) has the
+capability of discovering Windows resources. You need to set up a
+[self-managed inventory](../../inventories/self-managed) before adding a VSS
+resource.
 
 ### Adding VSS as a resource
 

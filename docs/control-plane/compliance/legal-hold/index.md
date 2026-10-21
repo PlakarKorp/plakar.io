@@ -16,21 +16,20 @@ distinguishes a legal hold from an [SLA policy](../policies) or
 [data residency](../residency), which define requirements that PCP applies to
 ongoing operations. The permissions for each type of hold are also separate:
 being allowed to hold a restore point does not grant permission to hold a
-resource. See [permissions](../../administration/permissions) for details.
+resource. See [permissions](../../access-control/permissions) for details.
 
 ## Holding a restore point
 
 A hold is placed on an individual restore point from the restore points listed
 in the **Browse** tab of a
-[store app](../../apps/stores#browsing-restore-points).
+[store app](../../apps/stores#browsing-restore-points). A held restore point is
+excluded from pruning. When an [SLA policy](./policies) determines that a
+restore point has reached the end of its retention period, PCP skips it if a
+legal hold is in place.
 
 ![](../images/legal-hold-1.png)
 
 {{< figure src="../images/legal-hold-2.png" alt="" class="mx-auto max-w-100" >}}
-
-A held restore point is excluded from pruning. When an [SLA policy](./policies)
-determines that a restore point has reached the end of its retention period, PCP
-skips it if a legal hold is in place.
 
 The restore point therefore remains available until the hold is removed,
 regardless of the retention period defined by the policy that created it.
@@ -48,6 +47,28 @@ You can place a hold on an individual resource from the actions available in the
 ![](../images/legal-hold-3.png)
 
 {{< figure src="../images/legal-hold-4.png" alt="" class="mx-auto max-w-100" >}}
+
+## Legal hold attestation
+
+A hold has to be demonstrable as well as enforced. An attestation is a signed
+report of the holds in place in the organization at the moment it is taken.
+Because the report is signed, it can be handed to an auditor or regulator who
+verifies it offline, without access to Plakar Control Plane.
+
+An attestation reflects the state at the moment it was taken. Holds placed or
+removed afterwards are not part of it, and a new attestation has to be taken to
+record them. Each attestation carries the time it was taken, the hash of the
+report body and the fingerprint of the key that signed it.
+
+Each record in the report is either a held resource or a held restore point. A
+resource record carries the class, inventory and tags of the resource, along
+with its [residency](../residency), or shows it as undeclared when the resource
+has none.
+
+As with a [residency attestation](../residency#residency-attestation), the
+report can be exported as `JSONL`, `CEF` or `LEEF`.
+
+![](../images/legal-hold-attestation.png)
 
 ## What a hold does not prevent
 

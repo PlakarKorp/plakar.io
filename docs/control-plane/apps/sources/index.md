@@ -1,82 +1,47 @@
 
 # Source App
 
-A source app defines a resource that Plakar Control Plane can back up.
+A source app is the resource being protected, such as a database, a virtual
+machine or a bucket. Each backup reads the data of the resource and writes it to
+a store as a new restore point.
 
-## Assigning a source app
+## Creating a source app
 
-Source apps are assigned from the **Resources** page. Click on a resource to
-open it, then go to the **Apps** tab. This tab shows all source and destination
-already assigned to the resource and allows you to assign new ones. Store apps
-are not managed from here, see the [store app](../stores) documentation for how
-to assign a store.
+A source app is created from the **Apps** tab of the resource, with **Assign
+App** and the **Source** type. The integration, its configuration and the way
+fields are filled work as for every app, as described in
+[setting up an app](../apps#setting-up-an-app).
 
-![](../images/resource-details.png)
+![](../images/resources.png)
 
-To assign a source app, click **Assign app** from the **Apps** tab and select
-**Source**. Then provide a name for the app. The name is used to distinguish
-this app when multiple apps of the same type are configured for the same
-resource.
+A source app also has an **Environment** and one or more **Data Classes**:
 
-Next, select the **Environment** and **Data Class** for the source:
-
-- **Environment** - the environment the resource belongs to, such as production,
-  development, or testing
-- **Data Class** - the type of data stored in the resource, such as critical,
-  database, financial records, or PII. Multiple data classes can be selected if
-  the resource contains more than one type of data.
+- **Environment**: the environment of the resource, such as production,
+  development or testing.
+- **Data Class**: the kind of data the resource holds, such as critical,
+  database, financial records or PII.
 
 When the resource carries
 [environment and data class tags](../../resources#environment-and-data-class-tags),
-both fields are already filled in from them but can still be changed.
+both are filled in from them and can still be changed. The policies engine uses
+them to decide which [policies](../../compliance/policies) apply to the source.
 
-These values are used by the policies engine to determine which policies apply
-to this source. See the [policies documentation](../../compliance/policies) for
-more details.
+## Backing up
 
-Plakar Control Plane then checks the resource `class` and `subclass` to find
-compatible integrations. If only one integration is compatible, it is selected
-automatically, which is the most common case. If multiple integrations are
-compatible, you will need to select one manually. Some integrations support
-multiple protocols. For example, the Scaleway integration supports three
-protocols, that is `scaleway-instance`, `scaleway-block`, and `scaleway-secrets`
-and you will need to select the appropriate one after choosing the integration.
+The **Dashboard** tab of the app creates a backup task from the source with
+**Create Backup**, once a store is available to back up to. See
+[testing the connection](../apps#testing-the-connection) and
+[tasks](../apps#tasks).
 
-Finally, provide the configuration and credentials required for the selected
-resource. See the [resources documentation](../../resources) for the required
-fields. If a [configuration bundle](../../administration/configuration-bundles)
-matches this resource, matching fields are filled in automatically.
+![](../images/source-app.png)
 
-![](../images/create-source.png)
+## Restore points
 
-## Testing the connection
+The **Restore points** tab lists the restore points available for the source. A
+restore point can be opened to view its files and download individual files
+without a full restore. It can also be downloaded whole,
+[checked](../../scheduling/tasks/#check-task), or placed under a
+[legal hold](../compliance/legal-hold).
 
-Once a source app is created, its details page provides a **Dashboard** tab with
-a **Test Connection** action. Use this to verify that Plakar Control Plane can
-connect to the source using the provided configuration and credentials.
-
-![](../images/source-app-1.png)
-
-If the connection test fails, check the app configuration and credentials, then
-run the test again. Once the store has been initialized, additional actions
-become available from the dashboard:
-
-- **Create Backup** - create a backup task from this source
-
-![](../images/source-app-2.png)
-
-## Browsing Restore Points
-
-You can view all backup restore points stored on a store from the **Restore
-Points** tab. From there, you can view the files contained in each restore point
-and download individual files without performing a full restore.
-
-![](../images/view-source-restore-points.png)
-
-## Tasks and Schedules
-
-Tasks can be created directly from the source app dashboard or from the
-**Operations > Scheduling** section. See the
-[scheduling documentation](../../scheduling) for details on creating and
-managing tasks and schedules.
+![](../images/browse-source.png)
 

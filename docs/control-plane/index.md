@@ -12,24 +12,38 @@
 - [Overview](https://www.plakar.io/docs/control-plane/intro/overview/index.md): An introduction to Plakar Control Plane, its core concepts, and how to get started.
 - [Installation](https://www.plakar.io/docs/control-plane/intro/installation/index.md): How to deploy Plakar Control Plane as a virtual appliance on your infrastructure.
 - [Enrollment](https://www.plakar.io/docs/control-plane/intro/enrollment/index.md): How to enroll your Plakar Control Plane instance on first setup.
+- [Signing In to Control Plane](https://www.plakar.io/docs/control-plane/intro/signing-in/index.md): Sign in to Plakar Control Plane and select the organization you want to work in.
 - [Billing & Plans](https://www.plakar.io/docs/control-plane/intro/billing/index.md): Plakar Control Plane plans and how to manage your license.
 
 
-## [Infrastructure](https://www.plakar.io/docs/control-plane/infrastructure/index.md)
-
-- [Inventories](https://www.plakar.io/docs/control-plane/infrastructure/inventories/index.md): Understand how inventories work in Plakar Control Plane and how to use them.
-- [Secret Providers](https://www.plakar.io/docs/control-plane/infrastructure/secret-providers/index.md): How to manage credentials in Plakar Control Plane using secret providers.
+## [Integrations](https://www.plakar.io/docs/control-plane/integrations/index.md)
 
 
-## [Apps](https://www.plakar.io/docs/control-plane/apps/index.md)
+
+## [Secret Providers](https://www.plakar.io/docs/control-plane/secret-providers/index.md)
+
+- [AWS Secrets Manager](https://www.plakar.io/docs/control-plane/secret-providers/aws/index.md): How to configure and use AWS Secrets Manager as a secret provider in Plakar Control Plane.
+- [HashiCorp Vault](https://www.plakar.io/docs/control-plane/secret-providers/vault/index.md): How to configure and use HashiCorp Vault as a secret provider in Plakar Control Plane.
+- [Scaleway Secret Manager](https://www.plakar.io/docs/control-plane/secret-providers/scaleway/index.md): How to configure and use Scaleway Secret Manager as a secret provider in Plakar Control Plane.
+- [GCP Secret Manager](https://www.plakar.io/docs/control-plane/secret-providers/gcp/index.md): How to configure and use Google Cloud Secret Manager as a secret provider in Plakar Control Plane.
+- [OVHcloud Secret Manager](https://www.plakar.io/docs/control-plane/secret-providers/ovhcloud/index.md): How to configure and use OVHcloud Secret Manager as a secret provider in Plakar Control Plane.
+
+
+## [Inventories](https://www.plakar.io/docs/control-plane/inventories/index.md)
+
+- [Managed Inventories](https://www.plakar.io/docs/control-plane/inventories/managed/index.md): Managed inventories that discover resources from a cloud provider or platform.
+- [Self-Managed Inventories](https://www.plakar.io/docs/control-plane/inventories/self-managed/index.md): How to connect and manage a self-managed inventory in Plakar Control Plane.
+- [Configuration Bundles](https://www.plakar.io/docs/control-plane/inventories/configuration-bundles/index.md): How to use configuration bundles to share credentials and settings across resources.
+
+
+## [Resource Apps](https://www.plakar.io/docs/control-plane/apps/index.md)
 
 - [Store App](https://www.plakar.io/docs/control-plane/apps/stores/index.md): How store apps work in Plakar Control Plane.
 - [Source App](https://www.plakar.io/docs/control-plane/apps/sources/index.md): How source apps work in Plakar Control Plane.
 - [Destination App](https://www.plakar.io/docs/control-plane/apps/destinations/index.md): How destination apps work in Plakar Control Plane.
-- [Managing Integrations](https://www.plakar.io/docs/control-plane/apps/integrations/index.md): Managing integrations in Plakar Control Plane.
 
 
-## [Resources](https://www.plakar.io/docs/control-plane/resources/index.md)
+## [Resource Types](https://www.plakar.io/docs/control-plane/resources/index.md)
 
 - [Block Storage](https://www.plakar.io/docs/control-plane/resources/block-storage/index.md): An overview of block storage resources in Plakar Control Plane.
 - [Compute](https://www.plakar.io/docs/control-plane/resources/compute/index.md): An overview of compute resources in Plakar Control Plane.
@@ -63,26 +77,37 @@
 - [Job History](https://www.plakar.io/docs/control-plane/scheduling/job-history/index.md): How to monitor job history and view job details in Plakar Control Plane.
 
 
+## [Access Control](https://www.plakar.io/docs/control-plane/access-control/index.md)
+
+- [Managing Organizations](https://www.plakar.io/docs/control-plane/access-control/organizations/index.md): Organize and isolate resources, configuration, and administration within Plakar Control Plane.
+- [Organization Settings](https://www.plakar.io/docs/control-plane/access-control/organization-settings/index.md): Configure a single organization in Plakar Control Plane.
+- [Managing Users](https://www.plakar.io/docs/control-plane/access-control/users/index.md): Manage users and application identities in Plakar Control Plane.
+- [Two-factor authentication](https://www.plakar.io/docs/control-plane/access-control/two-factor-authentication/index.md): Secure your Plakar Control Plane account with two-factor authentication.
+- [Permissions](https://www.plakar.io/docs/control-plane/access-control/permissions/index.md): How access is granted in Plakar Control Plane, and what each role can reach.
+
+
 ## [Compliance](https://www.plakar.io/docs/control-plane/compliance/index.md)
 
 - [SLA Policies](https://www.plakar.io/docs/control-plane/compliance/policies/index.md): How to create and manage SLA policies in Plakar Control Plane.
 - [Data Residency](https://www.plakar.io/docs/control-plane/compliance/residency/index.md): Constrain where backup data is allowed to live in Plakar Control Plane.
 - [Legal Hold](https://www.plakar.io/docs/control-plane/compliance/legal-hold/index.md): Protect a restore point from deletion, or a resource from being used, while a hold is in place.
+- [Audit Log](https://www.plakar.io/docs/control-plane/compliance/audit-log/index.md): The record of administrative and configuration activity in an organization.
 
 
-## [Administration](https://www.plakar.io/docs/control-plane/administration/index.md)
+## [Operations](https://www.plakar.io/docs/control-plane/operations/index.md)
 
-- [Signing In to Control Plane](https://www.plakar.io/docs/control-plane/administration/signing-in/index.md): Sign in to Plakar Control Plane and select the organization you want to work in.
-- [Managing Organizations](https://www.plakar.io/docs/control-plane/administration/organizations/index.md): Organize and isolate resources, configuration, and administration within Plakar Control Plane.
-- [Managing Users](https://www.plakar.io/docs/control-plane/administration/users/index.md): Manage users and application identities in Plakar Control Plane.
-- [Permissions](https://www.plakar.io/docs/control-plane/administration/permissions/index.md): How access is granted in Plakar Control Plane, and what each role can reach.
-- [Two-factor authentication](https://www.plakar.io/docs/control-plane/administration/two-factor-authentication/index.md): Secure your Plakar Control Plane account with two-factor authentication.
-- [Managing Settings](https://www.plakar.io/docs/control-plane/administration/settings/index.md): Instance-wide and per-organization settings in Plakar Control Plane.
-- [Email & SMTP Setup](https://www.plakar.io/docs/control-plane/administration/email-and-smtp/index.md): Configure SMTP for email notifications.
-- [Webhook Setup](https://www.plakar.io/docs/control-plane/administration/webhooks/index.md): Configure webhooks to receive event notifications from Plakar Control Plane.
-- [Configuration Bundles](https://www.plakar.io/docs/control-plane/administration/configuration-bundles/index.md): How to use configuration bundles to share credentials and settings across resources.
-- [Updating Control Plane](https://www.plakar.io/docs/control-plane/administration/updating-control-plane/index.md): How to update Plakar Control Plane and its underlying deployment infrastructure.
-- [Backup and Restore](https://www.plakar.io/docs/control-plane/administration/backup-and-restore/index.md): How to back up and restore the Plakar Control Plane configuration and data.
+- [Control Plane Settings](https://www.plakar.io/docs/control-plane/operations/control-plane-settings/index.md): Configure the Plakar Control Plane instance itself, from version and networking to diagnostics.
+- [Email & SMTP Setup](https://www.plakar.io/docs/control-plane/operations/email-and-smtp/index.md): Configure SMTP for email notifications.
+- [Webhook Setup](https://www.plakar.io/docs/control-plane/operations/webhooks/index.md): Configure webhooks to receive event notifications from Plakar Control Plane.
+- [Updating Control Plane](https://www.plakar.io/docs/control-plane/operations/updating/index.md): How to update Plakar Control Plane and its underlying deployment infrastructure.
+- [Backup and Restore](https://www.plakar.io/docs/control-plane/operations/backup-and-restore/index.md): How to back up and restore the Plakar Control Plane configuration and data.
+
+
+## [Infrastructure as Code](https://www.plakar.io/docs/control-plane/infrastructure-as-code/index.md)
+
+- [Kubernetes Operator](https://www.plakar.io/docs/control-plane/infrastructure-as-code/kubernetes-operator/index.md): Manage Plakar Control Plane declaratively from Kubernetes using the plakar-operator.
+- [Terraform Provider](https://www.plakar.io/docs/control-plane/infrastructure-as-code/terraform/index.md): Manage Plakar Control Plane declaratively with the plakarkorp/plakar Terraform provider.
+- [Ansible Collection](https://www.plakar.io/docs/control-plane/infrastructure-as-code/ansible/index.md): Drive Plakar Control Plane from playbooks with the plakarkorp.plakar Ansible collection.
 
 
 ## [General Guides](https://www.plakar.io/docs/control-plane/guides/index.md)
@@ -96,13 +121,6 @@
 - [Kubernetes](https://www.plakar.io/docs/control-plane/guides/kubernetes/index.md): Guides and tutorials for using Plakar with Kubernetes.
 - [MTU and Jumbo Frames](https://www.plakar.io/docs/control-plane/guides/mtu-and-jumbo-frames/index.md): Background on Ethernet MTU, jumbo frames, and TCP MSS, and why they matter for control plane deployments.
 - [Hosting a Package Repository](https://www.plakar.io/docs/control-plane/guides/self-hosted-package-repository/index.md): Set up self-hosted repositories so Plakar Control Plane can fetch integrations and appliance components without reaching plakar.io.
-
-
-## [Infrastructure as Code](https://www.plakar.io/docs/control-plane/infrastructure-as-code/index.md)
-
-- [Kubernetes Operator](https://www.plakar.io/docs/control-plane/infrastructure-as-code/kubernetes-operator/index.md): Manage Plakar Control Plane declaratively from Kubernetes using the plakar-operator.
-- [Terraform Provider](https://www.plakar.io/docs/control-plane/infrastructure-as-code/terraform/index.md): Manage Plakar Control Plane declaratively with the plakarkorp/plakar Terraform provider.
-- [Ansible Collection](https://www.plakar.io/docs/control-plane/infrastructure-as-code/ansible/index.md): Drive Plakar Control Plane from playbooks with the plakarkorp.plakar Ansible collection.
 
 
 ## [References](https://www.plakar.io/docs/control-plane/references/index.md)

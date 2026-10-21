@@ -1,12 +1,11 @@
 
 # Inventories
 
-Connectors attach to the resources of an
-[inventory](../../../infrastructure/inventories), which is what PCP knows of
-your estate and what it measures coverage against. Four modules cover them.
-`inventory` declares one, `inventory_resource` declares what a self-managed one
-holds, `inventory_sync` re-reads a provider, and `inventory_info` reads any of
-it back.
+Connectors attach to the resources of an [inventory](../../../inventories),
+which is what PCP knows of your estate and what it measures coverage against.
+Four modules cover them. `inventory` declares one, `inventory_resource` declares
+what a self-managed one holds, `inventory_sync` re-reads a provider, and
+`inventory_info` reads any of it back.
 
 ## Provider-backed inventories
 

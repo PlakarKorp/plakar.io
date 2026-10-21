@@ -70,7 +70,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2026-07-10T12:00:00+01:00">
-    <meta property="article:modified_time" content="2026-10-21T18:12:48+03:00">
+    <meta property="article:modified_time" content="2026-10-21T19:56:42+02:00">
     <meta property="article:tag" content="Plakar">
     <meta property="article:tag" content="Control-Plane">
     <meta property="article:tag" content="Aws">
@@ -220,7 +220,7 @@
     "dateCreated": "2026-07-10T12:00:00\u002b01:00",
     "datePublished": "2026-07-10T12:00:00\u002b01:00",
     
-    "dateModified": "2026-10-21T18:12:48\u002b03:00",
+    "dateModified": "2026-10-21T19:56:42\u002b02:00",
     
     "keywords": ["plakar","control-plane","aws","announcement"],
     
@@ -2321,9 +2321,8 @@ stops being the line item you cut, and becomes the one that saves you.</p>
 code. It sits above the Plakar backup engine and gives security and
 infrastructure teams four benefits legacy tooling can&rsquo;t:</p>
 <ul>
-<li><strong>Provable posture</strong>: one
-<a href="/docs/control-plane/infrastructure/inventories/" >inventory</a> across VMs,
-databases, Kubernetes, buckets, and SaaS, showing what&rsquo;s protected, with
+<li><strong>Provable posture</strong>: one <a href="/docs/control-plane/inventories/" >inventory</a> across
+VMs, databases, Kubernetes, buckets, and SaaS, showing what&rsquo;s protected, with
 integrity checks after every backup.</li>
 <li><strong>Safe, cost-efficient copies</strong>: client-side deduplication and zero-trust
 encryption, stored on the provider of your choice.</li>
@@ -2401,10 +2400,10 @@ estate:</p>
   </tbody>
 </table>
 <p>On AWS specifically,
-<a href="/docs/control-plane/infrastructure/inventories/aws/" >managed inventories</a>
-discover your resources agentlessly through native AWS APIs: EC2 instances, S3
-buckets, and RDS PostgreSQL databases surface automatically, while lightweight
-agents extend the same policies to on-prem and hybrid workloads.</p>
+<a href="/docs/control-plane/inventories/managed/aws/" >managed inventories</a> discover
+your resources agentlessly through native AWS APIs: EC2 instances, S3 buckets,
+and RDS PostgreSQL databases surface automatically, while lightweight agents
+extend the same policies to on-prem and hybrid workloads.</p>
 <p>Everything lands in the same inventory, under the same policies, visible in the
 same posture view. No separate tool per resource type, no scripts held together
 with cron and hope.</p>
@@ -2430,9 +2429,8 @@ with cron and hope.</p>
 <li><strong>Subscribe</strong> on
 <a href="https://aws.amazon.com/marketplace/pp/prodview-n3wsyckyby6vq"  target="_blank" rel="noreferrer">AWS Marketplace</a>
 and launch the appliance (AMI) in your own account.</li>
-<li><strong>Connect an <a href="/docs/control-plane/infrastructure/inventories/" >inventory</a></strong>:
-point Control Plane at your AWS credentials and it syncs your resources
-automatically.</li>
+<li><strong>Connect an <a href="/docs/control-plane/inventories/" >inventory</a></strong>: point Control
+Plane at your AWS credentials and it syncs your resources automatically.</li>
 <li><strong>Apply an <a href="/docs/control-plane/compliance/policies/" >SLA policy</a></strong>: set
 frequency and retention, scope it by environment, data class, or tag; every
 matching source is scheduled automatically.</li>

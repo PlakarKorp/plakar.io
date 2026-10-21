@@ -11,11 +11,10 @@ destination files are locked while SQL Server is running.
 
 ## Inventory Management
 
-Currently no
-[managed inventory](../../infrastructure/inventories#managed-inventories) has
-the capability of discoving Microsoft SQL Server resources. You need to set up a
-[self-managed inventory](../../infrastructure/inventories/self-managed) before
-adding an MSSQL resource.
+Currently no [managed inventory](../../inventories#managed-inventories) has the
+capability of discoving Microsoft SQL Server resources. You need to set up a
+[self-managed inventory](../../inventories/self-managed) before adding an MSSQL
+resource.
 
 ### Adding MSSQL as a resource
 

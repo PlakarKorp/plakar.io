@@ -6,7 +6,7 @@ Compliance features let you state the obligations your backups are subject to
 and have Plakar Control Plane enforce them, rather than relying on operators to
 apply them consistently.
 
-Three mechanisms cover different obligations:
+Three mechanisms enforce different obligations:
 
 - **SLA policies:** define how often sources must be backed up and how long
   their restore points are kept. Policies are scoped to environments and data
@@ -21,9 +21,15 @@ Three mechanisms cover different obligations:
 Policies and residency describe requirements the system applies going forward. A
 legal hold applies to restore points that already exist.
 
-Compliance settings belong to a single organization. You work only with those of
-the organization you signed in to, and what you can do with them is determined
-by the [permissions](../administration/permissions) you hold there.
+The **audit log** complements them by recording what was done. It keeps a
+chronological record of the administrative and configuration changes made in an
+organization, with who made each change and when, so that it can be reviewed
+later.
+
+Compliance settings and the audit log belong to a single organization. Only
+those of the organization selected in the sidebar are shown, and what can be
+done with them is determined by the [permissions](../access-control/permissions)
+held there.
 
 
 
@@ -39,6 +45,10 @@ by the [permissions](../administration/permissions) you hold there.
 
 
 ## [Legal Hold](https://www.plakar.io/docs/control-plane/compliance/legal-hold/index.md)
+
+
+
+## [Audit Log](https://www.plakar.io/docs/control-plane/compliance/audit-log/index.md)
 
 
 

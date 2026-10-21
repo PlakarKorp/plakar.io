@@ -29,6 +29,10 @@ Control Plane, including installation, enrollment, and billing.
 
 
 
+## [Signing In to Control Plane](https://www.plakar.io/docs/control-plane/intro/signing-in/index.md)
+
+
+
 ## [Billing & Plans](https://www.plakar.io/docs/control-plane/intro/billing/index.md)
 
 
