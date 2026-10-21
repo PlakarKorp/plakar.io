@@ -6,6 +6,10 @@ summary: "Go SDK reference for building Plakar integrations."
 aliases:
   - /docs/v1.1.0/references/sdk/
   - /docs/community/v1.1.0/references/sdk/
+  - /docs/community/v1.1.0/guides/creating-a-custom-integration/
+  - /docs/community/v1.1.0/guides/creating-a-custom-connector/
+  - /docs/v1.1.0/guides/creating-a-custom-integration/
+  - /docs/v1.1.0/guides/creating-a-custom-connector/
 ---
 
 # Go Kloset SDK
@@ -21,6 +25,12 @@ The connector interfaces and helper types live in the
 [kloset](https://github.com/PlakarKorp/kloset) module. The SDK turns an
 implementation of one of those interfaces into an executable that Plakar can
 run.
+
+Plakar talks to each connector through a gRPC interface, so an integration can
+be written in any language that can serve it. The Go Kloset SDK implements that
+interface for Go and handles the communication with Plakar. It is currently the
+only official SDK published by Plakar, which makes Go the easiest language to
+build an integration in.
 
 ## Installation
 
