@@ -95,7 +95,7 @@ installed.
 {{< tab label="Go Install" >}}
 
 To install using the Go toolchain, use `go install` with the version you want to
-install, or `latest`:
+install, or `latest`. Since v1.1.8, Plakar requires Go 1.26.10 or later:
 
 ```bash
 $ go install "github.com/PlakarKorp/plakar@latest"
@@ -121,7 +121,8 @@ $ yay -S plakar
 
 You can build Plakar from source. You will need:
 
-- [Go (Golang)](https://go.dev/doc/install)
+- [Go (Golang)](https://go.dev/doc/install) 1.26.10 or later, required since
+  v1.1.8
 - `make` (available by default on most Linux distributions; on macOS, install
   the Xcode command line tools with `xcode-select --install`; on Windows, use
   [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) or a tool like

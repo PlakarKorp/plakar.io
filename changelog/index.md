@@ -6,6 +6,7 @@
 
 ## [Plakar](https://www.plakar.io/changelog/plakar/index.md)
 
+- [Plakar v1.1.8](index.md): A security release that rebuilds Plakar with Go 1.26.10 for the fix to CVE-2026-111943 in <code>crypto/x509</code>. Upgrading is strongly recommended. There are no functional changes from v1.1.7.
 - [Plakar v1.1.7](index.md): A follow-up to the v1.1.6 authentication changes. Signing in from the Plakar UI now uses the confirmation code flow. This release also adds new <code>fs</code> exporter options and fixes backup lock handling and several Windows issues.
 - [Plakar v1.1.6](index.md): A security release. Authenticating with <code>plakar login</code> now requires a confirmation code typed into the terminal that started it, and the API server stops accepting the previous flow on 18 September 2026.
 - [Plakar v1.1.5](index.md): A security-focused patch release. Plakar now refuses to open an unencrypted Kloset store unless you opt in, plugins are signature-checked at install time, and the HTTP store and server were hardened.

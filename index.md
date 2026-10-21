@@ -150,6 +150,7 @@
 - [Plakar v1.1.5](index.md): Official binaries and packages for Plakar v1.1.5 with integrity verification instructions.
 - [Plakar v1.1.6](index.md): Official binaries and packages for Plakar v1.1.6 with integrity verification instructions.
 - [Plakar v1.1.7](index.md): Download binaries and packages for Plakar v1.1.7. All links are served from plakar.io.
+- [Plakar v1.1.8](index.md): Download binaries and packages for Plakar v1.1.8. All links are served from plakar.io.
 
 
 ## [Branding](https://www.plakar.io/branding/index.md)
