@@ -243,6 +243,11 @@ volume is restored to.
 > Cinder ties encryption to the volume type, and a restore uses the volume type
 > with the same name as the original. If that name refers to an unencrypted type
 > in the target cloud, the volume is restored unencrypted.
+>
+> The keys of encrypted volumes are held by Barbican, the OpenStack key manager,
+> and are not part of the backup. Keep a copy of them outside the cloud. A
+> restored encrypted volume cannot be decrypted by a cloud that does not have
+> the matching keys.
 
 #### Backup flow
 
