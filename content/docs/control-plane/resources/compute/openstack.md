@@ -49,7 +49,7 @@ are.
 > server from a backup, with the flavor, networks and security groups of the
 > backed-up server, and reattach each restored volume to it. Until the interface
 > supports it, this restore mode is available through the
-> [Community integration](/docs/community/main/integrations/openstack/).
+> [community integration](/docs/community/main/integrations/openstack/#1-openstack-instance-protocol).
 
 #### Backup flow
 
