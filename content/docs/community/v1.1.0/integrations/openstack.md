@@ -84,7 +84,16 @@ When both are set, the application credential takes precedence.
 
 ## Permissions
 
-_TODO_
+Both protocols create and delete snapshots, images and volumes in the project,
+so the credential needs the `reader` and `member` roles on it. This applies to
+the project the server or volume belongs to for a backup, and to the target
+project for a restore. See
+[Managing Users and Application Credentials](/docs/control-plane/guides/openstack/users-and-application-credentials)
+for how to create a user and an application credential with those roles.
+
+Role names depend on how the OpenStack cloud is configured. The `reader` and
+`member` roles are default Keystone roles, but some providers define their own.
+Consult the documentation of the provider for the equivalent roles.
 
 ## 1. `openstack-instance` protocol
 
@@ -343,6 +352,7 @@ $ plakar at /var/backups restore -to "@myvolume-restore" <snapshot_id>
 
 ## See also
 
+- [Managing Users and Application Credentials on OpenStack](/docs/control-plane/guides/openstack/users-and-application-credentials)
 - [OpenStack inventory in Plakar Control Plane](/docs/control-plane/inventories/managed/openstack)
 - [OpenStack Compute in Plakar Control Plane](/docs/control-plane/resources/compute/openstack)
 - [OpenStack Block Storage in Plakar Control Plane](/docs/control-plane/resources/block-storage/openstack)

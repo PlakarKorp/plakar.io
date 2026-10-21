@@ -117,4 +117,12 @@ destination apps.
 
 ## Permissions
 
-_TODO_
+Backing up and restoring volumes creates and deletes snapshots, images and
+volumes in the project, so the credentials need the `reader` and `member` roles
+on it. See
+[Managing Users and Application Credentials](../../../guides/openstack/users-and-application-credentials)
+for how to create a user and an application credential with those roles.
+
+Role names depend on how the OpenStack cloud is configured. The `reader` and
+`member` roles are default Keystone roles, but some providers define their own.
+Consult the documentation of the provider for the equivalent roles.

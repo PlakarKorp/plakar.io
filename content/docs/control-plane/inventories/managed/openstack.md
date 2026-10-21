@@ -77,7 +77,14 @@ to the user, and to the project when it is identified by name.
 
 ## Required Permissions
 
-_TODO_
+Discovery only reads the project, so the credentials need the `reader` role on
+it. See
+[Managing Users and Application Credentials](../../../guides/openstack/users-and-application-credentials)
+for how to create a user and an application credential with that role.
+
+Role names depend on how the OpenStack cloud is configured. The `reader` role is
+one of the default Keystone roles, but some providers define their own. Consult
+the documentation of the provider for the role that grants read access.
 
 ## Creating an OpenStack Inventory
 
