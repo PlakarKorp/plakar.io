@@ -31,8 +31,25 @@ providers of the organization you signed in to, and what you can do with them is
 determined by the [permissions](../access-control/permissions) you hold there.
 
 Using a secret provider is recommended if your organization already manages
-credentials centrally, or if you want to avoid storing sensitive values in the
-database.
+credentials centrally, if you want to avoid storing sensitive values in the
+database, or if credentials have to be rotated.
+
+## Rotating secrets
+
+Credentials such as API keys and application credentials often expire or have to
+be replaced on a schedule. How a rotation is carried out depends on how the
+credential is provided.
+
+A direct value is a copy of the credential, held in the Plakar Control Plane
+database. When the credential is replaced, every app, inventory or other
+resource that holds the old value has to be updated by hand. Until it is, tasks
+that use it fail, including scheduled backups.
+
+A secret provider holds the credential in one place, outside Plakar Control
+Plane. Plakar Control Plane stores only the path to the secret and resolves it
+each time the credential is needed, so it always uses the current value. A
+rotation is done once, in the secret manager, and every resource that points to
+the secret picks up the new value without any change in Plakar Control Plane.
 
 ## Setting up a secret provider
 
