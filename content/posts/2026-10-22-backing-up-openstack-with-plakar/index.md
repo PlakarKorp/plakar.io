@@ -5,7 +5,7 @@ summary:
   volumes and Nova servers through the OpenStack APIs. No agent. Encrypted and
   deduplicated."
 slug: "backing-up-openstack-with-plakar"
-date: "2026-10-21T00:00:00+14:00"
+date: "2026-10-22T00:00:00+14:00"
 authors:
   - "peeyush"
 tags:
