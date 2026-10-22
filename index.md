@@ -200,6 +200,10 @@
 - [Community Docs](https://www.plakar.io/docs/community/index.md)
 
 
+## [Plakar Community](https://www.plakar.io/plakar-community/index.md)
+
+
+
 ## [Solutions](https://www.plakar.io/solutions/index.md)
 
 - [AWS](https://www.plakar.io/solutions/aws/index.md)
