@@ -4,7 +4,7 @@
 
 
 
-## [Take a Glance: plakar's OpenStack backup is now open source](https://www.plakar.io/posts/2026-10-22/backing-up-openstack-with-plakar/index.md)
+## [Take a Glance: Plakar's OpenStack backup is now free in Plakar Community](https://www.plakar.io/posts/2026-10-22/backing-up-openstack-with-plakar/index.md)
 
 
 
