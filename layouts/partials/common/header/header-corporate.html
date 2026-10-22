@@ -2,6 +2,8 @@
 
 {{ $logo := resources.Get .Site.Params.logos.dark }}
 {{ $logoKit := resources.Get "img/branding/logo.zip" }}
+{{ $logoOutlineBlack := resources.Get "img/branding/logo-outline-black.svg" }}
+{{ $logoOutlineWhite := resources.Get "img/branding/logo-outline-white.svg" }}
 
 <header id="site-header" class="fixed flex px-2 py-2 md:py-3 top-5 rounded-2xl mx-auto inset-x-4 md:inset-x-10 max-w-350 z-50 bg-neutral-50 border-b border-l border-r border-neutral-300">
   <div class="flex mx-auto w-full justify-between relative overflow-y-visible">
@@ -20,8 +22,18 @@
             </a>
           {{ end }}
           {{ with $logo }}
-            <a href="{{ .RelPermalink }}" download class="px-4 py-2 hover:bg-neutral-100 text-neutral-900 text-sm rounded-b-lg">
+            <a href="{{ .RelPermalink }}" download class="px-4 py-2 hover:bg-neutral-100 text-neutral-900 text-sm">
               Download this logo (svg)
+            </a>
+          {{ end }}
+          {{ with $logoOutlineBlack }}
+            <a href="{{ .RelPermalink }}" download class="px-4 py-2 hover:bg-neutral-100 text-neutral-900 text-sm">
+              Download black logo (svg)
+            </a>
+          {{ end }}
+          {{ with $logoOutlineWhite }}
+            <a href="{{ .RelPermalink }}" download class="px-4 py-2 hover:bg-neutral-100 text-neutral-900 text-sm rounded-b-lg">
+              Download white logo (svg)
             </a>
           {{ end }}
         </div>
