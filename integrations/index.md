@@ -4,6 +4,10 @@
 
 
 
+## [OpenStack](https://www.plakar.io/integrations/openstack/index.md)
+
+
+
 ## [MongoDB](https://www.plakar.io/integrations/mongodb/index.md)
 
 

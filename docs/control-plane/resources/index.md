@@ -113,6 +113,7 @@ required to use each one as a source, store, or destination.
 
 - [Scaleway Block Storage](https://www.plakar.io/docs/control-plane/resources/block-storage/scaleway/index.md): How to configure a Scaleway block storage resource in Plakar Control Plane.
 - [Kubernetes PVC](https://www.plakar.io/docs/control-plane/resources/block-storage/pvc/index.md): How to configure a Kubernetes PersistentVolumeClaim resource in Plakar Control Plane.
+- [OpenStack Block Storage](https://www.plakar.io/docs/control-plane/resources/block-storage/openstack/index.md): How to configure an OpenStack Cinder volume resource in Plakar Control Plane.
 
 
 ## [Compute](https://www.plakar.io/docs/control-plane/resources/compute/index.md)
@@ -120,6 +121,7 @@ required to use each one as a source, store, or destination.
 - [Scaleway Compute](https://www.plakar.io/docs/control-plane/resources/compute/scaleway/index.md): How to configure a Scaleway compute resource in Plakar Control Plane.
 - [VMware Compute](https://www.plakar.io/docs/control-plane/resources/compute/vmware/index.md): How to configure a VMware compute resource in Plakar Control Plane.
 - [Windows VSS](https://www.plakar.io/docs/control-plane/resources/compute/vss/index.md): How to configure a Volume Shadow Copy Service (VSS) resource in Plakar Control Plane.
+- [OpenStack Compute](https://www.plakar.io/docs/control-plane/resources/compute/openstack/index.md): How to configure an OpenStack Nova server resource in Plakar Control Plane.
 - [OVHcloud Compute](https://www.plakar.io/docs/control-plane/resources/compute/ovhcloud/index.md): How to configure an OVHcloud Compute resource in Plakar Control Plane.
 - [Kubernetes VM](https://www.plakar.io/docs/control-plane/resources/compute/kubernetes-vm/index.md): How to configure a KubeVirt virtual machine resource in Plakar Control Plane.
 

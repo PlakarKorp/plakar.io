@@ -142,4 +142,8 @@ Below is a list of links to the documentation for each supported integration.
 
 
 
+## [OpenStack](https://www.plakar.io/docs/community/v1.1.0/integrations/openstack/index.md)
+
+
+
 

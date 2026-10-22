@@ -53,6 +53,8 @@
 
 ## [Plakar Integrations](https://www.plakar.io/integrations/index.md)
 
+- [OpenStack](https://www.plakar.io/integrations/openstack/index.md): Manage OpenStack from Plakar Control Plane end to end. Discover Nova servers, Cinder volumes and the other resources of a project automatically, and protect servers and volumes with encrypted, deduplicated backups and restores.
+
 - [MongoDB](https://www.plakar.io/integrations/mongodb/index.md): Protect your MongoDB deployments against accidental deletion, ransomware, and operator error. Plakar captures encrypted, deduplicated snapshots of a running server and restores them to any environment.
 
 - [NFS](https://www.plakar.io/integrations/nfs/index.md): Protect the shared storage your infrastructure runs on against accidental deletion, ransomware, and appliance failure. Plakar captures immutable, encrypted snapshots of NFS exports on NAS appliances and Unix file servers, restorable to any export or environment.

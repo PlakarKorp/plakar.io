@@ -69,6 +69,7 @@
 - [MongoDB](https://www.plakar.io/docs/community/main/integrations/mongodb/index.md): Back up and restore MongoDB databases with Plakar.
 - [VMware](https://www.plakar.io/docs/community/main/integrations/vmware/index.md): Back up and restore VMware vSphere virtual machines with Plakar.
 - [Scaleway](https://www.plakar.io/docs/community/main/integrations/scaleway/index.md): Back up and restore Scaleway instances, block volumes and Secret Manager secrets with Plakar.
+- [OpenStack](https://www.plakar.io/docs/community/main/integrations/openstack/index.md): Back up and restore OpenStack Nova servers and Cinder volumes with Plakar.
 
 
 ## [Explanations](https://www.plakar.io/docs/community/main/explanations/index.md)

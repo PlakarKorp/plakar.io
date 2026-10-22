@@ -36,6 +36,11 @@ tutorials related to Plakar and supported platforms.
 - [Managing API Applications and Credentials](https://www.plakar.io/docs/control-plane/guides/ovhcloud/api-keys/index.md): How to generate OVHcloud API credentials for use with Plakar Control Plane.
 
 
+## [OpenStack](https://www.plakar.io/docs/control-plane/guides/openstack/index.md)
+
+- [Managing Users and Application Credentials](https://www.plakar.io/docs/control-plane/guides/openstack/users-and-application-credentials/index.md): How to create an OpenStack user and application credentials for use with Plakar Control Plane.
+
+
 ## [Windows](https://www.plakar.io/docs/control-plane/guides/windows/index.md)
 
 - [Setting Up OpenSSH Server](https://www.plakar.io/docs/control-plane/guides/windows/windows-openssh-setup/index.md): Learn how to install, configure, and authorize OpenSSH Server on a Windows host so Plakar Control Plane can connect to it over SSH.

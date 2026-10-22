@@ -97,6 +97,7 @@ filled in when an app is set up on a matching resource of the inventory. See
 - [Google Cloud](https://www.plakar.io/docs/control-plane/inventories/managed/google-cloud/index.md): How to connect and manage Google Cloud inventory in Plakar Control Plane.
 - [Kubernetes](https://www.plakar.io/docs/control-plane/inventories/managed/kubernetes/index.md): How to connect and manage Kubernetes inventory in Plakar Control Plane.
 - [VMware](https://www.plakar.io/docs/control-plane/inventories/managed/vmware/index.md): Connect and manage a VMware inventory in Plakar Control Plane.
+- [OpenStack](https://www.plakar.io/docs/control-plane/inventories/managed/openstack/index.md): How to connect and manage OpenStack inventory in Plakar Control Plane.
 
 
 ## [Self-Managed Inventories](https://www.plakar.io/docs/control-plane/inventories/self-managed/index.md)

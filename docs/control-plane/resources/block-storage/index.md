@@ -18,4 +18,8 @@ instances. Plakar Control Plane supports the following block storage resources:
 
 
 
+## [OpenStack Block Storage](https://www.plakar.io/docs/control-plane/resources/block-storage/openstack/index.md)
+
+
+
 

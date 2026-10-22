@@ -38,4 +38,8 @@ For resources that no provider discovers, use a
 
 
 
+## [OpenStack](https://www.plakar.io/docs/control-plane/inventories/managed/openstack/index.md)
+
+
+
 
