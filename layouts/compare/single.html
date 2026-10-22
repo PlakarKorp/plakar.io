@@ -1,0 +1,259 @@
+{{ define "main" }}
+{{ $p := .Params }}
+{{ $nestor := resources.Get "img/nestor/nestor-support.png" }}
+{{ $competitor := $p.competitor_short | default $p.competitor }}
+{{ $plakar := $p.plakar_product | default "Plakar" }}
+<div data-pagefind-filter="section:Compare" hidden></div>
+
+<!-- Hero -->
+<section class="section-light-2 grid-background pt-38 pb-20 relative overflow-hidden">
+  <div class="absolute top-0 right-0 p-64 bg-primary-900/10 rounded-full blur-[120px] pointer-events-none"></div>
+  <div class="max-w-350 mx-auto px-4 flex flex-col items-center gap-14 relative z-10">
+    <div class="text-center flex flex-col items-center gap-6 max-w-4xl">
+      <p class="text-primary-600 font-mono text-sm font-bold uppercase tracking-widest">
+        {{ $plakar }} vs {{ $p.competitor }}{{ with $p.competitor_version }} {{ . }}{{ end }}
+      </p>
+      <h1 class="text-4xl lg:text-6xl font-medium text-neutral-900 leading-tighter">
+        {{ partial "utils/colorize.html" (dict "text" .Title "word" "Plakar") }}
+      </h1>
+      <p class="text-neutral-600 text-lg lg:text-xl max-w-3xl">{{ $p.verdict }}</p>
+      <div class="flex flex-col sm:flex-row gap-4 mt-2 items-center">
+        {{ partial "components/buttons/base-button.html" (dict
+          "label" "Book a demo"
+          "labelShort" "Demo"
+          "class" "book-a-demo-modal-open"
+          "icon" "ri/calendar-event-line"
+        ) }}
+        {{ partial "components/buttons/base-button.html" (dict
+          "label" ($p.secondary_cta_label | default "Get started for free")
+          "labelShort" "Get started"
+          "href" ($p.secondary_cta_url | default "/download/")
+          "icon" "ri/flashlight-line"
+          "bgColor" "bg-white"
+          "bgHoverColor" "bg-neutral-100"
+          "textColor" "text-neutral-900"
+          "textHoverColor" "text-neutral-900"
+          "border" "border"
+          "borderColor" "border-neutral-300"
+        ) }}
+      </div>
+      <p class="text-xs text-neutral-500 font-mono max-w-2xl">
+        Last verified {{ $p.verified }}{{ with $p.plakar_version }}. Plakar version compared: {{ . }}{{ end }}{{ with $p.competitor_version }}. {{ $competitor }} version compared: {{ . }}{{ end }}.
+      </p>
+    </div>
+
+    {{ with $p.highlights }}
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
+      {{ range . }}
+      <div class="bg-white p-6 rounded-xl border border-neutral-200 shadow-sm flex flex-col gap-2 text-left">
+        <h2 class="text-neutral-900 font-bold text-lg">{{ .title }}</h2>
+        <p class="text-neutral-600 text-sm leading-relaxed">{{ .text }}</p>
+      </div>
+      {{ end }}
+    </div>
+    {{ end }}
+  </div>
+</section>
+
+<!-- At a glance table -->
+<section class="section-light-1 py-14 lg:py-20 border-t border-neutral-200" id="at-a-glance">
+  <div class="max-w-350 mx-auto px-4">
+    <div class="text-center max-w-3xl mx-auto mb-10 flex flex-col gap-4">
+      <h2 class="text-3xl lg:text-5xl font-medium text-neutral-900 leading-tighter">{{ $plakar }} vs {{ $competitor }} at a glance</h2>
+      <p class="text-neutral-600">
+        Based on public documentation and release notes as of {{ $p.verified }}. <span class="text-amber-600 font-bold">Partial</span> means the capability exists with limits, add-ons or a narrower scope. Sources are listed at the bottom of the page.
+      </p>
+    </div>
+
+    {{/* Phones and tablets: one card per capability */}}
+    <div class="lg:hidden flex flex-col gap-8" data-pagefind-ignore>
+      {{ range $p.table }}
+      <div class="flex flex-col gap-4">
+        <h3 class="text-xs font-mono font-bold text-neutral-500 uppercase tracking-widest">{{ .section }}</h3>
+        {{ range .rows }}
+        <div class="bg-white rounded-2xl border border-neutral-200 shadow-sm overflow-hidden">
+          <div class="p-5">
+            <h4 class="text-neutral-900 font-medium">{{ .capability }}</h4>
+            {{ with .hint }}<p class="text-xs text-neutral-500 mt-1">{{ . }}</p>{{ end }}
+          </div>
+          <dl class="border-t border-neutral-100">
+            <div class="p-5 bg-primary-50/40 border-l-4 border-primary-500 flex flex-col gap-2">
+              <dt class="text-xs font-bold text-primary-700 uppercase tracking-wide">{{ $plakar }}</dt>
+              <dd>{{ partial "compare/status.html" (dict "status" .plakar.status "note" .plakar.note "highlight" true "align" "start") }}</dd>
+            </div>
+            <div class="p-5 border-t border-neutral-100 border-l-4 border-l-neutral-200 flex flex-col gap-2">
+              <dt class="text-xs font-bold text-neutral-600 uppercase tracking-wide">{{ $competitor }}</dt>
+              <dd>{{ partial "compare/status.html" (dict "status" .competitor.status "note" .competitor.note "align" "start") }}</dd>
+            </div>
+          </dl>
+        </div>
+        {{ end }}
+      </div>
+      {{ end }}
+    </div>
+
+    {{/* Desktop: full table. "table!" overrides Blowfish's global table { display: block } */}}
+    <div class="hidden lg:block overflow-x-auto rounded-2xl border border-neutral-200 shadow-sm bg-white">
+      <table class="table! w-full border-collapse">
+        <thead>
+          <tr class="bg-neutral-50 border-b border-neutral-200">
+            <th scope="col" class="p-6 text-left w-2/5"><span class="font-bold text-neutral-900 text-lg">Capability</span></th>
+            <th scope="col" class="p-6 text-center w-[30%] bg-primary-50 border-x border-primary-100 relative">
+              <div class="absolute top-0 left-0 w-full h-1 bg-primary-500"></div>
+              <span class="font-bold text-primary-700 text-xl block">Plakar</span>
+              <span class="text-xs text-primary-600 font-normal mt-1 block">{{ $plakar }}</span>
+            </th>
+            <th scope="col" class="p-6 text-center w-[30%]">
+              <span class="font-bold text-neutral-700 text-xl block">{{ $competitor }}</span>
+              {{ with $p.competitor_version }}<span class="text-xs text-neutral-500 font-normal mt-1 block">{{ . }}</span>{{ end }}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {{ range $p.table }}
+          <tr class="bg-neutral-100/50">
+            <td colspan="3" class="px-6 py-3 text-xs font-mono font-bold text-neutral-500 uppercase tracking-widest">{{ .section }}</td>
+          </tr>
+          {{ range .rows }}
+          <tr class="border-b border-neutral-100 hover:bg-neutral-50 transition-colors">
+            <th scope="row" class="p-6 text-left text-neutral-900 font-medium align-top">
+              {{ .capability }}
+              {{ with .hint }}<span class="block text-xs text-neutral-500 font-normal mt-1">{{ . }}</span>{{ end }}
+            </th>
+            <td class="p-6 text-center bg-primary-50/30 border-x border-primary-100 align-top">
+              {{ partial "compare/status.html" (dict "status" .plakar.status "note" .plakar.note "highlight" true) }}
+            </td>
+            <td class="p-6 text-center align-top">
+              {{ partial "compare/status.html" (dict "status" .competitor.status "note" .competitor.note) }}
+            </td>
+          </tr>
+          {{ end }}
+          {{ end }}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Deep dives -->
+{{ with $p.sections }}
+<section class="section-dark-1 py-14 lg:py-24 border-y border-neutral-800 relative overflow-hidden">
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-150 h-75 bg-primary-900/20 blur-[100px] rounded-full pointer-events-none"></div>
+  <div class="max-w-350 mx-auto px-4 relative z-10">
+    <div class="text-center max-w-3xl mx-auto mb-12 flex flex-col gap-4">
+      <h2 class="text-3xl lg:text-5xl font-medium text-white leading-tighter">Where the difference shows up</h2>
+      <p class="text-neutral-400 text-lg">{{ $p.sections_intro | default "The table above is the summary. These are the details that matter in an evaluation." }}</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+      {{ range . }}
+      <div class="bg-neutral-800/50 p-6 lg:p-8 rounded-xl border border-neutral-700 flex flex-col gap-4">
+        <h3 class="text-xl font-bold text-white">{{ .heading }}</h3>
+        {{ with .competitor_text }}<p class="text-neutral-400 leading-relaxed"><strong class="text-neutral-300">{{ $competitor }}:</strong> {{ . }}</p>{{ end }}
+        {{ with .plakar_text }}<p class="text-neutral-400 leading-relaxed"><strong class="text-neutral-300">Plakar:</strong> {{ . }}</p>{{ end }}
+        {{ with .bullets }}
+        <ul class="text-neutral-300 text-sm leading-relaxed flex flex-col gap-2 mt-2">
+          {{ range . }}<li class="flex gap-2"><span class="w-4 h-4 mt-1 text-primary-400 shrink-0">{{ partial "icon.html" "ri/check-line" }}</span><span>{{ . }}</span></li>{{ end }}
+        </ul>
+        {{ end }}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+<!-- When to choose -->
+<section class="section-light-2 py-14 lg:py-24">
+  <div class="max-w-350 mx-auto px-4">
+    <div class="text-center max-w-3xl mx-auto mb-12 flex flex-col gap-4">
+      <h2 class="text-3xl lg:text-5xl font-medium text-neutral-900 leading-tighter">Which one should you pick?</h2>
+      <p class="text-neutral-600 text-lg">Both tools are good at different things. Here is the honest split.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+      <div class="bg-white p-6 lg:p-8 rounded-2xl border border-neutral-200 shadow-sm flex flex-col gap-4">
+        <h3 class="text-lg font-bold text-neutral-900">Choose {{ $competitor }} when</h3>
+        <ul class="text-neutral-700 text-sm leading-relaxed flex flex-col gap-3">
+          {{ range $p.choose_competitor }}<li class="flex gap-2"><span class="w-4 h-4 mt-1 text-neutral-400 shrink-0">{{ partial "icon.html" "ri/arrow-right-line" }}</span><span>{{ . }}</span></li>{{ end }}
+        </ul>
+      </div>
+      <div class="bg-primary-50 p-6 lg:p-8 rounded-2xl border border-primary-100 shadow-sm flex flex-col gap-4">
+        <h3 class="text-lg font-bold text-primary-700">Choose {{ $plakar }} when</h3>
+        <ul class="text-neutral-800 text-sm leading-relaxed flex flex-col gap-3">
+          {{ range $p.choose_plakar }}<li class="flex gap-2"><span class="w-4 h-4 mt-1 text-primary-600 shrink-0">{{ partial "icon.html" "ri/check-line" }}</span><span>{{ . }}</span></li>{{ end }}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Body content (optional long-form) -->
+{{ with .Content }}
+<section class="section-light-1 py-14">
+  <div class="max-w-4xl mx-auto px-4 prose prose-neutral">
+    {{ . }}
+  </div>
+</section>
+{{ end }}
+
+<!-- FAQ -->
+{{ partial "compare/faq.html" (dict "faq" $p.faq "class" "section-light-1") }}
+
+<!-- Sources -->
+{{ with $p.sources }}
+<section class="section-light-2 py-10 border-t border-neutral-200" id="sources">
+  <div class="max-w-4xl mx-auto px-4">
+    <h2 class="text-xl font-bold text-neutral-900 mb-4">Sources</h2>
+    <p class="text-neutral-600 text-sm mb-4">Every {{ $competitor }} claim on this page comes from the vendor's own documentation, release notes or announcements, checked on {{ $p.verified }}. If something is out of date, <a href="/contact/" class="text-primary-600 underline">tell us</a> and we will fix it.</p>
+    <ol class="text-sm text-neutral-700 flex flex-col gap-2 list-decimal pl-5">
+      {{ range . }}<li><a href="{{ .url }}" target="_blank" rel="noopener noreferrer" class="text-primary-600 hover:underline">{{ .label }}</a></li>{{ end }}
+    </ol>
+  </div>
+</section>
+{{ end }}
+
+<!-- Related comparisons -->
+{{ $siblings := where .CurrentSection.RegularPages "Permalink" "ne" .Permalink }}
+{{ with $siblings }}
+<section class="section-light-1 py-10 border-t border-neutral-200">
+  <div class="max-w-350 mx-auto px-4">
+    <h2 class="text-xl font-bold text-neutral-900 mb-4">Other comparisons</h2>
+    <div class="flex flex-wrap gap-3">
+      {{ range . }}<a href="{{ .RelPermalink }}" class="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-4 py-2 text-sm font-medium text-neutral-800 hover:border-primary-500 hover:text-primary-600 transition-colors">{{ .Title }}</a>{{ end }}
+      <a href="/compare/" class="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-4 py-2 text-sm font-medium text-neutral-800 hover:border-primary-500 hover:text-primary-600 transition-colors">All comparisons</a>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+<!-- CTA -->
+<section class="section-light-2 grid-background py-24 relative overflow-hidden">
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-100 bg-primary-500/10 blur-[120px] rounded-full pointer-events-none"></div>
+  <div class="max-w-350 mx-auto px-4 relative z-10 flex flex-col lg:flex-row items-center justify-center gap-10">
+    {{ if $nestor }}
+      {{ partial "components/image.html" (dict "resource" $nestor "alt" "Nestor, the Plakar chipmunk" "widths" (slice 200 400) "class" "max-h-50 object-contain") }}
+    {{ end }}
+    <div class="max-w-2xl flex flex-col gap-6 text-center lg:text-left">
+      <h2 class="text-3xl md:text-5xl font-medium text-neutral-900 leading-tight">{{ $p.cta_title | default "See it on your own data" }}</h2>
+      <p class="text-lg text-neutral-600 leading-relaxed">{{ $p.cta_text | default "Run a backup, verify it, restore it somewhere else. The whole engine is open source, so you can check every claim on this page yourself." }}</p>
+      <div class="flex justify-center lg:justify-start mt-2 gap-4 flex-wrap">
+        {{ partial "components/buttons/base-button.html" (dict "label" "Book a demo" "labelShort" "Demo" "class" "book-a-demo-modal-open") }}
+        {{ partial "components/buttons/base-button.html" (dict
+          "label" "Read the docs" "labelShort" "Docs" "href" "/docs/"
+          "bgColor" "bg-neutral-50" "bgHoverColor" "bg-primary-50" "textColor" "text-primary-600" "textHoverColor" "text-primary-600" "border" "border" "borderColor" "border-primary-500"
+        ) }}
+      </div>
+    </div>
+  </div>
+</section>
+
+{{/* Structured data for search and answer engines */}}
+{{ $faq := slice }}
+{{ range $p.faq }}
+  {{ $faq = $faq | append (dict "@type" "Question" "name" .q "acceptedAnswer" (dict "@type" "Answer" "text" .a)) }}
+{{ end }}
+{{ $ld := slice
+  (dict "@context" "https://schema.org" "@type" "WebPage" "name" .Title "description" .Description "url" .Permalink "dateModified" $p.verified "about" (slice (dict "@type" "SoftwareApplication" "name" "Plakar" "applicationCategory" "Backup software" "operatingSystem" "Linux, macOS, Windows, FreeBSD" "url" "https://www.plakar.io/") (dict "@type" "SoftwareApplication" "name" $p.competitor "applicationCategory" "Backup software")))
+}}
+{{ if $faq }}{{ $ld = $ld | append (dict "@context" "https://schema.org" "@type" "FAQPage" "mainEntity" $faq) }}{{ end }}
+<script type="application/ld+json">{{ $ld | jsonify | safeJS }}</script>
+{{ end }}
