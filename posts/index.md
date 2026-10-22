@@ -4,6 +4,10 @@
 
 
 
+## [Take a Glance: plakar's OpenStack backup is now open source](https://www.plakar.io/posts/2026-10-22/backing-up-openstack-with-plakar/index.md)
+
+
+
 ## [Backing up MongoDB with Plakar](https://www.plakar.io/posts/2026-10-13/backing-up-mongodb-with-plakar/index.md)
 
 

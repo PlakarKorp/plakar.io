@@ -6,6 +6,7 @@
 
 ## [Plakar Blog](https://www.plakar.io/posts/index.md)
 
+- [Take a Glance: plakar's OpenStack backup is now open source](https://www.plakar.io/posts/2026-10-22/backing-up-openstack-with-plakar/index.md): plakar&rsquo;s OpenStack backup is now open source: back up and restore Cinder volumes and Nova servers through the OpenStack APIs. No agent. Encrypted and deduplicated.
 - [Backing up MongoDB with Plakar](https://www.plakar.io/posts/2026-10-13/backing-up-mongodb-with-plakar/index.md): Plakar now backs up MongoDB. One package, a connection string, and your collections land encrypted and deduplicated in a store you own. Our first NoSQL database, after PostgreSQL, MySQL, MariaDB and SQL Server.
 - [Backing up VMware for free with Plakar OSS](https://www.plakar.io/posts/2026-10-08/backing-up-vmware-with-plakar-oss/index.md): Plakar&rsquo;s VMware integration, previously only in the Plakar Control Plane, is now available in Plakar OSS: free for registered Plakar users, with encrypted, deduplicated backups of running VMs stored in an open, portable format.
 - [Resilience as Code, because backup should be Infrastructure.](https://www.plakar.io/posts/2026-09-23/resilience-as-code-kubernetes-operator/index.md): Backup is the last layer of your stack still clicked into a console. The Plakar Kubernetes Operator makes it code: declare resilience as Custom Resources, reconciled from Git, for everything you run.
