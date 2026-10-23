@@ -68,23 +68,10 @@ parent = "solutions"
 
 # Solutions > Infrastructure
 [[main]]
-identifier = "solutions-onpremises-backup"
-name = "On-premises"
-url = "/solutions/on-premises/"
-weight = 10
-parent = "solutions"
-[[main.params]]
-  description = "On your infrastructure"
-  enabled = true
-  section = "Infrastructure"
-  section_weight = 10
-  icon = "ri/refresh-line"
-
-[[main]]
 identifier = "solutions-cloud-aws"
 name = "Amazon Web Services"
 url = "/solutions/aws/"
-weight = 20
+weight = 10
 parent = "solutions"
 [[main.params]]
   description = "Inside your AWS account"
@@ -94,10 +81,23 @@ parent = "solutions"
   icon = "corporate/aws"
 
 [[main]]
+identifier = "solutions-cloud-azure"
+name = "Azure"
+url = "/integrations/azblob/"
+weight = 20
+parent = "solutions"
+[[main.params]]
+  description = "Backups for Azure Blob Storage"
+  enabled = true
+  section = "Infrastructure"
+  section_weight = 10
+  icon = "corporate/microsoft-azure"
+
+[[main]]
 identifier = "solutions-cloud-gcp"
 name = "Google Cloud"
 url = "/integrations/gcp/"
-weight = 40
+weight = 30
 parent = "solutions"
 [[main.params]]
   description = "Inside your Google Cloud account"
@@ -107,17 +107,17 @@ parent = "solutions"
   icon = "corporate/google-cloud"
 
 [[main]]
-identifier = "solutions-cloud-azure"
-name = "Azure"
-url = "/integrations/azblob/"
-weight = 30
+identifier = "solutions-onpremises-backup"
+name = "On-premises"
+url = "/solutions/on-premises/"
+weight = 40
 parent = "solutions"
 [[main.params]]
-  description = "Backups for Azure Blob Storage"
+  description = "On your infrastructure"
   enabled = true
   section = "Infrastructure"
   section_weight = 10
-  icon = "corporate/microsoft-azure"
+  icon = "ri/refresh-line"
 
 [[main]]
 identifier = "solutions-cloud-ovh"
