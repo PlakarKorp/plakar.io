@@ -80,40 +80,15 @@ stores the database, logs, and all Plakar state.
 Attach an additional Block Storage volume with a recommended size of `1024 GB`.
 Backups themselves are stored wherever you configure using apps.
 
-## Proxy and Harbor Configuration
+## Configuring the Appliance
 
-If the instance doesn't have direct internet access, configure an HTTP proxy, a
-local Harbor registry mirror, or both through Scaleway's **cloud-init user
-data** before creating the instance.
+Settings the appliance needs at boot are delivered through Scaleway's
+**cloud-init user data**, set before the instance is created. A single
+cloud-config document can carry a proxy, a registry mirror, a Private Network
+interface and an SSH key. Include only the keys your environment needs. An
+instance with a public IP and direct internet access needs none of them.
 
-![Adding proxy and Harbor configuration to Scaleway cloud-init](../images/scaleway-cloud-init.png)
-
-### What needs to be reachable
-
-Plakar Control Plane requires HTTPS access to `api.plakar.io` for runtime
-configuration, license validation, and plugin downloads. If your proxy uses a
-whitelist instead of allowing all outbound traffic, you need to add
-`*.plakar.io`
-
-The appliance also needs to pull container images from `docker.io` and
-`ghcr.io`. There are two supported approaches:
-
-1. **Route image pulls through the HTTP proxy.** If you choose this option, the
-   proxy should allow access to:
-   - `*.docker.io`
-   - `*.docker.com`
-   - `*.ghcr.io`
-   - `*.githubusercontent.com`
-
-2. **Use a Harbor registry mirror.** This is the recommended approach for
-   production deployments because images are pulled from a local registry cache
-   instead of the public internet. When using Harbor, you don't need to
-   whitelist the Docker and GitHub domains above on your proxy.
-
-### Cloud-init configuration
-
-The cloud-init user data is a standard YAML document containing `proxy:` and/or
-`registry:` sections, depending on your environment.
+![Adding cloud-init user data to a Scaleway instance](../images/scaleway-cloud-init.png)
 
 ```yaml
 #cloud-config
@@ -127,69 +102,92 @@ registry:
     docker.io: <harbor-host>/dockerhub-proxy
     ghcr.io: <harbor-host>/ghcr-proxy
   insecure: false # true: skip TLS verification for the mirror hosts
+
+network:
+  ethernets:
+    eth1:
+      dhcp4: true # Private Network interface, for an instance without a public IP
+
+ssh_authorized_keys:
+  - ssh-ed25519 AAAA...
 ```
 
-## Networking and Security Groups
+### Proxy and registry mirror
 
-The networking configuration below is intended for a basic deployment setup.
+Plakar Control Plane requires HTTPS access to `api.plakar.io` for runtime
+configuration, license validation, and plugin downloads, and pulls container
+images from `docker.io` and `ghcr.io`. When the instance has no direct internet
+access, the `proxy:` key routes this traffic through an HTTP proxy. If the proxy
+uses a whitelist instead of allowing all outbound traffic, add `*.plakar.io`.
 
-In production environments, networking and access control should be adapted to
-match your infrastructure and security requirements. For example:
+Container images can go through the same proxy, which must then allow
+`*.docker.io`, `*.docker.com`, `*.ghcr.io` and `*.githubusercontent.com`. The
+`registry:` key instead pulls them from a Harbor registry mirror. A mirror is
+recommended for production deployments because images come from a local cache
+rather than the public internet, and the Docker and GitHub domains no longer
+need to be allowed on the proxy.
 
-- Exposing Plakar Control Plane through a load balancer with HTTPS/TLS
-  certificates
-- Restricting access through a VPN or private network
-- Limiting inbound traffic to trusted IP ranges
-- Using internal-only networking
+### Private Network
 
-You'll need to assign both an IPv4 and IPv6 address to the instance.
+An instance can run without a public IP, attached to a Private Network that
+reaches the internet through a Scaleway Public Gateway. By default, the
+appliance only requests an address over DHCP on its first interface, which on
+Scaleway is the public interface. Without a public IP, nothing answers on that
+interface and the instance does not finish booting.
+
+The `network:` key enables DHCP on `eth1`, the Private Network interface. The
+instance then receives its address, its default route through the Public Gateway
+and its DNS resolver from the Private Network, provided **Advertise default
+route** is enabled on the gateway's attachment to the network.
+
+Such an instance is reached through a load balancer or the SSH bastion of the
+Public Gateway. See
+[HTTPS access on a Private Network](../../../guides/scaleway/https-access-to-a-private-network)
+and [SSH bastion access](../../../guides/scaleway/ssh-bastion-access).
+
+### SSH access
+
+The appliance accepts SSH connections as the `plakar` user. Without cloud-init
+user data, an instance receives the SSH keys registered in its Scaleway project,
+in the **SSH keys** section of the instance creation flow.
+
+![](../images/scaleway-ssh.png)
+
+When cloud-init user data is provided, Scaleway no longer adds the project keys,
+and the `ssh_authorized_keys:` key is the only way to authorize one. The key is
+optional, and mostly useful to debug a network configuration that does not work.
+
+```sh
+ssh plakar@<instance-ip-address>
+```
+
+### Security group
 
 When the instance is created, Scaleway automatically attaches the default
-security group. Once the instance is running, open the instances page and go to
-the **Security Group** tab.
+security group. For an instance with a public IP, assign both an IPv4 and an
+IPv6 address, then open the **Security Group** tab of the instance once it is
+running. Set the default inbound policy to **drop all**, then allow inbound TCP
+traffic on port `80`, and on port `22` if you connect over SSH.
 
-Under the inbound rules configuration, set the default inbound policy to **drop
-all**, then add a rule allowing inbound TCP traffic on port `80`.
-
-The allowed source can be:
-
-- Your public IP address
-- Your organization gateway or VPN address
-- `0.0.0.0/0` for temporary testing access
+The allowed source can be your public IP address, your organization gateway or
+VPN address, or `0.0.0.0/0` for temporary testing access.
 
 > [!WARNING]+
 >
 > Using `0.0.0.0/0` allows access from any IP address and should only be used
 > for testing or temporary deployments.
 
-## Connect over SSH
-
-An instance receives the SSH keys registered in its Scaleway project, and the
-appliance accepts connections from those keys as the `plakar` user. Keys are
-registered in the **SSH keys** section of the instance creation flow, below the
-network configuration.
-
-![](../images/scaleway-ssh.png)
-
-```sh
-ssh plakar@<public-ipv4-address>
-```
-
-Reaching the instance on SSH also requires an inbound rule for TCP port `22` on
-the security group, alongside the port `80` rule configured above.
+In production environments, adapt networking and access control to your
+infrastructure, for example by exposing Plakar Control Plane through a load
+balancer with HTTPS, restricting access to a VPN or private network, or limiting
+inbound traffic to trusted IP ranges.
 
 ## Accessing Plakar Control Plane
 
-After the instance has started and the security group has been configured,
-Plakar Control Plane can be accessed from your browser using:
-
-```txt
-http://<public-ipv4-address>
-```
-
-Where `<public-ipv4-address>` is the public IPv4 address assigned to the
-instance. For first-time installations, you will be guided through the
-enrollment process to:
+Once the instance has started, Plakar Control Plane is reached from a browser at
+`http://<public-ipv4-address>` for an instance with a public IP, or through the
+load balancer or SSH bastion for an instance on a Private Network. For
+first-time installations, you will be guided through the enrollment process to:
 
 - Register the instance with Plakar services for licensing and billing
 - Create the initial administrator account

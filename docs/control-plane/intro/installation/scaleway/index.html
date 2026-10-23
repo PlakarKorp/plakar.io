@@ -70,7 +70,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-05-15T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-10-22T11:22:22+03:00">
+    <meta property="article:modified_time" content="2026-10-23T20:22:56+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -227,12 +227,12 @@
     "dateCreated": "2026-05-15T00:00:00\u002b00:00",
     "datePublished": "2026-05-15T00:00:00\u002b00:00",
     
-    "dateModified": "2026-10-22T11:22:22\u002b03:00",
+    "dateModified": "2026-10-23T20:22:56\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/intro/installation/scaleway/",
-    "wordCount":  903 
+    "wordCount":  1059 
   }]
   </script>
 
@@ -273,7 +273,7 @@
 
 
 
-<script src="/js/compiled/bundle.min.fd8d31898a23830495c3b642c5f14eef1414ed473fc3d3a90da0edc74500e6d5.js" defer></script>
+<script src="/js/compiled/bundle.min.4d7ce5152912810aa9128872ffb549f762bdb42aa3507d3be50cb60fc3507718.js" defer></script>
 
   
 
@@ -9006,11 +9006,11 @@ stores the database, logs, and all Plakar state.</p>
 Backups themselves are stored wherever you configure using apps.</p>
 
 
-<h2 id="proxy-and-harbor-configuration" class="group pr-8">Proxy and Harbor Configuration
+<h2 id="configuring-the-appliance" class="group pr-8">Configuring the Appliance
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="proxy-and-harbor-configuration"
+      data-anchor="configuring-the-appliance"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -9021,28 +9021,49 @@ Backups themselves are stored wherever you configure using apps.</p>
     </button>
   
 </h2>
-<p>If the instance doesn&rsquo;t have direct internet access, configure an HTTP proxy, a
-local Harbor registry mirror, or both through Scaleway&rsquo;s <strong>cloud-init user
-data</strong> before creating the instance.</p>
+<p>Settings the appliance needs at boot are delivered through Scaleway&rsquo;s
+<strong>cloud-init user data</strong>, set before the instance is created. A single
+cloud-config document can carry a proxy, a registry mirror, a Private Network
+interface and an SSH key. Include only the keys your environment needs. An
+instance with a public IP and direct internet access needs none of them.</p>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
     decoding="async"
     fetchpriority="auto"
-    alt="Adding proxy and Harbor configuration to Scaleway cloud-init"
+    alt="Adding cloud-init user data to a Scaleway instance"
     width="2329"
     height="784"
     src="/docs/control-plane/intro/installation/images/scaleway-cloud-init_hu_afc1544410ae16ba.webp"
     srcset="/docs/control-plane/intro/installation/images/scaleway-cloud-init_hu_afc1544410ae16ba.webp 400w, /docs/control-plane/intro/installation/images/scaleway-cloud-init_hu_53784b0a980a5733.webp 800w, /docs/control-plane/intro/installation/images/scaleway-cloud-init_hu_2e56dc4fcac64a88.webp 1200w"
     sizes="(min-width: 768px) 50vw, 65vw"
     data-zoom-src="/docs/control-plane/intro/installation/images/scaleway-cloud-init_hu_215c65bb5c8ad916.webp"></figure>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c">#cloud-config</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">proxy</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">http</span><span class="p">:</span><span class="w"> </span><span class="l">http://&lt;proxy-ip&gt;:&lt;proxy-port&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">https</span><span class="p">:</span><span class="w"> </span><span class="l">http://&lt;proxy-ip&gt;:&lt;proxy-port&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">no_proxy</span><span class="p">:</span><span class="w"> </span><span class="l">.corp.example,10.0.0.0/8</span><span class="w"> </span><span class="c"># optional</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">registry</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">mirrors</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">docker.io</span><span class="p">:</span><span class="w"> </span><span class="l">&lt;harbor-host&gt;/dockerhub-proxy</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ghcr.io</span><span class="p">:</span><span class="w"> </span><span class="l">&lt;harbor-host&gt;/ghcr-proxy</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">insecure: false # true</span><span class="p">:</span><span class="w"> </span><span class="l">skip TLS verification for the mirror hosts</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">network</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ethernets</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">eth1</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">dhcp4</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="c"># Private Network interface, for an instance without a public IP</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">ssh_authorized_keys</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">ssh-ed25519 AAAA...</span></span></span></code></pre></div></div>
 
 
-<h3 id="what-needs-to-be-reachable" class="group pr-8">What needs to be reachable
+<h3 id="proxy-and-registry-mirror" class="group pr-8">Proxy and registry mirror
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="what-needs-to-be-reachable"
+      data-anchor="proxy-and-registry-mirror"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -9054,36 +9075,23 @@ data</strong> before creating the instance.</p>
   
 </h3>
 <p>Plakar Control Plane requires HTTPS access to <code>api.plakar.io</code> for runtime
-configuration, license validation, and plugin downloads. If your proxy uses a
-whitelist instead of allowing all outbound traffic, you need to add
-<code>*.plakar.io</code></p>
-<p>The appliance also needs to pull container images from <code>docker.io</code> and
-<code>ghcr.io</code>. There are two supported approaches:</p>
-<ol>
-<li>
-<p><strong>Route image pulls through the HTTP proxy.</strong> If you choose this option, the
-proxy should allow access to:</p>
-<ul>
-<li><code>*.docker.io</code></li>
-<li><code>*.docker.com</code></li>
-<li><code>*.ghcr.io</code></li>
-<li><code>*.githubusercontent.com</code></li>
-</ul>
-</li>
-<li>
-<p><strong>Use a Harbor registry mirror.</strong> This is the recommended approach for
-production deployments because images are pulled from a local registry cache
-instead of the public internet. When using Harbor, you don&rsquo;t need to
-whitelist the Docker and GitHub domains above on your proxy.</p>
-</li>
-</ol>
+configuration, license validation, and plugin downloads, and pulls container
+images from <code>docker.io</code> and <code>ghcr.io</code>. When the instance has no direct internet
+access, the <code>proxy:</code> key routes this traffic through an HTTP proxy. If the proxy
+uses a whitelist instead of allowing all outbound traffic, add <code>*.plakar.io</code>.</p>
+<p>Container images can go through the same proxy, which must then allow
+<code>*.docker.io</code>, <code>*.docker.com</code>, <code>*.ghcr.io</code> and <code>*.githubusercontent.com</code>. The
+<code>registry:</code> key instead pulls them from a Harbor registry mirror. A mirror is
+recommended for production deployments because images come from a local cache
+rather than the public internet, and the Docker and GitHub domains no longer
+need to be allowed on the proxy.</p>
 
 
-<h3 id="cloud-init-configuration" class="group pr-8">Cloud-init configuration
+<h3 id="private-network" class="group pr-8">Private Network
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="cloud-init-configuration"
+      data-anchor="private-network"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -9094,26 +9102,26 @@ whitelist the Docker and GitHub domains above on your proxy.</p>
     </button>
   
 </h3>
-<p>The cloud-init user data is a standard YAML document containing <code>proxy:</code> and/or
-<code>registry:</code> sections, depending on your environment.</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c">#cloud-config</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="nt">proxy</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">http</span><span class="p">:</span><span class="w"> </span><span class="l">http://&lt;proxy-ip&gt;:&lt;proxy-port&gt;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">https</span><span class="p">:</span><span class="w"> </span><span class="l">http://&lt;proxy-ip&gt;:&lt;proxy-port&gt;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">no_proxy</span><span class="p">:</span><span class="w"> </span><span class="l">.corp.example,10.0.0.0/8</span><span class="w"> </span><span class="c"># optional</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="nt">registry</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">mirrors</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">docker.io</span><span class="p">:</span><span class="w"> </span><span class="l">&lt;harbor-host&gt;/dockerhub-proxy</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ghcr.io</span><span class="p">:</span><span class="w"> </span><span class="l">&lt;harbor-host&gt;/ghcr-proxy</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">insecure: false # true</span><span class="p">:</span><span class="w"> </span><span class="l">skip TLS verification for the mirror hosts</span></span></span></code></pre></div></div>
+<p>An instance can run without a public IP, attached to a Private Network that
+reaches the internet through a Scaleway Public Gateway. By default, the
+appliance only requests an address over DHCP on its first interface, which on
+Scaleway is the public interface. Without a public IP, nothing answers on that
+interface and the instance does not finish booting.</p>
+<p>The <code>network:</code> key enables DHCP on <code>eth1</code>, the Private Network interface. The
+instance then receives its address, its default route through the Public Gateway
+and its DNS resolver from the Private Network, provided <strong>Advertise default
+route</strong> is enabled on the gateway&rsquo;s attachment to the network.</p>
+<p>Such an instance is reached through a load balancer or the SSH bastion of the
+Public Gateway. See
+<a href="../../../guides/scaleway/https-access-to-a-private-network" >HTTPS access on a Private Network</a>
+and <a href="../../../guides/scaleway/ssh-bastion-access" >SSH bastion access</a>.</p>
 
 
-<h2 id="networking-and-security-groups" class="group pr-8">Networking and Security Groups
+<h3 id="ssh-access" class="group pr-8">SSH access
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="networking-and-security-groups"
+      data-anchor="ssh-access"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -9123,29 +9131,50 @@ whitelist the Docker and GitHub domains above on your proxy.</p>
 </span></span>
     </button>
   
-</h2>
-<p>The networking configuration below is intended for a basic deployment setup.</p>
-<p>In production environments, networking and access control should be adapted to
-match your infrastructure and security requirements. For example:</p>
-<ul>
-<li>Exposing Plakar Control Plane through a load balancer with HTTPS/TLS
-certificates</li>
-<li>Restricting access through a VPN or private network</li>
-<li>Limiting inbound traffic to trusted IP ranges</li>
-<li>Using internal-only networking</li>
-</ul>
-<p>You&rsquo;ll need to assign both an IPv4 and IPv6 address to the instance.</p>
+</h3>
+<p>The appliance accepts SSH connections as the <code>plakar</code> user. Without cloud-init
+user data, an instance receives the SSH keys registered in its Scaleway project,
+in the <strong>SSH keys</strong> section of the instance creation flow.</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt=""
+    width="2329"
+    height="576"
+    src="/docs/control-plane/intro/installation/images/scaleway-ssh_hu_d86cfd19da6dbb7.webp"
+    srcset="/docs/control-plane/intro/installation/images/scaleway-ssh_hu_d86cfd19da6dbb7.webp 400w, /docs/control-plane/intro/installation/images/scaleway-ssh_hu_12c27054060ff2db.webp 800w, /docs/control-plane/intro/installation/images/scaleway-ssh_hu_c2cb90a5f6570c6a.webp 1200w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/docs/control-plane/intro/installation/images/scaleway-ssh_hu_5016d12cf8010991.webp"></figure>
+<p>When cloud-init user data is provided, Scaleway no longer adds the project keys,
+and the <code>ssh_authorized_keys:</code> key is the only way to authorize one. The key is
+optional, and mostly useful to debug a network configuration that does not work.</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">ssh plakar@&lt;instance-ip-address&gt;</span></span></code></pre></div></div>
+
+
+<h3 id="security-group" class="group pr-8">Security group
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="security-group"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
 <p>When the instance is created, Scaleway automatically attaches the default
-security group. Once the instance is running, open the instances page and go to
-the <strong>Security Group</strong> tab.</p>
-<p>Under the inbound rules configuration, set the default inbound policy to <strong>drop
-all</strong>, then add a rule allowing inbound TCP traffic on port <code>80</code>.</p>
-<p>The allowed source can be:</p>
-<ul>
-<li>Your public IP address</li>
-<li>Your organization gateway or VPN address</li>
-<li><code>0.0.0.0/0</code> for temporary testing access</li>
-</ul>
+security group. For an instance with a public IP, assign both an IPv4 and an
+IPv6 address, then open the <strong>Security Group</strong> tab of the instance once it is
+running. Set the default inbound policy to <strong>drop all</strong>, then allow inbound TCP
+traffic on port <code>80</code>, and on port <code>22</code> if you connect over SSH.</p>
+<p>The allowed source can be your public IP address, your organization gateway or
+VPN address, or <code>0.0.0.0/0</code> for temporary testing access.</p>
 <details
       class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
       data-type="warning"
@@ -9171,42 +9200,10 @@ all</strong>, then add a rule allowing inbound TCP traffic on port <code>80</cod
 </svg>
 </span></div>
       </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Using <code>0.0.0.0/0</code> allows access from any IP address and should only be used
-for testing or temporary deployments.</p></div></details>
-
-<h2 id="connect-over-ssh" class="group pr-8">Connect over SSH
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="connect-over-ssh"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h2>
-<p>An instance receives the SSH keys registered in its Scaleway project, and the
-appliance accepts connections from those keys as the <code>plakar</code> user. Keys are
-registered in the <strong>SSH keys</strong> section of the instance creation flow, below the
-network configuration.</p>
-<figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="auto"
-    alt=""
-    width="2329"
-    height="576"
-    src="/docs/control-plane/intro/installation/images/scaleway-ssh_hu_d86cfd19da6dbb7.webp"
-    srcset="/docs/control-plane/intro/installation/images/scaleway-ssh_hu_d86cfd19da6dbb7.webp 400w, /docs/control-plane/intro/installation/images/scaleway-ssh_hu_12c27054060ff2db.webp 800w, /docs/control-plane/intro/installation/images/scaleway-ssh_hu_c2cb90a5f6570c6a.webp 1200w"
-    sizes="(min-width: 768px) 50vw, 65vw"
-    data-zoom-src="/docs/control-plane/intro/installation/images/scaleway-ssh_hu_5016d12cf8010991.webp"></figure>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">ssh plakar@&lt;public-ipv4-address&gt;</span></span></code></pre></div></div>
-<p>Reaching the instance on SSH also requires an inbound rule for TCP port <code>22</code> on
-the security group, alongside the port <code>80</code> rule configured above.</p>
+for testing or temporary deployments.</p></div></details><p>In production environments, adapt networking and access control to your
+infrastructure, for example by exposing Plakar Control Plane through a load
+balancer with HTTPS, restricting access to a VPN or private network, or limiting
+inbound traffic to trusted IP ranges.</p>
 
 
 <h2 id="accessing-plakar-control-plane" class="group pr-8">Accessing Plakar Control Plane
@@ -9224,12 +9221,10 @@ the security group, alongside the port <code>80</code> rule configured above.</p
     </button>
   
 </h2>
-<p>After the instance has started and the security group has been configured,
-Plakar Control Plane can be accessed from your browser using:</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">http://&lt;public-ipv4-address&gt;</span></span></code></pre></div></div>
-<p>Where <code>&lt;public-ipv4-address&gt;</code> is the public IPv4 address assigned to the
-instance. For first-time installations, you will be guided through the
-enrollment process to:</p>
+<p>Once the instance has started, Plakar Control Plane is reached from a browser at
+<code>http://&lt;public-ipv4-address&gt;</code> for an instance with a public IP, or through the
+load balancer or SSH bastion for an instance on a Private Network. For
+first-time installations, you will be guided through the enrollment process to:</p>
 <ul>
 <li>Register the instance with Plakar services for licensing and billing</li>
 <li>Create the initial administrator account</li>
@@ -9295,7 +9290,7 @@ enrollment process to:</p>
   
   <div class="flex items-center justify-between text-xs text-neutral-400">
     
-      <span>Last updated: October 22, 2026</span>
+      <span>Last updated: October 23, 2026</span>
     
     
       <a href="https://github.com/PlakarKorp/plakar.io/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">
@@ -9315,7 +9310,7 @@ enrollment process to:</p>
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#uploading-the-qcow2-image-to-scaleway-object-storage">Uploading the QCOW2 image to Scaleway Object Storage</a></li><li><a href="#creating-a-block-storage-snapshot">Creating a Block Storage snapshot</a></li><li><a href="#creating-the-scaleway-instance">Creating the Scaleway instance</a></li><li><a href="#proxy-and-harbor-configuration">Proxy and Harbor Configuration</a><ul><li><a href="#what-needs-to-be-reachable">What needs to be reachable</a></li><li><a href="#cloud-init-configuration">Cloud-init configuration</a></li></ul></li><li><a href="#networking-and-security-groups">Networking and Security Groups</a></li><li><a href="#connect-over-ssh">Connect over SSH</a></li><li><a href="#accessing-plakar-control-plane">Accessing Plakar Control Plane</a></li></ul>
+      <ul><li><a href="#uploading-the-qcow2-image-to-scaleway-object-storage">Uploading the QCOW2 image to Scaleway Object Storage</a></li><li><a href="#creating-a-block-storage-snapshot">Creating a Block Storage snapshot</a></li><li><a href="#creating-the-scaleway-instance">Creating the Scaleway instance</a></li><li><a href="#configuring-the-appliance">Configuring the Appliance</a><ul><li><a href="#proxy-and-registry-mirror">Proxy and registry mirror</a></li><li><a href="#private-network">Private Network</a></li><li><a href="#ssh-access">SSH access</a></li><li><a href="#security-group">Security group</a></li></ul></li><li><a href="#accessing-plakar-control-plane">Accessing Plakar Control Plane</a></li></ul>
     </div>
 
     
