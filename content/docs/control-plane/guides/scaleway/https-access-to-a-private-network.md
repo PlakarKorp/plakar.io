@@ -125,6 +125,12 @@ Gateway set up in
 will provide internet access. You can also attach the instance to the Private
 Network directly during instance creation.
 
+An instance without a public IP needs DHCP enabled on its Private Network
+interface through cloud-init user data, or it does not finish booting. Add it
+before creating the instance, as described in the
+[Private Network](../../intro/installation/scaleway#private-network) section of
+the installation guide.
+
 ![](../images/create-scaleway-instance.png)
 
 If your instance already exists, open your VPC in the Scaleway console, navigate

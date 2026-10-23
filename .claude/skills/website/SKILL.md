@@ -34,6 +34,25 @@ To customize the theme:
 Hugo automatically prefers templates in `layouts/` over those provided by the
 theme.
 
+## Keep the submodule in sync
+
+The team bumps the Blowfish submodule on `main` from time to time. Before
+starting any new work, sync with upstream `main` and update the submodule so
+local builds use the same theme version as production:
+
+```bash
+git checkout main
+git fetch upstream
+git merge --ff-only upstream/main
+git submodule update --init --recursive
+git submodule status
+```
+
+If `git status` shows `M themes/blowfish` after this, the local checkout points
+at a different theme commit than `main`. Do not commit that pointer change by
+accident: run `git submodule update --init --recursive` again, and only bump
+the submodule in a dedicated PR.
+
 ---
 
 # JavaScript

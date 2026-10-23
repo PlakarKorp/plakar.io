@@ -19,10 +19,10 @@ snapshot is put back into service.
 
 ## Inventory Management
 
-No [managed inventory](../../infrastructure/inventories#managed-inventories) can
-discover etcd clusters, so you need to set up a
-[self-managed inventory](../../infrastructure/inventories/self-managed) and add
-the resource manually.
+No [managed inventory](../../inventories#managed-inventories) can discover etcd
+clusters, so you need to set up a
+[self-managed inventory](../../inventories/self-managed) and add the resource
+manually.
 
 ### Adding etcd as a resource
 

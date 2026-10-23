@@ -18,7 +18,7 @@ for an authentication token.
 
 You work with the edges available to the organization you signed in to, and what
 you can do with them is determined by the
-[permissions](../../administration/permissions) your application user has on the
+[permissions](../../access-control/permissions) your application user has on the
 organization.
 
 ## Enabling edge enrollment
@@ -48,7 +48,7 @@ An organization shares its edges with the organizations below it by handing down
 its edge enrollment setting. Every organization that inherits the setting, at
 any depth, can use the edges of the organization that set it. The setting is
 inherited like any other organization setting, as described in
-[handing settings down](../../administration/settings/organization#handing-settings-down).
+[handing settings down](../../access-control/organization-settings#handing-settings-down).
 
 A shared edge runs tasks like one of the organization's own. It appears in the
 organization's list of edges, tasks can be pinned to it, and PCP can pick it

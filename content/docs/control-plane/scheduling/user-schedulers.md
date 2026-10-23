@@ -11,7 +11,7 @@ aliases:
 
 # User Schedulers
 
-Every [Application user](../administration/users#application-users) can have its
+Every [Application user](../access-control/users#application-users) can have its
 own scheduler. Unlike the [manual](../manual-scheduler) and
 [policy](../policy-scheduler) schedulers, a user scheduler is not created from
 the UI. Application users authenticate with an API key rather than signing in,

@@ -63,12 +63,12 @@ runs on. Provide them to every edge that runs `postgres+aws` tasks. See
 
 ## Inventory Management
 
-[Managed inventories](../../infrastructure/inventories#managed-inventories) can
-discover PostgreSQL databases automatically on AWS (RDS instances and clusters),
-Scaleway (managed Database instances), etc. For self-hosted PostgreSQL servers
-not covered by managed discovery, you can instead set up a
-[self-managed inventory](../../infrastructure/inventories/self-managed) and add
-the resource manually.
+[Managed inventories](../../inventories#managed-inventories) can discover
+PostgreSQL databases automatically on AWS (RDS instances and clusters), Scaleway
+(managed Database instances), etc. For self-hosted PostgreSQL servers not
+covered by managed discovery, you can instead set up a
+[self-managed inventory](../../inventories/self-managed) and add the resource
+manually.
 
 ### Adding PostgreSQL as a resource
 

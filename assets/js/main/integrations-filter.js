@@ -182,10 +182,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (stat === "all") {
         resetFilters();
       } else {
-        if (stat === "storage") {
-          state.type = "storage";
-          if (typeSelect) typeSelect.value = "storage";
-        }
+        state.type = stat;
+        if (typeSelect) typeSelect.value = stat;
         applyVisibility();
       }
       searchInput

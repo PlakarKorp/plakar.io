@@ -26,11 +26,10 @@ Ubuntu. See [SSH client](../../edges/requirements#ssh-client).
 
 ## Inventory Management
 
-Currently no
-[managed inventory](../../infrastructure/inventories#managed-inventories) has
-the capability of discovering SFTP resources. You need to set up a
-[self-managed inventory](../../infrastructure/inventories/self-managed) before
-adding an SFTP resource.
+Currently no [managed inventory](../../inventories#managed-inventories) has the
+capability of discovering SFTP resources. You need to set up a
+[self-managed inventory](../../inventories/self-managed) before adding an SFTP
+resource.
 
 ### Adding SFTP as a resource
 

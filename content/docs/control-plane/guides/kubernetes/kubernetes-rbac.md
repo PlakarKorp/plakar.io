@@ -10,8 +10,8 @@ summary:
 # Kubernetes Service Accounts and RBAC
 
 The [Kubernetes integration](/docs/community/main/integrations/kubernetes) and
-the [Kubernetes inventory](../../infrastructure/inventories/kubernetes) operate
-on a cluster using the permissions of the credentials they are given.
+the [Kubernetes inventory](../../inventories/managed/kubernetes) operate on a
+cluster using the permissions of the credentials they are given.
 
 The Kubernetes integration provides several protocols, each backing up or
 restoring a different kind of data:
@@ -385,8 +385,8 @@ roleRef:
 ## Inventory
 
 This role is used by the
-[Kubernetes inventory](../../infrastructure/inventories/kubernetes) to discover
-PVCs and KubeVirt virtual machines across all namespaces.
+[Kubernetes inventory](../../inventories/managed/kubernetes) to discover PVCs
+and KubeVirt virtual machines across all namespaces.
 
 It only reads PVC and virtual machine metadata and never accesses the contents
 of volumes or disks. It also reads the `kube-system` namespace, whose UID is

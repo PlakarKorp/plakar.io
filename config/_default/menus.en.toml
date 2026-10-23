@@ -39,7 +39,34 @@ weight = 40
 [[main.params]]
   enabled = true
 
-# Solutions > Platforms
+# Solutions > Product
+[[main]]
+identifier = "solutions-community"
+name = "Plakar Community"
+url = "/plakar-community/"
+weight = 5
+parent = "solutions"
+[[main.params]]
+  description = "The open backup engine"
+  enabled = true
+  section = "Product"
+  section_weight = 5
+  icon = "ri/open-source-line"
+
+[[main]]
+identifier = "solutions-control-plane"
+name = "Control Plane"
+url = "/solutions/control-plane/"
+weight = 10
+parent = "solutions"
+[[main.params]]
+  description = "Orchestrate your whole estate"
+  enabled = true
+  section = "Product"
+  section_weight = 5
+  icon = "ri/dashboard-3-line"
+
+# Solutions > Infrastructure
 [[main]]
 identifier = "solutions-onpremises-backup"
 name = "On-premises"
@@ -49,7 +76,7 @@ parent = "solutions"
 [[main.params]]
   description = "On your infrastructure"
   enabled = true
-  section = "Platforms"
+  section = "Infrastructure"
   section_weight = 10
   icon = "ri/refresh-line"
 
@@ -62,7 +89,7 @@ parent = "solutions"
 [[main.params]]
   description = "Inside your AWS account"
   enabled = true
-  section = "Platforms"
+  section = "Infrastructure"
   section_weight = 10
   icon = "corporate/aws"
 
@@ -70,12 +97,12 @@ parent = "solutions"
 identifier = "solutions-cloud-gcp"
 name = "Google Cloud"
 url = "/integrations/gcp/"
-weight = 30
+weight = 40
 parent = "solutions"
 [[main.params]]
   description = "Inside your Google Cloud account"
   enabled = true
-  section = "Platforms"
+  section = "Infrastructure"
   section_weight = 10
   icon = "corporate/google-cloud"
 
@@ -83,12 +110,12 @@ parent = "solutions"
 identifier = "solutions-cloud-azure"
 name = "Azure"
 url = "/integrations/azblob/"
-weight = 40
+weight = 30
 parent = "solutions"
 [[main.params]]
   description = "Backups for Azure Blob Storage"
   enabled = true
-  section = "Platforms"
+  section = "Infrastructure"
   section_weight = 10
   icon = "corporate/microsoft-azure"
 
@@ -101,7 +128,7 @@ parent = "solutions"
 [[main.params]]
   description = "Backups for OVH Cloud"
   enabled = true
-  section = "Platforms"
+  section = "Infrastructure"
   section_weight = 10
   icon = "corporate/ovhcloud"
 
@@ -114,36 +141,75 @@ parent = "solutions"
 [[main.params]]
   description = "Backups for Scaleway"
   enabled = true
-  section = "Platforms"
+  section = "Infrastructure"
   section_weight = 10
   icon = "corporate/scaleway"
 
-# Solutions > Resources
+# Solutions > Use cases
 [[main]]
-identifier = "solutions-resources-compare"
-name = "Compare Plakar to Alternatives"
-url = "/compare/"
-weight = 40
+identifier = "solutions-usecase-ransomware"
+name = "Ransomware recovery"
+url = "/solutions/ransomware-recovery/"
+weight = 10
 parent = "solutions"
 [[main.params]]
-  description = "Discover Plakar strengths"
+  description = "Restore clean data on your terms"
   enabled = true
-  section = "Resources"
-  section_weight = 30
-  icon = "ri/arrow-left-right-line"
+  section = "Use cases"
+  section_weight = 20
+  icon = "ri/shield-check-line"
 
 [[main]]
-identifier = "solutions-resources-reduce-costs"
-name = "Cost Efficiency"
-url = "/solutions/cost-efficiency/"
+identifier = "solutions-usecase-autonomy"
+name = "Strategic autonomy"
+url = "/solutions/strategic-autonomy/"
+weight = 20
+parent = "solutions"
+[[main.params]]
+  description = "Keys you hold, no lock-in"
+  enabled = true
+  section = "Use cases"
+  section_weight = 20
+  icon = "ri/global-line"
+
+[[main]]
+identifier = "solutions-usecase-rac"
+name = "Resilience as Code"
+url = "/solutions/resilience-as-code/"
+weight = 30
+parent = "solutions"
+[[main.params]]
+  description = "Backups declared with your platform"
+  enabled = true
+  section = "Use cases"
+  section_weight = 20
+  icon = "ri/terminal-box-line"
+
+[[main]]
+identifier = "solutions-usecase-posture"
+name = "Posture management"
+url = "/solutions/posture-management/"
 weight = 40
 parent = "solutions"
 [[main.params]]
-  description = "Slash storage & egress fees"
+  description = "Prove what is protected"
   enabled = true
-  section = "Resources"
-  section_weight = 30
-  icon = "ri/arrow-left-right-line"
+  section = "Use cases"
+  section_weight = 20
+  icon = "ri/search-line"
+
+[[main]]
+identifier = "solutions-usecase-costs"
+name = "Cost efficiency"
+url = "/solutions/cost-efficiency/"
+weight = 50
+parent = "solutions"
+[[main.params]]
+  description = "Slash storage and egress fees"
+  enabled = true
+  section = "Use cases"
+  section_weight = 20
+  icon = "ri/price-tag-3-line"
 
 # Engineering > Learn
 [[main]]
@@ -213,6 +279,19 @@ parent = "engineering"
   section = "Learn"
   section_weight = 10
   icon = "ri/git-merge-line"
+
+[[main]]
+identifier = "engineering-learn-compare"
+name = "Compare Plakar"
+url = "/compare/"
+weight = 36
+parent = "engineering"
+[[main.params]]
+  description = "Discover Plakar strengths"
+  enabled = true
+  section = "Learn"
+  section_weight = 10
+  icon = "ri/arrow-left-right-line"
 
 # Engineering > Community
 [[main]]

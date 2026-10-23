@@ -48,7 +48,7 @@ out, which is how the key is normally supplied in CI.
 ## Authentication
 
 The provider authenticates with an API key belonging to an
-[application user](../../administration/users#application-users), the account
+[application user](../../access-control/users#application-users), the account
 type intended for automation. API keys carry the `pcp_ak_` prefix and are
 created from the web interface.
 
@@ -59,14 +59,14 @@ application user to be a member of it. Individual resources accept the same
 argument and override the provider for themselves, so one configuration can span
 several organizations.
 
-The account's [permissions](../../administration/permissions) determine what the
+The account's [permissions](../../access-control/permissions) determine what the
 provider can do. When an apply fails on a single resource with an authorization
 error, the role granted to the application user does not reach that part of the
 organization.
 
 Stores, connectors and schedules are the resources most configurations declare,
 and reaching them at the configure level or above requires at least the
-[Operator](../../administration/permissions/operator) role.
+[Operator](../../access-control/permissions/operator) role.
 
 ## Secrets in Terraform state
 
