@@ -243,9 +243,9 @@ table:
           {
             status: "partial",
             note:
-              "IMAP mailboxes only. The Google Drive, OneDrive, Dropbox, iCloud
-              and Notion connectors are in Plakar Community, not Control Plane.
-              No Microsoft 365, SharePoint or Salesforce connector.",
+              "Notion (beta) and IMAP mailboxes. Microsoft 365 coming soon. The
+              Google Drive, OneDrive, Dropbox and iCloud connectors are in
+              Plakar Community. No SharePoint or Salesforce connector.",
           }
         competitor:
           {
@@ -417,9 +417,9 @@ sections:
       Kubernetes operator with OpenShift Virtualization (KubeVirt) VMs."
     plakar_text:
       "Control Plane deduplicates within a store, not across stores. There is no
-      anomaly detection, no clean room and no SSO yet. Microsoft 365 mailboxes,
-      Oracle, SAP HANA, Hyper-V, Nutanix AHV and tape are not covered. If those
-      are must-haves, Cohesity is the safer choice today."
+      anomaly detection, no clean room and no SSO yet. Oracle, SAP HANA,
+      Hyper-V, Nutanix AHV and tape are not covered, and Microsoft 365 is coming
+      soon. If those are must-haves, Cohesity is the safer choice today."
 choose_competitor:
   - "You run a large mixed estate with Microsoft 365, Google Workspace, Oracle
     or SAP HANA and want one vendor for all of it."

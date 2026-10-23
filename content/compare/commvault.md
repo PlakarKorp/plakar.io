@@ -241,9 +241,9 @@ table:
           {
             status: "partial",
             note:
-              "IMAP mailboxes only. The Google Drive, OneDrive, Dropbox, iCloud
-              and Notion connectors are in Plakar Community, not Control Plane.
-              No Microsoft 365, SharePoint or Salesforce connector.",
+              "Notion (beta) and IMAP mailboxes. Microsoft 365 coming soon. The
+              Google Drive, OneDrive, Dropbox and iCloud connectors are in
+              Plakar Community. No SharePoint or Salesforce connector.",
           }
         competitor:
           {
@@ -416,8 +416,9 @@ sections:
     plakar_text:
       "Control Plane verifies snapshots with scheduled check tasks but does not
       boot them in a clean room. There is no anomaly detection and no SSO yet.
-      Hyper-V, Nutanix, Oracle, SAP, Microsoft 365 mailboxes and tape are not
-      covered. If those are must-haves, Commvault is the safer choice today."
+      Hyper-V, Nutanix, Oracle, SAP and tape are not covered, and Microsoft 365
+      is coming soon. If those are must-haves, Commvault is the safer choice
+      today."
 choose_competitor:
   - "You need one console for a very wide estate: Hyper-V, Nutanix, Oracle, SAP
     HANA, Db2, Snowflake and tape."
@@ -469,9 +470,10 @@ faq:
       encrypts every store by default and never stores the passphrase."
   - q: "Does Plakar support Hyper-V or Microsoft 365?"
     a:
-      "No. Plakar Control Plane supports VMware vSphere, Proxmox VE, OpenStack
-      and KubeVirt as hypervisors, and IMAP mailboxes, but not Microsoft 365
-      mailboxes or SharePoint. Commvault covers both."
+      "Not Hyper-V, and Microsoft 365 is coming soon. Plakar Control Plane
+      supports VMware vSphere, Proxmox VE, OpenStack and KubeVirt as
+      hypervisors, and Notion (beta) and IMAP mailboxes as SaaS sources.
+      Commvault covers both today."
 sources:
   - label: "Commvault 11.46 Innovation Release, new features newsletter"
     url: "https://documentation.commvault.com/11.46/software/newsletter_for_new_features_in_innovation_release_11_46.html"

@@ -276,9 +276,9 @@ table:
           {
             status: "partial",
             note:
-              "IMAP mailboxes only. The Google Drive, OneDrive, Dropbox, iCloud
-              and Notion connectors are in Plakar Community, not Control Plane.
-              No Microsoft 365, SharePoint or Salesforce connector.",
+              "Notion (beta) and IMAP mailboxes. Microsoft 365 coming soon. The
+              Google Drive, OneDrive, Dropbox and iCloud connectors are in
+              Plakar Community. No SharePoint or Salesforce connector.",
           }
         competitor:
           {

@@ -247,8 +247,8 @@ table:
             status: "partial",
             note:
               "Google Drive, OneDrive, Dropbox, iCloud, Proton Drive, Koofr,
-              OpenDrive, IMAP mailboxes and Notion (beta). No Microsoft 365
-              mailbox or SharePoint backup.",
+              OpenDrive, IMAP mailboxes and Notion (beta). Microsoft 365 coming
+              soon. No SharePoint backup.",
           }
         competitor:
           {

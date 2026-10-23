@@ -244,9 +244,9 @@ table:
           {
             status: "partial",
             note:
-              "IMAP mailboxes only. The Google Drive, OneDrive, Dropbox, iCloud
-              and Notion connectors are in Plakar Community, not Control Plane.
-              No Microsoft 365, SharePoint or Salesforce connector.",
+              "Notion (beta) and IMAP mailboxes. Microsoft 365 coming soon. The
+              Google Drive, OneDrive, Dropbox and iCloud connectors are in
+              Plakar Community. No SharePoint or Salesforce connector.",
           }
         competitor:
           {
@@ -405,8 +405,8 @@ sections:
     plakar_text:
       "Control Plane verifies snapshots with scheduled check tasks but does not
       boot them. There is no anomaly detection and no SSO yet. Hyper-V, Nutanix,
-      Oracle, SAP and Microsoft 365 mailboxes are not covered. If those are
-      must-haves, Veeam is the safer choice today."
+      Oracle and SAP are not covered, and Microsoft 365 is coming soon. If those
+      are must-haves, Veeam is the safer choice today."
 choose_competitor:
   - "Your estate is mostly VMware, Hyper-V or Nutanix AHV and you need
     any-to-any instant recovery across them."

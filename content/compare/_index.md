@@ -249,7 +249,7 @@ faq:
       "When you need Hyper-V, Nutanix AHV, Oracle, SAP HANA, Microsoft 365
       mailboxes, SharePoint or Salesforce backup, tape, single sign-on or
       built-in ransomware detection today. In those cases an enterprise suite
-      covers more."
+      covers more. Microsoft 365 support is coming soon."
   - q: "How do you keep these comparisons accurate?"
     a:
       "Each page compares a specific Plakar version with a specific version of
