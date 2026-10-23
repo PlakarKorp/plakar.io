@@ -106,10 +106,11 @@ configure the attachment:
 
 {{< figure src="../images/attach-scaleway-gateway-to-private-network.png" class="mx-auto max-w-130" >}}
 
-If you ever replace this gateway with a new one, make sure **Advertise default
-route** is enabled on the new gateway's attachment to the Private Network.
-Resources on the network learn the default route via DHCP, so after switching
-gateways, reboot the PCP instance to pick up the new route.
+The PCP instance does not learn its route from the gateway. Its route and DNS
+resolver are set to the gateway's private IPv4 address in its cloud-init user
+data, as described in the next step. If you replace this gateway with a new one,
+set the new gateway's private IPv4 address in the `gateway4` and `nameservers`
+entries of the instance's user data.
 
 {{< /step >}}
 
@@ -124,6 +125,12 @@ Gateway set up in
 [Create a Public Gateway and attach it to the Private Network](#create-a-public-gateway-and-attach-it-to-the-private-network)
 will provide internet access. You can also attach the instance to the Private
 Network directly during instance creation.
+
+An instance without a public IP needs its Private Network interface configured
+through cloud-init user data, with the Public Gateway as its route and DNS
+resolver. Add it before creating the instance, as described in the
+[Private Network](../../intro/installation/scaleway#private-network) section of
+the installation guide.
 
 ![](../images/create-scaleway-instance.png)
 
