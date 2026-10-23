@@ -114,10 +114,7 @@ registry:
 network:
   ethernets:
     eth1:
-      addresses: [172.16.8.12/22] # private IPv4 address and subnet of the instance
-      gateway4: 172.16.8.2 # private IPv4 address of the Public Gateway
-      nameservers:
-        addresses: [172.16.8.2]
+      dhcp4: true # Private Network interface, for an instance without a public IP
 
 ssh_authorized_keys:
   - ssh-ed25519 AAAA...
@@ -141,16 +138,15 @@ need to be allowed on the proxy.
 ### Private Network
 
 An instance can run without a public IP, attached to a Private Network that
-reaches the internet through a Scaleway Public Gateway. The appliance does not
-configure its Private Network interface on its own, so the `network:` key sets
-the interface, its route through the gateway and its DNS resolver. It needs two
-addresses:
+reaches the internet through a Scaleway Public Gateway. By default, the
+appliance only requests an address over DHCP on its first interface, which on
+Scaleway is the public interface. Without a public IP, nothing answers on that
+interface and the instance does not finish booting.
 
-- **The address of the instance**: the private IPv4 address and subnet shown on
-  the instance page, for example `172.16.8.12/22`.
-- **The address of the gateway**: shown under **Network -> Public Gateways ->
-  your gateway -> Private Networks**, for example `172.16.8.2`. The gateway is
-  used both as the default route and as the DNS resolver.
+The `network:` key enables DHCP on `eth1`, the Private Network interface. The
+instance then receives its address, its default route through the Public Gateway
+and its DNS resolver from the Private Network, provided **Advertise default
+route** is enabled on the gateway's attachment to the network.
 
 Such an instance is reached through a load balancer or the SSH bastion of the
 Public Gateway. See
