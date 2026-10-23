@@ -4,10 +4,8 @@
 <!-- JS: assets/js/main/integrations-filter.js -->
 
 {{ $allIntegrations := (where .Site.RegularPages "Section" "integrations").ByDate.Reverse }}
-{{ $sourceConnectors := where $allIntegrations "Params.categories" "intersect" (slice "source") }}
-{{ $destConnectors := where $allIntegrations "Params.categories" "intersect" (slice "destination") }}
 {{ $storageConnectors := where $allIntegrations "Params.categories" "intersect" (slice "storage") }}
-{{ $connectors := union $sourceConnectors $destConnectors }}
+{{ $inventories := where $allIntegrations "Params.categories" "intersect" (slice "inventory") }}
 {{ $newIntegrations := slice }}
 {{ range $allIntegrations }}
   {{ if partial "integrations/is-new.html" . }}
@@ -56,10 +54,10 @@
       <div class="flex flex-col md:flex-row items-center md:items-stretch justify-center gap-5 md:gap-8">
 
         <!-- Card 1 -->
-        <button type="button" data-stat="all" title="Browse all integrations"
+        <button type="button" data-stat="inventory" title="Filter: inventories"
           class="{{ $statCard }} md:transform-[perspective(900px)_rotateY(10deg)_rotateZ(-2.2deg)] md:hover:transform-[perspective(900px)_rotateY(6deg)_rotateZ(-1.2deg)_translateY(-4px)]">
-          <span class="{{ $statNum }}">{{ len $connectors }}</span>
-          <span class="{{ $statLabel }}">Source / Destination Connectors</span>
+          <span class="{{ $statNum }}">{{ len $inventories }}</span>
+          <span class="{{ $statLabel }}">Inventories</span>
         </button>
 
         <!-- Card 2 -->
