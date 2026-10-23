@@ -2,7 +2,7 @@
 
 # Exoscale
 
-Guides on running backups in OVHcloud
+Guides on running backups in Exoscale.
 
 
 
