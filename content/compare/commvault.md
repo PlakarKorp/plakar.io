@@ -145,7 +145,7 @@ table:
           {
             status: "partial",
             note:
-              "Org-scoped RBAC with 21 roles, enforceable TOTP 2FA, audit log,
+              "Org-scoped RBAC with 20 roles, enforceable TOTP 2FA, audit log,
               webhooks to SIEM. No SSO or SAML yet.",
           }
         competitor:
@@ -240,9 +240,9 @@ table:
           {
             status: "partial",
             note:
-              "Notion (beta), Google Drive, OneDrive, Dropbox, iCloud and IMAP
-              mailboxes. No Microsoft 365 mailbox, SharePoint or Salesforce
-              connector.",
+              "IMAP mailboxes only. The Google Drive, OneDrive, Dropbox, iCloud
+              and Notion connectors are in Plakar Community, not Control Plane.
+              No Microsoft 365, SharePoint or Salesforce connector.",
           }
         competitor:
           {
@@ -465,9 +465,9 @@ faq:
       never stores the passphrase."
   - q: "Does Plakar support Hyper-V or Microsoft 365?"
     a:
-      "No. Plakar supports VMware vSphere, Proxmox VE, OpenStack and KubeVirt as
-      hypervisors, and cloud drives (Google Drive, OneDrive, Dropbox, iCloud)
-      rather than Microsoft 365 mailboxes or SharePoint. Commvault covers both."
+      "No. Plakar Control Plane supports VMware vSphere, Proxmox VE, OpenStack
+      and KubeVirt as hypervisors, and IMAP mailboxes, but not Microsoft 365
+      mailboxes or SharePoint. Commvault covers both."
 sources:
   - label: "Commvault 11.46 Innovation Release, new features newsletter"
     url: "https://documentation.commvault.com/11.46/software/newsletter_for_new_features_in_innovation_release_11_46.html"

@@ -392,13 +392,13 @@ sections:
       built in, with locks extended by maintenance, and optional Reed-Solomon
       error correction exists (experimental). The repository server gives
       per-user accounts and TLS. The community is much larger: about 14,400
-      GitHub stars and 168 contributors, and Kopia code runs inside Velero, OADP
+      GitHub stars and 155 contributors, and Kopia code runs inside Velero, OADP
       and Kasten. Every component is open; there are no closed connectors."
     plakar_text:
       "Plakar has no scheduler and no desktop app; the web UI runs with plakar
       ui. Deduplication stays inside one store. Immutability depends on the
       backend's object lock with no lock management in Plakar itself. The
-      community is smaller (about 2,100 stars, 47 contributors), five connectors
+      community is smaller (about 2,100 stars, 43 contributors), five connectors
       are closed, and the format has no reader outside the Plakar toolchain. If
       you back up files from many laptops and want a GUI with a scheduler, Kopia
       is the simpler choice today."

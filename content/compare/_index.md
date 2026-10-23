@@ -57,7 +57,7 @@ matrices:
       - capability: "Kubernetes in the same product"
         cells: ["yes", "partial", "yes", "partial", "yes"]
       - capability: "OpenStack as a native source"
-        cells: ["yes", "no", "yes", "partial", "yes"]
+        cells: ["yes", "no", "partial", "partial", "yes"]
       - capability: "Proxmox VE as a native source"
         cells: ["yes", "yes", "partial", "partial", "yes"]
       - capability: "Hyper-V and Nutanix AHV"
@@ -93,11 +93,11 @@ matrices:
       - capability: "S3 and object storage targets"
         cells: ["yes", "yes", "partial", "yes", "yes"]
       - capability: "Restore into a different system"
-        cells: ["yes", "no", "no", "no", "partial"]
+        cells: ["yes", "partial", "partial", "partial", "partial"]
       - capability: "Verify backups without restoring"
         cells: ["yes", "yes", "yes", "yes", "partial"]
       - capability: "Built-in UI"
-        cells: ["yes", "no", "no", "yes", "yes"]
+        cells: ["yes", "no", "no", "yes", "partial"]
       - capability: "Built-in scheduler"
         cells: ["no", "no", "no", "yes", "no"]
       - capability: "Windows support"

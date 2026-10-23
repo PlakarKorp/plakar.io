@@ -415,7 +415,7 @@ sections:
         Task Scheduler"
   - heading: "Where restic is ahead today"
     competitor_text:
-      "restic has 36.7k GitHub stars and about 400 contributors. Its repository
+      "restic has 36,700 GitHub stars and about 400 contributors. Its repository
       format is documented, and rustic, a separate project written in Rust,
       reads and writes the same repositories. That is a real exit path: two
       independent implementations of one format. Backrest gives restic users a
@@ -423,7 +423,7 @@ sections:
       fake-snapshot attack on --keep-last. For plain file backups, restic is the
       safe default."
     plakar_text:
-      "Plakar has about 2,000 stars and 47 contributors. Only the Plakar
+      "Plakar has about 2,100 stars and 43 contributors. Only the Plakar
       toolchain reads a Kloset store today. Five connectors are closed source,
       free in Plakar Community. Plakar has no scheduler and no UI-based
       scheduling either. If you only back up files and you value a long

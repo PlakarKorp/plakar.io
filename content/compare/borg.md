@@ -407,7 +407,7 @@ sections:
       - "Object lock belongs to the bucket, not to the backup tool"
   - heading: "Where Borg is ahead today"
     competitor_text:
-      "Borg has shipped stable releases for more than ten years and has 13.9K
+      "Borg has shipped stable releases for more than ten years and has 13,900
       GitHub stars and 326 contributors. Its client-side deduplication and
       compression are very efficient for file workloads, and its threat model
       (untrusted server, untrusted network, no unauthenticated mode ever) is
@@ -416,7 +416,7 @@ sections:
       providers such as BorgBase and Hetzner Storage Box that run borg on their
       side. Any SSH box you already have can be a target."
     plakar_text:
-      "Plakar is younger, with about 2.1K stars and 47 contributors, and
+      "Plakar is younger, with about 2,100 stars and 43 contributors, and
       releases every two to three weeks. There is no third-party reader for the
       Kloset format yet, no built-in scheduler, and five connectors are closed.
       If you only back up files to an SSH host and want the longest track

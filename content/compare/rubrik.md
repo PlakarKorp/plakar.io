@@ -161,7 +161,7 @@ table:
           {
             status: "partial",
             note:
-              "Org-scoped RBAC with 21 roles, enforceable TOTP 2FA, audit log,
+              "Org-scoped RBAC with 20 roles, enforceable TOTP 2FA, audit log,
               webhooks to SIEM. No SSO or SAML yet.",
           }
         competitor:
@@ -271,9 +271,9 @@ table:
           {
             status: "partial",
             note:
-              "Notion (beta), Google Drive, OneDrive, Dropbox, iCloud and IMAP
-              mailboxes. No Microsoft 365 mailbox, SharePoint or Salesforce
-              connector.",
+              "IMAP mailboxes only. The Google Drive, OneDrive, Dropbox, iCloud
+              and Notion connectors are in Plakar Community, not Control Plane.
+              No Microsoft 365, SharePoint or Salesforce connector.",
           }
         competitor:
           {
