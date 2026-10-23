@@ -48,6 +48,10 @@ matrices:
     rows:
       - capability: "Restore backups without the vendor's software"
         cells: ["yes", "partial", "no", "no", "no"]
+      - capability: "Encryption with keys only you hold"
+        cells: ["yes", "partial", "yes", "partial", "partial"]
+      - capability: "Open source agents (Edges)"
+        cells: ["yes", "no", "no", "no", "no"]
       - capability: "Self-hosted control plane, no SaaS required"
         cells: ["yes", "yes", "partial", "yes", "yes"]
       - capability: "Official Terraform provider"
@@ -56,6 +60,8 @@ matrices:
         cells: ["yes", "partial", "yes", "partial", "partial"]
       - capability: "Kubernetes in the same product"
         cells: ["yes", "partial", "yes", "partial", "yes"]
+      - capability: "VMware vSphere, agentless"
+        cells: ["yes", "yes", "yes", "yes", "yes"]
       - capability: "OpenStack as a native source"
         cells: ["yes", "no", "partial", "partial", "yes"]
       - capability: "Proxmox VE as a native source"
@@ -66,8 +72,8 @@ matrices:
         cells: ["partial", "partial", "yes", "yes", "yes"]
       - capability: "Ransomware and anomaly detection"
         cells: ["no", "yes", "yes", "yes", "yes"]
-      - capability: "SAML single sign-on"
-        cells: ["no", "yes", "yes", "yes", "yes"]
+      - capability: "Access control (RBAC, MFA, audit log, SSO)"
+        cells: ["partial", "yes", "yes", "yes", "yes"]
       - capability: "Automated restore testing"
         cells: ["partial", "yes", "yes", "partial", "yes"]
       - capability: "Free tier"
@@ -90,6 +96,10 @@ matrices:
         cells: ["yes", "yes", "partial", "yes", "no"]
       - capability: "Native connectors for VMs, Kubernetes and databases"
         cells: ["yes", "no", "no", "no", "no"]
+      - capability: "Agentless VMware vSphere backup"
+        cells: ["yes", "no", "no", "no", "no"]
+      - capability: "Google Drive, OneDrive, Dropbox and IMAP as sources"
+        cells: ["yes", "no", "no", "no", "partial"]
       - capability: "S3 and object storage targets"
         cells: ["yes", "yes", "partial", "yes", "yes"]
       - capability: "Restore into a different system"
@@ -114,8 +124,10 @@ matrix_note:
   targets are in the 2.0 beta only. Cohesity announced native OpenStack backup
   in October 2026, with no public docs yet. Plakar's five closed connectors
   (Windows VSS, SQL Server, Active Directory, VMware, Scaleway) are free in
-  Plakar Community. Each comparison page explains every cell and lists its
-  sources."
+  Plakar Community. Plakar Control Plane access control: 20 roles, 2FA you can
+  enforce per organization, an audit log, webhooks to your SIEM, legal hold and
+  data residency. It has no single sign-on yet. Each comparison page explains
+  every cell and lists its sources."
 questions_title: "Six questions to ask any backup vendor"
 questions_intro:
   "Checkmarks hide architecture. These questions separate a backup you own from
@@ -192,8 +204,10 @@ proof:
   - title: "Open source on GitHub"
     text: "Plakar, its engine, SDK and most connectors under the ISC licence."
     url: "https://github.com/PlakarKorp/plakar"
-  - title: "On four cloud marketplaces"
-    text: "Plakar Control Plane on AWS, OVHcloud, Scaleway and Exoscale."
+  - title: "On AWS and OVHcloud marketplaces"
+    text:
+      "Plakar Control Plane is listed on AWS Marketplace and OVHcloud
+      Marketplace."
     url: "/posts/2026-07-10/plakar-control-plane-aws-marketplace/"
 faq:
   - q: "What types of backup tools exist, and what are the tradeoffs?"

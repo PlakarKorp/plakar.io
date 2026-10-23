@@ -180,8 +180,8 @@ table:
             status: "no",
             note:
               "Files and objects only, from any of its 59 backends (local disks,
-              SMB, SFTP, cloud drives, buckets). No VM, database or Kubernetes
-              awareness.",
+              SMB, SFTP, cloud drives, buckets). No mailbox (IMAP) source. No
+              VM, database or Kubernetes awareness.",
           }
       - capability: "Files that change during backup"
         plakar:

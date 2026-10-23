@@ -67,9 +67,9 @@ table:
           {
             status: "yes",
             note:
-              "Plakar and its Kloset engine are ISC. Control Plane and Operator
-              are closed, but write standard Kloset stores open source Plakar
-              can restore.",
+              "Plakar, its Kloset engine and the Edge agent are ISC. Control
+              Plane and Operator are closed, but write standard Kloset stores
+              open source Plakar can restore.",
           }
         competitor:
           {
