@@ -14,7 +14,7 @@ plakar_version: "Plakar 1.1.8"
 competitor: "BorgBackup"
 competitor_short: "Borg"
 competitor_version: "1.4.5 (2.0 in beta)"
-verified: "2026-10-21"
+verified: "2026-10-23"
 secondary_cta_label: "Install Plakar"
 secondary_cta_url: "/download/"
 verdict:
@@ -28,17 +28,19 @@ verdict:
 highlights:
   - title: "Object storage without a server-side binary"
     text:
-      "Borg 1.x stores a remote repository through borg serve over SSH, so borg
-      must be installed on the server. S3, Azure, GCS and SFTP arrive only in
-      the 2.0 beta, which the project says is not for production. Plakar writes
-      to S3 and S3-compatible stores, Azure Blob, Google Cloud Storage, SFTP,
-      NFS, SMB and more today."
+      "Borg 1.x reaches a remote repository through borg serve over SSH, which
+      needs borg on the server. The documented fallback is a slower client-side
+      SSHFS mount. S3/B2 and SFTP backends, plus Azure, GCS and others through
+      rclone, arrive only in the 2.0 beta, which the project says is not for
+      production. Plakar writes to S3 and S3-compatible stores, Azure Blob,
+      Google Cloud Storage, SFTP, NFS, SMB and more today."
   - title: "Application-aware sources, not only paths"
     text:
-      "Borg reads filesystem paths, stdin and raw devices. Databases need
-      borgmatic dump hooks. Plakar has connectors for VMware, Proxmox,
-      Kubernetes, OpenStack, PostgreSQL, MySQL, MongoDB, Windows VSS and cloud
-      drives, and any snapshot restores into any destination connector."
+      "Borg reads filesystem paths, stdin and raw devices. Databases need a dump
+      step: pipe it into borg create, or use borgmatic's dump hooks. Plakar has
+      connectors for VMware, Proxmox, Kubernetes, OpenStack, PostgreSQL, MySQL,
+      MongoDB, Windows VSS and cloud drives, and any snapshot restores into any
+      destination connector."
   - title: "Audited crypto, on by default, with a built-in UI"
     text:
       "Plakar encrypts every store by default with AES-256-GCM-SIV and Argon2id,
@@ -94,7 +96,8 @@ table:
             status: "partial",
             note:
               "Linux, macOS and BSD. Windows is not a supported platform in 1.x
-              (WSL and Cygwin are experimental). 2.0 beta ships an exe.",
+              (WSL and Cygwin are experimental). 2.0 beta ships an experimental
+              Windows exe.",
           }
   - section: "Storage engine and security"
     rows:
@@ -125,8 +128,9 @@ table:
           {
             status: "yes",
             note:
-              "AES-256-CTR with HMAC-SHA256 or BLAKE2b, chosen at init. Client
-              holds keys, server sees ciphertext. AEAD modes in the 2.0 beta.",
+              "AES-256-CTR with HMAC-SHA256 or BLAKE2b, chosen at init. Keys
+              stay on the client (keyfile) or in the repo under your passphrase
+              (repokey); the server sees ciphertext. AEAD modes in the 2.0 beta.",
           }
       - capability: "Immutability"
         plakar:
@@ -140,8 +144,9 @@ table:
           {
             status: "partial",
             note:
-              "Append-only mode is documented as not WORM: delete and prune are
-              still accepted, and recovery is a manual rollback.",
+              "Append-only only protects segment files: delete and prune are
+              still accepted, a later normal-mode write purges data, and
+              recovery is a manual rollback.",
           }
       - capability: "Access control and audit log"
         plakar:
@@ -173,8 +178,9 @@ table:
           {
             status: "partial",
             note:
-              "Local disk or SSH with borg installed on the server in 1.x. S3,
-              SFTP and rclone targets only in the 2.0 beta.",
+              "Local disk, SSH with borg installed on the server, or a slower
+              client-side SSHFS mount in 1.x. S3/B2, SFTP and rclone targets
+              only in the 2.0 beta.",
           }
       - capability: "Hypervisors and VMs"
         plakar:
@@ -188,8 +194,8 @@ table:
           {
             status: "no",
             note:
-              "No hypervisor API. The FAQ suggests backing up VM disk files as
-              sparse files on the host.",
+              "No hypervisor API. The docs suggest backing up inside the VM, or
+              backing up a shut-down VM's disk image or block device.",
           }
       - capability: "Kubernetes"
         plakar:
@@ -216,8 +222,9 @@ table:
           {
             status: "partial",
             note:
-              "Not in Borg itself. borgmatic hooks dump PostgreSQL,
-              MySQL/MariaDB, MongoDB and SQLite before the archive.",
+              "Not in Borg itself. borgmatic hooks stream dumps of PostgreSQL,
+              MySQL/MariaDB, MongoDB, SQLite, InfluxDB and OpenLDAP into the
+              archive.",
           }
       - capability: "Windows and Active Directory"
         plakar:
@@ -292,8 +299,9 @@ table:
           {
             status: "partial",
             note:
-              "extract to an empty directory, export-tar, or mount. Same POSIX
-              family only.",
+              "borg extract into the current directory or to stdout, export-tar,
+              or mount. Restores to a filesystem only, not into another system
+              type.",
           }
       - capability: "Verify without restoring"
         plakar:
@@ -322,8 +330,9 @@ table:
           {
             status: "partial",
             note:
-              "FUSE mount of any archive, not available in the macOS binaries.
-              No web UI to browse.",
+              "FUSE mount of any archive, plus borg list and borg diff. No
+              built-in UI, and no FUSE mount in the macOS binaries. The 2.0 beta
+              adds borg webdav to serve archives over HTTP.",
           }
       - capability: "Built-in UI"
         plakar:
@@ -347,12 +356,12 @@ sections:
   - heading: "Where your backups can live"
     competitor_text:
       "Borg 1.x has two kinds of repository: a local path, or a remote host
-      running borg serve over SSH. That means borg must be installed on the
-      server, and a server-side FUSE or NFS mount is documented as slower and
-      not recommended. There is no S3, Azure, GCS or SFTP target in 1.x. The 2.0
-      beta adds S3, SFTP and rclone backends, but the project states that beta
-      releases are for testing on new repositories only, not for production, and
-      2.0 has no release date."
+      running borg serve over SSH, which needs borg on the server. Without borg
+      on the server, the fallback is a client-side SSHFS or NFS mount, which the
+      docs describe as slower and advise avoiding. There is no S3, Azure, GCS or
+      SFTP target in 1.x. The 2.0 beta adds S3/B2, SFTP and rclone backends, but
+      the project states that beta releases are for testing on new repositories
+      only, not for production, and 2.0 has no release date."
     plakar_text:
       "Plakar writes a Kloset store to S3 and any S3-compatible service, Azure
       Blob, Google Cloud Storage, SFTP, FTP, NFS, SMB, WebDAV, an OCI registry
@@ -360,19 +369,20 @@ sections:
       synced to another backend with plakar sync, and exported as a portable
       ptar archive."
     bullets:
-      - "Borg remote repositories: borg serve over SSH, documented in the
-        general usage guide"
+      - "Borg remote repositories: borg serve over SSH, or an SSHFS mount,
+        documented in the quickstart and general usage guide"
       - "Borg 2.0 page: testing releases only, no final release yet (checked
         2026-10-21)"
       - "Plakar storage backends are listed on the integrations page"
   - heading: "Files only, or the application too"
     competitor_text:
       "Borg backs up paths, stdin and raw block devices. It has no idea what a
-      VM, a Kubernetes namespace or a database is. For databases the answer is
-      borgmatic, a separate tool, which runs a dump before the archive and
-      restores it with a command. VMs are handled as disk files on the host,
-      with a FAQ tip to touch the file before a snapshot so it is not
-      re-chunked."
+      VM, a Kubernetes namespace or a database is. For databases you pipe a dump
+      into borg create, or use borgmatic, a separate tool, which streams the
+      dump into the archive and restores it with a command. For VMs the docs
+      suggest backing up inside the VM, or a shut-down VM's disk image, with a
+      FAQ tip to touch a small dummy file before the snapshot so the VM image is
+      not re-chunked."
     plakar_text:
       "Plakar has connectors for VMware vSphere, Proxmox VE, Kubernetes
       (including KubeVirt VMs), OpenStack, PostgreSQL, MySQL/MariaDB, MongoDB,
@@ -383,23 +393,25 @@ sections:
       and the others are open."
     bullets:
       - "Borg create accepts paths, stdin and raw devices with read-special"
-      - "borgmatic database hooks: PostgreSQL, MySQL/MariaDB, MongoDB, SQLite"
+      - "borgmatic database hooks: PostgreSQL, MySQL/MariaDB, MongoDB, SQLite,
+        InfluxDB, OpenLDAP"
       - "Plakar Kubernetes connector 1.1.11: CSI snapshots, PVCs, KubeVirt VMs,
         namespace remapping"
   - heading: "Append-only is not immutable, for either of us"
     competitor_text:
       "Borg's append-only repository flag, or a forced borg serve command, is a
-      documented ransomware mitigation. The notes also say what it is not:
-      delete and prune commands are still accepted, a single write in normal
-      mode purges the data, and recovery means rolling back segment files by
-      hand. In 1.x a repository also takes an exclusive lock, so one client
-      writes at a time."
+      documented protection against a hacked client deleting backups. The notes
+      also say what it does not cover: delete and prune commands are still
+      accepted, a single write in normal mode purges the data, and recovery
+      means rolling back segment files by hand. In 1.x a repository also takes
+      an exclusive lock, so one client writes at a time."
     plakar_text:
       "Plakar does not claim WORM on its own either. Snapshots are
       content-addressed and tamper-evident, and the plakar server refuses
       deletes unless you pass -allow-delete. Real immutability comes from object
       lock on the storage backend, which is why native S3, Azure and GCS targets
-      matter. Borg 1.x cannot write to a bucket with object lock at all."
+      matter. Borg 1.x has no native object storage target, so it cannot use
+      bucket object lock directly."
     bullets:
       - "Borg usage notes: append-only mode, what it protects and what it does
         not"
@@ -410,9 +422,9 @@ sections:
       "Borg has shipped stable releases for more than ten years and has 13,900
       GitHub stars and 326 contributors. Its client-side deduplication and
       compression are very efficient for file workloads, and its threat model
-      (untrusted server, untrusted network, no unauthenticated mode ever) is
-      mature and well documented. The ecosystem is wide: borgmatic for
-      configuration and database hooks, Vorta as a desktop GUI, and hosting
+      (untrusted server, untrusted network, only authenticated encryption
+      schemes) is mature and well documented. The ecosystem is wide: borgmatic
+      for configuration and database hooks, Vorta as a desktop GUI, and hosting
       providers such as BorgBase and Hetzner Storage Box that run borg on their
       side. Any SSH box you already have can be a target."
     plakar_text:
@@ -424,8 +436,8 @@ sections:
 choose_competitor:
   - "You back up files from Linux, macOS or BSD hosts to an SSH server you
     control, and you do not need object storage."
-  - "You want the longest stable track record and the largest community among
-    deduplicating archivers."
+  - "You want a stable 1.x series with more than ten years of releases and a
+    large, established community."
   - "You already run borgmatic or Vorta and your database dumps and retention
     live in that YAML."
   - "You use a hosting provider that runs borg on the server side, such as
@@ -455,15 +467,16 @@ faq:
   - q: "Does Borg work on Windows?"
     a:
       "Windows is not a supported platform in Borg 1.x. WSL and Cygwin are
-      documented as experimental. The 2.0 beta ships a Windows executable.
-      Plakar ships a native Windows binary and Windows VSS and Active Directory
-      connectors."
+      documented as experimental. The 2.0 beta ships an experimental Windows
+      executable. Plakar ships a native Windows binary and Windows VSS and
+      Active Directory connectors."
   - q: "Is Borg append-only mode the same as immutable storage?"
     a:
-      "No, and Borg's own notes say so. Append-only mode makes deletes
-      recoverable by a manual rollback, but delete and prune commands are still
-      accepted. Plakar does not claim WORM by itself either. Both rely on the
-      storage layer, and Plakar can write to buckets with object lock enabled."
+      "No. Borg's notes say append-only only affects the low-level structure of
+      the repository. It makes deletes recoverable by a manual rollback, but
+      delete and prune commands are still accepted. Plakar does not claim WORM
+      by itself either. Both rely on the storage layer, and Plakar can write to
+      buckets with object lock enabled."
   - q: "How does deduplication compare?"
     a:
       "Both use content-defined chunking and deduplicate across everything in
@@ -476,8 +489,8 @@ faq:
     a:
       "Borg 2.0 cannot open 1.x repositories directly. The migration path is
       borg transfer from a 1.x repository into a new 2.0 repository, which takes
-      time and space. As of October 2026, 2.0 is still in beta and the 1.x
-      readers are planned for removal in 2.1."
+      time and space. As of October 2026, 2.0 is still in beta, and the legacy
+      crypto code needed to read 1.x repositories is planned for removal in 2.1."
   - q: "How mature is Plakar compared with Borg?"
     a:
       "Plakar is younger. Version 1.0 shipped in May 2025, after an independent
@@ -489,20 +502,40 @@ faq:
 sources:
   - label: "Introducing Plakar v1.0 (May 2025)"
     url: "https://www.plakar.io/posts/2025-05-01/introducing-plakar-v1.0-to-redefine-open-source-data-protection-with-3m-funding/"
-  - label: "Borg general usage: repository URLs and borg serve over SSH"
+  - label: "Borg general usage: repository URLs (local path, ssh://)"
     url: "https://borgbackup.readthedocs.io/en/stable/usage/general.html"
-  - label: "Borg FAQ: platforms, VM disk files, performance figure"
+  - label: "Borg quickstart: borg on the remote host, SSHFS fallback, VM advice"
+    url: "https://borgbackup.readthedocs.io/en/stable/quickstart.html"
+  - label: "Borg installation: platforms, WSL and Cygwin experimental"
+    url: "https://borgbackup.readthedocs.io/en/stable/installation.html"
+  - label: "Borg FAQ: borg serve vs SSHFS, lock, VM image tip, performance"
     url: "https://borgbackup.readthedocs.io/en/stable/faq.html"
   - label: "Borg 2.0 release page: beta status, new backends, borg transfer"
     url: "https://www.borgbackup.org/releases/borg-2.0.html"
+  - label: "Borg changelog: 2.0 betas for testing on new repos, borg webdav"
+    url: "https://borgbackup.readthedocs.io/en/master/changes.html"
+  - label: "Borg README (master): experimental Windows exe in 2.0"
+    url: "https://github.com/borgbackup/borg/blob/master/README.rst"
+  - label: "Borg 2.0.0b25 release (September 2026): Windows exe"
+    url: "https://github.com/borgbackup/borg/releases/tag/2.0.0b25"
+  - label: "Borg 1.4.5 release notes: no FUSE mount in the macOS binaries"
+    url: "https://github.com/borgbackup/borg/releases/tag/1.4.5"
   - label: "Borg internals: security and threat model"
     url: "https://borgbackup.readthedocs.io/en/stable/internals/security.html"
+  - label: "Borg init: encryption modes, including none and repokey"
+    url: "https://borgbackup.readthedocs.io/en/stable/usage/init.html"
   - label: "Borg usage notes: append-only mode"
     url: "https://borgbackup.readthedocs.io/en/stable/usage/notes.html"
   - label: "Borg create: sources, stdin and read-special"
     url: "https://borgbackup.readthedocs.io/en/stable/usage/create.html"
-  - label: "borgmatic: configuration and database hooks"
+  - label: "Borg extract: current directory or stdout"
+    url: "https://borgbackup.readthedocs.io/en/stable/usage/extract.html"
+  - label: "borgmatic: configuration and integrations"
     url: "https://torsion.org/borgmatic/"
+  - label: "borgmatic: database hooks and streaming dumps"
+    url: "https://torsion.org/borgmatic/how-to/backup-your-databases/"
+  - label: "Vorta: desktop client for macOS and Linux"
+    url: "https://vorta.borgbase.com/"
   - label: "Borg on GitHub: stars, contributors, releases"
     url: "https://github.com/borgbackup/borg"
   - label: "borgbackup.org: licence, project status and ecosystem"

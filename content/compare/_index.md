@@ -49,17 +49,17 @@ matrices:
       - capability: "Restore backups without the vendor's software"
         cells: ["yes", "partial", "no", "no", "no"]
       - capability: "Self-hosted control plane, no SaaS required"
-        cells: ["yes", "yes", "partial", "partial", "yes"]
+        cells: ["yes", "yes", "partial", "yes", "yes"]
       - capability: "Official Terraform provider"
-        cells: ["yes", "no", "yes", "partial", "partial"]
+        cells: ["yes", "no", "yes", "partial", "yes"]
       - capability: "Backup policies as code (GitOps)"
-        cells: ["yes", "no", "partial", "no", "no"]
+        cells: ["yes", "partial", "yes", "partial", "partial"]
       - capability: "Kubernetes in the same product"
         cells: ["yes", "partial", "yes", "partial", "yes"]
       - capability: "OpenStack as a native source"
         cells: ["yes", "no", "partial", "partial", "yes"]
       - capability: "Proxmox VE as a native source"
-        cells: ["yes", "yes", "partial", "partial", "yes"]
+        cells: ["yes", "yes", "yes", "no", "yes"]
       - capability: "Hyper-V and Nutanix AHV"
         cells: ["no", "yes", "yes", "yes", "yes"]
       - capability: "SaaS apps and cloud drives"
@@ -101,7 +101,7 @@ matrices:
       - capability: "Built-in scheduler"
         cells: ["no", "no", "no", "yes", "no"]
       - capability: "Windows support"
-        cells: ["yes", "yes", "no", "yes", "yes"]
+        cells: ["yes", "yes", "partial", "yes", "yes"]
       - capability: "Data readable by a second, independent tool"
         cells: ["no", "yes", "no", "no", "yes"]
       - capability: "Every component open source"
@@ -111,9 +111,11 @@ matrices:
 matrix_note:
   "Partial means the capability exists with limits: a separate product or
   add-on, a beta, a third-party tool, or narrower coverage. Borg object storage
-  targets are in the 2.0 beta only. Plakar's five closed connectors (Windows
-  VSS, SQL Server, Active Directory, VMware, Scaleway) are free in Plakar
-  Community. Each comparison page explains every cell and lists its sources."
+  targets are in the 2.0 beta only. Cohesity announced native OpenStack backup
+  in October 2026, with no public docs yet. Plakar's five closed connectors
+  (Windows VSS, SQL Server, Active Directory, VMware, Scaleway) are free in
+  Plakar Community. Each comparison page explains every cell and lists its
+  sources."
 questions_title: "Six questions to ask any backup vendor"
 questions_intro:
   "Checkmarks hide architecture. These questions separate a backup you own from
@@ -200,9 +202,9 @@ faq:
       Cohesity, Commvault) cover the widest range of workloads, but store data
       in proprietary formats and are licensed per workload or per terabyte. Open
       source backup tools (restic, Borg, Kopia) are free and encrypt on the
-      client, but back up files only and have no central management. Sync tools
-      (rclone) copy files to cloud storage, but keep no snapshots and do no
-      deduplication. Plakar sits between the first two: an open source engine
+      client, but back up files only and have no fleet management console. Sync
+      tools (rclone) copy files to cloud storage, but keep no snapshots and do
+      no deduplication. Plakar sits between the first two: an open source engine
       with application connectors, plus an optional self-hosted Control Plane
       for policies and access control."
   - q: "Is Plakar open source?"
@@ -233,9 +235,7 @@ faq:
       "When you need Hyper-V, Nutanix AHV, Oracle, SAP HANA, Microsoft 365
       mailboxes, SharePoint or Salesforce backup, tape, single sign-on or
       built-in ransomware detection today. In those cases an enterprise suite
-      covers more. Many teams start Plakar on the workloads it covers well, such
-      as OpenStack, Proxmox and Kubernetes, and keep their existing tool for the
-      rest."
+      covers more."
   - q: "How do you keep these comparisons accurate?"
     a:
       "Each page compares a specific Plakar version with a specific version of

@@ -14,15 +14,15 @@ plakar_version: "Control Plane 1.1.5, Plakar 1.1.8"
 competitor: "Rubrik Security Cloud"
 competitor_short: "Rubrik"
 competitor_version: "RSC with CDM 9.6"
-verified: "2026-10-21"
+verified: "2026-10-23"
 verdict:
-  "Rubrik has the deepest threat analytics in the backup pipeline, tested cyber
+  "Rubrik has threat analytics built into the backup pipeline, tested cyber
   recovery plans and a long compliance list. Plakar Control Plane runs in your
   own infrastructure, writes an open format open source Plakar can read without
   a vendor, and takes its policies from Git. Pick Rubrik when anomaly detection,
   recovery drills and certifications like FedRAMP are must-haves. Pick Plakar
-  when you want no SaaS control plane, an exit path you can test today, and
-  Proxmox, OpenStack and KubeVirt as native sources."
+  when you want no SaaS control plane, an exit path you can test today, and any
+  snapshot restorable to any destination."
 highlights:
   - title: "Control plane in your infrastructure, not in Rubrik's cloud"
     text:
@@ -36,12 +36,13 @@ highlights:
       There is no export tool and no third-party reader. Plakar''s engine
       (Kloset) and Plakar itself are ISC licensed, and open source Plakar
       restores every store Control Plane writes.'
-  - title: "Proxmox, OpenStack and KubeVirt as native sources"
+  - title: "Any snapshot to any destination"
     text:
-      "Rubrik's Proxmox GA announcement covers full VM export and global search.
-      OpenStack goes through a proxy VM. Plakar has its own connectors for
-      Proxmox VE, OpenStack and Kubernetes with KubeVirt, and any snapshot
-      restores to any destination."
+      "Rubrik protects Proxmox VE, OpenStack and OpenShift Virtualization VMs.
+      Its public material describes no restore from one hypervisor to another,
+      apart from cloud conversion such as CloudOn (vSphere VMs to AWS or Azure).
+      Plakar has its own connectors for Proxmox VE, OpenStack and Kubernetes
+      with KubeVirt, and any snapshot restores to any destination."
 table:
   - section: "Architecture and licensing"
     rows:
@@ -76,7 +77,8 @@ table:
             status: "no",
             note:
               "Proprietary, immutable file system in Rubrik's own words. Only
-              SDKs, the Terraform provider and MCP tooling are MIT.",
+              client tooling (SDKs, Terraform provider and modules, MCP server,
+              scripts) is open source.",
           }
       - capability: "Free tier"
         plakar:
@@ -169,7 +171,7 @@ table:
             status: "yes",
             note:
               "RBAC, SAML 2.0 SSO, mandatory TOTP MFA for native accounts,
-              time-limited service accounts.",
+              service accounts with short-lived tokens (up to 24 h).",
           }
       - capability: "Ransomware and anomaly detection"
         plakar:
@@ -199,8 +201,9 @@ table:
           {
             status: "yes",
             note:
-              "ISO 27001, SOC 2 Type II, HITRUST, FedRAMP Moderate
-              (RSC-Government), Common Criteria EAL2+ (RSC-Private), FIPS 140-3.",
+              "ISO 27001, SOC 2 Type II, FedRAMP Moderate (RSC-Government),
+              Common Criteria EAL2+ (RSC-Private and CDM), FIPS 140-3 validated
+              cryptography, aligned with HITRUST CSF.",
           }
   - section: "Workloads and integrations"
     rows:
@@ -217,7 +220,9 @@ table:
             status: "yes",
             note:
               "vSphere, Hyper-V, Nutanix AHV, Azure Local, OLVM, Proxmox VE (GA
-              April 2026), OpenShift Virtualization, OpenStack via a proxy VM.",
+              April 2026), OpenShift Virtualization. OpenStack through a proxy
+              VM that takes Cinder snapshots of instance volumes, with no Swift,
+              Glance or Trove coverage stated.",
           }
       - capability: "Kubernetes"
         plakar:
@@ -279,8 +284,9 @@ table:
           {
             status: "yes",
             note:
-              "Microsoft 365, Salesforce, Jira and Dynamics 365, licensed
-              separately per user.",
+              "Microsoft 365, Google Workspace, Salesforce, Dynamics 365, Jira,
+              GitHub and Azure DevOps, licensed separately (Microsoft 365 per
+              user).",
           }
       - capability: "Storage targets"
         plakar:
@@ -294,8 +300,9 @@ table:
           {
             status: "yes",
             note:
-              "Backups land on the CDM cluster first. Archive to S3,
-              S3-compatible, Azure Blob, GCS, NFS, tape or Rubrik Cloud Vault.",
+              "Data center backups land on the CDM cluster first. Archive to S3,
+              S3-compatible, Azure Blob, GCS, NFS, tape (through a QStar archive
+              server) or Rubrik Cloud Vault.",
           }
   - section: "Automation and restore"
     rows:
@@ -328,7 +335,8 @@ table:
             status: "partial",
             note:
               "Live Mount, Export and in-place restore within a hypervisor
-              family. No public claim of restoring a vSphere VM to Proxmox.",
+              family, plus CloudOn conversion of vSphere VMs to AWS or Azure. No
+              public claim of restoring a vSphere VM to Proxmox.",
           }
       - capability: "Automated restore testing"
         plakar:
@@ -359,7 +367,8 @@ table:
             status: "yes",
             note:
               "Live Mount exposes a snapshot as an SMB share, global search.
-              In-guest file restore for VMs needs the RBS agent.",
+              In-guest file restore uses the RBS agent or, on vSphere, VMware
+              Tools.",
           }
 sections_intro:
   "Checkmarks hide architecture. These four points decide most Rubrik versus
@@ -371,7 +380,7 @@ sections:
       cloud. Backup data stays on your CDM cluster or in your cloud account, but
       metadata and control go to RSC. If you need the control plane inside your
       perimeter, Rubrik sells RSC-Private, a self-managed version that runs on
-      an R7K appliance or, since October 2026, as a VM, and is air-gapped after
+      an R7K appliance or as a VM on vSphere/ESXi, and is air-gapped after
       registration."
     plakar_text:
       "Plakar Control Plane is a virtual appliance (AMI, OVA, qcow2, ISO) that
@@ -390,11 +399,11 @@ sections:
     competitor_text:
       'Rubrik''s Proxmox announcement describes its store as a "proprietary,
       immutable file system". There is no public specification, no export tool
-      and no third-party reader. Data archived to object storage or tape must be
-      pulled back into a Rubrik cluster before it can be restored. The exit path
-      is to restore everything to native formats while you still hold a licence.
-      Rubrik''s own annual report lists the EU Data Act switching obligations as
-      a business risk.'
+      and no third-party reader. Archived data can only be restored through
+      Rubrik software: a Rubrik cluster or Rubrik''s CloudOn conversion. The
+      exit path is to restore everything to native formats while you still hold
+      a licence. Rubrik''s own annual report lists the EU Data Act switching
+      obligations as a business risk.'
     plakar_text:
       "The Kloset format and Plakar are open source under the ISC licence.
       Control Plane writes standard Kloset stores. If you stop paying, open
@@ -409,12 +418,14 @@ sections:
         2025"
   - heading: "Proxmox, OpenStack and the fine print"
     competitor_text:
-      "Rubrik added Proxmox VE in April 2026. The public GA announcement covers
-      full VM export restore and global search. Live Mount and file-level
-      restore are not stated for Proxmox. OpenStack is protected through a proxy
-      VM that takes Cinder snapshots. The detailed compatibility matrix and
-      release notes sit behind a customer login, so you cannot check them before
-      you buy."
+      "Rubrik added Proxmox VE in April 2026. Its Proxmox page and datasheet
+      cover VM export, file and folder recovery, global search and threat
+      analytics. Live Mount is not stated for Proxmox. For OpenShift
+      Virtualization, Rubrik lists Live Mount and file restore. OpenStack is
+      protected through a proxy VM that takes Cinder snapshots of instance
+      volumes, and Rubrik's material does not state coverage for Swift, Glance
+      or Trove. The detailed compatibility matrix and release notes sit behind a
+      customer login, so you cannot check them before you buy."
     plakar_text:
       "Plakar has its own connectors for Proxmox VE (built with a partner on top
       of vzdump), OpenStack (Nova instances, Cinder volumes, Swift, Glance,
@@ -432,10 +443,10 @@ sections:
       sensitive data, and Turbo Threat Hunting is built for finding a clean
       recovery point fast. Cyber Recovery runs scheduled test restores in an
       isolated environment and produces reports. SAML SSO, FedRAMP Moderate,
-      Common Criteria EAL2+ and FIPS 140-3 are in place. Global deduplication
-      works across the whole cluster. For Hyper-V, Nutanix AHV, Oracle, SAP
-      HANA, Db2, Microsoft 365 and Salesforce, Rubrik has coverage Plakar does
-      not."
+      Common Criteria EAL2+ and FIPS 140-3 validated cryptography are in place.
+      Global deduplication works across the whole cluster. For Hyper-V, Nutanix
+      AHV, Oracle, SAP HANA, Db2, Microsoft 365 and Salesforce, Rubrik has
+      coverage Plakar does not."
     plakar_text:
       "Control Plane verifies snapshots with scheduled check tasks but does not
       run recovery drills. There is no anomaly detection, no SSO and no
@@ -446,8 +457,8 @@ choose_competitor:
   - "You need anomaly detection and threat hunting inside the backup pipeline,
     not bolted on."
   - "You need scheduled, reported recovery drills in an isolated environment."
-  - "Your procurement requires FedRAMP, Common Criteria or FIPS 140-3 certified
-    products."
+  - "Your procurement requires FedRAMP, Common Criteria or FIPS 140-3 validated
+    cryptography."
   - "You back up Hyper-V, Nutanix AHV, Oracle, SAP HANA, Microsoft 365 or
     Salesforce and want vendor-supported connectors."
   - "You want identity recovery for Active Directory, Entra ID and Okta from the
@@ -457,8 +468,8 @@ choose_plakar:
     want the self-hosted option to be the default, not a special edition."
   - "You want to read and restore your backups without a vendor licence, now and
     in ten years."
-  - "You run Proxmox, OpenStack or KubeVirt and want them as native sources with
-    full restore options."
+  - "You want every snapshot, Proxmox, OpenStack and KubeVirt VMs included, to
+    restore to any destination."
   - "You manage infrastructure as code and want backup policies in Git, applied
     by Terraform, Ansible or an Operator."
   - "You want to read the docs and the compatibility matrix before you talk to
@@ -469,8 +480,7 @@ faq:
       "For Proxmox, OpenStack, Kubernetes, VMware, Linux and cloud storage
       estates, yes. If you depend on Rubrik's threat analytics, cyber recovery
       drills, compliance certifications or its Oracle, SAP, Microsoft 365 and
-      Salesforce coverage, Rubrik still covers more. Some teams run both during
-      a migration because Plakar stores are independent of the Rubrik cluster."
+      Salesforce coverage, Rubrik still covers more."
   - q: "Can I restore Plakar backups without Plakar Control Plane?"
     a:
       "Yes. Control Plane writes standard Kloset stores. The open source Plakar
@@ -479,19 +489,20 @@ faq:
     a:
       "Not according to Rubrik's public material. The store is a proprietary
       file system, there is no export tool or third-party reader, and archived
-      data must be re-ingested into a cluster before you can restore it."
+      data can only be restored through Rubrik software: a Rubrik cluster or
+      Rubrik's CloudOn conversion."
   - q: "Does Rubrik have a self-hosted control plane?"
     a:
       "Yes, as a separate product. RSC-Private runs self-managed on an R7K
-      appliance or, since October 2026, as a VM, and is air-gapped after
+      appliance or as a VM on vSphere/ESXi, and is air-gapped after
       registration. The standard Rubrik Security Cloud is SaaS hosted by Rubrik.
       Plakar Control Plane is self-hosted in every plan, including the Free
       plan."
   - q: "Does Rubrik support Proxmox?"
     a:
-      "Yes, since April 2026. The public GA announcement covers full VM export
-      restore and global search. Live Mount and file-level restore for Proxmox
-      are not stated there, and the detailed docs are behind a customer login.
+      "Yes, since April 2026. Rubrik's Proxmox page and datasheet cover VM
+      export, file and folder recovery, global search and threat analytics. Live
+      Mount is not stated, and the detailed docs are behind a customer login.
       Plakar's Proxmox connector supports backup and restore of VMs with the
       same browse, mount and cross-connector restore as every other source."
   - q: "Does Plakar have ransomware detection like Rubrik?"
@@ -517,8 +528,8 @@ sources:
     url: "https://developer.rubrik.com/Rubrik-Security-Cloud-API/Threat-Analytics/"
   - label: "Rubrik compliance program"
     url: "https://www.rubrik.com/compliance-program"
-  - label: "Rubrik orchestrated application recovery"
-    url: "https://www.rubrik.com/products/orchestrated-application-recovery"
+  - label: "Rubrik Cyber Recovery"
+    url: "https://www.rubrik.com/products/cyber-recovery"
   - label: "Rubrik OpenStack blueprint (July 2025)"
     url: "https://www.rubrik.com/blog/technology/25/7/fortifying-openstack-a-rubrik-blueprint-for-cyber-resilience"
   - label: "Rubrik encrypted lifecycle management"
@@ -526,7 +537,31 @@ sources:
   - label: "Rubrik Cerebro deduplication engine"
     url: "https://www.rubrik.com/blog/architecture/16/1/meet-cerebro-the-brains-behind-rubriks-time-machine"
   - label: "Terraform registry, rubrikinc/polaris provider"
-    url: "https://registry.terraform.io/v1/providers/rubrikinc/polaris"
+    url: "https://registry.terraform.io/providers/rubrikinc/polaris/latest"
+  - label: "Terraform registry, polaris_sla_domain resource"
+    url: "https://registry.terraform.io/providers/rubrikinc/polaris/latest/docs/resources/sla_domain"
+  - label: "Rubrik for Proxmox VE"
+    url: "https://www.rubrik.com/solutions/proxmox-ve"
+  - label: "Rubrik Proxmox VE datasheet (September 2026)"
+    url: "https://www.rubrik.com/content/dam/rubrik/en/resources/data-sheet/ds-rubrik-data-protection-for-proxmox-ve.pdf"
+  - label: "Rubrik Data Threat Analytics across hypervisors (2026)"
+    url: "https://www.rubrik.com/blog/technology/26/7/modernize-your-hypervisors-not-your-attack-surface"
+  - label: "Rubrik multi-hypervisor policy and layered security (October 2026)"
+    url: "https://www.rubrik.com/blog/technology/26/10/simplify-multi-hypervisor-protection-with-unified-policy-and-layered-security"
+  - label: "Rubrik for OpenShift Virtualization"
+    url: "https://www.rubrik.com/solutions/openshift"
+  - label: "Rubrik Security Cloud-Private for US federal brief (September 2026)"
+    url: "https://www.rubrik.com/content/dam/rubrik/en/resources/solutions-brief/sb-rsc-private-for-us-federal-government.pdf"
+  - label: "Rubrik CloudOn instantiation"
+    url: "https://www.rubrik.com/blog/products-solutions/18/4/intelligent-application-instantiation-cloudon"
+  - label: "Rubrik SaaS data protection"
+    url: "https://www.rubrik.com/products/saas-data-protection"
+  - label: "Rubrik developer portal, authentication"
+    url: "https://developer.rubrik.com/Rubrik-Security-Cloud-API/authentication/"
+  - label: "Rubrik API reference, file restore options"
+    url: "https://developer.rubrik.com/Rubrik-Security-Cloud-API/API-Reference/types/inputs/RestoreFilesJobConfigInput/"
+  - label: "Rubrik API reference, tape archive location"
+    url: "https://developer.rubrik.com/Rubrik-Security-Cloud-API/API-Reference/types/inputs/CreateTapeTargetInput/"
   - label: "Plakar engine cryptographic audit (2025)"
     url: "https://www.plakar.io/posts/2025-02-28/audit-of-plakar-cryptography/"
 ---

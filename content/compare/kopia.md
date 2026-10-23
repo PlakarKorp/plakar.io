@@ -13,7 +13,7 @@ plakar_version: "Plakar 1.1.8"
 competitor: "Kopia"
 competitor_short: "Kopia"
 competitor_version: "0.23.1"
-verified: "2026-10-21"
+verified: "2026-10-23"
 secondary_cta_label: "Install Plakar"
 secondary_cta_url: "/download/"
 verdict:
@@ -21,22 +21,23 @@ verdict:
   content-defined chunking, both encrypt by default, both support Object Lock.
   Kopia adds a desktop app, a built-in scheduler and repo-wide deduplication,
   and it is the data mover inside Velero, OADP and Kasten. Plakar adds
-  application-aware sources (VMs, databases, Kubernetes, Windows VSS), restore
-  from any source into any destination, and an engine audited in 2025. Pick
-  Kopia for file backups from laptops and servers with a GUI. Pick Plakar when
-  your sources are not just files."
+  application-aware sources (VMs, databases, Kubernetes), restore from any
+  source into any destination, and an engine audited in 2025. Pick Kopia for
+  file backups from laptops and servers with a GUI. Pick Plakar when your
+  sources are not just files."
 highlights:
   - title: "Sources beyond files"
     text:
-      "Kopia backs up files and directories. Databases, VSS and ZFS snapshots
-      are before and after scripts you write. Plakar has connectors for VMware,
-      Proxmox, OpenStack, Kubernetes, PostgreSQL, MySQL, MongoDB, SQL Server,
-      Windows VSS and cloud drives."
+      "Kopia backs up files and directories, with Windows VSS as an experimental
+      CLI policy. Databases and ZFS snapshots are before and after scripts you
+      write. Plakar has connectors for VMware, Proxmox, OpenStack, Kubernetes,
+      PostgreSQL, MySQL, MongoDB, SQL Server, Windows VSS and cloud drives."
   - title: "Restore into any destination"
     text:
       "A Plakar snapshot restores to any destination connector: a filesystem
       backup into S3, a Kubernetes namespace into another cluster. Kopia
-      restores files to a filesystem or mounts the snapshot."
+      restores files to a directory or a zip or tar archive, or mounts the
+      snapshot."
   - title: "Audited encryption, independent snapshots"
     text:
       "Both tools encrypt by default with keys only you hold. Plakar's engine
@@ -61,8 +62,9 @@ table:
             status: "partial",
             note:
               "Single binary. Optional kopia server proxies a repository with
-              per-user accounts. No fleet view. KopiaUI desktop for Windows,
-              macOS, Linux.",
+              per-user accounts and lists snapshots from every user and host. No
+              fleet console that schedules or monitors clients. KopiaUI desktop
+              for Windows, macOS, Linux.",
           }
       - capability: "Open source engine and format"
         hint: "Can you read your backups without the project?"
@@ -94,7 +96,8 @@ table:
             status: "yes",
             note:
               "KopiaUI desktop app and web UI in server mode. Policies set
-              snapshot frequency and retention and run on schedule.",
+              snapshot frequency (interval, times of day or cron) and retention.
+              Schedules run while KopiaUI or kopia server is running.",
           }
   - section: "Storage engine and security"
     rows:
@@ -125,9 +128,9 @@ table:
           {
             status: "yes",
             note:
-              "Mandatory. AES-256-GCM or ChaCha20, scrypt key derivation.
-              Unencrypted repositories are not allowed. A lost password cannot
-              be recovered.",
+              "Mandatory. AES-256-GCM or ChaCha20, scrypt key derivation by
+              default (PBKDF2 optional). Unencrypted repositories are not
+              allowed. A lost password cannot be recovered.",
           }
       - capability: "Immutability"
         plakar:
@@ -141,8 +144,10 @@ table:
           {
             status: "yes",
             note:
-              "Object Lock in compliance mode on S3, B2, Azure and GCS. Locks
-              are extended by full maintenance.",
+              "Object Lock (governance or compliance mode) on S3 and
+              S3-compatible storage including B2, Azure and GCS, set when the
+              repository is created. Lock extension during full maintenance is
+              opt-in.",
           }
       - capability: "Multi-user access control"
         plakar:
@@ -204,8 +209,9 @@ table:
           {
             status: "partial",
             note:
-              "VSS, ZFS and LVM snapshots through opt-in before and after action
-              scripts.",
+              "Native VSS through a policy setting (CLI only, shipped as
+              experimental in 0.16). ZFS and LVM snapshots need before and after
+              action scripts.",
           }
       - capability: "Kubernetes"
         plakar:
@@ -251,7 +257,8 @@ table:
             status: "yes",
             note:
               "S3 and compatibles, Azure Blob, Backblaze B2, GCS, WebDAV, SFTP,
-              rclone (experimental), local filesystem, Kopia server. No tape.",
+              Google Drive and rclone (both experimental), local filesystem,
+              Kopia server. No tape.",
           }
   - section: "Automation and restore"
     rows:
@@ -283,7 +290,8 @@ table:
             status: "partial",
             note:
               "JSON output. kopia server exposes gRPC and HTTP APIs used by its
-              UI, with no documented public contract. No Terraform provider.",
+              UI. Kopia offers them for client tools but publishes no API
+              reference. No Terraform provider.",
           }
       - capability: "Restore anywhere"
         plakar:
@@ -297,8 +305,8 @@ table:
           {
             status: "partial",
             note:
-              "File-level restore to a filesystem on any platform, or mount the
-              snapshot. The restore target is always a filesystem.",
+              "File-level restore to a directory or to a zip or tar archive on
+              any platform, or mount the snapshot.",
           }
       - capability: "Verify and browse without restoring"
         plakar:
@@ -314,7 +322,9 @@ table:
             status: "yes",
             note:
               "snapshot verify checks structure and can sample file contents.
-              Mount a snapshot as a filesystem. KopiaUI runs verify daily.",
+              Mount a snapshot as a filesystem. Full maintenance (CLI or
+              KopiaUI) runs a structure-only verify daily; content sampling is a
+              manual CLI run.",
           }
 sections_intro:
   "The engines look alike on a checklist. These four points decide most Kopia
@@ -323,7 +333,8 @@ sections:
   - heading: "Files only, or application-aware sources"
     competitor_text:
       "Kopia snapshots files and directories on Linux, macOS and Windows. That
-      is the whole source list. For a database, a VSS shadow copy or a ZFS
+      is the whole source list. On Windows, a CLI policy setting can read from a
+      VSS shadow copy (shipped as experimental in 0.16). For a database or a ZFS
       snapshot, you enable actions and write a before script and an after
       script. Kopia runs them around the snapshot. The scripts are yours to
       test, maintain and keep consistent on every host."
@@ -368,9 +379,9 @@ sections:
       Velero's built-in data mover. Red Hat OADP and Veeam Kasten use it the
       same way. This is a real strength: a lot of Kubernetes backup traffic runs
       through Kopia code. It is also indirect. Kopia itself has no Kubernetes
-      connector, no operator and no CRDs. Velero's docs warn that the file
-      system uploader scans and hashes whole files when they change, which is
-      slow for large files and for millions of small files."
+      connector, no operator and no CRDs. Velero's docs warn that large files
+      take a long time to scan even when little has changed, and that many small
+      files use a lot of CPU and memory."
     plakar_text:
       "Plakar has its own Kubernetes connector. It backs up resources, CSI
       volume snapshots, PVCs and KubeVirt VMs, with namespace remapping on
@@ -389,11 +400,12 @@ sections:
       "Kopia ships a desktop app for Windows, macOS and Linux, and a policy
       engine that schedules snapshots and retention without cron. Deduplication
       is repository-wide across all hosts and users. Object Lock support is
-      built in, with locks extended by maintenance, and optional Reed-Solomon
-      error correction exists (experimental). The repository server gives
-      per-user accounts and TLS. The community is much larger: about 14,400
-      GitHub stars and 155 contributors, and Kopia code runs inside Velero, OADP
-      and Kasten. Every component is open; there are no closed connectors."
+      built in, with opt-in lock extension during full maintenance, and optional
+      Reed-Solomon error correction exists (experimental). The repository server
+      gives per-user accounts and TLS. The community is much larger: about
+      14,400 GitHub stars and 155 contributors, and Kopia code runs inside
+      Velero, OADP and Kasten. Every component is open; there are no closed
+      connectors."
     plakar_text:
       "Plakar has no scheduler and no desktop app; the web UI runs with plakar
       ui. Deduplication stays inside one store. Immutability depends on the
@@ -413,8 +425,8 @@ choose_competitor:
   - "You want every component open source with no account needed for any
     connector."
 choose_plakar:
-  - "You back up VMs, databases, Kubernetes or Windows VSS and do not want to
-    maintain scripts per host."
+  - "You back up VMs, databases or Kubernetes and do not want to maintain
+    scripts per host."
   - "You want to restore a snapshot into a different destination, not only onto
     a filesystem."
   - "You want an engine whose encryption was audited by an independent
@@ -428,16 +440,17 @@ faq:
     a:
       "For file backups, both work. Plakar adds application-aware sources
       (VMware, Proxmox, OpenStack, Kubernetes, PostgreSQL, MySQL, MongoDB, SQL
-      Server, Windows VSS, cloud drives) and restore into any destination. Kopia
-      adds KopiaUI, a scheduler, repo-wide dedup and its role inside Velero.
-      Test both on your data; neither project publishes dedup ratios or
-      throughput numbers."
+      Server, cloud drives) and restore into any destination. Kopia adds
+      KopiaUI, a scheduler, repo-wide dedup and its role inside Velero. Test
+      both on your data; neither project publishes dedup ratios or throughput
+      numbers."
   - q: "Does Kopia back up databases or VMs?"
     a:
       "Not natively. Kopia backs up files and directories. Its docs show how to
-      run a dump or a VSS, ZFS or LVM snapshot through before and after action
-      scripts. There is no VM, database, SaaS or Kubernetes source in Kopia
-      itself."
+      run a dump or a ZFS or LVM snapshot through before and after action
+      scripts, and a CLI policy setting can use Windows VSS (shipped as
+      experimental in 0.16). There is no VM, database, SaaS or Kubernetes source
+      in Kopia itself."
   - q: "Does Plakar have a scheduler like Kopia?"
     a:
       "No. Plakar sets retention with plakar policy but does not run backups on
@@ -456,7 +469,7 @@ faq:
       "Both use content-defined chunking. Kopia deduplicates across all hosts
       and users that write to one repository. Plakar deduplicates across every
       snapshot in one store, from any host, but not between stores. Kopia offers
-      zstd, s2, pgzip and deflate compression per policy; Plakar uses LZ4.
+      zstd, s2, gzip, pgzip and deflate compression per policy; Plakar uses LZ4.
       Neither project publishes a dedup ratio, so measure on your own data."
   - q: "How mature is Plakar compared with Kopia?"
     a:
@@ -471,22 +484,46 @@ sources:
     url: "https://www.plakar.io/posts/2025-05-01/introducing-plakar-v1.0-to-redefine-open-source-data-protection-with-3m-funding/"
   - label: "Kopia features"
     url: "https://kopia.io/docs/features/"
+  - label: "Kopia installation (KopiaUI and web UI)"
+    url: "https://kopia.io/docs/installation/"
+  - label: "Kopia getting started (policies, import and export)"
+    url: "https://kopia.io/docs/getting-started/"
   - label: "Kopia encryption"
     url: "https://kopia.io/docs/advanced/encryption/"
   - label: "Kopia before and after actions"
     url: "https://kopia.io/docs/advanced/actions/"
   - label: "Kopia supported repositories"
     url: "https://kopia.io/docs/repositories/"
+  - label: "Kopia ransomware protection (Object Lock)"
+    url: "https://kopia.io/docs/advanced/ransomware-protection/"
+  - label: "Kopia error correction"
+    url: "https://kopia.io/docs/advanced/ecc/"
   - label: "Kopia repository server"
     url: "https://kopia.io/docs/repository-server/"
   - label: "Kopia architecture"
     url: "https://kopia.io/docs/advanced/architecture/"
   - label: "Kopia consistency and verification"
     url: "https://kopia.io/docs/advanced/consistency/"
+  - label: "Kopia governance"
+    url: "https://github.com/kopia/kopia/blob/master/GOVERNANCE.md"
+  - label: "Kopia v0.16.0 release notes (Windows VSS)"
+    url: "https://github.com/kopia/kopia/releases/tag/v0.16.0"
   - label: "Kopia v0.23.1 release notes"
     url: "https://github.com/kopia/kopia/releases/tag/v0.23.1"
-  - label: "Velero CSI snapshot data movement"
-    url: "https://velero.io/docs/main/csi-snapshot-data-movement/"
+  - label: "Kopia v0.23.1 repository create flags (KDF, retention mode)"
+    url: "https://github.com/kopia/kopia/blob/v0.23.1/cli/command_repository_create.go"
+  - label: "Kopia v0.23.1 restore modes (zip, tar)"
+    url: "https://github.com/kopia/kopia/blob/v0.23.1/cli/command_restore.go"
+  - label: "Kopia v0.23.1 compression algorithms"
+    url: "https://github.com/kopia/kopia/tree/v0.23.1/repo/compression"
+  - label: "Velero v1.12.0 release notes (Kopia default uploader)"
+    url: "https://github.com/vmware-tanzu/velero/releases/tag/v1.12.0"
+  - label: "Velero 1.18 CSI snapshot data movement"
+    url: "https://velero.io/docs/v1.18/csi-snapshot-data-movement/"
+  - label: "Red Hat OADP Data Mover (OKD 4.20)"
+    url: "https://docs.okd.io/4.20/backup_and_restore/application_backup_and_restore/installing/about-oadp-data-mover.html"
+  - label: "Veeam Kasten storage repositories API"
+    url: "https://docs.kasten.io/latest/api/repositories/"
   - label: "Plakar integrations list"
     url: "https://www.plakar.io/integrations/"
   - label: "Plakar engine cryptographic audit (2025)"

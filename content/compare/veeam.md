@@ -3,7 +3,7 @@ title: "Plakar vs Veeam"
 slug: "veeam"
 description:
   "Plakar Control Plane compared with Veeam Backup & Replication 13.1: open
-  engine and open format against the market leader in hypervisor coverage. Dated
+  engine and open format against a platform that covers 14 hypervisors. Dated
   sources, honest verdicts."
 summary:
   "Veeam leads on hypervisor breadth and restore tooling, while Plakar offers an
@@ -14,32 +14,34 @@ plakar_version: "Control Plane 1.1.5, Plakar 1.1.8"
 competitor: "Veeam Data Platform"
 competitor_short: "Veeam"
 competitor_version: "Backup & Replication 13.1"
-verified: "2026-10-21"
+verified: "2026-10-23"
 verdict:
-  "Veeam covers more hypervisors than anyone and has the most mature restore
-  tooling. Plakar Control Plane gives you an open engine, an open data format
-  you can read without the vendor, and policies as code. Pick Veeam for breadth
-  on VMware and Hyper-V estates. Pick Plakar when you want to own your backups,
-  automate them from Git, and protect OpenStack, Proxmox and KubeVirt as
-  first-class sources."
+  "Veeam covers 14 hypervisors and has mature restore tooling. Plakar Control
+  Plane gives you an open engine, an open data format you can read without the
+  vendor, and policies as code. Pick Veeam for breadth on VMware and Hyper-V
+  estates. Pick Plakar when you want to own your backups, automate them from
+  Git, and protect OpenStack, Proxmox and KubeVirt as first-class sources."
 highlights:
   - title: "Open engine, open format"
     text:
       "Plakar and its engine (Kloset) are ISC licensed. Open source Plakar reads
       and restores every store Control Plane writes. Veeam backups live in the
-      proprietary VBK format and the extract utility only reads full backups,
-      not incrementals."
+      proprietary VBK format. Without a Veeam server you restore them with
+      Veeam's own closed extract utility."
   - title: "Policies as code"
     text:
       "Plakar ships a Terraform provider, an Ansible collection and a Kubernetes
       Operator with CRDs. Veeam has a REST API and PowerShell, but no official
-      Terraform provider and no declarative policy model."
+      Terraform provider and no declarative policy model in Backup &
+      Replication. Kasten, a separate product, keeps its policies as Kubernetes
+      custom resources."
   - title: "OpenStack, Proxmox and KubeVirt as native sources"
     text:
       "Plakar backs up OpenStack Nova and Cinder, Proxmox VE and KubeVirt VMs
-      through its own connectors. Veeam does not support OpenStack and covers
-      KubeVirt only through an OpenShift plug-in, with full Kubernetes left to
-      Kasten, a separate product."
+      through its own connectors. Veeam does not support OpenStack. Inside
+      Backup & Replication, KubeVirt is covered only by an OpenShift
+      Virtualization plug-in. Kasten, a separate product, covers Kubernetes and
+      KubeVirt VMs."
 table:
   - section: "Architecture and licensing"
     rows:
@@ -73,8 +75,10 @@ table:
           {
             status: "no",
             note:
-              "Proprietary VBK/VIB/VBM. Extract utility reads full backups only,
-              not incrementals or scale-out repositories.",
+              "Proprietary VBK/VIB/VBM. The free extract utility restores
+              without a Veeam server, but it is Veeam's own closed tool.
+              Fox-IT's open source dissect.archive parses unencrypted full VBK
+              files.",
           }
       - capability: "Free tier"
         plakar:
@@ -88,8 +92,8 @@ table:
           {
             status: "partial",
             note:
-              "Community Edition protects 10 workloads, sends telemetry, no
-              support.",
+              "Community Edition protects 10 workloads, sends telemetry,
+              best-effort support only.",
           }
   - section: "Storage engine and security"
     rows:
@@ -105,8 +109,9 @@ table:
           {
             status: "partial",
             note:
-              "Inline dedup per job chain, not global. Global dedup needs a
-              third-party appliance.",
+              "Inline dedup within each backup file, which in v13 means per
+              machine. Cross-machine dedup relies on the storage (a dedup
+              appliance or Windows Server Data Deduplication).",
           }
       - capability: "Encryption with keys you hold"
         plakar:
@@ -150,8 +155,8 @@ table:
           {
             status: "yes",
             note:
-              "RBAC, mandatory MFA on the appliance, SAML SSO, four-eyes
-              authorization, syslog forwarding.",
+              "RBAC, MFA (optional on the appliance since 13.1), SAML SSO,
+              four-eyes authorization, syslog forwarding.",
           }
       - capability: "Ransomware and anomaly detection"
         plakar:
@@ -165,7 +170,8 @@ table:
           {
             status: "yes",
             note:
-              "Inline entropy and IoC scanning, YARA, Recon Scanner on Premium.",
+              "Inline entropy and IoC scanning. YARA on Advanced and Premium,
+              Recon Scanner on Premium.",
           }
   - section: "Workloads and integrations"
     rows:
@@ -196,8 +202,9 @@ table:
           {
             status: "partial",
             note:
-              "Kasten is a separate product licensed per node. The 13.1 KubeVirt
-              plug-in covers OpenShift Virtualization only.",
+              "Kasten is a separate product licensed per node and also protects
+              KubeVirt VMs. The 13.1 KubeVirt plug-in covers OpenShift
+              Virtualization only.",
           }
       - capability: "Databases"
         plakar:
@@ -212,8 +219,10 @@ table:
           {
             status: "yes",
             note:
-              "Plug-ins for SQL Server, Oracle RMAN, SAP HANA, Db2. PostgreSQL
-              and MySQL only through image-level or agent backups.",
+              "Plug-ins for SQL Server, Oracle RMAN, SAP HANA, SAP on Oracle,
+              SAP MaxDB and Db2, plus MongoDB backup policies. PostgreSQL (with
+              WAL logs) through application-aware image or agent backups. MySQL
+              through application-aware Linux agent backups.",
           }
       - capability: "Windows and Active Directory"
         plakar:
@@ -244,7 +253,7 @@ table:
             status: "partial",
             note:
               "Sold as separate per-user products (Veeam Backup for Microsoft
-              365, Veeam Data Cloud).",
+              365, Veeam Data Cloud for Microsoft 365).",
           }
       - capability: "Storage targets"
         plakar:
@@ -276,7 +285,9 @@ table:
             status: "partial",
             note:
               "REST API still being completed, PowerShell 7 module. No official
-              Terraform provider, no declarative policy model.",
+              Terraform provider. No declarative policy model in Backup &
+              Replication (Kasten, a separate product, uses Kubernetes custom
+              resources).",
           }
       - capability: "Restore anywhere"
         plakar:
@@ -330,11 +341,13 @@ sections:
   - heading: "Who can read your backups in ten years"
     competitor_text:
       'Backups are written in the VBK, VIB and VBM formats. There is no public
-      specification and no third-party reader. Veeam''s extract utility restores
-      from full backups only, not from incrementals or scale-out repositories,
-      and needs a Veeam account to download. When Veeam says "zero vendor
-      lock-in" it means you can restore a VM to another hypervisor, not that you
-      can read the backup without Veeam.'
+      specification. An independent forensic parser (Fox-IT dissect.archive)
+      reads VBK files, but not encrypted or incremental ones. Veeam''s extract
+      utility restores without a backup server, but it is closed Veeam software,
+      needs a Veeam account to download separately, and on a scale-out
+      repository needs full and incremental files on the same extent. When Veeam
+      says "zero vendor lock-in" it means you can restore a VM to another
+      hypervisor, not that the backup format is open.'
     plakar_text:
       "The Kloset format and Plakar are open source under the ISC licence.
       Control Plane writes standard Kloset stores. If you stop paying, open
@@ -350,9 +363,11 @@ sections:
   - heading: "Policies in Git, not in a console"
     competitor_text:
       'Jobs are objects you create in the console, the REST API or PowerShell.
-      The REST API is still "progressing toward full coverage" in 13.1. There is
-      no official Terraform provider (the registry namespace is empty) and no
-      way to declare a backup policy as a file that a pipeline applies.'
+      In 13.1 Veeam "continues progress toward full REST API coverage". There is
+      no official Terraform provider (the registry namespace is empty), and
+      Backup & Replication has no way to declare a backup policy as a file that
+      a pipeline applies. Kasten, a separate product for Kubernetes, keeps its
+      policies as custom resources.'
     plakar_text:
       "Control Plane has a Terraform provider, an Ansible collection and a
       Kubernetes Operator. Sources, stores, destinations and schedules are
@@ -366,9 +381,10 @@ sections:
   - heading: "OpenStack, Proxmox and KubeVirt"
     competitor_text:
       "Veeam supports 14 hypervisors but not OpenStack, and Veeam staff on the
-      forum point to an agent-only workaround. KubeVirt is supported only inside
-      OpenShift Virtualization through a 13.1 plug-in. Full Kubernetes needs
-      Kasten, which is a separate product licensed per worker node."
+      forum point to an agent-only workaround. Inside Backup & Replication,
+      KubeVirt is supported only on OpenShift Virtualization, through a plug-in
+      released in September 2026. Kasten, a separate product licensed per worker
+      node, covers full Kubernetes and also protects KubeVirt VMs."
     plakar_text:
       "Plakar has its own connectors for OpenStack (Nova instances, Cinder
       volumes, Swift, Glance, Trove), Proxmox VE and Kubernetes, including
@@ -383,9 +399,9 @@ sections:
     competitor_text:
       "SureBackup verifies restores by booting them in a lab. Instant Recovery
       works across hypervisors. Inline malware scanning, YARA rules and
-      four-eyes authorization are built in. The SAML SSO, Entra ID and AD Forest
-      Recovery features are mature. For Hyper-V, Nutanix AHV, Oracle, SAP HANA
-      and Microsoft 365, Veeam has coverage Plakar does not."
+      four-eyes authorization are built in, as are SAML SSO, Entra ID backup and
+      AD Forest Recovery. For Hyper-V, Nutanix AHV, Oracle, SAP HANA and
+      Microsoft 365, Veeam has coverage Plakar does not."
     plakar_text:
       "Control Plane verifies snapshots with scheduled check tasks but does not
       boot them. There is no anomaly detection and no SSO yet. Hyper-V, Nutanix,
@@ -396,8 +412,8 @@ choose_competitor:
     any-to-any instant recovery across them."
   - "You need automated restore testing that boots VMs (SureBackup) and inline
     malware scanning out of the box."
-  - "You back up Oracle, SAP HANA, Db2 or Microsoft 365 mailboxes and want
-    vendor-supported plug-ins."
+  - "You back up Oracle, SAP HANA or Db2 and want vendor-supported plug-ins, or
+    Microsoft 365 mailboxes with Veeam Backup for Microsoft 365."
   - "You already run Veeam and your team knows the console."
 choose_plakar:
   - "You want to read and restore your backups without a vendor licence, now and
@@ -415,9 +431,7 @@ faq:
     a:
       "For OpenStack, Proxmox, Kubernetes, Linux and cloud storage estates, yes.
       For large VMware or Hyper-V estates that depend on SureBackup, Oracle or
-      SAP plug-ins, or Microsoft 365 backup, Veeam still covers more. Many teams
-      run both during a migration because Plakar stores are independent of the
-      Veeam catalog."
+      SAP plug-ins, or Microsoft 365 backup, Veeam still covers more."
   - q: "Can I restore Plakar backups without Plakar Control Plane?"
     a:
       "Yes. Control Plane writes standard Kloset stores. The open source Plakar
@@ -434,32 +448,67 @@ faq:
   - q: "How does deduplication compare?"
     a:
       "Plakar deduplicates across everything in a store using content-defined
-      chunking. Veeam deduplicates within a job chain, not globally, and
-      recommends 4 MB blocks for large files, which gives the lowest ratio.
-      Neither vendor publishes a certified ratio, so test on your own data."
+      chunking. Veeam deduplicates within each machine's backup chain, not
+      globally, and recommends 4 MB blocks for large files, which gives the
+      lowest ratio. Neither vendor publishes a certified ratio, so test on your
+      own data."
   - q: "Does Plakar have ransomware detection like Veeam?"
     a:
       "No. Plakar snapshots are content-addressed and tamper-evident, and
       immutability comes from object lock on the storage backend. Veeam adds
-      inline entropy scanning, YARA rules and a Recon Scanner on higher
-      editions."
+      inline entropy scanning, YARA rules on Advanced and Premium, and a Recon
+      Scanner on Premium."
 sources:
   - label: "Veeam Backup & Replication 13.1 release notes"
     url: "https://helpcenter.veeam.com/rn/veeam_backup_13_1_release_notes.html"
-  - label: "Veeam hypervisor protection, What's New in 13"
+  - label: "Veeam Data Platform 13.1 press release (14 hypervisors)"
+    url: "https://www.veeam.com/company/press-release/veeam-data-platform-v13-1-now-available-helping-organizations-recover-clean-and-fast-from-cyber-disruption.html"
+  - label: "Veeam hypervisor protection, What's New in 13.1"
     url: "https://helpcenter.veeam.com/docs/vbr/wn/hypervisor_protection.html"
+  - label: "Veeam security, What's New in 13.1 (post-quantum key exchange)"
+    url: "https://helpcenter.veeam.com/docs/vbr/wn/security.html"
+  - label: "Veeam backup repositories, What's New in 13.1 (immutability)"
+    url: "https://helpcenter.veeam.com/docs/vbr/wn/backup_repositories.html"
+  - label: "Veeam identity protection, What's New in 13.1 (AD Forest Recovery)"
+    url: "https://helpcenter.veeam.com/docs/vbr/wn/identity_protection.html"
+  - label: "Veeam appliances, What's New in 13.1 (optional MFA)"
+    url: "https://helpcenter.veeam.com/docs/vbr/wn/veeam_software_appliance_and_veeam_infrastructure_appliance.html"
+  - label: "Veeam application protection, What's New in 13.1"
+    url: "https://helpcenter.veeam.com/docs/vbr/wn/enterprise_application_and_database_protection.html"
+  - label: "Veeam PostgreSQL WAL settings"
+    url: "https://helpcenter.veeam.com/docs/vbr/userguide/vm_copy_vss_postgresql_vm.html"
+  - label: "Veeam Agent MySQL processing settings"
+    url: "https://helpcenter.veeam.com/docs/vbr/userguide/agent_job_guest_mysql.html"
   - label: "Veeam compression and deduplication guide"
     url: "https://helpcenter.veeam.com/docs/vbr/userguide/compression_deduplication.html?ver=13"
+  - label: "Veeam backup chain formats (per-machine dedup)"
+    url: "https://helpcenter.veeam.com/docs/vbr/userguide/per_vm_backup_files.html"
+  - label: "Veeam backup repository requirements (Windows Data Deduplication)"
+    url: "https://helpcenter.veeam.com/docs/vbr/userguide/system_requirements_backup_repo.html"
+  - label: "Veeam KMS requirements (Advanced or Premium)"
+    url: "https://helpcenter.veeam.com/docs/vbr/userguide/kms_requirements.html"
   - label: "Veeam extract utility documentation"
-    url: "https://helpcenter.veeam.com/archive/vbr/13.0.2/userguide/extract_utility.html"
-  - label: "Veeam SureBackup tests"
-    url: "https://helpcenter.veeam.com/docs/vbr/userguide/surebackup_tests.html"
-  - label: "Veeam REST API, What's New in 13"
+    url: "https://helpcenter.veeam.com/docs/vbr/userguide/extract_utility.html"
+  - label: "Fox-IT dissect.archive VBK parser"
+    url: "https://github.com/fox-it/dissect.archive/blob/main/dissect/archive/vbk.py"
+  - label: "Veeam SureBackup, how it works"
+    url: "https://helpcenter.veeam.com/docs/vbr/userguide/surebackup_hiw.html"
+  - label: "Veeam REST API, What's New in 13.1"
     url: "https://helpcenter.veeam.com/docs/vbr/wn/rest_api.html"
   - label: "Veeam licensing policy"
-    url: "https://www.veeam.com/licensing-policy.html"
-  - label: "Veeam forum on OpenStack support"
-    url: "https://forums.veeam.com/veeam-backup-replication-f2/openstack-backup-support-t102699.html"
+    url: "https://www.veeam.com/legal/licensing-policy.html"
+  - label: "Veeam Backup & Replication Community Edition"
+    url: "https://www.veeam.com/products/free/backup-recovery.html"
+  - label: "Veeam Plug-in for KubeVirt limitations"
+    url: "https://helpcenter.veeam.com/docs/vbr/userguide/vkp_limitations.html"
+  - label: "Veeam Plug-in for KubeVirt build numbers (KB4914)"
+    url: "https://www.veeam.com/kb4914"
+  - label: "Veeam Kasten KubeVirt VM protection"
+    url: "https://docs.kasten.io/latest/usage/vm_protection/"
+  - label: "Veeam Kasten Policy custom resource"
+    url: "https://docs.kasten.io/latest/api/policies/"
+  - label: "Veeam forum thread on OpenStack backup"
+    url: "https://forums.veeam.com/rhv-olvm-sc-hypercore-xcp-ng-hpe-vme-f62/openstack-backup-t80794.html"
   - label: "Terraform registry, Veeam namespace"
     url: "https://registry.terraform.io/v2/providers?filter[namespace]=veeam"
   - label: "Plakar integrations list"

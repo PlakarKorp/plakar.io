@@ -14,7 +14,7 @@ plakar_version: "Plakar 1.1.8"
 competitor: "rclone"
 competitor_short: "rclone"
 competitor_version: "1.75.2"
-verified: "2026-10-21"
+verified: "2026-10-23"
 secondary_cta_label: "Install Plakar"
 secondary_cta_url: "/download/"
 verdict:
@@ -29,9 +29,9 @@ highlights:
     text:
       "rclone sync makes the target look like the source. Its backup story is a
       side folder for displaced files (--backup-dir) or bucket versioning,
-      cleaned by hand. Plakar keeps every backup as an independent snapshot,
-      deduplicates with content-defined chunking and applies retention rules
-      with plakar policy."
+      cleaned up by hand or by script. Plakar keeps every backup as an
+      independent snapshot, deduplicates with content-defined chunking and
+      applies retention rules with plakar policy."
   - title: "Encryption that hides more than crypt"
     text:
       "rclone's crypt wrapper encrypts content and names but leaves file sizes,
@@ -59,7 +59,7 @@ table:
           {
             status: "partial",
             note:
-              "Single binary, single user. Optional rc API and web GUI on one
+              "Single binary, no user roles. Optional rc API and web GUI on one
               host. No fleet view.",
           }
       - capability: "Open source engine and format"
@@ -125,7 +125,8 @@ table:
             status: "partial",
             note:
               "Optional crypt wrapper. File sizes, modtimes and directory
-              structure stay visible. A password change does not re-key data.",
+              structure stay visible. Existing data cannot be re-keyed: a new
+              password means re-uploading everything.",
           }
       - capability: "Compression"
         plakar: { status: "yes", note: "LZ4 on every chunk, built in." }
@@ -146,8 +147,9 @@ table:
           {
             status: "partial",
             note:
-              "The --immutable flag refuses to change existing files. Real WORM
-              needs object lock on the backend, for example S3.",
+              "The --immutable flag refuses to change existing files. Since 1.74
+              rclone can set S3 Object Lock retention on upload
+              (--s3-object-lock-mode, --s3-object-lock-retain-until-date).",
           }
       - capability: "Security posture"
         plakar:
@@ -177,8 +179,9 @@ table:
           {
             status: "no",
             note:
-              "Files only: local, SMB, SFTP, FTP, HDFS, WebDAV. No VM, database
-              or Kubernetes awareness.",
+              "Files and objects only, from any of its 59 backends (local disks,
+              SMB, SFTP, cloud drives, buckets). No VM, database or Kubernetes
+              awareness.",
           }
       - capability: "Files that change during backup"
         plakar:
@@ -208,8 +211,8 @@ table:
           {
             status: "no",
             note:
-              "No operator or CRDs. A CronJob container or the Docker volume
-              plugin at best.",
+              "No operator or CRDs. Run it as a CronJob container. Third-party
+              CSI drivers can mount remotes as volumes.",
           }
       - capability: "Storage targets"
         plakar:
@@ -223,8 +226,9 @@ table:
           {
             status: "yes",
             note:
-              "59 backends, including 53 named S3 providers, Azure, GCS, Swift,
-              B2, SFTP, SMB, WebDAV, Storj. No tape.",
+              "59 backend types, including S3 (more than 50 named providers),
+              Azure, GCS, Swift, B2, SFTP, SMB, WebDAV and Storj. No direct tape
+              support, only through an S3 tape gateway.",
           }
       - capability: "Plain files on the target"
         hint: "Can you open the target with any client?"
@@ -239,8 +243,8 @@ table:
           {
             status: "yes",
             note:
-              "The target is a copy of your files. Only crypt names and
-              .rclonelink files need rclone to read.",
+              "The target is a copy of your files, unless you use the crypt or
+              chunker wrappers, which need rclone to read back.",
           }
   - section: "Automation and restore"
     rows:
@@ -256,8 +260,9 @@ table:
           {
             status: "no",
             note:
-              "No retention engine. Clean --backup-dir folders by hand or with
-              backend lifecycle rules.",
+              "No retention engine. Prune --backup-dir folders yourself (for
+              example a scripted rclone delete --min-age) or with backend
+              lifecycle rules.",
           }
       - capability: "Verify a backup without restoring"
         plakar:
@@ -289,6 +294,23 @@ table:
               "Copy back the current tree. Older versions only from --backup-dir
               folders or bucket versioning with --s3-version-at.",
           }
+      - capability: "Restore anywhere"
+        hint: "Restore a snapshot into a different kind of destination"
+        plakar:
+          {
+            status: "yes",
+            note:
+              "Any snapshot restores to any destination connector: filesystem,
+              S3, SFTP, a Kubernetes namespace, a database.",
+          }
+        competitor:
+          {
+            status: "partial",
+            note:
+              "Copies files between any two of its backends, often server-side.
+              Only files, and only their current state unless the backend keeps
+              versions. No application-aware destinations.",
+          }
       - capability: "Built-in scheduler"
         plakar:
           {
@@ -311,8 +333,8 @@ table:
           {
             status: "partial",
             note:
-              "rclone gui and the rc web GUI drive transfers and show remotes.
-              There is no backup history to browse.",
+              "rclone gui (beta, embedded since 1.74) drives transfers, mounts
+              and remotes. There is no backup history to browse.",
           }
 sections_intro:
   "rclone and Plakar solve different problems. These four points decide what you
@@ -322,18 +344,19 @@ sections:
     competitor_text:
       "rclone sync makes the destination identical to the source. Delete a file
       at home and the next sync deletes it on the target. The documented way
-      around this is --backup-dir, which moves displaced files into a dated side
-      folder, or object versioning on the bucket. There is no snapshot, no
-      catalog and no retention engine: you clean old side folders yourself or
-      with lifecycle rules. Restore means copying a directory tree back."
+      around this is --backup-dir, which moves displaced files into a side
+      folder (dated if you name it that way), or object versioning on the
+      bucket. There is no snapshot, no catalog and no retention engine: you
+      clean old side folders yourself or with lifecycle rules. Restore means
+      copying a directory tree back."
     plakar_text:
       "Every plakar backup is an independent snapshot you can list, mount, diff
       and restore on its own. Retention rules are managed with plakar policy.
       plakar check verifies a snapshot without restoring it. You can restore one
       file from last month to a different destination than it came from."
     bullets:
-      - "rclone: sync, --backup-dir, --suffix and --immutable are flags, not a
-        history"
+      - "rclone: sync plus the --backup-dir, --suffix and --immutable flags are
+        not a history"
       - "Plakar: backup, check, policy, restore and mount work on snapshots"
       - "Plakar restores a snapshot of X into Y, for example an SFTP source into
         S3"
@@ -342,9 +365,10 @@ sections:
       "rclone's crypt remote encrypts file content (XSalsa20-Poly1305) and file
       names (AES-256 EME) with a password you hold. Its docs list what it does
       not hide: file sizes, modification times, directory structure and whether
-      two files share a name. Changing the password does not re-encrypt existing
-      data. The compress remote is marked experimental, with a warning that
-      things may break and data may be lost."
+      two files share a name. The password cannot be changed for existing data:
+      a new password means re-uploading everything. The compress remote is
+      marked experimental, with a warning that things may break and data may be
+      lost."
     plakar_text:
       "Plakar encrypts and compresses every chunk by default. The store holds
       content-addressed chunks, so the provider sees neither names, sizes nor
@@ -357,10 +381,11 @@ sections:
       - "Deduplication means the same chunk is stored once across a whole store"
   - heading: "Use rclone under Plakar"
     competitor_text:
-      "rclone's real strength in backup is reach. It speaks to 59 backends and
-      53 named S3 providers from one binary, with published support tiers. That
-      is why restic and kopia use it as a transport. If a provider is not on
-      Plakar's native list, rclone probably reaches it."
+      "rclone's real strength in backup is reach. It speaks to 59 backend types
+      from one binary, with published support tiers. The S3 backend alone lists
+      more than 50 named providers. That is why restic and kopia use it as a
+      transport. If a provider is not on Plakar's native list, rclone probably
+      reaches it."
     plakar_text:
       "Plakar ships an rclone connector. Any configured rclone remote can be a
       backup source (back up a Google Drive or Proton Drive account), a storage
@@ -375,11 +400,11 @@ sections:
   - heading: "Where rclone is ahead today"
     competitor_text:
       "rclone reaches 59 backends. The target holds plain files that any client
-      can read, which is the strongest exit path there is. mount, serve (http,
-      webdav, sftp, s3, restic and more) and bisync have no equivalent in
-      plakar. The project has 60,000 GitHub stars, more than a thousand
-      contributors, a full-time maintainer and monthly patch releases. Its docs
-      label experimental features honestly."
+      can read, which is the strongest exit path there is. rclone mount (a live
+      remote as a drive), serve (http, webdav, sftp, s3, restic and more) and
+      bisync have no equivalent in plakar. The project has 60,000 GitHub stars,
+      more than a thousand contributors, a full-time maintainer and monthly
+      patch releases. Its docs label experimental features honestly."
     plakar_text:
       "Plakar's community is far smaller (about 2,100 stars), there is no
       third-party reader for the Kloset format, five connectors are closed
@@ -399,7 +424,7 @@ choose_plakar:
   - "You need to restore what a file, a database or a VM looked like on a given
     date, not only the latest copy."
   - "You want deduplication and retention rules instead of dated side folders
-    cleaned by hand."
+    cleaned up by hand or by script."
   - "You want encryption on by default where the storage provider sees no names,
     sizes or structure."
   - "You back up VMs, Kubernetes, databases or Windows with VSS, not only files."
@@ -415,9 +440,7 @@ faq:
   - q: "Can Plakar use my rclone remotes?"
     a:
       "Yes. Plakar has an rclone connector. A remote can be a backup source, the
-      storage backend for a Kloset store, or a restore destination. Many teams
-      keep rclone for reach and add Plakar for snapshots, encryption and
-      retention."
+      storage backend for a Kloset store, or a restore destination."
   - q: "Does rclone deduplicate?"
     a:
       "No. One source file becomes one object on the target. The rclone FAQ
@@ -429,8 +452,9 @@ faq:
       "It encrypts content and names with a password you hold, which is good.
       Its docs list what stays visible: file sizes, modification times,
       directory structure and name equality. The password is stored lightly
-      obscured in rclone.conf unless you enable config encryption, and changing
-      it does not re-key data. Plakar hides all of that by default."
+      obscured in rclone.conf unless you enable config encryption, and it cannot
+      be changed for existing data without re-uploading everything. Plakar hides
+      all of that by default."
   - q: "What does Plakar not do that rclone does?"
     a:
       "Two-way sync (bisync), mounting a remote as a drive, serving a remote
@@ -466,8 +490,34 @@ sources:
     url: "https://rclone.org/commands/rclone_check/"
   - label: "rclone remote control API (rc)"
     url: "https://rclone.org/rc/"
-  - label: "rclone S3 backend, versioning and object lock"
+  - label: "rclone S3 backend, providers, versioning and object lock"
     url: "https://rclone.org/s3/"
+  - label: "rclone changelog, S3 Object Lock and rclone gui in v1.74.0"
+    url: "https://rclone.org/changelog/"
+  - label: "rclone GUI, beta"
+    url: "https://rclone.org/gui/"
+  - label: "rclone backend support tiers"
+    url: "https://rclone.org/tiers/"
+  - label: "rclone chunker remote"
+    url: "https://rclone.org/chunker/"
+  - label: "rclone delete command, --min-age filter"
+    url: "https://rclone.org/commands/rclone_delete/"
+  - label: "rclone serve command"
+    url: "https://rclone.org/commands/rclone_serve/"
+  - label: "rclone bisync"
+    url: "https://rclone.org/bisync/"
+  - label: "rclone Docker volume plugin"
+    url: "https://rclone.org/docker/"
+  - label: "csi-rclone, a third-party Kubernetes CSI driver"
+    url: "https://github.com/wunderio/csi-rclone"
+  - label: "rclone contributors"
+    url: "https://rclone.org/authors/"
+  - label: "rclone donate page, full-time maintainer"
+    url: "https://rclone.org/donate/"
+  - label: "Kopia repositories, rclone support (experimental)"
+    url: "https://kopia.io/docs/repositories/"
+  - label: "restic, using rclone as a backend"
+    url: "https://restic.readthedocs.io/en/stable/030_preparing_a_new_repo.html"
   - label: "Plakar rclone integration"
     url: "https://www.plakar.io/integrations/rclone/"
 ---
