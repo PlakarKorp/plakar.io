@@ -42,6 +42,7 @@ links:
 
 edition:
   - community
+  - control-plane
 
 stage: beta
 
