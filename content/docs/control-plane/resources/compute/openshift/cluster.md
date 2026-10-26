@@ -1,7 +1,7 @@
 ---
 title: "OpenShift Cluster"
 date: "2026-10-26T00:00:00Z"
-weight: 7
+weight: 1
 summary:
   "How to back up and restore the manifests of an OpenShift cluster or namespace
   in Plakar Control Plane."
@@ -12,6 +12,11 @@ summary:
 OpenShift Cluster resources represent the manifests of an OpenShift cluster,
 either the whole cluster or a single namespace. The OpenShift integration backs
 them up and restores them through the `openshift` protocol.
+
+These resources hold the configuration of the cluster only. The contents of
+persistent volumes and virtual machine disks are not part of their backups, and
+are backed up through [OpenShift PVC](../../../block-storage/openshift-pvc) and
+[OpenShift VM](../vm) resources.
 
 A backup reads the manifests of the resources in the namespace, or in every
 namespace for the `cluster` resource, and stores them in the Kloset store. A
@@ -35,9 +40,9 @@ and destination apps use the
 
 ## Inventory Management
 
-[Managed inventories](../../inventories#managed-inventories) discover the
+[Managed inventories](../../../inventories#managed-inventories) discover the
 `cluster` resource and one resource per namespace once the
-[OpenShift inventory](../../inventories/managed/openshift) is connected to a
+[OpenShift inventory](../../../inventories/managed/openshift) is connected to a
 cluster.
 
 #### Backup flow
@@ -92,7 +97,7 @@ apps.
 - **Kubeconfig**: Paste the contents of a kubeconfig. Leave it empty when Plakar
   Control Plane runs inside the cluster to use the in-cluster credentials. The
   kubeconfig can also be loaded from a
-  [secret provider](../../secret-providers).
+  [secret provider](../../../secret-providers).
 
 ## Source Configuration
 

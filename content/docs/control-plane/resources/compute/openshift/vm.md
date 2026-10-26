@@ -1,7 +1,7 @@
 ---
 title: "OpenShift VM"
 date: "2026-10-26T00:00:00Z"
-weight: 8
+weight: 2
 summary:
   "How to configure an OpenShift Virtualization virtual machine resource in
   Plakar Control Plane."
@@ -33,9 +33,9 @@ Plakar runs outside the cluster, both also need the
 
 ## Inventory Management
 
-[Managed inventories](../../inventories#managed-inventories) discover virtual
+[Managed inventories](../../../inventories#managed-inventories) discover virtual
 machines automatically once the
-[OpenShift inventory](../../inventories/managed/openshift) is connected to a
+[OpenShift inventory](../../../inventories/managed/openshift) is connected to a
 cluster with OpenShift Virtualization installed.
 
 #### Backup flow
@@ -96,7 +96,7 @@ destination apps.
 - **Kubeconfig**: Paste the contents of a kubeconfig. Leave it empty when Plakar
   Control Plane runs inside the cluster to use the in-cluster credentials. The
   kubeconfig can also be loaded from a
-  [secret provider](../../secret-providers).
+  [secret provider](../../../secret-providers).
 - **Kubelet Image**: Optional. The image of the data mover pod. Set it to pull
   the image from a registry the cluster can reach.
 - **Node Affinity**: Optional. Node affinity of the data mover pod, as the YAML

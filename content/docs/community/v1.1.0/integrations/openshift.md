@@ -114,6 +114,12 @@ The `openshift` protocol backs up and restores the manifests of a cluster. With
 a namespace in the location, it covers that namespace. Without one, it covers
 the whole cluster.
 
+It backs up configuration only. The contents of persistent volumes and virtual
+machine disks are not included, and are backed up with
+[`openshift+csi`](#2-openshiftcsi-protocol),
+[`openshift+pvc`](#3-openshiftpvc-protocol) and
+[`openshift+vm`](#4-openshiftvm-protocol).
+
 A restore leaves out the objects OpenShift recreates on its own:
 
 - `Build` and `ImageTag` objects.
@@ -462,7 +468,7 @@ $ oc secrets link default <pull-secret> --for=pull -n <namespace>
 
 - [OpenShift inventory in Plakar Control Plane](/docs/control-plane/inventories/managed/openshift)
 - [OpenShift PVC in Plakar Control Plane](/docs/control-plane/resources/block-storage/openshift-pvc)
-- [OpenShift VM in Plakar Control Plane](/docs/control-plane/resources/compute/openshift-vm)
+- [OpenShift VM in Plakar Control Plane](/docs/control-plane/resources/compute/openshift/vm)
 - [Kubernetes integration](../kubernetes)
 - [OpenShift documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/)
 - [Managing packages](../../guides/managing-packages)

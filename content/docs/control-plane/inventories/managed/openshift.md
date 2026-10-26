@@ -17,9 +17,9 @@ resources become available for management directly from Plakar Control Plane.
 
 | Resource                                                                          | Source | Store | Destination |
 | --------------------------------------------------------------------------------- | ------ | ----- | ----------- |
-| [Cluster and namespaces](../../resources/compute/openshift-cluster)               | Yes    | No    | Yes         |
+| [Cluster and namespaces](../../resources/compute/openshift/cluster)               | Yes    | No    | Yes         |
 | [PersistentVolumeClaims (PVC)](../../resources/block-storage/openshift-pvc)       | Yes    | No    | Yes         |
-| [OpenShift Virtualization virtual machines](../../resources/compute/openshift-vm) | Yes    | No    | Yes         |
+| [OpenShift Virtualization virtual machines](../../resources/compute/openshift/vm) | Yes    | No    | Yes         |
 
 The cluster and namespace resources hold the manifests of the cluster. When the
 inventory discovers every namespace, it also lists a `cluster` resource that
