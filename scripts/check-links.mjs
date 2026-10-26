@@ -152,9 +152,51 @@ for (const file of files) {
   }
 }
 
+// Plain-text files served at the site root whose links are read by tools
+// rather than browsers, so they never go through the HTML checks above.
+const TEXT_FILES = ["llms.txt"];
+const TEXT_URL_RE = /https?:\/\/[^\s<>()\]`'"]+/g;
+const REFRESH_RE = /<meta http-equiv="?refresh"?[^>]*url=([^"\s>]+)/i;
+const redirects = new Map();
+
+for (const name of TEXT_FILES) {
+  let text;
+  try {
+    text = await readFile(path.join(siteDir, name), "utf8");
+  } catch {
+    continue;
+  }
+  for (const m of text.matchAll(TEXT_URL_RE)) {
+    const raw = m[0].replace(/[.,:;]+$/, "");
+    const link = toInternal(raw, "/");
+    if (!link) continue;
+    if (IGNORED_PREFIXES.some((p) => link.path.startsWith(p))) continue;
+    checked++;
+
+    const target = await resolveTarget(link.path);
+    if (!target) {
+      report(broken, link.path, `/${name}`);
+      continue;
+    }
+    // Hugo renders an alias as a page that only redirects. These files must
+    // point at the page itself.
+    const redirect =
+      target.endsWith(".html") && (await readFile(target, "utf8")).match(REFRESH_RE);
+    if (redirect) {
+      report(redirects, `${link.path} -> ${redirect[1]}`, `/${name}`);
+      continue;
+    }
+    if (checkFragments && link.fragment && target.endsWith(".html")) {
+      if (!(await idsOf(target)).has(link.fragment)) {
+        report(brokenFragments, `${link.path}#${link.fragment}`, `/${name}`);
+      }
+    }
+  }
+}
+
 console.log(`Checked ${checked} internal links across ${files.length} pages.`);
 
-if (broken.size === 0 && brokenFragments.size === 0) {
+if (broken.size === 0 && brokenFragments.size === 0 && redirects.size === 0) {
   console.log("No broken links found.");
   process.exit(0);
 }
@@ -177,9 +219,14 @@ const fragmentCount = printSection(
   "Broken fragments (page exists, anchor does not)",
   brokenFragments,
 );
+const redirectCount = printSection(
+  "Links to redirects (use the target page instead)",
+  redirects,
+);
 
 console.log(
   `\n${broken.size} broken links (${linkCount} occurrences), ` +
-    `${brokenFragments.size} broken fragments (${fragmentCount} occurrences).`,
+    `${brokenFragments.size} broken fragments (${fragmentCount} occurrences), ` +
+    `${redirects.size} links to redirects (${redirectCount} occurrences).`,
 );
 process.exit(1);
