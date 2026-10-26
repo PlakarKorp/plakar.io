@@ -146,6 +146,24 @@ backup is recorded every hour. Maintenance accounts for these checkpoints and
 treats any chunks referenced by an active checkpoint as still in use, regardless
 of whether a snapshot has been committed yet.
 
+## Locks
+
+Several processes can work on the same Kloset store at once, for example backups
+started from different machines. Plakar coordinates them with locks. Every
+operation that modifies the store takes a lock before it starts, and releases it
+when it ends.
+
+There are two kinds of lock:
+
+- **Shared**: taken by operations such as backups. Any number of processes can
+  hold a shared lock at the same time, so several backups can run in parallel on
+  the same store.
+- **Exclusive**: taken by maintenance. While it is held, no other process can
+  take a lock of either kind.
+
+As a result, only one maintenance runs at a time, and maintenance never runs
+while a backup or another operation that modifies the store is in progress.
+
 ## Recompaction
 
 The current maintenance model can only garbage-collect packfiles that are
