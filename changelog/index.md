@@ -19,6 +19,16 @@
 - [Plakar Operator v0.0.2](index.md): Adds Destination, task, and multi-group CRDs, a Helm chart, and a full regression test suite backed by a fake control plane.
 
 
+## [OpenShift](https://www.plakar.io/changelog/openshift/index.md)
+
+- [OpenShift v1.1.1](index.md): First stable release. Backs up and restores OpenShift manifests, PVC contents and OpenShift Virtualization virtual machines, and discovers them for Plakar Control Plane.
+
+
+## [SQLite](https://www.plakar.io/changelog/sqlite/index.md)
+
+- [SQLite v1.1.0](index.md): Creates new repository databases with restricted permissions and reports failed writes, lock renewals and connection setup instead of ignoring them.
+
+
 ## [Azure Blob Storage](https://www.plakar.io/changelog/azblob/index.md)
 
 - [Azure Blob Storage v1.1.0](index.md): First stable release of the Azure Blob Storage integration.
@@ -32,6 +42,7 @@
 
 ## [HTTP](https://www.plakar.io/changelog/http/index.md)
 
+- [HTTP v1.1.4](index.md): Refuses credentials over unverified TLS or in the URL without <code>insecure</code>, and rejects redirects to another host.
 - [HTTP v1.1.3](index.md): Hardens HTTP connections, refuses tokens over plain HTTP by default, and adds a request timeout.
 
 
@@ -91,6 +102,7 @@
 
 ## [OpenStack](https://www.plakar.io/changelog/openstack/index.md)
 
+- [OpenStack v1.1.2](index.md): Restores Nova servers onto an existing server, keeps the encryption key of restored volumes, and drops Glance images from the inventory.
 - [OpenStack v1.1.1](index.md): Adds block storage and Nova instance backup and restore, and fixes encrypted volume handling.
 - [OpenStack v1.1.0](index.md): First release. Backs up and restores Nova, Cinder, Swift, Trove, and Glance resources.
 
@@ -114,6 +126,7 @@
 
 ## [S3](https://www.plakar.io/changelog/s3/index.md)
 
+- [S3 v1.1.9](index.md): Limits the size of the store configuration read from a bucket and supports creating stores on Garage.
 - [S3 v1.1.8](index.md): Adds ambient credentials, protects buckets with Object Lock from store re-creation, and makes <code>root</code> a prefix in every addressing mode.
 - [S3 v1.1.7](index.md): Increases connection pool size and fixes prefix handling in virtual-host mode.
 - [S3 v1.1.6](index.md): Adds optional region configuration, retry logic, and fixes silent errors during listing.
