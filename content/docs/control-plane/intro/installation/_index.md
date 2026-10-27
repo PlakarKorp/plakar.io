@@ -20,6 +20,9 @@ Enrollment registers the appliance with `plakar.io` to automatically retrieve
 your license and set up billing reporting. No backup data is ever transferred
 during this process, only the consumption metrics needed for billing.
 
+The recommended size of the appliance, and what its CPU, memory and disks are
+used for, are explained in [Appliance Sizing](../../appliance/sizing).
+
 If you operate in an air-gapped or PCI-DSS environment and need a full offline
 mode, see [air-gapped enrollment](../air-gapped) and [contact us](/contact) to
 get a licence for your air-gapped instance.
