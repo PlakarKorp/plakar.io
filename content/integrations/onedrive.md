@@ -47,6 +47,11 @@ links:
   - type: community
     url: /docs/community/main/integrations/onedrive/
 
+related:
+  - googledrive
+  - dropbox
+  - iclouddrive
+
 edition:
   - community
 

@@ -45,6 +45,11 @@ links:
   - type: community
     url: /docs/community/main/integrations/iclouddrive/
 
+related:
+  - googledrive
+  - onedrive
+  - dropbox
+
 edition:
   - community
 

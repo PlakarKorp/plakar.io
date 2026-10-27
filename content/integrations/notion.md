@@ -40,6 +40,11 @@ links:
   - type: community
     url: /docs/community/main/integrations/notion/
 
+related:
+  - googledrive
+  - onedrive
+  - imap
+
 edition:
   - community
 

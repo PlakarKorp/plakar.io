@@ -46,6 +46,11 @@ links:
   - type: community
     url: /docs/main/integrations/koofr/
 
+related:
+  - protondrive
+  - opendrive
+  - dropbox
+
 edition:
   - community
 

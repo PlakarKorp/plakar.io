@@ -45,6 +45,9 @@ links:
   - type: control-plane
     url: /docs/control-plane/resources/compute/scaleway/
 
+related:
+  - s3
+
 edition:
   - community
   - control-plane

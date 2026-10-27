@@ -45,6 +45,10 @@ links:
   - type: control-plane
     url: /docs/control-plane/resources/hypervisor/proxmox/
 
+related:
+  - vmware
+  - kubernetes
+
 edition:
   - community
   - control-plane

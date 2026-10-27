@@ -42,6 +42,11 @@ links:
   - type: control-plane
     url: /docs/control-plane/resources/service/imap/
 
+related:
+  - notion
+  - googledrive
+  - onedrive
+
 edition:
   - community
   - control-plane

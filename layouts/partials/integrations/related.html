@@ -1,0 +1,53 @@
+{{/*
+  Related integrations: the pages listed in the `related` front matter
+  first, then integrations sharing one of the page's narrow types
+  (secrets-manager, inventory, storage), newest first. Source and
+  destination are left out: they match most integrations.
+*/}}
+{{ $p := . }}
+{{ $max := 4 }}
+{{ $specificTypes := slice "secrets-manager" "inventory" "storage" }}
+{{ $all := (where site.RegularPages "Section" "integrations").ByDate.Reverse }}
+
+{{ $related := slice }}
+{{ range $p.Params.related }}
+  {{ $page := site.GetPage (printf "/integrations/%s" .) }}
+  {{ if not $page }}
+    {{ errorf "%s: `related` entry %q does not match any integration in content/integrations/" $p.File.Filename . }}
+  {{ end }}
+  {{ if eq $page $p }}
+    {{ errorf "%s: `related` must not list the page itself" $p.File.Filename }}
+  {{ end }}
+  {{ if not (in $related $page) }}
+    {{ $related = $related | append $page }}
+  {{ end }}
+{{ end }}
+
+{{ range $type := $specificTypes }}
+  {{ if in $p.Params.categories $type }}
+    {{ range where $all "Params.categories" "intersect" (slice $type) }}
+      {{ if and (ne . $p) (not (in $related .)) }}
+        {{ $related = $related | append . }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ with first $max $related }}
+<section class="section-light-2 py-14 lg:py-24">
+  <div class="max-w-350 mx-auto px-4 flex flex-col gap-10">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+      <h2 class="text-3xl lg:text-4xl font-medium">Related integrations</h2>
+      <a href="{{ (site.GetPage "/integrations").RelPermalink }}" class="inline-flex w-fit items-center gap-2 text-base font-medium text-neutral-900 hover:text-primary-500 transition-colors">
+        Browse all integrations
+        <span class="w-5 h-5 flex items-center justify-center">{{ partial "icon.html" "ri/arrow-right-line" }}</span>
+      </a>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+      {{ range . }}
+        {{ partial "integrations/integration-card.html" . }}
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}

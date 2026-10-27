@@ -49,6 +49,12 @@ links:
     url: /posts/2026-02-18/backing-up-kubernetes-clusters-with-plakar/
     icon: ri/article-line
 
+related:
+  - openshift
+  - etcd
+  - oci
+  - vmware
+
 edition:
   - community
   - control-plane

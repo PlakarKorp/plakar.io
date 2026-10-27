@@ -37,6 +37,10 @@ links:
   - type: community
     url: /docs/community/main/integrations/tar/
 
+related:
+  - stdio
+  - fs
+
 edition:
   - community
 

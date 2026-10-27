@@ -46,6 +46,12 @@ links:
     url: /posts/2026-01-11/researching-a-postgresql-viewer-for-plakar/
     icon: ri/article-line
 
+related:
+  - mysql
+  - mongodb
+  - mssql
+  - etcd
+
 edition:
   - community
   - control-plane

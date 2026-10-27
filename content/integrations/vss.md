@@ -43,6 +43,11 @@ links:
   - type: control-plane
     url: /docs/control-plane/resources/compute/vss/
 
+related:
+  - mssql
+  - msad
+  - fs
+
 edition:
   - community
   - control-plane

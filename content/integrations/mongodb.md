@@ -39,6 +39,12 @@ links:
   - type: control-plane
     url: /docs/control-plane/resources/database/mongodb/
 
+related:
+  - postgres
+  - mysql
+  - mssql
+  - etcd
+
 edition:
   - community
   - control-plane

@@ -42,6 +42,10 @@ links:
   - type: control-plane
     url: /docs/control-plane/resources/file-storage/webdav/
 
+related:
+  - sftp
+  - ftp
+
 edition:
   - community
   - control-plane
