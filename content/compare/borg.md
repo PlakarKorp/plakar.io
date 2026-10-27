@@ -99,6 +99,36 @@ table:
               (WSL and Cygwin are experimental). 2.0 beta ships an experimental
               Windows exe.",
           }
+      - capability: "Stable release history"
+        plakar:
+          {
+            status: "partial",
+            note:
+              "Repository since March 2021, version 1.0 in May 2025, a release
+              every two to three weeks since.",
+          }
+        competitor:
+          {
+            status: "yes",
+            note:
+              "1.0.0 in March 2016 and a 1.x stable series maintained for ten
+              years.",
+          }
+      - capability: "Hosting providers with native support"
+        plakar:
+          {
+            status: "no",
+            note:
+              "Any S3, SFTP or filesystem target works, but no provider runs
+              plakar on its side yet.",
+          }
+        competitor:
+          {
+            status: "yes",
+            note:
+              "BorgBase and Hetzner Storage Box run borg on the server side.",
+          }
+
   - section: "Storage engine and security"
     rows:
       - capability: "Deduplication scope"
@@ -188,7 +218,8 @@ table:
             status: "partial",
             note:
               "VMware vSphere (closed source, free in Plakar Community), Proxmox
-              VE, OpenStack, KubeVirt. No Hyper-V or Nutanix AHV.",
+              VE, OpenStack, KubeVirt and OpenShift Virtualization. No Hyper-V
+              or Nutanix AHV.",
           }
         competitor:
           {
@@ -202,8 +233,8 @@ table:
           {
             status: "yes",
             note:
-              "Native connector: resources, CSI snapshots, PVCs, KubeVirt VMs,
-              namespace remapping on restore.",
+              "Native connector for Kubernetes and OpenShift: resources, CSI
+              snapshots, PVCs, KubeVirt VMs, namespace remapping on restore.",
           }
         competitor:
           {
@@ -340,7 +371,7 @@ table:
             status: "yes",
             note:
               "plakar ui serves a local web interface to browse, search and
-              restore.",
+              restore. Backups start from the CLI.",
           }
         competitor:
           {
@@ -428,11 +459,12 @@ sections:
       providers such as BorgBase and Hetzner Storage Box that run borg on their
       side. Any SSH box you already have can be a target."
     plakar_text:
-      "Plakar is younger, with about 2,100 stars and 43 contributors, and
-      releases every two to three weeks. There is no third-party reader for the
-      Kloset format yet, no built-in scheduler, and five connectors are closed.
-      If you only back up files to an SSH host and want the longest track
-      record, Borg is the safer choice today."
+      "Plakar's stable series is younger (1.0 in May 2025, repository since
+      2021), with about 2,100 stars and 43 contributors, and releases every two
+      to three weeks. There is no third-party reader for the Kloset format yet,
+      no built-in scheduler, and five connectors are closed. If you only back up
+      files to an SSH host and want the longest track record, Borg is the safer
+      choice today."
 choose_competitor:
   - "You back up files from Linux, macOS or BSD hosts to an SSH server you
     control, and you do not need object storage."
@@ -493,12 +525,13 @@ faq:
       crypto code needed to read 1.x repositories is planned for removal in 2.1."
   - q: "How mature is Plakar compared with Borg?"
     a:
-      "Plakar is younger. Version 1.0 shipped in May 2025, after an independent
-      cryptographic audit of the engine in February 2025, and releases now come
-      every two to three weeks. Borg has a longer public track record and more
-      users, and if that is your first criterion it is the safer pick today.
-      Plakar's answer is verifiability: every snapshot can be checked without
-      restoring, the engine is open source, and the audit report is public."
+      "Plakar's repository dates from March 2021 and version 1.0 shipped in May
+      2025, after an independent cryptographic audit of the engine in February
+      2025, and releases now come every two to three weeks. Borg has a longer
+      public track record and more users, and if that is your first criterion it
+      is the safer pick today. Plakar's answer is verifiability: every snapshot
+      can be checked without restoring, the engine is open source, and the audit
+      report is public."
 sources:
   - label: "Introducing Plakar v1.0 (May 2025)"
     url: "https://www.plakar.io/posts/2025-05-01/introducing-plakar-v1.0-to-redefine-open-source-data-protection-with-3m-funding/"

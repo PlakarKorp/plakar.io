@@ -113,13 +113,14 @@ table:
               machine. Cross-machine dedup relies on the storage (a dedup
               appliance or Windows Server Data Deduplication).",
           }
-      - capability: "Encryption with keys you hold"
+      - capability: "Client-side encryption, storage never sees keys"
         plakar:
           {
             status: "yes",
             note:
               "AES-256-GCM-SIV, Argon2id, on by default, independently audited
-              in 2025. Storage never sees keys.",
+              in 2025. Encrypted on the source host; storage and vendor never
+              see plaintext.",
           }
         competitor:
           {
@@ -180,8 +181,8 @@ table:
           {
             status: "partial",
             note:
-              "VMware vSphere (agentless), Proxmox VE, OpenStack, KubeVirt. No
-              Hyper-V or Nutanix AHV.",
+              "VMware vSphere (agentless), Proxmox VE, OpenStack, KubeVirt and
+              OpenShift Virtualization. No Hyper-V or Nutanix AHV.",
           }
         competitor:
           {
@@ -195,8 +196,9 @@ table:
           {
             status: "yes",
             note:
-              "Native connector (resources, CSI snapshots, PVCs, KubeVirt VMs)
-              plus an Operator with CRDs.",
+              "Native connectors for Kubernetes and OpenShift (resources, CSI
+              snapshots, PVCs, KubeVirt VMs) plus an Operator with backup,
+              restore, sync and check CRDs, one-off or recurring.",
           }
         competitor:
           {
@@ -304,7 +306,7 @@ table:
               "Instant Recovery across hypervisors, export to VHD, VHDX and
               VMDK, application-item explorers.",
           }
-      - capability: "Automated restore testing"
+      - capability: "Automated restore drills"
         plakar:
           {
             status: "partial",

@@ -127,21 +127,22 @@ table:
               "Atlas file system with global deduplication and compression
               across VMs on the cluster. No public ratio.",
           }
-      - capability: "Encryption with keys you hold"
+      - capability: "Client-side encryption, storage never sees keys"
         plakar:
           {
             status: "yes",
             note:
               "AES-256-GCM-SIV, Argon2id, on by default, independently audited
-              in 2025. Storage never sees keys.",
+              in 2025. Encrypted on the source host; storage and vendor never
+              see plaintext.",
           }
         competitor:
           {
-            status: "yes",
+            status: "no",
             note:
-              "AES-256 at rest and in flight, per-ingest keys wrapped by KEKs,
-              internal TPM key manager or external KMIP. Cluster-side, not
-              client-side.",
+              "Encrypted on the cluster: AES-256 at rest and in flight,
+              per-ingest keys wrapped by KEKs, TPM or external KMIP. The cluster
+              handles plaintext.",
           }
       - capability: "Immutability"
         plakar:
@@ -212,8 +213,8 @@ table:
           {
             status: "partial",
             note:
-              "VMware vSphere (agentless), Proxmox VE, OpenStack, KubeVirt. No
-              Hyper-V or Nutanix AHV.",
+              "VMware vSphere (agentless), Proxmox VE, OpenStack, KubeVirt and
+              OpenShift Virtualization. No Hyper-V or Nutanix AHV.",
           }
         competitor:
           {
@@ -229,8 +230,9 @@ table:
           {
             status: "yes",
             note:
-              "Native connector (resources, CSI snapshots, PVCs, KubeVirt VMs)
-              plus an Operator with CRDs.",
+              "Native connectors for Kubernetes and OpenShift (resources, CSI
+              snapshots, PVCs, KubeVirt VMs) plus an Operator with backup,
+              restore, sync and check CRDs, one-off or recurring.",
           }
         competitor:
           {
@@ -338,7 +340,7 @@ table:
               family, plus CloudOn conversion of vSphere VMs to AWS or Azure. No
               public claim of restoring a vSphere VM to Proxmox.",
           }
-      - capability: "Automated restore testing"
+      - capability: "Automated restore drills"
         plakar:
           {
             status: "partial",
@@ -429,9 +431,11 @@ sections:
     plakar_text:
       "Plakar has its own connectors for Proxmox VE (built with a partner on top
       of vzdump), OpenStack (Nova instances, Cinder volumes, Swift, Glance,
-      Trove) and Kubernetes, including KubeVirt VMs. They work with open source
-      Plakar and with Control Plane, and every snapshot can be browsed, mounted
-      and restored to any destination. All docs and changelogs are public."
+      Trove) and Kubernetes, including KubeVirt VMs. One Control Plane instance
+      covers every OpenStack tenant through inventories, created by hand or by
+      Terraform. They work with open source Plakar and with Control Plane, and
+      every snapshot can be browsed, mounted and restored to any destination.
+      All docs and changelogs are public."
     bullets:
       - "OpenStack connector 1.1.1 released October 2026"
       - "Kubernetes connector 1.1.11 with KubeVirt VMs, namespace remapping and

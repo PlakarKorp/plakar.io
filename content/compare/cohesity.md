@@ -112,20 +112,22 @@ table:
               "SpanFS global inline variable-length dedup and compression across
               the whole cluster. No guaranteed ratio.",
           }
-      - capability: "Encryption with keys you hold"
+      - capability: "Client-side encryption, storage never sees keys"
         plakar:
           {
             status: "yes",
             note:
               "AES-256-GCM-SIV, Argon2id, on by default, independently audited
-              in 2025. Storage never sees keys.",
+              in 2025. Encrypted on the source host; storage and vendor never
+              see plaintext.",
           }
         competitor:
           {
-            status: "partial",
+            status: "no",
             note:
-              "AES-256 in flight and at rest, internal or external KMS. In the
-              SaaS service keys can be Cohesity-managed or customer-managed.",
+              "Encrypted on the cluster at rest and in flight with an internal
+              or external KMS; the cluster handles plaintext. SaaS keys can be
+              Cohesity-managed or customer-managed.",
           }
       - capability: "Immutability"
         plakar:
@@ -179,8 +181,8 @@ table:
           {
             status: "partial",
             note:
-              "VMware vSphere (agentless), Proxmox VE, OpenStack, KubeVirt. No
-              Hyper-V or Nutanix AHV.",
+              "VMware vSphere (agentless), Proxmox VE, OpenStack, KubeVirt and
+              OpenShift Virtualization. No Hyper-V or Nutanix AHV.",
           }
         competitor:
           {
@@ -196,8 +198,9 @@ table:
           {
             status: "yes",
             note:
-              "Native connector (resources, CSI snapshots, PVCs, KubeVirt VMs)
-              plus an Operator with CRDs.",
+              "Native connectors for Kubernetes and OpenShift (resources, CSI
+              snapshots, PVCs, KubeVirt VMs) plus an Operator with backup,
+              restore, sync and check CRDs, one-off or recurring.",
           }
         competitor:
           {
@@ -304,7 +307,7 @@ table:
               "Instant recovery and volume mount on VMware, AHV and OpenShift
               Virt, Test and Dev clones, PITR for databases.",
           }
-      - capability: "Automated restore testing"
+      - capability: "Automated restore drills"
         plakar:
           {
             status: "partial",

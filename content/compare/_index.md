@@ -48,8 +48,8 @@ matrices:
     rows:
       - capability: "Restore backups without the vendor's software"
         cells: ["yes", "partial", "no", "no", "no"]
-      - capability: "Encryption with keys only you hold"
-        cells: ["yes", "partial", "yes", "partial", "partial"]
+      - capability: "Client-side encryption, storage never sees keys"
+        cells: ["yes", "partial", "no", "no", "partial"]
       - capability: "Open source agents (Edges)"
         cells: ["yes", "no", "no", "no", "no"]
       - capability: "Self-hosted control plane, no SaaS required"
@@ -74,7 +74,7 @@ matrices:
         cells: ["no", "yes", "yes", "yes", "yes"]
       - capability: "Access control (RBAC, MFA, audit log, SSO)"
         cells: ["partial", "yes", "yes", "yes", "yes"]
-      - capability: "Automated restore testing"
+      - capability: "Automated restore drills"
         cells: ["partial", "yes", "yes", "partial", "yes"]
       - capability: "Free tier"
         cells: ["yes", "partial", "no", "no", "no"]

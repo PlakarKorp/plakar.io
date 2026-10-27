@@ -204,8 +204,8 @@ table:
           {
             status: "yes",
             note:
-              "Native connector: resources, CSI snapshots, PVCs, KubeVirt VMs,
-              namespace remapping, mTLS.",
+              "Native connector for Kubernetes and OpenShift: resources, CSI
+              snapshots, PVCs, KubeVirt VMs, namespace remapping, mTLS.",
           }
         competitor:
           {
@@ -327,7 +327,7 @@ table:
             status: "yes",
             note:
               "plakar ui serves a local web UI to browse snapshots, compare them
-              and restore files.",
+              and restore files. Backups start from the CLI.",
           }
         competitor:
           {
@@ -465,12 +465,13 @@ faq:
       same stores."
   - q: "How mature is Plakar compared with rclone?"
     a:
-      "Plakar is younger. Version 1.0 shipped in May 2025, after an independent
-      cryptographic audit of the engine in February 2025, and releases now come
-      every two to three weeks. rclone has a longer public track record and more
-      users, and if that is your first criterion it is the safer pick today.
-      Plakar's answer is verifiability: every snapshot can be checked without
-      restoring, the engine is open source, and the audit report is public."
+      "Plakar's repository dates from March 2021 and version 1.0 shipped in May
+      2025, after an independent cryptographic audit of the engine in February
+      2025, and releases now come every two to three weeks. rclone has a longer
+      public track record and more users, and if that is your first criterion it
+      is the safer pick today. Plakar's answer is verifiability: every snapshot
+      can be checked without restoring, the engine is open source, and the audit
+      report is public."
 sources:
   - label: "Introducing Plakar v1.0 (May 2025)"
     url: "https://www.plakar.io/posts/2025-05-01/introducing-plakar-v1.0-to-redefine-open-source-data-protection-with-3m-funding/"

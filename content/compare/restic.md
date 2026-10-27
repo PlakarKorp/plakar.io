@@ -189,8 +189,8 @@ table:
             status: "partial",
             note:
               "VMware vSphere (agentless, closed source, free in Plakar
-              Community), Proxmox VE, OpenStack, KubeVirt. No Hyper-V or
-              Nutanix.",
+              Community), Proxmox VE, OpenStack, KubeVirt and OpenShift
+              Virtualization. No Hyper-V or Nutanix.",
           }
         competitor:
           {
@@ -204,8 +204,8 @@ table:
           {
             status: "yes",
             note:
-              "Native connector: resources, CSI snapshots, PVCs, KubeVirt VMs,
-              namespace remapping on restore.",
+              "Native connector for Kubernetes and OpenShift: resources, CSI
+              snapshots, PVCs, KubeVirt VMs, namespace remapping on restore.",
           }
         competitor:
           {
@@ -342,7 +342,7 @@ table:
             status: "yes",
             note:
               "plakar ui serves a web interface to browse, search and restore
-              from a store.",
+              from a store. Backups start from the CLI.",
           }
         competitor:
           {
@@ -479,12 +479,13 @@ faq:
       account is only needed to download the five closed connectors."
   - q: "How mature is Plakar compared with restic?"
     a:
-      "Plakar is younger. Version 1.0 shipped in May 2025, after an independent
-      cryptographic audit of the engine in February 2025, and releases now come
-      every two to three weeks. restic has a longer public track record and more
-      users, and if that is your first criterion it is the safer pick today.
-      Plakar's answer is verifiability: every snapshot can be checked without
-      restoring, the engine is open source, and the audit report is public."
+      "Plakar's repository dates from March 2021 and version 1.0 shipped in May
+      2025, after an independent cryptographic audit of the engine in February
+      2025, and releases now come every two to three weeks. restic has a longer
+      public track record and more users, and if that is your first criterion it
+      is the safer pick today. Plakar's answer is verifiability: every snapshot
+      can be checked without restoring, the engine is open source, and the audit
+      report is public."
 sources:
   - label: "restic rest-server (append-only mode)"
     url: "https://github.com/restic/rest-server"
