@@ -27,7 +27,7 @@ Most endpoints require a **badge**, a JWT that PCP issues when a user logs in.
 The badge is sent in the `Authorization` header as a bearer token.
 
 Automation obtains a badge with an API key belonging to an
-[application user](../../../administration/users#application-users). Exchanging
+[application user](../../../access-control/users#application-users). Exchanging
 the key returns the badge in `token`:
 
 ```sh
@@ -50,14 +50,14 @@ $ curl https://pcp.example.com/api/v1/account/me \
 ```
 
 What a badge can do is determined by the
-[permissions](../../../administration/permissions) its user holds in the
+[permissions](../../../access-control/permissions) its user holds in the
 organization the badge is scoped to. A request outside those permissions returns
 `403`.
 
 A few endpoints use a different credential, and each one states which:
 
-- **Edge token**: issued to an [edge](../../../infrastructure/edges) when it
-  enrolls, and sent as a bearer token by that edge.
+- **Edge token**: issued to an [edge](../../../edges) when it enrolls, and sent
+  as a bearer token by that edge.
 - **Agent token**: issued to an agent when it enrolls, and sent in the
   `Plakman-Agent-Token` header.
 
