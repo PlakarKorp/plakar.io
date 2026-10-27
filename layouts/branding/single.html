@@ -3,6 +3,8 @@
 {{ $logoCircle := resources.Get "img/branding/logo-circle-white.svg" }}
 {{ $logoMascotBW := resources.Get "img/branding/logo-mascot-bw.svg" }}
 {{ $logoMascotColor := resources.Get "img/branding/logo-mascot-color.svg" }}
+{{ $logoOutlineBlack := resources.Get "img/branding/logo-outline-black.svg" }}
+{{ $logoOutlineWhite := resources.Get "img/branding/logo-outline-white.svg" }}
 {{ $brandKit := resources.Get "img/branding/logo.zip" }}
 
 <!-- Hero -->
@@ -105,6 +107,27 @@
             {{ with $logoCircle }}
               <div class="p-6 bg-neutral-50 rounded-md border border-neutral-200 flex items-center justify-center">
                 <img src="{{ .RelPermalink }}" alt="Circle White Logo">
+              </div>
+            {{ end }}
+          </div>
+        </div>
+
+        <!-- Black and white logos -->
+        <div class="flex flex-col gap-4">
+          <p class="text-neutral-900 text-lg lg:text-2xl font-medium">
+            Use the single-color black or white logo when the background or print process calls for one color.
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {{ with $logoOutlineBlack }}
+              <div class="p-6 bg-neutral-50 rounded-md border border-neutral-200 flex flex-col items-center gap-4">
+                <img src="{{ .RelPermalink }}" alt="Black Logo">
+                <a href="{{ .RelPermalink }}" download class="text-primary-500 underline text-sm font-medium">Download black logo (svg)</a>
+              </div>
+            {{ end }}
+            {{ with $logoOutlineWhite }}
+              <div class="p-6 bg-neutral-900 rounded-md border border-neutral-200 flex flex-col items-center gap-4">
+                <img src="{{ .RelPermalink }}" alt="White Logo">
+                <a href="{{ .RelPermalink }}" download class="text-neutral-50 underline text-sm font-medium">Download white logo (svg)</a>
               </div>
             {{ end }}
           </div>
