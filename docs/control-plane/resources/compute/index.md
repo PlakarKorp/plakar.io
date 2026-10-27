@@ -34,4 +34,10 @@ Plane supports the following compute resources:
 
 
 
+## [OpenShift](https://www.plakar.io/docs/control-plane/resources/compute/openshift/index.md)
+
+- [OpenShift Cluster](https://www.plakar.io/docs/control-plane/resources/compute/openshift/cluster/index.md): How to back up and restore the manifests of an OpenShift cluster or namespace in Plakar Control Plane.
+- [OpenShift VM](https://www.plakar.io/docs/control-plane/resources/compute/openshift/vm/index.md): How to configure an OpenShift Virtualization virtual machine resource in Plakar Control Plane.
+
+
 

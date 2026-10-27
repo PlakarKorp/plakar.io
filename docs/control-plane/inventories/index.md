@@ -98,6 +98,7 @@ filled in when an app is set up on a matching resource of the inventory. See
 - [Kubernetes](https://www.plakar.io/docs/control-plane/inventories/managed/kubernetes/index.md): How to connect and manage Kubernetes inventory in Plakar Control Plane.
 - [VMware](https://www.plakar.io/docs/control-plane/inventories/managed/vmware/index.md): Connect and manage a VMware inventory in Plakar Control Plane.
 - [OpenStack](https://www.plakar.io/docs/control-plane/inventories/managed/openstack/index.md): How to connect and manage OpenStack inventory in Plakar Control Plane.
+- [OpenShift](https://www.plakar.io/docs/control-plane/inventories/managed/openshift/index.md): How to connect and manage an OpenShift inventory in Plakar Control Plane.
 
 
 ## [Self-Managed Inventories](https://www.plakar.io/docs/control-plane/inventories/self-managed/index.md)

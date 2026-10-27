@@ -54,6 +54,8 @@
 
 ## [Plakar Integrations](https://www.plakar.io/integrations/index.md)
 
+- [OpenShift](https://www.plakar.io/integrations/openshift/index.md): Manage OpenShift from Plakar Control Plane end to end. Discover namespaces, persistent volumes and OpenShift Virtualization virtual machines, and protect manifests, volume data and virtual machines with encrypted, deduplicated backups and restores.
+
 - [OpenStack](https://www.plakar.io/integrations/openstack/index.md): Manage OpenStack from Plakar Control Plane end to end. Discover Nova servers, Cinder volumes and the other resources of a project automatically, and protect servers and volumes with encrypted, deduplicated backups and restores.
 
 - [MongoDB](https://www.plakar.io/integrations/mongodb/index.md): Protect your MongoDB deployments against accidental deletion, ransomware, and operator error. Plakar captures encrypted, deduplicated snapshots of a running server and restores them to any environment.

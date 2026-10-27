@@ -42,4 +42,8 @@ For resources that no provider discovers, use a
 
 
 
+## [OpenShift](https://www.plakar.io/docs/control-plane/inventories/managed/openshift/index.md)
+
+
+
 

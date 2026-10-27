@@ -73,6 +73,7 @@ through `v1.1.8`.
 - [VMware](https://www.plakar.io/docs/community/v1.1.0/integrations/vmware/index.md): Back up and restore VMware vSphere virtual machines with Plakar.
 - [Scaleway](https://www.plakar.io/docs/community/v1.1.0/integrations/scaleway/index.md): Back up and restore Scaleway instances, block volumes and Secret Manager secrets with Plakar.
 - [OpenStack](https://www.plakar.io/docs/community/v1.1.0/integrations/openstack/index.md): Back up and restore OpenStack Nova servers and Cinder volumes with Plakar.
+- [OpenShift](https://www.plakar.io/docs/community/v1.1.0/integrations/openshift/index.md): Back up and restore OpenShift resources, persistent volumes and OpenShift Virtualization virtual machines with Plakar.
 
 
 ## [Explanations](https://www.plakar.io/docs/community/v1.1.0/explanations/index.md)

@@ -4,6 +4,10 @@
 
 
 
+## [OpenShift](https://www.plakar.io/integrations/openshift/index.md)
+
+
+
 ## [OpenStack](https://www.plakar.io/integrations/openstack/index.md)
 
 

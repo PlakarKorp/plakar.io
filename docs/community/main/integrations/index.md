@@ -146,4 +146,8 @@ Below is a list of links to the documentation for each supported integration.
 
 
 
+## [OpenShift](https://www.plakar.io/docs/community/main/integrations/openshift/index.md)
+
+
+
 

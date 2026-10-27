@@ -22,4 +22,8 @@ instances. Plakar Control Plane supports the following block storage resources:
 
 
 
+## [OpenShift PVC](https://www.plakar.io/docs/control-plane/resources/block-storage/openshift-pvc/index.md)
+
+
+
 

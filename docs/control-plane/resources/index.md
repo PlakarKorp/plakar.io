@@ -114,6 +114,7 @@ required to use each one as a source, store, or destination.
 - [Scaleway Block Storage](https://www.plakar.io/docs/control-plane/resources/block-storage/scaleway/index.md): How to configure a Scaleway block storage resource in Plakar Control Plane.
 - [Kubernetes PVC](https://www.plakar.io/docs/control-plane/resources/block-storage/pvc/index.md): How to configure a Kubernetes PersistentVolumeClaim resource in Plakar Control Plane.
 - [OpenStack Block Storage](https://www.plakar.io/docs/control-plane/resources/block-storage/openstack/index.md): How to configure an OpenStack Cinder volume resource in Plakar Control Plane.
+- [OpenShift PVC](https://www.plakar.io/docs/control-plane/resources/block-storage/openshift-pvc/index.md): How to configure an OpenShift PersistentVolumeClaim resource in Plakar Control Plane.
 
 
 ## [Compute](https://www.plakar.io/docs/control-plane/resources/compute/index.md)
@@ -124,6 +125,7 @@ required to use each one as a source, store, or destination.
 - [OpenStack Compute](https://www.plakar.io/docs/control-plane/resources/compute/openstack/index.md): How to configure an OpenStack Nova server resource in Plakar Control Plane.
 - [OVHcloud Compute](https://www.plakar.io/docs/control-plane/resources/compute/ovhcloud/index.md): How to configure an OVHcloud Compute resource in Plakar Control Plane.
 - [Kubernetes VM](https://www.plakar.io/docs/control-plane/resources/compute/kubernetes-vm/index.md): How to configure a KubeVirt virtual machine resource in Plakar Control Plane.
+- [OpenShift](https://www.plakar.io/docs/control-plane/resources/compute/openshift/index.md): OpenShift cluster manifests and OpenShift Virtualization virtual machines in Plakar Control Plane.
 
 
 ## [Database](https://www.plakar.io/docs/control-plane/resources/database/index.md)

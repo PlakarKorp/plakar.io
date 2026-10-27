@@ -153,6 +153,7 @@ Each integration tells Plakar how to interact with a specific storage system in 
 - [Scaleway](https://www.plakar.io/docs/community/v1.1.0/integrations/scaleway/index.md): Scaleway instances, block volumes and Secret Manager secrets (source, destination).
 - [OpenStack](https://www.plakar.io/docs/community/v1.1.0/integrations/openstack/index.md): OpenStack Nova servers and Cinder volumes (source, destination).
 - [Kubernetes](https://www.plakar.io/docs/community/v1.1.0/integrations/kubernetes/index.md): Kubernetes cluster resources, manifests, and persistent volumes (source).
+- [OpenShift](https://www.plakar.io/docs/community/v1.1.0/integrations/openshift/index.md): OpenShift manifests (configuration only), PVC contents and OpenShift Virtualization virtual machines (source, destination).
 - [etcd](https://www.plakar.io/docs/community/v1.1.0/integrations/etcd/index.md): etcd cluster snapshots (source).
 - [Notion](https://www.plakar.io/docs/community/v1.1.0/integrations/notion/index.md): Notion workspace via the Notion API (source, destination).
 - [Dropbox](https://www.plakar.io/docs/community/v1.1.0/integrations/dropbox/index.md): Dropbox via Rclone (store, source, destination).
@@ -244,6 +245,7 @@ Plakar Control Plane is a self-hosted backup management system built on top of P
 - [Inventory: Kubernetes](https://www.plakar.io/docs/control-plane/inventories/managed/kubernetes/index.md): Discover the resources of a Kubernetes cluster.
 - [Inventory: VMware](https://www.plakar.io/docs/control-plane/inventories/managed/vmware/index.md): Discover the virtual machines of a vCenter Server.
 - [Inventory: OpenStack](https://www.plakar.io/docs/control-plane/inventories/managed/openstack/index.md): Discover the Nova servers, Cinder volumes, Swift containers and Trove databases of an OpenStack project.
+- [Inventory: OpenShift](https://www.plakar.io/docs/control-plane/inventories/managed/openshift/index.md): Discover the namespaces, PVCs and OpenShift Virtualization virtual machines of an OpenShift cluster.
 - [Inventory: Self-managed](https://www.plakar.io/docs/control-plane/inventories/self-managed/index.md): Add resources by hand or from a CSV file.
 - [Configuration Bundles](https://www.plakar.io/docs/control-plane/inventories/configuration-bundles/index.md): Share credentials and settings across the resources of an inventory, and auto-create apps.
 
@@ -256,12 +258,16 @@ Plakar Control Plane is a self-hosted backup management system built on top of P
 - [Block Storage: Scaleway](https://www.plakar.io/docs/control-plane/resources/block-storage/scaleway/index.md): Back up Scaleway block volumes.
 - [Block Storage: Kubernetes PVC](https://www.plakar.io/docs/control-plane/resources/block-storage/pvc/index.md): Back up and restore Kubernetes PersistentVolumeClaims.
 - [Block Storage: OpenStack](https://www.plakar.io/docs/control-plane/resources/block-storage/openstack/index.md): Back up and restore OpenStack Cinder volumes.
+- [Block Storage: OpenShift PVC](https://www.plakar.io/docs/control-plane/resources/block-storage/openshift-pvc/index.md): Back up and restore OpenShift PersistentVolumeClaims, through a CSI snapshot or the live volume.
 - [Compute: Scaleway](https://www.plakar.io/docs/control-plane/resources/compute/scaleway/index.md): Back up and restore Scaleway instances.
 - [Compute: VMware](https://www.plakar.io/docs/control-plane/resources/compute/vmware/index.md): Back up and restore VMware virtual machines.
 - [Compute: Windows VSS](https://www.plakar.io/docs/control-plane/resources/compute/vss/index.md): Back up and restore Windows systems through Volume Shadow Copy Service.
 - [Compute: OpenStack](https://www.plakar.io/docs/control-plane/resources/compute/openstack/index.md): Back up OpenStack Nova servers and restore them onto an existing server.
 - [Compute: OVHcloud](https://www.plakar.io/docs/control-plane/resources/compute/ovhcloud/index.md): Back up and restore OVHcloud compute instances.
 - [Compute: Kubernetes VM](https://www.plakar.io/docs/control-plane/resources/compute/kubernetes-vm/index.md): Back up and restore KubeVirt virtual machines.
+- [Compute: OpenShift](https://www.plakar.io/docs/control-plane/resources/compute/openshift/index.md): OpenShift cluster and namespace resources, and OpenShift Virtualization virtual machines.
+- [Compute: OpenShift Cluster](https://www.plakar.io/docs/control-plane/resources/compute/openshift/cluster/index.md): Back up and restore the manifests (configuration only) of an OpenShift cluster or namespace.
+- [Compute: OpenShift VM](https://www.plakar.io/docs/control-plane/resources/compute/openshift/vm/index.md): Back up and restore OpenShift Virtualization virtual machines with their disks.
 - [Database: Microsoft SQL Server](https://www.plakar.io/docs/control-plane/resources/database/mssql/index.md): Back up and restore SQL Server.
 - [Database: MySQL](https://www.plakar.io/docs/control-plane/resources/database/mysql/index.md): Back up and restore MySQL and MariaDB.
 - [Database: PostgreSQL](https://www.plakar.io/docs/control-plane/resources/database/postgres/index.md): Back up and restore PostgreSQL.
@@ -358,6 +364,6 @@ Plakar Control Plane is a self-hosted backup management system built on top of P
 - [OpenStack: Users & Application Credentials](https://www.plakar.io/docs/control-plane/guides/openstack/users-and-application-credentials/index.md): Create an OpenStack user and application credentials with the reader and member roles for PCP.
 - [Windows: OpenSSH Server](https://www.plakar.io/docs/control-plane/guides/windows/windows-openssh-setup/index.md): Install and configure OpenSSH Server on a Windows host.
 - [Kubernetes: Plakar with Kubernetes](https://www.plakar.io/docs/control-plane/guides/kubernetes/plakar-with-kubernetes/index.md): The Kubernetes components of the Plakar ecosystem.
-- [Kubernetes: Service Accounts and RBAC](https://www.plakar.io/docs/control-plane/guides/kubernetes/kubernetes-rbac/index.md): Least-privilege service accounts for the Kubernetes integration.
+- [Kubernetes: Service Accounts and RBAC](https://www.plakar.io/docs/control-plane/guides/kubernetes/kubernetes-rbac/index.md): Least-privilege service accounts for the Kubernetes and OpenShift integrations.
 - [MTU and Jumbo Frames](https://www.plakar.io/docs/control-plane/guides/mtu-and-jumbo-frames/index.md): Ethernet MTU, jumbo frames and TCP MSS, and why they matter for backups.
 - [Hosting a Package Repository](https://www.plakar.io/docs/control-plane/guides/self-hosted-package-repository/index.md): Self-hosted repositories for air-gapped PCP instances.
