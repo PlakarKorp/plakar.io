@@ -1,9 +1,11 @@
 ---
 title: "Kubernetes VM"
 date: "2026-10-14T00:00:00Z"
-weight: 6
+weight: 2
 summary:
   "How to configure a KubeVirt virtual machine resource in Plakar Control Plane."
+aliases:
+  - /docs/control-plane/resources/compute/kubernetes-vm/
 ---
 
 # Kubernetes VM
@@ -31,19 +33,19 @@ Plakar runs outside the cluster, both also need the
 
 ## Inventory Management
 
-[Managed inventories](../../inventories#managed-inventories) can discover
+[Managed inventories](../../../inventories#managed-inventories) can discover
 KubeVirt virtual machines automatically once the
-[Kubernetes inventory](../../inventories/managed/kubernetes) is connected to a
-cluster with KubeVirt installed. You can instead set up a
-[self-managed inventory](../../inventories/self-managed) and add the virtual
+[Kubernetes inventory](../../../inventories/managed/kubernetes) is connected to
+a cluster with KubeVirt installed. You can instead set up a
+[self-managed inventory](../../../inventories/self-managed) and add the virtual
 machine manually.
 
 ### Adding a Kubernetes VM as a resource
 
 When using a self-managed inventory, register the resource with `Compute` as the
 class. For the endpoint, use the namespace followed by the virtual machine name,
-for example `/default/my-vm`. See [resources documentation](../../resources) for
-more information on how to set up resources on a self-managed inventory.
+for example `/default/my-vm`. See [resources documentation](../../../resources)
+for more information on how to set up resources on a self-managed inventory.
 
 #### Backup flow
 
@@ -106,7 +108,7 @@ destination apps using the `k8s+vm` protocol.
 - **Kubeconfig**: Upload a kube config YAML file or paste its contents directly.
   Leave it empty when Plakar Control Plane runs inside the cluster to use the
   in-cluster configuration. The kubeconfig can also be loaded from a
-  [secret provider](../../secret-providers).
+  [secret provider](../../../secret-providers).
 - **Kubelet Image**: The container image used for the helper pod. Defaults to a
   recent kubelet image. Set it to pull the image from another registry, for
   example a local mirror in an air-gapped cluster.
