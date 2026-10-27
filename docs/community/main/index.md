@@ -24,7 +24,6 @@
 - [Serving a Kloset Store over the Network](https://www.stg.plakar.io/docs/community/main/guides/serving-a-kloset-store-over-the-network/index.md): Expose a Kloset Store over HTTP using the plakar server command.
 - [Excluding files from a backup](https://www.stg.plakar.io/docs/community/main/guides/excluding-files-from-a-backup/index.md): Learn how to exclude files from a backup in Plakar
 - [Retrieving secrets via external command](https://www.stg.plakar.io/docs/community/main/guides/retrieve-passphrase-kloset-store/index.md): The passphrase for accessing an encrypted Kloset Store can be stored in the environment, a file, or in the configuration. It can also be retrieved via an external command, for example your password manager.
-- [Creating a custom integration](https://www.stg.plakar.io/docs/community/main/guides/creating-a-custom-integration/index.md): Step-by-step guide to implement and install your own Plakar integration in Go.
 - [Logging In to Plakar](https://www.stg.plakar.io/docs/community/main/guides/logging-in-to-plakar/index.md): Log in to unlock optional features like pre-built package installation and alerting.
 - [Managing packages](https://www.stg.plakar.io/docs/community/main/guides/managing-packages/index.md): How to install, upgrade, and remove Plakar integration packages.
 - [Pruning snapshots](https://www.stg.plakar.io/docs/community/main/guides/using-plakar-prune/index.md): Remove old snapshots from a Kloset store using age, tags, or retention policies.
@@ -70,6 +69,8 @@
 - [MongoDB](https://www.stg.plakar.io/docs/community/main/integrations/mongodb/index.md): Back up and restore MongoDB databases with Plakar.
 - [VMware](https://www.stg.plakar.io/docs/community/main/integrations/vmware/index.md): Back up and restore VMware vSphere virtual machines with Plakar.
 - [Scaleway](https://www.stg.plakar.io/docs/community/main/integrations/scaleway/index.md): Back up and restore Scaleway instances, block volumes and Secret Manager secrets with Plakar.
+- [OpenStack](https://www.stg.plakar.io/docs/community/main/integrations/openstack/index.md): Back up and restore OpenStack Nova servers and Cinder volumes with Plakar.
+- [OpenShift](https://www.stg.plakar.io/docs/community/main/integrations/openshift/index.md): Back up and restore OpenShift resources, persistent volumes and OpenShift Virtualization virtual machines with Plakar.
 
 
 ## [Explanations](https://www.stg.plakar.io/docs/community/main/explanations/index.md)

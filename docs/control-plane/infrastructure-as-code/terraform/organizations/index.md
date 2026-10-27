@@ -9,7 +9,7 @@ without a grant can sign in to the organization and do nothing in it.
 
 ## Organizations
 
-An [organization](../../../administration/organizations) is created under
+An [organization](../../../access-control/organizations) is created under
 another one. Without `parent_id`, the parent is the organization the provider's
 API key belongs to.
 
@@ -53,11 +53,11 @@ Adding a person follows the invitation path. An address that already has an
 account gains the membership and nothing else. A new address gets an account
 with a one-time password, returned in `generated_password` and recorded in
 state, which the person is required to change at their first
-[sign-in](../../../administration/signing-in). The `account_created` attribute
+[sign-in](../../../intro/signing-in). The `account_created` attribute
 reports which of the two happened.
 
 A service account is an
-[application user](../../../administration/users#application-users). It has no
+[application user](../../../access-control/users#application-users). It has no
 address and no interactive login, so its `generated_password` is inert and its
 API key is created from the web interface. This is also how the key the provider
 itself authenticates with comes into existence, which means the first
@@ -69,7 +69,7 @@ continues to exist, along with any membership they hold in another organization.
 ## Grants
 
 A grant is one pair of a subject and a
-[role](../../../administration/permissions). Two roles for the same person means
+[role](../../../access-control/permissions). Two roles for the same person means
 two grants.
 
 ```terraform

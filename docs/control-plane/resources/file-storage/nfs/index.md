@@ -9,11 +9,10 @@ uses AUTH_UNIX, meaning the numeric user and group IDs presented to the server.
 
 ## Inventory Management
 
-Currently no
-[managed inventory](../../infrastructure/inventories#managed-inventories) has
-the capability of discovering NFS resources. You need to set up a
-[self-managed inventory](../../infrastructure/inventories/self-managed) before
-adding an NFS resource.
+Currently no [managed inventory](../../inventories#managed-inventories) has the
+capability of discovering NFS resources. You need to set up a
+[self-managed inventory](../../inventories/self-managed) before adding an NFS
+resource.
 
 ### Adding NFS as a resource
 

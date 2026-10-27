@@ -144,9 +144,9 @@ write the first backup at 15 GB, but then only store the chunks that actually
 changed on the following days. With 2 GB of daily churn that comes to a few
 hundred megabytes a day, so sixty days of history lands you near 35 GB in total.
 
-At S3's standard rate of about
-$0.023 per GB per month, that is the difference between paying roughly $21 a
-month to keep those 60 days and **paying under a dollar with Plakar**.
+At S3's standard rate of about $0.023 per GB per month, that is the difference
+between paying roughly $21 a month to keep those 60 days and **paying under a
+dollar with Plakar**.
 
 ## Back up managed Postgres with Plakar, step by step
 

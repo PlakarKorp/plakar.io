@@ -45,7 +45,7 @@ Once logged in, fill in the token form:
 
 - **Rights**: Define which API paths and HTTP methods the credentials are
   allowed to use. The
-  [OVHcloud inventory](../../../infrastructure/inventories/ovhcloud#required-permissions)
+  [OVHcloud inventory](../../../inventories/managed/ovhcloud#required-permissions)
   documentation lists the paths it needs.
 
 A path can end with a wildcard. For example, `/cloud/project*` covers
@@ -81,8 +81,8 @@ After creating the token, OVHcloud displays three values:
 > them somewhere safe before leaving the page.
 
 Enter these three values when creating the
-[OVHcloud inventory](../../../infrastructure/inventories/ovhcloud) in Plakar
-Control Plane.
+[OVHcloud inventory](../../../inventories/managed/ovhcloud) in Plakar Control
+Plane.
 
 {{< /step >}}
 

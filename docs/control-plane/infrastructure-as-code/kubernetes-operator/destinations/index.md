@@ -71,8 +71,8 @@ Status:
 
 The `Tested` condition reflects the same connection check as the **Test
 Connection** action described in
-[destination app](../../../apps/destinations#testing-the-connection). It is run
-automatically by the operator instead of manually from the web interface. A
+[destination app](../../../apps#testing-the-connection). It is run automatically
+by the operator instead of manually from the web interface. A
 `ConnectionVerified` reason means Plakar Control Plane successfully connected to
 the destination using the resource's configuration and credentials.
 

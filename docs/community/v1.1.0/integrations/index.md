@@ -142,4 +142,12 @@ Below is a list of links to the documentation for each supported integration.
 
 
 
+## [OpenStack](https://www.stg.plakar.io/docs/community/v1.1.0/integrations/openstack/index.md)
+
+
+
+## [OpenShift](https://www.stg.plakar.io/docs/community/v1.1.0/integrations/openshift/index.md)
+
+
+
 

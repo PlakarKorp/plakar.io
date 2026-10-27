@@ -4,6 +4,14 @@
 
 
 
+## [OpenShift](https://www.stg.plakar.io/integrations/openshift/index.md)
+
+
+
+## [OpenStack](https://www.stg.plakar.io/integrations/openstack/index.md)
+
+
+
 ## [MongoDB](https://www.stg.plakar.io/integrations/mongodb/index.md)
 
 

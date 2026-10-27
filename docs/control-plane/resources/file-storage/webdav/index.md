@@ -7,11 +7,10 @@ server. WebDAV integration supports multiple protocols.
 
 ## Inventory Management
 
-Currently no
-[managed inventory](../../infrastructure/inventories#managed-inventories) has
-the capability of discovering WebDAV resources. You need to set up a
-[self-managed inventory](../../infrastructure/inventories/self-managed) before
-adding a WebDAV resource.
+Currently no [managed inventory](../../inventories#managed-inventories) has the
+capability of discovering WebDAV resources. You need to set up a
+[self-managed inventory](../../inventories/self-managed) before adding a WebDAV
+resource.
 
 ### Adding WebDAV as a resource
 

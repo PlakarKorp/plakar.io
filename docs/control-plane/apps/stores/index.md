@@ -1,116 +1,69 @@
 
 # Store App
 
-A store app defines where Plakar Control Plane stores backup data.
+A store app is where backups are kept. Its resource, such as an S3 bucket or an
+SFTP server, holds a Kloset store, an encrypted and deduplicated repository of
+restore points. Backups write new restore points to the store, restores and
+syncs read them back, and checks verify their integrity.
 
 ## Creating a store app
 
-To create a store app, open the **Inventories** page and click on the inventory
-that contains the resource you want to use as a store. From the inventory
-details page, click **Add Store** and select the resource to use as the store.
-Provide a name for the app. The name is used to distinguish this app when
-multiple apps of the same type are configured for the same resource.
-
-![](../images/inventory-details.png)
-
-Plakar Control Plane checks the resource `class` and `sub-class` to find
-compatible integrations. If only one integration is compatible, it is selected
-automatically, which is the most common case. If multiple integrations are
-compatible, you will need to select the integration manually.
-
-Some integrations support multiple protocols. For example, the Scaleway
-integration supports three protocols, that is `scaleway-instance`,
-`scaleway-block`, and `scaleway-secrets` and you will need to select the
-appropriate one after choosing the integration.
-
-Next, select a **Storage Type**:
-
-- **Standard** - the store is available at all times
-- **Cold** - the store uses archival storage where data must be retrieved before
-  it can be accessed, such as Amazon S3 Glacier
-
-The storage type is used by the policies engine to infer the nature of the
-store. It does not affect the underlying storage itself. For S3 stores, archival
-storage is configured separately through the resource's Storage Class setting.
-See
-[Cold Storage on Amazon S3 Glacier](../../resources/object-storage/s3#cold-storage-on-amazon-s3-glacier)
-for details.
-
-Finally, provide the configuration and credentials required for the selected
-resource. See the [resources documentation](../../resources) for the required
-fields. If a [configuration bundle](../../administration/configuration-bundles)
-matches this resource, matching fields are filled in automatically.
+Store apps are created from the **Stores** tab of an inventory, by selecting the
+resource that holds the store. The integration, its configuration and the way
+fields are filled work as for every app, as described in
+[setting up an app](../apps#setting-up-an-app).
 
 ![](../images/create-store.png)
 
+A store app also has a **Storage Type**:
+
+- **Standard**: the store is available at all times.
+- **Cold**: the store uses archival storage, such as Amazon S3 Glacier, where
+  data must be retrieved before it can be read.
+
+The storage type tells the policies engine how the store behaves. It does not
+change the underlying storage. For S3, archival storage is configured through
+the storage class of the store, as described in
+[Cold Storage on Amazon S3 Glacier](../../resources/object-storage/s3#cold-storage-on-amazon-s3-glacier).
+
 ## Testing and initializing
 
-A store app only describes where backup data should go. The Kloset store itself
-is a structure that must exist at that location before anything can be written
-to it. The **Dashboard** tab of the store app is where you confirm the location
-is reachable and, when needed, create that structure.
+A store app only describes where backups go. The Kloset store itself is a
+structure that must exist at that location before anything can be written to it.
 
-### Testing the connection
+**Test Connection**, on the **Dashboard** tab of the app, checks that Plakar
+Control Plane can reach the location and reports whether a Kloset store is
+already there. A location that has held a store before is recognized and needs
+no further preparation.
 
-**Test Connection** verifies that Plakar Control Plane can reach the location
-using the configured credentials, and reports whether a Kloset store is already
-present there. A location that has been used before is recognized automatically
-and needs no further preparation.
+![](../images/store-app.png)
 
-A failing test points at the app configuration or the credentials rather than at
-the store itself. Correct them and run the test again.
+A location that has never held a Kloset store, such as a new S3 bucket, must be
+initialized before it can receive backups. Initializing writes the store
+configuration to the location and leaves an empty store. It happens once per
+location and is not destructive. Initializing a location that already holds a
+store fails and leaves that store untouched.
 
-![](../images/store-connector-1.png)
-
-### Initializing the store
-
-A location that has never held a Kloset store, such as a newly created S3
-bucket, must be initialized before it can receive backups. Initializing writes
-the store configuration to the location, leaving an empty store ready to receive
-backup data.
-
-Initialization happens once per location and is not destructive. Running it
-against a location that already holds a Kloset store fails and leaves the
-existing store untouched, so re-running it when you are unsure of a location's
-state carries no risk to the data already there.
-
-![](../images/store-connector-2.png)
-
-Backup data is compressed as it is written into the store, and the algorithm is
-chosen when the store is initialized. LZ4 is used by default. GZIP or ZSTD can
-be selected instead from the advanced settings of the initialization dialog.
+Backups are compressed as they are written to the store, with an algorithm
+chosen at initialization. `LZ4` is the default. `GZIP` or `ZSTD` can be selected
+in the advanced settings of the initialization dialog.
 
 {{< figure src="../images/kloset-store-initialization.png" alt="" class="mx-auto max-w-100" >}}
 
-### Available actions
+Once the store is initialized, its dashboard creates the tasks that act on it:
 
-Once the store is initialized, the dashboard offers the operations that act on
-it:
+- **Check Store**: checks the integrity of the store.
+- **Create Backup**: backs up a source to the store.
+- **Sync Store**: synchronizes the store with another store.
+- **Restore Data**: restores from the store to a destination.
 
-- **Check Store** - create an integrity check task for the Kloset store
-- **Create Backup** - create a backup task to the store
-- **Sync Store** - create a synchronization task to another store
-- **Restore Data** - create a restore task from the store
+## Browsing restore points
 
-## Browsing Restore Points
-
-You can view all backup restore points stored on a store from the **Browse**
-tab.
-
-![](../images/view-snapshots.png)
-
-From there, you can view the files contained in each restore point and download
-individual files without performing a full restore. You can also download the
-whole restore point directly,
-[check its integrity](../../scheduling/tasks/#check-task), or manage its
+The **Browse** tab lists the restore points held in the store. A restore point
+can be opened to view its files and download individual files without a full
+restore. It can also be downloaded whole,
+[checked](../../scheduling/tasks/#check-task), or placed under a
 [legal hold](../compliance/legal-hold).
 
-![](../images/browse-snapshots.png)
-
-## Tasks and Schedules
-
-Tasks can be created directly from the store app dashboard or from the
-**Operations > Scheduling** section. See the
-[scheduling documentation](../../scheduling) for details on creating and
-managing tasks and schedules.
+![](../images/browse-store.png)
 

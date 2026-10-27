@@ -4,6 +4,10 @@
 
 
 
+## [Take a Glance: Plakar's OpenStack backup is now free in Plakar Community](https://www.stg.plakar.io/posts/2026-10-22/backing-up-openstack-with-plakar/index.md)
+
+
+
 ## [Backing up MongoDB with Plakar](https://www.stg.plakar.io/posts/2026-10-13/backing-up-mongodb-with-plakar/index.md)
 
 

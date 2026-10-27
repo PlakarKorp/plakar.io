@@ -1,12 +1,12 @@
 
 # Inventories
 
-An [inventory](../../../infrastructure/inventories) is the set of resources PCP
-knows about, and apps attach to those resources. `plakar_inventory` declares
-one. Its `type` determines where the resources come from: an inventory of type
-`aws`, `ovh`, `scaleway`, `gcp`, `vmware` or `k8s` discovers them from the
-account it is configured against, while a `self-managed` inventory holds only
-what is declared in it by hand.
+An [inventory](../../../inventories) is the set of resources PCP knows about,
+and apps attach to those resources. `plakar_inventory` declares one. Its `type`
+determines where the resources come from: an inventory of type `aws`, `ovh`,
+`scaleway`, `gcp`, `vmware` or `k8s` discovers them from the account it is
+configured against, while a `self-managed` inventory holds only what is declared
+in it by hand.
 
 ## Provider-backed inventories
 
@@ -35,10 +35,10 @@ without `service_account_json` falls back to the ambient service account, and a
 
 ## Self-managed inventories
 
-A [self-managed](../../../infrastructure/inventories/self-managed) inventory
-discovers nothing, so it takes no configuration block. Its contents are declared
-one `plakar_inventory_resource` at a time, which is how infrastructure that no
-cloud API describes is represented in PCP.
+A [self-managed](../../../inventories/self-managed) inventory discovers nothing,
+so it takes no configuration block. Its contents are declared one
+`plakar_inventory_resource` at a time, which is how infrastructure that no cloud
+API describes is represented in PCP.
 
 ```terraform
 resource "plakar_inventory" "fleet" {

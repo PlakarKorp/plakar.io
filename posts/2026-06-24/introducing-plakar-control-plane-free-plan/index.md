@@ -72,9 +72,9 @@ a quick look at each of these capabilities.
 **Inventories** connect Plakar Control Plane to a provider and expose the list
 of compute or storage [resources](/docs/control-plane/resources/) available to
 back up — i.e. EC2 instances, S3 buckets, etc. There are two types of
-[inventories](/docs/control-plane/infrastructure/inventories/): **Managed
-inventories** to sync resources automatically using credentials, and
-**Self-managed inventories** to define resources manually.
+[inventories](/docs/control-plane/inventories/): **Managed inventories** to sync
+resources automatically using credentials, and **Self-managed inventories** to
+define resources manually.
 
 ![Plakar Control Plane — inventory management](inventory.png)
 

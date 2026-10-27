@@ -38,10 +38,6 @@ advanced configurations, so you can quickly find the instructions you need.
 
 
 
-## [Creating a custom integration](https://www.stg.plakar.io/docs/community/v1.1.0/guides/creating-a-custom-integration/index.md)
-
-
-
 ## [Logging In to Plakar](https://www.stg.plakar.io/docs/community/v1.1.0/guides/logging-in-to-plakar/index.md)
 
 

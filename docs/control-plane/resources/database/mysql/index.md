@@ -55,12 +55,12 @@ Pin MySQL tasks to the resulting edge with the **Run on** field when
 
 ## Inventory Management
 
-[Managed inventories](../../infrastructure/inventories#managed-inventories) can
-discover MySQL databases automatically on AWS (RDS instances and clusters),
-Scaleway (managed Database instances), etc. For self-hosted MySQL servers not
-covered by managed discovery, you can instead set up a
-[self-managed inventory](../../infrastructure/inventories/self-managed) and add
-the resource manually.
+[Managed inventories](../../inventories#managed-inventories) can discover MySQL
+databases automatically on AWS (RDS instances and clusters), Scaleway (managed
+Database instances), etc. For self-hosted MySQL servers not covered by managed
+discovery, you can instead set up a
+[self-managed inventory](../../inventories/self-managed) and add the resource
+manually.
 
 ### Adding MySQL as a resource
 

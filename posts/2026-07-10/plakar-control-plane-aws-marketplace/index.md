@@ -61,9 +61,8 @@ Control Plane is a self-hosted backup management platform enabling resilience as
 code. It sits above the Plakar backup engine and gives security and
 infrastructure teams four benefits legacy tooling can't:
 
-- **Provable posture**: one
-  [inventory](/docs/control-plane/infrastructure/inventories/) across VMs,
-  databases, Kubernetes, buckets, and SaaS, showing what's protected, with
+- **Provable posture**: one [inventory](/docs/control-plane/inventories/) across
+  VMs, databases, Kubernetes, buckets, and SaaS, showing what's protected, with
   integrity checks after every backup.
 - **Safe, cost-efficient copies**: client-side deduplication and zero-trust
   encryption, stored on the provider of your choice.
@@ -92,10 +91,10 @@ estate:
 | **SaaS & apps**      | [Notion](/integrations/notion/), [IMAP mailboxes](/integrations/imap/), with more landing through the open [integrations](/integrations/) ecosystem                                   |
 
 On AWS specifically,
-[managed inventories](/docs/control-plane/infrastructure/inventories/aws/)
-discover your resources agentlessly through native AWS APIs: EC2 instances, S3
-buckets, and RDS PostgreSQL databases surface automatically, while lightweight
-agents extend the same policies to on-prem and hybrid workloads.
+[managed inventories](/docs/control-plane/inventories/managed/aws/) discover
+your resources agentlessly through native AWS APIs: EC2 instances, S3 buckets,
+and RDS PostgreSQL databases surface automatically, while lightweight agents
+extend the same policies to on-prem and hybrid workloads.
 
 Everything lands in the same inventory, under the same policies, visible in the
 same posture view. No separate tool per resource type, no scripts held together
@@ -108,9 +107,8 @@ with cron and hope.
 1. **Subscribe** on
    [AWS Marketplace](https://aws.amazon.com/marketplace/pp/prodview-n3wsyckyby6vq)
    and launch the appliance (AMI) in your own account.
-2. **Connect an [inventory](/docs/control-plane/infrastructure/inventories/)**:
-   point Control Plane at your AWS credentials and it syncs your resources
-   automatically.
+2. **Connect an [inventory](/docs/control-plane/inventories/)**: point Control
+   Plane at your AWS credentials and it syncs your resources automatically.
 3. **Apply an [SLA policy](/docs/control-plane/compliance/policies/)**: set
    frequency and retention, scope it by environment, data class, or tag; every
    matching source is scheduled automatically.

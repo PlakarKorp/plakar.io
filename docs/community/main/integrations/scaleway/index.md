@@ -168,11 +168,15 @@ The following options apply to both source and destination connectors using the
 
 ### Source configuration
 
+The following extra options are available on the source connector.
+
 | Option     | Required | Description                                                 |
 | ---------- | -------- | ----------------------------------------------------------- |
 | `location` | Yes      | `scaleway-instance://<server-id>`, the instance to back up. |
 
 ### Destination configuration
+
+The following extra options are available on the destination connector.
 
 | Option       | Required | Description                                                                                                                                                                                                 |
 | ------------ | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -276,12 +280,16 @@ The following options apply to both source and destination connectors using the
 
 ### Source configuration
 
+The following extra options are available on the source connector.
+
 | Option     | Required | Description                                            |
 | ---------- | -------- | ------------------------------------------------------ |
 | `location` | Yes      | `scaleway-block://<volume-id>`, the volume to back up. |
 | `zone`     | No       | Zone of the volume. Defaults to `fr-par-1`.            |
 
 ### Destination configuration
+
+The following extra options are available on the destination connector.
 
 | Option     | Required | Description                                                                                                                        |
 | ---------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------- |

@@ -8,10 +8,10 @@ backup data is written. The `connector` module declares a
 selected by its `type`.
 
 Both need the same three things: the installed
-[integration](../../../apps/integrations) that speaks to the resource, the
-resource itself, and the `fields` that integration needs in order to reach it.
-The resource is named by its URN or by its name, and a name only resolves when
-it is unique within the inventory.
+[integration](../../../integrations) that speaks to the resource, the resource
+itself, and the `fields` that integration needs in order to reach it. The
+resource is named by its URN or by its name, and a name only resolves when it is
+unique within the inventory.
 
 ## Stores
 

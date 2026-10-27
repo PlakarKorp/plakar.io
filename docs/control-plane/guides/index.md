@@ -10,6 +10,10 @@ tutorials related to Plakar and supported platforms.
 
 
 
+## [Automating Backups](https://www.stg.plakar.io/docs/control-plane/guides/automated-backups/index.md)
+
+
+
 ## [Managing passphrases](https://www.stg.plakar.io/docs/control-plane/guides/managing-passphrases/index.md)
 
 
@@ -34,6 +38,11 @@ tutorials related to Plakar and supported platforms.
 ## [OVHcloud](https://www.stg.plakar.io/docs/control-plane/guides/ovhcloud/index.md)
 
 - [Managing API Applications and Credentials](https://www.stg.plakar.io/docs/control-plane/guides/ovhcloud/api-keys/index.md): How to generate OVHcloud API credentials for use with Plakar Control Plane.
+
+
+## [OpenStack](https://www.stg.plakar.io/docs/control-plane/guides/openstack/index.md)
+
+- [Managing Users and Application Credentials](https://www.stg.plakar.io/docs/control-plane/guides/openstack/users-and-application-credentials/index.md): How to create an OpenStack user and application credentials for use with Plakar Control Plane.
 
 
 ## [Windows](https://www.stg.plakar.io/docs/control-plane/guides/windows/index.md)

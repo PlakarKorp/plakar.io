@@ -26,14 +26,14 @@ Plakar is a command-line tool, `plakar`. Integrations such as S3 or SFTP are sep
 - Homebrew: `brew install plakarkorp/tap/plakar` (Plakar tap, recommended by the docs) or `brew install plakar` (Homebrew core, which may not always have the latest release).
 - Debian and Ubuntu (apt): add the signing key from https://plakar.io/dist/keys/plakar-packages.gpg and the repository `deb [signed-by=/usr/share/keyrings/plakar.gpg] https://plakar.io/dist/repos/deb/ stable main`, then run `sudo apt-get install plakar`.
 - Fedora and other RPM systems (dnf): add the repository `https://plakar.io/dist/repos/rpm/$basearch/` with the same signing key, then run `sudo dnf install plakar`.
-- Go toolchain: `go install github.com/PlakarKorp/plakar@latest`.
+- Go toolchain: `go install github.com/PlakarKorp/plakar@latest`. Since v1.1.8, building Plakar requires Go 1.26.10 or later.
 - Arch Linux: `yay -S plakar` (AUR).
 - Pre-built binaries and packages for macOS, Linux, FreeBSD, OpenBSD and Windows, with SHA256 checksums: [Download page](https://www.plakar.io/download/) (HTML only, no Markdown version) or [GitHub releases](https://github.com/PlakarKorp/plakar/releases).
-- Docker: not covered by the docs yet. The plakar repository includes a [Dockerfile](https://github.com/PlakarKorp/plakar/blob/main/Dockerfile) that you can build with `docker build`.
+- Docker: The plakar repository includes a [Dockerfile](https://github.com/PlakarKorp/plakar/blob/main/Dockerfile) that you can build with `docker build`.
 
 ## Automate backups
 
-Plakar 1.1 has no built-in scheduler (the `plakar scheduler` and `plakar agent` commands of 1.0 were removed). To run backups on a schedule, call `plakar backup` from the scheduler your operating system already has. On Linux, systemd timers are the recommended pattern: they log to the journal and catch up on runs missed while the machine was off. cron, launchd (macOS) and Windows Task Scheduler also work.
+Plakar 1.1.x has no built-in scheduler (the `plakar scheduler` and `plakar agent` commands of 1.0.x were removed). To run backups on a schedule, call `plakar backup` from the scheduler your operating system already has. On Linux, systemd timers are the recommended pattern: they log to the journal and catch up on runs missed while the machine was off. cron, launchd (macOS) and Windows Task Scheduler also work.
 
 - [Scheduling Backups](https://www.plakar.io/docs/community/v1.1.0/guides/setup-scheduler-daily-backups/index.md): prerequisites for every scheduler, including how to supply the store passphrase without a prompt (`passphrase` or `passphrase_cmd` in the store configuration, the `-keyfile` flag, or the `PLAKAR_PASSPHRASE` environment variable).
 - [Linux: cron and systemd timers](https://www.plakar.io/docs/community/v1.1.0/guides/setup-scheduler-daily-backups/linux/index.md): example crontab line, and `plakar-backup.service` plus `plakar-backup.timer` units with `Persistent=true`.
@@ -46,7 +46,7 @@ The command to schedule is the same everywhere. Use the absolute path to the bin
 /usr/local/bin/plakar at @mybackups backup -check /var/www
 ```
 
-`-check` runs a full integrity check after the backup. `plakar backup` exits 0 on success and non-zero on failure, so alert on the exit status. Plakar Control Plane adds a built-in scheduler, see [Scheduling](https://www.plakar.io/docs/control-plane/scheduling/index.md).
+`-check` runs a full integrity check after the backup. `plakar backup` exits 0 on success and non-zero on failure, so alert on the exit status. Plakar Control Plane adds a built-in scheduler, see [Scheduling](https://www.plakar.io/docs/control-plane/scheduling/index.md), and can back up every resource of a cloud account automatically, see [Automating Backups from an Inventory](https://www.plakar.io/docs/control-plane/guides/automated-backups/index.md).
 
 ## Restore
 
@@ -99,17 +99,18 @@ Plakar Community version is open-source and free to use. Documentation is versio
 
 ### Guides
 
-- [Create a Kloset Repository](https://www.plakar.io/docs/community/v1.1.0/guides/create-kloset-repository/index.md): Creating and configuring a Kloset store.
+- [Scheduling Backups](https://www.plakar.io/docs/community/v1.1.0/guides/setup-scheduler-daily-backups/index.md): Run backups on a schedule with cron, systemd timers, launchd or Windows Task Scheduler.
+- [Create a Kloset Store](https://www.plakar.io/docs/community/v1.1.0/guides/create-kloset-repository/index.md): Creating and configuring a Kloset store.
 - [Importing Configurations](https://www.plakar.io/docs/community/v1.1.0/guides/importing-configurations/index.md): How to import configurations for stores, sources, and destinations in Plakar.
-- [Serve a Kloset Store Over the Network](https://www.plakar.io/docs/community/v1.1.0/guides/serving-a-kloset-store-over-the-network/index.md): Expose a Kloset store over the network to allow access from other machines.
+- [Serve a Kloset Store Over the Network](https://www.plakar.io/docs/community/v1.1.0/guides/serving-a-kloset-store-over-the-network/index.md): Expose a Kloset store over HTTP with `plakar server` to allow access from other machines.
 - [Exclude Files from a Backup](https://www.plakar.io/docs/community/v1.1.0/guides/excluding-files-from-a-backup/index.md): Use exclusion patterns to skip files or directories during backup.
 - [Retrieve Passphrase via External Command](https://www.plakar.io/docs/community/v1.1.0/guides/retrieve-passphrase-kloset-store/index.md): Delegate Kloset store passphrase retrieval to an external command or secret manager.
-- [Creating a Custom Integration](https://www.plakar.io/docs/community/v1.1.0/guides/creating-a-custom-integration/index.md): Implement, package and install your own Plakar integration in Go.
+- [Managing Passphrases](https://www.plakar.io/docs/community/v1.1.0/guides/managing-passphrases/index.md): How Kloset store passphrases work and how to change the passphrase of a store.
 - [Log In to Plakar](https://www.plakar.io/docs/community/v1.1.0/guides/logging-in-to-plakar/index.md): Log in to unlock pre-built integration packages and alerts.
 - [Managing Packages](https://www.plakar.io/docs/community/v1.1.0/guides/managing-packages/index.md): Install, build, update and remove Plakar integrations.
-- [Using Plakar Prune](https://www.plakar.io/docs/community/v1.1.0/guides/using-plakar-prune/index.md): Remove old snapshots and reclaim storage space.
+- [Pruning Snapshots](https://www.plakar.io/docs/community/v1.1.0/guides/using-plakar-prune/index.md): Remove old snapshots by age, tags or retention policy, and reclaim storage space.
 - [Using Plakar UI](https://www.plakar.io/docs/community/v1.1.0/guides/using-plakar-ui/index.md): Using the web interface to browse snapshots, restore files, install integrations, etc.
-- [MySQL: Physical Backups](https://www.plakar.io/docs/community/v1.1.0/guides/mysql/physical-backups/index.md): Back up raw MySQL data directories using physical backup method.
+- [MySQL: Physical Backups](https://www.plakar.io/docs/community/v1.1.0/guides/mysql/physical-backups/index.md): Back up raw MySQL data directories using the physical backup method.
 - [MySQL: SQL Dump](https://www.plakar.io/docs/community/v1.1.0/guides/mysql/sqldump/index.md): Logical SQL dump backup for MySQL and MariaDB using the MySQL integration.
 - [PostgreSQL: pg_basebackup](https://www.plakar.io/docs/community/v1.1.0/guides/postgres/pg-base-backup/index.md): Full physical cluster backup for PostgreSQL using the PostgreSQL integration.
 - [PostgreSQL: pg_dump](https://www.plakar.io/docs/community/v1.1.0/guides/postgres/pgdump/index.md): Logical SQL dump backup for PostgreSQL using the PostgreSQL integration.
@@ -133,6 +134,27 @@ Each integration tells Plakar how to interact with a specific storage system in 
 - [S3](https://www.plakar.io/docs/community/v1.1.0/integrations/s3/index.md): S3-compatible object storage (store, source, destination).
 - [SFTP](https://www.plakar.io/docs/community/v1.1.0/integrations/sftp/index.md): SFTP/SSH-accessible servers (store, source, destination).
 - [HTTP(S)](https://www.plakar.io/docs/community/v1.1.0/integrations/http/index.md): HTTP/HTTPS endpoint for stores exposed by `plakar server` (store).
+- [Azure Blob Storage](https://www.plakar.io/docs/community/v1.1.0/integrations/azblob/index.md): Azure Blob Storage containers (store, source, destination).
+- [Google Cloud Storage](https://www.plakar.io/docs/community/v1.1.0/integrations/gcs/index.md): Google Cloud Storage buckets (store, source, destination).
+- [OCI Registry](https://www.plakar.io/docs/community/v1.1.0/integrations/oci/index.md): OCI registry as a Kloset store backend (store).
+- [WebDAV](https://www.plakar.io/docs/community/v1.1.0/integrations/webdav/index.md): WebDAV remotes (source, destination).
+- [FTP](https://www.plakar.io/docs/community/v1.1.0/integrations/ftp/index.md): Remote directories over FTP (source, destination).
+- [SMB / CIFS](https://www.plakar.io/docs/community/v1.1.0/integrations/smb/index.md): SMB shares (source, destination).
+- [NFS](https://www.plakar.io/docs/community/v1.1.0/integrations/nfs/index.md): NFS exports (source, destination).
+- [PostgreSQL](https://www.plakar.io/docs/community/v1.1.0/integrations/postgres/index.md): PostgreSQL databases, logical dumps and physical cluster backups (source, destination).
+- [MySQL / MariaDB](https://www.plakar.io/docs/community/v1.1.0/integrations/mysql/index.md): MySQL and MariaDB databases (source, destination).
+- [MongoDB](https://www.plakar.io/docs/community/v1.1.0/integrations/mongodb/index.md): MongoDB databases (source, destination).
+- [Microsoft SQL Server](https://www.plakar.io/docs/community/v1.1.0/integrations/mssql/index.md): SQL Server on a live Windows system (source, destination).
+- [Microsoft Active Directory](https://www.plakar.io/docs/community/v1.1.0/integrations/msad/index.md): Windows System State of Active Directory Domain Controllers (source, destination).
+- [Windows VSS](https://www.plakar.io/docs/community/v1.1.0/integrations/vss/index.md): Live Windows systems through Volume Shadow Copy Service (source, destination).
+- [IMAP](https://www.plakar.io/docs/community/v1.1.0/integrations/imap/index.md): Mailboxes over IMAP (source, destination).
+- [VMware](https://www.plakar.io/docs/community/v1.1.0/integrations/vmware/index.md): VMware vSphere virtual machines (source, destination).
+- [Proxmox](https://www.plakar.io/docs/community/v1.1.0/integrations/proxmox/index.md): Proxmox VMs and containers via vzdump (source, destination).
+- [Scaleway](https://www.plakar.io/docs/community/v1.1.0/integrations/scaleway/index.md): Scaleway instances, block volumes and Secret Manager secrets (source, destination).
+- [OpenStack](https://www.plakar.io/docs/community/v1.1.0/integrations/openstack/index.md): OpenStack Nova servers and Cinder volumes (source, destination).
+- [Kubernetes](https://www.plakar.io/docs/community/v1.1.0/integrations/kubernetes/index.md): Kubernetes cluster resources, manifests, and persistent volumes (source).
+- [OpenShift](https://www.plakar.io/docs/community/v1.1.0/integrations/openshift/index.md): OpenShift manifests (configuration only), PVC contents and OpenShift Virtualization virtual machines (source, destination).
+- [etcd](https://www.plakar.io/docs/community/v1.1.0/integrations/etcd/index.md): etcd cluster snapshots (source).
 - [Notion](https://www.plakar.io/docs/community/v1.1.0/integrations/notion/index.md): Notion workspace via the Notion API (source, destination).
 - [Dropbox](https://www.plakar.io/docs/community/v1.1.0/integrations/dropbox/index.md): Dropbox via Rclone (store, source, destination).
 - [iCloud Drive](https://www.plakar.io/docs/community/v1.1.0/integrations/iclouddrive/index.md): iCloud Drive via Rclone (store, source, destination).
@@ -141,14 +163,13 @@ Each integration tells Plakar how to interact with a specific storage system in 
 - [OneDrive](https://www.plakar.io/docs/community/v1.1.0/integrations/onedrive/index.md): OneDrive via Rclone (store, source, destination).
 - [OpenDrive](https://www.plakar.io/docs/community/v1.1.0/integrations/opendrive/index.md): OpenDrive via Rclone (store, source, destination).
 - [Proton Drive](https://www.plakar.io/docs/community/v1.1.0/integrations/protondrive/index.md): Proton Drive via Rclone (store, source, destination).
-- [Proxmox](https://www.plakar.io/docs/community/v1.1.0/integrations/proxmox/index.md): Proxmox VMs and containers via vzdump (source, destination).
-- [Kubernetes](https://www.plakar.io/docs/community/v1.1.0/integrations/kubernetes/index.md): Kubernetes cluster resources, manifests, and persistent volumes (source).
-- [etcd](https://www.plakar.io/docs/community/v1.1.0/integrations/etcd/index.md): etcd cluster snapshots (source).
+- [TAR](https://www.plakar.io/docs/community/v1.1.0/integrations/tar/index.md): Import TAR archives into a Kloset store (source).
+- [STDIO](https://www.plakar.io/docs/community/v1.1.0/integrations/stdio/index.md): Back up from stdin and restore to stdout or stderr (source, destination).
 
 ### References
 
 - [Command-Line Syntax](https://www.plakar.io/docs/community/v1.1.0/references/command-line-syntax/index.md): Global flags, environment variables, and output formats.
-- [Go Kloset SDK](https://www.plakar.io/docs/community/v1.1.0/references/go-kloset-sdk/index.md): Reference for the Go Kloset SDK used to build custom Plakar integrations: importer, exporter, and storage connector interfaces.
+- [Go Kloset SDK](https://www.plakar.io/docs/community/v1.1.0/references/go-kloset-sdk/index.md): Reference for the Go Kloset SDK used to build custom Plakar integrations: importer, exporter, and storage connector interfaces, packaging, and a complete example. Connectors talk to Plakar over gRPC, so integrations can be written in any language, but Go is the only language with an official SDK.
 
 ### Commands
 
@@ -197,53 +218,153 @@ Plakar Control Plane is a self-hosted backup management system built on top of P
 
 ### Getting Started
 
-- [Control Plane Overview](https://www.plakar.io/docs/control-plane/intro/overview/index.md): What's the Control Plane, who is for and how it works.
+- [Control Plane Overview](https://www.plakar.io/docs/control-plane/intro/overview/index.md): What the Control Plane is, who it is for and how it works.
+- [Installation](https://www.plakar.io/docs/control-plane/intro/installation/index.md): Deploy PCP as a virtual appliance on AWS, OVHcloud, Scaleway, Exoscale, Google Cloud, Kubernetes, VMware vSphere or Proxmox VE.
 - [Enrollment](https://www.plakar.io/docs/control-plane/intro/enrollment/index.md): One-time setup that registers your PCP instance with plakar.io to retrieve your license and enable billing reporting.
+- [Signing In](https://www.plakar.io/docs/control-plane/intro/signing-in/index.md): Sign in to PCP and select the organization to work in.
 - [Billing & Plans](https://www.plakar.io/docs/control-plane/intro/billing/index.md): Available plans and pricing for Plakar Control Plane.
 
-### Installation
+### Integrations and Secret Providers
 
-- [AWS](https://www.plakar.io/docs/control-plane/intro/installation/aws/index.md): How to install Control Plane on AWS from AWS marketplace AMI.
-- [Scaleway](https://www.plakar.io/docs/control-plane/intro/installation/scaleway/index.md): How to install Control Plane on Scaleway using a QCOW2 image.
-- [VMware vSphere](https://www.plakar.io/docs/control-plane/intro/installation/virtual-machines/vsphere/index.md): How to install Control Plane on vCenter using vSphere from either an OVA or an ISO.
+- [Integrations](https://www.plakar.io/docs/control-plane/integrations/index.md): Install and manage the integrations that provide inventories, secret providers, sources, stores and destinations.
+- [Secret Providers](https://www.plakar.io/docs/control-plane/secret-providers/index.md): Resolve credentials from an external secret manager instead of storing them in PCP, and rotate them in one place.
+- [Secret Provider: AWS Secrets Manager](https://www.plakar.io/docs/control-plane/secret-providers/aws/index.md): Use AWS Secrets Manager as a secret provider.
+- [Secret Provider: HashiCorp Vault](https://www.plakar.io/docs/control-plane/secret-providers/vault/index.md): Use HashiCorp Vault as a secret provider.
+- [Secret Provider: Scaleway Secret Manager](https://www.plakar.io/docs/control-plane/secret-providers/scaleway/index.md): Use Scaleway Secret Manager as a secret provider.
+- [Secret Provider: GCP Secret Manager](https://www.plakar.io/docs/control-plane/secret-providers/gcp/index.md): Use Google Cloud Secret Manager as a secret provider.
+- [Secret Provider: OVHcloud Secret Manager](https://www.plakar.io/docs/control-plane/secret-providers/ovhcloud/index.md): Use OVHcloud Secret Manager as a secret provider.
 
-### Infrastructure
+### Inventories
 
-- [Secret Providers](https://www.plakar.io/docs/control-plane/infrastructure/secret-providers/index.md): How to use secret providers to feed secrets into Control Plane.
-- [Secret Provider: AWS Secrets Manager](https://www.plakar.io/docs/control-plane/infrastructure/secret-providers/aws/index.md): How to setup AWS Secrets Manager on Control Plane and use it as a secret provider.
-- [Secret Provider: HashiCorp Vault](https://www.plakar.io/docs/control-plane/infrastructure/secret-providers/vault/index.md): How to setup HashiCorp Vault on Control Plane and use it as a secret provider.
-- [Secret Provider: Scaleway Secret Manager](https://www.plakar.io/docs/control-plane/infrastructure/secret-providers/scaleway/index.md): How to setup Scaleway Secret Manager on Control Plane and use it as a secret provider.
-- [Inventories](https://www.plakar.io/docs/control-plane/infrastructure/inventories/index.md): What are inventories and how they are used in Control Plane.
-- [Inventory: AWS](https://www.plakar.io/docs/control-plane/infrastructure/inventories/aws/index.md): How to setup AWS inventory and use it in Control Plane.
-- [Inventory: Scaleway](https://www.plakar.io/docs/control-plane/infrastructure/inventories/scaleway/index.md): How to setup Scaleway inventory and use it in Control Plane.
-- [Inventory: Self-managed](https://www.plakar.io/docs/control-plane/infrastructure/inventories/self-managed/index.md): How to setup a Self-managed inventory and use it in Control Plane.
-
-### Apps
-
-- [Overview](https://www.plakar.io/docs/control-plane/apps/index.md): How apps (sources, stores, destinations) work in Plakar Control Plane and how to configure them.
-- [Source App](https://www.plakar.io/docs/control-plane/apps/sources/index.md): How source apps work in Plakar Control Plane.
-- [Store App](https://www.plakar.io/docs/control-plane/apps/stores/index.md): How store apps work in Plakar Control Plane.
-- [Destination App](https://www.plakar.io/docs/control-plane/apps/destinations/index.md): How destination apps work in Plakar Control Plane.
+- [Inventories](https://www.plakar.io/docs/control-plane/inventories/index.md): How inventories hold the resources PCP manages, managed and self-managed, and how residency is inherited.
+- [Managed Inventories](https://www.plakar.io/docs/control-plane/inventories/managed/index.md): Inventories that discover resources from a cloud provider or platform.
+- [Inventory: AWS](https://www.plakar.io/docs/control-plane/inventories/managed/aws/index.md): Discover AWS resources.
+- [Inventory: OVHcloud](https://www.plakar.io/docs/control-plane/inventories/managed/ovhcloud/index.md): Discover the resources of every project of an OVHcloud account.
+- [Inventory: Scaleway](https://www.plakar.io/docs/control-plane/inventories/managed/scaleway/index.md): Discover the resources of a Scaleway project.
+- [Inventory: Google Cloud](https://www.plakar.io/docs/control-plane/inventories/managed/google-cloud/index.md): Discover Google Cloud resources.
+- [Inventory: Kubernetes](https://www.plakar.io/docs/control-plane/inventories/managed/kubernetes/index.md): Discover the resources of a Kubernetes cluster.
+- [Inventory: VMware](https://www.plakar.io/docs/control-plane/inventories/managed/vmware/index.md): Discover the virtual machines of a vCenter Server.
+- [Inventory: OpenStack](https://www.plakar.io/docs/control-plane/inventories/managed/openstack/index.md): Discover the Nova servers, Cinder volumes, Swift containers and Trove databases of an OpenStack project.
+- [Inventory: OpenShift](https://www.plakar.io/docs/control-plane/inventories/managed/openshift/index.md): Discover the namespaces, PVCs and OpenShift Virtualization virtual machines of an OpenShift cluster.
+- [Inventory: Self-managed](https://www.plakar.io/docs/control-plane/inventories/self-managed/index.md): Add resources by hand or from a CSV file.
+- [Configuration Bundles](https://www.plakar.io/docs/control-plane/inventories/configuration-bundles/index.md): Share credentials and settings across the resources of an inventory, and auto-create apps.
 
 ### Resources
 
-- [Object Storage: S3](https://www.plakar.io/docs/control-plane/resources/object-storage/s3/index.md): Provision and manage S3-compatible object storage resources including AWS S3, Scaleway, MinIO, etc.
+- [Resource Types](https://www.plakar.io/docs/control-plane/resources/index.md): Resources, their classification, settings and tags, with links to every supported resource type.
+- [Object Storage: S3](https://www.plakar.io/docs/control-plane/resources/object-storage/s3/index.md): S3-compatible object storage, including AWS S3, Scaleway, MinIO, etc.
+- [Object Storage: Azure Blob Storage](https://www.plakar.io/docs/control-plane/resources/object-storage/azblob/index.md): Azure Blob Storage containers.
+- [Object Storage: Google Cloud Storage](https://www.plakar.io/docs/control-plane/resources/object-storage/gcs/index.md): Google Cloud Storage buckets.
 - [Block Storage: Scaleway](https://www.plakar.io/docs/control-plane/resources/block-storage/scaleway/index.md): Back up Scaleway block volumes.
-- [Compute: Scaleway](https://www.plakar.io/docs/control-plane/resources/compute/scaleway/index.md): Back up and restore Scaleway compute instances.
+- [Block Storage: Kubernetes PVC](https://www.plakar.io/docs/control-plane/resources/block-storage/pvc/index.md): Back up and restore Kubernetes PersistentVolumeClaims.
+- [Block Storage: OpenStack](https://www.plakar.io/docs/control-plane/resources/block-storage/openstack/index.md): Back up and restore OpenStack Cinder volumes.
+- [Block Storage: OpenShift PVC](https://www.plakar.io/docs/control-plane/resources/block-storage/openshift-pvc/index.md): Back up and restore OpenShift PersistentVolumeClaims, through a CSI snapshot or the live volume.
+- [Compute: Scaleway](https://www.plakar.io/docs/control-plane/resources/compute/scaleway/index.md): Back up and restore Scaleway instances.
+- [Compute: VMware](https://www.plakar.io/docs/control-plane/resources/compute/vmware/index.md): Back up and restore VMware virtual machines.
+- [Compute: Windows VSS](https://www.plakar.io/docs/control-plane/resources/compute/vss/index.md): Back up and restore Windows systems through Volume Shadow Copy Service.
+- [Compute: OpenStack](https://www.plakar.io/docs/control-plane/resources/compute/openstack/index.md): Back up OpenStack Nova servers and restore them onto an existing server.
+- [Compute: OVHcloud](https://www.plakar.io/docs/control-plane/resources/compute/ovhcloud/index.md): Back up and restore OVHcloud compute instances.
+- [Compute: Kubernetes VM](https://www.plakar.io/docs/control-plane/resources/compute/kubernetes-vm/index.md): Back up and restore KubeVirt virtual machines.
+- [Compute: OpenShift](https://www.plakar.io/docs/control-plane/resources/compute/openshift/index.md): OpenShift cluster and namespace resources, and OpenShift Virtualization virtual machines.
+- [Compute: OpenShift Cluster](https://www.plakar.io/docs/control-plane/resources/compute/openshift/cluster/index.md): Back up and restore the manifests (configuration only) of an OpenShift cluster or namespace.
+- [Compute: OpenShift VM](https://www.plakar.io/docs/control-plane/resources/compute/openshift/vm/index.md): Back up and restore OpenShift Virtualization virtual machines with their disks.
+- [Database: Microsoft SQL Server](https://www.plakar.io/docs/control-plane/resources/database/mssql/index.md): Back up and restore SQL Server.
+- [Database: MySQL](https://www.plakar.io/docs/control-plane/resources/database/mysql/index.md): Back up and restore MySQL and MariaDB.
+- [Database: PostgreSQL](https://www.plakar.io/docs/control-plane/resources/database/postgres/index.md): Back up and restore PostgreSQL.
+- [Database: etcd](https://www.plakar.io/docs/control-plane/resources/database/etcd/index.md): Back up etcd clusters.
+- [Database: MongoDB](https://www.plakar.io/docs/control-plane/resources/database/mongodb/index.md): Back up and restore MongoDB.
+- [File Storage: SFTP](https://www.plakar.io/docs/control-plane/resources/file-storage/sftp/index.md): SFTP servers.
+- [File Storage: FTP](https://www.plakar.io/docs/control-plane/resources/file-storage/ftp/index.md): FTP servers.
+- [File Storage: WebDAV](https://www.plakar.io/docs/control-plane/resources/file-storage/webdav/index.md): WebDAV remotes.
+- [File Storage: SMB](https://www.plakar.io/docs/control-plane/resources/file-storage/smb/index.md): SMB shares.
+- [File Storage: NFS](https://www.plakar.io/docs/control-plane/resources/file-storage/nfs/index.md): NFS exports.
+- [Hypervisor: Proxmox](https://www.plakar.io/docs/control-plane/resources/hypervisor/proxmox/index.md): Back up and restore Proxmox VMs and containers.
+- [Identity: Microsoft Active Directory](https://www.plakar.io/docs/control-plane/resources/identity/msad/index.md): Back up and restore Active Directory Domain Controllers.
+- [Security: Scaleway Secret Manager](https://www.plakar.io/docs/control-plane/resources/security/scaleway-sm/index.md): Back up and restore Scaleway Secret Manager secrets.
+- [Security: HashiCorp Vault](https://www.plakar.io/docs/control-plane/resources/security/vault/index.md): Back up and restore HashiCorp Vault.
+- [Service: IMAP](https://www.plakar.io/docs/control-plane/resources/service/imap/index.md): Back up and restore mailboxes over IMAP.
+- [Service: Plakar Control Plane](https://www.plakar.io/docs/control-plane/resources/service/pcp/index.md): Back up the configuration and internal database of Plakar Control Plane itself.
+
+### Apps
+
+- [Overview](https://www.plakar.io/docs/control-plane/apps/index.md): How source, store and destination apps are set up on resources, and where their fields come from.
+- [Source App](https://www.plakar.io/docs/control-plane/apps/sources/index.md): How source apps work.
+- [Store App](https://www.plakar.io/docs/control-plane/apps/stores/index.md): How store apps work, and how to browse restore points.
+- [Destination App](https://www.plakar.io/docs/control-plane/apps/destinations/index.md): How destination apps work.
+
+### Edges
+
+- [Plakar Edge](https://www.plakar.io/docs/control-plane/edges/index.md): Remote executors that run PCP tasks from the network where the resources are.
+- [How Edges Work](https://www.plakar.io/docs/control-plane/edges/how-edges-work/index.md): How edges connect to PCP, receive tasks, and access secrets.
+- [Edge Requirements](https://www.plakar.io/docs/control-plane/edges/requirements/index.md): Network access and host tools an edge needs.
+- [Edge Enrollment](https://www.plakar.io/docs/control-plane/edges/enrollment/index.md): Enable edge enrollment and share edges with child organizations.
+- [Edge Installation](https://www.plakar.io/docs/control-plane/edges/installation/index.md): Install an edge as a standalone binary, on Kubernetes, or from a custom image.
+- [Running Tasks](https://www.plakar.io/docs/control-plane/edges/running-tasks/index.md): Run tasks on edges and how PCP selects an edge.
+- [Pre-job and Post-job Hooks](https://www.plakar.io/docs/control-plane/edges/hooks/index.md): Run scripts on an edge before and after a backup or restore.
+- [Supervision and Metrics](https://www.plakar.io/docs/control-plane/edges/monitoring/index.md): Health, readiness, and Prometheus metrics endpoints exposed by edges.
+
+### Scheduling
+
+- [Scheduling](https://www.plakar.io/docs/control-plane/scheduling/index.md): Configure one-off and recurring backup, restore, sync, and check tasks using the built-in scheduler.
+- [Scheduled Tasks](https://www.plakar.io/docs/control-plane/scheduling/tasks/index.md): The types of tasks PCP runs.
+- [One-off Tasks](https://www.plakar.io/docs/control-plane/scheduling/one-off-tasks/index.md): Run a task immediately.
+- [Manual Scheduler](https://www.plakar.io/docs/control-plane/scheduling/manual-scheduler/index.md): Attach schedules to tasks.
+- [Policy Scheduler](https://www.plakar.io/docs/control-plane/scheduling/policy-scheduler/index.md): How SLA policies schedule tasks automatically.
+- [User Schedulers](https://www.plakar.io/docs/control-plane/scheduling/user-schedulers/index.md): Schedulers owned by application users through the API.
+- [Job History](https://www.plakar.io/docs/control-plane/scheduling/job-history/index.md): Monitor jobs and view their details.
+
+### Access Control
+
+- [Access Control](https://www.plakar.io/docs/control-plane/access-control/index.md): Organizations, users, authentication and permissions.
+- [Managing Organizations](https://www.plakar.io/docs/control-plane/access-control/organizations/index.md): The organization tree, membership, quotas, and switching organizations.
+- [Organization Settings](https://www.plakar.io/docs/control-plane/access-control/organization-settings/index.md): Per-organization authentication, SMTP, Vector, edge enrollment and webhook settings, and how they are handed down.
+- [Managing Users](https://www.plakar.io/docs/control-plane/access-control/users/index.md): Member and application users, and API keys.
+- [Two-factor Authentication](https://www.plakar.io/docs/control-plane/access-control/two-factor-authentication/index.md): Secure accounts with two-factor authentication.
+- [Permissions](https://www.plakar.io/docs/control-plane/access-control/permissions/index.md): How access is granted, and what each built-in role can reach.
+
+### Compliance
+
+- [Compliance](https://www.plakar.io/docs/control-plane/compliance/index.md): Enforce backup requirements, data location and retention obligations, and review activity.
+- [SLA Policies](https://www.plakar.io/docs/control-plane/compliance/policies/index.md): Define backup SLA requirements (frequency, retention, storage tier) and monitor source compliance against them.
+- [Data Residency](https://www.plakar.io/docs/control-plane/compliance/residency/index.md): Tie resources to a country, enforce it on every operation, and take signed residency attestations.
+- [Legal Hold](https://www.plakar.io/docs/control-plane/compliance/legal-hold/index.md): Protect a restore point from deletion or a resource from use, and take signed legal hold attestations.
+- [Audit Log](https://www.plakar.io/docs/control-plane/compliance/audit-log/index.md): The record of administrative and configuration changes, exportable as a report or a signed sealed archive.
 
 ### Operations
 
-- [SLA Policies](https://www.plakar.io/docs/control-plane/compliance/policies/index.md): Define backup SLA requirements (frequency, retention, storage tier) and monitor source compliance against them.
-- [Scheduling](https://www.plakar.io/docs/control-plane/scheduling/index.md): Configure one-off and recurring backup, restore, sync, and check tasks using the built-in scheduler.
+- [Control Plane Settings](https://www.plakar.io/docs/control-plane/operations/control-plane-settings/index.md): Settings that apply to the whole PCP instance.
+- [Email & SMTP](https://www.plakar.io/docs/control-plane/operations/email-and-smtp/index.md): Configure SMTP for email notifications.
+- [Webhooks](https://www.plakar.io/docs/control-plane/operations/webhooks/index.md): Receive PCP events as HTTP requests.
+- [Updating Control Plane](https://www.plakar.io/docs/control-plane/operations/updating/index.md): Update PCP in place, including air-gapped instances. Requires the Platform Admin or Superuser role.
+- [Updating Control Plane AMI on AWS](https://www.plakar.io/docs/control-plane/operations/updating/aws/index.md): Update the PCP AMI on AWS.
+- [Updating Control Plane QCOW2 on Scaleway](https://www.plakar.io/docs/control-plane/operations/updating/scaleway/index.md): Update the PCP image on Scaleway.
+- [Updating Control Plane on Proxmox](https://www.plakar.io/docs/control-plane/operations/updating/proxmox/index.md): Update the PCP image on Proxmox.
+- [Updating Control Plane on vSphere](https://www.plakar.io/docs/control-plane/operations/updating/vsphere/index.md): Update the PCP installation on vSphere.
+- [Backup and Restore](https://www.plakar.io/docs/control-plane/operations/backup-and-restore/index.md): Back up and restore the PCP configuration and data.
 
-### Administration
+### Infrastructure as Code
 
-- [Updating Control Plane](https://www.plakar.io/docs/control-plane/administration/updating-control-plane/index.md): How to update your Plakar Control plane from the settings page.
-- [Updating Control Plane AMI on AWS](https://www.plakar.io/docs/control-plane/administration/updating-control-plane/aws/index.md): How to update the Control Plane AMI on AWS from AWS marketplace.
-- [Updating Control Plane QCOW2 on Scaleway](https://www.plakar.io/docs/control-plane/administration/updating-control-plane/scaleway/index.md): How to update Control Plane installations on Scaleway to a new version of the QCWO2.
+- [Infrastructure as Code](https://www.plakar.io/docs/control-plane/infrastructure-as-code/index.md): Manage PCP declaratively instead of through the web interface.
+- [Kubernetes Operator](https://www.plakar.io/docs/control-plane/infrastructure-as-code/kubernetes-operator/index.md): Manage stores, sources, destinations, restores and schedules from Kubernetes with plakar-operator.
+- [Terraform Provider](https://www.plakar.io/docs/control-plane/infrastructure-as-code/terraform/index.md): Manage stores, connectors, schedules, inventories and organizations with the plakarkorp/plakar Terraform provider.
+- [Ansible Collection](https://www.plakar.io/docs/control-plane/infrastructure-as-code/ansible/index.md): Drive PCP from playbooks with the plakarkorp.plakar Ansible collection.
+- [Reference: Kubernetes Operator](https://www.plakar.io/docs/control-plane/references/kubernetes-operator/index.md): Field-by-field reference for every custom resource defined by plakar-operator.
+- [Reference: Terraform Provider](https://www.plakar.io/docs/control-plane/references/terraform-provider/index.md): Argument-by-argument reference for every resource and data source.
+- [Reference: Ansible Collection](https://www.plakar.io/docs/control-plane/references/ansible-collection/index.md): Option-by-option reference for every module.
 
 ### General guides for Control Plane
 
-- [Managing Passphrases](https://www.plakar.io/docs/control-plane/guides/managing-passphrases/index.md): How passphrases are use in Control Plane, how to update a passphrase and what happens when you forget your passphrase.
-- [AWS: IAM Users, Roles & Access Keys](https://www.plakar.io/docs/control-plane/guides/aws/iam-users-roles-and-access-keys/index.md): Configure AWS IAM for the Control Plane.
-- [Scaleway: IAM & API Keys](https://www.plakar.io/docs/control-plane/guides/scaleway/iam-and-api-keys/index.md): Configure Scaleway IAM for the Control Plane.
+- [Automating Backups from an Inventory](https://www.plakar.io/docs/control-plane/guides/automated-backups/index.md): Back up the resources of a cloud account with no manual setup per resource: a managed inventory synced every 15 minutes, environment and data class tags set at the provider, a configuration bundle that auto-creates source apps, and SLA policies that schedule the backups.
+- [Managing Passphrases](https://www.plakar.io/docs/control-plane/guides/managing-passphrases/index.md): How store passphrases work in PCP, how to change one, and what happens when it is forgotten.
+- [AWS: IAM Roles, Users & Access Keys](https://www.plakar.io/docs/control-plane/guides/aws/iam-users-roles-and-access-keys/index.md): Configure AWS IAM for PCP.
+- [Scaleway: IAM Policies & API Keys](https://www.plakar.io/docs/control-plane/guides/scaleway/iam-and-api-keys/index.md): Configure Scaleway IAM for PCP.
+- [Scaleway: HTTPS Access on a Private Network](https://www.plakar.io/docs/control-plane/guides/scaleway/https-access-to-a-private-network/index.md): Deploy PCP on a Scaleway Private Network and reach it over HTTPS.
+- [Scaleway: SSH Bastion Access](https://www.plakar.io/docs/control-plane/guides/scaleway/ssh-bastion-access/index.md): Reach PCP on a Scaleway Private Network through an SSH bastion.
+- [Google Cloud: IAM Roles & Service Accounts](https://www.plakar.io/docs/control-plane/guides/google-cloud/iam-roles-and-service-accounts/index.md): Configure Google Cloud IAM for PCP.
+- [OVHcloud: API Applications & Credentials](https://www.plakar.io/docs/control-plane/guides/ovhcloud/api-keys/index.md): Generate OVHcloud API credentials for PCP.
+- [OpenStack: Users & Application Credentials](https://www.plakar.io/docs/control-plane/guides/openstack/users-and-application-credentials/index.md): Create an OpenStack user and application credentials with the reader and member roles for PCP.
+- [Windows: OpenSSH Server](https://www.plakar.io/docs/control-plane/guides/windows/windows-openssh-setup/index.md): Install and configure OpenSSH Server on a Windows host.
+- [Kubernetes: Plakar with Kubernetes](https://www.plakar.io/docs/control-plane/guides/kubernetes/plakar-with-kubernetes/index.md): The Kubernetes components of the Plakar ecosystem.
+- [Kubernetes: Service Accounts and RBAC](https://www.plakar.io/docs/control-plane/guides/kubernetes/kubernetes-rbac/index.md): Least-privilege service accounts for the Kubernetes and OpenShift integrations.
+- [MTU and Jumbo Frames](https://www.plakar.io/docs/control-plane/guides/mtu-and-jumbo-frames/index.md): Ethernet MTU, jumbo frames and TCP MSS, and why they matter for backups.
+- [Hosting a Package Repository](https://www.plakar.io/docs/control-plane/guides/self-hosted-package-repository/index.md): Self-hosted repositories for air-gapped PCP instances.
