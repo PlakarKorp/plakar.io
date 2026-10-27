@@ -14,6 +14,7 @@
   {{ end }}
 {{ end }}
 
+<div data-pagefind-filter="section:API Reference" hidden></div>
 <div data-pagefind-filter="section:Control Plane Docs" hidden></div>
   <div class="flex mt-12 gap-8 px-3 lg:px-6 py-8 max-w-400 mx-auto">
 
@@ -43,7 +44,7 @@
         <h1 class="mb-2">{{ .Title }}</h1>
         {{ with .Params.summary }}<p class="text-lg text-neutral-600 mt-0">{{ . }}</p>{{ end }}
         {{ $version := replaceRE `\.[0-9a-f]{40}$` "" $spec.info.version }}
-        <p class="not-prose flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-neutral-500">
+        <p data-pagefind-ignore class="not-prose flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-neutral-500">
           <span>{{ len $ops }} endpoint{{ if ne (len $ops) 1 }}s{{ end }}</span>
           <span class="text-neutral-300">&middot;</span>
           <span>Plakar Control Plane {{ $version }}</span>

@@ -70,16 +70,17 @@
 {{ $panel := "rounded-lg border border-neutral-200 overflow-hidden" }}
 {{ $treePanel := "rounded-lg border border-neutral-200 max-h-120 overflow-auto overscroll-contain" }}
 
-<section id="{{ $id }}" class="not-prose scroll-mt-24 mt-8 pt-6 md:mt-10 md:pt-8 border-t border-neutral-200">
+{{- /* Search indexes the summary, method, path and description of an operation. The heading id makes each operation its own search result. */ -}}
+<section class="not-prose mt-8 pt-6 md:mt-10 md:pt-8 border-t border-neutral-200">
 
-  <h2 class="text-xl font-semibold text-neutral-900 m-0">{{ $op.summary | default (printf "%s %s" $method .path) }}</h2>
+  <h2 id="{{ $id }}" class="scroll-mt-24 text-xl font-semibold text-neutral-900 m-0">{{ $op.summary | default (printf "%s %s" $method .path) }}</h2>
 
   <div class="flex flex-wrap items-center justify-between gap-x-3 gap-y-1.5 mt-3 py-1.5 px-2 rounded-lg bg-neutral-100">
     <div class="flex items-start gap-2.5 min-w-0">
       <span class="{{ $pill }} min-w-14 {{ $methodColor }}">{{ $method }}</span>
       <code class="min-w-0 text-sm font-medium leading-5 text-neutral-800 wrap-break-word">{{ replace (htmlEscape .path) "/" "/<wbr>" | safeHTML }}</code>
     </div>
-    <span class="flex items-center gap-1.5 pr-1 text-xs {{ if $schemes }}text-neutral-600{{ else }}text-neutral-400{{ end }}">
+    <span data-pagefind-ignore class="flex items-center gap-1.5 pr-1 text-xs {{ if $schemes }}text-neutral-600{{ else }}text-neutral-400{{ end }}">
       <span class="w-3.5 h-3.5 shrink-0">{{ partial "icon.html" (cond (gt (len $schemes) 0) "ri/lock-2-line" "ri/lock-unlock-line") }}</span>
       {{ if $schemes }}
         {{ range $i, $s := $schemes }}{{ if $i }}, {{ end }}<a href="../#authentication" class="text-inherit hover:text-primary-500">{{ index $schemeLabels $s | default $s }}</a>{{ end }}
@@ -97,7 +98,7 @@
     <div class="prose max-w-none mt-4 text-sm">{{ . | markdownify }}</div>
   {{ end }}
 
-  <div class="grid grid-cols-1 xl:grid-cols-2 gap-x-8 gap-y-4 mt-4 md:gap-y-5 md:mt-5 items-start">
+  <div data-pagefind-ignore="all" class="grid grid-cols-1 xl:grid-cols-2 gap-x-8 gap-y-4 mt-4 md:gap-y-5 md:mt-5 items-start">
     <div class="min-w-0">
 
       {{ range $group := slice (dict "title" "Path parameters" "in" "path") (dict "title" "Query parameters" "in" "query") }}

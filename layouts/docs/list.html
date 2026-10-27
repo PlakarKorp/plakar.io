@@ -8,6 +8,7 @@
   {{ range .Ancestors }}{{ if and .Parent (eq .Parent.RelPermalink "/docs/community/") }}<div data-pagefind-filter="version:{{ path.Base .RelPermalink }}" hidden></div>{{ end }}{{ end }}
   {{ if and .Parent (eq .Parent.RelPermalink "/docs/community/") }}<div data-pagefind-filter="version:{{ path.Base .RelPermalink }}" hidden></div>{{ end }}
 {{ else if $isControlPlane }}
+  {{ if strings.HasPrefix .RelPermalink "/docs/control-plane/references/openapi/" }}<div data-pagefind-filter="section:API Reference" hidden></div>{{ end }}
   <div data-pagefind-filter="section:Control Plane Docs" hidden></div>
 {{ end }}
   <div class="flex mt-12 gap-8 px-3 lg:px-6 py-8 max-w-350 mx-auto">
