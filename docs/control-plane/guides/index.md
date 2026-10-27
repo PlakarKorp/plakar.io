@@ -10,6 +10,10 @@ tutorials related to Plakar and supported platforms.
 
 
 
+## [Automating Backups](https://www.plakar.io/docs/control-plane/guides/automated-backups/index.md)
+
+
+
 ## [Managing passphrases](https://www.plakar.io/docs/control-plane/guides/managing-passphrases/index.md)
 
 

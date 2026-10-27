@@ -112,6 +112,7 @@
 
 ## [General Guides](https://www.plakar.io/docs/control-plane/guides/index.md)
 
+- [Automating Backups](https://www.plakar.io/docs/control-plane/guides/automated-backups/index.md): Back up the resources of a cloud account automatically, from discovery to scheduled backups, with an inventory, configuration bundles and SLA policies.
 - [Managing passphrases](https://www.plakar.io/docs/control-plane/guides/managing-passphrases/index.md): How store passphrases work in Plakar Control Plane and how to change the passphrase used by a store.
 - [Scaleway](https://www.plakar.io/docs/control-plane/guides/scaleway/index.md): Guides and tutorials for configuring Scaleway services with Plakar.
 - [AWS](https://www.plakar.io/docs/control-plane/guides/aws/index.md): Guides and tutorials for configuring AWS services with Plakar.
