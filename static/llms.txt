@@ -46,7 +46,7 @@ The command to schedule is the same everywhere. Use the absolute path to the bin
 /usr/local/bin/plakar at @mybackups backup -check /var/www
 ```
 
-`-check` runs a full integrity check after the backup. `plakar backup` exits 0 on success and non-zero on failure, so alert on the exit status. Plakar Control Plane adds a built-in scheduler, see [Scheduling](https://www.plakar.io/docs/control-plane/scheduling/index.md).
+`-check` runs a full integrity check after the backup. `plakar backup` exits 0 on success and non-zero on failure, so alert on the exit status. Plakar Control Plane adds a built-in scheduler, see [Scheduling](https://www.plakar.io/docs/control-plane/scheduling/index.md), and can back up every resource of a cloud account automatically, see [Automating Backups from an Inventory](https://www.plakar.io/docs/control-plane/guides/automated-backups/index.md).
 
 ## Restore
 
@@ -354,6 +354,7 @@ Plakar Control Plane is a self-hosted backup management system built on top of P
 
 ### General guides for Control Plane
 
+- [Automating Backups from an Inventory](https://www.plakar.io/docs/control-plane/guides/automated-backups/index.md): Back up the resources of a cloud account with no manual setup per resource: a managed inventory synced every 15 minutes, environment and data class tags set at the provider, a configuration bundle that auto-creates source apps, and SLA policies that schedule the backups.
 - [Managing Passphrases](https://www.plakar.io/docs/control-plane/guides/managing-passphrases/index.md): How store passphrases work in PCP, how to change one, and what happens when it is forgotten.
 - [AWS: IAM Roles, Users & Access Keys](https://www.plakar.io/docs/control-plane/guides/aws/iam-users-roles-and-access-keys/index.md): Configure AWS IAM for PCP.
 - [Scaleway: IAM Policies & API Keys](https://www.plakar.io/docs/control-plane/guides/scaleway/iam-and-api-keys/index.md): Configure Scaleway IAM for PCP.
