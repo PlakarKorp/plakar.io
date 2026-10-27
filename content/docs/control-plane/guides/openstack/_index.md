@@ -1,7 +1,7 @@
 ---
 title: "OpenStack"
 date: "2026-10-21T00:00:00Z"
-weight: 6
+weight: 7
 summary: "Guides and tutorials for configuring OpenStack services with Plakar."
 ---
 

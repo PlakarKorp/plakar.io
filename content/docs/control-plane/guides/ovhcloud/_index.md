@@ -1,7 +1,7 @@
 ---
 title: "OVHcloud"
 date: "2026-06-29T00:00:00Z"
-weight: 5
+weight: 6
 summary: "Guides and tutorials for configuring OVHcloud services with Plakar."
 ---
 

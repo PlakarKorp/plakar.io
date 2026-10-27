@@ -1,7 +1,7 @@
 ---
 title: "Windows"
 date: "2026-07-28T00:00:00Z"
-weight: 7
+weight: 8
 summary:
   "Guides and tutorials for configuring Windows hosts for use with Plakar."
 ---

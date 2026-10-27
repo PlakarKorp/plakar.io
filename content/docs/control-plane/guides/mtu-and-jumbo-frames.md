@@ -1,7 +1,7 @@
 ---
 title: "MTU and Jumbo Frames"
 date: "2026-08-04T00:00:00Z"
-weight: 9
+weight: 10
 summary:
   "Background on Ethernet MTU, jumbo frames, and TCP MSS, and why they matter
   for control plane deployments."

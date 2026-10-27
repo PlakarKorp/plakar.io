@@ -1,7 +1,7 @@
 ---
 title: "Google Cloud"
 date: "2026-06-18T00:00:00Z"
-weight: 4
+weight: 5
 summary:
   "Guides and tutorials for configuring Google Cloud services with Plakar."
 ---

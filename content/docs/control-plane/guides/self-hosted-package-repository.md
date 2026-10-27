@@ -1,7 +1,7 @@
 ---
 title: "Hosting a Package Repository"
 date: "2026-08-10T00:00:00Z"
-weight: 10
+weight: 11
 summary:
   "Set up self-hosted repositories so Plakar Control Plane can fetch
   integrations and appliance components without reaching plakar.io."
