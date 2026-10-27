@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes"
 date: "2026-09-30T00:00:00Z"
-weight: 8
+weight: 9
 summary: "Guides and tutorials for using Plakar with Kubernetes."
 ---
 

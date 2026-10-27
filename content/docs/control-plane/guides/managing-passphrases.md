@@ -1,7 +1,7 @@
 ---
 title: "Managing passphrases"
 date: "2026-06-04T00:00:00Z"
-weight: 1
+weight: 2
 summary:
   "How store passphrases work in Plakar Control Plane and how to change the
   passphrase used by a store."
