@@ -1,4 +1,4 @@
-{{ $spec := index site.Data.openapi "v1" }}
+{{ $spec := partialCached "api/spec.html" "v1" "v1" }}
 {{ range $i, $tag := $spec.tags }}
   {{ $.AddPage (dict
     "path" (urlize $tag.name)

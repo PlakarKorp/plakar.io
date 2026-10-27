@@ -1,10 +1,10 @@
 ---
-title: "v1"
+title: "API v1"
 date: "2026-09-24T00:00:00Z"
 weight: 1
 summary: "Every endpoint of version one of the Plakar Control Plane API."
 cascade:
-  - _target:
+  - target:
       kind: page
     layout: api-tag
 ---

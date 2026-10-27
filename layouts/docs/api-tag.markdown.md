@@ -1,4 +1,4 @@
-{{- $spec := index site.Data.openapi .Params.apiVersion -}}
+{{- $spec := partialCached "api/spec.html" .Params.apiVersion .Params.apiVersion -}}
 {{- $tag := .Params.apiTag -}}
 # {{ .Title }}
 

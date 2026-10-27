@@ -1,5 +1,5 @@
 {{ define "main" }}
-{{ $spec := index site.Data.openapi .Params.apiVersion }}
+{{ $spec := partialCached "api/spec.html" .Params.apiVersion .Params.apiVersion }}
 {{ $tag := .Params.apiTag }}
 {{ $methods := slice "get" "post" "put" "patch" "delete" }}
 
