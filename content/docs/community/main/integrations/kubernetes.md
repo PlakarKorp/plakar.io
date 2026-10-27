@@ -120,6 +120,24 @@ connectors.
 | `kubeconfig_file` | No       | Path to a kube config file, defaults to `~/.kube/config` |
 | `kubeconfig`      | No       | Content of a kube config file passed inline              |
 
+## Helper pod placement
+
+The `k8s+csi`, `k8s+pvc` and `k8s+vm` protocols move volume data through a
+temporary helper pod, which Kubernetes schedules on any suitable node. Set
+`node_affinity` to choose which nodes it can run on, for example a node pool
+reserved for maintenance work. The value is the body of a pod's
+`spec.affinity.nodeAffinity`:
+
+```yaml
+requiredDuringSchedulingIgnoredDuringExecution:
+  nodeSelectorTerms:
+    - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+            - worker-1
+```
+
 ## 1. `k8s` protocol
 
 The `k8s` protocol fetches all Kubernetes resources across the cluster and
@@ -258,6 +276,7 @@ protocol, in addition to those in [Cluster access](#cluster-access).
 | Option                  | Required | Description                                                                                                                                                                  |
 | ----------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `kubelet_image`         | No       | Container image for the helper pod. Defaults to a recent kubelet image. Set it to pull the image from another registry, for example a local mirror in an air-gapped cluster. |
+| `node_affinity`         | No       | Node affinity of the helper pod. See [Helper pod placement](#helper-pod-placement).                                                                                          |
 | `volume_snapshot_class` | Yes      | Name of the `VolumeSnapshotClass` to use for CSI snapshots.                                                                                                                  |
 | `fs_access`             | No       | File access capabilities granted to the helper pod. See [File access](#file-access). Defaults to `read`.                                                                     |
 
@@ -352,6 +371,7 @@ The following options apply to both source and destination connectors using the
 | Option          | Required | Description                                                                                                                                                                  |
 | --------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `kubelet_image` | No       | Container image for the helper pod. Defaults to a recent kubelet image. Set it to pull the image from another registry, for example a local mirror in an air-gapped cluster. |
+| `node_affinity` | No       | Node affinity of the helper pod. See [Helper pod placement](#helper-pod-placement).                                                                                          |
 | `fs_access`     | No       | File access capabilities granted to the helper pod. See [File access](#file-access). Defaults to `read` for backups and `full` for restores.                                 |
 
 ### File access
@@ -449,6 +469,7 @@ The following options apply to both source and destination connectors using the
 | Option          | Required | Description                                                                                                                                                                  |
 | --------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `kubelet_image` | No       | Container image for the helper pod. Defaults to a recent kubelet image. Set it to pull the image from another registry, for example a local mirror in an air-gapped cluster. |
+| `node_affinity` | No       | Node affinity of the helper pod. See [Helper pod placement](#helper-pod-placement).                                                                                          |
 
 ### Example
 
