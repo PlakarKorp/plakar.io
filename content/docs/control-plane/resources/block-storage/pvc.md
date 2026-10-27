@@ -89,6 +89,8 @@ The following settings are available when configuring a source app using the
 - **Kubelet Image**: The container image used for the helper pod. Defaults to a
   recent kubelet image. Set it to pull the image from another registry, for
   example a local mirror in an air-gapped cluster.
+- **Node Affinity**: Optional. Node affinity of the helper pod, as the YAML or
+  JSON body of a pod's `spec.affinity.nodeAffinity`.
 - **Volume Snapshot Class**: Required. The name of the `VolumeSnapshotClass` to
   use when creating the CSI snapshot.
 - **FS Access**: The file access capabilities granted to the helper pod.
@@ -185,6 +187,8 @@ destination apps using the `k8s+pvc` protocol.
 - **Kubelet Image**: The container image used for the helper pod. Defaults to a
   recent kubelet image. Set it to pull the image from another registry, for
   example a local mirror in an air-gapped cluster.
+- **Node Affinity**: Optional. Node affinity of the helper pod, as the YAML or
+  JSON body of a pod's `spec.affinity.nodeAffinity`.
 - **FS Access**: The file access capabilities granted to the helper pod.
   `default` grants no extra capabilities, `read` grants read capabilities only,
   and `full` grants read and write capabilities. Defaults to `read` for source

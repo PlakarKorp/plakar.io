@@ -110,3 +110,5 @@ destination apps using the `k8s+vm` protocol.
 - **Kubelet Image**: The container image used for the helper pod. Defaults to a
   recent kubelet image. Set it to pull the image from another registry, for
   example a local mirror in an air-gapped cluster.
+- **Node Affinity**: Optional. Node affinity of the helper pod, as the YAML or
+  JSON body of a pod's `spec.affinity.nodeAffinity`.
