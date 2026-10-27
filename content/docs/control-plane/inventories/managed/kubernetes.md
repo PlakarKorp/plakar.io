@@ -16,10 +16,10 @@ resources become available for management directly from Plakar Control Plane.
 
 ## Supported Resources
 
-| Resource                     | Source | Store | Destination |
-| ---------------------------- | ------ | ----- | ----------- |
-| PersistentVolumeClaims (PVC) | Yes    | No    | Yes         |
-| KubeVirt virtual machines    | Yes    | No    | Yes         |
+| Resource                                                           | Source | Store | Destination |
+| ------------------------------------------------------------------ | ------ | ----- | ----------- |
+| [PersistentVolumeClaims (PVC)](../../resources/block-storage/pvc)  | Yes    | No    | Yes         |
+| [KubeVirt virtual machines](../../resources/compute/kubernetes-vm) | Yes    | No    | Yes         |
 
 Virtual machines are discovered only when KubeVirt is installed in the cluster.
 On clusters without KubeVirt, the inventory discovers PVCs only.

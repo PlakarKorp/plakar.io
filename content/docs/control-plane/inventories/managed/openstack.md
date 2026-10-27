@@ -44,13 +44,13 @@ flowchart TD
 
 ## Supported Resources
 
-| Resource                          | Source | Store | Destination |
-| --------------------------------- | ------ | ----- | ----------- |
-| Block Storage (Cinder volumes)    | Yes    | No    | Yes         |
-| Compute (Nova servers)            | Yes    | No    | Yes         |
-| Object Storage (Swift containers) | No     | No    | No          |
-| Images (Glance images)            | No     | No    | No          |
-| Database (Trove databases)        | Yes    | No    | Yes         |
+| Resource                                                                  | Source | Store | Destination |
+| ------------------------------------------------------------------------- | ------ | ----- | ----------- |
+| [Block Storage (Cinder volumes)](../../resources/block-storage/openstack) | Yes    | No    | Yes         |
+| [Compute (Nova servers)](../../resources/compute/openstack)               | Yes    | No    | Yes         |
+| Object Storage (Swift containers)                                         | No     | No    | No          |
+| Images (Glance images)                                                    | No     | No    | No          |
+| [Database (Trove databases)](../../resources/database)                    | Yes    | No    | Yes         |
 
 Only the Glance images owned by the project are discovered.
 
