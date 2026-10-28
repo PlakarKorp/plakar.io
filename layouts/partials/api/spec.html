@@ -1,0 +1,2 @@
+{{- $file := partial "api/spec-file.html" . -}}
+{{- return (os.ReadFile $file | transform.Unmarshal) -}}

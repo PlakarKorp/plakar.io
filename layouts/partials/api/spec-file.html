@@ -1,0 +1,5 @@
+{{- $file := printf "static/openapi/%s.json" . -}}
+{{- if not (fileExists $file) -}}
+  {{- errorf "api/spec-file: no OpenAPI document for API version %q at %s" . $file -}}
+{{- end -}}
+{{- return $file -}}

@@ -46,7 +46,7 @@ enableEmoji = true
   priority = 0.5
 
 [outputs]
-  home = ["HTML", "RSS", "JSON", "Markdown"]
+  home = ["HTML", "RSS", "JSON", "Markdown", "OpenAPI"]
   page = ["HTML", "Markdown"]
   section = ["HTML", "RSS", "Markdown"]
 
@@ -55,6 +55,14 @@ enableEmoji = true
   baseName = "index"
   mediaType = "text/markdown"
   isPlainText = true
+
+# Serves the current API version at /openapi.json, set by params.openapi.current.
+[outputFormats.openapi]
+  name = "OpenAPI"
+  baseName = "openapi"
+  mediaType = "application/json"
+  isPlainText = true
+  notAlternative = true
 
 [related]
   threshold = 0

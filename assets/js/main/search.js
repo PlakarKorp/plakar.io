@@ -54,6 +54,9 @@ document.addEventListener("DOMContentLoaded", () => {
       syncVersionWrap();
       const version = path.slice("/docs/community/".length).split("/")[0];
       if (version) versionFilter.value = version;
+    } else if (path.startsWith("/docs/control-plane/references/openapi")) {
+      sectionFilter.value = "API Reference";
+      syncVersionWrap();
     } else if (path.startsWith("/docs/control-plane")) {
       sectionFilter.value = "Control Plane Docs";
       syncVersionWrap();
@@ -186,7 +189,11 @@ document.addEventListener("DOMContentLoaded", () => {
         url: data.url,
         title: data.meta?.title || "Untitled",
         excerpt: data.excerpt || "",
-        section: data.filters?.section?.[0] || "",
+        // API reference pages are also Control Plane Docs, the more specific
+        // section is the one shown.
+        section: data.filters?.section?.includes("API Reference")
+          ? "API Reference"
+          : data.filters?.section?.[0] || "",
         version: data.filters?.version?.[0] || "",
         subResults: (data.sub_results || []).map((sub) => ({
           title: sub.title || "",

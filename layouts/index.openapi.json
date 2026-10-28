@@ -1,0 +1,5 @@
+{{- $version := site.Params.openapi.current | default "" -}}
+{{- if not $version -}}
+  {{- errorf "params.openapi.current must name the API version to publish at /openapi.json" -}}
+{{- end -}}
+{{- os.ReadFile (partial "api/spec-file.html" $version) -}}
