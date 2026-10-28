@@ -10,17 +10,10 @@ Cloud -> Dedicated Servers**.
 
 ## Ordering a Dedicated Server
 
-Plakar Control Plane requires the following recommended setup:
-
-- A minimum of **4 vCPUs**
-- At least **16 GB RAM**
-- A first disk of around **10 GB** for the OS
-- A second disk of at least **1 TB** for Control Plane data
-
-These are recommendations for a production deployment. For evaluation or
-testing, you can reduce CPU, RAM, and storage. The data volume stores the
-database, logs, and all Plakar state. Backups themselves are stored wherever you
-configure using apps.
+Choose a server according to [Appliance Sizing](../../../appliance/sizing),
+which gives the CPU, memory and disks for each size of deployment. The server
+needs two disks: one for the appliance system, and one for the Plakar Control
+Plane data.
 
 > [!NOTE]+
 >

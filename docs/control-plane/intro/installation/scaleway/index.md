@@ -51,15 +51,9 @@ boot source.
 The instance must be created in the same Scaleway zone as the snapshot,
 otherwise the snapshot will not be available for attachment as the root volume.
 
-Plakar Control Plane is recommended to run on a machine with:
-
-- **4 vCPUs**
-- **16 GB RAM**
-
-A configuration such as `BASIC3-X4C-16G` is suitable for most deployments.
-
-These are recommendations for a production deployment. For evaluation or
-testing, you can reduce CPU, RAM, and storage.
+Size the instance according to [Appliance Sizing](../../appliance/sizing), which
+gives the CPU, memory and disks for each size of deployment. For the S tier, a
+configuration such as `BASIC3-X4C-16G` is suitable.
 
 ![](../images/create-scaleway-cpu-instance.png)
 
@@ -77,8 +71,9 @@ The Block Storage Snapshot volume is used only as the operating system boot
 disk. Plakar Control Plane requires an additional persistent data volume that
 stores the database, logs, and all Plakar state.
 
-Attach an additional Block Storage volume with a recommended size of `1024 GB`.
-Backups themselves are stored wherever you configure using apps.
+Attach an additional Block Storage volume of the data disk size given in
+[Appliance Sizing](../../appliance/sizing). Backups themselves are stored
+wherever you configure using apps.
 
 ## Configuring the Appliance
 

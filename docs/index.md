@@ -17,6 +17,7 @@
 - [Access Control](https://www.plakar.io/docs/control-plane/access-control/index.md): Organizations, users, authentication and permissions in Plakar Control Plane.
 - [Compliance](https://www.plakar.io/docs/control-plane/compliance/index.md): Enforce backup requirements, data location, and retention obligations, and review activity in Plakar Control Plane.
 - [Operations](https://www.plakar.io/docs/control-plane/operations/index.md): Settings, notifications, updates, and backup of the Plakar Control Plane appliance.
+- [Control Plane Appliance](https://www.plakar.io/docs/control-plane/appliance/index.md): How the Plakar Control Plane appliance is built, and how to size it for your deployment.
 - [Infrastructure as Code](https://www.plakar.io/docs/control-plane/infrastructure-as-code/index.md): Ways to manage Plakar Control Plane declaratively, from code, instead of the web interface.
 - [General Guides](https://www.plakar.io/docs/control-plane/guides/index.md): General purpose guides, walkthroughs, and platform-specific tutorials.
 - [References](https://www.plakar.io/docs/control-plane/references/index.md): Reference material for Plakar Control Plane: API keys, custom resource fields, and other lookup information.

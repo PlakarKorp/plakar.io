@@ -46,12 +46,14 @@ gcloud compute instances create <INSTANCE_NAME> \
   --scopes=cloud-platform
 ```
 
-- `--machine-type=n2-standard-4` provides the recommended 4 vCPUs and 16 GiB
-  RAM. For evaluation or testing, a smaller machine type is fine.
+- `--machine-type=n2-standard-4` matches the S tier of
+  [Appliance Sizing](../../appliance/sizing).
 - `--image` and `--image-project` reference the Plakar Control Plane image by
   name, which works regardless of whitelisting.
-- `--create-disk` provisions the 1 TB data disk that holds the database, logs,
-  and all Plakar state, separate from wherever you configure backups themselves
+- `--create-disk` provisions the data disk that holds the database, logs, and
+  all Plakar state, separate from wherever you configure backups themselves to
+  be stored. Set its size to the data disk size given in
+  [Appliance Sizing](../../appliance/sizing).
 - `--service-account` and `--scopes` attach a service account to the instance,
   which lets Plakar Control Plane authenticate to Google Cloud services such as
   inventories and secret providers without a service account key. Both flags are
@@ -60,7 +62,6 @@ gcloud compute instances create <INSTANCE_NAME> \
   instance uses the default access scopes, which block some APIs regardless of
   the service account's IAM roles. See
   [Attaching the Service Account to an Instance](../../../guides/google-cloud/iam-roles-and-service-accounts#attaching-the-service-account-to-an-instance).
-  to be stored. For evaluation or testing, a smaller size is fine.
 - `--tags=http-server` applies the tag GCP's default network firewall rule uses
   to allow inbound HTTP traffic. If your project doesn't have that default rule,
   create one explicitly:
@@ -107,15 +108,9 @@ You then need to select an instance type for running control plane on.
 
 {{< figure src="../images/gcp-1.png" alt="" class="mx-auto max-w-120" >}}
 
-Plakar Control Plane requires the following recommended setup:
-
-- **4 vCPUs**
-- **16 GiB RAM**
-- **1 TB of additional storage**, on top of the boot disk
-
-These are recommendations for a production deployment. For evaluation or
-testing, a smaller machine type is fine. A preset such as `n2-standard-4`
-satisfies the CPU and RAM requirement.
+Size the instance according to [Appliance Sizing](../../appliance/sizing), which
+gives the CPU, memory and disks for each size of deployment. For the S tier, a
+preset such as `n2-standard-4` is suitable.
 
 Under **Provisioning model**, choose **Standard** for a persistent deployment.
 **Spot VMs** run until preempted by GCP, which makes them a fit for
@@ -141,8 +136,9 @@ the Plakar Control Plane image:
 4. Select the latest available image (currently `control-plane-v-0-0-3`).
 
 For the boot disk itself, any of the available persistent disk types (Balanced,
-SSD, Extreme, or Standard) will work; a size of **10 GB** is enough, since the
-appliance's actual state is stored on a separate data disk.
+SSD, Extreme, or Standard) will work. It only needs the system disk size given
+in [Appliance Sizing](../../appliance/sizing), since the appliance's state is
+stored on a separate data disk.
 
 {{< figure src="../images/gcp-4.png" alt="" class="mx-auto max-w-120" >}}
 
@@ -153,7 +149,8 @@ separate from wherever you configure backups to be stored:
 
 1. Under **Additional disks**, click **Add new disk**.
 2. Leave the disk source blank so GCP creates a new, empty disk.
-3. Set the size to **1024 GB**.
+3. Set the size to the data disk size given in
+   [Appliance Sizing](../../appliance/sizing).
 4. Choose a disk type. Balanced, SSD, Extreme, Standard, and Hyperdisk are all
    supported; pick whichever matches your performance and cost requirements.
 

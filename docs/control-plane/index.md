@@ -103,6 +103,11 @@
 - [Backup and Restore](https://www.plakar.io/docs/control-plane/operations/backup-and-restore/index.md): How to back up and restore the Plakar Control Plane configuration and data.
 
 
+## [Control Plane Appliance](https://www.plakar.io/docs/control-plane/appliance/index.md)
+
+- [Appliance Sizing](https://www.plakar.io/docs/control-plane/appliance/sizing/index.md): What the Plakar Control Plane appliance is made of, what uses its CPU, memory and disk, and how to size it.
+
+
 ## [Infrastructure as Code](https://www.plakar.io/docs/control-plane/infrastructure-as-code/index.md)
 
 - [Kubernetes Operator](https://www.plakar.io/docs/control-plane/infrastructure-as-code/kubernetes-operator/index.md): Manage Plakar Control Plane declaratively from Kubernetes using the plakar-operator.

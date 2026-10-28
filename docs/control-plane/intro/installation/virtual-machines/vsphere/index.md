@@ -175,16 +175,10 @@ option is **Other 6.x or later Linux (64-bit)**. Click Next.
 
 ### Customize hardware
 
-Configure the virtual machine with the recommended Plakar Control Plane sizing:
-
-- CPU: 4vCPU
-- Memory: 16 GB
-- Hard disk: 1 TB
-
-These are recommendations for a production deployment. For evaluation or
-testing, you can reduce CPU, RAM, and storage. The data disk stores the
-database, logs, and all Plakar state. Backups themselves are stored wherever you
-configure using apps.
+Set the CPU, memory and hard disk of the virtual machine according to
+[Appliance Sizing](../../../appliance/sizing). The hard disk is the data disk,
+which stores the database, logs, and all Plakar state. Backups themselves are
+stored wherever you configure using apps.
 
 For the **CD/DVD Drive**, select **Datastore ISO File**, then browse to the
 Plakar Control Plane ISO that you uploaded earlier. Enable **Connect At Power
@@ -205,10 +199,11 @@ Other hardware settings can be left at their default values.
 
 ## Add the data disk
 
-On the ISO path, the recommended 1 TB storage is already configured during
-virtual machine creation, so this step is OVA-only. Before first power-on,
-right-click the VM, select **Edit settings**, open the **Virtual Hardware** tab,
-click **Add New Device**, select **Hard Disk**, and set it to 1 TB.
+On the ISO path, the data disk is already configured during virtual machine
+creation, so this step is OVA-only. Before first power-on, right-click the VM,
+select **Edit settings**, open the **Virtual Hardware** tab, click **Add New
+Device**, select **Hard Disk**, and set it to the data disk size given in
+[Appliance Sizing](../../../appliance/sizing).
 
 ![](../images/ovhcloud-iso-6.png)
 

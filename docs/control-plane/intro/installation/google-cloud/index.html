@@ -70,7 +70,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-07-14T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-10-28T08:53:21+03:00">
+    <meta property="article:modified_time" content="2026-10-28T10:39:24+01:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -232,12 +232,12 @@
     "dateCreated": "2026-07-14T00:00:00\u002b00:00",
     "datePublished": "2026-07-14T00:00:00\u002b00:00",
     
-    "dateModified": "2026-10-28T08:53:21\u002b03:00",
+    "dateModified": "2026-10-28T10:39:24\u002b01:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/intro/installation/google-cloud/",
-    "wordCount":  1284 
+    "wordCount":  1260 
   }]
   </script>
 
@@ -503,6 +503,8 @@
   
 
   
+  
+    
   
     
   
@@ -3507,6 +3509,77 @@
 
       
 
+    
+  
+
+  
+    </div>
+  
+
+
+          </div>
+        </div>
+
+      
+
+    
+  
+    
+    
+      
+      
+
+      
+        <div class="sidebar-accordion ">
+          <div class="flex items-center rounded-lg hover:bg-neutral-100 ">
+            <a href="/docs/control-plane/appliance/"
+               class="flex-1 px-2 py-1.5 font-medium text-neutral-700 hover:text-primary-500
+               ">
+              Control Plane Appliance
+            </a>
+            <button class="sidebar-accordion-btn px-2 py-1.5 shrink-0 text-neutral-400 hover:text-neutral-700">
+              <span class="sidebar-accordion-chevron w-4 h-4 flex items-center justify-center transition-transform duration-200 ">
+                <span class="relative block icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+</span>
+              </span>
+            </button>
+          </div>
+          <div class="sidebar-accordion-content hidden">
+            
+  
+  
+  
+  
+
+  
+  
+    
+  
+  
+
+  
+    <div class="border-l border-neutral-200 ml-3 pl-1 flex flex-col gap-0.5">
+  
+
+  
+    
+    
+      <a href="/docs/control-plane/appliance/sizing/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Appliance Sizing
+      </a>
     
   
 
@@ -5244,6 +5317,8 @@
   
     
   
+    
+  
   
 
   
@@ -8219,6 +8294,77 @@
 
       
 
+    
+  
+
+  
+    </div>
+  
+
+
+          </div>
+        </div>
+
+      
+
+    
+  
+    
+    
+      
+      
+
+      
+        <div class="sidebar-accordion ">
+          <div class="flex items-center rounded-lg hover:bg-neutral-100 ">
+            <a href="/docs/control-plane/appliance/"
+               class="flex-1 px-2 py-1.5 font-medium text-neutral-700 hover:text-primary-500
+               ">
+              Control Plane Appliance
+            </a>
+            <button class="sidebar-accordion-btn px-2 py-1.5 shrink-0 text-neutral-400 hover:text-neutral-700">
+              <span class="sidebar-accordion-chevron w-4 h-4 flex items-center justify-center transition-transform duration-200 ">
+                <span class="relative block icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+</span>
+              </span>
+            </button>
+          </div>
+          <div class="sidebar-accordion-content hidden">
+            
+  
+  
+  
+  
+
+  
+  
+    
+  
+  
+
+  
+    <div class="border-l border-neutral-200 ml-3 pl-1 flex flex-col gap-0.5">
+  
+
+  
+    
+    
+      <a href="/docs/control-plane/appliance/sizing/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Appliance Sizing
+      </a>
     
   
 
@@ -10060,16 +10206,18 @@ requiring the domain-whitelisting the Console needs:</p>
 </span></span></span><span class="line"><span class="cl">  --scopes<span class="o">=</span>cloud-platform</span></span></code></pre></div></div>
 <ul>
 <li>
-<p><code>--machine-type=n2-standard-4</code> provides the recommended 4 vCPUs and 16 GiB
-RAM. For evaluation or testing, a smaller machine type is fine.</p>
+<p><code>--machine-type=n2-standard-4</code> matches the S tier of
+<a href="/docs/control-plane/appliance/sizing/" >Appliance Sizing</a>.</p>
 </li>
 <li>
 <p><code>--image</code> and <code>--image-project</code> reference the Plakar Control Plane image by
 name, which works regardless of whitelisting.</p>
 </li>
 <li>
-<p><code>--create-disk</code> provisions the 1 TB data disk that holds the database, logs,
-and all Plakar state, separate from wherever you configure backups themselves</p>
+<p><code>--create-disk</code> provisions the data disk that holds the database, logs, and
+all Plakar state, separate from wherever you configure backups themselves to
+be stored. Set its size to the data disk size given in
+<a href="/docs/control-plane/appliance/sizing/" >Appliance Sizing</a>.</p>
 </li>
 <li>
 <p><code>--service-account</code> and <code>--scopes</code> attach a service account to the instance,
@@ -10079,8 +10227,7 @@ optional if you plan to use service account keys instead. When attaching a
 service account, <code>--scopes=cloud-platform</code> is required: without it, the
 instance uses the default access scopes, which block some APIs regardless of
 the service account&rsquo;s IAM roles. See
-<a href="../../../guides/google-cloud/iam-roles-and-service-accounts#attaching-the-service-account-to-an-instance" >Attaching the Service Account to an Instance</a>.
-to be stored. For evaluation or testing, a smaller size is fine.</p>
+<a href="../../../guides/google-cloud/iam-roles-and-service-accounts#attaching-the-service-account-to-an-instance" >Attaching the Service Account to an Instance</a>.</p>
 </li>
 <li>
 <p><code>--tags=http-server</code> applies the tag GCP&rsquo;s default network firewall rule uses
@@ -10177,15 +10324,9 @@ click on <strong>Create Instance</strong> to create a new instance.</p>
 <p>Provide the instance a name, and choose the region and zone where it should run.
 You then need to select an instance type for running control plane on.</p>
 <figure><img class="my-0 rounded-md mx-auto max-w-120" loading="lazy" decoding="async" fetchpriority="auto" alt="" width="1329" height="1465" src="/docs/control-plane/intro/installation/images/gcp-1_hu_311a30e4eb4685e0.webp" srcset="/docs/control-plane/intro/installation/images/gcp-1_hu_311a30e4eb4685e0.webp 400w, /docs/control-plane/intro/installation/images/gcp-1_hu_f2dc0730e63aed9.webp 800w, /docs/control-plane/intro/installation/images/gcp-1_hu_1950fdf4dbb67dba.webp 1200w" sizes="(min-width: 768px) 50vw, 65vw" data-zoom-src="/docs/control-plane/intro/installation/images/gcp-1_hu_1950fdf4dbb67dba.webp" /></figure>
-<p>Plakar Control Plane requires the following recommended setup:</p>
-<ul>
-<li><strong>4 vCPUs</strong></li>
-<li><strong>16 GiB RAM</strong></li>
-<li><strong>1 TB of additional storage</strong>, on top of the boot disk</li>
-</ul>
-<p>These are recommendations for a production deployment. For evaluation or
-testing, a smaller machine type is fine. A preset such as <code>n2-standard-4</code>
-satisfies the CPU and RAM requirement.</p>
+<p>Size the instance according to <a href="/docs/control-plane/appliance/sizing/" >Appliance Sizing</a>, which
+gives the CPU, memory and disks for each size of deployment. For the S tier, a
+preset such as <code>n2-standard-4</code> is suitable.</p>
 <p>Under <strong>Provisioning model</strong>, choose <strong>Standard</strong> for a persistent deployment.
 <strong>Spot VMs</strong> run until preempted by GCP, which makes them a fit for
 fault-tolerant workloads but not for a Control Plane instance, which needs to
@@ -10222,8 +10363,9 @@ whitelisted yet. See
 <li>Select the latest available image (currently <code>control-plane-v-0-0-3</code>).</li>
 </ol>
 <p>For the boot disk itself, any of the available persistent disk types (Balanced,
-SSD, Extreme, or Standard) will work; a size of <strong>10 GB</strong> is enough, since the
-appliance&rsquo;s actual state is stored on a separate data disk.</p>
+SSD, Extreme, or Standard) will work. It only needs the system disk size given
+in <a href="/docs/control-plane/appliance/sizing/" >Appliance Sizing</a>, since the appliance&rsquo;s state is
+stored on a separate data disk.</p>
 <figure><img class="my-0 rounded-md mx-auto max-w-120" loading="lazy" decoding="async" fetchpriority="auto" alt="" width="1244" height="1013" src="/docs/control-plane/intro/installation/images/gcp-4_hu_ea8d667848639e43.webp" srcset="/docs/control-plane/intro/installation/images/gcp-4_hu_ea8d667848639e43.webp 400w, /docs/control-plane/intro/installation/images/gcp-4_hu_adcec8324e496f97.webp 800w, /docs/control-plane/intro/installation/images/gcp-4_hu_9e481308f53045dd.webp 1200w" sizes="(min-width: 768px) 50vw, 65vw" data-zoom-src="/docs/control-plane/intro/installation/images/gcp-4_hu_9e481308f53045dd.webp" /></figure>
 
 
@@ -10247,7 +10389,8 @@ separate from wherever you configure backups to be stored:</p>
 <ol>
 <li>Under <strong>Additional disks</strong>, click <strong>Add new disk</strong>.</li>
 <li>Leave the disk source blank so GCP creates a new, empty disk.</li>
-<li>Set the size to <strong>1024 GB</strong>.</li>
+<li>Set the size to the data disk size given in
+<a href="/docs/control-plane/appliance/sizing/" >Appliance Sizing</a>.</li>
 <li>Choose a disk type. Balanced, SSD, Extreme, Standard, and Hyperdisk are all
 supported; pick whichever matches your performance and cost requirements.</li>
 </ol>

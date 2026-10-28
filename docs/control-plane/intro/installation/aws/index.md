@@ -23,16 +23,8 @@ management page in the AWS Console.
 From the launch page, under **Launch method**, select **One-click launch from
 AWS Marketplace**, then choose the AWS region for your deployment.
 
-Plakar Control Plane requires the following recommended setup:
-
-- A minimum of **4 vCPUs**
-- At least **16 GiB RAM**
-- At least **1 TB of EBS storage**
-
-These are recommendations for a production deployment. For evaluation or
-testing, you can reduce CPU, RAM, and storage. The data volume stores the
-database, logs, and all Plakar state. Backups themselves are stored wherever you
-configure using apps.
+Size the instance according to [Appliance Sizing](../../appliance/sizing), which
+gives the CPU, memory and disks for each size of deployment.
 
 The default marketplace configuration already selects a compatible instance type
 and storage configuration.

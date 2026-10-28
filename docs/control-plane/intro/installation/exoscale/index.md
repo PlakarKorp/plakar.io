@@ -117,20 +117,12 @@ Plane.
 
 ![Creating Exoscale compute instance](../images/create-exoscale-instance-1.png)
 
-For a production deployment, Plakar Control Plane is recommended to run with:
-
-- **4 vCPUs**
-- **16 GB RAM**
-- **1 TB of Block Storage**
-
-An **Extra Large** instance from the **Standard** instance type family is
-suitable for most deployments. The template only requires a small boot disk, so
-a 10 GB system disk is sufficient. Plakar Control Plane stores its database,
-logs, and application state on a separate Block Storage volume, which will be
-attached later.
-
-For evaluation or testing, you can reduce the CPU, memory, and storage
-allocation.
+Size the instance according to [Appliance Sizing](../../appliance/sizing), which
+gives the CPU, memory and disks for each size of deployment. For the S tier, an
+**Extra Large** instance from the **Standard** instance type family is suitable.
+The template only requires a small system disk. Plakar Control Plane stores its
+database, logs, and application state on a separate Block Storage volume, which
+will be attached later.
 
 ![Allocating resources to a Exoscale instance](../images/exoscale-compute-resource-allocation.png)
 
@@ -170,8 +162,8 @@ Open **Compute → Block Storage** in the Exoscale console, then click **Create
 Block Storage**.
 
 Provide a name for the volume, select the same zone as the instance, and create
-it as a **Blank volume**. A recommended size of **1024 GB** is suitable for most
-deployments.
+it as a **Blank volume**, of the data disk size given in
+[Appliance Sizing](../../appliance/sizing).
 
 Block Storage volumes can only be attached to instances in the same zone. This
 volume stores the Plakar Control Plane database, logs, and all application
