@@ -68,26 +68,26 @@ Everything else on this tab can be left at its default.
 
 ### Disks
 
-Set the disk size to **1 TB**. This is the recommended size for a production
-deployment. The disk stores the database, logs, and all Plakar state, separate
-from wherever you configure backups themselves to be stored. For evaluation or
-testing, a smaller disk is fine. Leave the format (qcow2) and storage selection
-on default, or pick a specific storage if your node has more than one available.
+Set the disk size to the data disk size given in
+[Appliance Sizing](../../../appliance/sizing). The disk stores the database,
+logs, and all Plakar state, separate from wherever you configure backups
+themselves to be stored. Leave the format (qcow2) and storage selection on
+default, or pick a specific storage if your node has more than one available.
 
 ![](../images/proxmox-ve-4.png)
 
 ### CPU
 
-Set **Cores** to **4** and **Sockets** to **1**. This is the recommended sizing
-for production use. Leave **Type** on its default (`x86-64-v2-AES`). For
-evaluation or testing, a smaller number of cores is fine.
+Set **Cores** to the number of vCPUs given in
+[Appliance Sizing](../../../appliance/sizing), and **Sockets** to **1**. Leave
+**Type** on its default (`x86-64-v2-AES`).
 
 ![](../images/proxmox-ve-5.png)
 
 ### Memory
 
-Set memory to **16384 MiB** (16 GB), the recommended amount for production use.
-For evaluation or testing, a smaller memory size is fine.
+Set memory to the amount given in [Appliance Sizing](../../../appliance/sizing),
+in MiB.
 
 ![](../images/proxmox-ve-6.png)
 
