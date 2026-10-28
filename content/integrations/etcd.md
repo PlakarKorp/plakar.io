@@ -39,6 +39,12 @@ links:
   - type: control-plane
     url: /docs/control-plane/resources/database/etcd/
 
+related:
+  - kubernetes
+  - postgres
+  - mysql
+  - mongodb
+
 edition:
   - community
   - control-plane

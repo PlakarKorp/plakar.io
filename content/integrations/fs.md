@@ -43,6 +43,11 @@ seo_tags:
 
 links: []
 
+related:
+  - nfs
+  - smb
+  - sftp
+
 edition:
   - community
 

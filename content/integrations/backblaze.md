@@ -48,6 +48,9 @@ links:
     url: /posts/2025-02-10/s3-is-not-a-backup-why-you-need-a-real-backup-strategy/
     icon: ri/article-line
 
+related:
+  - s3
+
 edition:
   - community
   - control-plane

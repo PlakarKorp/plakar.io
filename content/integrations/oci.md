@@ -38,6 +38,9 @@ links:
   - type: community
     url: /docs/community/main/integrations/oci/
 
+related:
+  - kubernetes
+
 edition:
   - community
   - control-plane

@@ -45,6 +45,11 @@ links:
   - type: control-plane
     url: /docs/control-plane/resources/file-storage/sftp/
 
+related:
+  - ftp
+  - nfs
+  - smb
+
 edition:
   - community
   - control-plane

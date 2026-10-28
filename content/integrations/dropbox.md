@@ -47,6 +47,11 @@ links:
   - type: community
     url: /docs/community/main/integrations/dropbox/
 
+related:
+  - googledrive
+  - onedrive
+  - protondrive
+
 edition:
   - community
 

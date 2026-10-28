@@ -40,6 +40,11 @@ links:
   - type: control-plane
     url: /docs/control-plane/inventories/managed/openshift/
 
+related:
+  - kubernetes
+  - etcd
+  - oci
+
 edition:
   - community
   - control-plane

@@ -46,6 +46,10 @@ links:
   - type: control-plane
     url: /docs/control-plane/resources/object-storage/azblob/
 
+related:
+  - s3
+  - gcs
+
 edition:
   - community
   - control-plane

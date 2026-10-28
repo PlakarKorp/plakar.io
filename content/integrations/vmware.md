@@ -44,6 +44,11 @@ links:
   - type: control-plane
     url: /docs/control-plane/resources/compute/vmware/
 
+related:
+  - proxmox
+  - kubernetes
+  - vss
+
 edition:
   - community
   - control-plane

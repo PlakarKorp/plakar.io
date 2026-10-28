@@ -39,6 +39,12 @@ links:
   - type: control-plane
     url: /docs/control-plane/resources/database/mssql/
 
+related:
+  - vss
+  - msad
+  - postgres
+  - mysql
+
 edition:
   - community
   - control-plane

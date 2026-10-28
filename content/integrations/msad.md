@@ -42,6 +42,10 @@ links:
   - type: control-plane
     url: /docs/control-plane/resources/identity/msad/
 
+related:
+  - vss
+  - mssql
+
 edition:
   - community
   - control-plane

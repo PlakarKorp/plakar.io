@@ -41,6 +41,9 @@ links:
   - type: control-plane
     url: /docs/control-plane/resources/compute/ovhcloud/
 
+related:
+  - s3
+
 edition:
   - control-plane
 

@@ -42,6 +42,12 @@ links:
   - type: control-plane
     url: /docs/control-plane/resources/database/mysql/
 
+related:
+  - postgres
+  - mongodb
+  - mssql
+  - etcd
+
 edition:
   - community
   - control-plane
