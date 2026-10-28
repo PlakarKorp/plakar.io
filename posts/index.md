@@ -4,6 +4,10 @@
 
 
 
+## [Free backup for KubeVirt VMs and OpenShift](https://www.plakar.io/posts/2026-10-28/free-backup-for-kubevirt-and-openshift/index.md)
+
+
+
 ## [Take a Glance: Plakar's OpenStack backup is now free in Plakar Community](https://www.plakar.io/posts/2026-10-22/backing-up-openstack-with-plakar/index.md)
 
 
