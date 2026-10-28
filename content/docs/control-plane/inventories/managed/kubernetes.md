@@ -16,13 +16,18 @@ resources become available for management directly from Plakar Control Plane.
 
 ## Supported Resources
 
-| Resource                     | Source | Store | Destination |
-| ---------------------------- | ------ | ----- | ----------- |
-| PersistentVolumeClaims (PVC) | Yes    | No    | Yes         |
-| KubeVirt virtual machines    | Yes    | No    | Yes         |
+| Resource                                                             | Source | Store | Destination |
+| -------------------------------------------------------------------- | ------ | ----- | ----------- |
+| [Cluster and namespaces](../../resources/compute/kubernetes/cluster) | Yes    | No    | Yes         |
+| [PersistentVolumeClaims (PVC)](../../resources/block-storage/pvc)    | Yes    | No    | Yes         |
+| [KubeVirt virtual machines](../../resources/compute/kubernetes/vm)   | Yes    | No    | Yes         |
+
+The cluster and namespace resources hold the manifests of the cluster. When the
+inventory discovers every namespace, it also lists a `cluster` resource that
+covers the whole cluster. Each namespace it discovers is listed as a resource of
+its own, named after the namespace.
 
 Virtual machines are discovered only when KubeVirt is installed in the cluster.
-On clusters without KubeVirt, the inventory discovers PVCs only.
 
 ## Authentication
 

@@ -15,8 +15,8 @@ them up and restores them through the `openshift` protocol.
 
 These resources hold the configuration of the cluster only. The contents of
 persistent volumes and virtual machine disks are not part of their backups, and
-are backed up through [OpenShift PVC](../../../block-storage/openshift-pvc) and
-[OpenShift VM](../vm) resources.
+are backed up through [OpenShift PVC](../../block-storage/openshift-pvc) and
+[OpenShift VM](vm) resources.
 
 A backup reads the manifests of the resources in the namespace, or in every
 namespace for the `cluster` resource, and stores them in the Kloset store. A
