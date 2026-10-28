@@ -130,6 +130,7 @@
 - [Kubernetes Operator](https://www.plakar.io/docs/control-plane/references/kubernetes-operator/index.md): Field-by-field reference for every custom resource defined by plakar-operator.
 - [Terraform Provider](https://www.plakar.io/docs/control-plane/references/terraform-provider/index.md): Argument-by-argument reference for every resource and data source in the plakar Terraform provider.
 - [Ansible Collection](https://www.plakar.io/docs/control-plane/references/ansible-collection/index.md): Option-by-option reference for every module in the plakarkorp.plakar Ansible collection.
+- [OpenAPI Schema](https://www.plakar.io/docs/control-plane/references/openapi/index.md): Endpoint-by-endpoint reference for the Plakar Control Plane HTTP API, generated from its OpenAPI document.
 
 
 

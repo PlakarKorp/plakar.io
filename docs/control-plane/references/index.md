@@ -24,4 +24,9 @@ of the documentation instead.
 
 
 
+## [OpenAPI Schema](https://www.plakar.io/docs/control-plane/references/openapi/index.md)
+
+- [API v1](https://www.plakar.io/docs/control-plane/references/openapi/v1/index.md): Every endpoint of version one of the Plakar Control Plane API.
+
+
 

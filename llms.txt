@@ -352,6 +352,10 @@ Plakar Control Plane is a self-hosted backup management system built on top of P
 - [Reference: Terraform Provider](https://www.plakar.io/docs/control-plane/references/terraform-provider/index.md): Argument-by-argument reference for every resource and data source.
 - [Reference: Ansible Collection](https://www.plakar.io/docs/control-plane/references/ansible-collection/index.md): Option-by-option reference for every module.
 
+### API Reference
+
+- [API v1](https://www.plakar.io/docs/control-plane/references/openapi/v1/index.md): Version 1 of the PCP HTTP API, its base URL, authentication and error format. The full OpenAPI schema of the current version is at https://www.plakar.io/openapi.json, and each version is at `/openapi/<version>.json`, for example https://www.plakar.io/openapi/v1.json.
+
 ### General guides for Control Plane
 
 - [Automating Backups from an Inventory](https://www.plakar.io/docs/control-plane/guides/automated-backups/index.md): Back up the resources of a cloud account with no manual setup per resource: a managed inventory synced every 15 minutes, environment and data class tags set at the provider, a configuration bundle that auto-creates source apps, and SLA policies that schedule the backups.
