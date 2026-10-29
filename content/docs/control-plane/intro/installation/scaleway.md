@@ -85,73 +85,11 @@ wherever you configure using apps.
 
 ## Configuring the Appliance
 
-Settings the appliance needs at boot are delivered through Scaleway's
-**cloud-init user data**, set before the instance is created. A single
-cloud-config document can carry a proxy, a registry mirror, NTP servers, a
-Private Network interface and an SSH key. Include only the keys your environment
-needs. An instance with a public IP and direct internet access needs none of
-them.
-
-![Adding cloud-init user data to a Scaleway instance](../images/scaleway-cloud-init.png)
-
-```yaml
-#cloud-config
-proxy:
-  http: http://<proxy-ip>:<proxy-port>
-  https: http://<proxy-ip>:<proxy-port>
-  no_proxy: .corp.example,10.0.0.0/8 # optional
-
-registry:
-  mirrors:
-    docker.io: <harbor-host>/dockerhub-proxy
-    ghcr.io: <harbor-host>/ghcr-proxy
-  insecure: false # true: skip TLS verification for the mirror hosts
-
-ntp:
-  servers: # optional, defaults to pool.ntp.org
-    - <ntp-server>
-
-network:
-  ethernets:
-    eth1:
-      dhcp4: true # Private Network interface, for an instance without a public IP
-
-ssh_authorized_keys:
-  - ssh-ed25519 AAAA...
-```
-
-### Proxy and registry mirror
-
-Plakar Control Plane requires HTTPS access to `api.plakar.io` for runtime
-configuration, license validation, and plugin downloads, and pulls container
-images from `docker.io` and `ghcr.io`. When the instance has no direct internet
-access, the `proxy:` key routes this traffic through an HTTP proxy. If the proxy
-uses a whitelist instead of allowing all outbound traffic, add `*.plakar.io`.
-
-Container images can go through the same proxy, which must then allow
-`*.docker.io`, `*.docker.com`, `*.ghcr.io` and `*.githubusercontent.com`. The
-`registry:` key instead pulls them from a Harbor registry mirror. A mirror is
-recommended for production deployments because images come from a local cache
-rather than the public internet, and the Docker and GitHub domains no longer
-need to be allowed on the proxy.
-
-### Private Network
-
-An instance can run without a public IP, attached to a Private Network that
-reaches the internet through a Scaleway Public Gateway. By default, the
-appliance only requests an address over DHCP on its first interface, which on
-Scaleway is the public interface. Without a public IP, nothing answers on that
-interface and the instance does not finish booting.
-
-The `network:` key enables DHCP on `eth1`, the Private Network interface. The
-instance then receives its address, its default route through the Public Gateway
-and its DNS resolver from the Private Network, provided **Advertise default
-route** is enabled on the gateway's attachment to the network.
-
-Such an instance is reached through a load balancer or the SSH bastion of the
-Public Gateway. See
-[HTTPS access on a Private Network](../../../guides/scaleway/https-access-to-a-private-network)
-and [SSH bastion access](../../../guides/scaleway/ssh-bastion-access).
+An instance with a public IP and direct internet access needs no configuration.
+If SSH access is all you need, set it from the Scaleway console as described in
+[SSH access](#ssh-access) and skip the cloud-init user data. For anything else,
+such as a proxy or a Private Network, the appliance reads its settings from
+Scaleway's **cloud-init user data**.
 
 ### SSH access
 
@@ -161,13 +99,87 @@ in the **SSH keys** section of the instance creation flow.
 
 ![](../images/scaleway-ssh.png)
 
-When cloud-init user data is provided, Scaleway no longer adds the project keys,
-and the `ssh_authorized_keys:` key is the only way to authorize one. The key is
-optional, and mostly useful to debug a network configuration that does not work.
+When cloud-init user data is provided, Scaleway no longer adds the project keys.
+The SSH keys then have to be listed in the `ssh_authorized_keys` key of the user
+data.
 
 ```sh
 ssh plakar@<instance-ip-address>
 ```
+
+### Cloud-init user data
+
+The user data is set before the instance is created. The keys of the document
+are described in [Appliance Configuration](../../appliance/configuration). If
+the appliance goes through a proxy or firewall, the hosts it has to reach are
+listed in
+[Required outbound access](../../appliance/configuration#required-outbound-access).
+
+> [!WARNING]+
+>
+> Once user data is provided, Scaleway ignores the SSH keys selected in the
+> **SSH keys** section of the instance creation flow. To keep SSH access, list
+> the keys in `ssh_authorized_keys` in the user data.
+
+The document below sets every key except `network`, which Scaleway only needs
+for an instance on a Private Network, as described in
+[Private Network](#private-network). Remove the keys your environment does not
+need, each key is optional.
+
+```yaml
+#cloud-config
+ssh_authorized_keys:
+  - ssh-ed25519 AAAA...
+
+proxy:
+  http: http://proxy.corp.example:3128
+  https: http://proxy.corp.example:3128
+  no_proxy: .corp.example
+
+registry:
+  mirrors:
+    docker.io: harbor.corp.example/dockerhub-proxy
+    ghcr.io: harbor.corp.example/ghcr-proxy
+  insecure: false
+
+releases:
+  url: https://dist.corp.example/plakar/enterprise
+  version: v1.1.2
+
+ntp:
+  servers:
+    - 10.20.0.1
+    - ntp.corp.example
+```
+
+### Private Network
+
+On Scaleway, `eth0` is the public interface, and a Private Network is attached
+as `eth1`. The appliance only configures `eth0` by default, with DHCP, which
+suits an instance with a public IP.
+
+An instance can also run without a public IP, attached to a Private Network that
+reaches the internet through a Scaleway Public Gateway. Nothing answers DHCP on
+`eth0` then, and the instance does not finish booting. The user data has to tell
+the appliance to use DHCP on `eth1` instead:
+
+```yaml
+#cloud-config
+network:
+  ethernets:
+    eth1:
+      dhcp4: true
+```
+
+Add the `network` key to the rest of the user data if you set other keys. The
+instance then receives its address, its default route through the Public Gateway
+and its DNS resolver from the Private Network, provided **Advertise default
+route** is enabled on the gateway's attachment to the network.
+
+Such an instance is reached through a load balancer or the SSH bastion of the
+Public Gateway. See
+[HTTPS access on a Private Network](../../../guides/scaleway/https-access-to-a-private-network)
+and [SSH bastion access](../../../guides/scaleway/ssh-bastion-access).
 
 ### Security group
 
