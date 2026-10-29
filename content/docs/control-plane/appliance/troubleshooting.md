@@ -35,42 +35,17 @@ The Google Cloud image does not accept SSH connections, so `doktor` is not
 available there. See the
 [Google Cloud limitations](../../intro/installation/google-cloud#limitations).
 
-## Required outbound access
+## Outbound access
 
-The appliance needs outbound HTTPS, on TCP port 443, to the following domains. A
-proxy or firewall in front of it has to allow each of them:
+A host the appliance cannot reach is the most common reason it fails to start.
+The domains a proxy or firewall has to allow are listed in
+[Required outbound access](../configuration#required-outbound-access).
 
-| Domain                    | Purpose                                                         |
-| ------------------------- | --------------------------------------------------------------- |
-| `*.plakar.io`             | Runtime configuration, license validation and plugin downloads. |
-| `*.docker.io`             | Docker Hub images.                                              |
-| `*.docker.com`            | Image layers for Docker Hub.                                    |
-| `*.ghcr.io`               | Component images.                                               |
-| `*.githubusercontent.com` | Image layers for `ghcr.io`.                                     |
-
-When a Harbor registry mirror is configured, as described in the proxy and
-Harbor configuration section of each [installation](../../intro/installation)
-guide, images are pulled from the mirror and the Docker and GitHub domains do
-not need to be allowed.
-
-The appliance also synchronizes its clock with `pool.ntp.org` over UDP port 123,
-which does not go through a forward proxy. An appliance that cannot reach an NTP
-server lets its clock drift, and once it is off by more than a few minutes,
-HTTPS connections fail with certificate errors. On a network that blocks
-`pool.ntp.org`, point the appliance at internal NTP servers in the user data:
-
-```yaml
-#cloud-config
-ntp:
-  servers:
-    - 10.20.0.1
-    - ntp.corp.example
-```
-
-Each entry is a hostname or an IP address. On vSphere, the same list can be set
-as a comma-separated `guestinfo.plakar.ntp_servers` parameter. If both are set,
-the user data takes precedence. Like the rest of the user data, the servers are
-read when the appliance boots, so a change takes effect after a reboot.
+The appliance also needs to reach an NTP server over UDP port 123, which does
+not go through a forward proxy. Without one, its clock drifts until HTTPS
+connections fail with certificate errors. On a network that blocks
+`pool.ntp.org`, set internal servers as described in
+[NTP servers](../configuration#ntp-servers).
 
 ## Appliance without a data disk
 
