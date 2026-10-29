@@ -1,7 +1,7 @@
 ---
 title: "Troubleshooting"
 date: "2026-10-28T00:00:00Z"
-weight: 2
+weight: 3
 summary:
   "Diagnose an appliance that does not start or cannot reach the services it
   depends on, with doktor and the outbound access it requires."
