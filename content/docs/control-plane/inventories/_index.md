@@ -88,6 +88,13 @@ French residency can only be backed up to, restored from, or synchronized with
 resources that also have a French residency. See
 [data residency](../compliance/residency) for more information.
 
+## Edge pools
+
+An inventory can name an [edge pool](../edges/running-tasks#selecting-an-edge),
+which is inherited by every resource it exposes. Tasks that use those resources
+run on an edge of the pool instead of on the Control Plane. A pool set on an
+individual resource takes precedence over the one inherited from the inventory.
+
 ## Configuration bundles
 
 Configuration bundles declare shared fields, such as credentials, that are

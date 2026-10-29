@@ -90,15 +90,6 @@ app. A failing test points at the configuration or the credentials of the app.
 Backups, restores and the other operations run as tasks that use apps. Tasks can
 be created from the dashboard of an app or from [scheduling](../scheduling).
 
-## Residency
-
-Apps can only be used together when their resources have the same
-[residency](../compliance/residency). A source can only be backed up to a store
-with the same residency, a restore can only write to a destination with the
-residency of its store, and a sync can only run between stores with the same
-residency. The residency belongs to the resource, so an app takes on the
-residency of its resource.
-
 ## Infrastructure as Code
 
 Apps can also be managed declaratively with the

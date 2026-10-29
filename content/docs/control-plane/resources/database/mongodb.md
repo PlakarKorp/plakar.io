@@ -43,9 +43,9 @@ Replace `<version>` with the edge version that matches your Control Plane, as
 described in
 [Choosing the edge version](../../edges/installation/custom-image#choosing-the-edge-version).
 
-Pin MongoDB tasks to the resulting edge with the **Run on** field when
-[scheduling them](../../scheduling/tasks), or target it by the `mongodb` tag.
-See [selecting an edge](../../edges/running-tasks#selecting-an-edge).
+Add the resulting edges to an edge pool, and assign the MongoDB resources to
+that pool, so their tasks run on an edge that has the client tools. See
+[selecting an edge](../../edges/running-tasks#selecting-an-edge).
 
 ## Inventory Management
 
