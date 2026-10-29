@@ -1,6 +1,6 @@
 // Targets: layouts/contact/single.html
 // Elements: #contact-form
-// Depends: assets/js/main/toast.js
+// Depends: assets/js/main/toast.js, assets/js/main/utm.js
 
 const CONTACT_PORTAL_ID = "48034556";
 const CONTACT_FORM_ID = "3ac805bd-3625-455e-b8d4-f92316d1682e";
@@ -37,13 +37,9 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     try {
-      const res = await fetch(
+      const res = await window.submitHubSpotForm(
         `https://api.hsforms.com/submissions/v3/integration/submit/${CONTACT_PORTAL_ID}/${CONTACT_FORM_ID}`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        },
+        payload,
       );
 
       if (!res.ok) throw new Error("Submission failed");

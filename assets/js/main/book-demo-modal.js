@@ -1,7 +1,7 @@
 // Targets: layouts/partials/components/modals/demo-modal.html
 // Elements: #demo-modal, #demo-modal-close, #demo-form
 // Triggers: .book-a-demo-modal-open
-// Depends: assets/js/main/toast.js
+// Depends: assets/js/main/toast.js, assets/js/main/utm.js
 
 const HUBSPOT_PORTAL_ID = "48034556";
 const HUBSPOT_FORM_ID = "8230a5c9-edf7-492e-ae14-b9246a6206d5";
@@ -71,13 +71,9 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     try {
-      const res = await fetch(
+      const res = await window.submitHubSpotForm(
         `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_ID}`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        },
+        payload,
       );
 
       if (!res.ok) throw new Error("Submission failed");

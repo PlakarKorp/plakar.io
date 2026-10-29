@@ -1,6 +1,6 @@
 // Targets: layouts/index.html, layouts/partials/common/footer/footer.html, layouts/contact/single.html
 // Elements: #newsletter-form-home, #newsletter-form-footer, #newsletter-form-contact
-// Depends: assets/js/bundle/toast.js
+// Depends: assets/js/bundle/toast.js, assets/js/main/utm.js
 
 const HUBSPOT_NEWSLETTER_PORTAL_ID = "48034556";
 const HUBSPOT_NEWSLETTER_FORM_ID = "a65a0673-a43b-41cc-ba1c-a7084f704685";
@@ -29,19 +29,15 @@ const submitNewsletter = (formId) => {
     const hutk = document.cookie.match(/(?:^|;\s*)hubspotutk=([^;]+)/)?.[1];
 
     try {
-      const res = await fetch(
+      const res = await window.submitHubSpotForm(
         `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_NEWSLETTER_PORTAL_ID}/${HUBSPOT_NEWSLETTER_FORM_ID}`,
         {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            fields: [{ name: "email", value: email }],
-            context: {
-              ...(hutk ? { hutk } : {}),
-              pageUri: window.location.href,
-              pageName: document.title,
-            },
-          }),
+          fields: [{ name: "email", value: email }],
+          context: {
+            ...(hutk ? { hutk } : {}),
+            pageUri: window.location.href,
+            pageName: document.title,
+          },
         },
       );
 
