@@ -13,7 +13,7 @@ summary:
 The appliance takes its boot-time settings from a cloud-init user data document.
 It covers SSH access, the forward proxy, registry mirrors, the release server,
 NTP servers and the network configuration. Every key is optional. An appliance
-with direct internet access and a DHCP network needs none of them. On cloud
+with direct internet access and a DHCP network needs none of them. On some
 platforms, SSH keys can also come from the platform itself, as described in
 [SSH access](#ssh-access).
 
@@ -78,9 +78,11 @@ as the `plakar` user. SSH is only needed for diagnostics, such as running
 managed through its web interface or with
 [infrastructure as code](../../infrastructure-as-code).
 
-The appliance also accepts the SSH keys a cloud platform attaches to the
-instance when it is created, such as an EC2 key pair on AWS or the SSH keys of a
-Scaleway project. On those platforms, either way of providing a key works.
+Some platforms can also set SSH keys from their own interface, such as the SSH
+keys of a Scaleway project or the SSH key field of Proxmox. These keys are only
+used when the instance has no user data document. Once a document is provided,
+the platform uses it instead of its interface settings, so the SSH keys have to
+be listed in `ssh_authorized_keys`.
 
 SSH keys in the user data are supported on every platform except Google Cloud,
 where the appliance does not accept SSH connections.
@@ -200,9 +202,9 @@ errors.
 
 ## Network
 
-Every network interface uses DHCP by default. `network` configures static
-addresses, routes and several interfaces, using a subset of the
-[netplan](https://netplan.readthedocs.io/) format.
+By default, only the first interface, `eth0`, is configured, with DHCP.
+`network` configures the other interfaces, static addresses and routes, using a
+subset of the [netplan](https://netplan.readthedocs.io/) format.
 
 ```yaml
 network:
@@ -256,9 +258,9 @@ The network configuration follows a few rules:
   first is used.
 - **One set of DNS servers.** Set `nameservers` on the interface that has the
   gateway. When several interfaces set them, only the first is used.
-- **Interfaces without settings use DHCP.** An interface that is not listed, or
-  whose settings are invalid, falls back to DHCP. An interface on a network
-  without a DHCP server stays unconfigured.
+- **Other interfaces have to be listed.** An interface other than `eth0` is only
+  configured when `network` lists it, with `dhcp4: true` for DHCP or with a
+  static address.
 - **The appliance waits for `eth0`.** When `eth0` uses DHCP, the appliance waits
   for its lease before it finishes booting. Leases on other interfaces never
   delay the boot.
