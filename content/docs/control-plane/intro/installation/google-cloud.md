@@ -265,16 +265,13 @@ network:
 
 ## Accessing Plakar Control Plane
 
-Once the instance is running and reachable, open it from a browser using its
-assigned external IP address:
-
-```txt
-http://<EXTERNAL-IP>
-```
+Once the instance is running, Plakar Control Plane is reached from a browser at
+`http://<external-ip>`, the external IP address of the instance.
 
 ![](../images/gcp-6.png)
 
-For new installations, you will be guided through the enrollment process to:
+For first-time installations, you will be guided through the enrollment process
+to:
 
 - Register the instance with Plakar services for licensing and billing
 - Create the initial administrator account

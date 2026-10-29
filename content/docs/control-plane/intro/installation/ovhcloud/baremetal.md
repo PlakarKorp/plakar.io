@@ -139,7 +139,7 @@ ssh plakar@<server-ip-address>
 Replace `<server-ip-address>` with the public IP address assigned to the
 dedicated server.
 
-## Start the Appliance and Complete Enrollment
+## Accessing Plakar Control Plane
 
 Once the installation settings are configured, confirm the order to start the
 installation.
@@ -149,16 +149,12 @@ installation.
 > The first boot may take some time while the appliance completes its initial
 > setup.
 
-Once the appliance has booted and the initial setup is complete, open Plakar
-Control Plane from a browser using the server's public IP address:
-
-```text
-http://<server-ip-address>
-```
-
-For a new installation, you will be guided through the enrollment process to:
+Once the appliance has finished its first boot, Plakar Control Plane is reached
+from a browser at `http://<server-ip-address>`, the public IP address of the
+dedicated server. For first-time installations, you will be guided through the
+enrollment process to:
 
 - Register the instance with Plakar services for licensing and billing
 - Create the initial administrator account
 
-See the [enrollment](../../enrollment) documentation for more information.
+See the [enrollment](../../enrollment) documentation for more details.

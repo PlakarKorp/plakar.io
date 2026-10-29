@@ -116,9 +116,9 @@ virtual machine.
 
 By default the appliance boots with DHCP networking and no SSH access. If that's
 enough for you, skip ahead to
-[start the appliance and complete enrollment](#start-the-appliance-and-complete-enrollment).
-Otherwise, the appliance reads its settings from a cloud-init user data
-document, whose keys are described in
+[Accessing Plakar Control Plane](#accessing-plakar-control-plane). Otherwise,
+the appliance reads its settings from a cloud-init user data document, whose
+keys are described in
 [Appliance Configuration](../../../appliance/configuration). This section covers
 how to deliver that document on Proxmox.
 
@@ -255,20 +255,17 @@ If you configured an SSH key, connect to the booted appliance with the `plakar`
 user:
 
 ```sh
-ssh plakar@<ASSIGNED-IP>
+ssh plakar@<assigned-ip>
 ```
 
-Replace `<ASSIGNED-IP>` with the appliance's configured or DHCP-assigned IP
+Replace `<assigned-ip>` with the appliance's configured or DHCP-assigned IP
 address.
 
-## Start the appliance and complete enrollment
+## Accessing Plakar Control Plane
 
-Power on the virtual machine. Once the appliance has booted and is reachable on
-the network, open it from a browser using its assigned IP address.
-
-```txt
-http://<ASSIGNED-IP>
-```
+Power on the virtual machine. Once the appliance has booted, Plakar Control
+Plane is reached from a browser at `http://<assigned-ip>`, the IP address
+configured for the appliance or assigned by DHCP.
 
 > [!NOTE]+
 >
