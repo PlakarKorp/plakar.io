@@ -124,7 +124,10 @@ the admin account also acts as the instance owner.
 The instance also cannot reach `plakar.io` to fetch integrations and appliance
 components. Before enrolling, set up a
 [self-hosted package repository](../../guides/self-hosted-package-repository) so
-the instance can retrieve these files from your own network instead.
+the instance can retrieve these files from your own network instead. The
+appliance settings this requires, including registry mirrors and internal NTP
+servers, are described in
+[Appliance Configuration](../../appliance/configuration).
 
 ### License renewal
 

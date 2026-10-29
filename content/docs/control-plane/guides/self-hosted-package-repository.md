@@ -138,6 +138,11 @@ is configured, the appliance logs the configuration and falls back to
 If a forward proxy is configured, the host specified in `releases.url` is
 automatically excluded from the proxy.
 
+An air-gapped appliance also needs a registry mirror for its container images,
+and internal NTP servers to keep its clock synchronized. Both are set in the
+same user data, together with `releases`, as described in
+[Appliance Configuration](../../appliance/configuration).
+
 ## Serving the repositories
 
 Both repositories can be served using any static HTTP server. For example,
