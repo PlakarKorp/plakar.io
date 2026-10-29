@@ -87,9 +87,10 @@ wherever you configure using apps.
 
 Settings the appliance needs at boot are delivered through Scaleway's
 **cloud-init user data**, set before the instance is created. A single
-cloud-config document can carry a proxy, a registry mirror, a Private Network
-interface and an SSH key. Include only the keys your environment needs. An
-instance with a public IP and direct internet access needs none of them.
+cloud-config document can carry a proxy, a registry mirror, NTP servers, a
+Private Network interface and an SSH key. Include only the keys your environment
+needs. An instance with a public IP and direct internet access needs none of
+them.
 
 ![Adding cloud-init user data to a Scaleway instance](../images/scaleway-cloud-init.png)
 
@@ -105,6 +106,10 @@ registry:
     docker.io: <harbor-host>/dockerhub-proxy
     ghcr.io: <harbor-host>/ghcr-proxy
   insecure: false # true: skip TLS verification for the mirror hosts
+
+ntp:
+  servers: # optional, defaults to pool.ntp.org
+    - <ntp-server>
 
 network:
   ethernets:

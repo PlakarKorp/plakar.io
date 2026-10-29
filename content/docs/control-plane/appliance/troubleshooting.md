@@ -56,7 +56,21 @@ not need to be allowed.
 The appliance also synchronizes its clock with `pool.ntp.org` over UDP port 123,
 which does not go through a forward proxy. An appliance that cannot reach an NTP
 server lets its clock drift, and once it is off by more than a few minutes,
-HTTPS connections fail with certificate errors.
+HTTPS connections fail with certificate errors. On a network that blocks
+`pool.ntp.org`, point the appliance at internal NTP servers in the user data:
+
+```yaml
+#cloud-config
+ntp:
+  servers:
+    - 10.20.0.1
+    - ntp.corp.example
+```
+
+Each entry is a hostname or an IP address. On vSphere, the same list can be set
+as a comma-separated `guestinfo.plakar.ntp_servers` parameter. If both are set,
+the user data takes precedence. Like the rest of the user data, the servers are
+read when the appliance boots, so a change takes effect after a reboot.
 
 ## Appliance without a data disk
 

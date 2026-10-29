@@ -150,9 +150,9 @@ the key from the Proxmox UI, no YAML required.
 {{< tab label="Advanced (CLI)" >}}
 
 The Proxmox UI can only set an SSH key: it has no fields for a proxy, registry
-mirror, or static IP. For any of those, write a single cloud-init YAML snippet
-on the Proxmox node instead; it can carry all four settings at once, so include
-only the keys you actually need.
+mirror, NTP servers or static IP. For any of those, write a single cloud-init
+YAML snippet on the Proxmox node instead; it can carry all of these settings at
+once, so include only the keys you actually need.
 
 ### What needs to be reachable
 
@@ -174,6 +174,10 @@ There are two supported approaches:
    them over the internet on every deployment. If you use Harbor, you don't need
    to whitelist the domains above on your proxy.
 
+The appliance also synchronizes its clock with `pool.ntp.org` over UDP port 123,
+which does not go through the proxy. If your network blocks it, set internal NTP
+servers with the `ntp:` key in the user data.
+
 ### Write the user-data snippet
 
 ```bash
@@ -190,6 +194,10 @@ registry:
     docker.io: <harbor-host>/dockerhub-proxy
     ghcr.io:   <harbor-host>/ghcr-proxy
   insecure: false     # true: skip TLS verification for the mirror hosts
+
+ntp:
+  servers:            # optional, defaults to pool.ntp.org
+    - <ntp-server>
 
 network:
   ethernets:
