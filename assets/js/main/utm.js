@@ -55,10 +55,13 @@ if (Object.keys(landingUtm).length && window.onAnalyticsConsent) {
   });
 }
 
-// Posts to the HubSpot Forms API with the UTMs added as fields. A form that
-// doesn't define the utm_* fields rejects the whole submission with a 400
-// (FIELD_NOT_IN_FORM_DEFINITION), so retry once without them rather than lose
-// the lead.
+// Posts to the HubSpot Forms API with the UTMs added as fields. The UTMs must
+// never cost us a lead: HubSpot rejects a submission that carries a field the
+// form doesn't define (400 FIELD_NOT_IN_FORM_DEFINITION), so if the attempt
+// with UTMs is refused by the client side (any 4xx) or doesn't go through at
+// all, we send the plain submission, exactly what the forms sent before this
+// file existed. A 5xx is returned as is: HubSpot is down for both variants,
+// and a retry could double-submit.
 window.submitHubSpotForm = async (url, payload) => {
   const post = (body) =>
     fetch(url, {
@@ -74,10 +77,14 @@ window.submitHubSpotForm = async (url, payload) => {
   }));
   if (!utmFields.length) return post(payload);
 
-  const res = await post({
-    ...payload,
-    fields: [...payload.fields, ...utmFields],
-  });
-  if (res.status !== 400) return res;
+  try {
+    const res = await post({
+      ...payload,
+      fields: [...payload.fields, ...utmFields],
+    });
+    if (res.status < 400 || res.status >= 500) return res;
+  } catch {
+    // Network error before HubSpot answered: fall through to the plain post.
+  }
   return post(payload);
 };
