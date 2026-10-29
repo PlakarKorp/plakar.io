@@ -19,11 +19,11 @@ secondary_cta_label: "Install Plakar"
 secondary_cta_url: "/download/"
 verdict:
   "rclone is the best tool for moving files between 59 storage backends, and it
-  leaves plain files behind. It is not a snapshot backup tool: no snapshots, no
-  deduplication, no retention. Plakar adds those, plus encryption on by default
-  and application-aware sources, and it can use your rclone remotes as storage.
-  Pick rclone to mirror or migrate files. Pick Plakar when you need to restore
-  what a file looked like on a given date."
+  stores plain files, which is a feature. It is not a snapshot backup tool: no
+  snapshots, no deduplication, no retention. Plakar adds those, plus encryption
+  on by default and application-aware sources, and it can use your rclone
+  remotes as storage. Pick rclone to mirror or migrate files. Pick Plakar when
+  you need to restore what a file looked like on a given date."
 highlights:
   - title: "Snapshots, deduplication and retention on top of sync"
     text:
@@ -84,9 +84,7 @@ table:
         plakar:
           {
             status: "yes",
-            note:
-              "Every backup is an independent, content-addressed snapshot. No
-              incremental chains to repair.",
+            note: "Every backup is an independent, content-addressed snapshot.",
           }
         competitor:
           {
@@ -301,7 +299,7 @@ table:
             status: "yes",
             note:
               "Any snapshot restores to any destination connector: filesystem,
-              S3, SFTP, a Kubernetes namespace, a database.",
+              S3, SFTP, a Kubernetes namespace.",
           }
         competitor:
           {
@@ -436,7 +434,7 @@ faq:
       "rclone describes itself as rsync for cloud storage. It copies, syncs,
       moves and mounts files. It has no snapshots, no deduplication and no
       retention policy. Its backup story is sync with --backup-dir or bucket
-      versioning. That is a mirror with a trash folder, not a backup history."
+      versioning. That keeps displaced files, not point-in-time snapshots."
   - q: "Can Plakar use my rclone remotes?"
     a:
       "Yes. Plakar has an rclone connector. A remote can be a backup source, the
@@ -466,12 +464,12 @@ faq:
   - q: "How mature is Plakar compared with rclone?"
     a:
       "Plakar's repository dates from March 2021 and version 1.0 shipped in May
-      2025, after an independent cryptographic audit of the engine in February
-      2025, and releases now come every two to three weeks. rclone has a longer
-      public track record and more users, and if that is your first criterion it
-      is the safer pick today. Plakar's answer is verifiability: every snapshot
-      can be checked without restoring, the engine is open source, and the audit
-      report is public."
+      2025, after an independent review of its cryptography in February 2025,
+      with five stable releases between June and October 2026. rclone has a
+      longer public track record and more users, and if that is your first
+      criterion it is the safer pick today. Plakar's answer is that every
+      snapshot can be verified without restoring, and both the code and the
+      cryptography review are public."
 sources:
   - label: "Introducing Plakar v1.0 (May 2025)"
     url: "https://www.plakar.io/posts/2025-05-01/introducing-plakar-v1.0-to-redefine-open-source-data-protection-with-3m-funding/"

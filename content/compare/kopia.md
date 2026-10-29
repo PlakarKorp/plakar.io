@@ -22,9 +22,9 @@ verdict:
   Kopia adds a desktop app, a built-in scheduler and repo-wide deduplication,
   and it is the data mover inside Velero, OADP and Kasten. Plakar adds
   application-aware sources (VMs, databases, Kubernetes), restore from any
-  source into any destination, and an engine audited in 2025. Pick Kopia for
-  file backups from laptops and servers with a GUI. Pick Plakar when your
-  sources are not just files."
+  source into any destination, and cryptography reviewed by an independent
+  cryptographer in 2025. Pick Kopia for file backups from laptops and servers
+  with a GUI. Pick Plakar when your sources are not just files."
 highlights:
   - title: "Sources beyond files"
     text:
@@ -42,8 +42,7 @@ highlights:
     text:
       "Both tools encrypt by default with keys only you hold. Plakar's engine
       (AES-256-GCM-SIV, Argon2id, BLAKE3) was audited by an independent
-      cryptographer in 2025. Each Plakar snapshot is complete on its own, not a
-      link in a chain."
+      cryptographer in 2025."
 table:
   - section: "Architecture and licensing"
     rows:
@@ -432,8 +431,7 @@ choose_plakar:
     a filesystem."
   - "You want an engine whose encryption was audited by an independent
     cryptographer."
-  - "You want a built-in web UI to browse, diff and restore, and snapshots that
-    stand on their own."
+  - "You want a built-in web UI to browse, diff and restore."
   - "You want a clear next step up: Plakar Control Plane reads the same stores
     when you need a control plane."
 faq:
@@ -475,12 +473,12 @@ faq:
   - q: "How mature is Plakar compared with Kopia?"
     a:
       "Plakar's repository dates from March 2021 and version 1.0 shipped in May
-      2025, after an independent cryptographic audit of the engine in February
-      2025, and releases now come every two to three weeks. Kopia has a longer
-      public track record and more users, and if that is your first criterion it
-      is the safer pick today. Plakar's answer is verifiability: every snapshot
-      can be checked without restoring, the engine is open source, and the audit
-      report is public."
+      2025, after an independent review of its cryptography in February 2025,
+      with five stable releases between June and October 2026. Kopia has a
+      longer public track record and more users, and if that is your first
+      criterion it is the safer pick today. Plakar's answer is proof over
+      promises: check any snapshot without restoring, read the code, read the
+      review."
 sources:
   - label: "Introducing Plakar v1.0 (May 2025)"
     url: "https://www.plakar.io/posts/2025-05-01/introducing-plakar-v1.0-to-redefine-open-source-data-protection-with-3m-funding/"
@@ -528,6 +526,6 @@ sources:
     url: "https://docs.kasten.io/latest/api/repositories/"
   - label: "Plakar integrations list"
     url: "https://www.plakar.io/integrations/"
-  - label: "Plakar engine cryptographic audit (2025)"
+  - label: "Plakar cryptography review by Jean-Philippe Aumasson (2025)"
     url: "https://www.plakar.io/posts/2025-02-28/audit-of-plakar-cryptography/"
 ---

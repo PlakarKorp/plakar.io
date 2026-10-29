@@ -203,10 +203,11 @@
 <section class="section-light-2 py-10 border-t border-neutral-200" id="sources">
   <div class="max-w-4xl mx-auto px-4">
     <h2 class="text-xl font-bold text-neutral-900 mb-4">Sources</h2>
-    <p class="text-neutral-600 text-sm mb-4">Every {{ $competitor }} claim on this page comes from the vendor's own documentation, release notes or announcements, checked on {{ $p.verified }}. If something is out of date, <a href="/contact/" class="text-primary-600 underline">tell us</a> and we will fix it.</p>
+    <p class="text-neutral-600 text-sm mb-4">Every claim on this page comes from the sources listed below, checked on {{ $p.verified }}. If something is out of date, <a href="/contact/" class="text-primary-600 underline">tell us</a> and we will fix it.</p>
     <ol class="text-sm text-neutral-700 flex flex-col gap-2 list-decimal pl-5">
       {{ range . }}<li><a href="{{ .url }}" target="_blank" rel="noopener noreferrer" class="text-primary-600 hover:underline">{{ .label }}</a></li>{{ end }}
     </ol>
+    <p class="text-neutral-500 text-xs mt-4">Product names and marks belong to their owners. Plakar is not affiliated with {{ $competitor }}.</p>
   </div>
 </section>
 {{ end }}

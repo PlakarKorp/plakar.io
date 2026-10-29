@@ -2,9 +2,9 @@
 title: "Plakar vs Veeam"
 slug: "veeam"
 description:
-  "Plakar Control Plane compared with Veeam Backup & Replication 13.1: open
+  "Plakar Control Plane compared with Veeam Backup & Replication 13.1.2: open
   engine and open format against a platform that covers 14 hypervisors. Dated
-  sources, honest verdicts."
+  sources; the page says where Veeam wins."
 summary:
   "Veeam leads on hypervisor breadth and restore tooling, while Plakar offers an
   open format and policies as code."
@@ -13,14 +13,15 @@ plakar_product: "Plakar Control Plane"
 plakar_version: "Control Plane 1.1.5, Plakar 1.1.8"
 competitor: "Veeam Data Platform"
 competitor_short: "Veeam"
-competitor_version: "Backup & Replication 13.1"
+competitor_version: "Backup & Replication 13.1.2"
 verified: "2026-10-23"
 verdict:
   "Veeam covers 14 hypervisors and has mature restore tooling. Plakar Control
   Plane gives you an open engine, an open data format you can read without the
   vendor, and policies as code. Pick Veeam for breadth on VMware and Hyper-V
-  estates. Pick Plakar when you want to own your backups, automate them from
-  Git, and protect OpenStack, Proxmox and KubeVirt as first-class sources."
+  estates. Pick Plakar when you want backups you can restore without a licence,
+  policies in Git, and protect OpenStack, Proxmox and KubeVirt as first-class
+  sources."
 highlights:
   - title: "Open engine, open format"
     text:
@@ -86,14 +87,14 @@ table:
             status: "yes",
             note:
               "Open source Plakar is free. Control Plane Free plan covers up to
-              500 GB of managed data with no time limit.",
+              500 GB of managed data.",
           }
         competitor:
           {
             status: "partial",
             note:
-              "Community Edition protects 10 workloads, sends telemetry,
-              best-effort support only.",
+              "Community Edition protects 10 workloads, sends telemetry, no
+              support included.",
           }
   - section: "Storage engine and security"
     rows:
@@ -126,8 +127,9 @@ table:
           {
             status: "partial",
             note:
-              "AES with password keys. External KMS (KMIP) only on Advanced and
-              Premium editions. Post-quantum key exchange new in 13.1.",
+              "Encrypted on the backup proxy, not the source host; keys in
+              Veeam's configuration database. External KMS (KMIP) only on
+              Advanced and Premium editions.",
           }
       - capability: "Immutability"
         plakar:
@@ -337,19 +339,19 @@ table:
               applications.",
           }
 sections_intro:
-  "Checkmarks hide architecture. These four points decide most Veeam versus
-  Plakar evaluations."
+  "The table is a start. These four points decide most Veeam versus Plakar
+  evaluations."
 sections:
   - heading: "Who can read your backups in ten years"
     competitor_text:
-      'Backups are written in the VBK, VIB and VBM formats. There is no public
+      "Backups are written in the VBK, VIB and VBM formats. There is no public
       specification. An independent forensic parser (Fox-IT dissect.archive)
-      reads VBK files, but not encrypted or incremental ones. Veeam''s extract
+      reads VBK files, but not encrypted or incremental ones. Veeam's extract
       utility restores without a backup server, but it is closed Veeam software,
       needs a Veeam account to download separately, and on a scale-out
       repository needs full and incremental files on the same extent. When Veeam
-      says "zero vendor lock-in" it means you can restore a VM to another
-      hypervisor, not that the backup format is open.'
+      talks about eliminating vendor lock-in, it means you can restore a VM to
+      another hypervisor, not that the backup format is open."
     plakar_text:
       "The Kloset format and Plakar are open source under the ISC licence.
       Control Plane writes standard Kloset stores. If you stop paying, open
@@ -360,7 +362,7 @@ sections:
         github.com/PlakarKorp/kloset"
       - "Restore path without the vendor: install Plakar, open the store, run
         restore"
-      - "Independent cryptographic audit of the engine published in February
+      - "Independent review of the engine's cryptography published in February
         2025"
   - heading: "Policies in Git, not in a console"
     competitor_text:
@@ -406,9 +408,10 @@ sections:
       Microsoft 365, Veeam has coverage Plakar does not."
     plakar_text:
       "Control Plane verifies snapshots with scheduled check tasks but does not
-      boot them. There is no anomaly detection and no SSO yet. Hyper-V, Nutanix,
-      Oracle and SAP are not covered, and Microsoft 365 is coming soon. If those
-      are must-haves, Veeam is the safer choice today."
+      boot them. There is no anomaly detection, no SSO and no ISO or SOC
+      certification yet. Hyper-V, Nutanix, Oracle and SAP are not covered, and
+      Microsoft 365 is coming soon. If those are must-haves, Veeam is the safer
+      choice today."
 choose_competitor:
   - "Your estate is mostly VMware, Hyper-V or Nutanix AHV and you need
     any-to-any instant recovery across them."
@@ -424,16 +427,17 @@ choose_plakar:
     workarounds."
   - "You manage infrastructure as code and want backup policies in Git, applied
     by Terraform, Ansible or an Operator."
-  - "You want end-to-end encryption where the storage provider and the backup
-    admin never see plaintext."
+  - "You want end-to-end encryption where the storage provider and plakar.io
+    never see plaintext."
   - "You want a self-hosted control plane with a free tier and an open source
     engine underneath."
 faq:
   - q: "Is Plakar a replacement for Veeam?"
     a:
-      "For OpenStack, Proxmox, Kubernetes, Linux and cloud storage estates, yes.
-      For large VMware or Hyper-V estates that depend on SureBackup, Oracle or
-      SAP plug-ins, or Microsoft 365 backup, Veeam still covers more."
+      "For OpenStack, Proxmox, Kubernetes, Linux and cloud storage estates it
+      can be; validate with a timed restore test on your data. For large VMware
+      or Hyper-V estates that depend on SureBackup, Oracle or SAP plug-ins, or
+      Microsoft 365 backup, Veeam still covers more."
   - q: "Can I restore Plakar backups without Plakar Control Plane?"
     a:
       "Yes. Control Plane writes standard Kloset stores. The open source Plakar
@@ -442,7 +446,7 @@ faq:
     a:
       "Not an official one. As of October 2026 the Terraform registry namespace
       for Veeam is empty. VeeamHub publishes community sample code. Plakar has
-      an official provider and an Ansible collection."
+      its own provider (registry tier: community) and an Ansible collection."
   - q: "Does Plakar support Hyper-V?"
     a:
       "No. Plakar supports VMware vSphere, Proxmox VE, OpenStack and KubeVirt.
@@ -461,7 +465,9 @@ faq:
       inline entropy scanning, YARA rules on Advanced and Premium, and a Recon
       Scanner on Premium."
 sources:
-  - label: "Veeam Backup & Replication 13.1 release notes"
+  - label: "Veeam blog, destination data portability (vendor lock-in)"
+    url: "https://www.veeam.com/blog/destination-data-portability.html"
+  - label: "Veeam Backup & Replication 13.1.2 release notes"
     url: "https://helpcenter.veeam.com/rn/veeam_backup_13_1_release_notes.html"
   - label: "Veeam Data Platform 13.1 press release (14 hypervisors)"
     url: "https://www.veeam.com/company/press-release/veeam-data-platform-v13-1-now-available-helping-organizations-recover-clean-and-fast-from-cyber-disruption.html"
@@ -517,6 +523,6 @@ sources:
     url: "https://www.plakar.io/integrations/"
   - label: "Plakar Terraform provider"
     url: "https://registry.terraform.io/providers/plakarkorp/plakar/latest"
-  - label: "Plakar engine cryptographic audit (2025)"
+  - label: "Plakar cryptography review by Jean-Philippe Aumasson (2025)"
     url: "https://www.plakar.io/posts/2025-02-28/audit-of-plakar-cryptography/"
 ---

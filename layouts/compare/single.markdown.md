@@ -60,4 +60,6 @@ Compared: {{ $plakar }}{{ with $p.plakar_version }} ({{ . }}){{ end }} vs {{ $p.
 {{ range . }}
 - [{{ .label }}]({{ .url }})
 {{- end }}
+
+Product names and marks belong to their owners. Plakar is not affiliated with {{ $p.competitor }}.
 {{ end }}

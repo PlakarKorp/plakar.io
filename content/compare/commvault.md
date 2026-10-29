@@ -3,8 +3,8 @@ title: "Plakar vs Commvault"
 slug: "commvault"
 description:
   "Plakar vs Commvault: Plakar Control Plane against Commvault Cloud 11.46. One
-  open appliance versus a very wide workload matrix. Dated sources, honest
-  verdicts."
+  open appliance versus a very wide workload matrix. Dated sources; the page
+  says where Commvault wins."
 summary:
   "Commvault covers a very wide workload matrix, while Plakar is one self-hosted
   appliance with an open format and policies as code."
@@ -35,11 +35,11 @@ highlights:
       "Control Plane is a single virtual appliance plus optional Edges.
       Commvault needs a CommServe with SQL Server, MediaAgents with a
       Deduplication Database on fast disk, and access nodes. Its own docs say
-      DDB and DR backups are not encrypted."
+      DDB and DR metadata backups are not encrypted."
   - title: "Policies as code"
     text:
       "Plakar ships a Terraform provider, an Ansible collection and a Kubernetes
-      Operator with CRDs. Commvault also has an official Terraform provider, an
+      Operator with CRDs. Commvault also has its own Terraform provider, an
       Ansible collection and a REST API, but no Kubernetes operator."
 table:
   - section: "Architecture and licensing"
@@ -84,7 +84,7 @@ table:
             status: "yes",
             note:
               "Open source Plakar is free. Control Plane Free plan covers up to
-              500 GB of managed data with no time limit.",
+              500 GB of managed data.",
           }
         competitor:
           {
@@ -123,9 +123,10 @@ table:
           {
             status: "partial",
             note:
-              "FIPS 140-3 software encryption. Keys live in the CommServe
-              database, optionally wrapped by a KMIP server, AWS KMS or Azure
-              Key Vault. DDB and DR backups are not encrypted.",
+              "FIPS 140-3 software encryption, on the client if enabled. Keys
+              live in the CommServe database, optionally wrapped by a KMIP
+              server, AWS KMS or Azure Key Vault. DDB and DR metadata backups
+              are not encrypted.",
           }
       - capability: "Immutability"
         plakar:
@@ -337,10 +338,10 @@ table:
               workload, Live Mount VMs straight from backup.",
           }
 sections_intro:
-  "Checkmarks hide architecture. These four points decide most Commvault versus
-  Plakar evaluations."
+  "The table is a start. These four points decide most Commvault versus Plakar
+  evaluations."
 sections:
-  - heading: "Who can read your backups in ten years"
+  - heading: "Reading your backups without Commvault"
     competitor_text:
       "Commvault writes backup data as proprietary chunks. To restore them you
       need the CommServe metadata database and a running Commvault install.
@@ -361,7 +362,7 @@ sections:
         github.com/PlakarKorp/kloset"
       - "Restore path without the vendor: install Plakar, open the store, run
         restore"
-      - "Independent cryptographic audit of the engine published in February
+      - "Independent review of the engine's cryptography published in February
         2025"
   - heading: "One appliance, encrypted by default"
     competitor_text:
@@ -371,7 +372,7 @@ sections:
       Protecting KubeVirt VMs alone needs a RHEL VM access node with 8 vCPU and
       16 GB. Encryption keys are stored in the CommServe database, optionally
       wrapped by a KMIP server, AWS KMS or Azure Key Vault. Commvault's own
-      documentation states that DDB backups and DR backups are not encrypted."
+      documentation states that DDB and DR metadata backups are not encrypted."
     plakar_text:
       "Control Plane is one virtual appliance (AMI, OVA, qcow2, ISO) that you
       run in your own infrastructure. Optional Edges run tasks near the
@@ -391,7 +392,7 @@ sections:
       "Commvault plans and storage can be built in the Command Center or from
       code. The command line is QCommands and XML files you save from the
       console, then replay. There are a REST API, a Python SDK (cvpysdk), a
-      PowerShell SDK and an Ansible collection. The official Terraform provider
+      PowerShell SDK and an Ansible collection. Its Terraform provider
       (Commvault/commvault on the registry, partner tier) manages server plans,
       storage, hypervisors, VM groups, Kubernetes app groups, users and roles.
       There is no Kubernetes operator, and no CRDs for backup policy."
@@ -417,10 +418,10 @@ sections:
       are mature."
     plakar_text:
       "Control Plane verifies snapshots with scheduled check tasks but does not
-      boot them in a clean room. There is no anomaly detection and no SSO yet.
-      Hyper-V, Nutanix, Oracle, SAP and tape are not covered, and Microsoft 365
-      is coming soon. If those are must-haves, Commvault is the safer choice
-      today."
+      boot them in a clean room. There is no anomaly detection, no SSO and no
+      ISO or SOC certification yet. Hyper-V, Nutanix, Oracle, SAP and tape are
+      not covered, and Microsoft 365 is coming soon. If those are must-haves,
+      Commvault is the safer choice today."
 choose_competitor:
   - "You need one console for a very wide estate: Hyper-V, Nutanix, Oracle, SAP
     HANA, Db2, Snowflake and tape."
@@ -445,8 +446,9 @@ faq:
   - q: "Is Plakar a replacement for Commvault?"
     a:
       "For VMware, Proxmox, OpenStack, Kubernetes, Linux, Windows, mainstream
-      databases and cloud storage estates, yes. For Hyper-V, Nutanix, Oracle,
-      SAP HANA, Microsoft 365 or tape, Commvault still covers more."
+      databases and cloud storage estates it can be; validate with a timed
+      restore test. For Hyper-V, Nutanix, Oracle, SAP HANA, Microsoft 365 or
+      tape, Commvault still covers more."
   - q: "Can I restore Plakar backups without Plakar Control Plane?"
     a:
       "Yes. Control Plane writes standard Kloset stores. The open source Plakar

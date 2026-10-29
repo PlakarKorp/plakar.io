@@ -86,7 +86,7 @@ table:
             status: "yes",
             note:
               "Open source Plakar is free. Control Plane Free plan covers up to
-              500 GB of managed data with no time limit.",
+              500 GB of managed data.",
           }
         competitor:
           {
@@ -138,7 +138,7 @@ table:
           }
         competitor:
           {
-            status: "no",
+            status: "partial",
             note:
               "Encrypted on the cluster: AES-256 at rest and in flight,
               per-ingest keys wrapped by KEKs, TPM or external KMIP. The cluster
@@ -373,8 +373,8 @@ table:
               Tools.",
           }
 sections_intro:
-  "Checkmarks hide architecture. These four points decide most Rubrik versus
-  Plakar evaluations."
+  "The table is a start. These four points decide most Rubrik versus Plakar
+  evaluations."
 sections:
   - heading: "Where your control plane runs"
     competitor_text:
@@ -397,15 +397,14 @@ sections:
         network"
       - "Data residency by country and legal hold are set per organization in
         Control Plane"
-  - heading: "Who can read your backups in ten years"
+  - heading: "Data format and exit path"
     competitor_text:
       'Rubrik''s Proxmox announcement describes its store as a "proprietary,
       immutable file system". There is no public specification, no export tool
       and no third-party reader. Archived data can only be restored through
       Rubrik software: a Rubrik cluster or Rubrik''s CloudOn conversion. The
       exit path is to restore everything to native formats while you still hold
-      a licence. Rubrik''s own annual report lists the EU Data Act switching
-      obligations as a business risk.'
+      a licence.'
     plakar_text:
       "The Kloset format and Plakar are open source under the ISC licence.
       Control Plane writes standard Kloset stores. If you stop paying, open
@@ -416,7 +415,7 @@ sections:
         github.com/PlakarKorp/kloset"
       - "Restore path without the vendor: install Plakar, open the store, run
         restore"
-      - "Independent cryptographic audit of the engine published in February
+      - "Independent review of the engine's cryptography published in February
         2025"
   - heading: "Proxmox, OpenStack and the fine print"
     competitor_text:
@@ -482,9 +481,10 @@ faq:
   - q: "Is Plakar a replacement for Rubrik?"
     a:
       "For Proxmox, OpenStack, Kubernetes, VMware, Linux and cloud storage
-      estates, yes. If you depend on Rubrik's threat analytics, cyber recovery
-      drills, compliance certifications or its Oracle, SAP, Microsoft 365 and
-      Salesforce coverage, Rubrik still covers more."
+      estates it can be; validate with a timed restore test. If you depend on
+      Rubrik's threat analytics, cyber recovery drills, compliance
+      certifications or its Oracle, SAP, Microsoft 365 and Salesforce coverage,
+      Rubrik still covers more."
   - q: "Can I restore Plakar backups without Plakar Control Plane?"
     a:
       "Yes. Control Plane writes standard Kloset stores. The open source Plakar
@@ -566,6 +566,6 @@ sources:
     url: "https://developer.rubrik.com/Rubrik-Security-Cloud-API/API-Reference/types/inputs/RestoreFilesJobConfigInput/"
   - label: "Rubrik API reference, tape archive location"
     url: "https://developer.rubrik.com/Rubrik-Security-Cloud-API/API-Reference/types/inputs/CreateTapeTargetInput/"
-  - label: "Plakar engine cryptographic audit (2025)"
+  - label: "Plakar cryptography review by Jean-Philippe Aumasson (2025)"
     url: "https://www.plakar.io/posts/2025-02-28/audit-of-plakar-cryptography/"
 ---

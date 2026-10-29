@@ -21,8 +21,8 @@ benefits:
     title: "Keys only you hold"
     text:
       "Encryption runs on the client and is on by default. Storage providers and
-      backup admins see only encrypted chunks. The design follows a 2025
-      independent cryptographic audit."
+      plakar.io see only encrypted chunks. Its cryptography was reviewed by an
+      independent cryptographer in 2025."
   - icon: "ri/stack-line"
     title: "Applications, not only files"
     text:
@@ -49,13 +49,13 @@ matrices:
       - capability: "Restore backups without the vendor's software"
         cells: ["yes", "partial", "no", "no", "no"]
       - capability: "Client-side encryption, storage never sees keys"
-        cells: ["yes", "partial", "no", "no", "partial"]
+        cells: ["yes", "partial", "partial", "partial", "partial"]
       - capability: "Open source agents (Edges)"
         cells: ["yes", "no", "no", "no", "no"]
       - capability: "Self-hosted control plane, no SaaS required"
         cells: ["yes", "yes", "partial", "yes", "yes"]
-      - capability: "Official Terraform provider"
-        cells: ["yes", "no", "yes", "partial", "yes"]
+      - capability: "Vendor-maintained Terraform provider"
+        cells: ["yes", "no", "yes", "yes", "yes"]
       - capability: "Backup policies as code (GitOps)"
         cells: ["yes", "partial", "yes", "partial", "partial"]
       - capability: "Kubernetes in the same product"
@@ -65,7 +65,7 @@ matrices:
       - capability: "OpenStack as a native source"
         cells: ["yes", "no", "partial", "partial", "yes"]
       - capability: "Proxmox VE as a native source"
-        cells: ["yes", "yes", "yes", "no", "yes"]
+        cells: ["yes", "yes", "yes", "partial", "yes"]
       - capability: "Hyper-V and Nutanix AHV"
         cells: ["no", "yes", "yes", "yes", "yes"]
       - capability: "SaaS apps and cloud drives"
@@ -121,17 +121,17 @@ matrices:
 matrix_note:
   "Partial means the capability exists with limits: a separate product or
   add-on, a beta, a third-party tool, or narrower coverage. Borg object storage
-  targets are in the 2.0 beta only. Cohesity announced native OpenStack backup
-  in October 2026, with no public docs yet. Plakar's five closed connectors
-  (Windows VSS, SQL Server, Active Directory, VMware, Scaleway) are free in
-  Plakar Community. Plakar Control Plane access control: 20 roles, 2FA you can
-  enforce per organization, an audit log, webhooks to your SIEM, legal hold and
-  data residency. It has no single sign-on yet. Each comparison page explains
-  every cell and lists its sources."
+  targets are in the 2.0 beta only. Cohesity lists OpenStack as natively
+  protected; its scope docs need a customer login. Plakar's five closed
+  connectors (Windows VSS, SQL Server, Active Directory, VMware, Scaleway) are
+  free in Plakar Community. Plakar Control Plane access control: 20 roles, 2FA
+  you can enforce per organization, an audit log, webhooks to your SIEM, legal
+  hold and data residency. It has no single sign-on yet. Each comparison page
+  explains every cell and lists its sources."
 questions_title: "Six questions to ask any backup vendor"
 questions_intro:
-  "Checkmarks hide architecture. These questions separate a backup you own from
-  a backup you rent. Here is how Plakar answers them."
+  "The matrix is a start. These questions get at architecture: where the data
+  format, the keys and the control plane sit. Here is how Plakar answers them."
 questions:
   - q: "Can I restore my backups without your software or a licence?"
     why: "Your last line of defense should not depend on a contract renewal."
@@ -147,7 +147,7 @@ questions:
     why: "Whoever holds the keys can read your data."
     answer:
       "Only you. Encryption happens on the client before data leaves the host.
-      The storage provider and the backup admin never see plaintext."
+      The storage provider and plakar.io never see plaintext."
     link:
       {
         label: "The 2025 cryptographic audit",

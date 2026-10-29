@@ -41,8 +41,8 @@ highlights:
       "Plakar has its own Kubernetes connector plus an Operator with CRDs, and
       native Proxmox VE and OpenStack connectors. Cohesity DataProtect uses
       Velero and a Datamover pod with cluster-admin rights and has no native
-      Proxmox integration. Cohesity announced native OpenStack backup in
-      DataProtect in October 2026, with no public docs yet."
+      Proxmox integration. Cohesity lists OpenStack as a natively protected
+      hypervisor; the scope docs need a customer login."
 table:
   - section: "Architecture and licensing"
     rows:
@@ -86,7 +86,7 @@ table:
             status: "yes",
             note:
               "Open source Plakar is free. Control Plane Free plan covers up to
-              500 GB of managed data with no time limit.",
+              500 GB of managed data.",
           }
         competitor:
           {
@@ -123,7 +123,7 @@ table:
           }
         competitor:
           {
-            status: "no",
+            status: "partial",
             note:
               "Encrypted on the cluster at rest and in flight with an internal
               or external KMS; the cluster handles plaintext. SaaS keys can be
@@ -190,8 +190,8 @@ table:
             note:
               "VMware, Nutanix AHV, Hyper-V and Azure Local, OpenShift
               Virtualization, Oracle Linux Virtualization Manager. No native
-              Proxmox. Native OpenStack backup announced October 2026, no public
-              docs yet; NetBackup protects OpenStack with Storware.",
+              Proxmox. OpenStack listed as natively protected, docs behind a
+              customer login; NetBackup protects OpenStack with Storware.",
           }
       - capability: "Kubernetes"
         plakar:
@@ -339,8 +339,8 @@ table:
               SmartFiles views readable over NFS, SMB and S3.",
           }
 sections_intro:
-  "Checkmarks hide architecture. These four points decide most Cohesity versus
-  Plakar evaluations."
+  "The table is a start. These four points decide most Cohesity versus Plakar
+  evaluations."
 sections:
   - heading: "Where the control plane lives"
     competitor_text:
@@ -362,7 +362,7 @@ sections:
       - "Edges (open source, ISC) poll Control Plane and run jobs close to the
         data"
       - "Residency and legal hold are set per organization"
-  - heading: "Who can read your backups in ten years"
+  - heading: "Reading your backups without Cohesity"
     competitor_text:
       "Cohesity backups live in SpanFS, a proprietary file system. There is no
       public specification, no export tool and no third-party reader. The exit
@@ -381,7 +381,7 @@ sections:
         github.com/PlakarKorp/kloset"
       - "Restore path without the vendor: install Plakar, open the store, run
         restore"
-      - "Independent cryptographic audit of the engine published in February
+      - "Independent review of the engine's cryptography published in February
         2025"
   - heading: "Kubernetes, Proxmox and OpenStack"
     competitor_text:
@@ -391,9 +391,9 @@ sections:
       underneath are Velero's. NetBackup is different: it has a Helm-installed
       operator with support for OpenShift Virtualization (KubeVirt) VMs. For
       Proxmox VE, the only documented options are an NFS target or a Remote
-      Adapter script. Cohesity announced native OpenStack backup in DataProtect
-      in October 2026, with no public docs yet. NetBackup protects OpenStack
-      with Storware."
+      Adapter script. Cohesity lists OpenStack as a natively protected
+      hypervisor; the scope docs need a customer login. NetBackup protects
+      OpenStack with Storware."
     plakar_text:
       "Plakar has its own connectors for Kubernetes (resources, CSI snapshots,
       PVCs, KubeVirt VMs, namespace remapping, mTLS), Proxmox VE and OpenStack
@@ -420,9 +420,10 @@ sections:
       Kubernetes operator with OpenShift Virtualization (KubeVirt) VMs."
     plakar_text:
       "Control Plane deduplicates within a store, not across stores. There is no
-      anomaly detection, no clean room and no SSO yet. Oracle, SAP HANA,
-      Hyper-V, Nutanix AHV and tape are not covered, and Microsoft 365 is coming
-      soon. If those are must-haves, Cohesity is the safer choice today."
+      anomaly detection, no clean room, no SSO and no ISO or SOC certification
+      yet. Oracle, SAP HANA, Hyper-V, Nutanix AHV and tape are not covered, and
+      Microsoft 365 is coming soon. If those are must-haves, Cohesity is the
+      safer choice today."
 choose_competitor:
   - "You run a large mixed estate with Microsoft 365, Google Workspace, Oracle
     or SAP HANA and want one vendor for all of it."
@@ -442,16 +443,17 @@ choose_plakar:
     with an Operator and CRDs instead of Velero and cluster-admin tokens."
   - "You manage infrastructure as code and want backup policies in Git, applied
     by Terraform, Ansible or an Operator."
-  - "You want end-to-end encryption where the storage provider and the backup
-    admin never see plaintext."
+  - "You want end-to-end encryption where the storage provider and plakar.io
+    never see plaintext."
 faq:
   - q: "Is Plakar a replacement for Cohesity?"
     a:
       "For Kubernetes, Proxmox, OpenStack, Linux, VMware and cloud storage
-      estates, yes. For estates that depend on Microsoft 365 backup, Oracle or
-      SAP HANA agents, clean-room recovery or native tape, Cohesity still covers
-      more. Teams can run both during a migration because Plakar stores are
-      independent of the Cohesity cluster."
+      estates it can be; validate with a timed restore test. For estates that
+      depend on Microsoft 365 backup, Oracle or SAP HANA agents, clean-room
+      recovery or native tape, Cohesity still covers more. Teams can run both
+      during a migration because Plakar stores are independent of the Cohesity
+      cluster."
   - q: "Can I restore Plakar backups without Plakar Control Plane?"
     a:
       "Yes. Control Plane writes standard Kloset stores. The open source Plakar
@@ -461,7 +463,7 @@ faq:
       "Yes, cohesity/cohesity on the registry, version 2.1.3 with 12 resources,
       with no release since May 2025. It can manage backup policies and VMware
       jobs. Cohesity marks its GitHub tooling as community-contributed or
-      best-effort and not covered by Cohesity Support. Plakar has an official
+      best-effort and not covered by Cohesity Support. Plakar has its own
       provider, an Ansible collection and a Kubernetes Operator."
   - q: "Does Cohesity support Proxmox VE and OpenStack?"
     a:

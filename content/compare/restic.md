@@ -52,8 +52,9 @@ table:
           {
             status: "yes",
             note:
-              "One Go binary for Linux, macOS, FreeBSD and Windows. Data goes
-              from the client to the storage backend. No agent.",
+              "One Go binary for Linux, macOS, FreeBSD and Windows (Windows
+              since 1.1, no bare-metal image). Data goes from the client to the
+              storage backend. No agent.",
           }
         competitor:
           {
@@ -299,7 +300,7 @@ table:
             status: "yes",
             note:
               "Any snapshot restores to any destination connector: filesystem,
-              S3, SFTP, a Kubernetes namespace, a database.",
+              S3, SFTP, a Kubernetes namespace.",
           }
         competitor:
           {
@@ -384,9 +385,8 @@ sections:
     plakar_text:
       "In Plakar every connector can be a source and a destination. A snapshot
       of a filesystem can restore into an S3 bucket or an SFTP server. A
-      Kubernetes namespace can restore into another cluster under a new name. A
-      database snapshot can restore into a running database. One command, no
-      staging disk."
+      Kubernetes namespace can restore into another cluster under a new name.
+      One command, no staging disk."
     bullets:
       - "plakar restore -to <destination> works with any configured destination
         connector"
@@ -409,8 +409,8 @@ sections:
     bullets:
       - "plakar ui, plakar check, plakar mount and plakar diff are part of the
         main binary"
-      - "Snapshots are independent, not chains, so one damaged snapshot does not
-        break the next"
+      - "Each snapshot is self-contained, as in restic, so one damaged snapshot
+        does not break the next"
       - "No built-in scheduler on either side: both rely on cron, systemd or
         Task Scheduler"
   - heading: "Where restic is ahead today"
@@ -440,11 +440,11 @@ choose_plakar:
   - "Your data lives in VMs, Kubernetes, OpenStack or databases and you want
     connectors, not dump scripts."
   - "You want to restore a snapshot into a different destination: another
-    cluster, a bucket, a database."
+    cluster, a bucket."
   - "You want a web UI to browse and restore without installing a second
     project."
-  - "You want encryption on by default with an independently audited engine."
-  - "You want a tool that ships a new release every two to three weeks."
+  - "You want encryption on by default with an independently reviewed
+    cryptography."
 faq:
   - q: "Is Plakar a replacement for restic?"
     a:
@@ -480,12 +480,12 @@ faq:
   - q: "How mature is Plakar compared with restic?"
     a:
       "Plakar's repository dates from March 2021 and version 1.0 shipped in May
-      2025, after an independent cryptographic audit of the engine in February
-      2025, and releases now come every two to three weeks. restic has a longer
-      public track record and more users, and if that is your first criterion it
-      is the safer pick today. Plakar's answer is verifiability: every snapshot
-      can be checked without restoring, the engine is open source, and the audit
-      report is public."
+      2025, after an independent review of its cryptography in February 2025,
+      with five stable releases between June and October 2026. restic has a
+      longer public track record and more users, and if that is your first
+      criterion it is the safer pick today. Plakar's answer is verifiability:
+      plakar check verifies every snapshot without restoring, and the code is
+      open to read."
 sources:
   - label: "restic rest-server (append-only mode)"
     url: "https://github.com/restic/rest-server"
@@ -515,6 +515,6 @@ sources:
     url: "https://www.plakar.io/integrations/"
   - label: "Plakar repository on GitHub (licence, stars, releases)"
     url: "https://github.com/PlakarKorp/plakar"
-  - label: "Plakar engine cryptographic audit (2025)"
+  - label: "Plakar cryptography review by Jean-Philippe Aumasson (2025)"
     url: "https://www.plakar.io/posts/2025-02-28/audit-of-plakar-cryptography/"
 ---

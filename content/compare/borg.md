@@ -3,8 +3,8 @@ title: "Plakar vs BorgBackup"
 slug: "borg"
 description:
   "Plakar vs BorgBackup: open source Plakar with native cloud targets and
-  application connectors against Borg 1.4.5 over SSH. Dated sources, honest
-  verdicts."
+  application connectors against Borg 1.4.5 over SSH. Dated sources; the page
+  says where Borg wins."
 summary:
   "Borg is an efficient archiver for files over SSH, while Plakar adds native
   cloud targets and application-aware connectors."
@@ -45,8 +45,9 @@ highlights:
     text:
       "Plakar encrypts every store by default with AES-256-GCM-SIV and Argon2id,
       independently audited in 2025, and ships a web UI to browse, diff and
-      restore. Borg has a strong crypto design too, but no UI of its own and no
-      third-party reader for either format."
+      restore. Borg has a strong crypto design too, but no UI of its own.
+      Neither format has a third-party reader; Borg's internals have a written
+      specification, Plakar's are documented in code."
 table:
   - section: "Architecture and licensing"
     rows:
@@ -89,7 +90,7 @@ table:
             status: "yes",
             note:
               "Single Go binary for Linux, macOS, FreeBSD and Windows, amd64 and
-              arm64.",
+              arm64. Windows since 1.1, no bare-metal image.",
           }
         competitor:
           {
@@ -104,8 +105,8 @@ table:
           {
             status: "partial",
             note:
-              "Repository since March 2021, version 1.0 in May 2025, a release
-              every two to three weeks since.",
+              "Repository since March 2021, version 1.0 in May 2025, five stable
+              releases between June and October 2026.",
           }
         competitor:
           {
@@ -381,8 +382,8 @@ table:
               Linux and macOS.",
           }
 sections_intro:
-  "Checkmarks hide architecture. These four points decide most Borg versus
-  Plakar evaluations."
+  "The table is a start. These four points decide most Borg versus Plakar
+  evaluations."
 sections:
   - heading: "Where your backups can live"
     competitor_text:
@@ -482,8 +483,8 @@ choose_plakar:
   - "You need to restore a snapshot into a different place, for example a
     Kubernetes namespace into another cluster."
   - "You have Windows hosts to back up, with VSS and Active Directory."
-  - "You want encryption on by default, an audited engine, and a built-in UI to
-    browse and restore."
+  - "You want encryption on by default, cryptography reviewed by an independent
+    cryptographer, and a built-in UI to browse and restore."
 faq:
   - q: "Is Plakar a replacement for Borg?"
     a:
@@ -526,12 +527,12 @@ faq:
   - q: "How mature is Plakar compared with Borg?"
     a:
       "Plakar's repository dates from March 2021 and version 1.0 shipped in May
-      2025, after an independent cryptographic audit of the engine in February
-      2025, and releases now come every two to three weeks. Borg has a longer
+      2025, after an independent review of its cryptography in February 2025,
+      with five stable releases between June and October 2026. Borg has a longer
       public track record and more users, and if that is your first criterion it
-      is the safer pick today. Plakar's answer is verifiability: every snapshot
-      can be checked without restoring, the engine is open source, and the audit
-      report is public."
+      is the safer pick today. Plakar's answer is that you can check it
+      yourself: plakar check on every snapshot, open code, and a public
+      cryptography review."
 sources:
   - label: "Introducing Plakar v1.0 (May 2025)"
     url: "https://www.plakar.io/posts/2025-05-01/introducing-plakar-v1.0-to-redefine-open-source-data-protection-with-3m-funding/"
@@ -575,6 +576,6 @@ sources:
     url: "https://www.borgbackup.org/"
   - label: "Plakar integrations list"
     url: "https://www.plakar.io/integrations/"
-  - label: "Plakar engine cryptographic audit (2025)"
+  - label: "Plakar cryptography review by Jean-Philippe Aumasson (2025)"
     url: "https://www.plakar.io/posts/2025-02-28/audit-of-plakar-cryptography/"
 ---
