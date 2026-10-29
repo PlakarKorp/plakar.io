@@ -220,35 +220,17 @@ Device**, select **Hard Disk**, and set it to the data disk size given in
 
 By default the appliance boots with DHCP networking and no SSH access. If that's
 enough for you, skip ahead to
-[Start the appliance and complete enrollment](#start-the-appliance-and-complete-enrollment).
-Otherwise, every other setting (static IP, proxy, registry mirror, NTP servers,
-SSH key) is delivered through vSphere's guest info mechanism, added under
-**Advanced Parameters** before first power-on, or during the Deploy-OVF wizard's
-Customize Template step on the OVA path. Pick one of the two tabs below.
+[Accessing Plakar Control Plane](#accessing-plakar-control-plane). Otherwise,
+the appliance reads its settings from a cloud-init user data document, whose
+keys are described in
+[Appliance Configuration](../../../appliance/configuration). On vSphere, the
+settings are delivered through guest info parameters, added under **Advanced
+Parameters** before first power-on, or during the Deploy-OVF wizard's Customize
+Template step on the OVA path. Pick one of the two tabs below.
 
-### What needs to be reachable
-
-Plakar Control Plane requires HTTPS access to `api.plakar.io` for runtime
-configuration, license validation, and plugin downloads. If your proxy uses a
-whitelist instead of allowing all outbound traffic, add `*.plakar.io`.
-
-The appliance also needs to pull container images from `docker.io` and
-`ghcr.io`. There are two supported approaches:
-
-1. **Route image pulls through the HTTP proxy.** If you choose this option, the
-   proxy should allow access to:
-   - `*.docker.io`
-   - `*.docker.com`
-   - `*.ghcr.io`
-   - `*.githubusercontent.com`
-2. **Use a Harbor registry mirror.** This is the recommended approach for
-   production deployments because images are pulled from a local registry cache
-   instead of the public internet. When using Harbor, you don't need to
-   whitelist the Docker and GitHub domains above on your proxy.
-
-The appliance also synchronizes its clock with `pool.ntp.org` over UDP port 123,
-which does not go through the proxy. If your network blocks it, set internal NTP
-servers with `guestinfo.plakar.ntp_servers` or the `ntp:` key in the user data.
+If the appliance goes through a proxy or firewall, the hosts it has to reach are
+listed in
+[required outbound access](../../../appliance/configuration#required-outbound-access).
 
 {{< tabs >}}
 
@@ -257,25 +239,27 @@ servers with `guestinfo.plakar.ntp_servers` or the `ntp:` key in the user data.
 For a single NIC and straightforward settings, every option is its own
 `guestinfo.plakar.*` parameter, no YAML required.
 
-For a static IP, set `guestinfo.plakar.ip`, `guestinfo.plakar.gateway`, and
-`guestinfo.plakar.dns` together: all three are required for this channel to take
-effect. The proxy, registry, and SSH parameters below are independent of the
-network ones and of each other, so add only the ones you actually need.
+Each parameter matches a key of the user data document. For a static IP, set
+`guestinfo.plakar.ip`, `guestinfo.plakar.gateway` and `guestinfo.plakar.dns`
+together. All three are required for the static IP to take effect. The other
+parameters are independent of each other, so add only the ones you need.
 
 | Parameter                              | Description                                               |
 | -------------------------------------- | --------------------------------------------------------- |
-| `guestinfo.plakar.ip`                  | Appliance IP address with CIDR mask                       |
-| `guestinfo.plakar.gateway`             | Network gateway for the selected segment                  |
-| `guestinfo.plakar.dns`                 | DNS resolver used by the appliance, e.g. `1.1.1.1`        |
+| `guestinfo.plakar.ssh_authorized_keys` | Contents of your SSH public key                           |
 | `guestinfo.plakar.http_proxy`          | HTTP proxy URL                                            |
 | `guestinfo.plakar.https_proxy`         | HTTPS proxy URL (defaults to the HTTP proxy if omitted)   |
 | `guestinfo.plakar.no_proxy`            | Comma-separated bypass list                               |
 | `guestinfo.plakar.registry_mirrors`    | Comma-separated `upstream=prefix` pairs                   |
 | `guestinfo.plakar.registry_insecure`   | `true` to skip TLS verification for the mirror hosts      |
 | `guestinfo.plakar.ntp_servers`         | Comma-separated NTP servers, as hostnames or IP addresses |
-| `guestinfo.plakar.ssh_authorized_keys` | Contents of your SSH public key                           |
+| `guestinfo.plakar.ip`                  | Appliance IP address with CIDR mask                       |
+| `guestinfo.plakar.gateway`             | Network gateway for the selected segment                  |
+| `guestinfo.plakar.dns`                 | DNS resolver used by the appliance, e.g. `1.1.1.1`        |
 
 The gateway can usually be found from the NSX network segment configuration.
+When a setting is given both as a parameter and in `guestinfo.userdata`, the
+value from the user data is used.
 
 ![](../images/ovhcloud-iso-7.png)
 
@@ -286,89 +270,76 @@ The gateway can usually be found from the NSX network segment configuration.
 For multiple NICs, static routes, or to bundle every setting into one document,
 use `guestinfo.userdata` instead of the flat keys.
 
-### Cloud-init via `guestinfo.userdata` (proxy, registry, NTP, network, SSH)
+### Cloud-init via `guestinfo.userdata`
 
-A single cloud-config document can carry `proxy:`, `registry:`, `ntp:`,
-`network:`, and `ssh_authorized_keys:` together, so include only the keys you
-need:
+The document below sets every key. Remove the ones your environment does not
+need, each key is optional.
 
 ```yaml
 #cloud-config
+ssh_authorized_keys:
+  - ssh-ed25519 AAAA...
+
 proxy:
-  http: http://<proxy-ip>:<proxy-port>
-  https: http://<proxy-ip>:<proxy-port>
-  no_proxy: .corp.example,10.0.0.0/8 # optional
+  http: http://proxy.corp.example:3128
+  https: http://proxy.corp.example:3128
+  no_proxy: .corp.example
 
 registry:
   mirrors:
-    docker.io: <harbor-host>/dockerhub-proxy
-    ghcr.io: <harbor-host>/ghcr-proxy
-  insecure: false # true: skip TLS verification for the mirror hosts
+    docker.io: harbor.corp.example/dockerhub-proxy
+    ghcr.io: harbor.corp.example/ghcr-proxy
+  insecure: false
+
+releases:
+  url: https://dist.corp.example/plakar/enterprise
+  version: v1.1.2
 
 ntp:
-  servers: # optional, defaults to pool.ntp.org
-    - <ntp-server>
+  servers:
+    - 10.20.0.1
+    - ntp.corp.example
 
 network:
   ethernets:
     eth0:
-      addresses: [10.0.1.5/24] # CIDR suffix is mandatory
+      addresses: [10.0.1.5/24]
       gateway4: 10.0.1.1
       nameservers:
-        addresses: [10.0.1.53, 10.0.1.54]
-    eth1:
-      addresses: [10.20.0.5/24]
-      routes: # reach sources behind a router on this segment
-        - to: 10.50.0.0/16
-          via: 10.20.0.1
-    eth2:
-      dhcp4: true
-
-ssh_authorized_keys:
-  - ssh-ed25519 AAAA...
+        addresses: [10.0.1.53]
 ```
 
-The `network:` key accepts a [netplan v2](https://netplan.readthedocs.io/)
-document, under a top-level `network:` key or a bare `ethernets:` key. The
-appliance evaluates network sources in order. As soon as one source successfully
-defines at least one network interface, it is used and all remaining sources are
-ignored.
+Each key, including the network options and their rules, is described in
+[Appliance Configuration](../../../appliance/configuration).
+
+The network configuration can come from several places on vSphere. The appliance
+uses the first one that defines at least one network interface, and ignores the
+others:
 
 1. An OVF property set during the Deploy-OVF wizard's Customize Template step,
    if the deployed OVA defines one
-2. The flat `guestinfo.plakar.*` keys, from the Basic tab
-3. The `network:` key inside `guestinfo.userdata`, above
-4. DHCP fallback
+2. The `guestinfo.plakar.*` parameters, from the Basic tab
+3. The `network:` key inside `guestinfo.userdata`
+4. DHCP
 
-Only a subset of netplan is supported: `addresses` (first entry, CIDR required),
-`gateway4`, `routes` (`{to, via}`, with `to: default` as an alias for
-`gateway4`), `nameservers.addresses`, `dhcp4: true`, and `match.macaddress` to
-select a NIC by MAC address instead of its kernel name. A MAC match survives
-adapter reordering, unlike the PCI-order `eth0`/`eth1` kernel names:
+The `guestinfo.userdata` field holds a single line, so line breaks are lost when
+a YAML document is pasted into it. Encode the document in `base64` instead, and
+set `guestinfo.userdata.encoding` to `base64`:
 
-```yaml
-backup-a:
-  match: { macaddress: "00:50:56:aa:bb:cc" }
-  addresses: [10.20.0.5/24]
+```sh
+base64 -w0 < user-data.yaml
 ```
 
-For VMware, we recommend the equivalent single-line YAML format instead: the
-`guestinfo.userdata` field is single-line, so line breaks are removed when the
-value is entered, and the compact form is easier to copy and paste:
+| Parameter                     | Description                                                    |
+| ----------------------------- | -------------------------------------------------------------- |
+| `guestinfo.userdata`          | The base64-encoded cloud-init document                         |
+| `guestinfo.userdata.encoding` | `base64`, or `gzip+base64` for a document compressed with gzip |
 
-<!-- prettier-ignore-start -->
-```yaml
-{ proxy: { http: "http://<proxy-ip>:<proxy-port>", https: "http://<proxy-ip>:<proxy-port>", no_proxy: ".corp.example,10.0.0.0/8" }, registry: { mirrors: { docker.io: "<harbor-host>/dockerhub-proxy", ghcr.io: "<harbor-host>/ghcr-proxy" }, insecure: false } }
-```
-<!-- prettier-ignore-end -->
-
-| Parameter            | Description                                                |
-| -------------------- | ---------------------------------------------------------- |
-| `guestinfo.userdata` | Cloud-init document containing any of the keys shown above |
-
-Alternatively, the OVF property `plakar.userdata` can carry the same document,
-base64-encoded, via the Deploy-OVF wizard's Customize Template step, instead of
-Advanced Parameters.
+Alternatively, the OVF property `plakar.userdata` can carry the same document
+through the Deploy-OVF wizard's Customize Template step, instead of Advanced
+Parameters. Its value is always base64-encoded, and it needs no encoding
+parameter. When both `guestinfo.userdata` and `plakar.userdata` are set, the
+appliance uses `guestinfo.userdata`.
 
 {{< /tab >}}
 
@@ -380,20 +351,17 @@ If you configured an SSH key, connect to the booted appliance with the `plakar`
 user:
 
 ```sh
-ssh plakar@<ASSIGNED-IP>
+ssh plakar@<assigned-ip>
 ```
 
-Replace `<ASSIGNED-IP>` with the appliance's configured or DHCP-assigned IP
+Replace `<assigned-ip>` with the appliance's configured or DHCP-assigned IP
 address.
 
-## Start the appliance and complete enrollment
+## Accessing Plakar Control Plane
 
-Power on the virtual machine. Once the appliance has booted and is reachable on
-the network, open it from a browser using its assigned IP address.
-
-```txt
-http://<ASSIGNED-IP>
-```
+Power on the virtual machine. Once the appliance has booted, Plakar Control
+Plane is reached from a browser at `http://<assigned-ip>`, the IP address
+configured for the appliance or assigned by DHCP.
 
 For production environments, restrict access to trusted IP ranges, private
 networking, a VPN, or a reverse proxy or load balancer with TLS.

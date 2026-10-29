@@ -205,18 +205,73 @@ Click **Create** once the configuration is complete.
 
 {{< /tabs >}}
 
+## Configuring the Appliance
+
+An instance with direct internet access needs no configuration. For anything
+else, such as a proxy or registry mirrors, the appliance reads its settings from
+the `user-data` key of the instance metadata, set when the instance is created.
+The keys of the document are described in
+[Appliance Configuration](../../appliance/configuration).
+
+With the `gcloud` CLI, save the document to a file and add it to the
+`gcloud compute instances create` command:
+
+```bash
+--metadata-from-file=user-data=user-data.yaml
+```
+
+In the Console, open **Advanced** while creating the instance, then add a
+metadata item under **Metadata** with the key `user-data` and the document as
+its value.
+
+If the appliance goes through a proxy or firewall, the hosts it has to reach are
+listed in
+[required outbound access](../../appliance/configuration#required-outbound-access).
+
+The document below sets every key except `ssh_authorized_keys`, which the Google
+Cloud image ignores. Remove the ones your environment does not need, each key is
+optional.
+
+```yaml
+#cloud-config
+proxy:
+  http: http://proxy.corp.example:3128
+  https: http://proxy.corp.example:3128
+  no_proxy: .corp.example
+
+registry:
+  mirrors:
+    docker.io: harbor.corp.example/dockerhub-proxy
+    ghcr.io: harbor.corp.example/ghcr-proxy
+  insecure: false
+
+releases:
+  url: https://dist.corp.example/plakar/enterprise
+  version: v1.1.2
+
+ntp:
+  servers:
+    - 10.20.0.1
+    - ntp.corp.example
+
+network:
+  ethernets:
+    eth0:
+      addresses: [10.0.1.5/24]
+      gateway4: 10.0.1.1
+      nameservers:
+        addresses: [10.0.1.53]
+```
+
 ## Accessing Plakar Control Plane
 
-Once the instance is running and reachable, open it from a browser using its
-assigned external IP address:
-
-```txt
-http://<EXTERNAL-IP>
-```
+Once the instance is running, Plakar Control Plane is reached from a browser at
+`http://<external-ip>`, the external IP address of the instance.
 
 ![](../images/gcp-6.png)
 
-For new installations, you will be guided through the enrollment process to:
+For first-time installations, you will be guided through the enrollment process
+to:
 
 - Register the instance with Plakar services for licensing and billing
 - Create the initial administrator account
@@ -225,22 +280,6 @@ See the [enrollment](../../enrollment) documentation for more details.
 
 ## Limitations
 
-The Google Cloud image does not yet support two capabilities available on the
-other platforms.
-
-- **SSH access:** The instance cannot be reached over SSH. It is administered
-  entirely through the web interface, so plan for the appliance to be managed
-  that way.
-
-- **Proxy and registry mirror configuration:** Other platforms accept an HTTP
-  proxy and a Harbor registry mirror through cloud-init user data. The Google
-  Cloud image does not read that configuration, so the instance needs direct
-  outbound access to:
-
-  - `*.plakar.io`, for runtime configuration, license validation, and plugin
-    downloads.
-  - `*.docker.io`, `*.docker.com`, `*.ghcr.io`, and `*.githubusercontent.com`,
-    for the container images the appliance runs.
-
-  Without that access, the instance cannot validate its license or pull the
-  images it needs to start.
+The Google Cloud image does not accept SSH connections, and it ignores SSH keys,
+whether they come from the instance metadata or from `ssh_authorized_keys` in
+the user data. The appliance is administered entirely through the web interface.

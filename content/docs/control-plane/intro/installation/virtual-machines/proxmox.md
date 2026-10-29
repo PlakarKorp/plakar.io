@@ -116,11 +116,16 @@ virtual machine.
 
 By default the appliance boots with DHCP networking and no SSH access. If that's
 enough for you, skip ahead to
-[Start the appliance and complete enrollment](#start-the-appliance-and-complete-enrollment).
-Otherwise, pick one of the two tabs below, not both. A Proxmox VM only takes a
-single cloud-init user-data source, so if you use the Advanced tab's snippet,
-set the SSH key there too, alongside any proxy, registry, or network settings,
-instead of from the UI.
+[Accessing Plakar Control Plane](#accessing-plakar-control-plane). Otherwise,
+the appliance reads its settings from a cloud-init user data document, whose
+keys are described in
+[Appliance Configuration](../../../appliance/configuration). This section covers
+how to deliver that document on Proxmox.
+
+Pick one of the two tabs below, not both. A Proxmox VM only takes a single
+cloud-init user-data source, so if you use the Advanced tab's snippet, set the
+SSH key there too, alongside any proxy, registry, or network settings, instead
+of from the UI.
 
 {{< tabs >}}
 
@@ -149,106 +154,69 @@ the key from the Proxmox UI, no YAML required.
 
 {{< tab label="Advanced (CLI)" >}}
 
-The Proxmox UI can only set an SSH key: it has no fields for a proxy, registry
-mirror, NTP servers or static IP. For any of those, write a single cloud-init
-YAML snippet on the Proxmox node instead; it can carry all of these settings at
-once, so include only the keys you actually need.
+The Proxmox UI can only set an SSH key. It has no fields for a proxy, registry
+mirrors, a release server, NTP servers or a static IP. For any of those, write a
+cloud-init YAML snippet on the Proxmox node instead. A single snippet carries
+all of these settings.
 
-### What needs to be reachable
-
-Plakar Control Plane needs HTTPS access to `api.plakar.io` for runtime
-configuration, license validation, and plugin downloads. If your proxy uses a
-whitelist rather than allowing all traffic, `*.plakar.io` must be on it.
-
-The appliance also needs to pull Docker images from `docker.io` and `ghcr.io`.
-There are two supported approaches:
-
-1. **Route image pulls through the same HTTP proxy.** If you take this route,
-   the proxy must allow:
-   - `*.docker.io`
-   - `*.docker.com`
-   - `*.ghcr.io`
-   - `*.githubusercontent.com`
-2. **Configure a Harbor registry mirror.** This is the preferred option for
-   production, since it gives you a local cache of the images instead of pulling
-   them over the internet on every deployment. If you use Harbor, you don't need
-   to whitelist the domains above on your proxy.
-
-The appliance also synchronizes its clock with `pool.ntp.org` over UDP port 123,
-which does not go through the proxy. If your network blocks it, set internal NTP
-servers with the `ntp:` key in the user data.
+If the appliance goes through a proxy or firewall, the hosts it has to reach are
+listed in
+[Required outbound access](../../../appliance/configuration#required-outbound-access).
 
 ### Write the user-data snippet
+
+Write the cloud-init document to a snippet on the Proxmox node. The document
+below sets every key. Remove the ones your environment does not need, each key
+is optional.
 
 ```bash
 mkdir -p /var/lib/vz/snippets
 cat > /var/lib/vz/snippets/plakar-appliance.yaml << 'EOF'
 #cloud-config
+ssh_authorized_keys:
+  - ssh-ed25519 AAAA...
+
 proxy:
-  http:  http://<proxy-ip>:<proxy-port>
-  https: http://<proxy-ip>:<proxy-port>
-  no_proxy: .corp.example,10.0.0.0/8       # optional
+  http: http://proxy.corp.example:3128
+  https: http://proxy.corp.example:3128
+  no_proxy: .corp.example
 
 registry:
   mirrors:
-    docker.io: <harbor-host>/dockerhub-proxy
-    ghcr.io:   <harbor-host>/ghcr-proxy
-  insecure: false     # true: skip TLS verification for the mirror hosts
+    docker.io: harbor.corp.example/dockerhub-proxy
+    ghcr.io: harbor.corp.example/ghcr-proxy
+  insecure: false
+
+releases:
+  url: https://dist.corp.example/plakar/enterprise
+  version: v1.1.2
 
 ntp:
-  servers:            # optional, defaults to pool.ntp.org
-    - <ntp-server>
+  servers:
+    - 10.20.0.1
+    - ntp.corp.example
 
 network:
   ethernets:
     eth0:
-      addresses: [10.0.1.5/24]             # CIDR suffix is mandatory
+      addresses: [10.0.1.5/24]
       gateway4: 10.0.1.1
       nameservers:
-        addresses: [10.0.1.53, 10.0.1.54]
-
-ssh_authorized_keys:
-  - ssh-ed25519 AAAA...
+        addresses: [10.0.1.53]
 EOF
 ```
 
-Every top-level key above is optional; include only what you need. On Proxmox,
-this `network:` key is the only network source ahead of the DHCP fallback:
-whichever NICs it doesn't configure fall back to DHCP.
-
-`network:` accepts a subset of [netplan v2](https://netplan.readthedocs.io/)
-syntax, either under a top-level `network:` key (as above) or a bare
-`ethernets:` key. The supported fields are `addresses` (first entry, CIDR
-required), `gateway4`, `routes` (`{to, via}`, with `to: default` as an alias for
-`gateway4`), `nameservers.addresses`, `dhcp4: true`, and `match.macaddress`. Use
-`match.macaddress` to select a NIC by MAC address instead of its kernel name
-(`eth0`, `eth1`, ... in PCI order, for multi-NIC VMs). A MAC match survives
-adapter reordering. Anything else netplan defines, such as bonds, VLANs,
-bridges, `dhcp6`, or `mtu`, is silently ignored.
-
-- **One default gateway, one DNS set.** Declare `gateway4` (or a default route)
-  and `nameservers` on exactly one interface — the management one. If several
-  interfaces declare either, the first by interface name wins and the others are
-  logged and ignored.
-- **Unlisted NICs fall back to DHCP.** Any NIC without a stanza, or with a
-  stanza that fails validation, is picked up by the DHCP client. A NIC on a
-  segment without a DHCP server simply stays unconfigured.
-- **The first NIC (`eth0`) is special**: when it is DHCP-configured, boot waits
-  for its lease. Leases on other NICs are acquired in the background and never
-  delay boot.
-- Static addressing is outbound-only: the appliance's own services (UI, SSH)
-  listen on **all** interfaces regardless of this configuration. Restrict access
-  to the management plane with your network policy.
+Each key, including the network options and their rules, is described in
+[Appliance Configuration](../../../appliance/configuration).
 
 > [!NOTE]+
 >
-> Proxmox's own IP configuration fields on the Cloud-Init tab (`ipconfig0` and
-> friends) are not read by the appliance — they land in a separate
-> `network-config` file the appliance does not consume. Static addressing must
-> go through the `network:` key above instead.
+> The IP configuration fields of the Proxmox **Cloud-Init** tab, such as
+> `ipconfig0`, are not read by the appliance. Static addressing has to go
+> through the `network:` key of the snippet instead.
 
-The Proxmox web interface only lists existing snippets under **Storage →
-Snippets** it has no option to create or upload one. Snippets have to be placed
+The Proxmox web interface only lists existing snippets under **Storage ->
+Snippets**. It has no option to create or upload one. Snippets have to be placed
 directly on disk, e.g. via the node's shell. On the default `local` storage,
 that path is `/var/lib/vz/snippets/`.
 
@@ -273,16 +241,9 @@ qm reboot <vmid>
 
 ### Verify
 
-Watch the console during boot for lines prefixed `proxy-collect:` (proxy and
-registry) and `net-collect:` / `net-apply:` (network). Each reports the
-configuration that was applied, or why none was found:
-
-```txt
-proxy-collect: proxy configured: http=http://<proxy-ip>:<proxy-port> https=... no_proxy=...
-```
-
-Configuration is collected once per boot. Changes to the snippet take effect on
-the next reboot.
+The appliance reads the snippet once, when it boots, so a change to it takes
+effect after the next reboot. To check the result, connect over SSH and run
+[doktor](../../../appliance/troubleshooting#running-doktor).
 
 {{< /tab >}}
 
@@ -294,20 +255,17 @@ If you configured an SSH key, connect to the booted appliance with the `plakar`
 user:
 
 ```sh
-ssh plakar@<ASSIGNED-IP>
+ssh plakar@<assigned-ip>
 ```
 
-Replace `<ASSIGNED-IP>` with the appliance's configured or DHCP-assigned IP
+Replace `<assigned-ip>` with the appliance's configured or DHCP-assigned IP
 address.
 
-## Start the appliance and complete enrollment
+## Accessing Plakar Control Plane
 
-Power on the virtual machine. Once the appliance has booted and is reachable on
-the network, open it from a browser using its assigned IP address.
-
-```txt
-http://<ASSIGNED-IP>
-```
+Power on the virtual machine. Once the appliance has booted, Plakar Control
+Plane is reached from a browser at `http://<assigned-ip>`, the IP address
+configured for the appliance or assigned by DHCP.
 
 > [!NOTE]+
 >

@@ -134,9 +134,9 @@ will be attached later.
 
 Configure the remaining instance options as needed for your environment.
 
-If your environment requires outbound traffic to pass through a proxy, configure
-it as described in the
-[Proxy and Harbor Configuration](#proxy-and-harbor-configuration) section.
+To route outbound traffic through a proxy, or to change any other appliance
+setting, add it to the user data as described in
+[Configuring the Appliance](#configuring-the-appliance).
 
 If SSH access was enabled when creating the custom template, select the SSH key
 pair to authorize for the instance.
@@ -184,61 +184,54 @@ volume**, then select the Block Storage volume that you created.
 
 ![Attaching an Exoscale Block Storage volume](../images/attach-exoscale-block-storage.png)
 
-## Proxy and Harbor Configuration
+## Configuring the Appliance
 
-If the instance doesn't have direct internet access, configure an HTTP proxy, a
-local Harbor registry mirror, or both through the instance's **User data**
-before creating the instance.
+An instance with direct internet access needs no configuration, and SSH access
+comes from the key pair selected when creating the instance, if SSH access was
+enabled on the custom template. For anything else, such as a proxy or registry
+mirrors, the appliance reads its settings from the instance's **User data**, set
+before the instance is created. The keys of the document are described in
+[Appliance Configuration](../../appliance/configuration).
 
-![Adding proxy and Harbor configuration to Exoscale User data](../images/exoscale-user-data.png)
+If the appliance goes through a proxy or firewall, the hosts it has to reach are
+listed in
+[required outbound access](../../appliance/configuration#required-outbound-access).
 
-### What needs to be reachable
-
-Plakar Control Plane requires HTTPS access to `api.plakar.io` for runtime
-configuration, license validation, and plugin downloads. If your proxy uses a
-whitelist instead of allowing all outbound traffic, you need to add
-`*.plakar.io`
-
-The appliance also needs to pull container images from `docker.io` and
-`ghcr.io`. There are two supported approaches:
-
-1. **Route image pulls through the HTTP proxy.** If you choose this option, the
-   proxy should allow access to:
-   - `*.docker.io`
-   - `*.docker.com`
-   - `*.ghcr.io`
-   - `*.githubusercontent.com`
-
-2. **Use a Harbor registry mirror.** This is the recommended approach for
-   production deployments because images are pulled from a local registry cache
-   instead of the public internet. When using Harbor, you don't need to
-   whitelist the Docker and GitHub domains above on your proxy.
-
-The appliance also synchronizes its clock with `pool.ntp.org` over UDP port 123,
-which does not go through the proxy. If your network blocks it, set internal NTP
-servers with the `ntp:` key in the user data.
-
-### User data configuration
-
-The User data is a standard cloud-init YAML document containing `proxy:`,
-`registry:` and `ntp:` sections, depending on your environment.
+The document below sets every key. Remove the ones your environment does not
+need, each key is optional.
 
 ```yaml
 #cloud-config
+ssh_authorized_keys:
+  - ssh-ed25519 AAAA...
+
 proxy:
-  http: http://<proxy-ip>:<proxy-port>
-  https: http://<proxy-ip>:<proxy-port>
-  no_proxy: .corp.example,10.0.0.0/8 # optional
+  http: http://proxy.corp.example:3128
+  https: http://proxy.corp.example:3128
+  no_proxy: .corp.example
 
 registry:
   mirrors:
-    docker.io: <harbor-host>/dockerhub-proxy
-    ghcr.io: <harbor-host>/ghcr-proxy
-  insecure: false # true: skip TLS verification for the mirror hosts
+    docker.io: harbor.corp.example/dockerhub-proxy
+    ghcr.io: harbor.corp.example/ghcr-proxy
+  insecure: false
+
+releases:
+  url: https://dist.corp.example/plakar/enterprise
+  version: v1.1.2
 
 ntp:
-  servers: # optional, defaults to pool.ntp.org
-    - <ntp-server>
+  servers:
+    - 10.20.0.1
+    - ntp.corp.example
+
+network:
+  ethernets:
+    eth0:
+      addresses: [10.0.1.5/24]
+      gateway4: 10.0.1.1
+      nameservers:
+        addresses: [10.0.1.53]
 ```
 
 ## Security Groups
@@ -286,17 +279,11 @@ volume during its first boot.
 
 ## Accessing Plakar Control Plane
 
-After the instance has started, the Block Storage volume has been attached, and
-the security group has been configured, Plakar Control Plane can be accessed
-from your browser using:
-
-```txt
-http://<public-ipv4-address>
-```
-
-Where `<public-ipv4-address>` is the public IPv4 address assigned to the
-instance. For first-time installations, you will be guided through the
-enrollment process to:
+Once the instance has started with its Block Storage volume attached, Plakar
+Control Plane is reached from a browser at `http://<public-ipv4-address>`, the
+public IPv4 address of the instance, provided its security group allows inbound
+traffic on port `80`. For first-time installations, you will be guided through
+the enrollment process to:
 
 - Register the instance with Plakar services for licensing and billing
 - Create the initial administrator account
