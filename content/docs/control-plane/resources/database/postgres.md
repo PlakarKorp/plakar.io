@@ -50,9 +50,9 @@ version. Replace `<version>` with the edge version that matches your Control
 Plane, as described in
 [Choosing the edge version](../../edges/installation/custom-image#choosing-the-edge-version).
 
-Pin PostgreSQL tasks to the resulting edge with the **Run on** field when
-[scheduling them](../../scheduling/tasks), or target it by the `postgresql` tag.
-See [selecting an edge](../../edges/running-tasks#selecting-an-edge).
+Add the resulting edges to an edge pool, and assign the PostgreSQL resources to
+that pool, so their tasks run on an edge that has the client tools. See
+[selecting an edge](../../edges/running-tasks#selecting-an-edge).
 
 The `postgres+aws` protocol generates its IAM token with the AWS credentials
 available to the edge. The edge picks them up from the standard AWS sources:

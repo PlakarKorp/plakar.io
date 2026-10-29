@@ -82,22 +82,19 @@ automatically, without being set up by hand.
 ## Testing the connection
 
 Each app has a **Dashboard** tab with a **Test Connection** action. It checks
-that Plakar Control Plane can reach the resource with the configuration of the
-app. A failing test points at the configuration or the credentials of the app.
+that the resource can be reached with the configuration of the app. A failing
+test points at the configuration or the credentials of the app.
+
+The test runs where the tasks of the app run. When the resource of the app is
+assigned to an [edge pool](../resources#edge-pools), an edge of that pool runs
+the test, so it checks the connection from the edge rather than from the Control
+Plane. This is what makes the test meaningful for a resource the Control Plane
+cannot reach directly, such as one behind a private network.
 
 ## Tasks
 
 Backups, restores and the other operations run as tasks that use apps. Tasks can
 be created from the dashboard of an app or from [scheduling](../scheduling).
-
-## Residency
-
-Apps can only be used together when their resources have the same
-[residency](../compliance/residency). A source can only be backed up to a store
-with the same residency, a restore can only write to a destination with the
-residency of its store, and a sync can only run between stores with the same
-residency. The residency belongs to the resource, so an app takes on the
-residency of its resource.
 
 ## Infrastructure as Code
 
