@@ -214,10 +214,14 @@ The appliance also needs to pull container images from `docker.io` and
    instead of the public internet. When using Harbor, you don't need to
    whitelist the Docker and GitHub domains above on your proxy.
 
+The appliance also synchronizes its clock with `pool.ntp.org` over UDP port 123,
+which does not go through the proxy. If your network blocks it, set internal NTP
+servers with the `ntp:` key in the user data.
+
 ### User data configuration
 
-The User data is a standard cloud-init YAML document containing `proxy:` and/or
-`registry:` sections, depending on your environment.
+The User data is a standard cloud-init YAML document containing `proxy:`,
+`registry:` and `ntp:` sections, depending on your environment.
 
 ```yaml
 #cloud-config
@@ -231,6 +235,10 @@ registry:
     docker.io: <harbor-host>/dockerhub-proxy
     ghcr.io: <harbor-host>/ghcr-proxy
   insecure: false # true: skip TLS verification for the mirror hosts
+
+ntp:
+  servers: # optional, defaults to pool.ntp.org
+    - <ntp-server>
 ```
 
 ## Security Groups

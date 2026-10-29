@@ -221,10 +221,10 @@ Device**, select **Hard Disk**, and set it to the data disk size given in
 By default the appliance boots with DHCP networking and no SSH access. If that's
 enough for you, skip ahead to
 [Start the appliance and complete enrollment](#start-the-appliance-and-complete-enrollment).
-Otherwise, every other setting (static IP, proxy, registry mirror, SSH key) is
-delivered through vSphere's guest info mechanism, added under **Advanced
-Parameters** before first power-on, or during the Deploy-OVF wizard's Customize
-Template step on the OVA path. Pick one of the two tabs below.
+Otherwise, every other setting (static IP, proxy, registry mirror, NTP servers,
+SSH key) is delivered through vSphere's guest info mechanism, added under
+**Advanced Parameters** before first power-on, or during the Deploy-OVF wizard's
+Customize Template step on the OVA path. Pick one of the two tabs below.
 
 ### What needs to be reachable
 
@@ -246,6 +246,10 @@ The appliance also needs to pull container images from `docker.io` and
    instead of the public internet. When using Harbor, you don't need to
    whitelist the Docker and GitHub domains above on your proxy.
 
+The appliance also synchronizes its clock with `pool.ntp.org` over UDP port 123,
+which does not go through the proxy. If your network blocks it, set internal NTP
+servers with `guestinfo.plakar.ntp_servers` or the `ntp:` key in the user data.
+
 {{< tabs >}}
 
 {{< tab label="Basic (flat keys)" >}}
@@ -258,17 +262,18 @@ For a static IP, set `guestinfo.plakar.ip`, `guestinfo.plakar.gateway`, and
 effect. The proxy, registry, and SSH parameters below are independent of the
 network ones and of each other, so add only the ones you actually need.
 
-| Parameter                              | Description                                             |
-| -------------------------------------- | ------------------------------------------------------- |
-| `guestinfo.plakar.ip`                  | Appliance IP address with CIDR mask                     |
-| `guestinfo.plakar.gateway`             | Network gateway for the selected segment                |
-| `guestinfo.plakar.dns`                 | DNS resolver used by the appliance, e.g. `1.1.1.1`      |
-| `guestinfo.plakar.http_proxy`          | HTTP proxy URL                                          |
-| `guestinfo.plakar.https_proxy`         | HTTPS proxy URL (defaults to the HTTP proxy if omitted) |
-| `guestinfo.plakar.no_proxy`            | Comma-separated bypass list                             |
-| `guestinfo.plakar.registry_mirrors`    | Comma-separated `upstream=prefix` pairs                 |
-| `guestinfo.plakar.registry_insecure`   | `true` to skip TLS verification for the mirror hosts    |
-| `guestinfo.plakar.ssh_authorized_keys` | Contents of your SSH public key                         |
+| Parameter                              | Description                                               |
+| -------------------------------------- | --------------------------------------------------------- |
+| `guestinfo.plakar.ip`                  | Appliance IP address with CIDR mask                       |
+| `guestinfo.plakar.gateway`             | Network gateway for the selected segment                  |
+| `guestinfo.plakar.dns`                 | DNS resolver used by the appliance, e.g. `1.1.1.1`        |
+| `guestinfo.plakar.http_proxy`          | HTTP proxy URL                                            |
+| `guestinfo.plakar.https_proxy`         | HTTPS proxy URL (defaults to the HTTP proxy if omitted)   |
+| `guestinfo.plakar.no_proxy`            | Comma-separated bypass list                               |
+| `guestinfo.plakar.registry_mirrors`    | Comma-separated `upstream=prefix` pairs                   |
+| `guestinfo.plakar.registry_insecure`   | `true` to skip TLS verification for the mirror hosts      |
+| `guestinfo.plakar.ntp_servers`         | Comma-separated NTP servers, as hostnames or IP addresses |
+| `guestinfo.plakar.ssh_authorized_keys` | Contents of your SSH public key                           |
 
 The gateway can usually be found from the NSX network segment configuration.
 
@@ -281,10 +286,11 @@ The gateway can usually be found from the NSX network segment configuration.
 For multiple NICs, static routes, or to bundle every setting into one document,
 use `guestinfo.userdata` instead of the flat keys.
 
-### Cloud-init via `guestinfo.userdata` (proxy, registry, network, SSH)
+### Cloud-init via `guestinfo.userdata` (proxy, registry, NTP, network, SSH)
 
-A single cloud-config document can carry `proxy:`, `registry:`, `network:`, and
-`ssh_authorized_keys:` together, so include only the keys you need:
+A single cloud-config document can carry `proxy:`, `registry:`, `ntp:`,
+`network:`, and `ssh_authorized_keys:` together, so include only the keys you
+need:
 
 ```yaml
 #cloud-config
@@ -298,6 +304,10 @@ registry:
     docker.io: <harbor-host>/dockerhub-proxy
     ghcr.io: <harbor-host>/ghcr-proxy
   insecure: false # true: skip TLS verification for the mirror hosts
+
+ntp:
+  servers: # optional, defaults to pool.ntp.org
+    - <ntp-server>
 
 network:
   ethernets:
