@@ -114,8 +114,23 @@ goes through the proxy even when its address is in a bypassed range. To keep
 internal sources off the proxy, add their domain suffix to `no_proxy`, such as
 `.corp.example`, or address them by IP.
 
-The hosts the proxy has to allow are listed in
-[required outbound access](../troubleshooting#required-outbound-access).
+### Required outbound access
+
+The appliance needs outbound HTTPS, on TCP port 443, to the following domains. A
+proxy or firewall in front of it has to allow each of them:
+
+| Domain                    | Purpose                                                         |
+| ------------------------- | --------------------------------------------------------------- |
+| `*.plakar.io`             | Runtime configuration, license validation and plugin downloads. |
+| `*.docker.io`             | Docker Hub images.                                              |
+| `*.docker.com`            | Image layers for Docker Hub.                                    |
+| `*.ghcr.io`               | Component images.                                               |
+| `*.githubusercontent.com` | Image layers for `ghcr.io`.                                     |
+
+With [registry mirrors](#registry-mirrors), images are pulled from the mirror,
+and the Docker and GitHub domains do not need to be allowed. Clock
+synchronization uses UDP port 123 and does not go through the proxy, as
+described in [NTP servers](#ntp-servers).
 
 ## Registry mirrors
 
