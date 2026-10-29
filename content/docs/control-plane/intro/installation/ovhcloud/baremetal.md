@@ -9,10 +9,8 @@ summary: "How to install Plakar Control Plane on OVHcloud Baremetal"
 
 Plakar Control Plane can be deployed on an OVHcloud dedicated server using the
 official `QCOW2` image. The image can be downloaded from the
-[Downloads Page](/download).
-
-Dedicated servers are available in the OVHcloud Control Panel under **Bare Metal
-Cloud -> Dedicated Servers**.
+[Downloads Page](/download). Dedicated servers are available in the OVHcloud
+Control Panel under **Bare Metal Cloud -> Dedicated Servers**.
 
 ## Ordering a Dedicated Server
 
@@ -44,7 +42,7 @@ Set **Type of OS** to **Custom**, then select **Bring your own image**.
 Provide a publicly accessible URL for the Plakar Control Plane `QCOW2` image in
 **Image URL**. You can use the download link from the
 [Downloads Page](/download/), or host the image yourself on publicly accessible
-storage such as an S3 bucket. and set the **Image Type** to **qcow2**.
+storage such as an S3 bucket. Set the **Image Type** to **qcow2**.
 
 You can optionally provide a checksum to verify the image during installation.
 We publish both `SHA-256` and `MD5` checksums on the Downloads Page. If you
@@ -56,21 +54,15 @@ provide a checksum, enter it in **Image checksum** and select the corresponding
 ### SSH Public Key
 
 Leave **SSH Public Key** blank. OVHcloud's SSH key configuration is not read by
-the appliance.
-
-If you need SSH access, provide your public key through **Config Drive
-UserData**. The appliance uses the `plakar` user for SSH access.
+the appliance. If you need SSH access, provide your public key through **Config
+Drive UserData**. The appliance uses the `plakar` user for SSH access.
 
 ### Config Drive UserData
 
 Config Drive UserData contains the cloud-init configuration used by the
-appliance. It can be used to configure SSH access, an HTTP proxy, or a Harbor
-registry mirror.
-
+appliance, such as SSH access, a proxy, registry mirrors or a static IP address.
 See [Configuring the Appliance](#configuring-the-appliance) for more
 information.
-
-![](../images/baremetal-3.png)
 
 ### EFI Bootloader
 
@@ -85,40 +77,21 @@ installed on the server** to:
 
 ## Configuring the Appliance
 
-Config Drive UserData is the cloud-init configuration passed to the appliance
-during installation. At minimum, it can contain an SSH public key. Proxy and
-registry mirror settings can be added when required by your environment.
+The appliance reads its settings from the cloud-init document passed in **Config
+Drive UserData** during installation. The keys of that document are described in
+[Appliance Configuration](../../../appliance/configuration). Every key works on
+OVHcloud bare metal, including `network` for a static IP address, several
+interfaces or custom routes. Without it, the appliance uses DHCP.
 
-### What needs to be reachable
+If the appliance goes through a proxy or firewall, the hosts it has to reach are
+listed in
+[required outbound access](../../../appliance/configuration#required-outbound-access).
 
-Plakar Control Plane requires HTTPS access to `api.plakar.io` for runtime
-configuration, license validation, and plugin downloads. If your proxy uses a
-whitelist instead of allowing all outbound traffic, add `*.plakar.io` to it.
+### Writing the UserData
 
-The appliance also needs to pull container images from `docker.io` and
-`ghcr.io`. There are two supported approaches:
-
-1. **Route image pulls through the HTTP proxy.** If you choose this option, the
-   proxy should allow access to:
-
-   - `*.docker.io`
-   - `*.docker.com`
-   - `*.ghcr.io`
-   - `*.githubusercontent.com`
-
-2. **Use a Harbor registry mirror.** This is the recommended approach for
-   production deployments because images are pulled from a local registry cache
-   instead of the public internet. When using Harbor, you don't need to
-   whitelist the Docker and GitHub domains above on your proxy.
-
-The appliance also synchronizes its clock with `pool.ntp.org` over UDP port 123,
-which does not go through the proxy. If your network blocks it, set internal NTP
-servers with the `ntp:` key in the user data.
-
-### UserData Example
-
-The following example configures an SSH key, an HTTP proxy, Harbor registry
-mirrors and NTP servers:
+Paste the cloud-init document into **Config Drive UserData**. The document below
+sets every key. Remove the ones your environment does not need, each key is
+optional.
 
 ```yaml
 #cloud-config
@@ -126,41 +99,32 @@ ssh_authorized_keys:
   - ssh-ed25519 AAAA...
 
 proxy:
-  http: http://<proxy-ip>:<proxy-port>
-  https: http://<proxy-ip>:<proxy-port>
-  no_proxy: .corp.example,10.0.0.0/8 # optional
+  http: http://proxy.corp.example:3128
+  https: http://proxy.corp.example:3128
+  no_proxy: .corp.example
 
 registry:
   mirrors:
-    docker.io: <harbor-host>/dockerhub-proxy
-    ghcr.io: <harbor-host>/ghcr-proxy
-  insecure: false # true: skip TLS verification for the mirror hosts
+    docker.io: harbor.corp.example/dockerhub-proxy
+    ghcr.io: harbor.corp.example/ghcr-proxy
+  insecure: false
+
+releases:
+  url: https://dist.corp.example/plakar/enterprise
+  version: v1.1.2
 
 ntp:
-  servers: # optional, defaults to pool.ntp.org
-    - <ntp-server>
-```
+  servers:
+    - 10.20.0.1
+    - ntp.corp.example
 
-Every top-level key above is optional. Include only the configuration required
-by your environment.
-
-### Network Configuration
-
-By default, the appliance uses DHCP to obtain its network configuration. If the
-OVHcloud server requires a static IP address, multiple network interfaces, or
-custom routes, you can configure them using the `network` key in UserData.
-
-For example:
-
-```yaml
-#cloud-config
 network:
   ethernets:
     eth0:
       addresses: [10.0.1.5/24]
       gateway4: 10.0.1.1
       nameservers:
-        addresses: [10.0.1.53, 10.0.1.54]
+        addresses: [10.0.1.53]
 ```
 
 ### Connect over SSH
