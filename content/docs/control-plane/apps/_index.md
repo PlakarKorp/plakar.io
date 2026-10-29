@@ -82,8 +82,14 @@ automatically, without being set up by hand.
 ## Testing the connection
 
 Each app has a **Dashboard** tab with a **Test Connection** action. It checks
-that Plakar Control Plane can reach the resource with the configuration of the
-app. A failing test points at the configuration or the credentials of the app.
+that the resource can be reached with the configuration of the app. A failing
+test points at the configuration or the credentials of the app.
+
+The test runs where the tasks of the app run. When the resource of the app is
+assigned to an [edge pool](../resources#edge-pools), an edge of that pool runs
+the test, so it checks the connection from the edge rather than from the Control
+Plane. This is what makes the test meaningful for a resource the Control Plane
+cannot reach directly, such as one behind a private network.
 
 ## Tasks
 

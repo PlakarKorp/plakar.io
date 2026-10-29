@@ -95,6 +95,13 @@ which is inherited by every resource it exposes. Tasks that use those resources
 run on an edge of the pool instead of on the Control Plane. A pool set on an
 individual resource takes precedence over the one inherited from the inventory.
 
+The inventory itself is also synchronized through the pool. An edge of the pool
+lists the resources from the provider and sends the results back to PCP. This
+lets an inventory cover resources the Control Plane cannot reach directly, such
+as resources behind a private network, as long as an edge of the pool can reach
+them. When no edge of the pool is available, the synchronization fails rather
+than running on the Control Plane.
+
 ## Configuration bundles
 
 Configuration bundles declare shared fields, such as credentials, that are
