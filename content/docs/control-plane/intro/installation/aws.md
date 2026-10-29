@@ -167,17 +167,10 @@ documentation.
 
 ## Accessing Plakar Control Plane
 
-After configuring the security group, Plakar Control Plane can be accessed from
-your browser using:
-
-```txt
-http://<public-ipv4-address>
-```
-
-Where `<public-ipv4-address>` is the public IPv4 address assigned to the EC2
-instance.
-
-For new installations, you will be guided through the enrollment process to:
+Once the instance has started, Plakar Control Plane is reached from a browser at
+`http://<public-ipv4-address>`, the public IPv4 address of the EC2 instance,
+provided its security group allows inbound traffic on port `80`. For first-time
+installations, you will be guided through the enrollment process to:
 
 - Register the instance with Plakar services for licensing and billing
 - Create the initial administrator account
