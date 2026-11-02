@@ -12,7 +12,7 @@ aliases:
 The **Superuser** is the admin account created during
 [enrollment](../../../intro/enrollment#admin-account).
 
-It holds full access to every permission in all three families. Its resource
+It holds full access to every permission in all four families. Its resource
 access is not restricted to a subset, it covers every resource of every class in
 the organization.
 
@@ -52,6 +52,15 @@ is what separates it from the **Superuser**.
 | Data classes          | Full   |
 | Environments          | Full   |
 | Schedules             | Full   |
+
+## Secrets
+
+| Permission                   | Access |
+| ---------------------------- | ------ |
+| App secrets                  | Full   |
+| Inventory secrets            | Full   |
+| Secret Provider secrets      | Full   |
+| Configuration bundle secrets | Full   |
 
 ## Deployment
 
