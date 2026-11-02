@@ -98,6 +98,6 @@ resources from the configured Scaleway project. You can run synchronization
 again at any time to refresh the inventory, for example after creating new
 Object Storage buckets, Instances, or Block Storage volumes in Scaleway. PCP
 then synchronizes it periodically, every 15 minutes by default. See
-[inventory synchronization](../#synchronization).
+[inventory synchronization](../#inventory-synchronization).
 
 ![Creating Scaleway inventory](../images/create-scaleway-inventory.png)

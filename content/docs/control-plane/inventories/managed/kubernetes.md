@@ -58,6 +58,6 @@ PVCs and virtual machines from the configured cluster. You can run
 synchronization again at any time to refresh the inventory, for example after
 creating new PVCs or virtual machines. PCP then synchronizes it periodically,
 every 15 minutes by default. See
-[inventory synchronization](../#synchronization).
+[inventory synchronization](../#inventory-synchronization).
 
 ![Creating Kubernetes inventory](../images/create-kubernetes-inventory.png)

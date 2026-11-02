@@ -69,6 +69,6 @@ resources from the configured Google Cloud project. You can run synchronization
 again at any time to refresh the inventory, for example after creating new Cloud
 Storage buckets or CloudSQL instances. PCP then synchronizes it periodically,
 every 15 minutes by default. See
-[inventory synchronization](../#synchronization).
+[inventory synchronization](../#inventory-synchronization).
 
 ![Creating Google Cloud inventory](../images/create-google-cloud-inventory.png)

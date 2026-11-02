@@ -67,7 +67,7 @@ by default. A resource created at the provider appears in the inventory at the
 next synchronization, and a resource deleted at the provider disappears from it.
 The period is set per inventory, in the **Synchronization** section of its
 settings, as described in
-[inventory synchronization](../../inventories#synchronization).
+[inventory synchronization](../../inventories#inventory-synchronization).
 
 {{< /step >}}
 
