@@ -393,15 +393,39 @@ table.Nm {
 }
 
 /* Code blocks rework */
+.codeblock {
+  margin: 1.5rem 0;
+  overflow: hidden;
+  border: 1px solid rgb(var(--color-neutral-200));
+  border-radius: 0.5rem;
+}
+
+.dark .codeblock {
+  border-color: rgb(var(--color-neutral-700));
+}
+
+.codeblock .highlight pre {
+  margin: 0;
+  border-radius: 0;
+}
+
 .codeblock-title {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   height: 2.5rem;
-  padding-top: 0;
-  padding-bottom: 0;
-  font-size: 0.875rem;
+  padding: 0 0.375rem 0 0.875rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
   color: rgb(var(--color-neutral-500));
+  background-color: rgb(var(--color-neutral-50));
+  border-bottom: 1px solid rgb(var(--color-neutral-200));
+}
+
+.dark .codeblock-title {
+  color: rgb(var(--color-neutral-400));
+  background-color: rgb(var(--color-neutral-800));
+  border-color: rgb(var(--color-neutral-700));
 }
 
 .codeblock-icon {
@@ -410,26 +434,69 @@ table.Nm {
   flex-shrink: 0;
 }
 
-.highlight-wrapper > .copy-button {
-  visibility: visible;
-  height: 2.5rem;
-  width: auto;
-  padding: 0 1rem;
-  font-family: inherit;
-  background-color: transparent;
+.codeblock-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.codeblock-copy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.875rem;
+  height: 1.875rem;
+  margin-left: auto;
   color: rgb(var(--color-neutral-500));
-  border-radius: 0;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition:
+    color 150ms,
+    background-color 150ms;
 }
 
-.highlight-wrapper > .copy-button:hover,
-.highlight-wrapper > .copy-button:focus {
-  background-color: transparent;
-  color: rgb(var(--color-primary-600));
+.codeblock-copy:hover {
+  color: rgb(var(--color-neutral-800));
+  background-color: rgb(var(--color-neutral-200));
 }
 
-.dark .highlight-wrapper > .copy-button:hover,
-.dark .highlight-wrapper > .copy-button:focus {
-  color: rgb(var(--color-primary-400));
+.dark .codeblock-copy:hover {
+  color: rgb(var(--color-neutral-100));
+  background-color: rgb(var(--color-neutral-700));
+}
+
+.codeblock-copy:focus-visible {
+  outline: 2px solid rgb(var(--color-primary-500));
+  outline-offset: 1px;
+}
+
+.codeblock-copy-icon,
+.codeblock-copied-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.codeblock-title .icon svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.codeblock-copied-icon,
+.codeblock-copy.is-copied .codeblock-copy-icon {
+  display: none;
+}
+
+.codeblock-copy.is-copied .codeblock-copied-icon {
+  display: block;
+}
+
+.codeblock-copy.is-copied {
+  color: rgb(22 163 74);
+}
+
+.dark .codeblock-copy.is-copied {
+  color: rgb(74 222 128);
 }
 
 /* Integrations */

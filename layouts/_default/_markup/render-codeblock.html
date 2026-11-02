@@ -13,10 +13,14 @@
 {{- $title := or .Attributes.title (index $labels $lang) $lang -}}
 {{- $shell := in $shells $lang -}}
 {{- $icon := cond $shell "ri/terminal-box-line" "ri/file-text-line" -}}
-<div class="highlight-wrapper">
+<div class="highlight-wrapper codeblock">
   <div class="codeblock-title">
     <span class="codeblock-icon">{{ partial "icon.html" $icon }}</span>
-    {{- $title -}}
+    <span class="codeblock-label">{{ $title }}</span>
+    <button type="button" class="codeblock-copy" aria-label="{{ i18n "code.copy" }}" title="{{ i18n "code.copy" }}">
+      <span class="codeblock-copy-icon">{{ partial "icon.html" "ri/file-copy-line" }}</span>
+      <span class="codeblock-copied-icon">{{ partial "icon.html" "ri/check-line" }}</span>
+    </button>
   </div>
   {{- $code := transform.Highlight .Inner $lang .Options -}}
   {{- if $shell -}}
