@@ -211,4 +211,11 @@ WebDAV does not preserve all filesystem metadata, such as Unix permissions and
 symlinks. Only file content, directory structure, modification times and basic
 attributes are captured. Empty directories are preserved.
 
+A symlink in a snapshot is skipped on restore rather than recreated.
+
+WebDAV cannot tell a symlink on the server from a real directory. If the
+destination already contains one, a restore can write through it, outside the
+destination root, depending on how the server handles it. Only restore into a
+destination whose symlinks you control.
+
 When using `dav://`, the `insecure=true` option must be explicitly set.
