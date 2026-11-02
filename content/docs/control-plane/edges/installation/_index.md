@@ -12,7 +12,11 @@ Choose the deployment method that best fits the environment where the edge will
 run. When the edge needs tools required by integrations such as MySQL or
 PostgreSQL, build a custom image that includes them.
 
-Edge enrollment must be enabled for the organization the edge joins. See
-[edge enrollment](../enrollment).
+An edge enrolls into an edge pool with the pool's enrollment key, and joins the
+organization that owns the pool. See [edge enrollment](../enrollment) for how to
+create a pool and generate its key.
+
+Edges enrolled before pools were introduced, without a pool, have been placed in
+a pool named `default`, which is the organization's default pool.
 
 {{% children description="true" %}}
