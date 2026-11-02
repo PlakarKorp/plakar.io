@@ -235,3 +235,6 @@ and ownership are not restored.
 
 Device nodes, sockets and FIFOs have no SMB representation. Restoring a snapshot
 that contains them reports an error for each such entry.
+
+A symlink that already exists in the destination is followed by the server, so
+only restore into a destination whose symlinks you control.
