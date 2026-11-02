@@ -49,7 +49,6 @@
                 <th class="text-left px-4 py-3 font-bold">Provider</th>
                 <th class="text-left px-4 py-3 font-bold">Format</th>
                 <th class="text-left px-4 py-3 font-bold">SHA256</th>
-                <th class="text-left px-4 py-3 font-bold">MD5</th>
                 <th class="text-left px-4 py-3 font-bold">Download</th>
                 <th class="text-left px-4 py-3 font-bold">Docs</th>
               </tr>
@@ -64,18 +63,6 @@
                       <span class="inline-flex items-center gap-2">
                         <code class="text-xs text-neutral-800">{{ substr .sha256 0 12 }}…</code>
                         <button class="sha-copy-btn inline-block w-16 text-center text-xs px-2 py-1 border border-neutral-300 rounded hover:bg-neutral-100 transition-colors" data-sha="{{ .sha256 }}">
-                          Copy
-                        </button>
-                      </span>
-                    {{ else }}
-                      <span class="text-neutral-400">—</span>
-                    {{ end }}
-                  </td>
-                  <td class="px-4 py-3">
-                    {{ if .md5 }}
-                      <span class="inline-flex items-center gap-2">
-                        <code class="text-xs text-neutral-800">{{ substr .md5 0 12 }}…</code>
-                        <button class="sha-copy-btn inline-block w-16 text-center text-xs px-2 py-1 border border-neutral-300 rounded hover:bg-neutral-100 transition-colors" data-sha="{{ .md5 }}">
                           Copy
                         </button>
                       </span>
