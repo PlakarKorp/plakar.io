@@ -116,10 +116,9 @@ connectors** enabled creates a source app for every resource in its scope, using
 the configuration it holds.
 
 Create a bundle on the inventory, with **Source** as its connector type, the
-integration and protocol of the resources to protect, and a scope that selects
-them, for example the `Object Storage` class. The bundle must supply every field
-the integration requires, such as the credentials, otherwise no app is created.
-See
+integration and protocol of the resources to protect, and the environment they
+belong to, or **Any environment**. The bundle must supply every field the
+integration requires, such as the credentials, otherwise no app is created. See
 [auto-creating apps](../../inventories/configuration-bundles#auto-creating-apps).
 
 Each source app takes its **Environment** and **Data Class** from the tags of
