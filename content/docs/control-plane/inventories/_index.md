@@ -36,6 +36,16 @@ resources of the account, classified by type. The provider is the source of
 truth. Resources cannot be created or deleted by hand in a managed inventory,
 and changes made in the provider appear at the next synchronization.
 
+### Inventory Synchronization
+
+Plakar Control Plane synchronizes a managed inventory in the background, listing
+the resources of the provider again on a fixed period. The period is set per
+inventory, in the **Synchronization** section of its settings, and defaults to
+900 seconds, or 15 minutes. The minimum is 30 seconds. A shorter period picks up
+new resources sooner, at the cost of more calls to the provider API. A
+synchronization can also be started at any time with **Sync now**, without
+waiting for the next period.
+
 ## Self-managed inventories
 
 A self-managed inventory holds resources that are added by hand, one at a time
