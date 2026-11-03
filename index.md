@@ -167,6 +167,7 @@
 
 - [Plakar](https://www.plakar.io/changelog/plakar/index.md)
 - [Plakar Operator](https://www.plakar.io/changelog/plakar-operator/index.md)
+- [SMB](https://www.plakar.io/changelog/smb/index.md)
 - [OpenShift](https://www.plakar.io/changelog/openshift/index.md)
 - [SQLite](https://www.plakar.io/changelog/sqlite/index.md)
 - [Azure Blob Storage](https://www.plakar.io/changelog/azblob/index.md)

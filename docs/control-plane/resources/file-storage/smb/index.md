@@ -7,6 +7,12 @@ servers, NAS appliances, and Samba hosts. Plakar speaks SMB2/3 directly to the
 server, mounts the configured share, and reads or writes files under the
 configured root path. Authentication uses NTLMv2.
 
+## Prerequisites
+
+The SMB server must support message signing. Since version 1.1.4 of the
+integration, Plakar refuses to connect to a server without it, so that backup
+and restore traffic cannot be altered in transit.
+
 ## Inventory Management
 
 Currently no [managed inventory](../../inventories#managed-inventories) has the
@@ -84,4 +90,17 @@ app.
   precedence over the share named in the location.
 - **Username**: SMB username. Cannot be used if the location already includes
   `user@host`.
+
+## Limitations
+
+Authentication is NTLMv2 only. Kerberos is not supported.
+
+SMB has no Unix ownership or permissions. A restore recreates files, directories
+and symlinks, with their modification times where the server allows it, but not
+their owner, group or permission bits. Device nodes, sockets and FIFOs cannot be
+restored to an SMB share.
+
+A restore refuses any entry that would be written outside the destination root.
+A symlink that already exists in the destination is still followed by the
+server, though, so only restore into a destination whose symlinks you control.
 

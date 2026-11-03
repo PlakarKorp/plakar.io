@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-09-21T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-10-28T15:05:41+03:00">
+    <meta property="article:modified_time" content="2026-11-03T10:32:56+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -244,12 +244,12 @@
     "dateCreated": "2026-09-21T00:00:00\u002b00:00",
     "datePublished": "2026-09-21T00:00:00\u002b00:00",
     
-    "dateModified": "2026-10-28T15:05:41\u002b03:00",
+    "dateModified": "2026-11-03T10:32:56\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/community/main/integrations/smb/",
-    "wordCount":  713 
+    "wordCount":  756 
   }]
   </script>
 
@@ -4853,14 +4853,12 @@
     </button>
   
 </h1>
-<p>SMB (Server Message Block), also known as CIFS, is the file-sharing protocol
-used by Windows networks and by NAS appliances and Samba servers on Unix. It is
-the standard way to share folders, called shares, across a LAN.</p>
-<p>The <strong>SMB integration</strong> walks a share over SMB2/3 and captures its files,
-directories, and symlinks into a Kloset store with encryption and deduplication.
-Plakar speaks the protocol directly over TCP, so no kernel mount, no system
-<code>smbclient</code>, and no root privileges are required. Authentication uses NTLMv2.</p>
-<p>The SMB integration provides two connectors:</p>
+<p>The SMB integration backs up the files, directories and symlinks of an SMB share
+into a Kloset store and restores snapshots back to an SMB share. SMB (Server
+Message Block), also known as CIFS, is the file-sharing protocol used by Windows
+networks and by NAS appliances and Samba servers on Unix. It is the standard way
+to share folders, called shares, across a LAN.</p>
+<p>The integration includes two connectors:</p>
 <table>
   <thead>
       <tr>
@@ -4958,6 +4956,52 @@ customization is required.</p>
 <a href="../../guides/managing-packages/" >managing packages guide</a>.</p>
 
 
+<h2 id="how-the-integration-accesses-a-share" class="group pr-8">How the integration accesses a share
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-the-integration-accesses-a-share"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>Plakar speaks SMB2/3 directly over TCP. No kernel mount, no system <code>smbclient</code>
+and no root privileges are required on the host running Plakar.</p>
+<p>Authentication uses NTLMv2. Credentials can be supplied in the URL userinfo or
+with the <code>username</code>, <code>password</code> and <code>domain</code> options. Anonymous access uses the
+<code>Guest</code> account.</p>
+<p>The SMB server must support message signing. Since version 1.1.4 of the
+integration, Plakar refuses to connect to a server without it, so that backup
+and restore traffic cannot be altered in transit.</p>
+
+
+<h2 id="addressing-a-share" class="group pr-8">Addressing a share
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="addressing-a-share"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>An SMB location identifies the server and the share to mount:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">smb://<span class="o">[</span>&lt;user&gt;<span class="o">[</span>:&lt;password&gt;<span class="o">]</span>@<span class="o">]</span>&lt;host&gt;<span class="o">[</span>:&lt;port&gt;<span class="o">]</span>/&lt;share&gt;<span class="o">[</span>/&lt;subpath&gt;<span class="o">]</span></span></span></code></pre></div></div>
+<p>The first path segment is the share to mount. Anything deeper narrows the walk
+to a subtree of that share, which the <code>root</code> option also does.</p>
+
+
 <h2 id="configuration" class="group pr-8">Configuration
     <button
       type="button"
@@ -4973,13 +5017,95 @@ customization is required.</p>
     </button>
   
 </h2>
+<p>The source connector walks the share, or a subtree of it, and stores the files,
+directories and symlinks it finds in a Kloset store with encryption and
+deduplication. Each entry is captured with its size and modification time.</p>
+<p>The destination connector restores a snapshot back to an SMB share, recreating
+the directory hierarchy, file contents and symlinks.</p>
 
 
-<h3 id="addressing-a-share" class="group pr-8">Addressing a share
+<h4 id="backup-flow" class="group pr-8">Backup flow
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="addressing-a-share"
+      data-anchor="backup-flow"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h4>
+<!-- prettier-ignore-start -->
+<pre class="not-prose mermaid">
+flowchart LR
+
+subgraph Source["SMB Share"]
+  FS["Files"]
+end
+
+subgraph Plakar["Plakar"]
+  Connector["Walk share via<br/>SMB2/3"]
+  Transform["Encrypt & deduplicate"]
+  Connector --> Transform
+end
+
+Source --> Connector
+
+Store["Kloset Store"]
+Transform --> Store
+</pre>
+
+<!-- prettier-ignore-end -->
+
+
+<h4 id="restore-flow" class="group pr-8">Restore flow
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="restore-flow"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h4>
+<!-- prettier-ignore-start -->
+<pre class="not-prose mermaid">
+flowchart LR
+
+Store["Kloset Store"]
+
+subgraph Plakar["Plakar"]
+  Transform["Decrypt & reconstruct"]
+  Connector["Write files via<br/>SMB2/3"]
+  Transform --> Connector
+end
+
+Store --> Transform
+
+subgraph Destination["SMB Share"]
+  FS["Files"]
+end
+
+Connector --> Destination
+</pre>
+
+<!-- prettier-ignore-end -->
+
+
+<h3 id="shared-configuration" class="group pr-8">Shared configuration
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="shared-configuration"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -4990,29 +5116,7 @@ customization is required.</p>
     </button>
   
 </h3>
-<p>An SMB location identifies the server and the share to mount:</p>
-<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">smb://<span class="o">[</span>&lt;user&gt;<span class="o">[</span>:&lt;password&gt;<span class="o">]</span>@<span class="o">]</span>&lt;host&gt;<span class="o">[</span>:&lt;port&gt;<span class="o">]</span>/&lt;share&gt;<span class="o">[</span>/&lt;subpath&gt;<span class="o">]</span></span></span></code></pre></div></div>
-<p>The first path segment is the share to mount. Anything deeper narrows the walk
-to a subtree of that share, which the <code>root</code> option also does. Credentials can
-be supplied in the URL userinfo or as separate options.</p>
-
-
-<h3 id="configuration-options" class="group pr-8">Configuration options
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="configuration-options"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
-<p>These options apply to both connectors.</p>
+<p>The following options apply to both source and destination connectors.</p>
 <table>
   <thead>
       <tr>
@@ -5025,7 +5129,7 @@ be supplied in the URL userinfo or as separate options.</p>
       <tr>
           <td><code>location</code></td>
           <td>Yes</td>
-          <td>SMB target. See <a href="/docs/community/main/integrations/smb/#addressing-a-share" >Addressing a share</a> above.</td>
+          <td>SMB target. See <a href="/docs/community/main/integrations/smb/#addressing-a-share" >Addressing a share</a>.</td>
       </tr>
       <tr>
           <td><code>root</code></td>
@@ -5056,11 +5160,11 @@ be supplied in the URL userinfo or as separate options.</p>
 </table>
 
 
-<h2 id="source-connector" class="group pr-8">Source connector
+<h3 id="example" class="group pr-8">Example
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="source-connector"
+      data-anchor="example"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -5070,93 +5174,27 @@ be supplied in the URL userinfo or as separate options.</p>
 </span></span>
     </button>
   
-</h2>
-<p>The source connector walks the share, or a subtree of it, and stores the files,
-directories, and symlinks it finds in a Kloset store with encryption and
-deduplication. Each entry is captured with its size and modification time.</p>
-<!-- prettier-ignore-start -->
-<pre class="not-prose mermaid">
-flowchart LR
-
-subgraph Source["SMB Share"]
-  FS["Files"]
-end
-
-subgraph Plakar["Plakar"]
-  Connector["Walk share via<br/>SMB2/3"]
-  Transform["Encrypt & deduplicate"]
-  Connector --> Transform
-end
-
-Source --> Connector
-
-Store["Kloset Store"]
-Transform --> Store
-</pre>
-
-<!-- prettier-ignore-end -->
-<p>Register the source and run a backup:</p>
+</h3>
+<p>Back up a share:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add my-smb-share <span class="se">\
 </span></span></span><span class="line"><span class="cl">  <span class="nv">location</span><span class="o">=</span>smb://nas.example.com/documents <span class="se">\
 </span></span></span><span class="line"><span class="cl">  <span class="nv">username</span><span class="o">=</span>&lt;YOUR_USERNAME&gt; <span class="se">\
 </span></span></span><span class="line"><span class="cl">  <span class="nv">password</span><span class="o">=</span>&lt;YOUR_PASSWORD&gt;
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">$ plakar at /var/backups backup <span class="s2">&#34;@my-smb-share&#34;</span></span></span></code></pre></div></div>
-<p>To back up a subtree rather than the whole share, extend the location with the
+<p>Back up a subtree rather than the whole share by extending the location with the
 path inside the share:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add my-smb-projects <span class="se">\
 </span></span></span><span class="line"><span class="cl">  <span class="nv">location</span><span class="o">=</span>smb://nas.example.com/documents/projects <span class="se">\
 </span></span></span><span class="line"><span class="cl">  <span class="nv">username</span><span class="o">=</span>&lt;YOUR_USERNAME&gt; <span class="se">\
 </span></span></span><span class="line"><span class="cl">  <span class="nv">password</span><span class="o">=</span>&lt;YOUR_PASSWORD&gt;</span></span></code></pre></div></div>
-<p>A location can also be passed directly to <code>backup</code>, with credentials in the URL
-or as options:</p>
+<p>Pass a location directly to <code>backup</code>, with credentials in the URL or as options:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar at /var/backups backup smb://alice:secret@nas.example.com/documents
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">$ plakar at /var/backups backup <span class="se">\
 </span></span></span><span class="line"><span class="cl">  -o <span class="nv">username</span><span class="o">=</span>alice -o <span class="nv">password</span><span class="o">=</span>secret <span class="se">\
 </span></span></span><span class="line"><span class="cl">  smb://nas.example.com/documents/projects</span></span></code></pre></div></div>
-
-
-<h2 id="destination-connector" class="group pr-8">Destination connector
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="destination-connector"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h2>
-<p>Restores a snapshot from a Kloset store back to an SMB share, recreating the
-directory hierarchy, file contents, and symlinks.</p>
-<!-- prettier-ignore-start -->
-<pre class="not-prose mermaid">
-flowchart LR
-
-Store["Kloset Store"]
-
-subgraph Plakar["Plakar"]
-  Transform["Decrypt & reconstruct"]
-  Connector["Write files via<br/>SMB2/3"]
-  Transform --> Connector
-end
-
-Store --> Transform
-
-subgraph Destination["SMB Share"]
-  FS["Files"]
-end
-
-Connector --> Destination
-</pre>
-
-<!-- prettier-ignore-end -->
-<p>Register the destination and restore a snapshot:</p>
+<p>Restore a snapshot to a share:</p>
 <div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar destination add my-smb-restore <span class="se">\
 </span></span></span><span class="line"><span class="cl">  <span class="nv">location</span><span class="o">=</span>smb://nas.example.com/restore <span class="se">\
 </span></span></span><span class="line"><span class="cl">  <span class="nv">username</span><span class="o">=</span>&lt;YOUR_USERNAME&gt; <span class="se">\
@@ -5165,11 +5203,11 @@ Connector --> Destination
 </span></span><span class="line"><span class="cl">$ plakar at /var/backups restore -to <span class="s2">&#34;@my-smb-restore&#34;</span> &lt;snapshot_id&gt;</span></span></code></pre></div></div>
 
 
-<h2 id="limitations" class="group pr-8">Limitations
+<h2 id="limitations-and-scope" class="group pr-8">Limitations and scope
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="limitations"
+      data-anchor="limitations-and-scope"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -5180,18 +5218,14 @@ Connector --> Destination
     </button>
   
 </h2>
-<p><strong>Authentication</strong></p>
-<p>Authentication is NTLMv2. Kerberos is not supported.</p>
-<p><strong>File metadata</strong></p>
-<p>SMB has no native Unix ownership or permission model. Backed-up files carry a
-mode synthesized from their DOS attributes, meaning the directory and read-only
-flags. User and group IDs, inode numbers, and link counts are not available.</p>
-<p>On restore, file contents, directories, and symlinks are recreated, and
-modification times are preserved on a best-effort basis. Unix permission bits
-and ownership are not restored.</p>
-<p><strong>Unsupported file types</strong></p>
-<p>Device nodes, sockets, and FIFOs have no SMB representation. Restoring a
-snapshot that contains them reports an error for each such entry.</p>
+<p>Authentication is NTLMv2 only. Kerberos is not supported.</p>
+<p>SMB has no Unix ownership or permissions. A restore recreates files, directories
+and symlinks, with their modification times where the server allows it, but not
+their owner, group or permission bits. Device nodes, sockets and FIFOs cannot be
+restored to an SMB share.</p>
+<p>A restore refuses any entry that would be written outside the destination root.
+A symlink that already exists in the destination is still followed by the
+server, though, so only restore into a destination whose symlinks you control.</p>
 
       </article>
       <footer class="mt-12 flex flex-col gap-6 docs-font border-t border-neutral-200 pt-6">
@@ -5306,7 +5340,7 @@ snapshot that contains them reports an error for each such entry.</p>
   
   <div class="flex items-center justify-between text-xs text-neutral-400">
     
-      <span>Last updated: October 28, 2026</span>
+      <span>Last updated: November 3, 2026</span>
     
     
       <a href="https://github.com/PlakarKorp/plakar.io/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">
@@ -5326,7 +5360,7 @@ snapshot that contains them reports an error for each such entry.</p>
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#installation">Installation</a></li><li><a href="#configuration">Configuration</a><ul><li><a href="#addressing-a-share">Addressing a share</a></li><li><a href="#configuration-options">Configuration options</a></li></ul></li><li><a href="#source-connector">Source connector</a></li><li><a href="#destination-connector">Destination connector</a></li><li><a href="#limitations">Limitations</a></li></ul>
+      <ul><li><a href="#installation">Installation</a></li><li><a href="#how-the-integration-accesses-a-share">How the integration accesses a share</a></li><li><a href="#addressing-a-share">Addressing a share</a></li><li><a href="#configuration">Configuration</a><ul><ul><li><a href="#backup-flow">Backup flow</a></li><li><a href="#restore-flow">Restore flow</a></li></ul></li><li><a href="#shared-configuration">Shared configuration</a></li><li><a href="#example">Example</a></li></ul></li><li><a href="#limitations-and-scope">Limitations and scope</a></li></ul>
     </div>
 
     

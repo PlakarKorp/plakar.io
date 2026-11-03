@@ -1,16 +1,13 @@
 
 # SMB / CIFS
 
-SMB (Server Message Block), also known as CIFS, is the file-sharing protocol
-used by Windows networks and by NAS appliances and Samba servers on Unix. It is
-the standard way to share folders, called shares, across a LAN.
+The SMB integration backs up the files, directories and symlinks of an SMB share
+into a Kloset store and restores snapshots back to an SMB share. SMB (Server
+Message Block), also known as CIFS, is the file-sharing protocol used by Windows
+networks and by NAS appliances and Samba servers on Unix. It is the standard way
+to share folders, called shares, across a LAN.
 
-The **SMB integration** walks a share over SMB2/3 and captures its files,
-directories, and symlinks into a Kloset store with encryption and deduplication.
-Plakar speaks the protocol directly over TCP, so no kernel mount, no system
-`smbclient`, and no root privileges are required. Authentication uses NTLMv2.
-
-The SMB integration provides two connectors:
+The integration includes two connectors:
 
 | Connector type            | Description                                                 |
 | ------------------------- | ----------------------------------------------------------- |
@@ -85,9 +82,20 @@ $ plakar pkg show
 To list, upgrade, or remove the package, see
 [managing packages guide](../../guides/managing-packages/).
 
-## Configuration
+## How the integration accesses a share
 
-### Addressing a share
+Plakar speaks SMB2/3 directly over TCP. No kernel mount, no system `smbclient`
+and no root privileges are required on the host running Plakar.
+
+Authentication uses NTLMv2. Credentials can be supplied in the URL userinfo or
+with the `username`, `password` and `domain` options. Anonymous access uses the
+`Guest` account.
+
+The SMB server must support message signing. Since version 1.1.4 of the
+integration, Plakar refuses to connect to a server without it, so that backup
+and restore traffic cannot be altered in transit.
+
+## Addressing a share
 
 An SMB location identifies the server and the share to mount:
 
@@ -96,27 +104,18 @@ smb://[<user>[:<password>]@]<host>[:<port>]/<share>[/<subpath>]
 ```
 
 The first path segment is the share to mount. Anything deeper narrows the walk
-to a subtree of that share, which the `root` option also does. Credentials can
-be supplied in the URL userinfo or as separate options.
+to a subtree of that share, which the `root` option also does.
 
-### Configuration options
-
-These options apply to both connectors.
-
-| Option     | Required | Description                                                                      |
-| ---------- | -------- | -------------------------------------------------------------------------------- |
-| `location` | Yes      | SMB target. See [Addressing a share](#addressing-a-share) above.                 |
-| `root`     | No       | Path to walk or restore to, relative to the share. Defaults to the whole share.  |
-| `port`     | No       | SMB TCP port. Defaults to `445`.                                                 |
-| `username` | No       | NTLM user name, if not given in the URL userinfo. Anonymous access uses `Guest`. |
-| `password` | No       | NTLM password, if not given in the URL userinfo.                                 |
-| `domain`   | No       | NTLM authentication domain or workgroup.                                         |
-
-## Source connector
+## Configuration
 
 The source connector walks the share, or a subtree of it, and stores the files,
-directories, and symlinks it finds in a Kloset store with encryption and
+directories and symlinks it finds in a Kloset store with encryption and
 deduplication. Each entry is captured with its size and modification time.
+
+The destination connector restores a snapshot back to an SMB share, recreating
+the directory hierarchy, file contents and symlinks.
+
+#### Backup flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -139,42 +138,7 @@ Transform --> Store
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-Register the source and run a backup:
-
-```bash
-$ plakar source add my-smb-share \
-  location=smb://nas.example.com/documents \
-  username=<YOUR_USERNAME> \
-  password=<YOUR_PASSWORD>
-
-$ plakar at /var/backups backup "@my-smb-share"
-```
-
-To back up a subtree rather than the whole share, extend the location with the
-path inside the share:
-
-```bash
-$ plakar source add my-smb-projects \
-  location=smb://nas.example.com/documents/projects \
-  username=<YOUR_USERNAME> \
-  password=<YOUR_PASSWORD>
-```
-
-A location can also be passed directly to `backup`, with credentials in the URL
-or as options:
-
-```bash
-$ plakar at /var/backups backup smb://alice:secret@nas.example.com/documents
-
-$ plakar at /var/backups backup \
-  -o username=alice -o password=secret \
-  smb://nas.example.com/documents/projects
-```
-
-## Destination connector
-
-Restores a snapshot from a Kloset store back to an SMB share, recreating the
-directory hierarchy, file contents, and symlinks.
+#### Restore flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -198,7 +162,53 @@ Connector --> Destination
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-Register the destination and restore a snapshot:
+### Shared configuration
+
+The following options apply to both source and destination connectors.
+
+| Option     | Required | Description                                                                      |
+| ---------- | -------- | -------------------------------------------------------------------------------- |
+| `location` | Yes      | SMB target. See [Addressing a share](#addressing-a-share).                       |
+| `root`     | No       | Path to walk or restore to, relative to the share. Defaults to the whole share.  |
+| `port`     | No       | SMB TCP port. Defaults to `445`.                                                 |
+| `username` | No       | NTLM user name, if not given in the URL userinfo. Anonymous access uses `Guest`. |
+| `password` | No       | NTLM password, if not given in the URL userinfo.                                 |
+| `domain`   | No       | NTLM authentication domain or workgroup.                                         |
+
+### Example
+
+Back up a share:
+
+```bash
+$ plakar source add my-smb-share \
+  location=smb://nas.example.com/documents \
+  username=<YOUR_USERNAME> \
+  password=<YOUR_PASSWORD>
+
+$ plakar at /var/backups backup "@my-smb-share"
+```
+
+Back up a subtree rather than the whole share by extending the location with the
+path inside the share:
+
+```bash
+$ plakar source add my-smb-projects \
+  location=smb://nas.example.com/documents/projects \
+  username=<YOUR_USERNAME> \
+  password=<YOUR_PASSWORD>
+```
+
+Pass a location directly to `backup`, with credentials in the URL or as options:
+
+```bash
+$ plakar at /var/backups backup smb://alice:secret@nas.example.com/documents
+
+$ plakar at /var/backups backup \
+  -o username=alice -o password=secret \
+  smb://nas.example.com/documents/projects
+```
+
+Restore a snapshot to a share:
 
 ```bash
 $ plakar destination add my-smb-restore \
@@ -209,24 +219,16 @@ $ plakar destination add my-smb-restore \
 $ plakar at /var/backups restore -to "@my-smb-restore" <snapshot_id>
 ```
 
-## Limitations
+## Limitations and scope
 
-**Authentication**
+Authentication is NTLMv2 only. Kerberos is not supported.
 
-Authentication is NTLMv2. Kerberos is not supported.
+SMB has no Unix ownership or permissions. A restore recreates files, directories
+and symlinks, with their modification times where the server allows it, but not
+their owner, group or permission bits. Device nodes, sockets and FIFOs cannot be
+restored to an SMB share.
 
-**File metadata**
-
-SMB has no native Unix ownership or permission model. Backed-up files carry a
-mode synthesized from their DOS attributes, meaning the directory and read-only
-flags. User and group IDs, inode numbers, and link counts are not available.
-
-On restore, file contents, directories, and symlinks are recreated, and
-modification times are preserved on a best-effort basis. Unix permission bits
-and ownership are not restored.
-
-**Unsupported file types**
-
-Device nodes, sockets, and FIFOs have no SMB representation. Restoring a
-snapshot that contains them reports an error for each such entry.
+A restore refuses any entry that would be written outside the destination root.
+A symlink that already exists in the destination is still followed by the
+server, though, so only restore into a destination whose symlinks you control.
 
