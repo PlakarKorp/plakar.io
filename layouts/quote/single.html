@@ -1,0 +1,134 @@
+{{ define "main" }}
+
+{{ $pricing := site.Data.pricing }}
+
+<div data-pagefind-ignore="all">
+
+<!-- Hero -->
+<section class="section-light-2 grid-background pt-54">
+  <div class="bg-gradient-section-light-1 pb-16">
+    <div class="max-w-350 mx-auto px-4 text-center flex flex-col gap-6">
+      <h1 class="text-4xl lg:text-6xl font-medium">
+        Price <span class="text-primary-500">simulator</span>
+      </h1>
+      <p class="text-neutral-600 text-lg lg:text-xl">
+        Estimate your monthly Plakar subscription from the amount of data you protect.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Simulator -->
+<section class="section-light-1 py-14 lg:py-20">
+  <div class="max-w-350 mx-auto px-4">
+    <div id="price-simulator" class="flex flex-col lg:flex-row gap-6 lg:px-18 items-start"
+      data-pricing="{{ $pricing | jsonify }}">
+
+      <!-- Inputs -->
+      <div class="w-full lg:w-3/5 flex flex-col gap-6">
+
+        <div class="bg-white border border-neutral-200 rounded-2xl shadow-sm p-6 lg:p-8 flex flex-col gap-5">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 text-primary-500 shrink-0">{{ partial "icon.html" "ri/database-2-line" }}</span>
+            <h2 class="text-xl lg:text-2xl font-semibold text-neutral-900">Data protected</h2>
+          </div>
+          <p class="text-sm text-neutral-500">
+            Total amount of source data you back up, before deduplication. Unlimited copies.
+          </p>
+          <div class="flex items-center gap-4">
+            <input id="ps-tib-range" type="range" min="1" max="2000" step="1" value="50"
+              aria-label="Data protected in TiB"
+              class="flex-1 accent-primary-500 cursor-pointer">
+            <div class="flex items-center border border-neutral-300 rounded-lg focus-within:ring-2 focus-within:ring-primary-400">
+              <input id="ps-tib" type="number" min="1" step="1" value="50" inputmode="numeric"
+                aria-label="Data protected in TiB"
+                class="w-24 p-3 border-0 text-right font-semibold text-neutral-900 bg-transparent focus:outline-none focus:ring-0">
+              <span class="pr-3 text-neutral-500 text-sm">TiB</span>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="text-left text-neutral-500 border-b border-neutral-200">
+                  <th class="py-2 font-medium">Volume tier</th>
+                  <th class="py-2 font-medium text-right">Price per TiB / month</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{ range $i, $t := $pricing.tiers }}
+                <tr data-tier="{{ $i }}" class="ps-tier border-b border-neutral-100 text-neutral-700 transition-colors">
+                  <td class="py-2 px-2">{{ $t.label }}</td>
+                  <td class="py-2 px-2 text-right tabular-nums">{{ lang.FormatCurrency 2 "EUR" $t.price }}</td>
+                </tr>
+                {{ end }}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="bg-white border border-neutral-200 rounded-2xl shadow-sm p-6 lg:p-8 flex flex-col gap-5">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 text-primary-500 shrink-0">{{ partial "icon.html" "ri/price-tag-3-line" }}</span>
+            <h2 class="text-xl lg:text-2xl font-semibold text-neutral-900">Support &amp; services</h2>
+          </div>
+          <div class="flex flex-col gap-3">
+            {{ range $pricing.options }}
+            <label class="flex items-start gap-4 p-4 border border-neutral-200 rounded-xl cursor-pointer hover:border-primary-400 has-checked:border-primary-500 has-checked:bg-primary-50 transition-colors">
+              <input type="checkbox" data-option="{{ .id }}" class="mt-1 w-5 h-5 accent-primary-500 shrink-0">
+              <span class="flex-1 flex flex-col gap-1">
+                <span class="font-medium text-neutral-900">{{ .label }}</span>
+                {{ with .description }}<span class="text-sm text-neutral-500">{{ . }}</span>{{ end }}
+              </span>
+              <span class="text-sm text-neutral-700 text-right whitespace-nowrap tabular-nums">
+                {{ lang.FormatCurrency 0 "EUR" .price }}<br>
+                <span class="text-neutral-500">{{ if eq .billing "monthly" }}per month{{ else }}one-time{{ end }}</span>
+              </span>
+            </label>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Estimate -->
+      <aside class="w-full lg:w-2/5 lg:sticky lg:top-28 bg-white border border-neutral-200 rounded-2xl shadow-sm overflow-hidden">
+        <div class="bg-primary-600 px-6 py-5">
+          <h2 class="text-white font-semibold text-xl">Your estimate</h2>
+        </div>
+        <div class="px-6 py-6 flex flex-col gap-4">
+          <dl class="flex flex-col gap-3 text-sm">
+            <div class="flex justify-between gap-4">
+              <dt class="text-neutral-600">License: <span id="ps-license-detail"></span></dt>
+              <dd id="ps-license" class="font-medium text-neutral-900 tabular-nums"></dd>
+            </div>
+            <div id="ps-lines" class="flex flex-col gap-3"></div>
+          </dl>
+
+          <div class="border-t border-neutral-200 pt-4 flex justify-between items-baseline gap-4">
+            <span class="font-semibold text-neutral-900">Total per month</span>
+            <span id="ps-monthly" class="text-3xl font-semibold text-primary-600 tabular-nums"></span>
+          </div>
+          <div id="ps-onetime-row" class="hidden justify-between items-baseline gap-4 text-sm">
+            <span class="text-neutral-600">Plus one-time fees</span>
+            <span id="ps-onetime" class="font-medium text-neutral-900 tabular-nums"></span>
+          </div>
+
+          <a id="ps-cta" href="/contact/#email-contact"
+            class="mt-2 flex items-center justify-center gap-2 w-full py-3 px-4 bg-primary-500 hover:bg-primary-600 text-white rounded-lg font-medium transition">
+            Talk to sales
+            <span class="w-5 h-5">{{ partial "icon.html" "ri/arrow-right-line" }}</span>
+          </a>
+          <p class="flex items-start gap-2 text-xs text-neutral-500">
+            <span class="w-4 h-4 shrink-0 mt-0.5">{{ partial "icon.html" "ri/information-line" }}</span>
+            This is an estimate. Your final quote is confirmed by our sales team.
+          </p>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+</div>
+
+{{ end }}
