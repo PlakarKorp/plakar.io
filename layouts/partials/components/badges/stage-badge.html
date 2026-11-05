@@ -1,0 +1,16 @@
+{{/* Release stage of an integration or a changelog release. Call with
+   (dict "stage" "stable"); renders nothing without a stage. */}}
+{{- $colors := dict
+  "stable"      "text-ui-green-800 bg-ui-green-50"
+  "rc"          "text-ui-blue-800 bg-ui-blue-50"
+  "beta"        "text-ui-amber-800 bg-ui-amber-50"
+  "alpha"       "text-ui-orange-800 bg-ui-orange-50"
+  "devel"       "text-ui-neutral-600 bg-ui-neutral-100"
+  "coming soon" "text-ui-neutral-600 bg-ui-neutral-100"
+  "deprecated"  "text-ui-red-800 bg-ui-red-50"
+-}}
+{{- with .stage -}}
+  <span class="inline-flex items-center gap-1.5 text-xs font-semibold uppercase px-2.5 py-1 rounded-full shrink-0 {{ index $colors (lower .) | default "text-ui-neutral-600 bg-ui-neutral-100" }}">
+    <span class="w-1.5 h-1.5 rounded-full bg-current shrink-0"></span>{{ . }}
+  </span>
+{{- end -}}
