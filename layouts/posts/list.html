@@ -10,7 +10,7 @@
       <h1 class="text-4xl lg:text-6xl font-medium">
         Plakar Blog
       </h1>
-      <p class="text-lg lg:text-xl text-neutral-600">
+      <p class="text-lg lg:text-xl text-ui-neutral-600">
         Read about data protection and Plakar latest development update.
       </p>
     </div>
@@ -35,11 +35,11 @@
 
       {{ if $image }}
       <!-- Image -->
-      <div class="w-full max-w-lg xl:max-w-none xl:w-1/2 shrink-0 rounded-lg bg-neutral-50 border border-neutral-300">
-        <div class="w-full h-7 px-4 flex items-center gap-2 border-b border-neutral-200">
-          <div class="w-2 h-2 bg-neutral-300 rounded-full"></div>
-          <div class="w-2 h-2 bg-neutral-300 rounded-full"></div>
-          <div class="w-2 h-2 bg-neutral-300 rounded-full"></div>
+      <div class="w-full max-w-lg xl:max-w-none xl:w-1/2 shrink-0 rounded-lg bg-ui-neutral-50 border border-ui-neutral-300">
+        <div class="w-full h-7 px-4 flex items-center gap-2 border-b border-ui-neutral-200">
+          <div class="w-2 h-2 bg-ui-neutral-300 rounded-full"></div>
+          <div class="w-2 h-2 bg-ui-neutral-300 rounded-full"></div>
+          <div class="w-2 h-2 bg-ui-neutral-300 rounded-full"></div>
         </div>
         <div class="p-2 xl:p-6">
           <img src="{{ $image.RelPermalink }}" alt="Article preview" class="w-full h-auto object-cover rounded-sm">
@@ -48,15 +48,15 @@
       {{ end }}
 
       <!-- Content -->
-      <div class="w-full max-w-lg xl:max-w-none bg-neutral-100 flex flex-1 flex-col gap-4 items-start justify-center px-4 xl:px-8 py-4 rounded-lg">
+      <div class="w-full max-w-lg xl:max-w-none bg-ui-neutral-100 flex flex-1 flex-col gap-4 items-start justify-center px-4 xl:px-8 py-4 rounded-lg">
 
         <!-- Meta -->
-        <div class="flex flex-wrap gap-2 text-xs font-medium text-neutral-500">
+        <div class="flex flex-wrap gap-2 text-xs font-medium text-ui-neutral-500">
           {{ range .GetTerms "authors" }}
             {{ $authorKey := . | urlize | strings.TrimPrefix "/authors/" }}
             {{ $authorData := index hugo.Data.authors $authorKey }}
             {{ with $authorData }}
-              <span class="text-neutral-900">{{ .name }}</span>
+              <span class="text-ui-neutral-900">{{ .name }}</span>
               <span>•</span>
             {{ end }}
           {{ end }}
@@ -71,12 +71,12 @@
 
         <!-- Title + summary -->
         <div class="flex flex-col gap-4">
-          <h2 class="text-2xl lg:text-4xl font-medium text-neutral-900 leading-tight">
-            <a href="{{ .RelPermalink }}" class="hover:text-primary-500 transition-colors">
+          <h2 class="text-2xl lg:text-4xl font-medium text-ui-neutral-900 leading-tight">
+            <a href="{{ .RelPermalink }}" class="hover:text-ui-primary-500 transition-colors">
               {{ .Title | emojify }}
             </a>
           </h2>
-          <p class="text-sm lg:text-lg text-neutral-600 leading-relaxed">
+          <p class="text-sm lg:text-lg text-ui-neutral-600 leading-relaxed">
             {{ .Summary }}
           </p>
         </div>
@@ -121,26 +121,26 @@
 <section class="section-light-2 px-4 pb-6 pt-10">
   <div class="max-w-350 mx-auto flex justify-center">
     <div class="relative posts-filter-dropdown w-full sm:hidden">
-      <button class="posts-filter-dropdown-btn w-full flex items-center justify-between px-3 py-2.5 border border-neutral-200 rounded-lg text-neutral-700 hover:border-neutral-300 bg-neutral-50">
+      <button class="posts-filter-dropdown-btn w-full flex items-center justify-between px-3 py-2.5 border border-ui-neutral-200 rounded-lg text-ui-neutral-700 hover:border-ui-neutral-300 bg-ui-neutral-50">
         <span class="posts-filter-dropdown-label truncate text-sm">All Posts</span>
         <span class="w-4 h-4 shrink-0 flex items-center justify-center">
           {{ partial "icon.html" "chevron-down" }}
         </span>
       </button>
-      <div class="posts-filter-dropdown-menu hidden absolute top-full mt-1 w-full bg-neutral-50 border border-neutral-200 rounded-lg z-50 overflow-hidden shadow-lg">
-        <a data-filter="all" class="filter-dropdown-option block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 cursor-pointer">All Posts</a>
+      <div class="posts-filter-dropdown-menu hidden absolute top-full mt-1 w-full bg-ui-neutral-50 border border-ui-neutral-200 rounded-lg z-50 overflow-hidden shadow-lg">
+        <a data-filter="all" class="filter-dropdown-option block px-3 py-2 text-sm text-ui-neutral-700 hover:bg-ui-neutral-100 hover:text-ui-primary-500 cursor-pointer">All Posts</a>
         {{ range $categories }}
           {{ if in $usedCategories .key }}
-            <a data-filter="{{ .key }}" class="filter-dropdown-option block px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 hover:text-primary-500 cursor-pointer">{{ .label }}</a>
+            <a data-filter="{{ .key }}" class="filter-dropdown-option block px-3 py-2 text-sm text-ui-neutral-700 hover:bg-ui-neutral-100 hover:text-ui-primary-500 cursor-pointer">{{ .label }}</a>
           {{ end }}
         {{ end }}
       </div>
     </div>
-    <div class="hidden sm:inline-flex items-center gap-1 bg-neutral-50 rounded-xl p-2" id="posts-filter">
-      <a data-filter="all" class="filter-btn px-4 py-3 rounded-lg text-sm cursor-pointer font-medium transition-all duration-150 text-neutral-700">All Posts</a>
+    <div class="hidden sm:inline-flex items-center gap-1 bg-ui-neutral-50 rounded-xl p-2" id="posts-filter">
+      <a data-filter="all" class="filter-btn px-4 py-3 rounded-lg text-sm cursor-pointer font-medium transition-all duration-150 text-ui-neutral-700">All Posts</a>
       {{ range $categories }}
         {{ if in $usedCategories .key }}
-          <a data-filter="{{ .key }}" class="filter-btn px-2 py-4 rounded-lg text-sm cursor-pointer font-medium transition-all duration-150 text-neutral-700">{{ .label }}</a>
+          <a data-filter="{{ .key }}" class="filter-btn px-4 py-3 rounded-lg text-sm cursor-pointer font-medium transition-all duration-150 text-ui-neutral-700">{{ .label }}</a>
         {{ end }}
       {{ end }}
     </div>
