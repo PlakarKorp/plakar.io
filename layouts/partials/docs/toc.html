@@ -58,14 +58,14 @@
 
 {{ with $html }}
   <nav class="toc docs-font text-sm">
-    <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
-    <div class="toc-content text-neutral-600">
+    <p class="text-xs font-semibold text-ui-neutral-400 uppercase tracking-wide mb-3">On this page</p>
+    <div class="toc-content text-ui-neutral-600">
       {{ . | safeHTML | emojify }}
     </div>
 
     {{ with $.Site.Params.github.website }}
       {{ with $.File }}
-        <div class="border-t border-neutral-200 mt-4 pt-4">
+        <div class="border-t border-ui-neutral-200 mt-4 pt-4">
           <a href="{{ $.Site.Params.github.website }}/edit/main/content/{{ .Path }}" target="_blank"
             class="flex items-center gap-2 text-xs hover:underline">
             Edit this page on GitHub
