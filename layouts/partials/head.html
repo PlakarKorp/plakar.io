@@ -4,6 +4,9 @@
     <meta http-equiv="content-language" content="{{ . }}">
   {{ end }}
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {{ with resources.Get "js/appearance-init.js" | resources.Minify }}
+    <script>{{ .Content | safeJS }}</script>
+  {{ end }}
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="theme-color">
 
