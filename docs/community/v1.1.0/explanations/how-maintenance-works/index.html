@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-03-19T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-03T10:32:56+03:00">
+    <meta property="article:modified_time" content="2026-11-05T20:10:04+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -126,8 +126,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.985c33e9428224859719dea77c1c94b3fccfdbdc4371a659027734eda35932924fb207a37b628b87cf69cf1650246381c66c9fa01453c75288b47a8a14ce0ddf.css"
-    integrity="sha512-mFwz6UKCJIWXGd6nfByUs/zP29xDcaZZAnc07aNZMpJPsgeje2KLh89pzxZQJGOBxmyfoBRTx1KItHqKFM4N3w==">
+    href="/css/main.bundle.min.aa01cee914127870d43312219a8a678892fd05b169b3fe0188c8ad2825382e112f187e4318ecc2ab5750e185f045e05e9578468ff11a290abe23b76a441b7d89.css"
+    integrity="sha512-qgHO6RQSeHDUMxIhmopniJL9BbFps/4BiMitKCU4LhEvGH5DGOzCq1dQ4YXwReBelXhGj/EaKQq&#43;I7dqRBt9iQ==">
   
     
     <script defer src="/lib/zoom/zoom.min.umd.a527109b68c082a70f3697716dd72a9d5aa8b545cf800cecbbc7399f2ca6f6e0ce3e431f2062b48bbfa47c9ea42822714060bef309be073f49b9c0e30d318d7b.js" integrity="sha512-pScQm2jAgqcPNpdxbdcqnVqotUXPgAzsu8c5nyym9uDOPkMfIGK0i7&#43;kfJ6kKCJxQGC&#43;8wm&#43;Bz9JucDjDTGNew=="></script>
@@ -145,8 +145,8 @@
       defer
       type="text/javascript"
       id="script-bundle"
-      src="/js/main.bundle.min.ec6f201d478aa54dcade344193fa13aca5ffcefa7492dae7f3ae16a80dc0377e62edabdd45cea36de5df026a3e4a3cc7b1f265d2754ea9a54e5ab456a9f67630.js"
-      integrity="sha512-7G8gHUeKpU3K3jRBk/oTrKX/zvp0ktrn864WqA3AN35i7avdRc6jbeXfAmo&#43;SjzHsfJl0nVOqaVOWrRWqfZ2MA=="
+      src="/js/main.bundle.min.65a8a77a58784f289f1c0ab141397741526ffbddca8a88e1428ce7d0a737575530addcf0ed3119f98e377e5945a30b73eb7092bd1e8944784be67fbc9602212f.js"
+      integrity="sha512-Zainelh4TyifHAqxQTl3QVJv&#43;93KiojhQozn0Kc3V1Uwrdzw7TEZ&#43;Y43fllFowtz63CSvR6JRHhL5n&#43;8lgIhLw=="
       data-copy="Copy"
       data-copied="Copied"></script>
   
@@ -239,12 +239,12 @@
     "dateCreated": "2026-03-19T00:00:00\u002b00:00",
     "datePublished": "2026-03-19T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-03T10:32:56\u002b03:00",
+    "dateModified": "2026-11-05T20:10:04\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/community/v1.1.0/explanations/how-maintenance-works/",
-    "wordCount":  912 
+    "wordCount":  1036 
   }]
   </script>
 
@@ -5095,6 +5095,37 @@ treats any chunks referenced by an active checkpoint as still in use, regardless
 of whether a snapshot has been committed yet.</p>
 
 
+<h2 id="locks" class="group pr-8">Locks
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="locks"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>Several processes can work on the same Kloset store at once, for example backups
+started from different machines. Plakar coordinates them with locks. Every
+operation that modifies the store takes a lock before it starts, and releases it
+when it ends.</p>
+<p>There are two kinds of lock:</p>
+<ul>
+<li><strong>Shared</strong>: taken by operations such as backups. Any number of processes can
+hold a shared lock at the same time, so several backups can run in parallel on
+the same store.</li>
+<li><strong>Exclusive</strong>: taken by maintenance. While it is held, no other process can
+take a lock of either kind.</li>
+</ul>
+<p>As a result, only one maintenance runs at a time, and maintenance never runs
+while a backup or another operation that modifies the store is in progress.</p>
+
+
 <h2 id="recompaction" class="group pr-8">Recompaction
     <button
       type="button"
@@ -5174,7 +5205,7 @@ possible to reclaim space from packfiles that are mostly stale.</p>
   
   <div class="flex items-center justify-between text-xs text-neutral-400">
     
-      <span>Last updated: November 3, 2026</span>
+      <span>Last updated: November 5, 2026</span>
     
     
       <a href="https://github.com/PlakarKorp/plakar.io/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">
@@ -5194,7 +5225,7 @@ possible to reclaim space from packfiles that are mostly stale.</p>
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#how-data-is-stored">How data is stored</a><ul><li><a href="#chunking-and-deduplication">Chunking and deduplication</a></li><li><a href="#packfiles">Packfiles</a></li></ul></li><li><a href="#why-deleting-a-snapshot-does-not-free-space-immediately">Why deleting a snapshot does not free space immediately</a></li><li><a href="#the-maintenance-process">The maintenance process</a><ul><li><a href="#the-grace-period">The grace period</a></li><li><a href="#garbage-collection-at-the-packfile-level">Garbage collection at the packfile level</a></li><li><a href="#checkpoints-and-long-running-backups">Checkpoints and long-running backups</a></li></ul></li><li><a href="#recompaction">Recompaction</a></li></ul>
+      <ul><li><a href="#how-data-is-stored">How data is stored</a><ul><li><a href="#chunking-and-deduplication">Chunking and deduplication</a></li><li><a href="#packfiles">Packfiles</a></li></ul></li><li><a href="#why-deleting-a-snapshot-does-not-free-space-immediately">Why deleting a snapshot does not free space immediately</a></li><li><a href="#the-maintenance-process">The maintenance process</a><ul><li><a href="#the-grace-period">The grace period</a></li><li><a href="#garbage-collection-at-the-packfile-level">Garbage collection at the packfile level</a></li><li><a href="#checkpoints-and-long-running-backups">Checkpoints and long-running backups</a></li></ul></li><li><a href="#locks">Locks</a></li><li><a href="#recompaction">Recompaction</a></li></ul>
     </div>
 
     

@@ -106,6 +106,7 @@
 ## [Control Plane Appliance](https://www.plakar.io/docs/control-plane/appliance/index.md)
 
 - [Appliance Sizing](https://www.plakar.io/docs/control-plane/appliance/sizing/index.md): What the Plakar Control Plane appliance is made of, what uses its CPU, memory and disk, and how to size it.
+- [Troubleshooting](https://www.plakar.io/docs/control-plane/appliance/troubleshooting/index.md): Diagnose an appliance that does not start or cannot reach the services it depends on, with doktor and the outbound access it requires.
 
 
 ## [Infrastructure as Code](https://www.plakar.io/docs/control-plane/infrastructure-as-code/index.md)
