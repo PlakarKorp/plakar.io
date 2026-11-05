@@ -43,79 +43,81 @@ the [permissions](../../access-control/permissions) you hold there.
 
 ## Creating a policy
 
-To create a policy, provide a name, then define the backup requirements and
-select a store app to use for backups.
+A policy is created in two steps: its rules, then its scope. Nothing is
+scheduled until both are set and the policy is created.
 
-### Backup frequency and retention
+### Rules
 
-You define requirements across six time granularities. You can configure any
-combination of these:
+The rules of a policy define how often backups are taken, how long they are kept
+and where they are stored. They are set per retention tier:
 
 - Daily
 - Weekly
 - Monthly
 - Yearly
 
-For each granularity you enable, you configure:
+Any combination of tiers can be enabled. For each enabled tier, you configure:
 
-- **Frequency:** how often a backup should be taken within that period, for
-  example 4 times or once a day
-- **Retention:** how long backup restore points should be kept
+- **Backups:** how many backups are taken within the period of the tier, for
+  example 24 a day, which is one every hour.
+- **Keep for:** how long the restore points of the tier are kept, for example 7
+  days. The number of restore points this keeps is derived from both values.
+- **Stored on:** the [store](../../apps/stores) the backups of the tier are
+  written to. Each tier can use a different store.
 
-You then select a [store](../../apps/stores) where the backup will be stored and
-toggle whether you want to run a [check task](../../scheduling/tasks#check-task)
-on the after each. It's recommended to leave this on.
+**Check integrity** runs a [check task](../../scheduling/tasks#check-task) after
+each backup to verify it. It's recommended to leave this on.
 
-![](../images/create-policy.png)
+![](../images/creating-a-policy.png)
 
-### Policy summary
+### Scope
 
-Before creating the policy, Plakar Control Plane shows you a summary of the
-policy contract based on your selections.
+The scope of a policy selects the source apps it applies to:
 
-The summary shows the RPO and lookback derived from your settings. RPO is the
-maximum data loss window based on your most frequent backup, and lookback is how
-far back you can restore from based on your retention settings.
+- **Environment:** required. The environment the policy applies to.
+- **Data Classes:** required. One or more data classes the policy applies to.
+- **Tags:** optional. Narrows the matched sources down further to only those
+  carrying the specified tags. Useful when environment and data class alone
+  would match more sources than intended.
 
-## Scoping a policy
+Environments and data classes are managed from the organization's
+[classification settings](#managing-environments--data-classes).
 
-After creating a policy, you are immediately taken to the scoping page to set up
-the environment and data class filters.
+While the scope is being set, a preview lists the resources and source apps that
+match it, so the coverage of the policy can be checked before it is created. The
+preview can be filtered by inventory.
 
-Supported scope filters include:
-
-- **Environment:** the environment the policy applies to. Environments are
-  managed from the organization's
-  [classification settings](#managing-environments--data-classes).
-- **Data Class:** one or more data classes the policy applies to. Data classes
-  are managed from the organization's
-  [classification settings](#managing-environments--data-classes).
-- **Tag:** narrows the matched sources down further to only those carrying the
-  specified tag. Useful when environment and data class alone would match more
-  sources than intended.
-
-Plakar Control Plane matches all source apps against the configured scope. Any
-source app whose environment and data class match the policy is automatically
-scheduled according to the policy rules. When a new source app is added with
-matching values, it is automatically picked up by the policy without any
-additional configuration.
+Any source app whose environment and data class match the policy is
+automatically scheduled according to its rules. When a new source app is added
+with matching values, it is picked up by the policy without any additional
+configuration.
 
 Scope is not the only condition. A policy also respects
 [data residency](./residency): a matched source is only scheduled when it and
-the policy's store share the same residency.
+the store it is backed up to share the same residency.
 
 A source app can be covered by multiple policies if their scopes overlap. This
-allows policies to be layered for example, a general policy covering all
+allows policies to be layered, for example a general policy covering all
 production sources and a stricter policy specifically covering production
 databases.
 
 ![](../images/scoping-a-policy.png)
 
+### Summary
+
+While the policy is being created, a summary shows the contract it defines:
+
+- **RPO:** the maximum data loss window, based on the most frequent backup.
+- **Lookback:** how far back data can be restored, based on the longest
+  retention.
+- **Restore points kept:** the approximate number of restore points the policy
+  keeps across its tiers.
+- **Covered:** the number of resources the scope matches.
+
 ## Scheduling
 
-Once a policy is scoped, the policy scheduler automatically creates backup
-schedules for all matching sources using the store app selected when the policy
-was created. See the
+Once a policy is created, the policy scheduler automatically creates backup
+schedules for all matching sources, using the store of each tier. See the
 [policy scheduler documentation](../../scheduling/policy-scheduler) for more
 details.
 
@@ -130,4 +132,4 @@ available to a policy are the ones defined in the organization that policy lives
 in. See [Managing Organizations](../../access-control/organizations) for more
 information about how organizations isolate configuration.
 
-![Creating and deleting environments and data classes](../images/managing-classification.png)
+![Creating and deleting environments and data classes](../images/managing-classifications.png)
