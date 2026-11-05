@@ -1,16 +1,7 @@
 {{ $p := . }}
 
-{{ $stageColors := dict
-  "stable"      "text-ui-green-800 bg-ui-green-50"
-  "rc"          "text-ui-blue-800 bg-ui-blue-50"
-  "beta"        "text-ui-amber-800 bg-ui-amber-50"
-  "alpha"       "text-ui-orange-800 bg-ui-orange-50"
-  "coming soon" "text-ui-neutral-600 bg-ui-neutral-100 border-ui-neutral-200"
-}}
-
 {{ $image := resources.Get $p.Params.image }}
 {{ $plakarLogo := resources.Get "img/logos/plakar-logo-icon.svg" }}
-{{ $stageClass := index $stageColors (lower $p.Params.stage) | default "text-ui-neutral-600 bg-ui-neutral-100" }}
 
 {{ $edition := partial "integrations/edition.html" $p }}
 {{ $hasCommunity := $edition.hasCommunity }}
@@ -29,7 +20,7 @@
   data-name="{{ lower $p.Title }}"
   data-date="{{ $p.Date.Unix }}"
   data-search="{{ $searchText }}"
-  class="group/card relative flex flex-col gap-3 p-5 rounded-2xl border border-ui-neutral-100 hover:border-ui-primary-300 bg-ui-neutral-50 shadow-sm hover:shadow-none outline-4 outline-transparent hover:outline-ui-primary-400/20 transition-all duration-300"
+  class="group/card relative flex flex-col gap-3 p-5 rounded-2xl border border-ui-neutral-200 hover:border-ui-primary-300 bg-ui-neutral-50 shadow-sm hover:shadow-none outline-4 outline-transparent hover:outline-ui-primary-400/20 transition-all duration-300"
 >
   <div class="flex items-start gap-3.5">
     <div class="h-13 min-w-13 max-w-28 rounded-lg overflow-hidden shrink-0 flex items-center justify-center">
@@ -44,12 +35,7 @@
         <span class="w-6 h-6 text-ui-neutral-400">{{ partial "icon.html" "plug-line" }}</span>
       {{ end }}
     </div>
-    {{ with $p.Params.stage }}
-      <span class="ml-auto inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full {{ $stageClass }} uppercase shrink-0">
-        <span class="w-1.5 h-1.5 rounded-full bg-current shrink-0"></span>
-        {{ . }}
-      </span>
-    {{ end }}
+    <span class="ml-auto">{{ partial "components/badges/stage-badge.html" (dict "stage" $p.Params.stage) }}</span>
   </div>
 
   <!-- Title -->
