@@ -53,7 +53,6 @@ related:
   - openshift
   - etcd
   - postgres
-  - vmware
 
 edition:
   - community
