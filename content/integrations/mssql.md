@@ -43,7 +43,6 @@ related:
   - vss
   - msad
   - postgres
-  - mysql
 
 edition:
   - community

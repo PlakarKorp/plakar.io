@@ -1,11 +1,5 @@
-{{/*
-  Related integrations: the pages listed in the `related` front matter
-  first, then integrations sharing one of the page's narrow types
-  (secrets-manager, inventory, storage), newest first. Source and
-  destination are left out: they match most integrations.
-*/}}
 {{ $p := . }}
-{{ $max := 4 }}
+{{ $max := 3 }}
 {{ $specificTypes := slice "secrets-manager" "inventory" "storage" }}
 {{ $all := (where site.RegularPages "Section" "integrations").ByDate.Reverse }}
 
@@ -43,7 +37,7 @@
         <span class="w-5 h-5 flex items-center justify-center">{{ partial "icon.html" "ri/arrow-right-line" }}</span>
       </a>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {{ range . }}
         {{ partial "integrations/integration-card.html" . }}
       {{ end }}
