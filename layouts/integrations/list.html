@@ -34,9 +34,9 @@
 <section class="section-light-2 grid-background px-4 pt-44 pb-7">
   <div class="max-w-350 mx-auto flex flex-col items-center">
     <h1 class="text-center font-bold tracking-tight leading-[1.05] text-4xl lg:text-6xl mb-4.5">
-      Plakar <span class="text-primary-500">Integrations</span>
+      Plakar <span class="text-ui-primary-500">Integrations</span>
     </h1>
-    <p class="text-center text-neutral-700 text-[16.5px] max-w-[62ch]">
+    <p class="text-center text-ui-neutral-700 text-[16.5px] max-w-[62ch]">
       Seamlessly backup and restore data from any source to any destination,
       with integrations built by Plakar, by partners, and by the community.
     </p>
@@ -44,9 +44,9 @@
 </section>
 
 <!-- Stats -->
-{{ $statCard := "w-full max-w-90 md:w-80 md:max-w-none px-6 pt-8 pb-7 rounded-3xl bg-neutral-50/60 backdrop-blur-[9px] border border-neutral-50/85 shadow-[0_28px_56px_-22px_rgb(43_32_140_/_0.45)] flex flex-col items-center justify-center text-center gap-1.5 cursor-pointer integrations-stat-card" }}
-{{ $statNum := "text-4xl lg:text-5xl font-bold leading-none tracking-tight text-neutral-900" }}
-{{ $statLabel := "text-[0.9375rem] font-medium leading-snug text-neutral-700" }}
+{{ $statCard := "w-full max-w-90 md:w-80 md:max-w-none px-6 pt-8 pb-7 rounded-3xl bg-ui-neutral-50/60 backdrop-blur-[9px] border border-ui-neutral-50/85 shadow-[0_28px_56px_-22px_rgb(43_32_140_/_0.45)] flex flex-col items-center justify-center text-center gap-1.5 cursor-pointer integrations-stat-card" }}
+{{ $statNum := "text-4xl lg:text-5xl font-bold leading-none tracking-tight text-ui-neutral-900" }}
+{{ $statLabel := "text-[0.9375rem] font-medium leading-snug text-ui-neutral-700" }}
 
 <section class="section-light-2 grid-background">
   <div class="bg-gradient-section pt-10 pb-16 md:pb-20">
@@ -66,7 +66,7 @@
           <span class="{{ $statNum }}">{{ len $allIntegrations }}</span>
           <span class="{{ $statLabel }}">Integrations &amp; counting</span>
           {{ with len $newIntegrations }}
-            <span class="text-xs text-neutral-500">
+            <span class="text-xs text-ui-neutral-500">
               {{ . }} new integration{{ if ne . 1 }}s{{ end }} added recently
             </span>
           {{ end }}
@@ -85,34 +85,34 @@
 </section>
 
 <!-- Filters -->
-{{ $fLabel := "text-xxs font-semibold uppercase tracking-[0.13em] text-neutral-500" }}
-{{ $segWrap := "flex gap-[3px] bg-neutral-100 rounded-xl p-1" }}
-{{ $segBase := "flex shrink-0 items-center gap-2 px-3.5 py-2 rounded-[9px] text-[13.5px] font-semibold whitespace-nowrap text-neutral-900 cursor-pointer transition-colors duration-150" }}
-{{ $tabBtn := printf "%s group not-aria-selected:hover:bg-neutral-50 aria-selected:bg-primary-500 aria-selected:text-neutral-50" $segBase }}
-{{ $segBtn := printf "%s not-aria-pressed:hover:bg-neutral-50 aria-pressed:bg-primary-500 aria-pressed:text-neutral-50" $segBase }}
+{{ $fLabel := "text-xxs font-semibold uppercase tracking-[0.13em] text-ui-neutral-500" }}
+{{ $segWrap := "flex gap-[3px] bg-ui-neutral-100 rounded-xl p-1" }}
+{{ $segBase := "flex shrink-0 items-center gap-2 px-3.5 py-2 rounded-[9px] text-[13.5px] font-semibold whitespace-nowrap text-ui-neutral-900 cursor-pointer transition-colors duration-150" }}
+{{ $tabBtn := printf "%s group not-aria-selected:hover:bg-ui-neutral-50 aria-selected:bg-primary-500 aria-selected:text-neutral-50" $segBase }}
+{{ $segBtn := printf "%s not-aria-pressed:hover:bg-ui-neutral-50 aria-pressed:bg-primary-500 aria-pressed:text-neutral-50" $segBase }}
 {{ $tabDot := "w-2 h-2 rounded-full shrink-0" }}
-{{ $tabCount := "text-[11px] font-semibold rounded-full px-[7px] py-px bg-neutral-50 text-neutral-600 group-aria-selected:bg-neutral-50/20 group-aria-selected:text-neutral-50" }}
+{{ $tabCount := "text-[11px] font-semibold rounded-full px-[7px] py-px bg-ui-neutral-50 text-ui-neutral-600 group-aria-selected:bg-ui-neutral-50/20 group-aria-selected:text-ui-neutral-50" }}
 
 <section class="section-light-2 px-4 pt-7">
   <div class="max-w-350 mx-auto px-5">
-   <div class="rounded-[18px] border border-neutral-200 bg-neutral-50 shadow-sm overflow-hidden">
+   <div class="rounded-[18px] border border-ui-neutral-200 bg-ui-neutral-50 shadow-sm overflow-hidden">
 
     <!-- Search -->
-    <div class="flex items-center gap-3 px-4.5 border-b border-neutral-200 focus-within:shadow-[inset_0_-2px_0_rgb(var(--color-primary-500))]">
-      <span class="w-4 h-4 shrink-0 text-neutral-600">{{ partial "icon.html" "ri/search-line" }}</span>
+    <div class="flex items-center gap-3 px-4.5 border-b border-ui-neutral-200 focus-within:shadow-[inset_0_-2px_0_rgb(var(--color-primary-500))]">
+      <span class="w-4 h-4 shrink-0 text-ui-neutral-600">{{ partial "icon.html" "ri/search-line" }}</span>
       <input
         id="integrations-search"
         type="search"
         placeholder="Search integrations…"
         aria-label="Search integrations"
         autocomplete="off"
-        class="flex-1 min-w-0 border-0 outline-none focus:ring-0 h-13 bg-transparent text-[14.5px] text-neutral-900 placeholder:text-neutral-500"
+        class="flex-1 min-w-0 border-0 outline-none focus:ring-0 h-13 bg-transparent text-[14.5px] text-ui-neutral-900 placeholder:text-ui-neutral-500"
       >
-      <kbd class="hidden sm:block shrink-0 font-[inherit] text-[11px] font-semibold text-neutral-600 bg-neutral-100 border border-neutral-200 border-b-2 rounded-md px-1.75 py-0.5">/</kbd>
+      <kbd class="hidden sm:block shrink-0 font-[inherit] text-[11px] font-semibold text-ui-neutral-600 bg-ui-neutral-100 border border-ui-neutral-200 border-b-2 rounded-md px-1.75 py-0.5">/</kbd>
     </div>
 
     <!-- Filter groups -->
-    <div class="flex flex-wrap gap-y-3 gap-x-4 lg:gap-x-8 px-4.5 pt-3.5 pb-4 border-b border-neutral-200">
+    <div class="flex flex-wrap gap-y-3 gap-x-4 lg:gap-x-8 px-4.5 pt-3.5 pb-4 border-b border-ui-neutral-200">
       <div class="flex flex-col gap-1.75 min-w-0 w-full md:w-auto">
         <span class="{{ $fLabel }}" id="integrations-author-label">Author</span>
         <div class="{{ $segWrap }} overflow-x-auto no-scrollbar" id="integrations-author" role="tablist" aria-labelledby="integrations-author-label">
@@ -120,13 +120,13 @@
             All<span class="{{ $tabCount }}">{{ len $allIntegrations }}</span>
           </button>
           <button type="button" role="tab" data-author="official" aria-selected="false" class="{{ $tabBtn }}">
-            <span class="{{ $tabDot }} bg-primary-500 group-aria-selected:bg-neutral-50"></span>By Plakar<span class="{{ $tabCount }}">{{ $officialCount }}</span>
+            <span class="{{ $tabDot }} bg-ui-primary-500 group-aria-selected:bg-ui-neutral-50"></span>By Plakar<span class="{{ $tabCount }}">{{ $officialCount }}</span>
           </button>
           <button type="button" role="tab" data-author="partner" aria-selected="false" class="{{ $tabBtn }}">
-            <span class="{{ $tabDot }} bg-secondary-500"></span>Partners<span class="{{ $tabCount }}">{{ $partnerCount }}</span>
+            <span class="{{ $tabDot }} bg-ui-secondary-500"></span>Partners<span class="{{ $tabCount }}">{{ $partnerCount }}</span>
           </button>
           <button type="button" role="tab" data-author="community" aria-selected="false" class="{{ $tabBtn }}">
-            <span class="{{ $tabDot }} ring-2 ring-inset ring-neutral-500 group-aria-selected:ring-neutral-50/85"></span>Community<span class="{{ $tabCount }}">{{ $communityAuthorCount }}</span>
+            <span class="{{ $tabDot }} ring-2 ring-inset ring-ui-neutral-500 group-aria-selected:ring-ui-neutral-50/85"></span>Community<span class="{{ $tabCount }}">{{ $communityAuthorCount }}</span>
           </button>
         </div>
       </div>
@@ -136,7 +136,7 @@
         <div class="relative">
           {{/* `bg-none` drops the chevron @tailwindcss/forms paints in @layer base;
                it assumes a `padding-right` that any `pr-*` utility overrides. */}}
-          <select id="integrations-type" class="appearance-none bg-none w-full h-10.5 pl-3.5 pr-9 rounded-xl text-[13.5px] font-semibold text-neutral-900 bg-neutral-100 hover:bg-neutral-200 border-0 cursor-pointer">
+          <select id="integrations-type" class="appearance-none bg-none w-full h-10.5 pl-3.5 pr-9 rounded-xl text-[13.5px] font-semibold text-ui-neutral-900 bg-ui-neutral-100 hover:bg-ui-neutral-200 border-0 cursor-pointer">
             <option value="all">All types</option>
             <option value="source">Source</option>
             <option value="destination">Destination</option>
@@ -144,7 +144,7 @@
             <option value="secrets-manager">Secrets manager</option>
             <option value="inventory">Inventory</option>
           </select>
-          <span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-600">{{ partial "icon.html" "chevron-down" }}</span>
+          <span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ui-neutral-600">{{ partial "icon.html" "chevron-down" }}</span>
         </div>
       </div>
 
@@ -158,13 +158,13 @@
       </div>
     </div>
 
-    <div class="flex flex-col gap-3.5 md:flex-row md:flex-wrap md:items-center px-4.5 py-3.5 md:py-2.5 bg-neutral-100/50">
+    <div class="flex flex-col gap-3.5 md:flex-row md:flex-wrap md:items-center px-4.5 py-3.5 md:py-2.5 bg-ui-neutral-100/50">
       <div class="flex items-center gap-3.5">
-        <span class="text-xs text-neutral-600" id="integrations-result-note"></span>
-        <button type="button" id="integrations-reset" hidden class="text-[13px] font-semibold text-primary-500 hover:underline cursor-pointer">Reset</button>
+        <span class="text-xs text-ui-neutral-600" id="integrations-result-note"></span>
+        <button type="button" id="integrations-reset" hidden class="text-[13px] font-semibold text-ui-primary-500 hover:underline cursor-pointer">Reset</button>
       </div>
       <div class="flex items-center gap-2.5 md:ml-auto" id="integrations-sort">
-        <span class="text-xs text-neutral-600 shrink-0" id="integrations-sort-label">Sort by</span>
+        <span class="text-xs text-ui-neutral-600 shrink-0" id="integrations-sort-label">Sort by</span>
         <div class="{{ $segWrap }}" role="group" aria-labelledby="integrations-sort-label">
           <button type="button" data-sort="date" aria-pressed="true" class="{{ $segBtn }}">Date</button>
           <button type="button" data-sort="name" aria-pressed="false" class="{{ $segBtn }}">Name</button>
@@ -184,16 +184,16 @@
       {{ end }}
     </div>
 
-    <div id="integrations-empty-filters" hidden class="text-center py-16 px-6 bg-neutral-50 border border-dashed border-primary-100 rounded-2xl shadow-sm">
-      <h3 class="text-xl font-semibold text-neutral-900 mb-2">No integrations match</h3>
-      <p class="text-neutral-600 mb-5 max-w-md mx-auto">Try another search, or clear the current filters.</p>
-      <button type="button" id="integrations-empty-reset" class="inline-flex items-center justify-center px-5 py-2.5 rounded-lg text-sm font-semibold border border-neutral-200 text-neutral-900 hover:border-neutral-400 cursor-pointer">Reset filters</button>
+    <div id="integrations-empty-filters" hidden class="text-center py-16 px-6 bg-ui-neutral-50 border border-dashed border-ui-primary-100 rounded-2xl shadow-sm">
+      <h3 class="text-xl font-semibold text-ui-neutral-900 mb-2">No integrations match</h3>
+      <p class="text-ui-neutral-600 mb-5 max-w-md mx-auto">Try another search, or clear the current filters.</p>
+      <button type="button" id="integrations-empty-reset" class="inline-flex items-center justify-center px-5 py-2.5 rounded-lg text-sm font-semibold border border-ui-neutral-200 text-ui-neutral-900 hover:border-ui-neutral-400 cursor-pointer">Reset filters</button>
     </div>
 
-    <div id="integrations-empty-community" hidden class="text-center py-16 px-6 bg-neutral-50 border border-dashed border-primary-100 rounded-2xl shadow-sm">
+    <div id="integrations-empty-community" hidden class="text-center py-16 px-6 bg-ui-neutral-50 border border-dashed border-ui-primary-100 rounded-2xl shadow-sm">
       <img class="h-26 w-26 mx-auto" src="{{ $plakarLogo.RelPermalink }}" alt="">
-      <h3 class="text-xl font-semibold text-neutral-900 mt-10 mb-2">No community integrations yet</h3>
-      <p class="text-neutral-500 tracking-wide mb-5 text-sm max-w-md mx-auto">The connector interfaces are small and documented, most integrations take days, not weeks. Build one, submit it, and it will be listed here with full credit.</p>
+      <h3 class="text-xl font-semibold text-ui-neutral-900 mt-10 mb-2">No community integrations yet</h3>
+      <p class="text-ui-neutral-500 tracking-wide mb-5 text-sm max-w-md mx-auto">The connector interfaces are small and documented, most integrations take days, not weeks. Build one, submit it, and it will be listed here with full credit.</p>
       <div class="flex gap-3 justify-center flex-wrap">
         {{ partial "components/buttons/base-button.html" (dict
           "label" "Read the SDK reference"
@@ -207,10 +207,10 @@
           "href" .Site.Params.socials.discord
           "target" "_blank"
           "icon" "discord"
-          "bgColor" "bg-neutral-50"
-          "bgHoverColor" "bg-neutral-100"
-          "textColor" "text-neutral-900"
-          "textHoverColor" "text-neutral-900"
+          "bgColor" "bg-ui-neutral-50"
+          "bgHoverColor" "bg-ui-neutral-100"
+          "textColor" "text-ui-neutral-900"
+          "textHoverColor" "text-ui-neutral-900"
           "border" "border"
           "borderColor" "border-neutral-200"
         ) }}
@@ -220,13 +220,13 @@
 </section>
 
 <!-- Build the next integration -->
-<section class="relative overflow-hidden text-neutral-50 bg-linear-120 from-primary-600 from-0% via-primary-400 via-55% to-primary-300 to-100%">
+<section class="relative overflow-hidden text-ui-neutral-50 bg-linear-120 from-ui-primary-600 from-0% via-ui-primary-400 via-55% to-ui-primary-300 to-100%">
   <div class="max-w-350 mx-auto px-7 py-13 flex flex-wrap items-center gap-9">
     <img class="h-24 shrink-0" src="{{ $plakarLogo.RelPermalink }}" alt="">
     <div class="flex-1 basis-100">
-      <span class="text-xxs font-bold uppercase tracking-widest text-secondary-200">Community &amp; partners</span>
+      <span class="text-xxs font-bold uppercase tracking-widest text-ui-secondary-200">Community &amp; partners</span>
       <h2 class="mt-2.5 mb-2 text-[28px] font-bold tracking-tight">Build the next integration</h2>
-      <p class="text-[14.5px] text-neutral-50/80 max-w-[60ch]">
+      <p class="text-[14.5px] text-ui-neutral-50/80 max-w-[60ch]">
         Plakar can only become the standard for backup if the whole ecosystem writes
         connectors, not just us. The interfaces are small and documented, and most
         integrations take days, not weeks. Ship one and it gets listed here, with full credit.
@@ -263,19 +263,19 @@
 <!-- How it works -->
 <section class="section-light-2 py-14 lg:pt-20 lg:pb-60">
   <div class="max-w-350 mx-auto px-4 flex flex-col gap-8">
-    <h2 class="font-medium text-4xl lg:text-6xl text-neutral-900 leading-tighter text-center">
-      How Plakar <span class="text-secondary-500">Integration Packages</span> and <span class="text-secondary-500">Connectors</span> work
+    <h2 class="font-medium text-4xl lg:text-6xl text-ui-neutral-900 leading-tighter text-center">
+      How Plakar <span class="text-ui-secondary-500">Integration Packages</span> and <span class="text-ui-secondary-500">Connectors</span> work
     </h2>
-    <div class="flex flex-col gap-6 text-neutral-600 text-lg lg:text-xl font-medium mx-auto">
+    <div class="flex flex-col gap-6 text-ui-neutral-600 text-lg lg:text-xl font-medium mx-auto">
       <p>
-        <span class="text-secondary-500">Integration Packages</span> bundle everything you need to back up and restore a resource:
+        <span class="text-ui-secondary-500">Integration Packages</span> bundle everything you need to back up and restore a resource:
         they include a <strong>Source Connector</strong>, <strong>Destination Connector</strong>, and <strong>Storage Connector</strong>.
       </p>
       <p>
-        <span class="text-secondary-500">Storage Connectors</span> persist your snapshots: they handle writing, reading, and listing deduplicated, encrypted chunks to storage backends like S3 or a local filesystem.
+        <span class="text-ui-secondary-500">Storage Connectors</span> persist your snapshots: they handle writing, reading, and listing deduplicated, encrypted chunks to storage backends like S3 or a local filesystem.
       </p>
       <p>
-        At the core is <span class="text-secondary-500">Kloset</span>, our immutable data engine that splits data into deduplicated, compressed, encrypted chunks addressed by content hash,
+        At the core is <span class="text-ui-secondary-500">Kloset</span>, our immutable data engine that splits data into deduplicated, compressed, encrypted chunks addressed by content hash,
         creating portable, verifiable snapshots stored in a <strong>Kloset Store</strong> for fast access.
       </p>
     </div>
