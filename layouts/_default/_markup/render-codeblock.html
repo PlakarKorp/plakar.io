@@ -1,0 +1,30 @@
+{{- $lang := or .Type "text" -}}
+{{- $shells := slice "bash" "sh" "shell" "zsh" "terminal" "console" -}}
+{{- $labels := dict
+  "bash" "Shell" "sh" "Shell" "shell" "Shell" "zsh" "Shell" "terminal" "Shell" "console" "Shell"
+  "powershell" "PowerShell" "bat" "Batch"
+  "text" "Text" "txt" "Text"
+  "go" "Go" "python" "Python" "sql" "SQL" "makefile" "Makefile"
+  "js" "JavaScript" "javascript" "JavaScript" "jsx" "JSX"
+  "ts" "TypeScript" "typescript" "TypeScript" "tsx" "TSX"
+  "yaml" "YAML" "yml" "YAML" "json" "JSON" "toml" "TOML" "ini" "INI" "xml" "XML"
+  "terraform" "Terraform" "hcl" "HCL" "cron" "Cron"
+-}}
+{{- $title := or .Attributes.title (index $labels $lang) $lang -}}
+{{- $shell := in $shells $lang -}}
+{{- $icon := cond $shell "ri/terminal-box-line" "ri/file-text-line" -}}
+<div class="highlight-wrapper codeblock">
+  <div class="codeblock-title">
+    <span class="codeblock-icon">{{ partial "icon.html" $icon }}</span>
+    <span class="codeblock-label">{{ $title }}</span>
+    <button type="button" class="codeblock-copy" aria-label="{{ i18n "code.copy" }}" title="{{ i18n "code.copy" }}">
+      <span class="codeblock-copy-icon">{{ partial "icon.html" "ri/file-copy-line" }}</span>
+      <span class="codeblock-copied-icon">{{ partial "icon.html" "ri/check-line" }}</span>
+    </button>
+  </div>
+  {{- $code := transform.Highlight .Inner $lang .Options -}}
+  {{- if $shell -}}
+    {{- $code = replaceRE `<span class="cl">([A-Za-z_./][^\s<]*)` `<span class="cl"><span class="nf">$1</span>` $code -}}
+  {{- end -}}
+  {{- $code | safeHTML -}}
+</div>
