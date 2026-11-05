@@ -1,0 +1,7 @@
+<div class="flex md:flex-col items-center justify-center gap-2">
+  {{ range slice "ri/arrow-right-line" "ri/arrow-left-line" }}
+    <div class="flex items-center justify-center w-7 h-7 md:w-8 md:h-8 rounded-full bg-ui-neutral-900">
+      <span class="block w-4 h-4 text-ui-neutral-50 rotate-90 md:rotate-0">{{ partial "icon.html" . }}</span>
+    </div>
+  {{ end }}
+</div>
