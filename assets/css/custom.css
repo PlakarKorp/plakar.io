@@ -22,6 +22,42 @@ html {
   font-family: "Inter", sans-serif;
 }
 
+body {
+  color: rgb(var(--ui-neutral-900));
+  background-color: rgb(var(--ui-neutral-50));
+}
+
+/* Markdown content follows the adaptive palette, so it needs no prose-invert.
+   Shades match the theme's typography settings. */
+.prose {
+  --tw-prose-body: rgb(var(--ui-neutral-700));
+  --tw-prose-headings: rgb(var(--ui-neutral-800));
+  --tw-prose-lead: rgb(var(--ui-neutral-500));
+  --tw-prose-links: rgb(var(--ui-primary-600));
+  --tw-prose-counters: rgb(var(--ui-neutral-800));
+  --tw-prose-bullets: rgb(var(--ui-neutral-500));
+  --tw-prose-quotes: rgb(var(--ui-neutral-700));
+  --tw-prose-quote-borders: rgb(var(--ui-primary-500));
+  --tw-prose-captions: rgb(var(--ui-neutral-500));
+  --tw-prose-code: rgb(var(--ui-secondary-700));
+  --tw-prose-pre-code: rgb(var(--ui-neutral-700));
+  --tw-prose-pre-bg: rgb(var(--ui-neutral-50));
+  --tw-prose-th-borders: rgb(var(--ui-neutral-500));
+  --tw-prose-td-borders: rgb(var(--ui-neutral-300));
+}
+
+.prose a:hover {
+  color: rgb(var(--ui-primary-600));
+}
+
+.prose hr {
+  border-color: rgb(var(--ui-neutral-300));
+}
+
+.prose kbd {
+  background-color: rgb(var(--ui-neutral-200));
+}
+
 .icon svg {
   width: 100%;
   height: 100%;
@@ -257,8 +293,8 @@ table.Nm {
   width: var(--steps-badge-size);
   height: var(--steps-badge-size);
   border-radius: 9999px;
-  background-color: rgb(var(--color-neutral-200));
-  color: rgb(var(--color-neutral-700));
+  background-color: rgb(var(--ui-neutral-200));
+  color: rgb(var(--ui-neutral-700));
   font-size: 0.8125rem;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
@@ -272,7 +308,7 @@ table.Nm {
   left: calc(-1 * var(--steps-gutter) + var(--steps-badge-size) / 2);
   width: 1px;
   height: 9999px;
-  background-color: rgb(var(--color-neutral-300));
+  background-color: rgb(var(--ui-neutral-300));
 }
 
 .steps > .step::before {
@@ -396,12 +432,8 @@ table.Nm {
 .codeblock {
   margin: 1.5rem 0;
   overflow: hidden;
-  border: 1px solid rgb(var(--color-neutral-200));
+  border: 1px solid rgb(var(--ui-neutral-200));
   border-radius: 0.5rem;
-}
-
-.dark .codeblock {
-  border-color: rgb(var(--color-neutral-700));
 }
 
 .codeblock .highlight pre {
@@ -417,15 +449,9 @@ table.Nm {
   padding: 0 0.375rem 0 0.875rem;
   font-size: 0.8125rem;
   font-weight: 500;
-  color: rgb(var(--color-neutral-500));
-  background-color: rgb(var(--color-neutral-50));
-  border-bottom: 1px solid rgb(var(--color-neutral-200));
-}
-
-.dark .codeblock-title {
-  color: rgb(var(--color-neutral-400));
-  background-color: rgb(var(--color-neutral-800));
-  border-color: rgb(var(--color-neutral-700));
+  color: rgb(var(--ui-neutral-500));
+  background-color: rgb(var(--ui-neutral-50));
+  border-bottom: 1px solid rgb(var(--ui-neutral-200));
 }
 
 .codeblock-icon {
@@ -448,7 +474,7 @@ table.Nm {
   width: 1.875rem;
   height: 1.875rem;
   margin-left: auto;
-  color: rgb(var(--color-neutral-500));
+  color: rgb(var(--ui-neutral-500));
   border-radius: 0.375rem;
   cursor: pointer;
   transition:
@@ -457,17 +483,12 @@ table.Nm {
 }
 
 .codeblock-copy:hover {
-  color: rgb(var(--color-neutral-800));
-  background-color: rgb(var(--color-neutral-200));
-}
-
-.dark .codeblock-copy:hover {
-  color: rgb(var(--color-neutral-100));
-  background-color: rgb(var(--color-neutral-700));
+  color: rgb(var(--ui-neutral-800));
+  background-color: rgb(var(--ui-neutral-200));
 }
 
 .codeblock-copy:focus-visible {
-  outline: 2px solid rgb(var(--color-primary-500));
+  outline: 2px solid rgb(var(--ui-primary-500));
   outline-offset: 1px;
 }
 
@@ -627,3 +648,32 @@ table.Nm {
 }
 .landing-copy.is-copied .ic-copy { display: none; }
 .landing-copy.is-copied .ic-check { display: inline; }
+
+/* Appearance toggle: show the icon of the current choice */
+.appearance-icon {
+  display: none;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+html[data-appearance="system"] .appearance-icon[data-for="system"],
+html[data-appearance="light"] .appearance-icon[data-for="light"],
+html[data-appearance="dark"] .appearance-icon[data-for="dark"] {
+  display: block;
+}
+
+/* Header logo: the black outline in light mode, the white one in dark mode */
+.site-logo svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.site-logo--dark,
+html.dark .site-logo--light {
+  display: none;
+}
+
+html.dark .site-logo--dark {
+  display: block;
+}
