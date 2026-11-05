@@ -38,13 +38,13 @@ flowchart TD
 
 ## Supported Resources
 
-| Resource                                 | Source | Store | Destination |
-| ---------------------------------------- | ------ | ----- | ----------- |
-| Object Storage                           | Yes    | Yes   | Yes         |
-| Instances (with attached Block Storages) | Yes    | No    | Yes         |
-| Block Storage Volume                     | Yes    | No    | Yes         |
-| Secret Manager                           | Yes    | No    | Yes         |
-| Managed Database                         | Yes    | No    | Yes         |
+| Resource                                                                     | Source | Store | Destination |
+| ---------------------------------------------------------------------------- | ------ | ----- | ----------- |
+| [Object Storage](../../resources/object-storage/s3)                          | Yes    | Yes   | Yes         |
+| [Instances (with attached Block Storages)](../../resources/compute/scaleway) | Yes    | No    | Yes         |
+| [Block Storage Volume](../../resources/block-storage/scaleway)               | Yes    | No    | Yes         |
+| [Secret Manager](../../resources/security/scaleway-sm)                       | Yes    | No    | Yes         |
+| [Managed Database](../../resources/database)                                 | Yes    | No    | Yes         |
 
 ## Authentication
 

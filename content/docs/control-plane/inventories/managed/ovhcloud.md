@@ -40,12 +40,12 @@ flowchart TD
 
 ## Supported Resources
 
-| Resource             | Source | Store | Destination |
-| -------------------- | ------ | ----- | ----------- |
-| Object Storage (S3)  | Yes    | Yes   | Yes         |
-| Compute Instance     | Yes    | No    | Yes         |
-| Block Storage Volume | Yes    | No    | Yes         |
-| Managed Database     | Yes    | No    | Yes         |
+| Resource                                                 | Source | Store | Destination |
+| -------------------------------------------------------- | ------ | ----- | ----------- |
+| [Object Storage (S3)](../../resources/object-storage/s3) | Yes    | Yes   | Yes         |
+| [Compute Instance](../../resources/compute/ovhcloud)     | Yes    | No    | Yes         |
+| Block Storage Volume                                     | Yes    | No    | Yes         |
+| [Managed Database](../../resources/database)             | Yes    | No    | Yes         |
 
 ## Authentication
 

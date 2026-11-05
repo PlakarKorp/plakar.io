@@ -43,10 +43,10 @@ flowchart TD
 
 ## Supported Resources
 
-| Resource       | Source | Store | Destination |
-| -------------- | ------ | ----- | ----------- |
-| S3 Bucket      | Yes    | Yes   | Yes         |
-| Database (RDS) | Yes    | No    | Yes         |
+| Resource                                       | Source | Store | Destination |
+| ---------------------------------------------- | ------ | ----- | ----------- |
+| [S3 Bucket](../../resources/object-storage/s3) | Yes    | Yes   | Yes         |
+| [Database (RDS)](../../resources/database)     | Yes    | No    | Yes         |
 
 ## Authentication
 

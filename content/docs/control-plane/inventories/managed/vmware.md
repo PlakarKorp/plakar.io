@@ -16,9 +16,9 @@ available for management directly from Plakar Control Plane.
 
 ## Supported Resources
 
-| Resource          | Source | Store | Destination |
-| ----------------- | ------ | ----- | ----------- |
-| Compute Instances | Yes    | No    | Yes         |
+| Resource                                            | Source | Store | Destination |
+| --------------------------------------------------- | ------ | ----- | ----------- |
+| [Compute Instances](../../resources/compute/vmware) | Yes    | No    | Yes         |
 
 ## Authentication
 
