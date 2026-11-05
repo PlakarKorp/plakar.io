@@ -8,9 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const activateCircle = (circle) => {
     if (!circle) return;
     circle.classList.remove(
-      "bg-neutral-50",
-      "text-neutral-700",
-      "border-neutral-300",
+      "bg-ui-neutral-50",
+      "text-ui-neutral-700",
+      "border-ui-neutral-300",
     );
     circle.classList.add(
       "bg-primary-500",
@@ -22,9 +22,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const deactivateCircle = (circle) => {
     if (!circle) return;
     circle.classList.add(
-      "bg-neutral-50",
-      "text-neutral-700",
-      "border-neutral-300",
+      "bg-ui-neutral-50",
+      "text-ui-neutral-700",
+      "border-ui-neutral-300",
     );
     circle.classList.remove(
       "bg-primary-500",
