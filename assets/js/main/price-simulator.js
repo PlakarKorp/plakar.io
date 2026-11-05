@@ -54,9 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     tierRows.forEach((row) => {
       const active = Number(row.dataset.tier) === tierIndex && tib > 0;
-      row.classList.toggle("bg-primary-50", active);
-      row.classList.toggle("font-semibold", active);
-      row.classList.toggle("text-primary-700", active);
+      row.dataset.active = String(active);
     });
 
     out.licenseDetail.textContent = `${tib} TiB × ${fmt(tier.price, 2)}`;

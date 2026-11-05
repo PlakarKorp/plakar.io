@@ -48,16 +48,16 @@
           </div>
 
           <div class="overflow-x-auto">
-            <table class="w-full text-sm">
+            <table class="w-full text-sm" style="display: table">
               <thead>
                 <tr class="text-left text-neutral-500 border-b border-neutral-200">
-                  <th class="py-2 font-medium">Volume tier</th>
-                  <th class="py-2 font-medium text-right">Price per TiB / month</th>
+                  <th class="py-2 px-2 font-medium">Volume tier</th>
+                  <th class="py-2 px-2 font-medium text-right">Price per TiB / month</th>
                 </tr>
               </thead>
               <tbody>
                 {{ range $i, $t := $pricing.tiers }}
-                <tr data-tier="{{ $i }}" class="ps-tier border-b border-neutral-100 text-neutral-700 transition-colors">
+                <tr data-tier="{{ $i }}" class="ps-tier border-b border-neutral-100 text-neutral-700 transition-colors data-[active=true]:bg-primary-50 data-[active=true]:font-semibold data-[active=true]:text-primary-700">
                   <td class="py-2 px-2">{{ $t.label }}</td>
                   <td class="py-2 px-2 text-right tabular-nums">{{ lang.FormatCurrency 2 "EUR" $t.price }}</td>
                 </tr>
