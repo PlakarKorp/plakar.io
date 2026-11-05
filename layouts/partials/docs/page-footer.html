@@ -1,4 +1,4 @@
-<footer class="mt-12 flex flex-col gap-6 docs-font border-t border-neutral-200 pt-6">
+<footer class="mt-12 flex flex-col gap-6 docs-font border-t border-ui-neutral-200 pt-6">
 
   <!-- Prev / Next navigation -->
   {{ $pages := .CurrentSection.Pages }}
@@ -16,9 +16,9 @@
     <div class="flex flex-col sm:flex-row gap-4">
       <div class="flex-1">
         {{ if and $prev (gt $currentIndex 0) }}
-          <a href="{{ $prev.RelPermalink }}" class="group w-full flex flex-col gap-1 p-3 rounded-lg border border-neutral-200 bg-neutral-50 hover:border-primary-200 hover:bg-primary-50 transition-all duration-150">
-            <span class="text-xs text-neutral-400">Previous</span>
-            <span class="text-sm font-medium text-neutral-700 group-hover:text-primary-500 text-left transition-colors flex items-center gap-2">
+          <a href="{{ $prev.RelPermalink }}" class="group w-full flex flex-col gap-1 p-3 rounded-lg border border-ui-neutral-200 bg-ui-neutral-50 hover:border-ui-primary-200 hover:bg-ui-primary-50 transition-all duration-150">
+            <span class="text-xs text-ui-neutral-400">Previous</span>
+            <span class="text-sm font-medium text-ui-neutral-700 group-hover:text-ui-primary-500 text-left transition-colors flex items-center gap-2">
               <span class="w-3 h-3">{{ partial "icon.html" "ri/arrow-left-line" }}</span>
               {{ $prev.Title }}
             </span>
@@ -27,9 +27,9 @@
       </div>
       <div class="flex-1">
         {{ if $next }}
-          <a href="{{ $next.RelPermalink }}" class="group w-full flex flex-col gap-1 p-3 rounded-lg border border-neutral-200 bg-neutral-50 hover:border-primary-200 hover:bg-primary-50 transition-all duration-150">
-            <span class="text-xs text-neutral-400 text-right block">Next</span>
-            <span class="text-sm font-medium text-neutral-700 group-hover:text-primary-500 text-right transition-colors flex items-center justify-end gap-2">
+          <a href="{{ $next.RelPermalink }}" class="group w-full flex flex-col gap-1 p-3 rounded-lg border border-ui-neutral-200 bg-ui-neutral-50 hover:border-ui-primary-200 hover:bg-ui-primary-50 transition-all duration-150">
+            <span class="text-xs text-ui-neutral-400 text-right block">Next</span>
+            <span class="text-sm font-medium text-ui-neutral-700 group-hover:text-ui-primary-500 text-right transition-colors flex items-center justify-end gap-2">
               {{ $next.Title }}
               <span class="w-3 h-3">{{ partial "icon.html" "ri/arrow-right-line" }}</span>
             </span>
@@ -40,12 +40,12 @@
   {{ end }}
 
   <!-- Last modified + report bug -->
-  <div class="flex items-center justify-between text-xs text-neutral-400">
+  <div class="flex items-center justify-between text-xs text-ui-neutral-400">
     {{ if not .Lastmod.IsZero }}
       <span>Last updated: {{ .Lastmod.Format "January 2, 2006" }}</span>
     {{ end }}
     {{ with $.Site.Params.github.website }}
-      <a href="{{ . }}/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">
+      <a href="{{ . }}/issues/new" target="_blank" class="hover:text-ui-primary-500 transition-colors">
         Report a bug
       </a>
     {{ end }}
