@@ -9,7 +9,7 @@
   var panes = document.querySelectorAll("[data-rec-pane]");
 
   var ACTIVE = ["bg-primary-500", "text-white", "border-primary-500"];
-  var IDLE = ["bg-white", "text-neutral-700", "border-neutral-300"];
+  var IDLE = ["bg-ui-white", "text-ui-neutral-700", "border-ui-neutral-300"];
 
   function activate(key) {
     tabs.forEach(function (tab) {
@@ -24,8 +24,8 @@
       if (num) {
         num.classList.toggle("bg-white/25", on);
         num.classList.toggle("text-white", on);
-        num.classList.toggle("bg-neutral-200", !on);
-        num.classList.toggle("text-neutral-600", !on);
+        num.classList.toggle("bg-ui-neutral-200", !on);
+        num.classList.toggle("text-ui-neutral-600", !on);
       }
     });
     panes.forEach(function (pane) {
