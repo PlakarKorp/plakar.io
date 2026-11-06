@@ -27,7 +27,7 @@
     
   
   
-    <meta name="description" content="How the Plakar Control Plane appliance is built, how to size it for your deployment, and how to troubleshoot it.">
+    <meta name="description" content="How the Plakar Control Plane appliance is built, how to size and configure it for your deployment, and how to troubleshoot it.">
   
   
     <meta name="keywords" content="backup,open-source,deduplication,encryption,plakar,cloud backup,database backup,">
@@ -70,14 +70,14 @@
   <meta property="og:url" content="https://www.plakar.io/docs/control-plane/appliance/">
   <meta property="og:site_name" content="Plakar | The Open Standard for Backup and Restore">
   <meta property="og:title" content="Control Plane Appliance">
-  <meta property="og:description" content="How the Plakar Control Plane appliance is built, how to size it for your deployment, and how to troubleshoot it.">
+  <meta property="og:description" content="How the Plakar Control Plane appliance is built, how to size and configure it for your deployment, and how to troubleshoot it.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="website">
 
   
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Control Plane Appliance">
-  <meta name="twitter:description" content="How the Plakar Control Plane appliance is built, how to size it for your deployment, and how to troubleshoot it.">
+  <meta name="twitter:description" content="How the Plakar Control Plane appliance is built, how to size and configure it for your deployment, and how to troubleshoot it.">
 
   
   
@@ -229,12 +229,12 @@
     "dateCreated": "2026-10-26T00:00:00\u002b00:00",
     "datePublished": "2026-10-26T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-06T16:28:18\u002b03:00",
+    "dateModified": "2026-11-06T16:30:40\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/appliance/",
-    "wordCount":  98 
+    "wordCount":  133 
   }]
   </script>
 
@@ -3566,6 +3566,8 @@
   
     
   
+    
+  
   
 
   
@@ -3579,6 +3581,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         Appliance Sizing
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/appliance/configuration/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Appliance Configuration
       </a>
     
   
@@ -8362,6 +8373,8 @@
   
     
   
+    
+  
   
 
   
@@ -8375,6 +8388,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         Appliance Sizing
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/appliance/configuration/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Appliance Configuration
       </a>
     
   
@@ -10146,8 +10168,8 @@
 </h1>
 <p>Plakar Control Plane is delivered as a software appliance that you deploy on
 your own infrastructure. The pages in this section describe the appliance
-itself: what it is made of, the resources it needs, how to size it, and how to
-diagnose it when it does not start.</p>
+itself: what it is made of, the resources it needs, how to size it, the settings
+it reads at boot, and how to diagnose it when it does not start.</p>
   <div class="not-prose section-index mt-6">
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <a href="/docs/control-plane/appliance/sizing/" class="group/card flex flex-col justify-between rounded-lg border border-neutral-200 bg-neutral-50 p-4 no-underline hover:border-primary-200 hover:bg-primary-50 transition-all duration-150">
@@ -10159,6 +10181,16 @@ diagnose it when it does not start.</p>
             </span>
           </div>
               <p class="mt-2 text-xs text-neutral-500 leading-snug line-clamp-2">What the Plakar Control Plane appliance is made of, what uses its CPU, memory and disk, and how to size it.</p>
+        </a>
+        <a href="/docs/control-plane/appliance/configuration/" class="group/card flex flex-col justify-between rounded-lg border border-neutral-200 bg-neutral-50 p-4 no-underline hover:border-primary-200 hover:bg-primary-50 transition-all duration-150">
+          <div class="flex items-start justify-between gap-2">
+            <span class="text-base font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors truncate">Appliance Configuration</span>
+            <span class="w-4 h-4 shrink-0 mt-0.5 text-neutral-300 group-hover/card:text-primary-500 group-hover/card:translate-x-0.5 transition-all duration-150">
+              <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
+</span>
+            </span>
+          </div>
+              <p class="mt-2 text-xs text-neutral-500 leading-snug line-clamp-2">The user data settings the appliance reads at boot: SSH access, proxy, registry mirrors, release server, NTP servers and network, and the platforms each one works on.</p>
         </a>
         <a href="/docs/control-plane/appliance/troubleshooting/" class="group/card flex flex-col justify-between rounded-lg border border-neutral-200 bg-neutral-50 p-4 no-underline hover:border-primary-200 hover:bg-primary-50 transition-all duration-150">
           <div class="flex items-start justify-between gap-2">
@@ -10179,6 +10211,8 @@ diagnose it when it does not start.</p>
   
   
   
+  
+    
   
     
   

@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-09-22T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-06T16:28:18+03:00">
+    <meta property="article:modified_time" content="2026-11-06T16:30:40+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -229,12 +229,12 @@
     "dateCreated": "2026-09-22T00:00:00\u002b00:00",
     "datePublished": "2026-09-22T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-06T16:28:18\u002b03:00",
+    "dateModified": "2026-11-06T16:30:40\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/access-control/permissions/backup-auditor/",
-    "wordCount":  185 
+    "wordCount":  210 
   }]
   </script>
 
@@ -3565,6 +3565,8 @@
   
     
   
+    
+  
   
 
   
@@ -3578,6 +3580,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         Appliance Sizing
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/appliance/configuration/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Appliance Configuration
       </a>
     
   
@@ -8361,6 +8372,8 @@
   
     
   
+    
+  
   
 
   
@@ -8374,6 +8387,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         Appliance Sizing
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/appliance/configuration/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Appliance Configuration
       </a>
     
   
@@ -10169,12 +10191,14 @@
 </h1>
 <p>The <strong>Backup Auditor</strong> holds nothing above the view level, so nothing it reaches
 can be changed. It sees how backups are configured and what has run: apps,
-integrations, policies, settings, configuration bundles, data classes,
-environments, schedules, and the audit log.</p>
-<p>Restore point data, secret providers, inventories, and edges are out of reach,
-so the review it supports covers the configuration and the record of activity
-rather than the backed up data itself or the credentials used to reach it. It
-holds no other organization permission and nothing in the deployment family.</p>
+inventories, integrations, policies, settings, configuration bundles, data
+classes, environments, schedules, and the audit log.</p>
+<p>It reads inventories because every app is attached to a resource of an
+inventory, and an app cannot be read without the resource it belongs to. Restore
+point data, secret providers, and edges are out of reach, so the review it
+supports covers the configuration and the record of activity rather than the
+backed up data itself or the credentials used to reach it. It holds no other
+organization permission and nothing in the deployment family.</p>
 <p>The <a href="../auditor" >Auditor</a> reads everything an organization holds. The <strong>Backup
 Auditor</strong> reads its configuration and its audit log alone.</p>
 
@@ -10255,7 +10279,7 @@ Auditor</strong> reads its configuration and its audit log alone.</p>
   <tbody>
       <tr>
           <td>Inventories</td>
-          <td>No access</td>
+          <td>View</td>
       </tr>
       <tr>
           <td>Apps</td>

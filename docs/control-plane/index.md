@@ -106,6 +106,7 @@
 ## [Control Plane Appliance](https://www.plakar.io/docs/control-plane/appliance/index.md)
 
 - [Appliance Sizing](https://www.plakar.io/docs/control-plane/appliance/sizing/index.md): What the Plakar Control Plane appliance is made of, what uses its CPU, memory and disk, and how to size it.
+- [Appliance Configuration](https://www.plakar.io/docs/control-plane/appliance/configuration/index.md): The user data settings the appliance reads at boot: SSH access, proxy, registry mirrors, release server, NTP servers and network, and the platforms each one works on.
 - [Troubleshooting](https://www.plakar.io/docs/control-plane/appliance/troubleshooting/index.md): Diagnose an appliance that does not start or cannot reach the services it depends on, with doktor and the outbound access it requires.
 
 

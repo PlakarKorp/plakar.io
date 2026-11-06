@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-07-17T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-06T16:28:18+03:00">
+    <meta property="article:modified_time" content="2026-11-06T16:30:40+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -234,12 +234,12 @@
     "dateCreated": "2026-07-17T00:00:00\u002b00:00",
     "datePublished": "2026-07-17T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-06T16:28:18\u002b03:00",
+    "dateModified": "2026-11-06T16:30:40\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/intro/installation/virtual-machines/proxmox/",
-    "wordCount":  1587 
+    "wordCount":  1208 
   }]
   </script>
 
@@ -3570,6 +3570,8 @@
   
     
   
+    
+  
   
 
   
@@ -3583,6 +3585,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         Appliance Sizing
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/appliance/configuration/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Appliance Configuration
       </a>
     
   
@@ -8366,6 +8377,8 @@
   
     
   
+    
+  
   
 
   
@@ -8379,6 +8392,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         Appliance Sizing
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/appliance/configuration/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Appliance Configuration
       </a>
     
   
@@ -10596,11 +10618,15 @@ virtual machine.</p>
 </h2>
 <p>By default the appliance boots with DHCP networking and no SSH access. If that&rsquo;s
 enough for you, skip ahead to
-<a href="/docs/control-plane/intro/installation/virtual-machines/proxmox/#start-the-appliance-and-complete-enrollment" >Start the appliance and complete enrollment</a>.
-Otherwise, pick one of the two tabs below, not both. A Proxmox VM only takes a
-single cloud-init user-data source, so if you use the Advanced tab&rsquo;s snippet,
-set the SSH key there too, alongside any proxy, registry, or network settings,
-instead of from the UI.</p>
+<a href="/docs/control-plane/intro/installation/virtual-machines/proxmox/#accessing-plakar-control-plane" >Accessing Plakar Control Plane</a>. Otherwise,
+the appliance reads its settings from a cloud-init user data document, whose
+keys are described in
+<a href="/docs/control-plane/appliance/configuration/" >Appliance Configuration</a>. This section covers
+how to deliver that document on Proxmox.</p>
+<p>Pick one of the two tabs below, not both. A Proxmox VM only takes a single
+cloud-init user-data source, so if you use the Advanced tab&rsquo;s snippet, set the
+SSH key there too, alongside any proxy, registry, or network settings, instead
+of from the UI.</p>
 <div class="tab__container w-full">
 <div class="tab__nav overflow-x-auto" role="tablist">
 <div class="flex gap-1 min-w-max"><button class="tab__button px-3 py-2 text-sm font-semibold border-b-2 border-transparent rounded-t-md bg-neutral-100 hover:bg-neutral-300 tab--active" role="tab" aria-selected="true" data-tab-index="0" data-tab-label="Basic (UI)"><span class="flex items-center gap-1">Basic (UI)</span></button><button class="tab__button px-3 py-2 text-sm font-semibold border-b-2 border-transparent rounded-t-md bg-neutral-100 hover:bg-neutral-300" role="tab" aria-selected="false" data-tab-index="1" data-tab-label="Advanced (CLI)"><span class="flex items-center gap-1">Advanced (CLI)</span></button></div>
@@ -10649,50 +10675,13 @@ public key, or upload the key file directly.</p>
 </ol>
 
 </div><div class="tab__panel" data-tab-index="1">
-<p>The Proxmox UI can only set an SSH key: it has no fields for a proxy, registry
-mirror, NTP servers or static IP. For any of those, write a single cloud-init
-YAML snippet on the Proxmox node instead; it can carry all of these settings at
-once, so include only the keys you actually need.</p>
-
-
-<h3 id="what-needs-to-be-reachable" class="group pr-8">What needs to be reachable
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="what-needs-to-be-reachable"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
-<p>Plakar Control Plane needs HTTPS access to <code>api.plakar.io</code> for runtime
-configuration, license validation, and plugin downloads. If your proxy uses a
-whitelist rather than allowing all traffic, <code>*.plakar.io</code> must be on it.</p>
-<p>The appliance also needs to pull Docker images from <code>docker.io</code> and <code>ghcr.io</code>.
-There are two supported approaches:</p>
-<ol>
-<li><strong>Route image pulls through the same HTTP proxy.</strong> If you take this route,
-the proxy must allow:
-<ul>
-<li><code>*.docker.io</code></li>
-<li><code>*.docker.com</code></li>
-<li><code>*.ghcr.io</code></li>
-<li><code>*.githubusercontent.com</code></li>
-</ul>
-</li>
-<li><strong>Configure a Harbor registry mirror.</strong> This is the preferred option for
-production, since it gives you a local cache of the images instead of pulling
-them over the internet on every deployment. If you use Harbor, you don&rsquo;t need
-to whitelist the domains above on your proxy.</li>
-</ol>
-<p>The appliance also synchronizes its clock with <code>pool.ntp.org</code> over UDP port 123,
-which does not go through the proxy. If your network blocks it, set internal NTP
-servers with the <code>ntp:</code> key in the user data.</p>
+<p>The Proxmox UI can only set an SSH key. It has no fields for a proxy, registry
+mirrors, a release server, NTP servers or a static IP. For any of those, write a
+cloud-init YAML snippet on the Proxmox node instead. A single snippet carries
+all of these settings.</p>
+<p>If the appliance goes through a proxy or firewall, the hosts it has to reach are
+listed in
+<a href="/docs/control-plane/appliance/configuration/#required-outbound-access" >Required outbound access</a>.</p>
 
 
 <h3 id="write-the-user-data-snippet" class="group pr-8">Write the user-data snippet
@@ -10710,6 +10699,9 @@ servers with the <code>ntp:</code> key in the user data.</p>
     </button>
   
 </h3>
+<p>Write the cloud-init document to a snippet on the Proxmox node. The document
+below sets every key. Remove the ones your environment does not need, each key
+is optional.</p>
 <div class="highlight-wrapper codeblock">
   <div class="codeblock-title">
     <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
@@ -10724,59 +10716,39 @@ servers with the <code>ntp:</code> key in the user data.</p>
   </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nf">mkdir</span> -p /var/lib/vz/snippets
 </span></span><span class="line"><span class="cl"><span class="nf">cat</span> &gt; /var/lib/vz/snippets/plakar-appliance.yaml <span class="s">&lt;&lt; &#39;EOF&#39;
 </span></span></span><span class="line"><span class="cl"><span class="s">#cloud-config
+</span></span></span><span class="line"><span class="cl"><span class="s">ssh_authorized_keys:
+</span></span></span><span class="line"><span class="cl"><span class="s">  - ssh-ed25519 AAAA...
+</span></span></span><span class="line"><span class="cl"><span class="s">
 </span></span></span><span class="line"><span class="cl"><span class="s">proxy:
-</span></span></span><span class="line"><span class="cl"><span class="s">  http:  http://&lt;proxy-ip&gt;:&lt;proxy-port&gt;
-</span></span></span><span class="line"><span class="cl"><span class="s">  https: http://&lt;proxy-ip&gt;:&lt;proxy-port&gt;
-</span></span></span><span class="line"><span class="cl"><span class="s">  no_proxy: .corp.example,10.0.0.0/8       # optional
+</span></span></span><span class="line"><span class="cl"><span class="s">  http: http://proxy.corp.example:3128
+</span></span></span><span class="line"><span class="cl"><span class="s">  https: http://proxy.corp.example:3128
+</span></span></span><span class="line"><span class="cl"><span class="s">  no_proxy: .corp.example
 </span></span></span><span class="line"><span class="cl"><span class="s">
 </span></span></span><span class="line"><span class="cl"><span class="s">registry:
 </span></span></span><span class="line"><span class="cl"><span class="s">  mirrors:
-</span></span></span><span class="line"><span class="cl"><span class="s">    docker.io: &lt;harbor-host&gt;/dockerhub-proxy
-</span></span></span><span class="line"><span class="cl"><span class="s">    ghcr.io:   &lt;harbor-host&gt;/ghcr-proxy
-</span></span></span><span class="line"><span class="cl"><span class="s">  insecure: false     # true: skip TLS verification for the mirror hosts
+</span></span></span><span class="line"><span class="cl"><span class="s">    docker.io: harbor.corp.example/dockerhub-proxy
+</span></span></span><span class="line"><span class="cl"><span class="s">    ghcr.io: harbor.corp.example/ghcr-proxy
+</span></span></span><span class="line"><span class="cl"><span class="s">  insecure: false
+</span></span></span><span class="line"><span class="cl"><span class="s">
+</span></span></span><span class="line"><span class="cl"><span class="s">releases:
+</span></span></span><span class="line"><span class="cl"><span class="s">  url: https://dist.corp.example/plakar/enterprise
+</span></span></span><span class="line"><span class="cl"><span class="s">  version: v1.1.2
 </span></span></span><span class="line"><span class="cl"><span class="s">
 </span></span></span><span class="line"><span class="cl"><span class="s">ntp:
-</span></span></span><span class="line"><span class="cl"><span class="s">  servers:            # optional, defaults to pool.ntp.org
-</span></span></span><span class="line"><span class="cl"><span class="s">    - &lt;ntp-server&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">  servers:
+</span></span></span><span class="line"><span class="cl"><span class="s">    - 10.20.0.1
+</span></span></span><span class="line"><span class="cl"><span class="s">    - ntp.corp.example
 </span></span></span><span class="line"><span class="cl"><span class="s">
 </span></span></span><span class="line"><span class="cl"><span class="s">network:
 </span></span></span><span class="line"><span class="cl"><span class="s">  ethernets:
 </span></span></span><span class="line"><span class="cl"><span class="s">    eth0:
-</span></span></span><span class="line"><span class="cl"><span class="s">      addresses: [10.0.1.5/24]             # CIDR suffix is mandatory
+</span></span></span><span class="line"><span class="cl"><span class="s">      addresses: [10.0.1.5/24]
 </span></span></span><span class="line"><span class="cl"><span class="s">      gateway4: 10.0.1.1
 </span></span></span><span class="line"><span class="cl"><span class="s">      nameservers:
-</span></span></span><span class="line"><span class="cl"><span class="s">        addresses: [10.0.1.53, 10.0.1.54]
-</span></span></span><span class="line"><span class="cl"><span class="s">
-</span></span></span><span class="line"><span class="cl"><span class="s">ssh_authorized_keys:
-</span></span></span><span class="line"><span class="cl"><span class="s">  - ssh-ed25519 AAAA...
+</span></span></span><span class="line"><span class="cl"><span class="s">        addresses: [10.0.1.53]
 </span></span></span><span class="line"><span class="cl"><span class="s">EOF</span></span></span></code></pre></div></div>
-<p>Every top-level key above is optional; include only what you need. On Proxmox,
-this <code>network:</code> key is the only network source ahead of the DHCP fallback:
-whichever NICs it doesn&rsquo;t configure fall back to DHCP.</p>
-<p><code>network:</code> accepts a subset of <a href="https://netplan.readthedocs.io/"  target="_blank" rel="noreferrer">netplan v2</a>
-syntax, either under a top-level <code>network:</code> key (as above) or a bare
-<code>ethernets:</code> key. The supported fields are <code>addresses</code> (first entry, CIDR
-required), <code>gateway4</code>, <code>routes</code> (<code>{to, via}</code>, with <code>to: default</code> as an alias for
-<code>gateway4</code>), <code>nameservers.addresses</code>, <code>dhcp4: true</code>, and <code>match.macaddress</code>. Use
-<code>match.macaddress</code> to select a NIC by MAC address instead of its kernel name
-(<code>eth0</code>, <code>eth1</code>, &hellip; in PCI order, for multi-NIC VMs). A MAC match survives
-adapter reordering. Anything else netplan defines, such as bonds, VLANs,
-bridges, <code>dhcp6</code>, or <code>mtu</code>, is silently ignored.</p>
-<ul>
-<li><strong>One default gateway, one DNS set.</strong> Declare <code>gateway4</code> (or a default route)
-and <code>nameservers</code> on exactly one interface — the management one. If several
-interfaces declare either, the first by interface name wins and the others are
-logged and ignored.</li>
-<li><strong>Unlisted NICs fall back to DHCP.</strong> Any NIC without a stanza, or with a
-stanza that fails validation, is picked up by the DHCP client. A NIC on a
-segment without a DHCP server simply stays unconfigured.</li>
-<li><strong>The first NIC (<code>eth0</code>) is special</strong>: when it is DHCP-configured, boot waits
-for its lease. Leases on other NICs are acquired in the background and never
-delay boot.</li>
-<li>Static addressing is outbound-only: the appliance&rsquo;s own services (UI, SSH)
-listen on <strong>all</strong> interfaces regardless of this configuration. Restrict access
-to the management plane with your network policy.</li>
-</ul>
+<p>Each key, including the network options and their rules, is described in
+<a href="/docs/control-plane/appliance/configuration/" >Appliance Configuration</a>.</p>
 <details
       class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
       data-type="note"
@@ -10801,11 +10773,10 @@ to the management plane with your network policy.</li>
   />
 </svg>
 </span></div>
-      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Proxmox&rsquo;s own IP configuration fields on the Cloud-Init tab (<code>ipconfig0</code> and
-friends) are not read by the appliance — they land in a separate
-<code>network-config</code> file the appliance does not consume. Static addressing must
-go through the <code>network:</code> key above instead.</p></div></details><p>The Proxmox web interface only lists existing snippets under <strong>Storage →
-Snippets</strong> it has no option to create or upload one. Snippets have to be placed
+      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>The IP configuration fields of the Proxmox <strong>Cloud-Init</strong> tab, such as
+<code>ipconfig0</code>, are not read by the appliance. Static addressing has to go
+through the <code>network:</code> key of the snippet instead.</p></div></details><p>The Proxmox web interface only lists existing snippets under <strong>Storage -&gt;
+Snippets</strong>. It has no option to create or upload one. Snippets have to be placed
 directly on disk, e.g. via the node&rsquo;s shell. On the default <code>local</code> storage,
 that path is <code>/var/lib/vz/snippets/</code>.</p>
 <figure><img
@@ -10899,23 +10870,9 @@ your snippet. The cloud-init drive must always be attached at <code>ide3</code>:
     </button>
   
 </h3>
-<p>Watch the console during boot for lines prefixed <code>proxy-collect:</code> (proxy and
-registry) and <code>net-collect:</code> / <code>net-apply:</code> (network). Each reports the
-configuration that was applied, or why none was found:</p>
-<div class="highlight-wrapper codeblock">
-  <div class="codeblock-title">
-    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M21 8V20.9932C21 21.5501 20.5552 22 20.0066 22H3.9934C3.44495 22 3 21.556 3 21.0082V2.9918C3 2.45531 3.4487 2 4.00221 2H14.9968L21 8ZM19 9H14V4H5V20H19V9ZM8 7H11V9H8V7ZM8 11H16V13H8V11ZM8 15H16V17H8V15Z"></path></svg>
-</span></span>
-    <span class="codeblock-label">Text</span>
-    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
-      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
-</span></span>
-      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">proxy-collect: proxy configured: http=http://&lt;proxy-ip&gt;:&lt;proxy-port&gt; https=... no_proxy=...</span></span></code></pre></div></div>
-<p>Configuration is collected once per boot. Changes to the snippet take effect on
-the next reboot.</p>
+<p>The appliance reads the snippet once, when it boots, so a change to it takes
+effect after the next reboot. To check the result, connect over SSH and run
+<a href="/docs/control-plane/appliance/troubleshooting/#running-doktor" >doktor</a>.</p>
 
 </div></div>
 </div>
@@ -10950,16 +10907,16 @@ user:</p>
       <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
 </span></span>
     </button>
-  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nf">ssh</span> plakar@&lt;ASSIGNED-IP&gt;</span></span></code></pre></div></div>
-<p>Replace <code>&lt;ASSIGNED-IP&gt;</code> with the appliance&rsquo;s configured or DHCP-assigned IP
+  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nf">ssh</span> plakar@&lt;assigned-ip&gt;</span></span></code></pre></div></div>
+<p>Replace <code>&lt;assigned-ip&gt;</code> with the appliance&rsquo;s configured or DHCP-assigned IP
 address.</p>
 
 
-<h2 id="start-the-appliance-and-complete-enrollment" class="group pr-8">Start the appliance and complete enrollment
+<h2 id="accessing-plakar-control-plane" class="group pr-8">Accessing Plakar Control Plane
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="start-the-appliance-and-complete-enrollment"
+      data-anchor="accessing-plakar-control-plane"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -10970,20 +10927,9 @@ address.</p>
     </button>
   
 </h2>
-<p>Power on the virtual machine. Once the appliance has booted and is reachable on
-the network, open it from a browser using its assigned IP address.</p>
-<div class="highlight-wrapper codeblock">
-  <div class="codeblock-title">
-    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M21 8V20.9932C21 21.5501 20.5552 22 20.0066 22H3.9934C3.44495 22 3 21.556 3 21.0082V2.9918C3 2.45531 3.4487 2 4.00221 2H14.9968L21 8ZM19 9H14V4H5V20H19V9ZM8 7H11V9H8V7ZM8 11H16V13H8V11ZM8 15H16V17H8V15Z"></path></svg>
-</span></span>
-    <span class="codeblock-label">Text</span>
-    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
-      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
-</span></span>
-      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">http://&lt;ASSIGNED-IP&gt;</span></span></code></pre></div></div>
+<p>Power on the virtual machine. Once the appliance has booted, Plakar Control
+Plane is reached from a browser at <code>http://&lt;assigned-ip&gt;</code>, the IP address
+configured for the appliance or assigned by DHCP.</p>
 <details
       class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
       data-type="note"
@@ -11094,7 +11040,7 @@ to:</p>
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#uploading-the-iso">Uploading the ISO</a></li><li><a href="#creating-the-virtual-machine">Creating the Virtual Machine</a><ul><li><a href="#general">General</a></li><li><a href="#os">OS</a></li><li><a href="#system">System</a></li><li><a href="#disks">Disks</a></li><li><a href="#cpu">CPU</a></li><li><a href="#memory">Memory</a></li><li><a href="#network">Network</a></li><li><a href="#confirm">Confirm</a></li></ul></li><li><a href="#configuring-the-appliance">Configuring the Appliance</a><ul><li><a href="#what-needs-to-be-reachable">What needs to be reachable</a></li><li><a href="#write-the-user-data-snippet">Write the user-data snippet</a></li><li><a href="#attach-the-user-data-to-the-vm">Attach the user-data to the VM</a></li><li><a href="#apply-and-reboot">Apply and reboot</a></li><li><a href="#verify">Verify</a></li><li><a href="#connect-over-ssh">Connect over SSH</a></li></ul></li><li><a href="#start-the-appliance-and-complete-enrollment">Start the appliance and complete enrollment</a></li></ul>
+      <ul><li><a href="#uploading-the-iso">Uploading the ISO</a></li><li><a href="#creating-the-virtual-machine">Creating the Virtual Machine</a><ul><li><a href="#general">General</a></li><li><a href="#os">OS</a></li><li><a href="#system">System</a></li><li><a href="#disks">Disks</a></li><li><a href="#cpu">CPU</a></li><li><a href="#memory">Memory</a></li><li><a href="#network">Network</a></li><li><a href="#confirm">Confirm</a></li></ul></li><li><a href="#configuring-the-appliance">Configuring the Appliance</a><ul><li><a href="#write-the-user-data-snippet">Write the user-data snippet</a></li><li><a href="#attach-the-user-data-to-the-vm">Attach the user-data to the VM</a></li><li><a href="#apply-and-reboot">Apply and reboot</a></li><li><a href="#verify">Verify</a></li><li><a href="#connect-over-ssh">Connect over SSH</a></li></ul></li><li><a href="#accessing-plakar-control-plane">Accessing Plakar Control Plane</a></li></ul>
     </div>
 
     
