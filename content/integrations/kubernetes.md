@@ -53,7 +53,6 @@ related:
   - openshift
   - etcd
   - oci
-  - vmware
 
 edition:
   - community

@@ -1,11 +1,5 @@
-{{/*
-  Related integrations: the pages listed in the `related` front matter
-  first, then integrations sharing one of the page's narrow types
-  (secrets-manager, inventory, storage), newest first. Source and
-  destination are left out: they match most integrations.
-*/}}
 {{ $p := . }}
-{{ $max := 4 }}
+{{ $max := 3 }}
 {{ $specificTypes := slice "secrets-manager" "inventory" "storage" }}
 {{ $all := (where site.RegularPages "Section" "integrations").ByDate.Reverse }}
 
@@ -38,12 +32,12 @@
   <div class="max-w-350 mx-auto px-4 flex flex-col gap-10">
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
       <h2 class="text-3xl lg:text-4xl font-medium">Related integrations</h2>
-      <a href="{{ (site.GetPage "/integrations").RelPermalink }}" class="inline-flex w-fit items-center gap-2 text-base font-medium text-neutral-900 hover:text-primary-500 transition-colors">
+      <a href="{{ (site.GetPage "/integrations").RelPermalink }}" class="inline-flex w-fit items-center gap-2 text-base font-medium text-ui-neutral-900 hover:text-ui-primary-500 transition-colors">
         Browse all integrations
         <span class="w-5 h-5 flex items-center justify-center">{{ partial "icon.html" "ri/arrow-right-line" }}</span>
       </a>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {{ range . }}
         {{ partial "integrations/integration-card.html" . }}
       {{ end }}
