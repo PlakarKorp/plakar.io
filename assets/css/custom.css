@@ -627,3 +627,44 @@ table.Nm {
 }
 .landing-copy.is-copied .ic-copy { display: none; }
 .landing-copy.is-copied .ic-check { display: inline; }
+
+/* Legal pages: keep the bullet glyphs of the source document (● or -). */
+.prose ul.list-bullet { list-style-type: disc; }
+.prose ul.list-dash { list-style-type: "-  "; }
+.prose ul.list-dash > li::marker { color: currentColor; }
+
+/* Legal pages: print the document only, without the site chrome. */
+@media print {
+  body:has(.legal-document) > section,
+  body:has(.legal-document) > footer,
+  body:has(.legal-document) #axeptio_overlay,
+  .legal-document .heading-anchor {
+    display: none !important;
+  }
+  body:has(.legal-document) main > section:first-child,
+  body:has(.legal-document) main > section:first-child > div {
+    background: none !important;
+    padding-top: 0 !important;
+  }
+  body:has(.legal-document) main > section:nth-child(2) {
+    padding-top: 1rem !important;
+    margin-bottom: 0 !important;
+  }
+  .legal-document h2,
+  .legal-document h3 {
+    break-after: avoid;
+  }
+  .legal-document table,
+  .legal-document li {
+    break-inside: avoid;
+  }
+}
+
+/* Legal pages with `wide: true`: full container width, justified text. */
+.prose.legal-wide {
+  max-width: none;
+}
+.legal-wide p,
+.legal-wide li {
+  text-align: justify;
+}
