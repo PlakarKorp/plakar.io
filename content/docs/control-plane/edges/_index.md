@@ -53,9 +53,9 @@ Edges are particularly useful for:
 - Running the few integrations that depend on external tools, which can be
   installed on the edge host.
 
-An edge belongs to the organization it enrolled into. That organization can run
-tasks on it, and so can the organizations below it that inherit its edge
-enrollment setting. See
-[Sharing edges with child organizations](enrollment#sharing-edges-with-child-organizations).
+An edge belongs to the organization that owns the pool it enrolled into. That
+organization can run tasks on it, and so can the organizations below it when the
+pool is shared. See
+[Sharing pools with child organizations](enrollment#sharing-pools-with-child-organizations).
 
 {{% children description="true" %}}

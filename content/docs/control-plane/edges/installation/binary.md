@@ -21,22 +21,21 @@ $ go build -o plakar-edge .
 
 ## Enroll the edge
 
-Start the edge with the Control Plane URL, enrollment key, and organization it
-should join:
+Start the edge with the Control Plane URL and the enrollment key of the edge
+pool it should join. The pool decides the organization the edge joins:
 
 ```sh
 $ plakar-edge \
   -control-plane https://plakman.example.com \
-  -enroll <enrollment-key> \
-  -organization <organization-id> \
+  -pool-enroll <pool-enrollment-key> \
   -name edge-paris-1 \
   -state-dir /var/lib/plakar-edge \
   -pkg /var/lib/plakar-edge/pkgs
 ```
 
-The enrollment key and organization are only required for the first startup.
-After successful enrollment, the edge stores its identity and authentication
-token in its state directory and reuses them on subsequent starts.
+The enrollment key is only required for the first startup. After successful
+enrollment, the edge stores its identity and authentication token in its state
+directory and reuses them on subsequent starts.
 
 For subsequent starts, you can therefore run:
 
@@ -55,8 +54,7 @@ The most important options are:
 | Option           | Required  | Description                                                                                                                                |
 | ---------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
 | `-control-plane` | Yes       | Base URL of the Plakar Control Plane.                                                                                                      |
-| `-enroll`        | First run | Enrollment key used to register the edge. It can also be provided through `PLAKAR_EDGE_ENROLL_KEY`.                                        |
-| `-organization`  | First run | Identifier of the organization the edge joins. It can also be provided through `PLAKAR_EDGE_ORGANIZATION`.                                 |
+| `-pool-enroll`   | First run | Enrollment key of the edge pool the edge joins. It can also be provided through `PLAKAR_EDGE_POOL_ENROLL_KEY`.                             |
 | `-name`          | No        | Name displayed for the edge in PCP. Defaults to the hostname.                                                                              |
 | `-state-dir`     | No        | Directory used to store the edge identity and authentication token. Defaults to `/var/lib/plakar-edge`.                                    |
 | `-pkg`           | No        | Directory used for downloaded connector packages. Defaults to `<state-dir>/pkg`.                                                           |

@@ -97,8 +97,7 @@ For example, with Docker:
 ```sh
 $ docker run -d --name edge-mysql-1 \
   -v edge-mysql-1:/var/lib/plakar-edge \
-  -e PLAKAR_EDGE_ENROLL_KEY=<enrollment-key> \
-  -e PLAKAR_EDGE_ORGANIZATION=<organization-id> \
+  -e PLAKAR_EDGE_POOL_ENROLL_KEY=<pool-enrollment-key> \
   registry.example.com/plakar-edge-mysql:1.0 \
   -control-plane https://plakman.example.com \
   -name edge-mysql-1

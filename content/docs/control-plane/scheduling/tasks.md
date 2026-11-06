@@ -19,6 +19,11 @@ apps whose resource carries the same residency are offered for the second, so a
 task cannot be defined that would take data out of its country. A check task
 reads a single store, so nothing is narrowed.
 
+A task runs on an [edge](../../edges) when the resource of one of its apps is
+assigned to an edge pool, and on the Control Plane otherwise. Tasks do not name
+an edge themselves. See
+[selecting an edge](../../edges/running-tasks#selecting-an-edge).
+
 ## Backup Task
 
 A backup task stores backup data from a source app into a store app. It requires
@@ -31,11 +36,6 @@ restore points and can later be used as filters for your restore points.
 
 ### Advanced Config
 
-- **Run on**: Pins the task to a specific edge. If left empty, the task runs on
-  the Control Plane itself. Targeting edges by tags is currently only possible
-  through the [Ansible collection](../../references/ansible-collection) and the
-  [Kubernetes operator](../../infrastructure-as-code/kubernetes-operator/scheduling#running-tasks-on-a-remote-edge).
-  See [selecting an edge](../../edges/running-tasks#selecting-an-edge).
 - **Pre-job script** and **Post-job script**: File names of scripts in the
   edge's scripts directory, run before and after the job. The task fails if the
   pre-job script fails, and the post-job script runs whether the job succeeds or
@@ -62,15 +62,15 @@ restore point.
 Environment and data class filters let you narrow the snapshot list further,
 showing only restore points that match the specified environment and data class.
 
+By default, a restore task restores the whole restore point. **Path** limits it
+to one file or folder inside the restore point, given as an absolute path such
+as `/home/data/documents`. Only that file, or that folder and its contents, is
+written to the destination.
+
 ![](../images/restore-task.png)
 
 ### Advanced Config
 
-- **Run on**: Pins the task to a specific edge. If left empty, the task runs on
-  the Control Plane itself. Targeting edges by tags is currently only possible
-  through the [Ansible collection](../../references/ansible-collection) and the
-  [Kubernetes operator](../../infrastructure-as-code/kubernetes-operator/scheduling#running-tasks-on-a-remote-edge).
-  See [selecting an edge](../../edges/running-tasks#selecting-an-edge).
 - **Pre-job script** and **Post-job script**: File names of scripts in the
   edge's scripts directory, run before and after the job. The task fails if the
   pre-job script fails, and the post-job script runs whether the job succeeds or
@@ -93,11 +93,6 @@ matching all the provided labels will be synced to the other store.
 
 ### Advanced Config
 
-- **Run on**: Pins the task to a specific edge. If left empty, the task runs on
-  the Control Plane itself. Targeting edges by tags is currently only possible
-  through the [Ansible collection](../../references/ansible-collection) and the
-  [Kubernetes operator](../../infrastructure-as-code/kubernetes-operator/scheduling#running-tasks-on-a-remote-edge).
-  See [selecting an edge](../../edges/running-tasks#selecting-an-edge).
 - **Concurrency**: This controls how many operations the backup task runs in
   parallel. Plakar Control Plane automatically sets a recommended concurrency
   for each operation its doing. Only change this if you have a specific reason
@@ -129,11 +124,6 @@ checked, not the entire store.
 
 ### Advanced Config
 
-- **Run on**: Pins the task to a specific edge. If left empty, the task runs on
-  the Control Plane itself. Targeting edges by tags is currently only possible
-  through the [Ansible collection](../../references/ansible-collection) and the
-  [Kubernetes operator](../../infrastructure-as-code/kubernetes-operator/scheduling#running-tasks-on-a-remote-edge).
-  See [selecting an edge](../../edges/running-tasks#selecting-an-edge).
 - **Concurrency**: This controls how many operations the backup task runs in
   parallel. Plakar Control Plane automatically sets a recommended concurrency
   for each operation its doing. Only change this if you have a specific reason
