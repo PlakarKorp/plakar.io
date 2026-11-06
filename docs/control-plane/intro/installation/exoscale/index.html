@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-07-14T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-06T12:31:37+03:00">
+    <meta property="article:modified_time" content="2026-11-06T16:23:38+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -229,12 +229,12 @@
     "dateCreated": "2026-07-14T00:00:00\u002b00:00",
     "datePublished": "2026-07-14T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-06T12:31:37\u002b03:00",
+    "dateModified": "2026-11-06T16:23:38\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/intro/installation/exoscale/",
-    "wordCount":  1554 
+    "wordCount":  1550 
   }]
   </script>
 
@@ -10194,20 +10194,20 @@ a <strong>Compute custom template</strong>, which can then be used to create ins
 </h2>
 <p>Exoscale needs a publicly accessible URL to download the QCOW2 image from when
 creating the custom template, along with its MD5 checksum to verify the image
-during import. There are two ways to provide this:</p>
+during import. There are two ways to provide the URL:</p>
 <ul>
 <li><strong>Direct download (recommended)</strong>: use the download link from the
-<a href="https://www.plakar.io/download"  target="_blank" rel="noreferrer">downloads page</a> directly as the image source,
-together with the MD5 checksum published alongside it. No local download or
-re-hosting is required.</li>
-<li><strong>Self-hosted</strong>: download the QCOW2 image locally, then re-upload it to your
-own publicly accessible storage, such as Exoscale&rsquo;s Simple Object Storage
-(SOS). Use this if you want to keep your own copy of the image, or if your
-environment can&rsquo;t reach <code>plakar.io</code> directly when creating the template.</li>
+<a href="https://www.plakar.io/download"  target="_blank" rel="noreferrer">downloads page</a> directly as the image source.
+No re-hosting is required.</li>
+<li><strong>Self-hosted</strong>: re-upload the QCOW2 image to your own publicly accessible
+storage, such as Exoscale&rsquo;s Simple Object Storage (SOS). Use this if you want
+to keep your own copy of the image, or if your environment can&rsquo;t reach
+<code>plakar.io</code> directly when creating the template.</li>
 </ul>
-<p>If you choose the self-hosted option, download the image from the downloads
-page, then confirm it downloaded correctly by comparing its checksum against the
-one published on the downloads page:</p>
+<p>The downloads page publishes a <code>SHA-256</code> checksum, but Exoscale only accepts
+<code>MD5</code>. Whichever option you choose, download the image locally, confirm that its
+<code>SHA-256</code> checksum matches the one on the downloads page, then generate its
+<code>MD5</code> checksum:</p>
 <div class="highlight-wrapper codeblock">
   <div class="codeblock-title">
     <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
@@ -10219,7 +10219,8 @@ one published on the downloads page:</p>
       <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
 </span></span>
     </button>
-  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nf">md5sum</span> plakar-control-plane.qcow2</span></span></code></pre></div></div>
+  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nf">sha256sum</span> plakar-appliance-&lt;version&gt;.qcow2
+</span></span><span class="line"><span class="cl"><span class="nf">md5sum</span> plakar-appliance-&lt;version&gt;.qcow2</span></span></code></pre></div></div>
 <details
       class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
       data-type="note"
@@ -10336,8 +10337,8 @@ the zone where you intend to deploy Plakar Control Plane.</p>
     sizes="(min-width: 768px) 50vw, 65vw"
     data-zoom-src="/docs/control-plane/intro/installation/images/create-exoscale-compute-template_hu_adabe7eb5cd311f4.webp"></figure>
 <p>For the image source, provide the public URL of the QCOW2 image, either the
-direct download link from the downloads page or your SOS object URL then enter
-the corresponding MD5 checksum. Set the boot mode to <strong>UEFI</strong>.</p>
+direct download link from the downloads page or your SOS object URL, then enter
+the <code>MD5</code> checksum you generated. Set the boot mode to <strong>UEFI</strong>.</p>
 <p>If you intend to use Exoscale&rsquo;s Application Consistent Snapshots, enable
 <strong>Application consistent snapshot</strong> when creating the custom template. This
 option cannot be enabled later unless it is supported by the template.</p>

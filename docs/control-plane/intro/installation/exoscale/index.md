@@ -14,23 +14,24 @@ a **Compute custom template**, which can then be used to create instances.
 
 Exoscale needs a publicly accessible URL to download the QCOW2 image from when
 creating the custom template, along with its MD5 checksum to verify the image
-during import. There are two ways to provide this:
+during import. There are two ways to provide the URL:
 
 - **Direct download (recommended)**: use the download link from the
-  [downloads page](https://www.plakar.io/download) directly as the image source,
-  together with the MD5 checksum published alongside it. No local download or
-  re-hosting is required.
-- **Self-hosted**: download the QCOW2 image locally, then re-upload it to your
-  own publicly accessible storage, such as Exoscale's Simple Object Storage
-  (SOS). Use this if you want to keep your own copy of the image, or if your
-  environment can't reach `plakar.io` directly when creating the template.
+  [downloads page](https://www.plakar.io/download) directly as the image source.
+  No re-hosting is required.
+- **Self-hosted**: re-upload the QCOW2 image to your own publicly accessible
+  storage, such as Exoscale's Simple Object Storage (SOS). Use this if you want
+  to keep your own copy of the image, or if your environment can't reach
+  `plakar.io` directly when creating the template.
 
-If you choose the self-hosted option, download the image from the downloads
-page, then confirm it downloaded correctly by comparing its checksum against the
-one published on the downloads page:
+The downloads page publishes a `SHA-256` checksum, but Exoscale only accepts
+`MD5`. Whichever option you choose, download the image locally, confirm that its
+`SHA-256` checksum matches the one on the downloads page, then generate its
+`MD5` checksum:
 
 ```bash
-md5sum plakar-control-plane.qcow2
+sha256sum plakar-appliance-<version>.qcow2
+md5sum plakar-appliance-<version>.qcow2
 ```
 
 > [!NOTE]+ QCOW2 Image URL
@@ -76,8 +77,8 @@ the zone where you intend to deploy Plakar Control Plane.
 ![](../images/create-exoscale-compute-template.png)
 
 For the image source, provide the public URL of the QCOW2 image, either the
-direct download link from the downloads page or your SOS object URL then enter
-the corresponding MD5 checksum. Set the boot mode to **UEFI**.
+direct download link from the downloads page or your SOS object URL, then enter
+the `MD5` checksum you generated. Set the boot mode to **UEFI**.
 
 If you intend to use Exoscale's Application Consistent Snapshots, enable
 **Application consistent snapshot** when creating the custom template. This

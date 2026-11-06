@@ -41,9 +41,9 @@ Provide a publicly accessible URL for the Plakar Control Plane `QCOW2` image in
 storage such as an S3 bucket. and set the **Image Type** to **qcow2**.
 
 You can optionally provide a checksum to verify the image during installation.
-We publish both `SHA-256` and `MD5` checksums on the Downloads Page. If you
-provide a checksum, enter it in **Image checksum** and select the corresponding
-**checksum type**.
+The Downloads Page publishes a `SHA-256` checksum for each image. If you provide
+a checksum, enter it in **Image checksum** and set the **checksum type** to
+`SHA-256`.
 
 ![](../images/baremetal-2.png)
 
