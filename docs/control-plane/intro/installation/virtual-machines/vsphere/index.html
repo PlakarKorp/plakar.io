@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-06-09T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-06T16:26:23+03:00">
+    <meta property="article:modified_time" content="2026-11-06T16:28:18+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -234,12 +234,12 @@
     "dateCreated": "2026-06-09T00:00:00\u002b00:00",
     "datePublished": "2026-06-09T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-06T16:26:23\u002b03:00",
+    "dateModified": "2026-11-06T16:28:18\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/intro/installation/virtual-machines/vsphere/",
-    "wordCount":  1780 
+    "wordCount":  1840 
   }]
   </script>
 
@@ -10875,10 +10875,10 @@ Device</strong>, select <strong>Hard Disk</strong>, and set it to the data disk 
 <p>By default the appliance boots with DHCP networking and no SSH access. If that&rsquo;s
 enough for you, skip ahead to
 <a href="/docs/control-plane/intro/installation/virtual-machines/vsphere/#start-the-appliance-and-complete-enrollment" >Start the appliance and complete enrollment</a>.
-Otherwise, every other setting (static IP, proxy, registry mirror, SSH key) is
-delivered through vSphere&rsquo;s guest info mechanism, added under <strong>Advanced
-Parameters</strong> before first power-on, or during the Deploy-OVF wizard&rsquo;s Customize
-Template step on the OVA path. Pick one of the two tabs below.</p>
+Otherwise, every other setting (static IP, proxy, registry mirror, NTP servers,
+SSH key) is delivered through vSphere&rsquo;s guest info mechanism, added under
+<strong>Advanced Parameters</strong> before first power-on, or during the Deploy-OVF wizard&rsquo;s
+Customize Template step on the OVA path. Pick one of the two tabs below.</p>
 
 
 <h3 id="what-needs-to-be-reachable" class="group pr-8">What needs to be reachable
@@ -10916,6 +10916,9 @@ production deployments because images are pulled from a local registry cache
 instead of the public internet. When using Harbor, you don&rsquo;t need to
 whitelist the Docker and GitHub domains above on your proxy.</li>
 </ol>
+<p>The appliance also synchronizes its clock with <code>pool.ntp.org</code> over UDP port 123,
+which does not go through the proxy. If your network blocks it, set internal NTP
+servers with <code>guestinfo.plakar.ntp_servers</code> or the <code>ntp:</code> key in the user data.</p>
 <div class="tab__container w-full">
 <div class="tab__nav overflow-x-auto" role="tablist">
 <div class="flex gap-1 min-w-max"><button class="tab__button px-3 py-2 text-sm font-semibold border-b-2 border-transparent rounded-t-md bg-neutral-100 hover:bg-neutral-300 tab--active" role="tab" aria-selected="true" data-tab-index="0" data-tab-label="Basic (flat keys)"><span class="flex items-center gap-1">Basic (flat keys)</span></button><button class="tab__button px-3 py-2 text-sm font-semibold border-b-2 border-transparent rounded-t-md bg-neutral-100 hover:bg-neutral-300" role="tab" aria-selected="false" data-tab-index="1" data-tab-label="Advanced (YAML)"><span class="flex items-center gap-1">Advanced (YAML)</span></button></div>
@@ -10968,6 +10971,10 @@ network ones and of each other, so add only the ones you actually need.</p>
           <td><code>true</code> to skip TLS verification for the mirror hosts</td>
       </tr>
       <tr>
+          <td><code>guestinfo.plakar.ntp_servers</code></td>
+          <td>Comma-separated NTP servers, as hostnames or IP addresses</td>
+      </tr>
+      <tr>
           <td><code>guestinfo.plakar.ssh_authorized_keys</code></td>
           <td>Contents of your SSH public key</td>
       </tr>
@@ -10992,11 +10999,11 @@ network ones and of each other, so add only the ones you actually need.</p>
 use <code>guestinfo.userdata</code> instead of the flat keys.</p>
 
 
-<h3 id="cloud-init-via-guestinfouserdata-proxy-registry-network-ssh" class="group pr-8">Cloud-init via <code>guestinfo.userdata</code> (proxy, registry, network, SSH)
+<h3 id="cloud-init-via-guestinfouserdata-proxy-registry-ntp-network-ssh" class="group pr-8">Cloud-init via <code>guestinfo.userdata</code> (proxy, registry, NTP, network, SSH)
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="cloud-init-via-guestinfouserdata-proxy-registry-network-ssh"
+      data-anchor="cloud-init-via-guestinfouserdata-proxy-registry-ntp-network-ssh"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -11007,8 +11014,9 @@ use <code>guestinfo.userdata</code> instead of the flat keys.</p>
     </button>
   
 </h3>
-<p>A single cloud-config document can carry <code>proxy:</code>, <code>registry:</code>, <code>network:</code>, and
-<code>ssh_authorized_keys:</code> together, so include only the keys you need:</p>
+<p>A single cloud-config document can carry <code>proxy:</code>, <code>registry:</code>, <code>ntp:</code>,
+<code>network:</code>, and <code>ssh_authorized_keys:</code> together, so include only the keys you
+need:</p>
 <div class="highlight-wrapper codeblock">
   <div class="codeblock-title">
     <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M21 8V20.9932C21 21.5501 20.5552 22 20.0066 22H3.9934C3.44495 22 3 21.556 3 21.0082V2.9918C3 2.45531 3.4487 2 4.00221 2H14.9968L21 8ZM19 9H14V4H5V20H19V9ZM8 7H11V9H8V7ZM8 11H16V13H8V11ZM8 15H16V17H8V15Z"></path></svg>
@@ -11031,6 +11039,10 @@ use <code>guestinfo.userdata</code> instead of the flat keys.</p>
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">docker.io</span><span class="p">:</span><span class="w"> </span><span class="l">&lt;harbor-host&gt;/dockerhub-proxy</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ghcr.io</span><span class="p">:</span><span class="w"> </span><span class="l">&lt;harbor-host&gt;/ghcr-proxy</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">insecure: false # true</span><span class="p">:</span><span class="w"> </span><span class="l">skip TLS verification for the mirror hosts</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">ntp</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">servers</span><span class="p">:</span><span class="w"> </span><span class="c"># optional, defaults to pool.ntp.org</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">&lt;ntp-server&gt;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="nt">network</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ethernets</span><span class="p">:</span><span class="w">
@@ -11252,7 +11264,7 @@ to:</p>
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#creating-the-virtual-machine">Creating the Virtual Machine</a><ul><li><a href="#select-an-ovf-template">Select an OVF template</a></li><li><a href="#specify-a-name-and-target-location">Specify a name and target location</a></li><li><a href="#select-a-compute-resource">Select a compute resource</a></li><li><a href="#review-details">Review details</a></li><li><a href="#select-storage">Select storage</a></li><li><a href="#select-networks">Select networks</a></li><li><a href="#ready-to-complete">Ready to complete</a></li><li><a href="#upload-the-iso-to-a-datastore">Upload the ISO to a datastore</a></li><li><a href="#create-a-new-virtual-machine">Create a new virtual machine</a></li><li><a href="#select-a-creation-type">Select a creation type</a></li><li><a href="#iso-specify-a-name-and-target-location">Specify a name and target location</a></li><li><a href="#iso-select-a-compute-resource">Select a compute resource</a></li><li><a href="#iso-select-storage">Select storage</a></li><li><a href="#select-compatibility">Select compatibility</a></li><li><a href="#select-a-guest-os">Select a guest OS</a></li><li><a href="#customize-hardware">Customize hardware</a></li></ul></li><li><a href="#add-the-data-disk">Add the data disk</a></li><li><a href="#configuring-the-appliance">Configuring the Appliance</a><ul><li><a href="#what-needs-to-be-reachable">What needs to be reachable</a></li><li><a href="#cloud-init-via-guestinfouserdata-proxy-registry-network-ssh">Cloud-init via guestinfo.userdata (proxy, registry, network, SSH)</a></li><li><a href="#connect-over-ssh">Connect over SSH</a></li></ul></li><li><a href="#start-the-appliance-and-complete-enrollment">Start the appliance and complete enrollment</a></li></ul>
+      <ul><li><a href="#creating-the-virtual-machine">Creating the Virtual Machine</a><ul><li><a href="#select-an-ovf-template">Select an OVF template</a></li><li><a href="#specify-a-name-and-target-location">Specify a name and target location</a></li><li><a href="#select-a-compute-resource">Select a compute resource</a></li><li><a href="#review-details">Review details</a></li><li><a href="#select-storage">Select storage</a></li><li><a href="#select-networks">Select networks</a></li><li><a href="#ready-to-complete">Ready to complete</a></li><li><a href="#upload-the-iso-to-a-datastore">Upload the ISO to a datastore</a></li><li><a href="#create-a-new-virtual-machine">Create a new virtual machine</a></li><li><a href="#select-a-creation-type">Select a creation type</a></li><li><a href="#iso-specify-a-name-and-target-location">Specify a name and target location</a></li><li><a href="#iso-select-a-compute-resource">Select a compute resource</a></li><li><a href="#iso-select-storage">Select storage</a></li><li><a href="#select-compatibility">Select compatibility</a></li><li><a href="#select-a-guest-os">Select a guest OS</a></li><li><a href="#customize-hardware">Customize hardware</a></li></ul></li><li><a href="#add-the-data-disk">Add the data disk</a></li><li><a href="#configuring-the-appliance">Configuring the Appliance</a><ul><li><a href="#what-needs-to-be-reachable">What needs to be reachable</a></li><li><a href="#cloud-init-via-guestinfouserdata-proxy-registry-ntp-network-ssh">Cloud-init via guestinfo.userdata (proxy, registry, NTP, network, SSH)</a></li><li><a href="#connect-over-ssh">Connect over SSH</a></li></ul></li><li><a href="#start-the-appliance-and-complete-enrollment">Start the appliance and complete enrollment</a></li></ul>
     </div>
 
     
