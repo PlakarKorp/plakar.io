@@ -52,16 +52,14 @@ The actions on each resource include placing a
 cannot be used by any task, so backups, restores, checks, and prunes involving
 it are refused until the hold is removed.
 
-![](./../inventories/images/resources.png)
+![](./images/resources.png)
 
 ## Resource settings
 
 Resource settings can be updated from the **Resource settings** tab under each
 resource, which is split between **General**, **Residency** and **Edge pool**.
-General holds the settings described below. Residency ties the resource to a
-country and restricts operations to resources in that same country. See
-[data residency](../compliance/residency) for details. Edge pool is described in
-[Edge pools](#edge-pools).
+General holds the settings described below. Residency and Edge pool are
+described in [Residency](#residency) and [Edge pools](#edge-pools).
 
 For managed inventories, most settings are read-only since the resource is
 managed by the inventory. For self-managed inventories, all settings can be
@@ -73,7 +71,20 @@ resource does not need to be backed up (for example, a test database), you can
 exclude it from coverage using the **Exclude from backup coverage**. Excluded
 resources are omitted from protection status and coverage reporting.
 
-![](./../inventories/images/resource.png)
+![](./images/resource.png)
+
+## Residency
+
+Resources can only be used together when they have the same
+[residency](../compliance/residency). A source can only be backed up to a store
+with the same residency, a restore can only write to a destination with the
+residency of its store, and a sync can only run between stores with the same
+residency. The residency belongs to the resource, so every app created for it
+takes on its residency.
+
+A resource inherits the residency of its inventory. A residency set in the
+**Residency** section of its settings takes precedence, for a resource located
+in a different country from the rest of its inventory.
 
 ## Edge pools
 
@@ -93,11 +104,26 @@ a single edge and an edge belongs to exactly one pool. See
 
 ## Resource classification
 
-Each resource is assigned a `class` and `subclass` that describe what kind of
-infrastructure it is. The `class` describes the general category the resource
-belongs to, while the `subclass` identifies the specific implementation or
-provider. Plakar Control Plane uses this classification to determine which
-integrations are compatible with a resource.
+A resource is identified by its resource URN, which cannot change once the
+resource exists. It also has a name, a class, a subclass and tags.
+
+The `class` describes the general category the resource belongs to, while the
+`subclass` identifies the specific implementation or provider. Plakar Control
+Plane uses this classification to determine which integrations are compatible
+with a resource. [Configuration bundles](../inventories/configuration-bundles)
+select resources by class and tags, and [policies](../compliance/policies) can
+narrow their scope by tag. In a managed inventory, the class and tags are
+discovered from the provider and cannot be edited.
+
+## Endpoints and attributes
+
+Each resource has one or more endpoints that identify where it is reached, such
+as a hostname, an IP address or a bucket name. In a self-managed inventory, the
+endpoints are entered with the resource. In a managed inventory, they are
+discovered from the provider, together with attributes that describe the
+resource, such as the S3 endpoint of a bucket or whether versioning is enabled
+on it. When an app is set up on the resource, the endpoints and attributes fill
+in the matching fields, so they do not have to be entered again.
 
 ## Environment and data class tags
 

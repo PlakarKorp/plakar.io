@@ -51,6 +51,7 @@ Left empty, the inventory discovers every namespace.
 An inventory discovers its resources when it is synchronized, so a new inventory
 is empty until its first synchronization. Synchronizing again refreshes the
 inventory, for example after namespaces, PVCs or virtual machines are added to
-the cluster.
+the cluster. PCP then synchronizes it periodically, every 15 minutes by default.
+See [inventory synchronization](../#inventory-synchronization).
 
 ![Creating OpenShift inventory](../images/create-openshift-inventory.png)

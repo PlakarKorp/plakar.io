@@ -36,6 +36,16 @@ resources of the account, classified by type. The provider is the source of
 truth. Resources cannot be created or deleted by hand in a managed inventory,
 and changes made in the provider appear at the next synchronization.
 
+## Inventory Synchronization
+
+Plakar Control Plane synchronizes a managed inventory in the background, listing
+the resources of the provider again on a fixed period. The period is set per
+inventory, in the **Synchronization** section of its settings, and defaults to
+900 seconds, or 15 minutes. The minimum is 30 seconds. A shorter period picks up
+new resources sooner, at the cost of more calls to the provider API. A
+synchronization can also be started at any time with **Sync now**, without
+waiting for the next period.
+
 ## Self-managed inventories
 
 A self-managed inventory holds resources that are added by hand, one at a time
@@ -44,49 +54,19 @@ discovers, such as a local MinIO instance or a self-hosted database.
 
 ## Resources
 
-A resource is identified by its resource URN, which cannot change once the
-resource exists. It also has a name, a class, subclass and tags.
-[Configuration bundles](configuration-bundles) select resources by class and
-tags, and [policies](../compliance/policies) can narrow their scope by tag. In a
-managed inventory, the class and tags are discovered from the provider and
-cannot be edited.
-
-![](./images/resources.png)
-
-Each resource also has one or more endpoints that identify where it is reached,
-such as a hostname, an IP address or a bucket name. In a self-managed inventory,
-the endpoints are entered with the resource. In a managed inventory, they are
-discovered from the provider, together with attributes that describe the
-resource, such as the S3 endpoint of a bucket or whether versioning is enabled
-on it. When an app is set up on the resource, the endpoints and attributes fill
-in the matching fields, so they do not have to be entered again.
-
-Backups and restores are configured by setting up [apps](../apps) on a resource.
-There are three types of app:
-
-- **Source**: the resource is backed up.
-- **Store**: the resource holds backups.
-- **Destination**: data is restored to the resource.
-
-Each resource has a protection status, which reflects whether it is covered by
-backups. A resource that does not need backups, such as a test database or a
-temporary bucket, can be excluded from backup coverage. An excluded resource is
-left out of protection status and coverage reporting.
-
-![](./images/resource.png)
+An inventory exposes its resources, each with a class, subclass, tags, and the
+endpoints and attributes that identify where it is reached. A managed inventory
+discovers them from the provider, and they cannot be edited. In a self-managed
+inventory, they are entered with the resource. See
+[Resource Types](../resources) for what a resource carries and how it is used.
 
 ## Data residency
 
 An inventory can have a **residency**, which is inherited by every resource it
 exposes. This gives those resources a country in which their data must remain. A
-residency set on an individual resource takes precedence over the inherited one,
-for a resource located in a different country from the rest of the inventory.
-
-When you configure an operation, PCP only allows resources with the same
-residency to be used together. For example, resources from an inventory with a
-French residency can only be backed up to, restored from, or synchronized with
-resources that also have a French residency. See
-[data residency](../compliance/residency) for more information.
+residency set on an individual resource takes precedence over the inherited one.
+See [Residency](../resources#residency) for how it restricts the resources that
+can be used together.
 
 ## Edge pools
 

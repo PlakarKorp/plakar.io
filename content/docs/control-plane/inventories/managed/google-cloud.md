@@ -67,6 +67,8 @@ key file.
 After creating the inventory, trigger a synchronization to discover and load
 resources from the configured Google Cloud project. You can run synchronization
 again at any time to refresh the inventory, for example after creating new Cloud
-Storage buckets or CloudSQL instances.
+Storage buckets or CloudSQL instances. PCP then synchronizes it periodically,
+every 15 minutes by default. See
+[inventory synchronization](../#inventory-synchronization).
 
 ![Creating Google Cloud inventory](../images/create-google-cloud-inventory.png)
