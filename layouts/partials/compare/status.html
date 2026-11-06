@@ -1,0 +1,24 @@
+{{/* Renders one comparison cell. Input: dict "status" (yes|partial|no) "note" string "highlight" bool "align" (center|start) */}}
+{{- $status := lower (.status | default "no") -}}
+{{- $note := .note | default "" -}}
+{{- $highlight := .highlight | default false -}}
+{{- $start := eq .align "start" -}}
+{{- $icon := "ri/close-line" -}}
+{{- $color := "text-red-500" -}}
+{{- $label := "No" -}}
+{{- if eq $status "yes" -}}
+  {{- $icon = "ri/check-line" -}}
+  {{- $color = "text-green-600" -}}
+  {{- $label = "Yes" -}}
+{{- else if eq $status "partial" -}}
+  {{- $icon = "ri/subtract-line" -}}
+  {{- $color = "text-amber-600" -}}
+  {{- $label = "Partial" -}}
+{{- end -}}
+<div class="flex flex-col gap-1 {{ cond $start "items-start text-left" "items-center text-center" }}">
+  <span class="flex items-center gap-1.5 {{ $color }}">
+    <span class="w-5 h-5 shrink-0" aria-hidden="true">{{ partial "icon.html" $icon }}</span>
+    <span class="text-xs font-bold uppercase tracking-wide">{{ $label }}</span>
+  </span>
+  {{ with $note }}<span class="text-sm text-neutral-600 leading-snug {{ cond $start "" "max-w-64" }}">{{ . }}</span>{{ end }}
+</div>
