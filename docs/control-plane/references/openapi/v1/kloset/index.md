@@ -2,7 +2,7 @@
 
 Browsing a store and the snapshots inside it.
 
-Generated from Plakar Control Plane v0.18. See [OpenAPI v1](https://www.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
+Generated from Plakar Control Plane v0.19. See [OpenAPI v1](https://www.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
 
 
 ## List the importer types in a store
@@ -241,7 +241,7 @@ Parameters:
 
 Responses:
 
-- `200` OK: `EntryPage`
+- `200` OK: `SearchPage`
 - `401` Missing, invalid or expired credentials
 - `default`
 

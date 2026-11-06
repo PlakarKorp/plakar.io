@@ -2,7 +2,7 @@
 
 Bundles of resources, per organization or inventory.
 
-Generated from Plakar Control Plane v0.18. See [OpenAPI v1](https://www.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
+Generated from Plakar Control Plane v0.19. See [OpenAPI v1](https://www.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
 
 
 ## List the organization bundles
@@ -181,6 +181,28 @@ Responses:
 - `500` Internal Server Error _(panics)_: `HTTPError`
 - `default`
 
+## Reveal an organization bundle's sensitive values
+
+`GET /api/v1/account/organizations/{id}/bundles/{bundle_id}/secrets`
+
+Answers the literal sensitive values the other reads leave out, by name. Requires view on bundles and on the bundle_secret class. Every call is journaled as secret.revealed.
+
+Authentication: badge
+
+Parameters:
+
+- `id` (path, string, required)
+- `bundle_id` (path, string, required)
+
+Responses:
+
+- `200` OK: `SecretValues`
+- `400` Bad Request _(validation or deserialization error)_: `HTTPError`
+- `401` Missing, invalid or expired credentials
+- `403` The caller may not do this: `HTTPError`
+- `500` Internal Server Error _(panics)_: `HTTPError`
+- `default`
+
 ## List the inventory bundles
 
 `GET /api/v1/bundles/inventories/{inventory_id}`
@@ -351,6 +373,28 @@ Request body (application/json): `SaveBundleFormRequest`
 Responses:
 
 - `200` OK: `SaveBundleFormResponse`
+- `400` Bad Request _(validation or deserialization error)_: `HTTPError`
+- `401` Missing, invalid or expired credentials
+- `403` The caller may not do this: `HTTPError`
+- `500` Internal Server Error _(panics)_: `HTTPError`
+- `default`
+
+## Reveal an inventory bundle's sensitive values
+
+`GET /api/v1/bundles/inventories/{inventory_id}/{bundle_id}/secrets`
+
+Answers the literal sensitive values the other reads leave out, by name. Requires view on bundles and on the bundle_secret class. Every call is journaled as secret.revealed.
+
+Authentication: badge
+
+Parameters:
+
+- `inventory_id` (path, string, required)
+- `bundle_id` (path, string, required)
+
+Responses:
+
+- `200` OK: `SecretValues`
 - `400` Bad Request _(validation or deserialization error)_: `HTTPError`
 - `401` Missing, invalid or expired credentials
 - `403` The caller may not do this: `HTTPError`

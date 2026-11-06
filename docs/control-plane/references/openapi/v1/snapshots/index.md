@@ -2,8 +2,35 @@
 
 Snapshots recorded against a source or a store.
 
-Generated from Plakar Control Plane v0.18. See [OpenAPI v1](https://www.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
+Generated from Plakar Control Plane v0.19. See [OpenAPI v1](https://www.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
 
+
+## List the restore points of a source with the state of each store
+
+`GET /api/v1/account/organizations/{id}/restore/sources/{source_id}/points`
+
+Authentication: badge
+
+Parameters:
+
+- `offset` (query, integer): Number of items to skip.
+- `limit` (query, integer): Maximum number of items to return.
+- `store_id` (query, string<uuid>): Only snapshots with a live copy on this store.
+- `since` (query, string<date-time>): Only snapshots created at or after this time.
+- `before` (query, string<date-time>): Only snapshots created before this time.
+- `tag` (query, array[string]): Only snapshots carrying every one of these tags.
+- `facets` (query, boolean): Also count the snapshots per store and per tag, each count ignoring its own filter.
+- `id` (path, string<uuid>, required): Organization ID, at or below the caller's.
+- `source_id` (path, string, required)
+
+Responses:
+
+- `200` OK: `PointPage`
+- `400` Bad Request _(validation or deserialization error)_: `HTTPError`
+- `401` Missing, invalid or expired credentials
+- `403` The caller may not do this: `HTTPError`
+- `500` Internal Server Error _(panics)_: `HTTPError`
+- `default`
 
 ## List the snapshots of a source
 

@@ -2,7 +2,7 @@
 
 Edge enrollment and the edge work channel.
 
-Generated from Plakar Control Plane v0.18. See [OpenAPI v1](https://www.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
+Generated from Plakar Control Plane v0.19. See [OpenAPI v1](https://www.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
 
 
 ## List the edge pools
@@ -136,6 +136,30 @@ Responses:
 - `500` Internal Server Error _(panics)_: `HTTPError`
 - `default`
 
+## Share an edge pool with sub-organizations
+
+`PUT /api/v1/account/organizations/{id}/edge-pools/{pool_id}/flags`
+
+An inheritable pool is visible to every descendant organization. Refused with 409 while an inventory or a resource of another organization uses the pool.
+
+Authentication: badge
+
+Parameters:
+
+- `id` (path, string<uuid>, required): Organization ID, at or below the caller's.
+- `pool_id` (path, string, required)
+
+Request body (application/json): `EdgePoolFlagsRequest`
+
+Responses:
+
+- `200` OK: `EdgePoolResponse`
+- `400` Bad Request _(validation or deserialization error)_: `HTTPError`
+- `401` Missing, invalid or expired credentials
+- `403` The caller may not do this: `HTTPError`
+- `500` Internal Server Error _(panics)_: `HTTPError`
+- `default`
+
 ## Generate an edge enrollment key
 
 `POST /api/v1/account/organizations/{id}/edge/enrollment-key/generate`
@@ -168,7 +192,6 @@ Parameters:
 - `offset` (query, integer): Number of items to skip.
 - `limit` (query, integer): Maximum number of items to return.
 - `pool_id` (query, string<uuid>): Only edges in this pool.
-- `no_pool` (query, boolean): Only edges in no pool. Cannot be combined with pool_id.
 - `search` (query, string): Case-insensitive match on edge name or hostname.
 - `id` (path, string<uuid>, required): Organization ID, at or below the caller's.
 
@@ -205,7 +228,7 @@ Responses:
 
 `PUT /api/v1/account/organizations/{id}/edges/{edge_id}/pool`
 
-Moves the edge out of the pool it was in, if any. The edge and the pool must belong to the organization.
+Moves the edge out of the pool it was in. The edge and the pool must belong to the organization.
 
 Authentication: badge
 
@@ -215,26 +238,6 @@ Parameters:
 - `edge_id` (path, string, required)
 
 Request body (application/json): `AssignEdgePoolRequest`
-
-Responses:
-
-- `200` OK
-- `400` Bad Request _(validation or deserialization error)_: `HTTPError`
-- `401` Missing, invalid or expired credentials
-- `403` The caller may not do this: `HTTPError`
-- `500` Internal Server Error _(panics)_: `HTTPError`
-- `default`
-
-## Take an edge out of its pool
-
-`DELETE /api/v1/account/organizations/{id}/edges/{edge_id}/pool`
-
-Authentication: badge
-
-Parameters:
-
-- `id` (path, string<uuid>, required): Organization ID, at or below the caller's.
-- `edge_id` (path, string, required)
 
 Responses:
 

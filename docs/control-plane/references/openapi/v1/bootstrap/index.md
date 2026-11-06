@@ -2,7 +2,7 @@
 
 First-run setup of a fresh control plane.
 
-Generated from Plakar Control Plane v0.18. See [OpenAPI v1](https://www.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
+Generated from Plakar Control Plane v0.19. See [OpenAPI v1](https://www.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
 
 
 ## Get the bootstrap account
@@ -93,6 +93,23 @@ Request body (application/json): `BootstrapEnrollOfflineRequest`
 Responses:
 
 - `200` OK: `BootstrapEnrollOfflinePreview`
+- `400` Bad Request _(validation or deserialization error)_: `HTTPError`
+- `500` Internal Server Error _(panics)_: `HTTPError`
+- `default`
+
+## Enroll as a replica of a primary
+
+`POST /api/v1/bootstrap/enroll/replica`
+
+Presents the primary's replication enrollment key and makes this instance its passive slave: it sweeps the primary's state and refuses writes until promoted. Refused with 409 once enrolled, as itself or as a replica.
+
+Authentication: none
+
+Request body (application/json): `BootstrapEnrollReplicaRequest`
+
+Responses:
+
+- `200` OK: `BootstrapReplicaEnrollment`
 - `400` Bad Request _(validation or deserialization error)_: `HTTPError`
 - `500` Internal Server Error _(panics)_: `HTTPError`
 - `default`

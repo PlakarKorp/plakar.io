@@ -2,7 +2,7 @@
 
 The integration catalogue and installed integrations.
 
-Generated from Plakar Control Plane v0.18. See [OpenAPI v1](https://www.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
+Generated from Plakar Control Plane v0.19. See [OpenAPI v1](https://www.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
 
 
 ## Get an integration by name and version
@@ -63,6 +63,7 @@ Parameters:
 - `search` (query, string): Free-text search on name and display name.
 - `installation_status` (query, string): Only integrations in this state.
 - `type` (query, array[string]): Only integrations of these types.
+- `urn_id` (query, string<uuid>): Only integrations compatible with this resource. Requires type.
 
 Responses:
 

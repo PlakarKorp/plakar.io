@@ -2,7 +2,7 @@
 
 Stores, sources and destinations.
 
-Generated from Plakar Control Plane v0.18. See [OpenAPI v1](https://www.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
+Generated from Plakar Control Plane v0.19. See [OpenAPI v1](https://www.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
 
 
 ## List the connectors
@@ -197,6 +197,28 @@ Request body (application/json): `SaveConnectorFormRequest`
 Responses:
 
 - `200` OK: `SaveConnectorFormResponse`
+- `400` Bad Request _(validation or deserialization error)_: `HTTPError`
+- `401` Missing, invalid or expired credentials
+- `403` The caller may not do this: `HTTPError`
+- `500` Internal Server Error _(panics)_: `HTTPError`
+- `default`
+
+## Reveal a connector's sensitive values
+
+`GET /api/v1/connectors/{connector_id}/secrets`
+
+Answers the literal sensitive values the other reads leave out, by name. Requires view on the connector and on the connector_secret class. Every call is journaled as secret.revealed.
+
+Authentication: badge
+
+Parameters:
+
+- `organization_id` (query, string<uuid>): Organization to act on, at or below the caller's. Defaults to the caller's.
+- `connector_id` (path, string, required)
+
+Responses:
+
+- `200` OK: `SecretValues`
 - `400` Bad Request _(validation or deserialization error)_: `HTTPError`
 - `401` Missing, invalid or expired credentials
 - `403` The caller may not do this: `HTTPError`

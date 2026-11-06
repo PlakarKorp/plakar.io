@@ -2,7 +2,7 @@
 
 Service discovery, health, diagnostics and updates.
 
-Generated from Plakar Control Plane v0.18. See [OpenAPI v1](https://www.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
+Generated from Plakar Control Plane v0.19. See [OpenAPI v1](https://www.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
 
 
 ## Describe the deployment
@@ -154,6 +154,138 @@ Responses:
 - `500` Internal Server Error _(panics)_: `HTTPError`
 - `default`
 
+## Enroll a replica
+
+`POST /api/v1/replication/enroll`
+
+Exchanges the replication enrollment key in the body for a per-replica bearer token, returned once. Refused with 409 when the replica's schema version is not the primary's.
+
+Authentication: none
+
+Request body (application/json): `ReplicationEnrollRequest`
+
+Responses:
+
+- `200` OK: `ReplicationEnrollResponse`
+- `400` Bad Request _(validation or deserialization error)_: `HTTPError`
+- `500` Internal Server Error _(panics)_: `HTTPError`
+- `default`
+
+## Generate a replication enrollment key
+
+`POST /api/v1/replication/enrollment-key/generate`
+
+Writes a fresh key into the replication settings section and returns the section. Read and clear it through the settings endpoints.
+
+Authentication: badge
+
+Responses:
+
+- `200` OK: `Settings`
+- `400` Bad Request _(validation or deserialization error)_: `HTTPError`
+- `401` Missing, invalid or expired credentials
+- `403` The caller may not do this: `HTTPError`
+- `500` Internal Server Error _(panics)_: `HTTPError`
+- `default`
+
+## Promote this replica
+
+`POST /api/v1/replication/promote`
+
+Turns this passive slave into the active control plane: binds the instance identity to this instance's key and stamps the promotion. One-way. The daemon must then be restarted to boot active. Refused with 409 when not enrolled, never swept, or already promoted.
+
+Authentication: badge
+
+Responses:
+
+- `200` OK: `ReplicationPromotion`
+- `400` Bad Request _(validation or deserialization error)_: `HTTPError`
+- `401` Missing, invalid or expired credentials
+- `403` The caller may not do this: `HTTPError`
+- `500` Internal Server Error _(panics)_: `HTTPError`
+- `default`
+
+## List the enrolled replicas
+
+`GET /api/v1/replication/replicas`
+
+Authentication: badge
+
+Parameters:
+
+- `offset` (query, integer): Number of items to skip.
+- `limit` (query, integer): Maximum number of items to return.
+
+Responses:
+
+- `200` OK: `ReplicaEntryPage`
+- `400` Bad Request _(validation or deserialization error)_: `HTTPError`
+- `401` Missing, invalid or expired credentials
+- `403` The caller may not do this: `HTTPError`
+- `500` Internal Server Error _(panics)_: `HTTPError`
+- `default`
+
+## Revoke a replica
+
+`DELETE /api/v1/replication/replicas/{replica_id}`
+
+The replica's token stops authenticating at once; the slave itself is untouched.
+
+Authentication: badge
+
+Parameters:
+
+- `replica_id` (path, string, required)
+
+Responses:
+
+- `204` No Content
+- `400` Bad Request _(validation or deserialization error)_: `HTTPError`
+- `401` Missing, invalid or expired credentials
+- `403` The caller may not do this: `HTTPError`
+- `500` Internal Server Error _(panics)_: `HTTPError`
+- `default`
+
+## List the replicated tables
+
+`GET /api/v1/replication/tables`
+
+The sweep's table of contents: every replicated table with its key columns, and the primary's schema version.
+
+Authentication: replica
+
+Responses:
+
+- `200` OK: `ReplicationTablesResponse`
+- `400` Bad Request _(validation or deserialization error)_: `HTTPError`
+- `401` Missing, invalid or expired credentials
+- `403` The caller may not do this: `HTTPError`
+- `500` Internal Server Error _(panics)_: `HTTPError`
+- `default`
+
+## Read a page of a replicated table
+
+`GET /api/v1/replication/tables/{name}`
+
+Rows as JSON objects, ordered by key. next_offset is set while another page follows.
+
+Authentication: replica
+
+Parameters:
+
+- `offset` (query, integer): Number of items to skip.
+- `limit` (query, integer): Maximum number of items to return.
+- `name` (path, string, required)
+
+Responses:
+
+- `200` OK: `ReplicationRowsResponse`
+- `400` Bad Request _(validation or deserialization error)_: `HTTPError`
+- `401` Missing, invalid or expired credentials
+- `403` The caller may not do this: `HTTPError`
+- `500` Internal Server Error _(panics)_: `HTTPError`
+- `default`
+
 ## Get the safe mode state
 
 `GET /api/v1/safe-mode`
@@ -230,4 +362,19 @@ Responses:
 - `400` Bad Request _(validation or deserialization error)_: `HTTPError`
 - `500` Internal Server Error _(panics)_: `HTTPError`
 - `503` Not ready
+- `default`
+
+## Check replication
+
+`GET /health/replication`
+
+Reports the replication role and sync freshness.
+
+Authentication: none
+
+Responses:
+
+- `200` OK: `EmptyObject`
+- `400` Bad Request _(validation or deserialization error)_: `HTTPError`
+- `500` Internal Server Error _(panics)_: `HTTPError`
 - `default`

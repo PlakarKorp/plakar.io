@@ -2,7 +2,7 @@
 
 Resources tracked by inventories.
 
-Generated from Plakar Control Plane v0.18. See [OpenAPI v1](https://www.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
+Generated from Plakar Control Plane v0.19. See [OpenAPI v1](https://www.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
 
 
 ## List the resources with the backups of their sources
@@ -37,6 +37,54 @@ Responses:
 ## Get a resource with the backups of its sources
 
 `GET /api/v1/account/organizations/{id}/backups/resources/{urn_id}`
+
+Authentication: badge
+
+Parameters:
+
+- `id` (path, string<uuid>, required): Organization ID, at or below the caller's.
+- `urn_id` (path, string, required)
+
+Responses:
+
+- `200` OK: `Resource`
+- `400` Bad Request _(validation or deserialization error)_: `HTTPError`
+- `401` Missing, invalid or expired credentials
+- `403` The caller may not do this: `HTTPError`
+- `500` Internal Server Error _(panics)_: `HTTPError`
+- `default`
+
+## List the resources with a source holding a snapshot
+
+`GET /api/v1/account/organizations/{id}/restore/resources`
+
+Authentication: badge
+
+Parameters:
+
+- `offset` (query, integer): Number of items to skip.
+- `limit` (query, integer): Maximum number of items to return.
+- `search` (query, string): Free-text search on resources.
+- `class` (query, array[string]): Only resources of these classes.
+- `exclude_class` (query, array[string]): Exclude resources of these classes.
+- `inventory_id` (query, array[string<uuid>]): Only resources of these inventories.
+- `integration` (query, array[string]): Only resources with at least one source of these integration names.
+- `sort` (query, string): latest_backup lists first the resource whose newest source was backed up most recently; name sorts by name. Default: class, then name.
+- `facets` (query, boolean): Also count the resources per inventory, class and integration.
+- `id` (path, string<uuid>, required): Organization ID, at or below the caller's.
+
+Responses:
+
+- `200` OK: `ResourcePage`
+- `400` Bad Request _(validation or deserialization error)_: `HTTPError`
+- `401` Missing, invalid or expired credentials
+- `403` The caller may not do this: `HTTPError`
+- `500` Internal Server Error _(panics)_: `HTTPError`
+- `default`
+
+## Get a resource with its sources holding a snapshot
+
+`GET /api/v1/account/organizations/{id}/restore/resources/{urn_id}`
 
 Authentication: badge
 
@@ -230,6 +278,29 @@ Parameters:
 Responses:
 
 - `200` OK: `ResourceDeleteResponse`
+- `400` Bad Request _(validation or deserialization error)_: `HTTPError`
+- `401` Missing, invalid or expired credentials
+- `403` The caller may not do this: `HTTPError`
+- `500` Internal Server Error _(panics)_: `HTTPError`
+- `default`
+
+## Set the edge pool of a resource
+
+`PATCH /api/v1/inventories/{inventory_id}/resources/{urn_id}/edge-pool`
+
+Authentication: badge
+
+Parameters:
+
+- `organization_id` (query, string<uuid>): Organization to act on, at or below the caller's. Defaults to the caller's.
+- `inventory_id` (path, string, required)
+- `urn_id` (path, string, required)
+
+Request body (application/json): `InventoryEdgePool`
+
+Responses:
+
+- `200` OK: `InventoryEdgePool`
 - `400` Bad Request _(validation or deserialization error)_: `HTTPError`
 - `401` Missing, invalid or expired credentials
 - `403` The caller may not do this: `HTTPError`
