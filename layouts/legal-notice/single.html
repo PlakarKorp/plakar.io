@@ -11,7 +11,8 @@
 </section>
 
 <section class="px-4 pt-28 mb-44 max-w-350 mx-auto">
-  <article class="prose max-w-prose">
+  {{/* `wide: true` in front matter: full container width, justified text. */}}
+  <article lang="en" class="legal-document prose {{ if .Params.wide }}legal-wide{{ else }}max-w-prose{{ end }}">
     {{ .Content | safeHTML }}
   </article>
 </section>
