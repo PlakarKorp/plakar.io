@@ -11,13 +11,15 @@ aliases:
 
 The **Backup Auditor** holds nothing above the view level, so nothing it reaches
 can be changed. It sees how backups are configured and what has run: apps,
-integrations, policies, settings, configuration bundles, data classes,
-environments, schedules, and the audit log.
+inventories, integrations, policies, settings, configuration bundles, data
+classes, environments, schedules, and the audit log.
 
-Restore point data, secret providers, inventories, and edges are out of reach,
-so the review it supports covers the configuration and the record of activity
-rather than the backed up data itself or the credentials used to reach it. It
-holds no other organization permission and nothing in the deployment family.
+It reads inventories because every app is attached to a resource of an
+inventory, and an app cannot be read without the resource it belongs to. Restore
+point data, secret providers, and edges are out of reach, so the review it
+supports covers the configuration and the record of activity rather than the
+backed up data itself or the credentials used to reach it. It holds no other
+organization permission and nothing in the deployment family.
 
 The [Auditor](../auditor) reads everything an organization holds. The **Backup
 Auditor** reads its configuration and its audit log alone.
@@ -37,7 +39,7 @@ Auditor** reads its configuration and its audit log alone.
 
 | Permission            | Access    |
 | --------------------- | --------- |
-| Inventories           | No access |
+| Inventories           | View      |
 | Apps                  | View      |
 | Restore point data    | No access |
 | Secret Providers      | No access |
