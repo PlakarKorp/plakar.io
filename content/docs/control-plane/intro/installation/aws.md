@@ -53,65 +53,58 @@ Instances** page in the AWS Console.
 
 ![](../images/aws-launch-instance.png)
 
-## Proxy and Harbor Configuration
+## Configuring the Appliance
 
-If the instance doesn't have direct internet access, configure an HTTP proxy, a
-local Harbor registry mirror, or both through the EC2 **User data** field before
-launching the instance.
+An instance with direct internet access needs no configuration, and SSH access
+comes from the key pair selected at launch, as described in
+[Connect over SSH](#connect-over-ssh). For anything else, such as a proxy or
+registry mirrors, the appliance reads its settings from the EC2 **User data**
+field, set before the instance is launched. The keys of the document are
+described in [Appliance Configuration](../../appliance/configuration).
 
 To provide User data, choose **Launch from EC2 Console** instead of **One-click
 launch from AWS Marketplace**. This exposes the **Advanced details** section,
-where you can paste or upload a yaml file of the cloud-init configuration.
+where you can paste the document or upload it as a file.
 
-![Adding proxy and Harbor configuration to AWS User data](../images/aws-user-data.png)
+If the appliance goes through a proxy or firewall, the hosts it has to reach are
+listed in
+[required outbound access](../../appliance/configuration#required-outbound-access).
 
-### What needs to be reachable
-
-Plakar Control Plane requires HTTPS access to `api.plakar.io` for runtime
-configuration, license validation, and plugin downloads. If your proxy uses a
-whitelist instead of allowing all outbound traffic, you need to add
-`*.plakar.io`
-
-The appliance also needs to pull container images from `docker.io` and
-`ghcr.io`. There are two supported approaches:
-
-1. **Route image pulls through the HTTP proxy.** If you choose this option, the
-   proxy should allow access to:
-   - `*.docker.io`
-   - `*.docker.com`
-   - `*.ghcr.io`
-   - `*.githubusercontent.com`
-
-2. **Use a Harbor registry mirror.** This is the recommended approach for
-   production deployments because images are pulled from a local registry cache
-   instead of the public internet. When using Harbor, you don't need to
-   whitelist the Docker and GitHub domains above on your proxy.
-
-The appliance also synchronizes its clock with `pool.ntp.org` over UDP port 123,
-which does not go through the proxy. If your network blocks it, set internal NTP
-servers with the `ntp:` key in the user data.
-
-### User data configuration
-
-The User data is a standard cloud-init YAML document containing `proxy:`,
-`registry:` and `ntp:` sections, depending on your environment.
+The document below sets every key. Remove the keys your environment does not
+need, each key is optional.
 
 ```yaml
 #cloud-config
+ssh_authorized_keys:
+  - ssh-ed25519 AAAA...
+
 proxy:
-  http: http://<proxy-ip>:<proxy-port>
-  https: http://<proxy-ip>:<proxy-port>
-  no_proxy: .corp.example,10.0.0.0/8 # optional
+  http: http://proxy.corp.example:3128
+  https: http://proxy.corp.example:3128
+  no_proxy: .corp.example
 
 registry:
   mirrors:
-    docker.io: <harbor-host>/dockerhub-proxy
-    ghcr.io: <harbor-host>/ghcr-proxy
-  insecure: false # true: skip TLS verification for the mirror hosts
+    docker.io: harbor.corp.example/dockerhub-proxy
+    ghcr.io: harbor.corp.example/ghcr-proxy
+  insecure: false
+
+releases:
+  url: https://dist.corp.example/plakar/enterprise
+  version: v1.1.2
 
 ntp:
-  servers: # optional, defaults to pool.ntp.org
-    - <ntp-server>
+  servers:
+    - 10.20.0.1
+    - ntp.corp.example
+
+network:
+  ethernets:
+    eth0:
+      addresses: [10.0.1.5/24]
+      gateway4: 10.0.1.1
+      nameservers:
+        addresses: [10.0.1.53]
 ```
 
 ## Security Groups
@@ -174,17 +167,10 @@ documentation.
 
 ## Accessing Plakar Control Plane
 
-After configuring the security group, Plakar Control Plane can be accessed from
-your browser using:
-
-```txt
-http://<public-ipv4-address>
-```
-
-Where `<public-ipv4-address>` is the public IPv4 address assigned to the EC2
-instance.
-
-For new installations, you will be guided through the enrollment process to:
+Once the instance has started, Plakar Control Plane is reached from a browser at
+`http://<public-ipv4-address>`, the public IPv4 address of the EC2 instance,
+provided its security group allows inbound traffic on port `80`. For first-time
+installations, you will be guided through the enrollment process to:
 
 - Register the instance with Plakar services for licensing and billing
 - Create the initial administrator account
