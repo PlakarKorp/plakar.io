@@ -21,8 +21,9 @@ In the Proxmox web interface, select the storage you want to hold the ISO from
 the left-hand tree, then open its **ISO Images** section. From here you can
 either upload the file directly from your computer, or provide a publicly
 accessible URL and have Proxmox download it for you. Either way, you can
-optionally supply a checksum and select the hashing algorithm used, so Proxmox
-verifies the file's integrity once it's added.
+optionally supply the `SHA-256` checksum from the downloads page and select
+`SHA-256` as the hashing algorithm, so Proxmox verifies the file's integrity
+once it's added.
 
 ![Uploading ISO image to Proxmox VE](../images/uploading-iso-to-proxmox.png)
 
