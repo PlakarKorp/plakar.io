@@ -39,6 +39,15 @@ are therefore out of reach, neither visible nor editable. Like the
 | Environments          | Full   |
 | Schedules             | Full   |
 
+## Secrets
+
+| Permission                   | Access |
+| ---------------------------- | ------ |
+| App secrets                  | Full   |
+| Inventory secrets            | Full   |
+| Secret Provider secrets      | Full   |
+| Configuration bundle secrets | Full   |
+
 ## Deployment
 
 | Permission    | Access    |

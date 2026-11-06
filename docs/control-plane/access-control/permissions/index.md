@@ -13,7 +13,7 @@ until permissions are granted to them.
 
 ## Permission families
 
-Permissions are grouped into three families, based on what the access reaches.
+Permissions are grouped into four families, based on what the access reaches.
 
 ### Organization
 
@@ -45,6 +45,16 @@ per resource class:
 - Environments
 - Schedules
 
+### Secrets
+
+Reads the sensitive values, such as credentials, that every other permission
+keeps hidden. Each read is recorded:
+
+- App secrets
+- Inventory secrets
+- Secret Provider secrets
+- Configuration bundle secrets
+
 ### Deployment
 
 Applies to the instance itself, which belongs to no organization. Access granted
@@ -70,14 +80,14 @@ Every resource in a family is held at one of five levels:
 
 Access is granted by assigning a role. A role is a preset set of capabilities,
 and the accesses it grants are always a combination of capabilities described in
-the three families.
+the four families.
 
 Roles are offered in two sets. **Standard** holds the four that cover most
-cases: [Owner](owner), [Administrator](administrator),
-[Operator](operator), and [Auditor](auditor). **Advanced** holds every other
-role, each of which narrows access to one area of the system, such as policies,
-secret providers, or edges, or is meant for a non-human identity. Switching to
-the advanced set is what makes those available to grant.
+cases: [Owner](owner), [Administrator](administrator), [Operator](operator), and
+[Auditor](auditor). **Advanced** holds every other role, each of which narrows
+access to one area of the system, such as policies, secret providers, or edges,
+or is meant for a non-human identity. Switching to the advanced set is what
+makes those available to grant.
 
 
 
