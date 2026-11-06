@@ -124,7 +124,7 @@ required to use each one as a source, store, or destination.
 - [Windows VSS](https://www.plakar.io/docs/control-plane/resources/compute/vss/index.md): How to configure a Volume Shadow Copy Service (VSS) resource in Plakar Control Plane.
 - [OpenStack Compute](https://www.plakar.io/docs/control-plane/resources/compute/openstack/index.md): How to configure an OpenStack Nova server resource in Plakar Control Plane.
 - [OVHcloud Compute](https://www.plakar.io/docs/control-plane/resources/compute/ovhcloud/index.md): How to configure an OVHcloud Compute resource in Plakar Control Plane.
-- [Kubernetes VM](https://www.plakar.io/docs/control-plane/resources/compute/kubernetes-vm/index.md): How to configure a KubeVirt virtual machine resource in Plakar Control Plane.
+- [Kubernetes](https://www.plakar.io/docs/control-plane/resources/compute/kubernetes/index.md): Kubernetes cluster manifests and KubeVirt virtual machines in Plakar Control Plane.
 - [OpenShift](https://www.plakar.io/docs/control-plane/resources/compute/openshift/index.md): OpenShift cluster manifests and OpenShift Virtualization virtual machines in Plakar Control Plane.
 
 
