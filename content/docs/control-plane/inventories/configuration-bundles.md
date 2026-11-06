@@ -17,9 +17,8 @@ set up on one of those resources, the fields declared in the bundle are applied
 to it, so they do not have to be entered again for every app.
 
 For example, an AWS inventory might discover 20 S3 buckets that all use the same
-access key and secret key. A single bundle on that inventory, scoped to the
-`Object Storage` class, declares those credentials once, and every app set up on
-one of the buckets receives them.
+access key and secret key. A single bundle on that inventory declares those
+credentials once, and every app set up on one of the buckets receives them.
 
 A bundle applies only to resources of the inventory it belongs to. Bundles are
 managed from the **Configuration bundles** tab of the inventory, and what can be
@@ -28,37 +27,25 @@ held in the organization the inventory belongs to.
 
 ![Inventory configuration bundles](../images/config-bundle.png)
 
-## Matching resources
+## Scope and fields
 
 The scope of a bundle determines which resources of the inventory it applies to.
-Without any filter, a bundle applies to every resource. Each filter narrows the
-scope, and a resource must match all of them to receive the bundle:
-
-- **Environment**: resources with the selected environment.
-- **Resource classes**: resources of the selected classes, such as `Database` or
-  `Object Storage`.
-- **Resource subclasses**: resources of the selected subclasses, such as `MySQL`
-  or `S3`, within the selected classes.
-- **Tags**: resources that carry the listed tags. Managed inventories discover
-  tags from the provider. Self-managed inventories take them from the resource
-  definition, as described in
-  [adding resources](../self-managed/#adding-resources).
-
-![Creating a configuration bundle](../images/creating-config-bundle.png)
-
-## Bundle fields
+It is set by the **Environment** of the bundle. With **Any environment**
+selected, the bundle applies to every resource of the inventory. With a specific
+environment selected, it applies only to resources in that environment.
 
 A bundle targets one kind of app, set by its **Connector type**: `Source`,
 `Store` or `Destination`. It also targets one integration and, when the
-integration has several, one protocol. The bundle applies to apps of that type,
-integration and protocol on the resources in its scope.
+integration has several, one protocol. Only installed integrations can be
+selected. The bundle applies to apps of that type, integration and protocol on
+the resources in its scope.
 
 The fields of a bundle are chosen from the fields of the selected integration
 and protocol, either one at a time or all at once. A bundle only sets the fields
 it contains. Every other field is left as each app defines it, and a value set
 on the app itself takes precedence over the bundle.
 
-![Filling in configuration bundle fields](../images/config-bundle-fields.png)
+![Creating a configuration bundle](../images/creating-config-bundle.png)
 
 ## Applying a bundle to apps
 

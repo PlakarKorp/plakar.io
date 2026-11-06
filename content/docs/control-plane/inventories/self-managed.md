@@ -41,9 +41,7 @@ When adding a resource manually, you need to provide:
   identifier for the resource, and cannot be changed later.
 - **Class** and **Subclass**: Used to classify the resource, for example
   `Object Storage` as the class and `S3` as the subclass for an S3 bucket.
-- **Tags**: tags used by [policies](../compliance/policies) and
-  [configuration bundles](configuration-bundles#matching-resources) to filter
-  resources
+- **Tags**: tags used by [policies](../compliance/policies) to filter resources
 - **Endpoint**: Required. The address used to reach the resource, such as a
   hostname or IP address. A resource can have several endpoints.
 - **Exclude from backup coverage**: Omits the resource from protection status
