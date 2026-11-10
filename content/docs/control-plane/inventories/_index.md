@@ -58,7 +58,17 @@ An inventory exposes its resources, each with a class, subclass, tags, and the
 endpoints and attributes that identify where it is reached. A managed inventory
 discovers them from the provider, and they cannot be edited. In a self-managed
 inventory, they are entered with the resource. See
-[Resource Types](../resources) for what a resource carries and how it is used.
+[Resource Types](../resources) for what a resource carries and how it is used,
+and [Filtering resources](../resources#filtering-resources) for narrowing the
+list.
+
+A new inventory has no resources yet. A managed inventory that has never been
+synchronized offers **Sync now**, which starts its first
+[synchronization](#inventory-synchronization). A self-managed inventory with no
+resources offers **Add resource**, described in
+[Adding resources](self-managed#adding-resources). Both actions are unavailable
+without the [permission](../access-control/permissions) to change the resources
+of the inventory.
 
 ## Data residency
 

@@ -44,8 +44,9 @@ flowchart TB
 All resources discovered across all inventories are available under
 **Infrastructure -> Inventory -> Resources**. From here a resource can be
 assigned to either a [source](../apps/sources) or a
-[destination](../apps/destinations) app. You can also filter resources by
-inventories or by resource class.
+[destination](../apps/destinations) app. The list can be narrowed to one
+inventory or filtered, as described in
+[Filtering resources](#filtering-resources).
 
 The actions on each resource include placing a
 [legal hold](../compliance/legal-hold) on it. A resource under a legal hold
@@ -53,6 +54,26 @@ cannot be used by any task, so backups, restores, checks, and prunes involving
 it are refused until the hold is removed.
 
 ![](./images/resources.png)
+
+## Filtering resources
+
+The resource list can be searched by name or URN and filtered by the following
+values. Filters combine, so a resource is listed only when it matches all of
+them.
+
+- **Status**: the backup coverage of the resource. **Protected** resources are
+  covered by a backup task. **Not protected** resources are not. **Unmanaged**
+  resources are left out of coverage, either because they are
+  [excluded from backup coverage](#resource-settings) or because they cannot be
+  backed up.
+- **Resource class**: the [class](#resource-classification) of the resource.
+- **App**: the integration of a source or destination app set up on the
+  resource. **No app** lists the resources with none. Store apps are not
+  counted.
+- **Residency**: the [residency](#residency) of the resource, set on it or
+  inherited from its inventory. **Not set** lists the resources with none.
+- **Region**: the region of the resource.
+- **Tag**: one tag the resource carries.
 
 ## Resource settings
 
