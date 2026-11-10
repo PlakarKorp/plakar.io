@@ -1,945 +1,958 @@
 {{ define "main" }}
 
-<!-- JS: assets/js/main/newsletter.js -->
-<!-- JS: assets/js/main/home-hero.js -->
-<!-- JS: assets/js/main/home-sections.js -->
+{{ $nestor := resources.Get "img/nestor/nestor-inline.svg" }}
+{{ $nestorArt := resources.Get "img/nestor/nestor-v2.svg" }}
+{{ $allPosts := where (where .Site.RegularPages "Section" "posts") "Params.hidden" "ne" true }}
+{{ $integrations := sort (where .Site.RegularPages "Section" "integrations") "Title" }}
 
-{{ $gradientOrange := resources.Get "img/general/gradient-orange.png" }}
-{{ $gradientBlue := resources.Get "img/general/gradient-blue.png" }}
-{{ $nestorV2 := resources.Get "img/nestor/nestor-v2.svg" }}
-{{ $cncfLogo := resources.Get "img/community/cncf-member-silver-color.svg" }}
-{{ $lfLogo := resources.Get "img/community/lf-member-level-silver.svg" }}
-{{ $sylvaLogo := resources.Get "img/community/sylva-logo.svg" }}
+{{ $wrap := "max-w-350 mx-auto px-4 md:px-6" }}
+{{ $eyebrow := "inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-ui-primary-600" }}
+{{ $h2 := "home-heading font-medium tracking-tight leading-[1.05] text-4xl md:text-5xl lg:text-6xl" }}
+{{ $lead := "text-lg leading-relaxed text-ui-neutral-600" }}
+{{ $card := "rounded-2xl border border-ui-neutral-200 bg-ui-neutral-50" }}
+{{ $link := "group inline-flex items-center gap-1.5 w-fit font-medium text-ui-primary-600 hover:text-ui-primary-700 transition-colors" }}
+{{ $secondaryButton := dict
+  "bgColor" "bg-ui-neutral-50"
+  "bgHoverColor" "bg-ui-neutral-200"
+  "textColor" "text-ui-neutral-900"
+  "textHoverColor" "text-ui-neutral-900"
+  "border" "border"
+  "borderColor" "border-ui-neutral-300"
+}}
 
-<section class="section-light-2 grid-background pt-24 relative overflow-hidden">
-  <div class="px-4 pt-16 pb-20 max-w-350 mx-auto relative z-10">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+<div class="bg-ui-neutral-100">
 
-      <!-- Left: copy -->
-      <div>
-        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight mb-5 text-ui-neutral-900">
-          Back up and recover<br>
-          your <span class="hv2-rotate"><span class="hv2-rotate-inner text-ui-primary-500" id="hv2-rot"><span>AI pipelines</span></span></span><br>
-          from a single control plane.
-        </h1>
-        <p class="text-lg text-ui-neutral-600 max-w-lg mb-7 leading-relaxed">
-          <strong class="text-ui-neutral-900 font-semibold">Plakar</strong> is the
-          <span class="text-ui-secondary-500 font-extrabold">open-source standard</span>
-          for efficient, secure backups.<br>
-          <strong class="text-ui-neutral-900 font-semibold">Plakar Control Plane</strong> adds
-          the visibility your organization needs across every inventory. It orchestrates
-          your entire resilience posture, with backups defined by hand or <span class="text-ui-primary-500 font-semibold whitespace-nowrap">as code</span>, from one place.
-        </p>
-        <div class="flex flex-wrap gap-3">
-          {{ partial "components/buttons/base-button.html" (dict
-            "label" "Get started"
-            "labelShort" "Start"
-            "href" "/docs/community/v1.1.0/quickstart/first-backup/"
-          ) }}
-          {{ partial "components/buttons/base-button.html" (dict
-            "label" "Book a demo"
-            "labelShort" "Demo"
-            "class" "book-a-demo-modal-open"
-            "bgColor" "bg-ui-white"
-            "bgHoverColor" "bg-ui-neutral-50"
-            "textColor" "text-ui-neutral-900"
-            "border" "border"
-            "borderColor" "border-ui-neutral-300"
-          ) }}
-        </div>
-      </div>
+<!-- ================================================================
+     Hero
+     ================================================================ -->
+<section class="relative overflow-hidden">
+  <div class="absolute inset-0 grid-background home-hero-grid" aria-hidden="true"></div>
 
-      <!-- Right: animated control-plane demo -->
-      <div id="hv2-demo" class="relative select-none">
-        <div class="rounded-xl border border-slate-200 shadow-2xl shadow-slate-300/40 overflow-hidden bg-white">
-          <!-- browser chrome -->
-          <div class="flex items-center gap-3 px-4 py-2.5 bg-slate-100 border-b border-slate-200">
-            <div class="flex items-center gap-1.5">
-              <span class="w-3 h-3 rounded-full bg-red-400"></span>
-              <span class="w-3 h-3 rounded-full bg-amber-400"></span>
-              <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
-            </div>
-            <div class="flex-1 bg-white rounded-md px-3 py-1 text-[11px] text-slate-400 font-mono border border-slate-200">plakar.mycie.com</div>
-          </div>
+  <div class="relative {{ $wrap }} pt-36 lg:pt-48 flex flex-col items-center text-center">
 
-          <!-- demo body -->
-          <div class="relative h-125 overflow-hidden">
-            <!-- header row -->
-            <div class="flex items-center justify-between px-4 py-2.5 border-b border-slate-100">
-              <div class="flex items-center gap-2">
-                <span class="text-sm font-semibold text-slate-800">Resources</span>
-                <span class="text-[11px] text-slate-400">AWS inventory</span>
-              </div>
-              <div class="flex items-center gap-1.5">
-                <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500">Production</span>
-                <span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500">Operation</span>
-              </div>
-            </div>
-            <!-- column headers -->
-            <div class="flex items-center px-4 py-2 text-[10px] uppercase tracking-wider text-slate-400 font-semibold border-b border-slate-100">
-              <span class="flex-1">Resource</span>
-              <span class="w-24">Type</span>
-              <span class="w-20">Apps</span>
-              <span class="w-24 text-right">Protection</span>
-            </div>
-
-            <!-- expandable row: app-server-01 -->
-            <div id="hv2-d-row1" class="hv2-d-row flex items-center px-4 py-2.5 text-sm border-b border-slate-100 cursor-pointer" onclick="hv2ToggleExpand()">
-              <span class="flex-1 flex items-center gap-1.5">
-                <svg id="hv2-d-chevron" class="w-3 h-3 text-slate-400 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-                <span class="font-medium text-slate-800">app-server-01</span>
-              </span>
-              <span class="w-24 text-xs text-slate-500">EC2</span>
-              <span class="w-20 flex items-center gap-1">__GITLAB__ __MYSQL__ __S3__</span>
-              <span class="w-24 text-right text-[11px] font-medium text-emerald-600">Protected</span>
-            </div>
-
-            <!-- expand panel -->
-            <div id="hv2-d-expand" class="hv2-d-expand bg-slate-50/70 border-b border-slate-100">
-              <div class="px-4 py-3 space-y-2">
-                <p class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold">Apps on app-server-01</p>
-                <!-- GitLab -->
-                <div class="flex items-center gap-3 bg-white rounded-lg border border-slate-200 px-3 py-2">
-                  <span class="w-4.5 h-4.5 shrink-0">__GITLAB__</span>
-                  <div class="flex-1 min-w-0">
-                    <p class="text-sm font-medium text-slate-800">GitLab</p>
-                    <p class="text-[11px] text-slate-500">Policies: <span class="text-slate-700 font-medium">Production, Operation</span></p>
-                  </div>
-                  <button onclick="event.stopPropagation(); hv2OpenBackup()" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-primary-500 text-white text-xs font-medium hover:bg-primary-600 transition-colors">
-                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 512 512"><path d="M288 109.3L288 352c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-242.7-73.4 73.4c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l128-128c12.5-12.5 32.8-12.5 45.3 0l128 128c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L288 109.3zM64 352l128 0c0 35.3 28.7 64 64 64s64-28.7 64-64l128 0c35.3 0 64 28.7 64 64l0 32c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64l0-32c0-35.3 28.7-64 64-64z"/></svg>
-                    Backup
-                  </button>
-                  <button id="hv2-d-restorebtn" onclick="event.stopPropagation(); hv2OpenRestore()" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-slate-200 text-slate-600 text-xs font-medium hover:bg-slate-50 transition-colors">
-                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 512 512"><path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 242.7-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7 288 32zM64 352c-35.3 0-64 28.7-64 64l0 32c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-32c0-35.3-28.7-64-64-64l-101.5 0-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352 64 352z"/></svg>
-                    Restore
-                  </button>
-                </div>
-                <!-- MySQL -->
-                <div class="flex items-center gap-3 bg-white rounded-lg border border-slate-200 px-3 py-2">
-                  <span class="w-4.5 h-4.5 shrink-0">__MYSQL__</span>
-                  <div class="flex-1 min-w-0">
-                    <p class="text-sm font-medium text-slate-800">MySQL</p>
-                    <p class="text-[11px] text-slate-500">Policies: <span class="text-slate-700 font-medium">Production, Compliance</span></p>
-                  </div>
-                  <span class="text-[11px] text-slate-300 font-mono">2h ago</span>
-                </div>
-                <!-- S3 -->
-                <div class="flex items-center gap-3 bg-white rounded-lg border border-slate-200 px-3 py-2">
-                  <span class="w-4.5 h-4.5 shrink-0">__S3__</span>
-                  <div class="flex-1 min-w-0">
-                    <p class="text-sm font-medium text-slate-800">S3</p>
-                    <p class="text-[11px] text-slate-500">Policies: <span class="text-slate-700 font-medium">Operation</span></p>
-                  </div>
-                  <span class="text-[11px] text-slate-300 font-mono">5h ago</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- static rows -->
-            <div class="hv2-d-row flex items-center px-4 py-2.5 text-sm border-b border-slate-100">
-              <span class="flex-1 flex items-center gap-1.5 pl-4.5"><span class="font-medium text-slate-800">db-primary</span></span>
-              <span class="w-24 text-xs text-slate-500">RDS</span>
-              <span class="w-20 flex items-center gap-1">__PG__</span>
-              <span class="w-24 text-right text-[11px] font-medium text-emerald-600">Protected</span>
-            </div>
-            <div class="hv2-d-row flex items-center px-4 py-2.5 text-sm border-b border-slate-100">
-              <span class="flex-1 flex items-center gap-1.5 pl-4.5"><span class="font-medium text-slate-800">web-server-01</span></span>
-              <span class="w-24 text-xs text-slate-500">EC2</span>
-              <span class="w-20 flex items-center gap-1">__SFTP__ __FS__</span>
-              <span class="w-24 text-right text-[11px] font-medium text-emerald-600">Protected</span>
-            </div>
-            <div class="hv2-d-row flex items-center px-4 py-2.5 text-sm border-b border-slate-100">
-              <span class="flex-1 flex items-center gap-1.5 pl-4.5"><span class="font-medium text-slate-800">cache-redis</span></span>
-              <span class="w-24 text-xs text-slate-500">ElastiCache</span>
-              <span class="w-20 flex items-center gap-1">__REDIS__</span>
-              <span class="w-24 text-right text-[11px] font-medium text-amber-600">Not protected</span>
-            </div>
-            <div class="hv2-d-row flex items-center px-4 py-2.5 text-sm border-b border-slate-100">
-              <span class="flex-1 flex items-center gap-1.5 pl-4.5"><span class="font-medium text-slate-800">object-store-eu</span></span>
-              <span class="w-24 text-xs text-slate-500">S3</span>
-              <span class="w-20 flex items-center gap-1">__S3__</span>
-              <span class="w-24 text-right text-[11px] font-medium text-emerald-600">Protected</span>
-            </div>
-            <div class="hv2-d-row flex items-center px-4 py-2.5 text-sm border-b border-slate-100">
-              <span class="flex-1 flex items-center gap-1.5 pl-4.5"><span class="font-medium text-slate-800">analytics-mongo</span></span>
-              <span class="w-24 text-xs text-slate-500">EC2</span>
-              <span class="w-20 flex items-center gap-1">__MONGO__</span>
-              <span class="w-24 text-right text-[11px] font-medium text-emerald-600">Protected</span>
-            </div>
-            <div class="hv2-d-row flex items-center px-4 py-2.5 text-sm">
-              <span class="flex-1 flex items-center gap-1.5 pl-4.5"><span class="font-medium text-slate-800">ci-runner-01</span></span>
-              <span class="w-24 text-xs text-slate-500">EC2</span>
-              <span class="w-20 flex items-center gap-1">__GITLAB__</span>
-              <span class="w-24 text-right text-[11px] font-medium text-amber-600">Not protected</span>
-            </div>
-
-            <!-- BACKUP modal -->
-            <div id="hv2-d-bmodal" class="hv2-d-modal absolute inset-0 bg-slate-900/30 flex items-center justify-center p-4">
-              <div class="bg-white rounded-xl shadow-2xl w-full max-w-sm border border-slate-200">
-                <div class="flex items-center justify-between px-4 py-3 border-b border-slate-100">
-                  <h4 class="text-sm font-semibold text-slate-900">Backup GitLab</h4>
-                  <button onclick="hv2CloseBackup()" class="text-slate-400 hover:text-slate-600">
-                    <span class="block w-3.5 h-3.5">{{ partial "icon.html" "ri/close-line" }}</span>
-                  </button>
-                </div>
-                <div class="px-4 py-3">
-                  <p class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold mb-1.5">App</p>
-                  <div class="flex items-center gap-2.5 px-3 py-2 bg-slate-50 rounded-lg mb-3">
-                    <span class="w-4.5 h-4.5">__GITLAB__</span>
-                    <div class="min-w-0">
-                      <p class="text-sm font-medium text-slate-800">GitLab</p>
-                      <p class="text-[11px] text-slate-400">Policies: Production, Operation · app-server-01</p>
-                    </div>
-                  </div>
-                  <p class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold mb-1.5">Destination store</p>
-                  <div class="w-full text-sm border border-slate-200 rounded-lg px-3 py-1.5 text-slate-600 flex items-center justify-between">
-                    s3-backup-prod · APPEND_ONLY
-                    <svg class="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-                  </div>
-                </div>
-                <div class="flex items-center justify-end gap-2 px-4 py-3 border-t border-slate-100">
-                  <button onclick="hv2CloseBackup()" class="px-3 py-1.5 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-lg">Cancel</button>
-                  <button id="hv2-d-brun" class="px-3 py-1.5 text-sm font-medium bg-primary-500 text-white rounded-lg hover:bg-primary-600">Run backup</button>
-                </div>
-              </div>
-            </div>
-
-            <!-- RESTORE modal -->
-            <div id="hv2-d-rmodal" class="hv2-d-modal absolute inset-0 bg-slate-900/30 flex items-center justify-center p-4">
-              <div class="bg-white rounded-xl shadow-2xl w-full max-w-sm border border-slate-200">
-                <div class="flex items-center justify-between px-4 py-3 border-b border-slate-100">
-                  <h4 class="text-sm font-semibold text-slate-900">Restore GitLab</h4>
-                  <button onclick="hv2CloseRestore()" class="text-slate-400 hover:text-slate-600">
-                    <span class="block w-3.5 h-3.5">{{ partial "icon.html" "ri/close-line" }}</span>
-                  </button>
-                </div>
-                <div class="px-4 py-3">
-                  <p class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold mb-1.5">Recovery point</p>
-                  <label class="flex items-center justify-between gap-2 py-1 text-sm text-slate-700">
-                    <span class="flex items-center gap-2"><input type="radio" name="hv2-snap" checked class="accent-primary-500"><span class="font-mono text-xs">Jun 16 · 02:00</span></span>
-                    <span class="text-[11px] text-slate-400">2.4 GiB</span>
-                  </label>
-                  <label class="flex items-center justify-between gap-2 py-1 text-sm text-slate-700">
-                    <span class="flex items-center gap-2"><input type="radio" name="hv2-snap" class="accent-primary-500"><span class="font-mono text-xs">Jun 15 · 02:00</span></span>
-                    <span class="text-[11px] text-slate-400">2.4 GiB</span>
-                  </label>
-                  <p class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold mt-3 mb-1.5">Restore to</p>
-                  <label id="hv2-d-dest-orig" class="flex items-center gap-2 py-1.5 px-2.5 rounded-lg border border-slate-200 text-sm text-slate-700 mb-1.5 cursor-pointer" onclick="hv2ShowCombo(false)">
-                    <input type="radio" name="hv2-dest" checked class="accent-primary-500">Original location <span class="text-[11px] text-slate-400">· app-server-01</span>
-                  </label>
-                  <label id="hv2-d-dest-alt" class="flex items-center gap-2 py-1.5 px-2.5 rounded-lg border border-slate-200 text-sm text-slate-700 cursor-pointer" onclick="hv2ShowCombo(true)">
-                    <input type="radio" name="hv2-dest" class="accent-primary-500">New destination: pick a store
-                  </label>
-                  <select id="hv2-d-dest-combo" class="hidden w-full mt-1.5 text-sm bg-white border border-slate-200 rounded-lg px-3 py-1.5 text-slate-700 focus:outline-none focus:ring-2 focus:ring-primary-300">
-                    <option>s3-backup-staging · S3</option>
-                    <option>minio-dr · MinIO</option>
-                    <option>local-fs · Filesystem</option>
-                  </select>
-                </div>
-                <div class="flex items-center justify-end gap-2 px-4 py-3 border-t border-slate-100">
-                  <button onclick="hv2CloseRestore()" class="px-3 py-1.5 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-lg">Cancel</button>
-                  <button id="hv2-d-rrun" class="px-3 py-1.5 text-sm font-medium bg-primary-500 text-white rounded-lg hover:bg-primary-600">Restore</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- animated cursor -->
-        <svg id="hv2-cursor" viewBox="0 0 24 24" fill="white" stroke="#1e293b" stroke-width="1.5">
-          <path d="M5 3l15 9-6 1.5L18 20l-3 1.5-4-6.5L5 19V3z"/>
-        </svg>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Gradient fade: rises behind the demo, like the original hero -->
-  <div class="bg-gradient-section absolute inset-x-0 bottom-0 h-2/5 z-0"></div>
-</section>
-
-<!-- Why Backups -->
-<section class="section-light-1 border-y border-ui-neutral-200 py-14 lg:py-24">
-  <div class="px-4 max-w-350 mx-auto">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
-
-      <!-- Left: copy -->
-      <div>
-        <h2 class="text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-ui-neutral-900">
-          Because breach is no longer a risk, it's a <span class="text-red-600">certainty.</span>
-        </h2>
-        <p class="text-lg text-ui-neutral-600 mt-6 leading-relaxed">
-          State-led ransomware, AI-driven exfiltration, and the erosion of the
-          internal perimeter have turned cyber-resilience from a nice-to-have into
-          the <strong class="text-ui-neutral-900 font-semibold">most important line of defense</strong>.
-        </p>
-      </div>
-
-      <!-- Right: stat cards -->
-      <div class="grid grid-cols-2 gap-4">
-        <div class="bg-ui-neutral-50 border border-ui-primary-500 rounded-xl p-6 shadow-[0_14px_40px_-22px_rgba(82,76,255,0.5)]">
-          <span class="block text-4xl font-extrabold tracking-tight leading-none text-red-600 mb-1.5">96%</span>
-          <span class="block text-sm text-ui-neutral-600 leading-snug">of ransomware attacks target backup repositories</span>
-        </div>
-        <div class="bg-ui-neutral-50 border border-ui-neutral-200 rounded-xl p-6">
-          <span class="block text-4xl font-extrabold tracking-tight leading-none text-ui-primary-500 mb-1.5">43%</span>
-          <span class="block text-sm text-ui-neutral-600 leading-snug">of affected data is unrecoverable after an attack</span>
-        </div>
-        <div class="bg-ui-neutral-50 border border-ui-neutral-200 rounded-xl p-6">
-          <span class="block text-4xl font-extrabold tracking-tight leading-none text-ui-primary-500 mb-1.5">45%</span>
-          <span class="block text-sm text-ui-neutral-600 leading-snug">of AI-generated code introduces security vulnerabilities</span>
-        </div>
-        <div class="bg-ui-neutral-50 border border-ui-neutral-200 rounded-xl p-6">
-          <span class="block text-4xl font-extrabold tracking-tight leading-none text-ui-primary-500 mb-1.5">8×</span>
-          <span class="block text-sm text-ui-neutral-600 leading-snug">higher median recovery cost when backups are compromised</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- What recoverable takes -->
-<section class="section-light-2 py-14 lg:py-24">
-  <div class="px-4 max-w-350 mx-auto">
-    <div class="text-center max-w-3xl mx-auto mb-12">
-      <h2 class="text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-ui-neutral-900">
-        So "<span class="text-ui-primary-500">recoverable</span>" has to actually mean something.
-      </h2>
-      <p class="text-lg text-ui-neutral-600 mt-5">Five things Plakar delivers for security and infrastructure teams.</p>
-    </div>
-
-    <!-- Tab rail -->
-    <div id="rec-rail" class="flex gap-2 mb-7 overflow-x-auto pb-1 lg:flex-wrap lg:justify-center lg:overflow-visible">
-      <button data-rec-tab="efficiency" class="inline-flex items-center gap-2 shrink-0 rounded-full border px-3.5 py-2 lg:px-4 lg:py-2.5 transition-colors bg-primary-500 text-white border-primary-500">
-        <span data-rec-num class="flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold bg-white/25 text-white">1</span>
-        <span class="text-sm font-bold">Efficiency</span>
-      </button>
-      <button data-rec-tab="zero-trust" class="inline-flex items-center gap-2 shrink-0 rounded-full border px-3.5 py-2 lg:px-4 lg:py-2.5 transition-colors bg-ui-white text-ui-neutral-700 border-ui-neutral-300">
-        <span data-rec-num class="flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold bg-ui-neutral-200 text-ui-neutral-600">2</span>
-        <span class="text-sm font-bold">Zero-trust</span>
-      </button>
-      <button data-rec-tab="autonomy" class="inline-flex items-center gap-2 shrink-0 rounded-full border px-3.5 py-2 lg:px-4 lg:py-2.5 transition-colors bg-ui-white text-ui-neutral-700 border-ui-neutral-300">
-        <span data-rec-num class="flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold bg-ui-neutral-200 text-ui-neutral-600">3</span>
-        <span class="text-sm font-bold">Strategic autonomy</span>
-      </button>
-      <button data-rec-tab="cloud-native" class="inline-flex items-center gap-2 shrink-0 rounded-full border px-3.5 py-2 lg:px-4 lg:py-2.5 transition-colors bg-ui-white text-ui-neutral-700 border-ui-neutral-300">
-        <span data-rec-num class="flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold bg-ui-neutral-200 text-ui-neutral-600">4</span>
-        <span class="text-sm font-bold">Resilience as Code</span>
-      </button>
-      <button data-rec-tab="ai-ready" class="inline-flex items-center gap-2 shrink-0 rounded-full border px-3.5 py-2 lg:px-4 lg:py-2.5 transition-colors bg-ui-white text-ui-neutral-700 border-ui-neutral-300">
-        <span data-rec-num class="flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold bg-ui-neutral-200 text-ui-neutral-600">5</span>
-        <span class="text-sm font-bold">AI-ready primitives</span>
-      </button>
-    </div>
-
-    <!-- Stage -->
-    <div class="bg-ui-white border border-ui-neutral-200 rounded-2xl p-4 sm:p-6 lg:p-10 shadow-[0_34px_80px_-34px_rgba(20,24,48,0.22)] max-w-5xl mx-auto">
-
-      <!-- Pane 1: Complete coverage -->
-      <div data-rec-pane="efficiency" class="grid grid-cols-1 lg:grid-cols-[0.85fr_1.1fr] gap-6 lg:gap-10 items-center">
-        <div>
-          <p class="text-2xl font-extrabold tracking-tight text-ui-neutral-900 mb-3">Radically efficient, by design.</p>
-          <p class="text-[15px] text-ui-neutral-600 leading-relaxed">Plakar <span class="text-ui-primary-500 font-semibold">deduplicates and compresses</span> everything before it leaves your system, collapsing the storage and egress overhead that makes legacy backup so expensive. Protecting the whole estate costs <span class="text-ui-primary-500 font-semibold">a fraction of what traditional tools charge</span>, so you never have to choose what to leave unprotected.</p>
-        </div>
-        <div class="rounded-xl border border-ui-neutral-200 bg-linear-to-br from-ui-primary-50 to-ui-neutral-100 p-4 sm:p-6 lg:p-8 min-h-75 flex flex-col items-center justify-center gap-5">
-          <div class="flex items-center gap-5">
-            <div class="flex flex-col gap-2">
-              <span class="text-[10px] font-bold uppercase tracking-wider text-ui-neutral-400">2 snapshots</span>
-              <div class="flex items-center gap-1.5"><span class="text-[11px] text-ui-neutral-500 w-7">S</span><span class="w-7 h-7 rounded-md border-[1.5px] border-red-400/50 bg-red-400/10 text-red-600 font-mono text-xs font-bold flex items-center justify-center">A</span><span class="w-7 h-7 rounded-md border-[1.5px] border-ui-neutral-300 bg-ui-white text-ui-neutral-500 font-mono text-xs font-bold flex items-center justify-center">B</span><span class="w-7 h-7 rounded-md border-[1.5px] border-red-400/50 bg-red-400/10 text-red-600 font-mono text-xs font-bold flex items-center justify-center">A</span><span class="w-7 h-7 rounded-md border-[1.5px] border-ui-neutral-300 bg-ui-white text-ui-neutral-500 font-mono text-xs font-bold flex items-center justify-center">C</span></div>
-              <div class="flex items-center gap-1.5"><span class="text-[11px] text-ui-neutral-500 w-7">S+1</span><span class="w-7 h-7 rounded-md border-[1.5px] border-red-400/50 bg-red-400/10 text-red-600 font-mono text-xs font-bold flex items-center justify-center">A</span><span class="w-7 h-7 rounded-md border-[1.5px] border-ui-neutral-300 bg-ui-white text-ui-neutral-500 font-mono text-xs font-bold flex items-center justify-center">B</span><span class="w-7 h-7 rounded-md border-[1.5px] border-red-400/50 bg-red-400/10 text-red-600 font-mono text-xs font-bold flex items-center justify-center">A</span><span class="w-7 h-7 rounded-md border-[1.5px] border-ui-neutral-300 bg-ui-white text-ui-neutral-500 font-mono text-xs font-bold flex items-center justify-center">C</span><span class="w-7 h-7 rounded-md border-[1.5px] border-green-500/50 bg-green-500/10 text-green-700 font-mono text-xs font-bold flex items-center justify-center">E</span></div>
-            </div>
-          </div>
-          <div class="text-2xl text-ui-neutral-400">&#8595;</div>
-          <div class="flex flex-col items-center gap-2">
-            <span class="text-[10px] font-bold uppercase tracking-wider text-ui-neutral-400">Kloset · unique chunks</span>
-            <div class="flex gap-1.5"><span class="w-7 h-7 rounded-md bg-primary-500 text-white font-mono text-xs font-bold flex items-center justify-center">A</span><span class="w-7 h-7 rounded-md bg-primary-500 text-white font-mono text-xs font-bold flex items-center justify-center">B</span><span class="w-7 h-7 rounded-md bg-primary-500 text-white font-mono text-xs font-bold flex items-center justify-center">C</span><span class="w-7 h-7 rounded-md bg-primary-500 text-white font-mono text-xs font-bold flex items-center justify-center">E</span></div>
-            <span class="text-xs text-ui-neutral-500 mt-1">9 logical &#8594; 4 stored · encrypted</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Pane 2: Zero-trust -->
-      <div data-rec-pane="zero-trust" class="hidden grid grid-cols-1 lg:grid-cols-[0.85fr_1.1fr] gap-6 lg:gap-10 items-center">
-        <div>
-          <p class="text-2xl font-extrabold tracking-tight text-ui-neutral-900 mb-3">Zero-trust, and tamperproof.</p>
-          <p class="text-[15px] text-ui-neutral-600 leading-relaxed">Your backups are <span class="text-ui-primary-500 font-semibold">encrypted before they ever leave your system</span>, so not even the storage provider can read them. On object-lock storage they're <span class="text-ui-primary-500 font-semibold">immutable</span>: ransomware and rogue operators can't alter or delete them. Whoever reaches your backups finds only ciphertext they can't touch.</p>
-        </div>
-        <div class="rounded-xl border border-ui-neutral-200 bg-linear-to-br from-ui-primary-50 to-ui-neutral-100 p-4 sm:p-6 min-h-75 flex items-center justify-center">
-          <div class="w-full max-w-sm bg-neutral-900 rounded-xl border border-neutral-700 overflow-hidden shadow-xl">
-            <div class="px-4 py-2.5 border-b border-neutral-700 flex items-center gap-2">
-              <svg class="w-3.5 h-3.5 text-neutral-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24M1 1l22 22"/></svg>
-              <span class="text-[11px] font-semibold uppercase tracking-wider text-neutral-400">What anyone who reaches the storage sees</span>
-            </div>
-            <div class="px-4 py-4 font-mono text-[12px]">
-              <div class="text-neutral-600 leading-relaxed break-all mb-3">a3f9 7c21 e0b4 9d8a 11ff 4c2e 6b0d 8e3a c5f1 0297 ab44 d913 7e58 1b6c 2f90 db17</div>
-              <div class="space-y-1.5">
-                <div class="flex items-center gap-2 text-neutral-300"><span class="text-red-400 font-bold">✗</span> delete snapshot<span class="ml-auto text-red-400 text-[11px]">denied</span></div>
-                <div class="flex items-center gap-2 text-neutral-300"><span class="text-red-400 font-bold">✗</span> overwrite object<span class="ml-auto text-red-400 text-[11px]">denied</span></div>
-                <div class="flex items-center gap-2 text-neutral-300"><span class="text-green-400 font-bold">✓</span> object-lock WORM<span class="ml-auto text-green-400 text-[11px]">active</span></div>
-              </div>
-              <div class="mt-3 pt-3 border-t border-neutral-800 text-neutral-400 flex items-center gap-2">&#128273; keys: in your own secret manager</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Pane 3: Strategic autonomy -->
-      <div data-rec-pane="autonomy" class="hidden grid grid-cols-1 lg:grid-cols-[0.85fr_1.1fr] gap-6 lg:gap-10 items-center">
-        <div>
-          <p class="text-2xl font-extrabold tracking-tight text-ui-neutral-900 mb-3">Your data, never held hostage.</p>
-          <p class="text-[15px] text-ui-neutral-600 leading-relaxed">Autonomy is more than open source: it's the guarantee that a usable copy of your data always stays <span class="text-ui-primary-500 font-semibold">under your control</span>, ready to restore or move without asking anyone's permission. <span class="text-ui-secondary-500 font-semibold">Open under a permissive license</span>, self-hostable everywhere, and stored in a non-proprietary format, Plakar turns that control into <span class="text-ui-primary-500 font-semibold">real leverage</span>. Switch SaaS or cloud providers on your terms, and choose exactly where your data resides to meet local regulation. No appliance lock-in, no vendor-mediated recovery path.</p>
-        </div>
-        <div class="rounded-xl border border-ui-neutral-200 bg-linear-to-br from-ui-primary-50 to-ui-neutral-100 p-4 sm:p-6 lg:p-8 min-h-75 flex flex-col items-center justify-center gap-4">
-          <!-- the asset you hold -->
-          <div class="bg-ui-white border-2 border-ui-primary-500 rounded-xl px-5 py-3.5 text-center shadow-sm">
-            <div class="flex items-center justify-center gap-2 text-sm font-bold text-ui-neutral-900">&#128274; Your encrypted snapshot</div>
-            <div class="text-[11px] text-ui-neutral-500 mt-0.5">your keys · open format</div>
-          </div>
-          <!-- portability cue -->
-          <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-ui-primary-500">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7l-4 5 4 5M16 7l4 5-4 5M14 4l-4 16"/></svg>
-            Move it anywhere, anytime
-          </div>
-          <!-- interchangeable destinations -->
-          <div class="grid grid-cols-3 gap-2 w-full max-w-xs">
-            <span class="flex items-center justify-center gap-1.5 bg-ui-white border border-ui-neutral-200 rounded-lg px-2.5 py-2 text-[12px] font-medium text-ui-neutral-700">On-prem</span>
-            <span class="flex items-center justify-center gap-1.5 bg-ui-white border border-ui-neutral-200 rounded-lg px-2.5 py-2 text-[12px] font-medium text-ui-neutral-700"><img src="{{ (resources.Get "img/providers/aws.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">AWS</span>
-            <span class="flex items-center justify-center gap-1.5 bg-ui-white border border-ui-neutral-200 rounded-lg px-2.5 py-2 text-[12px] font-medium text-ui-neutral-700"><img src="{{ (resources.Get "img/providers/ovhcloud.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">OVHcloud</span>
-            <span class="flex items-center justify-center gap-1.5 bg-ui-white border border-ui-neutral-200 rounded-lg px-2.5 py-2 text-[12px] font-medium text-ui-neutral-700"><img src="{{ (resources.Get "img/providers/scaleway.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">Scaleway</span>
-            <span class="flex items-center justify-center gap-1.5 bg-ui-white border border-ui-neutral-200 rounded-lg px-2.5 py-2 text-[12px] font-medium text-ui-neutral-700"><img src="{{ (resources.Get "img/providers/minio.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">MinIO</span>
-            <span class="flex items-center justify-center gap-1.5 bg-ui-white border border-dashed border-ui-neutral-300 rounded-lg px-2.5 py-2 text-[12px] font-medium text-ui-neutral-500">+ any S3</span>
-          </div>
-          <span class="text-xs text-ui-neutral-500 text-center">Switch providers without re-architecting. No lock-in.</span>
-        </div>
-      </div>
-
-      <!-- Pane 4: Cloud-native -->
-      <div data-rec-pane="cloud-native" class="hidden grid grid-cols-1 lg:grid-cols-[0.85fr_1.1fr] gap-6 lg:gap-10 items-center">
-        <div>
-          <p class="text-2xl font-extrabold tracking-tight text-ui-neutral-900 mb-3">Cloud-native resilience, as code.</p>
-          <p class="text-[15px] text-ui-neutral-600 leading-relaxed">Plakar's operator turns Kubernetes into the control plane for <span class="text-ui-primary-500 font-semibold">the resilience layer of your entire estate</span>, not just your clusters. Define backup, retention, replication, and recovery policies as Kubernetes CRDs, Terraform resources, or Ansible playbooks. <span class="text-ui-primary-500 font-semibold">Version them in Git, reconcile state continuously.</span></p>
-        </div>
-        <div class="rounded-xl border border-ui-neutral-200 bg-linear-to-br from-ui-primary-50 to-ui-neutral-100 p-4 sm:p-6 lg:p-8 min-h-75 flex flex-col items-center justify-center gap-3">
-          <pre class="bg-neutral-900 text-neutral-100 rounded-xl px-5 py-4 font-mono text-[12.5px] leading-relaxed w-full max-w-sm overflow-x-auto"><span class="text-sky-300">apiVersion:</span> <span class="text-green-300">task.plakar.io/v1alpha1</span>
-<span class="text-sky-300">kind:</span> <span class="text-green-300">ScheduleBackup</span>
-<span class="text-sky-300">spec:</span>
-  <span class="text-sky-300">periodicity:</span> <span class="text-green-300">900</span>  <span class="text-neutral-500"># every 15 min</span>
-  <span class="text-sky-300">source:</span>
-    <span class="text-sky-300">name:</span> <span class="text-green-300">postgres-prod</span>
-  <span class="text-sky-300">store:</span>
-    <span class="text-sky-300">name:</span> <span class="text-green-300">s3-immutable</span></pre>
-          <span class="text-sm text-ui-neutral-500 text-center">Versioned in Git · reconciled by the operator</span>
-        </div>
-      </div>
-
-      <!-- Pane 5: AI-ready primitives -->
-      <div data-rec-pane="ai-ready" class="hidden grid grid-cols-1 lg:grid-cols-[0.85fr_1.1fr] gap-6 lg:gap-10 items-center">
-        <div>
-          <p class="text-2xl font-extrabold tracking-tight text-ui-neutral-900 mb-3">Programmatic by design, for humans and AI.</p>
-          <p class="text-[15px] text-ui-neutral-600 leading-relaxed">As more code is written and operated by AI, how easily a tool can be driven matters as much as what it does. Plakar is <span class="text-ui-primary-500 font-semibold">programmatic by design</span>: every action is exposed through a clean <span class="text-ui-primary-500 font-semibold">SDK, CLI, and API</span>, so an agent can snapshot the data it works with and restore it the instant something breaks. Docs and source are built to be read, so agents and people drive it right.</p>
-        </div>
-        <div class="rounded-xl border border-ui-neutral-200 bg-linear-to-br from-ui-primary-50 to-ui-neutral-100 p-4 sm:p-6 min-h-75 flex items-center justify-center">
-          <div class="w-full max-w-sm bg-neutral-900 rounded-xl border border-neutral-700 overflow-hidden shadow-xl">
-            <div class="px-4 py-2.5 border-b border-neutral-700 flex items-center gap-2">
-              <span class="text-base leading-none">🤖</span>
-              <span class="text-[12px] font-semibold text-neutral-200">OpenClaw</span>
-              <span class="text-[11px] text-neutral-500">pre-hook</span>
-            </div>
-            <div class="px-4 py-4 font-mono text-[12.5px] leading-relaxed">
-              <div class="text-neutral-400"><span class="text-sky-300">on</span> preToolUse(<span class="text-amber-300">Edit</span>, <span class="text-amber-300">Bash</span>)</div>
-              <div class="text-neutral-400"><span class="text-sky-300">run</span> plakar backup ./workspace</div>
-              <div class="h-3"></div>
-              <div class="text-green-400">✓ auto-snapshot 9f3a1c</div>
-              <div class="text-neutral-500">&nbsp;&nbsp;taken before the agent's risky step</div>
-              <div class="text-neutral-300 mt-2">↩ one command to roll back</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- Your environment, your storage -->
-<section class="section-dark-1 py-14 lg:py-24">
-  <div class="px-4 max-w-350 mx-auto">
-    <div class="text-center max-w-3xl mx-auto mb-12">
-      <h2 class="text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-neutral-50">
-        It runs on your environment, your storage.
-      </h2>
-      <p class="text-lg text-neutral-400 mt-5">Deploy Plakar on infrastructure you own. One engine protects every source across the estate, written to storage you control.</p>
-    </div>
-
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 max-w-5xl mx-auto">
-      <!-- Self-hosted -->
-      <div class="bg-neutral-800 border border-neutral-700 rounded-xl p-8">
-        <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-green-400 bg-green-500/10 rounded-md px-3 py-1.5 mb-4">● Self-hosted</span>
-        <h3 class="text-xl font-extrabold tracking-tight text-neutral-50 mb-2">Run it on your environment</h3>
-        <p class="text-sm text-neutral-400 mb-5 leading-relaxed">One binary, no appliance, no SaaS dependency. Run Plakar on the infrastructure you already operate: on-prem, in a private or sovereign cloud, or on any hypervisor. Your data and keys stay on infrastructure you control.</p>
-        <div class="flex flex-wrap gap-2">
-          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5">On-prem</span>
-          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5">Private cloud</span>
-          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/aws.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">AWS</span>
-          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/google-cloud.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">GCP</span>
-          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/azure.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">Azure</span>
-          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/ovhcloud.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">OVHcloud</span>
-          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/scaleway.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">Scaleway</span>
-          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/vmware.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">VMware</span>
-          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/proxmox.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">Proxmox</span>
-          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5">Bare metal</span>
-          <span class="inline-flex items-center text-[12.5px] font-medium text-neutral-400 bg-neutral-900 border border-dashed border-neutral-600 rounded-lg px-3 py-1.5">and more…</span>
-        </div>
-      </div>
-      <!-- Your storage -->
-      <div class="bg-neutral-800 border border-neutral-700 rounded-xl p-8">
-        <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-primary-300 bg-primary-500/15 rounded-md px-3 py-1.5 mb-4">★ Your own storage</span>
-        <h3 class="text-xl font-extrabold tracking-tight text-neutral-50 mb-2">Storage provider agnostic</h3>
-        <p class="text-sm text-neutral-400 mb-5 leading-relaxed">Snapshots land on storage you own, always with zero plaintext: any S3-compatible backend, local disk, or filesystem. On S3-compatible backends, object-lock immutability and append-only keep them tamper-proof.</p>
-        <div class="flex flex-wrap gap-2">
-          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/amazon-s3.svg").RelPermalink }}" alt="" class="w-4 h-4">AWS S3</span>
-          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/azure.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">Azure Blob</span>
-          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/google-cloud.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">Google Cloud</span>
-          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/minio.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">MinIO</span>
-          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/backblaze.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">Backblaze B2</span>
-          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/cloudflare.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">Cloudflare R2</span>
-          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/netapp.png").RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">NetApp</span>
-          <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5"><img src="{{ (resources.Get "img/providers/filesystem.svg").RelPermalink }}" alt="" class="w-4 h-4">Local disk</span>
-          <span class="inline-flex items-center text-[12.5px] font-medium text-neutral-400 bg-neutral-900 border border-dashed border-neutral-600 rounded-lg px-3 py-1.5">and more…</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Open Resilience as Code -->
-<section class="section-light-1 py-14 lg:py-24">
-  <div class="px-4 max-w-350 mx-auto">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
-      <div>
-        <h2 class="text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-ui-neutral-900 mb-5">
-          And your whole backup posture lives <span class="text-ui-primary-500">as code</span>.
-        </h2>
-        <p class="text-[16.5px] text-ui-neutral-600 leading-relaxed">
-          Resilience as Code means your backup posture is <strong class="text-ui-neutral-900 font-semibold">defined, versioned, and automated</strong>, not clicked through a console. With the Plakar Kubernetes Operator, teams declare their entire backup strategy as native CRDs: sources, storage, schedules, retention, replication, and verification live in Git, reconcile continuously, and ship the same way the rest of your infrastructure does. Manage every policy through the Plakar API, a Terraform provider, or Ansible playbooks.
-        </p>
-      </div>
-      <!-- Terminal -->
-      <div class="bg-neutral-900 border border-neutral-700 rounded-xl overflow-hidden font-mono text-[13px] leading-relaxed shadow-[0_26px_64px_-28px_rgba(20,24,48,0.4)]">
-        <div class="flex items-center gap-2 px-4 py-3 bg-neutral-800 border-b border-neutral-700">
-          <span class="w-2.5 h-2.5 rounded-full bg-[#FF5F57]"></span>
-          <span class="w-2.5 h-2.5 rounded-full bg-[#FEBC2E]"></span>
-          <span class="w-2.5 h-2.5 rounded-full bg-[#28C840]"></span>
-          <span class="text-[11px] text-neutral-500 mx-auto">plakar — zsh</span>
-        </div>
-        <div class="px-5 py-5 text-neutral-100 space-y-1">
-          <div><span class="text-primary-400">❯</span> terraform apply</div>
-          <div class="text-green-400">✓ plakar_backup_policy.postgres-prod created</div>
-          <div class="text-neutral-500">&nbsp;&nbsp;schedule = "*/15 * * * *" · retention = "30d-immutable"</div>
-          <div class="text-neutral-500">&nbsp;&nbsp;replication = [ovh, scaleway]</div>
-          <div class="h-2"></div>
-          <div><span class="text-primary-400">❯</span> kubectl apply -f resilience-policy.yaml</div>
-          <div class="text-green-400">✓ BackupPolicy/postgres-prod reconciled · GitOps-ready</div>
-          <div class="h-2"></div>
-          <div><span class="text-primary-400">❯</span> ansible-playbook resilience.yml</div>
-          <div class="text-green-400">✓ 12 hosts · policies converged</div>
-          <div class="h-2"></div>
-          <div><span class="text-primary-400">❯</span> curl -s api.plakar.io/v1/coverage</div>
-          <div class="text-green-400">✓ {"protected": 1420, "verified": "100%"}</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Integrations -->
-<section class="section-light-2 py-14 lg:py-24">
-  <div class="px-4 max-w-350 mx-auto">
-    <div class="text-center max-w-2xl mx-auto mb-12">
-      <h2 class="text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-ui-neutral-900">
-        It fits the estate you already have.
-      </h2>
-      <p class="text-lg text-ui-neutral-600 mt-5">Dozens of sources and tools, one engine, and the long tail keeps growing. Missing something? Ask for it.</p>
-    </div>
-
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
-      <!-- Featured: S3 -->
-      <a href="/integrations/" class="bg-ui-primary-50 border border-ui-primary-500 rounded-xl p-5 flex flex-col gap-2.5 hover:bg-ui-primary-100 transition-colors">
-        <div class="flex flex-wrap gap-1.5 mb-1">
-          <img src="{{ (resources.Get "img/providers/amazon-s3.svg").RelPermalink }}" alt="AWS S3" class="w-5 h-5">
-          <img src="{{ (resources.Get "img/providers/azure.png").RelPermalink }}" alt="Azure Blob" class="w-5 h-5 rounded-sm">
-          <img src="{{ (resources.Get "img/providers/google-cloud.png").RelPermalink }}" alt="Google Cloud" class="w-5 h-5 rounded-sm">
-          <img src="{{ (resources.Get "img/providers/minio.png").RelPermalink }}" alt="MinIO" class="w-5 h-5 rounded-sm">
-          <img src="{{ (resources.Get "img/providers/backblaze.png").RelPermalink }}" alt="Backblaze B2" class="w-5 h-5 rounded-sm">
-          <img src="{{ (resources.Get "img/providers/netapp.png").RelPermalink }}" alt="NetApp" class="w-5 h-5 rounded-sm">
-        </div>
-        <h4 class="text-[14.5px] font-bold text-ui-primary-500">S3-compatible storage</h4>
-        <span class="text-[12.5px] text-ui-neutral-600">Object-lock immutable, append-only destinations on storage you own.</span>
-        <span class="text-[10px] font-bold uppercase tracking-wide text-green-700 bg-green-100 rounded px-2 py-0.5 self-start mt-auto">Live</span>
+    {{ with index (sort $allPosts "Date" "desc") 0 }}
+      <a href="{{ .RelPermalink }}" class="group inline-flex items-center gap-3 max-w-full rounded-full border border-ui-neutral-200 bg-ui-neutral-50/80 backdrop-blur py-1 pl-1 pr-4 text-sm text-ui-neutral-600 hover:border-ui-neutral-300 hover:text-ui-neutral-900 transition-colors">
+        <span class="shrink-0 rounded-full bg-ui-primary-50 px-2.5 py-0.5 text-xs font-semibold text-ui-primary-600">New</span>
+        <span class="truncate">{{ .Title }}</span>
+        <span class="block w-4 h-4 shrink-0 text-ui-neutral-400 group-hover:translate-x-0.5 transition-transform">{{ partial "icon.html" "ri/arrow-right-line" }}</span>
       </a>
-      <!-- Featured: Cloud providers -->
-      <a href="/integrations/" class="bg-ui-primary-50 border border-ui-primary-500 rounded-xl p-5 flex flex-col gap-2.5 hover:bg-ui-primary-100 transition-colors">
-        <div class="flex flex-wrap gap-1.5 mb-1">
-          <img src="{{ (resources.Get "img/providers/aws.png").RelPermalink }}" alt="AWS" class="w-5 h-5 rounded-sm">
-          <img src="{{ (resources.Get "img/providers/azure.png").RelPermalink }}" alt="Azure" class="w-5 h-5 rounded-sm">
-          <img src="{{ (resources.Get "img/providers/google-cloud.png").RelPermalink }}" alt="Google Cloud" class="w-5 h-5 rounded-sm">
-          <img src="{{ (resources.Get "img/providers/ovhcloud.png").RelPermalink }}" alt="OVHcloud" class="w-5 h-5 rounded-sm">
-          <img src="{{ (resources.Get "img/providers/scaleway.png").RelPermalink }}" alt="Scaleway" class="w-5 h-5 rounded-sm">
-        </div>
-        <h4 class="text-[14.5px] font-bold text-ui-primary-500">Cloud providers</h4>
-        <span class="text-[12.5px] text-ui-neutral-600">Agentless VM-level snapshots across your cloud estate.</span>
-        <span class="text-[10px] font-bold uppercase tracking-wide text-green-700 bg-green-100 rounded px-2 py-0.5 self-start mt-auto">Live</span>
-      </a>
-      <!-- PostgreSQL -->
-      <a href="/integrations/postgres/" class="bg-ui-white border border-ui-neutral-200 rounded-xl p-5 flex flex-col gap-2 hover:border-ui-primary-500 transition-colors">
-        <span class="w-9 h-9 rounded-lg bg-ui-neutral-100 flex items-center justify-center mb-1"><img src="{{ (resources.Get "img/providers/postgresql.svg").RelPermalink }}" alt="" class="w-5 h-5"></span>
-        <h4 class="text-[14.5px] font-bold text-ui-neutral-900">PostgreSQL</h4>
-        <span class="text-[12.5px] text-ui-neutral-600">Consistent full-database snapshots &amp; dumps</span>
-        <span class="text-[10px] font-bold uppercase tracking-wide text-green-700 bg-green-100 rounded px-2 py-0.5 self-start mt-auto">Live</span>
-      </a>
-      <!-- MySQL -->
-      <a href="/integrations/mysql/" class="bg-ui-white border border-ui-neutral-200 rounded-xl p-5 flex flex-col gap-2 hover:border-ui-primary-500 transition-colors">
-        <span class="w-9 h-9 rounded-lg bg-ui-neutral-100 flex items-center justify-center mb-1"><img src="{{ (resources.Get "img/providers/mysql.png").RelPermalink }}" alt="" class="w-5 h-5 object-contain"></span>
-        <h4 class="text-[14.5px] font-bold text-ui-neutral-900">MySQL / MariaDB</h4>
-        <span class="text-[12.5px] text-ui-neutral-600">Encrypted, deduplicated database snapshots</span>
-        <span class="text-[10px] font-bold uppercase tracking-wide text-green-700 bg-green-100 rounded px-2 py-0.5 self-start mt-auto">Live</span>
-      </a>
-      <!-- Kubernetes -->
-      <a href="/integrations/kubernetes/" class="bg-ui-white border border-ui-neutral-200 rounded-xl p-5 flex flex-col gap-2 hover:border-ui-primary-500 transition-colors">
-        <span class="w-9 h-9 rounded-lg bg-ui-neutral-100 flex items-center justify-center mb-1"><img src="{{ (resources.Get "img/providers/kubernetes.png").RelPermalink }}" alt="" class="w-5 h-5"></span>
-        <h4 class="text-[14.5px] font-bold text-ui-neutral-900">Kubernetes</h4>
-        <span class="text-[12.5px] text-ui-neutral-600">Cluster-native snapshots, GitOps-ready</span>
-        <span class="text-[10px] font-bold uppercase tracking-wide text-green-700 bg-green-100 rounded px-2 py-0.5 self-start mt-auto">Live</span>
-      </a>
-      <!-- Proxmox -->
-      <a href="/integrations/proxmox/" class="bg-ui-white border border-ui-neutral-200 rounded-xl p-5 flex flex-col gap-2 hover:border-ui-primary-500 transition-colors">
-        <span class="w-9 h-9 rounded-lg bg-ui-neutral-100 flex items-center justify-center mb-1"><img src="{{ (resources.Get "img/providers/proxmox.png").RelPermalink }}" alt="" class="w-5 h-5"></span>
-        <h4 class="text-[14.5px] font-bold text-ui-neutral-900">Proxmox</h4>
-        <span class="text-[12.5px] text-ui-neutral-600">Agentless VM &amp; container snapshots</span>
-        <span class="text-[10px] font-bold uppercase tracking-wide text-green-700 bg-green-100 rounded px-2 py-0.5 self-start mt-auto">Live</span>
-      </a>
-      <!-- VMware -->
-      <a href="/integrations/vmware/" class="bg-ui-white border border-ui-neutral-200 rounded-xl p-5 flex flex-col gap-2 hover:border-ui-primary-500 transition-colors">
-        <span class="w-9 h-9 rounded-lg bg-ui-neutral-100 flex items-center justify-center mb-1"><img src="{{ (resources.Get "img/providers/vmware.png").RelPermalink }}" alt="" class="w-5 h-5"></span>
-        <h4 class="text-[14.5px] font-bold text-ui-neutral-900">VMware vSphere</h4>
-        <span class="text-[12.5px] text-ui-neutral-600">Agentless VM protection for hybrid estates</span>
-        <span class="text-[10px] font-bold uppercase tracking-wide text-green-700 bg-green-100 rounded px-2 py-0.5 self-start mt-auto">Live</span>
-      </a>
-      <!-- Docker -->
-      <div class="bg-ui-white border border-ui-neutral-200 rounded-xl p-5 flex flex-col gap-2">
-        <span class="w-9 h-9 rounded-lg bg-ui-neutral-100 flex items-center justify-center mb-1"><img src="{{ (resources.Get "img/providers/docker.png").RelPermalink }}" alt="" class="w-5 h-5"></span>
-        <h4 class="text-[14.5px] font-bold text-ui-neutral-900">Docker</h4>
-        <span class="text-[12.5px] text-ui-neutral-600">Snapshot container volumes &amp; state</span>
-        <span class="text-[10px] font-bold uppercase tracking-wide text-green-700 bg-green-100 rounded px-2 py-0.5 self-start mt-auto">Live</span>
-      </div>
-    </div>
-
-    <div class="flex justify-center mt-9">
-      {{ partial "components/buttons/base-button.html" (dict
-        "label" "View all integrations"
-        "labelShort" "Integrations"
-        "href" "/integrations/"
-        "icon" "ri/arrow-right-line"
-      ) }}
-    </div>
-  </div>
-</section>
-
-<!-- Wall of love -->
-<section class="bg-primary-600 py-14 lg:py-24">
-  <div class="px-4 max-w-350 mx-auto">
-    <div class="text-center max-w-2xl mx-auto mb-12">
-      <h2 class="text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-white">
-        Teams already trust Plakar.
-      </h2>
-      <div class="flex justify-center mt-6">
-        {{ partial "components/buttons/base-button.html" (dict
-          "label" "Join us on Discord"
-          "labelShort" "Discord"
-          "href" site.Params.socials.discord
-          "target" "_blank"
-          "icon" "discord"
-          "bgColor" "bg-ui-neutral-50"
-          "bgHoverColor" "bg-ui-neutral-100"
-          "textColor" "text-ui-primary-600"
-          "textHoverColor" "text-ui-primary-600"
-        ) }}
-      </div>
-    </div>
-    <div class="columns-1 md:columns-2 lg:columns-3 gap-4 max-w-5xl mx-auto">
-      <a href="https://www.reddit.com/r/kubernetes/comments/1shpt9k/rookceph_s3_buckets/off33rf/" target="_blank" rel="noopener" class="block break-inside-avoid bg-ui-neutral-50 rounded-xl p-5 mb-4 no-underline hover:shadow-lg transition-shadow">
-        <p class="text-[14.5px] text-ui-neutral-800 mb-4 leading-relaxed">“Very efficient, free, open-source, easy as hell to integrate.”</p>
-        <div class="flex items-center gap-2.5"><span class="w-8 h-8 rounded-full bg-ui-neutral-100 flex items-center justify-center font-bold text-xs text-ui-neutral-500">r/</span><div><div class="text-[13px] font-bold text-ui-neutral-900">r/kubernetes</div><div class="text-xs text-ui-neutral-500">on Rook-Ceph S3 buckets</div></div></div>
-      </a>
-      <a href="https://twitter.com/bipbip/status/2032924249229238328" target="_blank" rel="noopener" class="block break-inside-avoid bg-ui-neutral-50 rounded-xl p-5 mb-4 no-underline hover:shadow-lg transition-shadow">
-        <p class="text-[14.5px] text-ui-neutral-800 mb-4 leading-relaxed">“The first big disruption to the backup / archiving world in a long time. Open source &amp; built in Europe. Must have a look for SREs / sysadmins.”</p>
-        <div class="flex items-center gap-2.5"><span class="w-8 h-8 rounded-full bg-ui-neutral-100 flex items-center justify-center font-bold text-xs text-ui-neutral-500">B</span><div><div class="text-[13px] font-bold text-ui-neutral-900">@bipbip</div><div class="text-xs text-ui-neutral-500">on X</div></div></div>
-      </a>
-      <a href="https://twitter.com/BretFisher/status/2036114857536131375" target="_blank" rel="noopener" class="block break-inside-avoid bg-ui-neutral-50 rounded-xl p-5 mb-4 no-underline hover:shadow-lg transition-shadow">
-        <p class="text-[14.5px] text-ui-neutral-800 mb-4 leading-relaxed">“Plakar deduplicates and encrypts at the source so your cloud provider never sees your keys. And the snapshot model has no chain dependencies. You can delete any backup without breaking the others.”</p>
-        <div class="flex items-center gap-2.5"><span class="w-8 h-8 rounded-full bg-ui-neutral-100 flex items-center justify-center font-bold text-xs text-ui-neutral-500">BF</span><div><div class="text-[13px] font-bold text-ui-neutral-900">Bret Fisher</div><div class="text-xs text-ui-neutral-500">DevOps &amp; Docker Talk</div></div></div>
-      </a>
-      <a href="https://twitter.com/tom_doerr/status/2051481040267477292" target="_blank" rel="noopener" class="block break-inside-avoid bg-ui-neutral-50 rounded-xl p-5 mb-4 no-underline hover:shadow-lg transition-shadow">
-        <p class="text-[14.5px] text-ui-neutral-800 mb-4 leading-relaxed">“Restores 1 million items in 3 minutes.”</p>
-        <div class="flex items-center gap-2.5"><span class="w-8 h-8 rounded-full bg-ui-neutral-100 flex items-center justify-center font-bold text-xs text-ui-neutral-500">TD</span><div><div class="text-[13px] font-bold text-ui-neutral-900">@tom_doerr</div><div class="text-xs text-ui-neutral-500">on X, benchmarking Plakar 1.1</div></div></div>
-      </a>
-      <a href="https://www.reddit.com/r/linuxadmin/comments/1to2vm5/i_built_opsvault_an_opensource_backup_automation/opxr08y/" target="_blank" rel="noopener" class="block break-inside-avoid bg-ui-neutral-50 rounded-xl p-5 mb-4 no-underline hover:shadow-lg transition-shadow">
-        <p class="text-[14.5px] text-ui-neutral-800 mb-4 leading-relaxed">“Plakar looks pretty slick, especially that Proxmox integration.”</p>
-        <div class="flex items-center gap-2.5"><span class="w-8 h-8 rounded-full bg-ui-neutral-100 flex items-center justify-center font-bold text-xs text-ui-neutral-500">k</span><div><div class="text-[13px] font-bold text-ui-neutral-900">u/kernelqzor</div><div class="text-xs text-ui-neutral-500">r/linuxadmin</div></div></div>
-      </a>
-      <a href="https://korben.info/plakar-solution-backup-open-source-francaise.html" target="_blank" rel="noopener" class="block break-inside-avoid bg-ui-neutral-50 rounded-xl p-5 mb-4 no-underline hover:shadow-lg transition-shadow">
-        <p class="text-[14.5px] text-ui-neutral-800 mb-4 leading-relaxed">“Two little French geniuses just released a solution that's going to make you love backups.”</p>
-        <div class="flex items-center gap-2.5"><span class="w-8 h-8 rounded-full bg-ui-neutral-100 flex items-center justify-center font-bold text-xs text-ui-neutral-500">K</span><div><div class="text-[13px] font-bold text-ui-neutral-900">Korben</div><div class="text-xs text-ui-neutral-500">on korben.info</div></div></div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- Community section -->
-<section class="section-light-2 py-14 lg:pt-31">
-  <div class="max-w-350 mx-auto px-4 flex flex-col gap-16">
-
-    <div class="flex flex-col items-center gap-8 text-center">
-      <h2 class="text-4xl lg:text-6xl font-medium text-ui-neutral-900 leading-tight">
-        Community <span class="text-ui-secondary-500">powered</span>
-      </h2>
-      <p class="text-base lg:text-lg text-ui-neutral-600 font-medium max-w-2xl">
-        There must be a way to ensure backups remain accessible 10 or 30 years from now.
-        Built with transparency, tested by the community and trusted for critical infrastructure.
-      </p>
-    </div>
-
-    <!-- Contributors grid + center text -->
-    <div class="flex flex-col lg:flex-row">
-      {{ $cellsNumber := 16 }}
-      {{ $images := readDir "assets/img/contributors" }}
-      {{ $paths := slice }}
-      {{ range $images }}
-        {{ $paths = $paths | append (printf "img/contributors/%s" .Name) }}
-      {{ end }}
-      {{ $needed := sub (mul $cellsNumber 2) (len $paths) }}
-      {{ if gt $needed 0 }}
-        {{ range seq 1 $needed }}
-          {{ $paths = $paths | append "" }}
-        {{ end }}
-      {{ end }}
-      {{ $shuffled := shuffle $paths }}
-      {{ $leftImages := first $cellsNumber $shuffled }}
-      {{ $rightImages := first $cellsNumber (after $cellsNumber $shuffled) }}
-
-      <div class="flex lg:w-1/3 justify-center border border-ui-neutral-300 bg-ui-neutral-100 p-2 lg:p-3">
-        <div class="w-full grid grid-cols-4 gap-1 lg:gap-3">
-          {{ range $leftImages }}
-            <div class="aspect-square p-1 border border-dashed border-ui-neutral-300 flex items-center justify-center overflow-hidden">
-              {{ if . }}
-                {{ with resources.Get . }}
-                  {{ partial "components/image.html" (dict
-                    "resource" .
-                    "alt" "Contributor"
-                    "widths" (slice 100 200)
-                    "class" "w-full h-full object-cover"
-                  ) }}
-                {{ end }}
-              {{ end }}
-            </div>
-          {{ end }}
-        </div>
-      </div>
-
-      <div class="lg:w-1/3 flex flex-col relative justify-start px-4 py-2 bg-cover bg-center" style="background-image: url('{{ $gradientOrange.RelPermalink }}')">
-        <div class="flex flex-col items-center text-center z-10">
-          <h2 class="text-3xl lg:text-5xl font-medium text-neutral-900 mt-6 leading-tight">Open source</h2>
-          <p class="text-lg font-medium text-neutral-900 opacity-70 mt-11 leading-relaxed">
-            Plakar is built by a global community of engaged developers, SREs, sysadmins and platform engineers.
-          </p>
-          <p class="text-lg font-medium text-neutral-900 opacity-70 mt-12 leading-relaxed">
-            Write your own plugins, contribute to the codebase or just help us.
-          </p>
-          <div class="flex flex-col items-stretch sm:flex-row mt-12 gap-4">
-            {{ partial "components/buttons/base-button.html" (dict
-              "label" "Chat with us"
-              "icon" "discord"
-              "href" site.Params.socials.discord
-              "target" "_blank"
-              "bgColor" "bg-secondary-500/50"
-              "bgHoverColor" "bg-neutral-900"
-              "textColor" "text-neutral-50"
-              "textHoverColor" "hover:text-neutral-50"
-            ) }}
-            {{ partial "components/buttons/base-button.html" (dict
-              "label" "Start contributing"
-              "icon" "github"
-              "bgColor" "bg-neutral-900"
-              "bgHoverColor" "bg-neutral-50"
-              "textColor" "text-neutral-50"
-              "textHoverColor" "hover:text-neutral-900"
-              "href" site.Params.github.plakar
-              "target" "_blank"
-            ) }}
-          </div>
-        </div>
-      </div>
-
-      <div class="flex lg:w-1/3 justify-center border border-ui-neutral-300 bg-ui-neutral-100 p-2 lg:p-3">
-        <div class="w-full grid grid-cols-4 gap-1 lg:gap-3">
-          {{ range $rightImages }}
-            <div class="aspect-square p-1 border border-dashed border-ui-neutral-300 flex items-center justify-center overflow-hidden">
-              {{ if . }}
-                {{ with resources.Get . }}
-                  {{ partial "components/image.html" (dict
-                    "resource" .
-                    "alt" "Contributor"
-                    "widths" (slice 100 200)
-                    "class" "w-full h-full object-cover"
-                  ) }}
-                {{ end }}
-              {{ end }}
-            </div>
-          {{ end }}
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- Nestor -->
-<section class="section-light-1 py-14 lg:py-24">
-  <div class="px-4 max-w-350 mx-auto">
-    <div class="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-14 items-center max-w-5xl mx-auto">
-      <div>
-        <h2 class="text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-ui-neutral-900 mb-5">
-          Every chunk, accounted for. <span class="text-ui-secondary-500">Voilà.</span>
-        </h2>
-        <p class="text-[16.5px] text-ui-neutral-600 mb-4 leading-relaxed">
-          Nestor is Plakar's mascot, a chipmunk obsessed with chunks. His companion? Chunky Ptarson, a nut named after the <code class="bg-ui-neutral-200 px-1.5 py-0.5 rounded text-sm">.ptar</code> format he calls home. Nestor carries the snapshots. Chunky <em>is</em> the snapshot.
-        </p>
-        <div class="border-l-[3px] border-ui-primary-500 bg-ui-primary-50 rounded-r-lg px-5 py-3">
-          <p class="text-[15px] text-ui-neutral-800 italic">"You're just… leaving your snapshots out there? Unverified?! Mon dieu. You have to protect your nuts!"</p>
-          <span class="block text-[12.5px] text-ui-neutral-400 mt-2">— Nestor, every time someone says their backups "just work"</span>
-        </div>
-      </div>
-      <div class="shrink-0 w-64 mx-auto">
-        <img src="{{ $nestorV2.RelPermalink }}" alt="Nestor, Plakar's chipmunk mascot, holding Chunky Ptarson" class="w-full h-auto block">
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Newsletter -->
-<section class="home-newsletter overflow-hidden py-14 lg:py-28 text-neutral-50" style="background-image: url('{{ $gradientBlue.RelPermalink }}'); background-size: 100% 100%; background-repeat: no-repeat; background-position: center;">
-  <div class="max-w-350 mx-auto px-4 flex flex-col lg:flex-row-reverse gap-16 items-start">
-
-    <div class="lg:w-1/2 flex flex-col gap-8">
-      <h2 class="text-4xl lg:text-6xl font-medium leading-tighter text-ui-primary-900">
-        Stay ahead with Plakar updates
-      </h2>
-      <p class="text-ui-neutral-900 leading-normal">
-        Get exclusive insights, new features and expert tips on backup, storage and immutability.<br/> No spam, ever.
-      </p>
-    </div>
-
-    <div class="lg:w-1/2 w-full bg-neutral-800 border border-neutral-700 rounded-2xl shadow-sm overflow-hidden">
-      <div class="bg-primary-600 px-6 py-5">
-        <h3 class="text-neutral-50 font-semibold">Sign up with your email</h3>
-        <p class="text-neutral-50 opacity-80 mt-1">We'll send you major product updates, no noise.</p>
-      </div>
-      <form id="newsletter-form-home" class="px-6 py-8 flex flex-col gap-6">
-        <input type="email" name="email" placeholder="Your email address" required class="w-full border border-ui-neutral-300 bg-ui-neutral-50 text-ui-neutral-900 placeholder-ui-neutral-500 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary-400">
-        <div class="flex justify-end">
-          {{ partial "components/buttons/base-button.html" (dict
-            "label" "Subscribe"
-            "icon" "ri/arrow-right-line"
-            "submit" true
-          ) }}
-        </div>
-      </form>
-    </div>
-
-  </div>
-</section>
-
-<!-- Final CTA -->
-<section class="section-dark-1 py-14 lg:py-24">
-  <div class="px-4 max-w-350 mx-auto text-center">
-    <h2 class="text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-neutral-50 mb-4">
-      Back up anything. Prove it's recoverable.
-    </h2>
-    <p class="text-lg text-neutral-400 max-w-xl mx-auto mb-8">
-      The complete engine, free and open source. Organization-wide visibility when you need it. Your keys, your data, your recovery path.
-    </p>
-    <div class="flex flex-wrap justify-center gap-3 mb-8">
-      {{ partial "components/buttons/base-button.html" (dict
-        "label" "Get started"
-        "labelShort" "Start"
-        "href" "/docs/community/v1.1.0/quickstart/first-backup/"
-      ) }}
-      {{ partial "components/buttons/base-button.html" (dict
-        "label" "Book a demo"
-        "labelShort" "Demo"
-        "class" "book-a-demo-modal-open"
-        "bgColor" "bg-neutral-800"
-        "bgHoverColor" "bg-neutral-700"
-        "textColor" "text-neutral-50"
-        "border" "border"
-        "borderColor" "border-neutral-700"
-      ) }}
-    </div>
-    <div class="flex items-center justify-center gap-5 flex-wrap">
-      <div class="bg-white rounded-xl px-6 py-4 flex items-center justify-center">
-        <img src="{{ $cncfLogo.RelPermalink }}" alt="CNCF Silver Member" class="h-12 w-auto">
-      </div>
-      <div class="bg-white rounded-xl px-6 py-4 flex items-center justify-center">
-        <img src="{{ $lfLogo.RelPermalink }}" alt="Linux Foundation Silver Member" class="h-12 w-auto">
-      </div>
-      <div class="bg-white rounded-xl px-6 py-4 flex items-center justify-center">
-        <img src="{{ $sylvaLogo.RelPermalink }}" alt="Sylva project member" class="h-12 w-auto">
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Blog preview -->
-<section class="section-light-2 bg-gradient-section py-14 lg:py-40">
-  <div class="max-w-350 mx-auto px-4 flex flex-col gap-12">
-
-    <div class="flex flex-col lg:flex-row justify-between items-baseline gap-8">
-      <div class="flex flex-col gap-2 max-w-4xl">
-        <h2 class="text-4xl lg:text-7xl font-medium text-ui-neutral-900 leading-tight">
-          Plakar <span class="text-ui-secondary-500">Blog</span>
-        </h2>
-        <p class="text-base lg:text-lg font-medium text-ui-neutral-600">
-          Engineers thoughts, release notes and data protection latest news
-        </p>
-      </div>
-      {{ partial "components/buttons/base-button.html" (dict
-        "label" "See all posts"
-        "labelShort" "Blog"
-        "href" "/posts/"
-        "bgColor" "bg-ui-neutral-50"
-        "textColor" "text-ui-neutral-900"
-        "bgHoverColor" "bg-ui-neutral-900"
-        "textHoverColor" "hover:text-ui-neutral-50"
-        "border" "border"
-        "borderColor" "border-ui-neutral-200"
-      ) }}
-    </div>
-
-    {{ $allPosts := where (where .Site.RegularPages "Section" "posts") "Params.hidden" "ne" true }}
-    {{ $heroPosts := where $allPosts "Params.featured-scope" "intersect" (slice "hero-page") }}
-    {{ $posts := first 3 (sort $heroPosts "Date" "desc") }}
-    {{ if not $posts }}
-      {{ $posts = first 3 (sort $allPosts "Date" "desc") }}
     {{ end }}
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <h1 class="home-heading mt-8 font-medium tracking-[-0.035em] leading-[0.98] text-5xl sm:text-6xl lg:text-[5.75rem] max-w-5xl">
+      Back up everything.<br>Restore anywhere.
+    </h1>
+
+    <p class="mt-7 max-w-2xl text-lg lg:text-xl leading-relaxed text-ui-neutral-600">
+      Plakar is the open-source standard for efficient, secure backups.
+      Control Plane adds one view of what is protected across your infrastructure,
+      defined by hand or <a href="/solutions/resilience-as-code/" class="text-ui-neutral-900 underline decoration-ui-neutral-300 underline-offset-4 hover:decoration-ui-primary-500 transition-colors">as code</a>.
+    </p>
+
+    <div class="mt-10 flex flex-wrap justify-center gap-3">
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "Get started"
+        "href" "/docs/community/v1.1.0/quickstart/first-backup/"
+      ) }}
+      {{ partial "components/buttons/base-button.html" (merge $secondaryButton (dict
+        "label" "Book a demo"
+        "class" "book-a-demo-modal-open"
+        "icon" "ri/calendar-event-line"
+      )) }}
+    </div>
+
+    <a href="/download/" class="group mt-6 inline-flex items-center gap-2 font-mono text-sm text-ui-neutral-500 hover:text-ui-neutral-700 transition-colors">
+      <span class="text-ui-primary-500">$</span> brew install plakarkorp/tap/plakar
+      <span class="hidden sm:inline text-ui-neutral-400 group-hover:text-ui-primary-500 transition-colors">· all platforms</span>
+    </a>
+
+    <!-- Product: the Control Plane dashboard, drawn in HTML so it follows the theme -->
+    {{ $logoLight := resources.Get .Site.Params.logos.dark }}
+    {{ $logoDark := resources.Get "img/branding/logo-outline-white.svg" }}
+    <div class="relative w-full max-w-6xl mt-16 lg:mt-24" aria-hidden="true">
+      <div class="absolute left-1/2 -translate-x-1/2 -top-24 w-[120%] h-[38rem] home-glow"></div>
+
+      <div class="relative home-fade-bottom">
+        <div class="rounded-[1.25rem] border border-ui-neutral-200 bg-ui-neutral-50/60 p-1.5 lg:p-2 backdrop-blur home-frame">
+          <div class="grid md:grid-cols-[13rem_1fr] overflow-hidden rounded-xl border border-ui-neutral-200 bg-ui-neutral-50 text-left text-[13px] text-ui-neutral-700">
+
+            <!-- Sidebar -->
+            <div class="hidden md:flex flex-col gap-3 p-3 border-r border-ui-neutral-200">
+              <div class="flex items-start justify-between gap-2 px-1.5 pt-1">
+                <span class="block w-24">
+                  <span class="site-logo site-logo--light">{{ with $logoLight }}{{ .Content | safeHTML }}{{ end }}</span>
+                  <span class="site-logo site-logo--dark">{{ with $logoDark }}{{ .Content | safeHTML }}{{ end }}</span>
+                </span>
+                <span class="text-[10px] text-ui-neutral-400">v0.20</span>
+              </div>
+              <div class="flex items-center gap-2 rounded-lg border border-ui-neutral-200 px-2 py-1.5">
+                <span class="grid place-items-center w-5 h-5 rounded bg-ui-primary-50 text-[10px] font-bold text-ui-primary-600">AC</span>
+                <span class="font-medium text-ui-neutral-900">Acme Corp</span>
+              </div>
+              {{ range slice
+                (dict "group" "" "items" (slice
+                  (dict "icon" "ri/dashboard-3-line" "label" "Dashboard" "active" true)))
+                (dict "group" "Organization" "items" (slice
+                  (dict "icon" "ri/organization-chart" "label" "Organization")))
+                (dict "group" "Infrastructure" "items" (slice
+                  (dict "icon" "ri/cloud-line" "label" "Inventories")
+                  (dict "icon" "ri/lock-2-line" "label" "Secret Providers")
+                  (dict "icon" "ri/server-line" "label" "Edges")))
+                (dict "group" "Operations" "items" (slice
+                  (dict "icon" "ri/archive-line" "label" "Backup")
+                  (dict "icon" "ri/arrow-go-back-line" "label" "Restore")
+                  (dict "icon" "ri/shield-line" "label" "Policy")
+                  (dict "icon" "ri/calendar-event-line" "label" "Scheduling")
+                  (dict "icon" "ri/scales-3-line" "label" "Compliance")))
+                (dict "group" "Control Plane" "items" (slice
+                  (dict "icon" "ri/puzzle-2-line" "label" "Integrations")
+                  (dict "icon" "ri/file-copy-line" "label" "Standbys")
+                  (dict "icon" "ri/cpu-line" "label" "System")))
+              }}
+                <div class="flex flex-col gap-px">
+                  {{ with .group }}<span class="px-2 pb-1 text-[10px] font-semibold uppercase tracking-widest text-ui-neutral-400">{{ . }}</span>{{ end }}
+                  {{ range .items }}
+                    <span class="flex items-center gap-2.5 rounded-md px-2 py-1 {{ if .active }}bg-ui-neutral-100 font-medium text-ui-neutral-900{{ else }}text-ui-neutral-700{{ end }}">
+                      <span class="block w-4 h-4 {{ if .active }}text-ui-neutral-900{{ else }}text-ui-neutral-500{{ end }}">{{ partial "icon.html" .icon }}</span>
+                      {{ .label }}
+                    </span>
+                  {{ end }}
+                </div>
+              {{ end }}
+            </div>
+
+            <!-- Main -->
+            <div class="flex flex-col min-w-0 bg-ui-neutral-100/60">
+              <div class="flex items-center gap-3 px-5 py-3.5 border-b border-ui-neutral-200 bg-ui-neutral-50">
+                <span class="grid place-items-center w-9 h-9 rounded-lg bg-ui-neutral-100 text-ui-neutral-500"><span class="block w-4.5 h-4.5">{{ partial "icon.html" "ri/dashboard-3-line" }}</span></span>
+                <span class="flex flex-col">
+                  <span class="text-base font-semibold text-ui-neutral-900">Your dashboard</span>
+                  <span class="text-xs text-ui-neutral-500">An overview of your data.</span>
+                </span>
+              </div>
+
+              <div class="flex flex-col gap-3 p-3 lg:p-4">
+                <!-- Stats -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+                  {{ range slice
+                    (dict "value" "1,284" "label" "Protected sources" "icon" "ri/shield-check-line" "tile" "bg-ui-red-50 text-red-500")
+                    (dict "value" "6" "label" "Kloset stores" "icon" "ri/archive-line" "tile" "bg-ui-blue-50 text-blue-500")
+                    (dict "value" "38" "label" "Restore destinations" "icon" "ri/arrow-go-back-line" "tile" "bg-ui-green-50 text-green-500")
+                    (dict "value" "214" "label" "Scheduled tasks" "icon" "ri/calendar-event-line" "tile" "bg-ui-primary-50 text-ui-primary-500")
+                  }}
+                    <div class="flex items-center justify-between gap-2 rounded-lg border border-ui-neutral-200 bg-ui-neutral-50 p-3.5">
+                      <span class="flex flex-col">
+                        <span class="text-2xl font-medium tracking-tight text-ui-neutral-900">{{ .value }}</span>
+                        <span class="text-xs text-ui-neutral-500">{{ .label }}</span>
+                      </span>
+                      <span class="grid place-items-center w-10 h-10 shrink-0 rounded-lg {{ .tile }}"><span class="block w-5 h-5">{{ partial "icon.html" .icon }}</span></span>
+                    </div>
+                  {{ end }}
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-3">
+                  <!-- Storage used -->
+                  <div class="rounded-lg border border-ui-neutral-200 bg-ui-neutral-50 p-4">
+                    <div class="flex items-center justify-between pb-3 border-b border-ui-neutral-200">
+                      <span class="font-medium text-ui-neutral-900">Storage used</span>
+                      <span class="flex items-center gap-1.5 text-[11px] text-ui-neutral-400"><span class="w-3 h-1.5 rounded-full bg-ui-neutral-200"></span>storage quota</span>
+                    </div>
+                    <div class="mt-4 flex items-baseline justify-between gap-3">
+                      <span><span class="text-xl font-medium tracking-tight text-ui-neutral-900">2.4 TB</span> <span class="text-xs text-ui-neutral-500">used since this deployment started</span></span>
+                      <span class="hidden sm:block text-xs text-ui-neutral-500">5 TB allowed</span>
+                    </div>
+                    <div class="mt-3 h-2.5 rounded-full bg-ui-neutral-200"><div class="h-full w-[48%] rounded-full bg-ui-primary-500"></div></div>
+                    <div class="mt-2 flex justify-between text-[10px] text-ui-neutral-400"><span>0 B</span><span>2.5 TB</span><span>5 TB</span></div>
+                    <div class="mt-3 text-[11px] text-ui-neutral-400">31 TB processed since this deployment started</div>
+                  </div>
+
+                  <!-- Data protection -->
+                  <div class="rounded-lg border border-ui-neutral-200 bg-ui-neutral-50 p-4">
+                    <div class="flex items-center justify-between pb-3 border-b border-ui-neutral-200">
+                      <span class="font-medium text-ui-neutral-900">Data protection</span>
+                      <span class="flex items-center gap-6 rounded-md border border-ui-neutral-200 px-2 py-1 text-[11px] text-ui-neutral-700">All inventories <span class="text-ui-neutral-400">▾</span></span>
+                    </div>
+                    <div class="mt-4 flex items-center gap-4">
+                      <div class="relative shrink-0 w-24 h-24 rounded-full" style="background: conic-gradient(#22c55e 0 92%, #f59e0b 92% 98.5%, rgb(var(--ui-neutral-300)) 98.5% 100%)">
+                        <div class="absolute inset-3 rounded-full bg-ui-neutral-50 grid place-items-center text-xs text-ui-neutral-700">All</div>
+                      </div>
+                      <div class="flex-1 flex flex-col gap-2 text-xs text-ui-neutral-600">
+                        <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span><b class="font-semibold text-ui-neutral-900">1,284</b> protected</span>
+                        <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span><b class="font-semibold text-ui-neutral-900">97</b> unprotected</span>
+                        <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-ui-neutral-300"></span><b class="font-semibold text-ui-neutral-900">14</b> excluded</span>
+                      </div>
+                      <div class="hidden sm:flex flex-col items-center gap-1 rounded-lg bg-ui-neutral-100 px-4 py-3">
+                        <span class="text-xs text-ui-neutral-700">Coverage</span>
+                        <span class="text-lg font-semibold text-ui-primary-500">92%</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Bytes processed -->
+                  <div class="rounded-lg border border-ui-neutral-200 bg-ui-neutral-50 p-4">
+                    <div class="flex items-center justify-between pb-3 border-b border-ui-neutral-200">
+                      <span class="font-medium text-ui-neutral-900">Bytes processed</span>
+                      <span class="flex items-center gap-3 text-[11px] text-ui-neutral-400">
+                        <span class="flex items-center gap-1.5"><span class="w-3 h-0.5 rounded-full bg-ui-primary-500"></span>stored</span>
+                        <span class="flex items-center gap-1.5"><span class="w-3 h-0.5 rounded-full bg-ui-primary-200"></span>processed</span>
+                      </span>
+                    </div>
+                    <div class="mt-4 flex items-end gap-1 h-28">
+                      {{ range slice
+                        (dict "p" 58 "s" 22) (dict "p" 64 "s" 9) (dict "p" 52 "s" 7) (dict "p" 71 "s" 10)
+                        (dict "p" 66 "s" 8) (dict "p" 40 "s" 5) (dict "p" 44 "s" 6) (dict "p" 78 "s" 12)
+                        (dict "p" 83 "s" 9) (dict "p" 69 "s" 7) (dict "p" 90 "s" 11) (dict "p" 74 "s" 8)
+                        (dict "p" 61 "s" 6) (dict "p" 95 "s" 13)
+                      }}
+                        <div class="relative flex-1 rounded-t-[3px] bg-ui-primary-100" style="height: {{ .p }}%">
+                          <div class="absolute inset-x-0 bottom-0 rounded-t-[3px] bg-ui-primary-500" style="height: {{ div (mul .s 100) .p }}%"></div>
+                        </div>
+                      {{ end }}
+                    </div>
+                    <div class="mt-2 pt-1.5 border-t border-ui-neutral-200 flex justify-between font-mono text-[10px] text-ui-neutral-400">
+                      <span>10/30</span><span>11/01</span><span>11/03</span><span>11/05</span>
+                    </div>
+                  </div>
+
+                  <!-- Activity -->
+                  <div class="rounded-lg border border-ui-neutral-200 bg-ui-neutral-50 p-4">
+                    <div class="flex items-center justify-between pb-3 border-b border-ui-neutral-200">
+                      <span class="font-medium text-ui-neutral-900">Activity</span>
+                      <span class="flex items-center gap-6 rounded-md border border-ui-neutral-200 px-2 py-1 text-[11px] text-ui-neutral-700">Last 24 hours <span class="text-ui-neutral-400">▾</span></span>
+                    </div>
+                    <div class="mt-3 flex items-center gap-4 text-xs text-ui-neutral-500">
+                      <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-ui-primary-500"></span><b class="font-semibold text-ui-neutral-900">48 GB</b> stored</span>
+                      <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-ui-primary-200"></span><b class="font-semibold text-ui-neutral-900">1.2 TB</b> processed</span>
+                    </div>
+                    <div class="mt-3 flex flex-col gap-2.5">
+                      {{ range slice
+                        (dict "label" "Backup" "ok" 212 "ko" 2)
+                        (dict "label" "Sync" "ok" 64 "ko" 0)
+                        (dict "label" "Check" "ok" 38 "ko" 0)
+                        (dict "label" "Restore" "ok" 9 "ko" 0)
+                      }}
+                        {{ $pct := div (mul .ok 100) (add .ok .ko) }}
+                        <div class="flex flex-col gap-1">
+                          <div class="flex items-center justify-between text-xs">
+                            <span class="font-medium text-ui-neutral-900">{{ .label }}</span>
+                            <span class="text-ui-neutral-500"><b class="font-semibold text-ui-neutral-900">{{ .ok }}</b> completed <span class="ml-2 {{ if gt .ko 0 }}text-red-500{{ end }}">{{ .ko }} failed</span></span>
+                          </div>
+                          <div class="flex gap-0.5 h-1.5">
+                            <div class="h-full rounded-full bg-green-500" style="width: {{ $pct }}%"></div>
+                            {{ if gt .ko 0 }}<div class="h-full flex-1 rounded-full bg-red-500"></div>{{ end }}
+                          </div>
+                        </div>
+                      {{ end }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trusted by: edit data/partners.yaml -->
+  {{ with site.Data.partners }}
+    <div class="relative {{ $wrap }} pt-4 pb-24 lg:pb-32 flex flex-col items-center gap-10">
+      <p class="text-sm text-ui-neutral-500">Trusted by engineering teams at</p>
+      <div class="flex flex-wrap justify-center items-center gap-x-14 gap-y-8">
+        {{ range . }}
+          {{ $logo := "" }}
+          {{ with .logo }}{{ $logo = resources.Get . }}{{ end }}
+          {{ $body := "" }}
+          {{ if $logo }}
+            {{ $body = printf `<img src="%s" alt="%s" class="partner-logo h-7 lg:h-8 w-auto">` $logo.RelPermalink .name }}
+          {{ else }}
+            {{ $body = printf `<span class="text-xl font-semibold tracking-tight text-ui-neutral-400">%s</span>` .name }}
+          {{ end }}
+          {{ with .url }}
+            <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="opacity-70 hover:opacity-100 transition-opacity">{{ $body | safeHTML }}</a>
+          {{ else }}
+            <span class="opacity-70">{{ $body | safeHTML }}</span>
+          {{ end }}
+        {{ end }}
+      </div>
+    </div>
+  {{ end }}
+</section>
+
+<!-- ================================================================
+     Why backups
+     ================================================================ -->
+<section class="section-dark-1 relative overflow-hidden border-y border-neutral-800">
+  <div class="absolute -right-48 -top-64 w-[48rem] h-[48rem] home-glow" aria-hidden="true"></div>
+  <div class="relative {{ $wrap }} py-24 lg:py-36">
+    <div class="grid lg:grid-cols-[1.15fr_1fr] gap-8 lg:gap-24 lg:items-end">
+      <div class="flex flex-col gap-6">
+        <h2 class="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-primary-300">
+          <span class="w-1.5 h-1.5 rounded-full bg-primary-400"></span>Why backups
+        </h2>
+        <p class="home-heading-dark font-medium tracking-tight leading-[1.05] text-4xl md:text-5xl lg:text-6xl">
+          A breach is no longer a risk. It is a certainty.
+        </p>
+      </div>
+      <p class="text-lg leading-relaxed text-neutral-400 lg:pb-2">
+        State-led ransomware, AI-driven exfiltration and a vanishing perimeter have made backups the
+        last line of defense, and the first thing attackers go after.
+      </p>
+    </div>
+
+    <div class="mt-16 lg:mt-24 pt-10 border-t border-neutral-800 grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+      {{ range slice
+        (dict "value" "96" "unit" "%" "label" "of ransomware attacks target backup repositories")
+        (dict "value" "43" "unit" "%" "label" "of affected data is unrecoverable after an attack")
+        (dict "value" "45" "unit" "%" "label" "of AI-generated code introduces security vulnerabilities")
+        (dict "value" "8" "unit" "×" "label" "higher median recovery cost when backups are compromised")
+      }}
+        <div class="flex flex-col gap-4 lg:pl-8 lg:border-l lg:first:border-l-0 lg:first:pl-0 border-neutral-800">
+          <span class="font-medium tracking-tighter leading-none text-6xl lg:text-7xl">
+            <span class="home-heading-dark">{{ .value }}</span><span class="text-primary-400">{{ .unit }}</span>
+          </span>
+          <span class="max-w-60 text-neutral-400">{{ .label }}</span>
+        </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     What Plakar delivers: bento
+     ================================================================ -->
+<section class="py-24 lg:py-36">
+  <div class="{{ $wrap }}">
+    <div class="grid lg:grid-cols-[1.15fr_1fr] gap-8 lg:gap-24 lg:items-end">
+      <div class="flex flex-col gap-6">
+        <h2 class="{{ $eyebrow }}"><span class="w-1.5 h-1.5 rounded-full bg-ui-primary-500"></span>What Plakar delivers</h2>
+        <p class="{{ $h2 }}">“Recoverable” has to actually mean something.</p>
+      </div>
+      <p class="{{ $lead }} lg:pb-2">
+        One engine that makes protecting everything affordable, keeps every copy out of reach,
+        and checks that each one restores.
+      </p>
+    </div>
+
+    <div class="mt-16 grid md:grid-cols-2 lg:grid-cols-6 gap-4">
+
+      <!-- Efficient -->
+      <div class="{{ $card }} md:col-span-2 lg:col-span-4 flex flex-col overflow-hidden">
+        <div class="flex-1 flex flex-col justify-center gap-3 p-6 lg:p-10 border-b border-ui-neutral-200 bg-ui-neutral-100/40" aria-hidden="true">
+          {{ range slice
+            (dict "label" "Monday" "new" (slice 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1))
+            (dict "label" "Tuesday" "new" (slice 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0))
+            (dict "label" "Wednesday" "new" (slice 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 1 0 0))
+            (dict "label" "Thursday" "new" (slice 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0))
+          }}
+            {{ $count := 0 }}
+            {{ range .new }}{{ $count = add $count . }}{{ end }}
+            <div class="flex items-center gap-4">
+              <span class="hidden sm:block w-20 shrink-0 font-mono text-xs text-ui-neutral-500">{{ .label }}</span>
+              <div class="flex-1 grid grid-cols-[repeat(18,minmax(0,1fr))] gap-1">
+                {{ range .new }}
+                  <span class="h-6 rounded-[3px] {{ if eq . 1 }}bg-ui-primary-500{{ else }}bg-ui-neutral-200/70{{ end }}"></span>
+                {{ end }}
+              </div>
+              <span class="w-16 shrink-0 text-right font-mono text-xs {{ if eq $count 18 }}text-ui-neutral-900{{ else }}text-ui-primary-600{{ end }}">+{{ $count }}</span>
+            </div>
+          {{ end }}
+          <div class="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-xs text-ui-neutral-500">
+            <span class="flex items-center gap-2"><span class="w-3 h-3 rounded-[3px] bg-ui-primary-500"></span>New chunk, stored</span>
+            <span class="flex items-center gap-2"><span class="w-3 h-3 rounded-[3px] bg-ui-neutral-200"></span>Already stored, referenced</span>
+          </div>
+        </div>
+        <div class="p-6 lg:p-8">
+          <h3 class="text-lg font-semibold text-ui-neutral-900">Radically efficient</h3>
+          <p class="mt-2 max-w-xl text-ui-neutral-600">
+            Data is deduplicated and compressed before it leaves your system. Each snapshot only stores
+            what changed, so protecting the whole estate costs a fraction of legacy tools.
+          </p>
+        </div>
+      </div>
+
+      <!-- Zero trust -->
+      <div class="{{ $card }} lg:col-span-2 flex flex-col overflow-hidden">
+        <div class="flex-1 flex flex-col justify-center gap-2 p-6 border-b border-ui-neutral-200 bg-ui-neutral-100/40" aria-hidden="true">
+          <div class="flex items-center gap-3 rounded-lg border border-ui-neutral-200 bg-ui-neutral-50 px-3 py-2.5">
+            <span class="block w-4 h-4 text-ui-neutral-500">{{ partial "icon.html" "ri/database-2-line" }}</span>
+            <span class="font-mono text-xs text-ui-neutral-900">customers.sql</span>
+            <span class="ml-auto text-xs text-ui-neutral-400">your host</span>
+          </div>
+          <div class="flex items-center gap-2 pl-5 text-xs text-ui-primary-600">
+            <span class="h-5 border-l border-dashed border-ui-primary-300"></span>
+            <span class="block w-3.5 h-3.5">{{ partial "icon.html" "ri/lock-2-line" }}</span>
+            encrypted before upload
+          </div>
+          <div class="flex items-center gap-3 rounded-lg border border-ui-neutral-200 bg-ui-neutral-50 px-3 py-2.5">
+            <span class="block w-4 h-4 text-ui-neutral-500">{{ partial "icon.html" "ri/hard-drive-2-line" }}</span>
+            <span class="font-mono text-xs text-ui-neutral-400 truncate">9f2c 41ae 07d3 e1b8 c6…</span>
+            <span class="ml-auto shrink-0 flex items-center gap-1 rounded-full bg-ui-green-50 px-2 py-0.5 text-[11px] font-medium text-ui-green-800">
+              <span class="block w-3 h-3">{{ partial "icon.html" "ri/shield-check-line" }}</span>locked
+            </span>
+          </div>
+        </div>
+        <div class="p-6 lg:p-8">
+          <h3 class="text-lg font-semibold text-ui-neutral-900">Zero-trust and tamperproof</h3>
+          <p class="mt-2 text-ui-neutral-600">
+            Encrypted at the source, so not even the storage provider can read it. On object-lock storage, nobody can alter or delete it.
+          </p>
+        </div>
+      </div>
+
+      <!-- Verified -->
+      <div class="{{ $card }} lg:col-span-2 flex flex-col overflow-hidden">
+        <div class="flex-1 flex flex-col justify-center p-6 border-b border-ui-neutral-200 bg-ui-neutral-100/40" aria-hidden="true">
+          <div class="rounded-lg border border-ui-neutral-200 bg-ui-neutral-50">
+            {{ range slice
+              (dict "id" "dd62691d" "when" "2h ago" "ok" true)
+              (dict "id" "842de8b1" "when" "1d ago" "ok" true)
+              (dict "id" "5c07a9e3" "when" "2d ago" "ok" true)
+              (dict "id" "a1f3b6c8" "when" "now" "ok" false)
+            }}
+              <div class="flex items-center gap-3 px-3 py-2 border-b border-ui-neutral-200 last:border-b-0">
+                <span class="font-mono text-xs text-ui-neutral-900">{{ .id }}</span>
+                <span class="text-xs text-ui-neutral-400">{{ .when }}</span>
+                {{ if .ok }}
+                  <span class="ml-auto flex items-center gap-1 text-xs font-medium text-ui-green-600"><span class="block w-3.5 h-3.5">{{ partial "icon.html" "ri/check-line" }}</span>Verified</span>
+                {{ else }}
+                  <span class="ml-auto flex items-center gap-1.5 text-xs font-medium text-ui-primary-600"><span class="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>Checking</span>
+                {{ end }}
+              </div>
+            {{ end }}
+          </div>
+        </div>
+        <div class="p-6 lg:p-8">
+          <h3 class="text-lg font-semibold text-ui-neutral-900">Verified, not assumed</h3>
+          <p class="mt-2 text-ui-neutral-600">
+            Scheduled checks confirm every snapshot is intact and restorable, so you find out before the day you need it.
+          </p>
+        </div>
+      </div>
+
+      <!-- Never hostage -->
+      <div class="{{ $card }} lg:col-span-2 flex flex-col overflow-hidden">
+        <div class="flex-1 flex flex-col justify-center gap-2 p-6 border-b border-ui-neutral-200 bg-ui-neutral-100/40" aria-hidden="true">
+          {{ range slice
+            (dict "icon" "ri/open-source-line" "label" "Open source, permissive license")
+            (dict "icon" "ri/server-line" "label" "Self-hosted on any infrastructure")
+            (dict "icon" "ri/file-text-line" "label" "Open, documented storage format")
+          }}
+            <div class="flex items-center gap-3 rounded-lg border border-ui-neutral-200 bg-ui-neutral-50 px-3 py-2.5">
+              <span class="block w-4 h-4 text-ui-primary-500">{{ partial "icon.html" .icon }}</span>
+              <span class="text-xs text-ui-neutral-900">{{ .label }}</span>
+              <span class="ml-auto block w-3.5 h-3.5 text-ui-green-600">{{ partial "icon.html" "ri/check-line" }}</span>
+            </div>
+          {{ end }}
+        </div>
+        <div class="p-6 lg:p-8">
+          <h3 class="text-lg font-semibold text-ui-neutral-900">Never held hostage</h3>
+          <p class="mt-2 text-ui-neutral-600">
+            No vendor lock-in and no proprietary format. A usable copy of your data always stays under your control.
+          </p>
+        </div>
+      </div>
+
+      <!-- Driven -->
+      <div class="{{ $card }} lg:col-span-2 flex flex-col overflow-hidden">
+        <div class="flex-1 flex flex-col justify-center p-6 border-b border-ui-neutral-200 bg-ui-neutral-100/40" aria-hidden="true">
+          <div class="rounded-lg border border-neutral-800 bg-neutral-900 p-4 font-mono text-xs leading-relaxed text-neutral-300">
+            <div><span class="text-primary-300">$</span> plakar at @s3 backup /var/lib/pg</div>
+            <div class="text-neutral-500">snapshot dd62691d created</div>
+            <div class="mt-2"><span class="text-primary-300">$</span> plakar at @s3 restore dd62691d</div>
+            <div class="text-green-400">restored 1,204 files</div>
+          </div>
+          <div class="mt-3 flex gap-2">
+            {{ range slice "CLI" "API" "SDK" }}
+              <span class="rounded-md border border-ui-neutral-200 bg-ui-neutral-50 px-2 py-0.5 font-mono text-[11px] text-ui-neutral-600">{{ . }}</span>
+            {{ end }}
+          </div>
+        </div>
+        <div class="p-6 lg:p-8">
+          <h3 class="text-lg font-semibold text-ui-neutral-900">Built to be driven</h3>
+          <p class="mt-2 text-ui-neutral-600">
+            Every action is exposed through the CLI, API and SDK, so people and AI agents can snapshot what they touch and restore it when it breaks.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     Control Plane: discover, protect, prove
+     ================================================================ -->
+<section class="py-24 lg:py-36 border-t border-ui-neutral-200">
+  <div class="{{ $wrap }}">
+    <div class="grid lg:grid-cols-[1.15fr_1fr] gap-8 lg:gap-24 lg:items-end">
+      <div class="flex flex-col gap-6">
+        <h2 class="{{ $eyebrow }}"><span class="w-1.5 h-1.5 rounded-full bg-ui-primary-500"></span>Plakar Control Plane</h2>
+        <p class="{{ $h2 }}">See what is protected. Fix what is not.</p>
+      </div>
+      <div class="flex flex-col gap-5 lg:pb-2">
+        <p class="{{ $lead }}">
+          Control Plane maps your estate, applies protection by policy and shows the gaps,
+          from a single self-hosted console.
+        </p>
+        <a href="/solutions/control-plane/" class="{{ $link }}">
+          Explore Control Plane <span class="block w-4 h-4 group-hover:translate-x-0.5 transition-transform">{{ partial "icon.html" "ri/arrow-right-line" }}</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="mt-16 grid lg:grid-cols-3 gap-4">
+
+      <!-- Discover -->
+      <div class="{{ $card }} flex flex-col overflow-hidden">
+        <div class="h-64 flex flex-col justify-center p-6 border-b border-ui-neutral-200 bg-ui-neutral-100/40" aria-hidden="true">
+          <div class="rounded-lg border border-ui-neutral-200 bg-ui-neutral-50 text-xs">
+            <div class="flex items-center gap-2 px-3 py-2 border-b border-ui-neutral-200">
+              <span class="font-medium text-ui-neutral-900">AWS · eu-west-3</span>
+              <span class="ml-auto flex items-center gap-1 text-ui-neutral-400"><span class="block w-3 h-3">{{ partial "icon.html" "ri/refresh-line" }}</span>synced 2m ago</span>
+            </div>
+            {{ range slice
+              (dict "name" "db-primary" "type" "RDS")
+              (dict "name" "app-server-01" "type" "EC2")
+              (dict "name" "media-assets" "type" "S3")
+              (dict "name" "analytics-mongo" "type" "EC2" "new" true)
+            }}
+              <div class="flex items-center gap-2 px-3 py-2 border-b border-ui-neutral-200 last:border-b-0">
+                <span class="font-mono text-ui-neutral-900">{{ .name }}</span>
+                {{ if .new }}<span class="rounded-full bg-ui-primary-50 px-1.5 text-[10px] font-semibold text-ui-primary-600">New</span>{{ end }}
+                <span class="ml-auto rounded border border-ui-neutral-200 px-1.5 font-mono text-[10px] text-ui-neutral-500">{{ .type }}</span>
+              </div>
+            {{ end }}
+          </div>
+        </div>
+        <div class="p-6 lg:p-8">
+          <span class="font-mono text-xs text-ui-neutral-400">01</span>
+          <h3 class="mt-2 text-lg font-semibold text-ui-neutral-900">Discover</h3>
+          <p class="mt-2 text-ui-neutral-600">Connect a cloud account, hypervisor or cluster. Inventories list every resource and stay in sync.</p>
+        </div>
+      </div>
+
+      <!-- Protect -->
+      <div class="{{ $card }} flex flex-col overflow-hidden">
+        <div class="h-64 flex flex-col justify-center p-6 border-b border-ui-neutral-200 bg-ui-neutral-100/40" aria-hidden="true">
+          <div class="rounded-lg border border-ui-neutral-200 bg-ui-neutral-50 text-xs">
+            <div class="flex items-center gap-2 px-3 py-2 border-b border-ui-neutral-200">
+              <span class="block w-3.5 h-3.5 text-ui-primary-500">{{ partial "icon.html" "ri/shield-check-line" }}</span>
+              <span class="font-medium text-ui-neutral-900">production-daily</span>
+              <span class="ml-auto rounded-full bg-ui-green-50 px-1.5 text-[10px] font-semibold text-ui-green-800">Active</span>
+            </div>
+            {{ range slice
+              (dict "k" "Schedule" "v" "Every 24 hours")
+              (dict "k" "Retention" "v" "30 days")
+              (dict "k" "Store" "v" "s3-eu-west")
+              (dict "k" "Matched" "v" "214 resources")
+            }}
+              <div class="flex items-center gap-2 px-3 py-2 border-b border-ui-neutral-200 last:border-b-0">
+                <span class="text-ui-neutral-500">{{ .k }}</span>
+                <span class="ml-auto font-medium text-ui-neutral-900">{{ .v }}</span>
+              </div>
+            {{ end }}
+          </div>
+        </div>
+        <div class="p-6 lg:p-8">
+          <span class="font-mono text-xs text-ui-neutral-400">02</span>
+          <h3 class="mt-2 text-lg font-semibold text-ui-neutral-900">Protect</h3>
+          <p class="mt-2 text-ui-neutral-600">Policies set schedules, retention and storage for the resources they match, including new ones.</p>
+        </div>
+      </div>
+
+      <!-- Prove -->
+      <div class="{{ $card }} flex flex-col overflow-hidden">
+        <div class="h-64 flex flex-col justify-center gap-4 p-6 border-b border-ui-neutral-200 bg-ui-neutral-100/40" aria-hidden="true">
+          {{ range slice
+            (dict "name" "Scaleway" "pct" 100)
+            (dict "name" "AWS" "pct" 96)
+            (dict "name" "Proxmox" "pct" 88)
+            (dict "name" "Kubernetes" "pct" 74)
+          }}
+            <div class="flex flex-col gap-1.5">
+              <div class="flex items-center justify-between text-xs">
+                <span class="text-ui-neutral-700">{{ .name }}</span>
+                <span class="font-mono {{ if ge .pct 90 }}text-ui-neutral-900{{ else }}text-ui-secondary-600{{ end }}">{{ .pct }}%</span>
+              </div>
+              <div class="h-1.5 rounded-full bg-ui-neutral-200">
+                <div class="h-full rounded-full {{ if ge .pct 90 }}bg-ui-primary-500{{ else }}bg-ui-secondary-500{{ end }}" style="width: {{ .pct }}%"></div>
+              </div>
+            </div>
+          {{ end }}
+        </div>
+        <div class="p-6 lg:p-8">
+          <span class="font-mono text-xs text-ui-neutral-400">03</span>
+          <h3 class="mt-2 text-lg font-semibold text-ui-neutral-900">Prove</h3>
+          <p class="mt-2 text-ui-neutral-600">Compliance shows coverage per inventory and the result of every check, ready for the next audit.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     Resilience as code: a tool switcher, pure CSS (see .home-iac in custom.css)
+     ================================================================ -->
+{{ $k := `<span class="text-primary-300">` }}
+{{ $v := `<span class="text-secondary-300">` }}
+{{ $c := `<span class="text-neutral-500">` }}
+{{ $e := `</span>` }}
+{{ $iac := slice
+  (dict "id" "k8s" "icon" "ri/box-3-line" "name" "Kubernetes Operator" "text" "Sources, stores and schedules as custom resources, reconciled in the cluster."
+    "file" "backup.yaml" "docs" "/docs/control-plane/infrastructure-as-code/kubernetes-operator/"
+    "code" (printf `%sapiVersion%s: task.plakar.io/v1alpha1
+%skind%s: %sScheduleBackup%s
+%smetadata%s:
+  %sname%s: nightly-database-backup
+%sspec%s:
+  %speriodicity%s: %s86400%s
+  %ssource%s:
+    %sname%s: production-database
+  %sstore%s:
+    %sname%s: production-s3` $k $e $k $e $v $e $k $e $k $e $k $e $k $e $v $e $k $e $k $e $k $e $k $e)
+    "cmd" "kubectl apply -f backup.yaml"
+    "out" `schedulebackup.task.plakar.io/nightly-database-backup <span class="text-green-400">created</span>`)
+  (dict "id" "tf" "icon" "ri/stack-line" "name" "Terraform" "text" "Organizations, inventories, stores and schedules as resources in your plans."
+    "file" "schedules.tf" "docs" "/docs/control-plane/infrastructure-as-code/terraform/"
+    "code" (printf `%sresource%s %s"plakar_schedule"%s %s"nightly"%s {
+  %sname%s      = %s"Nightly database backup"%s
+  %stype%s      = %s"backup"%s
+  %sorigin_id%s = data.plakar_connector.db.id
+  %starget_id%s = plakar_store.offsite.id
+  %slabels%s    = [%s"nightly"%s]
+
+  %srule%s {
+    %speriodicity%s = %s86400%s
+  }
+}` $k $e $v $e $v $e $k $e $v $e $k $e $v $e $k $e $k $e $k $e $v $e $k $e $k $e $v $e)
+    "cmd" "terraform apply"
+    "out" `<span class="text-green-400">Apply complete!</span> Resources: 1 added, 0 changed, 0 destroyed.`)
+  (dict "id" "ansible" "icon" "ri/terminal-box-line" "name" "Ansible" "text" "Modules for backup, sync and restore, plus the resources they run on, in your playbooks."
+    "file" "resilience.yml" "docs" "/docs/control-plane/infrastructure-as-code/ansible/"
+    "code" (printf `- %sname%s: Back up the production database
+  %splakarkorp.plakar.backup%s:
+    %ssource%s: Production DB
+    %sstore%s: S3 Store
+    %slabels%s: [nightly]
+
+- %sname%s: Replicate the store offsite
+  %splakarkorp.plakar.sync%s:
+    %sstore%s: S3 Store
+    %sto_store%s: Offsite S3` $k $e $v $e $k $e $k $e $k $e $k $e $v $e $k $e $k $e)
+    "cmd" "ansible-playbook resilience.yml"
+    "out" `<span class="text-green-400">ok=2</span>  <span class="text-secondary-300">changed=2</span>  unreachable=0  failed=0`)
+  (dict "id" "api" "icon" "ri/connector-line" "name" "API" "text" "Drive Control Plane over HTTP, with every endpoint described in an OpenAPI schema."
+    "file" "run-task.sh" "docs" "/docs/control-plane/references/openapi/"
+    "code" (printf `%s# Run a scheduled task now%s
+curl -X POST \
+  -H %s"Authorization: Bearer $PLAKAR_TOKEN"%s \
+  %s"$PLAKAR_URL/api/v1/scheduling/scheduler/tasks/$TASK_ID/run"%s` $c $e $v $e $v $e)
+    "cmd" "curl -sO https://plakar.io/openapi.json"
+    "out" `Full schema for every endpoint, ready for <span class="text-green-400">code generation</span>`)
+}}
+<!-- JS: assets/js/main/home-iac.js advances the tools as you scroll -->
+<section id="home-iac" class="home-iac border-t border-ui-neutral-200">
+  {{ range $i, $t := $iac }}
+    <input type="radio" name="home-iac" id="iac-{{ $t.id }}" class="sr-only" {{ if eq $i 0 }}checked{{ end }}>
+  {{ end }}
+
+  <div class="home-iac-stage py-24 lg:py-36">
+  <div class="{{ $wrap }} w-full grid lg:grid-cols-[1fr_1.25fr] gap-14 lg:gap-20 items-center">
+    <div class="flex flex-col gap-6">
+      <h2 class="{{ $eyebrow }}"><span class="w-1.5 h-1.5 rounded-full bg-ui-primary-500"></span>Resilience as code</h2>
+      <p class="{{ $h2 }}">Your backup posture, versioned like the rest.</p>
+      <p class="{{ $lead }}">
+        Declare protection with the tools you already use. Review it in a pull request, apply it, and keep it in Git.
+      </p>
+
+      <div class="mt-4 flex flex-col gap-2">
+        {{ range $iac }}
+          <label for="iac-{{ .id }}" data-iac-tab="{{ .id }}" class="home-iac-tab group relative overflow-hidden flex items-start gap-4 rounded-xl border p-4 cursor-pointer transition-colors">
+            <span class="home-iac-progress absolute left-0 bottom-0 h-0.5 bg-ui-primary-500" aria-hidden="true"></span>
+            <span class="home-iac-tab-icon grid place-items-center w-10 h-10 shrink-0 rounded-lg border border-ui-neutral-200 bg-ui-neutral-50 text-ui-neutral-500 transition-colors">
+              <span class="block w-5 h-5">{{ partial "icon.html" .icon }}</span>
+            </span>
+            <span class="flex flex-col gap-1">
+              <span class="font-semibold text-ui-neutral-900">{{ .name }}</span>
+              <span class="text-sm text-ui-neutral-600">{{ .text }}</span>
+            </span>
+          </label>
+        {{ end }}
+      </div>
+    </div>
+
+    <div class="relative">
+      <div class="absolute -inset-16 home-glow opacity-70" aria-hidden="true"></div>
+      {{ range $iac }}
+        <div data-iac-panel="{{ .id }}" class="home-iac-panel relative rounded-2xl border border-neutral-800 bg-neutral-900 overflow-hidden home-frame">
+          <div class="flex items-center gap-3 px-5 h-12 border-b border-neutral-800">
+            <span class="flex gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-neutral-700"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-neutral-700"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-neutral-700"></span>
+            </span>
+            <span class="ml-2 font-mono text-xs text-neutral-400">{{ .file }}</span>
+            <a href="{{ .docs }}" class="ml-auto inline-flex items-center gap-1 text-xs text-neutral-400 hover:text-white transition-colors">
+              {{ .name }} docs <span class="block w-3.5 h-3.5">{{ partial "icon.html" "ri/arrow-right-line" }}</span>
+            </a>
+          </div>
+          {{ $lines := split .code "\n" }}
+          <div class="grid grid-cols-[auto_1fr] gap-x-5 px-5 py-5 min-h-80 font-mono text-[13px] leading-6 overflow-x-auto">
+            <div class="select-none text-right text-neutral-600" aria-hidden="true">{{ range $n, $_ := $lines }}<div>{{ add $n 1 }}</div>{{ end }}</div>
+            <pre class="text-neutral-200 whitespace-pre"><code>{{ .code | safeHTML }}</code></pre>
+          </div>
+          <div class="border-t border-neutral-800 bg-black/20 px-5 py-4 font-mono text-xs leading-6">
+            <div class="text-neutral-300 truncate"><span class="text-primary-300">$</span> {{ .cmd }}</div>
+            <div class="text-neutral-400 truncate">{{ .out | safeHTML }}</div>
+          </div>
+        </div>
+      {{ end }}
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ================================================================
+     Integrations
+     ================================================================ -->
+<section class="py-24 lg:py-36 border-t border-ui-neutral-200 overflow-hidden">
+  <div class="{{ $wrap }} flex flex-col items-center text-center gap-6">
+    <h2 class="{{ $eyebrow }}"><span class="w-1.5 h-1.5 rounded-full bg-ui-primary-500"></span>Integrations</h2>
+    <p class="{{ $h2 }} max-w-4xl">Runs where you run. Writes where you choose.</p>
+    <p class="{{ $lead }} max-w-2xl">
+      Self-host it on-prem, in any cloud or on any hypervisor. Back up databases, clusters, virtual
+      machines and SaaS, and send encrypted snapshots to storage you own.
+    </p>
+  </div>
+
+  <div class="mt-16 flex flex-col gap-3 home-fade-x">
+    {{ range $row := slice 0 1 }}
+      <div class="home-marquee-row">
+        <div class="home-marquee {{ if eq $row 1 }}home-marquee--reverse{{ end }}">
+          {{ range $copy := slice 0 1 }}
+            <div class="flex shrink-0" {{ if eq $copy 1 }}aria-hidden="true"{{ end }}>
+              {{ range $i, $p := $integrations }}
+                {{ if eq (mod $i 2) $row }}
+                  <a href="{{ $p.RelPermalink }}" {{ if eq $copy 1 }}tabindex="-1"{{ end }} class="mx-1.5 flex items-center gap-3 rounded-xl border border-ui-neutral-200 bg-ui-neutral-50 py-2 pl-2 pr-5 hover:border-ui-neutral-300 transition-colors">
+                    <span class="flex items-center justify-center w-9 h-9 shrink-0 overflow-hidden rounded-lg bg-white ring-1 ring-neutral-200/70">
+                      {{ $img := "" }}
+                      {{ with $p.Params.image }}{{ $img = resources.Get . }}{{ end }}
+                      {{ with $img }}
+                        {{ partial "components/image.html" (dict "resource" . "alt" "" "widths" (slice 64) "class" "block w-6 h-6 max-w-none object-contain") }}
+                      {{ else }}
+                        <span class="block w-4 h-4 text-neutral-400">{{ partial "icon.html" "ri/puzzle-2-line" }}</span>
+                      {{ end }}
+                    </span>
+                    <span class="whitespace-nowrap text-sm font-medium text-ui-neutral-800">{{ $p.Title }}</span>
+                  </a>
+                {{ end }}
+              {{ end }}
+            </div>
+          {{ end }}
+        </div>
+      </div>
+    {{ end }}
+  </div>
+
+  <div class="{{ $wrap }} mt-14 flex justify-center">
+    {{ partial "components/buttons/base-button.html" (merge $secondaryButton (dict
+      "label" (printf "Browse all %d integrations" (len $integrations))
+      "labelShort" "Browse integrations"
+      "href" "/integrations/"
+      "icon" "ri/puzzle-2-line"
+    )) }}
+  </div>
+</section>
+
+<!-- ================================================================
+     Testimonials
+     ================================================================ -->
+{{ $quoteCard := "group relative flex flex-col justify-between gap-12 min-h-64 rounded-2xl border border-ui-neutral-200 bg-ui-neutral-50 p-6 lg:p-8 hover:border-ui-neutral-300 transition-colors" }}
+<section class="py-24 lg:py-36 border-t border-ui-neutral-200">
+  <div class="{{ $wrap }}">
+    <div class="flex flex-col items-center text-center gap-6">
+      <h2 class="{{ $eyebrow }}"><span class="w-1.5 h-1.5 rounded-full bg-ui-primary-500"></span>What people say</h2>
+      <p class="{{ $h2 }} max-w-3xl">Loved by the people who run production.</p>
+    </div>
+
+    <div class="mt-16 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+      <!-- Featured -->
+      <figure class="relative overflow-hidden md:col-span-2 lg:row-span-2 flex flex-col justify-between gap-12 rounded-2xl border border-ui-neutral-200 bg-ui-neutral-50 p-8 lg:p-12">
+        <div class="absolute inset-0 grid-background home-hero-grid opacity-60" aria-hidden="true"></div>
+        <div class="absolute -left-40 -top-40 w-[32rem] h-[32rem] home-glow" aria-hidden="true"></div>
+        <span class="relative font-serif text-8xl leading-[0.6] text-ui-primary-500 select-none" aria-hidden="true">“</span>
+        <blockquote class="relative home-heading font-medium tracking-tight leading-[1.25] text-2xl md:text-3xl lg:text-[2.25rem]">
+          Plakar deduplicates and encrypts at the source so your cloud provider never sees your keys.
+          And the snapshot model has no chain dependencies. You can delete any backup without breaking the others.
+        </blockquote>
+        <figcaption class="relative flex items-center gap-4 pt-8 border-t border-ui-neutral-200">
+          <span class="h-10 w-1 rounded-full bg-ui-primary-500"></span>
+          <span class="flex flex-col">
+            <span class="font-semibold text-ui-neutral-900">Bret Fisher</span>
+            <span class="text-sm text-ui-neutral-500">DevOps & Docker Talk</span>
+          </span>
+        </figcaption>
+      </figure>
+
+      <!-- Quotes: source on top, words at the bottom -->
+      {{ range slice
+        (dict "stat" "1M items" "quote" "restored in 3 minutes." "name" "@tom_doerr" "source" "Benchmarking Plakar 1.1 on X" "icon" "ri/twitter-x-line")
+        (dict "quote" "Very efficient, free, open-source, easy as hell to integrate." "name" "r/kubernetes" "source" "On backing up Rook-Ceph S3 buckets" "icon" "ri/reddit-line")
+        (dict "quote" "The first big disruption to the backup and archiving world in a long time. Open source and built in Europe." "name" "@bipbip" "source" "On X" "icon" "ri/twitter-x-line")
+        (dict "quote" "Two little French geniuses just released a solution that's going to make you love backups." "name" "Korben" "source" "korben.info" "icon" "ri/global-line")
+      }}
+        {{ $q := . }}
+        <figure class="{{ $quoteCard }}">
+          <figcaption class="flex items-center gap-3">
+            <span class="grid place-items-center w-10 h-10 shrink-0 rounded-full border border-ui-neutral-200 bg-ui-neutral-100 text-ui-neutral-700">
+              <span class="block w-4.5 h-4.5">{{ partial "icon.html" .icon }}</span>
+            </span>
+            <span class="flex flex-col min-w-0">
+              <span class="text-sm font-semibold text-ui-neutral-900">{{ .name }}</span>
+              <span class="text-xs text-ui-neutral-500 truncate">{{ .source }}</span>
+            </span>
+          </figcaption>
+          {{ with .stat }}
+            <blockquote class="flex flex-col gap-2">
+              <span class="home-heading font-medium tracking-tighter leading-none text-5xl lg:text-6xl">{{ . }}</span>
+              <span class="text-xl font-medium tracking-tight text-ui-neutral-600">{{ $q.quote }}</span>
+            </blockquote>
+          {{ else }}
+            <blockquote class="text-xl font-medium tracking-tight leading-snug text-ui-neutral-900">“{{ .quote }}”</blockquote>
+          {{ end }}
+        </figure>
+      {{ end }}
+      <!-- Invite -->
+      <a href="{{ .Site.Params.socials.discord }}" target="_blank" rel="noopener noreferrer" class="group flex flex-col justify-between gap-8 rounded-2xl border border-dashed border-ui-neutral-300 p-6 lg:p-8 hover:border-ui-primary-400 hover:bg-ui-neutral-50 transition-colors">
+        <span class="grid place-items-center w-10 h-10 rounded-xl bg-ui-primary-50 text-ui-primary-500">
+          <span class="block w-5 h-5">{{ partial "icon.html" "ri/questionnaire-line" }}</span>
+        </span>
+        <span class="flex flex-col gap-2">
+          <span class="text-lg font-semibold text-ui-neutral-900">Running Plakar?</span>
+          <span class="text-ui-neutral-600">Tell us what you protect with it and how it is going.</span>
+          <span class="mt-2 inline-flex items-center gap-1.5 font-medium text-ui-primary-600">
+            Share on Discord <span class="block w-4 h-4 group-hover:translate-x-0.5 transition-transform">{{ partial "icon.html" "ri/arrow-right-line" }}</span>
+          </span>
+        </span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     Open source
+     ================================================================ -->
+<section class="pb-24 lg:pb-36">
+  <div class="{{ $wrap }}">
+    <div class="{{ $card }} relative overflow-hidden grid lg:grid-cols-[1.25fr_1fr]">
+      <div class="relative flex flex-col gap-6 p-8 md:p-12 lg:p-16">
+        <h2 class="{{ $eyebrow }}"><span class="w-1.5 h-1.5 rounded-full bg-ui-primary-500"></span>Open source</h2>
+        <p class="home-heading font-medium tracking-tight leading-[1.05] text-4xl lg:text-5xl">Built in the open. Built to last.</p>
+        <p class="{{ $lead }} max-w-xl">
+          Backups have to stay readable decades from now. Plakar is built by a global community of
+          developers, SREs and platform engineers, and tested in the open.
+        </p>
+        <div class="mt-2 flex flex-wrap gap-3">
+          {{ partial "components/buttons/base-button.html" (dict
+            "label" "Chat with us"
+            "href" .Site.Params.socials.discord
+            "target" "_blank"
+            "icon" "discord"
+          ) }}
+          {{ partial "components/buttons/base-button.html" (merge $secondaryButton (dict
+            "label" "Start contributing"
+            "href" .Site.Params.github.plakar
+            "target" "_blank"
+            "icon" "github"
+          )) }}
+        </div>
+        <div class="mt-6 pt-8 border-t border-ui-neutral-200 flex flex-col gap-4">
+          <span class="text-xs font-semibold uppercase tracking-widest text-ui-neutral-400">Member of</span>
+          <div class="flex flex-wrap items-center gap-x-10 gap-y-4">
+            {{ range slice
+              (dict "logo" "img/community/cncf-member-silver-color.svg" "name" "CNCF Silver Member")
+              (dict "logo" "img/community/lf-member-level-silver.svg" "name" "Linux Foundation Silver Member" "keepColor" true)
+              (dict "logo" "img/community/sylva-logo.svg" "name" "Sylva")
+            }}
+              {{ $name := .name }}
+              {{ $mono := not .keepColor }}
+              {{ with resources.Get .logo }}
+                <img src="{{ .RelPermalink }}" alt="{{ $name }}" class="{{ if $mono }}home-mono-logo {{ end }}h-10 w-auto">
+              {{ end }}
+            {{ end }}
+          </div>
+        </div>
+      </div>
+
+      <div class="relative hidden lg:flex items-center justify-center border-l border-ui-neutral-200 bg-ui-neutral-100/50 overflow-hidden">
+        <div class="absolute inset-0 grid-background home-fade-bottom opacity-70" aria-hidden="true"></div>
+        <div class="absolute w-[28rem] h-[28rem] home-glow" aria-hidden="true"></div>
+        {{ with $nestorArt }}
+          <img src="{{ .RelPermalink }}" alt="Nestor, the Plakar mascot" class="relative w-64 h-auto">
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     Blog
+     ================================================================ -->
+{{ $posts := first 3 (sort (where $allPosts "Params.featured-scope" "intersect" (slice "hero-page")) "Date" "desc") }}
+{{ if not $posts }}{{ $posts = first 3 (sort $allPosts "Date" "desc") }}{{ end }}
+<section class="py-24 lg:py-36 border-t border-ui-neutral-200">
+  <div class="{{ $wrap }}">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div class="flex flex-col gap-6">
+        <h2 class="{{ $eyebrow }}"><span class="w-1.5 h-1.5 rounded-full bg-ui-primary-500"></span>From the blog</h2>
+        <p class="{{ $h2 }}">Engineering and releases.</p>
+      </div>
+      <a href="/posts/" class="{{ $link }} shrink-0 md:pb-2">
+        All posts <span class="block w-4 h-4 group-hover:translate-x-0.5 transition-transform">{{ partial "icon.html" "ri/arrow-right-line" }}</span>
+      </a>
+    </div>
+    <div class="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {{ range $posts }}
         {{ partial "posts/post-card.html" . }}
       {{ end }}
     </div>
-
   </div>
 </section>
+
+<!-- ================================================================
+     Final call to action
+     ================================================================ -->
+<section class="relative overflow-hidden border-t border-ui-neutral-200">
+  <div class="absolute inset-0 grid-background home-hero-grid" aria-hidden="true"></div>
+  <div class="absolute left-1/2 -translate-x-1/2 -top-40 w-[60rem] h-[36rem] home-glow" aria-hidden="true"></div>
+  <div class="relative {{ $wrap }} py-28 lg:py-40 flex flex-col items-center text-center">
+    <span class="grid place-items-center w-16 h-16 rounded-2xl border border-ui-neutral-200 bg-ui-neutral-50 home-frame">
+      <span class="block w-8 h-8 text-ui-neutral-900">{{ with $nestor }}{{ .Content | safeHTML }}{{ end }}</span>
+    </span>
+    <p class="home-heading mt-10 font-medium tracking-[-0.03em] leading-[1.02] text-4xl md:text-5xl lg:text-7xl max-w-4xl">
+      Back up anything.<br>Prove it is recoverable.
+    </p>
+    <p class="mt-6 {{ $lead }} max-w-xl">
+      The complete engine, free and open source. Organization-wide visibility when you need it.
+    </p>
+    <div class="mt-10 flex flex-wrap justify-center gap-3">
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "Get started"
+        "href" "/docs/community/v1.1.0/quickstart/first-backup/"
+      ) }}
+      {{ partial "components/buttons/base-button.html" (merge $secondaryButton (dict
+        "label" "Book a demo"
+        "class" "book-a-demo-modal-open"
+        "icon" "ri/calendar-event-line"
+      )) }}
+    </div>
+  </div>
+</section>
+
+</div>
 
 {{ end }}
