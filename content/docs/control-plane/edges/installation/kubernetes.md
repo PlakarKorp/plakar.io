@@ -25,12 +25,12 @@ default.
 
 ## Store the enrollment key
 
-Store the enrollment key in a Kubernetes Secret rather than putting it directly
-in the Helm values:
+Store the enrollment key of the edge pool the edges should join in a Kubernetes
+Secret rather than putting it directly in the Helm values:
 
 ```sh
-$ kubectl create secret generic plakar-edge-enroll-key \
-  --from-literal=enroll-key=<enrollment-key>
+$ kubectl create secret generic plakar-edge-pool-enroll-key \
+  --from-literal=pool-enroll-key=<pool-enrollment-key>
 ```
 
 The chart references the Secret by name, keeping the enrollment key out of
@@ -43,13 +43,12 @@ For example, to run three edges:
 ```sh
 $ helm install my-edges oci://ghcr.io/plakarkorp/charts/plakar-edge \
   --set controlPlane=https://plakman.example.com \
-  --set organization=<organization-id> \
-  --set enrollKey.secretName=plakar-edge-enroll-key \
+  --set poolEnrollKey.secretName=plakar-edge-pool-enroll-key \
   --set replicaCount=3
 ```
 
-Each replica enrolls independently and appears as a separate edge in the Control
-Plane.
+Each replica enrolls independently into the pool and appears as a separate edge
+in the Control Plane. The pool decides the organization the edges join.
 
 Without `--version`, Helm installs the latest published chart. To pin a release,
 specify the chart version:
@@ -68,9 +67,8 @@ The main values for an edge deployment are:
 | Value                          | Default                          | Description                                                                                     |
 | ------------------------------ | -------------------------------- | ----------------------------------------------------------------------------------------------- |
 | `controlPlane`                 | `""`                             | Base URL of the Plakar Control Plane. Required.                                                 |
-| `organization`                 | `""`                             | Identifier of the organization the edges should join. Required.                                 |
-| `enrollKey.secretName`         | `""`                             | Existing Secret containing the enrollment key. Required.                                        |
-| `enrollKey.secretKey`          | `enroll-key`                     | Key containing the enrollment key inside the Secret.                                            |
+| `poolEnrollKey.secretName`     | `""`                             | Existing Secret containing the edge pool enrollment key. Required.                              |
+| `poolEnrollKey.secretKey`      | `pool-enroll-key`                | Key containing the edge pool enrollment key inside the Secret.                                  |
 | `replicaCount`                 | `1`                              | Number of independent edges to run.                                                             |
 | `pollHold`                     | `""`                             | Long-poll duration. An empty value uses the binary default.                                     |
 | `persistence.size`             | `5Gi`                            | Storage allocated to each edge.                                                                 |

@@ -52,27 +52,44 @@ The actions on each resource include placing a
 cannot be used by any task, so backups, restores, checks, and prunes involving
 it are refused until the hold is removed.
 
-![](./images/resources.png)
+![](./../inventories/images/resources.png)
 
 ## Resource settings
 
-Resource settings can be updated from the **Settings** tab under each resource,
-which is split between **General** and **Residency**. General holds the settings
-described below. Residency ties the resource to a country and restricts
-operations to resources in that same country. See
-[data residency](../compliance/residency) for details.
+Resource settings can be updated from the **Resource settings** tab under each
+resource, which is split between **General**, **Residency** and **Edge pool**.
+General holds the settings described below. Residency ties the resource to a
+country and restricts operations to resources in that same country. See
+[data residency](../compliance/residency) for details. Edge pool is described in
+[Edge pools](#edge-pools).
 
 For managed inventories, most settings are read-only since the resource is
 managed by the inventory. For self-managed inventories, all settings can be
-modified. Backup coverage can be modified for any resource regardless of
-inventory type.
+modified. Backup coverage and the edge pool can be modified for any resource
+regardless of inventory type, since neither comes from the inventory.
 
 Backup coverage tracks how many of your resources are protected by backups. If a
 resource does not need to be backed up (for example, a test database), you can
 exclude it from coverage using the **Exclude from backup coverage**. Excluded
 resources are omitted from protection status and coverage reporting.
 
-![](./images/resource.png)
+![](./../inventories/images/resource.png)
+
+## Edge pools
+
+A resource assigned to an [edge pool](../edges/enrollment#edge-pools) has its
+tasks run on an edge of that pool. A resource without a pool has its tasks run
+on the Control Plane.
+
+A resource inherits the pool of its inventory. A pool set in the **Edge pool**
+section of its settings takes precedence, for a resource whose tasks have to run
+on different edges than the rest of its inventory. Clearing it brings back the
+pool of the inventory. Every app created for the resource takes on its pool.
+
+A backup, restore or sync runs on the pool of its source or store resource, and
+is refused when the two resources are in different pools, since the task runs on
+a single edge and an edge belongs to exactly one pool. See
+[Selecting an edge](../edges/running-tasks#selecting-an-edge).
 
 ## Resource classification
 
