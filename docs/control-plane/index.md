@@ -83,6 +83,7 @@
 - [Organization Settings](https://www.plakar.io/docs/control-plane/access-control/organization-settings/index.md): Configure a single organization in Plakar Control Plane.
 - [Managing Users](https://www.plakar.io/docs/control-plane/access-control/users/index.md): Manage users and application identities in Plakar Control Plane.
 - [Two-factor authentication](https://www.plakar.io/docs/control-plane/access-control/two-factor-authentication/index.md): Secure your Plakar Control Plane account with two-factor authentication.
+- [Single Sign-On](https://www.plakar.io/docs/control-plane/access-control/sso/index.md): Let members sign in to Plakar Control Plane through an OpenID Connect provider such as Google, Okta, Entra ID, Keycloak or Auth0.
 - [Permissions](https://www.plakar.io/docs/control-plane/access-control/permissions/index.md): How access is granted in Plakar Control Plane, and what each role can reach.
 
 

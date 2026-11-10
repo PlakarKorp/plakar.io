@@ -56,6 +56,14 @@ than improved performance. For more information about MTU values and jumbo
 frames, see [MTU and Jumbo Frames](../../guides/mtu-and-jumbo-frames)
 documentation.
 
+### Single sign-on
+
+The identity providers that members can sign in with. Any OpenID Connect
+provider can be added, such as Google, Okta, Entra ID, Keycloak or Auth0. This
+section is shown only to the members of the root organization who can change
+these settings. See [Single Sign-On](../../access-control/sso) for how to
+register a provider.
+
 ## Maintenance and diagnostics
 
 Everything needed to troubleshoot a problem on the instance.
