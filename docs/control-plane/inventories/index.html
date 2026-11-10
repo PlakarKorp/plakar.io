@@ -229,12 +229,12 @@
     "dateCreated": "2026-05-03T00:00:00\u002b00:00",
     "datePublished": "2026-05-03T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-10T10:23:58\u002b03:00",
+    "dateModified": "2026-11-10T12:25:55\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/inventories/",
-    "wordCount":  724 
+    "wordCount":  635 
   }]
   </script>
 
@@ -10360,6 +10360,30 @@ truth. Resources cannot be created or deleted by hand in a managed inventory,
 and changes made in the provider appear at the next synchronization.</p>
 
 
+<h2 id="inventory-synchronization" class="group pr-8">Inventory Synchronization
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="inventory-synchronization"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>Plakar Control Plane synchronizes a managed inventory in the background, listing
+the resources of the provider again on a fixed period. The period is set per
+inventory, in the <strong>Synchronization</strong> section of its settings, and defaults to
+900 seconds, or 15 minutes. The minimum is 30 seconds. A shorter period picks up
+new resources sooner, at the cost of more calls to the provider API. A
+synchronization can also be started at any time with <strong>Sync now</strong>, without
+waiting for the next period.</p>
+
+
 <h2 id="self-managed-inventories" class="group pr-8">Self-managed inventories
     <button
       type="button"
@@ -10395,54 +10419,20 @@ discovers, such as a local MinIO instance or a self-hosted database.</p>
     </button>
   
 </h2>
-<p>A resource is identified by its resource URN, which cannot change once the
-resource exists. It also has a name, a class, subclass and tags.
-<a href="/docs/control-plane/inventories/configuration-bundles/" >Configuration bundles</a> select resources by class and
-tags, and <a href="/docs/control-plane/compliance/policies/" >policies</a> can narrow their scope by tag. In a
-managed inventory, the class and tags are discovered from the provider and
-cannot be edited.</p>
-<figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="auto"
-    alt=""
-    width="2807"
-    height="1033"
-    src="/docs/control-plane/inventories/images/resources_hu_d55f059f32143446.webp"
-    srcset="/docs/control-plane/inventories/images/resources_hu_d55f059f32143446.webp 400w, /docs/control-plane/inventories/images/resources_hu_473f4a6c0482be5e.webp 800w, /docs/control-plane/inventories/images/resources_hu_1f2c5ec4c34de8e7.webp 1200w"
-    sizes="(min-width: 768px) 50vw, 65vw"
-    data-zoom-src="/docs/control-plane/inventories/images/resources_hu_84b19d344ab0934d.webp"></figure>
-<p>Each resource also has one or more endpoints that identify where it is reached,
-such as a hostname, an IP address or a bucket name. In a self-managed inventory,
-the endpoints are entered with the resource. In a managed inventory, they are
-discovered from the provider, together with attributes that describe the
-resource, such as the S3 endpoint of a bucket or whether versioning is enabled
-on it. When an app is set up on the resource, the endpoints and attributes fill
-in the matching fields, so they do not have to be entered again.</p>
-<p>Backups and restores are configured by setting up <a href="/docs/control-plane/apps/" >apps</a> on a resource.
-There are three types of app:</p>
-<ul>
-<li><strong>Source</strong>: the resource is backed up.</li>
-<li><strong>Store</strong>: the resource holds backups.</li>
-<li><strong>Destination</strong>: data is restored to the resource.</li>
-</ul>
-<p>Each resource has a protection status, which reflects whether it is covered by
-backups. A resource that does not need backups, such as a test database or a
-temporary bucket, can be excluded from backup coverage. An excluded resource is
-left out of protection status and coverage reporting.</p>
-<figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="auto"
-    alt=""
-    width="2701"
-    height="1360"
-    src="/docs/control-plane/inventories/images/resource_hu_8a21ea6710f8940e.webp"
-    srcset="/docs/control-plane/inventories/images/resource_hu_8a21ea6710f8940e.webp 400w, /docs/control-plane/inventories/images/resource_hu_a6cccdcf8426a947.webp 800w, /docs/control-plane/inventories/images/resource_hu_20636a19a052f4be.webp 1200w"
-    sizes="(min-width: 768px) 50vw, 65vw"
-    data-zoom-src="/docs/control-plane/inventories/images/resource_hu_19c9db3d1edf034.webp"></figure>
+<p>An inventory exposes its resources, each with a class, subclass, tags, and the
+endpoints and attributes that identify where it is reached. A managed inventory
+discovers them from the provider, and they cannot be edited. In a self-managed
+inventory, they are entered with the resource. See
+<a href="/docs/control-plane/resources/" >Resource Types</a> for what a resource carries and how it is used,
+and <a href="/docs/control-plane/resources/#filtering-resources" >Filtering resources</a> for narrowing the
+list.</p>
+<p>A new inventory has no resources yet. A managed inventory that has never been
+synchronized offers <strong>Sync now</strong>, which starts its first
+<a href="/docs/control-plane/inventories/#inventory-synchronization" >synchronization</a>. A self-managed inventory with no
+resources offers <strong>Add resource</strong>, described in
+<a href="/docs/control-plane/inventories/self-managed/#adding-resources" >Adding resources</a>. Both actions are unavailable
+without the <a href="/docs/control-plane/access-control/permissions/" >permission</a> to change the resources
+of the inventory.</p>
 
 
 <h2 id="data-residency" class="group pr-8">Data residency
@@ -10462,13 +10452,9 @@ left out of protection status and coverage reporting.</p>
 </h2>
 <p>An inventory can have a <strong>residency</strong>, which is inherited by every resource it
 exposes. This gives those resources a country in which their data must remain. A
-residency set on an individual resource takes precedence over the inherited one,
-for a resource located in a different country from the rest of the inventory.</p>
-<p>When you configure an operation, PCP only allows resources with the same
-residency to be used together. For example, resources from an inventory with a
-French residency can only be backed up to, restored from, or synchronized with
-resources that also have a French residency. See
-<a href="/docs/control-plane/compliance/residency/" >data residency</a> for more information.</p>
+residency set on an individual resource takes precedence over the inherited one.
+See <a href="/docs/control-plane/resources/#residency" >Residency</a> for how it restricts the resources that
+can be used together.</p>
 
 
 <h2 id="edge-pools" class="group pr-8">Edge pools
@@ -10556,7 +10542,7 @@ filled in when an app is set up on a matching resource of the inventory. See
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#managed-inventories">Managed inventories</a></li><li><a href="#self-managed-inventories">Self-managed inventories</a></li><li><a href="#resources">Resources</a></li><li><a href="#data-residency">Data residency</a></li><li><a href="#edge-pools">Edge pools</a></li><li><a href="#configuration-bundles">Configuration bundles</a></li></ul>
+      <ul><li><a href="#managed-inventories">Managed inventories</a></li><li><a href="#inventory-synchronization">Inventory Synchronization</a></li><li><a href="#self-managed-inventories">Self-managed inventories</a></li><li><a href="#resources">Resources</a></li><li><a href="#data-residency">Data residency</a></li><li><a href="#edge-pools">Edge pools</a></li><li><a href="#configuration-bundles">Configuration bundles</a></li></ul>
     </div>
 
     

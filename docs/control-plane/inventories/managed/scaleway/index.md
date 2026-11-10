@@ -87,7 +87,9 @@ access key, and secret key.
 After creating the inventory, trigger a synchronization to discover and load
 resources from the configured Scaleway project. You can run synchronization
 again at any time to refresh the inventory, for example after creating new
-Object Storage buckets, Instances, or Block Storage volumes in Scaleway.
+Object Storage buckets, Instances, or Block Storage volumes in Scaleway. PCP
+then synchronizes it periodically, every 15 minutes by default. See
+[inventory synchronization](../#inventory-synchronization).
 
 ![Creating Scaleway inventory](../images/create-scaleway-inventory.png)
 

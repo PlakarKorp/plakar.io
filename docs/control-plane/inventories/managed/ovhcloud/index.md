@@ -77,7 +77,9 @@ or loaded from a [secret provider](../../secret-providers).
 After creating the inventory, trigger a synchronization to discover and load
 resources from your OVHcloud account. You can run synchronization again at any
 time to refresh the inventory, for example after creating new instances or
-object storage buckets in OVHcloud.
+object storage buckets in OVHcloud. PCP then synchronizes it periodically, every
+15 minutes by default. See
+[inventory synchronization](../#inventory-synchronization).
 
 ![Creating OVHcloud inventory](../images/create-ovhcloud-inventory.png)
 

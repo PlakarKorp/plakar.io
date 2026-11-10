@@ -131,7 +131,9 @@ Key**, the access key and secret key are entered directly or loaded from a
 
 An inventory discovers its resources when it is synchronized, so a new inventory
 is empty until its first synchronization. Synchronizing again refreshes the
-inventory, for example after resources are added to the AWS account.
+inventory, for example after resources are added to the AWS account. PCP then
+synchronizes it periodically, every 15 minutes by default. See
+[inventory synchronization](../#inventory-synchronization).
 
 ![Creating AWS inventory](../images/create-aws-inventory.png)
 

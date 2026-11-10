@@ -239,12 +239,12 @@
     "dateCreated": "2026-05-19T00:00:00\u002b00:00",
     "datePublished": "2026-05-19T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-10T10:23:58\u002b03:00",
+    "dateModified": "2026-11-10T12:25:55\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/resources/",
-    "wordCount":  746 
+    "wordCount":  1116 
   }]
   </script>
 
@@ -10353,8 +10353,9 @@ flowchart TB
 <p>All resources discovered across all inventories are available under
 <strong>Infrastructure -&gt; Inventory -&gt; Resources</strong>. From here a resource can be
 assigned to either a <a href="/docs/control-plane/apps/sources/" >source</a> or a
-<a href="/docs/control-plane/apps/destinations/" >destination</a> app. You can also filter resources by
-inventories or by resource class.</p>
+<a href="/docs/control-plane/apps/destinations/" >destination</a> app. The list can be narrowed to one
+inventory or filtered, as described in
+<a href="/docs/control-plane/resources/#filtering-resources" >Filtering resources</a>.</p>
 <p>The actions on each resource include placing a
 <a href="/docs/control-plane/compliance/legal-hold/" >legal hold</a> on it. A resource under a legal hold
 cannot be used by any task, so backups, restores, checks, and prunes involving
@@ -10363,10 +10364,49 @@ it are refused until the hold is removed.</p>
     class="my-0 rounded-md"
     loading="lazy"
     decoding="async"
-    fetchpriority="low"
+    fetchpriority="auto"
     alt=""
-    src="./../inventories/images/resources.png"
-    ></figure>
+    width="2804"
+    height="1465"
+    src="/docs/control-plane/resources/images/resources_hu_ebe0dec7a6ac1f2b.webp"
+    srcset="/docs/control-plane/resources/images/resources_hu_ebe0dec7a6ac1f2b.webp 400w, /docs/control-plane/resources/images/resources_hu_b58ef2aa889f8a7c.webp 800w, /docs/control-plane/resources/images/resources_hu_befeefad6ee537c0.webp 1200w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/docs/control-plane/resources/images/resources_hu_28f7ed578cf43343.webp"></figure>
+
+
+<h2 id="filtering-resources" class="group pr-8">Filtering resources
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="filtering-resources"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>The resource list can be searched by name or URN and filtered by the following
+values. Filters combine, so a resource is listed only when it matches all of
+them.</p>
+<ul>
+<li><strong>Status</strong>: the backup coverage of the resource. <strong>Protected</strong> resources are
+covered by a backup task. <strong>Not protected</strong> resources are not. <strong>Unmanaged</strong>
+resources are left out of coverage, either because they are
+<a href="/docs/control-plane/resources/#resource-settings" >excluded from backup coverage</a> or because they cannot be
+backed up.</li>
+<li><strong>Resource class</strong>: the <a href="/docs/control-plane/resources/#resource-classification" >class</a> of the resource.</li>
+<li><strong>App</strong>: the integration of a source or destination app set up on the
+resource. <strong>No app</strong> lists the resources with none. Store apps are not
+counted.</li>
+<li><strong>Residency</strong>: the <a href="/docs/control-plane/resources/#residency" >residency</a> of the resource, set on it or
+inherited from its inventory. <strong>Not set</strong> lists the resources with none.</li>
+<li><strong>Region</strong>: the region of the resource.</li>
+<li><strong>Tag</strong>: one tag the resource carries.</li>
+</ul>
 
 
 <h2 id="resource-settings" class="group pr-8">Resource settings
@@ -10386,10 +10426,8 @@ it are refused until the hold is removed.</p>
 </h2>
 <p>Resource settings can be updated from the <strong>Resource settings</strong> tab under each
 resource, which is split between <strong>General</strong>, <strong>Residency</strong> and <strong>Edge pool</strong>.
-General holds the settings described below. Residency ties the resource to a
-country and restricts operations to resources in that same country. See
-<a href="/docs/control-plane/compliance/residency/" >data residency</a> for details. Edge pool is described in
-<a href="/docs/control-plane/resources/#edge-pools" >Edge pools</a>.</p>
+General holds the settings described below. Residency and Edge pool are
+described in <a href="/docs/control-plane/resources/#residency" >Residency</a> and <a href="/docs/control-plane/resources/#edge-pools" >Edge pools</a>.</p>
 <p>For managed inventories, most settings are read-only since the resource is
 managed by the inventory. For self-managed inventories, all settings can be
 modified. Backup coverage and the edge pool can be modified for any resource
@@ -10402,10 +10440,40 @@ resources are omitted from protection status and coverage reporting.</p>
     class="my-0 rounded-md"
     loading="lazy"
     decoding="async"
-    fetchpriority="low"
+    fetchpriority="auto"
     alt=""
-    src="./../inventories/images/resource.png"
-    ></figure>
+    width="2701"
+    height="1360"
+    src="/docs/control-plane/resources/images/resource_hu_8a21ea6710f8940e.webp"
+    srcset="/docs/control-plane/resources/images/resource_hu_8a21ea6710f8940e.webp 400w, /docs/control-plane/resources/images/resource_hu_a6cccdcf8426a947.webp 800w, /docs/control-plane/resources/images/resource_hu_20636a19a052f4be.webp 1200w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/docs/control-plane/resources/images/resource_hu_19c9db3d1edf034.webp"></figure>
+
+
+<h2 id="residency" class="group pr-8">Residency
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="residency"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>Resources can only be used together when they have the same
+<a href="/docs/control-plane/compliance/residency/" >residency</a>. A source can only be backed up to a store
+with the same residency, a restore can only write to a destination with the
+residency of its store, and a sync can only run between stores with the same
+residency. The residency belongs to the resource, so every app created for it
+takes on its residency.</p>
+<p>A resource inherits the residency of its inventory. A residency set in the
+<strong>Residency</strong> section of its settings takes precedence, for a resource located
+in a different country from the rest of its inventory.</p>
 
 
 <h2 id="edge-pools" class="group pr-8">Edge pools
@@ -10451,11 +10519,39 @@ a single edge and an edge belongs to exactly one pool. See
     </button>
   
 </h2>
-<p>Each resource is assigned a <code>class</code> and <code>subclass</code> that describe what kind of
-infrastructure it is. The <code>class</code> describes the general category the resource
-belongs to, while the <code>subclass</code> identifies the specific implementation or
-provider. Plakar Control Plane uses this classification to determine which
-integrations are compatible with a resource.</p>
+<p>A resource is identified by its resource URN, which cannot change once the
+resource exists. It also has a name, a class, a subclass and tags.</p>
+<p>The <code>class</code> describes the general category the resource belongs to, while the
+<code>subclass</code> identifies the specific implementation or provider. Plakar Control
+Plane uses this classification to determine which integrations are compatible
+with a resource. <a href="/docs/control-plane/inventories/configuration-bundles/" >Configuration bundles</a>
+select resources by class and tags, and <a href="/docs/control-plane/compliance/policies/" >policies</a> can
+narrow their scope by tag. In a managed inventory, the class and tags are
+discovered from the provider and cannot be edited.</p>
+
+
+<h2 id="endpoints-and-attributes" class="group pr-8">Endpoints and attributes
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="endpoints-and-attributes"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>Each resource has one or more endpoints that identify where it is reached, such
+as a hostname, an IP address or a bucket name. In a self-managed inventory, the
+endpoints are entered with the resource. In a managed inventory, they are
+discovered from the provider, together with attributes that describe the
+resource, such as the S3 endpoint of a bucket or whether versioning is enabled
+on it. When an app is set up on the resource, the endpoints and attributes fill
+in the matching fields, so they do not have to be entered again.</p>
 
 
 <h2 id="environment-and-data-class-tags" class="group pr-8">Environment and data class tags
@@ -10842,7 +10938,7 @@ required to use each one as a source, store, or destination.</p>
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#resource-settings">Resource settings</a></li><li><a href="#edge-pools">Edge pools</a></li><li><a href="#resource-classification">Resource classification</a></li><li><a href="#environment-and-data-class-tags">Environment and data class tags</a></li><li><a href="#supported-resources">Supported resources</a></li></ul>
+      <ul><li><a href="#filtering-resources">Filtering resources</a></li><li><a href="#resource-settings">Resource settings</a></li><li><a href="#residency">Residency</a></li><li><a href="#edge-pools">Edge pools</a></li><li><a href="#resource-classification">Resource classification</a></li><li><a href="#endpoints-and-attributes">Endpoints and attributes</a></li><li><a href="#environment-and-data-class-tags">Environment and data class tags</a></li><li><a href="#supported-resources">Supported resources</a></li></ul>
     </div>
 
     
