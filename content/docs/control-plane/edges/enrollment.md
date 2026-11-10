@@ -58,8 +58,8 @@ a pool named `default`, which is the organization's default pool.
 
 An edge can be moved to another pool of the same organization, by adding it to
 that pool. It cannot be taken out of its pool, since every edge belongs to one.
-Only the organization's own edges can join its pools, not the edges shared by an
-organization above it.
+A child organization can only move or add its own edges. The edges of a pool
+shared by an organization above it cannot be moved or added to its pools.
 
 ## Sharing pools with child organizations
 
