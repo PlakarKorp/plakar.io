@@ -719,3 +719,13 @@ html.dark .site-logo--light {
 html.dark .site-logo--dark {
   display: block;
 }
+
+/* Home newsletter: the light gradient image is for light mode only */
+html.dark .home-newsletter {
+  background-image: linear-gradient(
+    to bottom,
+    rgb(var(--ui-neutral-100)) 0%,
+    rgba(var(--color-primary-700), 0.55) 70%,
+    rgb(var(--color-primary-600)) 100%
+  ) !important;
+}
