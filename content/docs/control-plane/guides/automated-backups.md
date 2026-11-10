@@ -140,8 +140,8 @@ narrow the scope further.
 
 The [policy scheduler](../../scheduling/policy-scheduler) then creates a backup
 schedule for every source app that matches the scope and shares the residency of
-the store. Policies can be layered, for example a general policy for every
-production source and a stricter one for production databases.
+the store. When the scopes of several policies overlap, a source app follows the
+one with the lowest RPO. See [Scope](../../compliance/policies#scope).
 
 {{< /step >}}
 
