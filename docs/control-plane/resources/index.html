@@ -239,12 +239,12 @@
     "dateCreated": "2026-05-19T00:00:00\u002b00:00",
     "datePublished": "2026-05-19T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-06T20:15:21\u002b03:00",
+    "dateModified": "2026-11-10T10:23:58\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/resources/",
-    "wordCount":  591 
+    "wordCount":  746 
   }]
   </script>
 
@@ -10363,14 +10363,10 @@ it are refused until the hold is removed.</p>
     class="my-0 rounded-md"
     loading="lazy"
     decoding="async"
-    fetchpriority="auto"
+    fetchpriority="low"
     alt=""
-    width="2809"
-    height="1393"
-    src="/docs/control-plane/resources/images/resources_hu_2bf1afb42130b24e.webp"
-    srcset="/docs/control-plane/resources/images/resources_hu_2bf1afb42130b24e.webp 400w, /docs/control-plane/resources/images/resources_hu_d5472490bfbc03f7.webp 800w, /docs/control-plane/resources/images/resources_hu_4f17e26495a09fa.webp 1200w"
-    sizes="(min-width: 768px) 50vw, 65vw"
-    data-zoom-src="/docs/control-plane/resources/images/resources_hu_e0e2c1d928becf00.webp"></figure>
+    src="./../inventories/images/resources.png"
+    ></figure>
 
 
 <h2 id="resource-settings" class="group pr-8">Resource settings
@@ -10388,15 +10384,16 @@ it are refused until the hold is removed.</p>
     </button>
   
 </h2>
-<p>Resource settings can be updated from the <strong>Settings</strong> tab under each resource,
-which is split between <strong>General</strong> and <strong>Residency</strong>. General holds the settings
-described below. Residency ties the resource to a country and restricts
-operations to resources in that same country. See
-<a href="/docs/control-plane/compliance/residency/" >data residency</a> for details.</p>
+<p>Resource settings can be updated from the <strong>Resource settings</strong> tab under each
+resource, which is split between <strong>General</strong>, <strong>Residency</strong> and <strong>Edge pool</strong>.
+General holds the settings described below. Residency ties the resource to a
+country and restricts operations to resources in that same country. See
+<a href="/docs/control-plane/compliance/residency/" >data residency</a> for details. Edge pool is described in
+<a href="/docs/control-plane/resources/#edge-pools" >Edge pools</a>.</p>
 <p>For managed inventories, most settings are read-only since the resource is
 managed by the inventory. For self-managed inventories, all settings can be
-modified. Backup coverage can be modified for any resource regardless of
-inventory type.</p>
+modified. Backup coverage and the edge pool can be modified for any resource
+regardless of inventory type, since neither comes from the inventory.</p>
 <p>Backup coverage tracks how many of your resources are protected by backups. If a
 resource does not need to be backed up (for example, a test database), you can
 exclude it from coverage using the <strong>Exclude from backup coverage</strong>. Excluded
@@ -10405,14 +10402,38 @@ resources are omitted from protection status and coverage reporting.</p>
     class="my-0 rounded-md"
     loading="lazy"
     decoding="async"
-    fetchpriority="auto"
+    fetchpriority="low"
     alt=""
-    width="2700"
-    height="1362"
-    src="/docs/control-plane/resources/images/resource_hu_c52940e3a6aa3b25.webp"
-    srcset="/docs/control-plane/resources/images/resource_hu_c52940e3a6aa3b25.webp 400w, /docs/control-plane/resources/images/resource_hu_48bbf8965ca9fed9.webp 800w, /docs/control-plane/resources/images/resource_hu_ed56a227c84d2eb2.webp 1200w"
-    sizes="(min-width: 768px) 50vw, 65vw"
-    data-zoom-src="/docs/control-plane/resources/images/resource_hu_b032226d222398a1.webp"></figure>
+    src="./../inventories/images/resource.png"
+    ></figure>
+
+
+<h2 id="edge-pools" class="group pr-8">Edge pools
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="edge-pools"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>A resource assigned to an <a href="/docs/control-plane/edges/enrollment/#edge-pools" >edge pool</a> has its
+tasks run on an edge of that pool. A resource without a pool has its tasks run
+on the Control Plane.</p>
+<p>A resource inherits the pool of its inventory. A pool set in the <strong>Edge pool</strong>
+section of its settings takes precedence, for a resource whose tasks have to run
+on different edges than the rest of its inventory. Clearing it brings back the
+pool of the inventory. Every app created for the resource takes on its pool.</p>
+<p>A backup, restore or sync runs on the pool of its source or store resource, and
+is refused when the two resources are in different pools, since the task runs on
+a single edge and an edge belongs to exactly one pool. See
+<a href="/docs/control-plane/edges/running-tasks/#selecting-an-edge" >Selecting an edge</a>.</p>
 
 
 <h2 id="resource-classification" class="group pr-8">Resource classification
@@ -10801,7 +10822,7 @@ required to use each one as a source, store, or destination.</p>
   
   <div class="flex items-center justify-between text-xs text-neutral-400">
     
-      <span>Last updated: November 6, 2026</span>
+      <span>Last updated: November 10, 2026</span>
     
     
       <a href="https://github.com/PlakarKorp/plakar.io/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">
@@ -10821,7 +10842,7 @@ required to use each one as a source, store, or destination.</p>
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#resource-settings">Resource settings</a></li><li><a href="#resource-classification">Resource classification</a></li><li><a href="#environment-and-data-class-tags">Environment and data class tags</a></li><li><a href="#supported-resources">Supported resources</a></li></ul>
+      <ul><li><a href="#resource-settings">Resource settings</a></li><li><a href="#edge-pools">Edge pools</a></li><li><a href="#resource-classification">Resource classification</a></li><li><a href="#environment-and-data-class-tags">Environment and data class tags</a></li><li><a href="#supported-resources">Supported resources</a></li></ul>
     </div>
 
     

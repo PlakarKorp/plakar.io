@@ -239,12 +239,12 @@
     "dateCreated": "2026-05-07T00:00:00\u002b00:00",
     "datePublished": "2026-05-07T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-06T20:15:21\u002b03:00",
+    "dateModified": "2026-11-10T10:23:58\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/apps/",
-    "wordCount":  617 
+    "wordCount":  682 
   }]
   </script>
 
@@ -10418,8 +10418,13 @@ automatically, without being set up by hand.</p>
   
 </h2>
 <p>Each app has a <strong>Dashboard</strong> tab with a <strong>Test Connection</strong> action. It checks
-that Plakar Control Plane can reach the resource with the configuration of the
-app. A failing test points at the configuration or the credentials of the app.</p>
+that the resource can be reached with the configuration of the app. A failing
+test points at the configuration or the credentials of the app.</p>
+<p>The test runs where the tasks of the app run. When the resource of the app is
+assigned to an <a href="/docs/control-plane/resources/#edge-pools" >edge pool</a>, an edge of that pool runs
+the test, so it checks the connection from the edge rather than from the Control
+Plane. This is what makes the test meaningful for a resource the Control Plane
+cannot reach directly, such as one behind a private network.</p>
 
 
 <h2 id="tasks" class="group pr-8">Tasks
@@ -10554,7 +10559,7 @@ residency of its resource.</p>
   
   <div class="flex items-center justify-between text-xs text-neutral-400">
     
-      <span>Last updated: November 6, 2026</span>
+      <span>Last updated: November 10, 2026</span>
     
     
       <a href="https://github.com/PlakarKorp/plakar.io/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">

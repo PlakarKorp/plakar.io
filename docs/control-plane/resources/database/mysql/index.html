@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-09-02T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-06T20:15:21+03:00">
+    <meta property="article:modified_time" content="2026-11-10T10:23:58+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -239,12 +239,12 @@
     "dateCreated": "2026-09-02T00:00:00\u002b00:00",
     "datePublished": "2026-09-02T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-06T20:15:21\u002b03:00",
+    "dateModified": "2026-11-10T10:23:58\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/resources/database/mysql/",
-    "wordCount":  2001 
+    "wordCount":  2007 
   }]
   </script>
 
@@ -10368,8 +10368,8 @@ and MariaDB databases. The integration supports multiple protocols.</p>
 installed on the machine that executes the task. These tools are not included in
 the appliance, so MySQL and MariaDB tasks run on an <a href="/docs/control-plane/edges/" >edge</a> rather
 than on the Control Plane.</p>
-<p>Install the tools on the edge host, then configure the task to run on that edge.
-They must be in the <code>$PATH</code> of the process running the task:</p>
+<p>Install the tools on the edge hosts of an edge pool, then assign the resources
+to that pool. They must be in the <code>$PATH</code> of the process running the task:</p>
 <ul>
 <li>MySQL 5.7 or 8.x: <code>mysqldump</code> and <code>mysql</code></li>
 <li>MariaDB 10.x or 11.x: <code>mariadb-dump</code> and <code>mariadb</code></li>
@@ -10432,9 +10432,8 @@ backs up. Using the same major version for the client tools and the server
 avoids compatibility issues between them. Replace <code>&lt;version&gt;</code> with the edge
 version that matches your Control Plane, as described in
 <a href="/docs/control-plane/edges/installation/custom-image/#choosing-the-edge-version" >Choosing the edge version</a>.</p>
-<p>Pin MySQL tasks to the resulting edge with the <strong>Run on</strong> field when
-<a href="/docs/control-plane/scheduling/tasks/" >scheduling them</a>, or target it by the <code>mysql</code> or
-<code>mariadb</code> tag. See
+<p>Add the resulting edges to an edge pool, and assign the MySQL resources to that
+pool, so their tasks run on an edge that has the client tools. See
 <a href="/docs/control-plane/edges/running-tasks/#selecting-an-edge" >selecting an edge</a>.</p>
 
 
@@ -11177,7 +11176,7 @@ set by default, letting the server decide.</li>
   
   <div class="flex items-center justify-between text-xs text-neutral-400">
     
-      <span>Last updated: November 6, 2026</span>
+      <span>Last updated: November 10, 2026</span>
     
     
       <a href="https://github.com/PlakarKorp/plakar.io/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">

@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-07-13T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-06T20:15:21+03:00">
+    <meta property="article:modified_time" content="2026-11-10T10:23:58+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -229,12 +229,12 @@
     "dateCreated": "2026-07-13T00:00:00\u002b00:00",
     "datePublished": "2026-07-13T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-06T20:15:21\u002b03:00",
+    "dateModified": "2026-11-10T10:23:58\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/edges/installation/kubernetes/",
-    "wordCount":  410 
+    "wordCount":  419 
   }]
   </script>
 
@@ -10372,8 +10372,8 @@ default.</p>
     </button>
   
 </h2>
-<p>Store the enrollment key in a Kubernetes Secret rather than putting it directly
-in the Helm values:</p>
+<p>Store the enrollment key of the edge pool the edges should join in a Kubernetes
+Secret rather than putting it directly in the Helm values:</p>
 <div class="highlight-wrapper codeblock">
   <div class="codeblock-title">
     <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
@@ -10385,8 +10385,8 @@ in the Helm values:</p>
       <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
 </span></span>
     </button>
-  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ kubectl create secret generic plakar-edge-enroll-key <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --from-literal<span class="o">=</span>enroll-key<span class="o">=</span>&lt;enrollment-key&gt;</span></span></code></pre></div></div>
+  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ kubectl create secret generic plakar-edge-pool-enroll-key <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --from-literal<span class="o">=</span>pool-enroll-key<span class="o">=</span>&lt;pool-enrollment-key&gt;</span></span></code></pre></div></div>
 <p>The chart references the Secret by name, keeping the enrollment key out of
 <code>values.yaml</code>, rendered manifests, and Helm history.</p>
 
@@ -10420,11 +10420,10 @@ in the Helm values:</p>
     </button>
   </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ helm install my-edges oci://ghcr.io/plakarkorp/charts/plakar-edge <span class="se">\
 </span></span></span><span class="line"><span class="cl">  --set <span class="nv">controlPlane</span><span class="o">=</span>https://plakman.example.com <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --set <span class="nv">organization</span><span class="o">=</span>&lt;organization-id&gt; <span class="se">\
-</span></span></span><span class="line"><span class="cl">  --set enrollKey.secretName<span class="o">=</span>plakar-edge-enroll-key <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --set poolEnrollKey.secretName<span class="o">=</span>plakar-edge-pool-enroll-key <span class="se">\
 </span></span></span><span class="line"><span class="cl">  --set <span class="nv">replicaCount</span><span class="o">=</span><span class="m">3</span></span></span></code></pre></div></div>
-<p>Each replica enrolls independently and appears as a separate edge in the Control
-Plane.</p>
+<p>Each replica enrolls independently into the pool and appears as a separate edge
+in the Control Plane. The pool decides the organization the edges join.</p>
 <p>Without <code>--version</code>, Helm installs the latest published chart. To pin a release,
 specify the chart version:</p>
 <div class="highlight-wrapper codeblock">
@@ -10474,19 +10473,14 @@ chart release.</p>
           <td>Base URL of the Plakar Control Plane. Required.</td>
       </tr>
       <tr>
-          <td><code>organization</code></td>
+          <td><code>poolEnrollKey.secretName</code></td>
           <td><code>&quot;&quot;</code></td>
-          <td>Identifier of the organization the edges should join. Required.</td>
+          <td>Existing Secret containing the edge pool enrollment key. Required.</td>
       </tr>
       <tr>
-          <td><code>enrollKey.secretName</code></td>
-          <td><code>&quot;&quot;</code></td>
-          <td>Existing Secret containing the enrollment key. Required.</td>
-      </tr>
-      <tr>
-          <td><code>enrollKey.secretKey</code></td>
-          <td><code>enroll-key</code></td>
-          <td>Key containing the enrollment key inside the Secret.</td>
+          <td><code>poolEnrollKey.secretKey</code></td>
+          <td><code>pool-enroll-key</code></td>
+          <td>Key containing the edge pool enrollment key inside the Secret.</td>
       </tr>
       <tr>
           <td><code>replicaCount</code></td>
@@ -10606,7 +10600,7 @@ PostgreSQL, set <code>image.repository</code> and <code>image.tag</code> to a
   
   <div class="flex items-center justify-between text-xs text-neutral-400">
     
-      <span>Last updated: November 6, 2026</span>
+      <span>Last updated: November 10, 2026</span>
     
     
       <a href="https://github.com/PlakarKorp/plakar.io/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">

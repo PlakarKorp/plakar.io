@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-09-08T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-06T20:15:21+03:00">
+    <meta property="article:modified_time" content="2026-11-10T10:23:58+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -229,12 +229,12 @@
     "dateCreated": "2026-09-08T00:00:00\u002b00:00",
     "datePublished": "2026-09-08T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-06T20:15:21\u002b03:00",
+    "dateModified": "2026-11-10T10:23:58\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/access-control/organization-settings/",
-    "wordCount":  798 
+    "wordCount":  696 
   }]
   </script>
 
@@ -10396,11 +10396,11 @@ ignored while the lock is in place, and applies again if the lock is removed.</p
     fetchpriority="auto"
     alt="Organization settings"
     width="2807"
-    height="1640"
-    src="/docs/control-plane/access-control/images/organization-settings_hu_d7820ad2dcf98604.webp"
-    srcset="/docs/control-plane/access-control/images/organization-settings_hu_d7820ad2dcf98604.webp 400w, /docs/control-plane/access-control/images/organization-settings_hu_a6c563cb63137c82.webp 800w, /docs/control-plane/access-control/images/organization-settings_hu_e8c7177d251f748c.webp 1200w"
+    height="1438"
+    src="/docs/control-plane/access-control/images/organization-settings_hu_588908a625e31ed6.webp"
+    srcset="/docs/control-plane/access-control/images/organization-settings_hu_588908a625e31ed6.webp 400w, /docs/control-plane/access-control/images/organization-settings_hu_66502b691b2ffe22.webp 800w, /docs/control-plane/access-control/images/organization-settings_hu_733c46488e143767.webp 1200w"
     sizes="(min-width: 768px) 50vw, 65vw"
-    data-zoom-src="/docs/control-plane/access-control/images/organization-settings_hu_55fc2e7a2670adf5.webp"></figure>
+    data-zoom-src="/docs/control-plane/access-control/images/organization-settings_hu_2983280941d3c6cf.webp"></figure>
 
 
 <h2 id="authentication" class="group pr-8">Authentication
@@ -10487,9 +10487,8 @@ up and how it is used at sign-in.</p>
   
 </h2>
 <p>The system settings connect the organization to the infrastructure around Plakar
-Control Plane. They define the mail server used for its email, an external
-Vector instance that receives a copy of its logs, and whether edges can enroll
-in it to run its tasks.</p>
+Control Plane. They define the mail server used for its email, and an external
+Vector instance that receives a copy of its logs.</p>
 
 
 <h3 id="smtp" class="group pr-8">SMTP
@@ -10533,32 +10532,6 @@ Control Plane runs its own internal Vector instance for local log processing.
 This setting adds the instance you provide as an additional
 <a href="https://vector.dev/docs/reference/configuration/sinks/vector/"  target="_blank" rel="noreferrer">Vector sink</a>, so
 a copy of the logs is forwarded there rather than replacing local processing.</p>
-
-
-<h3 id="edge-enrollment" class="group pr-8">Edge enrollment
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="edge-enrollment"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
-<p>Enable edge enrollment to allow remote <code>plakar-edge</code> executors to register with
-Plakar Control Plane. Enrollment is disabled by default. Once enabled, an
-enrollment key is generated for the initial registration process, and it can be
-regenerated at any time. See <a href="../../edges/enrollment" >Edge enrollment</a> for more
-information.</p>
-<p>This setting also decides which edges an organization can use. An organization
-that inherits it can run tasks on the edges of the organization that set it, in
-addition to its own, however many levels above that organization is. See
-<a href="../../edges/enrollment#sharing-edges-with-child-organizations" >sharing edges with child organizations</a>.</p>
 
 
 <h2 id="notifications" class="group pr-8">Notifications
@@ -10655,7 +10628,7 @@ external endpoint as HTTP requests. Webhook delivery is disabled by default. See
   
   <div class="flex items-center justify-between text-xs text-neutral-400">
     
-      <span>Last updated: November 6, 2026</span>
+      <span>Last updated: November 10, 2026</span>
     
     
       <a href="https://github.com/PlakarKorp/plakar.io/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">
@@ -10675,7 +10648,7 @@ external endpoint as HTTP requests. Webhook delivery is disabled by default. See
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#handing-settings-down">Handing settings down</a><ul><li><a href="#how-an-organization-resolves-a-setting">How an organization resolves a setting</a></li></ul></li><li><a href="#authentication">Authentication</a><ul><li><a href="#token-lifetimes">Token lifetimes</a></li><li><a href="#two-factor-authentication">Two-factor authentication</a></li></ul></li><li><a href="#system">System</a><ul><li><a href="#smtp">SMTP</a></li><li><a href="#vector">Vector</a></li><li><a href="#edge-enrollment">Edge enrollment</a></li></ul></li><li><a href="#notifications">Notifications</a><ul><li><a href="#webhook">Webhook</a></li></ul></li></ul>
+      <ul><li><a href="#handing-settings-down">Handing settings down</a><ul><li><a href="#how-an-organization-resolves-a-setting">How an organization resolves a setting</a></li></ul></li><li><a href="#authentication">Authentication</a><ul><li><a href="#token-lifetimes">Token lifetimes</a></li><li><a href="#two-factor-authentication">Two-factor authentication</a></li></ul></li><li><a href="#system">System</a><ul><li><a href="#smtp">SMTP</a></li><li><a href="#vector">Vector</a></li></ul></li><li><a href="#notifications">Notifications</a><ul><li><a href="#webhook">Webhook</a></li></ul></li></ul>
     </div>
 
     

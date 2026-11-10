@@ -60,7 +60,7 @@
 
 - [How Edges Work](https://www.plakar.io/docs/control-plane/edges/how-edges-work/index.md): How edges connect to Plakar Control Plane, receive tasks, and access secrets.
 - [Edge Requirements](https://www.plakar.io/docs/control-plane/edges/requirements/index.md): Network access and host tools an edge needs to run tasks for Plakar Control Plane.
-- [Edge Enrollment](https://www.plakar.io/docs/control-plane/edges/enrollment/index.md): Enable edge enrollment for an organization and share edges with child organizations.
+- [Edge Enrollment](https://www.plakar.io/docs/control-plane/edges/enrollment/index.md): Enroll edges into edge pools, and share edges with child organizations.
 - [Edges Installation](https://www.plakar.io/docs/control-plane/edges/installation/index.md): Install an edge as a standalone binary or as a Kubernetes workload.
 - [Running Tasks](https://www.plakar.io/docs/control-plane/edges/running-tasks/index.md): Run tasks on edges and how Plakar Control Plane selects an edge.
 - [Pre-job and Post-job Hooks](https://www.plakar.io/docs/control-plane/edges/hooks/index.md): Run scripts on an edge immediately before and after a backup or restore.

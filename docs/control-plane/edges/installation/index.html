@@ -229,12 +229,12 @@
     "dateCreated": "2026-07-13T00:00:00\u002b00:00",
     "datePublished": "2026-07-13T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-06T20:15:21\u002b03:00",
+    "dateModified": "2026-11-10T10:23:58\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/edges/installation/",
-    "wordCount":  103 
+    "wordCount":  145 
   }]
   </script>
 
@@ -10328,8 +10328,11 @@
 Choose the deployment method that best fits the environment where the edge will
 run. When the edge needs tools required by integrations such as MySQL or
 PostgreSQL, build a custom image that includes them.</p>
-<p>Edge enrollment must be enabled for the organization the edge joins. See
-<a href="/docs/control-plane/edges/enrollment/" >edge enrollment</a>.</p>
+<p>An edge enrolls into an edge pool with the pool&rsquo;s enrollment key, and joins the
+organization that owns the pool. See <a href="/docs/control-plane/edges/enrollment/" >edge enrollment</a> for how to
+create a pool and generate its key.</p>
+<p>Edges enrolled before pools were introduced, without a pool, have been placed in
+a pool named <code>default</code>, which is the organization&rsquo;s default pool.</p>
   <div class="not-prose section-index mt-6">
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <a href="/docs/control-plane/edges/installation/binary/" class="group/card flex flex-col justify-between rounded-lg border border-neutral-200 bg-neutral-50 p-4 no-underline hover:border-primary-200 hover:bg-primary-50 transition-all duration-150">
@@ -10384,7 +10387,7 @@ PostgreSQL, build a custom image that includes them.</p>
   
   <div class="flex items-center justify-between text-xs text-neutral-400">
     
-      <span>Last updated: November 6, 2026</span>
+      <span>Last updated: November 10, 2026</span>
     
     
       <a href="https://github.com/PlakarKorp/plakar.io/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">
