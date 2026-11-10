@@ -54,8 +54,8 @@ location and is not destructive. Initializing a location that already holds a
 store fails and leaves that store untouched.
 
 Backups are compressed as they are written to the store, with an algorithm
-chosen at initialization. `LZ4` is the default. `GZIP` or `ZSTD` can be selected
-in the advanced settings of the initialization dialog.
+chosen at initialization. `LZ4` is the default. `GZIP`, `ZSTD` or `SNAPPY` can
+be selected in the advanced settings of the initialization dialog.
 
 {{< figure src="../images/kloset-store-initialization.png" alt="" class="mx-auto max-w-100" >}}
 
