@@ -14,23 +14,24 @@ a **Compute custom template**, which can then be used to create instances.
 
 Exoscale needs a publicly accessible URL to download the QCOW2 image from when
 creating the custom template, along with its MD5 checksum to verify the image
-during import. There are two ways to provide this:
+during import. There are two ways to provide the URL:
 
 - **Direct download (recommended)**: use the download link from the
-  [downloads page](https://www.plakar.io/download) directly as the image source,
-  together with the MD5 checksum published alongside it. No local download or
-  re-hosting is required.
-- **Self-hosted**: download the QCOW2 image locally, then re-upload it to your
-  own publicly accessible storage, such as Exoscale's Simple Object Storage
-  (SOS). Use this if you want to keep your own copy of the image, or if your
-  environment can't reach `plakar.io` directly when creating the template.
+  [downloads page](https://www.plakar.io/download) directly as the image source.
+  No re-hosting is required.
+- **Self-hosted**: re-upload the QCOW2 image to your own publicly accessible
+  storage, such as Exoscale's Simple Object Storage (SOS). Use this if you want
+  to keep your own copy of the image, or if your environment can't reach
+  `plakar.io` directly when creating the template.
 
-If you choose the self-hosted option, download the image from the downloads
-page, then confirm it downloaded correctly by comparing its checksum against the
-one published on the downloads page:
+The downloads page publishes a `SHA-256` checksum, but Exoscale only accepts
+`MD5`. Whichever option you choose, download the image locally, confirm that its
+`SHA-256` checksum matches the one on the downloads page, then generate its
+`MD5` checksum:
 
 ```bash
-md5sum plakar-control-plane.qcow2
+sha256sum plakar-appliance-<version>.qcow2
+md5sum plakar-appliance-<version>.qcow2
 ```
 
 > [!NOTE]+ QCOW2 Image URL
@@ -76,8 +77,8 @@ the zone where you intend to deploy Plakar Control Plane.
 ![](../images/create-exoscale-compute-template.png)
 
 For the image source, provide the public URL of the QCOW2 image, either the
-direct download link from the downloads page or your SOS object URL then enter
-the corresponding MD5 checksum. Set the boot mode to **UEFI**.
+direct download link from the downloads page or your SOS object URL, then enter
+the `MD5` checksum you generated. Set the boot mode to **UEFI**.
 
 If you intend to use Exoscale's Application Consistent Snapshots, enable
 **Application consistent snapshot** when creating the custom template. This
@@ -117,28 +118,20 @@ Plane.
 
 ![Creating Exoscale compute instance](../images/create-exoscale-instance-1.png)
 
-For a production deployment, Plakar Control Plane is recommended to run with:
-
-- **4 vCPUs**
-- **16 GB RAM**
-- **1 TB of Block Storage**
-
-An **Extra Large** instance from the **Standard** instance type family is
-suitable for most deployments. The template only requires a small boot disk, so
-a 10 GB system disk is sufficient. Plakar Control Plane stores its database,
-logs, and application state on a separate Block Storage volume, which will be
-attached later.
-
-For evaluation or testing, you can reduce the CPU, memory, and storage
-allocation.
+Size the instance according to [Appliance Sizing](../../appliance/sizing), which
+gives the CPU, memory and disks for each size of deployment. For the S tier, an
+**Extra Large** instance from the **Standard** instance type family is suitable.
+The template only requires a small system disk. Plakar Control Plane stores its
+database, logs, and application state on a separate Block Storage volume, which
+will be attached later.
 
 ![Allocating resources to a Exoscale instance](../images/exoscale-compute-resource-allocation.png)
 
 Configure the remaining instance options as needed for your environment.
 
-If your environment requires outbound traffic to pass through a proxy, configure
-it as described in the
-[Proxy and Harbor Configuration](#proxy-and-harbor-configuration) section.
+To route outbound traffic through a proxy, or to change any other appliance
+setting, add it to the user data as described in
+[Configuring the Appliance](#configuring-the-appliance).
 
 If SSH access was enabled when creating the custom template, select the SSH key
 pair to authorize for the instance.
@@ -170,8 +163,8 @@ Open **Compute → Block Storage** in the Exoscale console, then click **Create
 Block Storage**.
 
 Provide a name for the volume, select the same zone as the instance, and create
-it as a **Blank volume**. A recommended size of **1024 GB** is suitable for most
-deployments.
+it as a **Blank volume**, of the data disk size given in
+[Appliance Sizing](../../appliance/sizing).
 
 Block Storage volumes can only be attached to instances in the same zone. This
 volume stores the Plakar Control Plane database, logs, and all application
@@ -186,53 +179,54 @@ volume**, then select the Block Storage volume that you created.
 
 ![Attaching an Exoscale Block Storage volume](../images/attach-exoscale-block-storage.png)
 
-## Proxy and Harbor Configuration
+## Configuring the Appliance
 
-If the instance doesn't have direct internet access, configure an HTTP proxy, a
-local Harbor registry mirror, or both through the instance's **User data**
-before creating the instance.
+An instance with direct internet access needs no configuration, and SSH access
+comes from the key pair selected when creating the instance, if SSH access was
+enabled on the custom template. For anything else, such as a proxy or registry
+mirrors, the appliance reads its settings from the instance's **User data**, set
+before the instance is created. The keys of the document are described in
+[Appliance Configuration](../../appliance/configuration).
 
-![Adding proxy and Harbor configuration to Exoscale User data](../images/exoscale-user-data.png)
+If the appliance goes through a proxy or firewall, the hosts it has to reach are
+listed in
+[required outbound access](../../appliance/configuration#required-outbound-access).
 
-### What needs to be reachable
-
-Plakar Control Plane requires HTTPS access to `api.plakar.io` for runtime
-configuration, license validation, and plugin downloads. If your proxy uses a
-whitelist instead of allowing all outbound traffic, you need to add
-`*.plakar.io`
-
-The appliance also needs to pull container images from `docker.io` and
-`ghcr.io`. There are two supported approaches:
-
-1. **Route image pulls through the HTTP proxy.** If you choose this option, the
-   proxy should allow access to:
-   - `*.docker.io`
-   - `*.docker.com`
-   - `*.ghcr.io`
-   - `*.githubusercontent.com`
-
-2. **Use a Harbor registry mirror.** This is the recommended approach for
-   production deployments because images are pulled from a local registry cache
-   instead of the public internet. When using Harbor, you don't need to
-   whitelist the Docker and GitHub domains above on your proxy.
-
-### User data configuration
-
-The User data is a standard cloud-init YAML document containing `proxy:` and/or
-`registry:` sections, depending on your environment.
+The document below sets every key. Remove the ones your environment does not
+need, each key is optional.
 
 ```yaml
 #cloud-config
+ssh_authorized_keys:
+  - ssh-ed25519 AAAA...
+
 proxy:
-  http: http://<proxy-ip>:<proxy-port>
-  https: http://<proxy-ip>:<proxy-port>
-  no_proxy: .corp.example,10.0.0.0/8 # optional
+  http: http://proxy.corp.example:3128
+  https: http://proxy.corp.example:3128
+  no_proxy: .corp.example
 
 registry:
   mirrors:
-    docker.io: <harbor-host>/dockerhub-proxy
-    ghcr.io: <harbor-host>/ghcr-proxy
-  insecure: false # true: skip TLS verification for the mirror hosts
+    docker.io: harbor.corp.example/dockerhub-proxy
+    ghcr.io: harbor.corp.example/ghcr-proxy
+  insecure: false
+
+releases:
+  url: https://dist.corp.example/plakar/enterprise
+  version: v1.1.2
+
+ntp:
+  servers:
+    - 10.20.0.1
+    - ntp.corp.example
+
+network:
+  ethernets:
+    eth0:
+      addresses: [10.0.1.5/24]
+      gateway4: 10.0.1.1
+      nameservers:
+        addresses: [10.0.1.53]
 ```
 
 ## Security Groups
@@ -280,17 +274,11 @@ volume during its first boot.
 
 ## Accessing Plakar Control Plane
 
-After the instance has started, the Block Storage volume has been attached, and
-the security group has been configured, Plakar Control Plane can be accessed
-from your browser using:
-
-```txt
-http://<public-ipv4-address>
-```
-
-Where `<public-ipv4-address>` is the public IPv4 address assigned to the
-instance. For first-time installations, you will be guided through the
-enrollment process to:
+Once the instance has started with its Block Storage volume attached, Plakar
+Control Plane is reached from a browser at `http://<public-ipv4-address>`, the
+public IPv4 address of the instance, provided its security group allows inbound
+traffic on port `80`. For first-time installations, you will be guided through
+the enrollment process to:
 
 - Register the instance with Plakar services for licensing and billing
 - Create the initial administrator account

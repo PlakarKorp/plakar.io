@@ -7,13 +7,18 @@ resources become available for management directly from Plakar Control Plane.
 
 ## Supported Resources
 
-| Resource                     | Source | Store | Destination |
-| ---------------------------- | ------ | ----- | ----------- |
-| PersistentVolumeClaims (PVC) | Yes    | No    | Yes         |
-| KubeVirt virtual machines    | Yes    | No    | Yes         |
+| Resource                                                             | Source | Store | Destination |
+| -------------------------------------------------------------------- | ------ | ----- | ----------- |
+| [Cluster and namespaces](../../resources/compute/kubernetes/cluster) | Yes    | No    | Yes         |
+| [PersistentVolumeClaims (PVC)](../../resources/block-storage/pvc)    | Yes    | No    | Yes         |
+| [KubeVirt virtual machines](../../resources/compute/kubernetes/vm)   | Yes    | No    | Yes         |
+
+The cluster and namespace resources hold the manifests of the cluster. When the
+inventory discovers every namespace, it also lists a `cluster` resource that
+covers the whole cluster. Each namespace it discovers is listed as a resource of
+its own, named after the namespace.
 
 Virtual machines are discovered only when KubeVirt is installed in the cluster.
-On clusters without KubeVirt, the inventory discovers PVCs only.
 
 ## Authentication
 
@@ -47,7 +52,9 @@ empty and it will use the in-cluster configuration.
 After creating the inventory, trigger a synchronization to discover and load
 PVCs and virtual machines from the configured cluster. You can run
 synchronization again at any time to refresh the inventory, for example after
-creating new PVCs or virtual machines.
+creating new PVCs or virtual machines. PCP then synchronizes it periodically,
+every 15 minutes by default. See
+[inventory synchronization](../#inventory-synchronization).
 
 ![Creating Kubernetes inventory](../images/create-kubernetes-inventory.png)
 

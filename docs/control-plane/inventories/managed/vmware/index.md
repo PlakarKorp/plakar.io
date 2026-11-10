@@ -8,9 +8,9 @@ available for management directly from Plakar Control Plane.
 
 ## Supported Resources
 
-| Resource          | Source | Store | Destination |
-| ----------------- | ------ | ----- | ----------- |
-| Compute Instances | Yes    | No    | Yes         |
+| Resource                                            | Source | Store | Destination |
+| --------------------------------------------------- | ------ | ----- | ----------- |
+| [Compute Instances](../../resources/compute/vmware) | Yes    | No    | Yes         |
 
 ## Authentication
 
@@ -61,7 +61,8 @@ verification**.
 After creating the inventory, trigger a synchronization to discover and load
 compute instances from the configured VMware environment. You can run
 synchronization again at any time to refresh the inventory, for example after
-creating new instances.
+creating new instances. PCP then synchronizes it periodically, every 15 minutes
+by default. See [inventory synchronization](../#inventory-synchronization).
 
 ![Creating VMware inventory](../images/create-vmware-inventory.png)
 

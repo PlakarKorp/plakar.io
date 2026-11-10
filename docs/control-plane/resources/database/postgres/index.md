@@ -11,11 +11,12 @@ installed on the machine that executes the task. These tools are not included in
 the appliance, so PostgreSQL tasks run on an [edge](../../edges) rather than on
 the Control Plane.
 
-Install the tools on the edge host, then configure the task to run on that edge.
-They are usually provided by the `postgresql-client` package and must be in the
-`$PATH` of the process running the task. The `postgres` and `postgres+aws`
-protocols back up with `pg_dump` and `pg_dumpall` and restore with `pg_restore`
-and `psql`. The `postgres+bin` protocol backs up with `pg_basebackup`.
+Install the tools on the edge hosts of an edge pool, then assign the resources
+to that pool. They are usually provided by the `postgresql-client` package and
+must be in the `$PATH` of the process running the task. The `postgres` and
+`postgres+aws` protocols back up with `pg_dump` and `pg_dumpall` and restore
+with `pg_restore` and `psql`. The `postgres+bin` protocol backs up with
+`pg_basebackup`.
 
 ### Running the edge in a container
 
@@ -44,9 +45,9 @@ version. Replace `<version>` with the edge version that matches your Control
 Plane, as described in
 [Choosing the edge version](../../edges/installation/custom-image#choosing-the-edge-version).
 
-Pin PostgreSQL tasks to the resulting edge with the **Run on** field when
-[scheduling them](../../scheduling/tasks), or target it by the `postgresql` tag.
-See [selecting an edge](../../edges/running-tasks#selecting-an-edge).
+Add the resulting edges to an edge pool, and assign the PostgreSQL resources to
+that pool, so their tasks run on an edge that has the client tools. See
+[selecting an edge](../../edges/running-tasks#selecting-an-edge).
 
 The `postgres+aws` protocol generates its IAM token with the AWS credentials
 available to the edge. The edge picks them up from the standard AWS sources:

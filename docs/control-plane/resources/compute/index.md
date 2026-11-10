@@ -30,8 +30,10 @@ Plane supports the following compute resources:
 
 
 
-## [Kubernetes VM](https://www.stg.plakar.io/docs/control-plane/resources/compute/kubernetes-vm/index.md)
+## [Kubernetes](https://www.stg.plakar.io/docs/control-plane/resources/compute/kubernetes/index.md)
 
+- [Kubernetes Cluster](https://www.stg.plakar.io/docs/control-plane/resources/compute/kubernetes/cluster/index.md): How to back up and restore the manifests of a Kubernetes cluster or namespace in Plakar Control Plane.
+- [Kubernetes VM](https://www.stg.plakar.io/docs/control-plane/resources/compute/kubernetes/vm/index.md): How to configure a KubeVirt virtual machine resource in Plakar Control Plane.
 
 
 ## [OpenShift](https://www.stg.plakar.io/docs/control-plane/resources/compute/openshift/index.md)

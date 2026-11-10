@@ -73,9 +73,8 @@ up and how it is used at sign-in.
 ## System
 
 The system settings connect the organization to the infrastructure around Plakar
-Control Plane. They define the mail server used for its email, an external
-Vector instance that receives a copy of its logs, and whether edges can enroll
-in it to run its tasks.
+Control Plane. They define the mail server used for its email, and an external
+Vector instance that receives a copy of its logs.
 
 ### SMTP
 
@@ -91,19 +90,6 @@ Control Plane runs its own internal Vector instance for local log processing.
 This setting adds the instance you provide as an additional
 [Vector sink](https://vector.dev/docs/reference/configuration/sinks/vector/), so
 a copy of the logs is forwarded there rather than replacing local processing.
-
-### Edge enrollment
-
-Enable edge enrollment to allow remote `plakar-edge` executors to register with
-Plakar Control Plane. Enrollment is disabled by default. Once enabled, an
-enrollment key is generated for the initial registration process, and it can be
-regenerated at any time. See [Edge enrollment](../../edges/enrollment) for more
-information.
-
-This setting also decides which edges an organization can use. An organization
-that inherits it can run tasks on the edges of the organization that set it, in
-addition to its own, however many levels above that organization is. See
-[sharing edges with child organizations](../../edges/enrollment#sharing-edges-with-child-organizations).
 
 ## Notifications
 

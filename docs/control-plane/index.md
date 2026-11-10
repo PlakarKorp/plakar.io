@@ -60,7 +60,7 @@
 
 - [How Edges Work](https://www.stg.plakar.io/docs/control-plane/edges/how-edges-work/index.md): How edges connect to Plakar Control Plane, receive tasks, and access secrets.
 - [Edge Requirements](https://www.stg.plakar.io/docs/control-plane/edges/requirements/index.md): Network access and host tools an edge needs to run tasks for Plakar Control Plane.
-- [Edge Enrollment](https://www.stg.plakar.io/docs/control-plane/edges/enrollment/index.md): Enable edge enrollment for an organization and share edges with child organizations.
+- [Edge Enrollment](https://www.stg.plakar.io/docs/control-plane/edges/enrollment/index.md): Enroll edges into edge pools, and share edges with child organizations.
 - [Edges Installation](https://www.stg.plakar.io/docs/control-plane/edges/installation/index.md): Install an edge as a standalone binary or as a Kubernetes workload.
 - [Running Tasks](https://www.stg.plakar.io/docs/control-plane/edges/running-tasks/index.md): Run tasks on edges and how Plakar Control Plane selects an edge.
 - [Pre-job and Post-job Hooks](https://www.stg.plakar.io/docs/control-plane/edges/hooks/index.md): Run scripts on an edge immediately before and after a backup or restore.
@@ -103,6 +103,13 @@
 - [Backup and Restore](https://www.stg.plakar.io/docs/control-plane/operations/backup-and-restore/index.md): How to back up and restore the Plakar Control Plane configuration and data.
 
 
+## [Control Plane Appliance](https://www.stg.plakar.io/docs/control-plane/appliance/index.md)
+
+- [Appliance Sizing](https://www.stg.plakar.io/docs/control-plane/appliance/sizing/index.md): What the Plakar Control Plane appliance is made of, what uses its CPU, memory and disk, and how to size it.
+- [Appliance Configuration](https://www.stg.plakar.io/docs/control-plane/appliance/configuration/index.md): The user data settings the appliance reads at boot: SSH access, proxy, registry mirrors, release server, NTP servers and network, and the platforms each one works on.
+- [Troubleshooting](https://www.stg.plakar.io/docs/control-plane/appliance/troubleshooting/index.md): Diagnose an appliance that does not start or cannot reach the services it depends on, with doktor and the outbound access it requires.
+
+
 ## [Infrastructure as Code](https://www.stg.plakar.io/docs/control-plane/infrastructure-as-code/index.md)
 
 - [Kubernetes Operator](https://www.stg.plakar.io/docs/control-plane/infrastructure-as-code/kubernetes-operator/index.md): Manage Plakar Control Plane declaratively from Kubernetes using the plakar-operator.
@@ -130,6 +137,7 @@
 - [Kubernetes Operator](https://www.stg.plakar.io/docs/control-plane/references/kubernetes-operator/index.md): Field-by-field reference for every custom resource defined by plakar-operator.
 - [Terraform Provider](https://www.stg.plakar.io/docs/control-plane/references/terraform-provider/index.md): Argument-by-argument reference for every resource and data source in the plakar Terraform provider.
 - [Ansible Collection](https://www.stg.plakar.io/docs/control-plane/references/ansible-collection/index.md): Option-by-option reference for every module in the plakarkorp.plakar Ansible collection.
+- [OpenAPI Schema](https://www.stg.plakar.io/docs/control-plane/references/openapi/index.md): Endpoint-by-endpoint reference for the Plakar Control Plane HTTP API, generated from its OpenAPI document.
 
 
 

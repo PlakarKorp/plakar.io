@@ -29,13 +29,13 @@ flowchart TD
 
 ## Supported Resources
 
-| Resource                                 | Source | Store | Destination |
-| ---------------------------------------- | ------ | ----- | ----------- |
-| Object Storage                           | Yes    | Yes   | Yes         |
-| Instances (with attached Block Storages) | Yes    | No    | Yes         |
-| Block Storage Volume                     | Yes    | No    | Yes         |
-| Secret Manager                           | Yes    | No    | Yes         |
-| Managed Database                         | Yes    | No    | Yes         |
+| Resource                                                                     | Source | Store | Destination |
+| ---------------------------------------------------------------------------- | ------ | ----- | ----------- |
+| [Object Storage](../../resources/object-storage/s3)                          | Yes    | Yes   | Yes         |
+| [Instances (with attached Block Storages)](../../resources/compute/scaleway) | Yes    | No    | Yes         |
+| [Block Storage Volume](../../resources/block-storage/scaleway)               | Yes    | No    | Yes         |
+| [Secret Manager](../../resources/security/scaleway-sm)                       | Yes    | No    | Yes         |
+| [Managed Database](../../resources/database)                                 | Yes    | No    | Yes         |
 
 ## Authentication
 
@@ -87,7 +87,9 @@ access key, and secret key.
 After creating the inventory, trigger a synchronization to discover and load
 resources from the configured Scaleway project. You can run synchronization
 again at any time to refresh the inventory, for example after creating new
-Object Storage buckets, Instances, or Block Storage volumes in Scaleway.
+Object Storage buckets, Instances, or Block Storage volumes in Scaleway. PCP
+then synchronizes it periodically, every 15 minutes by default. See
+[inventory synchronization](../#inventory-synchronization).
 
 ![Creating Scaleway inventory](../images/create-scaleway-inventory.png)
 

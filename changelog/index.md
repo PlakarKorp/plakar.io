@@ -19,6 +19,12 @@
 - [Plakar Operator v0.0.2](index.md): Adds Destination, task, and multi-group CRDs, a Helm chart, and a full regression test suite backed by a fake control plane.
 
 
+## [SMB](https://www.stg.plakar.io/changelog/smb/index.md)
+
+- [SMB v1.1.5](index.md): A security release that keeps restores inside the restore root.
+- [SMB v1.1.4](index.md): A security release that requires message signing and hardens restores.
+
+
 ## [OpenShift](https://www.stg.plakar.io/changelog/openshift/index.md)
 
 - [OpenShift v1.1.1](index.md): First stable release. Backs up and restores OpenShift manifests, PVC contents and OpenShift Virtualization virtual machines, and discovers them for Plakar Control Plane.

@@ -11,8 +11,8 @@ installed on the machine that executes the task. These tools are not included in
 the appliance, so MySQL and MariaDB tasks run on an [edge](../../edges) rather
 than on the Control Plane.
 
-Install the tools on the edge host, then configure the task to run on that edge.
-They must be in the `$PATH` of the process running the task:
+Install the tools on the edge hosts of an edge pool, then assign the resources
+to that pool. They must be in the `$PATH` of the process running the task:
 
 - MySQL 5.7 or 8.x: `mysqldump` and `mysql`
 - MariaDB 10.x or 11.x: `mariadb-dump` and `mariadb`
@@ -48,9 +48,8 @@ avoids compatibility issues between them. Replace `<version>` with the edge
 version that matches your Control Plane, as described in
 [Choosing the edge version](../../edges/installation/custom-image#choosing-the-edge-version).
 
-Pin MySQL tasks to the resulting edge with the **Run on** field when
-[scheduling them](../../scheduling/tasks), or target it by the `mysql` or
-`mariadb` tag. See
+Add the resulting edges to an edge pool, and assign the MySQL resources to that
+pool, so their tasks run on an edge that has the client tools. See
 [selecting an edge](../../edges/running-tasks#selecting-an-edge).
 
 ## Inventory Management

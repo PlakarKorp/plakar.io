@@ -6,6 +6,7 @@
 
 ## [Plakar Blog](https://www.stg.plakar.io/posts/index.md)
 
+- [Free backup for KubeVirt VMs and OpenShift](https://www.stg.plakar.io/posts/2026-10-28/free-backup-for-kubevirt-and-openshift/index.md): Plakar&rsquo;s Kubernetes integration now backs up KubeVirt VMs: every disk plus the VM manifest, in one consistent snapshot. On OpenShift, a new openshift package keeps restores from doing things you didn&rsquo;t ask for. Both are free.
 - [Take a Glance: Plakar's OpenStack backup is now free in Plakar Community](https://www.stg.plakar.io/posts/2026-10-22/backing-up-openstack-with-plakar/index.md): Plakar&rsquo;s OpenStack backup is now free in Plakar Community (OSS): back up and restore Cinder volumes and Nova servers through the OpenStack APIs. No agent. Encrypted and deduplicated.
 - [Backing up MongoDB with Plakar](https://www.stg.plakar.io/posts/2026-10-13/backing-up-mongodb-with-plakar/index.md): Plakar now backs up MongoDB. One package, a connection string, and your collections land encrypted and deduplicated in a store you own. Our first NoSQL database, after PostgreSQL, MySQL, MariaDB and SQL Server.
 - [Backing up VMware for free with Plakar OSS](https://www.stg.plakar.io/posts/2026-10-08/backing-up-vmware-with-plakar-oss/index.md): Plakar&rsquo;s VMware integration, previously only in the Plakar Control Plane, is now available in Plakar OSS: free for registered Plakar users, with encrypted, deduplicated backups of running VMs stored in an open, portable format.
@@ -166,6 +167,7 @@
 
 - [Plakar](https://www.stg.plakar.io/changelog/plakar/index.md)
 - [Plakar Operator](https://www.stg.plakar.io/changelog/plakar-operator/index.md)
+- [SMB](https://www.stg.plakar.io/changelog/smb/index.md)
 - [OpenShift](https://www.stg.plakar.io/changelog/openshift/index.md)
 - [SQLite](https://www.stg.plakar.io/changelog/sqlite/index.md)
 - [Azure Blob Storage](https://www.stg.plakar.io/changelog/azblob/index.md)

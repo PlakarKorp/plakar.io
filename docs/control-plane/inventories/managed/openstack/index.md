@@ -37,13 +37,13 @@ flowchart TD
 
 ## Supported Resources
 
-| Resource                          | Source | Store | Destination |
-| --------------------------------- | ------ | ----- | ----------- |
-| Block Storage (Cinder volumes)    | Yes    | No    | Yes         |
-| Compute (Nova servers)            | Yes    | No    | Yes         |
-| Object Storage (Swift containers) | No     | No    | No          |
-| Images (Glance images)            | No     | No    | No          |
-| Database (Trove databases)        | Yes    | No    | Yes         |
+| Resource                                                                  | Source | Store | Destination |
+| ------------------------------------------------------------------------- | ------ | ----- | ----------- |
+| [Block Storage (Cinder volumes)](../../resources/block-storage/openstack) | Yes    | No    | Yes         |
+| [Compute (Nova servers)](../../resources/compute/openstack)               | Yes    | No    | Yes         |
+| Object Storage (Swift containers)                                         | No     | No    | No          |
+| Images (Glance images)                                                    | No     | No    | No          |
+| [Database (Trove databases)](../../resources/database)                    | Yes    | No    | Yes         |
 
 Only the Glance images owned by the project are discovered.
 
@@ -97,7 +97,9 @@ names, for example `RegionOne` or `GRA11`, limits discovery to those regions.
 
 An inventory discovers its resources when it is synchronized, so a new inventory
 is empty until its first synchronization. Synchronizing again refreshes the
-inventory, for example after instances or volumes are added to the project.
+inventory, for example after instances or volumes are added to the project. PCP
+then synchronizes it periodically, every 15 minutes by default. See
+[inventory synchronization](../#inventory-synchronization).
 
 ![Creating Openstack inventory](../images/create-openstack-inventory.png)
 

@@ -46,12 +46,14 @@ gcloud compute instances create <INSTANCE_NAME> \
   --scopes=cloud-platform
 ```
 
-- `--machine-type=n2-standard-4` provides the recommended 4 vCPUs and 16 GiB
-  RAM. For evaluation or testing, a smaller machine type is fine.
+- `--machine-type=n2-standard-4` matches the S tier of
+  [Appliance Sizing](../../appliance/sizing).
 - `--image` and `--image-project` reference the Plakar Control Plane image by
   name, which works regardless of whitelisting.
-- `--create-disk` provisions the 1 TB data disk that holds the database, logs,
-  and all Plakar state, separate from wherever you configure backups themselves
+- `--create-disk` provisions the data disk that holds the database, logs, and
+  all Plakar state, separate from wherever you configure backups themselves to
+  be stored. Set its size to the data disk size given in
+  [Appliance Sizing](../../appliance/sizing).
 - `--service-account` and `--scopes` attach a service account to the instance,
   which lets Plakar Control Plane authenticate to Google Cloud services such as
   inventories and secret providers without a service account key. Both flags are
@@ -60,7 +62,6 @@ gcloud compute instances create <INSTANCE_NAME> \
   instance uses the default access scopes, which block some APIs regardless of
   the service account's IAM roles. See
   [Attaching the Service Account to an Instance](../../../guides/google-cloud/iam-roles-and-service-accounts#attaching-the-service-account-to-an-instance).
-  to be stored. For evaluation or testing, a smaller size is fine.
 - `--tags=http-server` applies the tag GCP's default network firewall rule uses
   to allow inbound HTTP traffic. If your project doesn't have that default rule,
   create one explicitly:
@@ -107,15 +108,9 @@ You then need to select an instance type for running control plane on.
 
 {{< figure src="../images/gcp-1.png" alt="" class="mx-auto max-w-120" >}}
 
-Plakar Control Plane requires the following recommended setup:
-
-- **4 vCPUs**
-- **16 GiB RAM**
-- **1 TB of additional storage**, on top of the boot disk
-
-These are recommendations for a production deployment. For evaluation or
-testing, a smaller machine type is fine. A preset such as `n2-standard-4`
-satisfies the CPU and RAM requirement.
+Size the instance according to [Appliance Sizing](../../appliance/sizing), which
+gives the CPU, memory and disks for each size of deployment. For the S tier, a
+preset such as `n2-standard-4` is suitable.
 
 Under **Provisioning model**, choose **Standard** for a persistent deployment.
 **Spot VMs** run until preempted by GCP, which makes them a fit for
@@ -141,8 +136,9 @@ the Plakar Control Plane image:
 4. Select the latest available image (currently `control-plane-v-0-0-3`).
 
 For the boot disk itself, any of the available persistent disk types (Balanced,
-SSD, Extreme, or Standard) will work; a size of **10 GB** is enough, since the
-appliance's actual state is stored on a separate data disk.
+SSD, Extreme, or Standard) will work. It only needs the system disk size given
+in [Appliance Sizing](../../appliance/sizing), since the appliance's state is
+stored on a separate data disk.
 
 {{< figure src="../images/gcp-4.png" alt="" class="mx-auto max-w-120" >}}
 
@@ -153,7 +149,8 @@ separate from wherever you configure backups to be stored:
 
 1. Under **Additional disks**, click **Add new disk**.
 2. Leave the disk source blank so GCP creates a new, empty disk.
-3. Set the size to **1024 GB**.
+3. Set the size to the data disk size given in
+   [Appliance Sizing](../../appliance/sizing).
 4. Choose a disk type. Balanced, SSD, Extreme, Standard, and Hyperdisk are all
    supported; pick whichever matches your performance and cost requirements.
 
@@ -202,18 +199,73 @@ Click **Create** once the configuration is complete.
 
 {{< /tabs >}}
 
+## Configuring the Appliance
+
+An instance with direct internet access needs no configuration. For anything
+else, such as a proxy or registry mirrors, the appliance reads its settings from
+the `user-data` key of the instance metadata, set when the instance is created.
+The keys of the document are described in
+[Appliance Configuration](../../appliance/configuration).
+
+With the `gcloud` CLI, save the document to a file and add it to the
+`gcloud compute instances create` command:
+
+```bash
+--metadata-from-file=user-data=user-data.yaml
+```
+
+In the Console, open **Advanced** while creating the instance, then add a
+metadata item under **Metadata** with the key `user-data` and the document as
+its value.
+
+If the appliance goes through a proxy or firewall, the hosts it has to reach are
+listed in
+[required outbound access](../../appliance/configuration#required-outbound-access).
+
+The document below sets every key except `ssh_authorized_keys`, which the Google
+Cloud image ignores. Remove the ones your environment does not need, each key is
+optional.
+
+```yaml
+#cloud-config
+proxy:
+  http: http://proxy.corp.example:3128
+  https: http://proxy.corp.example:3128
+  no_proxy: .corp.example
+
+registry:
+  mirrors:
+    docker.io: harbor.corp.example/dockerhub-proxy
+    ghcr.io: harbor.corp.example/ghcr-proxy
+  insecure: false
+
+releases:
+  url: https://dist.corp.example/plakar/enterprise
+  version: v1.1.2
+
+ntp:
+  servers:
+    - 10.20.0.1
+    - ntp.corp.example
+
+network:
+  ethernets:
+    eth0:
+      addresses: [10.0.1.5/24]
+      gateway4: 10.0.1.1
+      nameservers:
+        addresses: [10.0.1.53]
+```
+
 ## Accessing Plakar Control Plane
 
-Once the instance is running and reachable, open it from a browser using its
-assigned external IP address:
-
-```txt
-http://<EXTERNAL-IP>
-```
+Once the instance is running, Plakar Control Plane is reached from a browser at
+`http://<external-ip>`, the external IP address of the instance.
 
 ![](../images/gcp-6.png)
 
-For new installations, you will be guided through the enrollment process to:
+For first-time installations, you will be guided through the enrollment process
+to:
 
 - Register the instance with Plakar services for licensing and billing
 - Create the initial administrator account
@@ -222,23 +274,7 @@ See the [enrollment](../../enrollment) documentation for more details.
 
 ## Limitations
 
-The Google Cloud image does not yet support two capabilities available on the
-other platforms.
-
-- **SSH access:** The instance cannot be reached over SSH. It is administered
-  entirely through the web interface, so plan for the appliance to be managed
-  that way.
-
-- **Proxy and registry mirror configuration:** Other platforms accept an HTTP
-  proxy and a Harbor registry mirror through cloud-init user data. The Google
-  Cloud image does not read that configuration, so the instance needs direct
-  outbound access to:
-
-  - `*.plakar.io`, for runtime configuration, license validation, and plugin
-    downloads.
-  - `*.docker.io`, `*.docker.com`, `*.ghcr.io`, and `*.githubusercontent.com`,
-    for the container images the appliance runs.
-
-  Without that access, the instance cannot validate its license or pull the
-  images it needs to start.
+The Google Cloud image does not accept SSH connections, and it ignores SSH keys,
+whether they come from the instance metadata or from `ssh_authorized_keys` in
+the user data. The appliance is administered entirely through the web interface.
 

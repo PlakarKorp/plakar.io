@@ -25,7 +25,7 @@ flowchart TD
   end
 
   subgraph PCP["Plakar Control Plane"]
-    Inventory["Managed inventory<br/>synced every 15 minutes"]
+    Inventory["Managed inventory<br/>synced periodically"]
     Bundle["Configuration bundle<br/>auto-create connectors"]
     Source["Source app<br/>production · database"]
     Policy["SLA policy<br/>scope: production database"]
@@ -54,14 +54,12 @@ Create a managed inventory for the cloud account, such as an
 [Scaleway](../../inventories/managed/scaleway) inventory. The inventory
 discovers the resources of the account and keeps them up to date.
 
-Inventories are synchronized automatically in the background every 15 minutes. A
-resource created at the provider appears in the inventory at the next
-synchronization, and a resource deleted at the provider disappears from it.
-
-> [!NOTE]
->
-> The 15-minute interval is fixed for now. Support for a custom synchronization
-> interval is planned for an upcoming release.
+Inventories are synchronized automatically in the background, every 15 minutes
+by default. A resource created at the provider appears in the inventory at the
+next synchronization, and a resource deleted at the provider disappears from it.
+The period is set per inventory, in the **Synchronization** section of its
+settings, as described in
+[inventory synchronization](../../inventories#inventory-synchronization).
 
 {{< /step >}}
 
@@ -111,9 +109,10 @@ the configuration it holds.
 
 Create a bundle on the inventory, with **Source** as its connector type, the
 integration and protocol of the resources to protect, and a scope that selects
-them, for example the `Object Storage` class. The bundle must supply every field
-the integration requires, such as the credentials, otherwise no app is created.
-See
+them, for example the `Object Storage` class. Without a class filter, the bundle
+creates apps on every resource of the inventory, including those the
+integration cannot protect. The bundle must supply every field the integration
+requires, such as the credentials, otherwise no app is created. See
 [auto-creating apps](../../inventories/configuration-bundles#auto-creating-apps).
 
 Each source app takes its **Environment** and **Data Class** from the tags of
@@ -145,7 +144,8 @@ production source and a stricter one for production databases.
 From then on, the chain runs on its own. When a resource tagged
 `plakar:env=production` and `plakar:class=database` is created at the provider:
 
-1. The next synchronization of the inventory discovers it, within 15 minutes.
+1. The next synchronization of the inventory discovers it, within the
+   synchronization period of the inventory.
 2. The configuration bundle creates a source app for it, with `production` as
    its environment and `database` as its data class.
 3. The policy that targets `production` and `database` picks up the source app

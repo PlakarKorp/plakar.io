@@ -3,24 +3,15 @@
 
 Plakar Control Plane can be deployed on an OVHcloud dedicated server using the
 official `QCOW2` image. The image can be downloaded from the
-[Downloads Page](/download).
-
-Dedicated servers are available in the OVHcloud Control Panel under **Bare Metal
-Cloud -> Dedicated Servers**.
+[Downloads Page](/download). Dedicated servers are available in the OVHcloud
+Control Panel under **Bare Metal Cloud -> Dedicated Servers**.
 
 ## Ordering a Dedicated Server
 
-Plakar Control Plane requires the following recommended setup:
-
-- A minimum of **4 vCPUs**
-- At least **16 GB RAM**
-- A first disk of around **10 GB** for the OS
-- A second disk of at least **1 TB** for Control Plane data
-
-These are recommendations for a production deployment. For evaluation or
-testing, you can reduce CPU, RAM, and storage. The data volume stores the
-database, logs, and all Plakar state. Backups themselves are stored wherever you
-configure using apps.
+Choose a server according to [Appliance Sizing](../../../appliance/sizing),
+which gives the CPU, memory and disks for each size of deployment. The server
+needs two disks: one for the appliance system, and one for the Plakar Control
+Plane data.
 
 > [!NOTE]+
 >
@@ -45,33 +36,27 @@ Set **Type of OS** to **Custom**, then select **Bring your own image**.
 Provide a publicly accessible URL for the Plakar Control Plane `QCOW2` image in
 **Image URL**. You can use the download link from the
 [Downloads Page](/download/), or host the image yourself on publicly accessible
-storage such as an S3 bucket. and set the **Image Type** to **qcow2**.
+storage such as an S3 bucket. Set the **Image Type** to **qcow2**.
 
 You can optionally provide a checksum to verify the image during installation.
-We publish both `SHA-256` and `MD5` checksums on the Downloads Page. If you
-provide a checksum, enter it in **Image checksum** and select the corresponding
-**checksum type**.
+The Downloads Page publishes a `SHA-256` checksum for each image. If you provide
+a checksum, enter it in **Image checksum** and set the **checksum type** to
+`SHA-256`.
 
 ![](../images/baremetal-2.png)
 
 ### SSH Public Key
 
 Leave **SSH Public Key** blank. OVHcloud's SSH key configuration is not read by
-the appliance.
-
-If you need SSH access, provide your public key through **Config Drive
-UserData**. The appliance uses the `plakar` user for SSH access.
+the appliance. If you need SSH access, provide your public key through **Config
+Drive UserData**. The appliance uses the `plakar` user for SSH access.
 
 ### Config Drive UserData
 
 Config Drive UserData contains the cloud-init configuration used by the
-appliance. It can be used to configure SSH access, an HTTP proxy, or a Harbor
-registry mirror.
-
+appliance, such as SSH access, a proxy, registry mirrors or a static IP address.
 See [Configuring the Appliance](#configuring-the-appliance) for more
 information.
-
-![](../images/baremetal-3.png)
 
 ### EFI Bootloader
 
@@ -86,36 +71,21 @@ installed on the server** to:
 
 ## Configuring the Appliance
 
-Config Drive UserData is the cloud-init configuration passed to the appliance
-during installation. At minimum, it can contain an SSH public key. Proxy and
-registry mirror settings can be added when required by your environment.
+The appliance reads its settings from the cloud-init document passed in **Config
+Drive UserData** during installation. The keys of that document are described in
+[Appliance Configuration](../../../appliance/configuration). Every key works on
+OVHcloud bare metal, including `network` for a static IP address, several
+interfaces or custom routes. Without it, the appliance uses DHCP.
 
-### What needs to be reachable
+If the appliance goes through a proxy or firewall, the hosts it has to reach are
+listed in
+[required outbound access](../../../appliance/configuration#required-outbound-access).
 
-Plakar Control Plane requires HTTPS access to `api.plakar.io` for runtime
-configuration, license validation, and plugin downloads. If your proxy uses a
-whitelist instead of allowing all outbound traffic, add `*.plakar.io` to it.
+### Writing the UserData
 
-The appliance also needs to pull container images from `docker.io` and
-`ghcr.io`. There are two supported approaches:
-
-1. **Route image pulls through the HTTP proxy.** If you choose this option, the
-   proxy should allow access to:
-
-   - `*.docker.io`
-   - `*.docker.com`
-   - `*.ghcr.io`
-   - `*.githubusercontent.com`
-
-2. **Use a Harbor registry mirror.** This is the recommended approach for
-   production deployments because images are pulled from a local registry cache
-   instead of the public internet. When using Harbor, you don't need to
-   whitelist the Docker and GitHub domains above on your proxy.
-
-### UserData Example
-
-The following example configures an SSH key, an HTTP proxy, and Harbor registry
-mirrors:
+Paste the cloud-init document into **Config Drive UserData**. The document below
+sets every key. Remove the ones your environment does not need, each key is
+optional.
 
 ```yaml
 #cloud-config
@@ -123,37 +93,32 @@ ssh_authorized_keys:
   - ssh-ed25519 AAAA...
 
 proxy:
-  http: http://<proxy-ip>:<proxy-port>
-  https: http://<proxy-ip>:<proxy-port>
-  no_proxy: .corp.example,10.0.0.0/8 # optional
+  http: http://proxy.corp.example:3128
+  https: http://proxy.corp.example:3128
+  no_proxy: .corp.example
 
 registry:
   mirrors:
-    docker.io: <harbor-host>/dockerhub-proxy
-    ghcr.io: <harbor-host>/ghcr-proxy
-  insecure: false # true: skip TLS verification for the mirror hosts
-```
+    docker.io: harbor.corp.example/dockerhub-proxy
+    ghcr.io: harbor.corp.example/ghcr-proxy
+  insecure: false
 
-Every top-level key above is optional. Include only the configuration required
-by your environment.
+releases:
+  url: https://dist.corp.example/plakar/enterprise
+  version: v1.1.2
 
-### Network Configuration
+ntp:
+  servers:
+    - 10.20.0.1
+    - ntp.corp.example
 
-By default, the appliance uses DHCP to obtain its network configuration. If the
-OVHcloud server requires a static IP address, multiple network interfaces, or
-custom routes, you can configure them using the `network` key in UserData.
-
-For example:
-
-```yaml
-#cloud-config
 network:
   ethernets:
     eth0:
       addresses: [10.0.1.5/24]
       gateway4: 10.0.1.1
       nameservers:
-        addresses: [10.0.1.53, 10.0.1.54]
+        addresses: [10.0.1.53]
 ```
 
 ### Connect over SSH
@@ -168,7 +133,7 @@ ssh plakar@<server-ip-address>
 Replace `<server-ip-address>` with the public IP address assigned to the
 dedicated server.
 
-## Start the Appliance and Complete Enrollment
+## Accessing Plakar Control Plane
 
 Once the installation settings are configured, confirm the order to start the
 installation.
@@ -178,17 +143,13 @@ installation.
 > The first boot may take some time while the appliance completes its initial
 > setup.
 
-Once the appliance has booted and the initial setup is complete, open Plakar
-Control Plane from a browser using the server's public IP address:
-
-```text
-http://<server-ip-address>
-```
-
-For a new installation, you will be guided through the enrollment process to:
+Once the appliance has finished its first boot, Plakar Control Plane is reached
+from a browser at `http://<server-ip-address>`, the public IP address of the
+dedicated server. For first-time installations, you will be guided through the
+enrollment process to:
 
 - Register the instance with Plakar services for licensing and billing
 - Create the initial administrator account
 
-See the [enrollment](../../enrollment) documentation for more information.
+See the [enrollment](../../enrollment) documentation for more details.
 

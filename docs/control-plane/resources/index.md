@@ -34,8 +34,9 @@ flowchart TB
 All resources discovered across all inventories are available under
 **Infrastructure -> Inventory -> Resources**. From here a resource can be
 assigned to either a [source](../apps/sources) or a
-[destination](../apps/destinations) app. You can also filter resources by
-inventories or by resource class.
+[destination](../apps/destinations) app. The list can be narrowed to one
+inventory or filtered, as described in
+[Filtering resources](#filtering-resources).
 
 The actions on each resource include placing a
 [legal hold](../compliance/legal-hold) on it. A resource under a legal hold
@@ -44,18 +45,37 @@ it are refused until the hold is removed.
 
 ![](./images/resources.png)
 
+## Filtering resources
+
+The resource list can be searched by name or URN and filtered by the following
+values. Filters combine, so a resource is listed only when it matches all of
+them.
+
+- **Status**: the backup coverage of the resource. **Protected** resources are
+  covered by a backup task. **Not protected** resources are not. **Unmanaged**
+  resources are left out of coverage, either because they are
+  [excluded from backup coverage](#resource-settings) or because they cannot be
+  backed up.
+- **Resource class**: the [class](#resource-classification) of the resource.
+- **App**: the integration of a source or destination app set up on the
+  resource. **No app** lists the resources with none. Store apps are not
+  counted.
+- **Residency**: the [residency](#residency) of the resource, set on it or
+  inherited from its inventory. **Not set** lists the resources with none.
+- **Region**: the region of the resource.
+- **Tag**: one tag the resource carries.
+
 ## Resource settings
 
-Resource settings can be updated from the **Settings** tab under each resource,
-which is split between **General** and **Residency**. General holds the settings
-described below. Residency ties the resource to a country and restricts
-operations to resources in that same country. See
-[data residency](../compliance/residency) for details.
+Resource settings can be updated from the **Resource settings** tab under each
+resource, which is split between **General**, **Residency** and **Edge pool**.
+General holds the settings described below. Residency and Edge pool are
+described in [Residency](#residency) and [Edge pools](#edge-pools).
 
 For managed inventories, most settings are read-only since the resource is
 managed by the inventory. For self-managed inventories, all settings can be
-modified. Backup coverage can be modified for any resource regardless of
-inventory type.
+modified. Backup coverage and the edge pool can be modified for any resource
+regardless of inventory type, since neither comes from the inventory.
 
 Backup coverage tracks how many of your resources are protected by backups. If a
 resource does not need to be backed up (for example, a test database), you can
@@ -64,13 +84,58 @@ resources are omitted from protection status and coverage reporting.
 
 ![](./images/resource.png)
 
+## Residency
+
+Resources can only be used together when they have the same
+[residency](../compliance/residency). A source can only be backed up to a store
+with the same residency, a restore can only write to a destination with the
+residency of its store, and a sync can only run between stores with the same
+residency. The residency belongs to the resource, so every app created for it
+takes on its residency.
+
+A resource inherits the residency of its inventory. A residency set in the
+**Residency** section of its settings takes precedence, for a resource located
+in a different country from the rest of its inventory.
+
+## Edge pools
+
+A resource assigned to an [edge pool](../edges/enrollment#edge-pools) has its
+tasks run on an edge of that pool. A resource without a pool has its tasks run
+on the Control Plane.
+
+A resource inherits the pool of its inventory. A pool set in the **Edge pool**
+section of its settings takes precedence, for a resource whose tasks have to run
+on different edges than the rest of its inventory. Clearing it brings back the
+pool of the inventory. Every app created for the resource takes on its pool.
+
+A backup, restore or sync runs on the pool of its source or store resource, and
+is refused when the two resources are in different pools, since the task runs on
+a single edge and an edge belongs to exactly one pool. See
+[Selecting an edge](../edges/running-tasks#selecting-an-edge).
+
 ## Resource classification
 
-Each resource is assigned a `class` and `subclass` that describe what kind of
-infrastructure it is. The `class` describes the general category the resource
-belongs to, while the `subclass` identifies the specific implementation or
-provider. Plakar Control Plane uses this classification to determine which
-integrations are compatible with a resource.
+A resource is identified by its resource URN, which cannot change once the
+resource exists. It also has a name, a class, a subclass and tags.
+
+The `class` describes the general category the resource belongs to, while the
+`subclass` identifies the specific implementation or provider. Plakar Control
+Plane uses this classification to determine which integrations are compatible
+with a resource. [Configuration bundles](../inventories/configuration-bundles)
+select resources by class, subclass and tags, and
+[policies](../compliance/policies) can narrow their scope by tag. In a managed
+inventory, the class and tags are discovered from the provider and cannot be
+edited.
+
+## Endpoints and attributes
+
+Each resource has one or more endpoints that identify where it is reached, such
+as a hostname, an IP address or a bucket name. In a self-managed inventory, the
+endpoints are entered with the resource. In a managed inventory, they are
+discovered from the provider, together with attributes that describe the
+resource, such as the S3 endpoint of a bucket or whether versioning is enabled
+on it. When an app is set up on the resource, the endpoints and attributes fill
+in the matching fields, so they do not have to be entered again.
 
 ## Environment and data class tags
 
@@ -124,7 +189,7 @@ required to use each one as a source, store, or destination.
 - [Windows VSS](https://www.stg.plakar.io/docs/control-plane/resources/compute/vss/index.md): How to configure a Volume Shadow Copy Service (VSS) resource in Plakar Control Plane.
 - [OpenStack Compute](https://www.stg.plakar.io/docs/control-plane/resources/compute/openstack/index.md): How to configure an OpenStack Nova server resource in Plakar Control Plane.
 - [OVHcloud Compute](https://www.stg.plakar.io/docs/control-plane/resources/compute/ovhcloud/index.md): How to configure an OVHcloud Compute resource in Plakar Control Plane.
-- [Kubernetes VM](https://www.stg.plakar.io/docs/control-plane/resources/compute/kubernetes-vm/index.md): How to configure a KubeVirt virtual machine resource in Plakar Control Plane.
+- [Kubernetes](https://www.stg.plakar.io/docs/control-plane/resources/compute/kubernetes/index.md): Kubernetes cluster manifests and KubeVirt virtual machines in Plakar Control Plane.
 - [OpenShift](https://www.stg.plakar.io/docs/control-plane/resources/compute/openshift/index.md): OpenShift cluster manifests and OpenShift Virtualization virtual machines in Plakar Control Plane.
 
 
