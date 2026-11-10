@@ -14,7 +14,7 @@ A one-off task is a task that runs immediately without being attached to a
 schedule. This is useful when you want to run an operation on demand, such as
 triggering an immediate backup or restore from a restore point.
 
-One-off tasks can be created directly from **Operations > Scheduling** or from
+One-off tasks can be created directly from **Governance > Scheduling** or from
 the various pages as a quick way to setup tasks. This includes:
 
 - Each app pages have quick actions to run tasks supported by the app. See the

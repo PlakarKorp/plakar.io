@@ -22,6 +22,9 @@ resource that holds the store. The integration, its configuration and the way
 fields are filled work as for every app, as described in
 [setting up an app](../apps#setting-up-an-app).
 
+**Infrastructure > Stores** opens the **Stores** tab across all inventories,
+which lists every store app of the organization in one place.
+
 ![](../images/create-store.png)
 
 A store app also has a **Storage Type**:
