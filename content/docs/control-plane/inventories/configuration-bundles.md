@@ -52,7 +52,7 @@ EC2 instances. A bundle for the S3 integration with no class filter applies to
 every resource of the inventory, so it creates S3 apps for the EC2 instances
 too. Scoping it to the `Object Storage` class limits it to the buckets.
 
-![Creating a configuration bundle](../images/creating-config-bundle.png)
+![Creating a configuration bundle](../images/create-config-bundle.png)
 
 ## Bundle fields
 
