@@ -62,7 +62,7 @@ Plane).
 ## Schedule a backup task
 
 With the source app in place, create a backup task to run it on a schedule. You
-can do this from the app's dashboard or from **Operations > Scheduling**.
+can do this from the app's dashboard or from **Governance > Scheduling**.
 
 Select your PCP source app as the source and choose a store app as the
 destination. Configure a schedule that fits your recovery point objective.
