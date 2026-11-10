@@ -47,6 +47,13 @@ as when a member is added to an organization.
 The password is the same in both cases. The prefix selects the organization, not
 a different account.
 
+## Signing in with single sign-on
+
+When [single sign-on](../../access-control/sso) is set up, the sign-in page also
+offers a button for each enabled provider.
+
+{{< figure src="../images/sso-signin.png" alt="" class="mx-auto max-w-100" >}}
+
 ## Switching organizations
 
 Signing in places you on the organization the account selects. The organization
