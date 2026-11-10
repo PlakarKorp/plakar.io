@@ -44,3 +44,14 @@ See the [policies documentation](../../compliance/policies) for details on
 creating and managing policies. See the
 [job history documentation](../job-history) for details on monitoring jobs
 triggered by the policy scheduler.
+
+## When backups run
+
+Each schedule runs at the start of its policy tier, in the time zone of the
+policy, or at the time of its source when the tier has a start window. See
+[Start time and window](../../compliance/policies#start-time-and-window).
+
+Each scheduled run, or slot, gets at most one job. A slot missed while Plakar
+Control Plane is stopped, or while a policy change is applied, runs as soon as
+possible. Several missed slots run once, not once each. A restart inside a start
+window does not run the backup early.
