@@ -54,6 +54,9 @@ offers a button for each enabled provider.
 
 {{< figure src="../images/sso-signin.png" alt="" class="mx-auto max-w-100" >}}
 
+An existing account can only sign in with a provider once the provider is
+[linked to it](../../access-control/sso#linking-a-provider-to-an-account).
+
 ## Switching organizations
 
 Signing in places you on the organization the account selects. The organization

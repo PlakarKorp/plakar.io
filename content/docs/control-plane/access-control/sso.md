@@ -34,10 +34,10 @@ the root organization who can change the
 [Platform Admins](../permissions/platform-admin).
 
 The same rule applies to the email domains of every organization. Only the
-Superuser and Platform Admins can assign domains. An organization admin cannot set up the
-domains of their own organization. Other members cannot view or change the
-providers. Those who can view the organization settings see its domains, but
-cannot change them.
+Superuser and Platform Admins can assign domains. An organization admin cannot
+set up the domains of their own organization. Other members cannot view or
+change the providers. Those who can view the organization settings see its
+domains, but cannot change them.
 
 ## Adding a provider
 
@@ -101,6 +101,24 @@ account and password. See [Signing In](../../intro/signing-in).
 A sign-in is accepted only when the provider vouches that the email address is
 verified. Providers that do not report this are refused. The provider setup
 below notes where a provider needs extra configuration for it.
+
+The first sign-in with a provider creates the account. A sign-in with an email
+address that already belongs to an account is refused, so a provider cannot take
+over an existing account. The person links the provider to their account
+instead.
+
+## Linking a provider to an account
+
+A person who already has an account links a provider to it from their
+**Account** page. From then on, they can sign in with that provider as well as
+with their existing methods.
+
+A link is accepted only when the account at the provider has the same email
+address, and the person is a member of the organization that assigns that email
+domain to the provider. An identity at a provider can be linked to one account
+only.
+
+![](../images/sso-account-linking.png)
 
 ## Provider setup
 
