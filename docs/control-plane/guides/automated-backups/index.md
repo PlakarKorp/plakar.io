@@ -90,7 +90,8 @@ Classification**, so that policies can be scoped to them. See
 
 Backups are written to a store. Create a [store app](../../apps/stores) from the
 **Stores** tab of the inventory that holds the storage, such as an S3 bucket,
-then initialize it.
+then initialize it. **Infrastructure > Stores** lists the stores of all
+inventories.
 
 A policy only schedules a backup when the source and the store share the same
 [data residency](../../compliance/residency). Use a store with the same
@@ -110,9 +111,9 @@ the configuration it holds.
 Create a bundle on the inventory, with **Source** as its connector type, the
 integration and protocol of the resources to protect, and a scope that selects
 them, for example the `Object Storage` class. Without a class filter, the bundle
-creates apps on every resource of the inventory, including those the
-integration cannot protect. The bundle must supply every field the integration
-requires, such as the credentials, otherwise no app is created. See
+creates apps on every resource of the inventory, including those the integration
+cannot protect. The bundle must supply every field the integration requires,
+such as the credentials, otherwise no app is created. See
 [auto-creating apps](../../inventories/configuration-bundles#auto-creating-apps).
 
 Each source app takes its **Environment** and **Data Class** from the tags of
@@ -132,8 +133,8 @@ narrow the scope further.
 
 The [policy scheduler](../../scheduling/policy-scheduler) then creates a backup
 schedule for every source app that matches the scope and shares the residency of
-the store. Policies can be layered, for example a general policy for every
-production source and a stricter one for production databases.
+the store. When the scopes of several policies overlap, a source app follows the
+one with the lowest RPO. See [Scope](../../compliance/policies#scope).
 
 {{< /step >}}
 

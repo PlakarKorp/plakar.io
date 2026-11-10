@@ -13,6 +13,9 @@ resource that holds the store. The integration, its configuration and the way
 fields are filled work as for every app, as described in
 [setting up an app](../apps#setting-up-an-app).
 
+**Infrastructure > Stores** opens the **Stores** tab across all inventories,
+which lists every store app of the organization in one place.
+
 ![](../images/create-store.png)
 
 A store app also has a **Storage Type**:
@@ -45,8 +48,8 @@ location and is not destructive. Initializing a location that already holds a
 store fails and leaves that store untouched.
 
 Backups are compressed as they are written to the store, with an algorithm
-chosen at initialization. `LZ4` is the default. `GZIP` or `ZSTD` can be selected
-in the advanced settings of the initialization dialog.
+chosen at initialization. `LZ4` is the default. `GZIP`, `ZSTD` or `SNAPPY` can
+be selected in the advanced settings of the initialization dialog.
 
 {{< figure src="../images/kloset-store-initialization.png" alt="" class="mx-auto max-w-100" >}}
 

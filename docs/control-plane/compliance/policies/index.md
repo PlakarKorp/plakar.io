@@ -34,81 +34,109 @@ the [permissions](../../access-control/permissions) you hold there.
 
 ## Creating a policy
 
-To create a policy, provide a name, then define the backup requirements and
-select a store app to use for backups.
+A policy is created in two steps, its rules and then its scope. It needs a name,
+at least one retention tier with a store, an environment and at least one data
+class. Everything can then be changed later.
 
-### Backup frequency and retention
+### Rules
 
-You define requirements across six time granularities. You can configure any
-combination of these:
+The rules define how often backups are taken, how long they are kept and where
+they are stored. They are set per retention tier:
 
+- Hourly
 - Daily
 - Weekly
 - Monthly
 - Yearly
 
-For each granularity you enable, you configure:
+Any combination of tiers can be enabled. For each tier, you configure:
 
-- **Frequency:** how often a backup should be taken within that period, for
-  example 4 times or once a day
-- **Retention:** how long backup restore points should be kept
+- **Backups:** how many backups are taken within the period of the tier, for
+  example 3 an hour, which is one every 20 minutes.
+- **Keep for:** how long the restore points of the tier are kept, for example 7
+  days.
+- **Starts:** when the backups of the tier start. See
+  [Start time and window](#start-time-and-window).
+- **Stored on:** the [store](../../apps/stores) the backups of the tier are
+  written to. Each tier can use a different store.
 
-You then select a [store](../../apps/stores) where the backup will be stored and
-toggle whether you want to run a [check task](../../scheduling/tasks#check-task)
-on the after each. It's recommended to leave this on.
+![](../images/creating-a-policy.png)
 
-![](../images/create-policy.png)
+### Start time and window
 
-### Policy summary
+Each tier has a start, and the policy has one time zone that applies to every
+tier. Starts follow the local clock of that zone, so a daily backup at 02:00 in
+`Europe/Paris` runs at 02:00 Paris time in both summer and winter.
 
-Before creating the policy, Plakar Control Plane shows you a summary of the
-policy contract based on your selections.
+The Hourly tier starts at a minute past the hour, such as `xx:30`. The other
+tiers start at a time of day. The Weekly tier also sets a day of the week, the
+Monthly tier a day of the month, and the Yearly tier a month and a day. A month
+without the chosen day, such as the 31st, runs on its last day. When a tier
+takes several backups in its period, they are evenly spaced from the start. For
+example, 4 backups a day starting at 01:00 run at 01:00, 07:00, 13:00 and 19:00.
 
-The summary shows the RPO and lookback derived from your settings. RPO is the
-maximum data loss window based on your most frequent backup, and lookback is how
-far back you can restore from based on your retention settings.
+A tier other than Hourly can start within a window, such as 02:00 to 06:00,
+instead of at a single time. Each source then gets its own start time inside the
+window and keeps it from one run to the next, so the sources of a policy do not
+all start against the same stores at once. Adding a source does not move the
+others. Changing the window gives every source a new time. A window can cross
+midnight, but it must be shorter than 24 hours and than the time between two
+backups of the tier. A Daily tier with 4 backups a day runs every 6 hours, so
+its window must be shorter than 6 hours.
 
-## Scoping a policy
+When the clocks go forward, a start time that does not exist, such as 02:30,
+runs an hour later. When the clocks go back, a start time that occurs twice runs
+the first time.
 
-After creating a policy, you are immediately taken to the scoping page to set up
-the environment and data class filters.
+Policies created before start times were available keep the hour they already
+run at until the start of a tier is changed.
 
-Supported scope filters include:
+### Scope
 
-- **Environment:** the environment the policy applies to. Environments are
-  managed from the organization's
-  [classification settings](#managing-environments--data-classes).
-- **Data Class:** one or more data classes the policy applies to. Data classes
-  are managed from the organization's
-  [classification settings](#managing-environments--data-classes).
-- **Tag:** narrows the matched sources down further to only those carrying the
-  specified tag. Useful when environment and data class alone would match more
-  sources than intended.
+The scope selects the source apps the policy applies to:
 
-Plakar Control Plane matches all source apps against the configured scope. Any
-source app whose environment and data class match the policy is automatically
-scheduled according to the policy rules. When a new source app is added with
-matching values, it is automatically picked up by the policy without any
-additional configuration.
+- **Environment:** required.
+- **Data classes:** required. One or more.
+- **Tags:** optional. Narrows the match to sources whose resource carries at
+  least one of the listed tags.
 
-Scope is not the only condition. A policy also respects
-[data residency](./residency): a matched source is only scheduled when it and
-the policy's store share the same residency.
+Environments and data classes are managed in the organization's
+[classification settings](#managing-environments--data-classes). A preview lists
+the resources and source apps the scope matches before the policy is created.
 
-A source app can be covered by multiple policies if their scopes overlap. This
-allows policies to be layered for example, a general policy covering all
-production sources and a stricter policy specifically covering production
-databases.
+A matched source is only scheduled when it and its store share the same
+[data residency](./residency).
+
+Scopes can overlap, for example a general policy for all production sources and
+a stricter one for production databases. A source app matched by several
+policies follows the one with the lowest RPO.
 
 ![](../images/scoping-a-policy.png)
 
+### Summary
+
+The policy shows a summary of the contract it defines. The RPO is the maximum
+data loss window, based on the most frequent backup. The lookback is how far
+back data can be restored, based on the longest retention. The summary also
+shows the approximate number of restore points kept and how many resources the
+scope covers.
+
 ## Scheduling
 
-Once a policy is scoped, the policy scheduler automatically creates backup
-schedules for all matching sources using the store app selected when the policy
-was created. See the
-[policy scheduler documentation](../../scheduling/policy-scheduler) for more
-details.
+The [policy scheduler](../../scheduling/policy-scheduler) creates a backup
+schedule for every source app the policy matches, using the store and start of
+each tier.
+
+A policy selects source apps by classification, not by name, so it also covers
+source apps created later. When an [inventory](../../inventories) discovers a
+resource, a
+[configuration bundle](../../inventories/configuration-bundles#auto-creating-apps)
+can create its source app, which takes its environment and data class from the
+tags of the resource. Plakar Control Plane re-evaluates the matches of each
+policy every 15 minutes, so a new source app is scheduled within that time. A
+source app that no longer matches any policy loses its policy schedules the same
+way. See [Automating backups](../../guides/automated-backups) for the full
+setup.
 
 ## Managing environments & data classes
 
@@ -121,5 +149,5 @@ available to a policy are the ones defined in the organization that policy lives
 in. See [Managing Organizations](../../access-control/organizations) for more
 information about how organizations isolate configuration.
 
-![Creating and deleting environments and data classes](../images/managing-classification.png)
+![Creating and deleting environments and data classes](../images/managing-classifications.png)
 

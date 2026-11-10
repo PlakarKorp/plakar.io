@@ -81,7 +81,11 @@ This covers the full restore workflow without needing the CLI.
 
 Installing integrations from the UI and alerting require the user to be logged
 in. You can log in directly from the UI either using your email and receiving a
-magic link or with your GitHub account.
+magic link or with your GitHub account. The GitHub sign-in page opens in a new
+tab.
+
+Once you complete the sign-in, the sign-in page shows a confirmation code. Go
+back to the UI tab and enter the code to finish logging in.
 
 Plakar provides pre-built integration packages as a convenience. Login is
 required to prevent abuse on our servers. If you prefer not to log in, you can

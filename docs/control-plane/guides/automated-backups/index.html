@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-10-26T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-10T12:54:52+03:00">
+    <meta property="article:modified_time" content="2026-11-10T15:20:25+01:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -239,12 +239,12 @@
     "dateCreated": "2026-10-26T00:00:00\u002b00:00",
     "datePublished": "2026-10-26T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-10T12:54:52\u002b03:00",
+    "dateModified": "2026-11-10T15:20:25\u002b01:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/guides/automated-backups/",
-    "wordCount":  929 
+    "wordCount":  937 
   }]
   </script>
 
@@ -10458,7 +10458,8 @@ Classification</strong>, so that policies can be scoped to them. See
 </h2>
 <p>Backups are written to a store. Create a <a href="../../apps/stores" >store app</a> from the
 <strong>Stores</strong> tab of the inventory that holds the storage, such as an S3 bucket,
-then initialize it.</p>
+then initialize it. <strong>Infrastructure &gt; Stores</strong> lists the stores of all
+inventories.</p>
 <p>A policy only schedules a backup when the source and the store share the same
 <a href="../../compliance/residency" >data residency</a>. Use a store with the same
 residency as the resources it protects.</p>
@@ -10489,9 +10490,9 @@ the configuration it holds.</p>
 <p>Create a bundle on the inventory, with <strong>Source</strong> as its connector type, the
 integration and protocol of the resources to protect, and a scope that selects
 them, for example the <code>Object Storage</code> class. Without a class filter, the bundle
-creates apps on every resource of the inventory, including those the
-integration cannot protect. The bundle must supply every field the integration
-requires, such as the credentials, otherwise no app is created. See
+creates apps on every resource of the inventory, including those the integration
+cannot protect. The bundle must supply every field the integration requires,
+such as the credentials, otherwise no app is created. See
 <a href="../../inventories/configuration-bundles#auto-creating-apps" >auto-creating apps</a>.</p>
 <p>Each source app takes its <strong>Environment</strong> and <strong>Data Class</strong> from the tags of
 its resource, which is what connects it to the policies of the next step.</p>
@@ -10522,8 +10523,8 @@ and one or more data classes, for example <code>production</code> and <code>data
 narrow the scope further.</p>
 <p>The <a href="../../scheduling/policy-scheduler" >policy scheduler</a> then creates a backup
 schedule for every source app that matches the scope and shares the residency of
-the store. Policies can be layered, for example a general policy for every
-production source and a stricter one for production databases.</p>
+the store. When the scopes of several policies overlap, a source app follows the
+one with the lowest RPO. See <a href="../../compliance/policies#scope" >Scope</a>.</p>
 </div>
 
 
