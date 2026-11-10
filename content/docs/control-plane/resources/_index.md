@@ -131,9 +131,11 @@ resource exists. It also has a name, a class, a subclass and tags.
 The `class` describes the general category the resource belongs to, while the
 `subclass` identifies the specific implementation or provider. Plakar Control
 Plane uses this classification to determine which integrations are compatible
-with a resource. [Policies](../compliance/policies) can narrow their scope by
-tag. In a managed inventory, the class and tags are discovered from the provider
-and cannot be edited.
+with a resource. [Configuration bundles](../inventories/configuration-bundles)
+select resources by class, subclass and tags, and
+[policies](../compliance/policies) can narrow their scope by tag. In a managed
+inventory, the class and tags are discovered from the provider and cannot be
+edited.
 
 ## Endpoints and attributes
 
