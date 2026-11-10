@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-07-22T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-10T12:25:55+03:00">
+    <meta property="article:modified_time" content="2026-11-10T12:54:52+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -229,12 +229,12 @@
     "dateCreated": "2026-07-22T00:00:00\u002b00:00",
     "datePublished": "2026-07-22T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-10T12:25:55\u002b03:00",
+    "dateModified": "2026-11-10T12:54:52\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/inventories/configuration-bundles/",
-    "wordCount":  550 
+    "wordCount":  724 
   }]
   </script>
 
@@ -10341,12 +10341,12 @@ held in the organization the inventory belongs to.</p>
     decoding="async"
     fetchpriority="auto"
     alt="Inventory configuration bundles"
-    width="2807"
-    height="626"
-    src="/docs/control-plane/inventories/images/config-bundle_hu_363f0a5f38d0abaa.webp"
-    srcset="/docs/control-plane/inventories/images/config-bundle_hu_363f0a5f38d0abaa.webp 400w, /docs/control-plane/inventories/images/config-bundle_hu_5ac0a50de5ad4d3e.webp 800w, /docs/control-plane/inventories/images/config-bundle_hu_25186c7143d052b4.webp 1200w"
+    width="2808"
+    height="679"
+    src="/docs/control-plane/inventories/images/config-bundle_hu_4cfcf636354fb8d3.webp"
+    srcset="/docs/control-plane/inventories/images/config-bundle_hu_4cfcf636354fb8d3.webp 400w, /docs/control-plane/inventories/images/config-bundle_hu_543622cd5844b97f.webp 800w, /docs/control-plane/inventories/images/config-bundle_hu_96259126aaab3c18.webp 1200w"
     sizes="(min-width: 768px) 50vw, 65vw"
-    data-zoom-src="/docs/control-plane/inventories/images/config-bundle_hu_83edde91e127cace.webp"></figure>
+    data-zoom-src="/docs/control-plane/inventories/images/config-bundle_hu_35785c0df323fa3a.webp"></figure>
 
 
 <h2 id="matching-resources" class="group pr-8">Matching resources
@@ -10368,28 +10368,31 @@ held in the organization the inventory belongs to.</p>
 Without any filter, a bundle applies to every resource. Each filter narrows the
 scope, and a resource must match all of them to receive the bundle:</p>
 <ul>
-<li><strong>Environment</strong>: resources with the selected environment.</li>
-<li><strong>Resource classes</strong>: resources of the selected classes, such as <code>Database</code> or
-<code>Object Storage</code>.</li>
-<li><strong>Resource subclasses</strong>: resources of the selected subclasses, such as <code>MySQL</code>
-or <code>S3</code>, within the selected classes.</li>
-<li><strong>Tags</strong>: resources that carry the listed tags. Managed inventories discover
+<li><strong>Environment</strong>: resources in the selected environment. With <strong>Any
+environment</strong> selected, the environment does not narrow the scope.</li>
+<li><strong>Resource classes</strong>: resources of one of the selected classes, such as
+<code>Database</code> or <code>Object Storage</code>.</li>
+<li><strong>Resource subclasses</strong>: resources of one of the selected subclasses, such as
+<code>MySQL</code> or <code>S3</code>, within the selected classes.</li>
+<li><strong>Tags</strong>: resources that carry every listed tag. Managed inventories discover
 tags from the provider. Self-managed inventories take them from the resource
 definition, as described in
 <a href="../self-managed/#adding-resources" >adding resources</a>.</li>
 </ul>
+<p>The class filter matters most for bundles that
+<a href="/docs/control-plane/inventories/configuration-bundles/#auto-creating-apps" >auto-create apps</a>. An inventory usually holds resources of
+several classes. An AWS inventory, for example, discovers both S3 buckets and
+EC2 instances. A bundle for the S3 integration with no class filter applies to
+every resource of the inventory, so it creates S3 apps for the EC2 instances
+too. Scoping it to the <code>Object Storage</code> class limits it to the buckets.</p>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
     decoding="async"
-    fetchpriority="auto"
+    fetchpriority="low"
     alt="Creating a configuration bundle"
-    width="2067"
-    height="1504"
-    src="/docs/control-plane/inventories/images/creating-config-bundle_hu_539b8ba42145fd4f.webp"
-    srcset="/docs/control-plane/inventories/images/creating-config-bundle_hu_539b8ba42145fd4f.webp 400w, /docs/control-plane/inventories/images/creating-config-bundle_hu_364e64338ba84beb.webp 800w, /docs/control-plane/inventories/images/creating-config-bundle_hu_1180fb3de2ea6076.webp 1200w"
-    sizes="(min-width: 768px) 50vw, 65vw"
-    data-zoom-src="/docs/control-plane/inventories/images/creating-config-bundle_hu_c4d79a62212ee01c.webp"></figure>
+    src="../images/creating-config-bundle.png"
+    ></figure>
 
 
 <h2 id="bundle-fields" class="group pr-8">Bundle fields
@@ -10409,24 +10412,17 @@ definition, as described in
 </h2>
 <p>A bundle targets one kind of app, set by its <strong>Connector type</strong>: <code>Source</code>,
 <code>Store</code> or <code>Destination</code>. It also targets one integration and, when the
-integration has several, one protocol. The bundle applies to apps of that type,
-integration and protocol on the resources in its scope.</p>
+integration has several, one protocol. Only installed integrations can be
+selected. The bundle applies to apps of that type, integration and protocol on
+the resources in its scope.</p>
 <p>The fields of a bundle are chosen from the fields of the selected integration
 and protocol, either one at a time or all at once. A bundle only sets the fields
 it contains. Every other field is left as each app defines it, and a value set
 on the app itself takes precedence over the bundle.</p>
-<figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="auto"
-    alt="Filling in configuration bundle fields"
-    width="2030"
-    height="1508"
-    src="/docs/control-plane/inventories/images/config-bundle-fields_hu_b4c320a461aa18a4.webp"
-    srcset="/docs/control-plane/inventories/images/config-bundle-fields_hu_b4c320a461aa18a4.webp 400w, /docs/control-plane/inventories/images/config-bundle-fields_hu_fb8fa06fe45bc9d.webp 800w, /docs/control-plane/inventories/images/config-bundle-fields_hu_6d1a5a6e89ab3b0e.webp 1200w"
-    sizes="(min-width: 768px) 50vw, 65vw"
-    data-zoom-src="/docs/control-plane/inventories/images/config-bundle-fields_hu_af965b4f5e7c9318.webp"></figure>
+<p>The form marks the fields the integration requires. A bundle does not have to
+contain them. A partial bundle, for example one that only holds credentials, is
+saved like any other. The fields it leaves out are entered on each app, and it
+cannot <a href="/docs/control-plane/inventories/configuration-bundles/#auto-creating-apps" >auto-create apps</a>.</p>
 
 
 <h2 id="applying-a-bundle-to-apps" class="group pr-8">Applying a bundle to apps
@@ -10482,13 +10478,17 @@ apps it applies to are unaffected.</p>
     </button>
   
 </h2>
-<p>A bundle can also create apps itself. With <strong>Auto-create connectors</strong> enabled,
-Plakar Control Plane creates an app for every resource in the scope of the
-bundle, using the configuration of the bundle. Apps are only created when the
+<p>A source or destination bundle can also create apps itself. Store bundles
+cannot. Their fields are only applied to store apps set up by hand.</p>
+<p>With <strong>Auto-create connectors</strong> enabled, Plakar Control Plane creates an app for
+every resource in the scope of the bundle, using the configuration of the
+bundle. Apps are only created when the
 bundle supplies every field the integration requires. A bundle that leaves a
 required field empty creates no apps, and each app has to be set up by hand.</p>
 <p>Auto-creation suits inventories whose resources share the same credentials,
-where a single bundle can hold the complete configuration.</p>
+where a single bundle can hold the complete configuration. Scope such a bundle
+with a <a href="/docs/control-plane/inventories/configuration-bundles/#matching-resources" >class filter</a>, so it only creates apps on the
+resources its integration can protect.</p>
 
       </article>
       <footer class="mt-12 flex flex-col gap-6 docs-font border-t border-neutral-200 pt-6">
