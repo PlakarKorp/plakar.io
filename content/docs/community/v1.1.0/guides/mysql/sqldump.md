@@ -24,7 +24,7 @@ MySQL-specific considerations, see the
 
 - A running MySQL or MariaDB server.
 - A database user with sufficient privileges (see
-  [Required privileges](../../integrations/mysql/#prerequisites) in the
+  [Required privileges](../../integrations/mysql/#backup-user-privileges) in the
   integration reference).
 - `mysqldump` and `mysql` in `$PATH` for MySQL, or `mariadb-dump` and `mariadb`
   for MariaDB.
