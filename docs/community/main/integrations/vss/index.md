@@ -1,10 +1,9 @@
 
 # Windows VSS
 
-The VSS integration backs up a drive or directory on a live Windows host. Plakar
-connects over SSH, requests a Volume Shadow Copy of the target volume, then
-reads the files from that read-only copy over SFTP. This enables you to have
-consistent backups while your Windows system keeps running.
+The VSS integration backs up a drive or directory on a live Windows host and
+restores it to a Windows host. Backups are taken from a Volume Shadow Copy of
+the target volume, so they are consistent while the system keeps running.
 
 The integration includes two connectors:
 
@@ -65,34 +64,25 @@ connects as. See
 [Setting Up OpenSSH Server on Windows](/docs/control-plane/guides/windows/windows-openssh-setup)
 for the full procedure.
 
-## Host key verification
+### Host key verification
 
 The VSS integration verifies the Windows host against the `known_hosts` file of
 the account running `plakar`. The host key must be verified and recorded in that
 file before running a backup. See
 [SSH host key verification](/docs/control-plane/guides/windows/windows-openssh-setup/#community-integrations-ssh-host-key-verification)
-documentation for more information.
+for more information.
 
-## Configuration options
+## Configuration
 
-The same options apply to the source and destination connectors.
+A backup connects to the Windows host over SSH and requests a shadow copy of the
+volume holding the target path. Plakar then reads the files from that read-only
+snapshot over SFTP and stores them in a Kloset store with encryption and
+deduplication.
 
-| Option                | Required | Description                                                                                                                                                                  |
-| --------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `location`            | Yes      | An SFTP-style URL to the Windows host, drive, and path. Must begin with `vss://`.                                                                                            |
-| `username`            | Yes      | The name of an administrative user account to perform the operation with.                                                                                                    |
-| `port`                | No       | The SSH server port. Defaults to `22`.                                                                                                                                       |
-| `root`                | No       | The absolute path to the Windows drive and directory or file to back up. Defaults to the entire `C:` drive.                                                                  |
-| `identity`            | No       | Path to the SSH private key file used for authentication. If it is not set and an ssh-agent is running, the keys held by the agent are used. Otherwise authentication fails. |
-| `ssh_auth_sock`       | No       | Path to the socket of a running ssh-agent.                                                                                                                                   |
-| `ssh_private_key`     | No       | SSH private key material in PEM or OpenSSH format, loaded into the ssh-agent with `ssh-add`.                                                                                 |
-| `ssh_private_key_ttl` | No       | Lifetime for keys added to the ssh-agent with `ssh-add`, for example `5s`, `1m`, or `1h`.                                                                                    |
+A restore reconstructs files from a snapshot and writes them back to the Windows
+host over SFTP.
 
-## Source connector
-
-The source connector requests a shadow copy of the volume holding the target
-path, then reads the files from that snapshot over SFTP and stores them in a
-Kloset store with encryption and deduplication.
+#### Backup flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -113,20 +103,7 @@ FS --> VSS --> Via --> Plakar --> Store
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-### Configure
-
-```bash
-# Configure the D: drive on a Windows machine as a backup source
-$ plakar source add mywindowsbox location=vss://Administrator@192.168.1.42/D:/
-
-# Back up the source to a Kloset store
-$ plakar at /var/backups backup "@mywindowsbox"
-```
-
-## Destination connector
-
-The destination connector reconstructs files from a snapshot and writes them
-back to the Windows host over SFTP.
+#### Restore flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -146,13 +123,38 @@ Store --> Plakar --> Via --> FS
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-### Configure
+### Shared configuration
+
+The following options apply to both source and destination connectors.
+
+| Option                | Required | Description                                                                                                                                                                  |
+| --------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `location`            | Yes      | An SFTP-style URL to the Windows host, drive, and path. Must begin with `vss://`.                                                                                            |
+| `username`            | Yes      | The name of an administrative user account to perform the operation with.                                                                                                    |
+| `port`                | No       | The SSH server port. Defaults to `22`.                                                                                                                                       |
+| `root`                | No       | The absolute path to the Windows drive and directory or file to back up. Defaults to the entire `C:` drive.                                                                  |
+| `identity`            | No       | Path to the SSH private key file used for authentication. If it is not set and an ssh-agent is running, the keys held by the agent are used. Otherwise authentication fails. |
+| `ssh_auth_sock`       | No       | Path to the socket of a running ssh-agent.                                                                                                                                   |
+| `ssh_private_key`     | No       | SSH private key material in PEM or OpenSSH format, loaded into the ssh-agent with `ssh-add`.                                                                                 |
+| `ssh_private_key_ttl` | No       | Lifetime for keys added to the ssh-agent with `ssh-add`, for example `5s`, `1m`, or `1h`.                                                                                    |
+
+### Example
+
+Configure the `D:` drive on a Windows machine as a backup source and back it up
+to a Kloset store:
 
 ```bash
-# Configure a backup destination corresponding to the backup source
+$ plakar source add mywindowsbox location=vss://Administrator@192.168.1.42/D:/
+
+$ plakar at /var/backups backup "@mywindowsbox"
+```
+
+Configure a destination corresponding to the source and restore a snapshot to
+the `D:` drive:
+
+```bash
 $ plakar destination add mywindowsbox location=vss://Administrator@192.168.1.42/D:/
 
-# Restore a snapshot to the D: drive
 $ plakar at /var/backups restore -to "@mywindowsbox" <snapshot_id>
 ```
 

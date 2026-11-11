@@ -4,6 +4,10 @@
 
 
 
+## [SQLite](https://www.plakar.io/integrations/sqlite/index.md)
+
+
+
 ## [OpenShift](https://www.plakar.io/integrations/openshift/index.md)
 
 

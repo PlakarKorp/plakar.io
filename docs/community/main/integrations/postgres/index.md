@@ -1,8 +1,19 @@
 
 # PostgreSQL
 
-The **PostgreSQL integration** supports three backup strategies, each suited for
-different requirements.
+The PostgreSQL integration backs up PostgreSQL databases into a Kloset store and
+restores them. It supports logical dumps, logical dumps authenticated with an
+AWS IAM token, and physical base backups of the whole cluster.
+
+The integration includes two connectors:
+
+| Connector type            | Description                                                                                  |
+| ------------------------- | -------------------------------------------------------------------------------------------- |
+| **Source connector**      | Back up PostgreSQL databases or a whole cluster into a Kloset store.                         |
+| **Destination connector** | Restore a logical dump from a Kloset store to a running server (`postgres`, `postgres+aws`). |
+
+The integration supports three protocols, each suited for different
+requirements:
 
 | Protocol          | Mechanism                                          | Restore target              |
 | ----------------- | -------------------------------------------------- | --------------------------- |
@@ -10,12 +21,23 @@ different requirements.
 | `postgres+aws://` | Same as above, authenticated with an AWS IAM token | A running PostgreSQL server |
 | `postgres+bin://` | Physical base backup via `pg_basebackup`           | Any file-restore connector  |
 
+**Requirements**
+
+- For `postgres://` and `postgres+aws://`, the PostgreSQL client tools in
+  `$PATH` on the machine running Plakar, typically provided by the
+  `postgresql-client` package:
+  - `pg_dump`, `pg_dumpall`: for backup
+  - `pg_restore`, `psql`: for restore and connectivity checks
+- For `postgres+bin://`, `pg_basebackup` in `$PATH` (same `postgresql-client`
+  package, or `postgresql` on macOS via Homebrew).
+- Database-side requirements are listed under each protocol.
+
 **Typical use cases**
 
 - Scheduled logical backups of application databases with cross-version
   portability.
-- RDS or Aurora backups authenticated via IAM without static credentials.
-- Full-cluster physical snapshots for fast, file-level disaster recovery.
+- RDS or Aurora backups authenticated through IAM without static credentials.
+- Full-cluster physical snapshots for file-level disaster recovery.
 - Selective database or schema restores from a full-cluster dump.
 
 ## Installation
@@ -29,9 +51,9 @@ The PostgreSQL integration is distributed as a Plakar package.
 Pre-compiled packages are available for common platforms and provide the
 simplest installation method.
 
-> [!NOTE]+
+> [!NOTE]+ Logging In
 >
-> Logging In Pre-built packages require Plakar authentication. See
+> Pre-built packages require Plakar authentication. See
 > [Logging in to Plakar](../../guides/logging-in-to-plakar) for details.
 
 Install the PostgreSQL package:
@@ -85,13 +107,32 @@ $ plakar pkg show
 To list, upgrade, or remove the package, see the
 [managing packages guide](../../guides/managing-packages/).
 
-## Logical backup - `postgres://`
+## Snapshot manifest
 
-### How it works
+Every snapshot produced by this integration, with any protocol, contains a
+`/manifest.json` record written before the backup data. It captures the cluster
+state at the moment the backup was initiated and includes the following:
 
-PostgreSQL integration connects to a running PostgreSQL server and produces a
-logical dump which is a portable, SQL-level representation of the data using
-`pg_dump` and `pg_dumpall`.
+| Field            | Description                                                                                                       |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `cluster_config` | Key server settings: `data_directory`, `timezone`, `max_connections`, `wal_level`, `server_encoding`, and others. |
+| `roles`          | All PostgreSQL roles with their attributes and group memberships.                                                 |
+| `tablespaces`    | All tablespaces with name, owner, filesystem location, and storage options.                                       |
+| `databases`      | One entry per database: name, owner, encoding, collation, installed extensions, schemas, and a `relations` array. |
+
+The `relations` array covers tables, partitioned tables, foreign tables, views,
+materialized views, and sequences. Each entry includes schema, name, owner,
+columns, constraints, indexes, partitioning metadata, row estimates, and
+vacuum/analyze timestamps.
+
+Metadata collection is best-effort. If a query fails, the affected field is
+omitted and the backup continues normally.
+
+## 1. `postgres` protocol
+
+The `postgres` protocol connects to a running PostgreSQL server and produces a
+logical dump with `pg_dump` and `pg_dumpall`. A logical dump is a portable,
+SQL-level representation of the data.
 
 Every snapshot follows the same layout:
 
@@ -102,12 +143,11 @@ Every snapshot follows the same layout:
 
 When a **single database** is specified, only that database is dumped alongside
 the globals file. When **no database** is specified, every database with
-`datallowconn = true` is dumped (excluding `template0`). A `/manifest.json`
-record capturing cluster-level metadata is also written to each snapshot before
-the dump data.
+`datallowconn = true` is dumped, excluding `template0`. The snapshot also
+contains the [snapshot manifest](#snapshot-manifest).
 
-Restore dispatches on file name and extension: `.dump` files are fed to
-`pg_restore`; `00000-globals.sql` is fed to `psql` automatically.
+Restore dispatches on file name and extension. `.dump` files are fed to
+`pg_restore`, and `00000-globals.sql` is fed to `psql` automatically.
 
 **Pros**
 
@@ -124,22 +164,14 @@ Restore dispatches on file name and extension: `.dump` files are fed to
   system catalog details).
 - Restore time scales with data volume.
 
-### Prerequisites
-
-The following PostgreSQL client tools must be available in `$PATH` on the
-machine running Plakar (typically provided by the `postgresql-client` package):
-
-- `pg_dump`, `pg_dumpall`: for backup
-- `pg_restore`, `psql`: for restore and connectivity checks
-
 The backup user should be a **superuser** so that `pg_dumpall` can include role
-passwords from `pg_authid`. On managed services such as Amazon RDS, where the
-administrative user is a restricted superuser, the integration cannot read role
-passwords from `pg_authid`. It automatically passes `--no-role-passwords` to
-`pg_dumpall` and logs a warning. The dump is otherwise complete, but restored
-roles will have no password set.
+passwords from `pg_authid`. On managed services such as Amazon RDS, the
+administrative user is a restricted superuser and the integration cannot read
+role passwords from `pg_authid`. In that case it automatically passes
+`--no-role-passwords` to `pg_dumpall` and logs a warning. The dump is otherwise
+complete, but restored roles have no password set.
 
-### Source connector
+#### Backup flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -162,40 +194,7 @@ Transform --> Store
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-```bash
-# Back up a single database
-$ plakar source add mypg postgres://postgres:secret@db.example.com/myapp
-$ plakar at /var/backups backup "@mypg"
-
-# Back up all databases (roles, tablespaces, and data)
-$ plakar source add mypg postgres://postgres:secret@db.example.com/
-$ plakar at /var/backups backup "@mypg"
-```
-
-#### Source options
-
-| Option               | Default     | Description                                                                                                                                                   |
-| -------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `location`           | —           | Connection URI: `postgres://[user[:password]@]host[:port][/database]`                                                                                         |
-| `host`               | `localhost` | Server hostname. Overrides the URI host.                                                                                                                      |
-| `port`               | `5432`      | Server port. Overrides the URI port.                                                                                                                          |
-| `username`           | —           | PostgreSQL username. Overrides the URI user.                                                                                                                  |
-| `password`           | —           | PostgreSQL password. Overrides the URI password.                                                                                                              |
-| `database`           | —           | Database to back up. If omitted, all connectable databases are backed up. Overrides the URI path.                                                             |
-| `exclude_databases`  | —           | Comma-separated list of database names to skip during a full backup. Has no effect when a single database is selected.                                        |
-| `compress`           | `false`     | Enable `pg_dump` compression. Disabled by default so Plakar's own compression and deduplication can operate on uncompressed data.                             |
-| `schema_only`        | `false`     | Dump only the schema (no data). Mutually exclusive with `data_only`.                                                                                          |
-| `data_only`          | `false`     | Dump only the data (no schema). Mutually exclusive with `schema_only`.                                                                                        |
-| `pg_bin_dir`         | —           | Directory containing the PostgreSQL client binaries. When omitted, binaries are resolved via `$PATH`. Useful when multiple PostgreSQL versions are installed. |
-| `ssl_mode`           | `prefer`    | SSL mode: `disable`, `allow`, `prefer`, `require`, `verify-ca`, or `verify-full`.                                                                             |
-| `ssl_cert`           | —           | Path to the client SSL certificate file (PEM).                                                                                                                |
-| `ssl_cert_data`      | —           | Inline PEM content of the client SSL certificate. Alternative to `ssl_cert`.                                                                                  |
-| `ssl_key`            | —           | Path to the client SSL private key file (PEM).                                                                                                                |
-| `ssl_key_data`       | —           | Inline PEM content of the client SSL private key. Alternative to `ssl_key`.                                                                                   |
-| `ssl_root_cert`      | —           | Path to the root CA certificate used to verify the server (PEM).                                                                                              |
-| `ssl_root_cert_data` | —           | Inline PEM content of the root CA certificate. Alternative to `ssl_root_cert`.                                                                                |
-
-### Destination connector
+#### Restore flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -217,6 +216,73 @@ Store --> Transform
 Connector --> DB
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
+
+### Shared configuration
+
+The following options apply to both source and destination connectors using the
+`postgres` protocol.
+
+| Option               | Required | Description                                                                                                                                                   |
+| -------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `location`           | Yes      | Connection URI: `postgres://[user[:password]@]host[:port][/database]`                                                                                         |
+| `host`               | No       | Server hostname. Overrides the URI host. Defaults to `localhost`.                                                                                             |
+| `port`               | No       | Server port. Overrides the URI port. Defaults to `5432`.                                                                                                      |
+| `username`           | No       | PostgreSQL username. Overrides the URI user.                                                                                                                  |
+| `password`           | No       | PostgreSQL password. Overrides the URI password.                                                                                                              |
+| `pg_bin_dir`         | No       | Directory containing the PostgreSQL client binaries. When omitted, binaries are resolved via `$PATH`. Useful when multiple PostgreSQL versions are installed. |
+| `ssl_mode`           | No       | SSL mode: `disable`, `allow`, `prefer`, `require`, `verify-ca`, or `verify-full`. Defaults to `prefer`.                                                       |
+| `ssl_cert`           | No       | Path to the client SSL certificate file (PEM).                                                                                                                |
+| `ssl_cert_data`      | No       | Inline PEM content of the client SSL certificate. Alternative to `ssl_cert`.                                                                                  |
+| `ssl_key`            | No       | Path to the client SSL private key file (PEM).                                                                                                                |
+| `ssl_key_data`       | No       | Inline PEM content of the client SSL private key. Alternative to `ssl_key`.                                                                                   |
+| `ssl_root_cert`      | No       | Path to the root CA certificate used to verify the server (PEM).                                                                                              |
+| `ssl_root_cert_data` | No       | Inline PEM content of the root CA certificate. Alternative to `ssl_root_cert`.                                                                                |
+
+### Source configuration
+
+The following extra options are available to source connectors using the
+`postgres` protocol.
+
+| Option              | Required | Description                                                                                                                                                                             |
+| ------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `database`          | No       | Database to back up. If omitted, all connectable databases are backed up. Overrides the URI path.                                                                                       |
+| `exclude_databases` | No       | Comma-separated list of database names to skip during a full backup. Has no effect when a single database is selected.                                                                  |
+| `compress`          | No       | Enable `pg_dump` compression. Defaults to `false`, so Plakar's own compression and deduplication can operate on uncompressed data. See [Limitations and scope](#limitations-and-scope). |
+| `schema_only`       | No       | Dump only the schema (no data). Mutually exclusive with `data_only`. Defaults to `false`.                                                                                               |
+| `data_only`         | No       | Dump only the data (no schema). Mutually exclusive with `schema_only`. Defaults to `false`.                                                                                             |
+
+### Destination configuration
+
+The following extra options are available to destination connectors using the
+`postgres` protocol.
+
+| Option          | Required | Description                                                                                                                                                                                 |
+| --------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `database`      | No       | Target database for `pg_restore`. If omitted, the name is inferred from the dump filename. Not used with `recreate`.                                                                        |
+| `databases`     | No       | Comma-separated list of database names to restore from a full backup. Only matching `.dump` files are restored. Globals are always included unless `no_globals=true`.                       |
+| `clean`         | No       | Drop objects within the target database before recreating them (`--clean --if-exists`). The database must already exist. Mutually exclusive with `recreate`. Defaults to `false`.           |
+| `recreate`      | No       | Drop and recreate the target database from the archive metadata (`-C --clean --if-exists`). The `postgres` database is never dropped. Mutually exclusive with `clean`. Defaults to `false`. |
+| `no_globals`    | No       | Skip restoring `00000-globals.sql`. Set to `true` when the target server already has the required roles and tablespaces. Defaults to `false`.                                               |
+| `no_owner`      | No       | Skip `ALTER OWNER` statements (`--no-owner`). Useful when roles from the source server do not exist on the target. Defaults to `false`.                                                     |
+| `schema_only`   | No       | Restore only the schema (no data). Mutually exclusive with `data_only`. Defaults to `false`.                                                                                                |
+| `data_only`     | No       | Restore only the data (no schema). Mutually exclusive with `schema_only`. Defaults to `false`.                                                                                              |
+| `exit_on_error` | No       | Stop on the first restore error. Applies to both `pg_restore` (`-e`) and `psql` (`ON_ERROR_STOP=1`). Defaults to `false`.                                                                   |
+
+### Example
+
+Back up a single database, or all databases including roles and tablespaces:
+
+```bash
+# Back up a single database
+$ plakar source add mypg postgres://postgres:secret@db.example.com/myapp
+$ plakar at /var/backups backup "@mypg"
+
+# Back up all databases (roles, tablespaces, and data)
+$ plakar source add mypg postgres://postgres:secret@db.example.com/
+$ plakar at /var/backups backup "@mypg"
+```
+
+Restore with different destination settings:
 
 ```bash
 # Restore into an existing database (database must already exist)
@@ -244,46 +310,18 @@ $ plakar destination add mypgdst postgres://postgres:secret@db.example.com/myapp
 $ plakar at /var/backups restore -to "@mypgdst" <snapshot_id>
 ```
 
-#### Destination options
+## 2. `postgres+aws` protocol
 
-| Option               | Default     | Description                                                                                                                                                            |
-| -------------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `location`           | —           | Connection URI: `postgres://[user[:password]@]host[:port][/database]`                                                                                                  |
-| `host`               | `localhost` | Server hostname. Overrides the URI host.                                                                                                                               |
-| `port`               | `5432`      | Server port. Overrides the URI port.                                                                                                                                   |
-| `username`           | —           | PostgreSQL username. Overrides the URI user.                                                                                                                           |
-| `password`           | —           | PostgreSQL password. Overrides the URI password.                                                                                                                       |
-| `database`           | —           | Target database for `pg_restore`. If omitted, the name is inferred from the dump filename. Not used with `recreate`.                                                   |
-| `databases`          | —           | Comma-separated list of database names to restore from a full backup. Only matching `.dump` files are restored; globals are always included unless `no_globals=true`.  |
-| `clean`              | `false`     | Drop objects within the target database before recreating them (`--clean --if-exists`). The database must already exist. Mutually exclusive with `recreate`.           |
-| `recreate`           | `false`     | Drop and recreate the target database from the archive metadata (`-C --clean --if-exists`). The `postgres` database is never dropped. Mutually exclusive with `clean`. |
-| `no_globals`         | `false`     | Skip restoring `00000-globals.sql`. Set to `true` when the target server already has the required roles and tablespaces.                                               |
-| `no_owner`           | `false`     | Skip `ALTER OWNER` statements (`--no-owner`). Useful when roles from the source server do not exist on the target.                                                     |
-| `schema_only`        | `false`     | Restore only the schema (no data). Mutually exclusive with `data_only`.                                                                                                |
-| `data_only`          | `false`     | Restore only the data (no schema). Mutually exclusive with `schema_only`.                                                                                              |
-| `exit_on_error`      | `false`     | Stop on the first restore error. Applies to both `pg_restore` (`-e`) and `psql` (`ON_ERROR_STOP=1`).                                                                   |
-| `pg_bin_dir`         | —           | Directory containing the PostgreSQL client binaries. When omitted, binaries are resolved via `$PATH`.                                                                  |
-| `ssl_mode`           | `prefer`    | SSL mode: `disable`, `allow`, `prefer`, `require`, `verify-ca`, or `verify-full`.                                                                                      |
-| `ssl_cert`           | —           | Path to the client SSL certificate file (PEM).                                                                                                                         |
-| `ssl_cert_data`      | —           | Inline PEM content of the client SSL certificate. Alternative to `ssl_cert`.                                                                                           |
-| `ssl_key`            | —           | Path to the client SSL private key file (PEM).                                                                                                                         |
-| `ssl_key_data`       | —           | Inline PEM content of the client SSL private key. Alternative to `ssl_key`.                                                                                            |
-| `ssl_root_cert`      | —           | Path to the root CA certificate used to verify the server (PEM).                                                                                                       |
-| `ssl_root_cert_data` | —           | Inline PEM content of the root CA certificate. Alternative to `ssl_root_cert`.                                                                                         |
-
-## Logical backup with AWS IAM - `postgres+aws://`
-
-### How it works
-
-`postgres+aws://` performs the same logical backup as `postgres://` but
-authenticates using a short-lived IAM token rather than a static password. The
-token is generated automatically via the AWS SDK before `pg_dump` or
-`pg_dumpall` runs, using the standard SDK credential chain (environment
-variables, `~/.aws/credentials`, EC2/ECS instance metadata, and so on). No
+The `postgres+aws` protocol performs the same logical backup as `postgres`, but
+authenticates with a short-lived IAM token rather than a static password. The
+token is generated automatically through the AWS SDK before `pg_dump` or
+`pg_dumpall` runs. The SDK uses its standard credential chain: environment
+variables, `~/.aws/credentials`, EC2/ECS instance metadata, and so on. No
 `password` parameter is needed or accepted.
 
 The backup output is identical to `postgres://` and can be restored with the
-same `postgres://` destination connector.
+same `postgres://` destination connector. The backup and restore flows are the
+same as for the [`postgres` protocol](#1-postgres-protocol).
 
 ### AWS setup
 
@@ -295,7 +333,7 @@ same `postgres://` destination connector.
 
 Enable
 [IAM database authentication](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.Enabling.html)
-on the RDS instance via the AWS console, CLI, or Terraform. This can be set at
+on the RDS instance through the AWS console, CLI, or Terraform. It can be set at
 creation time or toggled on an existing instance.
 
 ![](../images/aws-enable-iam-auth-on-rds-db.png)
@@ -306,7 +344,7 @@ creation time or toggled on an existing instance.
 
 #### Create an IAM policy with `rds-db:connect`
 
-Attach the following policy to the IAM user or role that will run Plakar. See
+Attach the following policy to the IAM user or role that runs Plakar. See
 [Managing IAM Roles, Users, and Access Keys](../../../control-plane/guides/aws/iam-users-roles-and-access-keys/)
 for instructions on creating policies and attaching them to a user or role.
 
@@ -327,7 +365,7 @@ for instructions on creating policies and attaching them to a user or role.
 - `ACCOUNT_ID`: your 12-digit AWS account ID
 - `DB_RESOURCE_ID`: the RDS instance resource ID (e.g. `db-ABCDEFGHIJKL1234`),
   found in the RDS console under **Configuration**
-- `DB_USER`: the PostgreSQL username Plakar will connect as
+- `DB_USER`: the PostgreSQL username Plakar connects as
 
 {{< /step >}}
 
@@ -342,8 +380,8 @@ CREATE USER myuser WITH LOGIN;
 GRANT rds_iam TO myuser;
 ```
 
-The user must not have a password set as authentication is handled entirely via
-the IAM token.
+The user must not have a password set. Authentication is handled entirely by the
+IAM token.
 
 {{< /step >}}
 
@@ -368,7 +406,7 @@ $ plakar source add myrds \
 $ plakar at /var/backups backup "@myrds"
 ```
 
-If your IAM user requires a session token (assumed role, temporary credentials):
+If the IAM user requires a session token (assumed role, temporary credentials):
 
 ```bash
 export AWS_SESSION_TOKEN=AQoDYXdzEJr...
@@ -420,7 +458,50 @@ $ plakar at /var/backups backup "@myrds"
 
 {{< /tabs >}}
 
-### Source connector
+### Shared configuration
+
+The following options apply to both source and destination connectors using the
+`postgres+aws` protocol.
+
+| Option               | Required | Description                                                                                                                    |
+| -------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `location`           | Yes      | Connection URI: `postgres+aws://[user@]host[:port][/database]`. No password component. The IAM token is fetched automatically. |
+| `host`               | No       | RDS instance hostname. Overrides the URI host. Defaults to `localhost`.                                                        |
+| `port`               | No       | RDS instance port. Overrides the URI port. Defaults to `5432`.                                                                 |
+| `username`           | No       | PostgreSQL username. Must be an IAM-enabled database user. Overrides the URI user.                                             |
+| `region`             | Yes      | AWS region of the RDS instance, e.g. `us-east-1`.                                                                              |
+| `pg_bin_dir`         | No       | Directory containing the PostgreSQL client binaries. When omitted, binaries are resolved via `$PATH`.                          |
+| `ssl_mode`           | No       | SSL mode. Defaults to `prefer`. IAM authentication requires an encrypted connection. Use `require` or higher.                  |
+| `ssl_cert`           | No       | Path to the client SSL certificate file (PEM).                                                                                 |
+| `ssl_cert_data`      | No       | Inline PEM content of the client SSL certificate. Alternative to `ssl_cert`.                                                   |
+| `ssl_key`            | No       | Path to the client SSL private key file (PEM).                                                                                 |
+| `ssl_key_data`       | No       | Inline PEM content of the client SSL private key. Alternative to `ssl_key`.                                                    |
+| `ssl_root_cert`      | No       | Path to the root CA certificate used to verify the server (PEM).                                                               |
+| `ssl_root_cert_data` | No       | Inline PEM content of the root CA certificate. Alternative to `ssl_root_cert`.                                                 |
+
+### Source configuration
+
+The following extra options are available to source connectors using the
+`postgres+aws` protocol.
+
+| Option              | Required | Description                                                                                                                                                 |
+| ------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `database`          | No       | Database to back up. If omitted, all connectable databases are backed up. Overrides the URI path.                                                           |
+| `exclude_databases` | No       | Comma-separated list of database names to skip. Defaults to `rdsadmin` (an internal AWS system database). Set to an empty string to disable all exclusions. |
+| `compress`          | No       | Enable `pg_dump` compression. Defaults to `false`, so Plakar's own compression and deduplication can operate on uncompressed data.                          |
+| `schema_only`       | No       | Dump only the schema (no data). Mutually exclusive with `data_only`. Defaults to `false`.                                                                   |
+| `data_only`         | No       | Dump only the data (no schema). Mutually exclusive with `schema_only`. Defaults to `false`.                                                                 |
+
+### Destination configuration
+
+The `postgres+aws` destination connector supports the same options as the
+[`postgres` destination connector](#destination-configuration), minus
+`password`, plus `region`. An IAM token is generated automatically and used as
+the connection password.
+
+### Example
+
+Back up a single RDS database, or all databases on an RDS instance:
 
 ```bash
 # Back up a single RDS database
@@ -436,34 +517,7 @@ $ plakar source add myrds \
 $ plakar at /var/backups backup "@myrds"
 ```
 
-#### Source options
-
-| Option               | Default     | Description                                                                                                                                                 |
-| -------------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `location`           | —           | Connection URI: `postgres+aws://[user@]host[:port][/database]`. No password component. The IAM token is fetched automatically.                              |
-| `host`               | `localhost` | RDS instance hostname. Overrides the URI host.                                                                                                              |
-| `port`               | `5432`      | RDS instance port. Overrides the URI port.                                                                                                                  |
-| `username`           | —           | PostgreSQL username. Must be an IAM-enabled database user. Overrides the URI user.                                                                          |
-| `region`             | —           | AWS region of the RDS instance (required), e.g. `us-east-1`.                                                                                                |
-| `database`           | —           | Database to back up. If omitted, all connectable databases are backed up. Overrides the URI path.                                                           |
-| `exclude_databases`  | `rdsadmin`  | Comma-separated list of database names to skip. Defaults to `rdsadmin` (an internal AWS system database). Set to an empty string to disable all exclusions. |
-| `compress`           | `false`     | Enable `pg_dump` compression. Disabled by default so Plakar's own compression and deduplication can operate on uncompressed data.                           |
-| `schema_only`        | `false`     | Dump only the schema (no data). Mutually exclusive with `data_only`.                                                                                        |
-| `data_only`          | `false`     | Dump only the data (no schema). Mutually exclusive with `schema_only`.                                                                                      |
-| `pg_bin_dir`         | —           | Directory containing the PostgreSQL client binaries. When omitted, binaries are resolved via `$PATH`.                                                       |
-| `ssl_mode`           | `prefer`    | SSL mode. IAM authentication requires an encrypted connection — use `require` or higher.                                                                    |
-| `ssl_cert`           | —           | Path to the client SSL certificate file (PEM).                                                                                                              |
-| `ssl_cert_data`      | —           | Inline PEM content of the client SSL certificate. Alternative to `ssl_cert`.                                                                                |
-| `ssl_key`            | —           | Path to the client SSL private key file (PEM).                                                                                                              |
-| `ssl_key_data`       | —           | Inline PEM content of the client SSL private key. Alternative to `ssl_key`.                                                                                 |
-| `ssl_root_cert`      | —           | Path to the root CA certificate used to verify the server (PEM).                                                                                            |
-| `ssl_root_cert_data` | —           | Inline PEM content of the root CA certificate. Alternative to `ssl_root_cert`.                                                                              |
-
-### Destination connector
-
-The `postgres+aws://` destination connector supports the same options as
-`postgres://`, minus `password`, plus `region`. An IAM token is generated
-automatically and used as the connection password.
+Restore to RDS:
 
 ```bash
 # Restore into an existing database on RDS
@@ -485,46 +539,31 @@ $ plakar destination add myrds \
 $ plakar at /var/backups restore -to "@myrds" <snapshot_id>
 ```
 
-#### Destination options
+## 3. `postgres+bin` protocol
 
-Supports all [destination options from `postgres://`](#destination-options)
-plus:
-
-| Option   | Default | Description                                                  |
-| -------- | ------- | ------------------------------------------------------------ |
-| `region` | —       | AWS region of the RDS instance (required), e.g. `us-east-1`. |
-
----
-
-## Physical backup - `postgres+bin://`
-
-### How it works
-
-Plakar runs `pg_basebackup` to stream a tar archive of the entire PostgreSQL
-data directory (`PGDATA`) directly from the server's replication interface. Each
-file inside the tar is stored as an individual record in the snapshot,
-preserving paths, permissions, and timestamps.
+The `postgres+bin` protocol runs `pg_basebackup` to stream a tar archive of the
+entire PostgreSQL data directory (`PGDATA`) directly from the server's
+replication interface. Each file inside the tar is stored as an individual
+record in the snapshot, preserving paths, permissions, and timestamps.
 
 Because the backup operates at the file level, it captures the **entire
-cluster** (all databases, configuration files, and WAL segments required for a
-consistent recovery). No subpath can be specified: `pg_basebackup` always backs
-up the whole cluster.
-
-A `/manifest.json` record capturing cluster-level metadata is also written to
-the snapshot before the backup data.
+cluster**: all databases, configuration files, and the WAL segments required for
+a consistent recovery. No subpath can be specified, since `pg_basebackup` always
+backs up the whole cluster. The snapshot also contains the
+[snapshot manifest](#snapshot-manifest).
 
 **Pros**
 
-- Fast backup and restore regardless of data volume because it is a file copy,
+- Fast backup and restore regardless of data volume, because it is a file copy,
   not a query.
-- Captures everything: all databases, configuration, global objects, and WAL in
-  a single operation.
+- Captures everything in a single operation: all databases, configuration,
+  global objects, and WAL.
 - The restored cluster can be started directly with any PostgreSQL binary of the
   same major version. No running server is needed at restore time.
 
 **Cons**
 
-- Version-locked: the backup must be restored with the same PostgreSQL major
+- Version-locked. The backup must be restored with the same PostgreSQL major
   version.
 - Cannot selectively restore a single database or table.
 - Requires a replication-capable user (or superuser) and `wal_level >= replica`
@@ -532,18 +571,13 @@ the snapshot before the backup data.
 - The PostgreSQL server must be stopped before the data directory is replaced
   with the restored files.
 
-### Prerequisites
-
-`pg_basebackup` must be in `$PATH` on the machine running Plakar (same
-`postgresql-client` package, or `postgresql` on macOS via Homebrew).
-
 The PostgreSQL server must have:
 
 - `wal_level = replica` (or higher) in `postgresql.conf`
 - A user with the `REPLICATION` privilege (or a superuser)
 - `pg_hba.conf` allowing a replication connection from the backup host
 
-### Source connector
+#### Backup flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -566,42 +600,46 @@ Transform --> Store
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
+### Source configuration
+
+The `postgres+bin` protocol has a source connector only.
+
+| Option               | Required | Description                                                                                             |
+| -------------------- | -------- | ------------------------------------------------------------------------------------------------------- |
+| `location`           | Yes      | Connection URI: `postgres+bin://[user[:password]@]host[:port]`. A subpath is not supported.             |
+| `host`               | No       | Server hostname. Overrides the URI host. Defaults to `localhost`.                                       |
+| `port`               | No       | Server port. Overrides the URI port. Defaults to `5432`.                                                |
+| `username`           | No       | PostgreSQL replication username. Overrides the URI user.                                                |
+| `password`           | No       | PostgreSQL password. Overrides the URI password.                                                        |
+| `pg_bin_dir`         | No       | Directory containing `pg_basebackup`. When omitted, resolved via `$PATH`.                               |
+| `ssl_mode`           | No       | SSL mode: `disable`, `allow`, `prefer`, `require`, `verify-ca`, or `verify-full`. Defaults to `prefer`. |
+| `ssl_cert`           | No       | Path to the client SSL certificate file (PEM).                                                          |
+| `ssl_cert_data`      | No       | Inline PEM content of the client SSL certificate. Alternative to `ssl_cert`.                            |
+| `ssl_key`            | No       | Path to the client SSL private key file (PEM).                                                          |
+| `ssl_key_data`       | No       | Inline PEM content of the client SSL private key. Alternative to `ssl_key`.                             |
+| `ssl_root_cert`      | No       | Path to the root CA certificate used to verify the server (PEM).                                        |
+| `ssl_root_cert_data` | No       | Inline PEM content of the root CA certificate. Alternative to `ssl_root_cert`.                          |
+
+### Example
+
 ```bash
 # Back up the entire cluster
 $ plakar source add mypg postgres+bin://replicator:secret@db.example.com
 $ plakar at /var/backups backup "@mypg"
 ```
 
-#### Source options
-
-| Option               | Default     | Description                                                                                 |
-| -------------------- | ----------- | ------------------------------------------------------------------------------------------- |
-| `location`           | —           | Connection URI: `postgres+bin://[user[:password]@]host[:port]`. A subpath is not supported. |
-| `host`               | `localhost` | Server hostname. Overrides the URI host.                                                    |
-| `port`               | `5432`      | Server port. Overrides the URI port.                                                        |
-| `username`           | —           | PostgreSQL replication username. Overrides the URI user.                                    |
-| `password`           | —           | PostgreSQL password. Overrides the URI password.                                            |
-| `pg_bin_dir`         | —           | Directory containing `pg_basebackup`. When omitted, resolved via `$PATH`.                   |
-| `ssl_mode`           | `prefer`    | SSL mode: `disable`, `allow`, `prefer`, `require`, `verify-ca`, or `verify-full`.           |
-| `ssl_cert`           | —           | Path to the client SSL certificate file (PEM).                                              |
-| `ssl_cert_data`      | —           | Inline PEM content of the client SSL certificate. Alternative to `ssl_cert`.                |
-| `ssl_key`            | —           | Path to the client SSL private key file (PEM).                                              |
-| `ssl_key_data`       | —           | Inline PEM content of the client SSL private key. Alternative to `ssl_key`.                 |
-| `ssl_root_cert`      | —           | Path to the root CA certificate used to verify the server (PEM).                            |
-| `ssl_root_cert_data` | —           | Inline PEM content of the root CA certificate. Alternative to `ssl_root_cert`.              |
-
 ### Restoring a physical backup
 
-There is no dedicated destination connector for `postgres+bin://`. Because the
-snapshot contains plain files, any file-restore connector can write them back to
-disk. The resulting directory is a valid PostgreSQL data directory that can be
-started directly.
+There is no dedicated destination connector for `postgres+bin://`. The snapshot
+contains plain files, so any file-restore connector can write them back to disk.
+The resulting directory is a valid PostgreSQL data directory that can be started
+directly.
 
-> [!WARNING]+
+> [!WARNING]+ Stop the server before restoring
 >
-> Stop the server before restoring The data directory must not be in use by a
-> running PostgreSQL instance before restoration begins. Stop the server first,
-> or restore to a fresh directory as shown below.
+> The data directory must not be in use by a running PostgreSQL instance before
+> restoration begins. Stop the server first, or restore to a fresh directory as
+> shown below.
 
 ```bash
 # Restore the data directory locally
@@ -621,36 +659,15 @@ $ pg_ctl -D /var/lib/postgresql/data start
 Replace `<postgres_version>` with the **same major version** that was running
 when the backup was taken (e.g. `17`).
 
-## Snapshot manifest
+## Limitations and scope
 
-Every snapshot produced by this integration contains a `/manifest.json` record
-written before the backup data. It captures the cluster state at the moment the
-backup was initiated and includes the following:
-
-| Field            | Description                                                                                                       |
-| ---------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `cluster_config` | Key server settings: `data_directory`, `timezone`, `max_connections`, `wal_level`, `server_encoding`, and others. |
-| `roles`          | All PostgreSQL roles with their attributes and group memberships.                                                 |
-| `tablespaces`    | All tablespaces with name, owner, filesystem location, and storage options.                                       |
-| `databases`      | One entry per database: name, owner, encoding, collation, installed extensions, schemas, and a `relations` array. |
-
-The `relations` array covers tables, partitioned tables, foreign tables, views,
-materialized views, and sequences. Each entry includes schema, name, owner,
-columns, constraints, indexes, partitioning metadata, row estimates, and
-vacuum/analyze timestamps.
-
-Metadata collection is best-effort: if a query fails, the affected field is
-omitted and the backup continues normally.
-
-## Known limitations
-
-**`pg_dump` compression is disabled by default.** Setting `compress=false` (the
-default) ensures that Plakar's own compression and deduplication can operate on
-the raw data stream. Pre-compressing the dump would produce an incompressible
-stream, reducing both compression efficiency and cross-snapshot deduplication.
-Depending on network bandwidth and store backend, enabling `pg_dump` compression
-may be more efficient for very large databases — this trade-off warrants further
-benchmarking across different workloads.
+`pg_dump` compression is disabled by default. With `compress=false`, Plakar's
+own compression and deduplication operate on the raw data stream. A
+pre-compressed dump is an incompressible stream, which reduces both compression
+efficiency and cross-snapshot deduplication. Depending on network bandwidth and
+store backend, enabling `pg_dump` compression may be more efficient for very
+large databases. This trade-off warrants further benchmarking across different
+workloads.
 
 ## See also
 

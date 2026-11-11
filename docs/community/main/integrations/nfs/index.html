@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-09-21T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-11T17:12:23+01:00">
+    <meta property="article:modified_time" content="2026-11-11T17:15:27+01:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -244,12 +244,12 @@
     "dateCreated": "2026-09-21T00:00:00\u002b00:00",
     "datePublished": "2026-09-21T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-11T17:12:23\u002b01:00",
+    "dateModified": "2026-11-11T17:15:27\u002b01:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/community/main/integrations/nfs/",
-    "wordCount":  716 
+    "wordCount":  724 
   }]
   </script>
 
@@ -1521,6 +1521,8 @@
   
     
   
+    
+  
   
 
   
@@ -1831,6 +1833,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         OpenShift
+      </a>
+    
+  
+    
+    
+      <a href="/docs/community/main/integrations/sqlite/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        SQLite
       </a>
     
   
@@ -3647,6 +3658,8 @@
   
     
   
+    
+  
   
 
   
@@ -3957,6 +3970,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         OpenShift
+      </a>
+    
+  
+    
+    
+      <a href="/docs/community/main/integrations/sqlite/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        SQLite
       </a>
     
   
@@ -4853,15 +4875,13 @@
     </button>
   
 </h1>
-<p>NFS (Network File System) is a distributed file system protocol that lets a
-client access files on a remote server as if they were local. It is ubiquitous
-in datacenter and enterprise environments for shared storage, home directories,
-and appliance exports on NAS devices.</p>
-<p>The <strong>NFS integration</strong> walks an exported directory tree and captures its files
-and directories into a Kloset store with encryption and deduplication. Plakar
-speaks NFSv3 directly over ONC-RPC, so no kernel mount is involved and neither
-root privileges nor mount capability are required on the host.</p>
-<p>The NFS integration provides two connectors:</p>
+<p>The NFS integration backs up the files and directories of an NFS export into a
+Kloset store and restores snapshots back to an NFS export. NFS (Network File
+System) is a distributed file system protocol that lets a client access files on
+a remote server as if they were local. It is common in datacenter and enterprise
+environments for shared storage, home directories and appliance exports on NAS
+devices.</p>
+<p>The integration includes two connectors:</p>
 <table>
   <thead>
       <tr>
@@ -5014,11 +5034,11 @@ customization is required.</p>
 <a href="../../guides/managing-packages/" >managing packages guide</a>.</p>
 
 
-<h2 id="configuration" class="group pr-8">Configuration
+<h2 id="how-the-integration-accesses-an-export" class="group pr-8">How the integration accesses an export
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="configuration"
+      data-anchor="how-the-integration-accesses-an-export"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -5029,9 +5049,16 @@ customization is required.</p>
     </button>
   
 </h2>
+<p>Plakar speaks NFSv3 directly over ONC-RPC. No kernel mount is involved, so
+neither root privileges nor mount capability are required on the host running
+Plakar.</p>
+<p>Authorization uses AUTH_UNIX, meaning a numeric user and group ID presented to
+the server. These are set with the <code>uid</code> and <code>gid</code> options. The export must
+permit the presented credentials, for example through an
+<code>*(rw,no_root_squash)</code>-style export or a matching uid on the server.</p>
 
 
-<h3 id="addressing-an-export" class="group pr-8">Addressing an export
+<h2 id="addressing-an-export" class="group pr-8">Addressing an export
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
@@ -5045,7 +5072,7 @@ customization is required.</p>
 </span></span>
     </button>
   
-</h3>
+</h2>
 <p>An NFS location identifies the server and the export to mount:</p>
 <div class="highlight-wrapper codeblock">
   <div class="codeblock-title">
@@ -5063,11 +5090,110 @@ customization is required.</p>
 to a subtree of that export, which the <code>root</code> option also does.</p>
 
 
-<h3 id="configuration-options" class="group pr-8">Configuration options
+<h2 id="configuration" class="group pr-8">Configuration
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="configuration-options"
+      data-anchor="configuration"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>The source connector walks the export, or a subtree of it, and stores the files
+and directories it finds in a Kloset store with encryption and deduplication.
+Each entry is captured with its size, mode, ownership and modification time.</p>
+<p>The destination connector restores a snapshot back to an NFS export, recreating
+the directory hierarchy and file contents.</p>
+
+
+<h4 id="backup-flow" class="group pr-8">Backup flow
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="backup-flow"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h4>
+<!-- prettier-ignore-start -->
+<pre class="not-prose mermaid">
+flowchart LR
+
+subgraph Source["NFS Export"]
+  FS["Files"]
+end
+
+subgraph Plakar["Plakar"]
+  Connector["Walk export via<br/>NFSv3"]
+  Transform["Encrypt & deduplicate"]
+  Connector --> Transform
+end
+
+Source --> Connector
+
+Store["Kloset Store"]
+Transform --> Store
+</pre>
+
+<!-- prettier-ignore-end -->
+
+
+<h4 id="restore-flow" class="group pr-8">Restore flow
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="restore-flow"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h4>
+<!-- prettier-ignore-start -->
+<pre class="not-prose mermaid">
+flowchart LR
+
+Store["Kloset Store"]
+
+subgraph Plakar["Plakar"]
+  Transform["Decrypt & reconstruct"]
+  Connector["Write files via<br/>NFSv3"]
+  Transform --> Connector
+end
+
+Store --> Transform
+
+subgraph Destination["NFS Export"]
+  FS["Files"]
+end
+
+Connector --> Destination
+</pre>
+
+<!-- prettier-ignore-end -->
+
+
+<h3 id="shared-configuration" class="group pr-8">Shared configuration
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="shared-configuration"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -5078,7 +5204,7 @@ to a subtree of that export, which the <code>root</code> option also does.</p>
     </button>
   
 </h3>
-<p>These options apply to both connectors.</p>
+<p>The following options apply to both source and destination connectors.</p>
 <table>
   <thead>
       <tr>
@@ -5091,7 +5217,7 @@ to a subtree of that export, which the <code>root</code> option also does.</p>
       <tr>
           <td><code>location</code></td>
           <td>Yes</td>
-          <td>NFS target. See <a href="/docs/community/main/integrations/nfs/#addressing-an-export" >Addressing an export</a> above.</td>
+          <td>NFS target. See <a href="/docs/community/main/integrations/nfs/#addressing-an-export" >Addressing an export</a>.</td>
       </tr>
       <tr>
           <td><code>root</code></td>
@@ -5117,11 +5243,11 @@ to a subtree of that export, which the <code>root</code> option also does.</p>
 </table>
 
 
-<h2 id="source-connector" class="group pr-8">Source connector
+<h3 id="example" class="group pr-8">Example
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="source-connector"
+      data-anchor="example"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -5131,32 +5257,8 @@ to a subtree of that export, which the <code>root</code> option also does.</p>
 </span></span>
     </button>
   
-</h2>
-<p>The source connector walks the export, or a subtree of it, and stores the files
-and directories it finds in a Kloset store with encryption and deduplication.
-Each entry is captured with its size, mode, ownership, and modification time.</p>
-<!-- prettier-ignore-start -->
-<pre class="not-prose mermaid">
-flowchart LR
-
-subgraph Source["NFS Export"]
-  FS["Files"]
-end
-
-subgraph Plakar["Plakar"]
-  Connector["Walk export via<br/>NFSv3"]
-  Transform["Encrypt & deduplicate"]
-  Connector --> Transform
-end
-
-Source --> Connector
-
-Store["Kloset Store"]
-Transform --> Store
-</pre>
-
-<!-- prettier-ignore-end -->
-<p>Register the source and run a backup:</p>
+</h3>
+<p>Back up an export:</p>
 <div class="highlight-wrapper codeblock">
   <div class="codeblock-title">
     <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
@@ -5172,9 +5274,9 @@ Transform --> Store
 </span></span></span><span class="line"><span class="cl">  <span class="nv">location</span><span class="o">=</span>nfs://nas.example.com/exports/data
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">$ plakar at /var/backups backup <span class="s2">&#34;@my-nfs-export&#34;</span></span></span></code></pre></div></div>
-<p>To back up a subtree rather than the whole export, extend the location with the
-path inside the export. The <code>uid</code> and <code>gid</code> presented to the server decide what
-the walk is allowed to read:</p>
+<p>Back up a subtree rather than the whole export by extending the location with
+the path inside the export. The <code>uid</code> and <code>gid</code> presented to the server decide
+what the walk is allowed to read:</p>
 <div class="highlight-wrapper codeblock">
   <div class="codeblock-title">
     <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
@@ -5189,7 +5291,7 @@ the walk is allowed to read:</p>
   </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add my-nfs-home <span class="se">\
 </span></span></span><span class="line"><span class="cl">  <span class="nv">location</span><span class="o">=</span>nfs://nas.example.com/exports/home/alice <span class="se">\
 </span></span></span><span class="line"><span class="cl">  <span class="nv">uid</span><span class="o">=</span><span class="m">1000</span> <span class="nv">gid</span><span class="o">=</span><span class="m">1000</span></span></span></code></pre></div></div>
-<p>A location can also be passed directly to <code>backup</code>:</p>
+<p>Pass a location directly to <code>backup</code>:</p>
 <div class="highlight-wrapper codeblock">
   <div class="codeblock-title">
     <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
@@ -5206,48 +5308,7 @@ the walk is allowed to read:</p>
 </span></span><span class="line"><span class="cl">$ plakar at /var/backups backup <span class="se">\
 </span></span></span><span class="line"><span class="cl">  -o <span class="nv">uid</span><span class="o">=</span><span class="m">1000</span> -o <span class="nv">gid</span><span class="o">=</span><span class="m">1000</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl">  nfs://nas.example.com/exports/home/alice</span></span></code></pre></div></div>
-
-
-<h2 id="destination-connector" class="group pr-8">Destination connector
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="destination-connector"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h2>
-<p>Restores a snapshot from a Kloset store back to an NFS export, recreating the
-directory hierarchy and file contents.</p>
-<!-- prettier-ignore-start -->
-<pre class="not-prose mermaid">
-flowchart LR
-
-Store["Kloset Store"]
-
-subgraph Plakar["Plakar"]
-  Transform["Decrypt & reconstruct"]
-  Connector["Write files via<br/>NFSv3"]
-  Transform --> Connector
-end
-
-Store --> Transform
-
-subgraph Destination["NFS Export"]
-  FS["Files"]
-end
-
-Connector --> Destination
-</pre>
-
-<!-- prettier-ignore-end -->
-<p>Register the destination and restore a snapshot:</p>
+<p>Restore a snapshot to an export:</p>
 <div class="highlight-wrapper codeblock">
   <div class="codeblock-title">
     <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
@@ -5265,11 +5326,11 @@ Connector --> Destination
 </span></span><span class="line"><span class="cl">$ plakar at /var/backups restore -to <span class="s2">&#34;@my-nfs-restore&#34;</span> &lt;snapshot_id&gt;</span></span></code></pre></div></div>
 
 
-<h2 id="limitations" class="group pr-8">Limitations
+<h2 id="limitations-and-scope" class="group pr-8">Limitations and scope
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="limitations"
+      data-anchor="limitations-and-scope"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -5280,15 +5341,9 @@ Connector --> Destination
     </button>
   
 </h2>
-<p><strong>Protocol support</strong></p>
-<p>Only NFSv3 is supported. NFSv4, Kerberos (<code>sec=krb5</code>), and NFS over UDP are not.</p>
-<p><strong>Authorization</strong></p>
-<p>Authorization uses AUTH_UNIX, meaning a numeric user and group ID presented to
-the server. The export must permit the presented credentials, for example
-through an <code>*(rw,no_root_squash)</code>-style export or a matching uid on the server.</p>
-<p><strong>Restored file types and metadata</strong></p>
+<p>Only NFSv3 is supported. NFSv4, Kerberos (<code>sec=krb5</code>) and NFS over UDP are not.</p>
 <p>Only regular files and directories are reconstructed on restore. Symlinks,
-device nodes, sockets, and FIFOs are reported as errors.</p>
+device nodes, sockets and FIFOs are reported as errors.</p>
 <p>File modes are applied when each entry is created. Ownership and timestamps are
 not restored.</p>
 
@@ -5369,6 +5424,8 @@ not restored.</p>
   
     
   
+    
+  
 
   
     
@@ -5425,7 +5482,7 @@ not restored.</p>
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#installation">Installation</a></li><li><a href="#configuration">Configuration</a><ul><li><a href="#addressing-an-export">Addressing an export</a></li><li><a href="#configuration-options">Configuration options</a></li></ul></li><li><a href="#source-connector">Source connector</a></li><li><a href="#destination-connector">Destination connector</a></li><li><a href="#limitations">Limitations</a></li></ul>
+      <ul><li><a href="#installation">Installation</a></li><li><a href="#how-the-integration-accesses-an-export">How the integration accesses an export</a></li><li><a href="#addressing-an-export">Addressing an export</a></li><li><a href="#configuration">Configuration</a><ul><ul><li><a href="#backup-flow">Backup flow</a></li><li><a href="#restore-flow">Restore flow</a></li></ul></li><li><a href="#shared-configuration">Shared configuration</a></li><li><a href="#example">Example</a></li></ul></li><li><a href="#limitations-and-scope">Limitations and scope</a></li></ul>
     </div>
 
     

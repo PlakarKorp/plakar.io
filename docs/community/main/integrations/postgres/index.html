@@ -27,7 +27,7 @@
     
   
   
-    <meta name="description" content="Back up and restore PostgreSQL databases with Plakar — logical dumps, AWS IAM authentication, and physical base backups.">
+    <meta name="description" content="Back up and restore PostgreSQL databases with Plakar using logical dumps, AWS IAM authentication, or physical base backups.">
   
   
     <meta name="keywords" content="backup,open-source,deduplication,encryption,plakar,cloud backup,database backup,">
@@ -67,17 +67,17 @@
   <meta property="og:url" content="https://www.plakar.io/docs/community/main/integrations/postgres/">
   <meta property="og:site_name" content="Plakar | The Open Standard for Backup and Restore">
   <meta property="og:title" content="PostgreSQL">
-  <meta property="og:description" content="Back up and restore PostgreSQL databases with Plakar — logical dumps, AWS IAM authentication, and physical base backups.">
+  <meta property="og:description" content="Back up and restore PostgreSQL databases with Plakar using logical dumps, AWS IAM authentication, or physical base backups.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-06-12T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-11T17:12:23+01:00">
+    <meta property="article:modified_time" content="2026-11-11T17:15:27+01:00">
 
   
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="PostgreSQL">
-  <meta name="twitter:description" content="Back up and restore PostgreSQL databases with Plakar — logical dumps, AWS IAM authentication, and physical base backups.">
+  <meta name="twitter:description" content="Back up and restore PostgreSQL databases with Plakar using logical dumps, AWS IAM authentication, or physical base backups.">
 
   
   
@@ -244,12 +244,12 @@
     "dateCreated": "2026-06-12T00:00:00\u002b00:00",
     "datePublished": "2026-06-12T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-11T17:12:23\u002b01:00",
+    "dateModified": "2026-11-11T17:15:27\u002b01:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/community/main/integrations/postgres/",
-    "wordCount":  2946 
+    "wordCount":  3025 
   }]
   </script>
 
@@ -1521,6 +1521,8 @@
   
     
   
+    
+  
   
 
   
@@ -1831,6 +1833,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         OpenShift
+      </a>
+    
+  
+    
+    
+      <a href="/docs/community/main/integrations/sqlite/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        SQLite
       </a>
     
   
@@ -3647,6 +3658,8 @@
   
     
   
+    
+  
   
 
   
@@ -3957,6 +3970,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         OpenShift
+      </a>
+    
+  
+    
+    
+      <a href="/docs/community/main/integrations/sqlite/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        SQLite
       </a>
     
   
@@ -4853,8 +4875,30 @@
     </button>
   
 </h1>
-<p>The <strong>PostgreSQL integration</strong> supports three backup strategies, each suited for
-different requirements.</p>
+<p>The PostgreSQL integration backs up PostgreSQL databases into a Kloset store and
+restores them. It supports logical dumps, logical dumps authenticated with an
+AWS IAM token, and physical base backups of the whole cluster.</p>
+<p>The integration includes two connectors:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Connector type</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Source connector</strong></td>
+          <td>Back up PostgreSQL databases or a whole cluster into a Kloset store.</td>
+      </tr>
+      <tr>
+          <td><strong>Destination connector</strong></td>
+          <td>Restore a logical dump from a Kloset store to a running server (<code>postgres</code>, <code>postgres+aws</code>).</td>
+      </tr>
+  </tbody>
+</table>
+<p>The integration supports three protocols, each suited for different
+requirements:</p>
 <table>
   <thead>
       <tr>
@@ -4881,12 +4925,26 @@ different requirements.</p>
       </tr>
   </tbody>
 </table>
+<p><strong>Requirements</strong></p>
+<ul>
+<li>For <code>postgres://</code> and <code>postgres+aws://</code>, the PostgreSQL client tools in
+<code>$PATH</code> on the machine running Plakar, typically provided by the
+<code>postgresql-client</code> package:
+<ul>
+<li><code>pg_dump</code>, <code>pg_dumpall</code>: for backup</li>
+<li><code>pg_restore</code>, <code>psql</code>: for restore and connectivity checks</li>
+</ul>
+</li>
+<li>For <code>postgres+bin://</code>, <code>pg_basebackup</code> in <code>$PATH</code> (same <code>postgresql-client</code>
+package, or <code>postgresql</code> on macOS via Homebrew).</li>
+<li>Database-side requirements are listed under each protocol.</li>
+</ul>
 <p><strong>Typical use cases</strong></p>
 <ul>
 <li>Scheduled logical backups of application databases with cross-version
 portability.</li>
-<li>RDS or Aurora backups authenticated via IAM without static credentials.</li>
-<li>Full-cluster physical snapshots for fast, file-level disaster recovery.</li>
+<li>RDS or Aurora backups authenticated through IAM without static credentials.</li>
+<li>Full-cluster physical snapshots for file-level disaster recovery.</li>
 <li>Selective database or schema restores from a full-cluster dump.</li>
 </ul>
 
@@ -4922,7 +4980,7 @@ simplest installation method.</p>
         <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"/></svg>
 </span></div>
         <div class="grow">
-          Note
+          Logging In
         </div>
         <div
           class="ms-auto flex h-5 w-5 items-center justify-center transition-transform ease-in-out -rotate-90 group-open:rotate-0 print:hidden"><span class="relative block icon"><svg
@@ -4938,7 +4996,7 @@ simplest installation method.</p>
   />
 </svg>
 </span></div>
-      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Logging In Pre-built packages require Plakar authentication. See
+      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Pre-built packages require Plakar authentication. See
 <a href="../../guides/logging-in-to-plakar" >Logging in to Plakar</a> for details.</p></div></details><p>Install the PostgreSQL package:</p>
 <div class="highlight-wrapper codeblock">
   <div class="codeblock-title">
@@ -5022,11 +5080,11 @@ customization is required.</p>
 <a href="../../guides/managing-packages/" >managing packages guide</a>.</p>
 
 
-<h2 id="logical-backup---postgres" class="group pr-8">Logical backup - <code>postgres://</code>
+<h2 id="snapshot-manifest" class="group pr-8">Snapshot manifest
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="logical-backup---postgres"
+      data-anchor="snapshot-manifest"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -5037,13 +5095,48 @@ customization is required.</p>
     </button>
   
 </h2>
+<p>Every snapshot produced by this integration, with any protocol, contains a
+<code>/manifest.json</code> record written before the backup data. It captures the cluster
+state at the moment the backup was initiated and includes the following:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Field</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>cluster_config</code></td>
+          <td>Key server settings: <code>data_directory</code>, <code>timezone</code>, <code>max_connections</code>, <code>wal_level</code>, <code>server_encoding</code>, and others.</td>
+      </tr>
+      <tr>
+          <td><code>roles</code></td>
+          <td>All PostgreSQL roles with their attributes and group memberships.</td>
+      </tr>
+      <tr>
+          <td><code>tablespaces</code></td>
+          <td>All tablespaces with name, owner, filesystem location, and storage options.</td>
+      </tr>
+      <tr>
+          <td><code>databases</code></td>
+          <td>One entry per database: name, owner, encoding, collation, installed extensions, schemas, and a <code>relations</code> array.</td>
+      </tr>
+  </tbody>
+</table>
+<p>The <code>relations</code> array covers tables, partitioned tables, foreign tables, views,
+materialized views, and sequences. Each entry includes schema, name, owner,
+columns, constraints, indexes, partitioning metadata, row estimates, and
+vacuum/analyze timestamps.</p>
+<p>Metadata collection is best-effort. If a query fails, the affected field is
+omitted and the backup continues normally.</p>
 
 
-<h3 id="how-it-works" class="group pr-8">How it works
+<h2 id="1-postgres-protocol" class="group pr-8">1. <code>postgres</code> protocol
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="how-it-works"
+      data-anchor="1-postgres-protocol"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -5053,10 +5146,10 @@ customization is required.</p>
 </span></span>
     </button>
   
-</h3>
-<p>PostgreSQL integration connects to a running PostgreSQL server and produces a
-logical dump which is a portable, SQL-level representation of the data using
-<code>pg_dump</code> and <code>pg_dumpall</code>.</p>
+</h2>
+<p>The <code>postgres</code> protocol connects to a running PostgreSQL server and produces a
+logical dump with <code>pg_dump</code> and <code>pg_dumpall</code>. A logical dump is a portable,
+SQL-level representation of the data.</p>
 <p>Every snapshot follows the same layout:</p>
 <ul>
 <li><code>/00000-globals.sql</code>: roles and tablespaces for the whole cluster
@@ -5066,11 +5159,10 @@ custom-format file per database, numbered alphabetically.</li>
 </ul>
 <p>When a <strong>single database</strong> is specified, only that database is dumped alongside
 the globals file. When <strong>no database</strong> is specified, every database with
-<code>datallowconn = true</code> is dumped (excluding <code>template0</code>). A <code>/manifest.json</code>
-record capturing cluster-level metadata is also written to each snapshot before
-the dump data.</p>
-<p>Restore dispatches on file name and extension: <code>.dump</code> files are fed to
-<code>pg_restore</code>; <code>00000-globals.sql</code> is fed to <code>psql</code> automatically.</p>
+<code>datallowconn = true</code> is dumped, excluding <code>template0</code>. The snapshot also
+contains the <a href="/docs/community/main/integrations/postgres/#snapshot-manifest" >snapshot manifest</a>.</p>
+<p>Restore dispatches on file name and extension. <code>.dump</code> files are fed to
+<code>pg_restore</code>, and <code>00000-globals.sql</code> is fed to <code>psql</code> automatically.</p>
 <p><strong>Pros</strong></p>
 <ul>
 <li>Portable across PostgreSQL major versions. You can dump on PG 15, restore on
@@ -5086,42 +5178,19 @@ PG 16.</li>
 system catalog details).</li>
 <li>Restore time scales with data volume.</li>
 </ul>
-
-
-<h3 id="prerequisites" class="group pr-8">Prerequisites
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="prerequisites"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
-<p>The following PostgreSQL client tools must be available in <code>$PATH</code> on the
-machine running Plakar (typically provided by the <code>postgresql-client</code> package):</p>
-<ul>
-<li><code>pg_dump</code>, <code>pg_dumpall</code>: for backup</li>
-<li><code>pg_restore</code>, <code>psql</code>: for restore and connectivity checks</li>
-</ul>
 <p>The backup user should be a <strong>superuser</strong> so that <code>pg_dumpall</code> can include role
-passwords from <code>pg_authid</code>. On managed services such as Amazon RDS, where the
-administrative user is a restricted superuser, the integration cannot read role
-passwords from <code>pg_authid</code>. It automatically passes <code>--no-role-passwords</code> to
-<code>pg_dumpall</code> and logs a warning. The dump is otherwise complete, but restored
-roles will have no password set.</p>
+passwords from <code>pg_authid</code>. On managed services such as Amazon RDS, the
+administrative user is a restricted superuser and the integration cannot read
+role passwords from <code>pg_authid</code>. In that case it automatically passes
+<code>--no-role-passwords</code> to <code>pg_dumpall</code> and logs a warning. The dump is otherwise
+complete, but restored roles have no password set.</p>
 
 
-<h3 id="source-connector" class="group pr-8">Source connector
+<h4 id="backup-flow" class="group pr-8">Backup flow
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="source-connector"
+      data-anchor="backup-flow"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -5131,7 +5200,7 @@ roles will have no password set.</p>
 </span></span>
     </button>
   
-</h3>
+</h4>
 <!-- prettier-ignore-start -->
 <pre class="not-prose mermaid">
 flowchart LR
@@ -5153,31 +5222,13 @@ Transform --> Store
 </pre>
 
 <!-- prettier-ignore-end -->
-<div class="highlight-wrapper codeblock">
-  <div class="codeblock-title">
-    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
-</span></span>
-    <span class="codeblock-label">Shell</span>
-    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
-      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
-</span></span>
-      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Back up a single database</span>
-</span></span><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add mypg postgres://postgres:secret@db.example.com/myapp
-</span></span><span class="line"><span class="cl">$ plakar at /var/backups backup <span class="s2">&#34;@mypg&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Back up all databases (roles, tablespaces, and data)</span>
-</span></span><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add mypg postgres://postgres:secret@db.example.com/
-</span></span><span class="line"><span class="cl">$ plakar at /var/backups backup <span class="s2">&#34;@mypg&#34;</span></span></span></code></pre></div></div>
 
 
-<h4 id="source-options" class="group pr-8">Source options
+<h4 id="restore-flow" class="group pr-8">Restore flow
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="source-options"
+      data-anchor="restore-flow"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -5188,124 +5239,6 @@ Transform --> Store
     </button>
   
 </h4>
-<table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Default</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>location</code></td>
-          <td>—</td>
-          <td>Connection URI: <code>postgres://[user[:password]@]host[:port][/database]</code></td>
-      </tr>
-      <tr>
-          <td><code>host</code></td>
-          <td><code>localhost</code></td>
-          <td>Server hostname. Overrides the URI host.</td>
-      </tr>
-      <tr>
-          <td><code>port</code></td>
-          <td><code>5432</code></td>
-          <td>Server port. Overrides the URI port.</td>
-      </tr>
-      <tr>
-          <td><code>username</code></td>
-          <td>—</td>
-          <td>PostgreSQL username. Overrides the URI user.</td>
-      </tr>
-      <tr>
-          <td><code>password</code></td>
-          <td>—</td>
-          <td>PostgreSQL password. Overrides the URI password.</td>
-      </tr>
-      <tr>
-          <td><code>database</code></td>
-          <td>—</td>
-          <td>Database to back up. If omitted, all connectable databases are backed up. Overrides the URI path.</td>
-      </tr>
-      <tr>
-          <td><code>exclude_databases</code></td>
-          <td>—</td>
-          <td>Comma-separated list of database names to skip during a full backup. Has no effect when a single database is selected.</td>
-      </tr>
-      <tr>
-          <td><code>compress</code></td>
-          <td><code>false</code></td>
-          <td>Enable <code>pg_dump</code> compression. Disabled by default so Plakar&rsquo;s own compression and deduplication can operate on uncompressed data.</td>
-      </tr>
-      <tr>
-          <td><code>schema_only</code></td>
-          <td><code>false</code></td>
-          <td>Dump only the schema (no data). Mutually exclusive with <code>data_only</code>.</td>
-      </tr>
-      <tr>
-          <td><code>data_only</code></td>
-          <td><code>false</code></td>
-          <td>Dump only the data (no schema). Mutually exclusive with <code>schema_only</code>.</td>
-      </tr>
-      <tr>
-          <td><code>pg_bin_dir</code></td>
-          <td>—</td>
-          <td>Directory containing the PostgreSQL client binaries. When omitted, binaries are resolved via <code>$PATH</code>. Useful when multiple PostgreSQL versions are installed.</td>
-      </tr>
-      <tr>
-          <td><code>ssl_mode</code></td>
-          <td><code>prefer</code></td>
-          <td>SSL mode: <code>disable</code>, <code>allow</code>, <code>prefer</code>, <code>require</code>, <code>verify-ca</code>, or <code>verify-full</code>.</td>
-      </tr>
-      <tr>
-          <td><code>ssl_cert</code></td>
-          <td>—</td>
-          <td>Path to the client SSL certificate file (PEM).</td>
-      </tr>
-      <tr>
-          <td><code>ssl_cert_data</code></td>
-          <td>—</td>
-          <td>Inline PEM content of the client SSL certificate. Alternative to <code>ssl_cert</code>.</td>
-      </tr>
-      <tr>
-          <td><code>ssl_key</code></td>
-          <td>—</td>
-          <td>Path to the client SSL private key file (PEM).</td>
-      </tr>
-      <tr>
-          <td><code>ssl_key_data</code></td>
-          <td>—</td>
-          <td>Inline PEM content of the client SSL private key. Alternative to <code>ssl_key</code>.</td>
-      </tr>
-      <tr>
-          <td><code>ssl_root_cert</code></td>
-          <td>—</td>
-          <td>Path to the root CA certificate used to verify the server (PEM).</td>
-      </tr>
-      <tr>
-          <td><code>ssl_root_cert_data</code></td>
-          <td>—</td>
-          <td>Inline PEM content of the root CA certificate. Alternative to <code>ssl_root_cert</code>.</td>
-      </tr>
-  </tbody>
-</table>
-
-
-<h3 id="destination-connector" class="group pr-8">Destination connector
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="destination-connector"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
 <!-- prettier-ignore-start -->
 <pre class="not-prose mermaid">
 flowchart LR
@@ -5327,6 +5260,268 @@ Connector --> DB
 </pre>
 
 <!-- prettier-ignore-end -->
+
+
+<h3 id="shared-configuration" class="group pr-8">Shared configuration
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="shared-configuration"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>The following options apply to both source and destination connectors using the
+<code>postgres</code> protocol.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Option</th>
+          <th>Required</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>location</code></td>
+          <td>Yes</td>
+          <td>Connection URI: <code>postgres://[user[:password]@]host[:port][/database]</code></td>
+      </tr>
+      <tr>
+          <td><code>host</code></td>
+          <td>No</td>
+          <td>Server hostname. Overrides the URI host. Defaults to <code>localhost</code>.</td>
+      </tr>
+      <tr>
+          <td><code>port</code></td>
+          <td>No</td>
+          <td>Server port. Overrides the URI port. Defaults to <code>5432</code>.</td>
+      </tr>
+      <tr>
+          <td><code>username</code></td>
+          <td>No</td>
+          <td>PostgreSQL username. Overrides the URI user.</td>
+      </tr>
+      <tr>
+          <td><code>password</code></td>
+          <td>No</td>
+          <td>PostgreSQL password. Overrides the URI password.</td>
+      </tr>
+      <tr>
+          <td><code>pg_bin_dir</code></td>
+          <td>No</td>
+          <td>Directory containing the PostgreSQL client binaries. When omitted, binaries are resolved via <code>$PATH</code>. Useful when multiple PostgreSQL versions are installed.</td>
+      </tr>
+      <tr>
+          <td><code>ssl_mode</code></td>
+          <td>No</td>
+          <td>SSL mode: <code>disable</code>, <code>allow</code>, <code>prefer</code>, <code>require</code>, <code>verify-ca</code>, or <code>verify-full</code>. Defaults to <code>prefer</code>.</td>
+      </tr>
+      <tr>
+          <td><code>ssl_cert</code></td>
+          <td>No</td>
+          <td>Path to the client SSL certificate file (PEM).</td>
+      </tr>
+      <tr>
+          <td><code>ssl_cert_data</code></td>
+          <td>No</td>
+          <td>Inline PEM content of the client SSL certificate. Alternative to <code>ssl_cert</code>.</td>
+      </tr>
+      <tr>
+          <td><code>ssl_key</code></td>
+          <td>No</td>
+          <td>Path to the client SSL private key file (PEM).</td>
+      </tr>
+      <tr>
+          <td><code>ssl_key_data</code></td>
+          <td>No</td>
+          <td>Inline PEM content of the client SSL private key. Alternative to <code>ssl_key</code>.</td>
+      </tr>
+      <tr>
+          <td><code>ssl_root_cert</code></td>
+          <td>No</td>
+          <td>Path to the root CA certificate used to verify the server (PEM).</td>
+      </tr>
+      <tr>
+          <td><code>ssl_root_cert_data</code></td>
+          <td>No</td>
+          <td>Inline PEM content of the root CA certificate. Alternative to <code>ssl_root_cert</code>.</td>
+      </tr>
+  </tbody>
+</table>
+
+
+<h3 id="source-configuration" class="group pr-8">Source configuration
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="source-configuration"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>The following extra options are available to source connectors using the
+<code>postgres</code> protocol.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Option</th>
+          <th>Required</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>database</code></td>
+          <td>No</td>
+          <td>Database to back up. If omitted, all connectable databases are backed up. Overrides the URI path.</td>
+      </tr>
+      <tr>
+          <td><code>exclude_databases</code></td>
+          <td>No</td>
+          <td>Comma-separated list of database names to skip during a full backup. Has no effect when a single database is selected.</td>
+      </tr>
+      <tr>
+          <td><code>compress</code></td>
+          <td>No</td>
+          <td>Enable <code>pg_dump</code> compression. Defaults to <code>false</code>, so Plakar&rsquo;s own compression and deduplication can operate on uncompressed data. See <a href="/docs/community/main/integrations/postgres/#limitations-and-scope" >Limitations and scope</a>.</td>
+      </tr>
+      <tr>
+          <td><code>schema_only</code></td>
+          <td>No</td>
+          <td>Dump only the schema (no data). Mutually exclusive with <code>data_only</code>. Defaults to <code>false</code>.</td>
+      </tr>
+      <tr>
+          <td><code>data_only</code></td>
+          <td>No</td>
+          <td>Dump only the data (no schema). Mutually exclusive with <code>schema_only</code>. Defaults to <code>false</code>.</td>
+      </tr>
+  </tbody>
+</table>
+
+
+<h3 id="destination-configuration" class="group pr-8">Destination configuration
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="destination-configuration"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>The following extra options are available to destination connectors using the
+<code>postgres</code> protocol.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Option</th>
+          <th>Required</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>database</code></td>
+          <td>No</td>
+          <td>Target database for <code>pg_restore</code>. If omitted, the name is inferred from the dump filename. Not used with <code>recreate</code>.</td>
+      </tr>
+      <tr>
+          <td><code>databases</code></td>
+          <td>No</td>
+          <td>Comma-separated list of database names to restore from a full backup. Only matching <code>.dump</code> files are restored. Globals are always included unless <code>no_globals=true</code>.</td>
+      </tr>
+      <tr>
+          <td><code>clean</code></td>
+          <td>No</td>
+          <td>Drop objects within the target database before recreating them (<code>--clean --if-exists</code>). The database must already exist. Mutually exclusive with <code>recreate</code>. Defaults to <code>false</code>.</td>
+      </tr>
+      <tr>
+          <td><code>recreate</code></td>
+          <td>No</td>
+          <td>Drop and recreate the target database from the archive metadata (<code>-C --clean --if-exists</code>). The <code>postgres</code> database is never dropped. Mutually exclusive with <code>clean</code>. Defaults to <code>false</code>.</td>
+      </tr>
+      <tr>
+          <td><code>no_globals</code></td>
+          <td>No</td>
+          <td>Skip restoring <code>00000-globals.sql</code>. Set to <code>true</code> when the target server already has the required roles and tablespaces. Defaults to <code>false</code>.</td>
+      </tr>
+      <tr>
+          <td><code>no_owner</code></td>
+          <td>No</td>
+          <td>Skip <code>ALTER OWNER</code> statements (<code>--no-owner</code>). Useful when roles from the source server do not exist on the target. Defaults to <code>false</code>.</td>
+      </tr>
+      <tr>
+          <td><code>schema_only</code></td>
+          <td>No</td>
+          <td>Restore only the schema (no data). Mutually exclusive with <code>data_only</code>. Defaults to <code>false</code>.</td>
+      </tr>
+      <tr>
+          <td><code>data_only</code></td>
+          <td>No</td>
+          <td>Restore only the data (no schema). Mutually exclusive with <code>schema_only</code>. Defaults to <code>false</code>.</td>
+      </tr>
+      <tr>
+          <td><code>exit_on_error</code></td>
+          <td>No</td>
+          <td>Stop on the first restore error. Applies to both <code>pg_restore</code> (<code>-e</code>) and <code>psql</code> (<code>ON_ERROR_STOP=1</code>). Defaults to <code>false</code>.</td>
+      </tr>
+  </tbody>
+</table>
+
+
+<h3 id="example" class="group pr-8">Example
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="example"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Back up a single database, or all databases including roles and tablespaces:</p>
+<div class="highlight-wrapper codeblock">
+  <div class="codeblock-title">
+    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
+</span></span>
+    <span class="codeblock-label">Shell</span>
+    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
+      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
+</span></span>
+      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Back up a single database</span>
+</span></span><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add mypg postgres://postgres:secret@db.example.com/myapp
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups backup <span class="s2">&#34;@mypg&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Back up all databases (roles, tablespaces, and data)</span>
+</span></span><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add mypg postgres://postgres:secret@db.example.com/
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups backup <span class="s2">&#34;@mypg&#34;</span></span></span></code></pre></div></div>
+<p>Restore with different destination settings:</p>
 <div class="highlight-wrapper codeblock">
   <div class="codeblock-title">
     <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
@@ -5363,149 +5558,11 @@ Connector --> DB
 </span></span><span class="line"><span class="cl">$ plakar at /var/backups restore -to <span class="s2">&#34;@mypgdst&#34;</span> &lt;snapshot_id&gt;</span></span></code></pre></div></div>
 
 
-<h4 id="destination-options" class="group pr-8">Destination options
+<h2 id="2-postgresaws-protocol" class="group pr-8">2. <code>postgres+aws</code> protocol
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="destination-options"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h4>
-<table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Default</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>location</code></td>
-          <td>—</td>
-          <td>Connection URI: <code>postgres://[user[:password]@]host[:port][/database]</code></td>
-      </tr>
-      <tr>
-          <td><code>host</code></td>
-          <td><code>localhost</code></td>
-          <td>Server hostname. Overrides the URI host.</td>
-      </tr>
-      <tr>
-          <td><code>port</code></td>
-          <td><code>5432</code></td>
-          <td>Server port. Overrides the URI port.</td>
-      </tr>
-      <tr>
-          <td><code>username</code></td>
-          <td>—</td>
-          <td>PostgreSQL username. Overrides the URI user.</td>
-      </tr>
-      <tr>
-          <td><code>password</code></td>
-          <td>—</td>
-          <td>PostgreSQL password. Overrides the URI password.</td>
-      </tr>
-      <tr>
-          <td><code>database</code></td>
-          <td>—</td>
-          <td>Target database for <code>pg_restore</code>. If omitted, the name is inferred from the dump filename. Not used with <code>recreate</code>.</td>
-      </tr>
-      <tr>
-          <td><code>databases</code></td>
-          <td>—</td>
-          <td>Comma-separated list of database names to restore from a full backup. Only matching <code>.dump</code> files are restored; globals are always included unless <code>no_globals=true</code>.</td>
-      </tr>
-      <tr>
-          <td><code>clean</code></td>
-          <td><code>false</code></td>
-          <td>Drop objects within the target database before recreating them (<code>--clean --if-exists</code>). The database must already exist. Mutually exclusive with <code>recreate</code>.</td>
-      </tr>
-      <tr>
-          <td><code>recreate</code></td>
-          <td><code>false</code></td>
-          <td>Drop and recreate the target database from the archive metadata (<code>-C --clean --if-exists</code>). The <code>postgres</code> database is never dropped. Mutually exclusive with <code>clean</code>.</td>
-      </tr>
-      <tr>
-          <td><code>no_globals</code></td>
-          <td><code>false</code></td>
-          <td>Skip restoring <code>00000-globals.sql</code>. Set to <code>true</code> when the target server already has the required roles and tablespaces.</td>
-      </tr>
-      <tr>
-          <td><code>no_owner</code></td>
-          <td><code>false</code></td>
-          <td>Skip <code>ALTER OWNER</code> statements (<code>--no-owner</code>). Useful when roles from the source server do not exist on the target.</td>
-      </tr>
-      <tr>
-          <td><code>schema_only</code></td>
-          <td><code>false</code></td>
-          <td>Restore only the schema (no data). Mutually exclusive with <code>data_only</code>.</td>
-      </tr>
-      <tr>
-          <td><code>data_only</code></td>
-          <td><code>false</code></td>
-          <td>Restore only the data (no schema). Mutually exclusive with <code>schema_only</code>.</td>
-      </tr>
-      <tr>
-          <td><code>exit_on_error</code></td>
-          <td><code>false</code></td>
-          <td>Stop on the first restore error. Applies to both <code>pg_restore</code> (<code>-e</code>) and <code>psql</code> (<code>ON_ERROR_STOP=1</code>).</td>
-      </tr>
-      <tr>
-          <td><code>pg_bin_dir</code></td>
-          <td>—</td>
-          <td>Directory containing the PostgreSQL client binaries. When omitted, binaries are resolved via <code>$PATH</code>.</td>
-      </tr>
-      <tr>
-          <td><code>ssl_mode</code></td>
-          <td><code>prefer</code></td>
-          <td>SSL mode: <code>disable</code>, <code>allow</code>, <code>prefer</code>, <code>require</code>, <code>verify-ca</code>, or <code>verify-full</code>.</td>
-      </tr>
-      <tr>
-          <td><code>ssl_cert</code></td>
-          <td>—</td>
-          <td>Path to the client SSL certificate file (PEM).</td>
-      </tr>
-      <tr>
-          <td><code>ssl_cert_data</code></td>
-          <td>—</td>
-          <td>Inline PEM content of the client SSL certificate. Alternative to <code>ssl_cert</code>.</td>
-      </tr>
-      <tr>
-          <td><code>ssl_key</code></td>
-          <td>—</td>
-          <td>Path to the client SSL private key file (PEM).</td>
-      </tr>
-      <tr>
-          <td><code>ssl_key_data</code></td>
-          <td>—</td>
-          <td>Inline PEM content of the client SSL private key. Alternative to <code>ssl_key</code>.</td>
-      </tr>
-      <tr>
-          <td><code>ssl_root_cert</code></td>
-          <td>—</td>
-          <td>Path to the root CA certificate used to verify the server (PEM).</td>
-      </tr>
-      <tr>
-          <td><code>ssl_root_cert_data</code></td>
-          <td>—</td>
-          <td>Inline PEM content of the root CA certificate. Alternative to <code>ssl_root_cert</code>.</td>
-      </tr>
-  </tbody>
-</table>
-
-
-<h2 id="logical-backup-with-aws-iam---postgresaws" class="group pr-8">Logical backup with AWS IAM - <code>postgres+aws://</code>
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="logical-backup-with-aws-iam---postgresaws"
+      data-anchor="2-postgresaws-protocol"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -5516,31 +5573,15 @@ Connector --> DB
     </button>
   
 </h2>
-
-
-<h3 id="how-it-works-1" class="group pr-8">How it works
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="how-it-works-1"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
-<p><code>postgres+aws://</code> performs the same logical backup as <code>postgres://</code> but
-authenticates using a short-lived IAM token rather than a static password. The
-token is generated automatically via the AWS SDK before <code>pg_dump</code> or
-<code>pg_dumpall</code> runs, using the standard SDK credential chain (environment
-variables, <code>~/.aws/credentials</code>, EC2/ECS instance metadata, and so on). No
+<p>The <code>postgres+aws</code> protocol performs the same logical backup as <code>postgres</code>, but
+authenticates with a short-lived IAM token rather than a static password. The
+token is generated automatically through the AWS SDK before <code>pg_dump</code> or
+<code>pg_dumpall</code> runs. The SDK uses its standard credential chain: environment
+variables, <code>~/.aws/credentials</code>, EC2/ECS instance metadata, and so on. No
 <code>password</code> parameter is needed or accepted.</p>
 <p>The backup output is identical to <code>postgres://</code> and can be restored with the
-same <code>postgres://</code> destination connector.</p>
+same <code>postgres://</code> destination connector. The backup and restore flows are the
+same as for the <a href="/docs/community/main/integrations/postgres/#1-postgres-protocol" ><code>postgres</code> protocol</a>.</p>
 
 
 <h3 id="aws-setup" class="group pr-8">AWS setup
@@ -5579,7 +5620,7 @@ same <code>postgres://</code> destination connector.</p>
 </h4>
 <p>Enable
 <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.Enabling.html"  target="_blank" rel="noreferrer">IAM database authentication</a>
-on the RDS instance via the AWS console, CLI, or Terraform. This can be set at
+on the RDS instance through the AWS console, CLI, or Terraform. It can be set at
 creation time or toggled on an existing instance.</p>
 <figure><img
     class="my-0 rounded-md"
@@ -5613,7 +5654,7 @@ creation time or toggled on an existing instance.</p>
     </button>
   
 </h4>
-<p>Attach the following policy to the IAM user or role that will run Plakar. See
+<p>Attach the following policy to the IAM user or role that runs Plakar. See
 <a href="/docs/control-plane/guides/aws/iam-users-roles-and-access-keys/" >Managing IAM Roles, Users, and Access Keys</a>
 for instructions on creating policies and attaching them to a user or role.</p>
 <div class="highlight-wrapper codeblock">
@@ -5642,7 +5683,7 @@ for instructions on creating policies and attaching them to a user or role.</p>
 <li><code>ACCOUNT_ID</code>: your 12-digit AWS account ID</li>
 <li><code>DB_RESOURCE_ID</code>: the RDS instance resource ID (e.g. <code>db-ABCDEFGHIJKL1234</code>),
 found in the RDS console under <strong>Configuration</strong></li>
-<li><code>DB_USER</code>: the PostgreSQL username Plakar will connect as</li>
+<li><code>DB_USER</code>: the PostgreSQL username Plakar connects as</li>
 </ul>
 </div>
 
@@ -5678,8 +5719,8 @@ found in the RDS console under <strong>Configuration</strong></li>
     </button>
   </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">myuser</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">LOGIN</span><span class="p">;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="k">GRANT</span><span class="w"> </span><span class="n">rds_iam</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">myuser</span><span class="p">;</span></span></span></code></pre></div></div>
-<p>The user must not have a password set as authentication is handled entirely via
-the IAM token.</p>
+<p>The user must not have a password set. Authentication is handled entirely by the
+IAM token.</p>
 </div>
 
 
@@ -5727,7 +5768,7 @@ the IAM token.</p>
 </span></span></span><span class="line"><span class="cl">  postgres+aws://myuser@mydb.cluster-xyz.eu-west-3.rds.amazonaws.com/myapp <span class="se">\
 </span></span></span><span class="line"><span class="cl">  <span class="nv">region</span><span class="o">=</span>eu-west-3 <span class="nv">ssl_mode</span><span class="o">=</span>require
 </span></span><span class="line"><span class="cl">$ plakar at /var/backups backup <span class="s2">&#34;@myrds&#34;</span></span></span></code></pre></div></div>
-<p>If your IAM user requires a session token (assumed role, temporary credentials):</p>
+<p>If the IAM user requires a session token (assumed role, temporary credentials):</p>
 <div class="highlight-wrapper codeblock">
   <div class="codeblock-title">
     <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
@@ -5812,11 +5853,11 @@ metadata service automatically.</p>
 
 
 
-<h3 id="source-connector-1" class="group pr-8">Source connector
+<h3 id="shared-configuration-1" class="group pr-8">Shared configuration
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="source-connector-1"
+      data-anchor="shared-configuration-1"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -5827,6 +5868,178 @@ metadata service automatically.</p>
     </button>
   
 </h3>
+<p>The following options apply to both source and destination connectors using the
+<code>postgres+aws</code> protocol.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Option</th>
+          <th>Required</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>location</code></td>
+          <td>Yes</td>
+          <td>Connection URI: <code>postgres+aws://[user@]host[:port][/database]</code>. No password component. The IAM token is fetched automatically.</td>
+      </tr>
+      <tr>
+          <td><code>host</code></td>
+          <td>No</td>
+          <td>RDS instance hostname. Overrides the URI host. Defaults to <code>localhost</code>.</td>
+      </tr>
+      <tr>
+          <td><code>port</code></td>
+          <td>No</td>
+          <td>RDS instance port. Overrides the URI port. Defaults to <code>5432</code>.</td>
+      </tr>
+      <tr>
+          <td><code>username</code></td>
+          <td>No</td>
+          <td>PostgreSQL username. Must be an IAM-enabled database user. Overrides the URI user.</td>
+      </tr>
+      <tr>
+          <td><code>region</code></td>
+          <td>Yes</td>
+          <td>AWS region of the RDS instance, e.g. <code>us-east-1</code>.</td>
+      </tr>
+      <tr>
+          <td><code>pg_bin_dir</code></td>
+          <td>No</td>
+          <td>Directory containing the PostgreSQL client binaries. When omitted, binaries are resolved via <code>$PATH</code>.</td>
+      </tr>
+      <tr>
+          <td><code>ssl_mode</code></td>
+          <td>No</td>
+          <td>SSL mode. Defaults to <code>prefer</code>. IAM authentication requires an encrypted connection. Use <code>require</code> or higher.</td>
+      </tr>
+      <tr>
+          <td><code>ssl_cert</code></td>
+          <td>No</td>
+          <td>Path to the client SSL certificate file (PEM).</td>
+      </tr>
+      <tr>
+          <td><code>ssl_cert_data</code></td>
+          <td>No</td>
+          <td>Inline PEM content of the client SSL certificate. Alternative to <code>ssl_cert</code>.</td>
+      </tr>
+      <tr>
+          <td><code>ssl_key</code></td>
+          <td>No</td>
+          <td>Path to the client SSL private key file (PEM).</td>
+      </tr>
+      <tr>
+          <td><code>ssl_key_data</code></td>
+          <td>No</td>
+          <td>Inline PEM content of the client SSL private key. Alternative to <code>ssl_key</code>.</td>
+      </tr>
+      <tr>
+          <td><code>ssl_root_cert</code></td>
+          <td>No</td>
+          <td>Path to the root CA certificate used to verify the server (PEM).</td>
+      </tr>
+      <tr>
+          <td><code>ssl_root_cert_data</code></td>
+          <td>No</td>
+          <td>Inline PEM content of the root CA certificate. Alternative to <code>ssl_root_cert</code>.</td>
+      </tr>
+  </tbody>
+</table>
+
+
+<h3 id="source-configuration-1" class="group pr-8">Source configuration
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="source-configuration-1"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>The following extra options are available to source connectors using the
+<code>postgres+aws</code> protocol.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Option</th>
+          <th>Required</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>database</code></td>
+          <td>No</td>
+          <td>Database to back up. If omitted, all connectable databases are backed up. Overrides the URI path.</td>
+      </tr>
+      <tr>
+          <td><code>exclude_databases</code></td>
+          <td>No</td>
+          <td>Comma-separated list of database names to skip. Defaults to <code>rdsadmin</code> (an internal AWS system database). Set to an empty string to disable all exclusions.</td>
+      </tr>
+      <tr>
+          <td><code>compress</code></td>
+          <td>No</td>
+          <td>Enable <code>pg_dump</code> compression. Defaults to <code>false</code>, so Plakar&rsquo;s own compression and deduplication can operate on uncompressed data.</td>
+      </tr>
+      <tr>
+          <td><code>schema_only</code></td>
+          <td>No</td>
+          <td>Dump only the schema (no data). Mutually exclusive with <code>data_only</code>. Defaults to <code>false</code>.</td>
+      </tr>
+      <tr>
+          <td><code>data_only</code></td>
+          <td>No</td>
+          <td>Dump only the data (no schema). Mutually exclusive with <code>schema_only</code>. Defaults to <code>false</code>.</td>
+      </tr>
+  </tbody>
+</table>
+
+
+<h3 id="destination-configuration-1" class="group pr-8">Destination configuration
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="destination-configuration-1"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>The <code>postgres+aws</code> destination connector supports the same options as the
+<a href="/docs/community/main/integrations/postgres/#destination-configuration" ><code>postgres</code> destination connector</a>, minus
+<code>password</code>, plus <code>region</code>. An IAM token is generated automatically and used as
+the connection password.</p>
+
+
+<h3 id="example-1" class="group pr-8">Example
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="example-1"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Back up a single RDS database, or all databases on an RDS instance:</p>
 <div class="highlight-wrapper codeblock">
   <div class="codeblock-title">
     <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
@@ -5849,144 +6062,7 @@ metadata service automatically.</p>
 </span></span></span><span class="line"><span class="cl">  postgres+aws://myuser@mydb.cluster-xyz.us-east-1.rds.amazonaws.com/ <span class="se">\
 </span></span></span><span class="line"><span class="cl">  <span class="nv">region</span><span class="o">=</span>us-east-1 <span class="nv">ssl_mode</span><span class="o">=</span>require
 </span></span><span class="line"><span class="cl">$ plakar at /var/backups backup <span class="s2">&#34;@myrds&#34;</span></span></span></code></pre></div></div>
-
-
-<h4 id="source-options-1" class="group pr-8">Source options
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="source-options-1"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h4>
-<table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Default</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>location</code></td>
-          <td>—</td>
-          <td>Connection URI: <code>postgres+aws://[user@]host[:port][/database]</code>. No password component. The IAM token is fetched automatically.</td>
-      </tr>
-      <tr>
-          <td><code>host</code></td>
-          <td><code>localhost</code></td>
-          <td>RDS instance hostname. Overrides the URI host.</td>
-      </tr>
-      <tr>
-          <td><code>port</code></td>
-          <td><code>5432</code></td>
-          <td>RDS instance port. Overrides the URI port.</td>
-      </tr>
-      <tr>
-          <td><code>username</code></td>
-          <td>—</td>
-          <td>PostgreSQL username. Must be an IAM-enabled database user. Overrides the URI user.</td>
-      </tr>
-      <tr>
-          <td><code>region</code></td>
-          <td>—</td>
-          <td>AWS region of the RDS instance (required), e.g. <code>us-east-1</code>.</td>
-      </tr>
-      <tr>
-          <td><code>database</code></td>
-          <td>—</td>
-          <td>Database to back up. If omitted, all connectable databases are backed up. Overrides the URI path.</td>
-      </tr>
-      <tr>
-          <td><code>exclude_databases</code></td>
-          <td><code>rdsadmin</code></td>
-          <td>Comma-separated list of database names to skip. Defaults to <code>rdsadmin</code> (an internal AWS system database). Set to an empty string to disable all exclusions.</td>
-      </tr>
-      <tr>
-          <td><code>compress</code></td>
-          <td><code>false</code></td>
-          <td>Enable <code>pg_dump</code> compression. Disabled by default so Plakar&rsquo;s own compression and deduplication can operate on uncompressed data.</td>
-      </tr>
-      <tr>
-          <td><code>schema_only</code></td>
-          <td><code>false</code></td>
-          <td>Dump only the schema (no data). Mutually exclusive with <code>data_only</code>.</td>
-      </tr>
-      <tr>
-          <td><code>data_only</code></td>
-          <td><code>false</code></td>
-          <td>Dump only the data (no schema). Mutually exclusive with <code>schema_only</code>.</td>
-      </tr>
-      <tr>
-          <td><code>pg_bin_dir</code></td>
-          <td>—</td>
-          <td>Directory containing the PostgreSQL client binaries. When omitted, binaries are resolved via <code>$PATH</code>.</td>
-      </tr>
-      <tr>
-          <td><code>ssl_mode</code></td>
-          <td><code>prefer</code></td>
-          <td>SSL mode. IAM authentication requires an encrypted connection — use <code>require</code> or higher.</td>
-      </tr>
-      <tr>
-          <td><code>ssl_cert</code></td>
-          <td>—</td>
-          <td>Path to the client SSL certificate file (PEM).</td>
-      </tr>
-      <tr>
-          <td><code>ssl_cert_data</code></td>
-          <td>—</td>
-          <td>Inline PEM content of the client SSL certificate. Alternative to <code>ssl_cert</code>.</td>
-      </tr>
-      <tr>
-          <td><code>ssl_key</code></td>
-          <td>—</td>
-          <td>Path to the client SSL private key file (PEM).</td>
-      </tr>
-      <tr>
-          <td><code>ssl_key_data</code></td>
-          <td>—</td>
-          <td>Inline PEM content of the client SSL private key. Alternative to <code>ssl_key</code>.</td>
-      </tr>
-      <tr>
-          <td><code>ssl_root_cert</code></td>
-          <td>—</td>
-          <td>Path to the root CA certificate used to verify the server (PEM).</td>
-      </tr>
-      <tr>
-          <td><code>ssl_root_cert_data</code></td>
-          <td>—</td>
-          <td>Inline PEM content of the root CA certificate. Alternative to <code>ssl_root_cert</code>.</td>
-      </tr>
-  </tbody>
-</table>
-
-
-<h3 id="destination-connector-1" class="group pr-8">Destination connector
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="destination-connector-1"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
-<p>The <code>postgres+aws://</code> destination connector supports the same options as
-<code>postgres://</code>, minus <code>password</code>, plus <code>region</code>. An IAM token is generated
-automatically and used as the connection password.</p>
+<p>Restore to RDS:</p>
 <div class="highlight-wrapper codeblock">
   <div class="codeblock-title">
     <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
@@ -6017,47 +6093,11 @@ automatically and used as the connection password.</p>
 </span></span><span class="line"><span class="cl">$ plakar at /var/backups restore -to <span class="s2">&#34;@myrds&#34;</span> &lt;snapshot_id&gt;</span></span></code></pre></div></div>
 
 
-<h4 id="destination-options-1" class="group pr-8">Destination options
+<h2 id="3-postgresbin-protocol" class="group pr-8">3. <code>postgres+bin</code> protocol
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="destination-options-1"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h4>
-<p>Supports all <a href="/docs/community/main/integrations/postgres/#destination-options" >destination options from <code>postgres://</code></a>
-plus:</p>
-<table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Default</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>region</code></td>
-          <td>—</td>
-          <td>AWS region of the RDS instance (required), e.g. <code>us-east-1</code>.</td>
-      </tr>
-  </tbody>
-</table>
-<hr>
-
-
-<h2 id="physical-backup---postgresbin" class="group pr-8">Physical backup - <code>postgres+bin://</code>
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="physical-backup---postgresbin"
+      data-anchor="3-postgresbin-protocol"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6068,45 +6108,27 @@ plus:</p>
     </button>
   
 </h2>
-
-
-<h3 id="how-it-works-2" class="group pr-8">How it works
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="how-it-works-2"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
-<p>Plakar runs <code>pg_basebackup</code> to stream a tar archive of the entire PostgreSQL
-data directory (<code>PGDATA</code>) directly from the server&rsquo;s replication interface. Each
-file inside the tar is stored as an individual record in the snapshot,
-preserving paths, permissions, and timestamps.</p>
+<p>The <code>postgres+bin</code> protocol runs <code>pg_basebackup</code> to stream a tar archive of the
+entire PostgreSQL data directory (<code>PGDATA</code>) directly from the server&rsquo;s
+replication interface. Each file inside the tar is stored as an individual
+record in the snapshot, preserving paths, permissions, and timestamps.</p>
 <p>Because the backup operates at the file level, it captures the <strong>entire
-cluster</strong> (all databases, configuration files, and WAL segments required for a
-consistent recovery). No subpath can be specified: <code>pg_basebackup</code> always backs
-up the whole cluster.</p>
-<p>A <code>/manifest.json</code> record capturing cluster-level metadata is also written to
-the snapshot before the backup data.</p>
+cluster</strong>: all databases, configuration files, and the WAL segments required for
+a consistent recovery. No subpath can be specified, since <code>pg_basebackup</code> always
+backs up the whole cluster. The snapshot also contains the
+<a href="/docs/community/main/integrations/postgres/#snapshot-manifest" >snapshot manifest</a>.</p>
 <p><strong>Pros</strong></p>
 <ul>
-<li>Fast backup and restore regardless of data volume because it is a file copy,
+<li>Fast backup and restore regardless of data volume, because it is a file copy,
 not a query.</li>
-<li>Captures everything: all databases, configuration, global objects, and WAL in
-a single operation.</li>
+<li>Captures everything in a single operation: all databases, configuration,
+global objects, and WAL.</li>
 <li>The restored cluster can be started directly with any PostgreSQL binary of the
 same major version. No running server is needed at restore time.</li>
 </ul>
 <p><strong>Cons</strong></p>
 <ul>
-<li>Version-locked: the backup must be restored with the same PostgreSQL major
+<li>Version-locked. The backup must be restored with the same PostgreSQL major
 version.</li>
 <li>Cannot selectively restore a single database or table.</li>
 <li>Requires a replication-capable user (or superuser) and <code>wal_level &gt;= replica</code>
@@ -6114,25 +6136,6 @@ on the server.</li>
 <li>The PostgreSQL server must be stopped before the data directory is replaced
 with the restored files.</li>
 </ul>
-
-
-<h3 id="prerequisites-1" class="group pr-8">Prerequisites
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="prerequisites-1"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
-<p><code>pg_basebackup</code> must be in <code>$PATH</code> on the machine running Plakar (same
-<code>postgresql-client</code> package, or <code>postgresql</code> on macOS via Homebrew).</p>
 <p>The PostgreSQL server must have:</p>
 <ul>
 <li><code>wal_level = replica</code> (or higher) in <code>postgresql.conf</code></li>
@@ -6141,11 +6144,11 @@ with the restored files.</li>
 </ul>
 
 
-<h3 id="source-connector-2" class="group pr-8">Source connector
+<h4 id="backup-flow-1" class="group pr-8">Backup flow
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="source-connector-2"
+      data-anchor="backup-flow-1"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6155,7 +6158,7 @@ with the restored files.</li>
 </span></span>
     </button>
   
-</h3>
+</h4>
 <!-- prettier-ignore-start -->
 <pre class="not-prose mermaid">
 flowchart LR
@@ -6177,6 +6180,117 @@ Transform --> Store
 </pre>
 
 <!-- prettier-ignore-end -->
+
+
+<h3 id="source-configuration-2" class="group pr-8">Source configuration
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="source-configuration-2"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>The <code>postgres+bin</code> protocol has a source connector only.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Option</th>
+          <th>Required</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>location</code></td>
+          <td>Yes</td>
+          <td>Connection URI: <code>postgres+bin://[user[:password]@]host[:port]</code>. A subpath is not supported.</td>
+      </tr>
+      <tr>
+          <td><code>host</code></td>
+          <td>No</td>
+          <td>Server hostname. Overrides the URI host. Defaults to <code>localhost</code>.</td>
+      </tr>
+      <tr>
+          <td><code>port</code></td>
+          <td>No</td>
+          <td>Server port. Overrides the URI port. Defaults to <code>5432</code>.</td>
+      </tr>
+      <tr>
+          <td><code>username</code></td>
+          <td>No</td>
+          <td>PostgreSQL replication username. Overrides the URI user.</td>
+      </tr>
+      <tr>
+          <td><code>password</code></td>
+          <td>No</td>
+          <td>PostgreSQL password. Overrides the URI password.</td>
+      </tr>
+      <tr>
+          <td><code>pg_bin_dir</code></td>
+          <td>No</td>
+          <td>Directory containing <code>pg_basebackup</code>. When omitted, resolved via <code>$PATH</code>.</td>
+      </tr>
+      <tr>
+          <td><code>ssl_mode</code></td>
+          <td>No</td>
+          <td>SSL mode: <code>disable</code>, <code>allow</code>, <code>prefer</code>, <code>require</code>, <code>verify-ca</code>, or <code>verify-full</code>. Defaults to <code>prefer</code>.</td>
+      </tr>
+      <tr>
+          <td><code>ssl_cert</code></td>
+          <td>No</td>
+          <td>Path to the client SSL certificate file (PEM).</td>
+      </tr>
+      <tr>
+          <td><code>ssl_cert_data</code></td>
+          <td>No</td>
+          <td>Inline PEM content of the client SSL certificate. Alternative to <code>ssl_cert</code>.</td>
+      </tr>
+      <tr>
+          <td><code>ssl_key</code></td>
+          <td>No</td>
+          <td>Path to the client SSL private key file (PEM).</td>
+      </tr>
+      <tr>
+          <td><code>ssl_key_data</code></td>
+          <td>No</td>
+          <td>Inline PEM content of the client SSL private key. Alternative to <code>ssl_key</code>.</td>
+      </tr>
+      <tr>
+          <td><code>ssl_root_cert</code></td>
+          <td>No</td>
+          <td>Path to the root CA certificate used to verify the server (PEM).</td>
+      </tr>
+      <tr>
+          <td><code>ssl_root_cert_data</code></td>
+          <td>No</td>
+          <td>Inline PEM content of the root CA certificate. Alternative to <code>ssl_root_cert</code>.</td>
+      </tr>
+  </tbody>
+</table>
+
+
+<h3 id="example-2" class="group pr-8">Example
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="example-2"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
 <div class="highlight-wrapper codeblock">
   <div class="codeblock-title">
     <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
@@ -6191,99 +6305,6 @@ Transform --> Store
   </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Back up the entire cluster</span>
 </span></span><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add mypg postgres+bin://replicator:secret@db.example.com
 </span></span><span class="line"><span class="cl">$ plakar at /var/backups backup <span class="s2">&#34;@mypg&#34;</span></span></span></code></pre></div></div>
-
-
-<h4 id="source-options-2" class="group pr-8">Source options
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="source-options-2"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h4>
-<table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Default</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>location</code></td>
-          <td>—</td>
-          <td>Connection URI: <code>postgres+bin://[user[:password]@]host[:port]</code>. A subpath is not supported.</td>
-      </tr>
-      <tr>
-          <td><code>host</code></td>
-          <td><code>localhost</code></td>
-          <td>Server hostname. Overrides the URI host.</td>
-      </tr>
-      <tr>
-          <td><code>port</code></td>
-          <td><code>5432</code></td>
-          <td>Server port. Overrides the URI port.</td>
-      </tr>
-      <tr>
-          <td><code>username</code></td>
-          <td>—</td>
-          <td>PostgreSQL replication username. Overrides the URI user.</td>
-      </tr>
-      <tr>
-          <td><code>password</code></td>
-          <td>—</td>
-          <td>PostgreSQL password. Overrides the URI password.</td>
-      </tr>
-      <tr>
-          <td><code>pg_bin_dir</code></td>
-          <td>—</td>
-          <td>Directory containing <code>pg_basebackup</code>. When omitted, resolved via <code>$PATH</code>.</td>
-      </tr>
-      <tr>
-          <td><code>ssl_mode</code></td>
-          <td><code>prefer</code></td>
-          <td>SSL mode: <code>disable</code>, <code>allow</code>, <code>prefer</code>, <code>require</code>, <code>verify-ca</code>, or <code>verify-full</code>.</td>
-      </tr>
-      <tr>
-          <td><code>ssl_cert</code></td>
-          <td>—</td>
-          <td>Path to the client SSL certificate file (PEM).</td>
-      </tr>
-      <tr>
-          <td><code>ssl_cert_data</code></td>
-          <td>—</td>
-          <td>Inline PEM content of the client SSL certificate. Alternative to <code>ssl_cert</code>.</td>
-      </tr>
-      <tr>
-          <td><code>ssl_key</code></td>
-          <td>—</td>
-          <td>Path to the client SSL private key file (PEM).</td>
-      </tr>
-      <tr>
-          <td><code>ssl_key_data</code></td>
-          <td>—</td>
-          <td>Inline PEM content of the client SSL private key. Alternative to <code>ssl_key</code>.</td>
-      </tr>
-      <tr>
-          <td><code>ssl_root_cert</code></td>
-          <td>—</td>
-          <td>Path to the root CA certificate used to verify the server (PEM).</td>
-      </tr>
-      <tr>
-          <td><code>ssl_root_cert_data</code></td>
-          <td>—</td>
-          <td>Inline PEM content of the root CA certificate. Alternative to <code>ssl_root_cert</code>.</td>
-      </tr>
-  </tbody>
-</table>
 
 
 <h3 id="restoring-a-physical-backup" class="group pr-8">Restoring a physical backup
@@ -6301,10 +6322,10 @@ Transform --> Store
     </button>
   
 </h3>
-<p>There is no dedicated destination connector for <code>postgres+bin://</code>. Because the
-snapshot contains plain files, any file-restore connector can write them back to
-disk. The resulting directory is a valid PostgreSQL data directory that can be
-started directly.</p>
+<p>There is no dedicated destination connector for <code>postgres+bin://</code>. The snapshot
+contains plain files, so any file-restore connector can write them back to disk.
+The resulting directory is a valid PostgreSQL data directory that can be started
+directly.</p>
 <details
       class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
       data-type="warning"
@@ -6313,7 +6334,7 @@ started directly.</p>
         <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"/></svg>
 </span></div>
         <div class="grow">
-          Warning
+          Stop the server before restoring
         </div>
         <div
           class="ms-auto flex h-5 w-5 items-center justify-center transition-transform ease-in-out -rotate-90 group-open:rotate-0 print:hidden"><span class="relative block icon"><svg
@@ -6329,9 +6350,9 @@ started directly.</p>
   />
 </svg>
 </span></div>
-      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Stop the server before restoring The data directory must not be in use by a
-running PostgreSQL instance before restoration begins. Stop the server first,
-or restore to a fresh directory as shown below.</p></div></details><div class="highlight-wrapper codeblock">
+      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>The data directory must not be in use by a running PostgreSQL instance before
+restoration begins. Stop the server first, or restore to a fresh directory as
+shown below.</p></div></details><div class="highlight-wrapper codeblock">
   <div class="codeblock-title">
     <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
 </span></span>
@@ -6358,11 +6379,11 @@ or restore to a fresh directory as shown below.</p></div></details><div class="h
 when the backup was taken (e.g. <code>17</code>).</p>
 
 
-<h2 id="snapshot-manifest" class="group pr-8">Snapshot manifest
+<h2 id="limitations-and-scope" class="group pr-8">Limitations and scope
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="snapshot-manifest"
+      data-anchor="limitations-and-scope"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -6373,65 +6394,13 @@ when the backup was taken (e.g. <code>17</code>).</p>
     </button>
   
 </h2>
-<p>Every snapshot produced by this integration contains a <code>/manifest.json</code> record
-written before the backup data. It captures the cluster state at the moment the
-backup was initiated and includes the following:</p>
-<table>
-  <thead>
-      <tr>
-          <th>Field</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>cluster_config</code></td>
-          <td>Key server settings: <code>data_directory</code>, <code>timezone</code>, <code>max_connections</code>, <code>wal_level</code>, <code>server_encoding</code>, and others.</td>
-      </tr>
-      <tr>
-          <td><code>roles</code></td>
-          <td>All PostgreSQL roles with their attributes and group memberships.</td>
-      </tr>
-      <tr>
-          <td><code>tablespaces</code></td>
-          <td>All tablespaces with name, owner, filesystem location, and storage options.</td>
-      </tr>
-      <tr>
-          <td><code>databases</code></td>
-          <td>One entry per database: name, owner, encoding, collation, installed extensions, schemas, and a <code>relations</code> array.</td>
-      </tr>
-  </tbody>
-</table>
-<p>The <code>relations</code> array covers tables, partitioned tables, foreign tables, views,
-materialized views, and sequences. Each entry includes schema, name, owner,
-columns, constraints, indexes, partitioning metadata, row estimates, and
-vacuum/analyze timestamps.</p>
-<p>Metadata collection is best-effort: if a query fails, the affected field is
-omitted and the backup continues normally.</p>
-
-
-<h2 id="known-limitations" class="group pr-8">Known limitations
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="known-limitations"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h2>
-<p><strong><code>pg_dump</code> compression is disabled by default.</strong> Setting <code>compress=false</code> (the
-default) ensures that Plakar&rsquo;s own compression and deduplication can operate on
-the raw data stream. Pre-compressing the dump would produce an incompressible
-stream, reducing both compression efficiency and cross-snapshot deduplication.
-Depending on network bandwidth and store backend, enabling <code>pg_dump</code> compression
-may be more efficient for very large databases — this trade-off warrants further
-benchmarking across different workloads.</p>
+<p><code>pg_dump</code> compression is disabled by default. With <code>compress=false</code>, Plakar&rsquo;s
+own compression and deduplication operate on the raw data stream. A
+pre-compressed dump is an incompressible stream, which reduces both compression
+efficiency and cross-snapshot deduplication. Depending on network bandwidth and
+store backend, enabling <code>pg_dump</code> compression may be more efficient for very
+large databases. This trade-off warrants further benchmarking across different
+workloads.</p>
 
 
 <h2 id="see-also" class="group pr-8">See also
@@ -6536,6 +6505,8 @@ benchmarking across different workloads.</p>
   
     
   
+    
+  
 
   
     
@@ -6592,7 +6563,7 @@ benchmarking across different workloads.</p>
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#installation">Installation</a></li><li><a href="#logical-backup---postgres">Logical backup - postgres://</a><ul><li><a href="#how-it-works">How it works</a></li><li><a href="#prerequisites">Prerequisites</a></li><li><a href="#source-connector">Source connector</a><ul><li><a href="#source-options">Source options</a></li></ul></li><li><a href="#destination-connector">Destination connector</a><ul><li><a href="#destination-options">Destination options</a></li></ul></li></ul></li><li><a href="#logical-backup-with-aws-iam---postgresaws">Logical backup with AWS IAM - postgres+aws://</a><ul><li><a href="#how-it-works-1">How it works</a></li><li><a href="#aws-setup">AWS setup</a><ul><li><a href="#enable-iam-authentication-on-the-rds-instance">Enable IAM authentication on the RDS instance</a></li><li><a href="#create-an-iam-policy-with-rds-dbconnect">Create an IAM policy with rds-db:connect</a></li><li><a href="#create-the-postgresql-user-with-iam-login">Create the PostgreSQL user with IAM login</a></li></ul></li><li><a href="#providing-credentials">Providing credentials</a></li><li><a href="#source-connector-1">Source connector</a><ul><li><a href="#source-options-1">Source options</a></li></ul></li><li><a href="#destination-connector-1">Destination connector</a><ul><li><a href="#destination-options-1">Destination options</a></li></ul></li></ul></li><li><a href="#physical-backup---postgresbin">Physical backup - postgres+bin://</a><ul><li><a href="#how-it-works-2">How it works</a></li><li><a href="#prerequisites-1">Prerequisites</a></li><li><a href="#source-connector-2">Source connector</a><ul><li><a href="#source-options-2">Source options</a></li></ul></li><li><a href="#restoring-a-physical-backup">Restoring a physical backup</a></li></ul></li><li><a href="#snapshot-manifest">Snapshot manifest</a></li><li><a href="#known-limitations">Known limitations</a></li><li><a href="#see-also">See also</a></li></ul>
+      <ul><li><a href="#installation">Installation</a></li><li><a href="#snapshot-manifest">Snapshot manifest</a></li><li><a href="#1-postgres-protocol">1. postgres protocol</a><ul><ul><li><a href="#backup-flow">Backup flow</a></li><li><a href="#restore-flow">Restore flow</a></li></ul></li><li><a href="#shared-configuration">Shared configuration</a></li><li><a href="#source-configuration">Source configuration</a></li><li><a href="#destination-configuration">Destination configuration</a></li><li><a href="#example">Example</a></li></ul></li><li><a href="#2-postgresaws-protocol">2. postgres+aws protocol</a><ul><li><a href="#aws-setup">AWS setup</a><ul><li><a href="#enable-iam-authentication-on-the-rds-instance">Enable IAM authentication on the RDS instance</a></li><li><a href="#create-an-iam-policy-with-rds-dbconnect">Create an IAM policy with rds-db:connect</a></li><li><a href="#create-the-postgresql-user-with-iam-login">Create the PostgreSQL user with IAM login</a></li></ul></li><li><a href="#providing-credentials">Providing credentials</a></li><li><a href="#shared-configuration-1">Shared configuration</a></li><li><a href="#source-configuration-1">Source configuration</a></li><li><a href="#destination-configuration-1">Destination configuration</a></li><li><a href="#example-1">Example</a></li></ul></li><li><a href="#3-postgresbin-protocol">3. postgres+bin protocol</a><ul><ul><li><a href="#backup-flow-1">Backup flow</a></li></ul></li><li><a href="#source-configuration-2">Source configuration</a></li><li><a href="#example-2">Example</a></li><li><a href="#restoring-a-physical-backup">Restoring a physical backup</a></li></ul></li><li><a href="#limitations-and-scope">Limitations and scope</a></li><li><a href="#see-also">See also</a></li></ul>
     </div>
 
     

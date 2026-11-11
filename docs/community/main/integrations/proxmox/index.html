@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-03-30T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-11T17:12:23+01:00">
+    <meta property="article:modified_time" content="2026-11-11T17:15:27+01:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -244,12 +244,12 @@
     "dateCreated": "2026-03-30T00:00:00\u002b00:00",
     "datePublished": "2026-03-30T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-11T17:12:23\u002b01:00",
+    "dateModified": "2026-11-11T17:15:27\u002b01:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/community/main/integrations/proxmox/",
-    "wordCount":  743 
+    "wordCount":  713 
   }]
   </script>
 
@@ -1521,6 +1521,8 @@
   
     
   
+    
+  
   
 
   
@@ -1831,6 +1833,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         OpenShift
+      </a>
+    
+  
+    
+    
+      <a href="/docs/community/main/integrations/sqlite/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        SQLite
       </a>
     
   
@@ -3647,6 +3658,8 @@
   
     
   
+    
+  
   
 
   
@@ -3957,6 +3970,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         OpenShift
+      </a>
+    
+  
+    
+    
+      <a href="/docs/community/main/integrations/sqlite/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        SQLite
       </a>
     
   
@@ -4857,7 +4879,7 @@
 machines and containers into a Kloset store. Plakar handles encryption,
 deduplication, and snapshot management on top of the archives that <code>vzdump</code>
 produces.</p>
-<p>The integration provides two connectors:</p>
+<p>The integration includes two connectors:</p>
 <table>
   <thead>
       <tr>
@@ -5037,8 +5059,9 @@ customization is required.</p>
     </button>
   
 </h2>
-<p>The Proxmox integration supports two operating modes.</p>
-<p><strong>Local mode</strong> — Plakar runs directly on the Proxmox node alongside <code>vzdump</code>:</p>
+<p>The integration supports two operating modes, selected with the <code>mode</code> option
+when configuring a source or destination.</p>
+<p>In <strong>local mode</strong>, Plakar runs directly on the Proxmox node alongside <code>vzdump</code>:</p>
 <div class="highlight-wrapper codeblock">
   <div class="codeblock-title">
     <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M21 8V20.9932C21 21.5501 20.5552 22 20.0066 22H3.9934C3.44495 22 3 21.556 3 21.0082V2.9918C3 2.45531 3.4487 2 4.00221 2H14.9968L21 8ZM19 9H14V4H5V20H19V9ZM8 7H11V9H8V7ZM8 11H16V13H8V11ZM8 15H16V17H8V15Z"></path></svg>
@@ -5053,8 +5076,9 @@ customization is required.</p>
   </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Proxmox node
 </span></span><span class="line"><span class="cl"> ├ vzdump
 </span></span><span class="line"><span class="cl"> └ plakar</span></span></code></pre></div></div>
-<p><strong>Remote mode</strong> — Plakar runs on a separate machine and connects to the Proxmox
-node over SSH:</p>
+<p>In <strong>remote mode</strong>, Plakar runs on a separate machine and connects to the
+Proxmox node over SSH. A single Plakar instance can then back up multiple
+hypervisors:</p>
 <div class="highlight-wrapper codeblock">
   <div class="codeblock-title">
     <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M21 8V20.9932C21 21.5501 20.5552 22 20.0066 22H3.9934C3.44495 22 3 21.556 3 21.0082V2.9918C3 2.45531 3.4487 2 4.00221 2H14.9968L21 8ZM19 9H14V4H5V20H19V9ZM8 7H11V9H8V7ZM8 11H16V13H8V11ZM8 15H16V17H8V15Z"></path></svg>
@@ -5072,16 +5096,13 @@ node over SSH:</p>
 </span></span><span class="line"><span class="cl">     ▼
 </span></span><span class="line"><span class="cl">Proxmox node
 </span></span><span class="line"><span class="cl">     └ vzdump</span></span></code></pre></div></div>
-<p>Remote mode allows a single Plakar instance to back up multiple hypervisors. The
-operating mode is set via the <code>mode</code> option when configuring a source or
-destination.</p>
 
 
-<h2 id="source-connector" class="group pr-8">Source connector
+<h2 id="configuration" class="group pr-8">Configuration
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="source-connector"
+      data-anchor="configuration"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -5095,6 +5116,27 @@ destination.</p>
 <p>The source connector invokes <code>vzdump</code> on the Proxmox node, collects the
 resulting archive, and ingests it into a Kloset store with encryption and
 deduplication.</p>
+<p>The destination connector uploads a <code>vzdump</code> archive from a Plakar snapshot to a
+Proxmox node and restores it using native Proxmox tools: <code>qmrestore</code> for virtual
+machines and <code>pct restore</code> for containers. A restore can target every machine in
+a snapshot, or a single machine from a snapshot containing several.</p>
+
+
+<h4 id="backup-flow" class="group pr-8">Backup flow
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="backup-flow"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h4>
 <!-- prettier-ignore-start -->
 <pre class="not-prose mermaid">
 flowchart LR
@@ -5117,11 +5159,102 @@ Vzdump --> Via --> Plakar --> Transform --> Store
 <!-- prettier-ignore-end -->
 
 
-<h3 id="configure" class="group pr-8">Configure
+<h4 id="restore-flow" class="group pr-8">Restore flow
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="configure"
+      data-anchor="restore-flow"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h4>
+<!-- prettier-ignore-start -->
+<pre class="not-prose mermaid">
+flowchart LR
+
+Store["Kloset Store"]
+
+Plakar["Plakar"]
+
+Transform["Decrypt & reconstruct"]
+
+Via["Push archive via<br/>SSH"]
+
+subgraph Destination["Proxmox Node"]
+  Restore["qmrestore / pct restore"]
+end
+
+Store --> Plakar --> Transform --> Via --> Restore
+</pre>
+
+<!-- prettier-ignore-end -->
+
+
+<h3 id="shared-configuration" class="group pr-8">Shared configuration
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="shared-configuration"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>The following options apply to both source and destination connectors.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Option</th>
+          <th>Required</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>location</code></td>
+          <td>Yes</td>
+          <td>Proxmox node address. Format: <code>proxmox+backup://&lt;host&gt;</code></td>
+      </tr>
+      <tr>
+          <td><code>mode</code></td>
+          <td>Yes</td>
+          <td>Operating mode. <code>local</code> or <code>remote</code>.</td>
+      </tr>
+      <tr>
+          <td><code>conn_username</code></td>
+          <td>Yes (remote)</td>
+          <td>SSH username on the Proxmox node.</td>
+      </tr>
+      <tr>
+          <td><code>conn_identity_file</code></td>
+          <td>No</td>
+          <td>Path to the SSH private key. Required when <code>conn_method=identity</code>.</td>
+      </tr>
+      <tr>
+          <td><code>conn_method</code></td>
+          <td>No</td>
+          <td>Authentication method. <code>identity</code> for key-based auth.</td>
+      </tr>
+  </tbody>
+</table>
+
+
+<h3 id="example" class="group pr-8">Example
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="example"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -5149,23 +5282,6 @@ Vzdump --> Via --> Plakar --> Transform --> Store
 </span></span></span><span class="line"><span class="cl">  <span class="nv">conn_username</span><span class="o">=</span>root <span class="se">\
 </span></span></span><span class="line"><span class="cl">  <span class="nv">conn_identity_file</span><span class="o">=</span>/path/to/key <span class="se">\
 </span></span></span><span class="line"><span class="cl">  <span class="nv">conn_method</span><span class="o">=</span>identity</span></span></code></pre></div></div>
-
-
-<h3 id="back-up-workloads" class="group pr-8">Back up workloads
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="back-up-workloads"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
 <p>Back up a single virtual machine by ID:</p>
 <div class="highlight-wrapper codeblock">
   <div class="codeblock-title">
@@ -5205,116 +5321,6 @@ Vzdump --> Via --> Plakar --> Transform --> Store
 </span></span>
     </button>
   </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar backup -o all @myProxmox</span></span></code></pre></div></div>
-
-
-<h3 id="options" class="group pr-8">Options
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="options"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
-<table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Required</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>location</code></td>
-          <td>Yes</td>
-          <td>Proxmox node address. Format: <code>proxmox+backup://&lt;host&gt;</code></td>
-      </tr>
-      <tr>
-          <td><code>mode</code></td>
-          <td>Yes</td>
-          <td>Operating mode. <code>local</code> or <code>remote</code>.</td>
-      </tr>
-      <tr>
-          <td><code>conn_username</code></td>
-          <td>Yes (remote)</td>
-          <td>SSH username on the Proxmox node.</td>
-      </tr>
-      <tr>
-          <td><code>conn_identity_file</code></td>
-          <td>No</td>
-          <td>Path to the SSH private key. Required when <code>conn_method=identity</code>.</td>
-      </tr>
-      <tr>
-          <td><code>conn_method</code></td>
-          <td>No</td>
-          <td>Authentication method. <code>identity</code> for key-based auth.</td>
-      </tr>
-  </tbody>
-</table>
-
-
-<h2 id="destination-connector" class="group pr-8">Destination connector
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="destination-connector"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h2>
-<p>The destination connector uploads a <code>vzdump</code> archive from a Plakar snapshot to a
-Proxmox node and restores it using native Proxmox tools: <code>qmrestore</code> for virtual
-machines and <code>pct restore</code> for containers.</p>
-<!-- prettier-ignore-start -->
-<pre class="not-prose mermaid">
-flowchart LR
-
-Store["Kloset Store"]
-
-Plakar["Plakar"]
-
-Transform["Decrypt & reconstruct"]
-
-Via["Push archive via<br/>SSH"]
-
-subgraph Destination["Proxmox Node"]
-  Restore["qmrestore / pct restore"]
-end
-
-Store --> Plakar --> Transform --> Via --> Restore
-</pre>
-
-<!-- prettier-ignore-end -->
-
-
-<h3 id="configure-1" class="group pr-8">Configure
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="configure-1"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
 <p>Register a Proxmox destination:</p>
 <div class="highlight-wrapper codeblock">
   <div class="codeblock-title">
@@ -5333,23 +5339,6 @@ Store --> Plakar --> Transform --> Via --> Restore
 </span></span></span><span class="line"><span class="cl">  <span class="nv">conn_username</span><span class="o">=</span>root <span class="se">\
 </span></span></span><span class="line"><span class="cl">  <span class="nv">conn_identity_file</span><span class="o">=</span>/path/to/key <span class="se">\
 </span></span></span><span class="line"><span class="cl">  <span class="nv">conn_method</span><span class="o">=</span>identity</span></span></code></pre></div></div>
-
-
-<h3 id="restore-workloads" class="group pr-8">Restore workloads
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="restore-workloads"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
 <p>Restore all machines in a snapshot:</p>
 <div class="highlight-wrapper codeblock">
   <div class="codeblock-title">
@@ -5378,59 +5367,6 @@ Store --> Plakar --> Transform --> Via --> Restore
   </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar restore -to @myProxmox &lt;snapshot_id&gt;:/backup/qemu/101_myvm</span></span></code></pre></div></div>
 
 
-<h3 id="options-1" class="group pr-8">Options
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="options-1"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
-<table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Required</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>location</code></td>
-          <td>Yes</td>
-          <td>Proxmox node address. Format: <code>proxmox+backup://&lt;host&gt;</code></td>
-      </tr>
-      <tr>
-          <td><code>mode</code></td>
-          <td>Yes</td>
-          <td>Operating mode. <code>local</code> or <code>remote</code>.</td>
-      </tr>
-      <tr>
-          <td><code>conn_username</code></td>
-          <td>Yes (remote)</td>
-          <td>SSH username on the Proxmox node.</td>
-      </tr>
-      <tr>
-          <td><code>conn_identity_file</code></td>
-          <td>No</td>
-          <td>Path to the SSH private key. Required when <code>conn_method=identity</code>.</td>
-      </tr>
-      <tr>
-          <td><code>conn_method</code></td>
-          <td>No</td>
-          <td>Authentication method. <code>identity</code> for key-based auth.</td>
-      </tr>
-  </tbody>
-</table>
-
-
 <h2 id="limitations-and-scope" class="group pr-8">Limitations and scope
     <button
       type="button"
@@ -5446,12 +5382,9 @@ Store --> Plakar --> Transform --> Via --> Restore
     </button>
   
 </h2>
-<p><strong>What is captured during backup</strong></p>
-<ul>
-<li>Virtual machine and container disk images, as produced by <code>vzdump</code>.</li>
-<li>Proxmox configuration associated with each backed-up workload.</li>
-</ul>
-<p><strong>Snapshot consistency</strong></p>
+<p>A backup captures virtual machine and container disk images, as produced by
+<code>vzdump</code>, along with the Proxmox configuration associated with each backed-up
+workload.</p>
 <p>Plakar relies on <code>vzdump</code> for snapshot consistency. For live machines, <code>vzdump</code>
 uses QEMU guest agent or suspend-resume to produce a consistent backup. Refer to
 the
@@ -5556,6 +5489,8 @@ for details on consistency modes.</p>
   
     
   
+    
+  
 
   
     
@@ -5612,7 +5547,7 @@ for details on consistency modes.</p>
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#installation">Installation</a></li><li><a href="#operating-modes">Operating modes</a></li><li><a href="#source-connector">Source connector</a><ul><li><a href="#configure">Configure</a></li><li><a href="#back-up-workloads">Back up workloads</a></li><li><a href="#options">Options</a></li></ul></li><li><a href="#destination-connector">Destination connector</a><ul><li><a href="#configure-1">Configure</a></li><li><a href="#restore-workloads">Restore workloads</a></li><li><a href="#options-1">Options</a></li></ul></li><li><a href="#limitations-and-scope">Limitations and scope</a></li><li><a href="#see-also">See also</a></li></ul>
+      <ul><li><a href="#installation">Installation</a></li><li><a href="#operating-modes">Operating modes</a></li><li><a href="#configuration">Configuration</a><ul><ul><li><a href="#backup-flow">Backup flow</a></li><li><a href="#restore-flow">Restore flow</a></li></ul></li><li><a href="#shared-configuration">Shared configuration</a></li><li><a href="#example">Example</a></li></ul></li><li><a href="#limitations-and-scope">Limitations and scope</a></li><li><a href="#see-also">See also</a></li></ul>
     </div>
 
     

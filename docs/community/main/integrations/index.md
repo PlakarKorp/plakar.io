@@ -150,4 +150,8 @@ Below is a list of links to the documentation for each supported integration.
 
 
 
+## [SQLite](https://www.plakar.io/docs/community/main/integrations/sqlite/index.md)
+
+
+
 

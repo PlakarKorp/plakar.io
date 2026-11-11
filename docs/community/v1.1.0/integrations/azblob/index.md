@@ -1,18 +1,23 @@
 
 # Azure Blob Storage
 
-The **Azure Blob Storage integration** enables backup and restoration of Azure
-Blob Storage containers. All container contents including blobs, metadata, and
-prefix hierarchies are captured and stored in a Kloset store with encryption and
-deduplication.
+The Azure Blob Storage integration backs up and restores Azure Blob Storage
+containers, and can host a Kloset store in a container. A backup captures the
+container contents, including blobs, metadata and prefix hierarchies, and stores
+them in a Kloset store with encryption and deduplication.
 
-The Azure Blob Storage integration provides three connectors:
+The integration includes three connectors:
 
 | Connector type            | Description                                                                |
 | ------------------------- | -------------------------------------------------------------------------- |
 | **Source connector**      | Back up Azure Blob containers into a Kloset store.                         |
-| **Storage connector**     | Use Azure Blob Storage as a Kloset store backend.                          |
 | **Destination connector** | Restore container contents from a Kloset store back to Azure Blob Storage. |
+| **Store connector**       | Use Azure Blob Storage as a Kloset store backend.                          |
+
+**Requirements**
+
+- An Azure Storage account, or a local emulator such as Azurite.
+- Credentials for that account. See [Authentication](#authentication).
 
 ## Installation
 
@@ -82,39 +87,29 @@ $ plakar pkg show
 To list, upgrade, or remove the package, see
 [managing packages guide](../../guides/managing-packages/).
 
+## Authentication
+
+Every connector must be given credentials in one of the following forms:
+
+- `connection_string`. This is the recommended form. It takes precedence over
+  `account_name` and `account_key`.
+- `account_name` and `account_key`.
+- `no_auth=true` with a valid `endpoint`.
+
+> [!WARNING]+ No Auth
+>
+> Setting `no_auth=true` disables authentication entirely. Only use this for
+> public containers or local emulator setups such as Azurite. Never use it in
+> production.
+
 ## Configuration
 
-### Authentication
+All three connectors use the `azblob://` protocol. The source connector
+retrieves blobs from a container through the Azure Blob API. The destination
+connector writes them back to a container. The store connector keeps all Kloset
+store data, including snapshots, chunks and metadata, as blobs in a container.
 
-Authentication can be provided in multiple ways depending on your environment.
-At least one of the following must be provided:
-
-- `connection_string` (recommended)
-- `account_name` + `account_key`
-- `no_auth=true` with a valid `endpoint`
-
-### Configuration options
-
-These options apply to all three connectors (source, storage, destination).
-
-| Option              | Description                                                                  |
-| ------------------- | ---------------------------------------------------------------------------- |
-| `account_name`      | Azure Storage account name.                                                  |
-| `account_key`       | Azure Storage account key.                                                   |
-| `connection_string` | Azure Storage connection string. Takes precedence over account name and key. |
-| `endpoint`          | Custom endpoint, for example Azurite or a non-standard Azure environment.    |
-| `no_auth`           | Disable authentication. Only for public containers or testing.               |
-
-> [!WARNING]+
->
-> No Auth Setting `no_auth=true` disables authentication entirely. Only use this
-> for public containers or local emulator setups such as Azurite. Never use it
-> in production.
-
-## Source connector
-
-The source connector retrieves blobs from Azure Blob Storage containers and
-stores them in a Kloset store with encryption and deduplication.
+#### Backup flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -137,26 +132,31 @@ Transform --> Store
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-Register the source and run a backup:
+#### Restore flow
 
-```bash
-$ plakar source add my-az-container \
-  azblob://container_name \
-  connection_string=<YOUR_CONN_STRING>
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+flowchart LR
 
-$ plakar at /var/backups backup "@my-az-container"
-```
+Store["Kloset Store"]
 
-To back up a specific prefix within a container:
+subgraph Plakar["Plakar"]
+  Transform["Decrypt & reconstruct"]
+  Connector["Restore via<br/>Azure Blob API"]
+  Transform --> Connector
+end
 
-```bash
-$ plakar at /var/backups backup "@my-az-container:path"
-```
+Store --> Transform
 
-## Storage connector
+subgraph Destination["Azure Blob Container"]
+  FS["Blobs"]
+end
 
-The storage connector uses Azure Blob Storage as the backend for a Kloset store.
-All Plakar data — snapshots, chunks, metadata — is stored as blobs.
+Connector --> Destination
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
+
+#### Store flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -182,7 +182,48 @@ Connector --> Store
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-Register the store, initialize it, and run a backup:
+### Shared configuration
+
+The following options apply to the source, destination and store connectors.
+
+| Option              | Required    | Description                                                                                        |
+| ------------------- | ----------- | -------------------------------------------------------------------------------------------------- |
+| `location`          | Yes         | `azblob://<container_name>`.                                                                       |
+| `connection_string` | Conditional | Azure Storage connection string. Takes precedence over account name and key.                       |
+| `account_name`      | Conditional | Azure Storage account name. Used with `account_key`.                                               |
+| `account_key`       | Conditional | Azure Storage account key. Used with `account_name`.                                               |
+| `endpoint`          | Conditional | Custom endpoint, for example Azurite or a non-standard Azure environment. Required with `no_auth`. |
+| `no_auth`           | No          | Disable authentication. Only for public containers or testing.                                     |
+
+### Example
+
+Back up a container:
+
+```bash
+$ plakar source add my-az-container \
+  azblob://container_name \
+  connection_string=<YOUR_CONN_STRING>
+
+$ plakar at /var/backups backup "@my-az-container"
+```
+
+To back up a specific prefix within a container:
+
+```bash
+$ plakar at /var/backups backup "@my-az-container:path"
+```
+
+Restore a snapshot to a container:
+
+```bash
+$ plakar destination add my-az-restore \
+  azblob://container_name \
+  connection_string=<YOUR_CONN_STRING>
+
+$ plakar at /var/backups restore -to "@my-az-restore"
+```
+
+Host a Kloset store in a container, initialize it and run a backup:
 
 ```bash
 $ plakar store add my-az-store \
@@ -193,47 +234,17 @@ $ plakar at "@my-az-store" create
 $ plakar at "@my-az-store" backup /var/www
 ```
 
-## Destination connector
+## Limitations and scope
 
-Restores blobs from a Kloset store back to an Azure Blob Storage container.
+Azure Blob Storage uses containers instead of buckets. Blob storage is flat, and
+directory structures are simulated using prefixes. Empty directories are not
+preserved unless they contain blobs.
 
-<!-- prettier-ignore-start -->
-{{< mermaid >}}
-flowchart LR
+When using Azurite, provide either a connection string or
+`account_name=devstoreaccount1` with a local endpoint.
 
-Store["Kloset Store"]
+## See also
 
-subgraph Plakar["Plakar"]
-  Transform["Decrypt & reconstruct"]
-  Connector["Restore via<br/>Azure Blob API"]
-  Transform --> Connector
-end
-
-Store --> Transform
-
-subgraph Destination["Azure Blob Container"]
-  FS["Blobs"]
-end
-
-Connector --> Destination
-{{< /mermaid >}}
-<!-- prettier-ignore-end -->
-
-Register the destination and restore a snapshot:
-
-```bash
-$ plakar destination add my-az-restore \
-  azblob://container_name \
-  connection_string=<YOUR_CONN_STRING>
-
-$ plakar at /var/backups restore -to "@my-az-restore"
-```
-
-## Notes
-
-- Azure Blob Storage uses containers instead of buckets.
-- Blob storage is flat; directory structures are simulated using prefixes.
-- Empty directories are not preserved unless they contain blobs.
-- When using Azurite, provide either a connection string or
-  `account_name=devstoreaccount1` with a local endpoint.
+- [Creating a Kloset Store](../../guides/create-kloset-repository)
+- [Managing packages](../../guides/managing-packages)
 

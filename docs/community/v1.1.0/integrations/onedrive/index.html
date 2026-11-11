@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-03-20T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-11T17:12:23+01:00">
+    <meta property="article:modified_time" content="2026-11-11T17:15:27+01:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -244,12 +244,12 @@
     "dateCreated": "2026-03-20T00:00:00\u002b00:00",
     "datePublished": "2026-03-20T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-11T17:12:23\u002b01:00",
+    "dateModified": "2026-11-11T17:15:27\u002b01:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/community/v1.1.0/integrations/onedrive/",
-    "wordCount":  927 
+    "wordCount":  939 
   }]
   </script>
 
@@ -1525,6 +1525,8 @@
   
     
   
+    
+  
   
 
   
@@ -1835,6 +1837,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         OpenShift
+      </a>
+    
+  
+    
+    
+      <a href="/docs/community/v1.1.0/integrations/sqlite/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        SQLite
       </a>
     
   
@@ -3655,6 +3666,8 @@
   
     
   
+    
+  
   
 
   
@@ -3965,6 +3978,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         OpenShift
+      </a>
+    
+  
+    
+    
+      <a href="/docs/community/v1.1.0/integrations/sqlite/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        SQLite
       </a>
     
   
@@ -4861,11 +4883,14 @@
     </button>
   
 </h1>
-<p>OneDrive is a widely used cloud storage service provided by Microsoft, offering
-users the ability to store files, share documents, and collaborate in real time.</p>
-<p><a href="https://rclone.org/"  target="_blank" rel="noreferrer">Rclone</a> is a command-line program to manage files on cloud
-storage, and supports OneDrive as one of its many backends.</p>
-<p>The Rclone integration package for Plakar provides three connectors:</p>
+<p>OneDrive is Microsoft&rsquo;s cloud storage service for storing, sharing and
+collaborating on files.</p>
+<p>The OneDrive integration backs up OneDrive folders into a Kloset store, restores
+snapshots to OneDrive, and hosts Kloset stores in OneDrive. It is provided by
+the Rclone package and reaches OneDrive through <a href="https://rclone.org/"  target="_blank" rel="noreferrer">Rclone</a>, a
+command-line program that manages files on cloud storage and supports OneDrive
+as one of its backends.</p>
+<p>The integration includes three connectors:</p>
 <table>
   <thead>
       <tr>
@@ -4875,10 +4900,6 @@ storage, and supports OneDrive as one of its many backends.</p>
   </thead>
   <tbody>
       <tr>
-          <td><strong>Storage connector</strong></td>
-          <td>Host a Kloset store inside a Rclone remote.</td>
-      </tr>
-      <tr>
           <td><strong>Source connector</strong></td>
           <td>Back up a Rclone remote into a Kloset store.</td>
       </tr>
@@ -4886,17 +4907,21 @@ storage, and supports OneDrive as one of its many backends.</p>
           <td><strong>Destination connector</strong></td>
           <td>Restore data from a Kloset store into a Rclone remote.</td>
       </tr>
+      <tr>
+          <td><strong>Store connector</strong></td>
+          <td>Host a Kloset store inside a Rclone remote.</td>
+      </tr>
   </tbody>
 </table>
 <p><strong>Requirements</strong></p>
 <ul>
-<li>Rclone must be installed, and at least one OneDrive remote must be configured.</li>
+<li>Rclone installed, with at least one OneDrive remote configured.</li>
 </ul>
 <p><strong>Typical use cases</strong></p>
 <ul>
-<li>Cold backup of OneDrive folders</li>
-<li>Long-term archiving and disaster recovery</li>
-<li>Portable export and vendor escape to other platforms</li>
+<li>Cold backup of OneDrive folders.</li>
+<li>Long-term archiving and disaster recovery.</li>
+<li>Portable export and vendor escape to other platforms.</li>
 </ul>
 
 
@@ -4915,7 +4940,7 @@ storage, and supports OneDrive as one of its many backends.</p>
     </button>
   
 </h2>
-<p>To interact with OneDrive, you need to install the Rclone Plakar package.</p>
+<p>The OneDrive integration is provided by the Rclone Plakar package.</p>
 <div class="tab__container w-full">
 <div class="tab__nav overflow-x-auto" role="tablist">
 <div class="flex gap-1 min-w-max"><button class="tab__button px-3 py-2 text-sm font-semibold border-b-2 border-transparent rounded-t-md bg-neutral-100 hover:bg-neutral-300 tab--active" role="tab" aria-selected="true" data-tab-index="0" data-tab-label="Pre-built package"><span class="flex items-center gap-1">Pre-built package</span></button><button class="tab__button px-3 py-2 text-sm font-semibold border-b-2 border-transparent rounded-t-md bg-neutral-100 hover:bg-neutral-300" role="tab" aria-selected="false" data-tab-index="1" data-tab-label="Building from source"><span class="flex items-center gap-1">Building from source</span></button></div>
@@ -5031,11 +5056,11 @@ customization is required.</p>
 <a href="../../guides/managing-packages/" >managing packages guide</a>.</p>
 
 
-<h2 id="generate-rclone-configuration" class="group pr-8">Generate Rclone configuration
+<h2 id="configuring-a-onedrive-remote" class="group pr-8">Configuring a OneDrive remote
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="generate-rclone-configuration"
+      data-anchor="configuring-a-onedrive-remote"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -5046,9 +5071,12 @@ customization is required.</p>
     </button>
   
 </h2>
-<p>Install Rclone on your system by following the instructions at
-<a href="https://rclone.org/install/"  target="_blank" rel="noreferrer">https://rclone.org/install/</a>.</p>
-<p>Then, run the following command to configure Rclone with OneDrive:</p>
+<p>The connectors reach OneDrive through a Rclone remote. The remote is created
+with Rclone and then imported into Plakar as a source, destination or store
+configuration.</p>
+<p>Install Rclone by following the instructions at
+<a href="https://rclone.org/install/"  target="_blank" rel="noreferrer">https://rclone.org/install/</a>, then start the
+interactive configuration:</p>
 <div class="highlight-wrapper codeblock">
   <div class="codeblock-title">
     <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
@@ -5061,16 +5089,15 @@ customization is required.</p>
 </span></span>
     </button>
   </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ rclone config</span></span></code></pre></div></div>
-<p>You will be guided through a series of prompts to set up a new remote for
-OneDrive.</p>
-<p>For Rclone v1.72.1, the configuration flow is as follows:</p>
+<p>The command prompts for the settings of a new OneDrive remote. For Rclone
+v1.72.1, the configuration flow is as follows:</p>
 <ol>
 <li>Choose <code>n</code> to create a new remote.</li>
 <li>Name the remote (e.g., <code>mydrive</code>).</li>
 <li>Enter the number corresponding to &ldquo;Microsoft OneDrive&rdquo; from the list of
 supported storage providers.</li>
-<li>Leave client_id and client_secret empty to use Rclone&rsquo;s defaults, or provide
-your own if you have them.</li>
+<li>Leave <code>client_id</code> and <code>client_secret</code> empty to use Rclone&rsquo;s defaults, or
+provide your own if you have them.</li>
 <li>Select your region (usually &ldquo;Microsoft Cloud Global&rdquo;).</li>
 <li>Enter service principal&rsquo;s tenant ID if applicable, or leave empty.</li>
 <li>Stay with the current settings, and do not edit advanced config.</li>
@@ -5079,7 +5106,7 @@ your own if you have them.</li>
 <li>Select the drive to use.</li>
 <li>Validate the remote configuration.</li>
 </ol>
-<p>To verify that the remote is configured, run:</p>
+<p>Verify that the remote is configured:</p>
 <div class="highlight-wrapper codeblock">
   <div class="codeblock-title">
     <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
@@ -5092,7 +5119,7 @@ your own if you have them.</li>
 </span></span>
     </button>
   </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ rclone config show mydrive</span></span></code></pre></div></div>
-<p>And to verify you have access to your OneDrive files, run:</p>
+<p>Verify access to your OneDrive files:</p>
 <div class="highlight-wrapper codeblock">
   <div class="codeblock-title">
     <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
@@ -5105,14 +5132,14 @@ your own if you have them.</li>
 </span></span>
     </button>
   </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ rclone ls mydrive:</span></span></code></pre></div></div>
-<p>The output should list the files and folders in your OneDrive.</p>
+<p>The output lists the files and folders in your OneDrive.</p>
 
 
-<h2 id="connectors" class="group pr-8">Connectors
+<h2 id="configuration" class="group pr-8">Configuration
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="connectors"
+      data-anchor="configuration"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -5123,17 +5150,18 @@ your own if you have them.</li>
     </button>
   
 </h2>
-<p>The Rclone package provides storage, source, and destination connectors to
-interact with OneDrive via Rclone.</p>
-<p>You can use any combination of these connectors together with other supported
-Plakar connectors.</p>
+<p>Each connector is configured by importing the Rclone remote with
+<code>rclone config show | plakar &lt;source|destination|store&gt; import -rclone &lt;remote&gt;</code>.
+The imported configuration takes the name of the remote, so a remote named
+<code>mydrive</code> is referenced as <code>@mydrive</code>. The connectors can be combined with any
+other Plakar connector.</p>
 
 
-<h3 id="storage-connector" class="group pr-8">Storage connector
+<h4 id="backup-flow" class="group pr-8">Backup flow
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="storage-connector"
+      data-anchor="backup-flow"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -5143,9 +5171,77 @@ Plakar connectors.</p>
 </span></span>
     </button>
   
-</h3>
-<p>The Plakar Rclone package provides a storage connector to host Kloset stores on
-Rclone remotes.</p>
+</h4>
+<!-- prettier-ignore-start -->
+<pre class="not-prose mermaid">
+flowchart LR
+
+subgraph Source["Rclone Remote"]
+  FS["Data"]
+end
+
+Plakar["Plakar"]
+
+Via["Retrieve data via<br/>Rclone source connector"]
+
+Store["Kloset Store"]
+
+FS --> Via --> Plakar --> Store
+</pre>
+
+<!-- prettier-ignore-end -->
+
+
+<h4 id="restore-flow" class="group pr-8">Restore flow
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="restore-flow"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h4>
+<!-- prettier-ignore-start -->
+<pre class="not-prose mermaid">
+flowchart LR
+
+Store["Kloset Store"]
+
+Plakar["Plakar"]
+
+Via["Push data via<br/>Rclone destination connector"]
+
+subgraph Destination["Rclone Remote"]
+  FS["Data"]
+end
+
+Store --> Plakar --> Via --> FS
+</pre>
+
+<!-- prettier-ignore-end -->
+
+
+<h4 id="store-flow" class="group pr-8">Store flow
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="store-flow"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h4>
 <!-- prettier-ignore-start -->
 <pre class="not-prose mermaid">
 flowchart LR
@@ -5166,11 +5262,11 @@ Source --> Plakar --> Via --> Kloset
 <!-- prettier-ignore-end -->
 
 
-<h4 id="configure" class="group pr-8">Configure
+<h3 id="source-configuration" class="group pr-8">Source configuration
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="configure"
+      data-anchor="source-configuration"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -5180,7 +5276,121 @@ Source --> Plakar --> Via --> Kloset
 </span></span>
     </button>
   
-</h4>
+</h3>
+<p>The source connector has no options beyond the imported Rclone remote.</p>
+
+
+<h3 id="destination-configuration" class="group pr-8">Destination configuration
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="destination-configuration"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>The destination connector has no options beyond the imported Rclone remote.</p>
+
+
+<h3 id="store-configuration" class="group pr-8">Store configuration
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="store-configuration"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>The following option can be set on the store connector with <code>plakar store add</code>
+or <code>plakar store set</code>.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Option</th>
+          <th>Required</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>passphrase</code></td>
+          <td>No</td>
+          <td>The Kloset store passphrase.</td>
+      </tr>
+  </tbody>
+</table>
+
+
+<h3 id="example" class="group pr-8">Example
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="example"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Back up the remote:</p>
+<div class="highlight-wrapper codeblock">
+  <div class="codeblock-title">
+    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
+</span></span>
+    <span class="codeblock-label">Shell</span>
+    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
+      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
+</span></span>
+      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Import the rclone configuration as a source configuration.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Replace &#34;mydrive&#34; with your Rclone remote name.</span>
+</span></span><span class="line"><span class="cl">$ rclone config show <span class="p">|</span> plakar <span class="nb">source</span> import -rclone mydrive
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Back up the remote directory to the Kloset store on the filesystem</span>
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups backup <span class="s2">&#34;@mydrive&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Or back up the remote directory to a Kloset store configured with &#34;plakar store add&#34;</span>
+</span></span><span class="line"><span class="cl">$ plakar at <span class="s2">&#34;@store&#34;</span> backup <span class="s2">&#34;@mydrive&#34;</span></span></span></code></pre></div></div>
+<p>Restore a snapshot to the remote:</p>
+<div class="highlight-wrapper codeblock">
+  <div class="codeblock-title">
+    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
+</span></span>
+    <span class="codeblock-label">Shell</span>
+    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
+      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
+</span></span>
+      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Import the rclone configuration as a destination configuration.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Replace &#34;mydrive&#34; with your Rclone remote name.</span>
+</span></span><span class="line"><span class="cl">$ rclone config show <span class="p">|</span> plakar destination import -rclone mydrive
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Restore a snapshot from a filesystem-hosted Kloset store to the Rclone remote</span>
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups restore -to <span class="s2">&#34;@mydrive&#34;</span> &lt;snapshot_id&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Or restore a snapshot from the Kloset store configured with &#34;plakar store add store …&#34;</span>
+</span></span><span class="line"><span class="cl">$ plakar at <span class="s2">&#34;@store&#34;</span> restore -to <span class="s2">&#34;@mydrive&#34;</span> &lt;snapshot_id&gt;</span></span></code></pre></div></div>
+<p>Host a Kloset store in the remote:</p>
 <div class="highlight-wrapper codeblock">
   <div class="codeblock-title">
     <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
@@ -5212,228 +5422,11 @@ Source --> Plakar --> Via --> Kloset
 </span></span><span class="line"><span class="cl">$ plakar at <span class="s2">&#34;@mydrive&#34;</span> backup <span class="s2">&#34;@my_source&#34;</span></span></span></code></pre></div></div>
 
 
-<h4 id="options" class="group pr-8">Options
+<h2 id="limitations-and-scope" class="group pr-8">Limitations and scope
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="options"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h4>
-<p>These options can be set when configuring the storage connector with
-<code>plakar store add</code> or <code>plakar store set</code>:</p>
-<table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Purpose</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>passphrase</code></td>
-          <td>The Kloset store passphrase</td>
-      </tr>
-  </tbody>
-</table>
-
-
-<h3 id="source-connector" class="group pr-8">Source connector
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="source-connector"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
-<p>The Plakar Rclone package provides a source connector to back up remote
-directories accessible via Rclone.</p>
-<!-- prettier-ignore-start -->
-<pre class="not-prose mermaid">
-flowchart LR
-
-subgraph Source["Rclone Remote"]
-  FS["Data"]
-end
-
-Plakar["Plakar"]
-
-Via["Retrieve data via<br/>Rclone source connector"]
-
-Store["Kloset Store"]
-
-FS --> Via --> Plakar --> Store
-</pre>
-
-<!-- prettier-ignore-end -->
-
-
-<h4 id="configure-1" class="group pr-8">Configure
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="configure-1"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h4>
-<div class="highlight-wrapper codeblock">
-  <div class="codeblock-title">
-    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
-</span></span>
-    <span class="codeblock-label">Shell</span>
-    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
-      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
-</span></span>
-      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Import the rclone configuration as a source configuration.</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Replace &#34;mydrive&#34; with your Rclone remote name.</span>
-</span></span><span class="line"><span class="cl">$ rclone config show <span class="p">|</span> plakar <span class="nb">source</span> import -rclone mydrive
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Back up the remote directory to the Kloset store on the filesystem</span>
-</span></span><span class="line"><span class="cl">$ plakar at /var/backups backup <span class="s2">&#34;@mydrive&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Or back up the remote directory to a Kloset store configured with &#34;plakar store add&#34;</span>
-</span></span><span class="line"><span class="cl">$ plakar at <span class="s2">&#34;@store&#34;</span> backup <span class="s2">&#34;@mydrive&#34;</span></span></span></code></pre></div></div>
-
-
-<h4 id="options-1" class="group pr-8">Options
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="options-1"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h4>
-<p>The Rclone source connector doesn&rsquo;t support any specific options.</p>
-
-
-<h3 id="destination-connector" class="group pr-8">Destination connector
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="destination-connector"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
-<p>The Rclone package provides a destination connector to restore snapshots to
-remote directories reachable over Rclone.</p>
-<!-- prettier-ignore-start -->
-<pre class="not-prose mermaid">
-flowchart LR
-
-Store["Kloset Store"]
-
-Plakar["Plakar"]
-
-Via["Push data via<br/>Rclone destination connector"]
-
-subgraph Destination["Rclone Remote"]
-  FS["Data"]
-end
-
-Store --> Plakar --> Via --> FS
-</pre>
-
-<!-- prettier-ignore-end -->
-
-
-<h4 id="configure-2" class="group pr-8">Configure
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="configure-2"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h4>
-<div class="highlight-wrapper codeblock">
-  <div class="codeblock-title">
-    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
-</span></span>
-    <span class="codeblock-label">Shell</span>
-    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
-      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
-</span></span>
-      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Import the rclone configuration as a destination configuration.</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Replace &#34;mydrive&#34; with your Rclone remote name.</span>
-</span></span><span class="line"><span class="cl">$ rclone config show <span class="p">|</span> plakar destination import -rclone mydrive
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Restore a snapshot from a filesystem-hosted Kloset store to the Rclone remote</span>
-</span></span><span class="line"><span class="cl">$ plakar at /var/backups restore -to <span class="s2">&#34;@mydrive&#34;</span> &lt;snapshot_id&gt;
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Or restore a snapshot from the Kloset store configured with &#34;plakar store add store …&#34;</span>
-</span></span><span class="line"><span class="cl">$ plakar at <span class="s2">&#34;@store&#34;</span> restore -to <span class="s2">&#34;@mydrive&#34;</span> &lt;snapshot_id&gt;</span></span></code></pre></div></div>
-
-
-<h4 id="options-2" class="group pr-8">Options
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="options-2"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h4>
-<p>The Rclone destination connector doesn&rsquo;t support any specific options.</p>
-
-
-<h2 id="limitations-and-considerations" class="group pr-8">Limitations and considerations
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="limitations-and-considerations"
+      data-anchor="limitations-and-scope"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -5444,12 +5437,9 @@ Store --> Plakar --> Via --> FS
     </button>
   
 </h2>
-<ul>
-<li>OneDrive API has rate limits, heavy usage may require throttling.</li>
-<li>File version history is not preserved. Only the current version of each file
-is snapshotted.</li>
-<li>Shared links and permissions are not preserved in snapshots.</li>
-</ul>
+<p>The OneDrive API applies rate limits, and heavy usage may require throttling.
+File version history is not preserved. Only the current version of each file is
+snapshotted. Shared links and permissions are not preserved in snapshots.</p>
 
 
 <h2 id="see-also" class="group pr-8">See also
@@ -5469,6 +5459,7 @@ is snapshotted.</li>
 </h2>
 <ul>
 <li><a href="https://rclone.org/onedrive/"  target="_blank" rel="noreferrer">Rclone documentation for OneDrive</a></li>
+<li><a href="../../guides/managing-packages/" >Managing packages</a></li>
 </ul>
 
       </article>
@@ -5496,6 +5487,8 @@ is snapshotted.</li>
   
     
       
+    
+  
     
   
     
@@ -5604,7 +5597,7 @@ is snapshotted.</li>
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#installation">Installation</a></li><li><a href="#generate-rclone-configuration">Generate Rclone configuration</a></li><li><a href="#connectors">Connectors</a><ul><li><a href="#storage-connector">Storage connector</a><ul><li><a href="#configure">Configure</a></li><li><a href="#options">Options</a></li></ul></li><li><a href="#source-connector">Source connector</a><ul><li><a href="#configure-1">Configure</a></li><li><a href="#options-1">Options</a></li></ul></li><li><a href="#destination-connector">Destination connector</a><ul><li><a href="#configure-2">Configure</a></li><li><a href="#options-2">Options</a></li></ul></li></ul></li><li><a href="#limitations-and-considerations">Limitations and considerations</a></li><li><a href="#see-also">See also</a></li></ul>
+      <ul><li><a href="#installation">Installation</a></li><li><a href="#configuring-a-onedrive-remote">Configuring a OneDrive remote</a></li><li><a href="#configuration">Configuration</a><ul><ul><li><a href="#backup-flow">Backup flow</a></li><li><a href="#restore-flow">Restore flow</a></li><li><a href="#store-flow">Store flow</a></li></ul></li><li><a href="#source-configuration">Source configuration</a></li><li><a href="#destination-configuration">Destination configuration</a></li><li><a href="#store-configuration">Store configuration</a></li><li><a href="#example">Example</a></li></ul></li><li><a href="#limitations-and-scope">Limitations and scope</a></li><li><a href="#see-also">See also</a></li></ul>
     </div>
 
     

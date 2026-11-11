@@ -27,7 +27,7 @@
     
   
   
-    <meta name="description" content="Back up and restore MySQL and MariaDB databases with Plakar — logical dumps via mysqldump and mariadb-dump, with Google Cloud SQL support.">
+    <meta name="description" content="Back up and restore MySQL and MariaDB databases with Plakar using logical dumps from mysqldump and mariadb-dump, including Google Cloud SQL.">
   
   
     <meta name="keywords" content="backup,open-source,deduplication,encryption,plakar,cloud backup,database backup,">
@@ -67,17 +67,17 @@
   <meta property="og:url" content="https://www.plakar.io/docs/community/main/integrations/mysql/">
   <meta property="og:site_name" content="Plakar | The Open Standard for Backup and Restore">
   <meta property="og:title" content="MySQL / MariaDB">
-  <meta property="og:description" content="Back up and restore MySQL and MariaDB databases with Plakar — logical dumps via mysqldump and mariadb-dump, with Google Cloud SQL support.">
+  <meta property="og:description" content="Back up and restore MySQL and MariaDB databases with Plakar using logical dumps from mysqldump and mariadb-dump, including Google Cloud SQL.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-06-12T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-11T17:12:23+01:00">
+    <meta property="article:modified_time" content="2026-11-11T17:15:27+01:00">
 
   
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="MySQL / MariaDB">
-  <meta name="twitter:description" content="Back up and restore MySQL and MariaDB databases with Plakar — logical dumps via mysqldump and mariadb-dump, with Google Cloud SQL support.">
+  <meta name="twitter:description" content="Back up and restore MySQL and MariaDB databases with Plakar using logical dumps from mysqldump and mariadb-dump, including Google Cloud SQL.">
 
   
   
@@ -244,12 +244,12 @@
     "dateCreated": "2026-06-12T00:00:00\u002b00:00",
     "datePublished": "2026-06-12T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-11T17:12:23\u002b01:00",
+    "dateModified": "2026-11-11T17:15:27\u002b01:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/community/main/integrations/mysql/",
-    "wordCount":  1541 
+    "wordCount":  1675 
   }]
   </script>
 
@@ -1521,6 +1521,8 @@
   
     
   
+    
+  
   
 
   
@@ -1831,6 +1833,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         OpenShift
+      </a>
+    
+  
+    
+    
+      <a href="/docs/community/main/integrations/sqlite/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        SQLite
       </a>
     
   
@@ -3647,6 +3658,8 @@
   
     
   
+    
+  
   
 
   
@@ -3957,6 +3970,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         OpenShift
+      </a>
+    
+  
+    
+    
+      <a href="/docs/community/main/integrations/sqlite/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        SQLite
       </a>
     
   
@@ -4853,10 +4875,30 @@
     </button>
   
 </h1>
-<p>The <strong>MySQL / MariaDB integration</strong> performs logical backups of MySQL and
-MariaDB databases using <code>mysqldump</code> and <code>mariadb-dump</code>. These backups produce
-standard SQL files that are human-readable and can be restored without Plakar if
-needed.</p>
+<p>The MySQL / MariaDB integration performs logical backups of MySQL and MariaDB
+databases using <code>mysqldump</code> and <code>mariadb-dump</code>, and restores them with the
+<code>mysql</code> and <code>mariadb</code> clients. A backup is a set of standard SQL files. They are
+human-readable and can be restored without Plakar if needed.</p>
+<p>The integration includes two connectors:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Connector type</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Source connector</strong></td>
+          <td>Back up MySQL or MariaDB databases into a Kloset store.</td>
+      </tr>
+      <tr>
+          <td><strong>Destination connector</strong></td>
+          <td>Restore databases from a Kloset store to a running server.</td>
+      </tr>
+  </tbody>
+</table>
+<p>Both connectors support three protocols:</p>
 <table>
   <thead>
       <tr>
@@ -4887,15 +4929,24 @@ needed.</p>
       </tr>
   </tbody>
 </table>
-<p><code>mysql://</code> and <code>mysql+mariadb://</code> are independent connectors: each always uses
-its own set of binaries regardless of the server at the other end.</p>
+<p><code>mysql://</code> and <code>mysql+mariadb://</code> are independent connectors. Each always uses
+its own set of binaries, regardless of the server at the other end.</p>
+<p><strong>Requirements</strong></p>
+<ul>
+<li>For <code>mysql://</code> and <code>mysql+gcsql://</code>, <code>mysqldump</code> (backup) and <code>mysql</code>
+(restore) in <code>$PATH</code> on the machine running Plakar. They are provided by the
+<code>mysql-client</code> package or the MySQL distribution.</li>
+<li>For <code>mysql+mariadb://</code>, <code>mariadb-dump</code> (backup) and <code>mariadb</code> (restore).</li>
+<li>A database user with the privileges listed in
+<a href="/docs/community/main/integrations/mysql/#backup-user-privileges" >Backup user privileges</a>.</li>
+</ul>
 <p><strong>Typical use cases</strong></p>
 <ul>
 <li>Scheduled logical backups of application databases with cross-version
 portability.</li>
 <li>Full-cluster dumps including stored procedures, events, and triggers.</li>
 <li>MariaDB-specific backups that require <code>mariadb-dump</code> semantics.</li>
-<li>Cloud SQL backups via the Cloud SQL Auth Proxy.</li>
+<li>Cloud SQL backups through the Cloud SQL Auth Proxy.</li>
 </ul>
 
 
@@ -4928,7 +4979,7 @@ portability.</li>
         <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"/></svg>
 </span></div>
         <div class="grow">
-          Note
+          Logging In
         </div>
         <div
           class="ms-auto flex h-5 w-5 items-center justify-center transition-transform ease-in-out -rotate-90 group-open:rotate-0 print:hidden"><span class="relative block icon"><svg
@@ -5009,11 +5060,11 @@ portability.</li>
 <a href="../../guides/managing-packages/" >managing packages guide</a>.</p>
 
 
-<h2 id="logical-backup---mysql" class="group pr-8">Logical backup - <code>mysql://</code>
+<h2 id="how-a-backup-works" class="group pr-8">How a backup works
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="logical-backup---mysql"
+      data-anchor="how-a-backup-works"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -5024,33 +5075,18 @@ portability.</li>
     </button>
   
 </h2>
-
-
-<h3 id="how-it-works" class="group pr-8">How it works
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="how-it-works"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
-<p>The connector invokes <code>mysqldump</code> to produce a single SQL file per database, or
-a combined <code>all.sql</code> when no database is specified. Every snapshot follows the
-same layout:</p>
+<p>The source connector runs the dump tool of its protocol and produces a single
+SQL file per database, or a combined <code>all.sql</code> when no database is specified.
+Every snapshot follows the same layout:</p>
 <ul>
-<li><code>/manifest.json</code>: cluster metadata captured before the dump (see
-<a href="/docs/community/main/integrations/mysql/#snapshot-manifest" >Snapshot manifest</a>).</li>
+<li><code>/manifest.json</code>: cluster metadata captured before the dump. See
+<a href="/docs/community/main/integrations/mysql/#snapshot-manifest" >Snapshot manifest</a>.</li>
 <li><code>/&lt;dbname&gt;.sql</code>: single-database dump when a database is specified.</li>
 <li><code>/all.sql</code>: full-server dump when no database is specified
 (<code>--all-databases</code>).</li>
 </ul>
+<p>The destination connector feeds the full dump to the client tool of its
+protocol.</p>
 <p><strong>Pros</strong></p>
 <ul>
 <li>Portable across MySQL major versions.</li>
@@ -5066,11 +5102,11 @@ same layout:</p>
 </ul>
 
 
-<h3 id="prerequisites" class="group pr-8">Prerequisites
+<h3 id="innodb-and-myisam" class="group pr-8">InnoDB and MyISAM
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="prerequisites"
+      data-anchor="innodb-and-myisam"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -5081,12 +5117,27 @@ same layout:</p>
     </button>
   
 </h3>
-<p>The following tools must be available in <code>$PATH</code> on the machine running Plakar
-(provided by the <code>mysql-client</code> package, or the MySQL distribution):</p>
-<ul>
-<li><code>mysqldump</code>: for backup</li>
-<li><code>mysql</code>: for restore</li>
-</ul>
+<p><code>single_transaction</code>, enabled by default, produces a consistent InnoDB snapshot
+without locking tables. For databases that contain MyISAM tables, this option
+does not prevent locks on those tables. Disable <code>single_transaction</code> to use
+<code>--lock-all-tables</code> instead, accepting write locks for the duration of the dump.</p>
+
+
+<h2 id="backup-user-privileges" class="group pr-8">Backup user privileges
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="backup-user-privileges"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
 <p>The backup user requires the following privileges:</p>
 <div class="highlight-wrapper codeblock">
   <div class="codeblock-title">
@@ -5106,34 +5157,28 @@ same layout:</p>
 </span></span></span><span class="line"><span class="cl"><span class="c1">-- All databases
 </span></span></span><span class="line"><span class="cl"><span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="p">,</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="k">VIEW</span><span class="p">,</span><span class="w"> </span><span class="k">TRIGGER</span><span class="p">,</span><span class="w"> </span><span class="k">LOCK</span><span class="w"> </span><span class="n">TABLES</span><span class="p">,</span><span class="w"> </span><span class="n">EVENT</span><span class="p">,</span><span class="w"> </span><span class="n">RELOAD</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;backup&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="p">;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="k">GRANT</span><span class="w"> </span><span class="n">PROCESS</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;backup&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="p">;</span></span></span></code></pre></div></div>
-<details
-      class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
-      data-type="warning"
-      open>
-      <summary class="flex items-center gap-2 font-semibold text-inherit cursor-pointer">
-        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"/></svg>
-</span></div>
-        <div class="grow">
-          Warning
-        </div>
-        <div
-          class="ms-auto flex h-5 w-5 items-center justify-center transition-transform ease-in-out -rotate-90 group-open:rotate-0 print:hidden"><span class="relative block icon"><svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 20 20"
-  fill="currentColor"
-  aria-hidden="true"
->
-  <path
-    fill-rule="evenodd"
-    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-    clip-rule="evenodd"
-  />
-</svg>
-</span></div>
-      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Binary compatibility On Debian and Ubuntu, <code>apt install default-mysql-client</code>
-installs MariaDB&rsquo;s <code>mysqldump</code> by default. MariaDB&rsquo;s <code>mysqldump</code> is <strong>not
-compatible</strong> with MySQL 8 for all-databases backups and produces dumps that
-fail to restore. Verify you have the correct binary:</p>
+
+
+<h2 id="mysql-and-mariadb-binaries" class="group pr-8">MySQL and MariaDB binaries
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="mysql-and-mariadb-binaries"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>The client binaries must match the server flavor. On Debian and Ubuntu,
+<code>apt install default-mysql-client</code> installs MariaDB binaries by default,
+including MariaDB&rsquo;s <code>mysqldump</code>. MariaDB&rsquo;s <code>mysqldump</code> is <strong>not compatible</strong>
+with MySQL 8 for all-databases backups and produces dumps that fail to restore.</p>
+<p>Check which binary is installed:</p>
 <div class="highlight-wrapper codeblock">
   <div class="codeblock-title">
     <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
@@ -5148,456 +5193,8 @@ fail to restore. Verify you have the correct binary:</p>
   </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ mysqldump --version
 </span></span><span class="line"><span class="cl"><span class="c1"># MySQL:   mysqldump  Ver 8.x Distrib 8.x, for Linux (x86_64)</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># MariaDB: mysqldump from 11.x.x-MariaDB ...</span></span></span></code></pre></div></div>
-<p>Use <code>mysql_bin_dir</code> to point to the correct binary directory if both are
-installed.</p></div></details>
-
-<h3 id="source-connector" class="group pr-8">Source connector
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="source-connector"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
-<!-- prettier-ignore-start -->
-<pre class="not-prose mermaid">
-flowchart LR
-subgraph Source["MySQL Server"]
-  DB["Databases"]
-end
-
-subgraph Plakar["Plakar"]
-  Connector["mysqldump"]
-  Transform["Encrypt & deduplicate"]
-
-  Connector --> Transform
-end
-
-Store["Kloset Store"]
-
-DB --> Connector
-Transform --> Store
-</pre>
-
-<!-- prettier-ignore-end -->
-<div class="highlight-wrapper codeblock">
-  <div class="codeblock-title">
-    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
-</span></span>
-    <span class="codeblock-label">Shell</span>
-    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
-      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
-</span></span>
-      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Back up a single database</span>
-</span></span><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add mydb mysql://dbuser:secret@db.example.com/mydb
-</span></span><span class="line"><span class="cl">$ plakar at /var/backups backup <span class="s2">&#34;@mydb&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Back up all databases</span>
-</span></span><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add alldb mysql://root:secret@db.example.com
-</span></span><span class="line"><span class="cl">$ plakar at /var/backups backup <span class="s2">&#34;@alldb&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Schema only</span>
-</span></span><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add mydb mysql://dbuser:secret@db.example.com/mydb <span class="se">\
-</span></span></span><span class="line"><span class="cl">  <span class="nv">no_data</span><span class="o">=</span><span class="nb">true</span>
-</span></span><span class="line"><span class="cl">$ plakar at /var/backups backup <span class="s2">&#34;@mydb&#34;</span></span></span></code></pre></div></div>
-
-
-<h4 id="source-options" class="group pr-8">Source options
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="source-options"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h4>
-<table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Default</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>location</code></td>
-          <td>—</td>
-          <td>Connection URI: <code>mysql://[user[:password]@]host[:port][/database]</code></td>
-      </tr>
-      <tr>
-          <td><code>host</code></td>
-          <td><code>127.0.0.1</code></td>
-          <td>Server hostname. Overrides the URI host.</td>
-      </tr>
-      <tr>
-          <td><code>port</code></td>
-          <td><code>3306</code></td>
-          <td>Server port. Overrides the URI port.</td>
-      </tr>
-      <tr>
-          <td><code>username</code></td>
-          <td>—</td>
-          <td>Username. Overrides the URI user.</td>
-      </tr>
-      <tr>
-          <td><code>password</code></td>
-          <td>—</td>
-          <td>Password. Overrides the URI password. Passed via <code>MYSQL_PWD</code>, never on the command line.</td>
-      </tr>
-      <tr>
-          <td><code>database</code></td>
-          <td>—</td>
-          <td>Database to back up. Overrides the URI path. If omitted, all databases are backed up.</td>
-      </tr>
-      <tr>
-          <td><code>single_transaction</code></td>
-          <td><code>true</code></td>
-          <td>Use <code>--single-transaction</code> for a lock-free InnoDB snapshot.</td>
-      </tr>
-      <tr>
-          <td><code>routines</code></td>
-          <td><code>true</code></td>
-          <td>Include stored procedures and functions (<code>--routines</code>).</td>
-      </tr>
-      <tr>
-          <td><code>events</code></td>
-          <td><code>true</code></td>
-          <td>Include event scheduler events (<code>--events</code>).</td>
-      </tr>
-      <tr>
-          <td><code>triggers</code></td>
-          <td><code>true</code></td>
-          <td>Include triggers. Set to <code>false</code> to pass <code>--skip-triggers</code>.</td>
-      </tr>
-      <tr>
-          <td><code>no_data</code></td>
-          <td><code>false</code></td>
-          <td>Dump schema only, no data (<code>--no-data</code>). Mutually exclusive with <code>no_create_info</code>.</td>
-      </tr>
-      <tr>
-          <td><code>no_create_info</code></td>
-          <td><code>false</code></td>
-          <td>Dump data only, no schema (<code>--no-create-info</code>). Mutually exclusive with <code>no_data</code>.</td>
-      </tr>
-      <tr>
-          <td><code>no_tablespaces</code></td>
-          <td><code>true</code></td>
-          <td>Suppress tablespace statements (<code>--no-tablespaces</code>).</td>
-      </tr>
-      <tr>
-          <td><code>hex_blob</code></td>
-          <td><code>false</code></td>
-          <td>Encode BINARY/BLOB columns as hex (<code>--hex-blob</code>).</td>
-      </tr>
-      <tr>
-          <td><code>column_statistics</code></td>
-          <td><code>true</code></td>
-          <td>Query <code>COLUMN_STATISTICS</code>. Set to <code>false</code> (<code>--column-statistics=0</code>) when using mysqldump 8.0 against MySQL 5.7.</td>
-      </tr>
-      <tr>
-          <td><code>set_gtid_purged</code></td>
-          <td><code>AUTO</code></td>
-          <td>GTID mode: <code>AUTO</code>, <code>ON</code>, or <code>OFF</code>.</td>
-      </tr>
-      <tr>
-          <td><code>mysql_bin_dir</code></td>
-          <td>—</td>
-          <td>Directory containing <code>mysqldump</code>. When omitted, resolved via <code>$PATH</code>.</td>
-      </tr>
-      <tr>
-          <td><code>ssl_mode</code></td>
-          <td>—</td>
-          <td>TLS mode: <code>disabled</code>, <code>preferred</code>, <code>required</code>, <code>verify_ca</code>, <code>verify_identity</code>.</td>
-      </tr>
-      <tr>
-          <td><code>ssl_cert</code></td>
-          <td>—</td>
-          <td>Path to the client SSL certificate (PEM).</td>
-      </tr>
-      <tr>
-          <td><code>ssl_key</code></td>
-          <td>—</td>
-          <td>Path to the client SSL private key (PEM).</td>
-      </tr>
-      <tr>
-          <td><code>ssl_ca</code></td>
-          <td>—</td>
-          <td>Path to the CA certificate (PEM).</td>
-      </tr>
-  </tbody>
-</table>
-
-
-<h3 id="destination-connector" class="group pr-8">Destination connector
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="destination-connector"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
-<!-- prettier-ignore-start -->
-<pre class="not-prose mermaid">
-flowchart LR
-Store["Kloset Store"]
-
-subgraph Plakar["Plakar"]
-  Transform["Decrypt & reconstruct"]
-  Connector["mysql"]
-
-  Transform --> Connector
-end
-
-subgraph Destination["MySQL Server"]
-  DB["Databases"]
-end
-
-Store --> Transform
-Connector --> DB
-</pre>
-
-<!-- prettier-ignore-end -->
-<div class="highlight-wrapper codeblock">
-  <div class="codeblock-title">
-    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
-</span></span>
-    <span class="codeblock-label">Shell</span>
-    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
-      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
-</span></span>
-      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Restore into an existing database</span>
-</span></span><span class="line"><span class="cl">$ plakar destination add mydbdst mysql://dbuser:secret@target.example.com/mydb
-</span></span><span class="line"><span class="cl">$ plakar at /var/backups restore -to <span class="s2">&#34;@mydbdst&#34;</span> &lt;snapshot_id&gt;
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Create the database and restore</span>
-</span></span><span class="line"><span class="cl">$ plakar destination add mydbdst mysql://dbuser:secret@target.example.com/mydb <span class="se">\
-</span></span></span><span class="line"><span class="cl">  <span class="nv">create_db</span><span class="o">=</span><span class="nb">true</span>
-</span></span><span class="line"><span class="cl">$ plakar at /var/backups restore -to <span class="s2">&#34;@mydbdst&#34;</span> &lt;snapshot_id&gt;
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Restore all databases</span>
-</span></span><span class="line"><span class="cl">$ plakar destination add mydbdst mysql://root:secret@target.example.com
-</span></span><span class="line"><span class="cl">$ plakar at /var/backups restore -to <span class="s2">&#34;@mydbdst&#34;</span> &lt;snapshot_id&gt;</span></span></code></pre></div></div>
-
-
-<h4 id="destination-options" class="group pr-8">Destination options
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="destination-options"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h4>
-<table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Default</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>location</code></td>
-          <td>—</td>
-          <td>Connection URI: <code>mysql://[user[:password]@]host[:port][/database]</code></td>
-      </tr>
-      <tr>
-          <td><code>host</code></td>
-          <td><code>127.0.0.1</code></td>
-          <td>Server hostname. Overrides the URI host.</td>
-      </tr>
-      <tr>
-          <td><code>port</code></td>
-          <td><code>3306</code></td>
-          <td>Server port. Overrides the URI port.</td>
-      </tr>
-      <tr>
-          <td><code>username</code></td>
-          <td>—</td>
-          <td>Username. Overrides the URI user.</td>
-      </tr>
-      <tr>
-          <td><code>password</code></td>
-          <td>—</td>
-          <td>Password. Overrides the URI password.</td>
-      </tr>
-      <tr>
-          <td><code>database</code></td>
-          <td>—</td>
-          <td>Target database. Inferred from the dump filename if omitted.</td>
-      </tr>
-      <tr>
-          <td><code>create_db</code></td>
-          <td><code>false</code></td>
-          <td>Issue <code>CREATE DATABASE IF NOT EXISTS</code> before restoring.</td>
-      </tr>
-      <tr>
-          <td><code>force</code></td>
-          <td><code>false</code></td>
-          <td>Pass <code>--force</code> to continue on SQL errors during restore.</td>
-      </tr>
-      <tr>
-          <td><code>mysql_bin_dir</code></td>
-          <td>—</td>
-          <td>Directory containing the <code>mysql</code> binary. When omitted, resolved via <code>$PATH</code>.</td>
-      </tr>
-      <tr>
-          <td><code>ssl_mode</code></td>
-          <td>—</td>
-          <td>TLS mode (same values as source).</td>
-      </tr>
-      <tr>
-          <td><code>ssl_cert</code></td>
-          <td>—</td>
-          <td>Path to the client SSL certificate (PEM).</td>
-      </tr>
-      <tr>
-          <td><code>ssl_key</code></td>
-          <td>—</td>
-          <td>Path to the client SSL private key (PEM).</td>
-      </tr>
-      <tr>
-          <td><code>ssl_ca</code></td>
-          <td>—</td>
-          <td>Path to the CA certificate (PEM).</td>
-      </tr>
-  </tbody>
-</table>
-
-
-<h2 id="logical-backup---mysqlmariadb" class="group pr-8">Logical backup - <code>mysql+mariadb://</code>
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="logical-backup---mysqlmariadb"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h2>
-<p><code>mysql+mariadb://</code> works identically to <code>mysql://</code> but invokes <code>mariadb-dump</code>
-for backup and <code>mariadb</code> for restore. This connector is used when targeting a
-MariaDB server to avoid binary-compatibility issues.</p>
-<div class="highlight-wrapper codeblock">
-  <div class="codeblock-title">
-    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
-</span></span>
-    <span class="codeblock-label">Shell</span>
-    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
-      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
-</span></span>
-      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Back up a single MariaDB database</span>
-</span></span><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add mydb mysql+mariadb://dbuser:secret@db.example.com/mydb
-</span></span><span class="line"><span class="cl">$ plakar at /var/backups backup <span class="s2">&#34;@mydb&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Back up all MariaDB databases</span>
-</span></span><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add alldb mysql+mariadb://root:secret@db.example.com
-</span></span><span class="line"><span class="cl">$ plakar at /var/backups backup <span class="s2">&#34;@alldb&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Restore</span>
-</span></span><span class="line"><span class="cl">$ plakar destination add mydbdst mysql+mariadb://dbuser:secret@target.example.com/mydb <span class="se">\
-</span></span></span><span class="line"><span class="cl">  <span class="nv">create_db</span><span class="o">=</span><span class="nb">true</span>
-</span></span><span class="line"><span class="cl">$ plakar at /var/backups restore -to <span class="s2">&#34;@mydbdst&#34;</span> &lt;snapshot_id&gt;</span></span></code></pre></div></div>
-<p><code>mysql+mariadb://</code> supports the same source and destination options as
-<code>mysql://</code>, with the following differences:</p>
-<table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Default</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>mariadb_bin_dir</code></td>
-          <td>—</td>
-          <td>Directory containing <code>mariadb-dump</code> / <code>mariadb</code>. Replaces <code>mysql_bin_dir</code>.</td>
-      </tr>
-  </tbody>
-</table>
-<p>The <code>column_statistics</code> and <code>set_gtid_purged</code> options are MySQL-only and have no
-effect on <code>mysql+mariadb://</code>.</p>
-
-
-<h2 id="google-cloud-sql---mysqlgcsql" class="group pr-8">Google Cloud SQL - <code>mysql+gcsql://</code>
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="google-cloud-sql---mysqlgcsql"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h2>
-<p><code>mysql+gcsql://</code> targets MySQL databases hosted on Google Cloud SQL. It uses the
-<a href="https://cloud.google.com/sql/docs/mysql/sql-proxy"  target="_blank" rel="noreferrer">Cloud SQL Auth Proxy</a> to
-establish an encrypted connection, making the experience equivalent to
-connecting to a local MySQL server.</p>
-<p>The connector supports the same source and destination options as <code>mysql://</code>.
-The Cloud SQL Auth Proxy must be running and accessible on the configured host
-and port before Plakar connects.</p>
-<div class="highlight-wrapper codeblock">
-  <div class="codeblock-title">
-    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
-</span></span>
-    <span class="codeblock-label">Shell</span>
-    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
-      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
-</span></span>
-      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Assuming the proxy is running on localhost:3306</span>
-</span></span><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add mygcs mysql+gcsql://dbuser:secret@127.0.0.1:3306/mydb
-</span></span><span class="line"><span class="cl">$ plakar at /var/backups backup <span class="s2">&#34;@mygcs&#34;</span></span></span></code></pre></div></div>
+<p>When both flavors are installed on the same machine, use <code>mysql_bin_dir</code> to
+point to the correct binary directory.</p>
 
 
 <h2 id="snapshot-manifest" class="group pr-8">Snapshot manifest
@@ -5656,15 +5253,15 @@ backup.</p>
       </tr>
   </tbody>
 </table>
-<p>Metadata collection is best-effort: if a query fails, the affected field is
+<p>Metadata collection is best-effort. If a query fails, the affected field is
 omitted and the backup continues normally.</p>
 
 
-<h2 id="considerations" class="group pr-8">Considerations
+<h2 id="1-mysql-protocol" class="group pr-8">1. <code>mysql</code> protocol
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="considerations"
+      data-anchor="1-mysql-protocol"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -5675,13 +5272,91 @@ omitted and the backup continues normally.</p>
     </button>
   
 </h2>
+<p>The <code>mysql</code> protocol connects to a running MySQL server, produces the dump with
+<code>mysqldump</code>, and restores it with <code>mysql</code>.</p>
 
 
-<h3 id="mysql-vs-mariadb-binaries" class="group pr-8">MySQL vs MariaDB binaries
+<h4 id="backup-flow" class="group pr-8">Backup flow
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="mysql-vs-mariadb-binaries"
+      data-anchor="backup-flow"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h4>
+<!-- prettier-ignore-start -->
+<pre class="not-prose mermaid">
+flowchart LR
+subgraph Source["MySQL Server"]
+  DB["Databases"]
+end
+
+subgraph Plakar["Plakar"]
+  Connector["mysqldump"]
+  Transform["Encrypt & deduplicate"]
+
+  Connector --> Transform
+end
+
+Store["Kloset Store"]
+
+DB --> Connector
+Transform --> Store
+</pre>
+
+<!-- prettier-ignore-end -->
+
+
+<h4 id="restore-flow" class="group pr-8">Restore flow
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="restore-flow"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h4>
+<!-- prettier-ignore-start -->
+<pre class="not-prose mermaid">
+flowchart LR
+Store["Kloset Store"]
+
+subgraph Plakar["Plakar"]
+  Transform["Decrypt & reconstruct"]
+  Connector["mysql"]
+
+  Transform --> Connector
+end
+
+subgraph Destination["MySQL Server"]
+  DB["Databases"]
+end
+
+Store --> Transform
+Connector --> DB
+</pre>
+
+<!-- prettier-ignore-end -->
+
+
+<h3 id="shared-configuration" class="group pr-8">Shared configuration
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="shared-configuration"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -5692,18 +5367,76 @@ omitted and the backup continues normally.</p>
     </button>
   
 </h3>
-<p>Always use binaries that match your server flavor. On Debian and Ubuntu,
-<code>apt install default-mysql-client</code> installs MariaDB binaries by default.
-MariaDB&rsquo;s <code>mysqldump</code> produces dumps that fail to restore against MySQL 8 for
-all-databases backups. Use <code>mysql_bin_dir</code> to point to the correct binaries when
-both flavors are installed on the same machine.</p>
+<p>The following options apply to both source and destination connectors using the
+<code>mysql</code> protocol.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Option</th>
+          <th>Required</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>location</code></td>
+          <td>Yes</td>
+          <td>Connection URI: <code>mysql://[user[:password]@]host[:port][/database]</code></td>
+      </tr>
+      <tr>
+          <td><code>host</code></td>
+          <td>No</td>
+          <td>Server hostname. Overrides the URI host. Defaults to <code>127.0.0.1</code>.</td>
+      </tr>
+      <tr>
+          <td><code>port</code></td>
+          <td>No</td>
+          <td>Server port. Overrides the URI port. Defaults to <code>3306</code>.</td>
+      </tr>
+      <tr>
+          <td><code>username</code></td>
+          <td>No</td>
+          <td>Username. Overrides the URI user.</td>
+      </tr>
+      <tr>
+          <td><code>password</code></td>
+          <td>No</td>
+          <td>Password. Overrides the URI password. Passed via <code>MYSQL_PWD</code>, never on the command line.</td>
+      </tr>
+      <tr>
+          <td><code>mysql_bin_dir</code></td>
+          <td>No</td>
+          <td>Directory containing <code>mysqldump</code> (source) or the <code>mysql</code> binary (destination). When omitted, resolved via <code>$PATH</code>.</td>
+      </tr>
+      <tr>
+          <td><code>ssl_mode</code></td>
+          <td>No</td>
+          <td>TLS mode: <code>disabled</code>, <code>preferred</code>, <code>required</code>, <code>verify_ca</code>, <code>verify_identity</code>.</td>
+      </tr>
+      <tr>
+          <td><code>ssl_cert</code></td>
+          <td>No</td>
+          <td>Path to the client SSL certificate (PEM).</td>
+      </tr>
+      <tr>
+          <td><code>ssl_key</code></td>
+          <td>No</td>
+          <td>Path to the client SSL private key (PEM).</td>
+      </tr>
+      <tr>
+          <td><code>ssl_ca</code></td>
+          <td>No</td>
+          <td>Path to the CA certificate (PEM).</td>
+      </tr>
+  </tbody>
+</table>
 
 
-<h3 id="innodb-and-myisam" class="group pr-8">InnoDB and MyISAM
+<h3 id="source-configuration" class="group pr-8">Source configuration
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="innodb-and-myisam"
+      data-anchor="source-configuration"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -5714,10 +5447,372 @@ both flavors are installed on the same machine.</p>
     </button>
   
 </h3>
-<p><code>single_transaction</code> (enabled by default) produces a consistent InnoDB snapshot
-without locking tables. For databases that contain MyISAM tables, this option
-does not prevent locks on those tables. Disable <code>single_transaction</code> to use
-<code>--lock-all-tables</code> instead, accepting write locks for the duration of the dump.</p>
+<p>The following extra options are available to source connectors using the <code>mysql</code>
+protocol.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Option</th>
+          <th>Required</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>database</code></td>
+          <td>No</td>
+          <td>Database to back up. Overrides the URI path. If omitted, all databases are backed up.</td>
+      </tr>
+      <tr>
+          <td><code>single_transaction</code></td>
+          <td>No</td>
+          <td>Use <code>--single-transaction</code> for a lock-free InnoDB snapshot. Defaults to <code>true</code>.</td>
+      </tr>
+      <tr>
+          <td><code>routines</code></td>
+          <td>No</td>
+          <td>Include stored procedures and functions (<code>--routines</code>). Defaults to <code>true</code>.</td>
+      </tr>
+      <tr>
+          <td><code>events</code></td>
+          <td>No</td>
+          <td>Include event scheduler events (<code>--events</code>). Defaults to <code>true</code>.</td>
+      </tr>
+      <tr>
+          <td><code>triggers</code></td>
+          <td>No</td>
+          <td>Include triggers. Set to <code>false</code> to pass <code>--skip-triggers</code>. Defaults to <code>true</code>.</td>
+      </tr>
+      <tr>
+          <td><code>no_data</code></td>
+          <td>No</td>
+          <td>Dump schema only, no data (<code>--no-data</code>). Mutually exclusive with <code>no_create_info</code>. Defaults to <code>false</code>.</td>
+      </tr>
+      <tr>
+          <td><code>no_create_info</code></td>
+          <td>No</td>
+          <td>Dump data only, no schema (<code>--no-create-info</code>). Mutually exclusive with <code>no_data</code>. Defaults to <code>false</code>.</td>
+      </tr>
+      <tr>
+          <td><code>no_tablespaces</code></td>
+          <td>No</td>
+          <td>Suppress tablespace statements (<code>--no-tablespaces</code>). Defaults to <code>true</code>.</td>
+      </tr>
+      <tr>
+          <td><code>hex_blob</code></td>
+          <td>No</td>
+          <td>Encode BINARY/BLOB columns as hex (<code>--hex-blob</code>). Defaults to <code>false</code>.</td>
+      </tr>
+      <tr>
+          <td><code>column_statistics</code></td>
+          <td>No</td>
+          <td>Query <code>COLUMN_STATISTICS</code>. Set to <code>false</code> (<code>--column-statistics=0</code>) when using mysqldump 8.0 against MySQL 5.7. Defaults to <code>true</code>.</td>
+      </tr>
+      <tr>
+          <td><code>set_gtid_purged</code></td>
+          <td>No</td>
+          <td>GTID mode: <code>AUTO</code>, <code>ON</code>, or <code>OFF</code>. Defaults to <code>AUTO</code>. See <a href="/docs/community/main/integrations/mysql/#gtids" >GTIDs</a>.</td>
+      </tr>
+  </tbody>
+</table>
+
+
+<h3 id="destination-configuration" class="group pr-8">Destination configuration
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="destination-configuration"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>The following extra options are available to destination connectors using the
+<code>mysql</code> protocol.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Option</th>
+          <th>Required</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>database</code></td>
+          <td>No</td>
+          <td>Target database. Inferred from the dump filename if omitted.</td>
+      </tr>
+      <tr>
+          <td><code>create_db</code></td>
+          <td>No</td>
+          <td>Issue <code>CREATE DATABASE IF NOT EXISTS</code> before restoring. Defaults to <code>false</code>.</td>
+      </tr>
+      <tr>
+          <td><code>force</code></td>
+          <td>No</td>
+          <td>Pass <code>--force</code> to continue on SQL errors during restore. Defaults to <code>false</code>.</td>
+      </tr>
+  </tbody>
+</table>
+
+
+<h3 id="example" class="group pr-8">Example
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="example"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Back up a single database, all databases, or the schema only:</p>
+<div class="highlight-wrapper codeblock">
+  <div class="codeblock-title">
+    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
+</span></span>
+    <span class="codeblock-label">Shell</span>
+    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
+      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
+</span></span>
+      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Back up a single database</span>
+</span></span><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add mydb mysql://dbuser:secret@db.example.com/mydb
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups backup <span class="s2">&#34;@mydb&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Back up all databases</span>
+</span></span><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add alldb mysql://root:secret@db.example.com
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups backup <span class="s2">&#34;@alldb&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Schema only</span>
+</span></span><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add mydb mysql://dbuser:secret@db.example.com/mydb <span class="se">\
+</span></span></span><span class="line"><span class="cl">  <span class="nv">no_data</span><span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups backup <span class="s2">&#34;@mydb&#34;</span></span></span></code></pre></div></div>
+<p>Restore into an existing database, create the database first, or restore all
+databases:</p>
+<div class="highlight-wrapper codeblock">
+  <div class="codeblock-title">
+    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
+</span></span>
+    <span class="codeblock-label">Shell</span>
+    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
+      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
+</span></span>
+      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Restore into an existing database</span>
+</span></span><span class="line"><span class="cl">$ plakar destination add mydbdst mysql://dbuser:secret@target.example.com/mydb
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups restore -to <span class="s2">&#34;@mydbdst&#34;</span> &lt;snapshot_id&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Create the database and restore</span>
+</span></span><span class="line"><span class="cl">$ plakar destination add mydbdst mysql://dbuser:secret@target.example.com/mydb <span class="se">\
+</span></span></span><span class="line"><span class="cl">  <span class="nv">create_db</span><span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups restore -to <span class="s2">&#34;@mydbdst&#34;</span> &lt;snapshot_id&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Restore all databases</span>
+</span></span><span class="line"><span class="cl">$ plakar destination add mydbdst mysql://root:secret@target.example.com
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups restore -to <span class="s2">&#34;@mydbdst&#34;</span> &lt;snapshot_id&gt;</span></span></code></pre></div></div>
+
+
+<h2 id="2-mysqlmariadb-protocol" class="group pr-8">2. <code>mysql+mariadb</code> protocol
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="2-mysqlmariadb-protocol"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>The <code>mysql+mariadb</code> protocol works identically to <code>mysql</code>, but invokes
+<code>mariadb-dump</code> for backup and <code>mariadb</code> for restore. It is used when targeting a
+MariaDB server, to avoid binary-compatibility issues.</p>
+
+
+<h3 id="configuration" class="group pr-8">Configuration
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="configuration"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p><code>mysql+mariadb://</code> supports the same source and destination options as
+<code>mysql://</code>, with the following differences:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Option</th>
+          <th>Required</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>mariadb_bin_dir</code></td>
+          <td>No</td>
+          <td>Directory containing <code>mariadb-dump</code> / <code>mariadb</code>. Replaces <code>mysql_bin_dir</code>.</td>
+      </tr>
+  </tbody>
+</table>
+<p>The <code>column_statistics</code> and <code>set_gtid_purged</code> options are MySQL-only and have no
+effect on <code>mysql+mariadb://</code>.</p>
+
+
+<h3 id="example-1" class="group pr-8">Example
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="example-1"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<div class="highlight-wrapper codeblock">
+  <div class="codeblock-title">
+    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
+</span></span>
+    <span class="codeblock-label">Shell</span>
+    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
+      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
+</span></span>
+      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Back up a single MariaDB database</span>
+</span></span><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add mydb mysql+mariadb://dbuser:secret@db.example.com/mydb
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups backup <span class="s2">&#34;@mydb&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Back up all MariaDB databases</span>
+</span></span><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add alldb mysql+mariadb://root:secret@db.example.com
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups backup <span class="s2">&#34;@alldb&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Restore</span>
+</span></span><span class="line"><span class="cl">$ plakar destination add mydbdst mysql+mariadb://dbuser:secret@target.example.com/mydb <span class="se">\
+</span></span></span><span class="line"><span class="cl">  <span class="nv">create_db</span><span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups restore -to <span class="s2">&#34;@mydbdst&#34;</span> &lt;snapshot_id&gt;</span></span></code></pre></div></div>
+
+
+<h2 id="3-mysqlgcsql-protocol" class="group pr-8">3. <code>mysql+gcsql</code> protocol
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="3-mysqlgcsql-protocol"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>The <code>mysql+gcsql</code> protocol targets MySQL databases hosted on Google Cloud SQL.
+It uses the
+<a href="https://cloud.google.com/sql/docs/mysql/sql-proxy"  target="_blank" rel="noreferrer">Cloud SQL Auth Proxy</a> to
+establish an encrypted connection, so the connection behaves like a connection
+to a local MySQL server.</p>
+<p>The Cloud SQL Auth Proxy must be running and accessible on the configured host
+and port before Plakar connects.</p>
+
+
+<h3 id="configuration-1" class="group pr-8">Configuration
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="configuration-1"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>The connector supports the same source and destination options as <code>mysql://</code>.</p>
+
+
+<h3 id="example-2" class="group pr-8">Example
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="example-2"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<div class="highlight-wrapper codeblock">
+  <div class="codeblock-title">
+    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
+</span></span>
+    <span class="codeblock-label">Shell</span>
+    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
+      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
+</span></span>
+      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Assuming the proxy is running on localhost:3306</span>
+</span></span><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add mygcs mysql+gcsql://dbuser:secret@127.0.0.1:3306/mydb
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups backup <span class="s2">&#34;@mygcs&#34;</span></span></span></code></pre></div></div>
+
+
+<h2 id="restore-considerations" class="group pr-8">Restore considerations
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="restore-considerations"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
 
 
 <h3 id="gtids" class="group pr-8">GTIDs
@@ -5737,7 +5832,7 @@ does not prevent locks on those tables. Disable <code>single_transaction</code> 
 </h3>
 <p>When the server has GTIDs enabled (<code>gtid_mode=ON</code>), <code>mysqldump</code> includes
 <code>SET @@GLOBAL.GTID_PURGED</code> statements. Restoring to a server that already has
-GTID history will fail. Options:</p>
+GTID history fails. There are two ways to avoid this:</p>
 <ul>
 <li>Set <code>set_gtid_purged=OFF</code> on the source to omit GTID information from the
 dump.</li>
@@ -5769,11 +5864,11 @@ users:</p>
 </ul>
 
 
-<h2 id="known-limitations" class="group pr-8">Known limitations
+<h2 id="limitations-and-scope" class="group pr-8">Limitations and scope
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="known-limitations"
+      data-anchor="limitations-and-scope"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -5784,14 +5879,12 @@ users:</p>
     </button>
   
 </h2>
-<ul>
-<li><strong>Physical backup not supported</strong>: Only logical dumps via <code>mysqldump</code> /
-<code>mariadb-dump</code>. For physical backups, stop the server and use Plakar&rsquo;s
-filesystem backup on the data directory directly.</li>
-<li><strong>No per-table filtering</strong>: The entire database (or all databases) is dumped.</li>
-<li><strong>No restore-time data/schema filtering</strong>: The full dump is always piped to
-the client CLI.</li>
-</ul>
+<p>The integration takes logical dumps only, through <code>mysqldump</code> or <code>mariadb-dump</code>.
+Physical backups are not supported. For a physical backup, stop the server and
+use Plakar&rsquo;s filesystem backup on the data directory directly.</p>
+<p>There is no per-table filtering. The entire database, or all databases, is
+dumped. There is also no data or schema filtering at restore time. The full dump
+is always piped to the client CLI.</p>
 
 
 <h2 id="see-also" class="group pr-8">See also
@@ -5894,6 +5987,8 @@ the client CLI.</li>
   
     
   
+    
+  
 
   
     
@@ -5950,7 +6045,7 @@ the client CLI.</li>
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#installation">Installation</a></li><li><a href="#logical-backup---mysql">Logical backup - mysql://</a><ul><li><a href="#how-it-works">How it works</a></li><li><a href="#prerequisites">Prerequisites</a></li><li><a href="#source-connector">Source connector</a><ul><li><a href="#source-options">Source options</a></li></ul></li><li><a href="#destination-connector">Destination connector</a><ul><li><a href="#destination-options">Destination options</a></li></ul></li></ul></li><li><a href="#logical-backup---mysqlmariadb">Logical backup - mysql+mariadb://</a></li><li><a href="#google-cloud-sql---mysqlgcsql">Google Cloud SQL - mysql+gcsql://</a></li><li><a href="#snapshot-manifest">Snapshot manifest</a></li><li><a href="#considerations">Considerations</a><ul><li><a href="#mysql-vs-mariadb-binaries">MySQL vs MariaDB binaries</a></li><li><a href="#innodb-and-myisam">InnoDB and MyISAM</a></li><li><a href="#gtids">GTIDs</a></li><li><a href="#user-and-grant-migration">User and grant migration</a></li></ul></li><li><a href="#known-limitations">Known limitations</a></li><li><a href="#see-also">See also</a></li></ul>
+      <ul><li><a href="#installation">Installation</a></li><li><a href="#how-a-backup-works">How a backup works</a><ul><li><a href="#innodb-and-myisam">InnoDB and MyISAM</a></li></ul></li><li><a href="#backup-user-privileges">Backup user privileges</a></li><li><a href="#mysql-and-mariadb-binaries">MySQL and MariaDB binaries</a></li><li><a href="#snapshot-manifest">Snapshot manifest</a></li><li><a href="#1-mysql-protocol">1. mysql protocol</a><ul><ul><li><a href="#backup-flow">Backup flow</a></li><li><a href="#restore-flow">Restore flow</a></li></ul></li><li><a href="#shared-configuration">Shared configuration</a></li><li><a href="#source-configuration">Source configuration</a></li><li><a href="#destination-configuration">Destination configuration</a></li><li><a href="#example">Example</a></li></ul></li><li><a href="#2-mysqlmariadb-protocol">2. mysql+mariadb protocol</a><ul><li><a href="#configuration">Configuration</a></li><li><a href="#example-1">Example</a></li></ul></li><li><a href="#3-mysqlgcsql-protocol">3. mysql+gcsql protocol</a><ul><li><a href="#configuration-1">Configuration</a></li><li><a href="#example-2">Example</a></li></ul></li><li><a href="#restore-considerations">Restore considerations</a><ul><li><a href="#gtids">GTIDs</a></li><li><a href="#user-and-grant-migration">User and grant migration</a></li></ul></li><li><a href="#limitations-and-scope">Limitations and scope</a></li><li><a href="#see-also">See also</a></li></ul>
     </div>
 
     
