@@ -7,17 +7,14 @@ summary: "Back up and restore NFS exports with Plakar."
 
 # NFS
 
-NFS (Network File System) is a distributed file system protocol that lets a
-client access files on a remote server as if they were local. It is ubiquitous
-in datacenter and enterprise environments for shared storage, home directories,
-and appliance exports on NAS devices.
+The NFS integration backs up the files and directories of an NFS export into a
+Kloset store and restores snapshots back to an NFS export. NFS (Network File
+System) is a distributed file system protocol that lets a client access files on
+a remote server as if they were local. It is common in datacenter and enterprise
+environments for shared storage, home directories and appliance exports on NAS
+devices.
 
-The **NFS integration** walks an exported directory tree and captures its files
-and directories into a Kloset store with encryption and deduplication. Plakar
-speaks NFSv3 directly over ONC-RPC, so no kernel mount is involved and neither
-root privileges nor mount capability are required on the host.
-
-The NFS integration provides two connectors:
+The integration includes two connectors:
 
 | Connector type            | Description                                                  |
 | ------------------------- | ------------------------------------------------------------ |
@@ -92,9 +89,18 @@ $ plakar pkg show
 To list, upgrade, or remove the package, see
 [managing packages guide](../../guides/managing-packages/).
 
-## Configuration
+## How the integration accesses an export
 
-### Addressing an export
+Plakar speaks NFSv3 directly over ONC-RPC. No kernel mount is involved, so
+neither root privileges nor mount capability are required on the host running
+Plakar.
+
+Authorization uses AUTH_UNIX, meaning a numeric user and group ID presented to
+the server. These are set with the `uid` and `gid` options. The export must
+permit the presented credentials, for example through an
+`*(rw,no_root_squash)`-style export or a matching uid on the server.
+
+## Addressing an export
 
 An NFS location identifies the server and the export to mount:
 
@@ -105,23 +111,16 @@ nfs://<host>[:<port>]/<export>[/<subpath>]
 The path is the server-side export to mount. A deeper subpath narrows the walk
 to a subtree of that export, which the `root` option also does.
 
-### Configuration options
-
-These options apply to both connectors.
-
-| Option     | Required | Description                                                                                                   |
-| ---------- | -------- | ------------------------------------------------------------------------------------------------------------- |
-| `location` | Yes      | NFS target. See [Addressing an export](#addressing-an-export) above.                                          |
-| `root`     | No       | Path to walk or restore to, relative to the mounted export. Defaults to the whole export.                     |
-| `port`     | No       | NFS and MOUNT service port. By default the service is resolved through the server's portmapper on port `111`. |
-| `uid`      | No       | Numeric user ID presented to the server as the AUTH_UNIX identity. Defaults to `0`.                           |
-| `gid`      | No       | Numeric group ID presented to the server as the AUTH_UNIX identity. Defaults to `0`.                          |
-
-## Source connector
+## Configuration
 
 The source connector walks the export, or a subtree of it, and stores the files
 and directories it finds in a Kloset store with encryption and deduplication.
-Each entry is captured with its size, mode, ownership, and modification time.
+Each entry is captured with its size, mode, ownership and modification time.
+
+The destination connector restores a snapshot back to an NFS export, recreating
+the directory hierarchy and file contents.
+
+#### Backup flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -144,39 +143,7 @@ Transform --> Store
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-Register the source and run a backup:
-
-```bash
-$ plakar source add my-nfs-export \
-  location=nfs://nas.example.com/exports/data
-
-$ plakar at /var/backups backup "@my-nfs-export"
-```
-
-To back up a subtree rather than the whole export, extend the location with the
-path inside the export. The `uid` and `gid` presented to the server decide what
-the walk is allowed to read:
-
-```bash
-$ plakar source add my-nfs-home \
-  location=nfs://nas.example.com/exports/home/alice \
-  uid=1000 gid=1000
-```
-
-A location can also be passed directly to `backup`:
-
-```bash
-$ plakar at /var/backups backup nfs://nas.example.com/exports/data
-
-$ plakar at /var/backups backup \
-  -o uid=1000 -o gid=1000 \
-  nfs://nas.example.com/exports/home/alice
-```
-
-## Destination connector
-
-Restores a snapshot from a Kloset store back to an NFS export, recreating the
-directory hierarchy and file contents.
+#### Restore flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -200,7 +167,50 @@ Connector --> Destination
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-Register the destination and restore a snapshot:
+### Shared configuration
+
+The following options apply to both source and destination connectors.
+
+| Option     | Required | Description                                                                                                   |
+| ---------- | -------- | ------------------------------------------------------------------------------------------------------------- |
+| `location` | Yes      | NFS target. See [Addressing an export](#addressing-an-export).                                                |
+| `root`     | No       | Path to walk or restore to, relative to the mounted export. Defaults to the whole export.                     |
+| `port`     | No       | NFS and MOUNT service port. By default the service is resolved through the server's portmapper on port `111`. |
+| `uid`      | No       | Numeric user ID presented to the server as the AUTH_UNIX identity. Defaults to `0`.                           |
+| `gid`      | No       | Numeric group ID presented to the server as the AUTH_UNIX identity. Defaults to `0`.                          |
+
+### Example
+
+Back up an export:
+
+```bash
+$ plakar source add my-nfs-export \
+  location=nfs://nas.example.com/exports/data
+
+$ plakar at /var/backups backup "@my-nfs-export"
+```
+
+Back up a subtree rather than the whole export by extending the location with
+the path inside the export. The `uid` and `gid` presented to the server decide
+what the walk is allowed to read:
+
+```bash
+$ plakar source add my-nfs-home \
+  location=nfs://nas.example.com/exports/home/alice \
+  uid=1000 gid=1000
+```
+
+Pass a location directly to `backup`:
+
+```bash
+$ plakar at /var/backups backup nfs://nas.example.com/exports/data
+
+$ plakar at /var/backups backup \
+  -o uid=1000 -o gid=1000 \
+  nfs://nas.example.com/exports/home/alice
+```
+
+Restore a snapshot to an export:
 
 ```bash
 $ plakar destination add my-nfs-restore \
@@ -209,22 +219,12 @@ $ plakar destination add my-nfs-restore \
 $ plakar at /var/backups restore -to "@my-nfs-restore" <snapshot_id>
 ```
 
-## Limitations
+## Limitations and scope
 
-**Protocol support**
-
-Only NFSv3 is supported. NFSv4, Kerberos (`sec=krb5`), and NFS over UDP are not.
-
-**Authorization**
-
-Authorization uses AUTH_UNIX, meaning a numeric user and group ID presented to
-the server. The export must permit the presented credentials, for example
-through an `*(rw,no_root_squash)`-style export or a matching uid on the server.
-
-**Restored file types and metadata**
+Only NFSv3 is supported. NFSv4, Kerberos (`sec=krb5`) and NFS over UDP are not.
 
 Only regular files and directories are reconstructed on restore. Symlinks,
-device nodes, sockets, and FIFOs are reported as errors.
+device nodes, sockets and FIFOs are reported as errors.
 
 File modes are applied when each entry is created. Ownership and timestamps are
 not restored.

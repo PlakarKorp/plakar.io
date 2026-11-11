@@ -11,34 +11,35 @@ aliases:
 
 # iCloud Drive
 
-The Plakar iCloud Drive integration allows you to interact with iCloud Drive,
-Apple's cloud storage service, using Rclone.
+iCloud Drive is Apple's cloud storage service.
 
-[Rclone](https://rclone.org/) is a command-line program to manage files on cloud
-storage, and supports iCloud Drive as one of its many backends.
+The iCloud Drive integration backs up iCloud Drive folders into a Kloset store,
+restores snapshots to iCloud Drive, and hosts Kloset stores in iCloud Drive. It
+is provided by the Rclone package and reaches iCloud Drive through
+[Rclone](https://rclone.org/), a command-line program that manages files on
+cloud storage and supports iCloud Drive as one of its backends.
 
-The Rclone integration package for Plakar provides three connectors:
+The integration includes three connectors:
 
 | Connector type            | Description                                            |
 | ------------------------- | ------------------------------------------------------ |
-| **Storage connector**     | Host a Kloset store inside a Rclone remote.            |
 | **Source connector**      | Back up a Rclone remote into a Kloset store.           |
 | **Destination connector** | Restore data from a Kloset store into a Rclone remote. |
+| **Store connector**       | Host a Kloset store inside a Rclone remote.            |
 
 **Requirements**
 
-- Rclone must be installed, and at least one iCloud Drive remote must be
-  configured.
+- Rclone installed, with at least one iCloud Drive remote configured.
 
 **Typical use cases**
 
-- Cold backup of iCloud Drive folders
-- Long-term archiving and disaster recovery
-- Portable export and vendor escape to other platforms
+- Cold backup of iCloud Drive folders.
+- Long-term archiving and disaster recovery.
+- Portable export and vendor escape to other platforms.
 
 ## Installation
 
-To interact with iCloud Drive, you need to install the Rclone Plakar package.
+The iCloud Drive integration is provided by the Rclone Plakar package.
 
 {{< tabs >}}
 
@@ -103,7 +104,7 @@ $ plakar pkg show
 To list, upgrade, or remove the package, see
 [managing packages guide](../../guides/managing-packages/).
 
-## Generate Rclone configuration
+## Configuring an iCloud Drive remote
 
 > [!WARNING] iCloud Drive login
 >
@@ -111,54 +112,92 @@ To list, upgrade, or remove the package, see
 > possible at the time of writing. The steps below are provided for reference
 > and future compatibility.
 
-Install Rclone on your system by following the instructions at
-[https://rclone.org/install/](https://rclone.org/install/).
+The connectors reach iCloud Drive through a Rclone remote. The remote is created
+with Rclone and then imported into Plakar as a source, destination or store
+configuration.
 
-Then, run the following command to configure Rclone with iCloud Drive:
+Install Rclone by following the instructions at
+[https://rclone.org/install/](https://rclone.org/install/), then start the
+interactive configuration:
 
 ```bash
 $ rclone config
 ```
 
-You will be guided through a series of prompts to set up a new remote for iCloud
-Drive.
-
-For Rclone v1.72.1, the configuration flow is as follows:
+The command prompts for the settings of a new iCloud Drive remote. For Rclone
+v1.72.1, the configuration flow is as follows:
 
 1. Choose `n` to create a new remote.
 2. Name the remote (e.g., `mydrive`).
 3. Enter the number corresponding to "iCloud Drive" from the list of supported
    storage providers.
-4. Enter your Apple ID
-5. Enter your password
+4. Enter your Apple ID.
+5. Enter your password.
 6. Validate the remote configuration.
 
-To verify that the remote is configured, run:
+Verify that the remote is configured:
 
 ```bash
 $ rclone config show mydrive
 ```
 
-To verify that you have access to your iCloud Drive files, run:
+Verify access to your iCloud Drive files:
 
 ```bash
 $ rclone ls mydrive:
 ```
 
-The output should list the files and folders in your iCloud Drive.
+The output lists the files and folders in your iCloud Drive.
 
-## Connectors
+## Configuration
 
-The Rclone package provides storage, source, and destination connectors to
-interact with iCloud Drive via Rclone.
+Each connector is configured by importing the Rclone remote with
+`rclone config show | plakar <source|destination|store> import -rclone <remote>`.
+The imported configuration takes the name of the remote, so a remote named
+`mydrive` is referenced as `@mydrive`. The connectors can be combined with any
+other Plakar connector.
 
-You can use any combination of these connectors together with other supported
-Plakar connectors.
+#### Backup flow
 
-### Storage connector
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+flowchart LR
 
-The Plakar Rclone package provides a storage connector to host Kloset stores on
-Rclone remotes.
+subgraph Source["Rclone Remote"]
+  FS["Data"]
+end
+
+Plakar["Plakar"]
+
+Via["Retrieve data via<br/>Rclone source connector"]
+
+Store["Kloset Store"]
+
+FS --> Via --> Plakar --> Store
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
+
+#### Restore flow
+
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+flowchart LR
+
+Store["Kloset Store"]
+
+Plakar["Plakar"]
+
+Via["Push data via<br/>Rclone destination connector"]
+
+subgraph Destination["Rclone Remote"]
+  FS["Data"]
+end
+
+Store --> Plakar --> Via --> FS
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
+
+#### Store flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -178,7 +217,54 @@ Source --> Plakar --> Via --> Kloset
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-#### Configure
+### Source configuration
+
+The source connector has no options beyond the imported Rclone remote.
+
+### Destination configuration
+
+The destination connector has no options beyond the imported Rclone remote.
+
+### Store configuration
+
+The following option can be set on the store connector with `plakar store add`
+or `plakar store set`.
+
+| Option       | Required | Description                  |
+| ------------ | -------- | ---------------------------- |
+| `passphrase` | No       | The Kloset store passphrase. |
+
+### Example
+
+Back up the remote:
+
+```bash
+# Import the rclone configuration as a source configuration.
+# Replace "mydrive" with your Rclone remote name.
+$ rclone config show | plakar source import -rclone mydrive
+
+# Back up the remote directory to the Kloset store on the filesystem
+$ plakar at /var/backups backup "@mydrive"
+
+# Or back up the remote directory to a Kloset store configured with "plakar store add"
+$ plakar at "@store" backup "@mydrive"
+```
+
+Restore a snapshot to the remote:
+
+```bash
+# Import the rclone configuration as a destination configuration.
+# Replace "mydrive" with your Rclone remote name.
+$ rclone config show | plakar destination import -rclone mydrive
+
+# Restore a snapshot from a filesystem-hosted Kloset store to the Rclone remote
+$ plakar at /var/backups restore -to "@mydrive" <snapshot_id>
+
+# Or restore a snapshot from the Kloset store configured with "plakar store add store …"
+$ plakar at "@store" restore -to "@mydrive" <snapshot_id>
+```
+
+Host a Kloset store in the remote:
 
 ```bash
 # Import the rclone configuration as a storage configuration.
@@ -201,98 +287,7 @@ $ plakar at "@mydrive" backup /etc
 $ plakar at "@mydrive" backup "@my_source"
 ```
 
-#### Options
-
-These options can be set when configuring the storage connector with
-`plakar store add` or `plakar store set`:
-
-| Option       | Purpose                     |
-| ------------ | --------------------------- |
-| `passphrase` | The Kloset store passphrase |
-
-### Source connector
-
-The Plakar Rclone package provides a source connector to back up remote
-directories accessible via Rclone.
-
-<!-- prettier-ignore-start -->
-{{< mermaid >}}
-flowchart LR
-
-subgraph Source["Rclone Remote"]
-  FS["Data"]
-end
-
-Plakar["Plakar"]
-
-Via["Retrieve data via<br/>Rclone source connector"]
-
-Store["Kloset Store"]
-
-FS --> Via --> Plakar --> Store
-{{< /mermaid >}}
-<!-- prettier-ignore-end -->
-
-#### Configure
-
-```bash
-# Import the rclone configuration as a source configuration.
-# Replace "mydrive" with your Rclone remote name.
-$ rclone config show | plakar source import -rclone mydrive
-
-# Back up the remote directory to the Kloset store on the filesystem
-$ plakar at /var/backups backup "@mydrive"
-
-# Or back up the remote directory to a Kloset store configured with "plakar store add"
-$ plakar at "@store" backup "@mydrive"
-```
-
-#### Options
-
-The Rclone source connector doesn't support any specific options.
-
-### Destination connector
-
-The Rclone package provides a destination connector to restore snapshots to
-remote directories reachable over Rclone.
-
-<!-- prettier-ignore-start -->
-{{< mermaid >}}
-flowchart LR
-
-Store["Kloset Store"]
-
-Plakar["Plakar"]
-
-Via["Push data via<br/>Rclone destination connector"]
-
-subgraph Destination["Rclone Remote"]
-  FS["Data"]
-end
-
-Store --> Plakar --> Via --> FS
-{{< /mermaid >}}
-<!-- prettier-ignore-end -->
-
-#### Configure
-
-```bash
-# Import the rclone configuration as a destination configuration.
-# Replace "mydrive" with your Rclone remote name.
-$ rclone config show | plakar destination import -rclone mydrive
-
-# Restore a snapshot from a filesystem-hosted Kloset store to the Rclone remote
-$ plakar at /var/backups restore -to "@mydrive" <snapshot_id>
-
-# Or restore a snapshot from the Kloset store configured with "plakar store add store …"
-$ plakar at "@store" restore -to "@mydrive" <snapshot_id>
-```
-
-#### Options
-
-The Rclone destination connector doesn't support any specific options.
-
-## Limitations and considerations
+## Limitations and scope
 
 At the time of writing and according to this
 [GitHub issue](https://github.com/rclone/rclone/issues/8587#issuecomment-3240025307),
@@ -301,3 +296,4 @@ it is currently impossible to log in to iCloud Drive using Rclone.
 ## See also
 
 - [Rclone documentation for iCloud Drive](https://rclone.org/iclouddrive/)
+- [Managing packages](../../guides/managing-packages/)

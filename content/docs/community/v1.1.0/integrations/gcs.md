@@ -7,17 +7,24 @@ summary: "Back up and restore Google Cloud Storage buckets with Plakar."
 
 # Google Cloud Storage
 
-The **Google Cloud Storage integration** enables backup and restoration of GCS
-buckets. All bucket contents including objects, metadata, and prefix hierarchies
-are captured and stored in a Kloset store with encryption and deduplication.
+The Google Cloud Storage integration backs up and restores GCS buckets, and can
+host a Kloset store in a bucket. A backup captures the bucket contents,
+including objects, metadata and prefix hierarchies, and stores them in a Kloset
+store with encryption and deduplication.
 
-The Google Cloud Storage integration provides three connectors:
+The integration includes three connectors:
 
 | Connector type            | Description                                              |
 | ------------------------- | -------------------------------------------------------- |
 | **Source connector**      | Back up GCS buckets into a Kloset store.                 |
-| **Storage connector**     | Use Google Cloud Storage as a Kloset store backend.      |
 | **Destination connector** | Restore bucket contents from a Kloset store back to GCS. |
+| **Store connector**       | Use Google Cloud Storage as a Kloset store backend.      |
+
+**Requirements**
+
+- A GCS bucket, or a custom endpoint for local testing.
+- Credentials for that bucket, unless they are detected automatically. See
+  [Authentication](#authentication).
 
 ## Installation
 
@@ -87,39 +94,33 @@ $ plakar pkg show
 To list, upgrade, or remove the package, see
 [managing packages guide](../../guides/managing-packages/).
 
-## Configuration
+## Authentication
 
-### Authentication
+The integration authenticates automatically when possible. For example, when the
+`gcloud` CLI is installed and authenticated locally, no explicit credentials are
+needed. When automatic authentication is not available, provide one of the
+following:
 
-The integration will authenticate automatically when possible, for example if
-the `gcloud` CLI is installed and configured locally. Otherwise, credentials can
-be provided explicitly. At least one of the following must be provided when
-auto-authentication is not available:
+- `credentials_file`, the path to a service account JSON credentials file.
+- `credentials_json`, inline service account credentials JSON.
+- `no_auth=true`, for public buckets or testing.
 
-- `credentials_file` - path to a service account JSON credentials file
-- `credentials_json` - inline service account credentials JSON
-- `no_auth=true` for public buckets or testing
+When using a custom endpoint for local testing, combine it with `no_auth=true`
+or explicit credentials as appropriate.
 
-### Configuration options
-
-These options apply to all three connectors (source, storage, destination).
-
-| Option             | Description                                                           |
-| ------------------ | --------------------------------------------------------------------- |
-| `credentials_file` | Path to a GCP service account JSON credentials file.                  |
-| `credentials_json` | Inline GCP service account credentials JSON.                          |
-| `endpoint`         | Custom endpoint, for example for local testing or debug environments. |
-| `no_auth`          | Disable authentication. Only for public buckets or testing.           |
-
-> [!WARNING]+
+> [!WARNING]+ No Auth
 >
 > Setting `no_auth=true` disables authentication entirely. Only use this for
 > public buckets or local testing environments. Never use it in production.
 
-## Source connector
+## Configuration
 
-The source connector retrieves objects from GCS buckets and stores them in a
-Kloset store with encryption and deduplication.
+All three connectors use the `gcs://` protocol. The source connector retrieves
+objects from a bucket through the GCS API. The destination connector writes them
+back to a bucket. The store connector keeps all Kloset store data, including
+snapshots, chunks and metadata, as objects in a bucket.
+
+#### Backup flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -142,26 +143,31 @@ Transform --> Store
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-Register the source and run a backup:
+#### Restore flow
 
-```bash
-$ plakar source add my-gcs-bucket \
-  gcs://bucket_name \
-  credentials_file=<PATH_TO_CREDENTIALS_FILE>
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+flowchart LR
 
-$ plakar at /var/backups backup "@my-gcs-bucket"
-```
+Store["Kloset Store"]
 
-To back up a specific prefix within a bucket:
+subgraph Plakar["Plakar"]
+  Transform["Decrypt & reconstruct"]
+  Connector["Restore via<br/>GCS API"]
+  Transform --> Connector
+end
 
-```bash
-$ plakar at /var/backups backup "@my-gcs-bucket:path"
-```
+Store --> Transform
 
-## Storage connector
+subgraph Destination["GCS Bucket"]
+  FS["Objects"]
+end
 
-The storage connector uses Google Cloud Storage as the backend for a Kloset
-store. All Plakar data — snapshots, chunks, metadata — is stored as objects.
+Connector --> Destination
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
+
+#### Store flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -187,7 +193,50 @@ Connector --> Store
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-Register the store, initialize it, and run a backup:
+### Shared configuration
+
+The following options apply to the source, destination and store connectors.
+
+| Option             | Required    | Description                                                           |
+| ------------------ | ----------- | --------------------------------------------------------------------- |
+| `location`         | Yes         | `gcs://<bucket_name>`.                                                |
+| `credentials_file` | Conditional | Path to a GCP service account JSON credentials file.                  |
+| `credentials_json` | Conditional | Inline GCP service account credentials JSON.                          |
+| `endpoint`         | No          | Custom endpoint, for example for local testing or debug environments. |
+| `no_auth`          | No          | Disable authentication. Only for public buckets or testing.           |
+
+Credentials are required only when automatic authentication is not available.
+See [Authentication](#authentication).
+
+### Example
+
+Back up a bucket:
+
+```bash
+$ plakar source add my-gcs-bucket \
+  gcs://bucket_name \
+  credentials_file=<PATH_TO_CREDENTIALS_FILE>
+
+$ plakar at /var/backups backup "@my-gcs-bucket"
+```
+
+To back up a specific prefix within a bucket:
+
+```bash
+$ plakar at /var/backups backup "@my-gcs-bucket:path"
+```
+
+Restore a snapshot to a bucket:
+
+```bash
+$ plakar destination add my-gcs-restore \
+  gcs://bucket_name \
+  credentials_file=<PATH_TO_CREDENTIALS_FILE>
+
+$ plakar at /var/backups restore -to "@my-gcs-restore" <snapshot_id>
+```
+
+Host a Kloset store in a bucket, initialize it and run a backup:
 
 ```bash
 $ plakar store add my-gcs-store \
@@ -198,47 +247,12 @@ $ plakar at "@my-gcs-store" create
 $ plakar at "@my-gcs-store" backup /var/www
 ```
 
-## Destination connector
+## Limitations and scope
 
-Restores objects from a Kloset store back to a GCS bucket.
+GCS object storage is flat, and directory structures are simulated using
+prefixes. Empty directories are not preserved unless they contain objects.
 
-<!-- prettier-ignore-start -->
-{{< mermaid >}}
-flowchart LR
+## See also
 
-Store["Kloset Store"]
-
-subgraph Plakar["Plakar"]
-  Transform["Decrypt & reconstruct"]
-  Connector["Restore via<br/>GCS API"]
-  Transform --> Connector
-end
-
-Store --> Transform
-
-subgraph Destination["GCS Bucket"]
-  FS["Objects"]
-end
-
-Connector --> Destination
-{{< /mermaid >}}
-<!-- prettier-ignore-end -->
-
-Register the destination and restore a snapshot:
-
-```bash
-$ plakar destination add my-gcs-restore \
-  gcs://bucket_name \
-  credentials_file=<PATH_TO_CREDENTIALS_FILE>
-
-$ plakar at /var/backups restore -to "@my-gcs-restore" <snapshot_id>
-```
-
-## Notes
-
-- GCS object storage is flat; directory structures are simulated using prefixes.
-- Empty directories are not preserved unless they contain objects.
-- When the `gcloud` CLI is installed and authenticated, no explicit credentials
-  are needed.
-- When using a custom endpoint for local testing, combine it with `no_auth=true`
-  or explicit credentials as appropriate.
+- [Creating a Kloset Store](../../guides/create-kloset-repository)
+- [Managing packages](../../guides/managing-packages)

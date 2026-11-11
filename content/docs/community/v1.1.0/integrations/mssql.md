@@ -10,14 +10,9 @@ summary:
 # Microsoft SQL Server
 
 The MSSQL integration backs up the `Program Files` folder used by Microsoft SQL
-Server while the database engine keeps running. It is built on top of the
-[VSS integration](../vss) and shares its parameters and behaviour. Plakar
-connects over SSH, requests a Volume Shadow Copy of the volume holding the SQL
-Server installation directory, then reads the files from that read-only copy
-over SFTP.
-
-Restoring requires SQL Server to be shut down first, since its services hold the
-destination files open while they run.
+Server while the database engine keeps running, and restores it to a Windows
+host. It is built on top of the [VSS integration](../vss) and shares its
+parameters and behaviour.
 
 The integration includes two connectors:
 
@@ -43,8 +38,8 @@ The integration includes two connectors:
 
 ## Installation
 
-The MSSQL integration is distributed as a pre-built package only. Unlike most
-Community integrations, it has no public source repository, so
+The Microsoft SQL Server integration is distributed as a pre-built package only.
+Unlike most Community integrations, it has no public source repository, so
 `plakar pkg build` cannot produce it. It remains free to install with a Plakar
 account. See
 [source availability](../../guides/managing-packages#source-availability) for
@@ -86,26 +81,32 @@ that file before running a backup. See
 [SSH host key verification](/docs/control-plane/guides/windows/windows-openssh-setup/#community-integrations-ssh-host-key-verification)
 documentation for more information.
 
-## Configuration options
+## How a backup works
 
-The same options apply to the source and destination connectors.
+Plakar connects over SSH and requests a Volume Shadow Copy of the volume holding
+the SQL Server installation directory. It then reads the files from that
+read-only copy over SFTP and stores them in a Kloset store with encryption and
+deduplication. SQL Server keeps running during the backup.
 
-| Option                | Required | Description                                                                                                                                                                  |
-| --------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `location`            | Yes      | An SFTP-style URL to the Windows host, drive, and path. Must begin with `mssql://`.                                                                                          |
-| `username`            | Yes      | The name of an administrative user account to perform the operation with.                                                                                                    |
-| `port`                | No       | The SSH server port. Defaults to `22`.                                                                                                                                       |
-| `root`                | No       | The absolute path to the Windows drive and directory to back up. Defaults to `/C:/Program Files/Microsoft SQL Server`. Use a subdirectory to target a single instance.       |
-| `identity`            | No       | Path to the SSH private key file used for authentication. If it is not set and an ssh-agent is running, the keys held by the agent are used. Otherwise authentication fails. |
-| `ssh_auth_sock`       | No       | Path to the socket of a running ssh-agent.                                                                                                                                   |
-| `ssh_private_key`     | No       | SSH private key material in PEM or OpenSSH format, loaded into the ssh-agent with `ssh-add`.                                                                                 |
-| `ssh_private_key_ttl` | No       | Lifetime for keys added to the ssh-agent with `ssh-add`, for example `5s`, `1m`, or `1h`.                                                                                    |
+## How a restore works
 
-## Source connector
+A restore reconstructs the installation directory from a snapshot and writes it
+back to the Windows host over SFTP.
 
-The source connector requests a shadow copy of the volume holding the SQL Server
-installation, then reads the files from that snapshot over SFTP and stores them
-in a Kloset store with encryption and deduplication.
+SQL Server must be shut down before restoring, since its services hold the
+destination files open while they run. Stop every SQL Server service on the
+Windows host first. Any service left running keeps file handles open and the
+restore fails with an access denied error. See
+[destination configuration](/docs/control-plane/resources/database/mssql#destination-configuration)
+for the full list of services and how to confirm they are stopped.
+
+## Configuration
+
+Both connectors use the `mssql` protocol. The `location` points at a Windows
+host, drive, and path. The default path covers the whole installation, and a
+subdirectory targets a single instance.
+
+#### Backup flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -126,27 +127,7 @@ FS --> VSS --> Via --> Plakar --> Store
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-### Configure
-
-```bash
-# Configure a SQL Server installation as a backup source
-$ plakar source add sqlserver location="mssql://Administrator@192.168.1.42/C:/Program Files/Microsoft SQL Server"
-
-# Back up the source to a Kloset store
-$ plakar at /var/backups backup "@sqlserver"
-```
-
-To back up the data directory of a specific instance, point the location at the
-corresponding subdirectory:
-
-```bash
-$ plakar source add sqlserver location="mssql://Administrator@192.168.1.42/C:/Program Files/Microsoft SQL Server/MSSQL17.MSSQLSERVER/"
-```
-
-## Destination connector
-
-The destination connector reconstructs the installation directory from a
-snapshot and writes it back to the Windows host over SFTP.
+#### Restore flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -166,13 +147,41 @@ Store --> Plakar --> Via --> FS
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-Stop every SQL Server service on the Windows host before restoring. Any service
-left running keeps file handles open and the restore fails with an access denied
-error. See
-[destination configuration](/docs/control-plane/resources/database/mssql#destination-configuration)
-for the full list of services and how to confirm they are stopped.
+### Shared configuration
 
-### Configure
+The same options apply to the source and destination connectors.
+
+| Option                | Required | Description                                                                                                                                                                  |
+| --------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `location`            | Yes      | An SFTP-style URL to the Windows host, drive, and path. Must begin with `mssql://`.                                                                                          |
+| `username`            | Yes      | The name of an administrative user account to perform the operation with.                                                                                                    |
+| `port`                | No       | The SSH server port. Defaults to `22`.                                                                                                                                       |
+| `root`                | No       | The absolute path to the Windows drive and directory to back up. Defaults to `/C:/Program Files/Microsoft SQL Server`. Use a subdirectory to target a single instance.       |
+| `identity`            | No       | Path to the SSH private key file used for authentication. If it is not set and an ssh-agent is running, the keys held by the agent are used. Otherwise authentication fails. |
+| `ssh_auth_sock`       | No       | Path to the socket of a running ssh-agent.                                                                                                                                   |
+| `ssh_private_key`     | No       | SSH private key material in PEM or OpenSSH format, loaded into the ssh-agent with `ssh-add`.                                                                                 |
+| `ssh_private_key_ttl` | No       | Lifetime for keys added to the ssh-agent with `ssh-add`, for example `5s`, `1m`, or `1h`.                                                                                    |
+
+### Example
+
+Back up a SQL Server installation:
+
+```bash
+# Configure a SQL Server installation as a backup source
+$ plakar source add sqlserver location="mssql://Administrator@192.168.1.42/C:/Program Files/Microsoft SQL Server"
+
+# Back up the source to a Kloset store
+$ plakar at /var/backups backup "@sqlserver"
+```
+
+To back up the data directory of a specific instance, point the location at the
+corresponding subdirectory:
+
+```bash
+$ plakar source add sqlserver location="mssql://Administrator@192.168.1.42/C:/Program Files/Microsoft SQL Server/MSSQL17.MSSQLSERVER/"
+```
+
+Restore a snapshot, after stopping the SQL Server services:
 
 ```bash
 # Configure a destination corresponding to the backup source

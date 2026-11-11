@@ -97,6 +97,10 @@ Authentication uses NTLMv2. Credentials can be supplied in the URL userinfo or
 with the `username`, `password` and `domain` options. Anonymous access uses the
 `Guest` account.
 
+The SMB server must support message signing. Since version 1.1.4 of the
+integration, Plakar refuses to connect to a server without it, so that backup
+and restore traffic cannot be altered in transit.
+
 ## Addressing a share
 
 An SMB location identifies the server and the share to mount:
@@ -223,18 +227,16 @@ $ plakar at /var/backups restore -to "@my-smb-restore" <snapshot_id>
 
 ## Limitations and scope
 
-Authentication is NTLMv2. Kerberos is not supported.
+Authentication is NTLMv2 only. Kerberos is not supported.
 
-SMB has no native Unix ownership or permission model. Backed-up files carry a
-mode synthesized from their DOS attributes, meaning the directory and read-only
-flags. User and group IDs, inode numbers and link counts are not available.
+SMB has no Unix ownership or permissions. Backed-up files get a mode built from
+their DOS attributes, meaning the directory and read-only flags. User and group
+IDs, inode numbers and link counts are not available.
 
-On restore, file contents, directories and symlinks are recreated, and
-modification times are preserved on a best-effort basis. Unix permission bits
-and ownership are not restored.
+A restore recreates files, directories and symlinks, with their modification
+times where the server allows it, but not their owner, group or permission bits.
+Device nodes, sockets and FIFOs cannot be restored to an SMB share.
 
-Device nodes, sockets and FIFOs have no SMB representation. Restoring a snapshot
-that contains them reports an error for each such entry.
-
-A symlink that already exists in the destination is followed by the server, so
-only restore into a destination whose symlinks you control.
+A restore refuses any entry that would be written outside the destination root.
+A symlink that already exists in the destination is still followed by the
+server, though, so only restore into a destination whose symlinks you control.

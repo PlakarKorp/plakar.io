@@ -15,7 +15,7 @@ machines and containers into a Kloset store. Plakar handles encryption,
 deduplication, and snapshot management on top of the archives that `vzdump`
 produces.
 
-The integration provides two connectors:
+The integration includes two connectors:
 
 | Connector type            | Description                                                         |
 | ------------------------- | ------------------------------------------------------------------- |
@@ -104,9 +104,10 @@ To list, upgrade, or remove the package, see
 
 ## Operating modes
 
-The Proxmox integration supports two operating modes.
+The integration supports two operating modes, selected with the `mode` option
+when configuring a source or destination.
 
-**Local mode** — Plakar runs directly on the Proxmox node alongside `vzdump`:
+In **local mode**, Plakar runs directly on the Proxmox node alongside `vzdump`:
 
 ```
 Proxmox node
@@ -114,8 +115,9 @@ Proxmox node
  └ plakar
 ```
 
-**Remote mode** — Plakar runs on a separate machine and connects to the Proxmox
-node over SSH:
+In **remote mode**, Plakar runs on a separate machine and connects to the
+Proxmox node over SSH. A single Plakar instance can then back up multiple
+hypervisors:
 
 ```
 Backup server
@@ -126,15 +128,18 @@ Proxmox node
      └ vzdump
 ```
 
-Remote mode allows a single Plakar instance to back up multiple hypervisors. The
-operating mode is set via the `mode` option when configuring a source or
-destination.
-
-## Source connector
+## Configuration
 
 The source connector invokes `vzdump` on the Proxmox node, collects the
 resulting archive, and ingests it into a Kloset store with encryption and
 deduplication.
+
+The destination connector uploads a `vzdump` archive from a Plakar snapshot to a
+Proxmox node and restores it using native Proxmox tools: `qmrestore` for virtual
+machines and `pct restore` for containers. A restore can target every machine in
+a snapshot, or a single machine from a snapshot containing several.
+
+#### Backup flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -156,53 +161,7 @@ Vzdump --> Via --> Plakar --> Transform --> Store
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-### Configure
-
-Register a Proxmox source:
-
-```bash
-$ plakar source add myProxmox proxmox+backup://10.0.0.10 \
-  mode=remote \
-  conn_username=root \
-  conn_identity_file=/path/to/key \
-  conn_method=identity
-```
-
-### Back up workloads
-
-Back up a single virtual machine by ID:
-
-```bash
-$ plakar backup -o vmid=101 @myProxmox
-```
-
-Back up all machines in a pool:
-
-```bash
-$ plakar backup -o pool=prod @myProxmox
-```
-
-Back up the entire hypervisor:
-
-```bash
-$ plakar backup -o all @myProxmox
-```
-
-### Options
-
-| Option               | Required     | Description                                                        |
-| -------------------- | ------------ | ------------------------------------------------------------------ |
-| `location`           | Yes          | Proxmox node address. Format: `proxmox+backup://<host>`            |
-| `mode`               | Yes          | Operating mode. `local` or `remote`.                               |
-| `conn_username`      | Yes (remote) | SSH username on the Proxmox node.                                  |
-| `conn_identity_file` | No           | Path to the SSH private key. Required when `conn_method=identity`. |
-| `conn_method`        | No           | Authentication method. `identity` for key-based auth.              |
-
-## Destination connector
-
-The destination connector uploads a `vzdump` archive from a Plakar snapshot to a
-Proxmox node and restores it using native Proxmox tools: `qmrestore` for virtual
-machines and `pct restore` for containers.
+#### Restore flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -224,7 +183,47 @@ Store --> Plakar --> Transform --> Via --> Restore
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-### Configure
+### Shared configuration
+
+The following options apply to both source and destination connectors.
+
+| Option               | Required     | Description                                                        |
+| -------------------- | ------------ | ------------------------------------------------------------------ |
+| `location`           | Yes          | Proxmox node address. Format: `proxmox+backup://<host>`            |
+| `mode`               | Yes          | Operating mode. `local` or `remote`.                               |
+| `conn_username`      | Yes (remote) | SSH username on the Proxmox node.                                  |
+| `conn_identity_file` | No           | Path to the SSH private key. Required when `conn_method=identity`. |
+| `conn_method`        | No           | Authentication method. `identity` for key-based auth.              |
+
+### Example
+
+Register a Proxmox source:
+
+```bash
+$ plakar source add myProxmox proxmox+backup://10.0.0.10 \
+  mode=remote \
+  conn_username=root \
+  conn_identity_file=/path/to/key \
+  conn_method=identity
+```
+
+Back up a single virtual machine by ID:
+
+```bash
+$ plakar backup -o vmid=101 @myProxmox
+```
+
+Back up all machines in a pool:
+
+```bash
+$ plakar backup -o pool=prod @myProxmox
+```
+
+Back up the entire hypervisor:
+
+```bash
+$ plakar backup -o all @myProxmox
+```
 
 Register a Proxmox destination:
 
@@ -236,8 +235,6 @@ $ plakar destination add myProxmox \
   conn_identity_file=/path/to/key \
   conn_method=identity
 ```
-
-### Restore workloads
 
 Restore all machines in a snapshot:
 
@@ -251,24 +248,11 @@ Restore a single VM from a snapshot containing multiple machines:
 $ plakar restore -to @myProxmox <snapshot_id>:/backup/qemu/101_myvm
 ```
 
-### Options
-
-| Option               | Required     | Description                                                        |
-| -------------------- | ------------ | ------------------------------------------------------------------ |
-| `location`           | Yes          | Proxmox node address. Format: `proxmox+backup://<host>`            |
-| `mode`               | Yes          | Operating mode. `local` or `remote`.                               |
-| `conn_username`      | Yes (remote) | SSH username on the Proxmox node.                                  |
-| `conn_identity_file` | No           | Path to the SSH private key. Required when `conn_method=identity`. |
-| `conn_method`        | No           | Authentication method. `identity` for key-based auth.              |
-
 ## Limitations and scope
 
-**What is captured during backup**
-
-- Virtual machine and container disk images, as produced by `vzdump`.
-- Proxmox configuration associated with each backed-up workload.
-
-**Snapshot consistency**
+A backup captures virtual machine and container disk images, as produced by
+`vzdump`, along with the Proxmox configuration associated with each backed-up
+workload.
 
 Plakar relies on `vzdump` for snapshot consistency. For live machines, `vzdump`
 uses QEMU guest agent or suspend-resume to produce a consistent backup. Refer to
