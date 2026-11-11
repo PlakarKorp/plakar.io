@@ -13,7 +13,7 @@ through the API before it can schedule any tasks. Once created, the user can
 manage its own scheduled tasks independently of the manual and policy
 schedulers.
 
-The **User schedulers** tab in **Operations > Scheduling** lists every
+The **User schedulers** tab in **Governance > Scheduling** lists every
 Application user that has created a scheduler, showing how many tasks it manages
 and when it last ran a job. Selecting a user scheduler enables you to view its
 own scheduled tasks and job history, the same way the

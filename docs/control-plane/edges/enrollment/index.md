@@ -35,9 +35,10 @@ picks an edge, and what happens when none is available, is described in
 
 ## Creating and managing pools
 
-Pools are created under **Edges -> Pools**. Each pool has its own enrollment
-key. An edge that presents this key on its first connection is enrolled into the
-organization and placed in the pool in the same step.
+Pools are created on the **Pools** tab of **Infrastructure > Edges**. Each pool
+has its own enrollment key. An edge that presents this key on its first
+connection is enrolled into the organization and placed in the pool in the same
+step.
 
 The key is shown only once, when it is generated. A pool has one key at a time,
 so generating a new one invalidates the previous one. Closing enrollment removes

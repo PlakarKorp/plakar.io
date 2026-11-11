@@ -29,6 +29,10 @@ the permissions their roles grant there.
 
 
 
+## [Single Sign-On](https://www.stg.plakar.io/docs/control-plane/access-control/sso/index.md)
+
+
+
 ## [Permissions](https://www.stg.plakar.io/docs/control-plane/access-control/permissions/index.md)
 
 - [Superuser](https://www.stg.plakar.io/docs/control-plane/access-control/permissions/superuser/index.md): Full access to every organization and to the instance itself.

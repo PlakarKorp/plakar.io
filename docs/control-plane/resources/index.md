@@ -32,8 +32,8 @@ flowchart TB
 <!-- prettier-ignore-end -->
 
 All resources discovered across all inventories are available under
-**Infrastructure -> Inventory -> Resources**. From here a resource can be
-assigned to either a [source](../apps/sources) or a
+**Infrastructure > Inventories**, on the **Resources** tab. From here a resource
+can be assigned to either a [source](../apps/sources) or a
 [destination](../apps/destinations) app. The list can be narrowed to one
 inventory or filtered, as described in
 [Filtering resources](#filtering-resources).

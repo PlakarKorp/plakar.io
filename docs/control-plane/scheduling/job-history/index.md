@@ -1,7 +1,7 @@
 
 # Job History
 
-The **Operations > Scheduling** section includes a **Job History** for the
+The **Governance > Scheduling** section includes a **Job History** for the
 [manual scheduler](../manual-scheduler), the
 [policy scheduler](../policy-scheduler), and each
 [user scheduler](../user-schedulers), listing all jobs that have run, whether

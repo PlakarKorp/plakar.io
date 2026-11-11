@@ -74,7 +74,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-05-13T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-10T12:54:52+03:00">
+    <meta property="article:modified_time" content="2026-11-10T15:43:37+01:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -241,12 +241,12 @@
     "dateCreated": "2026-05-13T00:00:00\u002b00:00",
     "datePublished": "2026-05-13T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-10T12:54:52\u002b03:00",
+    "dateModified": "2026-11-10T15:43:37\u002b01:00",
     
     
     
     "mainEntityOfPage": "https://www.stg.plakar.io/docs/control-plane/compliance/policies/",
-    "wordCount":  620 
+    "wordCount":  962 
   }]
   </script>
 
@@ -2870,6 +2870,8 @@
   
     
   
+    
+  
   
 
   
@@ -2910,6 +2912,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         Two-factor authentication
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/access-control/sso/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Single Sign-On
       </a>
     
   
@@ -7750,6 +7761,8 @@
   
     
   
+    
+  
   
 
   
@@ -7790,6 +7803,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         Two-factor authentication
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/access-control/sso/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Single Sign-On
       </a>
     
   
@@ -10368,15 +10390,16 @@ the <a href="../../access-control/permissions" >permissions</a> you hold there.<
     </button>
   
 </h2>
-<p>To create a policy, provide a name, then define the backup requirements and
-select a store app to use for backups.</p>
+<p>A policy is created in two steps, its rules and then its scope. It needs a name,
+at least one retention tier with a store, an environment and at least one data
+class. Everything can then be changed later.</p>
 
 
-<h3 id="backup-frequency-and-retention" class="group pr-8">Backup frequency and retention
+<h3 id="rules" class="group pr-8">Rules
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="backup-frequency-and-retention"
+      data-anchor="rules"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -10387,42 +10410,45 @@ select a store app to use for backups.</p>
     </button>
   
 </h3>
-<p>You define requirements across six time granularities. You can configure any
-combination of these:</p>
+<p>The rules define how often backups are taken, how long they are kept and where
+they are stored. They are set per retention tier:</p>
 <ul>
+<li>Hourly</li>
 <li>Daily</li>
 <li>Weekly</li>
 <li>Monthly</li>
 <li>Yearly</li>
 </ul>
-<p>For each granularity you enable, you configure:</p>
+<p>Any combination of tiers can be enabled. For each tier, you configure:</p>
 <ul>
-<li><strong>Frequency:</strong> how often a backup should be taken within that period, for
-example 4 times or once a day</li>
-<li><strong>Retention:</strong> how long backup restore points should be kept</li>
+<li><strong>Backups:</strong> how many backups are taken within the period of the tier, for
+example 3 an hour, which is one every 20 minutes.</li>
+<li><strong>Keep for:</strong> how long the restore points of the tier are kept, for example 7
+days.</li>
+<li><strong>Starts:</strong> when the backups of the tier start. See
+<a href="/docs/control-plane/compliance/policies/#start-time-and-window" >Start time and window</a>.</li>
+<li><strong>Stored on:</strong> the <a href="../../apps/stores" >store</a> the backups of the tier are
+written to. Each tier can use a different store.</li>
 </ul>
-<p>You then select a <a href="../../apps/stores" >store</a> where the backup will be stored and
-toggle whether you want to run a <a href="../../scheduling/tasks#check-task" >check task</a>
-on the after each. It&rsquo;s recommended to leave this on.</p>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
     decoding="async"
     fetchpriority="auto"
     alt=""
-    width="3222"
-    height="1620"
-    src="/docs/control-plane/compliance/images/create-policy_hu_4fc84501a0b6a570.webp"
-    srcset="/docs/control-plane/compliance/images/create-policy_hu_4fc84501a0b6a570.webp 400w, /docs/control-plane/compliance/images/create-policy_hu_44d1020265b4cc89.webp 800w, /docs/control-plane/compliance/images/create-policy_hu_64f4a5ac0a34246c.webp 1200w"
+    width="2289"
+    height="1603"
+    src="/docs/control-plane/compliance/images/creating-a-policy_hu_e8bdd364d2ce4a46.webp"
+    srcset="/docs/control-plane/compliance/images/creating-a-policy_hu_e8bdd364d2ce4a46.webp 400w, /docs/control-plane/compliance/images/creating-a-policy_hu_7b50ef8b78c44ef0.webp 800w, /docs/control-plane/compliance/images/creating-a-policy_hu_ded165b46c8c426f.webp 1200w"
     sizes="(min-width: 768px) 50vw, 65vw"
-    data-zoom-src="/docs/control-plane/compliance/images/create-policy_hu_7a467060a56ada71.webp"></figure>
+    data-zoom-src="/docs/control-plane/compliance/images/creating-a-policy_hu_7c9a2e091f411340.webp"></figure>
 
 
-<h3 id="policy-summary" class="group pr-8">Policy summary
+<h3 id="start-time-and-window" class="group pr-8">Start time and window
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="policy-summary"
+      data-anchor="start-time-and-window"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -10433,18 +10459,35 @@ on the after each. It&rsquo;s recommended to leave this on.</p>
     </button>
   
 </h3>
-<p>Before creating the policy, Plakar Control Plane shows you a summary of the
-policy contract based on your selections.</p>
-<p>The summary shows the RPO and lookback derived from your settings. RPO is the
-maximum data loss window based on your most frequent backup, and lookback is how
-far back you can restore from based on your retention settings.</p>
+<p>Each tier has a start, and the policy has one time zone that applies to every
+tier. Starts follow the local clock of that zone, so a daily backup at 02:00 in
+<code>Europe/Paris</code> runs at 02:00 Paris time in both summer and winter.</p>
+<p>The Hourly tier starts at a minute past the hour, such as <code>xx:30</code>. The other
+tiers start at a time of day. The Weekly tier also sets a day of the week, the
+Monthly tier a day of the month, and the Yearly tier a month and a day. A month
+without the chosen day, such as the 31st, runs on its last day. When a tier
+takes several backups in its period, they are evenly spaced from the start. For
+example, 4 backups a day starting at 01:00 run at 01:00, 07:00, 13:00 and 19:00.</p>
+<p>A tier other than Hourly can start within a window, such as 02:00 to 06:00,
+instead of at a single time. Each source then gets its own start time inside the
+window and keeps it from one run to the next, so the sources of a policy do not
+all start against the same stores at once. Adding a source does not move the
+others. Changing the window gives every source a new time. A window can cross
+midnight, but it must be shorter than 24 hours and than the time between two
+backups of the tier. A Daily tier with 4 backups a day runs every 6 hours, so
+its window must be shorter than 6 hours.</p>
+<p>When the clocks go forward, a start time that does not exist, such as 02:30,
+runs an hour later. When the clocks go back, a start time that occurs twice runs
+the first time.</p>
+<p>Policies created before start times were available keep the hour they already
+run at until the start of a tier is changed.</p>
 
 
-<h2 id="scoping-a-policy" class="group pr-8">Scoping a policy
+<h3 id="scope" class="group pr-8">Scope
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="scoping-a-policy"
+      data-anchor="scope"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -10454,45 +10497,56 @@ far back you can restore from based on your retention settings.</p>
 </span></span>
     </button>
   
-</h2>
-<p>After creating a policy, you are immediately taken to the scoping page to set up
-the environment and data class filters.</p>
-<p>Supported scope filters include:</p>
+</h3>
+<p>The scope selects the source apps the policy applies to:</p>
 <ul>
-<li><strong>Environment:</strong> the environment the policy applies to. Environments are
-managed from the organization&rsquo;s
-<a href="/docs/control-plane/compliance/policies/#managing-environments--data-classes" >classification settings</a>.</li>
-<li><strong>Data Class:</strong> one or more data classes the policy applies to. Data classes
-are managed from the organization&rsquo;s
-<a href="/docs/control-plane/compliance/policies/#managing-environments--data-classes" >classification settings</a>.</li>
-<li><strong>Tag:</strong> narrows the matched sources down further to only those carrying the
-specified tag. Useful when environment and data class alone would match more
-sources than intended.</li>
+<li><strong>Environment:</strong> required.</li>
+<li><strong>Data classes:</strong> required. One or more.</li>
+<li><strong>Tags:</strong> optional. Narrows the match to sources whose resource carries at
+least one of the listed tags.</li>
 </ul>
-<p>Plakar Control Plane matches all source apps against the configured scope. Any
-source app whose environment and data class match the policy is automatically
-scheduled according to the policy rules. When a new source app is added with
-matching values, it is automatically picked up by the policy without any
-additional configuration.</p>
-<p>Scope is not the only condition. A policy also respects
-<a href="/docs/control-plane/compliance/residency/" >data residency</a>: a matched source is only scheduled when it and
-the policy&rsquo;s store share the same residency.</p>
-<p>A source app can be covered by multiple policies if their scopes overlap. This
-allows policies to be layered for example, a general policy covering all
-production sources and a stricter policy specifically covering production
-databases.</p>
+<p>Environments and data classes are managed in the organization&rsquo;s
+<a href="/docs/control-plane/compliance/policies/#managing-environments--data-classes" >classification settings</a>. A preview lists
+the resources and source apps the scope matches before the policy is created.</p>
+<p>A matched source is only scheduled when it and its store share the same
+<a href="/docs/control-plane/compliance/residency/" >data residency</a>.</p>
+<p>Scopes can overlap, for example a general policy for all production sources and
+a stricter one for production databases. A source app matched by several
+policies follows the one with the lowest RPO.</p>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
     decoding="async"
     fetchpriority="auto"
     alt=""
-    width="2780"
-    height="1514"
-    src="/docs/control-plane/compliance/images/scoping-a-policy_hu_2098e6fa91b8a92e.webp"
-    srcset="/docs/control-plane/compliance/images/scoping-a-policy_hu_2098e6fa91b8a92e.webp 400w, /docs/control-plane/compliance/images/scoping-a-policy_hu_52d31bf9242bd45.webp 800w, /docs/control-plane/compliance/images/scoping-a-policy_hu_ec78151025791ca5.webp 1200w"
+    width="2293"
+    height="1559"
+    src="/docs/control-plane/compliance/images/scoping-a-policy_hu_623ebdab88fb68a3.webp"
+    srcset="/docs/control-plane/compliance/images/scoping-a-policy_hu_623ebdab88fb68a3.webp 400w, /docs/control-plane/compliance/images/scoping-a-policy_hu_6398974e8137834c.webp 800w, /docs/control-plane/compliance/images/scoping-a-policy_hu_9d18346666e5a38a.webp 1200w"
     sizes="(min-width: 768px) 50vw, 65vw"
-    data-zoom-src="/docs/control-plane/compliance/images/scoping-a-policy_hu_24bbd289b39e9711.webp"></figure>
+    data-zoom-src="/docs/control-plane/compliance/images/scoping-a-policy_hu_a9d0cfe45b97ecad.webp"></figure>
+
+
+<h3 id="summary" class="group pr-8">Summary
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="summary"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>The policy shows a summary of the contract it defines. The RPO is the maximum
+data loss window, based on the most frequent backup. The lookback is how far
+back data can be restored, based on the longest retention. The summary also
+shows the approximate number of restore points kept and how many resources the
+scope covers.</p>
 
 
 <h2 id="scheduling" class="group pr-8">Scheduling
@@ -10510,11 +10564,19 @@ databases.</p>
     </button>
   
 </h2>
-<p>Once a policy is scoped, the policy scheduler automatically creates backup
-schedules for all matching sources using the store app selected when the policy
-was created. See the
-<a href="../../scheduling/policy-scheduler" >policy scheduler documentation</a> for more
-details.</p>
+<p>The <a href="../../scheduling/policy-scheduler" >policy scheduler</a> creates a backup
+schedule for every source app the policy matches, using the store and start of
+each tier.</p>
+<p>A policy selects source apps by classification, not by name, so it also covers
+source apps created later. When an <a href="../../inventories" >inventory</a> discovers a
+resource, a
+<a href="../../inventories/configuration-bundles#auto-creating-apps" >configuration bundle</a>
+can create its source app, which takes its environment and data class from the
+tags of the resource. Plakar Control Plane re-evaluates the matches of each
+policy every 15 minutes, so a new source app is scheduled within that time. A
+source app that no longer matches any policy loses its policy schedules the same
+way. See <a href="../../guides/automated-backups" >Automating backups</a> for the full
+setup.</p>
 
 
 <h2 id="managing-environments--data-classes" class="group pr-8">Managing environments &amp; data classes
@@ -10545,12 +10607,12 @@ information about how organizations isolate configuration.</p>
     decoding="async"
     fetchpriority="auto"
     alt="Creating and deleting environments and data classes"
-    width="2809"
-    height="1566"
-    src="/docs/control-plane/compliance/images/managing-classification_hu_c1b0ae62441fa31d.webp"
-    srcset="/docs/control-plane/compliance/images/managing-classification_hu_c1b0ae62441fa31d.webp 400w, /docs/control-plane/compliance/images/managing-classification_hu_cc313b1f733d20aa.webp 800w, /docs/control-plane/compliance/images/managing-classification_hu_e2fa38f7a7fb3ee8.webp 1200w"
+    width="2805"
+    height="1674"
+    src="/docs/control-plane/compliance/images/managing-classifications_hu_b9c7746911639930.webp"
+    srcset="/docs/control-plane/compliance/images/managing-classifications_hu_b9c7746911639930.webp 400w, /docs/control-plane/compliance/images/managing-classifications_hu_ac17f7b841904877.webp 800w, /docs/control-plane/compliance/images/managing-classifications_hu_1b7bb712ac58feb8.webp 1200w"
     sizes="(min-width: 768px) 50vw, 65vw"
-    data-zoom-src="/docs/control-plane/compliance/images/managing-classification_hu_1f966fe2d9f9d7c1.webp"></figure>
+    data-zoom-src="/docs/control-plane/compliance/images/managing-classifications_hu_5f390cd3d6104122.webp"></figure>
 
       </article>
       <footer class="mt-12 flex flex-col gap-6 docs-font border-t border-neutral-200 pt-6">
@@ -10616,7 +10678,7 @@ information about how organizations isolate configuration.</p>
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#creating-a-policy">Creating a policy</a><ul><li><a href="#backup-frequency-and-retention">Backup frequency and retention</a></li><li><a href="#policy-summary">Policy summary</a></li></ul></li><li><a href="#scoping-a-policy">Scoping a policy</a></li><li><a href="#scheduling">Scheduling</a></li><li><a href="#managing-environments--data-classes">Managing environments & data classes</a></li></ul>
+      <ul><li><a href="#creating-a-policy">Creating a policy</a><ul><li><a href="#rules">Rules</a></li><li><a href="#start-time-and-window">Start time and window</a></li><li><a href="#scope">Scope</a></li><li><a href="#summary">Summary</a></li></ul></li><li><a href="#scheduling">Scheduling</a></li><li><a href="#managing-environments--data-classes">Managing environments & data classes</a></li></ul>
     </div>
 
     

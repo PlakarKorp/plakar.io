@@ -39,8 +39,8 @@ organization of their inventory, and what can be done with them depends on the
 
 Source and destination apps are set up on a resource, from the **Apps** tab of
 the resource in its inventory, with **Assign App**. Store apps are created from
-the **Stores** tab of the inventory instead. See more on [store app](stores)
-documentation.
+the **Stores** tab of the inventory instead, also reachable from
+**Infrastructure > Stores**. See more on [store app](stores) documentation.
 
 An app uses an [integration](../integrations) to reach its resource. The class
 and subclass of the resource narrow the installed integrations down to those
