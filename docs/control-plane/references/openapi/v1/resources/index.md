@@ -2,7 +2,7 @@
 
 Resources tracked by inventories.
 
-Generated from Plakar Control Plane v0.19. See [OpenAPI v1](https://www.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
+Generated from Plakar Control Plane v0.20. See [OpenAPI v1](https://www.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
 
 
 ## List the resources with the backups of their sources
@@ -117,10 +117,16 @@ Parameters:
 - `class` (query, array[string]): Only resources of these classes.
 - `exclude_class` (query, array[string]): Exclude resources of these classes.
 - `inventory_id` (query, array[string<uuid>]): Only resources of these inventories.
+- `residency` (query, array[string]): Only resources with one of these assigned residencies, as country codes. none matches the resources with none.
+- `tag` (query, array[string]): Only resources with all of these tags.
+- `region` (query, array[string]): Only resources in one of these regions.
+- `app` (query, array[string]): Only resources with a connector, other than a store, of one of these integrations. none matches the resources with none.
+- `status` (query, array[string]): Only resources with one of these coverage statuses: protected, unprotected or excluded.
+- `facets` (query, boolean): Also count the resources per class, residency, tag, region, app and coverage status, each count ignoring its own filter.
 
 Responses:
 
-- `200` OK: `ResourceEntryPage`
+- `200` OK: `ResourcePage`
 - `400` Bad Request _(validation or deserialization error)_: `HTTPError`
 - `401` Missing, invalid or expired credentials
 - `403` The caller may not do this: `HTTPError`

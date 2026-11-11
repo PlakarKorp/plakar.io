@@ -2,7 +2,7 @@
 
 Service discovery, health, diagnostics and updates.
 
-Generated from Plakar Control Plane v0.19. See [OpenAPI v1](https://www.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
+Generated from Plakar Control Plane v0.20. See [OpenAPI v1](https://www.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
 
 
 ## Describe the deployment

@@ -2,8 +2,35 @@
 
 Snapshots recorded against a source or a store.
 
-Generated from Plakar Control Plane v0.19. See [OpenAPI v1](https://www.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
+Generated from Plakar Control Plane v0.20. See [OpenAPI v1](https://www.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
 
+
+## List the restore points of the organization with the state of each store
+
+`GET /api/v1/account/organizations/{id}/restore/points`
+
+Authentication: badge
+
+Parameters:
+
+- `offset` (query, integer): Number of items to skip.
+- `limit` (query, integer): Maximum number of items to return.
+- `source_id` (query, string<uuid>): Only snapshots of this source.
+- `store_id` (query, string<uuid>): Only snapshots with a live copy on this store.
+- `since` (query, string<date-time>): Only snapshots created at or after this time.
+- `before` (query, string<date-time>): Only snapshots created before this time.
+- `tag` (query, array[string]): Only snapshots carrying every one of these tags.
+- `facets` (query, boolean): Also count the snapshots per source, store and tag, each count ignoring its own filter, and with no filter at all.
+- `id` (path, string<uuid>, required): Organization ID, at or below the caller's.
+
+Responses:
+
+- `200` OK: `PointPage`
+- `400` Bad Request _(validation or deserialization error)_: `HTTPError`
+- `401` Missing, invalid or expired credentials
+- `403` The caller may not do this: `HTTPError`
+- `500` Internal Server Error _(panics)_: `HTTPError`
+- `default`
 
 ## List the restore points of a source with the state of each store
 
@@ -222,6 +249,98 @@ Request body (application/json): `SnapshotPatchRequest`
 Responses:
 
 - `200` OK: `SnapshotStoreEntriesResponse`
+- `400` Bad Request _(validation or deserialization error)_: `HTTPError`
+- `401` Missing, invalid or expired credentials
+- `403` The caller may not do this: `HTTPError`
+- `500` Internal Server Error _(panics)_: `HTTPError`
+- `default`
+
+## Get the daily history of the stores
+
+`GET /api/v1/stores/history`
+
+Summed over the stores of the organization the caller can see, oldest first.
+
+Authentication: badge
+
+Parameters:
+
+- `organization_id` (query, string<uuid>): Organization to act on, at or below the caller's. Defaults to the caller's.
+- `days` (query, integer): How many days back, today included.
+
+Responses:
+
+- `200` OK: `StoresHistory`
+- `400` Bad Request _(validation or deserialization error)_: `HTTPError`
+- `401` Missing, invalid or expired credentials
+- `403` The caller may not do this: `HTTPError`
+- `500` Internal Server Error _(panics)_: `HTTPError`
+- `default`
+
+## Sum up the integrity checks of the stores
+
+`GET /api/v1/stores/integrity`
+
+Counts only the stores of the organization the caller can see.
+
+Authentication: badge
+
+Parameters:
+
+- `organization_id` (query, string<uuid>): Organization to act on, at or below the caller's. Defaults to the caller's.
+
+Responses:
+
+- `200` OK: `StoreIntegrityOverview`
+- `400` Bad Request _(validation or deserialization error)_: `HTTPError`
+- `401` Missing, invalid or expired credentials
+- `403` The caller may not do this: `HTTPError`
+- `500` Internal Server Error _(panics)_: `HTTPError`
+- `default`
+
+## List the contents of a store
+
+`GET /api/v1/stores/{store_id}/contents`
+
+The states and packfiles the last scan found in the store, states first, newest first.
+
+Authentication: badge
+
+Parameters:
+
+- `organization_id` (query, string<uuid>): Organization to act on, at or below the caller's. Defaults to the caller's.
+- `type` (query, string): Only resources of this type.
+- `failing` (query, boolean): Only the resources whose last integrity check failed.
+- `offset` (query, integer): Number of items to skip.
+- `limit` (query, integer): Maximum number of items to return.
+- `store_id` (path, string, required)
+
+Responses:
+
+- `200` OK: `StoreContents`
+- `400` Bad Request _(validation or deserialization error)_: `HTTPError`
+- `401` Missing, invalid or expired credentials
+- `403` The caller may not do this: `HTTPError`
+- `500` Internal Server Error _(panics)_: `HTTPError`
+- `default`
+
+## Get the daily history of a store
+
+`GET /api/v1/stores/{store_id}/history`
+
+One entry per day, oldest first: what the store held, and the integrity checks run that day.
+
+Authentication: badge
+
+Parameters:
+
+- `organization_id` (query, string<uuid>): Organization to act on, at or below the caller's. Defaults to the caller's.
+- `days` (query, integer): How many days back, today included.
+- `store_id` (path, string, required)
+
+Responses:
+
+- `200` OK: `StoreHistory`
 - `400` Bad Request _(validation or deserialization error)_: `HTTPError`
 - `401` Missing, invalid or expired credentials
 - `403` The caller may not do this: `HTTPError`

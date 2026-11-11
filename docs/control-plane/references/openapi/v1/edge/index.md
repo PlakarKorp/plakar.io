@@ -2,7 +2,7 @@
 
 Edge enrollment and the edge work channel.
 
-Generated from Plakar Control Plane v0.19. See [OpenAPI v1](https://www.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
+Generated from Plakar Control Plane v0.20. See [OpenAPI v1](https://www.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
 
 
 ## List the edge pools
@@ -18,6 +18,7 @@ Parameters:
 - `search` (query, string): Case-insensitive match on the pool name.
 - `enrollment` (query, string): Only pools whose enrollment is open, or closed.
 - `empty` (query, boolean): Only pools holding no edge, or only pools holding some.
+- `inherited` (query, boolean): Only pools inherited from an ancestor, or only the organization's own.
 - `id` (path, string<uuid>, required): Organization ID, at or below the caller's.
 
 Responses:
@@ -193,6 +194,7 @@ Parameters:
 - `limit` (query, integer): Maximum number of items to return.
 - `pool_id` (query, string<uuid>): Only edges in this pool.
 - `search` (query, string): Case-insensitive match on edge name or hostname.
+- `inherited` (query, boolean): Only edges of pools inherited from an ancestor, or only the organization's own.
 - `id` (path, string<uuid>, required): Organization ID, at or below the caller's.
 
 Responses:

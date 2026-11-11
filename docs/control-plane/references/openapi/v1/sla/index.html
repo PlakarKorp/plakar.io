@@ -1231,6 +1231,34 @@
     
   
     
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+      
+    
+  
+    
       
     
   
@@ -1280,6 +1308,20 @@
   
     
       
+    
+  
+    
+  
+    
+  
+
+  
+    
+      
+    
+  
+    
+  
     
   
     
@@ -1697,6 +1739,34 @@
 
   
     
+  
+    
+      
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
+    
       
     
   
@@ -3487,6 +3557,8 @@
     
   
 
+  
+    
   
     
   
@@ -3495,9 +3567,21 @@
     
   
     
+      
+    
   
+
+  
     
       
+    
+  
+    
+  
+    
+  
+    
+  
     
   
 
@@ -3578,6 +3662,8 @@
   
     
   
+    
+      
     
   
     
@@ -3588,9 +3674,17 @@
   
     
       
+    
+  
+    
+  
+    
+  
     
   
     
+  
+
   
     
       
@@ -3600,6 +3694,10 @@
   
     
   
+    
+  
+    
+  
 
   
     
@@ -3800,19 +3898,45 @@
       
     
   
+    
+  
+    
+  
+    
+      
     
+  
+
   
     
   
     
       
+    
+  
+    
+  
+    
+  
     
   
 
   
     
+      
+    
+  
+    
+  
+    
+  
+    
   
     
+  
+
+  
+    
       
     
   
@@ -3822,6 +3946,8 @@
   
     
   
+    
+  
 
   
     
@@ -3990,9 +4116,23 @@
   
     
       
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+  
     
   
     
+      
+    
   
     
   
@@ -4015,15 +4155,33 @@
     
   
 
+  
+    
+      
+    
+  
+    
+  
+    
+  
+    
+      
+    
   
     
+  
+
   
     
       
+    
+  
     
   
     
   
+    
+      
     
   
     
@@ -4032,11 +4190,17 @@
   
     
       
+    
+  
+    
+  
     
   
     
   
     
+  
+
   
     
       
@@ -4044,18 +4208,36 @@
   
     
   
+    
+  
+    
+  
+    
+  
 
   
     
       
+    
+  
+    
+  
     
   
     
   
     
+  
+
   
     
       
+    
+  
+    
+  
+    
+  
     
   
     
@@ -14125,7 +14307,7 @@
         <p data-pagefind-ignore class="not-prose flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-neutral-500">
           <span>12 endpoints</span>
           <span class="text-neutral-300">&middot;</span>
-          <span>Plakar Control Plane v0.19</span>
+          <span>Plakar Control Plane v0.20</span>
           <span class="text-neutral-300">&middot;</span>
           <a href="../" class="text-primary-500 hover:underline">Base URL, authentication and errors</a>
         </p>
@@ -15325,6 +15507,66 @@
 
 <div class="min-w-0 flex-1">
   <div class="flex flex-wrap items-baseline gap-x-2 text-xs">
+    <code class="text-sm font-semibold text-neutral-900">start_window</code>
+    <span class="font-mono text-neutral-500">integer</span>
+    <span class="text-neutral-400">nullable</span>
+    
+    
+  </div>
+  
+  
+</div>
+
+          </div>
+        
+      </li>
+    
+      
+      
+      
+      
+      
+      <li class="m-0 p-0">
+        
+          <div class="flex items-start gap-1.5 py-1">
+            <span class="w-3.5 shrink-0"></span>
+            
+
+
+
+
+<div class="min-w-0 flex-1">
+  <div class="flex flex-wrap items-baseline gap-x-2 text-xs">
+    <code class="text-sm font-semibold text-neutral-900">start_zone</code>
+    <span class="font-mono text-neutral-500">string</span>
+    <span class="text-neutral-400">nullable</span>
+    
+    
+  </div>
+  
+  
+</div>
+
+          </div>
+        
+      </li>
+    
+      
+      
+      
+      
+      
+      <li class="m-0 p-0">
+        
+          <div class="flex items-start gap-1.5 py-1">
+            <span class="w-3.5 shrink-0"></span>
+            
+
+
+
+
+<div class="min-w-0 flex-1">
+  <div class="flex flex-wrap items-baseline gap-x-2 text-xs">
     <code class="text-sm font-semibold text-neutral-900">storage_tier</code>
     <span class="font-mono text-neutral-500">string</span>
     <span class="text-neutral-400">nullable</span>
@@ -15538,6 +15780,8 @@
 </span></span><span class="line"><span class="cl">          <span class="p">},</span>
 </span></span><span class="line"><span class="cl">          <span class="nt">&#34;retention&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">          <span class="nt">&#34;start_time&#34;</span><span class="p">:</span> <span class="s2">&#34;2026-01-01T00:00:00Z&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;start_window&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;start_zone&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">          <span class="nt">&#34;storage_tier&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">          <span class="nt">&#34;store_id&#34;</span><span class="p">:</span> <span class="s2">&#34;3f1e4a2c-9b7d-4e0f-8a11-2c5d6e7f8a90&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">          <span class="nt">&#34;updated_at&#34;</span><span class="p">:</span> <span class="s2">&#34;2026-01-01T00:00:00Z&#34;</span>
@@ -18997,6 +19241,66 @@
 
 <div class="min-w-0 flex-1">
   <div class="flex flex-wrap items-baseline gap-x-2 text-xs">
+    <code class="text-sm font-semibold text-neutral-900">start_window</code>
+    <span class="font-mono text-neutral-500">integer</span>
+    <span class="text-neutral-400">nullable</span>
+    
+    
+  </div>
+  
+  
+</div>
+
+          </div>
+        
+      </li>
+    
+      
+      
+      
+      
+      
+      <li class="m-0 p-0">
+        
+          <div class="flex items-start gap-1.5 py-1">
+            <span class="w-3.5 shrink-0"></span>
+            
+
+
+
+
+<div class="min-w-0 flex-1">
+  <div class="flex flex-wrap items-baseline gap-x-2 text-xs">
+    <code class="text-sm font-semibold text-neutral-900">start_zone</code>
+    <span class="font-mono text-neutral-500">string</span>
+    <span class="text-neutral-400">nullable</span>
+    
+    
+  </div>
+  
+  
+</div>
+
+          </div>
+        
+      </li>
+    
+      
+      
+      
+      
+      
+      <li class="m-0 p-0">
+        
+          <div class="flex items-start gap-1.5 py-1">
+            <span class="w-3.5 shrink-0"></span>
+            
+
+
+
+
+<div class="min-w-0 flex-1">
+  <div class="flex flex-wrap items-baseline gap-x-2 text-xs">
     <code class="text-sm font-semibold text-neutral-900">storage_tier</code>
     <span class="font-mono text-neutral-500">string</span>
     <span class="text-neutral-400">nullable</span>
@@ -19200,6 +19504,8 @@
 </span></span><span class="line"><span class="cl">          <span class="p">},</span>
 </span></span><span class="line"><span class="cl">          <span class="nt">&#34;retention&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">          <span class="nt">&#34;start_time&#34;</span><span class="p">:</span> <span class="s2">&#34;2026-01-01T00:00:00Z&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;start_window&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&#34;start_zone&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">          <span class="nt">&#34;storage_tier&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">          <span class="nt">&#34;store_id&#34;</span><span class="p">:</span> <span class="s2">&#34;3f1e4a2c-9b7d-4e0f-8a11-2c5d6e7f8a90&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">          <span class="nt">&#34;updated_at&#34;</span><span class="p">:</span> <span class="s2">&#34;2026-01-01T00:00:00Z&#34;</span>
@@ -19971,6 +20277,66 @@
 
 <div class="min-w-0 flex-1">
   <div class="flex flex-wrap items-baseline gap-x-2 text-xs">
+    <code class="text-sm font-semibold text-neutral-900">start_window</code>
+    <span class="font-mono text-neutral-500">integer</span>
+    <span class="text-neutral-400">nullable</span>
+    
+    
+  </div>
+  
+  
+</div>
+
+          </div>
+        
+      </li>
+    
+      
+      
+      
+      
+      
+      <li class="m-0 p-0">
+        
+          <div class="flex items-start gap-1.5 py-1">
+            <span class="w-3.5 shrink-0"></span>
+            
+
+
+
+
+<div class="min-w-0 flex-1">
+  <div class="flex flex-wrap items-baseline gap-x-2 text-xs">
+    <code class="text-sm font-semibold text-neutral-900">start_zone</code>
+    <span class="font-mono text-neutral-500">string</span>
+    <span class="text-neutral-400">nullable</span>
+    
+    
+  </div>
+  
+  
+</div>
+
+          </div>
+        
+      </li>
+    
+      
+      
+      
+      
+      
+      <li class="m-0 p-0">
+        
+          <div class="flex items-start gap-1.5 py-1">
+            <span class="w-3.5 shrink-0"></span>
+            
+
+
+
+
+<div class="min-w-0 flex-1">
+  <div class="flex flex-wrap items-baseline gap-x-2 text-xs">
     <code class="text-sm font-semibold text-neutral-900">storage_tier</code>
     <span class="font-mono text-neutral-500">string</span>
     <span class="text-neutral-400">nullable</span>
@@ -20683,6 +21049,66 @@
 
 <div class="min-w-0 flex-1">
   <div class="flex flex-wrap items-baseline gap-x-2 text-xs">
+    <code class="text-sm font-semibold text-neutral-900">start_window</code>
+    <span class="font-mono text-neutral-500">integer</span>
+    <span class="text-neutral-400">nullable</span>
+    
+    
+  </div>
+  
+  
+</div>
+
+          </div>
+        
+      </li>
+    
+      
+      
+      
+      
+      
+      <li class="m-0 p-0">
+        
+          <div class="flex items-start gap-1.5 py-1">
+            <span class="w-3.5 shrink-0"></span>
+            
+
+
+
+
+<div class="min-w-0 flex-1">
+  <div class="flex flex-wrap items-baseline gap-x-2 text-xs">
+    <code class="text-sm font-semibold text-neutral-900">start_zone</code>
+    <span class="font-mono text-neutral-500">string</span>
+    <span class="text-neutral-400">nullable</span>
+    
+    
+  </div>
+  
+  
+</div>
+
+          </div>
+        
+      </li>
+    
+      
+      
+      
+      
+      
+      <li class="m-0 p-0">
+        
+          <div class="flex items-start gap-1.5 py-1">
+            <span class="w-3.5 shrink-0"></span>
+            
+
+
+
+
+<div class="min-w-0 flex-1">
+  <div class="flex flex-wrap items-baseline gap-x-2 text-xs">
     <code class="text-sm font-semibold text-neutral-900">storage_tier</code>
     <span class="font-mono text-neutral-500">string</span>
     <span class="text-neutral-400">nullable</span>
@@ -20874,6 +21300,8 @@
 </span></span></span><span class="line"><span class="cl"><span class="s1">      },
 </span></span></span><span class="line"><span class="cl"><span class="s1">      &#34;retention&#34;: 0,
 </span></span></span><span class="line"><span class="cl"><span class="s1">      &#34;start_time&#34;: &#34;2026-01-01T00:00:00Z&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s1">      &#34;start_window&#34;: 0,
+</span></span></span><span class="line"><span class="cl"><span class="s1">      &#34;start_zone&#34;: &#34;string&#34;,
 </span></span></span><span class="line"><span class="cl"><span class="s1">      &#34;storage_tier&#34;: &#34;string&#34;,
 </span></span></span><span class="line"><span class="cl"><span class="s1">      &#34;store_id&#34;: &#34;3f1e4a2c-9b7d-4e0f-8a11-2c5d6e7f8a90&#34;,
 </span></span></span><span class="line"><span class="cl"><span class="s1">      &#34;updated_at&#34;: &#34;2026-01-01T00:00:00Z&#34;
@@ -20925,6 +21353,8 @@
 </span></span><span class="line"><span class="cl">      <span class="p">},</span>
 </span></span><span class="line"><span class="cl">      <span class="nt">&#34;retention&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">      <span class="nt">&#34;start_time&#34;</span><span class="p">:</span> <span class="s2">&#34;2026-01-01T00:00:00Z&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;start_window&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;start_zone&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">      <span class="nt">&#34;storage_tier&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">      <span class="nt">&#34;store_id&#34;</span><span class="p">:</span> <span class="s2">&#34;3f1e4a2c-9b7d-4e0f-8a11-2c5d6e7f8a90&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">      <span class="nt">&#34;updated_at&#34;</span><span class="p">:</span> <span class="s2">&#34;2026-01-01T00:00:00Z&#34;</span>
@@ -21713,6 +22143,66 @@
 
 <div class="min-w-0 flex-1">
   <div class="flex flex-wrap items-baseline gap-x-2 text-xs">
+    <code class="text-sm font-semibold text-neutral-900">start_window</code>
+    <span class="font-mono text-neutral-500">integer</span>
+    <span class="text-neutral-400">nullable</span>
+    
+    
+  </div>
+  
+  
+</div>
+
+          </div>
+        
+      </li>
+    
+      
+      
+      
+      
+      
+      <li class="m-0 p-0">
+        
+          <div class="flex items-start gap-1.5 py-1">
+            <span class="w-3.5 shrink-0"></span>
+            
+
+
+
+
+<div class="min-w-0 flex-1">
+  <div class="flex flex-wrap items-baseline gap-x-2 text-xs">
+    <code class="text-sm font-semibold text-neutral-900">start_zone</code>
+    <span class="font-mono text-neutral-500">string</span>
+    <span class="text-neutral-400">nullable</span>
+    
+    
+  </div>
+  
+  
+</div>
+
+          </div>
+        
+      </li>
+    
+      
+      
+      
+      
+      
+      <li class="m-0 p-0">
+        
+          <div class="flex items-start gap-1.5 py-1">
+            <span class="w-3.5 shrink-0"></span>
+            
+
+
+
+
+<div class="min-w-0 flex-1">
+  <div class="flex flex-wrap items-baseline gap-x-2 text-xs">
     <code class="text-sm font-semibold text-neutral-900">storage_tier</code>
     <span class="font-mono text-neutral-500">string</span>
     <span class="text-neutral-400">nullable</span>
@@ -21909,6 +22399,8 @@
 </span></span><span class="line"><span class="cl">      <span class="p">},</span>
 </span></span><span class="line"><span class="cl">      <span class="nt">&#34;retention&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">      <span class="nt">&#34;start_time&#34;</span><span class="p">:</span> <span class="s2">&#34;2026-01-01T00:00:00Z&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;start_window&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;start_zone&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">      <span class="nt">&#34;storage_tier&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">      <span class="nt">&#34;store_id&#34;</span><span class="p">:</span> <span class="s2">&#34;3f1e4a2c-9b7d-4e0f-8a11-2c5d6e7f8a90&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">      <span class="nt">&#34;updated_at&#34;</span><span class="p">:</span> <span class="s2">&#34;2026-01-01T00:00:00Z&#34;</span>
@@ -22553,6 +23045,66 @@
 
 <div class="min-w-0 flex-1">
   <div class="flex flex-wrap items-baseline gap-x-2 text-xs">
+    <code class="text-sm font-semibold text-neutral-900">start_window</code>
+    <span class="font-mono text-neutral-500">integer</span>
+    <span class="text-neutral-400">nullable</span>
+    
+    
+  </div>
+  
+  
+</div>
+
+          </div>
+        
+      </li>
+    
+      
+      
+      
+      
+      
+      <li class="m-0 p-0">
+        
+          <div class="flex items-start gap-1.5 py-1">
+            <span class="w-3.5 shrink-0"></span>
+            
+
+
+
+
+<div class="min-w-0 flex-1">
+  <div class="flex flex-wrap items-baseline gap-x-2 text-xs">
+    <code class="text-sm font-semibold text-neutral-900">start_zone</code>
+    <span class="font-mono text-neutral-500">string</span>
+    <span class="text-neutral-400">nullable</span>
+    
+    
+  </div>
+  
+  
+</div>
+
+          </div>
+        
+      </li>
+    
+      
+      
+      
+      
+      
+      <li class="m-0 p-0">
+        
+          <div class="flex items-start gap-1.5 py-1">
+            <span class="w-3.5 shrink-0"></span>
+            
+
+
+
+
+<div class="min-w-0 flex-1">
+  <div class="flex flex-wrap items-baseline gap-x-2 text-xs">
     <code class="text-sm font-semibold text-neutral-900">storage_tier</code>
     <span class="font-mono text-neutral-500">string</span>
     <span class="text-neutral-400">nullable</span>
@@ -23235,6 +23787,66 @@
 
 <div class="min-w-0 flex-1">
   <div class="flex flex-wrap items-baseline gap-x-2 text-xs">
+    <code class="text-sm font-semibold text-neutral-900">start_window</code>
+    <span class="font-mono text-neutral-500">integer</span>
+    <span class="text-neutral-400">nullable</span>
+    
+    
+  </div>
+  
+  
+</div>
+
+          </div>
+        
+      </li>
+    
+      
+      
+      
+      
+      
+      <li class="m-0 p-0">
+        
+          <div class="flex items-start gap-1.5 py-1">
+            <span class="w-3.5 shrink-0"></span>
+            
+
+
+
+
+<div class="min-w-0 flex-1">
+  <div class="flex flex-wrap items-baseline gap-x-2 text-xs">
+    <code class="text-sm font-semibold text-neutral-900">start_zone</code>
+    <span class="font-mono text-neutral-500">string</span>
+    <span class="text-neutral-400">nullable</span>
+    
+    
+  </div>
+  
+  
+</div>
+
+          </div>
+        
+      </li>
+    
+      
+      
+      
+      
+      
+      <li class="m-0 p-0">
+        
+          <div class="flex items-start gap-1.5 py-1">
+            <span class="w-3.5 shrink-0"></span>
+            
+
+
+
+
+<div class="min-w-0 flex-1">
+  <div class="flex flex-wrap items-baseline gap-x-2 text-xs">
     <code class="text-sm font-semibold text-neutral-900">storage_tier</code>
     <span class="font-mono text-neutral-500">string</span>
     <span class="text-neutral-400">nullable</span>
@@ -23421,6 +24033,8 @@
 </span></span></span><span class="line"><span class="cl"><span class="s1">      },
 </span></span></span><span class="line"><span class="cl"><span class="s1">      &#34;retention&#34;: 0,
 </span></span></span><span class="line"><span class="cl"><span class="s1">      &#34;start_time&#34;: &#34;2026-01-01T00:00:00Z&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s1">      &#34;start_window&#34;: 0,
+</span></span></span><span class="line"><span class="cl"><span class="s1">      &#34;start_zone&#34;: &#34;string&#34;,
 </span></span></span><span class="line"><span class="cl"><span class="s1">      &#34;storage_tier&#34;: &#34;string&#34;,
 </span></span></span><span class="line"><span class="cl"><span class="s1">      &#34;store_id&#34;: &#34;3f1e4a2c-9b7d-4e0f-8a11-2c5d6e7f8a90&#34;,
 </span></span></span><span class="line"><span class="cl"><span class="s1">      &#34;updated_at&#34;: &#34;2026-01-01T00:00:00Z&#34;
@@ -23471,6 +24085,8 @@
 </span></span><span class="line"><span class="cl">      <span class="p">},</span>
 </span></span><span class="line"><span class="cl">      <span class="nt">&#34;retention&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">      <span class="nt">&#34;start_time&#34;</span><span class="p">:</span> <span class="s2">&#34;2026-01-01T00:00:00Z&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;start_window&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;start_zone&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">      <span class="nt">&#34;storage_tier&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">      <span class="nt">&#34;store_id&#34;</span><span class="p">:</span> <span class="s2">&#34;3f1e4a2c-9b7d-4e0f-8a11-2c5d6e7f8a90&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">      <span class="nt">&#34;updated_at&#34;</span><span class="p">:</span> <span class="s2">&#34;2026-01-01T00:00:00Z&#34;</span>
@@ -24111,6 +24727,66 @@
 
 <div class="min-w-0 flex-1">
   <div class="flex flex-wrap items-baseline gap-x-2 text-xs">
+    <code class="text-sm font-semibold text-neutral-900">start_window</code>
+    <span class="font-mono text-neutral-500">integer</span>
+    <span class="text-neutral-400">nullable</span>
+    
+    
+  </div>
+  
+  
+</div>
+
+          </div>
+        
+      </li>
+    
+      
+      
+      
+      
+      
+      <li class="m-0 p-0">
+        
+          <div class="flex items-start gap-1.5 py-1">
+            <span class="w-3.5 shrink-0"></span>
+            
+
+
+
+
+<div class="min-w-0 flex-1">
+  <div class="flex flex-wrap items-baseline gap-x-2 text-xs">
+    <code class="text-sm font-semibold text-neutral-900">start_zone</code>
+    <span class="font-mono text-neutral-500">string</span>
+    <span class="text-neutral-400">nullable</span>
+    
+    
+  </div>
+  
+  
+</div>
+
+          </div>
+        
+      </li>
+    
+      
+      
+      
+      
+      
+      <li class="m-0 p-0">
+        
+          <div class="flex items-start gap-1.5 py-1">
+            <span class="w-3.5 shrink-0"></span>
+            
+
+
+
+
+<div class="min-w-0 flex-1">
+  <div class="flex flex-wrap items-baseline gap-x-2 text-xs">
     <code class="text-sm font-semibold text-neutral-900">storage_tier</code>
     <span class="font-mono text-neutral-500">string</span>
     <span class="text-neutral-400">nullable</span>
@@ -24793,6 +25469,66 @@
 
 <div class="min-w-0 flex-1">
   <div class="flex flex-wrap items-baseline gap-x-2 text-xs">
+    <code class="text-sm font-semibold text-neutral-900">start_window</code>
+    <span class="font-mono text-neutral-500">integer</span>
+    <span class="text-neutral-400">nullable</span>
+    
+    
+  </div>
+  
+  
+</div>
+
+          </div>
+        
+      </li>
+    
+      
+      
+      
+      
+      
+      <li class="m-0 p-0">
+        
+          <div class="flex items-start gap-1.5 py-1">
+            <span class="w-3.5 shrink-0"></span>
+            
+
+
+
+
+<div class="min-w-0 flex-1">
+  <div class="flex flex-wrap items-baseline gap-x-2 text-xs">
+    <code class="text-sm font-semibold text-neutral-900">start_zone</code>
+    <span class="font-mono text-neutral-500">string</span>
+    <span class="text-neutral-400">nullable</span>
+    
+    
+  </div>
+  
+  
+</div>
+
+          </div>
+        
+      </li>
+    
+      
+      
+      
+      
+      
+      <li class="m-0 p-0">
+        
+          <div class="flex items-start gap-1.5 py-1">
+            <span class="w-3.5 shrink-0"></span>
+            
+
+
+
+
+<div class="min-w-0 flex-1">
+  <div class="flex flex-wrap items-baseline gap-x-2 text-xs">
     <code class="text-sm font-semibold text-neutral-900">storage_tier</code>
     <span class="font-mono text-neutral-500">string</span>
     <span class="text-neutral-400">nullable</span>
@@ -24979,6 +25715,8 @@
 </span></span></span><span class="line"><span class="cl"><span class="s1">      },
 </span></span></span><span class="line"><span class="cl"><span class="s1">      &#34;retention&#34;: 0,
 </span></span></span><span class="line"><span class="cl"><span class="s1">      &#34;start_time&#34;: &#34;2026-01-01T00:00:00Z&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s1">      &#34;start_window&#34;: 0,
+</span></span></span><span class="line"><span class="cl"><span class="s1">      &#34;start_zone&#34;: &#34;string&#34;,
 </span></span></span><span class="line"><span class="cl"><span class="s1">      &#34;storage_tier&#34;: &#34;string&#34;,
 </span></span></span><span class="line"><span class="cl"><span class="s1">      &#34;store_id&#34;: &#34;3f1e4a2c-9b7d-4e0f-8a11-2c5d6e7f8a90&#34;,
 </span></span></span><span class="line"><span class="cl"><span class="s1">      &#34;updated_at&#34;: &#34;2026-01-01T00:00:00Z&#34;
@@ -25029,6 +25767,8 @@
 </span></span><span class="line"><span class="cl">      <span class="p">},</span>
 </span></span><span class="line"><span class="cl">      <span class="nt">&#34;retention&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">      <span class="nt">&#34;start_time&#34;</span><span class="p">:</span> <span class="s2">&#34;2026-01-01T00:00:00Z&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;start_window&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;start_zone&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">      <span class="nt">&#34;storage_tier&#34;</span><span class="p">:</span> <span class="s2">&#34;string&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">      <span class="nt">&#34;store_id&#34;</span><span class="p">:</span> <span class="s2">&#34;3f1e4a2c-9b7d-4e0f-8a11-2c5d6e7f8a90&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">      <span class="nt">&#34;updated_at&#34;</span><span class="p">:</span> <span class="s2">&#34;2026-01-01T00:00:00Z&#34;</span>

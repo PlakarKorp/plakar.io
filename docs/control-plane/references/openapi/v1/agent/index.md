@@ -2,7 +2,7 @@
 
 Endpoints agents call to claim and report on work.
 
-Generated from Plakar Control Plane v0.19. See [OpenAPI v1](https://www.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
+Generated from Plakar Control Plane v0.20. See [OpenAPI v1](https://www.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
 
 
 ## List the pending one-off tasks
@@ -148,6 +148,36 @@ Authentication: agent
 Responses:
 
 - `200` OK: `RebuildSLASchedulePlanResponse`
+- `400` Bad Request _(validation or deserialization error)_: `HTTPError`
+- `401` Missing, invalid or expired credentials
+- `403` The caller may not do this: `HTTPError`
+- `500` Internal Server Error _(panics)_: `HTTPError`
+- `default`
+
+## Check the due objects of hot stores against their HMAC
+
+`POST /api/v1/agent/janitor/stores/check`
+
+Authentication: agent
+
+Responses:
+
+- `200` OK: `CheckStoresResponse`
+- `400` Bad Request _(validation or deserialization error)_: `HTTPError`
+- `401` Missing, invalid or expired credentials
+- `403` The caller may not do this: `HTTPError`
+- `500` Internal Server Error _(panics)_: `HTTPError`
+- `default`
+
+## List the content of the store due for a scan
+
+`POST /api/v1/agent/janitor/stores/scan`
+
+Authentication: agent
+
+Responses:
+
+- `200` OK: `ScanStoreResponse`
 - `400` Bad Request _(validation or deserialization error)_: `HTTPError`
 - `401` Missing, invalid or expired credentials
 - `403` The caller may not do this: `HTTPError`

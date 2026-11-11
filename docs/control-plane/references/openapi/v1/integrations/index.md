@@ -2,7 +2,7 @@
 
 The integration catalogue and installed integrations.
 
-Generated from Plakar Control Plane v0.19. See [OpenAPI v1](https://www.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
+Generated from Plakar Control Plane v0.20. See [OpenAPI v1](https://www.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
 
 
 ## Get an integration by name and version
@@ -282,6 +282,7 @@ Parameters:
 - `urn_id` (query, string<uuid>): Resource to resolve the protocols, inventory values and bundles against.
 - `environment` (query, string): Environment to resolve the protocols against.
 - `draft` (query, boolean): Answer the draft form a bundle uses: nothing required, nothing suggested.
+- `organization_id` (query, string<uuid>): Organization to act on, at or below the caller's. Defaults to the caller's.
 - `id` (path, string, required)
 
 Responses:
@@ -304,6 +305,7 @@ Parameters:
 - `type` (query, string, required): Connector type.
 - `urn_id` (query, string<uuid>): Resource to resolve the protocols against.
 - `environment` (query, string): Environment to resolve the protocols against.
+- `organization_id` (query, string<uuid>): Organization to act on, at or below the caller's. Defaults to the caller's.
 - `id` (path, string, required)
 
 Responses:
