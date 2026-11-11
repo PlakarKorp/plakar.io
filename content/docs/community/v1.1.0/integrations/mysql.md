@@ -3,16 +3,25 @@ title: "MySQL / MariaDB"
 date: "2026-06-12T00:00:00Z"
 weight: 16
 summary:
-  "Back up and restore MySQL and MariaDB databases with Plakar — logical dumps
-  via mysqldump and mariadb-dump, with Google Cloud SQL support."
+  "Back up and restore MySQL and MariaDB databases with Plakar using logical
+  dumps from mysqldump and mariadb-dump, including Google Cloud SQL."
 ---
 
 # MySQL / MariaDB
 
-The **MySQL / MariaDB integration** performs logical backups of MySQL and
-MariaDB databases using `mysqldump` and `mariadb-dump`. These backups produce
-standard SQL files that are human-readable and can be restored without Plakar if
-needed.
+The MySQL / MariaDB integration performs logical backups of MySQL and MariaDB
+databases using `mysqldump` and `mariadb-dump`, and restores them with the
+`mysql` and `mariadb` clients. A backup is a set of standard SQL files. They are
+human-readable and can be restored without Plakar if needed.
+
+The integration includes two connectors:
+
+| Connector type            | Description                                                |
+| ------------------------- | ---------------------------------------------------------- |
+| **Source connector**      | Back up MySQL or MariaDB databases into a Kloset store.    |
+| **Destination connector** | Restore databases from a Kloset store to a running server. |
+
+Both connectors support three protocols:
 
 | Protocol           | Target                    | Dump tool      | Restore tool |
 | ------------------ | ------------------------- | -------------- | ------------ |
@@ -20,8 +29,17 @@ needed.
 | `mysql+mariadb://` | MariaDB 10.x / 11.x       | `mariadb-dump` | `mariadb`    |
 | `mysql+gcsql://`   | MySQL on Google Cloud SQL | `mysqldump`    | `mysql`      |
 
-`mysql://` and `mysql+mariadb://` are independent connectors: each always uses
-its own set of binaries regardless of the server at the other end.
+`mysql://` and `mysql+mariadb://` are independent connectors. Each always uses
+its own set of binaries, regardless of the server at the other end.
+
+**Requirements**
+
+- For `mysql://` and `mysql+gcsql://`, `mysqldump` (backup) and `mysql`
+  (restore) in `$PATH` on the machine running Plakar. They are provided by the
+  `mysql-client` package or the MySQL distribution.
+- For `mysql+mariadb://`, `mariadb-dump` (backup) and `mariadb` (restore).
+- A database user with the privileges listed in
+  [Backup user privileges](#backup-user-privileges).
 
 **Typical use cases**
 
@@ -29,7 +47,7 @@ its own set of binaries regardless of the server at the other end.
   portability.
 - Full-cluster dumps including stored procedures, events, and triggers.
 - MariaDB-specific backups that require `mariadb-dump` semantics.
-- Cloud SQL backups via the Cloud SQL Auth Proxy.
+- Cloud SQL backups through the Cloud SQL Auth Proxy.
 
 ## Installation
 
@@ -39,7 +57,7 @@ The MySQL / MariaDB integration is distributed as a Plakar package.
 
 {{< tab label="Pre-built package" >}}
 
-> [!NOTE]+
+> [!NOTE]+ Logging In
 >
 > Pre-built packages require Plakar authentication. See
 > [Logging in to Plakar](../../guides/logging-in-to-plakar) for details.
@@ -79,19 +97,20 @@ $ plakar pkg add -allow-unsigned ./mysql_v1.0.0_linux_amd64.ptar
 To list, upgrade, or remove the package, see the
 [managing packages guide](../../guides/managing-packages/).
 
-## Logical backup - `mysql://`
+## How a backup works
 
-### How it works
+The source connector runs the dump tool of its protocol and produces a single
+SQL file per database, or a combined `all.sql` when no database is specified.
+Every snapshot follows the same layout:
 
-The connector invokes `mysqldump` to produce a single SQL file per database, or
-a combined `all.sql` when no database is specified. Every snapshot follows the
-same layout:
-
-- `/manifest.json`: cluster metadata captured before the dump (see
-  [Snapshot manifest](#snapshot-manifest)).
+- `/manifest.json`: cluster metadata captured before the dump. See
+  [Snapshot manifest](#snapshot-manifest).
 - `/<dbname>.sql`: single-database dump when a database is specified.
 - `/all.sql`: full-server dump when no database is specified
   (`--all-databases`).
+
+The destination connector feeds the full dump to the client tool of its
+protocol.
 
 **Pros**
 
@@ -106,13 +125,14 @@ same layout:
 - Does not capture user accounts or grants for single-database backups.
 - MyISAM tables cannot be backed up consistently without locking.
 
-### Prerequisites
+### InnoDB and MyISAM
 
-The following tools must be available in `$PATH` on the machine running Plakar
-(provided by the `mysql-client` package, or the MySQL distribution):
+`single_transaction`, enabled by default, produces a consistent InnoDB snapshot
+without locking tables. For databases that contain MyISAM tables, this option
+does not prevent locks on those tables. Disable `single_transaction` to use
+`--lock-all-tables` instead, accepting write locks for the duration of the dump.
 
-- `mysqldump`: for backup
-- `mysql`: for restore
+## Backup user privileges
 
 The backup user requires the following privileges:
 
@@ -126,23 +146,49 @@ GRANT SELECT, SHOW VIEW, TRIGGER, LOCK TABLES, EVENT, RELOAD ON *.* TO 'backup'@
 GRANT PROCESS ON *.* TO 'backup'@'%';
 ```
 
-> [!WARNING]+
->
-> Binary compatibility On Debian and Ubuntu, `apt install default-mysql-client`
-> installs MariaDB's `mysqldump` by default. MariaDB's `mysqldump` is **not
-> compatible** with MySQL 8 for all-databases backups and produces dumps that
-> fail to restore. Verify you have the correct binary:
->
-> ```bash
-> $ mysqldump --version
-> # MySQL:   mysqldump  Ver 8.x Distrib 8.x, for Linux (x86_64)
-> # MariaDB: mysqldump from 11.x.x-MariaDB ...
-> ```
->
-> Use `mysql_bin_dir` to point to the correct binary directory if both are
-> installed.
+## MySQL and MariaDB binaries
 
-### Source connector
+The client binaries must match the server flavor. On Debian and Ubuntu,
+`apt install default-mysql-client` installs MariaDB binaries by default,
+including MariaDB's `mysqldump`. MariaDB's `mysqldump` is **not compatible**
+with MySQL 8 for all-databases backups and produces dumps that fail to restore.
+
+Check which binary is installed:
+
+```bash
+$ mysqldump --version
+# MySQL:   mysqldump  Ver 8.x Distrib 8.x, for Linux (x86_64)
+# MariaDB: mysqldump from 11.x.x-MariaDB ...
+```
+
+When both flavors are installed on the same machine, use `mysql_bin_dir` to
+point to the correct binary directory.
+
+## Snapshot manifest
+
+Every snapshot produced by this integration includes a `/manifest.json` record
+written before the dump data. It captures the server state at the time of
+backup.
+
+| Field               | Description                                                                                                                          |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `version`           | Manifest schema version.                                                                                                             |
+| `connector`         | `mysql` or `mariadb`.                                                                                                                |
+| `server_version`    | MySQL or MariaDB server version string.                                                                                              |
+| `mysqldump_version` | `mysqldump` version string (or `mariadump_version` for MariaDB).                                                                     |
+| `server_config`     | Key server settings: `datadir`, `hostname`, `character_set_server`, `collation_server`, `max_connections`, `gtid_mode`.              |
+| `databases`         | One entry per database: name, character set, collation, tables (with engine, row estimate, columns), routines, triggers, and events. |
+| `options`           | The effective dump options used for this backup.                                                                                     |
+
+Metadata collection is best-effort. If a query fails, the affected field is
+omitted and the backup continues normally.
+
+## 1. `mysql` protocol
+
+The `mysql` protocol connects to a running MySQL server, produces the dump with
+`mysqldump`, and restores it with `mysql`.
+
+#### Backup flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -165,48 +211,7 @@ Transform --> Store
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-```bash
-# Back up a single database
-$ plakar source add mydb mysql://dbuser:secret@db.example.com/mydb
-$ plakar at /var/backups backup "@mydb"
-
-# Back up all databases
-$ plakar source add alldb mysql://root:secret@db.example.com
-$ plakar at /var/backups backup "@alldb"
-
-# Schema only
-$ plakar source add mydb mysql://dbuser:secret@db.example.com/mydb \
-  no_data=true
-$ plakar at /var/backups backup "@mydb"
-```
-
-#### Source options
-
-| Option               | Default     | Description                                                                                                     |
-| -------------------- | ----------- | --------------------------------------------------------------------------------------------------------------- |
-| `location`           | —           | Connection URI: `mysql://[user[:password]@]host[:port][/database]`                                              |
-| `host`               | `127.0.0.1` | Server hostname. Overrides the URI host.                                                                        |
-| `port`               | `3306`      | Server port. Overrides the URI port.                                                                            |
-| `username`           | —           | Username. Overrides the URI user.                                                                               |
-| `password`           | —           | Password. Overrides the URI password. Passed via `MYSQL_PWD`, never on the command line.                        |
-| `database`           | —           | Database to back up. Overrides the URI path. If omitted, all databases are backed up.                           |
-| `single_transaction` | `true`      | Use `--single-transaction` for a lock-free InnoDB snapshot.                                                     |
-| `routines`           | `true`      | Include stored procedures and functions (`--routines`).                                                         |
-| `events`             | `true`      | Include event scheduler events (`--events`).                                                                    |
-| `triggers`           | `true`      | Include triggers. Set to `false` to pass `--skip-triggers`.                                                     |
-| `no_data`            | `false`     | Dump schema only, no data (`--no-data`). Mutually exclusive with `no_create_info`.                              |
-| `no_create_info`     | `false`     | Dump data only, no schema (`--no-create-info`). Mutually exclusive with `no_data`.                              |
-| `no_tablespaces`     | `true`      | Suppress tablespace statements (`--no-tablespaces`).                                                            |
-| `hex_blob`           | `false`     | Encode BINARY/BLOB columns as hex (`--hex-blob`).                                                               |
-| `column_statistics`  | `true`      | Query `COLUMN_STATISTICS`. Set to `false` (`--column-statistics=0`) when using mysqldump 8.0 against MySQL 5.7. |
-| `set_gtid_purged`    | `AUTO`      | GTID mode: `AUTO`, `ON`, or `OFF`.                                                                              |
-| `mysql_bin_dir`      | —           | Directory containing `mysqldump`. When omitted, resolved via `$PATH`.                                           |
-| `ssl_mode`           | —           | TLS mode: `disabled`, `preferred`, `required`, `verify_ca`, `verify_identity`.                                  |
-| `ssl_cert`           | —           | Path to the client SSL certificate (PEM).                                                                       |
-| `ssl_key`            | —           | Path to the client SSL private key (PEM).                                                                       |
-| `ssl_ca`             | —           | Path to the CA certificate (PEM).                                                                               |
-
-### Destination connector
+#### Restore flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -229,6 +234,76 @@ Connector --> DB
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
+### Shared configuration
+
+The following options apply to both source and destination connectors using the
+`mysql` protocol.
+
+| Option          | Required | Description                                                                                                        |
+| --------------- | -------- | ------------------------------------------------------------------------------------------------------------------ |
+| `location`      | Yes      | Connection URI: `mysql://[user[:password]@]host[:port][/database]`                                                 |
+| `host`          | No       | Server hostname. Overrides the URI host. Defaults to `127.0.0.1`.                                                  |
+| `port`          | No       | Server port. Overrides the URI port. Defaults to `3306`.                                                           |
+| `username`      | No       | Username. Overrides the URI user.                                                                                  |
+| `password`      | No       | Password. Overrides the URI password. Passed via `MYSQL_PWD`, never on the command line.                           |
+| `mysql_bin_dir` | No       | Directory containing `mysqldump` (source) or the `mysql` binary (destination). When omitted, resolved via `$PATH`. |
+| `ssl_mode`      | No       | TLS mode: `disabled`, `preferred`, `required`, `verify_ca`, `verify_identity`.                                     |
+| `ssl_cert`      | No       | Path to the client SSL certificate (PEM).                                                                          |
+| `ssl_key`       | No       | Path to the client SSL private key (PEM).                                                                          |
+| `ssl_ca`        | No       | Path to the CA certificate (PEM).                                                                                  |
+
+### Source configuration
+
+The following extra options are available to source connectors using the `mysql`
+protocol.
+
+| Option               | Required | Description                                                                                                                         |
+| -------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `database`           | No       | Database to back up. Overrides the URI path. If omitted, all databases are backed up.                                               |
+| `single_transaction` | No       | Use `--single-transaction` for a lock-free InnoDB snapshot. Defaults to `true`.                                                     |
+| `routines`           | No       | Include stored procedures and functions (`--routines`). Defaults to `true`.                                                         |
+| `events`             | No       | Include event scheduler events (`--events`). Defaults to `true`.                                                                    |
+| `triggers`           | No       | Include triggers. Set to `false` to pass `--skip-triggers`. Defaults to `true`.                                                     |
+| `no_data`            | No       | Dump schema only, no data (`--no-data`). Mutually exclusive with `no_create_info`. Defaults to `false`.                             |
+| `no_create_info`     | No       | Dump data only, no schema (`--no-create-info`). Mutually exclusive with `no_data`. Defaults to `false`.                             |
+| `no_tablespaces`     | No       | Suppress tablespace statements (`--no-tablespaces`). Defaults to `true`.                                                            |
+| `hex_blob`           | No       | Encode BINARY/BLOB columns as hex (`--hex-blob`). Defaults to `false`.                                                              |
+| `column_statistics`  | No       | Query `COLUMN_STATISTICS`. Set to `false` (`--column-statistics=0`) when using mysqldump 8.0 against MySQL 5.7. Defaults to `true`. |
+| `set_gtid_purged`    | No       | GTID mode: `AUTO`, `ON`, or `OFF`. Defaults to `AUTO`. See [GTIDs](#gtids).                                                         |
+
+### Destination configuration
+
+The following extra options are available to destination connectors using the
+`mysql` protocol.
+
+| Option      | Required | Description                                                                   |
+| ----------- | -------- | ----------------------------------------------------------------------------- |
+| `database`  | No       | Target database. Inferred from the dump filename if omitted.                  |
+| `create_db` | No       | Issue `CREATE DATABASE IF NOT EXISTS` before restoring. Defaults to `false`.  |
+| `force`     | No       | Pass `--force` to continue on SQL errors during restore. Defaults to `false`. |
+
+### Example
+
+Back up a single database, all databases, or the schema only:
+
+```bash
+# Back up a single database
+$ plakar source add mydb mysql://dbuser:secret@db.example.com/mydb
+$ plakar at /var/backups backup "@mydb"
+
+# Back up all databases
+$ plakar source add alldb mysql://root:secret@db.example.com
+$ plakar at /var/backups backup "@alldb"
+
+# Schema only
+$ plakar source add mydb mysql://dbuser:secret@db.example.com/mydb \
+  no_data=true
+$ plakar at /var/backups backup "@mydb"
+```
+
+Restore into an existing database, create the database first, or restore all
+databases:
+
 ```bash
 # Restore into an existing database
 $ plakar destination add mydbdst mysql://dbuser:secret@target.example.com/mydb
@@ -244,29 +319,25 @@ $ plakar destination add mydbdst mysql://root:secret@target.example.com
 $ plakar at /var/backups restore -to "@mydbdst" <snapshot_id>
 ```
 
-#### Destination options
+## 2. `mysql+mariadb` protocol
 
-| Option          | Default     | Description                                                                  |
-| --------------- | ----------- | ---------------------------------------------------------------------------- |
-| `location`      | —           | Connection URI: `mysql://[user[:password]@]host[:port][/database]`           |
-| `host`          | `127.0.0.1` | Server hostname. Overrides the URI host.                                     |
-| `port`          | `3306`      | Server port. Overrides the URI port.                                         |
-| `username`      | —           | Username. Overrides the URI user.                                            |
-| `password`      | —           | Password. Overrides the URI password.                                        |
-| `database`      | —           | Target database. Inferred from the dump filename if omitted.                 |
-| `create_db`     | `false`     | Issue `CREATE DATABASE IF NOT EXISTS` before restoring.                      |
-| `force`         | `false`     | Pass `--force` to continue on SQL errors during restore.                     |
-| `mysql_bin_dir` | —           | Directory containing the `mysql` binary. When omitted, resolved via `$PATH`. |
-| `ssl_mode`      | —           | TLS mode (same values as source).                                            |
-| `ssl_cert`      | —           | Path to the client SSL certificate (PEM).                                    |
-| `ssl_key`       | —           | Path to the client SSL private key (PEM).                                    |
-| `ssl_ca`        | —           | Path to the CA certificate (PEM).                                            |
+The `mysql+mariadb` protocol works identically to `mysql`, but invokes
+`mariadb-dump` for backup and `mariadb` for restore. It is used when targeting a
+MariaDB server, to avoid binary-compatibility issues.
 
-## Logical backup - `mysql+mariadb://`
+### Configuration
 
-`mysql+mariadb://` works identically to `mysql://` but invokes `mariadb-dump`
-for backup and `mariadb` for restore. This connector is used when targeting a
-MariaDB server to avoid binary-compatibility issues.
+`mysql+mariadb://` supports the same source and destination options as
+`mysql://`, with the following differences:
+
+| Option            | Required | Description                                                                |
+| ----------------- | -------- | -------------------------------------------------------------------------- |
+| `mariadb_bin_dir` | No       | Directory containing `mariadb-dump` / `mariadb`. Replaces `mysql_bin_dir`. |
+
+The `column_statistics` and `set_gtid_purged` options are MySQL-only and have no
+effect on `mysql+mariadb://`.
+
+### Example
 
 ```bash
 # Back up a single MariaDB database
@@ -283,26 +354,22 @@ $ plakar destination add mydbdst mysql+mariadb://dbuser:secret@target.example.co
 $ plakar at /var/backups restore -to "@mydbdst" <snapshot_id>
 ```
 
-`mysql+mariadb://` supports the same source and destination options as
-`mysql://`, with the following differences:
+## 3. `mysql+gcsql` protocol
 
-| Option            | Default | Description                                                                |
-| ----------------- | ------- | -------------------------------------------------------------------------- |
-| `mariadb_bin_dir` | —       | Directory containing `mariadb-dump` / `mariadb`. Replaces `mysql_bin_dir`. |
-
-The `column_statistics` and `set_gtid_purged` options are MySQL-only and have no
-effect on `mysql+mariadb://`.
-
-## Google Cloud SQL - `mysql+gcsql://`
-
-`mysql+gcsql://` targets MySQL databases hosted on Google Cloud SQL. It uses the
+The `mysql+gcsql` protocol targets MySQL databases hosted on Google Cloud SQL.
+It uses the
 [Cloud SQL Auth Proxy](https://cloud.google.com/sql/docs/mysql/sql-proxy) to
-establish an encrypted connection, making the experience equivalent to
-connecting to a local MySQL server.
+establish an encrypted connection, so the connection behaves like a connection
+to a local MySQL server.
 
-The connector supports the same source and destination options as `mysql://`.
 The Cloud SQL Auth Proxy must be running and accessible on the configured host
 and port before Plakar connects.
+
+### Configuration
+
+The connector supports the same source and destination options as `mysql://`.
+
+### Example
 
 ```bash
 # Assuming the proxy is running on localhost:3306
@@ -310,47 +377,13 @@ $ plakar source add mygcs mysql+gcsql://dbuser:secret@127.0.0.1:3306/mydb
 $ plakar at /var/backups backup "@mygcs"
 ```
 
-## Snapshot manifest
-
-Every snapshot produced by this integration includes a `/manifest.json` record
-written before the dump data. It captures the server state at the time of
-backup.
-
-| Field               | Description                                                                                                                          |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `version`           | Manifest schema version.                                                                                                             |
-| `connector`         | `mysql` or `mariadb`.                                                                                                                |
-| `server_version`    | MySQL or MariaDB server version string.                                                                                              |
-| `mysqldump_version` | `mysqldump` version string (or `mariadump_version` for MariaDB).                                                                     |
-| `server_config`     | Key server settings: `datadir`, `hostname`, `character_set_server`, `collation_server`, `max_connections`, `gtid_mode`.              |
-| `databases`         | One entry per database: name, character set, collation, tables (with engine, row estimate, columns), routines, triggers, and events. |
-| `options`           | The effective dump options used for this backup.                                                                                     |
-
-Metadata collection is best-effort: if a query fails, the affected field is
-omitted and the backup continues normally.
-
-## Considerations
-
-### MySQL vs MariaDB binaries
-
-Always use binaries that match your server flavor. On Debian and Ubuntu,
-`apt install default-mysql-client` installs MariaDB binaries by default.
-MariaDB's `mysqldump` produces dumps that fail to restore against MySQL 8 for
-all-databases backups. Use `mysql_bin_dir` to point to the correct binaries when
-both flavors are installed on the same machine.
-
-### InnoDB and MyISAM
-
-`single_transaction` (enabled by default) produces a consistent InnoDB snapshot
-without locking tables. For databases that contain MyISAM tables, this option
-does not prevent locks on those tables. Disable `single_transaction` to use
-`--lock-all-tables` instead, accepting write locks for the duration of the dump.
+## Restore considerations
 
 ### GTIDs
 
 When the server has GTIDs enabled (`gtid_mode=ON`), `mysqldump` includes
 `SET @@GLOBAL.GTID_PURGED` statements. Restoring to a server that already has
-GTID history will fail. Options:
+GTID history fails. There are two ways to avoid this:
 
 - Set `set_gtid_purged=OFF` on the source to omit GTID information from the
   dump.
@@ -365,14 +398,15 @@ users:
 - Export grants manually with a tool like `pt-show-grants` (Percona Toolkit).
 - Recreate user accounts manually on the target server.
 
-## Known limitations
+## Limitations and scope
 
-- **Physical backup not supported**: Only logical dumps via `mysqldump` /
-  `mariadb-dump`. For physical backups, stop the server and use Plakar's
-  filesystem backup on the data directory directly.
-- **No per-table filtering**: The entire database (or all databases) is dumped.
-- **No restore-time data/schema filtering**: The full dump is always piped to
-  the client CLI.
+The integration takes logical dumps only, through `mysqldump` or `mariadb-dump`.
+Physical backups are not supported. For a physical backup, stop the server and
+use Plakar's filesystem backup on the data directory directly.
+
+There is no per-table filtering. The entire database, or all databases, is
+dumped. There is also no data or schema filtering at restore time. The full dump
+is always piped to the client CLI.
 
 ## See also
 

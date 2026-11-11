@@ -229,10 +229,13 @@ $ plakar at /var/backups restore -to "@my-smb-restore" <snapshot_id>
 
 Authentication is NTLMv2 only. Kerberos is not supported.
 
-SMB has no Unix ownership or permissions. A restore recreates files, directories
-and symlinks, with their modification times where the server allows it, but not
-their owner, group or permission bits. Device nodes, sockets and FIFOs cannot be
-restored to an SMB share.
+SMB has no Unix ownership or permissions. Backed-up files get a mode built from
+their DOS attributes, meaning the directory and read-only flags. User and group
+IDs, inode numbers and link counts are not available.
+
+A restore recreates files, directories and symlinks, with their modification
+times where the server allows it, but not their owner, group or permission bits.
+Device nodes, sockets and FIFOs cannot be restored to an SMB share.
 
 A restore refuses any entry that would be written outside the destination root.
 A symlink that already exists in the destination is still followed by the
