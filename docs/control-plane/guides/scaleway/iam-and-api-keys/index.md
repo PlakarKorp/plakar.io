@@ -4,9 +4,9 @@
 Plakar Control Plane requires permissions to access Scaleway services in
 different situations. For example, when using Scaleway Secret Manager, Plakar
 Control Plane needs permission to read secrets. Scaleway credentials are also
-used by [Scaleway Inventory](../../../inventories/managed/scaleway) to
-discover resources in your account, and by integrations that need access to
-services like Object Storage or Scaleway Instances.
+used by [Scaleway Inventory](../../../inventories/managed/scaleway) to discover
+resources in your account, and by integrations that need access to services like
+Object Storage or Scaleway Instances.
 
 In Scaleway, access is managed through IAM policies attached to IAM
 applications. API keys are then generated from those applications and used by

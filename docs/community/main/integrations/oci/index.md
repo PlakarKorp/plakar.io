@@ -124,12 +124,12 @@ Connector --> Store
 
 ### Store configuration
 
-| Option                     | Required | Description                                                                                                                         |
-| -------------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| `location`                 | Yes      | OCI registry reference where the store lives, for example `oci://registry.example.com/my-org/plakar-store`.                         |
-| `insecure`                 | No       | Set to `true` to connect to the registry over plaintext HTTP instead of TLS. Defaults to `false`.                                   |
-| `tls_insecure_no_verify`   | No       | Skip TLS certificate verification. Defaults to `false`. Cannot be combined with `insecure=true`. See the warning below.             |
-| `allow_cross_host_uploads` | No       | Set to `true` to allow uploads to a host other than the registry. Defaults to `false`. See [Uploads](#uploads).                     |
+| Option                     | Required | Description                                                                                                             |
+| -------------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `location`                 | Yes      | OCI registry reference where the store lives, for example `oci://registry.example.com/my-org/plakar-store`.             |
+| `insecure`                 | No       | Set to `true` to connect to the registry over plaintext HTTP instead of TLS. Defaults to `false`.                       |
+| `tls_insecure_no_verify`   | No       | Skip TLS certificate verification. Defaults to `false`. Cannot be combined with `insecure=true`. See the warning below. |
+| `allow_cross_host_uploads` | No       | Set to `true` to allow uploads to a host other than the registry. Defaults to `false`. See [Uploads](#uploads).         |
 
 > [!NOTE]+ Authentication
 >
@@ -137,8 +137,8 @@ Connector --> Store
 
 #### TLS
 
-The connector connects to the registry over TLS and verifies its certificate.
-A registry that only serves plaintext HTTP, such as a default local `registry:2`
+The connector connects to the registry over TLS and verifies its certificate. A
+registry that only serves plaintext HTTP, such as a default local `registry:2`
 container, needs `insecure=true`.
 
 > [!WARNING]+ Plaintext and unverified connections

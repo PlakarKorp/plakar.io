@@ -229,7 +229,7 @@
     "dateCreated": "2026-09-01T00:00:00\u002b00:00",
     "datePublished": "2026-09-01T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-11T17:15:27\u002b01:00",
+    "dateModified": "2026-11-12T11:54:18\u002b03:00",
     
     
     
@@ -2715,9 +2715,13 @@
 </h2>
 <ul>
 <li>Added <code>Restore</code> CRD type for orchestrating restore operations.</li>
-<li>Added <code>TaskRun</code> CRD to report the status of individual task executions on Kubernetes.</li>
-<li>Added <code>HistoryLimit</code> field to <code>ScheduleBackup</code>, <code>ScheduleSync</code>, <code>ScheduleCheck</code>, and <code>Restore</code> CRDs to control how many <code>TaskRun</code> records are retained (default: 5).</li>
-<li>Added <code>EdgeTags</code> to <code>ScheduleBackup</code>, <code>ScheduleSync</code>, <code>ScheduleCheck</code>, and <code>Restore</code>.</li>
+<li>Added <code>TaskRun</code> CRD to report the status of individual task executions on
+Kubernetes.</li>
+<li>Added <code>HistoryLimit</code> field to <code>ScheduleBackup</code>, <code>ScheduleSync</code>,
+<code>ScheduleCheck</code>, and <code>Restore</code> CRDs to control how many <code>TaskRun</code> records are
+retained (default: 5).</li>
+<li>Added <code>EdgeTags</code> to <code>ScheduleBackup</code>, <code>ScheduleSync</code>, <code>ScheduleCheck</code>, and
+<code>Restore</code>.</li>
 <li>Added <code>observedGeneration</code> to connector specs.</li>
 <li>Connectors are tested for reachability on create and update.</li>
 </ul>
@@ -2726,9 +2730,12 @@
 <h2 id="improvements" class="group">Improvements
 </h2>
 <ul>
-<li>Sync is skipped when the connector generation is unchanged, avoiding redundant reconciliation cycles.</li>
-<li><code>Plakar.spec.inventoryUUID</code> is now optional; the operator creates one automatically when it is unset.</li>
-<li>The operator uses the user-configured scheduler instead of hardcoding <code>&quot;custom&quot;</code>.</li>
+<li>Sync is skipped when the connector generation is unchanged, avoiding redundant
+reconciliation cycles.</li>
+<li><code>Plakar.spec.inventoryUUID</code> is now optional; the operator creates one
+automatically when it is unset.</li>
+<li>The operator uses the user-configured scheduler instead of hardcoding
+<code>&quot;custom&quot;</code>.</li>
 </ul>
 
 
@@ -2736,7 +2743,8 @@
 </h2>
 <ul>
 <li><code>Version</code> field removed from the <code>Integration</code> CRD spec.</li>
-<li>Only a single <code>Plakar</code> resource is accepted per namespace for now; extra resources are rejected.</li>
+<li>Only a single <code>Plakar</code> resource is accepted per namespace for now; extra
+resources are rejected.</li>
 </ul>
 </div>
                 

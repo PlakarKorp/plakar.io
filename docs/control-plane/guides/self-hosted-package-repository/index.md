@@ -67,8 +67,8 @@ server.
 
 Unlike the releases repository, the integrations repository is configured in
 Plakar Control Plane rather than in the appliance user-data. Open the
-[settings](../../operations/control-plane-settings) and enter the URL of the server
-hosting the mirrored files in the package repository field, for example
+[settings](../../operations/control-plane-settings) and enter the URL of the
+server hosting the mirrored files in the package repository field, for example
 `https://dist.corp.example/integrations`.
 
 The URL must point to the root of the repository, where
