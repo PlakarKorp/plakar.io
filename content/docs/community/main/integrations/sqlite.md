@@ -7,10 +7,14 @@ summary: "Host a Kloset store in a single SQLite database file."
 
 # SQLite
 
+> [!WARNING]+ Not for production
+>
+> The SQLite store works and shows that Plakar can host snapshots almost
+> anywhere, but it is not recommended for production workloads.
+
 The SQLite integration hosts a Kloset store inside a single SQLite database
 file. Snapshot data, metadata and locks are all kept in that file, so the store
-needs no server. This suits desktop, embedded, test and air-gapped environments
-where running a remote backend is not practical.
+needs no server. This suits test and demo environments.
 
 The integration includes one connector:
 

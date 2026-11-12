@@ -16,9 +16,9 @@ technology_description: >
   administration.
 
   Plakar can use a SQLite database file as a Kloset store. Snapshots from any
-  source are encrypted and deduplicated, then kept in that file. This suits
-  desktops, embedded systems, test environments and air-gapped machines where
-  running a remote backend is not practical.
+  source are encrypted and deduplicated, then kept in that file. This suits test
+  and demo environments. SQLite stores are not recommended for production
+  workloads.
 
 categories:
   - storage
@@ -27,7 +27,6 @@ seo_tags:
   - SQLite backup storage
   - embedded backup store
   - local backup
-  - air-gapped backup
   - encrypted backup
   - deduplication
   - self-contained backup
@@ -59,9 +58,8 @@ image: img/integrations/sqlite.png
 
 ## Why use SQLite as a Kloset store
 
-Some environments have no room for a storage server. A laptop, an embedded
-device or an isolated machine still needs backups, but running and securing a
-remote backend there adds cost and moving parts.
+A SQLite store is a quick way to try or demonstrate Plakar, with no storage
+backend to set up. It is not recommended for production workloads.
 
 A SQLite Kloset store keeps everything in one database file on local disk:
 
