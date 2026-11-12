@@ -60,8 +60,8 @@ Adding a person follows the invitation path. An address that already has an
 account gains the membership and nothing else. A new address gets an account
 with a one-time password, returned in `generated_password` and recorded in
 state, which the person is required to change at their first
-[sign-in](../../../intro/signing-in). The `account_created` attribute
-reports which of the two happened.
+[sign-in](../../../intro/signing-in). The `account_created` attribute reports
+which of the two happened.
 
 A service account is an
 [application user](../../../access-control/users#application-users). It has no

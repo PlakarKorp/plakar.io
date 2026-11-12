@@ -22,7 +22,9 @@ const ID_RE = /\s(?:id|name)\s*=\s*("([^"]*)"|'([^']*)')/gi;
 function decodeEntities(s) {
   return s
     .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n)))
-    .replace(/&#x([0-9a-f]+);/gi, (_, n) => String.fromCodePoint(parseInt(n, 16)))
+    .replace(/&#x([0-9a-f]+);/gi, (_, n) =>
+      String.fromCodePoint(parseInt(n, 16)),
+    )
     .replace(/&quot;/g, '"')
     .replace(/&#39;|&apos;/g, "'")
     .replace(/&lt;/g, "<")
@@ -73,8 +75,13 @@ const fileCache = new Map();
 async function resolveTarget(urlPath) {
   if (fileCache.has(urlPath)) return fileCache.get(urlPath);
   const candidates = [path.join(siteDir, urlPath)];
-  if (urlPath.endsWith("/")) candidates[0] = path.join(siteDir, urlPath, "index.html");
-  else candidates.push(path.join(siteDir, urlPath, "index.html"), path.join(siteDir, `${urlPath}.html`));
+  if (urlPath.endsWith("/"))
+    candidates[0] = path.join(siteDir, urlPath, "index.html");
+  else
+    candidates.push(
+      path.join(siteDir, urlPath, "index.html"),
+      path.join(siteDir, `${urlPath}.html`),
+    );
 
   let found = null;
   for (const c of candidates) {
@@ -117,7 +124,12 @@ const report = (map, target, source) => {
 let checked = 0;
 for (const file of files) {
   const rel = path.relative(siteDir, file);
-  const pageUrlPath = "/" + rel.split(path.sep).join("/").replace(/index\.html$/, "");
+  const pageUrlPath =
+    "/" +
+    rel
+      .split(path.sep)
+      .join("/")
+      .replace(/index\.html$/, "");
   const html = await readFile(file, "utf8");
 
   for (const m of html.matchAll(ATTR_RE)) {
@@ -181,7 +193,8 @@ for (const name of TEXT_FILES) {
     // Hugo renders an alias as a page that only redirects. These files must
     // point at the page itself.
     const redirect =
-      target.endsWith(".html") && (await readFile(target, "utf8")).match(REFRESH_RE);
+      target.endsWith(".html") &&
+      (await readFile(target, "utf8")).match(REFRESH_RE);
     if (redirect) {
       report(redirects, `${link.path} -> ${redirect[1]}`, `/${name}`);
       continue;
@@ -206,7 +219,9 @@ function printSection(title, map) {
   if (map.size === 0) return 0;
   console.log(`\n== ${title} ==`);
   let total = 0;
-  for (const [target, sources] of [...map].sort(([a], [b]) => a.localeCompare(b))) {
+  for (const [target, sources] of [...map].sort(([a], [b]) =>
+    a.localeCompare(b),
+  )) {
     console.log(`\n✗ ${target}`);
     for (const s of [...sources].sort()) console.log(`    linked from ${s}`);
     total += sources.size;

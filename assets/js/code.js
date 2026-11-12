@@ -8,7 +8,9 @@ function createCopyButton(highlightWrapper) {
   button.type = "button";
   button.ariaLabel = copyText;
   button.innerText = copyText;
-  button.addEventListener("click", () => copyCodeToClipboard(button, highlightWrapper));
+  button.addEventListener("click", () =>
+    copyCodeToClipboard(button, highlightWrapper),
+  );
   highlightWrapper.insertBefore(button, highlightWrapper.firstChild);
 }
 
@@ -34,7 +36,9 @@ async function copyCodeToClipboard(button, highlightWrapper) {
   }
 
   try {
-    const result = await navigator.permissions.query({ name: "clipboard-write" });
+    const result = await navigator.permissions.query({
+      name: "clipboard-write",
+    });
     if (result.state == "granted" || result.state == "prompt") {
       await navigator.clipboard.writeText(codeToCopy);
     } else {
@@ -74,12 +78,16 @@ function getCodeText(highlightWrapper) {
 
   const codeBlock = highlightDiv.querySelector("code");
   const inlineLines = codeBlock?.querySelectorAll(".cl"); // linenos=inline
-  const tableCodeCell = highlightDiv?.querySelector(".lntable .lntd:last-child code"); // linenos=table
+  const tableCodeCell = highlightDiv?.querySelector(
+    ".lntable .lntd:last-child code",
+  ); // linenos=table
 
   if (!codeBlock) return "";
 
   if (inlineLines.length > 0) {
-    const cleanedLines = Array.from(inlineLines).map((line) => line.textContent.replace(/\n$/, ""));
+    const cleanedLines = Array.from(inlineLines).map((line) =>
+      line.textContent.replace(/\n$/, ""),
+    );
     return cleanedLines.join("\n");
   }
 
@@ -91,12 +99,16 @@ function getCodeText(highlightWrapper) {
 }
 
 window.addEventListener("DOMContentLoaded", (event) => {
-  document.querySelectorAll(".highlight-wrapper").forEach((highlightWrapper) => {
-    const button = highlightWrapper.querySelector(".codeblock-copy");
-    if (button) {
-      button.addEventListener("click", () => copyCodeToClipboard(button, highlightWrapper));
-    } else {
-      createCopyButton(highlightWrapper);
-    }
-  });
+  document
+    .querySelectorAll(".highlight-wrapper")
+    .forEach((highlightWrapper) => {
+      const button = highlightWrapper.querySelector(".codeblock-copy");
+      if (button) {
+        button.addEventListener("click", () =>
+          copyCodeToClipboard(button, highlightWrapper),
+        );
+      } else {
+        createCopyButton(highlightWrapper);
+      }
+    });
 });

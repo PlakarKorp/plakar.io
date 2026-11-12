@@ -20,8 +20,8 @@ possible to copy secrets across projects or regions.
 [Managed inventories](../../inventories#managed-inventories) can discover
 Scaleway Secret Manager resources automatically once connected to your Scaleway
 project. Scaleway Secret Manager resources are only discovered by the
-[Scaleway inventory](../../inventories/managed/scaleway) and cannot be setup
-by a self-managed inventory.
+[Scaleway inventory](../../inventories/managed/scaleway) and cannot be setup by
+a self-managed inventory.
 
 #### Backup flow
 
