@@ -55,6 +55,16 @@ Add the resulting edges to an edge pool, and assign the PostgreSQL resources to
 that pool, so their tasks run on an edge that has the client tools. See
 [selecting an edge](../../edges/running-tasks#selecting-an-edge).
 
+The [directory dump format](#dump-formats) also needs FUSE on the edge. Add
+`fuse3` to the packages the image installs, and run the container with access to
+`/dev/fuse`, the `SYS_ADMIN` capability, and an AppArmor profile that allows
+mounts:
+
+```bash
+docker run --device /dev/fuse --cap-add SYS_ADMIN \
+  --security-opt apparmor:unconfined ...
+```
+
 The `postgres+aws` protocol generates its IAM token with the AWS credentials
 available to the edge. The edge picks them up from the standard AWS sources:
 environment variables such as `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`,
@@ -159,6 +169,54 @@ flowchart TD
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
+### Dump formats
+
+**Format** selects how each database is dumped, with the `postgres` and
+`postgres+aws` protocols. The default, `custom`, dumps each database with a
+single `pg_dump -Fc` process into one `.dump` file.
+
+`directory` dumps each database with `pg_dump -Fd`, which writes one file per
+table and dumps several tables in parallel. On large databases this shortens
+backups considerably. Each file is streamed into the snapshot as it is written,
+so the dump uses no disk on the edge. **Parallel Dumps** sets the number of
+parallel jobs per database. Each job is a separate connection running a `COPY`
+on the server. It defaults to 4, or to the task's **Concurrency** when that is
+lower. A single table is always dumped by one job, so the largest table bounds
+how fast a database can be dumped.
+
+The directory format only works on Linux edges with `/dev/fuse` and
+`fusermount3` (package `fuse3`). The backup fails when they are missing. See
+[Running the edge in a container](#running-the-edge-in-a-container).
+
+Directory-format snapshots cannot be restored with a PostgreSQL destination app
+yet. To restore one, mount the snapshot with
+[`plakar mount`](/docs/community/v1.1.0/references/commands/plakar-mount/) on a
+machine with access to the store, and run `pg_restore -Fd` on the database
+directory, such as `00001-myapp`.
+
+To speed up the backup of a large database:
+
+1. Upgrade the PostgreSQL integration from the
+   [Integrations](../../integrations) page, so that its source app offers
+   **Format** and **Parallel Dumps**.
+2. Make sure the edges of the resource's pool have FUSE, as described above.
+3. In the source app, set **Format** to `directory`.
+4. Set **Parallel Dumps** to the number of connections the server can serve
+   alongside its regular load, such as `16`.
+
+### Excluding tables
+
+**Exclude Tables** and **Exclude Table Data** leave large tables out of a
+logical backup. Both take a comma-separated list of `pg_dump` table patterns and
+apply them to every database dumped. **Exclude Tables** leaves out the table
+entirely, definition and rows. **Exclude Table Data** keeps the definition and
+leaves out the rows, so the table is restored empty.
+
+A pattern without a schema only matches tables on the `search_path`. Use
+`*.audit_log` to match a table in every schema. Excluding a partitioned table
+does not exclude its partitions, which must be listed too. Both lists are
+recorded in the snapshot's `manifest.json`.
+
 ### Shared configuration
 
 The following settings are available when configuring both source and
@@ -192,6 +250,17 @@ the `postgres` protocol.
 - **Exclude Databases**: Comma-separated list of database names to skip during a
   full backup. Has no effect when a single database is selected via **Database**
   or the location URI. Example: `rdsadmin,template1`.
+- **Exclude Table Data**: Comma-separated `pg_dump --exclude-table-data`
+  patterns. Matching tables are restored empty. See
+  [Excluding tables](#excluding-tables).
+- **Exclude Tables**: Comma-separated `pg_dump --exclude-table` patterns.
+  Matching tables are left out, definition and rows. See
+  [Excluding tables](#excluding-tables).
+- **Format**: Dump format, `custom` or `directory`. Defaults to `custom`. See
+  [Dump formats](#dump-formats).
+- **Parallel Dumps**: Number of parallel `pg_dump` jobs per database. Requires
+  **Format** set to `directory`. Defaults to 4, or to the task's **Concurrency**
+  when lower.
 - **Schema Only**: Dump only the schema, passing `-s` to `pg_dump`. Mutually
   exclusive with **Data Only**.
 
@@ -407,6 +476,17 @@ the `postgres+aws` protocol.
   full backup. Defaults to `rdsadmin`, an internal AWS system database that
   cannot be dumped by regular users. Set to an empty string to disable all
   exclusions.
+- **Exclude Table Data**: Comma-separated `pg_dump --exclude-table-data`
+  patterns. Matching tables are restored empty. See
+  [Excluding tables](#excluding-tables).
+- **Exclude Tables**: Comma-separated `pg_dump --exclude-table` patterns.
+  Matching tables are left out, definition and rows. See
+  [Excluding tables](#excluding-tables).
+- **Format**: Dump format, `custom` or `directory`. Defaults to `custom`. See
+  [Dump formats](#dump-formats).
+- **Parallel Dumps**: Number of parallel `pg_dump` jobs per database. Requires
+  **Format** set to `directory`. Defaults to 4, or to the task's **Concurrency**
+  when lower.
 - **Schema Only**: Dump only the schema, passing `-s` to `pg_dump`. Mutually
   exclusive with **Data Only**.
 
