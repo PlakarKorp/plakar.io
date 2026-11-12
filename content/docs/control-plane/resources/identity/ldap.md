@@ -80,5 +80,10 @@ three protocols.
 - **Base Dn**: DN of the subtree to back up. Defaults to the `dc=` components of
   **Bind Dn**, such as `dc=example,dc=com`. Required when **Bind Dn** has no
   `dc=` component.
-- **Tls No Verify**: Skip TLS certificate verification. Only use it for testing,
-  since it leaves the connection open to man-in-the-middle attacks.
+- **Tls No Verify**: Skip TLS certificate verification. Disabled by default.
+
+> [!WARNING]+ TLS Certificate Verification
+>
+> Enabling **Tls No Verify** disables TLS certificate verification, so anyone on
+> the network path can impersonate the LDAP server. Only use it in controlled
+> environments with self-signed certificates on trusted networks.

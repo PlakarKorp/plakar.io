@@ -78,8 +78,11 @@ connection is secured:
 | `ldap`          | Cleartext. Refused unless `insecure=true` is set.               |
 
 Both TLS protocols verify the server certificate against the host in `location`.
-With `ldap`, the bind DN and password are sent in cleartext, so only use it on a
-trusted network.
+
+> [!WARNING]+ Cleartext Bind
+>
+> With `ldap` and `insecure=true`, the bind DN and password are sent in
+> cleartext. Only use it on a trusted network.
 
 #### Backup flow
 
@@ -110,7 +113,13 @@ Dir --> Via --> Plakar --> Store
 | `password`      | Yes      | Password of the bind DN.                                                                                                                                  |
 | `base_dn`       | No       | DN of the subtree to back up. Defaults to the `dc=` components of `bind_dn`, such as `dc=example,dc=com`. Required when `bind_dn` has no `dc=` component. |
 | `insecure`      | No       | Set to `true` to allow the `ldap` protocol and its cleartext bind. Defaults to `false`.                                                                   |
-| `tls_no_verify` | No       | Skip TLS certificate verification. Defaults to `false`. Only use it for testing, since it leaves the connection open to man-in-the-middle attacks.        |
+| `tls_no_verify` | No       | Skip TLS certificate verification. Defaults to `false`.                                                                                                   |
+
+> [!WARNING]+ TLS Certificate Verification
+>
+> Setting `tls_no_verify=true` disables TLS certificate verification, so anyone
+> on the network path can impersonate the LDAP server. Only use it in controlled
+> environments with self-signed certificates on trusted networks.
 
 ### Example
 
