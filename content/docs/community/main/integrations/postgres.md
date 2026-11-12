@@ -157,6 +157,15 @@ contains the [snapshot manifest](#snapshot-manifest).
 Restore dispatches on file name and extension. `.dump` files are fed to
 `pg_restore`, and `00000-globals.sql` is fed to `psql` automatically.
 
+> [!WARNING]+ Restore only trusted snapshots
+>
+> A `\!` meta-command in `00000-globals.sql` runs as a shell command on the
+> machine running `plakar restore`, even with `exit_on_error`. This applies to
+> both the `postgres` and `postgres+aws` protocols. To restore a snapshot you do
+> not trust, such as a `.ptar` received from someone else or a snapshot from an
+> unencrypted store others can write to, set `no_globals=true` and create the
+> roles and tablespaces on the target yourself.
+
 **Pros**
 
 - Portable across PostgreSQL major versions. You can dump on PG 15, restore on
@@ -270,7 +279,7 @@ The following extra options are available to destination connectors using the
 | `databases`     | No       | Comma-separated list of database names to restore from a full backup. Only matching `.dump` files are restored. Globals are always included unless `no_globals=true`.                       |
 | `clean`         | No       | Drop objects within the target database before recreating them (`--clean --if-exists`). The database must already exist. Mutually exclusive with `recreate`. Defaults to `false`.           |
 | `recreate`      | No       | Drop and recreate the target database from the archive metadata (`-C --clean --if-exists`). The `postgres` database is never dropped. Mutually exclusive with `clean`. Defaults to `false`. |
-| `no_globals`    | No       | Skip restoring `00000-globals.sql`. Set to `true` when the target server already has the required roles and tablespaces. Defaults to `false`.                                               |
+| `no_globals`    | No       | Skip restoring `00000-globals.sql`. Set to `true` when the target server already has the required roles and tablespaces, or when the snapshot is not trusted. Defaults to `false`.          |
 | `no_owner`      | No       | Skip `ALTER OWNER` statements (`--no-owner`). Useful when roles from the source server do not exist on the target. Defaults to `false`.                                                     |
 | `schema_only`   | No       | Restore only the schema (no data). Mutually exclusive with `data_only`. Defaults to `false`.                                                                                                |
 | `data_only`     | No       | Restore only the data (no schema). Mutually exclusive with `schema_only`. Defaults to `false`.                                                                                              |

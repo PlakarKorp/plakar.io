@@ -98,6 +98,14 @@ connectable database is dumped individually.
 > administrative user is a restricted superuser, role passwords cannot be read
 > and restored roles will have no password set.
 
+> [!WARNING]
+>
+> A `\!` meta-command in `00000-globals.sql` runs as a shell command on the edge
+> that runs the restore, even with **Exit On Error**. This applies to both the
+> `postgres` and `postgres+aws` protocols. To restore a snapshot you do not
+> trust, enable **No Globals** and create the roles and tablespaces on the
+> target yourself.
+
 #### Backup flow
 
 <!-- prettier-ignore-start -->
@@ -199,7 +207,8 @@ using the `postgres` protocol.
 - **Exit On Error**: Stop the restore on the first error, passing `-e` to
   `pg_restore` and `ON_ERROR_STOP=1` to `psql`.
 - **No Globals**: Skip restoring `00000-globals.sql`. By default, globals are
-  restored automatically when present.
+  restored automatically when present. Enable it when the snapshot is not
+  trusted.
 - **No Owner**: Skip `ALTER OWNER` statements, passing `--no-owner` to
   `pg_restore`. Useful when the roles from the source server do not exist on the
   target server.
@@ -413,7 +422,8 @@ using the `postgres+aws` protocol.
 - **Exit On Error**: Stop the restore on the first error, passing `-e` to
   `pg_restore` and `ON_ERROR_STOP=1` to `psql`.
 - **No Globals**: Skip restoring `00000-globals.sql`. By default, globals are
-  restored automatically when present.
+  restored automatically when present. Enable it when the snapshot is not
+  trusted.
 - **No Owner**: Skip `ALTER OWNER` statements, passing `--no-owner` to
   `pg_restore`.
 - **Recreate**: Drop and recreate the target database from the archive metadata,
