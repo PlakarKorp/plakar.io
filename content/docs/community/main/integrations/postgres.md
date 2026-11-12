@@ -268,9 +268,18 @@ fails at startup when they are missing, or on any other platform. When Plakar
 runs in a container, the container needs access to `/dev/fuse`, the `SYS_ADMIN`
 capability, and an AppArmor profile that allows mounts.
 
+> [!NOTE]+ Version requirement
+>
+> With Plakar v1.1.8 and earlier, a `format=directory` backup can hang. Pass
+> `-cache no` to `plakar backup` to avoid it:
+>
+> ```bash
+> $ plakar at /var/backups backup -cache no "@mypg"
+> ```
+
 The `postgres` destination connector cannot restore directory-format snapshots
-yet. To restore one, mount the snapshot with
-[`plakar mount`](../../references/commands/plakar-mount/) and run
+yet. To restore one, restore the snapshot to a local directory, or mount it with
+[`plakar mount`](../../references/commands/plakar-mount/), and run
 `pg_restore -Fd` on the database directory, such as `00001-myapp`. When the
 roles do not exist on the target, apply `00000-globals.sql` with `psql` first.
 

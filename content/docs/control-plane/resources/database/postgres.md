@@ -189,7 +189,8 @@ The directory format only works on Linux edges with `/dev/fuse` and
 [Running the edge in a container](#running-the-edge-in-a-container).
 
 Directory-format snapshots cannot be restored with a PostgreSQL destination app
-yet. To restore one, mount the snapshot with
+yet. To restore one, restore the snapshot with a file-restore destination app,
+or mount it with
 [`plakar mount`](/docs/community/v1.1.0/references/commands/plakar-mount/) on a
 machine with access to the store, and run `pg_restore -Fd` on the database
 directory, such as `00001-myapp`.
