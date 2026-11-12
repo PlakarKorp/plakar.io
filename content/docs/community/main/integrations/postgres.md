@@ -188,6 +188,14 @@ role passwords from `pg_authid`. In that case it automatically passes
 `--no-role-passwords` to `pg_dumpall` and logs a warning. The dump is otherwise
 complete, but restored roles have no password set.
 
+A backup of all databases connects to the `postgres` database to list them, so
+the backup user needs `CONNECT` on it. Some managed services, such as Clever
+Cloud, do not grant it. Back up a single database there.
+
+Database names that start with a dash, or contain `=` or whitespace, are refused
+and the backup or restore fails. To back up the rest of a cluster that contains
+one, list it in `exclude_databases`.
+
 #### Backup flow
 
 <!-- prettier-ignore-start -->

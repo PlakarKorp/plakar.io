@@ -98,6 +98,14 @@ connectable database is dumped individually.
 > administrative user is a restricted superuser, role passwords cannot be read
 > and restored roles will have no password set.
 
+A backup of all databases connects to the `postgres` database to list them, so
+the backup user needs `CONNECT` on it. Some managed services, such as Clever
+Cloud, do not grant it. Back up a single database there.
+
+Database names that start with a dash, or contain `=` or whitespace, are refused
+and the backup or restore fails. To back up the rest of a cluster that contains
+one, list it in **Exclude Databases**.
+
 > [!WARNING]
 >
 > A `\!` meta-command in `00000-globals.sql` runs as a shell command on the edge
