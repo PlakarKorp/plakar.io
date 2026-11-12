@@ -1,9 +1,8 @@
 
 ## Why use SQLite as a Kloset store
 
-Some environments have no room for a storage server. A laptop, an embedded
-device or an isolated machine still needs backups, but running and securing a
-remote backend there adds cost and moving parts.
+A SQLite store is a quick way to try or demonstrate Plakar, with no storage
+backend to set up. It is not recommended for production workloads.
 
 A SQLite Kloset store keeps everything in one database file on local disk:
 

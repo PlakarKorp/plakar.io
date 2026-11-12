@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-09-02T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-12T11:54:18+03:00">
+    <meta property="article:modified_time" content="2026-11-12T17:07:01+01:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -239,12 +239,12 @@
     "dateCreated": "2026-09-02T00:00:00\u002b00:00",
     "datePublished": "2026-09-02T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-12T11:54:18\u002b03:00",
+    "dateModified": "2026-11-12T17:07:01\u002b01:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/resources/database/mysql/",
-    "wordCount":  2007 
+    "wordCount":  2073 
   }]
   </script>
 
@@ -10475,9 +10475,9 @@ pool, so their tasks run on an edge that has the client tools. See
   
 </h2>
 <p><a href="/docs/control-plane/inventories/#managed-inventories" >Managed inventories</a> can discover MySQL
-databases automatically on AWS (RDS instances and clusters), Scaleway (managed
-Database instances), etc. For self-hosted MySQL servers not covered by managed
-discovery, you can instead set up a
+databases automatically on AWS (RDS instances and clusters), Google Cloud (Cloud
+SQL instances), Scaleway (managed Database instances), etc. For self-hosted
+MySQL servers not covered by managed discovery, you can instead set up a
 <a href="/docs/control-plane/inventories/self-managed/" >self-managed inventory</a> and add the resource
 manually.</p>
 
@@ -10524,7 +10524,7 @@ applies the dump to a running MySQL server using the <code>mysql</code> client, 
 reachable server is required for both backup and restore.</p>
 <p>Every snapshot contains a single <code>&lt;dbname&gt;.sql</code> file when one database is
 selected, or a combined <code>all.sql</code> file covering every database when none is
-specified.</p>
+specified. Only a backup of all databases includes user accounts and grants.</p>
 <div class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm" data-type="note">
       <div class="flex items-center gap-2 font-semibold text-inherit">
         <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"/></svg>
@@ -10641,8 +10641,11 @@ destination apps using the <code>mysql</code> protocol.</p>
 <ul>
 <li><strong>Password</strong>: MySQL password. Overrides the password in the location URI.
 Never appears on the command line; passed via <code>MYSQL_PWD</code>.</li>
-<li><strong>Ssl Mode</strong>: SSL/TLS mode for the connection, passed via <code>--ssl-mode</code>. Not
-set by default, letting the server decide.</li>
+<li><strong>Ssl Ca Data</strong>: PEM content of the CA certificate used to verify the server.</li>
+<li><strong>Ssl Cert Data</strong>: PEM content of the client SSL certificate.</li>
+<li><strong>Ssl Key Data</strong>: PEM content of the client SSL private key.</li>
+<li><strong>Ssl Mode</strong>: SSL/TLS mode for the connection, one of <code>disabled</code>, <code>preferred</code>,
+<code>required</code>, <code>verify_ca</code> or <code>verify_identity</code>. Not set by default.</li>
 <li><strong>Username</strong>: MySQL username. Overrides the username in the location URI.</li>
 </ul>
 
@@ -10744,20 +10747,12 @@ restoring an <code>all.sql</code> dump.</li>
   
 </h2>
 <p>The <code>mysql+gcsql</code> protocol targets MySQL databases hosted on Google Cloud SQL.
-Plakar Control Plane connects through the Cloud SQL Auth Proxy, which
-establishes an encrypted tunnel to the Cloud SQL instance and makes the
-connection behave like a normal MySQL server. Backup and restore otherwise work
-exactly like the <code>mysql</code> protocol, using <code>mysqldump</code> and <code>mysql</code>.</p>
-<div class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm" data-type="note">
-      <div class="flex items-center gap-2 font-semibold text-inherit">
-        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"/></svg>
-</span></div>
-        <div class="grow">
-          Note
-        </div>
-      </div><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>The Cloud SQL Auth Proxy must already be running and reachable from the edge
-that runs the task, at the configured host and port. Since the proxy handles
-encryption, there is no separate SSL mode setting for this protocol.</p></div></div>
+The edge that runs the task opens an encrypted tunnel to the Cloud SQL instance
+itself, so no separate Cloud SQL Auth Proxy needs to run. Backup and restore
+otherwise work exactly like the <code>mysql</code> protocol, using <code>mysqldump</code> and <code>mysql</code>.
+Since the tunnel handles encryption, there are no SSL settings for this
+protocol.</p>
+
 
 <h4 id="backup-flow-1" class="group pr-8">Backup flow
     <button
@@ -11065,8 +11060,12 @@ destination apps using the <code>mysql+mariadb</code> protocol.</p>
 <ul>
 <li><strong>Password</strong>: MariaDB password. Overrides the password in the location URI.
 Never appears on the command line; passed via <code>MYSQL_PWD</code>.</li>
-<li><strong>Ssl Mode</strong>: SSL/TLS mode for the connection, passed via <code>--ssl-mode</code>. Not
-set by default, letting the server decide.</li>
+<li><strong>Ssl Ca Data</strong>: PEM content of the CA certificate used to verify the server.</li>
+<li><strong>Ssl Cert Data</strong>: PEM content of the client SSL certificate.</li>
+<li><strong>Ssl Key Data</strong>: PEM content of the client SSL private key.</li>
+<li><strong>Ssl Mode</strong>: SSL/TLS mode for the connection, one of <code>disabled</code>, <code>preferred</code>,
+<code>required</code>, <code>verify_ca</code> or <code>verify_identity</code>. Not set by default, letting the
+server decide.</li>
 <li><strong>Username</strong>: MariaDB username. Overrides the username in the location URI.</li>
 </ul>
 
@@ -11139,8 +11138,9 @@ inferred from the dump filename (e.g. <code>mydb.sql</code> -&gt; <code>mydb</co
 restoring an <code>all.sql</code> dump.</li>
 <li><strong>Force</strong>: Continue the restore after SQL errors, passing <code>--force</code> to
 <code>mariadb</code>. Disabled by default.</li>
-<li><strong>Ssl Mode</strong>: SSL/TLS mode for the connection, passed via <code>--ssl-mode</code>. Not
-set by default, letting the server decide.</li>
+<li><strong>Ssl Mode</strong>: SSL/TLS mode for the connection, one of <code>disabled</code>, <code>preferred</code>,
+<code>required</code>, <code>verify_ca</code> or <code>verify_identity</code>. Not set by default, letting the
+server decide.</li>
 </ul>
 
       </article>

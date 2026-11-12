@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-04-02T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-12T11:54:18+03:00">
+    <meta property="article:modified_time" content="2026-11-12T17:07:01+01:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -244,12 +244,12 @@
     "dateCreated": "2026-04-02T00:00:00\u002b00:00",
     "datePublished": "2026-04-02T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-12T11:54:18\u002b03:00",
+    "dateModified": "2026-11-12T17:07:01\u002b01:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/community/v1.1.0/integrations/etcd/",
-    "wordCount":  438 
+    "wordCount":  588 
   }]
   </script>
 
@@ -4903,7 +4903,7 @@ reaches the etcd node:</p>
   <tbody>
       <tr>
           <td><code>etcd</code></td>
-          <td>HTTP</td>
+          <td>HTTPS</td>
       </tr>
       <tr>
           <td><code>etcd+http</code></td>
@@ -4915,7 +4915,33 @@ reaches the etcd node:</p>
       </tr>
   </tbody>
 </table>
-<p><strong>Requirements</strong></p>
+<p><code>etcd</code> uses HTTP instead when <code>plaintext</code> is set to <code>true</code>.</p>
+<details
+      class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
+      data-type="note"
+      open>
+      <summary class="flex items-center gap-2 font-semibold text-inherit cursor-pointer">
+        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"/></svg>
+</span></div>
+        <div class="grow">
+          Version requirement
+        </div>
+        <div
+          class="ms-auto flex h-5 w-5 items-center justify-center transition-transform ease-in-out -rotate-90 group-open:rotate-0 print:hidden"><span class="relative block icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+</span></div>
+      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Before etcd package v1.1.1, <code>etcd://</code> connected over HTTP. To keep reaching a
+node over HTTP, set <code>plaintext=true</code> or use <code>etcd+http://</code>.</p></div></details><p><strong>Requirements</strong></p>
 <ul>
 <li>Plakar v1.1.0-beta or later.</li>
 <li>Network access to at least one etcd node.</li>
@@ -5158,9 +5184,60 @@ DB --> Via --> Plakar --> Transform --> Store
           <td>No</td>
           <td>etcd password.</td>
       </tr>
+      <tr>
+          <td><code>plaintext</code></td>
+          <td>No</td>
+          <td>Connect over plain HTTP for an <code>etcd://</code> location. The username and password are then sent in clear text. Default <code>false</code>.</td>
+      </tr>
+      <tr>
+          <td><code>tls_insecure_no_verify</code></td>
+          <td>No</td>
+          <td>Disable TLS certificate verification. Anyone on the network path can then impersonate the server. Default <code>false</code>.</td>
+      </tr>
+      <tr>
+          <td><code>ca_file</code></td>
+          <td>No</td>
+          <td>Path to the CA certificate used to verify the server, in PEM format. Defaults to the system roots.</td>
+      </tr>
+      <tr>
+          <td><code>cert_file</code></td>
+          <td>No</td>
+          <td>Path to the client certificate, in PEM format, for servers that require one.</td>
+      </tr>
+      <tr>
+          <td><code>key_file</code></td>
+          <td>No</td>
+          <td>Path to the private key of <code>cert_file</code>, in PEM format.</td>
+      </tr>
   </tbody>
 </table>
-
+<details
+      class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
+      data-type="warning"
+      open>
+      <summary class="flex items-center gap-2 font-semibold text-inherit cursor-pointer">
+        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"/></svg>
+</span></div>
+        <div class="grow">
+          TLS Certificate Verification
+        </div>
+        <div
+          class="ms-auto flex h-5 w-5 items-center justify-center transition-transform ease-in-out -rotate-90 group-open:rotate-0 print:hidden"><span class="relative block icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+</span></div>
+      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Setting <code>tls_insecure_no_verify=true</code> disables TLS certificate verification,
+so anyone on the network path can impersonate the cluster. Only use it in
+controlled environments with self-signed certificates on trusted networks.</p></div></details>
 
 <h3 id="example" class="group pr-8">Example
     <button
@@ -5189,7 +5266,7 @@ DB --> Via --> Plakar --> Transform --> Store
       <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
 </span></span>
     </button>
-  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar backup etcd://node1:2379</span></span></code></pre></div></div>
+  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar backup etcd+http://node1:2379</span></span></code></pre></div></div>
 <p>Back up using HTTPS with authentication:</p>
 <div class="highlight-wrapper codeblock">
   <div class="codeblock-title">
@@ -5202,7 +5279,7 @@ DB --> Via --> Plakar --> Transform --> Store
       <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
 </span></span>
     </button>
-  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar backup -o <span class="nv">username</span><span class="o">=</span>myuser -o <span class="nv">password</span><span class="o">=</span>secret etcd+https://node1:2379</span></span></code></pre></div></div>
+  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar backup -o <span class="nv">username</span><span class="o">=</span>myuser -o <span class="nv">password</span><span class="o">=</span>secret etcd://node1:2379</span></span></code></pre></div></div>
 <p>Back up by specifying multiple nodes:</p>
 <div class="highlight-wrapper codeblock">
   <div class="codeblock-title">

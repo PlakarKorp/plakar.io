@@ -55,9 +55,9 @@ pool, so their tasks run on an edge that has the client tools. See
 ## Inventory Management
 
 [Managed inventories](../../inventories#managed-inventories) can discover MySQL
-databases automatically on AWS (RDS instances and clusters), Scaleway (managed
-Database instances), etc. For self-hosted MySQL servers not covered by managed
-discovery, you can instead set up a
+databases automatically on AWS (RDS instances and clusters), Google Cloud (Cloud
+SQL instances), Scaleway (managed Database instances), etc. For self-hosted
+MySQL servers not covered by managed discovery, you can instead set up a
 [self-managed inventory](../../inventories/self-managed) and add the resource
 manually.
 
@@ -77,7 +77,7 @@ reachable server is required for both backup and restore.
 
 Every snapshot contains a single `<dbname>.sql` file when one database is
 selected, or a combined `all.sql` file covering every database when none is
-specified.
+specified. Only a backup of all databases includes user accounts and grants.
 
 > [!NOTE]
 >
@@ -144,8 +144,11 @@ destination apps using the `mysql` protocol.
 
 - **Password**: MySQL password. Overrides the password in the location URI.
   Never appears on the command line; passed via `MYSQL_PWD`.
-- **Ssl Mode**: SSL/TLS mode for the connection, passed via `--ssl-mode`. Not
-  set by default, letting the server decide.
+- **Ssl Ca Data**: PEM content of the CA certificate used to verify the server.
+- **Ssl Cert Data**: PEM content of the client SSL certificate.
+- **Ssl Key Data**: PEM content of the client SSL private key.
+- **Ssl Mode**: SSL/TLS mode for the connection, one of `disabled`, `preferred`,
+  `required`, `verify_ca` or `verify_identity`. Not set by default.
 - **Username**: MySQL username. Overrides the username in the location URI.
 
 ### Source configuration
@@ -202,16 +205,11 @@ using the `mysql` protocol.
 ## 2. `mysql+gcsql` protocol
 
 The `mysql+gcsql` protocol targets MySQL databases hosted on Google Cloud SQL.
-Plakar Control Plane connects through the Cloud SQL Auth Proxy, which
-establishes an encrypted tunnel to the Cloud SQL instance and makes the
-connection behave like a normal MySQL server. Backup and restore otherwise work
-exactly like the `mysql` protocol, using `mysqldump` and `mysql`.
-
-> [!NOTE]
->
-> The Cloud SQL Auth Proxy must already be running and reachable from the edge
-> that runs the task, at the configured host and port. Since the proxy handles
-> encryption, there is no separate SSL mode setting for this protocol.
+The edge that runs the task opens an encrypted tunnel to the Cloud SQL instance
+itself, so no separate Cloud SQL Auth Proxy needs to run. Backup and restore
+otherwise work exactly like the `mysql` protocol, using `mysqldump` and `mysql`.
+Since the tunnel handles encryption, there are no SSL settings for this
+protocol.
 
 #### Backup flow
 
@@ -387,8 +385,12 @@ destination apps using the `mysql+mariadb` protocol.
 
 - **Password**: MariaDB password. Overrides the password in the location URI.
   Never appears on the command line; passed via `MYSQL_PWD`.
-- **Ssl Mode**: SSL/TLS mode for the connection, passed via `--ssl-mode`. Not
-  set by default, letting the server decide.
+- **Ssl Ca Data**: PEM content of the CA certificate used to verify the server.
+- **Ssl Cert Data**: PEM content of the client SSL certificate.
+- **Ssl Key Data**: PEM content of the client SSL private key.
+- **Ssl Mode**: SSL/TLS mode for the connection, one of `disabled`, `preferred`,
+  `required`, `verify_ca` or `verify_identity`. Not set by default, letting the
+  server decide.
 - **Username**: MariaDB username. Overrides the username in the location URI.
 
 ### Source configuration
@@ -431,6 +433,7 @@ using the `mysql+mariadb` protocol.
   restoring an `all.sql` dump.
 - **Force**: Continue the restore after SQL errors, passing `--force` to
   `mariadb`. Disabled by default.
-- **Ssl Mode**: SSL/TLS mode for the connection, passed via `--ssl-mode`. Not
-  set by default, letting the server decide.
+- **Ssl Mode**: SSL/TLS mode for the connection, one of `disabled`, `preferred`,
+  `required`, `verify_ca` or `verify_identity`. Not set by default, letting the
+  server decide.
 

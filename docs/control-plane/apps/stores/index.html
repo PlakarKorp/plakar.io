@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-05-11T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-12T11:54:18+03:00">
+    <meta property="article:modified_time" content="2026-11-12T17:07:01+01:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -229,12 +229,12 @@
     "dateCreated": "2026-05-11T00:00:00\u002b00:00",
     "datePublished": "2026-05-11T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-12T11:54:18\u002b03:00",
+    "dateModified": "2026-11-12T17:07:01\u002b01:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/apps/stores/",
-    "wordCount":  455 
+    "wordCount":  511 
   }]
   </script>
 
@@ -10437,7 +10437,35 @@ store fails and leaves that store untouched.</p>
 <p>Backups are compressed as they are written to the store, with an algorithm
 chosen at initialization. <code>LZ4</code> is the default. <code>GZIP</code>, <code>ZSTD</code> or <code>SNAPPY</code> can
 be selected in the advanced settings of the initialization dialog.</p>
-<figure><img class="my-0 rounded-md mx-auto max-w-100" loading="lazy" decoding="async" fetchpriority="auto" alt="" width="899" height="672" src="/docs/control-plane/apps/images/kloset-store-initialization_hu_79deaee3d3a8b9f9.webp" srcset="/docs/control-plane/apps/images/kloset-store-initialization_hu_79deaee3d3a8b9f9.webp 400w, /docs/control-plane/apps/images/kloset-store-initialization_hu_4a789cd382e9ecc0.webp 800w, /docs/control-plane/apps/images/kloset-store-initialization_hu_48f61d5102cba599.webp 899w" sizes="(min-width: 768px) 50vw, 65vw" data-zoom-src="/docs/control-plane/apps/images/kloset-store-initialization_hu_48f61d5102cba599.webp" /></figure>
+<details
+      class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
+      data-type="tip"
+      open>
+      <summary class="flex items-center gap-2 font-semibold text-inherit cursor-pointer">
+        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M112.1 454.3c0 6.297 1.816 12.44 5.284 17.69l17.14 25.69c5.25 7.875 17.17 14.28 26.64 14.28h61.67c9.438 0 21.36-6.401 26.61-14.28l17.08-25.68c2.938-4.438 5.348-12.37 5.348-17.7L272 415.1h-160L112.1 454.3zM191.4 .0132C89.44 .3257 16 82.97 16 175.1c0 44.38 16.44 84.84 43.56 115.8c16.53 18.84 42.34 58.23 52.22 91.45c.0313 .25 .0938 .5166 .125 .7823h160.2c.0313-.2656 .0938-.5166 .125-.7823c9.875-33.22 35.69-72.61 52.22-91.45C351.6 260.8 368 220.4 368 175.1C368 78.61 288.9-.2837 191.4 .0132zM192 96.01c-44.13 0-80 35.89-80 79.1C112 184.8 104.8 192 96 192S80 184.8 80 176c0-61.76 50.25-111.1 112-111.1c8.844 0 16 7.159 16 16S200.8 96.01 192 96.01z"/></svg>
+</span></div>
+        <div class="grow">
+          Choosing an algorithm
+        </div>
+        <div
+          class="ms-auto flex h-5 w-5 items-center justify-center transition-transform ease-in-out -rotate-90 group-open:rotate-0 print:hidden"><span class="relative block icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+</span></div>
+      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>The algorithm is a tradeoff between storage space, compression speed and
+decompression speed. <code>LZ4</code> performs well on all three for most data, which is
+why it is the default. <code>SNAPPY</code> can be faster on large, highly compressible
+files. Keep the default unless a test on your own data shows another algorithm
+performs better.</p></div></details><figure><img class="my-0 rounded-md mx-auto max-w-100" loading="lazy" decoding="async" fetchpriority="auto" alt="" width="899" height="672" src="/docs/control-plane/apps/images/kloset-store-initialization_hu_79deaee3d3a8b9f9.webp" srcset="/docs/control-plane/apps/images/kloset-store-initialization_hu_79deaee3d3a8b9f9.webp 400w, /docs/control-plane/apps/images/kloset-store-initialization_hu_4a789cd382e9ecc0.webp 800w, /docs/control-plane/apps/images/kloset-store-initialization_hu_48f61d5102cba599.webp 899w" sizes="(min-width: 768px) 50vw, 65vw" data-zoom-src="/docs/control-plane/apps/images/kloset-store-initialization_hu_48f61d5102cba599.webp" /></figure>
 <p>Once the store is initialized, its dashboard creates the tasks that act on it:</p>
 <ul>
 <li><strong>Check Store</strong>: checks the integrity of the store.</li>

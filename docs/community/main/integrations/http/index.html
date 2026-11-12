@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-05-21T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-12T11:54:18+03:00">
+    <meta property="article:modified_time" content="2026-11-12T17:07:01+01:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -229,12 +229,12 @@
     "dateCreated": "2026-05-21T00:00:00\u002b00:00",
     "datePublished": "2026-05-21T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-12T11:54:18\u002b03:00",
+    "dateModified": "2026-11-12T17:07:01\u002b01:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/community/main/integrations/http/",
-    "wordCount":  341 
+    "wordCount":  423 
   }]
   </script>
 
@@ -4932,8 +4932,15 @@ be given directly on the command line with either prefix, or registered as a
 store alias.</p>
 <p>When the endpoint requires a bearer token, for example a <code>plakar server</code> started
 with <code>-token</code>, configure the store as an alias so the token is stored with it.
-The token is then sent in the <code>Authorization</code> header on every request. Over
-plaintext HTTP, the token is sent only when <code>insecure=true</code> is set.</p>
+The token is then sent in the <code>Authorization</code> header on every request.</p>
+<p>Plakar refuses to open the store when credentials could be read in transit.
+Credentials are the <code>auth_token</code> and a username and password in the location,
+such as <code>https://user:pass@example.com/data</code>. The channel is insecure over
+plaintext HTTP, or over HTTPS with <code>tls_no_verify=true</code>. Set <code>insecure=true</code> to
+send credentials over such a channel anyway.</p>
+<p>Redirects are followed only when they keep the scheme and host of the location.
+A redirect between HTTP and HTTPS is always refused. Set
+<code>allow_cross_host_redirects=true</code> to follow redirects to a different host.</p>
 
 
 <h3 id="store-configuration" class="group pr-8">Store configuration
@@ -4973,7 +4980,7 @@ plaintext HTTP, the token is sent only when <code>insecure=true</code> is set.</
       <tr>
           <td><code>insecure</code></td>
           <td>No</td>
-          <td>Set to <code>true</code> to allow <code>auth_token</code> to be sent over plaintext HTTP.</td>
+          <td>Set to <code>true</code> to allow credentials over plaintext HTTP or with <code>tls_no_verify</code>.</td>
       </tr>
       <tr>
           <td><code>timeout</code></td>
@@ -4984,6 +4991,11 @@ plaintext HTTP, the token is sent only when <code>insecure=true</code> is set.</
           <td><code>tls_no_verify</code></td>
           <td>No</td>
           <td>Set to <code>true</code> to disable TLS certificate verification over HTTPS.</td>
+      </tr>
+      <tr>
+          <td><code>allow_cross_host_redirects</code></td>
+          <td>No</td>
+          <td>Set to <code>true</code> to follow redirects to a different host.</td>
       </tr>
   </tbody>
 </table>

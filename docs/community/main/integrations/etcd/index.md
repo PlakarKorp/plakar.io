@@ -13,9 +13,16 @@ reaches the etcd node:
 
 | Protocol     | Transport |
 | ------------ | --------- |
-| `etcd`       | HTTP      |
+| `etcd`       | HTTPS     |
 | `etcd+http`  | HTTP      |
 | `etcd+https` | HTTPS     |
+
+`etcd` uses HTTP instead when `plaintext` is set to `true`.
+
+> [!NOTE]+ Version requirement
+>
+> Before etcd package v1.1.1, `etcd://` connected over HTTP. To keep reaching a
+> node over HTTP, set `plaintext=true` or use `etcd+http://`.
 
 **Requirements**
 
@@ -122,25 +129,36 @@ DB --> Via --> Plakar --> Transform --> Store
 
 ### Source configuration
 
-| Option      | Required | Description                                                                                                      |
-| ----------- | -------- | ---------------------------------------------------------------------------------------------------------------- |
-| `location`  | Yes      | etcd node address. Use `etcd://`, `etcd+http://`, or `etcd+https://` followed by the hostname and optional port. |
-| `endpoints` | No       | Comma-separated list of node endpoints. Takes priority over `location` when set.                                 |
-| `username`  | No       | etcd username.                                                                                                   |
-| `password`  | No       | etcd password.                                                                                                   |
+| Option                   | Required | Description                                                                                                                |
+| ------------------------ | -------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `location`               | Yes      | etcd node address. Use `etcd://`, `etcd+http://`, or `etcd+https://` followed by the hostname and optional port.           |
+| `endpoints`              | No       | Comma-separated list of node endpoints. Takes priority over `location` when set.                                           |
+| `username`               | No       | etcd username.                                                                                                             |
+| `password`               | No       | etcd password.                                                                                                             |
+| `plaintext`              | No       | Connect over plain HTTP for an `etcd://` location. The username and password are then sent in clear text. Default `false`. |
+| `tls_insecure_no_verify` | No       | Disable TLS certificate verification. Anyone on the network path can then impersonate the server. Default `false`.         |
+| `ca_file`                | No       | Path to the CA certificate used to verify the server, in PEM format. Defaults to the system roots.                         |
+| `cert_file`              | No       | Path to the client certificate, in PEM format, for servers that require one.                                               |
+| `key_file`               | No       | Path to the private key of `cert_file`, in PEM format.                                                                     |
+
+> [!WARNING]+ TLS Certificate Verification
+>
+> Setting `tls_insecure_no_verify=true` disables TLS certificate verification,
+> so anyone on the network path can impersonate the cluster. Only use it in
+> controlled environments with self-signed certificates on trusted networks.
 
 ### Example
 
 Back up by connecting to a node over HTTP:
 
 ```bash
-$ plakar backup etcd://node1:2379
+$ plakar backup etcd+http://node1:2379
 ```
 
 Back up using HTTPS with authentication:
 
 ```bash
-$ plakar backup -o username=myuser -o password=secret etcd+https://node1:2379
+$ plakar backup -o username=myuser -o password=secret etcd://node1:2379
 ```
 
 Back up by specifying multiple nodes:

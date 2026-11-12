@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-03-19T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-12T11:54:18+03:00">
+    <meta property="article:modified_time" content="2026-11-12T17:07:01+01:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -229,12 +229,12 @@
     "dateCreated": "2026-03-19T00:00:00\u002b00:00",
     "datePublished": "2026-03-19T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-12T11:54:18\u002b03:00",
+    "dateModified": "2026-11-12T17:07:01\u002b01:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/community/main/references/command-line-syntax/",
-    "wordCount":  471 
+    "wordCount":  478 
   }]
   </script>
 
@@ -4981,14 +4981,6 @@ that come after the command are command-specific and are documented in each
           <td>Limit the number of usable CPU cores (default: CPU count)</td>
       </tr>
       <tr>
-          <td><code>-disable-security-check</code></td>
-          <td>Disable update check</td>
-      </tr>
-      <tr>
-          <td><code>-enable-security-check</code></td>
-          <td>Enable update check</td>
-      </tr>
-      <tr>
           <td><code>-json</code></td>
           <td>Use newline-delimited JSON output for supported subcommands</td>
       </tr>
@@ -5127,6 +5119,10 @@ commands.</p>
       </tr>
   </thead>
   <tbody>
+      <tr>
+          <td><code>DISABLE_SECURITY_CHECK</code></td>
+          <td>If set, Plakar does not check the releases feed for security and reliability updates</td>
+      </tr>
       <tr>
           <td><code>PLAKAR_PASSPHRASE</code></td>
           <td>Supply the encryption passphrase non-interactively, useful in scripts, CI pipelines, or other non-interactive contexts</td>

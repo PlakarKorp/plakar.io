@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-10-26T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-12T11:54:18+03:00">
+    <meta property="article:modified_time" content="2026-11-12T17:07:01+01:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -154,6 +154,16 @@
   
   
 
+  
+  
+  
+  
+  <script
+    defer
+    type="text/javascript"
+    src="/js/mermaid.bundle.ceb61d1b03724873f4afba209d5f9a6d9db9f2aa8bea1de39196f6ebe8b4f076c85e46f12ab9ec8bfc33bb7c2b063894c8f91e6199f07a1cac975892cd77823b.js"
+    integrity="sha512-zrYdGwNySHP0r7ognV&#43;abZ258qqL6h3jkZb26&#43;i08HbIXkbxKrnsi/wzu3wrBjiUyPkeYZnwehysl1iSzXeCOw=="></script>
+
 
 
 
@@ -229,12 +239,12 @@
     "dateCreated": "2026-10-26T00:00:00\u002b00:00",
     "datePublished": "2026-10-26T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-12T11:54:18\u002b03:00",
+    "dateModified": "2026-11-12T17:07:01\u002b01:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/appliance/sizing/",
-    "wordCount":  534 
+    "wordCount":  608 
   }]
   </script>
 
@@ -10381,6 +10391,27 @@ of the appliance.</li>
 <p>Backups are not stored on either disk. Restore points are written to
 <a href="/docs/control-plane/apps/stores/" >stores</a>, such as an S3 bucket or an SFTP server, which are
 sized separately according to the volume of data to protect and its retention.</p>
+<!-- prettier-ignore-start -->
+<pre class="not-prose mermaid">
+flowchart LR
+
+subgraph Appliance["Plakar Control Plane appliance"]
+  direction TB
+  Containers["Plakar Control Plane<br/>containers"]
+  OS["LinuxKit base OS"]
+  Containers ~~~ OS
+end
+
+DataDisk[("Data disk<br/>database, logs, state")]
+Stores[("Stores<br/>S3, SFTP, ...")]
+SystemDisk[("System disk<br/>appliance image, ~10 GB")]
+
+Containers --> DataDisk
+Containers -->|"restore points"| Stores
+OS --> SystemDisk
+</pre>
+
+<!-- prettier-ignore-end -->
 
 
 <h2 id="what-uses-the-resources" class="group pr-8">What uses the resources
@@ -10410,6 +10441,28 @@ that run at the same time.</p>
 appliance no longer does, so edges are how a deployment grows beyond what a
 single appliance can handle, without resizing it. An edge is sized for the tasks
 it runs, and is not covered by the tiers below.</p>
+<!-- prettier-ignore-start -->
+<pre class="not-prose mermaid">
+flowchart TD
+
+subgraph Appliance["Plakar Control Plane appliance"]
+  PCP["Control Plane<br/>UI, API, database,<br/>schedulers, inventories"]
+  Tasks["Tasks<br/>backups, restores,<br/>syncs, checks"]
+end
+
+subgraph Edges["Edges"]
+  EdgeTasks["Tasks"]
+end
+
+Stores[("Stores")]
+
+PCP -->|"schedules"| Tasks
+PCP -->|"schedules"| EdgeTasks
+Tasks --> Stores
+EdgeTasks --> Stores
+</pre>
+
+<!-- prettier-ignore-end -->
 
 
 <h2 id="sizing-tiers" class="group pr-8">Sizing tiers

@@ -39,7 +39,7 @@ its own set of binaries, regardless of the server at the other end.
   portability.
 - Full-cluster dumps including stored procedures, events, and triggers.
 - MariaDB-specific backups that require `mariadb-dump` semantics.
-- Cloud SQL backups through the Cloud SQL Auth Proxy.
+- Backups of MySQL instances on Google Cloud SQL.
 
 ## Installation
 
@@ -170,6 +170,7 @@ backup.
 | `mysqldump_version` | `mysqldump` version string (or `mariadump_version` for MariaDB).                                                                     |
 | `server_config`     | Key server settings: `datadir`, `hostname`, `character_set_server`, `collation_server`, `max_connections`, `gtid_mode`.              |
 | `databases`         | One entry per database: name, character set, collation, tables (with engine, row estimate, columns), routines, triggers, and events. |
+| `users`             | User accounts on the server. Only in full-server backups.                                                                            |
 | `options`           | The effective dump options used for this backup.                                                                                     |
 
 Metadata collection is best-effort. If a query fails, the affected field is
@@ -241,8 +242,11 @@ The following options apply to both source and destination connectors using the
 | `mysql_bin_dir` | No       | Directory containing `mysqldump` (source) or the `mysql` binary (destination). When omitted, resolved via `$PATH`. |
 | `ssl_mode`      | No       | TLS mode: `disabled`, `preferred`, `required`, `verify_ca`, `verify_identity`.                                     |
 | `ssl_cert`      | No       | Path to the client SSL certificate (PEM).                                                                          |
+| `ssl_cert_data` | No       | Inline PEM content of the client SSL certificate. Mutually exclusive with `ssl_cert`.                              |
 | `ssl_key`       | No       | Path to the client SSL private key (PEM).                                                                          |
+| `ssl_key_data`  | No       | Inline PEM content of the client SSL private key. Mutually exclusive with `ssl_key`.                               |
 | `ssl_ca`        | No       | Path to the CA certificate (PEM).                                                                                  |
+| `ssl_ca_data`   | No       | Inline PEM content of the CA certificate. Mutually exclusive with `ssl_ca`.                                        |
 
 ### Source configuration
 
@@ -349,23 +353,23 @@ $ plakar at /var/backups restore -to "@mydbdst" <snapshot_id>
 ## 3. `mysql+gcsql` protocol
 
 The `mysql+gcsql` protocol targets MySQL databases hosted on Google Cloud SQL.
-It uses the
-[Cloud SQL Auth Proxy](https://cloud.google.com/sql/docs/mysql/sql-proxy) to
-establish an encrypted connection, so the connection behaves like a connection
-to a local MySQL server.
-
-The Cloud SQL Auth Proxy must be running and accessible on the configured host
-and port before Plakar connects.
+Plakar opens an encrypted connection to the instance itself, through the
+[Cloud SQL Go connector](https://github.com/GoogleCloudPlatform/cloud-sql-go-connector),
+so no separate Cloud SQL Auth Proxy needs to run. It authenticates to Google
+Cloud with Application Default Credentials.
 
 ### Configuration
 
-The connector supports the same source and destination options as `mysql://`.
+The connector supports the same source and destination options as `mysql://`,
+except `port` and the `ssl_*` options. The `host` option is required and holds
+the instance connection name, in the form `project:region:instance`. It has no
+default.
 
 ### Example
 
 ```bash
-# Assuming the proxy is running on localhost:3306
-$ plakar source add mygcs mysql+gcsql://dbuser:secret@127.0.0.1:3306/mydb
+$ plakar source add mygcs mysql+gcsql://dbuser:secret@localhost/mydb \
+  host=my-project:europe-west1:my-instance
 $ plakar at /var/backups backup "@mygcs"
 ```
 
