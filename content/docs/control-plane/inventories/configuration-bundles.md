@@ -95,9 +95,9 @@ cannot. Their fields are only applied to store apps set up by hand.
 
 With **Auto-create connectors** enabled, Plakar Control Plane creates an app for
 every resource in the scope of the bundle, using the configuration of the
-bundle. Apps are only created when the
-bundle supplies every field the integration requires. A bundle that leaves a
-required field empty creates no apps, and each app has to be set up by hand.
+bundle. Apps are only created when the bundle supplies every field the
+integration requires. A bundle that leaves a required field empty creates no
+apps, and each app has to be set up by hand.
 
 Auto-creation suits inventories whose resources share the same credentials,
 where a single bundle can hold the complete configuration. Scope such a bundle
