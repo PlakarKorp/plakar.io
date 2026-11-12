@@ -51,7 +51,9 @@ $ plakar at /var/backups backup @mypg
 
 ## Back up all databases
 
-Omit the database name to back up the entire cluster with `pg_dumpall`:
+Omit the database name to back up every database in the cluster, along with its
+roles and tablespaces. The backup user needs `CONNECT` on the `postgres`
+database:
 
 ```bash
 $ plakar source add mypg postgres://postgres:secret@db.example.com/
@@ -82,6 +84,10 @@ $ plakar at /var/backups restore -to @mypgdst <snapshot_id>
 ```
 
 ## Restore all databases
+
+This also restores the roles and tablespaces from the snapshot. Only restore
+snapshots you trust. See the
+[`postgres` protocol](../../integrations/postgres/#1-postgres-protocol) for why.
 
 ```bash
 $ plakar destination add mypgdst postgres://postgres:secret@db.example.com/

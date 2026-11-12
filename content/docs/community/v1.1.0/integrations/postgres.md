@@ -38,6 +38,8 @@ requirements:
   - `pg_restore`, `psql`: for restore and connectivity checks
 - For `postgres+bin://`, `pg_basebackup` in `$PATH` (same `postgresql-client`
   package, or `postgresql` on macOS via Homebrew).
+- For the [directory dump format](#dump-formats), Linux with `/dev/fuse` and
+  `fusermount3` (Debian package `fuse3`).
 - Database-side requirements are listed under each protocol.
 
 **Typical use cases**
@@ -147,7 +149,9 @@ Every snapshot follows the same layout:
 - `/00000-globals.sql`: roles and tablespaces for the whole cluster
   (`pg_dumpall --globals-only`).
 - `/00001-<dbname>.dump`, `/00002-<dbname>.dump`, …: one `pg_dump -Fc`
-  custom-format file per database, numbered alphabetically.
+  custom-format file per database, numbered alphabetically. With
+  `format=directory`, each database is a `/00001-<dbname>/` directory instead.
+  See [Dump formats](#dump-formats).
 
 When a **single database** is specified, only that database is dumped alongside
 the globals file. When **no database** is specified, every database with
@@ -242,6 +246,51 @@ Connector --> DB
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
+### Dump formats
+
+The `format` option selects how each database is dumped. Both formats apply to
+the `postgres` and `postgres+aws` protocols.
+
+The default, `custom`, dumps each database with a single `pg_dump -Fc` process
+into one `.dump` file.
+
+`format=directory` dumps each database with `pg_dump -Fd`, which writes one file
+per table and dumps several tables in parallel. On large databases this
+shortens backups considerably. Each file is streamed into the snapshot as it is
+written, so the dump uses no local disk. `parallel_dumps` sets the number of
+parallel jobs per database. Each job is a separate connection running a `COPY`
+on the server. It defaults to 4, or to Plakar's concurrency when that is lower.
+A single table is always dumped by one job, so the largest table bounds how fast
+a database can be dumped.
+
+The directory format needs Linux with `/dev/fuse` and `fusermount3`. The backup
+fails at startup when they are missing, or on any other platform. When Plakar
+runs in a container, the container needs access to `/dev/fuse`, the
+`SYS_ADMIN` capability, and an AppArmor profile that allows mounts.
+
+The `postgres` destination connector does not restore directory-format
+snapshots yet. A restore fails on the first file of a database directory. To
+restore one, mount the snapshot with
+[`plakar mount`](../../references/commands/plakar-mount/) and run
+`pg_restore -Fd` on the database directory, such as `00001-myapp`. When the
+roles do not exist on the target, apply `00000-globals.sql` with `psql` first.
+
+### Excluding tables
+
+`exclude_tables` and `exclude_table_data` leave large tables out of a logical
+backup. Both take a comma-separated list of `pg_dump` table patterns and apply
+them to every database dumped:
+
+- `exclude_tables` leaves out the table entirely, definition and rows
+  (`pg_dump --exclude-table`).
+- `exclude_table_data` keeps the definition and leaves out the rows, so the
+  table is restored empty (`pg_dump --exclude-table-data`).
+
+A pattern without a schema only matches tables on the `search_path`. Use
+`*.audit_log` to match a table in every schema. Excluding a partitioned table
+does not exclude its partitions, which must be listed too. Both lists are
+recorded in the [snapshot manifest](#snapshot-manifest).
+
 ### Shared configuration
 
 The following options apply to both source and destination connectors using the
@@ -272,6 +321,10 @@ The following extra options are available to source connectors using the
 | ------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `database`          | No       | Database to back up. If omitted, all connectable databases are backed up. Overrides the URI path.                                                                                       |
 | `exclude_databases` | No       | Comma-separated list of database names to skip during a full backup. Has no effect when a single database is selected.                                                                  |
+| `exclude_tables`     | No       | Comma-separated `pg_dump --exclude-table` patterns. Matching tables are left out, definition and rows. See [Excluding tables](#excluding-tables).                                     |
+| `exclude_table_data` | No       | Comma-separated `pg_dump --exclude-table-data` patterns. Matching tables are restored empty. See [Excluding tables](#excluding-tables).                                               |
+| `format`            | No       | Dump format: `custom` or `directory`. Defaults to `custom`. See [Dump formats](#dump-formats).                                                                                          |
+| `parallel_dumps`    | No       | Number of parallel `pg_dump` jobs per database. Requires `format=directory`. Defaults to 4, or to Plakar's concurrency when lower.                                                       |
 | `compress`          | No       | Enable `pg_dump` compression. Defaults to `false`, so Plakar's own compression and deduplication can operate on uncompressed data. See [Limitations and scope](#limitations-and-scope). |
 | `schema_only`       | No       | Dump only the schema (no data). Mutually exclusive with `data_only`. Defaults to `false`.                                                                                               |
 | `data_only`         | No       | Dump only the data (no schema). Mutually exclusive with `schema_only`. Defaults to `false`.                                                                                             |
@@ -304,6 +357,11 @@ $ plakar at /var/backups backup "@mypg"
 
 # Back up all databases (roles, tablespaces, and data)
 $ plakar source add mypg postgres://postgres:secret@db.example.com/
+$ plakar at /var/backups backup "@mypg"
+
+# Dump each database with 8 parallel jobs, keeping audit_log empty
+$ plakar source add mypg postgres://postgres:secret@db.example.com/myapp \
+  format=directory parallel_dumps=8 exclude_table_data=public.audit_log
 $ plakar at /var/backups backup "@mypg"
 ```
 
@@ -513,6 +571,10 @@ The following extra options are available to source connectors using the
 | ------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `database`          | No       | Database to back up. If omitted, all connectable databases are backed up. Overrides the URI path.                                                           |
 | `exclude_databases` | No       | Comma-separated list of database names to skip. Defaults to `rdsadmin` (an internal AWS system database). Set to an empty string to disable all exclusions. |
+| `exclude_tables`     | No       | Comma-separated `pg_dump --exclude-table` patterns. Matching tables are left out, definition and rows. See [Excluding tables](#excluding-tables).          |
+| `exclude_table_data` | No       | Comma-separated `pg_dump --exclude-table-data` patterns. Matching tables are restored empty. See [Excluding tables](#excluding-tables).                    |
+| `format`            | No       | Dump format: `custom` or `directory`. Defaults to `custom`. See [Dump formats](#dump-formats).                                                               |
+| `parallel_dumps`    | No       | Number of parallel `pg_dump` jobs per database. Requires `format=directory`. Defaults to 4, or to Plakar's concurrency when lower.                            |
 | `compress`          | No       | Enable `pg_dump` compression. Defaults to `false`, so Plakar's own compression and deduplication can operate on uncompressed data.                          |
 | `schema_only`       | No       | Dump only the schema (no data). Mutually exclusive with `data_only`. Defaults to `false`.                                                                   |
 | `data_only`         | No       | Dump only the data (no schema). Mutually exclusive with `schema_only`. Defaults to `false`.                                                                 |
