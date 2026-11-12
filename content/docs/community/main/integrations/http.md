@@ -37,18 +37,28 @@ store alias.
 
 When the endpoint requires a bearer token, for example a `plakar server` started
 with `-token`, configure the store as an alias so the token is stored with it.
-The token is then sent in the `Authorization` header on every request. Over
-plaintext HTTP, the token is sent only when `insecure=true` is set.
+The token is then sent in the `Authorization` header on every request.
+
+Plakar refuses to open the store when credentials could be read in transit.
+Credentials are the `auth_token` and a username and password in the location,
+such as `https://user:pass@example.com/data`. The channel is insecure over
+plaintext HTTP, or over HTTPS with `tls_no_verify=true`. Set `insecure=true` to
+send credentials over such a channel anyway.
+
+Redirects are followed only when they keep the scheme and host of the location.
+A redirect between HTTP and HTTPS is always refused. Set
+`allow_cross_host_redirects=true` to follow redirects to a different host.
 
 ### Store configuration
 
-| Option          | Required | Description                                                               |
-| --------------- | -------- | ------------------------------------------------------------------------- |
-| `location`      | Yes      | URL of the HTTP or HTTPS endpoint, for example `http://example.com/data`. |
-| `auth_token`    | No       | Bearer token sent in the `Authorization` header on every request.         |
-| `insecure`      | No       | Set to `true` to allow `auth_token` to be sent over plaintext HTTP.       |
-| `timeout`       | No       | Per-request timeout. Defaults to `5m`.                                    |
-| `tls_no_verify` | No       | Set to `true` to disable TLS certificate verification over HTTPS.         |
+| Option                       | Required | Description                                                                     |
+| ---------------------------- | -------- | ------------------------------------------------------------------------------- |
+| `location`                   | Yes      | URL of the HTTP or HTTPS endpoint, for example `http://example.com/data`.       |
+| `auth_token`                 | No       | Bearer token sent in the `Authorization` header on every request.               |
+| `insecure`                   | No       | Set to `true` to allow credentials over plaintext HTTP or with `tls_no_verify`. |
+| `timeout`                    | No       | Per-request timeout. Defaults to `5m`.                                          |
+| `tls_no_verify`              | No       | Set to `true` to disable TLS certificate verification over HTTPS.               |
+| `allow_cross_host_redirects` | No       | Set to `true` to follow redirects to a different host.                          |
 
 ### Example
 
