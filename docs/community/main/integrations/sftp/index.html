@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-03-19T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-12T17:09:08+01:00">
+    <meta property="article:modified_time" content="2026-11-12T17:14:37+01:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -244,12 +244,12 @@
     "dateCreated": "2026-03-19T00:00:00\u002b00:00",
     "datePublished": "2026-03-19T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-12T17:09:08\u002b01:00",
+    "dateModified": "2026-11-12T17:14:37\u002b01:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/community/main/integrations/sftp/",
-    "wordCount":  1481 
+    "wordCount":  1543 
   }]
   </script>
 
@@ -5536,6 +5536,11 @@ directory. Relative targets are resolved from the link&rsquo;s location, and abs
 targets are compared as paths on the server. A link whose target falls outside
 the destination, such as <code>../../etc/passwd</code> or <code>/usr/bin/python3</code> restored under
 <code>/srv/restore</code>, is reported as failed and is not created.</p>
+<p>The SFTP server follows symbolic links in every path it receives, so Plakar
+writes an entry only when its parent is the destination directory, a directory
+created by the same restore, or an existing directory that is not a symbolic
+link. Other entries are reported as failed. For example, if <code>/srv/restore/logs</code>
+is a symbolic link to <code>/var/log</code>, every entry below <code>logs</code> fails.</p>
 
 
 <h3 id="store-configuration" class="group pr-8">Store configuration

@@ -170,6 +170,13 @@ target falls outside the root path, such as `../../etc/passwd` or
 `/usr/bin/python3` restored under `/srv/restore`, is reported as failed and is
 not created.
 
+The SFTP server follows symbolic links in every path it receives, so Plakar
+writes an entry only when its parent is the root path, a directory created by
+the same restore, or an existing directory on the remote machine that is not a
+symbolic link. Other entries are reported as failed. For example, if
+`/srv/restore/logs` is a symbolic link to `/var/log`, every entry below `logs`
+fails.
+
 ## Permissions
 
 The SSH user configured for PCP must have read access to the paths being backed

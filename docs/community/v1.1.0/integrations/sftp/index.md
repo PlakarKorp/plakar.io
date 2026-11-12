@@ -280,6 +280,21 @@ targets are compared as paths on the server. A link whose target falls outside
 the destination, such as `../../etc/passwd` or `/usr/bin/python3` restored under
 `/srv/restore`, is reported as failed and is not created.
 
+The SFTP server follows symbolic links in every path it receives, so Plakar
+writes an entry only when its parent is the destination directory, a directory
+created by the same restore, or an existing directory that is not a symbolic
+link. Other entries are reported as failed. For example, if `/srv/restore/logs`
+is a symbolic link to `/var/log`, every entry below `logs` fails.
+
+### Store configuration
+
+The following option is available to the store connector, in addition to those
+in [Shared configuration](#shared-configuration).
+
+| Option       | Required | Description                                                        |
+| ------------ | -------- | ------------------------------------------------------------------ |
+| `passphrase` | No       | Passphrase of the Kloset store. If not set, Plakar prompts for it. |
+
 ### Store requirements
 
 Writing to a Kloset store requires the server to support the
