@@ -33,6 +33,27 @@ Backups are not stored on either disk. Restore points are written to
 [stores](../apps/stores), such as an S3 bucket or an SFTP server, which are
 sized separately according to the volume of data to protect and its retention.
 
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+flowchart LR
+
+subgraph Appliance["Plakar Control Plane appliance"]
+  direction TB
+  Containers["Plakar Control Plane<br/>containers"]
+  OS["LinuxKit base OS"]
+  Containers ~~~ OS
+end
+
+DataDisk[("Data disk<br/>database, logs, state")]
+Stores[("Stores<br/>S3, SFTP, ...")]
+SystemDisk[("System disk<br/>appliance image, ~10 GB")]
+
+Containers --> DataDisk
+Containers -->|"restore points"| Stores
+OS --> SystemDisk
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
+
 ## What uses the resources
 
 The appliance runs two kinds of work. It always runs Plakar Control Plane
@@ -49,6 +70,28 @@ Tasks can run on [edges](../edges) instead. Every task an edge runs is work the
 appliance no longer does, so edges are how a deployment grows beyond what a
 single appliance can handle, without resizing it. An edge is sized for the tasks
 it runs, and is not covered by the tiers below.
+
+<!-- prettier-ignore-start -->
+{{< mermaid >}}
+flowchart TD
+
+subgraph Appliance["Plakar Control Plane appliance"]
+  PCP["Control Plane<br/>UI, API, database,<br/>schedulers, inventories"]
+  Tasks["Tasks<br/>backups, restores,<br/>syncs, checks"]
+end
+
+subgraph Edges["Edges"]
+  EdgeTasks["Tasks"]
+end
+
+Stores[("Stores")]
+
+PCP -->|"schedules"| Tasks
+PCP -->|"schedules"| EdgeTasks
+Tasks --> Stores
+EdgeTasks --> Stores
+{{< /mermaid >}}
+<!-- prettier-ignore-end -->
 
 ## Sizing tiers
 
