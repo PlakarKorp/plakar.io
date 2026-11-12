@@ -219,6 +219,7 @@ required to use each one as a source, store, or destination.
 ## [Identity](https://www.plakar.io/docs/control-plane/resources/identity/index.md)
 
 - [Microsoft Active Directory](https://www.plakar.io/docs/control-plane/resources/identity/msad/index.md): How to configure a Microsoft Active Directory resource in Plakar Control Plane.
+- [LDAP](https://www.plakar.io/docs/control-plane/resources/identity/ldap/index.md): How to configure an LDAP directory resource in Plakar Control Plane.
 
 
 ## [Object Storage](https://www.plakar.io/docs/control-plane/resources/object-storage/index.md)

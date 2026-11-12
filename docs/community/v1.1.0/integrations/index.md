@@ -154,4 +154,8 @@ Below is a list of links to the documentation for each supported integration.
 
 
 
+## [LDAP](https://www.plakar.io/docs/community/v1.1.0/integrations/ldap/index.md)
+
+
+
 

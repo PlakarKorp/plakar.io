@@ -4,6 +4,10 @@
 
 
 
+## [LDAP](https://www.plakar.io/integrations/ldap/index.md)
+
+
+
 ## [SQLite](https://www.plakar.io/integrations/sqlite/index.md)
 
 
