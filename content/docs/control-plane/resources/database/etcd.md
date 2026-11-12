@@ -33,8 +33,9 @@ resources on a self-managed inventory.
 
 ## 1. `etcd` protocol
 
-The `etcd` protocol connects to the cluster over plain HTTP. It is the default
-form and behaves the same as `etcd+http`.
+The `etcd` protocol connects to the cluster over TLS. It is the default form and
+behaves the same as `etcd+https`. Enable **Plaintext** to connect over plain
+HTTP instead.
 
 #### Backup flow
 
@@ -56,7 +57,7 @@ flowchart TD
 
   Store["Kloset Store"]
 
-  Source -->|"snapshot request over HTTP"| Node
+  Source -->|"snapshot request over TLS"| Node
   Node -->|"dump"| Backup
   Backup --> Store
 {{< /mermaid >}}
@@ -71,7 +72,17 @@ The following settings are available when configuring a source app using the
   priority over the endpoint registered on the resource, which lets a backup
   reach several nodes of the same cluster rather than depending on a single one.
 - **Password**: The password used to authenticate with the cluster.
+- **Plaintext**: Connects over plain HTTP instead of TLS. The username and
+  password are then sent in clear text. Disabled by default.
+- **TLS Insecure No Verify**: Disables TLS certificate verification. Disabled by
+  default.
 - **Username**: The username used to authenticate with the cluster.
+
+> [!WARNING]+ TLS Certificate Verification
+>
+> Enabling **TLS Insecure No Verify** disables TLS certificate verification, so
+> anyone on the network path can impersonate the cluster. Only use it in
+> controlled environments with self-signed certificates on trusted networks.
 
 ## 2. `etcd+http` protocol
 
@@ -156,7 +167,15 @@ The following settings are available when configuring a source app using the
   priority over the endpoint registered on the resource, which lets a backup
   reach several nodes of the same cluster rather than depending on a single one.
 - **Password**: The password used to authenticate with the cluster.
+- **TLS Insecure No Verify**: Disables TLS certificate verification. Disabled by
+  default.
 - **Username**: The username used to authenticate with the cluster.
+
+> [!WARNING]+ TLS Certificate Verification
+>
+> Enabling **TLS Insecure No Verify** disables TLS certificate verification, so
+> anyone on the network path can impersonate the cluster. Only use it in
+> controlled environments with self-signed certificates on trusted networks.
 
 ## Recovering a cluster
 
