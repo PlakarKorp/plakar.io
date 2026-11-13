@@ -33,24 +33,22 @@ Global options appear before the `at` clause and apply to every command. Options
 that come after the command are command-specific and are documented in each
 [command reference page](../commands).
 
-| Option                    | Description                                                                             |
-| ------------------------- | --------------------------------------------------------------------------------------- |
-| `-concurrency int`        | Maximum number of parallel tasks (default: CPU count)                                   |
-| `-configdir dir`          | Alternate configuration directory (default: `~/.config/plakar`)                         |
-| `-cachedir dir`           | Alternate cache directory (default: `~/.cache/plakar`)                                  |
-| `-datadir dir`            | Alternate data directory (default: `~/.local/share/plakar`)                             |
-| `-cpu int`                | Limit the number of usable CPU cores (default: CPU count)                               |
-| `-disable-security-check` | Disable update check                                                                    |
-| `-enable-security-check`  | Enable update check                                                                     |
-| `-json`                   | Use newline-delimited JSON output for supported subcommands                             |
-| `-keyfile path`           | Read passphrase from file at path (overrides `PLAKAR_PASSPHRASE`)                       |
-| `-profile-cpu string`     | Profile CPU usage                                                                       |
-| `-profile-mem string`     | Profile memory usage                                                                    |
-| `-quiet`                  | Suppress all output except errors                                                       |
-| `-silent`                 | Suppress all output                                                                     |
-| `-stdio`                  | Use plain text line output instead of ncurses (default when stdout is not a terminal)   |
-| `-time`                   | Report command execution time                                                           |
-| `-trace string`           | Display trace logs; comma-separated: `all`, `trace`, `repository`, `snapshot`, `server` |
+| Option                | Description                                                                             |
+| --------------------- | --------------------------------------------------------------------------------------- |
+| `-concurrency int`    | Maximum number of parallel tasks (default: CPU count)                                   |
+| `-configdir dir`      | Alternate configuration directory (default: `~/.config/plakar`)                         |
+| `-cachedir dir`       | Alternate cache directory (default: `~/.cache/plakar`)                                  |
+| `-datadir dir`        | Alternate data directory (default: `~/.local/share/plakar`)                             |
+| `-cpu int`            | Limit the number of usable CPU cores (default: CPU count)                               |
+| `-json`               | Use newline-delimited JSON output for supported subcommands                             |
+| `-keyfile path`       | Read passphrase from file at path (overrides `PLAKAR_PASSPHRASE`)                       |
+| `-profile-cpu string` | Profile CPU usage                                                                       |
+| `-profile-mem string` | Profile memory usage                                                                    |
+| `-quiet`              | Suppress all output except errors                                                       |
+| `-silent`             | Suppress all output                                                                     |
+| `-stdio`              | Use plain text line output instead of ncurses (default when stdout is not a terminal)   |
+| `-time`               | Report command execution time                                                           |
+| `-trace string`       | Display trace logs; comma-separated: `all`, `trace`, `repository`, `snapshot`, `server` |
 
 ## Option order matters
 
@@ -88,9 +86,10 @@ commands.
 
 ## Environment variables
 
-| Variable            | Description                                                                                                                         |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| `PLAKAR_PASSPHRASE` | Supply the encryption passphrase non-interactively, useful in scripts, CI pipelines, or other non-interactive contexts              |
-| `PLAKAR_REPOSITORY` | Set the default repository path, avoiding the need to specify `at REPOSITORY` on every command (falls back to `~/.plakar` if unset) |
-| `PLAKAR_TOKEN`      | Token to authenticate for Plakar services (e.g. for non interactive login)                                                          |
+| Variable                 | Description                                                                                                                         |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `DISABLE_SECURITY_CHECK` | If set, Plakar does not check the releases feed for security and reliability updates                                                |
+| `PLAKAR_PASSPHRASE`      | Supply the encryption passphrase non-interactively, useful in scripts, CI pipelines, or other non-interactive contexts              |
+| `PLAKAR_REPOSITORY`      | Set the default repository path, avoiding the need to specify `at REPOSITORY` on every command (falls back to `~/.plakar` if unset) |
+| `PLAKAR_TOKEN`           | Token to authenticate for Plakar services (e.g. for non interactive login)                                                          |
 

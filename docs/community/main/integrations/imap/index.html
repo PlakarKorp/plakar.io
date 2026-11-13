@@ -74,7 +74,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-09-02T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-10T15:43:37+01:00">
+    <meta property="article:modified_time" content="2026-11-13T13:15:00+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -128,8 +128,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.e142446be20741e95609c29f4e6492b8f83328f3a4d006f1d92e4959cc0366fb157ec983236a34c56c39c9bc6acce96294064cf571236451e79a539930be2c33.css"
-    integrity="sha512-4UJEa&#43;IHQelWCcKfTmSSuPgzKPOk0Abx2S5JWcwDZvsVfsmDI2o0xWw5ybxqzOlilAZM9XEjZFHnmlOZML4sMw==">
+    href="/css/main.bundle.min.641979a69cfd709ab99a2d3849fd53049fd51260633ca168b92ad327094a2a145ee414877222887a7fcc7b7dab69895a2fc3a45eee710eb582411ba5f074612d.css"
+    integrity="sha512-ZBl5ppz9cJq5mi04Sf1TBJ/VEmBjPKFouSrTJwlKKhRe5BSHciKIen/Me32raYlaL8OkXu5xDrWCQRul8HRhLQ==">
   
     
     <script defer src="/lib/zoom/zoom.min.umd.a527109b68c082a70f3697716dd72a9d5aa8b545cf800cecbbc7399f2ca6f6e0ce3e431f2062b48bbfa47c9ea42822714060bef309be073f49b9c0e30d318d7b.js" integrity="sha512-pScQm2jAgqcPNpdxbdcqnVqotUXPgAzsu8c5nyym9uDOPkMfIGK0i7&#43;kfJ6kKCJxQGC&#43;8wm&#43;Bz9JucDjDTGNew=="></script>
@@ -246,12 +246,12 @@
     "dateCreated": "2026-09-02T00:00:00\u002b00:00",
     "datePublished": "2026-09-02T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-10T15:43:37\u002b01:00",
+    "dateModified": "2026-11-13T13:15:00\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.stg.plakar.io/docs/community/main/integrations/imap/",
-    "wordCount":  867 
+    "wordCount":  857 
   }]
   </script>
 
@@ -1514,6 +1514,10 @@
   
     
   
+    
+  
+    
+  
   
 
   
@@ -1824,6 +1828,24 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         OpenShift
+      </a>
+    
+  
+    
+    
+      <a href="/docs/community/main/integrations/sqlite/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        SQLite
+      </a>
+    
+  
+    
+    
+      <a href="/docs/community/main/integrations/ldap/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        LDAP
       </a>
     
   
@@ -3644,6 +3666,10 @@
   
     
   
+    
+  
+    
+  
   
 
   
@@ -3954,6 +3980,24 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         OpenShift
+      </a>
+    
+  
+    
+    
+      <a href="/docs/community/main/integrations/sqlite/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        SQLite
+      </a>
+    
+  
+    
+    
+      <a href="/docs/community/main/integrations/ldap/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        LDAP
       </a>
     
   
@@ -4850,9 +4894,11 @@
     </button>
   
 </h1>
-<p>IMAP (Internet Message Access Protocol) is a standard email protocol used by
-mail clients to retrieve messages from a mail server over TCP/IP. The IMAP
-integration includes two connectors:</p>
+<p>The IMAP integration backs up mailbox contents from an IMAP server into a Kloset
+store and restores them to an IMAP server. IMAP (Internet Message Access
+Protocol) is a standard email protocol used by mail clients to retrieve messages
+from a mail server over TCP/IP.</p>
+<p>The integration includes two connectors:</p>
 <table>
   <thead>
       <tr>
@@ -4878,10 +4924,10 @@ integration includes two connectors:</p>
 <p><strong>Typical use cases</strong></p>
 <ul>
 <li>Long-term archival and audit of email hosted on IMAP servers, including
-folders, metadata, and attachments.</li>
+folders, metadata and attachments.</li>
 <li>Restoring mailbox snapshots to any compatible IMAP destination, preserving
 folder structure and message integrity.</li>
-<li>Backing up a single mailbox (and its sub-mailboxes) rather than an entire
+<li>Backing up a single mailbox and its sub-mailboxes rather than an entire
 account.</li>
 </ul>
 <p><strong>Compatibility</strong></p>
@@ -5022,11 +5068,11 @@ customization is required.</p>
 <a href="../../guides/managing-packages/" >managing packages guide</a>.</p>
 
 
-<h2 id="connectors" class="group pr-8">Connectors
+<h2 id="how-a-backup-works" class="group pr-8">How a backup works
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="connectors"
+      data-anchor="how-a-backup-works"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -5037,16 +5083,24 @@ customization is required.</p>
     </button>
   
 </h2>
-<p>The IMAP package provides two connectors: a source connector for backing up
-mailbox contents over IMAP, and a destination connector for restoring mailbox
-snapshots over IMAP.</p>
+<p>A backup captures the messages of the whole account, or of a single mailbox and
+everything nested under it when the <code>location</code> ends with a mailbox path. The
+rest of the account is left untouched. Messages are fetched with <code>BODY.PEEK</code>, so
+a backup never alters the source mailbox.</p>
+<p>Folder hierarchy is preserved across servers even when source and destination
+use different hierarchy delimiters, for example Dovecot&rsquo;s <code>.</code> and <code>/</code>. Each
+mailbox segment is percent-encoded into the snapshot path, so a folder named
+<code>Work/Notes</code> or <code>Reçus</code> round-trips intact.</p>
+<p>Message flags (<code>\Seen</code>, <code>\Answered</code>, <code>\Flagged</code>, <code>\Draft</code>, <code>\Deleted</code>, and
+keywords such as <code>$Junk</code>) are encoded into each message&rsquo;s file name and
+re-applied on restore. The session-only <code>\Recent</code> flag is intentionally dropped.</p>
 
 
-<h3 id="source-connector" class="group pr-8">Source connector
+<h2 id="how-a-restore-works" class="group pr-8">How a restore works
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="source-connector"
+      data-anchor="how-a-restore-works"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -5056,9 +5110,44 @@ snapshots over IMAP.</p>
 </span></span>
     </button>
   
-</h3>
-<p>The Plakar IMAP package provides a source connector to back up mailbox contents
-reachable over IMAP.</p>
+</h2>
+<p>A restore recreates mailboxes according to the snapshot. Missing mailboxes and
+their parents are created automatically. Any mailbox path in the destination
+<code>location</code> is ignored.</p>
+
+
+<h2 id="configuration" class="group pr-8">Configuration
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="configuration"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+
+
+<h4 id="backup-flow" class="group pr-8">Backup flow
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="backup-flow"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h4>
 <!-- prettier-ignore-start -->
 <pre class="not-prose mermaid">
 flowchart LR
@@ -5079,11 +5168,11 @@ FS --> Via --> Plakar --> Store
 <!-- prettier-ignore-end -->
 
 
-<h4 id="configure" class="group pr-8">Configure
+<h4 id="restore-flow" class="group pr-8">Restore flow
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="configure"
+      data-anchor="restore-flow"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -5094,6 +5183,171 @@ FS --> Via --> Plakar --> Store
     </button>
   
 </h4>
+<!-- prettier-ignore-start -->
+<pre class="not-prose mermaid">
+flowchart LR
+
+Store["Kloset Store"]
+
+Plakar["Plakar"]
+
+Via["Push messages via<br/>IMAP destination connector"]
+
+subgraph Destination["IMAP Server"]
+  FS["Mailbox"]
+end
+
+Store --> Plakar --> Via --> FS
+</pre>
+
+<!-- prettier-ignore-end -->
+
+
+<h3 id="shared-configuration" class="group pr-8">Shared configuration
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="shared-configuration"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>The following options apply to both source and destination connectors. They are
+set with <code>plakar source add</code> or <code>plakar destination add</code>, and changed with
+<code>plakar source set</code> or <code>plakar destination set</code>.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Option</th>
+          <th>Required</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>username</code></td>
+          <td>Conditional</td>
+          <td>Username to log in with. Overrides the URI user. Required when the URI has no user.</td>
+      </tr>
+      <tr>
+          <td><code>password</code></td>
+          <td>Conditional</td>
+          <td>Password to log in with. Overrides the URI password. Required when the URI has no password.</td>
+      </tr>
+      <tr>
+          <td><code>tls</code></td>
+          <td>No</td>
+          <td>TLS mode: <code>starttls</code> (default), <code>tls</code>, or <code>no-tls</code>.</td>
+      </tr>
+      <tr>
+          <td><code>tls_no_verify</code></td>
+          <td>No</td>
+          <td>Skip server certificate verification when <code>true</code>. Dangerous. Use for testing only.</td>
+      </tr>
+      <tr>
+          <td><code>io_timeout</code></td>
+          <td>No</td>
+          <td>Idle timeout for each IMAP socket operation, as a Go duration (e.g. <code>2m</code>, <code>30s</code>). Defaults to <code>2m</code>.</td>
+      </tr>
+  </tbody>
+</table>
+
+
+<h3 id="source-configuration" class="group pr-8">Source configuration
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="source-configuration"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>The source <code>location</code> can end with a mailbox path to scope the backup. For
+example, <code>imap://host/Archive</code> backs up <code>Archive</code> and everything nested under
+it. Nested folders use <code>/</code> regardless of the server&rsquo;s hierarchy delimiter, and a
+mailbox name containing <code>/</code> must be percent-encoded (<code>%2F</code>).</p>
+<p>During a backup, a stalled or failed message-body fetch is retried once on a
+fresh connection before being recorded as a per-message error. A transient
+throttle is therefore recovered transparently.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Option</th>
+          <th>Required</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>location</code></td>
+          <td>Yes</td>
+          <td><code>imap://[user[:password]@]host[:port][/mailbox]</code>. Port defaults to <code>993</code> for TLS and <code>143</code> otherwise.</td>
+      </tr>
+  </tbody>
+</table>
+
+
+<h3 id="destination-configuration" class="group pr-8">Destination configuration
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="destination-configuration"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Option</th>
+          <th>Required</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>location</code></td>
+          <td>Yes</td>
+          <td><code>imap://[user[:password]@]host[:port]</code>. Port defaults to <code>993</code> for TLS and <code>143</code> otherwise. Any trailing mailbox path is ignored.</td>
+      </tr>
+  </tbody>
+</table>
+
+
+<h3 id="example" class="group pr-8">Example
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="example"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Back up an account, or a single folder and its sub-folders:</p>
 <div class="highlight-wrapper codeblock">
   <div class="codeblock-title">
     <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
@@ -5118,113 +5372,7 @@ FS --> Via --> Plakar --> Store
 </span></span><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add myArchive imap://imap.mydomain.com/Archive <span class="se">\
 </span></span></span><span class="line"><span class="cl">  <span class="nv">username</span><span class="o">=</span>myuser <span class="nv">password</span><span class="o">=</span>mypassword <span class="nv">tls</span><span class="o">=</span>starttls
 </span></span><span class="line"><span class="cl">$ plakar at /var/backups backup <span class="s2">&#34;@myArchive&#34;</span></span></span></code></pre></div></div>
-
-
-<h4 id="options" class="group pr-8">Options
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="options"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h4>
-<p>These options can be set when configuring the source connector with
-<code>plakar source add</code> or <code>plakar source set</code>:</p>
-<table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>location</code></td>
-          <td><code>imap://[user[:password]@]host[:port][/mailbox]</code>. Port defaults to <code>993</code> for TLS and <code>143</code> otherwise. An optional trailing path scopes the backup to a single mailbox and its sub-mailboxes, e.g. <code>imap://host/Archive</code> backs up <code>Archive</code> and everything nested under it, leaving the rest of the account untouched. Nested folders use <code>/</code> regardless of the server&rsquo;s hierarchy delimiter, and a mailbox name containing <code>/</code> must be percent-encoded (<code>%2F</code>).</td>
-      </tr>
-      <tr>
-          <td><code>username</code></td>
-          <td>Username to log in with. Overrides the URI user.</td>
-      </tr>
-      <tr>
-          <td><code>password</code></td>
-          <td>Password to log in with. Overrides the URI password.</td>
-      </tr>
-      <tr>
-          <td><code>tls</code></td>
-          <td>TLS mode: <code>starttls</code> (default), <code>tls</code>, or <code>no-tls</code>.</td>
-      </tr>
-      <tr>
-          <td><code>tls_no_verify</code></td>
-          <td>Skip server certificate verification when <code>true</code>. Dangerous; testing only.</td>
-      </tr>
-      <tr>
-          <td><code>io_timeout</code></td>
-          <td>Idle timeout for each IMAP socket operation, as a Go duration (e.g. <code>2m</code>, <code>30s</code>). Defaults to <code>2m</code>. A stalled or failed message-body fetch is retried once on a fresh connection before being recorded as a per-message error, so a transient throttle is recovered transparently.</td>
-      </tr>
-  </tbody>
-</table>
-
-
-<h3 id="destination-connector" class="group pr-8">Destination connector
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="destination-connector"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
-<p>The Plakar IMAP package provides a destination connector to restore mailbox
-snapshots to an IMAP server.</p>
-<!-- prettier-ignore-start -->
-<pre class="not-prose mermaid">
-flowchart LR
-
-Store["Kloset Store"]
-
-Plakar["Plakar"]
-
-Via["Push messages via<br/>IMAP destination connector"]
-
-subgraph Destination["IMAP Server"]
-  FS["Mailbox"]
-end
-
-Store --> Plakar --> Via --> FS
-</pre>
-
-<!-- prettier-ignore-end -->
-
-
-<h4 id="configure-1" class="group pr-8">Configure
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="configure-1"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h4>
+<p>Restore a snapshot:</p>
 <div class="highlight-wrapper codeblock">
   <div class="codeblock-title">
     <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
@@ -5244,89 +5392,6 @@ Store --> Plakar --> Via --> FS
 </span></span><span class="line"><span class="cl">$ plakar at /var/backups restore -to <span class="s2">&#34;@myIMAPdst&#34;</span> &lt;snapshot_id&gt;</span></span></code></pre></div></div>
 
 
-<h4 id="options-1" class="group pr-8">Options
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="options-1"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h4>
-<p>These options can be set when configuring the destination connector with
-<code>plakar destination add</code> or <code>plakar destination set</code>:</p>
-<table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>location</code></td>
-          <td><code>imap://[user[:password]@]host[:port]</code>. Port defaults to <code>993</code> for TLS and <code>143</code> otherwise. Any trailing mailbox path is ignored by the destination connector; restored mailboxes are recreated according to the snapshot.</td>
-      </tr>
-      <tr>
-          <td><code>username</code></td>
-          <td>Username to log in with. Overrides the URI user.</td>
-      </tr>
-      <tr>
-          <td><code>password</code></td>
-          <td>Password to log in with. Overrides the URI password.</td>
-      </tr>
-      <tr>
-          <td><code>tls</code></td>
-          <td>TLS mode: <code>starttls</code> (default), <code>tls</code>, or <code>no-tls</code>.</td>
-      </tr>
-      <tr>
-          <td><code>tls_no_verify</code></td>
-          <td>Skip server certificate verification when <code>true</code>. Dangerous; testing only.</td>
-      </tr>
-      <tr>
-          <td><code>io_timeout</code></td>
-          <td>Idle timeout for each IMAP socket operation, as a Go duration (e.g. <code>2m</code>, <code>30s</code>). Defaults to <code>2m</code>.</td>
-      </tr>
-  </tbody>
-</table>
-
-
-<h2 id="behavior" class="group pr-8">Behavior
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="behavior"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h2>
-<ul>
-<li>Folder hierarchy is preserved across servers even when source and destination
-use different hierarchy delimiters (for example Dovecot&rsquo;s <code>.</code> vs <code>/</code>). Each
-mailbox segment is percent-encoded into the snapshot path, so a folder named
-<code>Work/Notes</code> or <code>Reçus</code> round-trips intact.</li>
-<li>Message flags (<code>\Seen</code>, <code>\Answered</code>, <code>\Flagged</code>, <code>\Draft</code>, <code>\Deleted</code>, and
-keywords such as <code>$Junk</code>) are encoded into each message&rsquo;s file name and
-re-applied on restore. The session-only <code>\Recent</code> flag is intentionally
-dropped.</li>
-<li>Messages are fetched with <code>BODY.PEEK</code>, so a backup never alters the source
-mailbox.</li>
-<li>On restore, missing mailboxes (and their parents) are created automatically.</li>
-</ul>
-
-
 <h2 id="limitations-and-scope" class="group pr-8">Limitations and scope
     <button
       type="button"
@@ -5342,16 +5407,13 @@ mailbox.</li>
     </button>
   
 </h2>
-<p><strong>What is captured during backup</strong></p>
+<p>A backup captures the messages within the scoped mailbox, or the entire account
+when no mailbox path is given, including folder structure and flags.</p>
+<p>A backup does not capture:</p>
 <ul>
-<li>Messages within the scoped mailbox (or the entire account when no mailbox path
-is given), including folder structure and flags.</li>
-</ul>
-<p><strong>What is not captured</strong></p>
-<ul>
-<li>Server-side configuration outside the mailbox contents (e.g., server settings,
-ACLs)</li>
-<li>The session-only <code>\Recent</code> flag</li>
+<li>Server-side configuration outside the mailbox contents, such as server
+settings or ACLs.</li>
+<li>The session-only <code>\Recent</code> flag.</li>
 </ul>
 
       </article>
@@ -5431,6 +5493,10 @@ ACLs)</li>
   
     
   
+    
+  
+    
+  
 
   
     
@@ -5467,7 +5533,7 @@ ACLs)</li>
   
   <div class="flex items-center justify-between text-xs text-neutral-400">
     
-      <span>Last updated: November 10, 2026</span>
+      <span>Last updated: November 13, 2026</span>
     
     
       <a href="https://github.com/PlakarKorp/plakar.io/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">
@@ -5487,7 +5553,7 @@ ACLs)</li>
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#installation">Installation</a></li><li><a href="#connectors">Connectors</a><ul><li><a href="#source-connector">Source connector</a><ul><li><a href="#configure">Configure</a></li><li><a href="#options">Options</a></li></ul></li><li><a href="#destination-connector">Destination connector</a><ul><li><a href="#configure-1">Configure</a></li><li><a href="#options-1">Options</a></li></ul></li></ul></li><li><a href="#behavior">Behavior</a></li><li><a href="#limitations-and-scope">Limitations and scope</a></li></ul>
+      <ul><li><a href="#installation">Installation</a></li><li><a href="#how-a-backup-works">How a backup works</a></li><li><a href="#how-a-restore-works">How a restore works</a></li><li><a href="#configuration">Configuration</a><ul><ul><li><a href="#backup-flow">Backup flow</a></li><li><a href="#restore-flow">Restore flow</a></li></ul></li><li><a href="#shared-configuration">Shared configuration</a></li><li><a href="#source-configuration">Source configuration</a></li><li><a href="#destination-configuration">Destination configuration</a></li><li><a href="#example">Example</a></li></ul></li><li><a href="#limitations-and-scope">Limitations and scope</a></li></ul>
     </div>
 
     

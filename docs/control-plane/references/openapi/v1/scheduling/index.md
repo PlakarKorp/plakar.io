@@ -2,7 +2,7 @@
 
 Schedulers, tasks and the jobs they produce.
 
-Generated from Plakar Control Plane v0.19. See [OpenAPI v1](https://www.stg.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
+Generated from Plakar Control Plane v0.20. See [OpenAPI v1](https://www.stg.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
 
 
 ## List the jobs
@@ -20,12 +20,56 @@ Parameters:
 - `task_type` (query, string): Only jobs of this task type.
 - `task_id` (query, string<uuid>): Only jobs of this task.
 - `resource_id` (query, string<uuid>): Only jobs touching this connector.
-- `actor` (query, string): Scheduler to address. default: tasks created through the UI or the API. policy: tasks created by SLA policies, and their jobs. custom: tasks of integrations that drive the scheduler, such as Kubernetes; deprecated in favor of user:<uuid>. user: the caller's personal scheduler; 404 until POST /scheduling/scheduler creates it. user:<uuid>: the personal scheduler of another user; needs view access on schedulers.
+- `inventory_id` (query, string<uuid>): Only jobs whose origin or target comes from this inventory.
+- `actor` (query, string): Scheduler to address. default: tasks created through the UI or the API. policy: tasks created by SLA policies, and their jobs. custom: tasks of integrations that drive the scheduler, such as Kubernetes; deprecated in favor of user:<uuid>. user: the caller's personal scheduler; 404 until POST /scheduling/scheduler creates it. user:<uuid>: the personal scheduler of another user; needs view access on schedulers. all: every scheduler the caller may view.
 - `organization_id` (query, string<uuid>): Organization to act on, at or below the caller's. Defaults to the caller's.
 
 Responses:
 
 - `200` OK: `SchedulingJobPage`
+- `400` Bad Request _(validation or deserialization error)_: `HTTPError`
+- `401` Missing, invalid or expired credentials
+- `403` The caller may not do this: `HTTPError`
+- `500` Internal Server Error _(panics)_: `HTTPError`
+- `default`
+
+## List the apps that jobs ran on
+
+`GET /api/v1/scheduling/jobs/apps`
+
+Authentication: badge
+
+Parameters:
+
+- `offset` (query, integer): Number of items to skip.
+- `limit` (query, integer): Maximum number of items to return.
+- `search` (query, string): Only apps whose name contains this text.
+- `actor` (query, string): Scheduler to address. default: tasks created through the UI or the API. policy: tasks created by SLA policies, and their jobs. custom: tasks of integrations that drive the scheduler, such as Kubernetes; deprecated in favor of user:<uuid>. user: the caller's personal scheduler; 404 until POST /scheduling/scheduler creates it. user:<uuid>: the personal scheduler of another user; needs view access on schedulers. all: every scheduler the caller may view.
+- `organization_id` (query, string<uuid>): Organization to act on, at or below the caller's. Defaults to the caller's.
+
+Responses:
+
+- `200` OK: `SchedulingJobAppPage`
+- `400` Bad Request _(validation or deserialization error)_: `HTTPError`
+- `401` Missing, invalid or expired credentials
+- `403` The caller may not do this: `HTTPError`
+- `500` Internal Server Error _(panics)_: `HTTPError`
+- `default`
+
+## Get a job
+
+`GET /api/v1/scheduling/jobs/{job_id}`
+
+Authentication: badge
+
+Parameters:
+
+- `organization_id` (query, string<uuid>): Organization to act on, at or below the caller's. Defaults to the caller's.
+- `job_id` (path, string<uuid>, required): Job ID, as listed by GET /scheduling/jobs.
+
+Responses:
+
+- `200` OK: `SchedulingJob`
 - `400` Bad Request _(validation or deserialization error)_: `HTTPError`
 - `401` Missing, invalid or expired credentials
 - `403` The caller may not do this: `HTTPError`
@@ -222,8 +266,8 @@ Authentication: badge
 
 Parameters:
 
-- `actor` (query, string): Scheduler to address. default: tasks created through the UI or the API. policy: tasks created by SLA policies, and their jobs. custom: tasks of integrations that drive the scheduler, such as Kubernetes; deprecated in favor of user:<uuid>. user: the caller's personal scheduler; 404 until POST /scheduling/scheduler creates it. user:<uuid>: the personal scheduler of another user; needs view access on schedulers.
-- `revision` (query, integer): Scheduler revision. 0 is the current one.
+- `actor` (query, string): Scheduler to address. default: tasks created through the UI or the API. policy: tasks created by SLA policies, and their jobs. custom: tasks of integrations that drive the scheduler, such as Kubernetes; deprecated in favor of user:<uuid>. user: the caller's personal scheduler; 404 until POST /scheduling/scheduler creates it. user:<uuid>: the personal scheduler of another user; needs view access on schedulers. all: every scheduler the caller may view.
+- `revision` (query, integer): Scheduler revision. 0 is the current one; ignored with actor=all.
 - `t0` (query, string<date-time>): Start of the window. Defaults to now.
 - `t1` (query, string<date-time>): End of the window.
 - `count` (query, integer): Maximum number of jobs.
@@ -472,6 +516,62 @@ Parameters:
 Responses:
 
 - `200` OK: `SchedulerUserEntryPage`
+- `400` Bad Request _(validation or deserialization error)_: `HTTPError`
+- `401` Missing, invalid or expired credentials
+- `403` The caller may not do this: `HTTPError`
+- `500` Internal Server Error _(panics)_: `HTTPError`
+- `default`
+
+## List the tasks of every scheduler
+
+`GET /api/v1/scheduling/tasks`
+
+Authentication: badge
+
+Parameters:
+
+- `offset` (query, integer): Number of items to skip.
+- `limit` (query, integer): Maximum number of items to return.
+- `task_id` (query, string<uuid>): Only this task.
+- `scheduled_by` (query, string): Only tasks of this kind of scheduler.
+- `sla_id` (query, string<uuid>): Only policy tasks of this SLA.
+- `scheduler_id` (query, string<uuid>): Only tasks of this scheduler.
+- `inventory_id` (query, string<uuid>): Only tasks whose origin or target comes from this inventory.
+- `type` (query, string): Only tasks of this type.
+- `last_run` (query, string): Only tasks whose last job is in this state. none: never run.
+- `sort` (query, string): Order of the tasks.
+- `organization_id` (query, string<uuid>): Organization to act on, at or below the caller's. Defaults to the caller's.
+
+Responses:
+
+- `200` OK: `SchedulingTaskPage`
+- `400` Bad Request _(validation or deserialization error)_: `HTTPError`
+- `401` Missing, invalid or expired credentials
+- `403` The caller may not do this: `HTTPError`
+- `500` Internal Server Error _(panics)_: `HTTPError`
+- `default`
+
+## Count the jobs of the 24 hours around now
+
+`GET /api/v1/scheduling/timeline`
+
+Authentication: badge
+
+Parameters:
+
+- `scheduled_by` (query, string): Only jobs of this kind of scheduler.
+- `sla_id` (query, string<uuid>): Only policy jobs of this SLA.
+- `scheduler_id` (query, string<uuid>): Only jobs of this scheduler.
+- `inventory_id` (query, string<uuid>): Only jobs whose origin or target comes from this inventory.
+- `type` (query, string): Only jobs of this task type.
+- `step` (query, string): Minutes covered by a column.
+- `from` (query, string<date-time>): Start of a zoom, with to. Without a range, the window is the 24 hours around now.
+- `to` (query, string<date-time>): End of a zoom, at most 48 hours after from and 48 hours after now.
+- `organization_id` (query, string<uuid>): Organization to act on, at or below the caller's. Defaults to the caller's.
+
+Responses:
+
+- `200` OK: `SchedulingTimeline`
 - `400` Bad Request _(validation or deserialization error)_: `HTTPError`
 - `401` Missing, invalid or expired credentials
 - `403` The caller may not do this: `HTTPError`

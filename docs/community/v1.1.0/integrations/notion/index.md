@@ -3,23 +3,30 @@
 
 > [!WARNING]+ This integration is currently in beta
 >
-> This integration has not yet reached a stable release. It's functional for
+> This integration has not yet reached a stable release. It is functional for
 > testing and evaluation but should not be relied upon for production use cases.
 >
-> See the [current limitations](#current-limitations) section below for current
-> known issues and planned improvements.
+> See [Limitations and scope](#limitations-and-scope) for current known issues.
 
-The **Notion integration** enables backup and restoration of Notion workspaces
-through the official Notion API. All workspace content—including pages,
-databases, blocks, and hierarchical relationships—is captured as structured JSON
-and stored in a Kloset store.
+The Notion integration backs up and restores Notion workspaces through the
+official Notion API. Workspace content, including pages, databases, blocks and
+their hierarchical relationships, is captured as structured JSON and stored in a
+Kloset store.
 
-The Notion integration provides two connectors:
+The integration includes two connectors:
 
 | Connector type            | Description                                     |
 | ------------------------- | ----------------------------------------------- |
 | **Source connector**      | Back up a Notion workspace into a Kloset store. |
 | **Destination connector** | Restore a Notion workspace from a Kloset store. |
+
+**Requirements**
+
+- An internal Notion integration created in the workspace, with the capabilities
+  described in [Notion API setup](#notion-api-setup).
+- The API token of that integration.
+- At least one page shared with the integration.
+- For restores, a target page shared with the integration, and its Page ID.
 
 ## Installation
 
@@ -89,72 +96,86 @@ $ plakar pkg show
 To list, upgrade, or remove the package, see
 [managing packages guide](../../guides/managing-packages/).
 
-## Notion API Setup
+## Notion API setup
 
-Before using the Plakar Notion integration, you must create an internal
-integration in your Notion workspace.
+Plakar accesses a workspace through an internal integration created in that
+workspace. The integration's capabilities determine what Plakar can read and
+write, and only pages shared with it are visible to Plakar.
 
 ### Create a Notion integration
 
 1. Go to
-   [https://www.notion.so/profile/integrations](https://www.notion.so/profile/integrations)
-2. Click **Create a new integration**
+   [https://www.notion.so/profile/integrations](https://www.notion.so/profile/integrations).
+2. Click **Create a new integration**.
 3. Configure the integration:
-   - **Name**: Choose a descriptive name (e.g., "Plakar Backup")
-   - **Type**: Select **Internal**
-   - **Associated workspace**: Select the workspace you want to back up
-4. Click **Create** to create the integration
-5. Click on the **Configure integration settings** in the success popup
+   - **Name**: a descriptive name (e.g., "Plakar Backup")
+   - **Type**: **Internal**
+   - **Associated workspace**: the workspace to back up
+4. Click **Create** to create the integration.
+5. Click **Configure integration settings** in the success popup.
 
 ![Creating a new internal integration](../images/create-new-notion-integration.png)
 
 ### Configure integration capabilities
 
-After creating the integration, you need to enable the required capabilities:
+In the **Capabilities** section of the integration settings page, enable the
+following capabilities, then click **Save**:
 
-1. In the integration settings page, scroll to the **Capabilities** section
-2. Enable the following capabilities:
-   - **Read content**: Required for backing up pages and databases
-   - **Update content**: Required for restoring pages and databases
-   - **Insert content**: Required for restoring pages and databases
-   - **Read comments**: Required for backing up discussion threads
-   - **Insert comments**: Required for restoring discussion threads
-3. Click **Save**
+- **Read content**: required for backing up pages and databases
+- **Update content**: required for restoring pages and databases
+- **Insert content**: required for restoring pages and databases
+- **Read comments**: required for backing up discussion threads
+- **Insert comments**: required for restoring discussion threads
 
 ![Enabling integration capabilities](../images/setup-notion-integration-capabilities.png)
 
 ### Copy the API token
 
-1. In the integration settings page just before the **Capabilities** section,
-   there's the token section
-2. Click **Show** on the "Internal Integration Secret"
-3. Copy the token (format: `ntn_xxx...`)
+The token section is on the integration settings page, just before the
+**Capabilities** section. Click **Show** on the "Internal Integration Secret"
+and copy the token (format: `ntn_xxx...`).
 
 > [!NOTE]+ Notion Token
 >
 > Keep this token secure. Anyone with this token can access and modify pages
 > that have been shared with this integration.
 
-### Setup pages access to the integration
+### Share pages with the integration
 
-You must enable top-level page access to the integration:
+The integration must be given access to top-level pages:
 
-1. Click on **Edit Access**
-2. Select the top-level pages and databases you want to backup
-3. Click **Save**
+1. Click **Edit Access**.
+2. Select the top-level pages and databases to back up.
+3. Click **Save**.
 
 ![Sharing a page with the integration](../images/select-notion-pages-and-databases.png)
 
 > [!NOTE]+ Sharing Pages
 >
 > Once a page is shared with the integration, all child pages are automatically
-> included during backup. You only need to share top-level pages.
+> included during backup. Only top-level pages need to be shared.
 
-## Source connector
+## What is backed up
 
-The source connector retrieves Notion workspace data via the API and stores it
-as structured JSON. This includes page content, databases, blocks, metadata, and
-hierarchical relationships.
+A backup captures the following content from every page shared with the
+integration:
+
+- **Pages**: all content, blocks, and page properties
+- **Databases**: structure, properties, views, and all entries
+- **Media**: images, files, and embedded content (stored as references)
+- **Comments**: discussion threads and annotations
+- **Metadata**: creation dates, authors, last edited information
+- **Relationships**: parent-child hierarchies and database links
+
+## Configuration
+
+The source connector retrieves workspace data through the Notion API and stores
+it as structured JSON, including page content, databases, blocks, metadata and
+hierarchical relationships. The destination connector reads that JSON from a
+Kloset store and recreates pages and content in Notion through the API, under an
+existing target page.
+
+#### Backup flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -176,50 +197,7 @@ FS --> Via --> Plakar --> Transform --> Store
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-### Requirements
-
-Before configuring the source connector, ensure you have:
-
-1. **Completed Notion API setup** (see section above)
-2. **Notion API token** from your integration
-3. **Shared at least one page** with your integration
-
-### Configuration
-
-Create a Notion source configuration:
-
-```bash
-$ plakar source add mynotion location=notion:// token=$NOTION_API_TOKEN
-```
-
-Back up the workspace to a Kloset store:
-
-```bash
-$ plakar at /var/backups backup "@mynotion"
-```
-
-### Configuration options
-
-| Option     | Required | Description                                  |
-| ---------- | -------- | -------------------------------------------- |
-| `location` | Yes      | Must be set to `notion://`                   |
-| `token`    | Yes      | Your Notion API token (format: `ntn_xxx...`) |
-
-### What gets backed up
-
-The source connector captures:
-
-- **Pages**: All content, blocks, and page properties
-- **Databases**: Structure, properties, views, and all entries
-- **Media**: Images, files, and embedded content (stored as references)
-- **Comments**: Discussion threads and annotations
-- **Metadata**: Creation dates, authors, last edited information
-- **Relationships**: Parent-child hierarchies and database links
-
-## Destination connector
-
-The destination connector reads structured JSON from a Kloset store and
-recreates pages and content in Notion via the API.
+#### Restore flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -241,66 +219,65 @@ Store --> Plakar --> Transform --> Via --> FS
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-### Requirements
+### Shared configuration
 
-Before configuring the destination connector, ensure:
+The following options apply to both source and destination connectors.
 
-1. **Completed Notion API setup** with insert capabilities enabled
-2. **Created or identified a target page** where content will be restored
-3. **Shared the target page** with your integration
-4. **Have the Page ID** of the target page
+| Option     | Required | Description                                                                                                |
+| ---------- | -------- | ---------------------------------------------------------------------------------------------------------- |
+| `location` | Yes      | Must be set to `notion://`                                                                                 |
+| `token`    | Yes      | Notion API token (format: `ntn_xxx...`). A destination connector requires a token with insert permissions. |
 
-### Finding a Page ID
+### Destination configuration
 
-You need to get the Page ID of the page where you want to restore the backup
-contents. To find a Notion Page ID:
+The following extra option is required by destination connectors.
 
-1. Open the page in Notion
-2. Click **Share** in the top right, then **Copy link**
-3. The URL format is: `https://www.notion.so/PageName-PAGE_ID`
-4. Extract the Page ID (the long alphanumeric string after the last dash)
+| Option   | Required | Description                                   |
+| -------- | -------- | --------------------------------------------- |
+| `rootID` | Yes      | Notion Page ID where content will be restored |
 
-**Example**: In `https://www.notion.so/MyPage-1234567890abcdef1234567890abcdef`,
-the Page ID is `1234567890abcdef1234567890abcdef`.
+The Page ID identifies the page under which the backup contents are restored. To
+find it, open the page in Notion, click **Share** in the top right, then **Copy
+link**. The URL has the format `https://www.notion.so/PageName-PAGE_ID`, and the
+Page ID is the long alphanumeric string after the last dash. For example, in
+`https://www.notion.so/MyPage-1234567890abcdef1234567890abcdef`, the Page ID is
+`1234567890abcdef1234567890abcdef`.
 
-### Configuration
+### Example
 
-Create a Notion destination configuration:
+Create a Notion source configuration and back up the workspace to a Kloset
+store:
+
+```bash
+$ plakar source add mynotion location=notion:// token=$NOTION_API_TOKEN
+
+$ plakar at /var/backups backup "@mynotion"
+```
+
+Create a Notion destination configuration, set the target page ID, and restore a
+snapshot:
 
 ```bash
 $ plakar destination add mynotion location=notion:// token=$NOTION_API_TOKEN
-```
 
-Set the target page ID for restoration:
-
-```bash
 $ plakar destination set mynotion rootID=$NOTION_PAGE_ID
-```
 
-Restore a snapshot:
-
-```bash
 $ plakar at /var/backups restore -to "@mynotion" <snapshot_id>
 ```
 
-### Configuration options
+## Limitations and scope
 
-| Option     | Required | Description                                   |
-| ---------- | -------- | --------------------------------------------- |
-| `location` | Yes      | Must be set to `notion://`                    |
-| `token`    | Yes      | Notion API token with insert permissions      |
-| `rootID`   | Yes      | Notion Page ID where content will be restored |
+Each top-level page must be manually shared with the integration. Pages that are
+not explicitly shared are not backed up, even if they are linked from shared
+pages.
 
-## Current limitations
+Some third-party or custom Notion blocks may not serialize perfectly. All
+standard Notion blocks are fully supported.
 
-- **Permission model**: Each top-level page must be manually shared with the
-  integration. Pages not explicitly shared will not be backed up, even if linked
-  from shared pages.
-- **Block compatibility**: Some third-party or custom Notion blocks may not
-  serialize perfectly. All standard Notion blocks are fully supported.
-- **Media restoration**: Due to Notion API limitations, media files (images,
-  PDFs, documents) cannot be restored directly. You can restore media to the
-  filesystem and manually re-upload.
-- **Restoration target**: Restoring requires an existing Notion Page ID as the
-  destination. The API does not support creating new top-level pages.
+Due to Notion API limitations, media files (images, PDFs, documents) cannot be
+restored directly. Media can be restored to the filesystem and re-uploaded
+manually.
+
+Restoring requires an existing Notion Page ID as the destination. The API does
+not support creating new top-level pages.
 

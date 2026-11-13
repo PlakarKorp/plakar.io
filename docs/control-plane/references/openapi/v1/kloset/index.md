@@ -2,7 +2,7 @@
 
 Browsing a store and the snapshots inside it.
 
-Generated from Plakar Control Plane v0.19. See [OpenAPI v1](https://www.stg.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
+Generated from Plakar Control Plane v0.20. See [OpenAPI v1](https://www.stg.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
 
 
 ## List the importer types in a store
@@ -75,6 +75,7 @@ Parameters:
 - `offset` (query, integer): Number of items to skip.
 - `limit` (query, integer): Maximum number of items to return.
 - `importer` (query, string): Only snapshots of this importer type.
+- `id` (query, string): Only snapshots whose hexadecimal ID starts with this prefix.
 - `since` (query, string): Only snapshots taken since this time or duration.
 - `sort` (query, string): Comma-separated sort keys. Prefix a key with - to sort in descending order.
 - `organization_id` (query, string<uuid>): Organization to act on, at or below the caller's. Defaults to the caller's.

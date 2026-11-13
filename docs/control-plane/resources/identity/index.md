@@ -15,4 +15,8 @@ identity resources:
 
 
 
+## [LDAP](https://www.stg.plakar.io/docs/control-plane/resources/identity/ldap/index.md)
+
+
+
 

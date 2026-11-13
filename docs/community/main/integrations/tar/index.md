@@ -1,40 +1,35 @@
 
 # TAR
 
-The **TAR integration** enables importing TAR archives into a Kloset store. File
-contents, directory structure, and metadata are preserved during import, making
-it useful for ingesting legacy backups and exported application data into Plakar
-for versioned tracking and deduplication.
+The TAR integration imports TAR archives into a Kloset store. File contents,
+directory structure and metadata are preserved during import, with encryption
+and deduplication applied. This is useful for ingesting legacy backups and
+exported application data into Plakar for versioned tracking and deduplication.
 
-Both uncompressed `.tar` and gzip-compressed `.tar.gz` / `.tgz` archives are
-supported.
+The TAR integration is built into Plakar and requires no additional package
+installation.
 
-The TAR integration provides one connector:
+The integration includes one connector:
 
 | Connector type       | Description                               |
 | -------------------- | ----------------------------------------- |
 | **Source connector** | Import a TAR archive into a Kloset store. |
 
-## Installation
+Both uncompressed and gzip-compressed archives are supported. The archive format
+is selected by the URI scheme:
 
-The TAR integration is built into Plakar and requires no additional package
-installation.
+| Protocol | Archive format                                  |
+| -------- | ----------------------------------------------- |
+| `tar`    | Uncompressed TAR archive (`.tar`)               |
+| `tgz`    | Gzip-compressed TAR archive (`.tar.gz`, `.tgz`) |
 
 ## Configuration
 
-| Option     | Description                             |
-| ---------- | --------------------------------------- |
-| `location` | Required. Path to the TAR archive file. |
+| Option     | Required | Description                   |
+| ---------- | -------- | ----------------------------- |
+| `location` | Yes      | Path to the TAR archive file. |
 
-## Source connector
-
-The source connector streams a TAR archive into a Kloset store, capturing file
-contents, directory structure, and metadata with encryption and deduplication.
-
-The archive format is specified via the URI scheme:
-
-- `tar://` — uncompressed TAR archive
-- `tgz://` — gzip-compressed TAR archive
+### Example
 
 ```bash
 # Import an uncompressed archive
@@ -44,19 +39,17 @@ $ plakar at /var/backups backup tar:///home/user/backup.tar
 $ plakar at /var/backups backup tgz:///home/user/backup.tar.gz
 ```
 
-## Use cases
+## Backing up command output
 
-### Backing up command output
-
-If a command generates a single output stream, you can pipe it directly into
+A command that generates a single output stream can be piped directly into
 Plakar using the [STDIO integration](../stdio):
 
 ```bash
 $ some-command | plakar at /var/backups backup stdin:///output.txt
 ```
 
-If the command produces multiple files, have it generate a TAR archive and
-ingest it with the TAR integration instead:
+A command that produces multiple files can instead generate a TAR archive, which
+is then ingested with the TAR integration:
 
 ```bash
 $ some-command --output-format=tar | plakar at /var/backups backup tar://

@@ -1,23 +1,61 @@
 
 # HTTP(S)
 
-The HTTP(S) integration allows Plakar to use an HTTP or HTTPS endpoint as a
-Kloset store backend. Its used to connect to a Kloset store exposed by
-`plakar server`. The integration is pre-installed in Plakar `v1.1.0` or later
-and requires no additional setup. The integration provides one connector:
+The HTTP(S) integration uses an HTTP or HTTPS endpoint as a Kloset store
+backend. It is used to connect to a Kloset store exposed by `plakar server`.
 
-| Connector type    | Description                                                  |
-| ----------------- | ------------------------------------------------------------ |
-| Storage connector | Host a Kloset store on any HTTP or HTTPS accessible endpoint |
+The integration includes one connector:
 
-## Connectors
+| Connector type      | Description                                                   |
+| ------------------- | ------------------------------------------------------------- |
+| **Store connector** | Host a Kloset store on any HTTP or HTTPS accessible endpoint. |
 
-### Storage connector
+**Requirements**
 
-The HTTP(S) storage connector uses an HTTP or HTTPS endpoint as the backend for
-a Kloset store.
+- Plakar `v1.1.0` or later.
+- An HTTP or HTTPS endpoint serving a Kloset store, for example one exposed by
+  `plakar server`.
 
-#### Configure
+## Installation
+
+The integration is pre-installed in Plakar `v1.1.0` or later and requires no
+additional setup.
+
+## Configuration
+
+The store connector uses the `http://` or `https://` protocol. The location can
+be given directly on the command line with either prefix, or registered as a
+store alias.
+
+When the endpoint requires a bearer token, for example a `plakar server` started
+with `-token`, configure the store as an alias so the token is stored with it.
+The token is then sent in the `Authorization` header on every request.
+
+Plakar refuses to open the store when credentials could be read in transit.
+Credentials are the `auth_token` and a username and password in the location,
+such as `https://user:pass@example.com/data`. The channel is insecure over
+plaintext HTTP, or over HTTPS with `tls_no_verify=true`. Set `insecure=true` to
+send credentials over such a channel anyway.
+
+Redirects are followed only when they keep the scheme and host of the location.
+A redirect between HTTP and HTTPS is always refused. Set
+`allow_cross_host_redirects=true` to follow redirects to a different host.
+
+### Store configuration
+
+| Option                       | Required | Description                                                                     |
+| ---------------------------- | -------- | ------------------------------------------------------------------------------- |
+| `location`                   | Yes      | URL of the HTTP or HTTPS endpoint, for example `http://example.com/data`.       |
+| `auth_token`                 | No       | Bearer token sent in the `Authorization` header on every request.               |
+| `insecure`                   | No       | Set to `true` to allow credentials over plaintext HTTP or with `tls_no_verify`. |
+| `timeout`                    | No       | Per-request timeout. Defaults to `5m`.                                          |
+| `tls_no_verify`              | No       | Set to `true` to disable TLS certificate verification over HTTPS.               |
+| `allow_cross_host_redirects` | No       | Set to `true` to follow redirects to a different host.                          |
+
+### Example
+
+Initialize a store at an HTTP endpoint, back up a local directory to it, and
+list its snapshots:
 
 ```bash
 # Initialize a Kloset store at the HTTP endpoint
@@ -30,8 +68,7 @@ $ plakar at http://example.com/data backup /var/www
 $ plakar at http://example.com/data ls
 ```
 
-When the endpoint requires a bearer token, for example a `plakar server` started
-with `-token`, configure the store as an alias so the token is stored with it:
+Register an endpoint that requires a bearer token:
 
 ```bash
 # Register the endpoint along with its token
@@ -40,19 +77,6 @@ $ plakar store add remote https://example.com/data auth_token=<token>
 # Use the alias, the token is sent on every request
 $ plakar at @remote ls
 ```
-
-#### Options
-
-| Option          | Required | Description                                                              |
-| --------------- | -------- | ------------------------------------------------------------------------ |
-| `location`      | Yes      | URL of the HTTP or HTTPS endpoint, for example `http://example.com/data` |
-| `auth_token`    | No       | Bearer token sent in the `Authorization` header on every request         |
-| `insecure`      | No       | Set to `true` to allow `auth_token` to be sent over plaintext HTTP       |
-| `timeout`       | No       | Per-request timeout. Defaults to `5m`                                    |
-| `tls_no_verify` | No       | Set to `true` to disable TLS certificate verification over HTTPS         |
-
-The location can also be given directly on the command line, using the `http://`
-or `https://` prefix as shown above.
 
 ## See also
 

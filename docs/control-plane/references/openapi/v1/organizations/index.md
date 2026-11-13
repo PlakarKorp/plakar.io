@@ -2,7 +2,7 @@
 
 Organizations, their members and quotas.
 
-Generated from Plakar Control Plane v0.19. See [OpenAPI v1](https://www.stg.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
+Generated from Plakar Control Plane v0.20. See [OpenAPI v1](https://www.stg.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
 
 
 ## List the organizations of the calling user

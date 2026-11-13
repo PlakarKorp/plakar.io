@@ -76,7 +76,8 @@ Tie email domains to a single sign-on provider. A person whose email address is
 in one of the domains signs in with that provider, and joins this organization
 at the first sign-in. Only the Superuser and Platform Admins can change the
 domains, not the admins of the organization. See
-[who manages single sign-on](../sso#who-manages-single-sign-on). See [Single Sign-On](../sso) for how providers are added.
+[who manages single sign-on](../sso#who-manages-single-sign-on). See
+[Single Sign-On](../sso) for how providers are added.
 
 ## System
 

@@ -1,9 +1,12 @@
 
 # IMAP
 
-IMAP (Internet Message Access Protocol) is a standard email protocol used by
-mail clients to retrieve messages from a mail server over TCP/IP. The IMAP
-integration includes two connectors:
+The IMAP integration backs up mailbox contents from an IMAP server into a Kloset
+store and restores them to an IMAP server. IMAP (Internet Message Access
+Protocol) is a standard email protocol used by mail clients to retrieve messages
+from a mail server over TCP/IP.
+
+The integration includes two connectors:
 
 | Connector type            | Description                                                       |
 | ------------------------- | ----------------------------------------------------------------- |
@@ -17,10 +20,10 @@ integration includes two connectors:
 **Typical use cases**
 
 - Long-term archival and audit of email hosted on IMAP servers, including
-  folders, metadata, and attachments.
+  folders, metadata and attachments.
 - Restoring mailbox snapshots to any compatible IMAP destination, preserving
   folder structure and message integrity.
-- Backing up a single mailbox (and its sub-mailboxes) rather than an entire
+- Backing up a single mailbox and its sub-mailboxes rather than an entire
   account.
 
 **Compatibility**
@@ -95,16 +98,31 @@ $ plakar pkg show
 To list, upgrade, or remove the package, see
 [managing packages guide](../../guides/managing-packages/).
 
-## Connectors
+## How a backup works
 
-The IMAP package provides two connectors: a source connector for backing up
-mailbox contents over IMAP, and a destination connector for restoring mailbox
-snapshots over IMAP.
+A backup captures the messages of the whole account, or of a single mailbox and
+everything nested under it when the `location` ends with a mailbox path. The
+rest of the account is left untouched. Messages are fetched with `BODY.PEEK`, so
+a backup never alters the source mailbox.
 
-### Source connector
+Folder hierarchy is preserved across servers even when source and destination
+use different hierarchy delimiters, for example Dovecot's `.` and `/`. Each
+mailbox segment is percent-encoded into the snapshot path, so a folder named
+`Work/Notes` or `Reçus` round-trips intact.
 
-The Plakar IMAP package provides a source connector to back up mailbox contents
-reachable over IMAP.
+Message flags (`\Seen`, `\Answered`, `\Flagged`, `\Draft`, `\Deleted`, and
+keywords such as `$Junk`) are encoded into each message's file name and
+re-applied on restore. The session-only `\Recent` flag is intentionally dropped.
+
+## How a restore works
+
+A restore recreates mailboxes according to the snapshot. Missing mailboxes and
+their parents are created automatically. Any mailbox path in the destination
+`location` is ignored.
+
+## Configuration
+
+#### Backup flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -124,42 +142,7 @@ FS --> Via --> Plakar --> Store
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-#### Configure
-
-```bash
-# Configure an IMAP source connector
-$ plakar source add myIMAPsrc imap://imap.mydomain.com:143 \
-  username=myuser \
-  password=mypassword \
-  tls=starttls
-
-# Back up the mailbox
-$ plakar at /var/backups backup "@myIMAPsrc"
-
-# Back up only a specific folder (and its sub-folders)
-$ plakar source add myArchive imap://imap.mydomain.com/Archive \
-  username=myuser password=mypassword tls=starttls
-$ plakar at /var/backups backup "@myArchive"
-```
-
-#### Options
-
-These options can be set when configuring the source connector with
-`plakar source add` or `plakar source set`:
-
-| Option          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `location`      | `imap://[user[:password]@]host[:port][/mailbox]`. Port defaults to `993` for TLS and `143` otherwise. An optional trailing path scopes the backup to a single mailbox and its sub-mailboxes, e.g. `imap://host/Archive` backs up `Archive` and everything nested under it, leaving the rest of the account untouched. Nested folders use `/` regardless of the server's hierarchy delimiter, and a mailbox name containing `/` must be percent-encoded (`%2F`). |
-| `username`      | Username to log in with. Overrides the URI user.                                                                                                                                                                                                                                                                                                                                                                                                                |
-| `password`      | Password to log in with. Overrides the URI password.                                                                                                                                                                                                                                                                                                                                                                                                            |
-| `tls`           | TLS mode: `starttls` (default), `tls`, or `no-tls`.                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `tls_no_verify` | Skip server certificate verification when `true`. Dangerous; testing only.                                                                                                                                                                                                                                                                                                                                                                                      |
-| `io_timeout`    | Idle timeout for each IMAP socket operation, as a Go duration (e.g. `2m`, `30s`). Defaults to `2m`. A stalled or failed message-body fetch is retried once on a fresh connection before being recorded as a per-message error, so a transient throttle is recovered transparently.                                                                                                                                                                              |
-
-### Destination connector
-
-The Plakar IMAP package provides a destination connector to restore mailbox
-snapshots to an IMAP server.
+#### Restore flow
 
 <!-- prettier-ignore-start -->
 {{< mermaid >}}
@@ -179,7 +162,62 @@ Store --> Plakar --> Via --> FS
 {{< /mermaid >}}
 <!-- prettier-ignore-end -->
 
-#### Configure
+### Shared configuration
+
+The following options apply to both source and destination connectors. They are
+set with `plakar source add` or `plakar destination add`, and changed with
+`plakar source set` or `plakar destination set`.
+
+| Option          | Required    | Description                                                                                         |
+| --------------- | ----------- | --------------------------------------------------------------------------------------------------- |
+| `username`      | Conditional | Username to log in with. Overrides the URI user. Required when the URI has no user.                 |
+| `password`      | Conditional | Password to log in with. Overrides the URI password. Required when the URI has no password.         |
+| `tls`           | No          | TLS mode: `starttls` (default), `tls`, or `no-tls`.                                                 |
+| `tls_no_verify` | No          | Skip server certificate verification when `true`. Dangerous. Use for testing only.                  |
+| `io_timeout`    | No          | Idle timeout for each IMAP socket operation, as a Go duration (e.g. `2m`, `30s`). Defaults to `2m`. |
+
+### Source configuration
+
+The source `location` can end with a mailbox path to scope the backup. For
+example, `imap://host/Archive` backs up `Archive` and everything nested under
+it. Nested folders use `/` regardless of the server's hierarchy delimiter, and a
+mailbox name containing `/` must be percent-encoded (`%2F`).
+
+During a backup, a stalled or failed message-body fetch is retried once on a
+fresh connection before being recorded as a per-message error. A transient
+throttle is therefore recovered transparently.
+
+| Option     | Required | Description                                                                                           |
+| ---------- | -------- | ----------------------------------------------------------------------------------------------------- |
+| `location` | Yes      | `imap://[user[:password]@]host[:port][/mailbox]`. Port defaults to `993` for TLS and `143` otherwise. |
+
+### Destination configuration
+
+| Option     | Required | Description                                                                                                                       |
+| ---------- | -------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `location` | Yes      | `imap://[user[:password]@]host[:port]`. Port defaults to `993` for TLS and `143` otherwise. Any trailing mailbox path is ignored. |
+
+### Example
+
+Back up an account, or a single folder and its sub-folders:
+
+```bash
+# Configure an IMAP source connector
+$ plakar source add myIMAPsrc imap://imap.mydomain.com:143 \
+  username=myuser \
+  password=mypassword \
+  tls=starttls
+
+# Back up the mailbox
+$ plakar at /var/backups backup "@myIMAPsrc"
+
+# Back up only a specific folder (and its sub-folders)
+$ plakar source add myArchive imap://imap.mydomain.com/Archive \
+  username=myuser password=mypassword tls=starttls
+$ plakar at /var/backups backup "@myArchive"
+```
+
+Restore a snapshot:
 
 ```bash
 # Configure an IMAP destination connector
@@ -190,44 +228,14 @@ $ plakar destination add myIMAPdst imap://imap.alsomydomain.com:143 \
 $ plakar at /var/backups restore -to "@myIMAPdst" <snapshot_id>
 ```
 
-#### Options
-
-These options can be set when configuring the destination connector with
-`plakar destination add` or `plakar destination set`:
-
-| Option          | Description                                                                                                                                                                                                                |
-| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `location`      | `imap://[user[:password]@]host[:port]`. Port defaults to `993` for TLS and `143` otherwise. Any trailing mailbox path is ignored by the destination connector; restored mailboxes are recreated according to the snapshot. |
-| `username`      | Username to log in with. Overrides the URI user.                                                                                                                                                                           |
-| `password`      | Password to log in with. Overrides the URI password.                                                                                                                                                                       |
-| `tls`           | TLS mode: `starttls` (default), `tls`, or `no-tls`.                                                                                                                                                                        |
-| `tls_no_verify` | Skip server certificate verification when `true`. Dangerous; testing only.                                                                                                                                                 |
-| `io_timeout`    | Idle timeout for each IMAP socket operation, as a Go duration (e.g. `2m`, `30s`). Defaults to `2m`.                                                                                                                        |
-
-## Behavior
-
-- Folder hierarchy is preserved across servers even when source and destination
-  use different hierarchy delimiters (for example Dovecot's `.` vs `/`). Each
-  mailbox segment is percent-encoded into the snapshot path, so a folder named
-  `Work/Notes` or `Reçus` round-trips intact.
-- Message flags (`\Seen`, `\Answered`, `\Flagged`, `\Draft`, `\Deleted`, and
-  keywords such as `$Junk`) are encoded into each message's file name and
-  re-applied on restore. The session-only `\Recent` flag is intentionally
-  dropped.
-- Messages are fetched with `BODY.PEEK`, so a backup never alters the source
-  mailbox.
-- On restore, missing mailboxes (and their parents) are created automatically.
-
 ## Limitations and scope
 
-**What is captured during backup**
+A backup captures the messages within the scoped mailbox, or the entire account
+when no mailbox path is given, including folder structure and flags.
 
-- Messages within the scoped mailbox (or the entire account when no mailbox path
-  is given), including folder structure and flags.
+A backup does not capture:
 
-**What is not captured**
-
-- Server-side configuration outside the mailbox contents (e.g., server settings,
-  ACLs)
-- The session-only `\Recent` flag
+- Server-side configuration outside the mailbox contents, such as server
+  settings or ACLs.
+- The session-only `\Recent` flag.
 

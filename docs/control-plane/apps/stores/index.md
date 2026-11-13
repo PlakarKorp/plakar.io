@@ -51,6 +51,14 @@ Backups are compressed as they are written to the store, with an algorithm
 chosen at initialization. `LZ4` is the default. `GZIP`, `ZSTD` or `SNAPPY` can
 be selected in the advanced settings of the initialization dialog.
 
+> [!TIP]+ Choosing an algorithm
+>
+> The algorithm is a tradeoff between storage space, compression speed and
+> decompression speed. `LZ4` performs well on all three for most data, which is
+> why it is the default. `SNAPPY` can be faster on large, highly compressible
+> files. Keep the default unless a test on your own data shows another algorithm
+> performs better.
+
 {{< figure src="../images/kloset-store-initialization.png" alt="" class="mx-auto max-w-100" >}}
 
 Once the store is initialized, its dashboard creates the tasks that act on it:

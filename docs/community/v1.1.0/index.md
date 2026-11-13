@@ -54,8 +54,8 @@ through `v1.1.8`.
 - [Proxmox](https://www.stg.plakar.io/docs/community/v1.1.0/integrations/proxmox/index.md): Back up and restore Proxmox virtual machines and containers with Plakar.
 - [Kubernetes](https://www.stg.plakar.io/docs/community/v1.1.0/integrations/kubernetes/index.md): Back up and restore Kubernetes resources and persistent volumes with Plakar.
 - [etcd](https://www.stg.plakar.io/docs/community/v1.1.0/integrations/etcd/index.md): Back up etcd clusters with Plakar.
-- [PostgreSQL](https://www.stg.plakar.io/docs/community/v1.1.0/integrations/postgres/index.md): Back up and restore PostgreSQL databases with Plakar — logical dumps, AWS IAM authentication, and physical base backups.
-- [MySQL / MariaDB](https://www.stg.plakar.io/docs/community/v1.1.0/integrations/mysql/index.md): Back up and restore MySQL and MariaDB databases with Plakar — logical dumps via mysqldump and mariadb-dump, with Google Cloud SQL support.
+- [PostgreSQL](https://www.stg.plakar.io/docs/community/v1.1.0/integrations/postgres/index.md): Back up and restore PostgreSQL databases with Plakar using logical dumps, AWS IAM authentication, or physical base backups.
+- [MySQL / MariaDB](https://www.stg.plakar.io/docs/community/v1.1.0/integrations/mysql/index.md): Back up and restore MySQL and MariaDB databases with Plakar using logical dumps from mysqldump and mariadb-dump, including Google Cloud SQL.
 - [Azure Blob Storage](https://www.stg.plakar.io/docs/community/v1.1.0/integrations/azblob/index.md): Back up and restore Azure Blob Storage containers with Plakar.
 - [Google Cloud Storage](https://www.stg.plakar.io/docs/community/v1.1.0/integrations/gcs/index.md): Back up and restore Google Cloud Storage buckets with Plakar.
 - [OCI Registry](https://www.stg.plakar.io/docs/community/v1.1.0/integrations/oci/index.md): Use an OCI registry as a Kloset store backend with Plakar.
@@ -74,6 +74,8 @@ through `v1.1.8`.
 - [Scaleway](https://www.stg.plakar.io/docs/community/v1.1.0/integrations/scaleway/index.md): Back up and restore Scaleway instances, block volumes and Secret Manager secrets with Plakar.
 - [OpenStack](https://www.stg.plakar.io/docs/community/v1.1.0/integrations/openstack/index.md): Back up and restore OpenStack Nova servers and Cinder volumes with Plakar.
 - [OpenShift](https://www.stg.plakar.io/docs/community/v1.1.0/integrations/openshift/index.md): Back up and restore OpenShift resources, persistent volumes and OpenShift Virtualization virtual machines with Plakar.
+- [SQLite](https://www.stg.plakar.io/docs/community/v1.1.0/integrations/sqlite/index.md): Host a Kloset store in a single SQLite database file.
+- [LDAP](https://www.stg.plakar.io/docs/community/v1.1.0/integrations/ldap/index.md): Back up an LDAP directory with Plakar.
 
 
 ## [Explanations](https://www.stg.plakar.io/docs/community/v1.1.0/explanations/index.md)

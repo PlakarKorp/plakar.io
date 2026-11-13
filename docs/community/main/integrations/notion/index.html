@@ -74,7 +74,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-03-20T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-10T15:43:37+01:00">
+    <meta property="article:modified_time" content="2026-11-13T13:15:00+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -128,8 +128,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.e142446be20741e95609c29f4e6492b8f83328f3a4d006f1d92e4959cc0366fb157ec983236a34c56c39c9bc6acce96294064cf571236451e79a539930be2c33.css"
-    integrity="sha512-4UJEa&#43;IHQelWCcKfTmSSuPgzKPOk0Abx2S5JWcwDZvsVfsmDI2o0xWw5ybxqzOlilAZM9XEjZFHnmlOZML4sMw==">
+    href="/css/main.bundle.min.641979a69cfd709ab99a2d3849fd53049fd51260633ca168b92ad327094a2a145ee414877222887a7fcc7b7dab69895a2fc3a45eee710eb582411ba5f074612d.css"
+    integrity="sha512-ZBl5ppz9cJq5mi04Sf1TBJ/VEmBjPKFouSrTJwlKKhRe5BSHciKIen/Me32raYlaL8OkXu5xDrWCQRul8HRhLQ==">
   
     
     <script defer src="/lib/zoom/zoom.min.umd.a527109b68c082a70f3697716dd72a9d5aa8b545cf800cecbbc7399f2ca6f6e0ce3e431f2062b48bbfa47c9ea42822714060bef309be073f49b9c0e30d318d7b.js" integrity="sha512-pScQm2jAgqcPNpdxbdcqnVqotUXPgAzsu8c5nyym9uDOPkMfIGK0i7&#43;kfJ6kKCJxQGC&#43;8wm&#43;Bz9JucDjDTGNew=="></script>
@@ -246,12 +246,12 @@
     "dateCreated": "2026-03-20T00:00:00\u002b00:00",
     "datePublished": "2026-03-20T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-10T15:43:37\u002b01:00",
+    "dateModified": "2026-11-13T13:15:00\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.stg.plakar.io/docs/community/main/integrations/notion/",
-    "wordCount":  1001 
+    "wordCount":  975 
   }]
   </script>
 
@@ -1514,6 +1514,10 @@
   
     
   
+    
+  
+    
+  
   
 
   
@@ -1824,6 +1828,24 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         OpenShift
+      </a>
+    
+  
+    
+    
+      <a href="/docs/community/main/integrations/sqlite/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        SQLite
+      </a>
+    
+  
+    
+    
+      <a href="/docs/community/main/integrations/ldap/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        LDAP
       </a>
     
   
@@ -3644,6 +3666,10 @@
   
     
   
+    
+  
+    
+  
   
 
   
@@ -3954,6 +3980,24 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         OpenShift
+      </a>
+    
+  
+    
+    
+      <a href="/docs/community/main/integrations/sqlite/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        SQLite
+      </a>
+    
+  
+    
+    
+      <a href="/docs/community/main/integrations/ldap/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        LDAP
       </a>
     
   
@@ -4874,14 +4918,13 @@
   />
 </svg>
 </span></div>
-      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>This integration has not yet reached a stable release. It&rsquo;s functional for
+      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>This integration has not yet reached a stable release. It is functional for
 testing and evaluation but should not be relied upon for production use cases.</p>
-<p>See the <a href="/docs/community/main/integrations/notion/#current-limitations" >current limitations</a> section below for current
-known issues and planned improvements.</p></div></details><p>The <strong>Notion integration</strong> enables backup and restoration of Notion workspaces
-through the official Notion API. All workspace content—including pages,
-databases, blocks, and hierarchical relationships—is captured as structured JSON
-and stored in a Kloset store.</p>
-<p>The Notion integration provides two connectors:</p>
+<p>See <a href="/docs/community/main/integrations/notion/#limitations-and-scope" >Limitations and scope</a> for current known issues.</p></div></details><p>The Notion integration backs up and restores Notion workspaces through the
+official Notion API. Workspace content, including pages, databases, blocks and
+their hierarchical relationships, is captured as structured JSON and stored in a
+Kloset store.</p>
+<p>The integration includes two connectors:</p>
 <table>
   <thead>
       <tr>
@@ -4900,6 +4943,14 @@ and stored in a Kloset store.</p>
       </tr>
   </tbody>
 </table>
+<p><strong>Requirements</strong></p>
+<ul>
+<li>An internal Notion integration created in the workspace, with the capabilities
+described in <a href="/docs/community/main/integrations/notion/#notion-api-setup" >Notion API setup</a>.</li>
+<li>The API token of that integration.</li>
+<li>At least one page shared with the integration.</li>
+<li>For restores, a target page shared with the integration, and its Page ID.</li>
+</ul>
 
 
 <h2 id="installation" class="group pr-8">Installation
@@ -5034,7 +5085,7 @@ customization is required.</p>
 <a href="../../guides/managing-packages/" >managing packages guide</a>.</p>
 
 
-<h2 id="notion-api-setup" class="group pr-8">Notion API Setup
+<h2 id="notion-api-setup" class="group pr-8">Notion API setup
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
@@ -5049,8 +5100,9 @@ customization is required.</p>
     </button>
   
 </h2>
-<p>Before using the Plakar Notion integration, you must create an internal
-integration in your Notion workspace.</p>
+<p>Plakar accesses a workspace through an internal integration created in that
+workspace. The integration&rsquo;s capabilities determine what Plakar can read and
+write, and only pages shared with it are visible to Plakar.</p>
 
 
 <h3 id="create-a-notion-integration" class="group pr-8">Create a Notion integration
@@ -5070,17 +5122,17 @@ integration in your Notion workspace.</p>
 </h3>
 <ol>
 <li>Go to
-<a href="https://www.notion.so/profile/integrations"  target="_blank" rel="noreferrer">https://www.notion.so/profile/integrations</a></li>
-<li>Click <strong>Create a new integration</strong></li>
+<a href="https://www.notion.so/profile/integrations"  target="_blank" rel="noreferrer">https://www.notion.so/profile/integrations</a>.</li>
+<li>Click <strong>Create a new integration</strong>.</li>
 <li>Configure the integration:
 <ul>
-<li><strong>Name</strong>: Choose a descriptive name (e.g., &ldquo;Plakar Backup&rdquo;)</li>
-<li><strong>Type</strong>: Select <strong>Internal</strong></li>
-<li><strong>Associated workspace</strong>: Select the workspace you want to back up</li>
+<li><strong>Name</strong>: a descriptive name (e.g., &ldquo;Plakar Backup&rdquo;)</li>
+<li><strong>Type</strong>: <strong>Internal</strong></li>
+<li><strong>Associated workspace</strong>: the workspace to back up</li>
 </ul>
 </li>
-<li>Click <strong>Create</strong> to create the integration</li>
-<li>Click on the <strong>Configure integration settings</strong> in the success popup</li>
+<li>Click <strong>Create</strong> to create the integration.</li>
+<li>Click <strong>Configure integration settings</strong> in the success popup.</li>
 </ol>
 <figure><img
     class="my-0 rounded-md"
@@ -5111,20 +5163,15 @@ integration in your Notion workspace.</p>
     </button>
   
 </h3>
-<p>After creating the integration, you need to enable the required capabilities:</p>
-<ol>
-<li>In the integration settings page, scroll to the <strong>Capabilities</strong> section</li>
-<li>Enable the following capabilities:
+<p>In the <strong>Capabilities</strong> section of the integration settings page, enable the
+following capabilities, then click <strong>Save</strong>:</p>
 <ul>
-<li><strong>Read content</strong>: Required for backing up pages and databases</li>
-<li><strong>Update content</strong>: Required for restoring pages and databases</li>
-<li><strong>Insert content</strong>: Required for restoring pages and databases</li>
-<li><strong>Read comments</strong>: Required for backing up discussion threads</li>
-<li><strong>Insert comments</strong>: Required for restoring discussion threads</li>
+<li><strong>Read content</strong>: required for backing up pages and databases</li>
+<li><strong>Update content</strong>: required for restoring pages and databases</li>
+<li><strong>Insert content</strong>: required for restoring pages and databases</li>
+<li><strong>Read comments</strong>: required for backing up discussion threads</li>
+<li><strong>Insert comments</strong>: required for restoring discussion threads</li>
 </ul>
-</li>
-<li>Click <strong>Save</strong></li>
-</ol>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
@@ -5154,12 +5201,9 @@ integration in your Notion workspace.</p>
     </button>
   
 </h3>
-<ol>
-<li>In the integration settings page just before the <strong>Capabilities</strong> section,
-there&rsquo;s the token section</li>
-<li>Click <strong>Show</strong> on the &ldquo;Internal Integration Secret&rdquo;</li>
-<li>Copy the token (format: <code>ntn_xxx...</code>)</li>
-</ol>
+<p>The token section is on the integration settings page, just before the
+<strong>Capabilities</strong> section. Click <strong>Show</strong> on the &ldquo;Internal Integration Secret&rdquo;
+and copy the token (format: <code>ntn_xxx...</code>).</p>
 <details
       class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
       data-type="note"
@@ -5187,11 +5231,11 @@ there&rsquo;s the token section</li>
       </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Keep this token secure. Anyone with this token can access and modify pages
 that have been shared with this integration.</p></div></details>
 
-<h3 id="setup-pages-access-to-the-integration" class="group pr-8">Setup pages access to the integration
+<h3 id="share-pages-with-the-integration" class="group pr-8">Share pages with the integration
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="setup-pages-access-to-the-integration"
+      data-anchor="share-pages-with-the-integration"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -5202,11 +5246,11 @@ that have been shared with this integration.</p></div></details>
     </button>
   
 </h3>
-<p>You must enable top-level page access to the integration:</p>
+<p>The integration must be given access to top-level pages:</p>
 <ol>
-<li>Click on <strong>Edit Access</strong></li>
-<li>Select the top-level pages and databases you want to backup</li>
-<li>Click <strong>Save</strong></li>
+<li>Click <strong>Edit Access</strong>.</li>
+<li>Select the top-level pages and databases to back up.</li>
+<li>Click <strong>Save</strong>.</li>
 </ol>
 <figure><img
     class="my-0 rounded-md"
@@ -5245,13 +5289,13 @@ that have been shared with this integration.</p></div></details>
 </svg>
 </span></div>
       </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Once a page is shared with the integration, all child pages are automatically
-included during backup. You only need to share top-level pages.</p></div></details>
+included during backup. Only top-level pages need to be shared.</p></div></details>
 
-<h2 id="source-connector" class="group pr-8">Source connector
+<h2 id="what-is-backed-up" class="group pr-8">What is backed up
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="source-connector"
+      data-anchor="what-is-backed-up"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -5262,9 +5306,55 @@ included during backup. You only need to share top-level pages.</p></div></detai
     </button>
   
 </h2>
-<p>The source connector retrieves Notion workspace data via the API and stores it
-as structured JSON. This includes page content, databases, blocks, metadata, and
-hierarchical relationships.</p>
+<p>A backup captures the following content from every page shared with the
+integration:</p>
+<ul>
+<li><strong>Pages</strong>: all content, blocks, and page properties</li>
+<li><strong>Databases</strong>: structure, properties, views, and all entries</li>
+<li><strong>Media</strong>: images, files, and embedded content (stored as references)</li>
+<li><strong>Comments</strong>: discussion threads and annotations</li>
+<li><strong>Metadata</strong>: creation dates, authors, last edited information</li>
+<li><strong>Relationships</strong>: parent-child hierarchies and database links</li>
+</ul>
+
+
+<h2 id="configuration" class="group pr-8">Configuration
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="configuration"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>The source connector retrieves workspace data through the Notion API and stores
+it as structured JSON, including page content, databases, blocks, metadata and
+hierarchical relationships. The destination connector reads that JSON from a
+Kloset store and recreates pages and content in Notion through the API, under an
+existing target page.</p>
+
+
+<h4 id="backup-flow" class="group pr-8">Backup flow
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="backup-flow"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h4>
 <!-- prettier-ignore-start -->
 <pre class="not-prose mermaid">
 flowchart LR
@@ -5287,11 +5377,11 @@ FS --> Via --> Plakar --> Transform --> Store
 <!-- prettier-ignore-end -->
 
 
-<h3 id="requirements" class="group pr-8">Requirements
+<h4 id="restore-flow" class="group pr-8">Restore flow
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="requirements"
+      data-anchor="restore-flow"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -5301,139 +5391,7 @@ FS --> Via --> Plakar --> Transform --> Store
 </span></span>
     </button>
   
-</h3>
-<p>Before configuring the source connector, ensure you have:</p>
-<ol>
-<li><strong>Completed Notion API setup</strong> (see section above)</li>
-<li><strong>Notion API token</strong> from your integration</li>
-<li><strong>Shared at least one page</strong> with your integration</li>
-</ol>
-
-
-<h3 id="configuration" class="group pr-8">Configuration
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="configuration"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
-<p>Create a Notion source configuration:</p>
-<div class="highlight-wrapper codeblock">
-  <div class="codeblock-title">
-    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
-</span></span>
-    <span class="codeblock-label">Shell</span>
-    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
-      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
-</span></span>
-      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add mynotion <span class="nv">location</span><span class="o">=</span>notion:// <span class="nv">token</span><span class="o">=</span><span class="nv">$NOTION_API_TOKEN</span></span></span></code></pre></div></div>
-<p>Back up the workspace to a Kloset store:</p>
-<div class="highlight-wrapper codeblock">
-  <div class="codeblock-title">
-    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
-</span></span>
-    <span class="codeblock-label">Shell</span>
-    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
-      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
-</span></span>
-      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar at /var/backups backup <span class="s2">&#34;@mynotion&#34;</span></span></span></code></pre></div></div>
-
-
-<h3 id="configuration-options" class="group pr-8">Configuration options
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="configuration-options"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
-<table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Required</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>location</code></td>
-          <td>Yes</td>
-          <td>Must be set to <code>notion://</code></td>
-      </tr>
-      <tr>
-          <td><code>token</code></td>
-          <td>Yes</td>
-          <td>Your Notion API token (format: <code>ntn_xxx...</code>)</td>
-      </tr>
-  </tbody>
-</table>
-
-
-<h3 id="what-gets-backed-up" class="group pr-8">What gets backed up
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="what-gets-backed-up"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
-<p>The source connector captures:</p>
-<ul>
-<li><strong>Pages</strong>: All content, blocks, and page properties</li>
-<li><strong>Databases</strong>: Structure, properties, views, and all entries</li>
-<li><strong>Media</strong>: Images, files, and embedded content (stored as references)</li>
-<li><strong>Comments</strong>: Discussion threads and annotations</li>
-<li><strong>Metadata</strong>: Creation dates, authors, last edited information</li>
-<li><strong>Relationships</strong>: Parent-child hierarchies and database links</li>
-</ul>
-
-
-<h2 id="destination-connector" class="group pr-8">Destination connector
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="destination-connector"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h2>
-<p>The destination connector reads structured JSON from a Kloset store and
-recreates pages and content in Notion via the API.</p>
+</h4>
 <!-- prettier-ignore-start -->
 <pre class="not-prose mermaid">
 flowchart LR
@@ -5456,11 +5414,11 @@ Store --> Plakar --> Transform --> Via --> FS
 <!-- prettier-ignore-end -->
 
 
-<h3 id="requirements-1" class="group pr-8">Requirements
+<h3 id="shared-configuration" class="group pr-8">Shared configuration
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="requirements-1"
+      data-anchor="shared-configuration"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -5471,113 +5429,7 @@ Store --> Plakar --> Transform --> Via --> FS
     </button>
   
 </h3>
-<p>Before configuring the destination connector, ensure:</p>
-<ol>
-<li><strong>Completed Notion API setup</strong> with insert capabilities enabled</li>
-<li><strong>Created or identified a target page</strong> where content will be restored</li>
-<li><strong>Shared the target page</strong> with your integration</li>
-<li><strong>Have the Page ID</strong> of the target page</li>
-</ol>
-
-
-<h3 id="finding-a-page-id" class="group pr-8">Finding a Page ID
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="finding-a-page-id"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
-<p>You need to get the Page ID of the page where you want to restore the backup
-contents. To find a Notion Page ID:</p>
-<ol>
-<li>Open the page in Notion</li>
-<li>Click <strong>Share</strong> in the top right, then <strong>Copy link</strong></li>
-<li>The URL format is: <code>https://www.notion.so/PageName-PAGE_ID</code></li>
-<li>Extract the Page ID (the long alphanumeric string after the last dash)</li>
-</ol>
-<p><strong>Example</strong>: In <code>https://www.notion.so/MyPage-1234567890abcdef1234567890abcdef</code>,
-the Page ID is <code>1234567890abcdef1234567890abcdef</code>.</p>
-
-
-<h3 id="configuration-1" class="group pr-8">Configuration
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="configuration-1"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
-<p>Create a Notion destination configuration:</p>
-<div class="highlight-wrapper codeblock">
-  <div class="codeblock-title">
-    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
-</span></span>
-    <span class="codeblock-label">Shell</span>
-    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
-      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
-</span></span>
-      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar destination add mynotion <span class="nv">location</span><span class="o">=</span>notion:// <span class="nv">token</span><span class="o">=</span><span class="nv">$NOTION_API_TOKEN</span></span></span></code></pre></div></div>
-<p>Set the target page ID for restoration:</p>
-<div class="highlight-wrapper codeblock">
-  <div class="codeblock-title">
-    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
-</span></span>
-    <span class="codeblock-label">Shell</span>
-    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
-      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
-</span></span>
-      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar destination <span class="nb">set</span> mynotion <span class="nv">rootID</span><span class="o">=</span><span class="nv">$NOTION_PAGE_ID</span></span></span></code></pre></div></div>
-<p>Restore a snapshot:</p>
-<div class="highlight-wrapper codeblock">
-  <div class="codeblock-title">
-    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
-</span></span>
-    <span class="codeblock-label">Shell</span>
-    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
-      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
-</span></span>
-      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar at /var/backups restore -to <span class="s2">&#34;@mynotion&#34;</span> &lt;snapshot_id&gt;</span></span></code></pre></div></div>
-
-
-<h3 id="configuration-options-1" class="group pr-8">Configuration options
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="configuration-options-1"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h3>
+<p>The following options apply to both source and destination connectors.</p>
 <table>
   <thead>
       <tr>
@@ -5595,8 +5447,37 @@ the Page ID is <code>1234567890abcdef1234567890abcdef</code>.</p>
       <tr>
           <td><code>token</code></td>
           <td>Yes</td>
-          <td>Notion API token with insert permissions</td>
+          <td>Notion API token (format: <code>ntn_xxx...</code>). A destination connector requires a token with insert permissions.</td>
       </tr>
+  </tbody>
+</table>
+
+
+<h3 id="destination-configuration" class="group pr-8">Destination configuration
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="destination-configuration"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>The following extra option is required by destination connectors.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Option</th>
+          <th>Required</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
       <tr>
           <td><code>rootID</code></td>
           <td>Yes</td>
@@ -5604,13 +5485,70 @@ the Page ID is <code>1234567890abcdef1234567890abcdef</code>.</p>
       </tr>
   </tbody>
 </table>
+<p>The Page ID identifies the page under which the backup contents are restored. To
+find it, open the page in Notion, click <strong>Share</strong> in the top right, then <strong>Copy
+link</strong>. The URL has the format <code>https://www.notion.so/PageName-PAGE_ID</code>, and the
+Page ID is the long alphanumeric string after the last dash. For example, in
+<code>https://www.notion.so/MyPage-1234567890abcdef1234567890abcdef</code>, the Page ID is
+<code>1234567890abcdef1234567890abcdef</code>.</p>
 
 
-<h2 id="current-limitations" class="group pr-8">Current limitations
+<h3 id="example" class="group pr-8">Example
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="current-limitations"
+      data-anchor="example"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Create a Notion source configuration and back up the workspace to a Kloset
+store:</p>
+<div class="highlight-wrapper codeblock">
+  <div class="codeblock-title">
+    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
+</span></span>
+    <span class="codeblock-label">Shell</span>
+    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
+      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
+</span></span>
+      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add mynotion <span class="nv">location</span><span class="o">=</span>notion:// <span class="nv">token</span><span class="o">=</span><span class="nv">$NOTION_API_TOKEN</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups backup <span class="s2">&#34;@mynotion&#34;</span></span></span></code></pre></div></div>
+<p>Create a Notion destination configuration, set the target page ID, and restore a
+snapshot:</p>
+<div class="highlight-wrapper codeblock">
+  <div class="codeblock-title">
+    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
+</span></span>
+    <span class="codeblock-label">Shell</span>
+    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
+      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
+</span></span>
+      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar destination add mynotion <span class="nv">location</span><span class="o">=</span>notion:// <span class="nv">token</span><span class="o">=</span><span class="nv">$NOTION_API_TOKEN</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ plakar destination <span class="nb">set</span> mynotion <span class="nv">rootID</span><span class="o">=</span><span class="nv">$NOTION_PAGE_ID</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups restore -to <span class="s2">&#34;@mynotion&#34;</span> &lt;snapshot_id&gt;</span></span></code></pre></div></div>
+
+
+<h2 id="limitations-and-scope" class="group pr-8">Limitations and scope
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="limitations-and-scope"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -5621,18 +5559,16 @@ the Page ID is <code>1234567890abcdef1234567890abcdef</code>.</p>
     </button>
   
 </h2>
-<ul>
-<li><strong>Permission model</strong>: Each top-level page must be manually shared with the
-integration. Pages not explicitly shared will not be backed up, even if linked
-from shared pages.</li>
-<li><strong>Block compatibility</strong>: Some third-party or custom Notion blocks may not
-serialize perfectly. All standard Notion blocks are fully supported.</li>
-<li><strong>Media restoration</strong>: Due to Notion API limitations, media files (images,
-PDFs, documents) cannot be restored directly. You can restore media to the
-filesystem and manually re-upload.</li>
-<li><strong>Restoration target</strong>: Restoring requires an existing Notion Page ID as the
-destination. The API does not support creating new top-level pages.</li>
-</ul>
+<p>Each top-level page must be manually shared with the integration. Pages that are
+not explicitly shared are not backed up, even if they are linked from shared
+pages.</p>
+<p>Some third-party or custom Notion blocks may not serialize perfectly. All
+standard Notion blocks are fully supported.</p>
+<p>Due to Notion API limitations, media files (images, PDFs, documents) cannot be
+restored directly. Media can be restored to the filesystem and re-uploaded
+manually.</p>
+<p>Restoring requires an existing Notion Page ID as the destination. The API does
+not support creating new top-level pages.</p>
 
       </article>
       <footer class="mt-12 flex flex-col gap-6 docs-font border-t border-neutral-200 pt-6">
@@ -5711,6 +5647,10 @@ destination. The API does not support creating new top-level pages.</li>
   
     
   
+    
+  
+    
+  
 
   
     
@@ -5747,7 +5687,7 @@ destination. The API does not support creating new top-level pages.</li>
   
   <div class="flex items-center justify-between text-xs text-neutral-400">
     
-      <span>Last updated: November 10, 2026</span>
+      <span>Last updated: November 13, 2026</span>
     
     
       <a href="https://github.com/PlakarKorp/plakar.io/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">
@@ -5767,7 +5707,7 @@ destination. The API does not support creating new top-level pages.</li>
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#installation">Installation</a></li><li><a href="#notion-api-setup">Notion API Setup</a><ul><li><a href="#create-a-notion-integration">Create a Notion integration</a></li><li><a href="#configure-integration-capabilities">Configure integration capabilities</a></li><li><a href="#copy-the-api-token">Copy the API token</a></li><li><a href="#setup-pages-access-to-the-integration">Setup pages access to the integration</a></li></ul></li><li><a href="#source-connector">Source connector</a><ul><li><a href="#requirements">Requirements</a></li><li><a href="#configuration">Configuration</a></li><li><a href="#configuration-options">Configuration options</a></li><li><a href="#what-gets-backed-up">What gets backed up</a></li></ul></li><li><a href="#destination-connector">Destination connector</a><ul><li><a href="#requirements-1">Requirements</a></li><li><a href="#finding-a-page-id">Finding a Page ID</a></li><li><a href="#configuration-1">Configuration</a></li><li><a href="#configuration-options-1">Configuration options</a></li></ul></li><li><a href="#current-limitations">Current limitations</a></li></ul>
+      <ul><li><a href="#installation">Installation</a></li><li><a href="#notion-api-setup">Notion API setup</a><ul><li><a href="#create-a-notion-integration">Create a Notion integration</a></li><li><a href="#configure-integration-capabilities">Configure integration capabilities</a></li><li><a href="#copy-the-api-token">Copy the API token</a></li><li><a href="#share-pages-with-the-integration">Share pages with the integration</a></li></ul></li><li><a href="#what-is-backed-up">What is backed up</a></li><li><a href="#configuration">Configuration</a><ul><ul><li><a href="#backup-flow">Backup flow</a></li><li><a href="#restore-flow">Restore flow</a></li></ul></li><li><a href="#shared-configuration">Shared configuration</a></li><li><a href="#destination-configuration">Destination configuration</a></li><li><a href="#example">Example</a></li></ul></li><li><a href="#limitations-and-scope">Limitations and scope</a></li></ul>
     </div>
 
     

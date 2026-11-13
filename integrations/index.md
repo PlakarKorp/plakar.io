@@ -4,6 +4,14 @@
 
 
 
+## [LDAP](https://www.stg.plakar.io/integrations/ldap/index.md)
+
+
+
+## [SQLite](https://www.stg.plakar.io/integrations/sqlite/index.md)
+
+
+
 ## [OpenShift](https://www.stg.plakar.io/integrations/openshift/index.md)
 
 

@@ -2,7 +2,7 @@
 
 Stores, sources and destinations.
 
-Generated from Plakar Control Plane v0.19. See [OpenAPI v1](https://www.stg.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
+Generated from Plakar Control Plane v0.20. See [OpenAPI v1](https://www.stg.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
 
 
 ## List the connectors
@@ -70,6 +70,51 @@ Request body (application/json): `SaveConnectorFormRequest`
 Responses:
 
 - `200` OK: `SaveConnectorFormResponse`
+- `400` Bad Request _(validation or deserialization error)_: `HTTPError`
+- `401` Missing, invalid or expired credentials
+- `403` The caller may not do this: `HTTPError`
+- `500` Internal Server Error _(panics)_: `HTTPError`
+- `default`
+
+## List the stores with when each was last synced and checked
+
+`GET /api/v1/account/organizations/{id}/maintenance/stores`
+
+Authentication: badge
+
+Parameters:
+
+- `offset` (query, integer): Number of items to skip.
+- `limit` (query, integer): Maximum number of items to return.
+- `search` (query, string): Free-text search on the store, its resource and its inventory names.
+- `inventory_id` (query, array[string<uuid>]): Only stores of these inventories.
+- `sort` (query, string): last_sync and last_check list first the store whose last such job succeeded longest ago, never first; name sorts by name. Default: name.
+- `facets` (query, boolean): Also count the stores per inventory.
+- `id` (path, string<uuid>, required): Organization ID, at or below the caller's.
+
+Responses:
+
+- `200` OK: `StorePage`
+- `400` Bad Request _(validation or deserialization error)_: `HTTPError`
+- `401` Missing, invalid or expired credentials
+- `403` The caller may not do this: `HTTPError`
+- `500` Internal Server Error _(panics)_: `HTTPError`
+- `default`
+
+## Get a store with when it was last synced and checked
+
+`GET /api/v1/account/organizations/{id}/maintenance/stores/{store_id}`
+
+Authentication: badge
+
+Parameters:
+
+- `id` (path, string<uuid>, required): Organization ID, at or below the caller's.
+- `store_id` (path, string, required)
+
+Responses:
+
+- `200` OK: `Store`
 - `400` Bad Request _(validation or deserialization error)_: `HTTPError`
 - `401` Missing, invalid or expired credentials
 - `403` The caller may not do this: `HTTPError`
@@ -190,6 +235,7 @@ Authentication: badge
 
 Parameters:
 
+- `organization_id` (query, string<uuid>): Organization to act on, at or below the caller's. Defaults to the caller's.
 - `connector_id` (path, string, required)
 
 Request body (application/json): `SaveConnectorFormRequest`

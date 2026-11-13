@@ -74,7 +74,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-09-04T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-10T15:43:37+01:00">
+    <meta property="article:modified_time" content="2026-11-13T13:15:00+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -128,8 +128,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.e142446be20741e95609c29f4e6492b8f83328f3a4d006f1d92e4959cc0366fb157ec983236a34c56c39c9bc6acce96294064cf571236451e79a539930be2c33.css"
-    integrity="sha512-4UJEa&#43;IHQelWCcKfTmSSuPgzKPOk0Abx2S5JWcwDZvsVfsmDI2o0xWw5ybxqzOlilAZM9XEjZFHnmlOZML4sMw==">
+    href="/css/main.bundle.min.641979a69cfd709ab99a2d3849fd53049fd51260633ca168b92ad327094a2a145ee414877222887a7fcc7b7dab69895a2fc3a45eee710eb582411ba5f074612d.css"
+    integrity="sha512-ZBl5ppz9cJq5mi04Sf1TBJ/VEmBjPKFouSrTJwlKKhRe5BSHciKIen/Me32raYlaL8OkXu5xDrWCQRul8HRhLQ==">
   
     
     <script defer src="/lib/zoom/zoom.min.umd.a527109b68c082a70f3697716dd72a9d5aa8b545cf800cecbbc7399f2ca6f6e0ce3e431f2062b48bbfa47c9ea42822714060bef309be073f49b9c0e30d318d7b.js" integrity="sha512-pScQm2jAgqcPNpdxbdcqnVqotUXPgAzsu8c5nyym9uDOPkMfIGK0i7&#43;kfJ6kKCJxQGC&#43;8wm&#43;Bz9JucDjDTGNew=="></script>
@@ -241,12 +241,12 @@
     "dateCreated": "2026-09-04T00:00:00\u002b00:00",
     "datePublished": "2026-09-04T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-10T15:43:37\u002b01:00",
+    "dateModified": "2026-11-13T13:15:00\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.stg.plakar.io/docs/control-plane/resources/database/etcd/",
-    "wordCount":  714 
+    "wordCount":  832 
   }]
   </script>
 
@@ -2174,6 +2174,8 @@
   
     
   
+    
+  
   
 
   
@@ -2187,6 +2189,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         Microsoft Active Directory
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/resources/identity/ldap/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        LDAP
       </a>
     
   
@@ -7065,6 +7076,8 @@
   
     
   
+    
+  
   
 
   
@@ -7078,6 +7091,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         Microsoft Active Directory
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/resources/identity/ldap/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        LDAP
       </a>
     
   
@@ -10423,8 +10445,9 @@ resources on a self-managed inventory.</p>
     </button>
   
 </h2>
-<p>The <code>etcd</code> protocol connects to the cluster over plain HTTP. It is the default
-form and behaves the same as <code>etcd+http</code>.</p>
+<p>The <code>etcd</code> protocol connects to the cluster over TLS. It is the default form and
+behaves the same as <code>etcd+https</code>. Enable <strong>Plaintext</strong> to connect over plain
+HTTP instead.</p>
 
 
 <h4 id="backup-flow" class="group pr-8">Backup flow
@@ -10459,7 +10482,7 @@ flowchart TD
 
   Store["Kloset Store"]
 
-  Source -->|"snapshot request over HTTP"| Node
+  Source -->|"snapshot request over TLS"| Node
   Node -->|"dump"| Backup
   Backup --> Store
 </pre>
@@ -10489,9 +10512,39 @@ flowchart TD
 priority over the endpoint registered on the resource, which lets a backup
 reach several nodes of the same cluster rather than depending on a single one.</li>
 <li><strong>Password</strong>: The password used to authenticate with the cluster.</li>
+<li><strong>Plaintext</strong>: Connects over plain HTTP instead of TLS. The username and
+password are then sent in clear text. Disabled by default.</li>
+<li><strong>TLS Insecure No Verify</strong>: Disables TLS certificate verification. Disabled by
+default.</li>
 <li><strong>Username</strong>: The username used to authenticate with the cluster.</li>
 </ul>
-
+<details
+      class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
+      data-type="warning"
+      open>
+      <summary class="flex items-center gap-2 font-semibold text-inherit cursor-pointer">
+        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"/></svg>
+</span></div>
+        <div class="grow">
+          TLS Certificate Verification
+        </div>
+        <div
+          class="ms-auto flex h-5 w-5 items-center justify-center transition-transform ease-in-out -rotate-90 group-open:rotate-0 print:hidden"><span class="relative block icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+</span></div>
+      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Enabling <strong>TLS Insecure No Verify</strong> disables TLS certificate verification, so
+anyone on the network path can impersonate the cluster. Only use it in
+controlled environments with self-signed certificates on trusted networks.</p></div></details>
 
 <h2 id="2-etcdhttp-protocol" class="group pr-8">2. <code>etcd+http</code> protocol
     <button
@@ -10660,9 +10713,37 @@ flowchart TD
 priority over the endpoint registered on the resource, which lets a backup
 reach several nodes of the same cluster rather than depending on a single one.</li>
 <li><strong>Password</strong>: The password used to authenticate with the cluster.</li>
+<li><strong>TLS Insecure No Verify</strong>: Disables TLS certificate verification. Disabled by
+default.</li>
 <li><strong>Username</strong>: The username used to authenticate with the cluster.</li>
 </ul>
-
+<details
+      class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
+      data-type="warning"
+      open>
+      <summary class="flex items-center gap-2 font-semibold text-inherit cursor-pointer">
+        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"/></svg>
+</span></div>
+        <div class="grow">
+          TLS Certificate Verification
+        </div>
+        <div
+          class="ms-auto flex h-5 w-5 items-center justify-center transition-transform ease-in-out -rotate-90 group-open:rotate-0 print:hidden"><span class="relative block icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+</span></div>
+      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>Enabling <strong>TLS Insecure No Verify</strong> disables TLS certificate verification, so
+anyone on the network path can impersonate the cluster. Only use it in
+controlled environments with self-signed certificates on trusted networks.</p></div></details>
 
 <h2 id="recovering-a-cluster" class="group pr-8">Recovering a cluster
     <button
@@ -10742,7 +10823,7 @@ for the upstream procedure.</p>
   
   <div class="flex items-center justify-between text-xs text-neutral-400">
     
-      <span>Last updated: November 10, 2026</span>
+      <span>Last updated: November 13, 2026</span>
     
     
       <a href="https://github.com/PlakarKorp/plakar.io/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">

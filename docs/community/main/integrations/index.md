@@ -150,4 +150,12 @@ Below is a list of links to the documentation for each supported integration.
 
 
 
+## [SQLite](https://www.stg.plakar.io/docs/community/main/integrations/sqlite/index.md)
+
+
+
+## [LDAP](https://www.stg.plakar.io/docs/community/main/integrations/ldap/index.md)
+
+
+
 

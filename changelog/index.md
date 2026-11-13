@@ -59,6 +59,7 @@
 
 ## [PostgreSQL](https://www.stg.plakar.io/changelog/postgresql/index.md)
 
+- [PostgreSQL v1.1.3](index.md): Adds parallel directory-format dumps and table exclusions, and documents the risk of restoring untrusted globals.
 - [PostgreSQL v1.1.1](index.md): Validates database names before backup and removes temporary SSL keys when a connector fails to start.
 
 

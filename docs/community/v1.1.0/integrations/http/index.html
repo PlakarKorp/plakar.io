@@ -74,7 +74,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-05-21T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-10T15:43:37+01:00">
+    <meta property="article:modified_time" content="2026-11-13T13:15:00+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -128,8 +128,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.e142446be20741e95609c29f4e6492b8f83328f3a4d006f1d92e4959cc0366fb157ec983236a34c56c39c9bc6acce96294064cf571236451e79a539930be2c33.css"
-    integrity="sha512-4UJEa&#43;IHQelWCcKfTmSSuPgzKPOk0Abx2S5JWcwDZvsVfsmDI2o0xWw5ybxqzOlilAZM9XEjZFHnmlOZML4sMw==">
+    href="/css/main.bundle.min.641979a69cfd709ab99a2d3849fd53049fd51260633ca168b92ad327094a2a145ee414877222887a7fcc7b7dab69895a2fc3a45eee710eb582411ba5f074612d.css"
+    integrity="sha512-ZBl5ppz9cJq5mi04Sf1TBJ/VEmBjPKFouSrTJwlKKhRe5BSHciKIen/Me32raYlaL8OkXu5xDrWCQRul8HRhLQ==">
   
     
     <script defer src="/lib/zoom/zoom.min.umd.a527109b68c082a70f3697716dd72a9d5aa8b545cf800cecbbc7399f2ca6f6e0ce3e431f2062b48bbfa47c9ea42822714060bef309be073f49b9c0e30d318d7b.js" integrity="sha512-pScQm2jAgqcPNpdxbdcqnVqotUXPgAzsu8c5nyym9uDOPkMfIGK0i7&#43;kfJ6kKCJxQGC&#43;8wm&#43;Bz9JucDjDTGNew=="></script>
@@ -231,12 +231,12 @@
     "dateCreated": "2026-05-21T00:00:00\u002b00:00",
     "datePublished": "2026-05-21T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-10T15:43:37\u002b01:00",
+    "dateModified": "2026-11-13T13:15:00\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.stg.plakar.io/docs/community/v1.1.0/integrations/http/",
-    "wordCount":  281 
+    "wordCount":  341 
   }]
   </script>
 
@@ -1499,6 +1499,10 @@
   
     
   
+    
+  
+    
+  
   
 
   
@@ -1809,6 +1813,24 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         OpenShift
+      </a>
+    
+  
+    
+    
+      <a href="/docs/community/v1.1.0/integrations/sqlite/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        SQLite
+      </a>
+    
+  
+    
+    
+      <a href="/docs/community/v1.1.0/integrations/ldap/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        LDAP
       </a>
     
   
@@ -3629,6 +3651,10 @@
   
     
   
+    
+  
+    
+  
   
 
   
@@ -3939,6 +3965,24 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         OpenShift
+      </a>
+    
+  
+    
+    
+      <a href="/docs/community/v1.1.0/integrations/sqlite/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        SQLite
+      </a>
+    
+  
+    
+    
+      <a href="/docs/community/v1.1.0/integrations/ldap/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        LDAP
       </a>
     
   
@@ -4835,10 +4879,9 @@
     </button>
   
 </h1>
-<p>The HTTP(S) integration allows Plakar to use an HTTP or HTTPS endpoint as a
-Kloset store backend. Its used to connect to a Kloset store exposed by
-<code>plakar server</code>. The integration is pre-installed in Plakar <code>v1.1.0</code> or later
-and requires no additional setup. The integration provides one connector:</p>
+<p>The HTTP(S) integration uses an HTTP or HTTPS endpoint as a Kloset store
+backend. It is used to connect to a Kloset store exposed by <code>plakar server</code>.</p>
+<p>The integration includes one connector:</p>
 <table>
   <thead>
       <tr>
@@ -4848,18 +4891,24 @@ and requires no additional setup. The integration provides one connector:</p>
   </thead>
   <tbody>
       <tr>
-          <td>Storage connector</td>
-          <td>Host a Kloset store on any HTTP or HTTPS accessible endpoint</td>
+          <td><strong>Store connector</strong></td>
+          <td>Host a Kloset store on any HTTP or HTTPS accessible endpoint.</td>
       </tr>
   </tbody>
 </table>
+<p><strong>Requirements</strong></p>
+<ul>
+<li>Plakar <code>v1.1.0</code> or later.</li>
+<li>An HTTP or HTTPS endpoint serving a Kloset store, for example one exposed by
+<code>plakar server</code>.</li>
+</ul>
 
 
-<h2 id="connectors" class="group pr-8">Connectors
+<h2 id="installation" class="group pr-8">Installation
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="connectors"
+      data-anchor="installation"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -4870,13 +4919,39 @@ and requires no additional setup. The integration provides one connector:</p>
     </button>
   
 </h2>
+<p>The integration is pre-installed in Plakar <code>v1.1.0</code> or later and requires no
+additional setup.</p>
 
 
-<h3 id="storage-connector" class="group pr-8">Storage connector
+<h2 id="configuration" class="group pr-8">Configuration
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="storage-connector"
+      data-anchor="configuration"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>The store connector uses the <code>http://</code> or <code>https://</code> protocol. The location can
+be given directly on the command line with either prefix, or registered as a
+store alias.</p>
+<p>When the endpoint requires a bearer token, for example a <code>plakar server</code> started
+with <code>-token</code>, configure the store as an alias so the token is stored with it.
+The token is then sent in the <code>Authorization</code> header on every request. Over
+plaintext HTTP, the token is sent only when <code>insecure=true</code> is set.</p>
+
+
+<h3 id="store-configuration" class="group pr-8">Store configuration
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="store-configuration"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -4887,15 +4962,49 @@ and requires no additional setup. The integration provides one connector:</p>
     </button>
   
 </h3>
-<p>The HTTP(S) storage connector uses an HTTP or HTTPS endpoint as the backend for
-a Kloset store.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Option</th>
+          <th>Required</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>location</code></td>
+          <td>Yes</td>
+          <td>URL of the HTTP or HTTPS endpoint, for example <code>http://example.com/data</code>.</td>
+      </tr>
+      <tr>
+          <td><code>auth_token</code></td>
+          <td>No</td>
+          <td>Bearer token sent in the <code>Authorization</code> header on every request.</td>
+      </tr>
+      <tr>
+          <td><code>insecure</code></td>
+          <td>No</td>
+          <td>Set to <code>true</code> to allow <code>auth_token</code> to be sent over plaintext HTTP.</td>
+      </tr>
+      <tr>
+          <td><code>timeout</code></td>
+          <td>No</td>
+          <td>Per-request timeout. Defaults to <code>5m</code>.</td>
+      </tr>
+      <tr>
+          <td><code>tls_no_verify</code></td>
+          <td>No</td>
+          <td>Set to <code>true</code> to disable TLS certificate verification over HTTPS.</td>
+      </tr>
+  </tbody>
+</table>
 
 
-<h4 id="configure" class="group pr-8">Configure
+<h3 id="example" class="group pr-8">Example
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="configure"
+      data-anchor="example"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -4905,7 +5014,9 @@ a Kloset store.</p>
 </span></span>
     </button>
   
-</h4>
+</h3>
+<p>Initialize a store at an HTTP endpoint, back up a local directory to it, and
+list its snapshots:</p>
 <div class="highlight-wrapper codeblock">
   <div class="codeblock-title">
     <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
@@ -4925,8 +5036,7 @@ a Kloset store.</p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># List snapshots in the store</span>
 </span></span><span class="line"><span class="cl">$ plakar at http://example.com/data ls</span></span></code></pre></div></div>
-<p>When the endpoint requires a bearer token, for example a <code>plakar server</code> started
-with <code>-token</code>, configure the store as an alias so the token is stored with it:</p>
+<p>Register an endpoint that requires a bearer token:</p>
 <div class="highlight-wrapper codeblock">
   <div class="codeblock-title">
     <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
@@ -4943,61 +5053,6 @@ with <code>-token</code>, configure the store as an alias so the token is stored
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># Use the alias, the token is sent on every request</span>
 </span></span><span class="line"><span class="cl">$ plakar at @remote ls</span></span></code></pre></div></div>
-
-
-<h4 id="options" class="group pr-8">Options
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="options"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h4>
-<table>
-  <thead>
-      <tr>
-          <th>Option</th>
-          <th>Required</th>
-          <th>Description</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>location</code></td>
-          <td>Yes</td>
-          <td>URL of the HTTP or HTTPS endpoint, for example <code>http://example.com/data</code></td>
-      </tr>
-      <tr>
-          <td><code>auth_token</code></td>
-          <td>No</td>
-          <td>Bearer token sent in the <code>Authorization</code> header on every request</td>
-      </tr>
-      <tr>
-          <td><code>insecure</code></td>
-          <td>No</td>
-          <td>Set to <code>true</code> to allow <code>auth_token</code> to be sent over plaintext HTTP</td>
-      </tr>
-      <tr>
-          <td><code>timeout</code></td>
-          <td>No</td>
-          <td>Per-request timeout. Defaults to <code>5m</code></td>
-      </tr>
-      <tr>
-          <td><code>tls_no_verify</code></td>
-          <td>No</td>
-          <td>Set to <code>true</code> to disable TLS certificate verification over HTTPS</td>
-      </tr>
-  </tbody>
-</table>
-<p>The location can also be given directly on the command line, using the <code>http://</code>
-or <code>https://</code> prefix as shown above.</p>
 
 
 <h2 id="see-also" class="group pr-8">See also
@@ -5033,6 +5088,10 @@ or <code>https://</code> prefix as shown above.</p>
   
     
       
+    
+  
+    
+  
     
   
     
@@ -5133,7 +5192,7 @@ or <code>https://</code> prefix as shown above.</p>
   
   <div class="flex items-center justify-between text-xs text-neutral-400">
     
-      <span>Last updated: November 10, 2026</span>
+      <span>Last updated: November 13, 2026</span>
     
     
       <a href="https://github.com/PlakarKorp/plakar.io/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">
@@ -5153,7 +5212,7 @@ or <code>https://</code> prefix as shown above.</p>
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#connectors">Connectors</a><ul><li><a href="#storage-connector">Storage connector</a><ul><li><a href="#configure">Configure</a></li><li><a href="#options">Options</a></li></ul></li></ul></li><li><a href="#see-also">See also</a></li></ul>
+      <ul><li><a href="#installation">Installation</a></li><li><a href="#configuration">Configuration</a><ul><li><a href="#store-configuration">Store configuration</a></li><li><a href="#example">Example</a></li></ul></li><li><a href="#see-also">See also</a></li></ul>
     </div>
 
     

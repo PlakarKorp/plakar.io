@@ -55,6 +55,10 @@
 
 ## [Plakar Integrations](https://www.stg.plakar.io/integrations/index.md)
 
+- [LDAP](https://www.stg.plakar.io/integrations/ldap/index.md): Protect the users, groups and organizational units in your LDAP directory. Plakar exports every entry to LDIF and keeps encrypted, deduplicated snapshots you can restore from at any time.
+
+- [SQLite](https://www.stg.plakar.io/integrations/sqlite/index.md): Store Plakar backups inside a single SQLite database file. No server to run, no remote backend to manage, with encrypted and deduplicated snapshots from any source.
+
 - [OpenShift](https://www.stg.plakar.io/integrations/openshift/index.md): Manage OpenShift from Plakar Control Plane end to end. Discover namespaces, persistent volumes and OpenShift Virtualization virtual machines, and protect manifests, volume data and virtual machines with encrypted, deduplicated backups and restores.
 
 - [OpenStack](https://www.stg.plakar.io/integrations/openstack/index.md): Manage OpenStack from Plakar Control Plane end to end. Discover Nova servers, Cinder volumes and the other resources of a project automatically, and protect servers and volumes with encrypted, deduplicated backups and restores.

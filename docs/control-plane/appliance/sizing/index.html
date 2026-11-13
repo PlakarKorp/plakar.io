@@ -74,7 +74,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-10-26T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-10T15:43:37+01:00">
+    <meta property="article:modified_time" content="2026-11-13T13:15:00+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -128,8 +128,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.e142446be20741e95609c29f4e6492b8f83328f3a4d006f1d92e4959cc0366fb157ec983236a34c56c39c9bc6acce96294064cf571236451e79a539930be2c33.css"
-    integrity="sha512-4UJEa&#43;IHQelWCcKfTmSSuPgzKPOk0Abx2S5JWcwDZvsVfsmDI2o0xWw5ybxqzOlilAZM9XEjZFHnmlOZML4sMw==">
+    href="/css/main.bundle.min.641979a69cfd709ab99a2d3849fd53049fd51260633ca168b92ad327094a2a145ee414877222887a7fcc7b7dab69895a2fc3a45eee710eb582411ba5f074612d.css"
+    integrity="sha512-ZBl5ppz9cJq5mi04Sf1TBJ/VEmBjPKFouSrTJwlKKhRe5BSHciKIen/Me32raYlaL8OkXu5xDrWCQRul8HRhLQ==">
   
     
     <script defer src="/lib/zoom/zoom.min.umd.a527109b68c082a70f3697716dd72a9d5aa8b545cf800cecbbc7399f2ca6f6e0ce3e431f2062b48bbfa47c9ea42822714060bef309be073f49b9c0e30d318d7b.js" integrity="sha512-pScQm2jAgqcPNpdxbdcqnVqotUXPgAzsu8c5nyym9uDOPkMfIGK0i7&#43;kfJ6kKCJxQGC&#43;8wm&#43;Bz9JucDjDTGNew=="></script>
@@ -155,6 +155,16 @@
 
   
   
+
+  
+  
+  
+  
+  <script
+    defer
+    type="text/javascript"
+    src="/js/mermaid.bundle.ceb61d1b03724873f4afba209d5f9a6d9db9f2aa8bea1de39196f6ebe8b4f076c85e46f12ab9ec8bfc33bb7c2b063894c8f91e6199f07a1cac975892cd77823b.js"
+    integrity="sha512-zrYdGwNySHP0r7ognV&#43;abZ258qqL6h3jkZb26&#43;i08HbIXkbxKrnsi/wzu3wrBjiUyPkeYZnwehysl1iSzXeCOw=="></script>
 
 
 
@@ -231,12 +241,12 @@
     "dateCreated": "2026-10-26T00:00:00\u002b00:00",
     "datePublished": "2026-10-26T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-10T15:43:37\u002b01:00",
+    "dateModified": "2026-11-13T13:15:00\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.stg.plakar.io/docs/control-plane/appliance/sizing/",
-    "wordCount":  534 
+    "wordCount":  608 
   }]
   </script>
 
@@ -2164,6 +2174,8 @@
   
     
   
+    
+  
   
 
   
@@ -2177,6 +2189,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         Microsoft Active Directory
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/resources/identity/ldap/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        LDAP
       </a>
     
   
@@ -7055,6 +7076,8 @@
   
     
   
+    
+  
   
 
   
@@ -7068,6 +7091,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         Microsoft Active Directory
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/resources/identity/ldap/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        LDAP
       </a>
     
   
@@ -10370,6 +10402,27 @@ of the appliance.</li>
 <p>Backups are not stored on either disk. Restore points are written to
 <a href="/docs/control-plane/apps/stores/" >stores</a>, such as an S3 bucket or an SFTP server, which are
 sized separately according to the volume of data to protect and its retention.</p>
+<!-- prettier-ignore-start -->
+<pre class="not-prose mermaid">
+flowchart LR
+
+subgraph Appliance["Plakar Control Plane appliance"]
+  direction TB
+  Containers["Plakar Control Plane<br/>containers"]
+  OS["LinuxKit base OS"]
+  Containers ~~~ OS
+end
+
+DataDisk[("Data disk<br/>database, logs, state")]
+Stores[("Stores<br/>S3, SFTP, ...")]
+SystemDisk[("System disk<br/>appliance image, ~10 GB")]
+
+Containers --> DataDisk
+Containers -->|"restore points"| Stores
+OS --> SystemDisk
+</pre>
+
+<!-- prettier-ignore-end -->
 
 
 <h2 id="what-uses-the-resources" class="group pr-8">What uses the resources
@@ -10399,6 +10452,28 @@ that run at the same time.</p>
 appliance no longer does, so edges are how a deployment grows beyond what a
 single appliance can handle, without resizing it. An edge is sized for the tasks
 it runs, and is not covered by the tiers below.</p>
+<!-- prettier-ignore-start -->
+<pre class="not-prose mermaid">
+flowchart TD
+
+subgraph Appliance["Plakar Control Plane appliance"]
+  PCP["Control Plane<br/>UI, API, database,<br/>schedulers, inventories"]
+  Tasks["Tasks<br/>backups, restores,<br/>syncs, checks"]
+end
+
+subgraph Edges["Edges"]
+  EdgeTasks["Tasks"]
+end
+
+Stores[("Stores")]
+
+PCP -->|"schedules"| Tasks
+PCP -->|"schedules"| EdgeTasks
+Tasks --> Stores
+EdgeTasks --> Stores
+</pre>
+
+<!-- prettier-ignore-end -->
 
 
 <h2 id="sizing-tiers" class="group pr-8">Sizing tiers
@@ -10530,7 +10605,7 @@ can run at the same time.</p>
   
   <div class="flex items-center justify-between text-xs text-neutral-400">
     
-      <span>Last updated: November 10, 2026</span>
+      <span>Last updated: November 13, 2026</span>
     
     
       <a href="https://github.com/PlakarKorp/plakar.io/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">

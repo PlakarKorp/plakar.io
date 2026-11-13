@@ -74,7 +74,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-09-01T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-10T15:43:37+01:00">
+    <meta property="article:modified_time" content="2026-11-13T13:15:00+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -128,8 +128,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.e142446be20741e95609c29f4e6492b8f83328f3a4d006f1d92e4959cc0366fb157ec983236a34c56c39c9bc6acce96294064cf571236451e79a539930be2c33.css"
-    integrity="sha512-4UJEa&#43;IHQelWCcKfTmSSuPgzKPOk0Abx2S5JWcwDZvsVfsmDI2o0xWw5ybxqzOlilAZM9XEjZFHnmlOZML4sMw==">
+    href="/css/main.bundle.min.641979a69cfd709ab99a2d3849fd53049fd51260633ca168b92ad327094a2a145ee414877222887a7fcc7b7dab69895a2fc3a45eee710eb582411ba5f074612d.css"
+    integrity="sha512-ZBl5ppz9cJq5mi04Sf1TBJ/VEmBjPKFouSrTJwlKKhRe5BSHciKIen/Me32raYlaL8OkXu5xDrWCQRul8HRhLQ==">
   
     
     <script defer src="/lib/zoom/zoom.min.umd.a527109b68c082a70f3697716dd72a9d5aa8b545cf800cecbbc7399f2ca6f6e0ce3e431f2062b48bbfa47c9ea42822714060bef309be073f49b9c0e30d318d7b.js" integrity="sha512-pScQm2jAgqcPNpdxbdcqnVqotUXPgAzsu8c5nyym9uDOPkMfIGK0i7&#43;kfJ6kKCJxQGC&#43;8wm&#43;Bz9JucDjDTGNew=="></script>
@@ -241,12 +241,12 @@
     "dateCreated": "2026-09-01T00:00:00\u002b00:00",
     "datePublished": "2026-09-01T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-10T15:43:37\u002b01:00",
+    "dateModified": "2026-11-13T13:15:00\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.stg.plakar.io/docs/control-plane/resources/database/postgres/",
-    "wordCount":  2143 
+    "wordCount":  2835 
   }]
   </script>
 
@@ -2174,6 +2174,8 @@
   
     
   
+    
+  
   
 
   
@@ -2187,6 +2189,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         Microsoft Active Directory
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/resources/identity/ldap/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        LDAP
       </a>
     
   
@@ -7065,6 +7076,8 @@
   
     
   
+    
+  
   
 
   
@@ -7078,6 +7091,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         Microsoft Active Directory
+      </a>
+    
+  
+    
+    
+      <a href="/docs/control-plane/resources/identity/ldap/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        LDAP
       </a>
     
   
@@ -10435,6 +10457,23 @@ Plane, as described in
 <p>Add the resulting edges to an edge pool, and assign the PostgreSQL resources to
 that pool, so their tasks run on an edge that has the client tools. See
 <a href="/docs/control-plane/edges/running-tasks/#selecting-an-edge" >selecting an edge</a>.</p>
+<p>The <a href="/docs/control-plane/resources/database/postgres/#dump-formats" >directory dump format</a> also needs FUSE on the edge. Add
+<code>fuse3</code> to the packages the image installs, and run the container with access to
+<code>/dev/fuse</code>, the <code>SYS_ADMIN</code> capability, and an AppArmor profile that allows
+mounts:</p>
+<div class="highlight-wrapper codeblock">
+  <div class="codeblock-title">
+    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
+</span></span>
+    <span class="codeblock-label">Shell</span>
+    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
+      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
+</span></span>
+      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nf">docker</span> run --device /dev/fuse --cap-add SYS_ADMIN <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --security-opt apparmor:unconfined ...</span></span></code></pre></div></div>
 <p>The <code>postgres+aws</code> protocol generates its IAM token with the AWS credentials
 available to the edge. The edge picks them up from the standard AWS sources:
 environment variables such as <code>AWS_ACCESS_KEY_ID</code> and <code>AWS_SECRET_ACCESS_KEY</code>,
@@ -10521,7 +10560,24 @@ connectable database is dumped individually.</p>
       </div><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>The PostgreSQL user used for backup should be a superuser so that <code>pg_dumpall</code>
 can include role passwords. On managed services such as Amazon RDS, where the
 administrative user is a restricted superuser, role passwords cannot be read
-and restored roles will have no password set.</p></div></div>
+and restored roles will have no password set.</p></div></div><p>A backup of all databases connects to the <code>postgres</code> database to list them, so
+the backup user needs <code>CONNECT</code> on it. Some managed services, such as Clever
+Cloud, do not grant it. Back up a single database there.</p>
+<p>Database names that start with a dash, or contain <code>=</code> or whitespace, are refused
+and the backup or restore fails. To back up the rest of a cluster that contains
+one, list it in <strong>Exclude Databases</strong>.</p>
+<div class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm" data-type="warning">
+      <div class="flex items-center gap-2 font-semibold text-inherit">
+        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"/></svg>
+</span></div>
+        <div class="grow">
+          Warning
+        </div>
+      </div><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>A <code>\!</code> meta-command in <code>00000-globals.sql</code> runs as a shell command on the edge
+that runs the restore, even with <strong>Exit On Error</strong>. This applies to both the
+<code>postgres</code> and <code>postgres+aws</code> protocols. To restore a snapshot you do not
+trust, enable <strong>No Globals</strong> and create the roles and tablespaces on the
+target yourself.</p></div></div>
 
 <h4 id="backup-flow" class="group pr-8">Backup flow
     <button
@@ -10598,6 +10654,78 @@ flowchart TD
 <!-- prettier-ignore-end -->
 
 
+<h3 id="dump-formats" class="group pr-8">Dump formats
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="dump-formats"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p><strong>Format</strong> selects how each database is dumped, with the <code>postgres</code> and
+<code>postgres+aws</code> protocols. The default, <code>custom</code>, dumps each database with a
+single <code>pg_dump -Fc</code> process into one <code>.dump</code> file.</p>
+<p><code>directory</code> dumps each database with <code>pg_dump -Fd</code>, which writes one file per
+table and dumps several tables in parallel. On large databases this shortens
+backups considerably. Each file is streamed into the snapshot as it is written,
+so the dump uses no disk on the edge. <strong>Parallel Dumps</strong> sets the number of
+parallel jobs per database. Each job is a separate connection running a <code>COPY</code>
+on the server. It defaults to 4, or to the task&rsquo;s <strong>Concurrency</strong> when that is
+lower. A single table is always dumped by one job, so the largest table bounds
+how fast a database can be dumped.</p>
+<p>The directory format only works on Linux edges with <code>/dev/fuse</code> and
+<code>fusermount3</code> (package <code>fuse3</code>). The backup fails when they are missing. See
+<a href="/docs/control-plane/resources/database/postgres/#running-the-edge-in-a-container" >Running the edge in a container</a>.</p>
+<p>To restore a directory-format snapshot, restore it with a file-restore
+destination app, or mount it with
+<a href="/docs/community/v1.1.0/references/commands/plakar-mount/" ><code>plakar mount</code></a> on a
+machine with access to the store, and run <code>pg_restore -Fd</code> on the database
+directory, such as <code>00001-myapp</code>.</p>
+<p>To speed up the backup of a large database:</p>
+<ol>
+<li>Upgrade the PostgreSQL integration from the
+<a href="/docs/control-plane/integrations/" >Integrations</a> page, so that its source app offers
+<strong>Format</strong> and <strong>Parallel Dumps</strong>.</li>
+<li>Make sure the edges of the resource&rsquo;s pool have FUSE, as described above.</li>
+<li>In the source app, set <strong>Format</strong> to <code>directory</code>.</li>
+<li>Set <strong>Parallel Dumps</strong> to the number of connections the server can serve
+alongside its regular load, such as <code>16</code>.</li>
+</ol>
+
+
+<h3 id="excluding-tables" class="group pr-8">Excluding tables
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="excluding-tables"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p><strong>Exclude Tables</strong> and <strong>Exclude Table Data</strong> leave large tables out of a
+logical backup. Both take a comma-separated list of <code>pg_dump</code> table patterns and
+apply them to every database dumped. <strong>Exclude Tables</strong> leaves out the table
+entirely, definition and rows. <strong>Exclude Table Data</strong> keeps the definition and
+leaves out the rows, so the table is restored empty.</p>
+<p>A pattern without a schema only matches tables on the <code>search_path</code>. Use
+<code>*.audit_log</code> to match a table in every schema. Excluding a partitioned table
+does not exclude its partitions, which must be listed too. Both lists are
+recorded in the snapshot&rsquo;s <code>manifest.json</code>.</p>
+
+
 <h3 id="shared-configuration" class="group pr-8">Shared configuration
     <button
       type="button"
@@ -10659,6 +10787,17 @@ URI.</li>
 <li><strong>Exclude Databases</strong>: Comma-separated list of database names to skip during a
 full backup. Has no effect when a single database is selected via <strong>Database</strong>
 or the location URI. Example: <code>rdsadmin,template1</code>.</li>
+<li><strong>Exclude Table Data</strong>: Comma-separated <code>pg_dump --exclude-table-data</code>
+patterns. Matching tables are restored empty. See
+<a href="/docs/control-plane/resources/database/postgres/#excluding-tables" >Excluding tables</a>.</li>
+<li><strong>Exclude Tables</strong>: Comma-separated <code>pg_dump --exclude-table</code> patterns.
+Matching tables are left out, definition and rows. See
+<a href="/docs/control-plane/resources/database/postgres/#excluding-tables" >Excluding tables</a>.</li>
+<li><strong>Format</strong>: Dump format, <code>custom</code> or <code>directory</code>. Defaults to <code>custom</code>. See
+<a href="/docs/control-plane/resources/database/postgres/#dump-formats" >Dump formats</a>.</li>
+<li><strong>Parallel Dumps</strong>: Number of parallel <code>pg_dump</code> jobs per database. Requires
+<strong>Format</strong> set to <code>directory</code>. Defaults to 4, or to the task&rsquo;s <strong>Concurrency</strong>
+when lower.</li>
 <li><strong>Schema Only</strong>: Dump only the schema, passing <code>-s</code> to <code>pg_dump</code>. Mutually
 exclusive with <strong>Data Only</strong>.</li>
 </ul>
@@ -10697,7 +10836,8 @@ Globals</strong> is enabled. Example: <code>myapp,myother</code>.</li>
 <li><strong>Exit On Error</strong>: Stop the restore on the first error, passing <code>-e</code> to
 <code>pg_restore</code> and <code>ON_ERROR_STOP=1</code> to <code>psql</code>.</li>
 <li><strong>No Globals</strong>: Skip restoring <code>00000-globals.sql</code>. By default, globals are
-restored automatically when present.</li>
+restored automatically when present. Enable it when the snapshot is not
+trusted.</li>
 <li><strong>No Owner</strong>: Skip <code>ALTER OWNER</code> statements, passing <code>--no-owner</code> to
 <code>pg_restore</code>. Useful when the roles from the source server do not exist on the
 target server.</li>
@@ -11039,6 +11179,17 @@ URI.</li>
 full backup. Defaults to <code>rdsadmin</code>, an internal AWS system database that
 cannot be dumped by regular users. Set to an empty string to disable all
 exclusions.</li>
+<li><strong>Exclude Table Data</strong>: Comma-separated <code>pg_dump --exclude-table-data</code>
+patterns. Matching tables are restored empty. See
+<a href="/docs/control-plane/resources/database/postgres/#excluding-tables" >Excluding tables</a>.</li>
+<li><strong>Exclude Tables</strong>: Comma-separated <code>pg_dump --exclude-table</code> patterns.
+Matching tables are left out, definition and rows. See
+<a href="/docs/control-plane/resources/database/postgres/#excluding-tables" >Excluding tables</a>.</li>
+<li><strong>Format</strong>: Dump format, <code>custom</code> or <code>directory</code>. Defaults to <code>custom</code>. See
+<a href="/docs/control-plane/resources/database/postgres/#dump-formats" >Dump formats</a>.</li>
+<li><strong>Parallel Dumps</strong>: Number of parallel <code>pg_dump</code> jobs per database. Requires
+<strong>Format</strong> set to <code>directory</code>. Defaults to 4, or to the task&rsquo;s <strong>Concurrency</strong>
+when lower.</li>
 <li><strong>Schema Only</strong>: Dump only the schema, passing <code>-s</code> to <code>pg_dump</code>. Mutually
 exclusive with <strong>Data Only</strong>.</li>
 </ul>
@@ -11077,7 +11228,8 @@ Globals</strong> is enabled. Example: <code>myapp,myother</code>.</li>
 <li><strong>Exit On Error</strong>: Stop the restore on the first error, passing <code>-e</code> to
 <code>pg_restore</code> and <code>ON_ERROR_STOP=1</code> to <code>psql</code>.</li>
 <li><strong>No Globals</strong>: Skip restoring <code>00000-globals.sql</code>. By default, globals are
-restored automatically when present.</li>
+restored automatically when present. Enable it when the snapshot is not
+trusted.</li>
 <li><strong>No Owner</strong>: Skip <code>ALTER OWNER</code> statements, passing <code>--no-owner</code> to
 <code>pg_restore</code>.</li>
 <li><strong>Recreate</strong>: Drop and recreate the target database from the archive metadata,
@@ -11144,7 +11296,7 @@ Mutually exclusive with <strong>Data Only</strong>.</li>
   
   <div class="flex items-center justify-between text-xs text-neutral-400">
     
-      <span>Last updated: November 10, 2026</span>
+      <span>Last updated: November 13, 2026</span>
     
     
       <a href="https://github.com/PlakarKorp/plakar.io/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">
@@ -11164,7 +11316,7 @@ Mutually exclusive with <strong>Data Only</strong>.</li>
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#running-postgresql-tasks-on-an-edge">Running PostgreSQL tasks on an edge</a><ul><li><a href="#running-the-edge-in-a-container">Running the edge in a container</a></li></ul></li><li><a href="#inventory-management">Inventory Management</a><ul><li><a href="#adding-postgresql-as-a-resource">Adding PostgreSQL as a resource</a></li></ul></li><li><a href="#1-postgres-protocol">1. postgres protocol</a><ul><ul><li><a href="#backup-flow">Backup flow</a></li><li><a href="#restore-flow">Restore flow</a></li></ul></li><li><a href="#shared-configuration">Shared configuration</a></li><li><a href="#source-configuration">Source configuration</a></li><li><a href="#destination-configuration">Destination configuration</a></li></ul></li><li><a href="#2-postgresbin-protocol">2. postgres+bin protocol</a><ul><ul><li><a href="#backup-flow-1">Backup flow</a></li></ul></li><li><a href="#source-configuration-1">Source configuration</a></li><li><a href="#restoring-a-physical-backup">Restoring a physical backup</a></li></ul></li><li><a href="#3-postgresaws-protocol">3. postgres+aws protocol</a><ul><ul><li><a href="#backup-flow-2">Backup flow</a></li><li><a href="#restore-flow-1">Restore flow</a></li></ul></li><li><a href="#shared-configuration-1">Shared configuration</a></li><li><a href="#source-configuration-2">Source configuration</a></li><li><a href="#destination-configuration-1">Destination configuration</a></li></ul></li></ul>
+      <ul><li><a href="#running-postgresql-tasks-on-an-edge">Running PostgreSQL tasks on an edge</a><ul><li><a href="#running-the-edge-in-a-container">Running the edge in a container</a></li></ul></li><li><a href="#inventory-management">Inventory Management</a><ul><li><a href="#adding-postgresql-as-a-resource">Adding PostgreSQL as a resource</a></li></ul></li><li><a href="#1-postgres-protocol">1. postgres protocol</a><ul><ul><li><a href="#backup-flow">Backup flow</a></li><li><a href="#restore-flow">Restore flow</a></li></ul></li><li><a href="#dump-formats">Dump formats</a></li><li><a href="#excluding-tables">Excluding tables</a></li><li><a href="#shared-configuration">Shared configuration</a></li><li><a href="#source-configuration">Source configuration</a></li><li><a href="#destination-configuration">Destination configuration</a></li></ul></li><li><a href="#2-postgresbin-protocol">2. postgres+bin protocol</a><ul><ul><li><a href="#backup-flow-1">Backup flow</a></li></ul></li><li><a href="#source-configuration-1">Source configuration</a></li><li><a href="#restoring-a-physical-backup">Restoring a physical backup</a></li></ul></li><li><a href="#3-postgresaws-protocol">3. postgres+aws protocol</a><ul><ul><li><a href="#backup-flow-2">Backup flow</a></li><li><a href="#restore-flow-1">Restore flow</a></li></ul></li><li><a href="#shared-configuration-1">Shared configuration</a></li><li><a href="#source-configuration-2">Source configuration</a></li><li><a href="#destination-configuration-1">Destination configuration</a></li></ul></li></ul>
     </div>
 
     
