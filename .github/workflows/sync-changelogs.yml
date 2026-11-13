@@ -1,0 +1,51 @@
+name: Sync Changelogs
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: sync-changelogs
+  cancel-in-progress: false
+
+jobs:
+  sync-changelogs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v6
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: ".node-version"
+          cache: "npm"
+
+      - name: Install root dependencies
+        run: npm ci
+
+      - name: Draft changelog entries
+        env:
+          GH_TOKEN: ${{ secrets.CHANGELOG_TOKEN }}
+        run: node scripts/sync-changelogs.mjs
+
+      - name: Format drafts
+        run: npx prettier --write content/changelog
+
+      - name: Open pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: changelog/sync
+          delete-branch: true
+          commit-message: draft changelog entries from GitHub releases
+          title: Draft changelog entries from GitHub releases
+          body: |
+            Draft changelog entries generated from GitHub releases. Rewrite
+            each entry and its `TODO` summary before merging.
+          labels: changelog
+          draft: true
+          add-paths: content/changelog
