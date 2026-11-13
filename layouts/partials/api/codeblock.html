@@ -1,0 +1,12 @@
+{{- $shell := eq .lang "sh" -}}
+<div class="highlight-wrapper codeblock {{ .class }}">
+  <div class="codeblock-title">
+    <span class="codeblock-icon">{{ partial "icon.html" (cond $shell "ri/terminal-box-line" "ri/file-text-line") }}</span>
+    <span class="codeblock-label">{{ .label }}</span>
+    <button type="button" class="codeblock-copy" aria-label="{{ i18n "code.copy" }}" title="{{ i18n "code.copy" }}">
+      <span class="codeblock-copy-icon">{{ partial "icon.html" "ri/file-copy-line" }}</span>
+      <span class="codeblock-copied-icon">{{ partial "icon.html" "ri/check-line" }}</span>
+    </button>
+  </div>
+  {{- transform.Highlight .code .lang "" -}}
+</div>
