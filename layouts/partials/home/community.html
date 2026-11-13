@@ -1,0 +1,107 @@
+{{/* Home page section. Shared class strings come from home/classes.html. */}}
+{{ $c := partial "home/classes.html" . }}
+{{ $wrap := $c.wrap }}
+{{ $eyebrow := $c.eyebrow }}
+{{ $h2 := $c.h2 }}
+{{ $lead := $c.lead }}
+{{ $secondaryButton := $c.secondaryButton }}
+
+<!-- ================================================================
+     Open source: contributors, figures, memberships.
+     Contributors: data/contributors.yaml, from scripts/update-contributors.sh.
+     GitHub stars: filled in by assets/js/main/github.js.
+     ================================================================ -->
+{{ $people := site.Data.contributors | default slice }}
+{{ $integrations := len (where site.RegularPages "Section" "integrations") }}
+{{ $repo := strings.TrimPrefix "https://github.com/" site.Params.github.plakar }}
+{{ $half := div (add (len $people) 1) 2 }}
+{{ $rows := slice (first $half $people) (after $half $people) }}
+
+<section class="py-24 lg:py-36 border-t border-ui-neutral-200 overflow-hidden">
+  <div class="{{ $wrap }} flex flex-col items-center gap-6 text-center">
+    <h2 class="{{ $eyebrow }}"><span class="w-1.5 h-1.5 rounded-full bg-ui-primary-500"></span>Open source</h2>
+    <p class="{{ $h2 }} max-w-3xl">Built in the open. Built to last.</p>
+    <p class="{{ $lead }} max-w-2xl">
+      Backups have to stay readable decades from now. Plakar is built in public by developers, SREs and
+      platform engineers, and anyone can read, audit and improve it.
+    </p>
+  </div>
+
+  <div class="mt-14 lg:mt-20 flex flex-col">
+    {{ range $row, $list := $rows }}
+      {{ if $list }}
+        <div class="home-marquee-row home-fade-x py-4 border-y border-ui-neutral-200">
+          <div class="home-marquee {{ if eq $row 1 }}home-marquee--reverse{{ end }}" style="animation-duration: 210s">
+            {{ range seq 2 }}
+              {{/* Each half repeats the list so it is always wider than the screen */}}
+              <div class="flex gap-3 pr-3" {{ if eq . 2 }}aria-hidden="true"{{ end }}>
+                {{ range (seq 3) }}{{ range $list }}
+                  <a href="https://github.com/{{ .login }}" target="_blank" rel="noopener" title="{{ .login }}" class="block shrink-0 w-10 h-10 rounded-xl border border-ui-neutral-200 bg-ui-neutral-50 overflow-hidden grayscale-[35%] hover:grayscale-0 hover:scale-110 transition">
+                    <img src="https://avatars.githubusercontent.com/u/{{ .id }}?s=80&v=4" alt="{{ .login }}" width="40" height="40" loading="lazy" class="w-full h-full object-cover">
+                  </a>
+                {{ end }}{{ end }}
+              </div>
+            {{ end }}
+          </div>
+        </div>
+      {{ end }}
+
+      {{ if eq $row 0 }}
+        <!-- Figures, between the two rows -->
+        <div class="{{ $wrap }} w-full">
+          <div class="grid grid-cols-2 lg:grid-cols-4 border-x border-ui-neutral-200 divide-x divide-ui-neutral-200 [&>*:nth-child(3)]:border-l-0 lg:[&>*:nth-child(3)]:border-l">
+            {{ range slice
+              (dict "label" "GitHub stars" "icon" "ri/star-line" "stars" true)
+              (dict "label" "Contributors" "icon" "ri/team-line" "value" (len $people))
+              (dict "label" "Integrations" "icon" "ri/puzzle-2-line" "value" $integrations)
+              (dict "label" "Licence" "icon" "ri/open-source-line" "value" "ISC")
+            }}
+              <div class="flex flex-col items-center gap-1 px-4 py-6 lg:py-7">
+                <span class="block w-4 h-4 text-ui-primary-500">{{ partial "icon.html" .icon }}</span>
+                <span class="text-3xl lg:text-4xl font-medium tracking-tight text-ui-neutral-900 tabular-nums">
+                  {{ if .stars }}<span class="github-stars-count" data-repo="{{ $repo }}">2,000+</span>{{ else }}{{ .value }}{{ end }}
+                </span>
+                <span class="text-sm text-ui-neutral-500">{{ .label }}</span>
+              </div>
+            {{ end }}
+          </div>
+        </div>
+      {{ end }}
+    {{ end }}
+  </div>
+
+  <div class="{{ $wrap }} mt-14 lg:mt-16 flex flex-col items-center gap-10">
+    <div class="flex flex-wrap justify-center gap-3">
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "Start contributing"
+        "href" site.Params.github.plakar
+        "target" "_blank"
+        "icon" "github"
+      ) }}
+      {{ partial "components/buttons/base-button.html" (merge $secondaryButton (dict
+        "label" "Chat with us"
+        "href" site.Params.socials.discord
+        "target" "_blank"
+        "icon" "discord"
+      )) }}
+    </div>
+    <div class="flex flex-col items-center gap-4">
+      <span class="text-xs font-semibold uppercase tracking-widest text-ui-neutral-400">Member of</span>
+      <div class="flex flex-wrap items-stretch justify-center gap-4">
+        {{ range slice
+          (dict "logo" "img/community/cncf-member-silver-color.svg" "name" "CNCF Silver Member" "url" "https://www.cncf.io/")
+          (dict "logo" "img/community/lf-member-level-silver.svg" "name" "Linux Foundation Silver Member" "url" "https://www.linuxfoundation.org/")
+          (dict "logo" "img/community/sylva-logo.svg" "name" "Sylva" "url" "https://sylvaproject.org/")
+        }}
+          {{ $item := . }}
+          {{ with resources.Get .logo }}
+            {{/* White tiles in both themes: the logos keep their own colours */}}
+            <a href="{{ $item.url }}" target="_blank" rel="noopener" class="flex items-center justify-center h-24 px-8 rounded-2xl border border-ui-neutral-200 bg-white shadow-sm hover:-translate-y-0.5 hover:shadow-lg transition">
+              <img src="{{ .RelPermalink }}" alt="{{ $item.name }}" class="h-12 w-auto">
+            </a>
+          {{ end }}
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>

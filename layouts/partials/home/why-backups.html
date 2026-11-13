@@ -1,0 +1,42 @@
+{{/* Home page section. Shared class strings come from home/classes.html. */}}
+{{ $c := partial "home/classes.html" . }}
+{{ $wrap := $c.wrap }}
+
+<!-- ================================================================
+     Why backups
+     ================================================================ -->
+<section class="section-dark-1 relative overflow-hidden border-y border-neutral-800">
+  <div class="absolute -right-48 -top-64 w-[48rem] h-[48rem] home-glow" aria-hidden="true"></div>
+  <div class="relative {{ $wrap }} py-24 lg:py-36">
+    <div class="grid lg:grid-cols-[1.15fr_1fr] gap-8 lg:gap-24 lg:items-end">
+      <div class="flex flex-col gap-6">
+        <h2 class="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-primary-300">
+          <span class="w-1.5 h-1.5 rounded-full bg-primary-400"></span>Why backups
+        </h2>
+        <p class="home-heading-dark font-medium tracking-tight leading-[1.05] text-4xl md:text-5xl lg:text-6xl">
+          A breach is no longer a risk. It is a certainty.
+        </p>
+      </div>
+      <p class="text-lg leading-relaxed text-neutral-400 lg:pb-2">
+        State-led ransomware, AI-driven exfiltration and a vanishing perimeter have made backups the
+        last line of defense, and the first thing attackers go after.
+      </p>
+    </div>
+
+    <div class="mt-16 lg:mt-24 pt-10 border-t border-neutral-800 grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+      {{ range slice
+        (dict "value" "96" "unit" "%" "label" "of ransomware attacks target backup repositories")
+        (dict "value" "43" "unit" "%" "label" "of affected data is unrecoverable after an attack")
+        (dict "value" "45" "unit" "%" "label" "of AI-generated code introduces security vulnerabilities")
+        (dict "value" "8" "unit" "×" "label" "higher median recovery cost when backups are compromised")
+      }}
+        <div class="flex flex-col gap-4 lg:pl-8 lg:border-l lg:first:border-l-0 lg:first:pl-0 border-neutral-800">
+          <span class="font-medium tracking-tighter leading-none text-6xl lg:text-7xl">
+            <span class="home-heading-dark">{{ .value }}</span><span class="text-primary-400">{{ .unit }}</span>
+          </span>
+          <span class="max-w-60 text-neutral-400">{{ .label }}</span>
+        </div>
+      {{ end }}
+    </div>
+  </div>
+</section>

@@ -773,7 +773,8 @@ html.dark .home-frame {
   animation-direction: reverse;
 }
 
-.home-marquee-row:hover .home-marquee {
+.home-marquee-row:hover .home-marquee,
+html.is-tab-hidden .home-marquee {
   animation-play-state: paused;
 }
 
@@ -789,74 +790,153 @@ html.dark .home-frame {
   }
 }
 
-/* Membership logos are in colour on light, white on dark */
-html.dark .home-mono-logo {
-  filter: brightness(0) invert(1);
-  opacity: 0.85;
+/* Resilience as code on the home page. home-iac.js sets data-stage and
+   --iac-progress as you scroll.
+
+   Steps: the rail fills with the scroll, the current step is brighter.
+   Nothing changes size, so the column never moves. */
+.home-iac-rail {
+  height: calc(var(--iac-progress, 0) * (100% - 1.5rem));
 }
 
-/* Resilience as code switcher on the home page: radio inputs, no JavaScript */
-.home-iac-panel {
-  display: none;
+.home-iac.is-pinned .home-iac-step {
+  opacity: 0.45;
+  transition: opacity 0.3s ease;
 }
 
-.home-iac-tab {
-  border-color: transparent;
+.home-iac[data-stage="0"] [data-step="0"],
+.home-iac[data-stage="1"] [data-step="1"],
+.home-iac[data-stage="2"] [data-step="2"],
+.home-iac[data-stage="3"] [data-step="3"] {
+  opacity: 1;
 }
 
-.home-iac-tab:hover {
-  background-color: rgba(var(--ui-neutral-50), 0.6);
+.home-iac[data-stage="0"] [data-step="0"] .home-iac-step-title,
+.home-iac[data-stage="1"] [data-step="1"] .home-iac-step-title,
+.home-iac[data-stage="2"] [data-step="2"] .home-iac-step-title,
+.home-iac[data-stage="3"] [data-step="3"] .home-iac-step-title {
+  color: rgb(var(--ui-neutral-900));
 }
 
-.home-iac:has(#iac-k8s:checked) [data-iac-panel="k8s"],
-.home-iac:has(#iac-tf:checked) [data-iac-panel="tf"],
-.home-iac:has(#iac-ansible:checked) [data-iac-panel="ansible"],
-.home-iac:has(#iac-api:checked) [data-iac-panel="api"] {
-  display: block;
-}
-
-.home-iac:has(#iac-k8s:checked) label[for="iac-k8s"],
-.home-iac:has(#iac-tf:checked) label[for="iac-tf"],
-.home-iac:has(#iac-ansible:checked) label[for="iac-ansible"],
-.home-iac:has(#iac-api:checked) label[for="iac-api"] {
-  border-color: rgb(var(--ui-neutral-200));
-  background-color: rgb(var(--ui-neutral-50));
-  box-shadow: 0 1px 2px rgba(17, 17, 51, 0.05);
-}
-
-.home-iac:has(#iac-k8s:checked) label[for="iac-k8s"] .home-iac-tab-icon,
-.home-iac:has(#iac-tf:checked) label[for="iac-tf"] .home-iac-tab-icon,
-.home-iac:has(#iac-ansible:checked) label[for="iac-ansible"] .home-iac-tab-icon,
-.home-iac:has(#iac-api:checked) label[for="iac-api"] .home-iac-tab-icon {
-  border-color: transparent;
+.home-iac[data-stage="0"] [data-step="0"] .home-iac-dot,
+.home-iac[data-stage="1"] :is([data-step="0"], [data-step="1"]) .home-iac-dot,
+.home-iac[data-stage="2"]
+  :is([data-step="0"], [data-step="1"], [data-step="2"])
+  .home-iac-dot,
+.home-iac[data-stage="3"] .home-iac-dot {
+  border-color: rgb(var(--color-primary-500));
   background-color: rgb(var(--color-primary-500));
   color: #fff;
 }
 
-.home-iac:has(#iac-k8s:focus-visible) label[for="iac-k8s"],
-.home-iac:has(#iac-tf:focus-visible) label[for="iac-tf"],
-.home-iac:has(#iac-ansible:focus-visible) label[for="iac-ansible"],
-.home-iac:has(#iac-api:focus-visible) label[for="iac-api"] {
-  outline: 2px solid rgb(var(--ui-primary-500));
-  outline-offset: 2px;
+/* Window tabs follow the step */
+.home-iac[data-stage="0"] [data-tab="0"],
+.home-iac[data-stage="1"] [data-tab="1"],
+.home-iac[data-stage="2"] [data-tab="2"],
+.home-iac[data-stage="3"] [data-tab="3"] {
+  background-color: rgb(var(--color-neutral-800));
+  color: rgb(var(--color-neutral-100));
 }
 
-/* Pinned mode, set by home-iac.js: the section is one screen tall per tool and
-   the stage sticks while you scroll through it */
+/* Body: the steps share one place and crossfade */
+.home-iac-layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translateY(0.375rem);
+  pointer-events: none;
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+}
+
+.home-iac[data-stage="0"] [data-layer="0"],
+.home-iac[data-stage="1"] [data-layer="1"],
+.home-iac[data-stage="2"] [data-layer="2"],
+.home-iac[data-stage="3"] [data-layer="3"] {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+/* Inside a step, items fade in one after another */
+.home-iac-item {
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.home-iac[data-stage="0"] [data-layer="0"] .home-iac-item,
+.home-iac[data-stage="1"] [data-layer="1"] .home-iac-item,
+.home-iac[data-stage="2"] [data-layer="2"] .home-iac-item,
+.home-iac[data-stage="3"] [data-layer="3"] .home-iac-item {
+  opacity: 1;
+  transition-delay: calc(0.1s + var(--i, 0) * 50ms);
+}
+
+[data-layer="2"] .home-iac-item,
+[data-layer="3"] .home-iac-item {
+  --step: 180ms;
+}
+
+.home-iac[data-stage="2"] [data-layer="2"] .home-iac-item,
+.home-iac[data-stage="3"] [data-layer="3"] .home-iac-item {
+  transition-delay: calc(0.1s + var(--i, 0) * var(--step));
+}
+
+/* A pulse travels from the source to the store */
+.home-iac-flow::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 -40%;
+  width: 40%;
+  background: rgb(var(--color-primary-400));
+  animation: home-iac-flow 1.8s ease-in-out infinite;
+}
+
+@keyframes home-iac-flow {
+  to {
+    left: 100%;
+  }
+}
+
+/* Pinned, set by home-iac.js: one screen of scroll per step */
 .home-iac.is-pinned {
-  height: calc(var(--home-iac-steps) * 85vh);
+  height: calc(var(--iac-steps) * 90vh);
 }
 
-.home-iac.is-pinned .home-iac-stage {
+.home-iac.is-pinned .home-iac-sticky {
   position: sticky;
   top: 0;
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding-top: 6rem;
+  padding-top: 5rem;
   padding-bottom: 1rem;
 }
 
-.home-iac-progress {
-  width: 0;
+/* Without pinning (small screens, reduced motion, no script): the window shows
+   the first step, the file */
+.home-iac:not(.is-pinned) .home-iac-rail {
+  display: none;
+}
+
+.home-iac:not(.is-pinned) .home-iac-dot {
+  border-color: rgb(var(--color-primary-500));
+  background-color: rgb(var(--color-primary-500));
+  color: #fff;
+}
+
+.home-iac:not(.is-pinned) .home-iac-item {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-iac-layer,
+  .home-iac-item {
+    transition: none;
+  }
+
+  .home-iac-flow::after {
+    animation: none;
+  }
 }
