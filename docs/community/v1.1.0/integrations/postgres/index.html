@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-06-12T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-12T17:14:37+01:00">
+    <meta property="article:modified_time" content="2026-11-13T13:15:00+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -244,12 +244,12 @@
     "dateCreated": "2026-06-12T00:00:00\u002b00:00",
     "datePublished": "2026-06-12T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-12T17:14:37\u002b01:00",
+    "dateModified": "2026-11-13T13:15:00\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/community/v1.1.0/integrations/postgres/",
-    "wordCount":  3025 
+    "wordCount":  3705 
   }]
   </script>
 
@@ -4959,6 +4959,8 @@ requirements:</p>
 </li>
 <li>For <code>postgres+bin://</code>, <code>pg_basebackup</code> in <code>$PATH</code> (same <code>postgresql-client</code>
 package, or <code>postgresql</code> on macOS via Homebrew).</li>
+<li>For the <a href="/docs/community/v1.1.0/integrations/postgres/#dump-formats" >directory dump format</a>, Linux with <code>/dev/fuse</code> and
+<code>fusermount3</code> (Debian package <code>fuse3</code>).</li>
 <li>Database-side requirements are listed under each protocol.</li>
 </ul>
 <p><strong>Typical use cases</strong></p>
@@ -5177,7 +5179,9 @@ SQL-level representation of the data.</p>
 <li><code>/00000-globals.sql</code>: roles and tablespaces for the whole cluster
 (<code>pg_dumpall --globals-only</code>).</li>
 <li><code>/00001-&lt;dbname&gt;.dump</code>, <code>/00002-&lt;dbname&gt;.dump</code>, …: one <code>pg_dump -Fc</code>
-custom-format file per database, numbered alphabetically.</li>
+custom-format file per database, numbered alphabetically. With
+<code>format=directory</code>, each database is a <code>/00001-&lt;dbname&gt;/</code> directory instead.
+See <a href="/docs/community/v1.1.0/integrations/postgres/#dump-formats" >Dump formats</a>.</li>
 </ul>
 <p>When a <strong>single database</strong> is specified, only that database is dumped alongside
 the globals file. When <strong>no database</strong> is specified, every database with
@@ -5185,7 +5189,36 @@ the globals file. When <strong>no database</strong> is specified, every database
 contains the <a href="/docs/community/v1.1.0/integrations/postgres/#snapshot-manifest" >snapshot manifest</a>.</p>
 <p>Restore dispatches on file name and extension. <code>.dump</code> files are fed to
 <code>pg_restore</code>, and <code>00000-globals.sql</code> is fed to <code>psql</code> automatically.</p>
-<p><strong>Pros</strong></p>
+<details
+      class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
+      data-type="warning"
+      open>
+      <summary class="flex items-center gap-2 font-semibold text-inherit cursor-pointer">
+        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"/></svg>
+</span></div>
+        <div class="grow">
+          Restore only trusted snapshots
+        </div>
+        <div
+          class="ms-auto flex h-5 w-5 items-center justify-center transition-transform ease-in-out -rotate-90 group-open:rotate-0 print:hidden"><span class="relative block icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+</span></div>
+      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>A <code>\!</code> meta-command in <code>00000-globals.sql</code> runs as a shell command on the
+machine running <code>plakar restore</code>, even with <code>exit_on_error</code>. This applies to
+both the <code>postgres</code> and <code>postgres+aws</code> protocols. To restore a snapshot you do
+not trust, such as a <code>.ptar</code> received from someone else or a snapshot from an
+unencrypted store others can write to, set <code>no_globals=true</code> and create the
+roles and tablespaces on the target yourself.</p></div></details><p><strong>Pros</strong></p>
 <ul>
 <li>Portable across PostgreSQL major versions. You can dump on PG 15, restore on
 PG 16.</li>
@@ -5206,6 +5239,12 @@ administrative user is a restricted superuser and the integration cannot read
 role passwords from <code>pg_authid</code>. In that case it automatically passes
 <code>--no-role-passwords</code> to <code>pg_dumpall</code> and logs a warning. The dump is otherwise
 complete, but restored roles have no password set.</p>
+<p>A backup of all databases connects to the <code>postgres</code> database to list them, so
+the backup user needs <code>CONNECT</code> on it. Some managed services, such as Clever
+Cloud, do not grant it. Back up a single database there.</p>
+<p>Database names that start with a dash, or contain <code>=</code> or whitespace, are refused
+and the backup or restore fails. To back up the rest of a cluster that contains
+one, list it in <code>exclude_databases</code>.</p>
 
 
 <h4 id="backup-flow" class="group pr-8">Backup flow
@@ -5282,6 +5321,110 @@ Connector --> DB
 </pre>
 
 <!-- prettier-ignore-end -->
+
+
+<h3 id="dump-formats" class="group pr-8">Dump formats
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="dump-formats"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>The <code>format</code> option selects how each database is dumped. Both formats apply to
+the <code>postgres</code> and <code>postgres+aws</code> protocols.</p>
+<p>The default, <code>custom</code>, dumps each database with a single <code>pg_dump -Fc</code> process
+into one <code>.dump</code> file.</p>
+<p><code>format=directory</code> dumps each database with <code>pg_dump -Fd</code>, which writes one file
+per table and dumps several tables in parallel. On large databases this shortens
+backups considerably. Each file is streamed into the snapshot as it is written,
+so the dump uses no local disk. <code>parallel_dumps</code> sets the number of parallel
+jobs per database. Each job is a separate connection running a <code>COPY</code> on the
+server. It defaults to 4, or to Plakar&rsquo;s concurrency when that is lower. A
+single table is always dumped by one job, so the largest table bounds how fast a
+database can be dumped.</p>
+<p>The directory format needs Linux with <code>/dev/fuse</code> and <code>fusermount3</code>. The backup
+fails at startup when they are missing, or on any other platform. When Plakar
+runs in a container, the container needs access to <code>/dev/fuse</code>, the <code>SYS_ADMIN</code>
+capability, and an AppArmor profile that allows mounts.</p>
+<details
+      class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
+      data-type="note"
+      open>
+      <summary class="flex items-center gap-2 font-semibold text-inherit cursor-pointer">
+        <div class="flex shrink-0 h-5 w-5 items-center justify-center text-lg"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"/></svg>
+</span></div>
+        <div class="grow">
+          Version requirement
+        </div>
+        <div
+          class="ms-auto flex h-5 w-5 items-center justify-center transition-transform ease-in-out -rotate-90 group-open:rotate-0 print:hidden"><span class="relative block icon"><svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+</span></div>
+      </summary><div class="admonition-content mt-3 text-base leading-relaxed text-inherit"><p>With Plakar v1.1.8 and earlier, a <code>format=directory</code> backup can hang. Pass
+<code>-cache no</code> to <code>plakar backup</code> to avoid it:</p>
+<div class="highlight-wrapper codeblock">
+  <div class="codeblock-title">
+    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
+</span></span>
+    <span class="codeblock-label">Shell</span>
+    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
+      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
+</span></span>
+      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar at /var/backups backup -cache no <span class="s2">&#34;@mypg&#34;</span></span></span></code></pre></div></div></div></details><p>To restore a directory-format snapshot, restore it to a local directory, or
+mount it with <a href="../../references/commands/plakar-mount/" ><code>plakar mount</code></a>, and run
+<code>pg_restore -Fd</code> on the database directory, such as <code>00001-myapp</code>. When the
+roles do not exist on the target, apply <code>00000-globals.sql</code> with <code>psql</code> first.</p>
+
+
+<h3 id="excluding-tables" class="group pr-8">Excluding tables
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="excluding-tables"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p><code>exclude_tables</code> and <code>exclude_table_data</code> leave large tables out of a logical
+backup. Both take a comma-separated list of <code>pg_dump</code> table patterns and apply
+them to every database dumped:</p>
+<ul>
+<li><code>exclude_tables</code> leaves out the table entirely, definition and rows
+(<code>pg_dump --exclude-table</code>).</li>
+<li><code>exclude_table_data</code> keeps the definition and leaves out the rows, so the
+table is restored empty (<code>pg_dump --exclude-table-data</code>).</li>
+</ul>
+<p>A pattern without a schema only matches tables on the <code>search_path</code>. Use
+<code>*.audit_log</code> to match a table in every schema. Excluding a partitioned table
+does not exclude its partitions, which must be listed too. Both lists are
+recorded in the <a href="/docs/community/v1.1.0/integrations/postgres/#snapshot-manifest" >snapshot manifest</a>.</p>
 
 
 <h3 id="shared-configuration" class="group pr-8">Shared configuration
@@ -5416,6 +5559,26 @@ Connector --> DB
           <td>Comma-separated list of database names to skip during a full backup. Has no effect when a single database is selected.</td>
       </tr>
       <tr>
+          <td><code>exclude_tables</code></td>
+          <td>No</td>
+          <td>Comma-separated <code>pg_dump --exclude-table</code> patterns. Matching tables are left out, definition and rows. See <a href="/docs/community/v1.1.0/integrations/postgres/#excluding-tables" >Excluding tables</a>.</td>
+      </tr>
+      <tr>
+          <td><code>exclude_table_data</code></td>
+          <td>No</td>
+          <td>Comma-separated <code>pg_dump --exclude-table-data</code> patterns. Matching tables are restored empty. See <a href="/docs/community/v1.1.0/integrations/postgres/#excluding-tables" >Excluding tables</a>.</td>
+      </tr>
+      <tr>
+          <td><code>format</code></td>
+          <td>No</td>
+          <td>Dump format: <code>custom</code> or <code>directory</code>. Defaults to <code>custom</code>. See <a href="/docs/community/v1.1.0/integrations/postgres/#dump-formats" >Dump formats</a>.</td>
+      </tr>
+      <tr>
+          <td><code>parallel_dumps</code></td>
+          <td>No</td>
+          <td>Number of parallel <code>pg_dump</code> jobs per database. Requires <code>format=directory</code>. Defaults to 4, or to Plakar&rsquo;s concurrency when lower.</td>
+      </tr>
+      <tr>
           <td><code>compress</code></td>
           <td>No</td>
           <td>Enable <code>pg_dump</code> compression. Defaults to <code>false</code>, so Plakar&rsquo;s own compression and deduplication can operate on uncompressed data. See <a href="/docs/community/v1.1.0/integrations/postgres/#limitations-and-scope" >Limitations and scope</a>.</td>
@@ -5483,7 +5646,7 @@ Connector --> DB
       <tr>
           <td><code>no_globals</code></td>
           <td>No</td>
-          <td>Skip restoring <code>00000-globals.sql</code>. Set to <code>true</code> when the target server already has the required roles and tablespaces. Defaults to <code>false</code>.</td>
+          <td>Skip restoring <code>00000-globals.sql</code>. Set to <code>true</code> when the target server already has the required roles and tablespaces, or when the snapshot is not trusted. Defaults to <code>false</code>.</td>
       </tr>
       <tr>
           <td><code>no_owner</code></td>
@@ -5542,6 +5705,11 @@ Connector --> DB
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># Back up all databases (roles, tablespaces, and data)</span>
 </span></span><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add mypg postgres://postgres:secret@db.example.com/
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups backup <span class="s2">&#34;@mypg&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Dump each database with 8 parallel jobs, keeping audit_log empty</span>
+</span></span><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add mypg postgres://postgres:secret@db.example.com/myapp <span class="se">\
+</span></span></span><span class="line"><span class="cl">  <span class="nv">format</span><span class="o">=</span>directory <span class="nv">parallel_dumps</span><span class="o">=</span><span class="m">8</span> <span class="nv">exclude_table_data</span><span class="o">=</span>public.audit_log
 </span></span><span class="line"><span class="cl">$ plakar at /var/backups backup <span class="s2">&#34;@mypg&#34;</span></span></span></code></pre></div></div>
 <p>Restore with different destination settings:</p>
 <div class="highlight-wrapper codeblock">
@@ -6005,6 +6173,26 @@ metadata service automatically.</p>
           <td><code>exclude_databases</code></td>
           <td>No</td>
           <td>Comma-separated list of database names to skip. Defaults to <code>rdsadmin</code> (an internal AWS system database). Set to an empty string to disable all exclusions.</td>
+      </tr>
+      <tr>
+          <td><code>exclude_tables</code></td>
+          <td>No</td>
+          <td>Comma-separated <code>pg_dump --exclude-table</code> patterns. Matching tables are left out, definition and rows. See <a href="/docs/community/v1.1.0/integrations/postgres/#excluding-tables" >Excluding tables</a>.</td>
+      </tr>
+      <tr>
+          <td><code>exclude_table_data</code></td>
+          <td>No</td>
+          <td>Comma-separated <code>pg_dump --exclude-table-data</code> patterns. Matching tables are restored empty. See <a href="/docs/community/v1.1.0/integrations/postgres/#excluding-tables" >Excluding tables</a>.</td>
+      </tr>
+      <tr>
+          <td><code>format</code></td>
+          <td>No</td>
+          <td>Dump format: <code>custom</code> or <code>directory</code>. Defaults to <code>custom</code>. See <a href="/docs/community/v1.1.0/integrations/postgres/#dump-formats" >Dump formats</a>.</td>
+      </tr>
+      <tr>
+          <td><code>parallel_dumps</code></td>
+          <td>No</td>
+          <td>Number of parallel <code>pg_dump</code> jobs per database. Requires <code>format=directory</code>. Defaults to 4, or to Plakar&rsquo;s concurrency when lower.</td>
       </tr>
       <tr>
           <td><code>compress</code></td>
@@ -6567,7 +6755,7 @@ workloads.</p>
   
   <div class="flex items-center justify-between text-xs text-neutral-400">
     
-      <span>Last updated: November 12, 2026</span>
+      <span>Last updated: November 13, 2026</span>
     
     
       <a href="https://github.com/PlakarKorp/plakar.io/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">
@@ -6587,7 +6775,7 @@ workloads.</p>
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#installation">Installation</a></li><li><a href="#snapshot-manifest">Snapshot manifest</a></li><li><a href="#1-postgres-protocol">1. postgres protocol</a><ul><ul><li><a href="#backup-flow">Backup flow</a></li><li><a href="#restore-flow">Restore flow</a></li></ul></li><li><a href="#shared-configuration">Shared configuration</a></li><li><a href="#source-configuration">Source configuration</a></li><li><a href="#destination-configuration">Destination configuration</a></li><li><a href="#example">Example</a></li></ul></li><li><a href="#2-postgresaws-protocol">2. postgres+aws protocol</a><ul><li><a href="#aws-setup">AWS setup</a><ul><li><a href="#enable-iam-authentication-on-the-rds-instance">Enable IAM authentication on the RDS instance</a></li><li><a href="#create-an-iam-policy-with-rds-dbconnect">Create an IAM policy with rds-db:connect</a></li><li><a href="#create-the-postgresql-user-with-iam-login">Create the PostgreSQL user with IAM login</a></li></ul></li><li><a href="#providing-credentials">Providing credentials</a></li><li><a href="#shared-configuration-1">Shared configuration</a></li><li><a href="#source-configuration-1">Source configuration</a></li><li><a href="#destination-configuration-1">Destination configuration</a></li><li><a href="#example-1">Example</a></li></ul></li><li><a href="#3-postgresbin-protocol">3. postgres+bin protocol</a><ul><ul><li><a href="#backup-flow-1">Backup flow</a></li></ul></li><li><a href="#source-configuration-2">Source configuration</a></li><li><a href="#example-2">Example</a></li><li><a href="#restoring-a-physical-backup">Restoring a physical backup</a></li></ul></li><li><a href="#limitations-and-scope">Limitations and scope</a></li><li><a href="#see-also">See also</a></li></ul>
+      <ul><li><a href="#installation">Installation</a></li><li><a href="#snapshot-manifest">Snapshot manifest</a></li><li><a href="#1-postgres-protocol">1. postgres protocol</a><ul><ul><li><a href="#backup-flow">Backup flow</a></li><li><a href="#restore-flow">Restore flow</a></li></ul></li><li><a href="#dump-formats">Dump formats</a></li><li><a href="#excluding-tables">Excluding tables</a></li><li><a href="#shared-configuration">Shared configuration</a></li><li><a href="#source-configuration">Source configuration</a></li><li><a href="#destination-configuration">Destination configuration</a></li><li><a href="#example">Example</a></li></ul></li><li><a href="#2-postgresaws-protocol">2. postgres+aws protocol</a><ul><li><a href="#aws-setup">AWS setup</a><ul><li><a href="#enable-iam-authentication-on-the-rds-instance">Enable IAM authentication on the RDS instance</a></li><li><a href="#create-an-iam-policy-with-rds-dbconnect">Create an IAM policy with rds-db:connect</a></li><li><a href="#create-the-postgresql-user-with-iam-login">Create the PostgreSQL user with IAM login</a></li></ul></li><li><a href="#providing-credentials">Providing credentials</a></li><li><a href="#shared-configuration-1">Shared configuration</a></li><li><a href="#source-configuration-1">Source configuration</a></li><li><a href="#destination-configuration-1">Destination configuration</a></li><li><a href="#example-1">Example</a></li></ul></li><li><a href="#3-postgresbin-protocol">3. postgres+bin protocol</a><ul><ul><li><a href="#backup-flow-1">Backup flow</a></li></ul></li><li><a href="#source-configuration-2">Source configuration</a></li><li><a href="#example-2">Example</a></li><li><a href="#restoring-a-physical-backup">Restoring a physical backup</a></li></ul></li><li><a href="#limitations-and-scope">Limitations and scope</a></li><li><a href="#see-also">See also</a></li></ul>
     </div>
 
     

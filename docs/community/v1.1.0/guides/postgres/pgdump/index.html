@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-03-19T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-12T17:14:37+01:00">
+    <meta property="article:modified_time" content="2026-11-13T13:15:00+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -229,12 +229,12 @@
     "dateCreated": "2026-03-19T00:00:00\u002b00:00",
     "datePublished": "2026-03-19T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-12T17:14:37\u002b01:00",
+    "dateModified": "2026-11-13T13:15:00\u002b03:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/community/v1.1.0/guides/postgres/pgdump/",
-    "wordCount":  333 
+    "wordCount":  369 
   }]
   </script>
 
@@ -5052,7 +5052,9 @@ otherwise complete, but restored roles will have no password set.</p></div></det
     </button>
   
 </h2>
-<p>Omit the database name to back up the entire cluster with <code>pg_dumpall</code>:</p>
+<p>Omit the database name to back up every database in the cluster, along with its
+roles and tablespaces. The backup user needs <code>CONNECT</code> on the <code>postgres</code>
+database:</p>
 <div class="highlight-wrapper codeblock">
   <div class="codeblock-title">
     <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
@@ -5158,6 +5160,9 @@ otherwise complete, but restored roles will have no password set.</p></div></det
     </button>
   
 </h2>
+<p>This also restores the roles and tablespaces from the snapshot. Only restore
+snapshots you trust. See the
+<a href="/docs/community/v1.1.0/integrations/postgres/#1-postgres-protocol" ><code>postgres</code> protocol</a> for why.</p>
 <div class="highlight-wrapper codeblock">
   <div class="codeblock-title">
     <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
@@ -5291,7 +5296,7 @@ backend can be used instead. See
   
   <div class="flex items-center justify-between text-xs text-neutral-400">
     
-      <span>Last updated: November 12, 2026</span>
+      <span>Last updated: November 13, 2026</span>
     
     
       <a href="https://github.com/PlakarKorp/plakar.io/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">

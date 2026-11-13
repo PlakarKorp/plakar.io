@@ -7,7 +7,7 @@ via `pg_basebackup` and are faster to restore than logical dumps. They are
 version-locked (the backup must be restored with the same PostgreSQL major
 version) and do not support selective restore of individual databases or tables.
 
-For full reference on all options and snapshot layout see the
+For full reference on all options and snapshot layout, see the
 [PostgreSQL integration reference](../../integrations/postgres/).
 
 ## Before you begin
