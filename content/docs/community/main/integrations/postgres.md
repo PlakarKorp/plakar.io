@@ -277,9 +277,8 @@ capability, and an AppArmor profile that allows mounts.
 > $ plakar at /var/backups backup -cache no "@mypg"
 > ```
 
-The `postgres` destination connector cannot restore directory-format snapshots
-yet. To restore one, restore the snapshot to a local directory, or mount it with
-[`plakar mount`](../../references/commands/plakar-mount/), and run
+To restore a directory-format snapshot, restore it to a local directory, or
+mount it with [`plakar mount`](../../references/commands/plakar-mount/), and run
 `pg_restore -Fd` on the database directory, such as `00001-myapp`. When the
 roles do not exist on the target, apply `00000-globals.sql` with `psql` first.
 
