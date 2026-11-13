@@ -2,16 +2,16 @@
 
 <!-- SECTION: hero -->
 <section class="section-light-2 grid-background pt-38 pb-20 relative overflow-hidden">
-  <div class="absolute top-0 right-0 p-64 bg-primary-900/10 rounded-full blur-[120px] pointer-events-none"></div>
+  <div class="absolute top-0 right-0 p-64 bg-ui-primary-900/10 rounded-full blur-[120px] pointer-events-none"></div>
   <div class="max-w-350 mx-auto px-4 flex flex-col items-center text-center gap-8 relative z-10">
     <div class="max-w-5xl flex flex-col gap-4">
-      <h2 class="text-primary-600 font-mono text-sm font-bold uppercase tracking-widest">Ransomware recovery</h2>
-      <h1 class="font-medium text-4xl lg:text-6xl text-neutral-900 leading-tighter">
+      <h2 class="text-ui-primary-600 font-mono text-sm font-bold uppercase tracking-widest">Ransomware recovery</h2>
+      <h1 class="font-medium text-4xl lg:text-6xl text-ui-neutral-900 leading-tighter">
         Assume they get in.<br/>
-        <span class="text-primary-500">Recover anyway.</span>
+        <span class="text-ui-primary-500">Recover anyway.</span>
       </h1>
     </div>
-    <p class="max-w-2xl text-neutral-600 text-lg lg:text-xl">
+    <p class="max-w-2xl text-ui-neutral-600 text-lg lg:text-xl">
       Attackers go after backups first. Plakar keeps encrypted, tamper-evident snapshots they cannot read or silently alter, plus an off-site copy at another provider, so your disaster recovery plan holds when it matters.
     </p>
     <div class="flex flex-col sm:flex-row gap-4 mt-2 items-center">
@@ -20,7 +20,7 @@
       ) }}
       {{ partial "components/buttons/base-button.html" (dict
         "label" "Book a demo" "labelShort" "Demo" "class" "book-a-demo-modal-open" "icon" "ri/calendar-event-line"
-        "bgColor" "bg-white" "bgHoverColor" "bg-neutral-100" "textColor" "text-neutral-900" "textHoverColor" "text-neutral-900" "border" "border" "borderColor" "border-neutral-300"
+        "bgColor" "bg-ui-white" "bgHoverColor" "bg-ui-neutral-100" "textColor" "text-ui-neutral-900" "textHoverColor" "text-ui-neutral-900" "border" "border" "borderColor" "border-ui-neutral-300"
       ) }}
     </div>
   </div>
@@ -55,9 +55,9 @@
 <section class="section-light-1 grid-background py-14 lg:py-28">
   <div class="max-w-350 mx-auto px-4 flex flex-col gap-12">
     <div class="text-center max-w-3xl mx-auto space-y-4">
-      <h2 class="text-primary-600 font-mono text-sm font-bold uppercase tracking-widest">How it works</h2>
-      <p class="font-medium text-3xl lg:text-5xl text-neutral-900 leading-tighter">Encrypt, verify, isolate, recover.</p>
-      <p class="text-lg text-neutral-600">Four layers between the attacker and your last good snapshot.</p>
+      <h2 class="text-ui-primary-600 font-mono text-sm font-bold uppercase tracking-widest">How it works</h2>
+      <p class="font-medium text-3xl lg:text-5xl text-ui-neutral-900 leading-tighter">Encrypt, verify, isolate, recover.</p>
+      <p class="text-lg text-ui-neutral-600">Four layers between the attacker and your last good snapshot.</p>
     </div>
     <ol class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       {{ range $i, $s := (slice
@@ -66,17 +66,17 @@
         (dict "icon" "ri/archive-line" "title" "Keep a copy out of reach" "body" "Sync snapshots to an off-site Kloset on another provider, account or storage tier, or export a self-contained, encrypted .ptar archive to keep offline.")
         (dict "icon" "ri/arrow-go-back-line" "title" "Restore what you need" "body" "Browse any snapshot, download a single file, or restore a whole resource to its original location or an isolated one, so you can rehearse recovery without touching production.")
       ) }}
-        <li class="bg-white border border-neutral-200 p-6 rounded-2xl flex flex-col gap-4 shadow-sm">
+        <li class="bg-ui-white border border-ui-neutral-200 p-6 rounded-2xl flex flex-col gap-4 shadow-sm">
           <div class="flex items-center justify-between">
-            <div class="w-11 h-11 p-1.5 bg-primary-50 text-primary-600 rounded-lg flex items-center justify-center">{{ partial "icon.html" $s.icon }}</div>
-            <span class="font-mono text-sm font-bold text-neutral-300">0{{ add $i 1 }}</span>
+            <div class="w-11 h-11 p-1.5 bg-ui-primary-50 text-ui-primary-600 rounded-lg flex items-center justify-center">{{ partial "icon.html" $s.icon }}</div>
+            <span class="font-mono text-sm font-bold text-ui-neutral-300">0{{ add $i 1 }}</span>
           </div>
-          <h3 class="font-bold text-lg text-neutral-900">{{ $s.title }}</h3>
-          <p class="text-neutral-600 text-sm">{{ $s.body }}</p>
+          <h3 class="font-bold text-lg text-ui-neutral-900">{{ $s.title }}</h3>
+          <p class="text-ui-neutral-600 text-sm">{{ $s.body }}</p>
         </li>
       {{ end }}
     </ol>
-    <p class="max-w-3xl mx-auto text-center text-neutral-600"><strong class="text-neutral-900">Truly immutable?</strong> Plakar snapshots are never modified in place, and any change is detected. For immutability enforced by the storage itself, pair them with object lock, WORM, or an offline .ptar copy.</p>
+    <p class="max-w-3xl mx-auto text-center text-ui-neutral-600"><strong class="text-ui-neutral-900">Truly immutable?</strong> Plakar snapshots are never modified in place, and any change is detected. For immutability enforced by the storage itself, pair them with object lock, WORM, or an offline .ptar copy.</p>
   </div>
 </section>
 
@@ -84,8 +84,8 @@
 <section class="section-light-2 py-14 lg:py-28">
   <div class="max-w-350 mx-auto px-4 flex flex-col gap-12">
     <div class="text-center max-w-3xl mx-auto space-y-4">
-      <h2 class="text-primary-600 font-mono text-sm font-bold uppercase tracking-widest">What you get</h2>
-      <p class="font-medium text-3xl lg:text-5xl text-neutral-900 leading-tighter">Built for the worst day, not the average one.</p>
+      <h2 class="text-ui-primary-600 font-mono text-sm font-bold uppercase tracking-widest">What you get</h2>
+      <p class="font-medium text-3xl lg:text-5xl text-ui-neutral-900 leading-tighter">Built for the worst day, not the average one.</p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       {{ range (slice
@@ -98,11 +98,11 @@
         (dict "icon" "ri/organization-chart" "title" "Active Directory recovery" "body" "System State backups of your domain controllers, often the first thing to bring back." "href" "/docs/control-plane/resources/identity/msad/")
         (dict "icon" "ri/folder-2-line" "title" "Granular restore" "body" "Browse, download single files, or restore to a new target." "href" "/docs/control-plane/apps/stores/")
       ) }}
-        <article class="bg-white border border-neutral-200 p-6 rounded-2xl flex flex-col gap-3 shadow-sm hover:border-primary-300 transition-colors">
-          <div class="w-11 h-11 p-1.5 bg-primary-50 text-primary-600 rounded-lg flex items-center justify-center">{{ partial "icon.html" .icon }}</div>
-          <h3 class="font-bold text-lg text-neutral-900">{{ .title }}</h3>
-          <p class="text-neutral-600 text-sm flex-1">{{ .body }}</p>
-          <a href="{{ .href }}" class="inline-flex items-center gap-1.5 text-primary-600 font-semibold text-sm hover:text-primary-700 transition-colors">
+        <article class="bg-ui-white border border-ui-neutral-200 p-6 rounded-2xl flex flex-col gap-3 shadow-sm hover:border-ui-primary-300 transition-colors">
+          <div class="w-11 h-11 p-1.5 bg-ui-primary-50 text-ui-primary-600 rounded-lg flex items-center justify-center">{{ partial "icon.html" .icon }}</div>
+          <h3 class="font-bold text-lg text-ui-neutral-900">{{ .title }}</h3>
+          <p class="text-ui-neutral-600 text-sm flex-1">{{ .body }}</p>
+          <a href="{{ .href }}" class="inline-flex items-center gap-1.5 text-ui-primary-600 font-semibold text-sm hover:text-ui-primary-700 transition-colors">
             Learn more <span class="w-4 h-4">{{ partial "icon.html" "ri/arrow-right-line" }}</span>
           </a>
         </article>
@@ -125,12 +125,12 @@
 {{ partial "components/common/use-cases-related.html" (dict "current" "/solutions/ransomware-recovery/") }}
 
 <!-- SECTION: final-cta -->
-<section class="section-light-1 py-20 border-t border-neutral-200">
+<section class="section-light-1 py-20 border-t border-ui-neutral-200">
   <div class="max-w-350 mx-auto px-4 flex flex-col items-center text-center gap-8">
     <div class="flex flex-col gap-4 max-w-3xl mx-auto">
-      <h2 class="text-primary-600 font-mono text-sm font-bold uppercase tracking-widest">Get started</h2>
-      <p class="font-medium text-3xl lg:text-5xl text-neutral-900 leading-tighter">Recover on your terms, not theirs.</p>
-      <p class="text-neutral-600 text-lg">Start on the free plan, or walk through your recovery plan live with our team.</p>
+      <h2 class="text-ui-primary-600 font-mono text-sm font-bold uppercase tracking-widest">Get started</h2>
+      <p class="font-medium text-3xl lg:text-5xl text-ui-neutral-900 leading-tighter">Recover on your terms, not theirs.</p>
+      <p class="text-ui-neutral-600 text-lg">Start on the free plan, or walk through your recovery plan live with our team.</p>
     </div>
     <div class="flex flex-col sm:flex-row gap-4 items-center">
       {{ partial "components/buttons/base-button.html" (dict
@@ -138,10 +138,10 @@
       ) }}
       {{ partial "components/buttons/base-button.html" (dict
         "label" "Book a demo" "labelShort" "Demo" "class" "book-a-demo-modal-open" "icon" "ri/calendar-event-line"
-        "bgColor" "bg-white" "bgHoverColor" "bg-neutral-100" "textColor" "text-neutral-900" "textHoverColor" "text-neutral-900" "border" "border" "borderColor" "border-neutral-300"
+        "bgColor" "bg-ui-white" "bgHoverColor" "bg-ui-neutral-100" "textColor" "text-ui-neutral-900" "textHoverColor" "text-ui-neutral-900" "border" "border" "borderColor" "border-ui-neutral-300"
       ) }}
     </div>
-    {{ if site.GetPage "/solutions/control-plane" }}<p class="text-neutral-500 text-sm">See how it fits together on the <a href="/solutions/control-plane/" class="text-primary-600 font-semibold hover:text-primary-700">Control Plane</a> page.</p>{{ end }}
+    {{ if site.GetPage "/solutions/control-plane" }}<p class="text-ui-neutral-500 text-sm">See how it fits together on the <a href="/solutions/control-plane/" class="text-ui-primary-600 font-semibold hover:text-ui-primary-700">Control Plane</a> page.</p>{{ end }}
   </div>
 </section>
 

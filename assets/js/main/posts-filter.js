@@ -33,8 +33,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const isActive = btn.dataset.filter === category;
       btn.classList.toggle("bg-primary-500", isActive);
       btn.classList.toggle("text-neutral-50", isActive);
-      btn.classList.toggle("text-neutral-700", !isActive);
-      btn.classList.toggle("hover:bg-neutral-100", !isActive);
+      btn.classList.toggle("text-ui-neutral-700", !isActive);
+      btn.classList.toggle("hover:bg-ui-neutral-100", !isActive);
     });
 
     if (filterDropdownLabel) {
@@ -44,8 +44,8 @@ document.addEventListener("DOMContentLoaded", () => {
       ?.querySelectorAll(".filter-dropdown-option")
       .forEach((opt) => {
         const isActive = opt.dataset.filter === category;
-        opt.classList.toggle("text-primary-500", isActive);
-        opt.classList.toggle("bg-neutral-100", isActive);
+        opt.classList.toggle("text-ui-primary-500", isActive);
+        opt.classList.toggle("bg-ui-neutral-100", isActive);
       });
 
     cards.forEach((card) => {

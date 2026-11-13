@@ -9,14 +9,14 @@
 
   <div class="max-w-350 mx-auto px-4 flex flex-col items-center text-center gap-8 relative z-10">
     <div class="max-w-5xl flex flex-col gap-4">
-      <h2 class="text-secondary-600 font-mono text-sm font-bold uppercase tracking-widest">Plakar Community</h2>
-      <h1 class="font-medium text-4xl lg:text-6xl text-neutral-900 leading-tighter">
+      <h2 class="text-ui-secondary-600 font-mono text-sm font-bold uppercase tracking-widest">Plakar Community</h2>
+      <h1 class="font-medium text-4xl lg:text-6xl text-ui-neutral-900 leading-tighter">
         The open backup engine<br/>
-        <span class="text-secondary-500">you actually control.</span>
+        <span class="text-ui-secondary-500">you actually control.</span>
       </h1>
     </div>
 
-    <p class="max-w-2xl text-neutral-600 text-lg lg:text-xl">
+    <p class="max-w-2xl text-ui-neutral-600 text-lg lg:text-xl">
       Plakar creates encrypted, deduplicated, self-contained snapshots on storage you own.
       One binary, zero-knowledge, no lock-in.
     </p>
@@ -28,18 +28,18 @@
       ) }}
       {{ partial "components/buttons/base-button.html" (dict
         "label" "Read the docs" "labelShort" "Docs" "href" "/docs/community/" "icon" "ri/book-open-line"
-        "bgColor" "bg-white" "bgHoverColor" "bg-neutral-100" "textColor" "text-neutral-900" "textHoverColor" "text-neutral-900" "border" "border" "borderColor" "border-neutral-300"
+        "bgColor" "bg-ui-white" "bgHoverColor" "bg-ui-neutral-100" "textColor" "text-ui-neutral-900" "textHoverColor" "text-ui-neutral-900" "border" "border" "borderColor" "border-ui-neutral-300"
       ) }}
     </div>
 
     <!-- Big product visual: the Plakar UI -->
     <div class="w-full max-w-5xl mx-auto mt-10">
-      <div class="rounded-xl border border-neutral-200 bg-white/80 backdrop-blur-sm shadow-2xl overflow-hidden">
-        <div class="h-9 bg-neutral-100 border-b border-neutral-200 flex items-center px-4 gap-2">
+      <div class="rounded-xl border border-ui-neutral-200 bg-ui-white/80 backdrop-blur-sm shadow-2xl overflow-hidden">
+        <div class="h-9 bg-ui-neutral-100 border-b border-ui-neutral-200 flex items-center px-4 gap-2">
           <span class="w-3 h-3 rounded-full bg-red-500/20 border border-red-500/50"></span>
           <span class="w-3 h-3 rounded-full bg-yellow-500/20 border border-yellow-500/50"></span>
           <span class="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/50"></span>
-          <span class="ml-4 text-xs font-mono text-neutral-500">plakar ui</span>
+          <span class="ml-4 text-xs font-mono text-ui-neutral-500">plakar ui</span>
         </div>
         <div class="p-2 md:p-3">
           {{ with $ui }}
@@ -83,23 +83,23 @@
 <section class="section-light-1 grid-background py-14 lg:py-28">
   <div class="max-w-350 mx-auto px-4 flex flex-col gap-12">
     <div class="text-center max-w-3xl mx-auto space-y-4">
-      <h2 class="text-secondary-600 font-mono text-sm font-bold uppercase tracking-widest">How it works</h2>
-      <p class="font-medium text-3xl lg:text-5xl text-neutral-900 leading-tighter">Your data becomes a Kloset.</p>
-      <p class="text-lg text-neutral-600">Plakar reads from your sources, then chunks, deduplicates, compresses, and encrypts in a single pass. The result is a Kloset: an open, self-contained store of snapshots on storage you own. Keys never leave your machine, and every snapshot is a logical full you can verify.</p>
+      <h2 class="text-ui-secondary-600 font-mono text-sm font-bold uppercase tracking-widest">How it works</h2>
+      <p class="font-medium text-3xl lg:text-5xl text-ui-neutral-900 leading-tighter">Your data becomes a Kloset.</p>
+      <p class="text-lg text-ui-neutral-600">Plakar reads from your sources, then chunks, deduplicates, compresses, and encrypts in a single pass. The result is a Kloset: an open, self-contained store of snapshots on storage you own. Keys never leave your machine, and every snapshot is a logical full you can verify.</p>
     </div>
     <div class="max-w-6xl mx-auto w-full">
       <div class="flex flex-col lg:flex-row items-stretch gap-4 lg:gap-0">
 
         <!-- Sources -->
-        <div class="flex-1 rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm flex flex-col gap-4">
+        <div class="flex-1 rounded-2xl border border-ui-neutral-200 bg-ui-white p-6 shadow-sm flex flex-col gap-4">
           <div class="flex items-center gap-3">
-            <div class="w-10 h-10 p-2 bg-neutral-100 text-neutral-700 rounded-lg flex items-center justify-center">{{ partial "icon.html" "ri/stack-line" }}</div>
+            <div class="w-10 h-10 p-2 bg-ui-neutral-100 text-ui-neutral-700 rounded-lg flex items-center justify-center">{{ partial "icon.html" "ri/stack-line" }}</div>
             <div>
-              <h3 class="font-bold text-neutral-900 leading-tight">Your sources</h3>
-              <p class="text-xs text-neutral-500">What you protect</p>
+              <h3 class="font-bold text-ui-neutral-900 leading-tight">Your sources</h3>
+              <p class="text-xs text-ui-neutral-500">What you protect</p>
             </div>
           </div>
-          <ul class="flex flex-col gap-2 text-sm text-neutral-600">
+          <ul class="flex flex-col gap-2 text-sm text-ui-neutral-600">
             {{ range (slice
               (dict "i" "ri/folder-2-line" "t" "Filesystems")
               (dict "i" "ri/database-2-line" "t" "Databases")
@@ -107,37 +107,37 @@
               (dict "i" "ri/server-line" "t" "Virtual machines")
               (dict "i" "ri/apps-2-line" "t" "SaaS and connectors")
             ) }}
-              <li class="flex items-center gap-2"><span class="w-4 h-4 text-secondary-500">{{ partial "icon.html" .i }}</span>{{ .t }}</li>
+              <li class="flex items-center gap-2"><span class="w-4 h-4 text-ui-secondary-500">{{ partial "icon.html" .i }}</span>{{ .t }}</li>
             {{ end }}
           </ul>
         </div>
 
         <!-- connector -->
         <div class="flex items-center justify-center shrink-0 lg:px-3 py-1">
-          <div class="flex flex-col items-center gap-1 text-secondary-400">
+          <div class="flex flex-col items-center gap-1 text-ui-secondary-400">
             <span class="hidden lg:inline-block w-6 h-6">{{ partial "icon.html" "ri/arrow-left-right-line" }}</span>
             <span class="lg:hidden w-6 h-6 rotate-90">{{ partial "icon.html" "ri/arrow-left-right-line" }}</span>
-            <span class="hidden lg:block text-[0.6rem] font-mono uppercase tracking-wider text-neutral-400 text-center leading-tight">backup<br/>restore</span>
+            <span class="hidden lg:block text-[0.6rem] font-mono uppercase tracking-wider text-ui-neutral-400 text-center leading-tight">backup<br/>restore</span>
           </div>
         </div>
 
         <!-- Plakar engine -->
-        <div class="flex-1 rounded-2xl border-2 border-secondary-200 bg-secondary-50/40 p-6 shadow-sm flex flex-col gap-4">
+        <div class="flex-1 rounded-2xl border-2 border-ui-secondary-200 bg-ui-secondary-50/40 p-6 shadow-sm flex flex-col gap-4">
           <div class="flex items-center gap-3">
             <div class="w-10 h-10 p-2 bg-secondary-600 text-white rounded-lg flex items-center justify-center">{{ partial "icon.html" "ri/terminal-box-line" }}</div>
             <div>
-              <h3 class="font-bold text-neutral-900 leading-tight">Plakar engine</h3>
-              <p class="text-xs text-neutral-500">One open binary</p>
+              <h3 class="font-bold text-ui-neutral-900 leading-tight">Plakar engine</h3>
+              <p class="text-xs text-ui-neutral-500">One open binary</p>
             </div>
           </div>
           <div class="flex flex-wrap gap-1.5">
             {{ range (slice "chunk" "deduplicate" "compress" "encrypt") }}
-              <span class="font-mono text-xs px-2 py-1 rounded-md bg-white border border-secondary-200 text-secondary-700">{{ . }}</span>
+              <span class="font-mono text-xs px-2 py-1 rounded-md bg-ui-white border border-ui-secondary-200 text-ui-secondary-700">{{ . }}</span>
             {{ end }}
           </div>
-          <p class="text-xs text-neutral-600 flex items-start gap-1.5"><span class="w-4 h-4 text-secondary-500 shrink-0 mt-0.5">{{ partial "icon.html" "ri/key-2-line" }}</span>Keys never leave your machine.</p>
-          <div class="border-t border-secondary-100 pt-3">
-            <p class="text-[0.6rem] font-mono uppercase tracking-wider text-neutral-400 mb-2">Every action is a command</p>
+          <p class="text-xs text-ui-neutral-600 flex items-start gap-1.5"><span class="w-4 h-4 text-ui-secondary-500 shrink-0 mt-0.5">{{ partial "icon.html" "ri/key-2-line" }}</span>Keys never leave your machine.</p>
+          <div class="border-t border-ui-secondary-100 pt-3">
+            <p class="text-[0.6rem] font-mono uppercase tracking-wider text-ui-neutral-400 mb-2">Every action is a command</p>
             <div class="flex flex-wrap gap-1.5">
               {{ range (slice "backup" "restore" "sync" "check" "ls" "diff" "mount") }}
                 <span class="font-mono text-xs px-2 py-0.5 rounded bg-neutral-900 text-neutral-100">{{ . }}</span>
@@ -148,15 +148,15 @@
 
         <!-- connector -->
         <div class="flex items-center justify-center shrink-0 lg:px-3 py-1">
-          <div class="flex flex-col items-center gap-1 text-secondary-400">
+          <div class="flex flex-col items-center gap-1 text-ui-secondary-400">
             <span class="hidden lg:inline-block w-6 h-6">{{ partial "icon.html" "ri/arrow-left-right-line" }}</span>
             <span class="lg:hidden w-6 h-6 rotate-90">{{ partial "icon.html" "ri/arrow-left-right-line" }}</span>
-            <span class="hidden lg:block text-[0.6rem] font-mono uppercase tracking-wider text-neutral-400 text-center leading-tight">write<br/>read</span>
+            <span class="hidden lg:block text-[0.6rem] font-mono uppercase tracking-wider text-ui-neutral-400 text-center leading-tight">write<br/>read</span>
           </div>
         </div>
 
         <!-- Kloset store -->
-        <div class="flex-1 rounded-2xl border border-neutral-900 bg-neutral-900 p-6 shadow-sm flex flex-col gap-4">
+        <div class="flex-1 rounded-2xl border border-neutral-800 bg-neutral-900 p-6 shadow-sm flex flex-col gap-4">
           <div class="flex items-center gap-3">
             <div class="w-10 h-10 p-2 bg-white/10 text-white rounded-lg flex items-center justify-center border border-white/10">{{ partial "icon.html" "ri/archive-2-line" }}</div>
             <div>
@@ -181,8 +181,8 @@
 <section class="section-light-2 py-14 lg:py-28">
   <div class="max-w-350 mx-auto px-4 flex flex-col gap-12">
     <div class="text-center max-w-3xl mx-auto space-y-4">
-      <h2 class="text-secondary-600 font-mono text-sm font-bold uppercase tracking-widest">What you get</h2>
-      <p class="font-medium text-3xl lg:text-5xl text-neutral-900 leading-tighter">Everything you need to back up and restore with confidence.</p>
+      <h2 class="text-ui-secondary-600 font-mono text-sm font-bold uppercase tracking-widest">What you get</h2>
+      <p class="font-medium text-3xl lg:text-5xl text-ui-neutral-900 leading-tighter">Everything you need to back up and restore with confidence.</p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       {{ range (slice
@@ -195,11 +195,11 @@
         (dict "icon" "ri/time-line" "title" "Schedules and retention" "body" "Schedule backups with cron, systemd, launchd, or Task Scheduler, and enforce retention with plakar prune." "href" "/docs/community/v1.1.0/guides/setup-scheduler-daily-backups/")
         (dict "icon" "ri/open-source-line" "title" "Open and programmatic" "body" "Open under a permissive license. One binary with a clean CLI, API, and SDK." "href" "https://github.com/PlakarKorp/plakar")
       ) }}
-        <article class="bg-white border border-neutral-200 p-6 rounded-2xl flex flex-col gap-3 shadow-sm hover:border-secondary-300 transition-colors">
-          <div class="w-11 h-11 p-1.5 bg-secondary-50 text-secondary-600 rounded-lg flex items-center justify-center">{{ partial "icon.html" .icon }}</div>
-          <h3 class="font-bold text-lg text-neutral-900">{{ .title }}</h3>
-          <p class="text-neutral-600 text-sm flex-1">{{ .body }}</p>
-          <a href="{{ .href }}"{{ if hasPrefix .href "http" }} target="_blank" rel="noopener"{{ end }} class="inline-flex items-center gap-1.5 text-secondary-600 font-semibold text-sm hover:text-secondary-700 transition-colors">
+        <article class="bg-ui-white border border-ui-neutral-200 p-6 rounded-2xl flex flex-col gap-3 shadow-sm hover:border-ui-secondary-300 transition-colors">
+          <div class="w-11 h-11 p-1.5 bg-ui-secondary-50 text-ui-secondary-600 rounded-lg flex items-center justify-center">{{ partial "icon.html" .icon }}</div>
+          <h3 class="font-bold text-lg text-ui-neutral-900">{{ .title }}</h3>
+          <p class="text-ui-neutral-600 text-sm flex-1">{{ .body }}</p>
+          <a href="{{ .href }}"{{ if hasPrefix .href "http" }} target="_blank" rel="noopener"{{ end }} class="inline-flex items-center gap-1.5 text-ui-secondary-600 font-semibold text-sm hover:text-ui-secondary-700 transition-colors">
             Learn more <span class="w-4 h-4">{{ partial "icon.html" "ri/arrow-right-line" }}</span>
           </a>
         </article>
@@ -212,8 +212,8 @@
 <section class="section-light-2 py-16 lg:py-24">
   <div class="max-w-350 mx-auto px-4 flex flex-col gap-12">
     <div class="text-center max-w-3xl mx-auto space-y-4">
-      <h2 class="text-secondary-600 font-mono text-sm font-bold uppercase tracking-widest">Trusted by the ecosystem</h2>
-      <p class="font-medium text-3xl lg:text-5xl text-neutral-900 leading-tighter">Backed by the people who built modern infrastructure.</p>
+      <h2 class="text-ui-secondary-600 font-mono text-sm font-bold uppercase tracking-widest">Trusted by the ecosystem</h2>
+      <p class="font-medium text-3xl lg:text-5xl text-ui-neutral-900 leading-tighter">Backed by the people who built modern infrastructure.</p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       {{ range (slice
@@ -222,24 +222,24 @@
         (dict "quote" "The rise of agentic AI compels us to rethink the resilience primitives of large, dynamic, and distributed infrastructures." "name" "Matthieu Blumberg" "title" "SVP Infrastructure, Security and IT, Criteo" "photo" "img/general/matthieu-blumberg.png" "initials" "MB" "logoText" "Criteo")
       ) }}
         {{ $photo := resources.Get .photo }}
-        <figure class="bg-white border border-neutral-200 rounded-2xl p-6 flex flex-col gap-4 shadow-sm">
-          <span class="text-4xl font-mono text-secondary-500/40 leading-none">&ldquo;</span>
-          <blockquote class="text-neutral-700 leading-relaxed flex-1">{{ .quote }}</blockquote>
-          <figcaption class="border-t border-neutral-100 pt-4 flex items-center gap-3">
+        <figure class="bg-ui-white border border-ui-neutral-200 rounded-2xl p-6 flex flex-col gap-4 shadow-sm">
+          <span class="text-4xl font-mono text-ui-secondary-500/40 leading-none">&ldquo;</span>
+          <blockquote class="text-ui-neutral-700 leading-relaxed flex-1">{{ .quote }}</blockquote>
+          <figcaption class="border-t border-ui-neutral-100 pt-4 flex items-center gap-3">
             {{ if $photo }}
               <img src="{{ $photo.RelPermalink }}" alt="{{ .name }}" class="w-11 h-11 rounded-full object-cover shrink-0" loading="lazy">
             {{ else }}
-              <span class="w-11 h-11 rounded-full bg-secondary-100 text-secondary-700 font-bold text-sm flex items-center justify-center shrink-0" aria-hidden="true">{{ .initials }}</span>
+              <span class="w-11 h-11 rounded-full bg-ui-secondary-100 text-ui-secondary-700 font-bold text-sm flex items-center justify-center shrink-0" aria-hidden="true">{{ .initials }}</span>
             {{ end }}
             <div class="min-w-0 flex-1">
-              <span class="block font-bold text-neutral-900 text-sm">{{ .name }}</span>
-              <span class="block text-neutral-500 text-xs leading-tight">{{ .title }}</span>
+              <span class="block font-bold text-ui-neutral-900 text-sm">{{ .name }}</span>
+              <span class="block text-ui-neutral-500 text-xs leading-tight">{{ .title }}</span>
             </div>
             {{ with .logo }}
-              <span class="w-7 h-7 shrink-0 text-neutral-500 flex items-center justify-center">{{ partial "icon.html" . }}</span>
+              <span class="w-7 h-7 shrink-0 text-ui-neutral-500 flex items-center justify-center">{{ partial "icon.html" . }}</span>
             {{ end }}
             {{ with .logoText }}
-              <span class="font-bold text-neutral-400 text-base shrink-0">{{ . }}</span>
+              <span class="font-bold text-ui-neutral-400 text-base shrink-0">{{ . }}</span>
             {{ end }}
           </figcaption>
         </figure>
@@ -291,12 +291,12 @@
   <div class="max-w-350 mx-auto px-4">
     <div class="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-14 items-center max-w-5xl mx-auto">
       <div class="flex flex-col gap-5">
-        <h2 class="text-secondary-600 font-mono text-sm font-bold uppercase tracking-widest">Join the community</h2>
-        <p class="font-medium text-3xl lg:text-5xl text-neutral-900 leading-tighter">Nestor saved you a seat.</p>
-        <p class="text-lg text-neutral-600">Plakar is built in public. Drop into our community calls or a Discord hackroom, organize a meetup, improve the docs, or ship your first integration. Nestor will be there, probably counting chunks.</p>
-        <div class="border-l-[3px] border-secondary-500 bg-secondary-50 rounded-r-lg px-5 py-3">
-          <p class="text-[15px] text-neutral-800 italic">"You wrote your own backup script? Bring it to the next community call. We need to talk."</p>
-          <span class="block text-[12.5px] text-neutral-500 mt-2">Nestor, every single week</span>
+        <h2 class="text-ui-secondary-600 font-mono text-sm font-bold uppercase tracking-widest">Join the community</h2>
+        <p class="font-medium text-3xl lg:text-5xl text-ui-neutral-900 leading-tighter">Nestor saved you a seat.</p>
+        <p class="text-lg text-ui-neutral-600">Plakar is built in public. Drop into our community calls or a Discord hackroom, organize a meetup, improve the docs, or ship your first integration. Nestor will be there, probably counting chunks.</p>
+        <div class="border-l-[3px] border-ui-secondary-500 bg-ui-secondary-50 rounded-r-lg px-5 py-3">
+          <p class="text-[15px] text-ui-neutral-800 italic">"You wrote your own backup script? Bring it to the next community call. We need to talk."</p>
+          <span class="block text-[12.5px] text-ui-neutral-500 mt-2">Nestor, every single week</span>
         </div>
         <div>
           {{ partial "components/buttons/base-button.html" (dict
@@ -315,12 +315,12 @@
 </section>
 
 <!-- SECTION: final-cta -->
-<section class="section-light-1 py-20 border-t border-neutral-200">
+<section class="section-light-1 py-20 border-t border-ui-neutral-200">
   <div class="max-w-350 mx-auto px-4 flex flex-col items-center text-center gap-8">
     <div class="flex flex-col gap-4 max-w-3xl mx-auto">
-      <h2 class="text-secondary-600 font-mono text-sm font-bold uppercase tracking-widest">Get started</h2>
-      <p class="font-medium text-3xl lg:text-5xl text-neutral-900 leading-tighter">Your first snapshot is one command away.</p>
-      <p class="text-neutral-600 text-lg">Install Plakar, create a Kloset, and back up a folder in under a minute. Open, self-hosted, and yours to keep.</p>
+      <h2 class="text-ui-secondary-600 font-mono text-sm font-bold uppercase tracking-widest">Get started</h2>
+      <p class="font-medium text-3xl lg:text-5xl text-ui-neutral-900 leading-tighter">Your first snapshot is one command away.</p>
+      <p class="text-ui-neutral-600 text-lg">Install Plakar, create a Kloset, and back up a folder in under a minute. Open, self-hosted, and yours to keep.</p>
     </div>
     <div class="flex flex-col sm:flex-row gap-4 items-center">
       {{ partial "components/buttons/base-button.html" (dict
@@ -329,7 +329,7 @@
       ) }}
       {{ partial "components/buttons/base-button.html" (dict
         "label" "Read the docs" "labelShort" "Docs" "href" "/docs/community/" "icon" "ri/book-open-line"
-        "bgColor" "bg-white" "bgHoverColor" "bg-neutral-100" "textColor" "text-neutral-900" "textHoverColor" "text-neutral-900" "border" "border" "borderColor" "border-neutral-300"
+        "bgColor" "bg-ui-white" "bgHoverColor" "bg-ui-neutral-100" "textColor" "text-ui-neutral-900" "textHoverColor" "text-ui-neutral-900" "border" "border" "borderColor" "border-ui-neutral-300"
       ) }}
     </div>
   </div>

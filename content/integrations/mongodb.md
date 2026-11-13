@@ -43,7 +43,6 @@ related:
   - postgres
   - mysql
   - mssql
-  - etcd
 
 edition:
   - community

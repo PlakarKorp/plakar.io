@@ -27,9 +27,9 @@
 
     <!-- Mobile sidebar overlay -->
     <div id="docs-sidebar-overlay" class="fixed inset-0 bg-neutral-900/50 z-40 hidden lg:hidden"></div>
-    <aside id="docs-sidebar-mobile" class="fixed top-0 left-0 h-full w-72 bg-neutral-50 z-50 transform -translate-x-full transition-transform duration-300 lg:hidden overflow-y-auto p-6">
+    <aside id="docs-sidebar-mobile" class="fixed top-0 left-0 h-full w-72 bg-ui-neutral-50 z-50 transform -translate-x-full transition-transform duration-300 lg:hidden overflow-y-auto p-6">
       <div class="flex justify-end mb-4">
-        <button id="docs-sidebar-close" class="w-7 h-7 flex items-center justify-center border border-neutral-200 rounded-lg text-neutral-700">
+        <button id="docs-sidebar-close" class="w-7 h-7 flex items-center justify-center border border-ui-neutral-200 rounded-lg text-ui-neutral-700">
           <span class="w-4 h-4">{{ partial "icon.html" "ri/close-line" }}</span>
         </button>
       </div>
@@ -42,14 +42,14 @@
       {{ partial "docs/page-header.html" . }}
       <article class="docs-font prose max-w-none mt-8">
         <h1 class="mb-2">{{ .Title }}</h1>
-        {{ with .Params.summary }}<p class="text-lg text-neutral-600 mt-0">{{ . }}</p>{{ end }}
+        {{ with .Params.summary }}<p class="text-lg text-ui-neutral-600 mt-0">{{ . }}</p>{{ end }}
         {{ $version := replaceRE `\.[0-9a-f]{40}$` "" $spec.info.version }}
-        <p data-pagefind-ignore class="not-prose flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-neutral-500">
+        <p data-pagefind-ignore class="not-prose flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-ui-neutral-500">
           <span>{{ len $ops }} endpoint{{ if ne (len $ops) 1 }}s{{ end }}</span>
-          <span class="text-neutral-300">&middot;</span>
+          <span class="text-ui-neutral-300">&middot;</span>
           <span>Plakar Control Plane {{ $version }}</span>
-          <span class="text-neutral-300">&middot;</span>
-          <a href="../" class="text-primary-500 hover:underline">Base URL, authentication and errors</a>
+          <span class="text-ui-neutral-300">&middot;</span>
+          <a href="../" class="text-ui-primary-500 hover:underline">Base URL, authentication and errors</a>
         </p>
         {{ range $ops }}
           {{ partial "api/operation.html" (dict "op" .op "method" .method "path" .path "spec" $spec) }}

@@ -66,24 +66,24 @@
   "DELETE" "bg-red-600"
 ) $method | default "bg-neutral-600" }}
 {{ $pill := "inline-block shrink-0 text-center font-mono text-xs font-bold leading-5 px-1.5 py-px rounded text-white" }}
-{{ $heading := "text-sm font-semibold text-neutral-900 mt-4 mb-2 md:mt-5 flex flex-wrap items-center gap-x-2 gap-y-1 first:mt-0" }}
-{{ $panel := "rounded-lg border border-neutral-200 overflow-hidden" }}
-{{ $treePanel := "rounded-lg border border-neutral-200 max-h-120 overflow-auto overscroll-contain" }}
+{{ $heading := "text-sm font-semibold text-ui-neutral-900 mt-4 mb-2 md:mt-5 flex flex-wrap items-center gap-x-2 gap-y-1 first:mt-0" }}
+{{ $panel := "rounded-lg border border-ui-neutral-200 overflow-hidden" }}
+{{ $treePanel := "rounded-lg border border-ui-neutral-200 max-h-120 overflow-auto overscroll-contain" }}
 
 {{- /* Search indexes the summary, method, path and description of an operation. The heading id makes each operation its own search result. */ -}}
-<section class="not-prose mt-8 pt-6 md:mt-10 md:pt-8 border-t border-neutral-200">
+<section class="not-prose mt-8 pt-6 md:mt-10 md:pt-8 border-t border-ui-neutral-200">
 
-  <h2 id="{{ $id }}" class="scroll-mt-24 text-xl font-semibold text-neutral-900 m-0">{{ $op.summary | default (printf "%s %s" $method .path) }}</h2>
+  <h2 id="{{ $id }}" class="scroll-mt-24 text-xl font-semibold text-ui-neutral-900 m-0">{{ $op.summary | default (printf "%s %s" $method .path) }}</h2>
 
-  <div class="flex flex-wrap items-center justify-between gap-x-3 gap-y-1.5 mt-3 py-1.5 px-2 rounded-lg bg-neutral-100">
+  <div class="flex flex-wrap items-center justify-between gap-x-3 gap-y-1.5 mt-3 py-1.5 px-2 rounded-lg bg-ui-neutral-100">
     <div class="flex items-start gap-2.5 min-w-0">
       <span class="{{ $pill }} min-w-14 {{ $methodColor }}">{{ $method }}</span>
-      <code class="min-w-0 text-sm font-medium leading-5 text-neutral-800 wrap-break-word">{{ replace (htmlEscape .path) "/" "/<wbr>" | safeHTML }}</code>
+      <code class="min-w-0 text-sm font-medium leading-5 text-ui-neutral-800 wrap-break-word">{{ replace (htmlEscape .path) "/" "/<wbr>" | safeHTML }}</code>
     </div>
-    <span data-pagefind-ignore class="flex items-center gap-1.5 pr-1 text-xs {{ if $schemes }}text-neutral-600{{ else }}text-neutral-400{{ end }}">
+    <span data-pagefind-ignore class="flex items-center gap-1.5 pr-1 text-xs {{ if $schemes }}text-ui-neutral-600{{ else }}text-ui-neutral-400{{ end }}">
       <span class="w-3.5 h-3.5 shrink-0">{{ partial "icon.html" (cond (gt (len $schemes) 0) "ri/lock-2-line" "ri/lock-unlock-line") }}</span>
       {{ if $schemes }}
-        {{ range $i, $s := $schemes }}{{ if $i }}, {{ end }}<a href="../#authentication" class="text-inherit hover:text-primary-500">{{ index $schemeLabels $s | default $s }}</a>{{ end }}
+        {{ range $i, $s := $schemes }}{{ if $i }}, {{ end }}<a href="../#authentication" class="text-inherit hover:text-ui-primary-500">{{ index $schemeLabels $s | default $s }}</a>{{ end }}
       {{ else }}
         No authentication
       {{ end }}
@@ -105,7 +105,7 @@
         {{ with where $params "in" $group.in }}
           <h3 class="{{ $heading }}">{{ $group.title }}</h3>
           <div class="{{ $panel }}">
-            <ul class="list-none m-0 p-0 divide-y divide-neutral-200">
+            <ul class="list-none m-0 p-0 divide-y divide-ui-neutral-200">
               {{ range . }}
                 <li class="m-0 p-0 flex items-start gap-1.5 px-3 py-2">
                   <span class="w-3.5 shrink-0"></span>
@@ -122,14 +122,14 @@
       {{ if $bodyType }}
         <h3 class="{{ $heading }}">
           Request body
-          <span class="font-mono text-xs font-normal text-neutral-500">{{ $bodyType }}</span>
+          <span class="font-mono text-xs font-normal text-ui-neutral-500">{{ $bodyType }}</span>
           {{ if $body.required }}<span class="text-[11px] font-medium text-secondary-700">required</span>{{ end }}
         </h3>
         {{ $tree := trim (partial "api/schema.html" (dict "schema" $bodySchema "spec" $spec)) " \n\t" }}
         {{ if $tree }}
           <div class="{{ $treePanel }}">{{ $tree | safeHTML }}</div>
         {{ else }}
-          <p class="m-0 text-sm text-neutral-500">
+          <p class="m-0 text-sm text-ui-neutral-500">
             {{ if eq $bodyType "application/json" }}
               {{ partial "api/type.html" (dict "schema" $bodySchema "spec" $spec) | default "any" }}
             {{ else }}
@@ -143,8 +143,8 @@
         <h3 class="{{ $heading }}">
           Response
           <span class="{{ $pill }} bg-emerald-600">{{ .code }}</span>
-          {{ with .description }}<span class="text-sm font-normal text-neutral-600">{{ . | markdownify | plainify }}</span>{{ end }}
-          {{ with .type }}<span class="font-mono text-xs font-normal text-neutral-500">{{ . }}</span>{{ end }}
+          {{ with .description }}<span class="text-sm font-normal text-ui-neutral-600">{{ . | markdownify | plainify }}</span>{{ end }}
+          {{ with .type }}<span class="font-mono text-xs font-normal text-ui-neutral-500">{{ . }}</span>{{ end }}
         </h3>
         {{ $tree := "" }}
         {{ if eq .type "application/json" }}
@@ -153,40 +153,40 @@
         {{ if $tree }}
           <div class="{{ $treePanel }}">{{ $tree | safeHTML }}</div>
         {{ else if not .type }}
-          <p class="m-0 text-sm text-neutral-500">No response body.</p>
+          <p class="m-0 text-sm text-ui-neutral-500">No response body.</p>
         {{ end }}
       {{ end }}
 
       {{ with $errors }}
         <h3 class="{{ $heading }}">Errors</h3>
         <div class="{{ $panel }}">
-          <ul class="list-none m-0 p-0 divide-y divide-neutral-200">
+          <ul class="list-none m-0 p-0 divide-y divide-ui-neutral-200">
             {{ range . }}
               <li class="m-0 flex items-baseline gap-2.5 px-3 py-2 text-sm">
                 <span class="{{ $pill }} {{ cond (strings.HasPrefix .code "4") "bg-secondary-600" "bg-red-600" }}">{{ .code }}</span>
-                <span class="text-neutral-600 [&>p]:m-0">{{ .description | markdownify }}</span>
+                <span class="text-ui-neutral-600 [&>p]:m-0">{{ .description | markdownify }}</span>
               </li>
             {{ end }}
           </ul>
         </div>
-        <p class="mt-2 mb-0 text-xs text-neutral-500">
-          Every error returns the <a href="../#errors" class="text-primary-500 hover:underline">standard error body</a>.
+        <p class="mt-2 mb-0 text-xs text-ui-neutral-500">
+          Every error returns the <a href="../#errors" class="text-ui-primary-500 hover:underline">standard error body</a>.
         </p>
       {{ end }}
     </div>
 
-    {{ $sampleCode := "my-0! rounded-lg border border-neutral-200 shadow-none [&_pre]:m-0 [&_pre]:px-4 [&_pre]:py-3 [&_pre]:max-h-120 [&_pre]:overflow-auto [&_pre]:overscroll-contain [&_pre]:text-xs [&_pre]:leading-relaxed" }}
+    {{ $sampleCode := "my-0! shadow-none [&_pre]:m-0 [&_pre]:px-4 [&_pre]:py-3 [&_pre]:max-h-120 [&_pre]:overflow-auto [&_pre]:overscroll-contain [&_pre]:text-xs [&_pre]:leading-relaxed" }}
     <div class="min-w-0 flex flex-col gap-4 md:gap-5">
       <div>
         <h3 class="{{ $heading }}">Request</h3>
-        <div class="highlight-wrapper {{ $sampleCode }}">{{ transform.Highlight $curl "sh" "" }}</div>
+        {{ partial "api/codeblock.html" (dict "code" $curl "lang" "sh" "label" "Shell" "class" $sampleCode) }}
       </div>
       {{ range $successes }}
         {{ if eq .type "application/json" }}
           {{ $example := partial "api/example.html" (dict "schema" .schema "spec" $spec) }}
           <div>
             <h3 class="{{ $heading }}">Response <span class="{{ $pill }} bg-emerald-600">{{ .code }}</span></h3>
-            <div class="highlight-wrapper {{ $sampleCode }}">{{ transform.Highlight (jsonify (dict "indent" "  ") $example) "json" "" }}</div>
+            {{ partial "api/codeblock.html" (dict "code" (jsonify (dict "indent" "  ") $example) "lang" "json" "label" "JSON" "class" $sampleCode) }}
           </div>
         {{ end }}
       {{ end }}

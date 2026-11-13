@@ -4,11 +4,11 @@
 {{ $posts = first 3 (sort $posts "Date" "desc") }}
 
 {{ if $posts }}
-  <div class="w-full lg:w-auto lg:flex-1 lg:min-w-0 flex flex-col gap-3 border-l border-neutral-200 pl-6 ml-2">
-    <span class="text-primary-500 text-xs">Featured Blogs</span>
+  <div class="w-full lg:w-auto lg:flex-1 lg:min-w-0 flex flex-col gap-3 border-l border-ui-neutral-200 pl-6 ml-2">
+    <span class="text-ui-primary-500 text-xs">Featured Blogs</span>
     {{ range $posts }}
       {{ $image := or (.Resources.GetMatch "featured.webp") (index (.Resources.Match "featured.*") 0) }}
-      <a href="{{ .RelPermalink }}" class="group/link flex items-stretch gap-3 rounded-lg border border-neutral-200 hover:bg-neutral-100 hover:border-neutral-300 p-3 no-underline">
+      <a href="{{ .RelPermalink }}" class="group/link flex items-stretch gap-3 rounded-lg border border-ui-neutral-200 hover:bg-ui-neutral-100 hover:border-ui-neutral-300 p-3 no-underline">
         {{ if $image }}
           {{ partial "components/image.html" (dict
             "resource" $image
@@ -25,11 +25,11 @@
             {{ $cats = slice .Params.category }}
           {{ end }}
           {{ if $cats }}
-            <span class="text-xs text-primary-500 uppercase font-medium">
+            <span class="text-xs text-ui-primary-500 uppercase font-medium">
               {{ range $i, $c := $cats }}{{ if $i }} · {{ end }}{{ replace (replace (replace $c "release-notes" "release-note") "announcements" "announcement") "-" " " }}{{ end }}
             </span>
           {{ end }}
-          <span class="text-sm font-medium text-neutral-900 group-hover/link:text-primary-500 line-clamp-2 leading-snug">
+          <span class="text-sm font-medium text-ui-neutral-900 group-hover/link:text-ui-primary-500 line-clamp-2 leading-snug">
             {{ .Title }}
           </span>
         </div>
