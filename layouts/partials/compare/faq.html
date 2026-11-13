@@ -1,0 +1,25 @@
+{{/* FAQ accordion: questions only, click to expand. Input: dict "faq" (list of q/a) "class" (section background classes) "contact" bool */}}
+{{ with .faq }}
+<section class="{{ $.class | default "section-light-1" }} py-14 lg:py-24" id="faq">
+  <div class="max-w-4xl mx-auto px-4">
+    <h2 class="text-3xl lg:text-5xl font-medium text-neutral-900 leading-tighter mb-10 text-center">Frequently asked questions</h2>
+    <div class="border-y border-neutral-200 divide-y divide-neutral-200">
+      {{ range . }}
+      <details class="group">
+        <summary class="cursor-pointer list-none [&::-webkit-details-marker]:hidden flex justify-between items-center gap-6 py-5">
+          <h3 class="text-base lg:text-lg font-medium text-neutral-900 group-open:text-primary-600 transition-colors">{{ .q }}</h3>
+          <span class="relative w-4 h-4 shrink-0 text-neutral-500 group-open:text-primary-600" aria-hidden="true">
+            <span class="absolute left-0 right-0 top-1/2 h-0.5 -translate-y-1/2 bg-current rounded"></span>
+            <span class="absolute top-0 bottom-0 left-1/2 w-0.5 -translate-x-1/2 bg-current rounded transition-transform duration-200 group-open:rotate-90 group-open:opacity-0"></span>
+          </span>
+        </summary>
+        <p class="pb-6 pr-10 text-neutral-700 leading-relaxed">{{ .a }}</p>
+      </details>
+      {{ end }}
+    </div>
+    {{ if $.contact }}
+    <p class="text-sm text-neutral-600 mt-8 text-center">Spot an error or something out of date? <a href="/contact/" class="text-primary-600 underline">Tell us</a> and we will fix it.</p>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

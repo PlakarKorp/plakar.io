@@ -1,0 +1,190 @@
+{{ define "main" }}
+{{ $p := .Params }}
+{{ $section := . }}
+{{ $pages := where .RegularPages "Params.hidden" "ne" true }}
+<div data-pagefind-filter="section:Compare" hidden></div>
+
+<!-- Hero -->
+<section class="section-light-2 grid-background pt-38 pb-16 relative overflow-hidden">
+  <div class="absolute top-0 right-0 p-64 bg-primary-900/10 rounded-full blur-[120px] pointer-events-none"></div>
+  <div class="max-w-350 mx-auto px-4 flex flex-col items-center gap-6 text-center relative z-10">
+    <p class="text-primary-600 font-mono text-sm font-bold uppercase tracking-widest">Compare</p>
+    <h1 class="text-4xl lg:text-6xl font-medium text-neutral-900 leading-tighter max-w-4xl">
+      {{ partial "utils/colorize.html" (dict "text" .Title "word" "Plakar") }}
+    </h1>
+    <p class="text-neutral-700 text-lg lg:text-xl max-w-3xl">{{ $p.lede | default .Description }}</p>
+    <div class="flex flex-wrap justify-center gap-4 mt-2">
+      {{ partial "components/buttons/base-button.html" (dict "label" "See the comparison" "labelShort" "Compare" "href" "#matrix-enterprise" "icon" "ri/arrow-down-line") }}
+      {{ partial "components/buttons/base-button.html" (dict "label" "Book a demo" "labelShort" "Demo" "class" "book-a-demo-modal-open" "bgColor" "bg-neutral-50" "bgHoverColor" "bg-primary-50" "textColor" "text-primary-600" "textHoverColor" "text-primary-600" "border" "border" "borderColor" "border-primary-500") }}
+    </div>
+    <p class="text-xs text-neutral-500 font-mono">Last verified {{ $p.verified }}</p>
+  </div>
+</section>
+
+<!-- How Plakar compares -->
+{{ with $p.benefits }}
+<section class="section-light-1 py-14 lg:py-20 border-t border-neutral-200">
+  <div class="max-w-350 mx-auto px-4 flex flex-col gap-10">
+    <h2 class="text-3xl lg:text-4xl font-medium text-neutral-900 text-center">How Plakar compares</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {{ range . }}
+      <div class="bg-white p-6 rounded-2xl border border-neutral-200 shadow-sm flex flex-col gap-4">
+        <div class="w-11 h-11 p-2 bg-primary-50 text-primary-600 rounded-lg flex items-center justify-center" aria-hidden="true">{{ partial "icon.html" .icon }}</div>
+        <h3 class="text-lg font-bold text-neutral-900">{{ .title }}</h3>
+        <p class="text-neutral-600 text-sm leading-relaxed">{{ .text }}</p>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+<!-- Cross-vendor matrices -->
+{{ range $i, $m := $p.matrices }}
+<section id="matrix-{{ $m.id }}" class="{{ cond (eq (mod $i 2) 0) "section-light-2" "section-light-1" }} py-14 lg:py-20 border-t border-neutral-200 scroll-mt-24">
+  <div class="max-w-350 mx-auto px-4 flex flex-col gap-6">
+    <div class="flex flex-col gap-2 max-w-3xl">
+      <h2 class="text-2xl lg:text-3xl font-medium text-neutral-900">{{ $m.title }}</h2>
+      <p class="text-neutral-600">{{ $m.intro }}</p>
+    </div>
+    <p class="lg:hidden text-xs text-neutral-500 font-mono uppercase tracking-widest">Scroll sideways to see every column</p>
+    <div class="overflow-x-auto rounded-2xl border border-neutral-200 shadow-sm bg-white">
+      <table class="table! w-full min-w-[760px] border-collapse">
+        <thead>
+          <tr class="bg-neutral-50 border-b border-neutral-200">
+            <th scope="col" class="p-4 text-left align-bottom w-[28%]"><span class="font-bold text-neutral-900">Capability</span></th>
+            <th scope="col" class="p-4 text-center align-bottom bg-primary-50 border-x border-primary-100 relative">
+              <div class="absolute top-0 left-0 w-full h-1 bg-primary-500"></div>
+              <span class="font-bold text-primary-700 block">Plakar</span>
+              <span class="text-xs text-primary-600 font-normal block">{{ $m.plakar }}</span>
+            </th>
+            {{ range $m.columns }}
+            {{ $target := $section.GetPage (printf "/compare/%s" .slug) }}
+            <th scope="col" class="p-4 text-center align-bottom">
+              <span class="font-bold text-neutral-800 block">{{ .name }}</span>
+              {{ with $target }}<a href="{{ .RelPermalink }}" class="text-xs text-primary-600 hover:underline font-normal">Compare</a>{{ end }}
+            </th>
+            {{ end }}
+          </tr>
+        </thead>
+        <tbody>
+          {{ range $m.rows }}
+          <tr class="border-b border-neutral-100 hover:bg-neutral-50 transition-colors">
+            <th scope="row" class="p-4 text-left text-sm text-neutral-900 font-medium">{{ .capability }}</th>
+            {{ range $ci, $c := .cells }}
+            <td class="p-4 text-center {{ if eq $ci 0 }}bg-primary-50/30 border-x border-primary-100{{ end }}">
+              {{ partial "compare/status.html" (dict "status" $c "highlight" (eq $ci 0)) }}
+            </td>
+            {{ end }}
+          </tr>
+          {{ end }}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{ with $p.matrix_note }}
+<section class="section-light-1 pb-6 -mt-2">
+  <div class="max-w-350 mx-auto px-4">
+    <p class="text-sm text-neutral-600 max-w-4xl">{{ . }}</p>
+  </div>
+</section>
+{{ end }}
+
+<!-- Questions to ask -->
+{{ with $p.questions }}
+<section class="section-dark-1 py-14 lg:py-20">
+  <div class="max-w-350 mx-auto px-4 flex flex-col gap-10">
+    <div class="max-w-3xl flex flex-col gap-4">
+      <h2 class="text-3xl lg:text-5xl font-medium">{{ $p.questions_title }}</h2>
+      <p class="text-neutral-400 text-lg">{{ $p.questions_intro }}</p>
+    </div>
+    <ol class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {{ range $i, $q := . }}
+      <li class="bg-neutral-800 p-6 rounded-2xl border border-neutral-700 flex flex-col gap-3">
+        <span class="font-mono text-sm font-bold text-primary-400">0{{ add $i 1 }}</span>
+        <h3 class="text-lg font-bold text-white">{{ $q.q }}</h3>
+        <p class="text-neutral-400 text-sm">{{ $q.why }}</p>
+        <p class="text-neutral-200 text-sm leading-relaxed"><strong class="text-white">Plakar:</strong> {{ $q.answer }}</p>
+        {{ with $q.link }}<a href="{{ .url }}" class="mt-auto pt-2 text-sm font-medium text-primary-400 hover:text-primary-300">{{ .label }}</a>{{ end }}
+      </li>
+      {{ end }}
+    </ol>
+  </div>
+</section>
+{{ end }}
+
+<!-- All comparisons -->
+<section class="section-light-2 py-14 lg:py-20 border-b border-neutral-200">
+  <div class="max-w-350 mx-auto px-4 flex flex-col gap-8">
+    <h2 class="text-2xl lg:text-3xl font-medium text-neutral-900">Read a full comparison</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {{ range $track := slice (dict "id" "enterprise" "title" "Plakar Control Plane vs") (dict "id" "oss" "title" "Plakar vs") }}
+      <div class="flex flex-col gap-3">
+        <h3 class="text-sm font-mono font-bold uppercase tracking-widest text-neutral-500">{{ $track.title }}</h3>
+        <ul class="flex flex-col gap-3">
+          {{ range where $pages "Params.track" $track.id }}
+          <li>
+            <a href="{{ .RelPermalink }}" class="group bg-white p-5 rounded-2xl border border-neutral-200 shadow-sm flex items-start justify-between gap-4 hover:border-primary-500 hover:shadow-md transition">
+              <span class="flex flex-col gap-1">
+                <span class="font-bold text-neutral-900">{{ .Title }}</span>
+                <span class="text-sm text-neutral-600">{{ .Params.summary | default .Description }}</span>
+              </span>
+              <span class="w-5 h-5 mt-1 shrink-0 text-primary-600 transition-transform group-hover:translate-x-1" aria-hidden="true">{{ partial "icon.html" "ri/arrow-right-line" }}</span>
+            </a>
+          </li>
+          {{ end }}
+        </ul>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<!-- Proof -->
+{{ with $p.proof }}
+<section class="section-light-1 py-14 lg:py-16">
+  <div class="max-w-350 mx-auto px-4 flex flex-col gap-8">
+    <h2 class="text-2xl lg:text-3xl font-medium text-neutral-900 text-center">Why teams can check every claim</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {{ range . }}
+      <a href="{{ .url }}" class="bg-white p-6 rounded-2xl border border-neutral-200 shadow-sm flex flex-col gap-2 hover:border-primary-500 transition">
+        <span class="font-bold text-neutral-900">{{ .title }}</span>
+        <span class="text-sm text-neutral-600">{{ .text }}</span>
+      </a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+<!-- FAQ -->
+{{ partial "compare/faq.html" (dict "faq" $p.faq "class" "section-light-2 border-t border-neutral-200" "contact" true) }}
+
+<!-- CTA -->
+<section class="section-light-1 grid-background py-24 relative overflow-hidden">
+  <div class="max-w-350 mx-auto px-4 text-center relative z-10 flex flex-col gap-6 items-center">
+    <h2 class="text-3xl md:text-5xl font-medium text-neutral-900 leading-tight">Try it on your own data</h2>
+    <p class="text-lg text-neutral-600 max-w-2xl">The engine is open source. Install it, back something up, restore it somewhere else.</p>
+    <div class="flex gap-4 flex-wrap justify-center">
+      {{ partial "components/buttons/base-button.html" (dict "label" "Book a demo" "labelShort" "Demo" "class" "book-a-demo-modal-open") }}
+      {{ partial "components/buttons/base-button.html" (dict "label" "Download Plakar" "labelShort" "Download" "href" "/download/" "bgColor" "bg-neutral-50" "bgHoverColor" "bg-primary-50" "textColor" "text-primary-600" "textHoverColor" "text-primary-600" "border" "border" "borderColor" "border-primary-500") }}
+    </div>
+  </div>
+</section>
+
+{{/* Structured data for search and answer engines */}}
+{{ $faq := slice }}
+{{ range $p.faq }}
+  {{ $faq = $faq | append (dict "@type" "Question" "name" .q "acceptedAnswer" (dict "@type" "Answer" "text" .a)) }}
+{{ end }}
+{{ $items := slice }}
+{{ range $i, $pg := $pages }}
+  {{ $items = $items | append (dict "@type" "ListItem" "position" (add $i 1) "name" $pg.Title "url" $pg.Permalink) }}
+{{ end }}
+{{ $ld := slice (dict "@context" "https://schema.org" "@type" "CollectionPage" "name" .Title "description" .Description "url" .Permalink "dateModified" $p.verified "mainEntity" (dict "@type" "ItemList" "itemListElement" $items)) }}
+{{ if $faq }}{{ $ld = $ld | append (dict "@context" "https://schema.org" "@type" "FAQPage" "mainEntity" $faq) }}{{ end }}
+<script type="application/ld+json">{{ $ld | jsonify | safeJS }}</script>
+{{ end }}
