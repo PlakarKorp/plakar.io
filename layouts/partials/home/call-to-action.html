@@ -1,0 +1,36 @@
+{{/* Home page section. Shared class strings come from home/classes.html. */}}
+{{ $c := partial "home/classes.html" . }}
+{{ $wrap := $c.wrap }}
+{{ $lead := $c.lead }}
+{{ $secondaryButton := $c.secondaryButton }}
+{{ $nestor := resources.Get "img/nestor/nestor-inline.svg" }}
+
+<!-- ================================================================
+     Final call to action
+     ================================================================ -->
+<section class="relative overflow-hidden border-t border-ui-neutral-200">
+  <div class="absolute inset-0 grid-background home-hero-grid" aria-hidden="true"></div>
+  <div class="absolute left-1/2 -translate-x-1/2 -top-40 w-[60rem] h-[36rem] home-glow" aria-hidden="true"></div>
+  <div class="relative {{ $wrap }} py-28 lg:py-40 flex flex-col items-center text-center">
+    <span class="grid place-items-center w-16 h-16 rounded-2xl border border-ui-neutral-200 bg-ui-neutral-50 home-frame">
+      <span class="block w-8 h-8 text-ui-neutral-900">{{ with $nestor }}{{ .Content | safeHTML }}{{ end }}</span>
+    </span>
+    <p class="home-heading mt-10 font-medium tracking-[-0.03em] leading-[1.02] text-4xl md:text-5xl lg:text-7xl max-w-4xl">
+      Back up anything.<br>Prove it is recoverable.
+    </p>
+    <p class="mt-6 {{ $lead }} max-w-xl">
+      The complete engine, free and open source. Organization-wide visibility when you need it.
+    </p>
+    <div class="mt-10 flex flex-wrap justify-center gap-3">
+      {{ partial "components/buttons/base-button.html" (dict
+        "label" "Get started"
+        "href" "/docs/community/v1.1.0/quickstart/first-backup/"
+      ) }}
+      {{ partial "components/buttons/base-button.html" (merge $secondaryButton (dict
+        "label" "Book a demo"
+        "class" "book-a-demo-modal-open"
+        "icon" "ri/calendar-event-line"
+      )) }}
+    </div>
+  </div>
+</section>

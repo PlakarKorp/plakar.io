@@ -1,0 +1,185 @@
+{{/* Home page section. Shared class strings come from home/classes.html. */}}
+{{ $c := partial "home/classes.html" . }}
+{{ $wrap := $c.wrap }}
+{{ $eyebrow := $c.eyebrow }}
+{{ $h2 := $c.h2 }}
+
+<!-- ================================================================
+     Resilience as code: one change, from the file to the Control Plane, told
+     as you scroll (home-iac.js, .home-iac in custom.css)
+     ================================================================ -->
+{{ $k := `<span class="text-primary-300">` }}
+{{ $v := `<span class="text-secondary-300">` }}
+{{ $c := `<span class="text-neutral-500">` }}
+{{ $e := `</span>` }}
+{{ $iac := slice
+  (dict "id" "k8s" "icon" "ri/box-3-line" "name" "Kubernetes Operator" "text" "Sources, stores and schedules as custom resources, reconciled in the cluster."
+    "file" "backup.yaml" "docs" "/docs/control-plane/infrastructure-as-code/kubernetes-operator/"
+    "code" (printf `%sapiVersion%s: task.plakar.io/v1alpha1
+%skind%s: %sScheduleBackup%s
+%smetadata%s:
+  %sname%s: nightly-database-backup
+%sspec%s:
+  %speriodicity%s: %s86400%s
+  %ssource%s:
+    %sname%s: production-database
+  %sstore%s:
+    %sname%s: production-s3` $k $e $k $e $v $e $k $e $k $e $k $e $k $e $v $e $k $e $k $e $k $e $k $e)
+    "cmd" "kubectl apply -f backup.yaml"
+    "out" `schedulebackup.task.plakar.io/nightly-database-backup <span class="text-green-400">created</span>`)
+  (dict "id" "tf" "icon" "ri/stack-line" "name" "Terraform" "docs" "/docs/control-plane/infrastructure-as-code/terraform/")
+  (dict "id" "ansible" "icon" "ri/terminal-box-line" "name" "Ansible" "docs" "/docs/control-plane/infrastructure-as-code/ansible/")
+  (dict "id" "api" "icon" "ri/connector-line" "name" "API" "docs" "/docs/control-plane/references/openapi/")
+}}
+{{ $steps := slice
+  (dict "title" "Write it" "text" "Describe sources, stores and schedules in the tool your team already uses.")
+  (dict "title" "Review it" "text" "The change goes through a pull request, like the rest of your infrastructure.")
+  (dict "title" "Apply it" "text" "Your pipeline applies it, and the Control Plane picks it up.")
+  (dict "title" "It's protected" "text" "Backups run on schedule, and every change stays in Git history.")
+}}
+<!-- JS: assets/js/main/home-iac.js pins the section and moves through the steps as you scroll -->
+<section id="home-iac" class="home-iac border-t border-ui-neutral-200" data-stage="0" style="--iac-steps: {{ len $steps }}">
+  <div class="home-iac-sticky py-24 lg:py-36">
+    <div class="{{ $wrap }} w-full grid lg:grid-cols-[0.85fr_1.15fr] gap-12 lg:gap-20 items-center">
+
+      <!-- Story -->
+      <div class="flex flex-col gap-6">
+        <h2 class="{{ $eyebrow }}"><span class="w-1.5 h-1.5 rounded-full bg-ui-primary-500"></span>Resilience as code</h2>
+        <p class="{{ $h2 }}">Your backup posture, versioned like the rest.</p>
+
+        <div class="flex flex-wrap items-center gap-1.5">
+          <span class="mr-1 text-xs text-ui-neutral-500">Works with</span>
+          {{ range $iac }}
+            <a href="{{ .docs }}" class="flex items-center gap-2 rounded-full border border-ui-neutral-200 px-3 py-1.5 text-xs font-medium text-ui-neutral-600 hover:border-ui-neutral-400 hover:text-ui-neutral-900 transition-colors">
+              <span class="block w-3.5 h-3.5">{{ partial "icon.html" .icon }}</span>{{ .name }}
+            </a>
+          {{ end }}
+        </div>
+
+        <ol class="home-iac-steps relative mt-4 flex flex-col gap-1 pl-8">
+          <span class="absolute left-[11px] top-3 bottom-3 w-px bg-ui-neutral-200" aria-hidden="true"></span>
+          <span class="home-iac-rail absolute left-[11px] top-3 w-px bg-ui-primary-500" aria-hidden="true"></span>
+          {{ range $i, $s := $steps }}
+            <li data-step="{{ $i }}" class="home-iac-step relative py-3 cursor-pointer">
+              <span class="home-iac-dot absolute -left-8 top-3.5 grid place-items-center w-6 h-6 rounded-full border border-ui-neutral-300 bg-ui-neutral-50 font-mono text-[10px] font-bold text-ui-neutral-500 transition-colors">{{ add $i 1 }}</span>
+              <span class="home-iac-step-title block font-semibold text-ui-neutral-500 transition-colors">{{ $s.title }}</span>
+              <span class="home-iac-step-text block text-sm text-ui-neutral-600">{{ $s.text }}</span>
+            </li>
+          {{ end }}
+        </ol>
+      </div>
+
+      <!-- Stage: one window, its tab follows the step -->
+      <div class="relative">
+        <div class="absolute -inset-16 home-glow opacity-60" aria-hidden="true"></div>
+        {{ with index $iac 0 }}
+          {{ $lines := split .code "\n" }}
+          <div class="relative rounded-2xl border border-neutral-800 bg-neutral-900 overflow-hidden home-frame">
+            <!-- Tabs: one per step -->
+            <div class="flex items-center gap-3 px-4 h-12 border-b border-neutral-800 bg-black/20">
+              <span class="flex gap-1.5 shrink-0"><span class="w-2.5 h-2.5 rounded-full bg-neutral-700"></span><span class="w-2.5 h-2.5 rounded-full bg-neutral-700"></span><span class="w-2.5 h-2.5 rounded-full bg-neutral-700"></span></span>
+              <span class="flex items-center gap-1 min-w-0 overflow-hidden">
+                {{ range $i, $tab := slice
+                  (dict "icon" "ri/file-text-line" "label" .file)
+                  (dict "icon" "ri/git-merge-line" "label" "#42")
+                  (dict "icon" "ri/terminal-box-line" "label" "deploy")
+                  (dict "icon" "ri/calendar-fill" "label" "Control Plane")
+                }}
+                  <span data-tab="{{ $i }}" class="home-iac-wtab flex items-center gap-1.5 shrink-0 rounded-md px-2.5 py-1 font-mono text-[11px] text-neutral-500 transition-colors">
+                    <span class="block w-3.5 h-3.5">{{ partial "icon.html" $tab.icon }}</span>{{ $tab.label }}
+                  </span>
+                {{ end }}
+              </span>
+            </div>
+
+            <!-- Body: every step in the same place -->
+            <div class="home-iac-stage relative h-[25rem] font-mono text-[13px] leading-6">
+
+              <!-- 1. Write it -->
+              <div class="home-iac-layer px-5 py-5" data-layer="0">
+                {{ range $n, $line := $lines }}
+                  <div class="home-iac-item flex gap-5 whitespace-pre" style="--i: {{ $n }}"><span class="w-5 shrink-0 select-none text-right text-neutral-600">{{ add $n 1 }}</span><span class="text-neutral-200">{{ $line | safeHTML }}</span></div>
+                {{ end }}
+              </div>
+
+              <!-- 2. Review it -->
+              <div class="home-iac-layer flex flex-col gap-4 px-5 py-5" data-layer="1">
+                <div class="flex items-center justify-between gap-3 font-sans">
+                  <span class="flex flex-col">
+                    <span class="text-sm font-semibold text-neutral-100">Add nightly database backup</span>
+                    <span class="text-xs text-neutral-500">{{ .file }} · +{{ len $lines }} lines</span>
+                  </span>
+                  <span class="shrink-0 inline-flex items-center gap-1.5 rounded-full bg-green-500/15 px-2.5 py-1 text-[11px] font-medium text-green-400"><span class="block w-3.5 h-3.5">{{ partial "icon.html" "ri/git-merge-line" }}</span>Ready to merge</span>
+                </div>
+                <div class="rounded-lg border border-neutral-800 overflow-hidden text-[12px] leading-[1.35rem]">
+                  {{ range $n, $line := $lines }}
+                    <div class="home-iac-item flex gap-3 bg-green-500/[0.07] px-3 whitespace-pre" style="--i: {{ $n }}"><span class="select-none text-green-400/70">+</span><span class="text-neutral-300">{{ replaceRE `<[^>]+>` "" $line | safeHTML }}</span></div>
+                  {{ end }}
+                </div>
+                <div class="mt-auto flex flex-wrap gap-x-5 gap-y-1 font-sans text-xs text-neutral-400">
+                  <span class="flex items-center gap-1.5"><span class="block w-4 h-4 text-green-400">{{ partial "icon.html" "ri/check-line" }}</span>Checks passed</span>
+                  <span class="flex items-center gap-1.5"><span class="block w-4 h-4 text-green-400">{{ partial "icon.html" "ri/check-line" }}</span>Approved by a teammate</span>
+                </div>
+              </div>
+
+              <!-- 3. Apply it -->
+              <div class="home-iac-layer flex flex-col gap-1.5 px-5 py-5" data-layer="2">
+                <div class="home-iac-item text-neutral-500" style="--i: 0"># #42 merged into main</div>
+                <div class="home-iac-item text-neutral-200" style="--i: 1"><span class="text-primary-300">$</span> {{ .cmd }}</div>
+                <div class="home-iac-item text-neutral-400" style="--i: 2">{{ .out | safeHTML }}</div>
+                <div class="home-iac-item mt-4 flex flex-col gap-2 font-sans text-xs" style="--i: 3">
+                  {{ range slice "Lint and validate" "Plan the change" "Apply" }}
+                    <span class="flex items-center justify-between gap-3 rounded-md bg-black/20 px-3 py-2 text-neutral-300">
+                      <span class="flex items-center gap-2"><span class="block w-4 h-4 text-green-400">{{ partial "icon.html" "ri/check-line" }}</span>{{ . }}</span>
+                      <span class="font-mono text-[11px] text-neutral-500">passed</span>
+                    </span>
+                  {{ end }}
+                </div>
+                <div class="home-iac-item mt-auto flex items-center gap-3 rounded-lg border border-neutral-800 bg-black/20 px-4 py-3 font-sans text-xs text-neutral-300" style="--i: 4">
+                  <span class="grid place-items-center w-7 h-7 shrink-0 rounded-md bg-green-500/15 text-green-400"><span class="block w-4 h-4">{{ partial "icon.html" "ri/check-line" }}</span></span>
+                  <span class="flex flex-col"><span class="font-medium text-neutral-100">Control Plane updated</span><span class="text-neutral-500">The change is live, nothing to click.</span></span>
+                </div>
+              </div>
+
+              <!-- 4. It's protected -->
+              <div class="home-iac-layer flex flex-col gap-3 px-5 py-5 font-sans" data-layer="3">
+                <div class="home-iac-item flex flex-col gap-3 rounded-xl border border-neutral-800 bg-black/20 p-4" style="--i: 0">
+                  <div class="flex items-start justify-between gap-3">
+                    <span class="flex flex-col">
+                      <span class="text-sm font-medium text-neutral-100">nightly-database-backup</span>
+                      <span class="text-xs text-neutral-500">Backup · Every 24 hours</span>
+                    </span>
+                    <span class="shrink-0 inline-flex items-center gap-1.5 rounded-full bg-green-500/15 px-2 py-0.5 text-[11px] font-medium text-green-400"><span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>Scheduled</span>
+                  </div>
+                  <div class="flex items-center gap-2 text-xs text-neutral-300">
+                    <span class="flex items-center gap-1.5 min-w-0 rounded-md bg-neutral-800 px-2 py-1"><span class="block w-3.5 h-3.5 shrink-0 text-neutral-500">{{ partial "icon.html" "ri/database-2-line" }}</span><span class="truncate">production-database</span></span>
+                    <span class="home-iac-flow relative block flex-1 max-w-16 h-px bg-neutral-700 overflow-hidden"></span>
+                    <span class="flex items-center gap-1.5 min-w-0 rounded-md bg-neutral-800 px-2 py-1"><span class="block w-3.5 h-3.5 shrink-0 text-neutral-500">{{ partial "icon.html" "ri/archive-2-fill" }}</span><span class="truncate">production-s3</span></span>
+                  </div>
+                  <div class="flex items-center justify-between gap-3 text-[11px] text-neutral-500">
+                    <span>Last runs</span>
+                    <span class="flex items-end gap-1 h-4">{{ range slice 9 12 10 14 11 13 12 }}<span class="w-1.5 rounded-sm bg-green-400/70" style="height: {{ . }}px"></span>{{ end }}</span>
+                  </div>
+                </div>
+                <div class="home-iac-item grid grid-cols-3 gap-3" style="--i: 1">
+                  {{ range slice (dict "k" "Next run" "v" "in 6 hours") (dict "k" "Last run" "v" "4 min, no errors") (dict "k" "Stored" "v" "2.1 GB, deduplicated") }}
+                    <span class="flex flex-col gap-0.5 rounded-xl border border-neutral-800 bg-black/20 px-3 py-2.5">
+                      <span class="text-[10px] font-semibold uppercase tracking-wider text-neutral-500">{{ .k }}</span>
+                      <span class="text-xs text-neutral-200">{{ .v }}</span>
+                    </span>
+                  {{ end }}
+                </div>
+                <div class="mt-auto flex items-center gap-2 text-xs text-neutral-500">
+                  <span class="block w-4 h-4 shrink-0 text-primary-400">{{ partial "icon.html" "ri/git-merge-line" }}</span>
+                  <span>From #42 on <span class="font-mono text-neutral-300">main</span>, reviewed and versioned</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        {{ end }}
+      </div>
+
+    </div>
+  </div>
+</section>

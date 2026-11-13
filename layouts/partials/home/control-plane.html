@@ -1,0 +1,120 @@
+{{/* Home page section. Shared class strings come from home/classes.html. */}}
+{{ $c := partial "home/classes.html" . }}
+{{ $wrap := $c.wrap }}
+{{ $eyebrow := $c.eyebrow }}
+{{ $h2 := $c.h2 }}
+{{ $lead := $c.lead }}
+{{ $card := $c.card }}
+{{ $link := $c.link }}
+
+<!-- ================================================================
+     Control Plane: discover, protect, prove
+     ================================================================ -->
+<section class="py-24 lg:py-36 border-t border-ui-neutral-200">
+  <div class="{{ $wrap }}">
+    <div class="grid lg:grid-cols-[1.15fr_1fr] gap-8 lg:gap-24 lg:items-end">
+      <div class="flex flex-col gap-6">
+        <h2 class="{{ $eyebrow }}"><span class="w-1.5 h-1.5 rounded-full bg-ui-primary-500"></span>Plakar Control Plane</h2>
+        <p class="{{ $h2 }}">See what is protected. Fix what is not.</p>
+      </div>
+      <div class="flex flex-col gap-5 lg:pb-2">
+        <p class="{{ $lead }}">
+          Control Plane maps your estate, applies protection by policy and shows the gaps,
+          from a single self-hosted console.
+        </p>
+        <a href="/solutions/control-plane/" class="{{ $link }}">
+          Explore Control Plane <span class="block w-4 h-4 group-hover:translate-x-0.5 transition-transform">{{ partial "icon.html" "ri/arrow-right-line" }}</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="mt-16 grid lg:grid-cols-3 gap-4">
+
+      <!-- Discover -->
+      <div class="{{ $card }} flex flex-col overflow-hidden">
+        <div class="h-64 flex flex-col justify-center p-6 border-b border-ui-neutral-200 bg-ui-neutral-100/40" aria-hidden="true">
+          <div class="rounded-lg border border-ui-neutral-200 bg-ui-neutral-50 text-xs">
+            <div class="flex items-center gap-2 px-3 py-2 border-b border-ui-neutral-200">
+              <span class="font-medium text-ui-neutral-900">AWS · eu-west-3</span>
+              <span class="ml-auto flex items-center gap-1 text-ui-neutral-400"><span class="block w-3 h-3">{{ partial "icon.html" "ri/refresh-line" }}</span>synced 2m ago</span>
+            </div>
+            {{ range slice
+              (dict "name" "db-primary" "type" "RDS")
+              (dict "name" "app-server-01" "type" "EC2")
+              (dict "name" "media-assets" "type" "S3")
+              (dict "name" "analytics-mongo" "type" "EC2" "new" true)
+            }}
+              <div class="flex items-center gap-2 px-3 py-2 border-b border-ui-neutral-200 last:border-b-0">
+                <span class="font-mono text-ui-neutral-900">{{ .name }}</span>
+                {{ if .new }}<span class="rounded-full bg-ui-primary-50 px-1.5 text-[10px] font-semibold text-ui-primary-600">New</span>{{ end }}
+                <span class="ml-auto rounded border border-ui-neutral-200 px-1.5 font-mono text-[10px] text-ui-neutral-500">{{ .type }}</span>
+              </div>
+            {{ end }}
+          </div>
+        </div>
+        <div class="p-6 lg:p-8">
+          <span class="font-mono text-xs text-ui-neutral-400">01</span>
+          <h3 class="mt-2 text-lg font-semibold text-ui-neutral-900">Discover</h3>
+          <p class="mt-2 text-ui-neutral-600">Connect a cloud account, hypervisor or cluster. Inventories list every resource and stay in sync.</p>
+        </div>
+      </div>
+
+      <!-- Protect -->
+      <div class="{{ $card }} flex flex-col overflow-hidden">
+        <div class="h-64 flex flex-col justify-center p-6 border-b border-ui-neutral-200 bg-ui-neutral-100/40" aria-hidden="true">
+          <div class="rounded-lg border border-ui-neutral-200 bg-ui-neutral-50 text-xs">
+            <div class="flex items-center gap-2 px-3 py-2 border-b border-ui-neutral-200">
+              <span class="block w-3.5 h-3.5 text-ui-primary-500">{{ partial "icon.html" "ri/shield-check-line" }}</span>
+              <span class="font-medium text-ui-neutral-900">production-daily</span>
+              <span class="ml-auto rounded-full bg-ui-green-50 px-1.5 text-[10px] font-semibold text-ui-green-800">Active</span>
+            </div>
+            {{ range slice
+              (dict "k" "Schedule" "v" "Every 24 hours")
+              (dict "k" "Retention" "v" "30 days")
+              (dict "k" "Store" "v" "s3-eu-west")
+              (dict "k" "Matched" "v" "214 resources")
+            }}
+              <div class="flex items-center gap-2 px-3 py-2 border-b border-ui-neutral-200 last:border-b-0">
+                <span class="text-ui-neutral-500">{{ .k }}</span>
+                <span class="ml-auto font-medium text-ui-neutral-900">{{ .v }}</span>
+              </div>
+            {{ end }}
+          </div>
+        </div>
+        <div class="p-6 lg:p-8">
+          <span class="font-mono text-xs text-ui-neutral-400">02</span>
+          <h3 class="mt-2 text-lg font-semibold text-ui-neutral-900">Protect</h3>
+          <p class="mt-2 text-ui-neutral-600">Policies set schedules, retention and storage for the resources they match, including new ones.</p>
+        </div>
+      </div>
+
+      <!-- Prove -->
+      <div class="{{ $card }} flex flex-col overflow-hidden">
+        <div class="h-64 flex flex-col justify-center gap-4 p-6 border-b border-ui-neutral-200 bg-ui-neutral-100/40" aria-hidden="true">
+          {{ range slice
+            (dict "name" "Scaleway" "pct" 100)
+            (dict "name" "AWS" "pct" 96)
+            (dict "name" "Proxmox" "pct" 88)
+            (dict "name" "Kubernetes" "pct" 74)
+          }}
+            <div class="flex flex-col gap-1.5">
+              <div class="flex items-center justify-between text-xs">
+                <span class="text-ui-neutral-700">{{ .name }}</span>
+                <span class="font-mono {{ if ge .pct 90 }}text-ui-neutral-900{{ else }}text-ui-secondary-600{{ end }}">{{ .pct }}%</span>
+              </div>
+              <div class="h-1.5 rounded-full bg-ui-neutral-200">
+                <div class="h-full rounded-full {{ if ge .pct 90 }}bg-ui-primary-500{{ else }}bg-ui-secondary-500{{ end }}" style="width: {{ .pct }}%"></div>
+              </div>
+            </div>
+          {{ end }}
+        </div>
+        <div class="p-6 lg:p-8">
+          <span class="font-mono text-xs text-ui-neutral-400">03</span>
+          <h3 class="mt-2 text-lg font-semibold text-ui-neutral-900">Prove</h3>
+          <p class="mt-2 text-ui-neutral-600">Compliance shows coverage per inventory and the result of every check, ready for the next audit.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
