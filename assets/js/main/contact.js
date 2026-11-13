@@ -9,6 +9,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("contact-form");
   if (!form) return;
 
+  // Prefill from the URL, e.g. the price simulator's "Talk to sales" link.
+  const params = new URLSearchParams(window.location.search);
+  const subject = params.get("subject");
+  if (
+    subject &&
+    form.subject.querySelector(`option[value="${CSS.escape(subject)}"]`)
+  ) {
+    form.subject.value = subject;
+  }
+  const message = params.get("message");
+  if (message) form.message.value = message;
+
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 

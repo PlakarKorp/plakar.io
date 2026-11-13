@@ -1,0 +1,37 @@
+# Price simulator data, rendered on /quote/.
+# Volume pricing: every TiB is billed at the rate of the tier the total falls in.
+currency: EUR
+
+tiers:
+  - label: "Up to 9 TiB"
+    min: 0
+    price: 35
+  - label: "10 to 99 TiB"
+    min: 10
+    price: 28
+  - label: "100 to 499 TiB"
+    min: 100
+    price: 22.4
+  - label: "500 to 999 TiB"
+    min: 500
+    price: 18.2
+  - label: "1000+ TiB"
+    min: 1000
+    price: 14
+
+options:
+  - id: support
+    label: "Premium support"
+    description: "24/7 availability and guaranteed response times (SLA)."
+    price: 1500
+    billing: monthly
+  - id: implementation
+    label: "Implementation services"
+    description: "Initial deployment of Plakar, including integration assistance."
+    price: 5000
+    billing: one-time
+  - id: offline
+    label: "Offline licenses"
+    description: ""
+    price: 900
+    billing: monthly
