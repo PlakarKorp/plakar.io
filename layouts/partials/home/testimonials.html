@@ -1,0 +1,82 @@
+{{/* Home page section. Shared class strings come from home/classes.html. */}}
+{{ $c := partial "home/classes.html" . }}
+{{ $wrap := $c.wrap }}
+{{ $eyebrow := $c.eyebrow }}
+{{ $h2 := $c.h2 }}
+
+<!-- ================================================================
+     Testimonials
+     ================================================================ -->
+{{ $quoteCard := "group relative flex flex-col justify-between gap-12 min-h-64 rounded-2xl border border-ui-neutral-200 bg-ui-neutral-50 p-6 lg:p-8 hover:border-ui-neutral-300 transition-colors" }}
+<section class="py-24 lg:py-36 border-t border-ui-neutral-200">
+  <div class="{{ $wrap }}">
+    <div class="flex flex-col items-center text-center gap-6">
+      <h2 class="{{ $eyebrow }}"><span class="w-1.5 h-1.5 rounded-full bg-ui-primary-500"></span>What people say</h2>
+      <p class="{{ $h2 }} max-w-3xl">Loved by the people who run production.</p>
+    </div>
+
+    <div class="mt-16 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+      <!-- Featured -->
+      <figure class="relative overflow-hidden md:col-span-2 lg:row-span-2 flex flex-col justify-between gap-12 rounded-2xl border border-ui-neutral-200 bg-ui-neutral-50 p-8 lg:p-12">
+        <div class="absolute inset-0 grid-background home-hero-grid opacity-60" aria-hidden="true"></div>
+        <div class="absolute -left-40 -top-40 w-[32rem] h-[32rem] home-glow" aria-hidden="true"></div>
+        <span class="relative font-serif text-8xl leading-[0.6] text-ui-primary-500 select-none" aria-hidden="true">“</span>
+        <blockquote class="relative home-heading font-medium tracking-tight leading-[1.25] text-2xl md:text-3xl lg:text-[2.25rem]">
+          Plakar deduplicates and encrypts at the source so your cloud provider never sees your keys.
+          And the snapshot model has no chain dependencies. You can delete any backup without breaking the others.
+        </blockquote>
+        <figcaption class="relative flex items-center gap-4 pt-8 border-t border-ui-neutral-200">
+          <span class="h-10 w-1 rounded-full bg-ui-primary-500"></span>
+          <span class="flex flex-col">
+            <span class="font-semibold text-ui-neutral-900">Bret Fisher</span>
+            <span class="text-sm text-ui-neutral-500">DevOps & Docker Talk</span>
+          </span>
+        </figcaption>
+      </figure>
+
+      <!-- Quotes: source on top, words at the bottom -->
+      {{ range slice
+        (dict "stat" "1M items" "quote" "restored in 3 minutes." "name" "@tom_doerr" "source" "Benchmarking Plakar 1.1 on X" "icon" "ri/twitter-x-line")
+        (dict "quote" "Very efficient, free, open-source, easy as hell to integrate." "name" "r/kubernetes" "source" "On backing up Rook-Ceph S3 buckets" "icon" "ri/reddit-line")
+        (dict "quote" "The first big disruption to the backup and archiving world in a long time. Open source and built in Europe." "name" "@bipbip" "source" "On X" "icon" "ri/twitter-x-line")
+        (dict "quote" "Two little French geniuses just released a solution that's going to make you love backups." "name" "Korben" "source" "korben.info" "icon" "ri/global-line")
+      }}
+        {{ $q := . }}
+        <figure class="{{ $quoteCard }}">
+          <figcaption class="flex items-center gap-3">
+            <span class="grid place-items-center w-10 h-10 shrink-0 rounded-full border border-ui-neutral-200 bg-ui-neutral-100 text-ui-neutral-700">
+              <span class="block w-4.5 h-4.5">{{ partial "icon.html" .icon }}</span>
+            </span>
+            <span class="flex flex-col min-w-0">
+              <span class="text-sm font-semibold text-ui-neutral-900">{{ .name }}</span>
+              <span class="text-xs text-ui-neutral-500 truncate">{{ .source }}</span>
+            </span>
+          </figcaption>
+          {{ with .stat }}
+            <blockquote class="flex flex-col gap-2">
+              <span class="home-heading font-medium tracking-tighter leading-none text-5xl lg:text-6xl">{{ . }}</span>
+              <span class="text-xl font-medium tracking-tight text-ui-neutral-600">{{ $q.quote }}</span>
+            </blockquote>
+          {{ else }}
+            <blockquote class="text-xl font-medium tracking-tight leading-snug text-ui-neutral-900">“{{ .quote }}”</blockquote>
+          {{ end }}
+        </figure>
+      {{ end }}
+      <!-- Invite -->
+      <a href="{{ .Site.Params.socials.discord }}" target="_blank" rel="noopener noreferrer" class="group flex flex-col justify-between gap-8 rounded-2xl border border-dashed border-ui-neutral-300 p-6 lg:p-8 hover:border-ui-primary-400 hover:bg-ui-neutral-50 transition-colors">
+        <span class="grid place-items-center w-10 h-10 rounded-xl bg-ui-primary-50 text-ui-primary-500">
+          <span class="block w-5 h-5">{{ partial "icon.html" "ri/questionnaire-line" }}</span>
+        </span>
+        <span class="flex flex-col gap-2">
+          <span class="text-lg font-semibold text-ui-neutral-900">Running Plakar?</span>
+          <span class="text-ui-neutral-600">Tell us what you protect with it and how it is going.</span>
+          <span class="mt-2 inline-flex items-center gap-1.5 font-medium text-ui-primary-600">
+            Share on Discord <span class="block w-4 h-4 group-hover:translate-x-0.5 transition-transform">{{ partial "icon.html" "ri/arrow-right-line" }}</span>
+          </span>
+        </span>
+      </a>
+
+    </div>
+  </div>
+</section>

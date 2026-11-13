@@ -187,66 +187,6 @@ table.Nm {
   margin: 0;
 }
 
-/* Rotating headline: needs overflow+height trick and cubic-bezier transition */
-.hv2-rotate {
-  display: inline-block;
-  position: relative;
-  overflow: hidden;
-  height: 1.08em;
-  vertical-align: bottom;
-}
-.hv2-rotate-inner {
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.hv2-rotate-inner span {
-  display: block;
-  line-height: 1.08;
-  white-space: nowrap;
-}
-
-/* Expand panel: max-height animation */
-.hv2-d-expand {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease;
-}
-.hv2-d-expand.open {
-  max-height: 340px;
-}
-
-/* Demo modals: opacity+scale reveal */
-.hv2-d-modal {
-  opacity: 0;
-  transform: scale(0.97);
-  transition:
-    opacity 0.25s ease,
-    transform 0.25s ease;
-  pointer-events: none;
-}
-.hv2-d-modal.open {
-  opacity: 1;
-  transform: scale(1);
-  pointer-events: auto;
-}
-
-/* Animated cursor: left/top transitions driven by JS */
-#hv2-cursor {
-  position: absolute;
-  width: 22px;
-  height: 22px;
-  z-index: 40;
-  left: 40px;
-  top: 70px;
-  transition:
-    left 0.7s cubic-bezier(0.4, 0, 0.2, 1),
-    top 0.7s cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 0.3s ease;
-  pointer-events: none;
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
-}
-
 /* Docs image zoom: keep the enlarged image above the fixed header/menus */
 .medium-zoom-overlay,
 .medium-zoom-image--opened {
@@ -720,4 +660,283 @@ html.dark .home-newsletter {
     rgba(var(--color-primary-700), 0.55) 70%,
     rgb(var(--color-primary-600)) 100%
   ) !important;
+}
+
+/* Partner logos on the home page: grey in light mode, white in dark mode */
+.partner-logo {
+  filter: grayscale(1);
+}
+
+html.dark .partner-logo {
+  filter: brightness(0) invert(1);
+}
+
+/* =============================================
+   Home page
+   ============================================= */
+
+/* Headings fade slightly towards the bottom, like ink on paper */
+.home-heading {
+  background-image: linear-gradient(
+    180deg,
+    rgb(var(--ui-neutral-900)) 35%,
+    rgba(var(--ui-neutral-900), 0.62)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.home-heading-dark {
+  background-image: linear-gradient(180deg, #fff 35%, rgba(255, 255, 255, 0.6));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Soft brand glow, placed behind product frames and calls to action */
+.home-glow {
+  background: radial-gradient(
+    closest-side,
+    rgba(var(--color-primary-500), 0.28),
+    transparent
+  );
+  pointer-events: none;
+}
+
+html.dark .home-glow {
+  background: radial-gradient(
+    closest-side,
+    rgba(var(--color-primary-500), 0.32),
+    transparent
+  );
+}
+
+/* The grid backdrop of the hero, faded out from the top centre */
+.home-hero-grid {
+  mask-image: radial-gradient(
+    ellipse 70% 55% at 50% 0%,
+    #000 30%,
+    transparent 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 70% 55% at 50% 0%,
+    #000 30%,
+    transparent 100%
+  );
+}
+
+.home-fade-bottom {
+  mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+}
+
+.home-fade-x {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 10%,
+    #000 90%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 10%,
+    #000 90%,
+    transparent
+  );
+}
+
+/* Layered shadow for product frames */
+.home-frame {
+  box-shadow:
+    0 1px 2px rgba(17, 17, 51, 0.04),
+    0 8px 24px -8px rgba(17, 17, 51, 0.08),
+    0 40px 80px -24px rgba(var(--color-primary-700), 0.22);
+}
+
+html.dark .home-frame {
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.03),
+    0 40px 100px -24px rgba(var(--color-primary-500), 0.3);
+}
+
+/* Infinite logo rows: the content is rendered twice and shifted by half */
+.home-marquee {
+  display: flex;
+  width: max-content;
+  animation: home-marquee 80s linear infinite;
+}
+
+.home-marquee--reverse {
+  animation-direction: reverse;
+}
+
+.home-marquee-row:hover .home-marquee,
+html.is-tab-hidden .home-marquee {
+  animation-play-state: paused;
+}
+
+@keyframes home-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-marquee {
+    animation: none;
+  }
+}
+
+/* Resilience as code on the home page. home-iac.js sets data-stage and
+   --iac-progress as you scroll.
+
+   Steps: the rail fills with the scroll, the current step is brighter.
+   Nothing changes size, so the column never moves. */
+.home-iac-rail {
+  height: calc(var(--iac-progress, 0) * (100% - 1.5rem));
+}
+
+.home-iac.is-pinned .home-iac-step {
+  opacity: 0.45;
+  transition: opacity 0.3s ease;
+}
+
+.home-iac[data-stage="0"] [data-step="0"],
+.home-iac[data-stage="1"] [data-step="1"],
+.home-iac[data-stage="2"] [data-step="2"],
+.home-iac[data-stage="3"] [data-step="3"] {
+  opacity: 1;
+}
+
+.home-iac[data-stage="0"] [data-step="0"] .home-iac-step-title,
+.home-iac[data-stage="1"] [data-step="1"] .home-iac-step-title,
+.home-iac[data-stage="2"] [data-step="2"] .home-iac-step-title,
+.home-iac[data-stage="3"] [data-step="3"] .home-iac-step-title {
+  color: rgb(var(--ui-neutral-900));
+}
+
+.home-iac[data-stage="0"] [data-step="0"] .home-iac-dot,
+.home-iac[data-stage="1"] :is([data-step="0"], [data-step="1"]) .home-iac-dot,
+.home-iac[data-stage="2"]
+  :is([data-step="0"], [data-step="1"], [data-step="2"])
+  .home-iac-dot,
+.home-iac[data-stage="3"] .home-iac-dot {
+  border-color: rgb(var(--color-primary-500));
+  background-color: rgb(var(--color-primary-500));
+  color: #fff;
+}
+
+/* Window tabs follow the step */
+.home-iac[data-stage="0"] [data-tab="0"],
+.home-iac[data-stage="1"] [data-tab="1"],
+.home-iac[data-stage="2"] [data-tab="2"],
+.home-iac[data-stage="3"] [data-tab="3"] {
+  background-color: rgb(var(--color-neutral-800));
+  color: rgb(var(--color-neutral-100));
+}
+
+/* Body: the steps share one place and crossfade */
+.home-iac-layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translateY(0.375rem);
+  pointer-events: none;
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+}
+
+.home-iac[data-stage="0"] [data-layer="0"],
+.home-iac[data-stage="1"] [data-layer="1"],
+.home-iac[data-stage="2"] [data-layer="2"],
+.home-iac[data-stage="3"] [data-layer="3"] {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+/* Inside a step, items fade in one after another */
+.home-iac-item {
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.home-iac[data-stage="0"] [data-layer="0"] .home-iac-item,
+.home-iac[data-stage="1"] [data-layer="1"] .home-iac-item,
+.home-iac[data-stage="2"] [data-layer="2"] .home-iac-item,
+.home-iac[data-stage="3"] [data-layer="3"] .home-iac-item {
+  opacity: 1;
+  transition-delay: calc(0.1s + var(--i, 0) * 50ms);
+}
+
+[data-layer="2"] .home-iac-item,
+[data-layer="3"] .home-iac-item {
+  --step: 180ms;
+}
+
+.home-iac[data-stage="2"] [data-layer="2"] .home-iac-item,
+.home-iac[data-stage="3"] [data-layer="3"] .home-iac-item {
+  transition-delay: calc(0.1s + var(--i, 0) * var(--step));
+}
+
+/* A pulse travels from the source to the store */
+.home-iac-flow::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 -40%;
+  width: 40%;
+  background: rgb(var(--color-primary-400));
+  animation: home-iac-flow 1.8s ease-in-out infinite;
+}
+
+@keyframes home-iac-flow {
+  to {
+    left: 100%;
+  }
+}
+
+/* Pinned, set by home-iac.js: one screen of scroll per step */
+.home-iac.is-pinned {
+  height: calc(var(--iac-steps) * 90vh);
+}
+
+.home-iac.is-pinned .home-iac-sticky {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 5rem;
+  padding-bottom: 1rem;
+}
+
+/* Without pinning (small screens, reduced motion, no script): the window shows
+   the first step, the file */
+.home-iac:not(.is-pinned) .home-iac-rail {
+  display: none;
+}
+
+.home-iac:not(.is-pinned) .home-iac-dot {
+  border-color: rgb(var(--color-primary-500));
+  background-color: rgb(var(--color-primary-500));
+  color: #fff;
+}
+
+.home-iac:not(.is-pinned) .home-iac-item {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-iac-layer,
+  .home-iac-item {
+    transition: none;
+  }
+
+  .home-iac-flow::after {
+    animation: none;
+  }
 }
