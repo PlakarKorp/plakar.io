@@ -296,16 +296,16 @@ open-source backup tools fed by a `pg_dump` script, and a plain `pg_dump` cron
 job. Plakar keeps the PostgreSQL tools of the last two and the management of the
 first, without their agents or their scripts.
 
-|                                 | Plakar                                                                 | Enterprise backup suites                  | Open-source backup tools with a `pg_dump` script | A `pg_dump` cron job         |
-| ------------------------------- | ---------------------------------------------------------------------- | ----------------------------------------- | ------------------------------------------------ | ---------------------------- |
-| PostgreSQL support              | Built in: `pg_dump`, `pg_dumpall`, `pg_basebackup` and a manifest      | A PostgreSQL plugin or agent              | Your script pipes `pg_dump` into the tool        | Your script                  |
-| On the database server          | Nothing to install                                                     | Usually an agent or plugin on each host   | Your script and its schedule                     | Your script and its schedule |
-| Disk on the backup host         | None, dumps stream into the snapshot                                   | Often a staging area sized to the dumps   | None when the dump is piped                      | A full copy of every dump    |
-| Encrypted, deduplicated history | Yes, verified with `plakar check`                                      | Depends on the product                    | Yes                                              | Only what your script adds   |
-| What a restore gives you        | A server, a database or one table, from standard `pg_restore` archives | A restore through the suite and its agent | The dump files your script stored                | The dump files               |
-| Physical backups                | `pg_basebackup` streamed into the same store                           | Depends on the product                    | A second script                                  | A second script              |
-| Fleet management                | Plakar Control Plane: discovery, policies, edges, with a free plan     | A central console                         | Your own tooling                                 | Your own tooling             |
-| Price                           | Free and open source                                                   | Commercial licence                        | Free and open source                             | Free                         |
+|                                           | Plakar                                                    | Enterprise backup suites                  | Open-source backup tools with a `pg_dump` script | A `pg_dump` cron job                       |
+| ----------------------------------------- | --------------------------------------------------------- | ----------------------------------------- | ------------------------------------------------ | ------------------------------------------ |
+| Native PostgreSQL integration             | ✓ `pg_dump`, `pg_dumpall`, `pg_basebackup` and a manifest | ✓ A PostgreSQL plugin or agent            | ✗ Your script pipes `pg_dump` into the tool      | ✗ Your script                              |
+| Nothing to install on the database server | ✓ Plakar connects as a PostgreSQL client                  | ✗ Usually an agent or plugin on each host | ◐ Depends on where your script runs              | ◐ Depends on where your script runs        |
+| No staging disk on the backup host        | ✓ Dumps stream into the snapshot                          | ◐ Often a staging area sized to the dumps | ✓ When the dump is piped                         | ✗ A full copy of every dump                |
+| Encrypted, deduplicated history           | ✓ Verified with `plakar check`                            | ◐ Depends on the product                  | ✓                                                | ✗                                          |
+| Restore one database or one table         | ✓ From standard `pg_restore` archives                     | ◐ Through the suite and its agent         | ◐ If your script keeps custom-format dumps       | ◐ If your script keeps custom-format dumps |
+| Physical backups in the same store        | ✓ `pg_basebackup` streamed into the snapshot              | ◐ Depends on the product                  | ✗ A second script                                | ✗ A second script                          |
+| Fleet management                          | ✓ Plakar Control Plane, with a free plan                  | ✓ A central console                       | ✗ Your own tooling                               | ✗ Your own tooling                         |
+| Free and open source                      | ✓                                                         | ✗ Commercial licence                      | ✓                                                | ✓                                          |
 
 ## Managed PostgreSQL backup beyond provider snapshots
 Keep your provider's automated backups for fast rollback on the same platform,
