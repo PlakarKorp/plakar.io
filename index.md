@@ -107,7 +107,7 @@
 
 - [etcd](https://www.plakar.io/integrations/etcd/index.md): Protect your etcd cluster against data loss and node failures. Plakar takes encrypted, deduplicated snapshots of etcd cluster state, giving you a reliable recovery point when it matters most.
 
-- [MySQL / MariaDB](https://www.plakar.io/integrations/mysql/index.md): Protect your MySQL and MariaDB databases against data loss, accidental deletion, and misconfiguration. Plakar provides encrypted, deduplicated snapshots using the backup tools MySQL and MariaDB already ship with.
+- [MySQL / MariaDB](https://www.plakar.io/integrations/mysql/index.md): Free, open-source MySQL and MariaDB backup: mysqldump or mariadb-dump into encrypted snapshots. Restore a dropped table through a side database.
 
 - [PostgreSQL](https://www.plakar.io/integrations/postgres/index.md): Free, open-source PostgreSQL backup with pg_dump or pg_basebackup into encrypted snapshots, self-hosted or managed. Restore one table with pg_restore.
 
