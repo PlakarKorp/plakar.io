@@ -1029,6 +1029,61 @@ table.Nm {
   font-size: 0.875em;
 }
 
+/* Comparison marks: cells starting with ✓, ✗ or ◐ (render-table.html) */
+.lp-mark {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.lp-mark svg {
+  flex: 0 0 1.125rem;
+  width: 1.125rem;
+  height: 1.125rem;
+  margin-top: 0.15rem;
+}
+
+.lp-mark--yes svg circle {
+  fill: #16a34a;
+}
+
+.lp-mark--no svg circle {
+  fill: #dc2626;
+}
+
+.lp-mark--partial svg circle {
+  fill: rgb(var(--color-secondary-500));
+}
+
+.lp-mark--no .lp-mark-text,
+.lp-mark--partial .lp-mark-text {
+  color: rgb(var(--color-neutral-600));
+}
+
+.lp-table--compare table {
+  min-width: 880px;
+}
+
+.lp-table--compare thead th.lp-col-plakar {
+  color: #fff;
+  background: rgb(var(--color-primary-500));
+  font-weight: 600;
+}
+
+.lp-table--compare td.lp-col-plakar {
+  background: rgba(var(--color-primary-500), 0.06);
+  font-weight: 500;
+}
+
+.dark .lp-table--compare td.lp-col-plakar {
+  background: rgba(var(--color-primary-500), 0.16);
+}
+
+.dark .lp-mark--no .lp-mark-text,
+.dark .lp-mark--partial .lp-mark-text {
+  color: rgb(var(--color-neutral-400));
+}
+
 .dark .lp-table {
   background: rgb(var(--color-neutral-800));
   border-color: rgb(var(--color-neutral-700));

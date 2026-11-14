@@ -1,11 +1,27 @@
-{{- /* Tables on integration pages: horizontal scroll on small screens, comparison styling. */ -}}
-<div class="lp-table not-prose">
+{{- /*
+  Tables on integration pages: horizontal scroll on small screens, comparison styling.
+  A cell starting with "✓ ", "✗ " or "◐ " gets a green check, a red cross or an
+  orange partial mark, followed by the rest of its text. The column whose header
+  is "Plakar" is highlighted.
+*/ -}}
+{{- $marks := slice
+  (dict "sym" "✓" "class" "yes" "label" "Yes" "svg" `<svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`)
+  (dict "sym" "✗" "class" "no" "label" "No" "svg" `<svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6.5 6.5l7 7m0-7l-7 7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>`)
+  (dict "sym" "◐" "class" "partial" "label" "Partly" "svg" `<svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>`)
+-}}
+{{- $plakarCol := -1 -}}
+{{- range .THead -}}
+  {{- range $i, $c := . -}}
+    {{- if eq (strings.TrimSpace (plainify $c.Text)) "Plakar" }}{{ $plakarCol = $i }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+<div class="lp-table not-prose{{ if ge $plakarCol 0 }} lp-table--compare{{ end }}">
   <table{{ range $k, $v := .Attributes }} {{ $k }}="{{ $v }}"{{ end }}>
     <thead>
       {{- range .THead }}
       <tr>
-        {{- range . }}
-        <th{{ with .Alignment }} style="text-align: {{ . }}"{{ end }} scope="col">{{ .Text }}</th>
+        {{- range $i, $c := . }}
+        <th{{ with $c.Alignment }} style="text-align: {{ . }}"{{ end }}{{ if eq $i $plakarCol }} class="lp-col-plakar"{{ end }} scope="col">{{ $c.Text }}</th>
         {{- end }}
       </tr>
       {{- end }}
@@ -17,7 +33,15 @@
         {{- if eq $i 0 }}
         <th scope="row"{{ with $c.Alignment }} style="text-align: {{ . }}"{{ end }}>{{ $c.Text }}</th>
         {{- else }}
-        <td{{ with $c.Alignment }} style="text-align: {{ . }}"{{ end }}>{{ $c.Text }}</td>
+        {{- $text := string $c.Text }}
+        {{- $cell := $text | safeHTML }}
+        {{- range $marks }}
+          {{- if hasPrefix $text .sym }}
+            {{- $rest := strings.TrimSpace (strings.TrimPrefix .sym $text) }}
+            {{- $cell = printf `<span class="lp-mark lp-mark--%s">%s<span class="lp-sr">%s</span>%s</span>` .class .svg .label (cond (ne $rest "") (printf `<span class="lp-mark-text">%s</span>` $rest) "") | safeHTML }}
+          {{- end }}
+        {{- end }}
+        <td{{ with $c.Alignment }} style="text-align: {{ . }}"{{ end }}{{ if eq $i $plakarCol }} class="lp-col-plakar"{{ end }}>{{ $cell }}</td>
         {{- end }}
         {{- end }}
       </tr>
