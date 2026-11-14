@@ -1,0 +1,11 @@
+{{- /*
+  Two columns side by side on wide screens, stacked on phones and tablets.
+  Params: ratio ("1:1", "5:7" or "7:5", default "1:1"),
+  sticky ("left" or "right": that column stays in view while the other scrolls).
+  Usage: {{< columns ratio="5:7" sticky="right" >}} {{< column >}}...{{< /column >}} {{< column >}}...{{< /column >}} {{< /columns >}}
+*/ -}}
+{{- $ratio := .Get "ratio" | default "1:1" -}}
+{{- $sticky := .Get "sticky" -}}
+<div class="lp-columns lp-columns--{{ replace $ratio ":" "-" }}{{ with $sticky }} lp-columns--sticky-{{ . }}{{ end }}">
+  {{- .Inner -}}
+</div>

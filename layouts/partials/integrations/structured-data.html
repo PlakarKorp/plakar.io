@@ -1,0 +1,53 @@
+{{- /*
+  JSON-LD for integration pages: breadcrumb, the integration as software, and
+  a FAQPage built from the "## ... FAQ" section of the body, where each "###"
+  heading is a question and the text until the next heading is its answer.
+*/ -}}
+{{- $page := . -}}
+{{- $integrations := site.GetPage "/integrations" -}}
+{{- $breadcrumb := dict
+  "@context" "https://schema.org"
+  "@type" "BreadcrumbList"
+  "itemListElement" (slice
+    (dict "@type" "ListItem" "position" 1 "name" "Home" "item" site.Home.Permalink)
+    (dict "@type" "ListItem" "position" 2 "name" "Integrations" "item" (cond (ne $integrations nil) $integrations.Permalink (printf "%sintegrations/" site.Home.Permalink)))
+    (dict "@type" "ListItem" "position" 3 "name" $page.Title "item" $page.Permalink)
+  )
+-}}
+<script type="application/ld+json">{{ $breadcrumb | jsonify | safeJS }}</script>
+
+{{- $app := dict
+  "@context" "https://schema.org"
+  "@type" "SoftwareApplication"
+  "name" (printf "Plakar %s integration" $page.Title)
+  "applicationCategory" "UtilitiesApplication"
+  "operatingSystem" "Linux, macOS, Windows, FreeBSD"
+  "description" (trim $page.Description " \n")
+  "url" $page.Permalink
+  "publisher" (dict "@type" "Organization" "name" "Plakar" "url" site.Home.Permalink)
+-}}
+{{- if in ($page.Params.edition | default slice) "community" -}}
+  {{- $app = merge $app (dict "offers" (dict "@type" "Offer" "price" "0" "priceCurrency" "EUR")) -}}
+{{- end -}}
+<script type="application/ld+json">{{ $app | jsonify | safeJS }}</script>
+
+{{- $questions := slice -}}
+{{- range after 1 (split $page.Content "<h2") -}}
+  {{- $parts := split . "</h2>" -}}
+  {{- if and (gt (len $parts) 1) (findRE `\bFAQ\b` (plainify (printf "<h2%s</h2>" (index $parts 0)))) -}}
+    {{- $body := delimit (after 1 $parts) "</h2>" -}}
+    {{- range after 1 (split $body "<h3") -}}
+      {{- $qa := split . "</h3>" -}}
+      {{- if gt (len $qa) 1 -}}
+        {{- $q := plainify (printf "<h3%s</h3>" (index $qa 0)) | htmlUnescape | strings.TrimSpace -}}
+        {{- $a := plainify (delimit (after 1 $qa) "</h3>") | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace -}}
+        {{- if and $q $a -}}
+          {{- $questions = $questions | append (dict "@type" "Question" "name" $q "acceptedAnswer" (dict "@type" "Answer" "text" $a)) -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- with $questions -}}
+<script type="application/ld+json">{{ dict "@context" "https://schema.org" "@type" "FAQPage" "mainEntity" . | jsonify | safeJS }}</script>
+{{- end -}}

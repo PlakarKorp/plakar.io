@@ -12,8 +12,11 @@
     <title>{{ .Site.Title | emojify }}</title>
     <meta name="title" content="{{ .Site.Title | emojify }}">
   {{ else }}
-    <title>{{ .Title | plainify | emojify }} &middot; {{ .Site.Title | emojify }}</title>
-    <meta name="title" content="{{ .Title | plainify | emojify }} &middot; {{ .Site.Title | emojify }}">
+    {{- $pageTitle := .Params.seo_title | default .Title }}
+    {{- /* Integration pages use the short site name so the query fits in the ~60 characters search engines show. */}}
+    {{- $siteTitle := cond (and .IsPage (eq .Section "integrations")) (.Site.Params.siteName | default .Site.Title) .Site.Title }}
+    <title>{{ $pageTitle | plainify | emojify }} &middot; {{ $siteTitle | emojify }}</title>
+    <meta name="title" content="{{ $pageTitle | plainify | emojify }} &middot; {{ $siteTitle | emojify }}">
   {{ end }}
 
   {{/* Metadata */}}
@@ -68,8 +71,8 @@
   {{ end }}
 
   {{/* Social */}}
-  {{ template "_internal/opengraph.html" . }}
-  {{ template "_internal/twitter_cards.html" . }}
+  {{ partial "opengraph.html" . }}
+  {{ partial "twitter_cards.html" . }}
   {{/* Use defaultSocialImage if feature image does not exist */}}
   {{ $featureImage := "" }}
   {{ $pageImages := .Resources.ByType "image" }}
