@@ -1,0 +1,6 @@
+<div class="lp-pair">
+  <p class="lp-pair-lead">{{ .Get "lead" | .Page.RenderString }}</p>
+  <div class="lp-pair-body prose max-w-none">
+    {{- .InnerDeindent | strings.TrimSpace | .Page.RenderString (dict "display" "block") -}}
+  </div>
+</div>

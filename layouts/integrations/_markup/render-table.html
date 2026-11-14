@@ -1,0 +1,27 @@
+{{- /* Tables on integration pages: horizontal scroll on small screens, comparison styling. */ -}}
+<div class="lp-table not-prose">
+  <table{{ range $k, $v := .Attributes }} {{ $k }}="{{ $v }}"{{ end }}>
+    <thead>
+      {{- range .THead }}
+      <tr>
+        {{- range . }}
+        <th{{ with .Alignment }} style="text-align: {{ . }}"{{ end }} scope="col">{{ .Text }}</th>
+        {{- end }}
+      </tr>
+      {{- end }}
+    </thead>
+    <tbody>
+      {{- range .TBody }}
+      <tr>
+        {{- range $i, $c := . }}
+        {{- if eq $i 0 }}
+        <th scope="row"{{ with $c.Alignment }} style="text-align: {{ . }}"{{ end }}>{{ $c.Text }}</th>
+        {{- else }}
+        <td{{ with $c.Alignment }} style="text-align: {{ . }}"{{ end }}>{{ $c.Text }}</td>
+        {{- end }}
+        {{- end }}
+      </tr>
+      {{- end }}
+    </tbody>
+  </table>
+</div>

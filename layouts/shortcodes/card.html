@@ -1,0 +1,12 @@
+{{- /*
+  One card inside {{< cards >}}. The inner Markdown usually starts with a ### heading.
+  Params: label (short monospace tag shown above the heading), featured (true to emphasise).
+*/ -}}
+{{- $label := .Get "label" -}}
+{{- $featured := eq (.Get "featured") "true" -}}
+<div class="lp-card{{ if $featured }} lp-card--featured{{ end }}">
+  {{- with $label }}<span class="lp-card-label">{{ . }}</span>{{ end -}}
+  <div class="lp-card-body prose max-w-none">
+    {{- .InnerDeindent | strings.TrimSpace | .Page.RenderString (dict "display" "block") -}}
+  </div>
+</div>

@@ -1,0 +1,10 @@
+{{- /*
+  Grid of cards for integration landing pages.
+  Params: cols (2 or 3, default 3), style (ruled, boxed or accent, default boxed).
+  Usage: {{< cards cols="3" style="ruled" >}} {{< card >}}...{{< /card >}} {{< /cards >}}
+*/ -}}
+{{- $cols := .Get "cols" | default "3" -}}
+{{- $style := .Get "style" | default "boxed" -}}
+<div class="lp-cards lp-cards--{{ $style }} lp-cols-{{ $cols }} not-prose">
+  {{- .Inner -}}
+</div>
