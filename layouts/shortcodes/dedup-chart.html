@@ -1,0 +1,32 @@
+{{- /*
+  Illustrative bar chart of the new data each snapshot stores after
+  deduplication. The first value is the full first backup (100), the next ones
+  the share of new data in each later snapshot, in percent.
+  Params: title, caption, values (comma-separated), unit (bar label prefix, default "D").
+  Usage: {{< dedup-chart title="..." caption="..." values="100,4,3,6" >}}
+*/ -}}
+{{- $values := split (.Get "values" | default "100,4,3,6,2,3,5,4,2,3,7,3,2,4") "," -}}
+{{- $unit := .Get "unit" | default "D" -}}
+{{- $title := .Get "title" -}}
+<figure class="lp-chart not-prose">
+  <figcaption class="lp-chart-head">
+    {{- with $title }}<strong>{{ . }}</strong>{{ end -}}
+    {{- with .Get "caption" }}<span>{{ . }}</span>{{ end -}}
+  </figcaption>
+  <div class="lp-chart-legend" aria-hidden="true">
+    <span><i class="lp-chart-key lp-chart-key--new"></i>new data stored</span>
+    <span><i class="lp-chart-key lp-chart-key--reused"></i>reused, already stored</span>
+  </div>
+  <ol class="lp-chart-bars" aria-label="{{ $title }}">
+    {{- range $i, $v := $values -}}
+      {{- $n := float (strings.TrimSpace $v) -}}
+      {{- $h := cond (eq $i 0) 100.0 (math.Max (mul $n 1.4) 3.0) -}}
+      <li class="lp-chart-bar" style="{{ printf "--lp-new: %.1f%%" $h | safeCSS }}">
+        <span class="lp-chart-reused"></span>
+        <span class="lp-chart-new"></span>
+        <span class="lp-chart-x">{{ $unit }}{{ add $i 1 }}</span>
+        <span class="lp-sr">{{ cond (eq $i 0) "full first backup" (printf "%g%% new data" $n) }}</span>
+      </li>
+    {{- end -}}
+  </ol>
+</figure>

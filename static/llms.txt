@@ -81,6 +81,56 @@ How an agent should use Plakar:
 - Drive it through the `plakar` command-line interface. Start with [First Backup](https://www.plakar.io/docs/community/v1.1.0/quickstart/first-backup/index.md) and the [Command-Line Syntax](https://www.plakar.io/docs/community/v1.1.0/references/command-line-syntax/index.md) reference; the full command list is in the Commands section below.
 - Every documentation page has a machine-readable Markdown version at its `.../index.md` URL, as linked throughout this file.
 
+## Integration pages
+
+Each Plakar integration has a landing page that explains what it backs up and the situations it covers, with a link to its technical documentation. The full reference of each integration is in the Community Docs below.
+
+- [Amazon Web Services (AWS)](https://www.plakar.io/integrations/aws/index.md): Manage AWS resources and credentials from Plakar Control Plane. Discover resources automatically as your AWS account changes, and manage secrets through AWS Secrets Manager instead of scattering credentials across scripts and tools.
+- [Azure Blob Storage](https://www.plakar.io/integrations/azblob/index.md)
+- [Backblaze B2](https://www.plakar.io/integrations/backblaze/index.md)
+- [Dropbox](https://www.plakar.io/integrations/dropbox/index.md)
+- [etcd](https://www.plakar.io/integrations/etcd/index.md): Protect your etcd cluster against data loss and node failures. Plakar takes encrypted, deduplicated snapshots of etcd cluster state, giving you a reliable recovery point when it matters most.
+- [Filesystem](https://www.plakar.io/integrations/fs/index.md): Back up local directories and mounted filesystems to protect against accidental deletion, corruption, and ransomware. Versioned, encrypted, and fully restorable across systems.
+- [FTP](https://www.plakar.io/integrations/ftp/index.md): Back up and restore directories to and from remote FTP servers. Plakar provides encrypted, deduplicated, and verifiable snapshots for FTP-accessible environments.
+- [Google Cloud (GCP)](https://www.plakar.io/integrations/gcp/index.md): Connect a Google Cloud project to Plakar Control Plane and automatically discover the resources running in it, keeping an up-to-date inventory as Cloud Storage buckets and CloudSQL instances are created or removed.
+- [Google Cloud Storage](https://www.plakar.io/integrations/gcs/index.md)
+- [Google Drive](https://www.plakar.io/integrations/googledrive/index.md)
+- [iCloud Drive](https://www.plakar.io/integrations/iclouddrive/index.md)
+- [IMAP](https://www.plakar.io/integrations/imap/index.md)
+- [Impossible Cloud](https://www.plakar.io/integrations/impossible-cloud/index.md)
+- [Koofr](https://www.plakar.io/integrations/koofr/index.md)
+- [Kubernetes](https://www.plakar.io/integrations/kubernetes/index.md): Protect your Kubernetes infrastructure at every level. Plakar discovers cluster resources, backs up etcd for disaster recovery, manifests for granular inspection and restore, and persistent volumes via CSI snapshots. All encrypted, deduplicated, and portable across environments.
+- [LDAP](https://www.plakar.io/integrations/ldap/index.md): Protect the users, groups and organizational units in your LDAP directory. Plakar exports every entry to LDIF and keeps encrypted, deduplicated snapshots you can restore from at any time.
+- [MinIO](https://www.plakar.io/integrations/minio/index.md)
+- [MongoDB](https://www.plakar.io/integrations/mongodb/index.md): Protect your MongoDB deployments against accidental deletion, ransomware, and operator error. Plakar captures encrypted, deduplicated snapshots of a running server and restores them to any environment.
+- [Microsoft Active Directory](https://www.plakar.io/integrations/msad/index.md): Protect Active Directory against the scenario replication can't fix: no healthy Domain Controller left to recover from. Plakar captures encrypted System State backups of Domain Controllers while they're healthy, ready to bring Active Directory back after hardware failure, corruption, or ransomware.
+- [Microsoft SQL Server](https://www.plakar.io/integrations/mssql/index.md): Protect Microsoft SQL Server against accidental deletion, ransomware, and failed maintenance without taking the database offline to back it up. Plakar captures a consistent snapshot of a live SQL Server installation and restores it with confidence, on the original server or a new one.
+- [MySQL / MariaDB](https://www.plakar.io/integrations/mysql/index.md): Protect your MySQL and MariaDB databases against data loss, accidental deletion, and misconfiguration. Plakar provides encrypted, deduplicated snapshots using the backup tools MySQL and MariaDB already ship with.
+- [NFS](https://www.plakar.io/integrations/nfs/index.md)
+- [Notion](https://www.plakar.io/integrations/notion/index.md): Back up and restore Notion pages, databases, media, and comments. Plakar ensures encrypted, deduplicated, and verifiable snapshots of your entire workspace.
+- [OCI Registry](https://www.plakar.io/integrations/oci/index.md)
+- [OneDrive](https://www.plakar.io/integrations/onedrive/index.md)
+- [OpenDrive](https://www.plakar.io/integrations/opendrive/index.md)
+- [OpenShift](https://www.plakar.io/integrations/openshift/index.md): Manage OpenShift from Plakar Control Plane end to end. Discover namespaces, persistent volumes and OpenShift Virtualization virtual machines, and protect manifests, volume data and virtual machines with encrypted, deduplicated backups and restores.
+- [OpenStack](https://www.plakar.io/integrations/openstack/index.md): Manage OpenStack from Plakar Control Plane end to end. Discover Nova servers, Cinder volumes and the other resources of a project automatically, and protect servers and volumes with encrypted, deduplicated backups and restores.
+- [OVHcloud](https://www.plakar.io/integrations/ovhcloud/index.md): Manage OVHcloud Public Cloud from Plakar Control Plane end to end. Discover compute instances, block storage volumes, and object storage automatically, manage secrets through OVHcloud's own secret store, and protect resources with encrypted, deduplicated backups and restores.
+- [Plakar Control Plane](https://www.plakar.io/integrations/pcp/index.md): Protect the Plakar Control Plane appliance against hardware failure, misconfiguration, or a full appliance replacement. Plakar backs up its own configuration and internal database into an encrypted, deduplicated Kloset snapshot.
+- [PostgreSQL](https://www.plakar.io/integrations/postgres/index.md): Free, open-source PostgreSQL backup with pg_dump or pg_basebackup into encrypted snapshots, self-hosted or managed. Restore one table with pg_restore.
+- [Proton Drive](https://www.plakar.io/integrations/protondrive/index.md)
+- [Proxmox](https://www.plakar.io/integrations/proxmox/index.md): Protect your Proxmox clusters against data loss, ransomware, and misconfiguration. Plakar wraps native Proxmox backups into encrypted, deduplicated snapshots that are portable, verifiable, and restorable across clusters or storage backends.
+- [Rclone](https://www.plakar.io/integrations/rclone/index.md)
+- [S3](https://www.plakar.io/integrations/s3/index.md)
+- [Scaleway](https://www.plakar.io/integrations/scaleway/index.md): Manage Scaleway from Plakar Control Plane end to end. Discover Instances and Block Storage volumes automatically, manage secrets through Scaleway Secret Manager, and protect Instances, volumes, and the secrets themselves with encrypted, deduplicated backups and restores.
+- [SFTP](https://www.plakar.io/integrations/sftp/index.md): Back up and restore directories to and from remote servers over SFTP. Plakar ensures encrypted, deduplicated, and verifiable snapshots across Linux, BSD, and NAS environments.
+- [SMB](https://www.plakar.io/integrations/smb/index.md)
+- [SQLite](https://www.plakar.io/integrations/sqlite/index.md): Store Plakar backups inside a single SQLite database file. No server to run, no remote backend to manage, with encrypted and deduplicated snapshots from any source.
+- [Stdio](https://www.plakar.io/integrations/stdio/index.md): Back up and restore data directly via Stdio without creating temporary files. Plakar ensures encrypted, deduplicated, and verifiable snapshots for database dumps, logs, and automated pipelines.
+- [Tar](https://www.plakar.io/integrations/tar/index.md): Import data from existing tar archives into Plakar. Imported data is stored securely as deduplicated, verifiable snapshots.
+- [Vault](https://www.plakar.io/integrations/vault/index.md): Back up and restore a HashiCorp Vault cluster's secrets. Plakar exports a Vault cluster into an encrypted, deduplicated Kloset snapshot and restores it back to the same cluster or a freshly provisioned one.
+- [VMware](https://www.plakar.io/integrations/vmware/index.md): Protect virtual machines running on vCenter, ESXi, or a vSphere-based cloud platform against accidental deletion, ransomware, and infrastructure failure. Plakar discovers, backs up, and restores VMware workloads with independent, encrypted snapshots.
+- [Windows VSS](https://www.plakar.io/integrations/vss/index.md): Protect Windows Server workloads like Active Directory and SQL Server against accidental deletion, ransomware, and configuration mistakes. Plakar captures a consistent, point-in-time snapshot of a live Windows system and restores it with confidence, without taking anything offline.
+- [WebDAV](https://www.plakar.io/integrations/webdav/index.md): Protect your WebDAV remotes against data loss and accidental deletion. Plakar provides encrypted, deduplicated snapshots of any WebDAV-compatible service, restorable to any environment.
+
 ## Plakar Community Docs
 
 Plakar Community version is open-source and free to use. Documentation is versioned to match releases. Replace the version segment in any `/docs/community/` URL to switch versions. Only use these four version identifiers. No others exist.

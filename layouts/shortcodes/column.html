@@ -1,0 +1,4 @@
+{{- /* One column inside {{< columns >}}. Its Markdown is rendered as usual. */ -}}
+<div class="lp-column prose max-w-none">
+  {{- .InnerDeindent | strings.TrimSpace | .Page.RenderString (dict "display" "block") -}}
+</div>

@@ -1,3 +1,4 @@
-<div class="steps">
+{{- /* Numbered steps. Param cols="2" lays them out on two columns on wide screens. */ -}}
+<div class="steps{{ with .Get "cols" }} steps--cols-{{ . }}{{ end }}">
   {{- .Inner -}}
 </div>

@@ -1,0 +1,38 @@
+{{- /*
+  ```console code blocks on integration pages render as a terminal window.
+  Lines starting with "$ " are commands (a trailing "\" continues them), lines
+  starting with "#" are comments, everything else is output. A line holding
+  only "$" draws a prompt with a cursor. Title: ```console {title="backup-host"}
+*/ -}}
+{{- $title := .Attributes.title | default "plakar" -}}
+{{- $lines := split (strings.TrimRight "\n" .Inner) "\n" -}}
+{{- $cont := false -}}
+<figure class="lp-term not-prose" aria-label="Terminal: {{ $title }}">
+  <div class="lp-term-bar" aria-hidden="true">
+    <span class="lp-term-dot lp-term-dot--r"></span>
+    <span class="lp-term-dot lp-term-dot--y"></span>
+    <span class="lp-term-dot lp-term-dot--g"></span>
+    <span class="lp-term-title">{{ $title }}</span>
+  </div>
+  <pre class="lp-term-body"><code>
+  {{- range $i, $line := $lines -}}
+    {{- if $i }}{{ "\n" }}{{ end -}}
+    {{- $esc := htmlEscape $line -}}
+    {{- if eq (strings.TrimSpace $line) "$" -}}
+      <span class="lp-term-prompt">$</span> <span class="lp-term-cursor"></span>
+      {{- $cont = false -}}
+    {{- else if hasPrefix $line "$ " -}}
+      {{- $cmd := replaceRE `^plakar\b` `<span class="lp-term-bin">plakar</span>` (substr $esc 2) -}}
+      <span class="lp-term-prompt">$</span> <span class="lp-term-cmd">{{ $cmd | safeHTML }}</span>
+      {{- $cont = hasSuffix $line "\\" -}}
+    {{- else if $cont -}}
+      <span class="lp-term-cmd">{{ $esc | safeHTML }}</span>
+      {{- $cont = hasSuffix $line "\\" -}}
+    {{- else if hasPrefix $line "#" -}}
+      <span class="lp-term-comment">{{ $esc | safeHTML }}</span>
+    {{- else -}}
+      <span class="lp-term-out">{{ replace $esc "OK ✓" `<span class="lp-term-ok">OK ✓</span>` | safeHTML }}</span>
+    {{- end -}}
+  {{- end -}}
+  </code></pre>
+</figure>
