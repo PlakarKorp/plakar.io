@@ -1,3 +1,7 @@
+# Immutable, encrypted backups for local and mounted filesystems
+
+Back up local directories and mounted filesystems to protect against accidental deletion, corruption, and ransomware. Versioned, encrypted, and fully restorable across systems.
+
 
 ## Why protecting your Filesystem matters
 

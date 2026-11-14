@@ -1,3 +1,7 @@
+# Host an encrypted, deduplicated Kloset store in a single SQLite file
+
+Store Plakar backups inside a single SQLite database file. No server to run, no remote backend to manage, with encrypted and deduplicated snapshots from any source.
+
 
 ## Why use SQLite as a Kloset store
 

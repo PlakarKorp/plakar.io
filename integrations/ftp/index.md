@@ -1,3 +1,7 @@
+# Backup and restore over the FTP protocol
+
+Back up and restore directories to and from remote FTP servers. Plakar provides encrypted, deduplicated, and verifiable snapshots for FTP-accessible environments.
+
 
 ## Why protecting FTP servers matters
 

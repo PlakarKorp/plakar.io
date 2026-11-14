@@ -1,3 +1,7 @@
+# Discovery and encrypted backups for OpenShift clusters
+
+Manage OpenShift from Plakar Control Plane end to end. Discover namespaces, persistent volumes and OpenShift Virtualization virtual machines, and protect manifests, volume data and virtual machines with encrypted, deduplicated backups and restores.
+
 
 ## Why protecting OpenShift matters
 

@@ -1,3 +1,7 @@
+# Encrypted, deduplicated backups for Azure Blob Storage containers
+
+Protect your Azure Blob Storage containers against accidental deletion, ransomware, and misconfiguration. Plakar provides immutable, encrypted snapshots for Azure Blob Storage, restorable across any provider or environment.
+
 
 ## Why protecting Azure Blob Storage data matters
 

@@ -1,3 +1,7 @@
+# Encrypted, versioned backups of your LDAP directory
+
+Protect the users, groups and organizational units in your LDAP directory. Plakar exports every entry to LDIF and keeps encrypted, deduplicated snapshots you can restore from at any time.
+
 
 ## Why protecting your LDAP directory matters
 

@@ -1,3 +1,7 @@
+# Encrypted, deduplicated backups for Google Cloud Storage buckets
+
+Protect your Google Cloud Storage buckets against accidental deletion, ransomware, and misconfiguration. Plakar provides immutable, encrypted snapshots for GCS, restorable across any provider or environment.
+
 
 ## Why protecting Google Cloud Storage data matters
 

@@ -1,3 +1,7 @@
+# Encrypted, deduplicated backups for NFS exports
+
+Protect the shared storage your infrastructure runs on against accidental deletion, ransomware, and appliance failure. Plakar captures immutable, encrypted snapshots of NFS exports on NAS appliances and Unix file servers, restorable to any export or environment.
+
 
 ## Why protecting NFS exports matters
 

@@ -1,3 +1,7 @@
+# Discovery, secrets, and encrypted backups for OVHcloud Public Cloud
+
+Manage OVHcloud Public Cloud from Plakar Control Plane end to end. Discover compute instances, block storage volumes, and object storage automatically, manage secrets through OVHcloud's own secret store, and protect resources with encrypted, deduplicated backups and restores.
+
 
 ## Why protecting OVHcloud Public Cloud matters
 

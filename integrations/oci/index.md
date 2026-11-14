@@ -1,3 +1,7 @@
+# Store encrypted, deduplicated backups in any OCI-compliant container registry
+
+Use your existing container registry infrastructure to store Plakar backups. Plakar encodes repository data as native OCI artifacts, giving you immutable, encrypted snapshots with registry-native replication and access controls.
+
 
 ## Why using an OCI registry for backup storage makes sense
 

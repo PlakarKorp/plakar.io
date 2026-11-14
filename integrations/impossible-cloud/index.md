@@ -1,3 +1,7 @@
+# Encrypted, immutable backups on Europe's sovereign S3-compatible cloud
+
+Protect your data with Plakar on Impossible Cloud. Immutable, encrypted snapshots stored on fully S3-compatible object storage built under European data jurisdiction, with no egress fees, no API charges, and enterprise-grade compliance.
+
 
 ## Why Impossible Cloud is a natural fit for backup storage
 

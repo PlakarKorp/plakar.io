@@ -1,3 +1,7 @@
+# Import tar archives into Plakar as snapshots
+
+Import data from existing tar archives into Plakar. Imported data is stored securely as deduplicated, verifiable snapshots.
+
 
 ## Using tar archives with Plakar
 

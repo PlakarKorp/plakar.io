@@ -1,3 +1,7 @@
+# Resilient, encrypted backups for your iCloud Drive environment
+
+Back up your iCloud Drive files with Plakar to protect against data loss, corruption, and ransomware. Create immutable, encrypted, and verifiable backups for your iCloud Drive data.
+
 
 ## Why protecting iCloud Drive matters
 

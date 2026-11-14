@@ -1,3 +1,7 @@
+# Encrypted, deduplicated backups for MongoDB databases
+
+Protect your MongoDB deployments against accidental deletion, ransomware, and operator error. Plakar captures encrypted, deduplicated snapshots of a running server and restores them to any environment.
+
 
 ## Why protecting MongoDB data matters
 

@@ -1,3 +1,7 @@
+# Encrypted, deduplicated backups for MySQL and MariaDB databases
+
+Protect your MySQL and MariaDB databases against data loss, accidental deletion, and misconfiguration. Plakar provides encrypted, deduplicated snapshots using the backup tools MySQL and MariaDB already ship with.
+
 
 ## Why protecting MySQL and MariaDB data matters
 

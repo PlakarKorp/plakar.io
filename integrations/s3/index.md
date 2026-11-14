@@ -1,3 +1,7 @@
+# Resilient, encrypted backups for AWS S3 and S3-compatible environments
+
+Protect your object storage against accidental deletion, ransomware, and cloud misconfigurations. Plakar provides immutable, encrypted snapshots for S3, restorable across any provider or environment.
+
 
 ## Why protecting S3 data matters
 

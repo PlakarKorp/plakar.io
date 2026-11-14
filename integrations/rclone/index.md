@@ -1,3 +1,7 @@
+# One integration for the cloud storage services rclone supports
+
+Back up and restore cloud storage services such as Google Drive, Dropbox, OneDrive and Proton Drive with Plakar, using rclone to reach them. Create immutable, encrypted, and verifiable backups of your cloud files.
+
 
 ## Why protecting cloud storage matters
 

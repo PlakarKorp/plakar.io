@@ -1,3 +1,7 @@
+# Discovery for Google Cloud projects
+
+Connect a Google Cloud project to Plakar Control Plane and automatically discover the resources running in it, keeping an up-to-date inventory as Cloud Storage buckets and CloudSQL instances are created or removed.
+
 
 ## Why protecting your Google Cloud environment matters
 

@@ -1,3 +1,7 @@
+# Discovery and encrypted backups for OpenStack clouds
+
+Manage OpenStack from Plakar Control Plane end to end. Discover Nova servers, Cinder volumes and the other resources of a project automatically, and protect servers and volumes with encrypted, deduplicated backups and restores.
+
 
 ## Why protecting OpenStack matters
 

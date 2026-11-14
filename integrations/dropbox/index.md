@@ -1,3 +1,7 @@
+# Resilient, encrypted backups for your Dropbox environment
+
+Back up your Dropbox workloads with Plakar to protect against data loss, corruption, and ransomware. Immutable, encrypted, and restorable even offline and across environments.
+
 
 ## Why protecting Dropbox matters
 

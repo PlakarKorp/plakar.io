@@ -109,7 +109,7 @@
 
 - [MySQL / MariaDB](https://www.plakar.io/integrations/mysql/index.md): Protect your MySQL and MariaDB databases against data loss, accidental deletion, and misconfiguration. Plakar provides encrypted, deduplicated snapshots using the backup tools MySQL and MariaDB already ship with.
 
-- [PostgreSQL](https://www.plakar.io/integrations/postgres/index.md): Protect your PostgreSQL databases against data loss, accidental deletion, and misconfiguration. Plakar provides encrypted, deduplicated snapshots using either logical or physical backups, restorable to any environment.
+- [PostgreSQL](https://www.plakar.io/integrations/postgres/index.md): Free, open-source PostgreSQL backup with pg_dump or pg_basebackup into encrypted snapshots, self-hosted or managed. Restore one table with pg_restore.
 
 - [Dropbox](https://www.plakar.io/integrations/dropbox/index.md): Back up your Dropbox workloads with Plakar to protect against data loss, corruption, and ransomware. Immutable, encrypted, and restorable even offline and across environments.
 

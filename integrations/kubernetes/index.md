@@ -1,3 +1,7 @@
+# Encrypted, deduplicated backups for clusters, manifests, and persistent volumes
+
+Protect your Kubernetes infrastructure at every level. Plakar discovers cluster resources, backs up etcd for disaster recovery, manifests for granular inspection and restore, and persistent volumes via CSI snapshots. All encrypted, deduplicated, and portable across environments.
+
 
 ## Why protecting Kubernetes clusters matters
 

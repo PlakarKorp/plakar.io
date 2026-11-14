@@ -1,3 +1,7 @@
+# Discovery, secrets, and encrypted backups for Scaleway Public Cloud
+
+Manage Scaleway from Plakar Control Plane end to end. Discover Instances and Block Storage volumes automatically, manage secrets through Scaleway Secret Manager, and protect Instances, volumes, and the secrets themselves with encrypted, deduplicated backups and restores.
+
 
 ## Why protecting Scaleway matters
 

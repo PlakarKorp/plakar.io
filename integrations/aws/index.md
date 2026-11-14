@@ -1,3 +1,7 @@
+# Discovery and secrets management for AWS
+
+Manage AWS resources and credentials from Plakar Control Plane. Discover  resources automatically as your AWS account changes, and manage secrets  through AWS Secrets Manager instead of scattering credentials across scripts  and tools.
+
 
 ## Why protecting your AWS environment matters
 

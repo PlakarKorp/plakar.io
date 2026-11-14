@@ -1,3 +1,7 @@
+# Encrypted, verifiable backups for VMware virtual machines
+
+Protect virtual machines running on vCenter, ESXi, or a vSphere-based cloud platform against accidental deletion, ransomware, and infrastructure failure. Plakar discovers, backs up, and restores VMware workloads with independent, encrypted snapshots.
+
 
 ## Why protecting VMware workloads matters
 

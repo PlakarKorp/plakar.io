@@ -1,3 +1,7 @@
+# Encrypted backups and restores for HashiCorp Vault clusters
+
+Back up and restore a HashiCorp Vault cluster's secrets. Plakar exports a Vault cluster into an encrypted, deduplicated Kloset snapshot and restores it back to the same cluster or a freshly provisioned one.
+
 
 ## Why protecting Vault matters
 
