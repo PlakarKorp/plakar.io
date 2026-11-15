@@ -351,6 +351,24 @@ plakar source add orders \
 Teams often run both: one source per application database for fast, targeted
 restores, and a nightly whole-server source that captures accounts and grants.
 
+## MySQL backup strategy: RPO, RTO and what to restore {kicker="Recovery objectives"}
+
+A MySQL backup plan starts from two numbers. The recovery point objective (RPO)
+is how much recent data the business can afford to lose. The recovery time
+objective (RTO) is how long it can wait for the data to come back. A third
+question sets what each source must cover: what you need to bring back.
+
+| What you must recover            | Snapshot that holds it                       | How it comes back                                           |
+| -------------------------------- | -------------------------------------------- | ----------------------------------------------------------- |
+| A whole server after a host loss | A whole-server source, `/all.sql`            | A `mysql://` destination on a new server, accounts included |
+| One application database         | One source per database, `/<name>.sql`       | Under its own name or a new one with `create_db=true`       |
+| One dropped table                | The database's snapshot from before the drop | A side database, then `INSERT ... SELECT`                   |
+| Rows changed by a bad `UPDATE`   | The snapshot from before the change          | A side database, then a row-by-row comparison               |
+
+The RPO sets the schedule. A one-hour RPO means a `plakar backup` every hour,
+from cron or from a Plakar Control Plane policy. The RTO comes from a measured
+restore, which the restore drill below gives you on a server of the same size.
+
 ## MySQL and MariaDB backup best practices built in {kicker="Built on MySQL practice"}
 
 The integration ships with the settings MySQL administrators add to `mysqldump`
@@ -400,6 +418,30 @@ second copy with
 
 [`plakar check`](/docs/community/v1.1.0/references/commands/plakar-check/)
 verifies the integrity of every snapshot without restoring it.
+
+{{< /pair >}}
+
+{{< pair lead="Restore drills on a staging server." >}}
+
+Restore the latest snapshot into `shop_staging` with `create_db=true` every
+week. The drill proves the dump loads, times the restore against your RTO, and
+gives staging current production data in the same run.
+
+{{< /pair >}}
+
+{{< pair lead="No backup credentials on the database server." >}}
+
+Run Plakar on a separate backup host. The MySQL server then holds neither the
+credentials of the store nor its passphrase, so an intruder on the database host
+finds no key to the snapshots there.
+
+{{< /pair >}}
+
+{{< pair lead="A passphrase the whole on-call rotation can reach." >}}
+
+Snapshots open only with the store passphrase. Keep it in a secret manager that
+every on-call engineer can read, so a restore never waits for the person who set
+up the backups.
 
 {{< /pair >}}
 
@@ -771,6 +813,14 @@ takes little space after deduplication and gives you a way back.
 
 {{< /step >}}
 
+{{< step >}}
+
+**Check the restored tables before switching back.** Run `CHECK TABLE` on them
+and compare `SELECT COUNT(*)` with what the application expects, then point the
+application at the data again.
+
+{{< /step >}}
+
 {{< /steps >}}
 
 ## MySQL and MariaDB backup FAQ {kicker="FAQ"}
@@ -796,6 +846,14 @@ Yes. A replica applies a `DROP TABLE` or a wrong `UPDATE` as faithfully as any
 other statement. Replication covers the loss of a server, and a snapshot covers
 the loss of data.
 
+### How does a delayed MySQL replica compare with a backup?
+
+A delayed replica covers a mistake noticed within its delay, and a snapshot
+covers a mistake found at any later date. On MySQL,
+`CHANGE REPLICATION SOURCE TO SOURCE_DELAY=N` holds each transaction back N
+seconds, 0 by default. Plakar snapshots keep every past state for as long as
+your retention allows.
+
 ### How do I restore a dropped MySQL table?
 
 Restore the last snapshot into a side database with a destination such as
@@ -807,6 +865,12 @@ Restore the last snapshot into a side database with a destination such as
 One database restores under any name, which suits targeted restores. The whole
 server captures every database plus the user accounts and grants. Many teams
 schedule both.
+
+### How often should I back up MySQL?
+
+As often as your recovery point objective requires. An RPO of one hour calls for
+an hourly snapshot, and each run stores only the data that changed since the
+previous one.
 
 ### How do I back up MariaDB?
 
@@ -852,6 +916,13 @@ For one database, `SELECT`, `SHOW VIEW`, `TRIGGER` and `EVENT` on it, plus
 Run `plakar check` to verify the snapshot, then
 `plakar cat <snapshot_id>:/manifest.json` to see the server, the databases and
 the tables it holds.
+
+### How do I see how a MySQL schema changed between two dates?
+
+Compare the manifests of two snapshots with
+`plakar diff <old_id>:/manifest.json <new_id>:/manifest.json`. The unified diff
+shows the tables, columns, indexes and constraints added, changed or dropped
+between the two backups.
 
 ### Can I back up MySQL from a replica?
 
