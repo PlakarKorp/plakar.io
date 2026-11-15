@@ -11,8 +11,8 @@
 
   
   
-    <title>Scaleway &middot; Plakar</title>
-    <meta name="title" content="Scaleway &middot; Plakar">
+    <title>Free, Agentless Scaleway Backup and Restore &middot; Plakar</title>
+    <meta name="title" content="Free, Agentless Scaleway Backup and Restore &middot; Plakar">
   
 
   
@@ -27,11 +27,11 @@
     
   
   
-    <meta name="description" content="Manage Scaleway from Plakar Control Plane end to end. Discover Instances and Block Storage volumes automatically, manage secrets through Scaleway Secret Manager, and protect Instances, volumes, and the secrets themselves with encrypted, deduplicated backups and restores.
+    <meta name="description" content="Free, agentless Scaleway backup of Instances, Block Storage volumes and Secret Manager secrets, encrypted and restored as new resources in any zone or project.
 ">
   
   
-    <meta name="keywords" content="Scaleway backup,Scaleway Instances backup,Scaleway Block Storage backup,Scaleway disaster recovery,Scaleway Secret Manager,ransomware protection,encrypted cloud backup,cloud inventory management,">
+    <meta name="keywords" content="Scaleway backup,Scaleway instance backup,Scaleway Block Storage backup,Scaleway Secret Manager backup,agentless Scaleway backup,restore Scaleway instance in another zone,Scaleway snapshot export QCOW2,">
   
   
   
@@ -67,18 +67,18 @@
   
   <meta property="og:url" content="https://www.plakar.io/integrations/scaleway/">
   <meta property="og:site_name" content="Plakar | The Open Standard for Backup and Restore">
-  <meta property="og:title" content="Scaleway">
-  <meta property="og:description" content="Manage Scaleway from Plakar Control Plane end to end. Discover Instances and Block Storage volumes automatically, manage secrets through Scaleway Secret Manager, and protect Instances, volumes, and the secrets themselves with encrypted, deduplicated backups and restores.">
+  <meta property="og:title" content="Free, Agentless Scaleway Backup and Restore">
+  <meta property="og:description" content="Free, agentless Scaleway backup of Instances, Block Storage volumes and Secret Manager secrets, encrypted and restored as new resources in any zone or project.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="integrations">
     <meta property="article:published_time" content="2026-08-26T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-14T16:52:12-07:00">
+    <meta property="article:modified_time" content="2026-11-14T20:53:23-07:00">
 
   
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Scaleway">
-  <meta name="twitter:description" content="Manage Scaleway from Plakar Control Plane end to end. Discover Instances and Block Storage volumes automatically, manage secrets through Scaleway Secret Manager, and protect Instances, volumes, and the secrets themselves with encrypted, deduplicated backups and restores.">
+  <meta name="twitter:title" content="Free, Agentless Scaleway Backup and Restore">
+  <meta name="twitter:description" content="Free, agentless Scaleway backup of Instances, Block Storage volumes and Secret Manager secrets, encrypted and restored as new resources in any zone or project.">
 
   
   
@@ -219,7 +219,7 @@
     "articleSection": "Plakar Integrations",
     "name": "Scaleway",
     "headline": "Scaleway",
-    "description": "Manage Scaleway from Plakar Control Plane end to end. Discover Instances and Block Storage volumes automatically, manage secrets through Scaleway Secret Manager, and protect Instances, volumes, and the secrets themselves with encrypted, deduplicated backups and restores.\n",
+    "description": "Free, agentless Scaleway backup of Instances, Block Storage volumes and Secret Manager secrets, encrypted and restored as new resources in any zone or project.\n",
     "inLanguage": "en-us",
     "url" : "https://www.plakar.io/integrations/scaleway/",
     "author" : {
@@ -230,12 +230,12 @@
     "dateCreated": "2026-08-26T00:00:00\u002b00:00",
     "datePublished": "2026-08-26T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-14T16:52:12-07:00",
+    "dateModified": "2026-11-14T20:53:23-07:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/integrations/scaleway/",
-    "wordCount":  534 
+    "wordCount":  2721 
   }]
   </script>
 
@@ -2292,10 +2292,10 @@
               
             </div>
             <h1 class="text-3xl lg:text-6xl font-medium">
-              Discovery, secrets, and encrypted backups for <span class="text-primary-500">Scaleway</span> Public Cloud
+              Free, agentless <span class="text-primary-500">Scaleway</span> backup
             </h1>
             <p class="text-lg lg:text-2xl text-neutral-600 font-medium pt-6">
-              Manage Scaleway from Plakar Control Plane end to end. Discover Instances and Block Storage volumes automatically, manage secrets through Scaleway Secret Manager, and protect Instances, volumes, and the secrets themselves with encrypted, deduplicated backups and restores.
+              Free, agentless Scaleway backup of Instances, Block Storage volumes and Secret Manager secrets, encrypted and restored as new resources in any zone or project.
 
             </p>
             
@@ -2404,6 +2404,14 @@
 
               
               
+                <a href="/docs/control-plane/inventories/managed/scaleway/" rel="noopener noreferrer" class="inline-flex w-fit items-center gap-2 text-base font-medium text-neutral-900 hover:text-primary-500 transition-colors">
+                  <span class="w-5 h-5 flex items-center justify-center">
+                    <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V11H19L18.9999 6.413L11.2071 14.2071L9.79289 12.7929L17.5849 5H13V3H21Z"></path></svg>
+</span>
+                  </span>
+                  Scaleway inventory
+                </a>
+              
             </div>
           </div>
 
@@ -2444,10 +2452,11 @@
     <div class="flex flex-row gap-4 items-end justify-end w-full">
       <div class="flex flex-col w-full lg:w-2/3">
         <h2 class="text-3xl lg:text-5xl font-medium text-right">
-          <span class="text-primary-500">Scaleway</span> makes infrastructure fast to create, not easy to keep track of
+          <span class="text-primary-500">Scaleway</span> snapshots, kept as an independent history
         </h2>
         <p class="text-lg lg:text-xl text-neutral-700 font-medium w-full pt-8">
-          Scaleway makes it fast to provision Instances and Block Storage volumes, but that speed cuts both ways: resources created quickly can be deleted, corrupted, or compromised just as quickly, and the platform itself has no built-in way to step outside itself and keep an independent copy safe. The same is true of Scaleway Secret Manager itself: it centralizes secrets, but has no built-in way to snapshot and recover them independently of the service. Plakar adds an inventory, a secret provider, an exporter, and an importer for Scaleway, so resources and their secrets can be discovered, captured, stored in a Kloset, and restored back to the same project or a new one.
+          Scaleway gives every project Block Storage snapshots, QCOW2 export to Object Storage and versioned secrets in Secret Manager. They are the fastest way to roll back inside the project they belong to.
+Plakar builds on those same APIs to keep an encrypted, deduplicated history of Instances, volumes and secrets in a store you choose, and restores it as new resources in the same project, another project or another zone. Nothing runs inside your Instances.
 
         </p>
       </div>
@@ -2460,11 +2469,12 @@
   <div class="max-w-350 mx-auto px-4">
     <article class="prose max-w-full integration-body">
       
-<h2 id="why-protecting-scaleway-matters" class="group pr-8">Why protecting Scaleway matters
+<p class="lp-kicker" data-pagefind-ignore>Overview</p>
+<h2 id="what-the-scaleway-integration-does" class="group pr-8">What the Scaleway integration does
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="why-protecting-scaleway-matters"
+      data-anchor="what-the-scaleway-integration-does"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -2475,33 +2485,51 @@
     </button>
   
 </h2>
-<p>Scaleway Instances and Block Storage volumes are often provisioned, scaled, and
-torn down quickly. That speed makes them easy to run and just as easy to lose
-track of. Scaleway runs the underlying infrastructure, but it does not discover,
-secure, or recover your data for you.</p>
-<ul>
-<li><strong>No built-in inventory discipline</strong>: Instances and volumes created by
-different people or automation can drift out of sight, making it hard to know
-what&rsquo;s actually running, let alone what&rsquo;s protected.</li>
-<li><strong>Access credentials are scattered by default</strong>: API keys used to manage a
-Scaleway project are often stored inconsistently across scripts, tools, and
-team members.</li>
-<li><strong>No independent recovery path</strong>: without a snapshot stored outside the
-project, there is nothing to restore from if an Instance or volume is lost,
-corrupted, or deliberately destroyed.</li>
-<li><strong>Secrets are just as exposed</strong>: Secret Manager centralizes credentials, but a
-deleted or overwritten secret is gone unless a copy exists outside the service
-itself.</li>
-<li><strong>A single point of failure for a lot of infrastructure</strong>: because entire
-fleets of Instances can live in one project, a compromised project can affect
-everything running in it at once.</li>
-</ul>
+<p>The Scaleway integration backs up Scaleway Instances, Block Storage volumes and
+Secret Manager secrets into an encrypted, deduplicated Plakar store, without
+installing anything inside the Instances. It restores them as new resources in
+the same project, another project or another zone. It runs from the free
+<code>plakar</code> CLI or from Plakar Control Plane, which also discovers the resources of
+each Scaleway project.</p>
+<p>Three protocols cover the project. <code>scaleway-instance://</code> backs up an Instance
+with every Block Storage volume attached to it. <code>scaleway-block://</code> backs up a
+single volume. <code>scaleway-secret://</code> backs up every secret of a project and
+region, with all their versions. Object Storage buckets and Managed Databases
+for PostgreSQL and MySQL go into the same store through the
+<a href="/integrations/s3/" >S3</a>, <a href="/integrations/postgres/" >PostgreSQL</a> and
+<a href="/integrations/mysql/" >MySQL</a> integrations.</p>
+<figure class="lp-term not-prose" aria-label="Terminal: backup-host">
+  <div class="lp-term-bar" aria-hidden="true">
+    <span class="lp-term-dot lp-term-dot--r"></span>
+    <span class="lp-term-dot lp-term-dot--y"></span>
+    <span class="lp-term-dot lp-term-dot--g"></span>
+    <span class="lp-term-title">backup-host</span>
+  </div>
+  <pre class="lp-term-body"><code><span class="lp-term-prompt">$</span> <span class="lp-term-cmd"><span class="lp-term-bin">plakar</span> pkg add scaleway</span>
+<span class="lp-term-prompt">$</span> <span class="lp-term-cmd"><span class="lp-term-bin">plakar</span> source add api-prod \</span>
+<span class="lp-term-cmd">    scaleway-instance://5b0f3c3e-7a51-4d6e-9c47-1f2b8d0e6a91 \</span>
+<span class="lp-term-cmd">    access_key=SCWEXAMPLE7KQ2 secret_key=$SCW_SECRET_KEY \</span>
+<span class="lp-term-cmd">    project_id=$SCW_PROJECT_ID bucket=plakar-staging zone=fr-par-1</span>
+<span class="lp-term-prompt">$</span> <span class="lp-term-cmd"><span class="lp-term-bin">plakar</span> at /var/backups backup &#34;@api-prod&#34;</span>
+<span class="lp-term-out">c41e9b07: <span class="lp-term-ok">OK ✓</span> /.METADATA.json</span>
+<span class="lp-term-out">c41e9b07: <span class="lp-term-ok">OK ✓</span> /block-storage/0c9d4e1a.api-prod-root/.METADATA.json</span>
+<span class="lp-term-out">c41e9b07: <span class="lp-term-ok">OK ✓</span> /block-storage/0c9d4e1a.api-prod-root/0c9d4e1a.qcow2</span>
+<span class="lp-term-out">c41e9b07: <span class="lp-term-ok">OK ✓</span> /block-storage/7e21b5f8.api-prod-data/.METADATA.json</span>
+<span class="lp-term-out">c41e9b07: <span class="lp-term-ok">OK ✓</span> /block-storage/7e21b5f8.api-prod-data/7e21b5f8.qcow2</span>
+<span class="lp-term-out">c41e9b07: <span class="lp-term-ok">OK ✓</span> /</span>
+<span class="lp-term-out">c41e9b07: backup completed without errors in 6m48.112s</span>
+<span class="lp-term-prompt">$</span> <span class="lp-term-cmd"><span class="lp-term-bin">plakar</span> at /var/backups ls</span>
+<span class="lp-term-out">2026-11-13T01:00:03Z   7f3a20d1    40 GiB      6m31s /</span>
+<span class="lp-term-out">2026-11-14T01:00:04Z   c41e9b07    40 GiB      6m48s /</span>
+<span class="lp-term-prompt">$</span> <span class="lp-term-cursor"></span></code></pre>
+</figure>
 
-<h2 id="security-and-compromise" class="group pr-8">Security and Compromise
+<p class="lp-kicker" data-pagefind-ignore>Agentless</p>
+<h2 id="why-use-plakar-for-scaleway-backup" class="group pr-8">Why use Plakar for Scaleway backup
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="security-and-compromise"
+      data-anchor="why-use-plakar-for-scaleway-backup"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -2512,30 +2540,109 @@ everything running in it at once.</li>
     </button>
   
 </h2>
-<p>Access to a Scaleway project is controlled by API keys tied to the account or
-IAM application managing it. If those credentials leak or permissions are too
-broad:</p>
-<ul>
-<li><strong>Project-wide impact</strong>: an attacker with API access can affect every Instance
-and volume in the project, not just one system.</li>
-<li><strong>Ransomware and data loss at the resource level</strong>: compromised Instances or
-volumes can be encrypted, deleted, or exfiltrated in a single coordinated
-action.</li>
-<li><strong>Compromised secrets compound the problem</strong>: if the credentials used to
-manage resources are the same ones exposed in a breach, there is no clean way
-to regain control.</li>
-<li><strong>No recovery without a snapshot</strong>: without a backup stored independently of
-the project, there is no way to undo the damage, only to rebuild from scratch.</li>
-</ul>
-<p>Plakar mitigates this by keeping Scaleway snapshots encrypted end-to-end and
-stored outside the project itself, so a compromised project doesn&rsquo;t put its own
-backup history at risk.</p>
+<div class="lp-cards lp-cards--ruled lp-cols-2 not-prose">
 
-<h2 id="how-plakar-protects-your-scaleway-environment" class="group pr-8">How Plakar protects your Scaleway environment
+<div class="lp-card"><span class="lp-card-label">0 agents</span><div class="lp-card-body prose max-w-none">
+<h3 id="nothing-to-install-in-your-scaleway-instances" class="group pr-8">Nothing to install in your Scaleway Instances
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="how-plakar-protects-your-scaleway-environment"
+      data-anchor="nothing-to-install-in-your-scaleway-instances"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Plakar works through the Scaleway APIs only: it snapshots the volumes, exports
+them as QCOW2 images and reads them from Object Storage. No package, no cron job
+and no open port inside the Instance, and the same approach covers Linux and
+Windows Instances alike.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">instances · volumes · secrets</span><div class="lp-card-body prose max-w-none">
+<h3 id="instances-volumes-and-secrets-in-one-store" class="group pr-8">Instances, volumes and secrets in one store
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="instances-volumes-and-secrets-in-one-store"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>One integration protects the compute, the data disks and the secrets the
+applications read at startup. They land in the same encrypted store, with the
+same retention and the same <code>plakar check</code>.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">new volume · new instance · new revision</span><div class="lp-card-body prose max-w-none">
+<h3 id="restores-that-add-never-overwrite" class="group pr-8">Restores that add, never overwrite
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="restores-that-add-never-overwrite"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>A volume comes back as a new volume, an Instance as a new Instance or as extra
+disks on an existing one, a secret as new revisions. The resource you restore
+next to stays exactly as it is.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">zone · project_id</span><div class="lp-card-body prose max-w-none">
+<h3 id="another-zone-or-another-project" class="group pr-8">Another zone or another project
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="another-zone-or-another-project"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Each destination sets its own <code>zone</code> and <code>project_id</code>, so the same snapshot
+restores in the original project, a recovery project, or another Scaleway zone.</p>
+</div>
+</div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>Recovery scenarios</p>
+<h2 id="scaleway-backup-and-recovery-scenarios" class="group pr-8">Scaleway backup and recovery scenarios
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="scaleway-backup-and-recovery-scenarios"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -2546,33 +2653,1030 @@ backup history at risk.</p>
     </button>
   
 </h2>
-<p>Plakar integrates with Scaleway in four ways:</p>
-<ul>
-<li><strong>Inventory</strong>: connect to a Scaleway project and automatically discover the
-resources running in it, such as object storage, compute instances, block
-storage volumes and the secret manager keeping that inventory synchronized as
-resources are created or removed.</li>
-<li><strong>Secret provider</strong>: by default, Plakar Control Plane stores its secrets
-directly in its own database. Scaleway Secret Manager can instead be
-configured as an external secret provider, so those secrets are managed by
-Scaleway rather than stored in Control Plane itself.</li>
-<li><strong>Source connector</strong>: capture a snapshot of an instance, a block storage
-volume, or the secrets held in Scaleway secret manager, and store it in an
-encrypted, deduplicated Kloset, independent of the project it runs in.</li>
-<li><strong>Destination connector</strong>: restore a snapshot back into its original project
-or a different Scaleway project whether is a compute instance, a block storage
-volume, or Secret Manager, whichever the snapshot came from.</li>
-</ul>
-<p>Instead of relying on Scaleway&rsquo;s own platform resilience, Plakar gives you an
-independent, verifiable, and encrypted backup history for the Scaleway
-infrastructure your business runs on, including the secrets that keep it
-running.</p>
+<div class="lp-cards lp-cards--accent lp-cols-2 not-prose">
+
+<div class="lp-card"><span class="lp-card-label">scw instance server delete</span><div class="lp-card-body prose max-w-none">
+<h3 id="an-infrastructure-agent-deletes-a-production-scaleway-instance" class="group pr-8">An infrastructure agent deletes a production Scaleway Instance
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="an-infrastructure-agent-deletes-a-production-scaleway-instance"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Asked to remove unused development servers, an AI agent with the operator&rsquo;s API
+key deletes <code>api-prod-1</code> and its volumes. The volume snapshots of the project
+are managed with that same key. Run <code>plakar backup</code> before handing the project
+to the agent, and keep the store and its passphrase out of the agent&rsquo;s
+environment. Restore with a <code>scaleway-instance://spawn</code> destination: Plakar
+recreates the Instance with its name, commercial type, tags and boot layout, and
+starts it.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">SCW_SECRET_KEY in a CI log</span><div class="lp-card-body prose max-w-none">
+<h3 id="a-scaleway-api-key-leaks-from-a-ci-job" class="group pr-8">A Scaleway API key leaks from a CI job
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="a-scaleway-api-key-leaks-from-a-ci-job"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>A full-access key for the production project is printed in a build log and used
+to delete Instances and their snapshots. Keep the Plakar store in another
+project with its own key, or at another provider, verify it with <code>plakar check</code>,
+and restore the Instances into a clean project by setting <code>project_id</code> on the
+destination.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">fr-par-1 → nl-ams-1</span><div class="lp-card-body prose max-w-none">
+<h3 id="recovering-scaleway-instances-in-another-zone" class="group pr-8">Recovering Scaleway Instances in another zone
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="recovering-scaleway-instances-in-another-zone"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>When an Availability Zone is unavailable, restore the latest snapshot as a new
+Instance in another zone or region. Plakar exports and imports the QCOW2 images
+for you, so the move takes one restore command. Attach a flexible IP or a
+Private Network to the new Instance and switch traffic to it.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">7-day pending deletion</span><div class="lp-card-body prose max-w-none">
+<h3 id="a-scaleway-secret-deleted-two-weeks-ago" class="group pr-8">A Scaleway secret deleted two weeks ago
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="a-scaleway-secret-deleted-two-weeks-ago"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>A cleanup script deleted the secret holding the production database password.
+Secret Manager keeps a deleted secret recoverable for 7 days, then removes it
+with all its versions. A Plakar snapshot keeps every version for as long as your
+retention policy says, and the restore adds them back as revisions, enabled or
+disabled as they were.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">scaleway-block:// &#43; instance ID</span><div class="lp-card-body prose max-w-none">
+<h3 id="one-overwritten-file-on-a-scaleway-data-volume" class="group pr-8">One overwritten file on a Scaleway data volume
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="one-overwritten-file-on-a-scaleway-data-volume"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>A deployment replaced <code>/etc/app/config.yaml</code> on the data volume yesterday.
+Restore last night&rsquo;s volume snapshot as a new volume attached to the same
+Instance, mount it read-only, copy the file back and detach the volume. The live
+volume is never touched.</p>
+</div>
+</div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>How it works</p>
+<h2 id="how-plakar-backs-up-a-scaleway-instance-without-an-agent" class="group pr-8">How Plakar backs up a Scaleway Instance without an agent
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-plakar-backs-up-a-scaleway-instance-without-an-agent"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<div class="lp-columns lp-columns--5-7 lp-columns--sticky-right">
+
+<div class="lp-column prose max-w-none"><p>Scaleway exposes the content of a volume by exporting a snapshot of it to Object
+Storage as a QCOW2 image. Plakar drives that export through the API and streams
+the image into the store. A dedicated bucket of the project serves as the
+staging area, and Plakar removes what it created there.</p>
+<p>Each snapshot holds the Instance description returned by the Scaleway API and,
+for every Block Storage volume, its description and its QCOW2 image. Browse it
+with <code>plakar ls</code>, read a description with <code>plakar cat</code>, or <code>plakar mount</code> the
+snapshot to open the images with standard QEMU tools.</p>
+</div>
+
+
+<div class="lp-column prose max-w-none"><div class="steps">
+<div class="step"><p><strong>Snapshot.</strong> Plakar creates a Block Storage snapshot of each volume attached to
+the Instance.</p>
+</div>
+<div class="step"><p><strong>Export.</strong> Scaleway exports each snapshot as a QCOW2 image into the staging
+bucket, and Plakar deletes the temporary snapshot.</p>
+</div>
+<div class="step"><p><strong>Store.</strong> Plakar reads each image, encrypts and deduplicates it into the store,
+then deletes the image from the bucket.</p>
+</div>
+</div>
+<div class="highlight-wrapper codeblock">
+  <div class="codeblock-title">
+    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M21 8V20.9932C21 21.5501 20.5552 22 20.0066 22H3.9934C3.44495 22 3 21.556 3 21.0082V2.9918C3 2.45531 3.4487 2 4.00221 2H14.9968L21 8ZM19 9H14V4H5V20H19V9ZM8 7H11V9H8V7ZM8 11H16V13H8V11ZM8 15H16V17H8V15Z"></path></svg>
+</span></span>
+    <span class="codeblock-label">Snapshot</span>
+    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
+      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
+</span></span>
+      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  </div><pre tabindex="0"><code class="language-tree" data-lang="tree">c41e9b07:/
+├── .METADATA.json              # the Instance: name, type, tags, zone
+└── block-storage/
+    ├── 0c9d4e1a.api-prod-root/
+    │   ├── .METADATA.json      # the volume: name, size, IOPS, tags
+    │   └── 0c9d4e1a.qcow2
+    └── 7e21b5f8.api-prod-data/
+        ├── .METADATA.json
+        └── 7e21b5f8.qcow2</code></pre></div>
+</div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>Complementary</p>
+<h2 id="scaleway-snapshots-and-plakar-what-each-one-covers" class="group pr-8">Scaleway snapshots and Plakar: what each one covers
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="scaleway-snapshots-and-plakar-what-each-one-covers"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>Scaleway&rsquo;s own features and Plakar work side by side. Keep the native ones for
+fast rollback inside a project, and add Plakar for a history you hold elsewhere.</p>
+<div class="lp-pairs not-prose">
+
+<div class="lp-pair">
+  <p class="lp-pair-lead">Block Storage snapshots for a quick rollback in the zone.</p>
+  <div class="lp-pair-body prose max-w-none"><p>Plakar adds a history of exported QCOW2 images, deduplicated from one night to
+the next, in a store that does not depend on the project&rsquo;s snapshots.</p>
+</div>
+</div>
+
+
+<div class="lp-pair">
+  <p class="lp-pair-lead">Snapshot export and import to move a volume between regions.</p>
+  <div class="lp-pair-body prose max-w-none"><p>Plakar runs the export on every backup and the import on every restore, so a
+move to another region is a destination with a different <code>zone</code>.</p>
+</div>
+</div>
+
+
+<div class="lp-pair">
+  <p class="lp-pair-lead">Object Storage with Object Lock for WORM retention.</p>
+  <div class="lp-pair-body prose max-w-none"><p>Plakar writes its store to a bucket like any S3 client, and Object Lock keeps
+every object for the retention set on the bucket. The 3-2-1 layout below uses it
+for the archive copy.</p>
+</div>
+</div>
+
+
+<div class="lp-pair">
+  <p class="lp-pair-lead">Secret Manager versions and a 7-day recovery window.</p>
+  <div class="lp-pair-body prose max-w-none"><p>Plakar keeps every version of every secret for the retention you set, and
+restores them into any project and region.</p>
+</div>
+</div>
+
+
+<div class="lp-pair">
+  <p class="lp-pair-lead">Managed Database automated backups.</p>
+  <div class="lp-pair-body prose max-w-none"><p>Plakar connects to the database engine from a host or an Edge in your own
+project, over the Private Network, with no staging bucket, and restores into the
+same Managed Database, another one or a self-managed server.</p>
+</div>
+</div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>3-2-1</p>
+<h2 id="a-3-2-1-scaleway-backup-with-object-lock" class="group pr-8">A 3-2-1 Scaleway backup with Object Lock
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="a-3-2-1-scaleway-backup-with-object-lock"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>Three copies, on two storage systems, one of them in another region and locked.</p>
+<div class="lp-table not-prose">
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Copy</th>
+        <th scope="col">Where</th>
+        <th scope="col">Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1. Production</th>
+        <td>Instances, volumes, buckets, Managed Databases and secrets in <code>fr-par</code></td>
+        <td>The data the applications use</td>
+      </tr>
+      <tr>
+        <th scope="row">2. Primary store</th>
+        <td>An Object Storage bucket in <code>fr-par</code></td>
+        <td>Day-to-day restores</td>
+      </tr>
+      <tr>
+        <th scope="row">3. Archive store</th>
+        <td>An Object Storage bucket in <code>nl-ams</code> with Object Lock in compliance mode, under its own IAM application or project</td>
+        <td>The off-site copy, fed by <code>plakar sync</code></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="highlight-wrapper codeblock">
+  <div class="codeblock-title">
+    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
+</span></span>
+    <span class="codeblock-label">Shell</span>
+    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
+      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
+</span></span>
+      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar store add scw-prod <span class="nv">location</span><span class="o">=</span>s3://s3.fr-par.scw.cloud/plakar-prod <span class="se">\
+</span></span></span><span class="line"><span class="cl">    <span class="nv">access_key</span><span class="o">=</span><span class="nv">$SCW_PROD_ACCESS_KEY</span> <span class="nv">secret_access_key</span><span class="o">=</span><span class="nv">$SCW_PROD_SECRET_KEY</span>
+</span></span><span class="line"><span class="cl">$ plakar store add scw-archive <span class="nv">location</span><span class="o">=</span>s3://s3.nl-ams.scw.cloud/plakar-archive <span class="se">\
+</span></span></span><span class="line"><span class="cl">    <span class="nv">access_key</span><span class="o">=</span><span class="nv">$SCW_ARCHIVE_ACCESS_KEY</span> <span class="nv">secret_access_key</span><span class="o">=</span><span class="nv">$SCW_ARCHIVE_SECRET_KEY</span>
+</span></span><span class="line"><span class="cl">$ plakar at <span class="s2">&#34;@scw-prod&#34;</span> create
+</span></span><span class="line"><span class="cl">$ plakar at <span class="s2">&#34;@scw-archive&#34;</span> create
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ plakar at <span class="s2">&#34;@scw-prod&#34;</span> backup <span class="s2">&#34;@api-prod&#34;</span>
+</span></span><span class="line"><span class="cl">$ plakar at <span class="s2">&#34;@scw-prod&#34;</span> sync to <span class="s2">&#34;@scw-archive&#34;</span>
+</span></span><span class="line"><span class="cl">$ plakar at <span class="s2">&#34;@scw-archive&#34;</span> check</span></span></code></pre></div></div>
+<p>Each synced snapshot restores on its own from <code>nl-ams</code>, so losing <code>fr-par</code>
+leaves every restore point of the archive available.</p>
+
+<p class="lp-kicker" data-pagefind-ignore>Comparison</p>
+<h2 id="scaleway-backup-tools-compared" class="group pr-8">Scaleway backup tools compared
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="scaleway-backup-tools-compared"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<div class="lp-table not-prose lp-table--compare">
+  <table>
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th class="lp-col-plakar" scope="col">Plakar</th>
+        <th scope="col">Agent-based backup software</th>
+        <th scope="col">Snapshot scheduling services</th>
+        <th scope="col">Scripts with the Scaleway CLI</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Nothing installed in the Instances</th>
+        <td class="lp-col-plakar"><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">Scaleway APIs only</span></span></td>
+        <td><span class="lp-mark lp-mark--no"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6.5 6.5l7 7m0-7l-7 7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">No</span><span class="lp-mark-text">An agent in each Instance</span></span></td>
+        <td><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">Through the API</span></span></td>
+        <td><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">Through the API</span></span></td>
+      </tr>
+      <tr>
+        <th scope="row">Copies kept outside the Scaleway project</th>
+        <td class="lp-col-plakar"><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">Exported to a store you choose</span></span></td>
+        <td><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">In the product&rsquo;s repository</span></span></td>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Usually snapshots kept in the project</span></span></td>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">If your script exports them</span></span></td>
+      </tr>
+      <tr>
+        <th scope="row">Instances with all their volumes</th>
+        <td class="lp-col-plakar"><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">One <code>scaleway-instance://</code> source</span></span></td>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">The files the agent sees</span></span></td>
+        <td><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">Server and volume snapshots</span></span></td>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Your script</span></span></td>
+      </tr>
+      <tr>
+        <th scope="row">Secret Manager secrets and versions</th>
+        <td class="lp-col-plakar"><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text"><code>scaleway-secret://</code></span></span></td>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Depends on the product</span></span></td>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Depends on the service</span></span></td>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Your script</span></span></td>
+      </tr>
+      <tr>
+        <th scope="row">Encrypted, deduplicated history</th>
+        <td class="lp-col-plakar"><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">Verified with <code>plakar check</code></span></span></td>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Depends on the product</span></span></td>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Depends on the service</span></span></td>
+        <td><span class="lp-mark lp-mark--no"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6.5 6.5l7 7m0-7l-7 7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">No</span><span class="lp-mark-text">Your script</span></span></td>
+      </tr>
+      <tr>
+        <th scope="row">Restore into another zone or project</th>
+        <td class="lp-col-plakar"><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">Set <code>zone</code> and <code>project_id</code></span></span></td>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Through the agent</span></span></td>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Depends on the service</span></span></td>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Export, copy and import by hand</span></span></td>
+      </tr>
+      <tr>
+        <th scope="row">Managed Databases, buckets and Kapsule clusters in the same store</th>
+        <td class="lp-col-plakar"><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">PostgreSQL, MySQL, S3 and Kubernetes integrations</span></span></td>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Depends on the product</span></span></td>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Depends on the service</span></span></td>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Your script</span></span></td>
+      </tr>
+      <tr>
+        <th scope="row">Discovery of the project&rsquo;s resources</th>
+        <td class="lp-col-plakar"><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">Scaleway inventory in Plakar Control Plane</span></span></td>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Depends on the product</span></span></td>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Depends on the service</span></span></td>
+        <td><span class="lp-mark lp-mark--no"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6.5 6.5l7 7m0-7l-7 7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">No</span><span class="lp-mark-text">Your own tooling</span></span></td>
+      </tr>
+      <tr>
+        <th scope="row">Free CLI</th>
+        <td class="lp-col-plakar"><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span></span></td>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Depends on the product</span></span></td>
+        <td><span class="lp-mark lp-mark--no"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6.5 6.5l7 7m0-7l-7 7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">No</span><span class="lp-mark-text">Subscription</span></span></td>
+        <td><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span></span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p class="lp-kicker" data-pagefind-ignore>Restore</p>
+<h2 id="how-to-restore-a-scaleway-instance-in-another-zone-or-project" class="group pr-8">How to restore a Scaleway Instance in another zone or project
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-to-restore-a-scaleway-instance-in-another-zone-or-project"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<div class="lp-columns lp-columns--5-7">
+
+<div class="lp-column prose max-w-none"><p>A restore never touches the backed-up Instance. Pick a destination, point it at
+the target zone and project, and restore any snapshot into it.</p>
+<div class="steps">
+<div class="step"><p><strong>Find the snapshot.</strong> List the snapshots of the Instance with <code>plakar ls</code> and
+pick the last good one.</p>
+</div>
+<div class="step"><p><strong>Prepare the target.</strong> Create a staging bucket in the target region and an API
+key with the same permissions in the target project.</p>
+</div>
+<div class="step"><p><strong>Restore.</strong> Add a <code>scaleway-instance://spawn</code> destination with the target
+<code>zone</code> and <code>project_id</code>, then run <code>plakar restore</code>.</p>
+</div>
+<div class="step"><p><strong>Reconnect.</strong> Attach a flexible IP or a Private Network to the new Instance.</p>
+</div>
+</div></div>
+
+
+<div class="lp-column prose max-w-none"><div class="highlight-wrapper codeblock">
+  <div class="codeblock-title">
+    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
+</span></span>
+    <span class="codeblock-label">Shell</span>
+    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
+      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
+</span></span>
+      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar at /var/backups ls
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ plakar destination add api-prod-ams scaleway-instance://spawn <span class="se">\
+</span></span></span><span class="line"><span class="cl">    <span class="nv">access_key</span><span class="o">=</span>SCWEXAMPLE7KQ2 <span class="nv">secret_key</span><span class="o">=</span><span class="nv">$SCW_SECRET_KEY</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">    <span class="nv">project_id</span><span class="o">=</span><span class="nv">$SCW_RECOVERY_PROJECT_ID</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">    <span class="nv">bucket</span><span class="o">=</span>plakar-staging-ams <span class="nv">zone</span><span class="o">=</span>nl-ams-1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups restore -to <span class="s2">&#34;@api-prod-ams&#34;</span> c41e9b07</span></span></code></pre></div></div>
+<p>To add the disks to an Instance that already exists, use
+<code>scaleway-instance://&lt;server-id&gt;</code> as the destination: each volume of the
+snapshot is attached to it as a new volume.</p>
+</div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>Secrets</p>
+<h2 id="scaleway-secret-manager-backup" class="group pr-8">Scaleway Secret Manager backup
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="scaleway-secret-manager-backup"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<div class="lp-cards lp-cards--boxed lp-cols-3 not-prose">
+
+<div class="lp-card"><span class="lp-card-label">scaleway-secret://</span><div class="lp-card-body prose max-w-none">
+<h3 id="every-secret-every-version" class="group pr-8">Every secret, every version
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="every-secret-every-version"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>A backup reads all the secrets of a project and region, with each version and
+its enabled or disabled status.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">project_id · region</span><div class="lp-card-body prose max-w-none">
+<h3 id="restore-into-any-project-and-region" class="group pr-8">Restore into any project and region
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="restore-into-any-project-and-region"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>The destination sets its own project and region. A secret with the same name and
+path is reused, a missing one is created, and every version is added as a new
+revision.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">{secret_id}#{field}</span><div class="lp-card-body prose max-w-none">
+<h3 id="scaleway-secret-manager-as-a-secret-provider" class="group pr-8">Scaleway Secret Manager as a secret provider
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="scaleway-secret-manager-as-a-secret-provider"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Plakar Control Plane can read the credentials it uses from Scaleway Secret
+Manager at run time, for example
+<code>c492b67c-f3a0-45b8-9ae5-87b640354fe5#access_key</code>.</p>
+</div>
+</div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>Quickstart</p>
+<h2 id="how-to-back-up-scaleway-with-the-open-source-plakar-cli" class="group pr-8">How to back up Scaleway with the open-source Plakar CLI
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-to-back-up-scaleway-with-the-open-source-plakar-cli"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<div class="lp-columns lp-columns--5-7">
+
+<div class="lp-column prose max-w-none"><p>The Plakar CLI is free and open source. The Scaleway integration is a pre-built
+package, free to install once you log in with a Plakar account. Create a store,
+declare a source per Instance, volume or project of secrets, and run backups
+from cron or a CI job.</p>
+<p>The <a href="/docs/community/main/integrations/scaleway/" >Scaleway CLI documentation</a>
+lists every option, the permissions of the API key for each protocol and the
+volume restore.</p>
+</div>
+
+
+<div class="lp-column prose max-w-none"><div class="highlight-wrapper codeblock">
+  <div class="codeblock-title">
+    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
+</span></span>
+    <span class="codeblock-label">Shell</span>
+    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
+      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
+</span></span>
+      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar login -email you@example.com
+</span></span><span class="line"><span class="cl">$ plakar pkg add scaleway
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups create
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add api-prod <span class="se">\
+</span></span></span><span class="line"><span class="cl">    scaleway-instance://5b0f3c3e-7a51-4d6e-9c47-1f2b8d0e6a91 <span class="se">\
+</span></span></span><span class="line"><span class="cl">    <span class="nv">access_key</span><span class="o">=</span>SCWEXAMPLE7KQ2 <span class="nv">secret_key</span><span class="o">=</span><span class="nv">$SCW_SECRET_KEY</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">    <span class="nv">project_id</span><span class="o">=</span><span class="nv">$SCW_PROJECT_ID</span> <span class="nv">bucket</span><span class="o">=</span>plakar-staging <span class="nv">zone</span><span class="o">=</span>fr-par-1
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups backup <span class="s2">&#34;@api-prod&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add prod-secrets scaleway-secret:// <span class="se">\
+</span></span></span><span class="line"><span class="cl">    <span class="nv">access_key</span><span class="o">=</span>SCWEXAMPLE7KQ2 <span class="nv">secret_key</span><span class="o">=</span><span class="nv">$SCW_SECRET_KEY</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">    <span class="nv">project_id</span><span class="o">=</span><span class="nv">$SCW_PROJECT_ID</span> <span class="nv">region</span><span class="o">=</span>fr-par
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups backup <span class="s2">&#34;@prod-secrets&#34;</span>
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups check</span></span></code></pre></div></div>
+</div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>Control Plane</p>
+<h2 id="scaleway-backups-across-projects-with-plakar-control-plane" class="group pr-8">Scaleway backups across projects with Plakar Control Plane
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="scaleway-backups-across-projects-with-plakar-control-plane"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<div class="lp-columns lp-columns--5-7 lp-columns--sticky-left">
+
+<div class="lp-column prose max-w-none"><p>With several projects and teams, Plakar Control Plane replaces per-host CLI
+configuration. It runs as an Instance in your own Scaleway project, on a Private
+Network with no public IP, reached through a Load Balancer for HTTPS and the
+Public Gateway&rsquo;s SSH bastion. One Control Plane protects the Instances and
+volumes of other projects through the Scaleway API, with no network peering. A
+Scaleway inventory per project discovers its Instances, Instance volumes, Block
+Storage volumes, Object Storage buckets, managed databases and Secret Manager,
+and keeps the list current as resources come and go. Restores run from the same
+interface, as new volumes, new Instances or new secret revisions.</p>
+<p><a href="/solutions/control-plane/" >See how Plakar Control Plane works</a>, read the
+<a href="/docs/control-plane/resources/compute/scaleway/" >Control Plane Scaleway documentation</a>
+and the
+<a href="/docs/control-plane/intro/installation/scaleway/" >installation on Scaleway</a>, or
+<a href="/contact/" >contact us</a> to plan a deployment.</p>
+</div>
+
+
+<div class="lp-column prose max-w-none"><div class="steps">
+<div class="step"><p><strong>Connect a project.</strong> Create a Scaleway inventory with a read-only API key
+scoped to the project (<code>AllProductsReadOnly</code>). Keep separate IAM applications
+for discovery, backup and secrets, so the full-access keys only serve the jobs
+that need them.</p>
+</div>
+<div class="step"><p><strong>Keep credentials in Secret Manager.</strong> Reference the backup key as
+<code>{secret_id}#{field}</code> so Plakar Control Plane resolves it at run time.</p>
+</div>
+<div class="step"><p><strong>Let a policy schedule it.</strong> Policies set how many backups each resource needs
+per period, how long they are kept and which store receives them. Every
+Instance, volume or secret project that matches is scheduled automatically,
+including the ones created next week.</p>
+</div>
+</div></div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>FAQ</p>
+<h2 id="scaleway-backup-faq" class="group pr-8">Scaleway backup FAQ
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="scaleway-backup-faq"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<div class="lp-columns lp-columns--1-1">
+
+<div class="lp-column prose max-w-none">
+<h3 id="what-does-plakar-install-inside-scaleway-instances" class="group pr-8">What does Plakar install inside Scaleway Instances?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="what-does-plakar-install-inside-scaleway-instances"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Nothing. Plakar works through the Scaleway APIs: it snapshots the Block Storage
+volumes, exports them to Object Storage as QCOW2 images and reads them from
+there.</p>
+
+<h3 id="how-does-plakar-back-up-a-scaleway-instance" class="group pr-8">How does Plakar back up a Scaleway Instance?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-does-plakar-back-up-a-scaleway-instance"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>It snapshots every Block Storage volume of the Instance, exports each snapshot
+to a staging bucket as a QCOW2 image, and stores the images with the Instance
+and volume descriptions in an encrypted, deduplicated snapshot.</p>
+
+<h3 id="what-permissions-does-the-scaleway-api-key-need" class="group pr-8">What permissions does the Scaleway API key need?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="what-permissions-does-the-scaleway-api-key-need"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>For Instances and volumes, full access to Instances and Block Storage, and read
+and write access to Object Storage buckets and objects. For secrets, Secret
+Manager read, access, create, write and restore permissions.</p>
+
+<h3 id="can-i-restore-a-scaleway-instance-in-another-zone-or-project" class="group pr-8">Can I restore a Scaleway Instance in another zone or project?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="can-i-restore-a-scaleway-instance-in-another-zone-or-project"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Yes. The destination sets its own <code>zone</code> and <code>project_id</code>, and
+<code>scaleway-instance://spawn</code> creates the Instance there from the snapshot.</p>
+
+<h3 id="how-do-i-back-up-a-single-scaleway-block-storage-volume" class="group pr-8">How do I back up a single Scaleway Block Storage volume?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-do-i-back-up-a-single-scaleway-block-storage-volume"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Declare it as a <code>scaleway-block://&lt;volume-id&gt;</code> source. A restore brings it back
+as a new volume, detached with <code>scaleway-block://</code> or attached to an Instance
+with <code>scaleway-block://&lt;instance-id&gt;</code>, with the name, tags and IOPS of the
+original.</p>
+
+<h3 id="what-does-a-scaleway-restore-create" class="group pr-8">What does a Scaleway restore create?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="what-does-a-scaleway-restore-create"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>New resources only: a new volume, a new Instance, or new revisions of a secret.
+The resource you restore next to is left as it is.</p>
+
+<h3 id="what-happens-to-the-staging-bucket" class="group pr-8">What happens to the staging bucket?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="what-happens-to-the-staging-bucket"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Plakar deletes each QCOW2 image once it has been read, and each temporary Block
+Storage snapshot once it has been exported.</p>
+</div>
+
+
+<div class="lp-column prose max-w-none">
+<h3 id="how-long-does-scaleway-keep-a-deleted-secret" class="group pr-8">How long does Scaleway keep a deleted secret?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-long-does-scaleway-keep-a-deleted-secret"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Secret Manager keeps a deleted secret recoverable for 7 days, then deletes it
+with all its versions. Plakar keeps backed-up versions for as long as your
+retention policy sets.</p>
+
+<h3 id="can-scaleway-secrets-be-restored-into-another-project" class="group pr-8">Can Scaleway secrets be restored into another project?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="can-scaleway-secrets-be-restored-into-another-project"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Yes. The destination sets its own <code>project_id</code> and <code>region</code>. Secrets with the
+same name and path are reused, and every version is added as a new revision.</p>
+
+<h3 id="where-should-i-store-scaleway-backups" class="group pr-8">Where should I store Scaleway backups?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="where-should-i-store-scaleway-backups"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>In a store outside the project you protect: an Object Storage bucket in another
+project or region, with Object Lock enabled, or a store at another provider.
+<code>plakar sync</code> keeps a second copy.</p>
+
+<h3 id="how-do-i-back-up-scaleway-managed-databases-for-postgresql-and-mysql" class="group pr-8">How do I back up Scaleway Managed Databases for PostgreSQL and MySQL?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-do-i-back-up-scaleway-managed-databases-for-postgresql-and-mysql"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>With the PostgreSQL and MySQL integrations, which connect to the managed server
+with a database user and store the dumps in the same Plakar store. A restore
+goes to the same Managed Database, another one or a self-managed server.</p>
+
+<h3 id="how-do-i-back-up-scaleway-object-storage-buckets" class="group pr-8">How do I back up Scaleway Object Storage buckets?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-do-i-back-up-scaleway-object-storage-buckets"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>With the S3 integration, which reads the bucket over the Scaleway S3 endpoint,
+for example <code>s3://s3.fr-par.scw.cloud/my-bucket</code>. A bucket can also host the
+Plakar store or receive a restore.</p>
+
+<h3 id="how-do-i-back-up-scaleway-kubernetes-kapsule-clusters" class="group pr-8">How do I back up Scaleway Kubernetes Kapsule clusters?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-do-i-back-up-scaleway-kubernetes-kapsule-clusters"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>With the <a href="/integrations/kubernetes/" >Kubernetes integration</a>, which connects
+with the cluster&rsquo;s kubeconfig, backs up every resource as YAML, namespace by
+namespace, and reads the data of PersistentVolumeClaims through a helper pod.</p>
+
+<h3 id="where-does-plakar-control-plane-run-on-scaleway" class="group pr-8">Where does Plakar Control Plane run on Scaleway?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="where-does-plakar-control-plane-run-on-scaleway"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>In your own Scaleway project, as an Instance on a Private Network with no public
+IP. One Control Plane protects the Instances and volumes of other projects
+through the Scaleway API.</p>
+
+<h3 id="how-is-the-scaleway-integration-distributed" class="group pr-8">How is the Scaleway integration distributed?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-is-the-scaleway-integration-distributed"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>As a pre-built package, free to install with a Plakar account, with
+<code>plakar pkg add scaleway</code>.</p>
+
+<h3 id="should-i-use-the-free-cli-or-plakar-control-plane" class="group pr-8">Should I use the free CLI or Plakar Control Plane?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="should-i-use-the-free-cli-or-plakar-control-plane"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Start with the free CLI for a few Instances run from cron. Move to Plakar
+Control Plane for discovery across projects, policies and one view of what is
+protected.</p>
+</div>
+
+
+</div>
+
 
     </article>
   </div>
 </section>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://www.plakar.io/","name":"Home","position":1},{"@type":"ListItem","item":"https://www.plakar.io/integrations/","name":"Integrations","position":2},{"@type":"ListItem","item":"https://www.plakar.io/integrations/scaleway/","name":"Scaleway","position":3}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","applicationCategory":"UtilitiesApplication","description":"Manage Scaleway from Plakar Control Plane end to end. Discover Instances and Block Storage volumes automatically, manage secrets through Scaleway Secret Manager, and protect Instances, volumes, and the secrets themselves with encrypted, deduplicated backups and restores.","name":"Plakar Scaleway integration","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"operatingSystem":"Linux, macOS, Windows, FreeBSD","publisher":{"@type":"Organization","name":"Plakar","url":"https://www.plakar.io/"},"url":"https://www.plakar.io/integrations/scaleway/"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://www.plakar.io/","name":"Home","position":1},{"@type":"ListItem","item":"https://www.plakar.io/integrations/","name":"Integrations","position":2},{"@type":"ListItem","item":"https://www.plakar.io/integrations/scaleway/","name":"Scaleway","position":3}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","applicationCategory":"UtilitiesApplication","description":"Free, agentless Scaleway backup of Instances, Block Storage volumes and Secret Manager secrets, encrypted and restored as new resources in any zone or project.","name":"Plakar Scaleway integration","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"operatingSystem":"Linux, macOS, Windows, FreeBSD","publisher":{"@type":"Organization","name":"Plakar","url":"https://www.plakar.io/"},"url":"https://www.plakar.io/integrations/scaleway/"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Nothing. Plakar works through the Scaleway APIs: it snapshots the Block Storage volumes, exports them to Object Storage as QCOW2 images and reads them from there."},"name":"What does Plakar install inside Scaleway Instances?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"It snapshots every Block Storage volume of the Instance, exports each snapshot to a staging bucket as a QCOW2 image, and stores the images with the Instance and volume descriptions in an encrypted, deduplicated snapshot."},"name":"How does Plakar back up a Scaleway Instance?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"For Instances and volumes, full access to Instances and Block Storage, and read and write access to Object Storage buckets and objects. For secrets, Secret Manager read, access, create, write and restore permissions."},"name":"What permissions does the Scaleway API key need?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Yes. The destination sets its own zone and project_id, and scaleway-instance://spawn creates the Instance there from the snapshot."},"name":"Can I restore a Scaleway Instance in another zone or project?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Declare it as a scaleway-block://\u003cvolume-id\u003e source. A restore brings it back as a new volume, detached with scaleway-block:// or attached to an Instance with scaleway-block://\u003cinstance-id\u003e, with the name, tags and IOPS of the original."},"name":"How do I back up a single Scaleway Block Storage volume?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"New resources only: a new volume, a new Instance, or new revisions of a secret. The resource you restore next to is left as it is."},"name":"What does a Scaleway restore create?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Plakar deletes each QCOW2 image once it has been read, and each temporary Block Storage snapshot once it has been exported."},"name":"What happens to the staging bucket?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Secret Manager keeps a deleted secret recoverable for 7 days, then deletes it with all its versions. Plakar keeps backed-up versions for as long as your retention policy sets."},"name":"How long does Scaleway keep a deleted secret?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Yes. The destination sets its own project_id and region. Secrets with the same name and path are reused, and every version is added as a new revision."},"name":"Can Scaleway secrets be restored into another project?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"In a store outside the project you protect: an Object Storage bucket in another project or region, with Object Lock enabled, or a store at another provider. plakar sync keeps a second copy."},"name":"Where should I store Scaleway backups?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"With the PostgreSQL and MySQL integrations, which connect to the managed server with a database user and store the dumps in the same Plakar store. A restore goes to the same Managed Database, another one or a self-managed server."},"name":"How do I back up Scaleway Managed Databases for PostgreSQL and MySQL?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"With the S3 integration, which reads the bucket over the Scaleway S3 endpoint, for example s3://s3.fr-par.scw.cloud/my-bucket. A bucket can also host the Plakar store or receive a restore."},"name":"How do I back up Scaleway Object Storage buckets?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"With the Kubernetes integration, which connects with the cluster’s kubeconfig, backs up every resource as YAML, namespace by namespace, and reads the data of PersistentVolumeClaims through a helper pod."},"name":"How do I back up Scaleway Kubernetes Kapsule clusters?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"In your own Scaleway project, as an Instance on a Private Network with no public IP. One Control Plane protects the Instances and volumes of other projects through the Scaleway API."},"name":"Where does Plakar Control Plane run on Scaleway?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"As a pre-built package, free to install with a Plakar account, with plakar pkg add scaleway."},"name":"How is the Scaleway integration distributed?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Start with the free CLI for a few Instances run from cron. Move to Plakar Control Plane for discovery across projects, policies and one view of what is protected."},"name":"Should I use the free CLI or Plakar Control Plane?"}]}</script>
 
 
 
@@ -2582,6 +3686,13 @@ running.</p>
 
 
 
+
+  
+  
+  
+  
+    
+  
 
   
   
@@ -2600,8 +3711,6 @@ running.</p>
         
       
     
-      
-        
       
     
       
@@ -2779,109 +3888,6 @@ running.</p>
 
 
 <a
-  href="/integrations/aws/"
-  data-categories="secrets-manager,inventory"
-  data-editions="control-plane"
-  data-author="official"
-  data-name="amazon web services (aws)"
-  data-date="1787702400"
-  data-search="amazon web services (aws) aws"
-  class="group/card relative flex flex-col gap-3 p-5 rounded-2xl border border-neutral-100 hover:border-primary-300 bg-neutral-50 shadow-sm hover:shadow-none outline-4 outline-transparent hover:outline-primary-400/20 transition-all duration-300"
->
-  <div class="flex items-start gap-3.5">
-    <div class="h-13 min-w-13 max-w-28 rounded-lg overflow-hidden shrink-0 flex items-center justify-center">
-      
-        <img
-      src="/img/integrations/aws_hu_8c84c6b64c21a629.webp"
-      srcset="/img/integrations/aws_hu_8c84c6b64c21a629.webp 64w, /img/integrations/aws_hu_e82173d0900f4b34.webp 128w, /img/integrations/aws_hu_723b76ffde73d142.webp 256w" sizes="auto"
-      width="64"
-      height="64"
-      alt="Amazon Web Services (AWS)"
-      class="h-full w-auto max-w-full object-contain"
-      loading="lazy"
-      decoding="async"
-      >
-      
-    </div>
-    
-      <span class="ml-auto inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full text-green-800 bg-green-50 uppercase shrink-0">
-        <span class="w-1.5 h-1.5 rounded-full bg-current shrink-0"></span>
-        stable
-      </span>
-    
-  </div>
-
-  
-  <div class="flex flex-col mt-3">
-    <div class="flex items-center gap-2 flex-wrap">
-      <h3 class="text-lg lg:text-xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
-        Amazon Web Services (AWS)
-      </h3>
-      
-    </div>
-
-    
-      <div class="text-xs text-primary-500 font-semibold mt-4">
-        
-          Secrets Manager
-        
-           / Inventory
-        
-      </div>
-    
-  </div>
-
-  
-  
-    <p class="text-sm text-neutral-500 line-clamp-3 mt-1">Manage AWS resources and credentials from Plakar Control Plane. Discover  resources automatically as your AWS account changes, and manage secrets  through AWS Secrets Manager instead of scattering credentials across scripts  and tools.
-</p>
-  
-
-  
-  <div class="mt-auto pt-3 border-t border-neutral-200 flex items-center gap-4">
-    <div class="flex flex-col gap-0.5 min-w-0">
-      <span class="text-xxs font-semibold uppercase tracking-wide text-neutral-400">Platform</span>
-      <span class="text-xs font-semibold flex items-center gap-1.5 flex-wrap">
-        
-        
-        <span class="text-primary-600">Control Plane</span>
-      </span>
-    </div>
-    <div class="flex flex-col gap-0.5 min-w-0 pl-4 border-l border-neutral-200">
-      <span class="text-xxs font-semibold uppercase tracking-wide text-neutral-400">Author</span>
-      <span class="text-xs font-semibold text-neutral-900 flex items-center gap-1.5 flex-wrap">
-        
-          <img class="w-4 h-4 shrink-0" src="/img/logos/plakar-logo-icon.svg" alt="">
-          <span>Plakar</span>
-        
-      </span>
-    </div>
-    <div class="ml-auto shrink-0 text-neutral-300 group-hover/card:text-primary-500 group-hover/card:translate-x-0.5 transition-all">
-      <div class="w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
-</span></div>
-    </div>
-  </div>
-</a>
-
-      
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a
   href="/integrations/ovhcloud/"
   data-categories="source,destination,secrets-manager,inventory"
   data-editions="control-plane"
@@ -2941,6 +3947,109 @@ running.</p>
   
   
     <p class="text-sm text-neutral-500 line-clamp-3 mt-1">Manage OVHcloud Public Cloud from Plakar Control Plane end to end. Discover compute instances, block storage volumes, and object storage automatically, manage secrets through OVHcloud's own secret store, and protect resources with encrypted, deduplicated backups and restores.
+</p>
+  
+
+  
+  <div class="mt-auto pt-3 border-t border-neutral-200 flex items-center gap-4">
+    <div class="flex flex-col gap-0.5 min-w-0">
+      <span class="text-xxs font-semibold uppercase tracking-wide text-neutral-400">Platform</span>
+      <span class="text-xs font-semibold flex items-center gap-1.5 flex-wrap">
+        
+        
+        <span class="text-primary-600">Control Plane</span>
+      </span>
+    </div>
+    <div class="flex flex-col gap-0.5 min-w-0 pl-4 border-l border-neutral-200">
+      <span class="text-xxs font-semibold uppercase tracking-wide text-neutral-400">Author</span>
+      <span class="text-xs font-semibold text-neutral-900 flex items-center gap-1.5 flex-wrap">
+        
+          <img class="w-4 h-4 shrink-0" src="/img/logos/plakar-logo-icon.svg" alt="">
+          <span>Plakar</span>
+        
+      </span>
+    </div>
+    <div class="ml-auto shrink-0 text-neutral-300 group-hover/card:text-primary-500 group-hover/card:translate-x-0.5 transition-all">
+      <div class="w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
+</span></div>
+    </div>
+  </div>
+</a>
+
+      
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a
+  href="/integrations/aws/"
+  data-categories="secrets-manager,inventory"
+  data-editions="control-plane"
+  data-author="official"
+  data-name="amazon web services (aws)"
+  data-date="1787702400"
+  data-search="amazon web services (aws) aws"
+  class="group/card relative flex flex-col gap-3 p-5 rounded-2xl border border-neutral-100 hover:border-primary-300 bg-neutral-50 shadow-sm hover:shadow-none outline-4 outline-transparent hover:outline-primary-400/20 transition-all duration-300"
+>
+  <div class="flex items-start gap-3.5">
+    <div class="h-13 min-w-13 max-w-28 rounded-lg overflow-hidden shrink-0 flex items-center justify-center">
+      
+        <img
+      src="/img/integrations/aws_hu_8c84c6b64c21a629.webp"
+      srcset="/img/integrations/aws_hu_8c84c6b64c21a629.webp 64w, /img/integrations/aws_hu_e82173d0900f4b34.webp 128w, /img/integrations/aws_hu_723b76ffde73d142.webp 256w" sizes="auto"
+      width="64"
+      height="64"
+      alt="Amazon Web Services (AWS)"
+      class="h-full w-auto max-w-full object-contain"
+      loading="lazy"
+      decoding="async"
+      >
+      
+    </div>
+    
+      <span class="ml-auto inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full text-green-800 bg-green-50 uppercase shrink-0">
+        <span class="w-1.5 h-1.5 rounded-full bg-current shrink-0"></span>
+        stable
+      </span>
+    
+  </div>
+
+  
+  <div class="flex flex-col mt-3">
+    <div class="flex items-center gap-2 flex-wrap">
+      <h3 class="text-lg lg:text-xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
+        Amazon Web Services (AWS)
+      </h3>
+      
+    </div>
+
+    
+      <div class="text-xs text-primary-500 font-semibold mt-4">
+        
+          Secrets Manager
+        
+           / Inventory
+        
+      </div>
+    
+  </div>
+
+  
+  
+    <p class="text-sm text-neutral-500 line-clamp-3 mt-1">Manage AWS resources and credentials from Plakar Control Plane. Discover  resources automatically as your AWS account changes, and manage secrets  through AWS Secrets Manager instead of scattering credentials across scripts  and tools.
 </p>
   
 
