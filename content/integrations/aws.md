@@ -252,7 +252,7 @@ $ aws secretsmanager create-secret --name prod/plakar/rds-orders \
 
 {{< /columns >}}
 
-## Reducing AWS egress costs for backups stored outside AWS {kicker="Egress"}
+## How to reduce AWS egress costs for backups stored outside AWS {kicker="Egress"}
 
 A backup at another provider survives the loss of the AWS account, but a full
 copy of every bucket and database each night is billed as data transfer out of
@@ -441,11 +441,10 @@ key of an IAM user that holds the read-only policy.
 
 ### How long does AWS keep RDS automated backups?
 
-35 days at most. The backup retention period of an RDS DB instance
-(`--backup-retention-period`) ranges from 0 to 35 days, 7 by default in the
-console, and automated backups are deleted with the instance unless **Retain
-automated backups** is chosen. A Plakar policy keeps its snapshots for the
-retention tiers it defines.
+35 days at most. The backup retention period of an RDS DB instance ranges from 0
+to 35 days, 7 by default in the console, and automated backups are deleted with
+the instance unless **Retain automated backups** is chosen. Plakar snapshots
+follow the retention of the policy that schedules them.
 
 ### How does Plakar back up an S3 bucket found on AWS?
 
