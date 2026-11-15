@@ -88,6 +88,43 @@ reaches the store.
 | RDS Proxy             | Database                      | Proxy endpoint                        |
 | EC2 instance          | Compute                       | Public IP address and public DNS name |
 
+## Why use Plakar for AWS backup {kicker="Why Plakar"}
+
+{{< cards cols="3" style="ruled" >}}
+
+{{< card label="egress" >}}
+
+### AWS backups kept outside AWS for the cost of what changed
+
+An edge in the region of the bucket or the database reads the data there. Only
+chunks the store lacks leave AWS, so a nightly copy at another provider costs
+the changes, not the whole account.
+
+{{< /card >}}
+
+{{< card label="separate credentials" >}}
+
+### AWS backups under credentials of their own
+
+RDS automated backups, manual snapshots and S3 object versions are managed by
+the same IAM identities as the data. A Plakar store can sit in another AWS
+account or at another provider, opened with its own passphrase.
+
+{{< /card >}}
+
+{{< card label="one tool" >}}
+
+### AWS and the rest of the stack in one store
+
+The same policies and stores cover the AWS account, the
+[Kubernetes](/integrations/kubernetes/) clusters and the
+[MongoDB](/integrations/mongodb/) replica sets that run elsewhere, with one
+restore procedure for all of them.
+
+{{< /card >}}
+
+{{< /cards >}}
+
 ## AWS backup scenarios {kicker="Scenarios"}
 
 {{< cards cols="2" style="accent" >}}
@@ -217,13 +254,47 @@ returns the key named after the `#`.
 # A secret holding the credentials of an RDS backup user
 $ aws secretsmanager create-secret --name prod/plakar/rds-orders \
     --secret-string '{"username":"plakar_backup","password":"s3cr3t-Example"}'
-# The path entered in the password field of the source
-prod/plakar/rds-orders#password
+# Path entered in the password field of the source:
+# prod/plakar/rds-orders#password
 ```
 
 {{< /column >}}
 
 {{< /columns >}}
+
+## Reducing AWS egress costs for backups stored outside AWS {kicker="Egress"}
+
+A backup at another provider survives the loss of the AWS account, but a full
+copy of every bucket and database each night is billed as data transfer out of
+AWS. Plakar keeps that transfer to the changes, on one condition: the edge that
+runs the task sits in the AWS region of the resource.
+
+{{< pairs >}}
+
+{{< pair lead="Reading stays in the region." >}}
+
+The edge lists and reads the bucket, or runs `pg_dump` and `mysqldump` against
+the RDS endpoint, inside AWS. Name an edge pool on the inventory to pin its
+tasks to edges running in that region.
+
+{{< /pair >}}
+
+{{< pair lead="Unchanged chunks never leave AWS." >}}
+
+Each object and each dump is cut into content-defined chunks, and a chunk
+crosses to the store only when the store does not hold it. An RDS dump in which
+only recent rows changed sends those rows' chunks, not the whole dump.
+
+{{< /pair >}}
+
+{{< pair lead="What leaves is compressed, then encrypted." >}}
+
+The edge compresses each new chunk with LZ4 and encrypts it before upload. Text,
+logs and SQL dumps shrink, and the other provider receives only encrypted data.
+
+{{< /pair >}}
+
+{{< /pairs >}}
 
 ## AWS backups without long-lived access keys {kicker="IAM roles"}
 
@@ -252,11 +323,12 @@ task. The source stores a user, a host and a region, and no password.
 
 {{< card label="ambient credentials" >}}
 
-### S3 buckets read with the edge's role
+### S3 sources with no stored key
 
-With no key set, the S3 integration uses ambient AWS credentials: the instance
-profile of an EC2 edge, an ECS task role or EKS Pod Identity. A bucket that the
-edge's role can read needs no stored key at all.
+An S3 source created from the inventory can leave both key fields empty. The
+task then signs its requests with the IAM role of the edge that runs it, as the
+[Amazon S3 section of the S3 page](/integrations/s3/#amazon-s3-backup-iam-roles-s3-glacier-and-sse-c)
+describes.
 
 {{< /card >}}
 
@@ -285,7 +357,7 @@ bucket.
 
 {{< column >}}
 
-```json {title="IAM policy of the Plakar Control Plane instance"}
+```json {title="IAM policy for the AWS inventory and Secrets Manager"}
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -321,60 +393,19 @@ bucket.
 
 {{< /columns >}}
 
-## Plakar Control Plane on AWS {kicker="Get started"}
+## Plakar Control Plane for AWS accounts {kicker="Control Plane"}
 
-{{< columns ratio="1:1" sticky="left" >}}
-
-{{< column >}}
-
-The AWS integration is part of Plakar Control Plane. Policies schedule every
-source whose environment and data class they match, edge pools reach private
+The AWS integration is part of Plakar Control Plane, which reaches the AWS APIs
+over HTTPS from wherever it runs: an EC2 instance in the account, another cloud
+provider or a data center. Policies schedule every discovered source whose
+environment and data class they match, edge pools reach resources in private
 VPCs, and a residency on the inventory keeps the backups of its resources in
 stores of the same residency. The S3, PostgreSQL and MySQL integrations it hands
-resources to are also free and open source in the `plakar` CLI.
+resources to are free and open source in the `plakar` CLI as well.
 
 [See how Plakar Control Plane works](/solutions/control-plane/), read the
 [AWS inventory documentation](/docs/control-plane/inventories/managed/aws/), or
 [contact us](/contact/).
-
-{{< /column >}}
-
-{{< column >}}
-
-{{< steps >}}
-
-{{< step >}}
-
-**Launch the AMI.** Subscribe to Plakar Control Plane on the AWS Marketplace and
-launch it in the region of your choice.
-
-{{< /step >}}
-
-{{< step >}}
-
-**Attach an IAM role** to the instance with the policy above.
-
-{{< /step >}}
-
-{{< step >}}
-
-**Add the AWS inventory and the Secrets Manager provider**, each with a region,
-using the IAM role of the instance.
-
-{{< /step >}}
-
-{{< step >}}
-
-**Create a store and a policy.** The policy schedules every matching bucket and
-database from its first run.
-
-{{< /step >}}
-
-{{< /steps >}}
-
-{{< /column >}}
-
-{{< /columns >}}
 
 ## AWS backup FAQ {kicker="FAQ"}
 
@@ -424,6 +455,12 @@ With the S3 integration, which reads the current version of every object of the
 bucket, or of one prefix, into an encrypted snapshot. A restore writes the
 objects to the same bucket, another bucket or another S3 provider.
 
+### How does Plakar cut AWS egress for backups at another provider?
+
+It reads each resource from an edge in the resource's AWS region and uploads
+only the chunks the store does not hold yet, compressed with LZ4 and encrypted.
+After the first backup, data transfer out of AWS follows what changed.
+
 ### Can I use AWS Secrets Manager without the AWS inventory?
 
 Yes. The secret provider and the inventory are configured separately, and either
@@ -432,8 +469,8 @@ one works alone.
 ### Which IAM permissions does the Secrets Manager provider need?
 
 `secretsmanager:GetSecretValue` and `secretsmanager:DescribeSecret` on the
-secrets it reads, granted to the role of the Plakar Control Plane instance on
-top of the inventory permissions.
+secrets it reads, granted to the IAM role or user the provider signs in with,
+next to the inventory permissions.
 
 ### How do I cover several AWS accounts?
 
