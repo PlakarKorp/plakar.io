@@ -1,37 +1,52 @@
 ---
 title: Amazon Web Services (AWS)
 
-subtitle: Discovery and secrets management for AWS
+seo_title: AWS Backup for S3 and RDS with Automatic Discovery
+
+subtitle: AWS backup that finds new resources
 
 description: >
-  Manage AWS resources and credentials from Plakar Control Plane. Discover 
-  resources automatically as your AWS account changes, and manage secrets 
-  through AWS Secrets Manager instead of scattering credentials across scripts 
-  and tools.
+  Plakar Control Plane finds the S3 buckets and RDS databases of an AWS account,
+  schedules their backups from AWS tags and reads credentials from Secrets
+  Manager.
 
-technology_title: AWS infrastructure is easy to spin up, easy to lose
+technology_title: AWS resources appear faster than backup plans
 
 technology_description: >
-  AWS makes it fast to provision compute, storage, databases, and other 
-  resources, but speed cuts both ways: resources created quickly can disappear, 
-  become misconfigured, or be compromised just as quickly, and keeping track of 
-  everything across a growing account becomes increasingly difficult. Plakar 
-  adds an inventory and a secret provider for AWS, so resources can be 
-  discovered automatically and access secrets can be managed through AWS Secrets
-  Manager.
+  An AWS account changes every day. Buckets are created from the console, RDS
+  instances from Terraform or from a coding agent. A bucket or database nobody
+  tagged for backup stays outside every plan, and RDS automated backups last 35
+  days at most and leave with the instance unless they are retained.
+
+  Plakar Control Plane reads the account every 15 minutes, turns AWS tags into
+  backup policies, and keeps the credentials its backups use in AWS Secrets
+  Manager, read through the IAM role of its EC2 instance.
 
 categories:
   - secrets-manager
   - inventory
 
 seo_tags:
-  - AWS inventory
-  - AWS Secrets Manager
-  - AWS resource discovery
-  - cloud inventory management
-  - centralized secrets management
+  - AWS backup
+  - AWS backup inventory
+  - back up new S3 buckets automatically
+  - Amazon RDS backup with IAM authentication
+  - AWS tag-based backup policy
+  - AWS Secrets Manager backup credentials
+  - backup without AWS access keys
 
-links: []
+links:
+  - type: control-plane
+    url: /docs/control-plane/inventories/managed/aws/
+  - type: custom
+    label: AWS Secrets Manager secret provider
+    url: /docs/control-plane/secret-providers/aws/
+    icon: ri/book-open-line
+
+related:
+  - s3
+  - postgres
+  - mysql
 
 edition:
   - control-plane
@@ -49,56 +64,389 @@ resource: AWS
 image: img/integrations/aws.png
 ---
 
-## Why protecting your AWS environment matters
+## What the AWS integration does {kicker="Overview"}
 
-AWS accounts grow continuously as resources are provisioned by different teams,
-applications, and automation. That makes it easy for resources and the
-credentials used to access them to become difficult to track.
+The AWS integration connects Plakar Control Plane to an AWS account. Its
+inventory lists the S3 buckets, RDS databases and EC2 instances of the account
+every 15 minutes, with their AWS tags, so new resources enter backup policies
+without a ticket. Its secret provider reads the passwords and keys those backups
+use from AWS Secrets Manager.
 
-- **No built-in inventory discipline**: resources created by hand or by
-  automation can drift out of sight, making it hard to know what's actually
-  running, let alone what's protected.
-- **Access credentials are scattered by default**: API keys and application
-  credentials used to manage AWS resources are often stored inconsistently
-  across scripts, tools, and team members.
-- **Manual upkeep doesn't scale**: registering every resource and keeping track
-  of changes by hand quickly falls behind as an AWS account grows.
-- **A compromised account can affect everything**: credentials with broad
-  permissions can give an attacker access to multiple resources across the
-  account at once.
+The backups run through the integration that matches each resource. The
+[S3](/integrations/s3/) integration backs up a bucket and can also hold the
+store. The [PostgreSQL](/integrations/postgres/) and
+[MySQL](/integrations/mysql/) integrations back up the databases of an RDS
+instance or cluster with `pg_dump` or `mysqldump`, and restore them to any
+server they can reach. Plakar encrypts and deduplicates every snapshot before it
+reaches the store.
 
-## Security and Compromise
+| AWS resource          | Class in Plakar Control Plane | Endpoints discovered                  |
+| --------------------- | ----------------------------- | ------------------------------------- |
+| S3 bucket             | Object Storage, subclass S3   | `<bucket>.s3.<region>.amazonaws.com`  |
+| RDS DB instance       | Database                      | Instance address                      |
+| RDS or Aurora cluster | Database                      | Writer and reader endpoints           |
+| RDS Proxy             | Database                      | Proxy endpoint                        |
+| EC2 instance          | Compute                       | Public IP address and public DNS name |
 
-Access to AWS resources is controlled through IAM identities, roles, and
-credentials. If those credentials leak or permissions are too broad, the impact
-can extend well beyond a single resource:
+## AWS backup scenarios {kicker="Scenarios"}
 
-- **Account-wide impact**: an attacker with sufficiently broad permissions can
-  create, modify, or delete resources across the account.
-- **Data loss and disruption**: compromised resources can be deleted,
-  reconfigured, or used to access and exfiltrate data.
-- **Compromised credentials compound the problem**: if the credentials used to
-  manage AWS resources are exposed alongside the systems they protect, an
-  attacker can continue moving through the environment.
-- **No clear view of what is affected**: without an up-to-date inventory, it is
-  harder to determine which resources exist and what may have been impacted.
+{{< cards cols="2" style="accent" >}}
 
-Plakar mitigates this by continuously discovering AWS resources and keeping
-their inventory synchronized, while allowing secrets to remain managed through
-AWS Secrets Manager rather than being stored directly in Control Plane.
+{{< card label="rds:db orders-preview" >}}
 
-## How Plakar protects your AWS environment
+### A coding agent creates the RDS database that becomes production
 
-Plakar integrates with AWS in two ways:
+A coding agent working with a developer's AWS profile creates an RDS PostgreSQL
+instance, `orders-preview`, for a feature branch. The branch ships, and the
+instance now holds real orders. Nothing in AWS records that it needs a backup.
+The inventory lists it at the next synchronization, with the tags the agent or
+the pipeline set, and the policy for `plakar:env=production` schedules it.
+Agent-created resources follow the same path as every other one.
 
-- **Inventory**: connect to an AWS account and automatically discover the
-  resources running in it, keeping that inventory synchronized as resources are
-  created or removed.
-- **Secret provider**: manage the secrets used by Plakar Control Plane through
-  AWS Secrets Manager instead of storing them in the Control Plane database,
-  keeping sensitive credentials under AWS's own secret management system.
+{{< /card >}}
 
-These capabilities work independently of each other. You can use AWS inventory
-for resource discovery without changing how secrets are stored, use AWS Secrets
-Manager as the external secret provider without enabling inventory, or use both
-together.
+{{< card label="s3:bucket acme-ml-features-eu" >}}
+
+### An S3 bucket created from the console
+
+A data scientist creates `acme-ml-features-eu` from the S3 console to share
+training features, and three teams start writing to it. A configuration bundle
+scoped to the Object Storage class of the AWS inventory creates an S3 source for
+every bucket it discovers, this one included. The bucket is in a backup policy
+before anyone opens a ticket.
+
+{{< /card >}}
+
+{{< card label="AKIA key in a public repository" >}}
+
+### An S3 access key pushed to a public repository
+
+A backup script with an access key in plain text lands in a public GitHub
+repository. With the secret provider, the S3 source holds a path such as
+`prod/plakar/s3-archive#secret_key` instead of the key. The key is rotated once
+in AWS Secrets Manager, and the next backup reads the new value. Plakar Control
+Plane stored only the path.
+
+{{< /card >}}
+
+{{< card label="private subnet" >}}
+
+### RDS databases with no public endpoint
+
+The production RDS cluster sits in a private subnet of another VPC. The AWS
+inventory names an edge pool whose edges run in that VPC. Those edges
+synchronize the inventory and run the backup tasks of its resources, so each
+database is reached from inside its own network.
+
+{{< /card >}}
+
+{{< /cards >}}
+
+## How to discover S3 buckets and RDS databases and back them up automatically {kicker="How-to"}
+
+{{< columns ratio="5:7" sticky="right" >}}
+
+{{< column >}}
+
+AWS tags carry the backup intent. A resource tagged `plakar:env=production` and
+`plakar:class=database` gets `production` as the environment and `database` as
+the data class of its source, and every policy scoped to that pair schedules it.
+
+1. Create an AWS inventory in Plakar Control Plane with the **IAM** credential
+   type and a region.
+2. Tag the resources at AWS with `plakar:env` and `plakar:class`, using the
+   environments and data classes defined in your classification settings.
+   Terraform, CloudFormation and the AWS CLI all set them.
+3. Add a configuration bundle to the inventory for each integration, scoped to
+   its class (Object Storage for S3, Database for RDS), with **Auto-create
+   connectors** enabled.
+4. Create a policy for the environment and data classes, with its frequency,
+   retention and store.
+5. Click **Sync now**, or wait for the next synchronization. New resources then
+   enter the policy on their own.
+
+{{< /column >}}
+
+{{< column >}}
+
+```console {title="workstation"}
+# Tag an RDS instance and an S3 bucket for the production policies
+$ aws resourcegroupstaggingapi tag-resources \
+    --resource-arn-list arn:aws:rds:eu-west-3:123456789012:db:orders-preview \
+    --tags plakar:env=production,plakar:class=database
+$ aws resourcegroupstaggingapi tag-resources \
+    --resource-arn-list arn:aws:s3:::acme-ml-features-eu \
+    --tags plakar:env=production,plakar:class=analytics
+```
+
+{{< /column >}}
+
+{{< /columns >}}
+
+Tags also narrow a configuration bundle. A bundle for `postgres+aws` that
+requires a tag your teams set, such as `db-engine=postgres`, creates sources
+only on the RDS databases that carry it. Tags discovered from AWS are read-only
+in Plakar Control Plane: they change at AWS, and the next synchronization picks
+them up.
+
+## How to read backup credentials from AWS Secrets Manager {kicker="Secrets"}
+
+{{< columns ratio="5:7" sticky="right" >}}
+
+{{< column >}}
+
+Plakar Control Plane stores a path to the secret, never its value, and resolves
+it each time a task needs the credential. A rotation in Secrets Manager reaches
+every app that uses the path, with nothing to change in Plakar.
+
+1. Create a key/value secret ("Other type of secret" in the console), encrypted
+   with `aws/secretsmanager` or your own KMS key.
+2. Add an AWS Secrets Manager provider in Plakar Control Plane with the region
+   of the secret. It reads with the IAM role of the instance.
+3. In any credential field of an app or an inventory, switch from a direct value
+   to the provider and enter `secret_name#key`.
+
+Plakar reads the version labelled `AWSCURRENT`, parses it as a JSON object and
+returns the key named after the `#`.
+
+{{< /column >}}
+
+{{< column >}}
+
+```console {title="workstation"}
+# A secret holding the credentials of an RDS backup user
+$ aws secretsmanager create-secret --name prod/plakar/rds-orders \
+    --secret-string '{"username":"plakar_backup","password":"s3cr3t-Example"}'
+# The path entered in the password field of the source
+prod/plakar/rds-orders#password
+```
+
+{{< /column >}}
+
+{{< /columns >}}
+
+## AWS backups without long-lived access keys {kicker="IAM roles"}
+
+{{< cards cols="3" style="boxed" >}}
+
+{{< card label="credentials_type=iam" >}}
+
+### The EC2 instance role reads the account
+
+When Plakar Control Plane runs on EC2, the inventory and the secret provider use
+the IAM role attached to the instance, through the standard AWS credential
+chain. A Control Plane outside AWS gives the inventory an access key, which can
+itself come from a secret provider.
+
+{{< /card >}}
+
+{{< card label="postgres+aws://" >}}
+
+### RDS PostgreSQL with IAM database authentication
+
+The `postgres+aws://` protocol generates an IAM authentication token for an
+IAM-enabled database user, from the AWS credentials of the edge that runs the
+task. The source stores a user, a host and a region, and no password.
+
+{{< /card >}}
+
+{{< card label="ambient credentials" >}}
+
+### S3 buckets read with the edge's role
+
+With no key set, the S3 integration uses ambient AWS credentials: the instance
+profile of an EC2 edge, an ECS task role or EKS Pod Identity. A bucket that the
+edge's role can read needs no stored key at all.
+
+{{< /card >}}
+
+{{< /cards >}}
+
+## IAM permissions for AWS discovery and Secrets Manager {kicker="IAM policy"}
+
+{{< columns ratio="5:7" >}}
+
+{{< column >}}
+
+The inventory needs read-only permissions. It lists resources through AWS
+Resource Explorer, then describes each EC2 instance, RDS instance, cluster and
+proxy to read its endpoints. `rds:DescribeDBProxies` covers accounts that run an
+RDS Proxy.
+
+The secret provider adds two Secrets Manager actions. Scope their `Resource` to
+the ARNs of the secrets Plakar reads, for example everything under a
+`prod/plakar/` prefix.
+
+Backups use their own credentials, set on each source: an IAM database user for
+`postgres+aws`, a role or key with `s3:ListBucket` and `s3:GetObject` for a
+bucket.
+
+{{< /column >}}
+
+{{< column >}}
+
+```json {title="IAM policy of the Plakar Control Plane instance"}
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "PlakarInventory",
+      "Effect": "Allow",
+      "Action": [
+        "resource-explorer-2:Search",
+        "resource-explorer-2:List*",
+        "resource-explorer-2:Get*",
+        "ec2:DescribeInstances",
+        "s3:ListAllMyBuckets",
+        "rds:DescribeDBInstances",
+        "rds:DescribeDBClusters",
+        "rds:DescribeDBProxies"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "PlakarSecrets",
+      "Effect": "Allow",
+      "Action": [
+        "secretsmanager:GetSecretValue",
+        "secretsmanager:DescribeSecret"
+      ],
+      "Resource": "arn:aws:secretsmanager:eu-west-3:123456789012:secret:prod/plakar/*"
+    }
+  ]
+}
+```
+
+{{< /column >}}
+
+{{< /columns >}}
+
+## Plakar Control Plane on AWS {kicker="Get started"}
+
+{{< columns ratio="1:1" sticky="left" >}}
+
+{{< column >}}
+
+The AWS integration is part of Plakar Control Plane. Policies schedule every
+source whose environment and data class they match, edge pools reach private
+VPCs, and a residency on the inventory keeps the backups of its resources in
+stores of the same residency. The S3, PostgreSQL and MySQL integrations it hands
+resources to are also free and open source in the `plakar` CLI.
+
+[See how Plakar Control Plane works](/solutions/control-plane/), read the
+[AWS inventory documentation](/docs/control-plane/inventories/managed/aws/), or
+[contact us](/contact/).
+
+{{< /column >}}
+
+{{< column >}}
+
+{{< steps >}}
+
+{{< step >}}
+
+**Launch the AMI.** Subscribe to Plakar Control Plane on the AWS Marketplace and
+launch it in the region of your choice.
+
+{{< /step >}}
+
+{{< step >}}
+
+**Attach an IAM role** to the instance with the policy above.
+
+{{< /step >}}
+
+{{< step >}}
+
+**Add the AWS inventory and the Secrets Manager provider**, each with a region,
+using the IAM role of the instance.
+
+{{< /step >}}
+
+{{< step >}}
+
+**Create a store and a policy.** The policy schedules every matching bucket and
+database from its first run.
+
+{{< /step >}}
+
+{{< /steps >}}
+
+{{< /column >}}
+
+{{< /columns >}}
+
+## AWS backup FAQ {kicker="FAQ"}
+
+{{< columns ratio="1:1" >}}
+
+{{< column >}}
+
+### Which AWS resources does Plakar discover?
+
+S3 buckets, EC2 instances, and RDS instances, clusters and proxies, Aurora
+included. Each resource comes with its AWS tags, its endpoints and a name taken
+from its `Name` tag or from its ARN.
+
+### How does Plakar back up an Amazon RDS database?
+
+With the PostgreSQL or MySQL integration, on an edge that has the client tools.
+They dump each database with `pg_dump` or `mysqldump`, and `postgres+aws://`
+signs in with an IAM token. The dump restores to the same instance, a new one,
+or any server outside AWS.
+
+### How do I find AWS resources that have no backup?
+
+Open the AWS inventory: it lists every S3 bucket and RDS database of the
+account, tagged or not. A configuration bundle with **Auto-create connectors**
+gives each one a source, and the policies schedule every source that matches
+them.
+
+### How often does the AWS inventory refresh?
+
+Every 900 seconds (15 minutes) by default. The interval goes down to 30 seconds
+in the inventory's synchronization settings, and **Sync now** refreshes it at
+any time.
+
+### Which AWS credentials does Plakar Control Plane use?
+
+The IAM role of its EC2 instance, for both the inventory and the Secrets Manager
+provider. A Control Plane running outside AWS reads the account with the access
+key of an IAM user that holds the read-only policy.
+
+{{< /column >}}
+
+{{< column >}}
+
+### How does Plakar back up an S3 bucket found on AWS?
+
+With the S3 integration, which reads the current version of every object of the
+bucket, or of one prefix, into an encrypted snapshot. A restore writes the
+objects to the same bucket, another bucket or another S3 provider.
+
+### Can I use AWS Secrets Manager without the AWS inventory?
+
+Yes. The secret provider and the inventory are configured separately, and either
+one works alone.
+
+### Which IAM permissions does the Secrets Manager provider need?
+
+`secretsmanager:GetSecretValue` and `secretsmanager:DescribeSecret` on the
+secrets it reads, granted to the role of the Plakar Control Plane instance on
+top of the inventory permissions.
+
+### How do I cover several AWS accounts?
+
+Create one AWS inventory per account, each with its own credentials. The access
+key of another account can itself come from Secrets Manager. Each inventory can
+use its own edge pool and residency.
+
+### Where should AWS backups be stored?
+
+In a store your policies point to, such as an S3 bucket in a separate account
+with Object Lock enabled, or a store at another provider. A sync between two
+stores keeps a second copy under other credentials.
+
+{{< /column >}}
+
+{{< /columns >}}
