@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-09-22T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-15T07:12:33+01:00">
+    <meta property="article:modified_time" content="2026-11-15T04:43:08-07:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -239,12 +239,12 @@
     "dateCreated": "2026-09-22T00:00:00\u002b00:00",
     "datePublished": "2026-09-22T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-15T07:12:33\u002b01:00",
+    "dateModified": "2026-11-15T04:43:08-07:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/resources/database/mongodb/",
-    "wordCount":  903 
+    "wordCount":  999 
   }]
   </script>
 
@@ -10398,6 +10398,26 @@ both backup and restore. The integration supports two protocols, <code>mongodb</
 backup and restore.</p>
 
 
+<h2 id="mongodb-user" class="group pr-8">MongoDB user
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="mongodb-user"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>The source and destination apps authenticate against the <code>admin</code> database, so
+the MongoDB user must be defined there. The built-in <code>backup</code> role covers a
+backup of every database, and the built-in <code>restore</code> role covers a restore.</p>
+
+
 <h2 id="running-mongodb-tasks-on-an-edge" class="group pr-8">Running MongoDB tasks on an edge
     <button
       type="button"
@@ -10504,7 +10524,8 @@ or import them from a CSV file.</p>
 <p>To add a MongoDB server as a resource, use <code>Database</code> as the class and leave the
 subclass empty. For the endpoint, use the hostname or IP address of the MongoDB
 server, or the SRV hostname of the deployment when using the <code>mongodb+srv</code>
-protocol. See <a href="/docs/control-plane/resources/" >resources documentation</a> for more information on
+protocol. The endpoint is a host name only, without user, database or query
+string. See <a href="/docs/control-plane/resources/" >resources documentation</a> for more information on
 how to set up resources on a self-managed inventory.</p>
 
 
@@ -10770,6 +10791,28 @@ only one of them is an error.</li>
 </ul>
 
 
+<h2 id="snapshot-contents" class="group pr-8">Snapshot contents
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="snapshot-contents"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>Each snapshot holds a single file, <code>/mongodb-backup.bson</code>, the archive written
+by <code>mongodump --archive</code>. It contains every database the user can read, except
+<code>local</code>, and the users and roles defined in <code>admin</code>. To restore a single
+collection from it, see
+<a href="/docs/community/main/integrations/mongodb/#restoring-a-single-collection" >Restoring a single collection</a>.</p>
+
+
 <h2 id="restore-behaviour" class="group pr-8">Restore behaviour
     <button
       type="button"
@@ -10878,7 +10921,7 @@ on the server and replaces them with those from the snapshot.</p></div></details
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#running-mongodb-tasks-on-an-edge">Running MongoDB tasks on an edge</a><ul><li><a href="#running-the-edge-in-a-container">Running the edge in a container</a></li></ul></li><li><a href="#inventory-management">Inventory Management</a><ul><li><a href="#adding-mongodb-as-a-resource">Adding MongoDB as a resource</a></li></ul></li><li><a href="#1-mongodb-protocol">1. mongodb protocol</a><ul><ul><li><a href="#backup-flow">Backup flow</a></li><li><a href="#restore-flow">Restore flow</a></li></ul></li><li><a href="#shared-configuration">Shared configuration</a></li></ul></li><li><a href="#2-mongodbsrv-protocol">2. mongodb+srv protocol</a><ul><ul><li><a href="#backup-flow-1">Backup flow</a></li><li><a href="#restore-flow-1">Restore flow</a></li></ul></li><li><a href="#shared-configuration-1">Shared configuration</a></li></ul></li><li><a href="#restore-behaviour">Restore behaviour</a></li></ul>
+      <ul><li><a href="#mongodb-user">MongoDB user</a></li><li><a href="#running-mongodb-tasks-on-an-edge">Running MongoDB tasks on an edge</a><ul><li><a href="#running-the-edge-in-a-container">Running the edge in a container</a></li></ul></li><li><a href="#inventory-management">Inventory Management</a><ul><li><a href="#adding-mongodb-as-a-resource">Adding MongoDB as a resource</a></li></ul></li><li><a href="#1-mongodb-protocol">1. mongodb protocol</a><ul><ul><li><a href="#backup-flow">Backup flow</a></li><li><a href="#restore-flow">Restore flow</a></li></ul></li><li><a href="#shared-configuration">Shared configuration</a></li></ul></li><li><a href="#2-mongodbsrv-protocol">2. mongodb+srv protocol</a><ul><ul><li><a href="#backup-flow-1">Backup flow</a></li><li><a href="#restore-flow-1">Restore flow</a></li></ul></li><li><a href="#shared-configuration-1">Shared configuration</a></li></ul></li><li><a href="#snapshot-contents">Snapshot contents</a></li><li><a href="#restore-behaviour">Restore behaviour</a></li></ul>
     </div>
 
     

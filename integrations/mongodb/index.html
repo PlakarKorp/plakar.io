@@ -11,8 +11,8 @@
 
   
   
-    <title>MongoDB &middot; Plakar</title>
-    <meta name="title" content="MongoDB &middot; Plakar">
+    <title>Free, Open-Source MongoDB Backup with mongodump &middot; Plakar</title>
+    <meta name="title" content="Free, Open-Source MongoDB Backup with mongodump &middot; Plakar">
   
 
   
@@ -27,11 +27,11 @@
     
   
   
-    <meta name="description" content="Protect your MongoDB deployments against accidental deletion, ransomware, and operator error. Plakar captures encrypted, deduplicated snapshots of a running server and restores them to any environment.
+    <meta name="description" content="Free, open-source MongoDB backup: mongodump archives in encrypted, deduplicated snapshots. Restore a server, or one collection with mongorestore.
 ">
   
   
-    <meta name="keywords" content="MongoDB backup,mongodump backup,NoSQL database backup,database disaster recovery,ransomware protection,encrypted database backup,point-in-time recovery,database migration,">
+    <meta name="keywords" content="MongoDB backup,mongodump backup,free MongoDB backup,open source MongoDB backup,restore single collection MongoDB,mongorestore nsInclude,MongoDB ransomware recovery,MongoDB backup to S3,">
   
   
   
@@ -67,18 +67,18 @@
   
   <meta property="og:url" content="https://www.plakar.io/integrations/mongodb/">
   <meta property="og:site_name" content="Plakar | The Open Standard for Backup and Restore">
-  <meta property="og:title" content="MongoDB">
-  <meta property="og:description" content="Protect your MongoDB deployments against accidental deletion, ransomware, and operator error. Plakar captures encrypted, deduplicated snapshots of a running server and restores them to any environment.">
+  <meta property="og:title" content="Free, Open-Source MongoDB Backup with mongodump">
+  <meta property="og:description" content="Free, open-source MongoDB backup: mongodump archives in encrypted, deduplicated snapshots. Restore a server, or one collection with mongorestore.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="integrations">
     <meta property="article:published_time" content="2026-09-22T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-15T07:12:33+01:00">
+    <meta property="article:modified_time" content="2026-11-15T04:43:08-07:00">
 
   
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="MongoDB">
-  <meta name="twitter:description" content="Protect your MongoDB deployments against accidental deletion, ransomware, and operator error. Plakar captures encrypted, deduplicated snapshots of a running server and restores them to any environment.">
+  <meta name="twitter:title" content="Free, Open-Source MongoDB Backup with mongodump">
+  <meta name="twitter:description" content="Free, open-source MongoDB backup: mongodump archives in encrypted, deduplicated snapshots. Restore a server, or one collection with mongorestore.">
 
   
   
@@ -219,7 +219,7 @@
     "articleSection": "Plakar Integrations",
     "name": "MongoDB",
     "headline": "MongoDB",
-    "description": "Protect your MongoDB deployments against accidental deletion, ransomware, and operator error. Plakar captures encrypted, deduplicated snapshots of a running server and restores them to any environment.\n",
+    "description": "Free, open-source MongoDB backup: mongodump archives in encrypted, deduplicated snapshots. Restore a server, or one collection with mongorestore.\n",
     "inLanguage": "en-us",
     "url" : "https://www.plakar.io/integrations/mongodb/",
     "author" : {
@@ -230,12 +230,12 @@
     "dateCreated": "2026-09-22T00:00:00\u002b00:00",
     "datePublished": "2026-09-22T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-15T07:12:33\u002b01:00",
+    "dateModified": "2026-11-15T04:43:08-07:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/integrations/mongodb/",
-    "wordCount":  499 
+    "wordCount":  2442 
   }]
   </script>
 
@@ -2285,10 +2285,10 @@
               
             </div>
             <h1 class="text-3xl lg:text-6xl font-medium">
-              Encrypted, deduplicated backups for <span class="text-primary-500">MongoDB</span> databases
+              Free, open-source <span class="text-primary-500">MongoDB</span> backup
             </h1>
             <p class="text-lg lg:text-2xl text-neutral-600 font-medium pt-6">
-              Protect your MongoDB deployments against accidental deletion, ransomware, and operator error. Plakar captures encrypted, deduplicated snapshots of a running server and restores them to any environment.
+              Free, open-source MongoDB backup: mongodump archives in encrypted, deduplicated snapshots. Restore a server, or one collection with mongorestore.
 
             </p>
             <div class="flex flex-col gap-2">
@@ -2428,10 +2428,11 @@
     <div class="flex flex-row gap-4 items-end justify-end w-full">
       <div class="flex flex-col w-full lg:w-2/3">
         <h2 class="text-3xl lg:text-5xl font-medium text-right">
-          <span class="text-primary-500">MongoDB</span> replicates your data, and your mistakes with it
+          <span class="text-primary-500">MongoDB</span> replicates a bad write, and the oplog forgets it
         </h2>
         <p class="text-lg lg:text-xl text-neutral-700 font-medium w-full pt-8">
-          MongoDB holds the operational state of modern applications, from user records and sessions to event streams and catalogs. Replica sets keep a deployment available when a node fails, but they are not a backup: a dropped collection, a bad migration, or a compromised credential propagates to every secondary in seconds. Plakar drives MongoDB&#39;s own export tooling and turns what it produces into encrypted, deduplicated snapshots held outside the cluster, so there is a point in time to return to when the live data is no longer the data you want.
+          Every member of a replica set applies what the primary writes, so an updateMany with the wrong filter or a dropped collection reaches all of them within seconds. The oplog that could replay history is bounded by size, by default 5% of free disk between 990 MB and 50 GB, and a burst of writes shortens the time it covers.
+Plakar runs mongodump, the tool MongoDB ships for logical backups, and keeps every archive as an encrypted, deduplicated snapshot in a store you choose, ready for mongorestore on any server.
 
         </p>
       </div>
@@ -2444,11 +2445,12 @@
   <div class="max-w-350 mx-auto px-4">
     <article class="prose max-w-full integration-body">
       
-<h2 id="why-protecting-mongodb-data-matters" class="group pr-8">Why protecting MongoDB data matters
+<p class="lp-kicker" data-pagefind-ignore>Overview</p>
+<h2 id="what-the-mongodb-integration-does" class="group pr-8">What the MongoDB integration does
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="why-protecting-mongodb-data-matters"
+      data-anchor="what-the-mongodb-integration-does"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -2459,64 +2461,51 @@
     </button>
   
 </h2>
-<p>A MongoDB deployment is usually the system of record for an application, which
-means losing it is not a storage incident but an outage of the product itself.
-The mechanisms that keep MongoDB available do not protect the contents:</p>
-<ul>
-<li><strong>Replication copies mistakes faithfully</strong>: a replica set exists to survive a
-failed node. A <code>drop</code> on the primary reaches every secondary immediately,
-because propagating writes is precisely what it is built to do.</li>
-<li><strong>The oplog is a window, not an archive</strong>: it is sized to let secondaries
-catch up, so the window it covers is measured in hours on a busy cluster. A
-problem noticed the next morning is past recovery from the oplog alone.</li>
-<li><strong>Schema-less means migration-heavy</strong>: documents change shape as the
-application evolves, and a migration that writes the wrong shape is difficult
-to reverse without a copy of what came before.</li>
-<li><strong>Snapshots live with the cluster</strong>: volume snapshots taken alongside the
-nodes share their fate when the account, the region, or the platform is
-compromised.</li>
-</ul>
+<div class="lp-columns lp-columns--7-5 lp-columns--sticky-right">
 
-<h2 id="what-happens-when-database-credentials-are-compromised" class="group pr-8">What happens when database credentials are compromised
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="what-happens-when-database-credentials-are-compromised"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h2>
-<p>MongoDB access is controlled by users and roles, and the connection strings that
-carry them are embedded in application configuration, CI pipelines, and
-developer environments.</p>
-<p>If a credential leaks or a role is scoped too broadly:</p>
-<ul>
-<li><strong>Deletion at the collection level</strong>: an account with write access can drop
-collections or entire databases in a single command, across every node in the
-set.</li>
-<li><strong>Ransomware</strong>: exposed MongoDB deployments are a standing target for
-automated campaigns that wipe databases and leave a ransom note in their
-place.</li>
-<li><strong>Silent modification</strong>: an attacker who alters documents rather than deleting
-them leaves a cluster that looks healthy and serves wrong answers.</li>
-<li><strong>No recovery path</strong>: replication and volume snapshots both track the live
-cluster, so neither offers a version of the data from before the damage.</li>
-</ul>
-<p>Plakar mitigates this by storing snapshots in a Kloset outside the cluster, with
-end-to-end encryption. If the deployment or its credentials are compromised, the
-snapshot history remains intact and recoverable.</p>
+<div class="lp-column prose max-w-none"><p>The MongoDB integration backs up self-hosted replica sets and managed MongoDB
+clusters by running <code>mongodump --archive</code> and storing the archive as an
+encrypted, deduplicated Plakar snapshot. It restores the archive to any MongoDB
+server with <code>mongorestore</code>, and a single collection comes back under a new name
+next to the original. Plakar runs on any host that reaches the cluster, with the
+free, open-source CLI or with Plakar Control Plane.</p>
+<p>The source reads every database the backup user can see and streams the archive
+into the snapshot as <code>mongodump</code> writes it. No archive file lands on the backup
+host, so a 40 GB cluster needs no 40 GB of scratch space beside it.</p>
+</div>
 
-<h2 id="how-plakar-secures-your-mongodb-deployments" class="group pr-8">How Plakar secures your MongoDB deployments
+
+<div class="lp-column prose max-w-none"><figure class="lp-term not-prose" aria-label="Terminal: backup-host">
+  <div class="lp-term-bar" aria-hidden="true">
+    <span class="lp-term-dot lp-term-dot--r"></span>
+    <span class="lp-term-dot lp-term-dot--y"></span>
+    <span class="lp-term-dot lp-term-dot--g"></span>
+    <span class="lp-term-title">backup-host</span>
+  </div>
+  <pre class="lp-term-body"><code><span class="lp-term-prompt">$</span> <span class="lp-term-cmd"><span class="lp-term-bin">plakar</span> pkg add mongodb</span>
+<span class="lp-term-prompt">$</span> <span class="lp-term-cmd"><span class="lp-term-bin">plakar</span> source add shop-rs mongodb://mongo1.example.com \</span>
+<span class="lp-term-cmd">    username=backup password=secret</span>
+<span class="lp-term-prompt">$</span> <span class="lp-term-cmd"><span class="lp-term-bin">plakar</span> at /var/backups backup &#34;@shop-rs&#34;</span>
+<span class="lp-term-out">a41c07e9: <span class="lp-term-ok">OK ✓</span> /mongodb-backup.bson</span>
+<span class="lp-term-out">a41c07e9: <span class="lp-term-ok">OK ✓</span> /</span>
+<span class="lp-term-out">a41c07e9: backup completed without errors in 4m12.381s (in: 0 B, out: 1.6 GiB)</span>
+<span class="lp-term-prompt">$</span> <span class="lp-term-cmd"><span class="lp-term-bin">plakar</span> at /var/backups ls</span>
+<span class="lp-term-out">2026-11-13T02:00:04Z   6e2f9b10    38 GiB     4m09s /</span>
+<span class="lp-term-out">2026-11-14T02:00:03Z   a41c07e9    38 GiB     4m12s /</span>
+<span class="lp-term-prompt">$</span> <span class="lp-term-cursor"></span></code></pre>
+</figure>
+</div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>Why Plakar</p>
+<h2 id="why-use-plakar-for-mongodb-backup" class="group pr-8">Why use Plakar for MongoDB backup
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="how-plakar-secures-your-mongodb-deployments"
+      data-anchor="why-use-plakar-for-mongodb-backup"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -2527,34 +2516,1143 @@ snapshot history remains intact and recoverable.</p>
     </button>
   
 </h2>
-<p>Plakar drives the MongoDB command line utilities, so the export it captures is
-the one MongoDB itself produces:</p>
-<ul>
-<li><strong>Source Connector</strong>: export a running server and store the result as an
-encrypted, deduplicated snapshot in a Kloset Store, independent of the cluster
-it came from. Because snapshots are deduplicated, keeping a long history of
-daily exports costs a fraction of storing each one whole.</li>
-<li><strong>Destination Connector</strong>: restore a verified snapshot to the original
-deployment, a replacement cluster, or a staging environment.</li>
-</ul>
-<p>This makes it possible to:</p>
-<ul>
-<li>Recover from a dropped collection or a bad migration long after the oplog
-window has closed</li>
-<li>Keep backup credentials separate from the accounts the application connects
-with</li>
-<li>Populate a staging or development environment from a known-good production
-snapshot</li>
-<li>Move a deployment between hosts, providers, or environments</li>
-</ul>
-<p>Plakar also lets you browse and verify a snapshot before restoring, so you can
-confirm what a recovery point contains before committing to it.</p>
+<div class="lp-cards lp-cards--ruled lp-cols-3 not-prose">
+
+<div class="lp-card"><span class="lp-card-label">no agent on the nodes</span><div class="lp-card-body prose max-w-none">
+<h3 id="nothing-to-install-on-the-mongodb-servers" class="group pr-8">Nothing to install on the MongoDB servers
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="nothing-to-install-on-the-mongodb-servers"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Plakar talks to the cluster over the MongoDB wire protocol, like the application
+does. The replica set members keep their packages and their <code>mongod.conf</code>, and
+the backup host is the only machine with Plakar on it.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">no --gzip</span><div class="lp-card-body prose max-w-none">
+<h3 id="uncompressed-mongodb-dumps-that-deduplicate" class="group pr-8">Uncompressed MongoDB dumps that deduplicate
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="uncompressed-mongodb-dumps-that-deduplicate"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>The integration leaves the archive uncompressed, so the parts of a dump that did
+not change since the previous one are already in the store and are not written
+again. In our test, a 1.1 GiB archive of 4 million orders took 274 MiB on the
+first run. The next archive, with the latest 1% of orders updated and 1% added,
+stored 5.2 MiB.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">encrypted on the backup host</span><div class="lp-card-body prose max-w-none">
+<h3 id="mongodb-archives-encrypted-before-upload" class="group pr-8">MongoDB archives encrypted before upload
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="mongodb-archives-encrypted-before-upload"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Plakar encrypts each snapshot before it leaves the backup host. An S3-compatible
+bucket, an SFTP server or a disk holds only ciphertext, and the bucket&rsquo;s
+credentials never sit on the MongoDB nodes.</p>
+</div>
+</div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>Recovery scenarios</p>
+<h2 id="mongodb-backup-and-recovery-scenarios" class="group pr-8">MongoDB backup and recovery scenarios
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="mongodb-backup-and-recovery-scenarios"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<div class="lp-cards lp-cards--accent lp-cols-2 not-prose">
+
+<div class="lp-card"><span class="lp-card-label">updateMany({}, {$unset: …})</span><div class="lp-card-body prose max-w-none">
+<h3 id="an-ai-agent-strips-a-field-from-mongodb-orders" class="group pr-8">An AI agent strips a field from MongoDB <code>orders</code>
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="an-ai-agent-strips-a-field-from-mongodb-orders"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>A coding agent working with the application&rsquo;s connection string runs a migration
+that unsets <code>customer_id</code> on every document of <code>shop.orders</code>. All replica set
+members apply it. A <code>plakar backup</code> before the session, taken by a separate
+backup user, with the store and its passphrase kept out of the agent&rsquo;s
+environment, leaves a clean copy. Restore <code>shop.orders</code> as
+<code>shop.orders_restored</code> with the steps below and copy <code>customer_id</code> back by
+<code>_id</code>, so the agent&rsquo;s other changes stay.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">rs.printReplicationInfo()</span><div class="lp-card-body prose max-w-none">
+<h3 id="a-mongodb-bulk-delete-noticed-after-the-oplog-rolled-over" class="group pr-8">A MongoDB bulk delete noticed after the oplog rolled over
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="a-mongodb-bulk-delete-noticed-after-the-oplog-rolled-over"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>A nightly job runs <code>deleteMany</code> with an empty filter on Tuesday, and support
+reports missing accounts on Friday. The oplog keeps a fixed size, by default 5%
+of free disk with a floor of 990 MB and a ceiling of 50 GB, and the delete plus
+three days of traffic pushed Tuesday out of it. Monday night&rsquo;s snapshot holds
+the collection as it was. Load it under a new name and reinsert the missing
+documents.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">security.authorization: disabled</span><div class="lp-card-body prose max-w-none">
+<h3 id="a-mongodb-instance-wiped-with-a-ransom-note" class="group pr-8">A MongoDB instance wiped with a ransom note
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="a-mongodb-instance-wiped-with-a-ransom-note"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>A test server goes to production with <code>bindIp: 0.0.0.0</code> and
+<code>security.authorization</code> left at its default, <code>disabled</code>. A scanner finds it,
+drops every database and leaves a single collection asking for Bitcoin. Build a
+new instance with authentication on, add it as a <code>mongodb://</code> destination and
+restore the last snapshot.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">mongodb&#43;srv:// → mongodb://</span><div class="lp-card-body prose max-w-none">
+<h3 id="moving-a-managed-mongodb-cluster-to-your-own-servers" class="group pr-8">Moving a managed MongoDB cluster to your own servers
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="moving-a-managed-mongodb-cluster-to-your-own-servers"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>A cluster on a managed service is backed up through its SRV host name with a
+<code>mongodb+srv://</code> source. The same snapshot restores into a self-hosted replica
+set with a <code>mongodb://</code> destination, or into a cluster at another provider, and
+the move rests on an archive you hold rather than on an export from the service.</p>
+</div>
+</div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>One collection</p>
+<h2 id="how-to-restore-a-single-collection-in-mongodb" class="group pr-8">How to restore a single collection in MongoDB
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-to-restore-a-single-collection-in-mongodb"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<div class="lp-columns lp-columns--5-7 lp-columns--sticky-right">
+
+<div class="lp-column prose max-w-none"><p>A Plakar snapshot holds the whole <code>mongodump</code> archive. <code>mongorestore</code> reads one
+namespace out of it, and <code>--nsFrom</code> and <code>--nsTo</code> give it a new name, so the
+production collection keeps every write made since the snapshot.</p>
+<div class="steps">
+<div class="step"><p><strong>Pick the snapshot from before the damage.</strong> <code>plakar ls</code> lists the snapshots of
+the store with their dates and IDs.</p>
+</div>
+<div class="step"><p><strong>Stream the archive into <code>mongorestore</code>.</strong> <code>plakar cat</code> writes
+<code>/mongodb-backup.bson</code> to standard output, and <code>mongorestore --archive</code> reads it
+from standard input.</p>
+</div>
+<div class="step"><p><strong>Load one collection under a new name.</strong> <code>--nsInclude='shop.orders'</code> selects
+the collection, and <code>--nsFrom</code>/<code>--nsTo</code> load it as <code>shop.orders_restored</code> on the
+production server or on a staging one.</p>
+</div>
+<div class="step"><p><strong>Copy back what you need.</strong> Compare the two collections in <code>mongosh</code>, update or
+reinsert the documents by <code>_id</code>, then drop <code>shop.orders_restored</code>.</p>
+</div>
+</div></div>
+
+
+<div class="lp-column prose max-w-none"><figure class="lp-term not-prose" aria-label="Terminal: backup-host">
+  <div class="lp-term-bar" aria-hidden="true">
+    <span class="lp-term-dot lp-term-dot--r"></span>
+    <span class="lp-term-dot lp-term-dot--y"></span>
+    <span class="lp-term-dot lp-term-dot--g"></span>
+    <span class="lp-term-title">backup-host</span>
+  </div>
+  <pre class="lp-term-body"><code><span class="lp-term-prompt">$</span> <span class="lp-term-cmd"><span class="lp-term-bin">plakar</span> at /var/backups ls</span>
+<span class="lp-term-out">2026-11-13T02:00:04Z   6e2f9b10    38 GiB     4m09s /</span>
+<span class="lp-term-out">2026-11-14T02:00:03Z   a41c07e9    38 GiB     4m12s /</span>
+<span class="lp-term-prompt">$</span> <span class="lp-term-cmd"><span class="lp-term-bin">plakar</span> at /var/backups cat 6e2f9b10:/mongodb-backup.bson | \</span>
+<span class="lp-term-cmd">    mongorestore --uri=&#34;mongodb://admin@mongo1.example.com&#34; \</span>
+<span class="lp-term-cmd">    --archive \</span>
+<span class="lp-term-cmd">    --nsInclude=&#39;shop.orders&#39; \</span>
+<span class="lp-term-cmd">    --nsFrom=&#39;shop.orders&#39; --nsTo=&#39;shop.orders_restored&#39;</span>
+<span class="lp-term-prompt">$</span> <span class="lp-term-cmd">mongosh &#34;mongodb://admin@mongo1.example.com/shop&#34;</span></code></pre>
+</figure>
+<div class="highlight-wrapper codeblock">
+  <div class="codeblock-title">
+    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M21 8V20.9932C21 21.5501 20.5552 22 20.0066 22H3.9934C3.44495 22 3 21.556 3 21.0082V2.9918C3 2.45531 3.4487 2 4.00221 2H14.9968L21 8ZM19 9H14V4H5V20H19V9ZM8 7H11V9H8V7ZM8 11H16V13H8V11ZM8 15H16V17H8V15Z"></path></svg>
+</span></span>
+    <span class="codeblock-label">mongosh</span>
+    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
+      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
+</span></span>
+      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">orders_restored</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">find</span><span class="p">({},</span> <span class="p">{</span> <span class="nx">customer_id</span><span class="o">:</span> <span class="mi">1</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">d</span><span class="p">)</span> <span class="p">=&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">db</span><span class="p">.</span><span class="nx">orders</span><span class="p">.</span><span class="nx">updateOne</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span> <span class="nx">_id</span><span class="o">:</span> <span class="nx">d</span><span class="p">.</span><span class="nx">_id</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span> <span class="nx">$set</span><span class="o">:</span> <span class="p">{</span> <span class="nx">customer_id</span><span class="o">:</span> <span class="nx">d</span><span class="p">.</span><span class="nx">customer_id</span> <span class="p">}</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">orders_restored</span><span class="p">.</span><span class="nx">drop</span><span class="p">();</span></span></span></code></pre></div></div>
+</div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>Connections</p>
+<h2 id="mongodb-connections-mongodb-and-mongodbsrv" class="group pr-8">MongoDB connections: mongodb:// and mongodb+srv://
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="mongodb-connections-mongodb-and-mongodbsrv"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<div class="lp-cards lp-cards--boxed lp-cols-2 not-prose">
+
+<div class="lp-card"><span class="lp-card-label">mongodb://</span><div class="lp-card-body prose max-w-none">
+<h3 id="self-hosted-mongodb-by-host-name" class="group pr-8">Self-hosted MongoDB by host name
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="self-hosted-mongodb-by-host-name"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>A replica set member or a standalone server at a fixed address. The port comes
+from the URL or the <code>port</code> option, 27017 by default.</p>
+<div class="highlight-wrapper codeblock">
+  <div class="codeblock-title">
+    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
+</span></span>
+    <span class="codeblock-label">Shell</span>
+    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
+      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
+</span></span>
+      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nf">plakar</span> <span class="nb">source</span> add shop-rs <span class="se">\
+</span></span></span><span class="line"><span class="cl">  mongodb://mongo1.example.com <span class="se">\
+</span></span></span><span class="line"><span class="cl">  <span class="nv">username</span><span class="o">=</span>backup <span class="nv">password</span><span class="o">=</span>secret</span></span></code></pre></div></div>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">mongodb&#43;srv://</span><div class="lp-card-body prose max-w-none">
+<h3 id="managed-mongodb-through-dns-srv" class="group pr-8">Managed MongoDB through DNS SRV
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="managed-mongodb-through-dns-srv"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>The SRV host name of the deployment. <code>mongodump</code> resolves the members and their
+port from DNS, as with any <code>mongodb+srv</code> connection string.</p>
+<div class="highlight-wrapper codeblock">
+  <div class="codeblock-title">
+    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
+</span></span>
+    <span class="codeblock-label">Shell</span>
+    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
+      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
+</span></span>
+      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nf">plakar</span> <span class="nb">source</span> add shop-cluster <span class="se">\
+</span></span></span><span class="line"><span class="cl">  mongodb+srv://cluster0.example.net <span class="se">\
+</span></span></span><span class="line"><span class="cl">  <span class="nv">username</span><span class="o">=</span>backup <span class="nv">password</span><span class="o">=</span>secret</span></span></code></pre></div></div>
+</div>
+</div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>Built on MongoDB practice</p>
+<h2 id="mongodb-backup-best-practices-built-in" class="group pr-8">MongoDB backup best practices built in
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="mongodb-backup-best-practices-built-in"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>Three rules of MongoDB backup practice for logical dumps, and how Plakar follows
+each one.</p>
+<div class="lp-pairs not-prose">
+
+<div class="lp-pair">
+  <p class="lp-pair-lead">Plan for failures that reach every replica.</p>
+  <div class="lp-pair-body prose max-w-none"><p>Three members protect against a dead disk, not against a bad command, a breach
+or the loss of a site, which reach all of them at once. Plakar writes snapshots
+to a store you place on other hardware, in another account or at another site.</p>
+</div>
+</div>
+
+
+<div class="lp-pair">
+  <p class="lp-pair-lead">Dump when the working set can spare it.</p>
+  <div class="lp-pair-body prose max-w-none"><p><code>mongodump</code> pulls documents through the server&rsquo;s memory and can push hot data
+out of the cache on a busy cluster. Run <code>plakar backup</code> from cron or a systemd
+timer in the quiet hours, or let a Control Plane policy set the time for every
+cluster.</p>
+</div>
+</div>
+
+
+<div class="lp-pair">
+  <p class="lp-pair-lead">Test the restore, index builds included.</p>
+  <div class="lp-pair-body prose max-w-none"><p>A logical dump carries index definitions, and <code>mongorestore</code> rebuilds every
+index after loading the documents, which takes time on large collections.
+Restore a snapshot into a staging server with a <code>mongodb://</code> destination, check
+the data, and keep the measured duration as your recovery time.</p>
+</div>
+</div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>Inside a snapshot</p>
+<h2 id="what-a-mongodb-backup-snapshot-contains" class="group pr-8">What a MongoDB backup snapshot contains
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="what-a-mongodb-backup-snapshot-contains"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<div class="lp-columns lp-columns--7-5">
+
+<div class="lp-column prose max-w-none"><p>Each snapshot holds one file, <code>/mongodb-backup.bson</code>, the archive
+<code>mongodump --archive</code> wrote for that run. It carries every database the backup
+user can read with its index definitions, and the users and roles from <code>admin</code>.
+The MongoDB Database Tools read the file without Plakar in the loop.</p>
+<p>The <code>local</code> database stays out, as with any <code>mongodump</code> run without <code>--db</code>.</p>
+</div>
+
+
+<div class="lp-column prose max-w-none"><div class="highlight-wrapper codeblock">
+  <div class="codeblock-title">
+    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M21 8V20.9932C21 21.5501 20.5552 22 20.0066 22H3.9934C3.44495 22 3 21.556 3 21.0082V2.9918C3 2.45531 3.4487 2 4.00221 2H14.9968L21 8ZM19 9H14V4H5V20H19V9ZM8 7H11V9H8V7ZM8 11H16V13H8V11ZM8 15H16V17H8V15Z"></path></svg>
+</span></span>
+    <span class="codeblock-label">Snapshot</span>
+    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
+      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
+</span></span>
+      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  </div><pre tabindex="0"><code class="language-tree" data-lang="tree">a41c07e9:/
+└── mongodb-backup.bson</code></pre></div>
+</div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>Beyond cron and mongodump</p>
+<h2 id="mongodump-to-s3-and-beyond-what-plakar-adds-to-a-cron-job" class="group pr-8">mongodump to S3 and beyond: what Plakar adds to a cron job
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="mongodump-to-s3-and-beyond-what-plakar-adds-to-a-cron-job"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>The usual script runs <code>mongodump --archive --gzip</code> and copies the file to a
+bucket. Plakar keeps <code>mongodump</code> and takes over the rest:</p>
+<div class="lp-cards lp-cards--ruled lp-cols-2 not-prose">
+
+<div class="lp-card"><span class="lp-card-label">plakar sync</span><div class="lp-card-body prose max-w-none">
+<h3 id="a-second-copy-of-mongodb-snapshots-elsewhere" class="group pr-8">A second copy of MongoDB snapshots elsewhere
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="a-second-copy-of-mongodb-snapshots-elsewhere"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p><code>plakar sync</code> copies snapshots to another store, in another account or on
+another site. Enable Object Lock on that bucket when the copy must resist
+deletion.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">plakar check</span><div class="lp-card-body prose max-w-none">
+<h3 id="mongodb-backups-checked-before-the-restore" class="group pr-8">MongoDB backups checked before the restore
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="mongodb-backups-checked-before-the-restore"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p><code>plakar check</code> reads a snapshot back and confirms every chunk matches what was
+stored, so an altered archive is caught before <code>mongorestore</code> touches a server.</p>
+</div>
+</div>
+
+
+</div>
+
+<figure class="lp-chart not-prose">
+  <figcaption class="lp-chart-head"><strong>Two weeks of nightly MongoDB snapshots</strong><span>Every snapshot is a complete mongodump archive. New space goes to the parts of the dump that changed. Illustrative values.</span></figcaption>
+  <div class="lp-chart-legend" aria-hidden="true">
+    <span><i class="lp-chart-key lp-chart-key--new"></i>new data stored</span>
+    <span><i class="lp-chart-key lp-chart-key--reused"></i>reused, already stored</span>
+  </div>
+  <ol class="lp-chart-bars" aria-label="Two weeks of nightly MongoDB snapshots"><li class="lp-chart-bar" style="--lp-new: 100.0%">
+        <span class="lp-chart-reused"></span>
+        <span class="lp-chart-new"></span>
+        <span class="lp-chart-x">D1</span>
+        <span class="lp-sr">full first backup</span>
+      </li><li class="lp-chart-bar" style="--lp-new: 7.0%">
+        <span class="lp-chart-reused"></span>
+        <span class="lp-chart-new"></span>
+        <span class="lp-chart-x">D2</span>
+        <span class="lp-sr">5% new data</span>
+      </li><li class="lp-chart-bar" style="--lp-new: 5.6%">
+        <span class="lp-chart-reused"></span>
+        <span class="lp-chart-new"></span>
+        <span class="lp-chart-x">D3</span>
+        <span class="lp-sr">4% new data</span>
+      </li><li class="lp-chart-bar" style="--lp-new: 8.4%">
+        <span class="lp-chart-reused"></span>
+        <span class="lp-chart-new"></span>
+        <span class="lp-chart-x">D4</span>
+        <span class="lp-sr">6% new data</span>
+      </li><li class="lp-chart-bar" style="--lp-new: 7.0%">
+        <span class="lp-chart-reused"></span>
+        <span class="lp-chart-new"></span>
+        <span class="lp-chart-x">D5</span>
+        <span class="lp-sr">5% new data</span>
+      </li><li class="lp-chart-bar" style="--lp-new: 5.6%">
+        <span class="lp-chart-reused"></span>
+        <span class="lp-chart-new"></span>
+        <span class="lp-chart-x">D6</span>
+        <span class="lp-sr">4% new data</span>
+      </li><li class="lp-chart-bar" style="--lp-new: 4.2%">
+        <span class="lp-chart-reused"></span>
+        <span class="lp-chart-new"></span>
+        <span class="lp-chart-x">D7</span>
+        <span class="lp-sr">3% new data</span>
+      </li><li class="lp-chart-bar" style="--lp-new: 9.8%">
+        <span class="lp-chart-reused"></span>
+        <span class="lp-chart-new"></span>
+        <span class="lp-chart-x">D8</span>
+        <span class="lp-sr">7% new data</span>
+      </li><li class="lp-chart-bar" style="--lp-new: 7.0%">
+        <span class="lp-chart-reused"></span>
+        <span class="lp-chart-new"></span>
+        <span class="lp-chart-x">D9</span>
+        <span class="lp-sr">5% new data</span>
+      </li><li class="lp-chart-bar" style="--lp-new: 5.6%">
+        <span class="lp-chart-reused"></span>
+        <span class="lp-chart-new"></span>
+        <span class="lp-chart-x">D10</span>
+        <span class="lp-sr">4% new data</span>
+      </li><li class="lp-chart-bar" style="--lp-new: 8.4%">
+        <span class="lp-chart-reused"></span>
+        <span class="lp-chart-new"></span>
+        <span class="lp-chart-x">D11</span>
+        <span class="lp-sr">6% new data</span>
+      </li><li class="lp-chart-bar" style="--lp-new: 7.0%">
+        <span class="lp-chart-reused"></span>
+        <span class="lp-chart-new"></span>
+        <span class="lp-chart-x">D12</span>
+        <span class="lp-sr">5% new data</span>
+      </li><li class="lp-chart-bar" style="--lp-new: 5.6%">
+        <span class="lp-chart-reused"></span>
+        <span class="lp-chart-new"></span>
+        <span class="lp-chart-x">D13</span>
+        <span class="lp-sr">4% new data</span>
+      </li><li class="lp-chart-bar" style="--lp-new: 7.0%">
+        <span class="lp-chart-reused"></span>
+        <span class="lp-chart-new"></span>
+        <span class="lp-chart-x">D14</span>
+        <span class="lp-sr">5% new data</span>
+      </li></ol>
+</figure>
+
+
+<p class="lp-kicker" data-pagefind-ignore>Comparison</p>
+<h2 id="mongodb-backup-tools-compared-plakar-backup-suites-and-a-mongodump-cron-job" class="group pr-8">MongoDB backup tools compared: Plakar, backup suites and a mongodump cron job
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="mongodb-backup-tools-compared-plakar-backup-suites-and-a-mongodump-cron-job"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>MongoDB backups usually take one of two other forms: an enterprise backup suite
+with a MongoDB agent, or a bare <code>mongodump</code> cron job.</p>
+<div class="lp-table not-prose lp-table--compare">
+  <table>
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th class="lp-col-plakar" scope="col">Plakar</th>
+        <th scope="col">Enterprise backup suites</th>
+        <th scope="col">A <code>mongodump</code> cron job</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Nothing installed on the MongoDB nodes</th>
+        <td class="lp-col-plakar"><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">Plakar connects as a MongoDB client</span></span></td>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Often an agent on each node</span></span></td>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Depends on where the script runs</span></span></td>
+      </tr>
+      <tr>
+        <th scope="row">Encrypted, deduplicated archive history</th>
+        <td class="lp-col-plakar"><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span></span></td>
+        <td><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">In the suite&rsquo;s own storage</span></span></td>
+        <td><span class="lp-mark lp-mark--no"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6.5 6.5l7 7m0-7l-7 7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">No</span><span class="lp-mark-text">Usually one compressed file a run</span></span></td>
+      </tr>
+      <tr>
+        <th scope="row">One collection restored under a new name</th>
+        <td class="lp-col-plakar"><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text"><code>plakar cat</code> piped to <code>mongorestore --nsFrom/--nsTo</code></span></span></td>
+        <td><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">Through the suite&rsquo;s console and agent</span></span></td>
+        <td><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text"><code>mongorestore</code> on the archive</span></span></td>
+      </tr>
+      <tr>
+        <th scope="row">MongoDB and the rest of the stack with one tool</th>
+        <td class="lp-col-plakar"><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">One CLI and one store for files, buckets, <a href="/integrations/postgres/" >PostgreSQL</a>, <a href="/integrations/mysql/" >MySQL</a> and every other integration</span></span></td>
+        <td><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">The workloads the suite supports</span></span></td>
+        <td><span class="lp-mark lp-mark--no"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6.5 6.5l7 7m0-7l-7 7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">No</span><span class="lp-mark-text">One script per technology</span></span></td>
+      </tr>
+      <tr>
+        <th scope="row">Fleet-wide scheduling</th>
+        <td class="lp-col-plakar"><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">Plakar Control Plane: inventories, policies, edges</span></span></td>
+        <td><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">A central console</span></span></td>
+        <td><span class="lp-mark lp-mark--no"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6.5 6.5l7 7m0-7l-7 7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">No</span><span class="lp-mark-text">Your own tooling</span></span></td>
+      </tr>
+      <tr>
+        <th scope="row">Free and open source</th>
+        <td class="lp-col-plakar"><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">The CLI</span></span></td>
+        <td><span class="lp-mark lp-mark--no"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6.5 6.5l7 7m0-7l-7 7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">No</span><span class="lp-mark-text">Commercial licence</span></span></td>
+        <td><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span></span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p class="lp-kicker" data-pagefind-ignore>Managed MongoDB</p>
+<h2 id="managed-mongodb-backup-beyond-provider-snapshots" class="group pr-8">Managed MongoDB backup beyond provider snapshots
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="managed-mongodb-backup-beyond-provider-snapshots"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>A managed service&rsquo;s backups restore quickly inside that service. A Plakar
+snapshot is an archive you keep, under credentials the service does not hold.</p>
+<div class="lp-table not-prose">
+  <table>
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Provider backup</th>
+        <th scope="col">Plakar snapshot</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Location of the copy</th>
+        <td>The provider and region of the cluster</td>
+        <td>A store you pick, in another account, cloud or site</td>
+      </tr>
+      <tr>
+        <th scope="row">Who can delete it</th>
+        <td>The project roles that manage the cluster</td>
+        <td>Whoever holds the store&rsquo;s credentials</td>
+      </tr>
+      <tr>
+        <th scope="row">Retention</th>
+        <td>Set by the service, its policy and the plan</td>
+        <td>Set by your policy, deduplicated</td>
+      </tr>
+      <tr>
+        <th scope="row">Format</th>
+        <td>Managed by the service</td>
+        <td>A <code>mongodump</code> archive that <code>mongorestore</code> reads</td>
+      </tr>
+      <tr>
+        <th scope="row">Restore target</th>
+        <td>A cluster of the same service</td>
+        <td>Any MongoDB server, self-hosted or at any provider</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p class="lp-kicker" data-pagefind-ignore>Quickstart</p>
+<h2 id="how-to-back-up-mongodb-with-the-open-source-plakar-cli" class="group pr-8">How to back up MongoDB with the open-source Plakar CLI
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-to-back-up-mongodb-with-the-open-source-plakar-cli"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<div class="lp-columns lp-columns--5-7">
+
+<div class="lp-column prose max-w-none"><p>The Plakar CLI is free and open source. Install the integration, create a store,
+register the cluster as a source, and run the backup from cron or a systemd
+timer. The backup host needs <code>mongosh</code>, <code>mongodump</code> and <code>mongorestore</code> from the
+MongoDB Database Tools.</p>
+<p>The <a href="/docs/community/main/integrations/mongodb/" >MongoDB CLI documentation</a>
+covers every option of both schemes, inline certificates and the restore
+destination.</p>
+</div>
+
+
+<div class="lp-column prose max-w-none"><figure class="lp-term not-prose" aria-label="Terminal: backup-host">
+  <div class="lp-term-bar" aria-hidden="true">
+    <span class="lp-term-dot lp-term-dot--r"></span>
+    <span class="lp-term-dot lp-term-dot--y"></span>
+    <span class="lp-term-dot lp-term-dot--g"></span>
+    <span class="lp-term-title">backup-host</span>
+  </div>
+  <pre class="lp-term-body"><code><span class="lp-term-prompt">$</span> <span class="lp-term-cmd"><span class="lp-term-bin">plakar</span> pkg add mongodb</span>
+<span class="lp-term-prompt">$</span> <span class="lp-term-cmd"><span class="lp-term-bin">plakar</span> at /var/backups create</span>
+<span class="lp-term-out"></span>
+<span class="lp-term-prompt">$</span> <span class="lp-term-cmd"><span class="lp-term-bin">plakar</span> source add shop-rs mongodb://mongo1.example.com \</span>
+<span class="lp-term-cmd">    username=backup password=secret</span>
+<span class="lp-term-prompt">$</span> <span class="lp-term-cmd"><span class="lp-term-bin">plakar</span> at /var/backups backup &#34;@shop-rs&#34;</span>
+<span class="lp-term-prompt">$</span> <span class="lp-term-cmd"><span class="lp-term-bin">plakar</span> at /var/backups check</span>
+<span class="lp-term-out"></span>
+<span class="lp-term-prompt">$</span> <span class="lp-term-cmd"><span class="lp-term-bin">plakar</span> destination add shop-new mongodb://mongo-new.example.com \</span>
+<span class="lp-term-cmd">    username=admin password=secret</span>
+<span class="lp-term-prompt">$</span> <span class="lp-term-cmd"><span class="lp-term-bin">plakar</span> at /var/backups restore -to &#34;@shop-new&#34; &lt;snapshot_id&gt;</span></code></pre>
+</figure>
+</div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>Control Plane</p>
+<h2 id="mongodb-backups-across-a-fleet-with-plakar-control-plane" class="group pr-8">MongoDB backups across a fleet with Plakar Control Plane
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="mongodb-backups-across-a-fleet-with-plakar-control-plane"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<div class="lp-columns lp-columns--5-7 lp-columns--sticky-left">
+
+<div class="lp-column prose max-w-none"><p>When replica sets and managed clusters multiply across teams, Plakar Control
+Plane schedules their backups from one place. Each cluster is registered once, a
+policy decides how often it is backed up and how long snapshots are kept, and
+the tasks run on Plakar edges that reach the clusters.</p>
+<p><a href="/solutions/control-plane/" >See how Plakar Control Plane works</a>, read the
+<a href="/docs/control-plane/resources/database/mongodb/" >Control Plane MongoDB documentation</a>,
+or <a href="/contact/" >contact us</a> to plan a deployment.</p>
+</div>
+
+
+<div class="lp-column prose max-w-none"><div class="steps">
+<div class="step"><p><strong>Register the clusters.</strong> Add each server or deployment to a self-managed
+inventory, by hand or from a CSV file, as a resource of class <code>Database</code> whose
+endpoint is its host name or SRV host name.</p>
+</div>
+<div class="step"><p><strong>Attach a source.</strong> Choose <code>mongodb</code> or <code>mongodb+srv</code>, with the same
+credentials, TLS and certificate settings as the CLI.</p>
+</div>
+<div class="step"><p><strong>Let a policy schedule it.</strong> A policy sets the frequency, the retention and the
+target store, and every matching cluster is backed up on that schedule.</p>
+</div>
+</div></div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>FAQ</p>
+<h2 id="mongodb-backup-faq" class="group pr-8">MongoDB backup FAQ
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="mongodb-backup-faq"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<div class="lp-columns lp-columns--1-1">
+
+<div class="lp-column prose max-w-none">
+<h3 id="is-mongodump-enough-to-back-up-mongodb" class="group pr-8">Is mongodump enough to back up MongoDB?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="is-mongodump-enough-to-back-up-mongodb"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p><code>mongodump</code> produces the archive. A backup also needs a schedule, a history,
+encryption, a copy in another place and a way to check it. Plakar runs
+<code>mongodump</code> and supplies those.</p>
+
+<h3 id="can-i-back-up-mongodb-while-it-serves-traffic" class="group pr-8">Can I back up MongoDB while it serves traffic?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="can-i-back-up-mongodb-while-it-serves-traffic"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Yes. <code>mongodump</code> reads a running server through an ordinary client connection,
+and the cluster keeps accepting writes while it runs.</p>
+
+<h3 id="do-i-still-need-backups-with-a-mongodb-replica-set" class="group pr-8">Do I still need backups with a MongoDB replica set?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="do-i-still-need-backups-with-a-mongodb-replica-set"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Yes. A replica set survives the loss of a node. A snapshot is what brings back
+data that a bad write, a drop or an attacker removed from every member.</p>
+
+<h3 id="how-do-i-restore-a-single-mongodb-collection-from-a-backup" class="group pr-8">How do I restore a single MongoDB collection from a backup?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-do-i-restore-a-single-mongodb-collection-from-a-backup"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Pipe the archive into <code>mongorestore</code>:
+<code>plakar cat &lt;snapshot_id&gt;:/mongodb-backup.bson | mongorestore --archive --nsInclude='shop.orders'</code>.
+Add <code>--nsFrom='shop.orders' --nsTo='shop.orders_restored'</code> to load it beside the
+original.</p>
+
+<h3 id="how-do-i-back-up-mongodb-to-s3" class="group pr-8">How do I back up MongoDB to S3?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-do-i-back-up-mongodb-to-s3"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Create the Plakar store in an S3-compatible bucket and run <code>plakar backup</code> as
+usual. The archive is encrypted on the backup host, and each night uploads only
+the chunks the bucket does not hold yet.</p>
+
+<h3 id="how-do-i-recover-a-mongodb-database-deleted-by-a-ransom-attack" class="group pr-8">How do I recover a MongoDB database deleted by a ransom attack?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-do-i-recover-a-mongodb-database-deleted-by-a-ransom-attack"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Start a new instance with authentication enabled and a private bind address,
+then restore the last snapshot to it with a <code>mongodb://</code> destination.</p>
+
+<h3 id="how-do-i-get-a-mongodb-backup-file-out-of-plakar" class="group pr-8">How do I get a MongoDB backup file out of Plakar?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-do-i-get-a-mongodb-backup-file-out-of-plakar"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Run <code>plakar restore -to /tmp/mongo-restore &lt;snapshot_id&gt;</code>. It writes
+<code>mongodb-backup.bson</code>, a standard <code>mongodump</code> archive that
+<code>mongorestore --archive=/tmp/mongo-restore/mongodb-backup.bson</code> loads on any
+machine with the MongoDB Database Tools.</p>
+</div>
+
+
+<div class="lp-column prose max-w-none">
+<h3 id="which-role-does-the-mongodb-backup-user-need" class="group pr-8">Which role does the MongoDB backup user need?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="which-role-does-the-mongodb-backup-user-need"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>The built-in <code>backup</code> role, granted on the <code>admin</code> database, covers a full
+<code>mongodump</code>. Restoring with the destination needs the <code>restore</code> role on the
+target server.</p>
+
+<h3 id="does-a-mongodb-backup-include-users-and-roles" class="group pr-8">Does a MongoDB backup include users and roles?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="does-a-mongodb-backup-include-users-and-roles"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Yes. A dump of the whole instance carries the user and role definitions from
+<code>admin</code>, and a restore of the full archive recreates them on the target.</p>
+
+<h3 id="can-plakar-back-up-mongodb-atlas-or-another-managed-cluster" class="group pr-8">Can Plakar back up MongoDB Atlas or another managed cluster?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="can-plakar-back-up-mongodb-atlas-or-another-managed-cluster"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Yes. Use a <code>mongodb+srv://</code> source with the cluster&rsquo;s SRV host name, such as the
+one MongoDB Atlas shows in its connection string, and a database user that can
+read every database.</p>
+
+<h3 id="how-do-i-connect-to-mongodb-with-tls-or-x509" class="group pr-8">How do I connect to MongoDB with TLS or X.509?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-do-i-connect-to-mongodb-with-tls-or-x509"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>TLS is on by default. Set <code>tls_ca_cert</code> for a private CA, and <code>tls_client_cert</code>
+with <code>auth_mechanism=MONGODB-X509</code> for certificate login. The <code>_data</code> variants
+take the PEM content inline.</p>
+
+<h3 id="how-do-i-schedule-mongodb-backups" class="group pr-8">How do I schedule MongoDB backups?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-do-i-schedule-mongodb-backups"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Run <code>plakar backup &quot;@&lt;source&gt;&quot;</code> from cron or a systemd timer on the backup host.
+Across many clusters, a Plakar Control Plane policy sets the frequency and the
+retention and schedules every matching cluster.</p>
+
+<h3 id="how-much-disk-space-does-the-mongodb-backup-host-need" class="group pr-8">How much disk space does the MongoDB backup host need?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-much-disk-space-does-the-mongodb-backup-host-need"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>None for the archive. <code>mongodump</code> streams into Plakar, and only the store grows,
+by the chunks each run adds.</p>
+
+<h3 id="should-i-use-the-free-cli-or-plakar-control-plane" class="group pr-8">Should I use the free CLI or Plakar Control Plane?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="should-i-use-the-free-cli-or-plakar-control-plane"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Start with the free, open-source CLI for a few clusters on cron. Move to Plakar
+Control Plane for policies, edges and one view across many clusters and teams.
+Both run the same MongoDB integration.</p>
+</div>
+
+
+</div>
+
 
     </article>
   </div>
 </section>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://www.plakar.io/","name":"Home","position":1},{"@type":"ListItem","item":"https://www.plakar.io/integrations/","name":"Integrations","position":2},{"@type":"ListItem","item":"https://www.plakar.io/integrations/mongodb/","name":"MongoDB","position":3}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","applicationCategory":"UtilitiesApplication","description":"Protect your MongoDB deployments against accidental deletion, ransomware, and operator error. Plakar captures encrypted, deduplicated snapshots of a running server and restores them to any environment.","name":"Plakar MongoDB integration","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"operatingSystem":"Linux, macOS, Windows, FreeBSD","publisher":{"@type":"Organization","name":"Plakar","url":"https://www.plakar.io/"},"url":"https://www.plakar.io/integrations/mongodb/"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://www.plakar.io/","name":"Home","position":1},{"@type":"ListItem","item":"https://www.plakar.io/integrations/","name":"Integrations","position":2},{"@type":"ListItem","item":"https://www.plakar.io/integrations/mongodb/","name":"MongoDB","position":3}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","applicationCategory":"UtilitiesApplication","description":"Free, open-source MongoDB backup: mongodump archives in encrypted, deduplicated snapshots. Restore a server, or one collection with mongorestore.","name":"Plakar MongoDB integration","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"operatingSystem":"Linux, macOS, Windows, FreeBSD","publisher":{"@type":"Organization","name":"Plakar","url":"https://www.plakar.io/"},"url":"https://www.plakar.io/integrations/mongodb/"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"mongodump produces the archive. A backup also needs a schedule, a history, encryption, a copy in another place and a way to check it. Plakar runs mongodump and supplies those."},"name":"Is mongodump enough to back up MongoDB?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Yes. mongodump reads a running server through an ordinary client connection, and the cluster keeps accepting writes while it runs."},"name":"Can I back up MongoDB while it serves traffic?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Yes. A replica set survives the loss of a node. A snapshot is what brings back data that a bad write, a drop or an attacker removed from every member."},"name":"Do I still need backups with a MongoDB replica set?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Pipe the archive into mongorestore: plakar cat \u003csnapshot_id\u003e:/mongodb-backup.bson | mongorestore --archive --nsInclude='shop.orders'. Add --nsFrom='shop.orders' --nsTo='shop.orders_restored' to load it beside the original."},"name":"How do I restore a single MongoDB collection from a backup?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Create the Plakar store in an S3-compatible bucket and run plakar backup as usual. The archive is encrypted on the backup host, and each night uploads only the chunks the bucket does not hold yet."},"name":"How do I back up MongoDB to S3?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Start a new instance with authentication enabled and a private bind address, then restore the last snapshot to it with a mongodb:// destination."},"name":"How do I recover a MongoDB database deleted by a ransom attack?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Run plakar restore -to /tmp/mongo-restore \u003csnapshot_id\u003e. It writes mongodb-backup.bson, a standard mongodump archive that mongorestore --archive=/tmp/mongo-restore/mongodb-backup.bson loads on any machine with the MongoDB Database Tools."},"name":"How do I get a MongoDB backup file out of Plakar?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"The built-in backup role, granted on the admin database, covers a full mongodump. Restoring with the destination needs the restore role on the target server."},"name":"Which role does the MongoDB backup user need?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Yes. A dump of the whole instance carries the user and role definitions from admin, and a restore of the full archive recreates them on the target."},"name":"Does a MongoDB backup include users and roles?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Yes. Use a mongodb+srv:// source with the cluster’s SRV host name, such as the one MongoDB Atlas shows in its connection string, and a database user that can read every database."},"name":"Can Plakar back up MongoDB Atlas or another managed cluster?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"TLS is on by default. Set tls_ca_cert for a private CA, and tls_client_cert with auth_mechanism=MONGODB-X509 for certificate login. The _data variants take the PEM content inline."},"name":"How do I connect to MongoDB with TLS or X.509?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Run plakar backup \"@\u003csource\u003e\" from cron or a systemd timer on the backup host. Across many clusters, a Plakar Control Plane policy sets the frequency and the retention and schedules every matching cluster."},"name":"How do I schedule MongoDB backups?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"None for the archive. mongodump streams into Plakar, and only the store grows, by the chunks each run adds."},"name":"How much disk space does the MongoDB backup host need?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Start with the free, open-source CLI for a few clusters on cron. Move to Plakar Control Plane for policies, edges and one view across many clusters and teams. Both run the same MongoDB integration."},"name":"Should I use the free CLI or Plakar Control Plane?"}]}</script>
 
 
 

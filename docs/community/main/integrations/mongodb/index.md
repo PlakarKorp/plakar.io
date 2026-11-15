@@ -22,7 +22,13 @@ Each protocol matches one of the two MongoDB connection string formats:
 
 **Requirements**
 
-- `mongosh`, `mongodump`, and `mongorestore` available in `$PATH`.
+- `mongosh`, `mongodump`, and `mongorestore` available in `$PATH` on the machine
+  running Plakar. `mongosh` checks that the server answers before a backup or a
+  restore, `mongodump` runs the backup and `mongorestore` the restore.
+- A MongoDB user defined in the `admin` database. Plakar passes no
+  authentication database, so the tools authenticate against `admin`. The
+  built-in `backup` role covers a backup of every database, and the built-in
+  `restore` role covers a restore.
 
 ## Installation
 
@@ -104,7 +110,7 @@ connectors.
 
 | Option                 | Required | Description                                                                                                                                           |
 | ---------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `location`             | Yes      | URL of the MongoDB server. Must begin with `mongodb://` or `mongodb+srv://`.                                                                          |
+| `location`             | Yes      | `mongodb://host`, `mongodb://host:port` or `mongodb+srv://host`. Host name and port only: user, database and query string are rejected.               |
 | `port`                 | No       | The MongoDB server port. Overrides a port given in `location`. Defaults to `27017`. Ignored when using `mongodb+srv`.                                 |
 | `username`             | No       | Username for authentication to MongoDB.                                                                                                               |
 | `password`             | No       | Password for authentication to MongoDB.                                                                                                               |
@@ -279,6 +285,34 @@ $ plakar destination add my-atlas-restore \
 
 $ plakar at /var/backups restore -to "@my-atlas-restore" <snapshot_id>
 ```
+
+## Snapshot contents
+
+A backup runs `mongodump --archive` against the server and streams its output
+into the snapshot, without writing a temporary file on the machine running
+Plakar. Each snapshot holds a single file, `/mongodb-backup.bson`, a standard
+`mongodump` archive. It contains every database the user can read, except
+`local`, with the index definitions, and the users and roles defined in `admin`.
+
+## Restoring a single collection
+
+The destination connector restores the whole archive. To restore one collection,
+stream the archive from the snapshot into `mongorestore` and select the
+collection with `--nsInclude`. `--nsFrom` and `--nsTo` load it under a new name,
+next to the original:
+
+```bash
+$ plakar at /var/backups cat <snapshot_id>:/mongodb-backup.bson | \
+    mongorestore --uri="mongodb://<MONGODB_HOST>" \
+    --username=<YOUR_USERNAME> \
+    --archive \
+    --nsInclude='shop.orders' \
+    --nsFrom='shop.orders' --nsTo='shop.orders_restored'
+```
+
+To keep the archive as a file, restore the snapshot to a directory with
+`plakar at /var/backups restore -to /tmp/mongo-restore <snapshot_id>`, then run
+`mongorestore --archive=/tmp/mongo-restore/mongodb-backup.bson`.
 
 ## Restore behaviour
 

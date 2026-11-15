@@ -9,6 +9,12 @@ both backup and restore. The integration supports two protocols, `mongodb` and
 `mongodb+srv`, matching the two MongoDB connection string formats. Both support
 backup and restore.
 
+## MongoDB user
+
+The source and destination apps authenticate against the `admin` database, so
+the MongoDB user must be defined there. The built-in `backup` role covers a
+backup of every database, and the built-in `restore` role covers a restore.
+
 ## Running MongoDB tasks on an edge
 
 The MongoDB integration relies on `mongosh`, `mongodump`, and `mongorestore`,
@@ -56,7 +62,8 @@ or import them from a CSV file.
 To add a MongoDB server as a resource, use `Database` as the class and leave the
 subclass empty. For the endpoint, use the hostname or IP address of the MongoDB
 server, or the SRV hostname of the deployment when using the `mongodb+srv`
-protocol. See [resources documentation](../../resources) for more information on
+protocol. The endpoint is a host name only, without user, database or query
+string. See [resources documentation](../../resources) for more information on
 how to set up resources on a self-managed inventory.
 
 ## 1. `mongodb` protocol
@@ -202,6 +209,14 @@ destination apps using the `mongodb+srv` protocol.
   only one of them is an error.
 - **Use Tls**: Use an encrypted TLS/SSL connection. Defaults to `true`.
 - **Username**: The username used to authenticate to MongoDB.
+
+## Snapshot contents
+
+Each snapshot holds a single file, `/mongodb-backup.bson`, the archive written
+by `mongodump --archive`. It contains every database the user can read, except
+`local`, and the users and roles defined in `admin`. To restore a single
+collection from it, see
+[Restoring a single collection](/docs/community/main/integrations/mongodb/#restoring-a-single-collection).
 
 ## Restore behaviour
 
