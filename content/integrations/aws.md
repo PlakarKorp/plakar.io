@@ -18,7 +18,7 @@ technology_description: >
   tagged for backup stays outside every plan, and RDS automated backups last 35
   days at most and leave with the instance unless they are retained.
 
-  Plakar Control Plane reads the account every 15 minutes, turns AWS tags into
+  Plakar Control Plane reads the account every 15 minutes, matches AWS tags to
   backup policies, and keeps the credentials its backups use in AWS Secrets
   Manager, read through the IAM role of its EC2 instance.
 
@@ -68,9 +68,9 @@ image: img/integrations/aws.png
 
 The AWS integration connects Plakar Control Plane to an AWS account. Its
 inventory lists the S3 buckets, RDS databases and EC2 instances of the account
-every 15 minutes, with their AWS tags, so new resources enter backup policies
-without a ticket. Its secret provider reads the passwords and keys those backups
-use from AWS Secrets Manager.
+every 15 minutes with their AWS tags, so a new bucket or RDS database enters a
+backup policy without a ticket. Its secret provider reads the passwords and keys
+those backups use from AWS Secrets Manager.
 
 The backups run through the integration that matches each resource. The
 [S3](/integrations/s3/) integration backs up a bucket and can also hold the
@@ -114,12 +114,12 @@ account or at another provider, opened with its own passphrase.
 
 {{< card label="one tool" >}}
 
-### AWS and the rest of the stack in one store
+### AWS and the rest of the stack with one tool
 
-The same policies and stores cover the AWS account, the
-[Kubernetes](/integrations/kubernetes/) clusters and the
-[MongoDB](/integrations/mongodb/) replica sets that run elsewhere, with one
-restore procedure for all of them.
+One set of policies and stores covers the buckets and databases of the AWS
+account, the [Kubernetes](/integrations/kubernetes/) clusters and the
+[MongoDB](/integrations/mongodb/) replica sets that run elsewhere. A policy for
+the `production` environment and its data classes schedules all of them.
 
 {{< /card >}}
 
@@ -136,39 +136,27 @@ restore procedure for all of them.
 A coding agent working with a developer's AWS profile creates an RDS PostgreSQL
 instance, `orders-preview`, for a feature branch. The branch ships, and the
 instance now holds real orders. Nothing in AWS records that it needs a backup.
-The inventory lists it at the next synchronization, with the tags the agent or
-the pipeline set, and the policy for `plakar:env=production` schedules it.
-Agent-created resources follow the same path as every other one.
-
-{{< /card >}}
-
-{{< card label="s3:bucket acme-ml-features-eu" >}}
-
-### An S3 bucket created from the console
-
-A data scientist creates `acme-ml-features-eu` from the S3 console to share
-training features, and three teams start writing to it. A configuration bundle
-scoped to the Object Storage class of the AWS inventory creates an S3 source for
-every bucket it discovers, this one included. The bucket is in a backup policy
-before anyone opens a ticket.
+The inventory lists it at the next synchronization, with the
+`plakar:env=production` tag the pipeline set. A configuration bundle gives it a
+PostgreSQL source, and the `production` policy schedules it like any database
+created by hand.
 
 {{< /card >}}
 
 {{< card label="AKIA key in a public repository" >}}
 
-### An S3 access key pushed to a public repository
+### An AWS access key for backups pushed to a public repository
 
-A backup script with an access key in plain text lands in a public GitHub
-repository. With the secret provider, the S3 source holds a path such as
-`prod/plakar/s3-archive#secret_key` instead of the key. The key is rotated once
-in AWS Secrets Manager, and the next backup reads the new value. Plakar Control
-Plane stored only the path.
+A script holding the S3 access key of the archive bucket lands in a public
+GitHub repository. The S3 source in Plakar Control Plane points to
+`prod/plakar/s3-archive#secret_key`, so the key is rotated once in AWS Secrets
+Manager, and the next backup reads the new value with no source to edit.
 
 {{< /card >}}
 
 {{< card label="private subnet" >}}
 
-### RDS databases with no public endpoint
+### Amazon RDS databases with no public endpoint
 
 The production RDS cluster sits in a private subnet of another VPC. The AWS
 inventory names an edge pool whose edges run in that VPC. Those edges
@@ -185,7 +173,9 @@ database is reached from inside its own network.
 
 {{< column >}}
 
-AWS tags carry the backup intent. A resource tagged `plakar:env=production` and
+A bucket a data scientist creates from the S3 console, such as
+`acme-ml-features-eu`, needs no ticket to be backed up: AWS tags carry the
+backup intent. A resource tagged `plakar:env=production` and
 `plakar:class=database` gets `production` as the environment and `database` as
 the data class of its source, and every policy scoped to that pair schedules it.
 
@@ -233,8 +223,8 @@ them up.
 {{< column >}}
 
 Plakar Control Plane stores a path to the secret, never its value, and resolves
-it each time a task needs the credential. A rotation in Secrets Manager reaches
-every app that uses the path, with nothing to change in Plakar.
+it each time a task needs the credential. Every app and inventory that uses the
+path reads the current value.
 
 1. Create a key/value secret ("Other type of secret" in the console), encrypted
    with `aws/secretsmanager` or your own KMS key.
@@ -302,7 +292,7 @@ logs and SQL dumps shrink, and the other provider receives only encrypted data.
 
 {{< card label="credentials_type=iam" >}}
 
-### The EC2 instance role reads the account
+### AWS inventory and Secrets Manager through the EC2 instance role
 
 When Plakar Control Plane runs on EC2, the inventory and the secret provider use
 the IAM role attached to the instance, through the standard AWS credential
@@ -323,7 +313,7 @@ task. The source stores a user, a host and a region, and no password.
 
 {{< card label="ambient credentials" >}}
 
-### S3 sources with no stored key
+### Amazon S3 sources with no stored access key
 
 An S3 source created from the inventory can leave both key fields empty. The
 task then signs its requests with the IAM role of the edge that runs it, as the
@@ -398,10 +388,10 @@ bucket.
 The AWS integration is part of Plakar Control Plane, which reaches the AWS APIs
 over HTTPS from wherever it runs: an EC2 instance in the account, another cloud
 provider or a data center. Policies schedule every discovered source whose
-environment and data class they match, edge pools reach resources in private
-VPCs, and a residency on the inventory keeps the backups of its resources in
-stores of the same residency. The S3, PostgreSQL and MySQL integrations it hands
-resources to are free and open source in the `plakar` CLI as well.
+environment and data class they match, and a residency on the inventory keeps
+the backups of its resources in stores of the same residency. The S3, PostgreSQL
+and MySQL integrations it hands resources to are free and open source in the
+`plakar` CLI as well.
 
 [See how Plakar Control Plane works](/solutions/control-plane/), read the
 [AWS inventory documentation](/docs/control-plane/inventories/managed/aws/), or
@@ -426,12 +416,12 @@ They dump each database with `pg_dump` or `mysqldump`, and `postgres+aws://`
 signs in with an IAM token. The dump restores to the same instance, a new one,
 or any server outside AWS.
 
-### How do I find AWS resources that have no backup?
+### How do I make sure new AWS resources get a backup?
 
-Open the AWS inventory: it lists every S3 bucket and RDS database of the
-account, tagged or not. A configuration bundle with **Auto-create connectors**
-gives each one a source, and the policies schedule every source that matches
-them.
+Let a configuration bundle cover them. The AWS inventory lists the S3 buckets
+and RDS databases it discovers, a bundle with **Auto-create connectors** gives
+each one in its scope a source, and the policies schedule every source that
+matches them.
 
 ### How often does the AWS inventory refresh?
 
@@ -448,6 +438,14 @@ key of an IAM user that holds the read-only policy.
 {{< /column >}}
 
 {{< column >}}
+
+### How long does AWS keep RDS automated backups?
+
+35 days at most. The backup retention period of an RDS DB instance
+(`--backup-retention-period`) ranges from 0 to 35 days, 7 by default in the
+console, and automated backups are deleted with the instance unless **Retain
+automated backups** is chosen. A Plakar policy keeps its snapshots for the
+retention tiers it defines.
 
 ### How does Plakar back up an S3 bucket found on AWS?
 
@@ -469,8 +467,8 @@ one works alone.
 ### Which IAM permissions does the Secrets Manager provider need?
 
 `secretsmanager:GetSecretValue` and `secretsmanager:DescribeSecret` on the
-secrets it reads, granted to the IAM role or user the provider signs in with,
-next to the inventory permissions.
+secrets it reads, granted to the IAM role of the EC2 instance that runs Plakar
+Control Plane, next to the inventory permissions.
 
 ### How do I cover several AWS accounts?
 
@@ -480,9 +478,10 @@ use its own edge pool and residency.
 
 ### Where should AWS backups be stored?
 
-In a store your policies point to, such as an S3 bucket in a separate account
-with Object Lock enabled, or a store at another provider. A sync between two
-stores keeps a second copy under other credentials.
+Away from the account that holds the data. A store can be an S3 bucket in
+another AWS account, where Object Lock applies once you enable it, or a bucket
+at another provider. A sync between two stores keeps a second copy under other
+credentials.
 
 {{< /column >}}
 
