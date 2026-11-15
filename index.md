@@ -143,7 +143,7 @@
 
 - [Stdio](https://www.plakar.io/integrations/stdio/index.md): Back up and restore data directly via Stdio without creating temporary files. Plakar ensures encrypted, deduplicated, and verifiable snapshots for database dumps, logs, and automated pipelines.
 
-- [Tar](https://www.plakar.io/integrations/tar/index.md): Import data from existing tar archives into Plakar. Imported data is stored securely as deduplicated, verifiable snapshots.
+- [Tar](https://www.plakar.io/integrations/tar/index.md): Free, open-source import of tar and tar.gz archives into encrypted, deduplicated snapshots, read in place without extraction, compared and exported as tar.
 
 
 

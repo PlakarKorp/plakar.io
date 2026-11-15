@@ -73,7 +73,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="integrations">
     <meta property="article:published_time" content="2026-04-02T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-14T20:53:23-07:00">
+    <meta property="article:modified_time" content="2026-11-14T22:18:08-07:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -230,12 +230,12 @@
     "dateCreated": "2026-04-02T00:00:00\u002b00:00",
     "datePublished": "2026-04-02T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-14T20:53:23-07:00",
+    "dateModified": "2026-11-14T22:18:08-07:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/integrations/mysql/",
-    "wordCount":  3472 
+    "wordCount":  3957 
   }]
   </script>
 
@@ -3008,6 +3008,63 @@ instance connection name.</p>
 <p>Teams often run both: one source per application database for fast, targeted
 restores, and a nightly whole-server source that captures accounts and grants.</p>
 
+<p class="lp-kicker" data-pagefind-ignore>Recovery objectives</p>
+<h2 id="mysql-backup-strategy-rpo-rto-and-what-to-restore" class="group pr-8">MySQL backup strategy: RPO, RTO and what to restore
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="mysql-backup-strategy-rpo-rto-and-what-to-restore"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>A MySQL backup plan starts from two numbers. The recovery point objective (RPO)
+is how much recent data the business can afford to lose. The recovery time
+objective (RTO) is how long it can wait for the data to come back. A third
+question sets what each source must cover: what you need to bring back.</p>
+<div class="lp-table not-prose">
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">What you must recover</th>
+        <th scope="col">Snapshot that holds it</th>
+        <th scope="col">How it comes back</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">A whole server after a host loss</th>
+        <td>A whole-server source, <code>/all.sql</code></td>
+        <td>A <code>mysql://</code> destination on a new server, accounts included</td>
+      </tr>
+      <tr>
+        <th scope="row">One application database</th>
+        <td>One source per database, <code>/&lt;name&gt;.sql</code></td>
+        <td>Under its own name or a new one with <code>create_db=true</code></td>
+      </tr>
+      <tr>
+        <th scope="row">One dropped table</th>
+        <td>The database&rsquo;s snapshot from before the drop</td>
+        <td>A side database, then <code>INSERT ... SELECT</code></td>
+      </tr>
+      <tr>
+        <th scope="row">Rows changed by a bad <code>UPDATE</code></th>
+        <td>The snapshot from before the change</td>
+        <td>A side database, then a row-by-row comparison</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p>The RPO sets the schedule. A one-hour RPO means a <code>plakar backup</code> every hour,
+from cron or from a Plakar Control Plane policy. The RTO comes from a measured
+restore, which the restore drill below gives you on a server of the same size.</p>
+
 <p class="lp-kicker" data-pagefind-ignore>Built on MySQL practice</p>
 <h2 id="mysql-and-mariadb-backup-best-practices-built-in" class="group pr-8">MySQL and MariaDB backup best practices built in
     <button
@@ -3075,6 +3132,33 @@ second copy with
   <p class="lp-pair-lead">Backups you have checked.</p>
   <div class="lp-pair-body prose max-w-none"><p><a href="/docs/community/v1.1.0/references/commands/plakar-check/" ><code>plakar check</code></a>
 verifies the integrity of every snapshot without restoring it.</p>
+</div>
+</div>
+
+
+<div class="lp-pair">
+  <p class="lp-pair-lead">Restore drills on a staging server.</p>
+  <div class="lp-pair-body prose max-w-none"><p>Restore the latest snapshot into <code>shop_staging</code> with <code>create_db=true</code> every
+week. The drill proves the dump loads, times the restore against your RTO, and
+gives staging current production data in the same run.</p>
+</div>
+</div>
+
+
+<div class="lp-pair">
+  <p class="lp-pair-lead">No backup credentials on the database server.</p>
+  <div class="lp-pair-body prose max-w-none"><p>Run Plakar on a separate backup host. The MySQL server then holds neither the
+credentials of the store nor its passphrase, so an intruder on the database host
+finds no key to the snapshots there.</p>
+</div>
+</div>
+
+
+<div class="lp-pair">
+  <p class="lp-pair-lead">A passphrase the whole on-call rotation can reach.</p>
+  <div class="lp-pair-body prose max-w-none"><p>Snapshots open only with the store passphrase. Keep it in a secret manager that
+every on-call engineer can read, so a restore never waits for the person who set
+up the backups.</p>
 </div>
 </div>
 
@@ -3883,6 +3967,12 @@ takes little space after deduplication and gives you a way back.</p>
 </div>
 
 
+<div class="step"><p><strong>Check the restored tables before switching back.</strong> Run <code>CHECK TABLE</code> on them
+and compare <code>SELECT COUNT(*)</code> with what the application expects, then point the
+application at the data again.</p>
+</div>
+
+
 </div>
 
 
@@ -3961,6 +4051,27 @@ consistent transaction while the server keeps serving writes.</p>
 other statement. Replication covers the loss of a server, and a snapshot covers
 the loss of data.</p>
 
+<h3 id="how-does-a-delayed-mysql-replica-compare-with-a-backup" class="group pr-8">How does a delayed MySQL replica compare with a backup?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-does-a-delayed-mysql-replica-compare-with-a-backup"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>A delayed replica covers a mistake noticed within its delay, and a snapshot
+covers a mistake found at any later date. On MySQL,
+<code>CHANGE REPLICATION SOURCE TO SOURCE_DELAY=N</code> holds each transaction back N
+seconds, 0 by default. Plakar snapshots keep every past state for as long as
+your retention allows.</p>
+
 <h3 id="how-do-i-restore-a-dropped-mysql-table" class="group pr-8">How do I restore a dropped MySQL table?
     <button
       type="button"
@@ -3998,6 +4109,25 @@ the loss of data.</p>
 <p>One database restores under any name, which suits targeted restores. The whole
 server captures every database plus the user accounts and grants. Many teams
 schedule both.</p>
+
+<h3 id="how-often-should-i-back-up-mysql" class="group pr-8">How often should I back up MySQL?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-often-should-i-back-up-mysql"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>As often as your recovery point objective requires. An RPO of one hour calls for
+an hourly snapshot, and each run stores only the data that changed since the
+previous one.</p>
 
 <h3 id="how-do-i-back-up-mariadb" class="group pr-8">How do I back up MariaDB?
     <button
@@ -4134,6 +4264,26 @@ network. Google Cloud SQL can also be reached by connection name with
 <code>plakar cat &lt;snapshot_id&gt;:/manifest.json</code> to see the server, the databases and
 the tables it holds.</p>
 
+<h3 id="how-do-i-see-how-a-mysql-schema-changed-between-two-dates" class="group pr-8">How do I see how a MySQL schema changed between two dates?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-do-i-see-how-a-mysql-schema-changed-between-two-dates"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Compare the manifests of two snapshots with
+<code>plakar diff &lt;old_id&gt;:/manifest.json &lt;new_id&gt;:/manifest.json</code>. The unified diff
+shows the tables, columns, indexes and constraints added, changed or dropped
+between the two backups.</p>
+
 <h3 id="can-i-back-up-mysql-from-a-replica" class="group pr-8">Can I back up MySQL from a replica?
     <button
       type="button"
@@ -4198,7 +4348,7 @@ run the same MySQL integration.</p>
   </div>
 </section>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://www.plakar.io/","name":"Home","position":1},{"@type":"ListItem","item":"https://www.plakar.io/integrations/","name":"Integrations","position":2},{"@type":"ListItem","item":"https://www.plakar.io/integrations/mysql/","name":"MySQL / MariaDB","position":3}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","applicationCategory":"UtilitiesApplication","description":"Free, open-source MySQL and MariaDB backup: mysqldump or mariadb-dump into encrypted snapshots. Restore a dropped table through a side database.","name":"Plakar MySQL / MariaDB integration","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"operatingSystem":"Linux, macOS, Windows, FreeBSD","publisher":{"@type":"Organization","name":"Plakar","url":"https://www.plakar.io/"},"url":"https://www.plakar.io/integrations/mysql/"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"mysqldump produces a consistent SQL copy. A backup also needs scheduling, history, encryption, a second location and a way to check the copies. Plakar runs mysqldump and provides the rest."},"name":"Is mysqldump enough to back up MySQL?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"With single_transaction=true, the default, InnoDB tables are dumped in one consistent transaction while the server keeps serving writes."},"name":"How does Plakar get a consistent MySQL or MariaDB dump?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Yes. A replica applies a DROP TABLE or a wrong UPDATE as faithfully as any other statement. Replication covers the loss of a server, and a snapshot covers the loss of data."},"name":"Do I still need backups if I run MySQL or MariaDB replication?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Restore the last snapshot into a side database with a destination such as mysql://root@db/shop_restore create_db=true. Then recreate the table with CREATE TABLE ... LIKE and copy its rows with INSERT ... SELECT."},"name":"How do I restore a dropped MySQL table?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"One database restores under any name, which suits targeted restores. The whole server captures every database plus the user accounts and grants. Many teams schedule both."},"name":"Should I back up one database or the whole server?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Use mysql+mariadb://. It runs mariadb-dump for backups and mariadb for restores, with the same options as mysql://."},"name":"How do I back up MariaDB?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Create the Plakar store in an S3-compatible bucket and run the same plakar backup. The dump is encrypted on the backup host before it reaches the bucket, and only changed chunks are uploaded each night."},"name":"How do I back up MySQL to S3?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Set set_gtid_purged=OFF on the source, so the dump carries no SET @@GLOBAL.GTID_PURGED statement and loads into a server with its own GTID history."},"name":"How do I fix “@@GLOBAL.GTID_PURGED cannot be changed” when restoring?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"The one from the server’s own distribution. mysql:// calls MySQL’s mysqldump, mysql+mariadb:// calls mariadb-dump, and mysql_bin_dir points to a specific installation. The manifest records the binary behind every dump."},"name":"Which mysqldump should the backup host use?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Yes. mysql:// connects to any managed MySQL that accepts a user over the network. Google Cloud SQL can also be reached by connection name with mysql+gcsql://, without running the Auth Proxy."},"name":"Does it work with managed MySQL services?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"For one database, SELECT, SHOW VIEW, TRIGGER and EVENT on it, plus PROCESS. For the whole server, the same on *.* with LOCK TABLES and RELOAD. The documentation has the GRANT statements."},"name":"Which privileges does the backup user need?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Run plakar check to verify the snapshot, then plakar cat \u003csnapshot_id\u003e:/manifest.json to see the server, the databases and the tables it holds."},"name":"How do I check a MySQL backup before restoring it?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Yes. Point the source at a replica to spare the primary. The manifest field is_read_replica shows that the snapshot came from a read-only server."},"name":"Can I back up MySQL from a replica?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Almost none for the dump. mysqldump writes to Plakar directly, and only the store grows."},"name":"How much disk space does the backup host need?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Start with the free, open-source CLI for a few servers. Move to Plakar Control Plane for discovery, policies and one view across many databases and teams. Both run the same MySQL integration."},"name":"Should I use the free CLI or Plakar Control Plane?"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://www.plakar.io/","name":"Home","position":1},{"@type":"ListItem","item":"https://www.plakar.io/integrations/","name":"Integrations","position":2},{"@type":"ListItem","item":"https://www.plakar.io/integrations/mysql/","name":"MySQL / MariaDB","position":3}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","applicationCategory":"UtilitiesApplication","description":"Free, open-source MySQL and MariaDB backup: mysqldump or mariadb-dump into encrypted snapshots. Restore a dropped table through a side database.","name":"Plakar MySQL / MariaDB integration","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"operatingSystem":"Linux, macOS, Windows, FreeBSD","publisher":{"@type":"Organization","name":"Plakar","url":"https://www.plakar.io/"},"url":"https://www.plakar.io/integrations/mysql/"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"mysqldump produces a consistent SQL copy. A backup also needs scheduling, history, encryption, a second location and a way to check the copies. Plakar runs mysqldump and provides the rest."},"name":"Is mysqldump enough to back up MySQL?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"With single_transaction=true, the default, InnoDB tables are dumped in one consistent transaction while the server keeps serving writes."},"name":"How does Plakar get a consistent MySQL or MariaDB dump?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Yes. A replica applies a DROP TABLE or a wrong UPDATE as faithfully as any other statement. Replication covers the loss of a server, and a snapshot covers the loss of data."},"name":"Do I still need backups if I run MySQL or MariaDB replication?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"A delayed replica covers a mistake noticed within its delay, and a snapshot covers a mistake found at any later date. On MySQL, CHANGE REPLICATION SOURCE TO SOURCE_DELAY=N holds each transaction back N seconds, 0 by default. Plakar snapshots keep every past state for as long as your retention allows."},"name":"How does a delayed MySQL replica compare with a backup?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Restore the last snapshot into a side database with a destination such as mysql://root@db/shop_restore create_db=true. Then recreate the table with CREATE TABLE ... LIKE and copy its rows with INSERT ... SELECT."},"name":"How do I restore a dropped MySQL table?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"One database restores under any name, which suits targeted restores. The whole server captures every database plus the user accounts and grants. Many teams schedule both."},"name":"Should I back up one database or the whole server?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"As often as your recovery point objective requires. An RPO of one hour calls for an hourly snapshot, and each run stores only the data that changed since the previous one."},"name":"How often should I back up MySQL?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Use mysql+mariadb://. It runs mariadb-dump for backups and mariadb for restores, with the same options as mysql://."},"name":"How do I back up MariaDB?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Create the Plakar store in an S3-compatible bucket and run the same plakar backup. The dump is encrypted on the backup host before it reaches the bucket, and only changed chunks are uploaded each night."},"name":"How do I back up MySQL to S3?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Set set_gtid_purged=OFF on the source, so the dump carries no SET @@GLOBAL.GTID_PURGED statement and loads into a server with its own GTID history."},"name":"How do I fix “@@GLOBAL.GTID_PURGED cannot be changed” when restoring?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"The one from the server’s own distribution. mysql:// calls MySQL’s mysqldump, mysql+mariadb:// calls mariadb-dump, and mysql_bin_dir points to a specific installation. The manifest records the binary behind every dump."},"name":"Which mysqldump should the backup host use?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Yes. mysql:// connects to any managed MySQL that accepts a user over the network. Google Cloud SQL can also be reached by connection name with mysql+gcsql://, without running the Auth Proxy."},"name":"Does it work with managed MySQL services?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"For one database, SELECT, SHOW VIEW, TRIGGER and EVENT on it, plus PROCESS. For the whole server, the same on *.* with LOCK TABLES and RELOAD. The documentation has the GRANT statements."},"name":"Which privileges does the backup user need?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Run plakar check to verify the snapshot, then plakar cat \u003csnapshot_id\u003e:/manifest.json to see the server, the databases and the tables it holds."},"name":"How do I check a MySQL backup before restoring it?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Compare the manifests of two snapshots with plakar diff \u003cold_id\u003e:/manifest.json \u003cnew_id\u003e:/manifest.json. The unified diff shows the tables, columns, indexes and constraints added, changed or dropped between the two backups."},"name":"How do I see how a MySQL schema changed between two dates?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Yes. Point the source at a replica to spare the primary. The manifest field is_read_replica shows that the snapshot came from a read-only server."},"name":"Can I back up MySQL from a replica?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Almost none for the dump. mysqldump writes to Plakar directly, and only the store grows."},"name":"How much disk space does the backup host need?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Start with the free, open-source CLI for a few servers. Move to Plakar Control Plane for discovery, policies and one view across many databases and teams. Both run the same MySQL integration."},"name":"Should I use the free CLI or Plakar Control Plane?"}]}</script>
 
 
 

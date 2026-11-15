@@ -11,8 +11,8 @@
 
   
   
-    <title>Tar &middot; Plakar</title>
-    <meta name="title" content="Tar &middot; Plakar">
+    <title>Free, Open-Source Tar and tar.gz Archive Import &middot; Plakar</title>
+    <meta name="title" content="Free, Open-Source Tar and tar.gz Archive Import &middot; Plakar">
   
 
   
@@ -27,11 +27,11 @@
     
   
   
-    <meta name="description" content="Import data from existing tar archives into Plakar. Imported data is stored securely as deduplicated, verifiable snapshots.
+    <meta name="description" content="Free, open-source import of tar and tar.gz archives into encrypted, deduplicated snapshots, read in place without extraction, compared and exported as tar.
 ">
   
   
-    <meta name="keywords" content="tar backup,tar restore,import tarball,linux archive backup,unix data migration,secure tar archive,plakar tar integration,data archiving,offsite backup tar,">
+    <meta name="keywords" content="import tar archive backup,tar.gz backup deduplication,compare two tar archives,import old tarballs into a backup repository,export snapshot as tar.gz,encrypted tar backup,">
   
   
   
@@ -67,18 +67,18 @@
   
   <meta property="og:url" content="https://www.plakar.io/integrations/tar/">
   <meta property="og:site_name" content="Plakar | The Open Standard for Backup and Restore">
-  <meta property="og:title" content="Tar">
-  <meta property="og:description" content="Import data from existing tar archives into Plakar. Imported data is stored securely as deduplicated, verifiable snapshots.">
+  <meta property="og:title" content="Free, Open-Source Tar and tar.gz Archive Import">
+  <meta property="og:description" content="Free, open-source import of tar and tar.gz archives into encrypted, deduplicated snapshots, read in place without extraction, compared and exported as tar.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="integrations">
     <meta property="article:published_time" content="2026-03-23T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-14T20:53:23-07:00">
+    <meta property="article:modified_time" content="2026-11-14T22:18:08-07:00">
 
   
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Tar">
-  <meta name="twitter:description" content="Import data from existing tar archives into Plakar. Imported data is stored securely as deduplicated, verifiable snapshots.">
+  <meta name="twitter:title" content="Free, Open-Source Tar and tar.gz Archive Import">
+  <meta name="twitter:description" content="Free, open-source import of tar and tar.gz archives into encrypted, deduplicated snapshots, read in place without extraction, compared and exported as tar.">
 
   
   
@@ -219,7 +219,7 @@
     "articleSection": "Plakar Integrations",
     "name": "Tar",
     "headline": "Tar",
-    "description": "Import data from existing tar archives into Plakar. Imported data is stored securely as deduplicated, verifiable snapshots.\n",
+    "description": "Free, open-source import of tar and tar.gz archives into encrypted, deduplicated snapshots, read in place without extraction, compared and exported as tar.\n",
     "inLanguage": "en-us",
     "url" : "https://www.plakar.io/integrations/tar/",
     "author" : {
@@ -230,12 +230,12 @@
     "dateCreated": "2026-03-23T00:00:00\u002b00:00",
     "datePublished": "2026-03-23T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-14T20:53:23-07:00",
+    "dateModified": "2026-11-14T22:18:08-07:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/integrations/tar/",
-    "wordCount":  225 
+    "wordCount":  1238 
   }]
   </script>
 
@@ -2286,10 +2286,10 @@
               
             </div>
             <h1 class="text-3xl lg:text-6xl font-medium">
-              Import <span class="text-primary-500">Tar</span> archives into Plakar as snapshots
+              Free, open-source <span class="text-primary-500">Tar</span> archive import
             </h1>
             <p class="text-lg lg:text-2xl text-neutral-600 font-medium pt-6">
-              Import data from existing tar archives into Plakar. Imported data is stored securely as deduplicated, verifiable snapshots.
+              Free, open-source import of tar and tar.gz archives into encrypted, deduplicated snapshots, read in place without extraction, compared and exported as tar.
 
             </p>
             
@@ -2385,11 +2385,11 @@
     <div class="flex flex-row gap-4 items-end justify-end w-full">
       <div class="flex flex-col w-full lg:w-2/3">
         <h2 class="text-3xl lg:text-5xl font-medium text-right">
-          <span class="text-primary-500">Tar</span> is the universal archive format
+          <span class="text-primary-500">Tar</span> archives, kept as one deduplicated history
         </h2>
         <p class="text-lg lg:text-xl text-neutral-700 font-medium w-full pt-8">
-          Tar (Tape Archive) is a widely recognized archive format used in Linux and Unix-like systems. It bundles multiple files and directories into a single file, often compressed.
-Plakar&#39;s tar integration allows you to import existing tar archives into your secure backup Kloset. Imported data benefits from Plakar&#39;s deduplication, encryption, and verifiability, while remaining portable for export to standard tar archives when needed.
+          A tar archive records a directory tree with its paths, permissions, owners and modification times. A nightly `tar czf` is one of the oldest backup routines there is, and every archive it produces is a full copy. Gzip compresses each archive as one stream, so two archives that differ by a single file share almost no bytes on disk.
+Plakar opens the archive, decompresses it as it reads, and stores each entry as a file. Each archive becomes a dated, encrypted snapshot you can browse, compare, restore or export as a tarball again.
 
         </p>
       </div>
@@ -2402,11 +2402,12 @@ Plakar&#39;s tar integration allows you to import existing tar archives into you
   <div class="max-w-350 mx-auto px-4">
     <article class="prose max-w-full integration-body">
       
-<h2 id="using-tar-archives-with-plakar" class="group pr-8">Using tar archives with Plakar
+<p class="lp-kicker" data-pagefind-ignore>Overview</p>
+<h2 id="what-the-tar-integration-does" class="group pr-8">What the tar integration does
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="using-tar-archives-with-plakar"
+      data-anchor="what-the-tar-integration-does"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -2417,65 +2418,57 @@ Plakar&#39;s tar integration allows you to import existing tar archives into you
     </button>
   
 </h2>
-<p>Tar has been a standard Unix archive format for decades, commonly used to bundle
-files for distribution, transfer, and simple backups. It is widely supported and
-highly portable.</p>
-<p>Tar archives themselves do not provide backup semantics such as deduplication,
-version tracking, or built-in encryption. Managing backups as collections of
-independent tar files becomes difficult as data evolves over time.</p>
-<p>Tar archives are imported into Plakar, which handles storage, deduplication, and
-verification.</p>
+<div class="lp-columns lp-columns--7-5 lp-columns--sticky-right">
 
-<h2 id="backing-up-tar-archives-as-snapshots-with-plakar" class="group pr-8">Backing up tar archives as snapshots with Plakar
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="backing-up-tar-archives-as-snapshots-with-plakar"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h2>
-<p>Imported tar archives are stored in Plakar as immutable snapshots and
-deduplicated to reduce storage usage.</p>
-<p>Snapshots can be browsed and inspected through the CLI or UI without extracting
-files. When needed, snapshots can be exported back to standard tar archives
-compatible with existing Unix tools.</p>
+<div class="lp-column prose max-w-none"><p>The tar integration imports a tar or tar.gz archive into an encrypted,
+deduplicated Plakar snapshot without extracting it to disk. Plakar reads the
+archive file on the machine where it runs and records every entry with its path,
+permissions, owner and modification time. It is built into the free, open-source
+<code>plakar</code> CLI, with <code>tar://</code> for plain archives and <code>tgz://</code> for gzip-compressed
+ones.</p>
+<p>A path inside the archive keeps its place in the snapshot: <code>srv/app/config.yml</code>
+becomes <code>/srv/app/config.yml</code>. From there the snapshot behaves like any other
+Plakar snapshot. You list it, search it, compare it with the archive of the
+previous night, restore one directory from it, or turn it back into a tar file
+with <code>plakar archive</code>.</p>
+</div>
 
-<h2 id="migration-and-compatibility" class="group pr-8">Migration and Compatibility
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="migration-and-compatibility"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h2>
-<p>Tar integration allows Plakar to fit into existing tar-based backup workflows.
-It enables you to:</p>
-<ul>
-<li>Import existing tar archives into a single, deduplicated Kloset store</li>
-<li>Maintain compatibility with systems and tools that require tar format</li>
-<li>Export snapshots as tar archives for distribution or compliance</li>
-<li>Use tar alongside Plakar during transitions between backup workflows</li>
-</ul>
 
-<h2 id="how-plakar-works-with-tar-archives" class="group pr-8">How Plakar works with tar archives
+<div class="lp-column prose max-w-none"><figure class="lp-term not-prose" aria-label="Terminal: backup-host">
+  <div class="lp-term-bar" aria-hidden="true">
+    <span class="lp-term-dot lp-term-dot--r"></span>
+    <span class="lp-term-dot lp-term-dot--y"></span>
+    <span class="lp-term-dot lp-term-dot--g"></span>
+    <span class="lp-term-title">backup-host</span>
+  </div>
+  <pre class="lp-term-body"><code><span class="lp-term-prompt">$</span> <span class="lp-term-cmd"><span class="lp-term-bin">plakar</span> at /var/backups create</span>
+<span class="lp-term-prompt">$</span> <span class="lp-term-cmd"><span class="lp-term-bin">plakar</span> at /var/backups backup \</span>
+<span class="lp-term-cmd">    -force-timestamp 2025-03-14T02:00:00Z \</span>
+<span class="lp-term-cmd">    tgz:///mnt/nas/backup-20250314.tar.gz</span>
+<span class="lp-term-out">a1f61c48: <span class="lp-term-ok">OK ✓</span> /srv</span>
+<span class="lp-term-out">a1f61c48: <span class="lp-term-ok">OK ✓</span> /srv/app</span>
+<span class="lp-term-out">a1f61c48: <span class="lp-term-ok">OK ✓</span> /srv/app/etc</span>
+<span class="lp-term-out">a1f61c48: <span class="lp-term-ok">OK ✓</span> /srv/app/etc/nginx</span>
+<span class="lp-term-out">a1f61c48: <span class="lp-term-ok">OK ✓</span> /srv/app/etc/nginx/nginx.conf</span>
+<span class="lp-term-out">a1f61c48: <span class="lp-term-ok">OK ✓</span> /srv/app/uploads</span>
+<span class="lp-term-out">a1f61c48: backup completed without errors in 41.3s</span>
+<span class="lp-term-prompt">$</span> <span class="lp-term-cmd"><span class="lp-term-bin">plakar</span> at /var/backups ls</span>
+<span class="lp-term-out">2025-03-14T02:00:00Z   a1f61c48    12 GiB       41s /</span>
+<span class="lp-term-out">2025-03-13T02:00:00Z   c396e52a    12 GiB       39s /</span>
+<span class="lp-term-prompt">$</span> <span class="lp-term-cursor"></span></code></pre>
+</figure>
+</div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>Inside the archive</p>
+<h2 id="why-import-tar-archives-into-plakar" class="group pr-8">Why import tar archives into Plakar
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="how-plakar-works-with-tar-archives"
+      data-anchor="why-import-tar-archives-into-plakar"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -2486,18 +2479,651 @@ It enables you to:</p>
     </button>
   
 </h2>
-<p>Plakar supports tar archives as an import format:</p>
-<ul>
-<li><strong>Source Connector</strong>: Import data from tar archives into Plakar as snapshots
-with automatic deduplication.</li>
-</ul>
-<p>Exporting snapshots as tar archives is supported by default in Plakar.</p>
+<div class="lp-cards lp-cards--ruled lp-cols-2 not-prose">
+
+<div class="lp-card"><span class="lp-card-label">tgz://</span><div class="lp-card-body prose max-w-none">
+<h3 id="gzip-compressed-tarballs-that-still-deduplicate" class="group pr-8">Gzip-compressed tarballs that still deduplicate
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="gzip-compressed-tarballs-that-still-deduplicate"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Plakar decompresses the archive while it reads it and splits each file into
+content-defined chunks. Two <code>.tar.gz</code> files of the same tree, compressed on
+different nights, share most of their files, and those files are stored once in
+the store.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">0 bytes extracted</span><div class="lp-card-body prose max-w-none">
+<h3 id="no-extraction-and-no-staging-disk" class="group pr-8">No extraction and no staging disk
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="no-extraction-and-no-staging-disk"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>The archive is read from start to end, one entry after the other, and each entry
+goes straight into the snapshot. A 200 GB tarball needs no 200 GB of scratch
+space to be imported.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">mode · uid · gid · mtime</span><div class="lp-card-body prose max-w-none">
+<h3 id="tar-entry-metadata-recorded-with-each-file" class="group pr-8">Tar entry metadata recorded with each file
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="tar-entry-metadata-recorded-with-each-file"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Every entry keeps its mode, numeric owner and group, user and group names and
+modification time. Directories, symbolic links, device nodes and named pipes
+keep their type.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">built in</span><div class="lp-card-body prose max-w-none">
+<h3 id="part-of-the-plakar-binary" class="group pr-8">Part of the plakar binary
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="part-of-the-plakar-binary"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>The tar importer ships with the CLI. There is no package to add, and the same
+store can hold the imported archives next to the backups of servers, databases
+and buckets.</p>
+</div>
+</div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>Migration</p>
+<h2 id="how-to-import-old-targz-backups-into-a-deduplicated-repository" class="group pr-8">How to import old tar.gz backups into a deduplicated repository
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-to-import-old-targz-backups-into-a-deduplicated-repository"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<div class="lp-columns lp-columns--5-7 lp-columns--sticky-right">
+
+<div class="lp-column prose max-w-none"><p>A NAS holds three years of <code>backup-YYYYMMDD.tar.gz</code> files, one per night, each a
+full copy of the same server. A short loop turns them into one snapshot per
+night, each dated to the night its archive was made.</p>
+<div class="steps">
+<div class="step"><p><strong>Create the store.</strong> It can sit on a local disk, an SFTP server or an object
+storage bucket, and it is encrypted with the passphrase you choose.</p>
+</div>
+<div class="step"><p><strong>Import each archive with its own date.</strong> <code>-force-timestamp</code> sets the snapshot
+date from the file name. <code>-tag</code> marks the imported snapshots so you can list
+them apart.</p>
+</div>
+<div class="step"><p><strong>Verify the store.</strong> <code>plakar check</code> reads every snapshot back and verifies its
+content.</p>
+</div>
+<div class="step"><p><strong>Retire the old copies.</strong> Once <code>plakar ls -tag nas-import</code> shows one snapshot
+per night, the archives on the NAS can go.</p>
+</div>
+</div></div>
+
+
+<div class="lp-column prose max-w-none"><div class="highlight-wrapper codeblock">
+  <div class="codeblock-title">
+    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
+</span></span>
+    <span class="codeblock-label">Shell</span>
+    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
+      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
+</span></span>
+      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar at /var/backups create
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ <span class="k">for</span> f in /mnt/nas/backup-*.tar.gz<span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">d</span><span class="o">=</span><span class="k">$(</span>basename <span class="s2">&#34;</span><span class="nv">$f</span><span class="s2">&#34;</span> .tar.gz <span class="p">|</span> cut -d- -f2<span class="k">)</span>
+</span></span><span class="line"><span class="cl">    plakar at /var/backups backup -tag nas-import <span class="se">\
+</span></span></span><span class="line"><span class="cl">      -force-timestamp <span class="s2">&#34;</span><span class="si">${</span><span class="nv">d</span><span class="p">:</span><span class="nv">0</span><span class="p">:</span><span class="nv">4</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">d</span><span class="p">:</span><span class="nv">4</span><span class="p">:</span><span class="nv">2</span><span class="si">}</span><span class="s2">-</span><span class="si">${</span><span class="nv">d</span><span class="p">:</span><span class="nv">6</span><span class="p">:</span><span class="nv">2</span><span class="si">}</span><span class="s2">T02:00:00Z&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">      <span class="s2">&#34;tgz://</span><span class="nv">$f</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">done</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups check
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups ls -tag nas-import</span></span></code></pre></div></div>
+<figure class="lp-chart not-prose">
+  <figcaption class="lp-chart-head"><strong>New data stored per imported archive</strong><span>Illustrative values: the first archive is stored in full, each later one adds only the files that changed that night.</span></figcaption>
+  <div class="lp-chart-legend" aria-hidden="true">
+    <span><i class="lp-chart-key lp-chart-key--new"></i>new data stored</span>
+    <span><i class="lp-chart-key lp-chart-key--reused"></i>reused, already stored</span>
+  </div>
+  <ol class="lp-chart-bars" aria-label="New data stored per imported archive"><li class="lp-chart-bar" style="--lp-new: 100.0%">
+        <span class="lp-chart-reused"></span>
+        <span class="lp-chart-new"></span>
+        <span class="lp-chart-x">D1</span>
+        <span class="lp-sr">full first backup</span>
+      </li><li class="lp-chart-bar" style="--lp-new: 4.2%">
+        <span class="lp-chart-reused"></span>
+        <span class="lp-chart-new"></span>
+        <span class="lp-chart-x">D2</span>
+        <span class="lp-sr">3% new data</span>
+      </li><li class="lp-chart-bar" style="--lp-new: 3.0%">
+        <span class="lp-chart-reused"></span>
+        <span class="lp-chart-new"></span>
+        <span class="lp-chart-x">D3</span>
+        <span class="lp-sr">2% new data</span>
+      </li><li class="lp-chart-bar" style="--lp-new: 5.6%">
+        <span class="lp-chart-reused"></span>
+        <span class="lp-chart-new"></span>
+        <span class="lp-chart-x">D4</span>
+        <span class="lp-sr">4% new data</span>
+      </li><li class="lp-chart-bar" style="--lp-new: 3.0%">
+        <span class="lp-chart-reused"></span>
+        <span class="lp-chart-new"></span>
+        <span class="lp-chart-x">D5</span>
+        <span class="lp-sr">2% new data</span>
+      </li><li class="lp-chart-bar" style="--lp-new: 4.2%">
+        <span class="lp-chart-reused"></span>
+        <span class="lp-chart-new"></span>
+        <span class="lp-chart-x">D6</span>
+        <span class="lp-sr">3% new data</span>
+      </li><li class="lp-chart-bar" style="--lp-new: 7.0%">
+        <span class="lp-chart-reused"></span>
+        <span class="lp-chart-new"></span>
+        <span class="lp-chart-x">D7</span>
+        <span class="lp-sr">5% new data</span>
+      </li><li class="lp-chart-bar" style="--lp-new: 3.0%">
+        <span class="lp-chart-reused"></span>
+        <span class="lp-chart-new"></span>
+        <span class="lp-chart-x">D8</span>
+        <span class="lp-sr">2% new data</span>
+      </li></ol>
+</figure></div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>Scenarios</p>
+<h2 id="tar-archive-scenarios" class="group pr-8">Tar archive scenarios
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="tar-archive-scenarios"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<div class="lp-cards lp-cards--accent lp-cols-2 not-prose">
+
+<div class="lp-card"><span class="lp-card-label">plakar diff nginx.conf</span><div class="lp-card-body prose max-w-none">
+<h3 id="finding-when-a-file-changed-between-two-tar-archives" class="group pr-8">Finding when a file changed between two tar archives
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="finding-when-a-file-changed-between-two-tar-archives"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>An auditor asks when TLS 1.2 was dropped from the web servers.
+<code>plakar locate nginx.conf</code> lists every snapshot that holds the file, and
+<code>plakar diff c396e52a:/srv/app/etc/nginx/nginx.conf a1f61c48:/srv/app/etc/nginx/nginx.conf</code>
+prints the change. Neither archive is unpacked.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">docker export</span><div class="lp-card-body prose max-w-none">
+<h3 id="tracking-drift-in-a-container-filesystem" class="group pr-8">Tracking drift in a container filesystem
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="tracking-drift-in-a-container-filesystem"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p><code>docker export -o /srv/exports/web-01.tar web-01</code> writes the filesystem of the
+container as a tar file each night, and <code>tar:///srv/exports/web-01.tar</code> imports
+it. <code>plakar diff -recursive</code> between two nights lists the files that appeared
+and the lines that changed in every modified file.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">plakar restore -to</span><div class="lp-card-body prose max-w-none">
+<h3 id="restoring-one-directory-from-a-2023-tarball" class="group pr-8">Restoring one directory from a 2023 tarball
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="restoring-one-directory-from-a-2023-tarball"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>The archive you need is now a snapshot, so there is nothing to download and
+unpack. <code>plakar restore -to /srv/restore/uploads c396e52a:/srv/app/uploads</code>
+writes the contents of <code>uploads</code> into the target folder.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">plakar archive -output -</span><div class="lp-card-body prose max-w-none">
+<h3 id="sending-a-snapshot-to-a-host-without-plakar" class="group pr-8">Sending a snapshot to a host without Plakar
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="sending-a-snapshot-to-a-host-without-plakar"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>A vendor needs the configuration of one release as a plain tarball.
+<code>plakar archive -output - a1f61c48:/srv/app/etc | ssh vendor-host tar xzf -</code>
+streams it as tar.gz to the other side, where <code>tar</code> is the only tool needed.</p>
+</div>
+</div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>Formats</p>
+<h2 id="tar-formats-plakar-reads-and-writes" class="group pr-8">Tar formats Plakar reads and writes
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="tar-formats-plakar-reads-and-writes"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<div class="lp-cards lp-cards--boxed lp-cols-3 not-prose">
+
+<div class="lp-card"><span class="lp-card-label">tar://</span><div class="lp-card-body prose max-w-none">
+<h3 id="plain-tar-archives" class="group pr-8">Plain tar archives
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="plain-tar-archives"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Uncompressed <code>.tar</code> files, read from a local path such as
+<code>tar:///mnt/exports/app-export.tar</code>.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">tgz://</span><div class="lp-card-body prose max-w-none">
+<h3 id="gzip-compressed-tar-archives" class="group pr-8">Gzip-compressed tar archives
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="gzip-compressed-tar-archives"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p><code>.tar.gz</code> and <code>.tgz</code> files, decompressed during the import. <code>tar+gz://</code> and
+<code>tar+gzip://</code> are accepted as the same protocol.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">plakar archive -format</span><div class="lp-card-body prose max-w-none">
+<h3 id="tar-targz-or-zip-on-export" class="group pr-8">Tar, tar.gz or zip on export
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="tar-targz-or-zip-on-export"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p><code>plakar archive</code> writes a snapshot or one of its paths as <code>tarball</code> (tar.gz, the
+default), <code>tar</code> or <code>zip</code>. <code>-rebase</code> drops the leading path inside the export.</p>
+</div>
+</div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>Quickstart</p>
+<h2 id="how-to-import-a-tar-archive-with-the-open-source-plakar-cli" class="group pr-8">How to import a tar archive with the open-source Plakar CLI
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-to-import-a-tar-archive-with-the-open-source-plakar-cli"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<div class="lp-columns lp-columns--5-7">
+
+<div class="lp-column prose max-w-none"><p>The Plakar CLI is free and open source, and tar support is part of it. Create a
+store, then point <code>plakar backup</code> at the archive file with the protocol that
+matches its compression.</p>
+<p>The <a href="/docs/community/main/integrations/tar/" >tar integration documentation</a>
+describes the protocols and the <code>location</code> option.</p>
+</div>
+
+
+<div class="lp-column prose max-w-none"><div class="highlight-wrapper codeblock">
+  <div class="codeblock-title">
+    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
+</span></span>
+    <span class="codeblock-label">Shell</span>
+    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
+      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
+</span></span>
+      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar at /var/backups create
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups backup tar:///mnt/exports/app-export.tar
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups backup <span class="se">\
+</span></span></span><span class="line"><span class="cl">    -force-timestamp 2025-03-14T02:00:00Z <span class="se">\
+</span></span></span><span class="line"><span class="cl">    tgz:///mnt/nas/backup-20250314.tar.gz
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups ls</span></span></code></pre></div></div>
+</div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>FAQ</p>
+<h2 id="tar-archive-backup-faq" class="group pr-8">Tar archive backup FAQ
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="tar-archive-backup-faq"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<div class="lp-columns lp-columns--1-1">
+
+<div class="lp-column prose max-w-none">
+<h3 id="which-tar-formats-can-plakar-import" class="group pr-8">Which tar formats can Plakar import?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="which-tar-formats-can-plakar-import"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Plain tar archives with <code>tar://</code> and gzip-compressed archives (<code>.tar.gz</code>,
+<code>.tgz</code>) with <code>tgz://</code>, also accepted as <code>tar+gz://</code> and <code>tar+gzip://</code>. The
+archive is a file on the machine running Plakar.</p>
+
+<h3 id="how-does-plakar-read-a-tar-archive" class="group pr-8">How does Plakar read a tar archive?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-does-plakar-read-a-tar-archive"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>It reads the entries in order, decompressing gzip on the fly, and writes each
+one into the snapshot as it goes. Nothing is unpacked to a temporary directory.</p>
+
+<h3 id="do-targz-archives-deduplicate-in-plakar" class="group pr-8">Do tar.gz archives deduplicate in Plakar?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="do-targz-archives-deduplicate-in-plakar"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Yes. Deduplication works on the files inside the archive, not on the compressed
+stream, so unchanged files are stored once across all the archives you import.</p>
+
+<h3 id="does-plakar-keep-the-permissions-and-dates-of-tar-entries" class="group pr-8">Does Plakar keep the permissions and dates of tar entries?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="does-plakar-keep-the-permissions-and-dates-of-tar-entries"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Yes. Mode, owner, group and modification time are recorded for each entry. A
+restore to a directory applies modes and times, and owners when it runs as root.</p>
+</div>
+
+
+<div class="lp-column prose max-w-none">
+<h3 id="how-do-i-keep-the-original-date-of-an-old-tarball" class="group pr-8">How do I keep the original date of an old tarball?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-do-i-keep-the-original-date-of-an-old-tarball"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Pass <code>-force-timestamp</code> to <code>plakar backup</code>, for example
+<code>-force-timestamp 2025-03-14T02:00:00Z</code>. The snapshot is then listed under that
+date.</p>
+
+<h3 id="how-do-i-compare-two-tar-archives" class="group pr-8">How do I compare two tar archives?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-do-i-compare-two-tar-archives"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Import both, then run <code>plakar diff</code> on the two snapshots, with a file path for a
+single file or <code>-recursive</code> for the whole tree. Changed files show as a unified
+diff.</p>
+
+<h3 id="how-do-i-turn-a-plakar-snapshot-back-into-a-targz-file" class="group pr-8">How do I turn a Plakar snapshot back into a tar.gz file?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-do-i-turn-a-plakar-snapshot-back-into-a-targz-file"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Run <code>plakar archive -output export.tar.gz</code> followed by the snapshot ID. Add a
+path after the ID to export one directory, and <code>-format tar</code> for an uncompressed
+file.</p>
+
+<h3 id="where-can-i-restore-an-imported-tar-archive" class="group pr-8">Where can I restore an imported tar archive?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="where-can-i-restore-an-imported-tar-archive"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>To any directory with <code>plakar restore -to</code>, or to any destination Plakar
+supports, such as an SFTP server or an object storage bucket.</p>
+</div>
+
+
+</div>
+
 
     </article>
   </div>
 </section>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://www.plakar.io/","name":"Home","position":1},{"@type":"ListItem","item":"https://www.plakar.io/integrations/","name":"Integrations","position":2},{"@type":"ListItem","item":"https://www.plakar.io/integrations/tar/","name":"Tar","position":3}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","applicationCategory":"UtilitiesApplication","description":"Import data from existing tar archives into Plakar. Imported data is stored securely as deduplicated, verifiable snapshots.","name":"Plakar Tar integration","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"operatingSystem":"Linux, macOS, Windows, FreeBSD","publisher":{"@type":"Organization","name":"Plakar","url":"https://www.plakar.io/"},"url":"https://www.plakar.io/integrations/tar/"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://www.plakar.io/","name":"Home","position":1},{"@type":"ListItem","item":"https://www.plakar.io/integrations/","name":"Integrations","position":2},{"@type":"ListItem","item":"https://www.plakar.io/integrations/tar/","name":"Tar","position":3}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","applicationCategory":"UtilitiesApplication","description":"Free, open-source import of tar and tar.gz archives into encrypted, deduplicated snapshots, read in place without extraction, compared and exported as tar.","name":"Plakar Tar integration","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"operatingSystem":"Linux, macOS, Windows, FreeBSD","publisher":{"@type":"Organization","name":"Plakar","url":"https://www.plakar.io/"},"url":"https://www.plakar.io/integrations/tar/"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Plain tar archives with tar:// and gzip-compressed archives (.tar.gz, .tgz) with tgz://, also accepted as tar+gz:// and tar+gzip://. The archive is a file on the machine running Plakar."},"name":"Which tar formats can Plakar import?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"It reads the entries in order, decompressing gzip on the fly, and writes each one into the snapshot as it goes. Nothing is unpacked to a temporary directory."},"name":"How does Plakar read a tar archive?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Yes. Deduplication works on the files inside the archive, not on the compressed stream, so unchanged files are stored once across all the archives you import."},"name":"Do tar.gz archives deduplicate in Plakar?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Yes. Mode, owner, group and modification time are recorded for each entry. A restore to a directory applies modes and times, and owners when it runs as root."},"name":"Does Plakar keep the permissions and dates of tar entries?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Pass -force-timestamp to plakar backup, for example -force-timestamp 2025-03-14T02:00:00Z. The snapshot is then listed under that date."},"name":"How do I keep the original date of an old tarball?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Import both, then run plakar diff on the two snapshots, with a file path for a single file or -recursive for the whole tree. Changed files show as a unified diff."},"name":"How do I compare two tar archives?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Run plakar archive -output export.tar.gz followed by the snapshot ID. Add a path after the ID to export one directory, and -format tar for an uncompressed file."},"name":"How do I turn a Plakar snapshot back into a tar.gz file?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"To any directory with plakar restore -to, or to any destination Plakar supports, such as an SFTP server or an object storage bucket."},"name":"Where can I restore an imported tar archive?"}]}</script>
 
 
 
@@ -2507,6 +3133,13 @@ with automatic deduplication.</li>
 
 
 
+
+  
+  
+  
+  
+    
+  
 
   
   
@@ -2722,6 +3355,109 @@ with automatic deduplication.</li>
   
   
     <p class="text-sm text-neutral-500 line-clamp-3 mt-1">Back up local directories and mounted filesystems to protect against accidental deletion, corruption, and ransomware. Versioned, encrypted, and fully restorable across systems.
+</p>
+  
+
+  
+  <div class="mt-auto pt-3 border-t border-neutral-200 flex items-center gap-4">
+    <div class="flex flex-col gap-0.5 min-w-0">
+      <span class="text-xxs font-semibold uppercase tracking-wide text-neutral-400">Platform</span>
+      <span class="text-xs font-semibold flex items-center gap-1.5 flex-wrap">
+        <span class="text-green-600">Community</span>
+        
+        
+      </span>
+    </div>
+    <div class="flex flex-col gap-0.5 min-w-0 pl-4 border-l border-neutral-200">
+      <span class="text-xxs font-semibold uppercase tracking-wide text-neutral-400">Author</span>
+      <span class="text-xs font-semibold text-neutral-900 flex items-center gap-1.5 flex-wrap">
+        
+          <img class="w-4 h-4 shrink-0" src="/img/logos/plakar-logo-icon.svg" alt="">
+          <span>Plakar</span>
+        
+      </span>
+    </div>
+    <div class="ml-auto shrink-0 text-neutral-300 group-hover/card:text-primary-500 group-hover/card:translate-x-0.5 transition-all">
+      <div class="w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
+</span></div>
+    </div>
+  </div>
+</a>
+
+      
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a
+  href="/integrations/sqlite/"
+  data-categories="storage"
+  data-editions="community"
+  data-author="official"
+  data-name="sqlite"
+  data-date="1794355200"
+  data-search="sqlite sqlite"
+  class="group/card relative flex flex-col gap-3 p-5 rounded-2xl border border-neutral-100 hover:border-primary-300 bg-neutral-50 shadow-sm hover:shadow-none outline-4 outline-transparent hover:outline-primary-400/20 transition-all duration-300"
+>
+  <div class="flex items-start gap-3.5">
+    <div class="h-13 min-w-13 max-w-28 rounded-lg overflow-hidden shrink-0 flex items-center justify-center">
+      
+        <img
+      src="/img/integrations/sqlite_hu_b96a4b2eeb74ec17.webp"
+      srcset="/img/integrations/sqlite_hu_b96a4b2eeb74ec17.webp 64w, /img/integrations/sqlite_hu_2a104a4a947d0aa8.webp 128w, /img/integrations/sqlite_hu_d3297c008516d0b0.webp 256w" sizes="auto"
+      width="64"
+      height="30"
+      alt="SQLite"
+      class="h-full w-auto max-w-full object-contain"
+      loading="lazy"
+      decoding="async"
+      >
+      
+    </div>
+    
+      <span class="ml-auto inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full text-green-800 bg-green-50 uppercase shrink-0">
+        <span class="w-1.5 h-1.5 rounded-full bg-current shrink-0"></span>
+        stable
+      </span>
+    
+  </div>
+
+  
+  <div class="flex flex-col mt-3">
+    <div class="flex items-center gap-2 flex-wrap">
+      <h3 class="text-lg lg:text-xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
+        SQLite
+      </h3>
+      
+        <span class="text-xxs font-semibold px-2 py-0.5 rounded-full text-neutral-50 bg-primary-500 uppercase tracking-wide shrink-0">New</span>
+      
+    </div>
+
+    
+      <div class="text-xs text-primary-500 font-semibold mt-4">
+        
+          Storage
+        
+      </div>
+    
+  </div>
+
+  
+  
+    <p class="text-sm text-neutral-500 line-clamp-3 mt-1">Store Plakar backups inside a single SQLite database file. No server to run, no remote backend to manage, with encrypted and deduplicated snapshots from any source.
 </p>
   
 

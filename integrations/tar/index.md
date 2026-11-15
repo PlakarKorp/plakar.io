@@ -1,46 +1,204 @@
-# Import tar archives into Plakar as snapshots
+# Free, open-source Tar archive import
 
-Import data from existing tar archives into Plakar. Imported data is stored securely as deduplicated, verifiable snapshots.
+Free, open-source import of tar and tar.gz archives into encrypted, deduplicated snapshots, read in place without extraction, compared and exported as tar.
 
 
-## Using tar archives with Plakar
+## What the tar integration does
+The tar integration imports a tar or tar.gz archive into an encrypted,
+deduplicated Plakar snapshot without extracting it to disk. Plakar reads the
+archive file on the machine where it runs and records every entry with its path,
+permissions, owner and modification time. It is built into the free, open-source
+`plakar` CLI, with `tar://` for plain archives and `tgz://` for gzip-compressed
+ones.
 
-Tar has been a standard Unix archive format for decades, commonly used to bundle
-files for distribution, transfer, and simple backups. It is widely supported and
-highly portable.
+A path inside the archive keeps its place in the snapshot: `srv/app/config.yml`
+becomes `/srv/app/config.yml`. From there the snapshot behaves like any other
+Plakar snapshot. You list it, search it, compare it with the archive of the
+previous night, restore one directory from it, or turn it back into a tar file
+with `plakar archive`.
 
-Tar archives themselves do not provide backup semantics such as deduplication,
-version tracking, or built-in encryption. Managing backups as collections of
-independent tar files becomes difficult as data evolves over time.
+```console {title="backup-host"}
+$ plakar at /var/backups create
+$ plakar at /var/backups backup \
+    -force-timestamp 2025-03-14T02:00:00Z \
+    tgz:///mnt/nas/backup-20250314.tar.gz
+a1f61c48: OK ✓ /srv
+a1f61c48: OK ✓ /srv/app
+a1f61c48: OK ✓ /srv/app/etc
+a1f61c48: OK ✓ /srv/app/etc/nginx
+a1f61c48: OK ✓ /srv/app/etc/nginx/nginx.conf
+a1f61c48: OK ✓ /srv/app/uploads
+a1f61c48: backup completed without errors in 41.3s
+$ plakar at /var/backups ls
+2025-03-14T02:00:00Z   a1f61c48    12 GiB       41s /
+2025-03-13T02:00:00Z   c396e52a    12 GiB       39s /
+$
+```
 
-Tar archives are imported into Plakar, which handles storage, deduplication, and
-verification.
+## Why import tar archives into Plakar
+### Gzip-compressed tarballs that still deduplicate
 
-## Backing up tar archives as snapshots with Plakar
+Plakar decompresses the archive while it reads it and splits each file into
+content-defined chunks. Two `.tar.gz` files of the same tree, compressed on
+different nights, share most of their files, and those files are stored once in
+the store.
 
-Imported tar archives are stored in Plakar as immutable snapshots and
-deduplicated to reduce storage usage.
+### No extraction and no staging disk
 
-Snapshots can be browsed and inspected through the CLI or UI without extracting
-files. When needed, snapshots can be exported back to standard tar archives
-compatible with existing Unix tools.
+The archive is read from start to end, one entry after the other, and each entry
+goes straight into the snapshot. A 200 GB tarball needs no 200 GB of scratch
+space to be imported.
 
-## Migration and Compatibility
+### Tar entry metadata recorded with each file
 
-Tar integration allows Plakar to fit into existing tar-based backup workflows.
-It enables you to:
+Every entry keeps its mode, numeric owner and group, user and group names and
+modification time. Directories, symbolic links, device nodes and named pipes
+keep their type.
 
-- Import existing tar archives into a single, deduplicated Kloset store
-- Maintain compatibility with systems and tools that require tar format
-- Export snapshots as tar archives for distribution or compliance
-- Use tar alongside Plakar during transitions between backup workflows
+### Part of the plakar binary
 
-## How Plakar works with tar archives
+The tar importer ships with the CLI. There is no package to add, and the same
+store can hold the imported archives next to the backups of servers, databases
+and buckets.
 
-Plakar supports tar archives as an import format:
+## How to import old tar.gz backups into a deduplicated repository
+A NAS holds three years of `backup-YYYYMMDD.tar.gz` files, one per night, each a
+full copy of the same server. A short loop turns them into one snapshot per
+night, each dated to the night its archive was made.
 
-- **Source Connector**: Import data from tar archives into Plakar as snapshots
-  with automatic deduplication.
+**Create the store.** It can sit on a local disk, an SFTP server or an object
+storage bucket, and it is encrypted with the passphrase you choose.
 
-Exporting snapshots as tar archives is supported by default in Plakar.
+**Import each archive with its own date.** `-force-timestamp` sets the snapshot
+date from the file name. `-tag` marks the imported snapshots so you can list
+them apart.
+
+**Verify the store.** `plakar check` reads every snapshot back and verifies its
+content.
+
+**Retire the old copies.** Once `plakar ls -tag nas-import` shows one snapshot
+per night, the archives on the NAS can go.
+
+```bash
+$ plakar at /var/backups create
+
+$ for f in /mnt/nas/backup-*.tar.gz; do
+    d=$(basename "$f" .tar.gz | cut -d- -f2)
+    plakar at /var/backups backup -tag nas-import \
+      -force-timestamp "${d:0:4}-${d:4:2}-${d:6:2}T02:00:00Z" \
+      "tgz://$f"
+  done
+
+$ plakar at /var/backups check
+$ plakar at /var/backups ls -tag nas-import
+```
+
+## Tar archive scenarios
+### Finding when a file changed between two tar archives
+
+An auditor asks when TLS 1.2 was dropped from the web servers.
+`plakar locate nginx.conf` lists every snapshot that holds the file, and
+`plakar diff c396e52a:/srv/app/etc/nginx/nginx.conf a1f61c48:/srv/app/etc/nginx/nginx.conf`
+prints the change. Neither archive is unpacked.
+
+### Tracking drift in a container filesystem
+
+`docker export -o /srv/exports/web-01.tar web-01` writes the filesystem of the
+container as a tar file each night, and `tar:///srv/exports/web-01.tar` imports
+it. `plakar diff -recursive` between two nights lists the files that appeared
+and the lines that changed in every modified file.
+
+### Restoring one directory from a 2023 tarball
+
+The archive you need is now a snapshot, so there is nothing to download and
+unpack. `plakar restore -to /srv/restore/uploads c396e52a:/srv/app/uploads`
+writes the contents of `uploads` into the target folder.
+
+### Sending a snapshot to a host without Plakar
+
+A vendor needs the configuration of one release as a plain tarball.
+`plakar archive -output - a1f61c48:/srv/app/etc | ssh vendor-host tar xzf -`
+streams it as tar.gz to the other side, where `tar` is the only tool needed.
+
+## Tar formats Plakar reads and writes
+### Plain tar archives
+
+Uncompressed `.tar` files, read from a local path such as
+`tar:///mnt/exports/app-export.tar`.
+
+### Gzip-compressed tar archives
+
+`.tar.gz` and `.tgz` files, decompressed during the import. `tar+gz://` and
+`tar+gzip://` are accepted as the same protocol.
+
+### Tar, tar.gz or zip on export
+
+`plakar archive` writes a snapshot or one of its paths as `tarball` (tar.gz, the
+default), `tar` or `zip`. `-rebase` drops the leading path inside the export.
+
+## How to import a tar archive with the open-source Plakar CLI
+The Plakar CLI is free and open source, and tar support is part of it. Create a
+store, then point `plakar backup` at the archive file with the protocol that
+matches its compression.
+
+The [tar integration documentation](/docs/community/main/integrations/tar/)
+describes the protocols and the `location` option.
+
+```bash
+$ plakar at /var/backups create
+
+$ plakar at /var/backups backup tar:///mnt/exports/app-export.tar
+
+$ plakar at /var/backups backup \
+    -force-timestamp 2025-03-14T02:00:00Z \
+    tgz:///mnt/nas/backup-20250314.tar.gz
+
+$ plakar at /var/backups ls
+```
+
+## Tar archive backup FAQ
+### Which tar formats can Plakar import?
+
+Plain tar archives with `tar://` and gzip-compressed archives (`.tar.gz`,
+`.tgz`) with `tgz://`, also accepted as `tar+gz://` and `tar+gzip://`. The
+archive is a file on the machine running Plakar.
+
+### How does Plakar read a tar archive?
+
+It reads the entries in order, decompressing gzip on the fly, and writes each
+one into the snapshot as it goes. Nothing is unpacked to a temporary directory.
+
+### Do tar.gz archives deduplicate in Plakar?
+
+Yes. Deduplication works on the files inside the archive, not on the compressed
+stream, so unchanged files are stored once across all the archives you import.
+
+### Does Plakar keep the permissions and dates of tar entries?
+
+Yes. Mode, owner, group and modification time are recorded for each entry. A
+restore to a directory applies modes and times, and owners when it runs as root.
+
+### How do I keep the original date of an old tarball?
+
+Pass `-force-timestamp` to `plakar backup`, for example
+`-force-timestamp 2025-03-14T02:00:00Z`. The snapshot is then listed under that
+date.
+
+### How do I compare two tar archives?
+
+Import both, then run `plakar diff` on the two snapshots, with a file path for a
+single file or `-recursive` for the whole tree. Changed files show as a unified
+diff.
+
+### How do I turn a Plakar snapshot back into a tar.gz file?
+
+Run `plakar archive -output export.tar.gz` followed by the snapshot ID. Add a
+path after the ID to export one directory, and `-format tar` for an uncompressed
+file.
+
+### Where can I restore an imported tar archive?
+
+To any directory with `plakar restore -to`, or to any destination Plakar
+supports, such as an SFTP server or an object storage bucket.
+
 
