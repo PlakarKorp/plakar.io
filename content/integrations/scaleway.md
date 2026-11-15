@@ -76,7 +76,9 @@ Secret Manager secrets into an encrypted, deduplicated Plakar store, without
 installing anything inside the Instances. It restores them as new resources in
 the same project, another project or another zone. It runs from the free
 `plakar` CLI or from Plakar Control Plane, which also discovers the resources of
-each Scaleway project.
+each Scaleway project. Everything goes through the Scaleway APIs and the Object
+Storage endpoint over HTTPS, so Plakar runs inside Scaleway or on any other
+infrastructure, at another cloud provider or on premises.
 
 Three protocols cover the project. `scaleway-instance://` backs up an Instance
 with every Block Storage volume attached to it. `scaleway-block://` backs up a
@@ -317,9 +319,9 @@ restores them into any project and region.
 
 {{< pair lead="Managed Database automated backups." >}}
 
-Plakar connects to the database engine from a host or an Edge in your own
-project, over the Private Network, with no staging bucket, and restores into the
-same Managed Database, another one or a self-managed server.
+Plakar connects to the database engine with a database user, from any host that
+reaches it, with no staging bucket, and restores into the same Managed Database,
+another one or a self-managed server.
 
 {{< /pair >}}
 
@@ -353,17 +355,17 @@ leaves every restore point of the archive available.
 
 ## Scaleway backup tools compared {kicker="Comparison"}
 
-|                                                                   | Plakar                                              | Agent-based backup software   | Snapshot scheduling services            | Scripts with the Scaleway CLI     |
-| ----------------------------------------------------------------- | --------------------------------------------------- | ----------------------------- | --------------------------------------- | --------------------------------- |
-| Nothing installed in the Instances                                | ✓ Scaleway APIs only                                | ✗ An agent in each Instance   | ✓ Through the API                       | ✓ Through the API                 |
-| Copies kept outside the Scaleway project                          | ✓ Exported to a store you choose                    | ✓ In the product's repository | ◐ Usually snapshots kept in the project | ◐ If your script exports them     |
-| Instances with all their volumes                                  | ✓ One `scaleway-instance://` source                 | ◐ The files the agent sees    | ✓ Server and volume snapshots           | ◐ Your script                     |
-| Secret Manager secrets and versions                               | ✓ `scaleway-secret://`                              | ◐ Depends on the product      | ◐ Depends on the service                | ◐ Your script                     |
-| Encrypted, deduplicated history                                   | ✓ Verified with `plakar check`                      | ◐ Depends on the product      | ◐ Depends on the service                | ✗ Your script                     |
-| Restore into another zone or project                              | ✓ Set `zone` and `project_id`                       | ◐ Through the agent           | ◐ Depends on the service                | ◐ Export, copy and import by hand |
-| Managed Databases, buckets and Kapsule clusters in the same store | ✓ PostgreSQL, MySQL, S3 and Kubernetes integrations | ◐ Depends on the product      | ◐ Depends on the service                | ◐ Your script                     |
-| Discovery of the project's resources                              | ✓ Scaleway inventory in Plakar Control Plane        | ◐ Depends on the product      | ◐ Depends on the service                | ✗ Your own tooling                |
-| Free CLI                                                          | ✓                                                   | ◐ Depends on the product      | ✗ Subscription                          | ✓                                 |
+|                                                                   | Plakar                                              | Commercial backup suites      | Open-source backup tools in the Instance           | Scripts with the Scaleway CLI     |
+| ----------------------------------------------------------------- | --------------------------------------------------- | ----------------------------- | -------------------------------------------------- | --------------------------------- |
+| Nothing installed in the Instances                                | ✓ Scaleway APIs only                                | ✗ An agent in each Instance   | ✗ Installed in each Instance                       | ✓ Through the API                 |
+| Copies kept outside the Scaleway project                          | ✓ Exported to a store you choose                    | ✓ In the product's repository | ✓ In the bucket you point them to                  | ◐ If your script exports them     |
+| Instances with all their volumes                                  | ✓ One `scaleway-instance://` source                 | ◐ The files the agent sees    | ◐ The directories you list                         | ◐ Your script                     |
+| Secret Manager secrets and versions                               | ✓ `scaleway-secret://`                              | ✗ No Secret Manager support   | ✗ No Secret Manager support                        | ✗ No ready-made script            |
+| Encrypted, deduplicated history                                   | ✓ Verified with `plakar check`                      | ◐ Encryption as an option     | ✓ Encrypted, incremental                           | ✗ Your script                     |
+| Restore into another zone or project                              | ✓ Set `zone` and `project_id`                       | ◐ Through the agent           | ◐ Files restored into an Instance you create first | ◐ Export, copy and import by hand |
+| Managed Databases, buckets and Kapsule clusters in the same store | ✓ PostgreSQL, MySQL, S3 and Kubernetes integrations | ✗ Hosts with an agent only    | ✗ Files of the Instance only                       | ◐ Your script                     |
+| Discovery of the project's resources                              | ✓ Scaleway inventory in Plakar Control Plane        | ✗ Hosts added one by one      | ✗ Set up on each Instance                          | ✗ Your own tooling                |
+| Free CLI                                                          | ✓                                                   | ✗ Commercial licence          | ✓                                                  | ✓                                 |
 
 ## How to restore a Scaleway Instance in another zone or project {kicker="Restore"}
 
@@ -511,14 +513,12 @@ $ plakar at /var/backups check
 {{< column >}}
 
 With several projects and teams, Plakar Control Plane replaces per-host CLI
-configuration. It runs as an Instance in your own Scaleway project, on a Private
-Network with no public IP, reached through a Load Balancer for HTTPS and the
-Public Gateway's SSH bastion. One Control Plane protects the Instances and
-volumes of other projects through the Scaleway API, with no network peering. A
-Scaleway inventory per project discovers its Instances, Instance volumes, Block
-Storage volumes, Object Storage buckets, managed databases and Secret Manager,
-and keeps the list current as resources come and go. Restores run from the same
-interface, as new volumes, new Instances or new secret revisions.
+configuration. One Control Plane protects the Instances and volumes of several
+projects through the Scaleway API, with no network peering. A Scaleway inventory
+per project discovers its Instances, Instance volumes, Block Storage volumes,
+Object Storage buckets, managed databases and Secret Manager, and keeps the list
+current as resources come and go. Restores run from the same interface, as new
+volumes, new Instances or new secret revisions.
 
 [See how Plakar Control Plane works](/solutions/control-plane/), read the
 [Control Plane Scaleway documentation](/docs/control-plane/resources/compute/scaleway/)
@@ -648,11 +648,12 @@ With the [Kubernetes integration](/integrations/kubernetes/), which connects
 with the cluster's kubeconfig, backs up every resource as YAML, namespace by
 namespace, and reads the data of PersistentVolumeClaims through a helper pod.
 
-### Where does Plakar Control Plane run on Scaleway?
+### Where can Plakar run to back up Scaleway?
 
-In your own Scaleway project, as an Instance on a Private Network with no public
-IP. One Control Plane protects the Instances and volumes of other projects
-through the Scaleway API.
+Anywhere that reaches the Scaleway APIs and the Object Storage endpoint over
+HTTPS: an Instance of the protected project, another Scaleway project, another
+cloud provider or an on-premises server. The disks transit through a staging
+bucket of the protected project wherever Plakar runs.
 
 ### How is the Scaleway integration distributed?
 
