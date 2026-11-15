@@ -73,7 +73,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="integrations">
     <meta property="article:published_time" content="2026-08-26T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-14T22:18:08-07:00">
+    <meta property="article:modified_time" content="2026-11-15T06:40:17+01:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -230,12 +230,12 @@
     "dateCreated": "2026-08-26T00:00:00\u002b00:00",
     "datePublished": "2026-08-26T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-14T22:18:08-07:00",
+    "dateModified": "2026-11-15T06:40:17\u002b01:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/integrations/scaleway/",
-    "wordCount":  2721 
+    "wordCount":  2738 
   }]
   </script>
 
@@ -2283,13 +2283,6 @@
                   Community &amp; Control Plane
                 </span>
               
-              
-                <span class="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-neutral-700 bg-neutral-100 rounded-full px-3 py-1">
-                  <span class="w-3.5 h-3.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6 8V7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7V8H20C20.5523 8 21 8.44772 21 9V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V9C3 8.44772 3.44772 8 4 8H6ZM19 10H5V20H19V10ZM11 15.7324C10.4022 15.3866 10 14.7403 10 14C10 12.8954 10.8954 12 12 12C13.1046 12 14 12.8954 14 14C14 14.7403 13.5978 15.3866 13 15.7324V18H11V15.7324ZM8 8H16V7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7V8Z"></path></svg>
-</span></span>
-                  Closed source
-                </span>
-              
             </div>
             <h1 class="text-3xl lg:text-6xl font-medium">
               Free, agentless <span class="text-primary-500">Scaleway</span> backup
@@ -2298,18 +2291,6 @@
               Free, agentless Scaleway backup of Instances, Block Storage volumes and Secret Manager secrets, encrypted and restored as new resources in any zone or project.
 
             </p>
-            
-              <p class="mt-4 border-l-4 border-primary-500 pl-4 text-base text-neutral-600 max-w-2xl leading-relaxed">
-                Integrations built for Plakar Control Plane are closed source.
-                This one is distributed to Community users as well, as a
-                pre-built package that is free to install with a Plakar
-                account. Because its source is not published, it cannot be
-                built locally the way Plakar's open source connectors can. See
-                <a href="/docs/community/main/guides/managing-packages/#source-availability"
-                  class="text-primary-600 underline font-medium">Managing packages</a>
-                for more information.
-              </p>
-            
             <div class="flex flex-col gap-2">
               
                 
@@ -2490,7 +2471,9 @@ Secret Manager secrets into an encrypted, deduplicated Plakar store, without
 installing anything inside the Instances. It restores them as new resources in
 the same project, another project or another zone. It runs from the free
 <code>plakar</code> CLI or from Plakar Control Plane, which also discovers the resources of
-each Scaleway project.</p>
+each Scaleway project. Everything goes through the Scaleway APIs and the Object
+Storage endpoint over HTTPS, so Plakar runs inside Scaleway or on any other
+infrastructure, at another cloud provider or on premises.</p>
 <p>Three protocols cover the project. <code>scaleway-instance://</code> backs up an Instance
 with every Block Storage volume attached to it. <code>scaleway-block://</code> backs up a
 single volume. <code>scaleway-secret://</code> backs up every secret of a project and
@@ -2904,9 +2887,9 @@ restores them into any project and region.</p>
 
 <div class="lp-pair">
   <p class="lp-pair-lead">Managed Database automated backups.</p>
-  <div class="lp-pair-body prose max-w-none"><p>Plakar connects to the database engine from a host or an Edge in your own
-project, over the Private Network, with no staging bucket, and restores into the
-same Managed Database, another one or a self-managed server.</p>
+  <div class="lp-pair-body prose max-w-none"><p>Plakar connects to the database engine with a database user, from any host that
+reaches it, with no staging bucket, and restores into the same Managed Database,
+another one or a self-managed server.</p>
 </div>
 </div>
 
@@ -3005,8 +2988,8 @@ leaves every restore point of the archive available.</p>
       <tr>
         <th scope="col"></th>
         <th class="lp-col-plakar" scope="col">Plakar</th>
-        <th scope="col">Agent-based backup software</th>
-        <th scope="col">Snapshot scheduling services</th>
+        <th scope="col">Commercial backup suites</th>
+        <th scope="col">Open-source backup tools in the Instance</th>
         <th scope="col">Scripts with the Scaleway CLI</th>
       </tr>
     </thead>
@@ -3015,63 +2998,63 @@ leaves every restore point of the archive available.</p>
         <th scope="row">Nothing installed in the Instances</th>
         <td class="lp-col-plakar"><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">Scaleway APIs only</span></span></td>
         <td><span class="lp-mark lp-mark--no"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6.5 6.5l7 7m0-7l-7 7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">No</span><span class="lp-mark-text">An agent in each Instance</span></span></td>
-        <td><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">Through the API</span></span></td>
+        <td><span class="lp-mark lp-mark--no"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6.5 6.5l7 7m0-7l-7 7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">No</span><span class="lp-mark-text">Installed in each Instance</span></span></td>
         <td><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">Through the API</span></span></td>
       </tr>
       <tr>
         <th scope="row">Copies kept outside the Scaleway project</th>
         <td class="lp-col-plakar"><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">Exported to a store you choose</span></span></td>
         <td><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">In the product&rsquo;s repository</span></span></td>
-        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Usually snapshots kept in the project</span></span></td>
+        <td><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">In the bucket you point them to</span></span></td>
         <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">If your script exports them</span></span></td>
       </tr>
       <tr>
         <th scope="row">Instances with all their volumes</th>
         <td class="lp-col-plakar"><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">One <code>scaleway-instance://</code> source</span></span></td>
         <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">The files the agent sees</span></span></td>
-        <td><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">Server and volume snapshots</span></span></td>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">The directories you list</span></span></td>
         <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Your script</span></span></td>
       </tr>
       <tr>
         <th scope="row">Secret Manager secrets and versions</th>
         <td class="lp-col-plakar"><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text"><code>scaleway-secret://</code></span></span></td>
-        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Depends on the product</span></span></td>
-        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Depends on the service</span></span></td>
-        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Your script</span></span></td>
+        <td><span class="lp-mark lp-mark--no"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6.5 6.5l7 7m0-7l-7 7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">No</span><span class="lp-mark-text">No Secret Manager support</span></span></td>
+        <td><span class="lp-mark lp-mark--no"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6.5 6.5l7 7m0-7l-7 7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">No</span><span class="lp-mark-text">No Secret Manager support</span></span></td>
+        <td><span class="lp-mark lp-mark--no"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6.5 6.5l7 7m0-7l-7 7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">No</span><span class="lp-mark-text">No ready-made script</span></span></td>
       </tr>
       <tr>
         <th scope="row">Encrypted, deduplicated history</th>
         <td class="lp-col-plakar"><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">Verified with <code>plakar check</code></span></span></td>
-        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Depends on the product</span></span></td>
-        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Depends on the service</span></span></td>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Encryption as an option</span></span></td>
+        <td><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">Encrypted, incremental</span></span></td>
         <td><span class="lp-mark lp-mark--no"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6.5 6.5l7 7m0-7l-7 7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">No</span><span class="lp-mark-text">Your script</span></span></td>
       </tr>
       <tr>
         <th scope="row">Restore into another zone or project</th>
         <td class="lp-col-plakar"><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">Set <code>zone</code> and <code>project_id</code></span></span></td>
         <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Through the agent</span></span></td>
-        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Depends on the service</span></span></td>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Files restored into an Instance you create first</span></span></td>
         <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Export, copy and import by hand</span></span></td>
       </tr>
       <tr>
         <th scope="row">Managed Databases, buckets and Kapsule clusters in the same store</th>
         <td class="lp-col-plakar"><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">PostgreSQL, MySQL, S3 and Kubernetes integrations</span></span></td>
-        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Depends on the product</span></span></td>
-        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Depends on the service</span></span></td>
+        <td><span class="lp-mark lp-mark--no"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6.5 6.5l7 7m0-7l-7 7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">No</span><span class="lp-mark-text">Hosts with an agent only</span></span></td>
+        <td><span class="lp-mark lp-mark--no"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6.5 6.5l7 7m0-7l-7 7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">No</span><span class="lp-mark-text">Files of the Instance only</span></span></td>
         <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Your script</span></span></td>
       </tr>
       <tr>
         <th scope="row">Discovery of the project&rsquo;s resources</th>
         <td class="lp-col-plakar"><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">Scaleway inventory in Plakar Control Plane</span></span></td>
-        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Depends on the product</span></span></td>
-        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Depends on the service</span></span></td>
+        <td><span class="lp-mark lp-mark--no"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6.5 6.5l7 7m0-7l-7 7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">No</span><span class="lp-mark-text">Hosts added one by one</span></span></td>
+        <td><span class="lp-mark lp-mark--no"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6.5 6.5l7 7m0-7l-7 7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">No</span><span class="lp-mark-text">Set up on each Instance</span></span></td>
         <td><span class="lp-mark lp-mark--no"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6.5 6.5l7 7m0-7l-7 7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">No</span><span class="lp-mark-text">Your own tooling</span></span></td>
       </tr>
       <tr>
         <th scope="row">Free CLI</th>
         <td class="lp-col-plakar"><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span></span></td>
-        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Depends on the product</span></span></td>
-        <td><span class="lp-mark lp-mark--no"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6.5 6.5l7 7m0-7l-7 7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">No</span><span class="lp-mark-text">Subscription</span></span></td>
+        <td><span class="lp-mark lp-mark--no"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6.5 6.5l7 7m0-7l-7 7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">No</span><span class="lp-mark-text">Commercial licence</span></span></td>
+        <td><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span></span></td>
         <td><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span></span></td>
       </tr>
     </tbody>
@@ -3309,14 +3292,12 @@ volume restore.</p>
 <div class="lp-columns lp-columns--5-7 lp-columns--sticky-left">
 
 <div class="lp-column prose max-w-none"><p>With several projects and teams, Plakar Control Plane replaces per-host CLI
-configuration. It runs as an Instance in your own Scaleway project, on a Private
-Network with no public IP, reached through a Load Balancer for HTTPS and the
-Public Gateway&rsquo;s SSH bastion. One Control Plane protects the Instances and
-volumes of other projects through the Scaleway API, with no network peering. A
-Scaleway inventory per project discovers its Instances, Instance volumes, Block
-Storage volumes, Object Storage buckets, managed databases and Secret Manager,
-and keeps the list current as resources come and go. Restores run from the same
-interface, as new volumes, new Instances or new secret revisions.</p>
+configuration. One Control Plane protects the Instances and volumes of several
+projects through the Scaleway API, with no network peering. A Scaleway inventory
+per project discovers its Instances, Instance volumes, Block Storage volumes,
+Object Storage buckets, managed databases and Secret Manager, and keeps the list
+current as resources come and go. Restores run from the same interface, as new
+volumes, new Instances or new secret revisions.</p>
 <p><a href="/solutions/control-plane/" >See how Plakar Control Plane works</a>, read the
 <a href="/docs/control-plane/resources/compute/scaleway/" >Control Plane Scaleway documentation</a>
 and the
@@ -3611,11 +3592,11 @@ Plakar store or receive a restore.</p>
 with the cluster&rsquo;s kubeconfig, backs up every resource as YAML, namespace by
 namespace, and reads the data of PersistentVolumeClaims through a helper pod.</p>
 
-<h3 id="where-does-plakar-control-plane-run-on-scaleway" class="group pr-8">Where does Plakar Control Plane run on Scaleway?
+<h3 id="where-can-plakar-run-to-back-up-scaleway" class="group pr-8">Where can Plakar run to back up Scaleway?
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="where-does-plakar-control-plane-run-on-scaleway"
+      data-anchor="where-can-plakar-run-to-back-up-scaleway"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -3626,9 +3607,10 @@ namespace, and reads the data of PersistentVolumeClaims through a helper pod.</p
     </button>
   
 </h3>
-<p>In your own Scaleway project, as an Instance on a Private Network with no public
-IP. One Control Plane protects the Instances and volumes of other projects
-through the Scaleway API.</p>
+<p>Anywhere that reaches the Scaleway APIs and the Object Storage endpoint over
+HTTPS: an Instance of the protected project, another Scaleway project, another
+cloud provider or an on-premises server. The disks transit through a staging
+bucket of the protected project wherever Plakar runs.</p>
 
 <h3 id="how-is-the-scaleway-integration-distributed" class="group pr-8">How is the Scaleway integration distributed?
     <button
@@ -3676,7 +3658,7 @@ protected.</p>
   </div>
 </section>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://www.plakar.io/","name":"Home","position":1},{"@type":"ListItem","item":"https://www.plakar.io/integrations/","name":"Integrations","position":2},{"@type":"ListItem","item":"https://www.plakar.io/integrations/scaleway/","name":"Scaleway","position":3}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","applicationCategory":"UtilitiesApplication","description":"Free, agentless Scaleway backup of Instances, Block Storage volumes and Secret Manager secrets, encrypted and restored as new resources in any zone or project.","name":"Plakar Scaleway integration","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"operatingSystem":"Linux, macOS, Windows, FreeBSD","publisher":{"@type":"Organization","name":"Plakar","url":"https://www.plakar.io/"},"url":"https://www.plakar.io/integrations/scaleway/"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Nothing. Plakar works through the Scaleway APIs: it snapshots the Block Storage volumes, exports them to Object Storage as QCOW2 images and reads them from there."},"name":"What does Plakar install inside Scaleway Instances?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"It snapshots every Block Storage volume of the Instance, exports each snapshot to a staging bucket as a QCOW2 image, and stores the images with the Instance and volume descriptions in an encrypted, deduplicated snapshot."},"name":"How does Plakar back up a Scaleway Instance?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"For Instances and volumes, full access to Instances and Block Storage, and read and write access to Object Storage buckets and objects. For secrets, Secret Manager read, access, create, write and restore permissions."},"name":"What permissions does the Scaleway API key need?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Yes. The destination sets its own zone and project_id, and scaleway-instance://spawn creates the Instance there from the snapshot."},"name":"Can I restore a Scaleway Instance in another zone or project?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Declare it as a scaleway-block://\u003cvolume-id\u003e source. A restore brings it back as a new volume, detached with scaleway-block:// or attached to an Instance with scaleway-block://\u003cinstance-id\u003e, with the name, tags and IOPS of the original."},"name":"How do I back up a single Scaleway Block Storage volume?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"New resources only: a new volume, a new Instance, or new revisions of a secret. The resource you restore next to is left as it is."},"name":"What does a Scaleway restore create?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Plakar deletes each QCOW2 image once it has been read, and each temporary Block Storage snapshot once it has been exported."},"name":"What happens to the staging bucket?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Secret Manager keeps a deleted secret recoverable for 7 days, then deletes it with all its versions. Plakar keeps backed-up versions for as long as your retention policy sets."},"name":"How long does Scaleway keep a deleted secret?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Yes. The destination sets its own project_id and region. Secrets with the same name and path are reused, and every version is added as a new revision."},"name":"Can Scaleway secrets be restored into another project?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"In a store outside the project you protect: an Object Storage bucket in another project or region, with Object Lock enabled, or a store at another provider. plakar sync keeps a second copy."},"name":"Where should I store Scaleway backups?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"With the PostgreSQL and MySQL integrations, which connect to the managed server with a database user and store the dumps in the same Plakar store. A restore goes to the same Managed Database, another one or a self-managed server."},"name":"How do I back up Scaleway Managed Databases for PostgreSQL and MySQL?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"With the S3 integration, which reads the bucket over the Scaleway S3 endpoint, for example s3://s3.fr-par.scw.cloud/my-bucket. A bucket can also host the Plakar store or receive a restore."},"name":"How do I back up Scaleway Object Storage buckets?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"With the Kubernetes integration, which connects with the cluster’s kubeconfig, backs up every resource as YAML, namespace by namespace, and reads the data of PersistentVolumeClaims through a helper pod."},"name":"How do I back up Scaleway Kubernetes Kapsule clusters?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"In your own Scaleway project, as an Instance on a Private Network with no public IP. One Control Plane protects the Instances and volumes of other projects through the Scaleway API."},"name":"Where does Plakar Control Plane run on Scaleway?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"As a pre-built package, free to install with a Plakar account, with plakar pkg add scaleway."},"name":"How is the Scaleway integration distributed?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Start with the free CLI for a few Instances run from cron. Move to Plakar Control Plane for discovery across projects, policies and one view of what is protected."},"name":"Should I use the free CLI or Plakar Control Plane?"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://www.plakar.io/","name":"Home","position":1},{"@type":"ListItem","item":"https://www.plakar.io/integrations/","name":"Integrations","position":2},{"@type":"ListItem","item":"https://www.plakar.io/integrations/scaleway/","name":"Scaleway","position":3}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","applicationCategory":"UtilitiesApplication","description":"Free, agentless Scaleway backup of Instances, Block Storage volumes and Secret Manager secrets, encrypted and restored as new resources in any zone or project.","name":"Plakar Scaleway integration","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"operatingSystem":"Linux, macOS, Windows, FreeBSD","publisher":{"@type":"Organization","name":"Plakar","url":"https://www.plakar.io/"},"url":"https://www.plakar.io/integrations/scaleway/"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Nothing. Plakar works through the Scaleway APIs: it snapshots the Block Storage volumes, exports them to Object Storage as QCOW2 images and reads them from there."},"name":"What does Plakar install inside Scaleway Instances?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"It snapshots every Block Storage volume of the Instance, exports each snapshot to a staging bucket as a QCOW2 image, and stores the images with the Instance and volume descriptions in an encrypted, deduplicated snapshot."},"name":"How does Plakar back up a Scaleway Instance?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"For Instances and volumes, full access to Instances and Block Storage, and read and write access to Object Storage buckets and objects. For secrets, Secret Manager read, access, create, write and restore permissions."},"name":"What permissions does the Scaleway API key need?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Yes. The destination sets its own zone and project_id, and scaleway-instance://spawn creates the Instance there from the snapshot."},"name":"Can I restore a Scaleway Instance in another zone or project?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Declare it as a scaleway-block://\u003cvolume-id\u003e source. A restore brings it back as a new volume, detached with scaleway-block:// or attached to an Instance with scaleway-block://\u003cinstance-id\u003e, with the name, tags and IOPS of the original."},"name":"How do I back up a single Scaleway Block Storage volume?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"New resources only: a new volume, a new Instance, or new revisions of a secret. The resource you restore next to is left as it is."},"name":"What does a Scaleway restore create?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Plakar deletes each QCOW2 image once it has been read, and each temporary Block Storage snapshot once it has been exported."},"name":"What happens to the staging bucket?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Secret Manager keeps a deleted secret recoverable for 7 days, then deletes it with all its versions. Plakar keeps backed-up versions for as long as your retention policy sets."},"name":"How long does Scaleway keep a deleted secret?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Yes. The destination sets its own project_id and region. Secrets with the same name and path are reused, and every version is added as a new revision."},"name":"Can Scaleway secrets be restored into another project?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"In a store outside the project you protect: an Object Storage bucket in another project or region, with Object Lock enabled, or a store at another provider. plakar sync keeps a second copy."},"name":"Where should I store Scaleway backups?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"With the PostgreSQL and MySQL integrations, which connect to the managed server with a database user and store the dumps in the same Plakar store. A restore goes to the same Managed Database, another one or a self-managed server."},"name":"How do I back up Scaleway Managed Databases for PostgreSQL and MySQL?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"With the S3 integration, which reads the bucket over the Scaleway S3 endpoint, for example s3://s3.fr-par.scw.cloud/my-bucket. A bucket can also host the Plakar store or receive a restore."},"name":"How do I back up Scaleway Object Storage buckets?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"With the Kubernetes integration, which connects with the cluster’s kubeconfig, backs up every resource as YAML, namespace by namespace, and reads the data of PersistentVolumeClaims through a helper pod."},"name":"How do I back up Scaleway Kubernetes Kapsule clusters?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Anywhere that reaches the Scaleway APIs and the Object Storage endpoint over HTTPS: an Instance of the protected project, another Scaleway project, another cloud provider or an on-premises server. The disks transit through a staging bucket of the protected project wherever Plakar runs."},"name":"Where can Plakar run to back up Scaleway?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"As a pre-built package, free to install with a Plakar account, with plakar pkg add scaleway."},"name":"How is the Scaleway integration distributed?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Start with the free CLI for a few Instances run from cron. Move to Plakar Control Plane for discovery across projects, policies and one view of what is protected."},"name":"Should I use the free CLI or Plakar Control Plane?"}]}</script>
 
 
 
