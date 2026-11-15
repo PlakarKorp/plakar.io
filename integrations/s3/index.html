@@ -11,8 +11,8 @@
 
   
   
-    <title>S3 &middot; Plakar</title>
-    <meta name="title" content="S3 &middot; Plakar">
+    <title>Free, Open-Source S3 Bucket Backup and Restore &middot; Plakar</title>
+    <meta name="title" content="Free, Open-Source S3 Bucket Backup and Restore &middot; Plakar">
   
 
   
@@ -27,11 +27,11 @@
     
   
   
-    <meta name="description" content="Protect your object storage against accidental deletion, ransomware, and cloud misconfigurations. Plakar provides immutable, encrypted snapshots for S3, restorable across any provider or environment.
+    <meta name="description" content="Free, open-source S3 bucket backup with read-only keys: encrypted, deduplicated snapshots of a bucket or prefix, restored to any S3-compatible endpoint.
 ">
   
   
-    <meta name="keywords" content="AWS S3,S3 backup,ransomware protection,object storage security,immutable snapshots,data integrity,disaster recovery,cloud migration,cross-cloud backup,deduplication,encrypted storage,">
+    <meta name="keywords" content="S3 bucket backup,S3 backup,restore deleted S3 objects,back up S3 to another provider,S3-compatible backup,free S3 backup,open source S3 backup,S3 Glacier backup storage,">
   
   
   
@@ -67,18 +67,18 @@
   
   <meta property="og:url" content="https://www.plakar.io/integrations/s3/">
   <meta property="og:site_name" content="Plakar | The Open Standard for Backup and Restore">
-  <meta property="og:title" content="S3">
-  <meta property="og:description" content="Protect your object storage against accidental deletion, ransomware, and cloud misconfigurations. Plakar provides immutable, encrypted snapshots for S3, restorable across any provider or environment.">
+  <meta property="og:title" content="Free, Open-Source S3 Bucket Backup and Restore">
+  <meta property="og:description" content="Free, open-source S3 bucket backup with read-only keys: encrypted, deduplicated snapshots of a bucket or prefix, restored to any S3-compatible endpoint.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="integrations">
     <meta property="article:published_time" content="2026-03-23T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-15T06:40:17+01:00">
+    <meta property="article:modified_time" content="2026-11-15T07:12:33+01:00">
 
   
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="S3">
-  <meta name="twitter:description" content="Protect your object storage against accidental deletion, ransomware, and cloud misconfigurations. Plakar provides immutable, encrypted snapshots for S3, restorable across any provider or environment.">
+  <meta name="twitter:title" content="Free, Open-Source S3 Bucket Backup and Restore">
+  <meta name="twitter:description" content="Free, open-source S3 bucket backup with read-only keys: encrypted, deduplicated snapshots of a bucket or prefix, restored to any S3-compatible endpoint.">
 
   
   
@@ -219,7 +219,7 @@
     "articleSection": "Plakar Integrations",
     "name": "S3",
     "headline": "S3",
-    "description": "Protect your object storage against accidental deletion, ransomware, and cloud misconfigurations. Plakar provides immutable, encrypted snapshots for S3, restorable across any provider or environment.\n",
+    "description": "Free, open-source S3 bucket backup with read-only keys: encrypted, deduplicated snapshots of a bucket or prefix, restored to any S3-compatible endpoint.\n",
     "inLanguage": "en-us",
     "url" : "https://www.plakar.io/integrations/s3/",
     "author" : {
@@ -230,12 +230,12 @@
     "dateCreated": "2026-03-23T00:00:00\u002b00:00",
     "datePublished": "2026-03-23T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-15T06:40:17\u002b01:00",
+    "dateModified": "2026-11-15T07:12:33\u002b01:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/integrations/s3/",
-    "wordCount":  514 
+    "wordCount":  2953 
   }]
   </script>
 
@@ -2285,10 +2285,10 @@
               
             </div>
             <h1 class="text-3xl lg:text-6xl font-medium">
-              Resilient, encrypted backups for AWS <span class="text-primary-500">S3</span> and <span class="text-primary-500">S3</span>-compatible environments
+              Free, open-source <span class="text-primary-500">S3</span> bucket backup
             </h1>
             <p class="text-lg lg:text-2xl text-neutral-600 font-medium pt-6">
-              Protect your object storage against accidental deletion, ransomware, and cloud misconfigurations. Plakar provides immutable, encrypted snapshots for S3, restorable across any provider or environment.
+              Free, open-source S3 bucket backup with read-only keys: encrypted, deduplicated snapshots of a bucket or prefix, restored to any S3-compatible endpoint.
 
             </p>
             <div class="flex flex-col gap-2">
@@ -2390,7 +2390,7 @@
                     <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 22H4C3.44772 22 3 21.5523 3 21V3C3 2.44772 3.44772 2 4 2H20C20.5523 2 21 2.44772 21 3V21C21 21.5523 20.5523 22 20 22ZM19 20V4H5V20H19ZM7 6H11V10H7V6ZM7 12H17V14H7V12ZM7 16H17V18H7V16ZM13 7H17V9H13V7Z"></path></svg>
 </span>
                   </span>
-                  Blog: Why you need a real backup strategy
+                  Blog: S3 is not a backup
                 </a>
               
             </div>
@@ -2436,10 +2436,11 @@
     <div class="flex flex-row gap-4 items-end justify-end w-full">
       <div class="flex flex-col w-full lg:w-2/3">
         <h2 class="text-3xl lg:text-5xl font-medium text-right">
-          <span class="text-primary-500">S3</span> is the industry standard, but it isn't bulletproof
+          <span class="text-primary-500">S3</span> versioning protects a bucket from inside its own account
         </h2>
         <p class="text-lg lg:text-xl text-neutral-700 font-medium w-full pt-8">
-          S3-compatible storage is the backbone of the modern web, powering everything from media assets and log archives to mission-critical databases and AI training sets. While S3 offers high durability, it remains vulnerable to logical failures: accidental overwrites, compromised credentials, or misconfigured lifecycle policies. Plakar transforms S3 into a truly resilient backup ecosystem, adding a layer of  cryptographic integrity, global deduplication, and independent immutability that standard object storage lacks.
+          Object storage services quote 99.999999999% durability, which protects objects from failing hardware, not from a valid request that deletes them. Versioning, Object Lock and replication are configured by the same users and keys that manage the bucket. A delete on a versioned bucket only adds a delete marker, but a lifecycle rule with NoncurrentVersionExpiration, or any user allowed to delete object versions, removes the older copies for good. Durability does not cover the account either: a suspension or a closure decided by the provider, for an unpaid invoice, a terms-of-service review or a legal request, or an operator error on the provider&#39;s side, can make every bucket of the account unreachable or erase it.
+Plakar reads the bucket with list and get permissions only, and keeps each run as an encrypted, deduplicated snapshot in a store with its own credentials, at another provider or on premises, so a decision or an error on one account does not reach both copies.
 
         </p>
       </div>
@@ -2452,11 +2453,12 @@
   <div class="max-w-350 mx-auto px-4">
     <article class="prose max-w-full integration-body">
       
-<h2 id="why-protecting-s3-data-matters" class="group pr-8">Why protecting S3 data matters
+<p class="lp-kicker" data-pagefind-ignore>Overview</p>
+<h2 id="what-the-s3-integration-does" class="group pr-8">What the S3 integration does
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="why-protecting-s3-data-matters"
+      data-anchor="what-the-s3-integration-does"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -2467,68 +2469,60 @@
     </button>
   
 </h2>
-<p>S3 is often treated as the backup, but object storage durability is not the same
-as data protection. While S3 provides excellent infrastructure resilience, it
-remains logically vulnerable to:</p>
-<ul>
-<li><strong>Silent Corruption</strong>: Data can degrade over time without detection, and
-standard object storage lacks built-in integrity validation across your entire
-dataset.</li>
-<li><strong>Accidental Deletion</strong>: Misconfigured lifecycle policies can automatically
-delete critical objects. Human errors like bulk delete operations happen
-instantly and affect thousands of objects.</li>
-<li><strong>Versioning Gaps</strong>: Versioning is optional and easy to misconfigure. Even
-when enabled, it doesn&rsquo;t protect against lifecycle policy deletions or
-deliberate version purging.</li>
-<li><strong>Replication Risks</strong>: S3 replication is a double-edged sword. It spreads
-corruption, accidental deletions, and malicious changes just as quickly as
-legitimate data.</li>
-</ul>
-<p>For production data, assets, logs, and compliance records, S3 needs an
-independent safety net beyond buckets and replication.</p>
+<div class="lp-columns lp-columns--7-5 lp-columns--sticky-right">
 
-<h2 id="what-happens-when-s3-credentials-are-compromised" class="group pr-8">What happens when S3 credentials are compromised
-    <button
-      type="button"
-      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="what-happens-when-s3-credentials-are-compromised"
-      aria-label="Copy link to this section"
-      title="Copy link to this section"
-      data-pagefind-ignore>
-      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
-</span></span>
-      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
-</span></span>
-    </button>
-  
-</h2>
-<p>S3 access is controlled by API keys and IAM policies. These credentials are
-frequently shared across services, embedded in scripts, or stored in
-configuration files, creating significant exposure.</p>
-<p>If credentials are leaked or permissions are too broad:</p>
-<ul>
-<li><strong>Total Loss</strong>: Attackers can delete or overwrite entire buckets through the
-API. Automated scripts can wipe thousands of objects in seconds.</li>
-<li><strong>Ransomware Encryption</strong>: Malicious actors can encrypt all bucket contents,
-making your data inaccessible without paying a ransom.</li>
-<li><strong>Damage Propagation</strong>: Replication and sync jobs immediately propagate
-malicious changes across regions and accounts, amplifying the impact.</li>
-<li><strong>Version Manipulation</strong>: Even with versioning enabled, attackers can delete
-object versions, configure aggressive lifecycle policies, or simply wait until
-retention windows expire.</li>
-<li><strong>No Recovery Path</strong>: Without an independent backup, there is no way to &ldquo;undo&rdquo;
-deletions or modifications in standard object storage.</li>
-</ul>
-<p>Plakar mitigates these risks by creating immutable snapshots stored outside the
-live S3 namespace. With end-to-end encryption and support for offline or
-air-gapped retention, your backups remain secure even if your cloud credentials
-are compromised.</p>
+<div class="lp-column prose max-w-none"><p>The S3 integration backs up an S3 bucket, or one prefix of it, into encrypted,
+deduplicated Plakar snapshots, reading each object through the S3 API with list
+and get permissions only. It restores a snapshot, or a single prefix, into any
+bucket on any S3-compatible endpoint, and it can host the Plakar store itself in
+a bucket. Plakar runs on any host that reaches the endpoint, with an access key
+pair.</p>
+<p>The <code>s3</code> package provides three connectors. A source reads a bucket, a
+destination writes objects back, and a store keeps the encrypted backup data of
+any source, from a file server to a database, in a bucket with the storage class
+you choose.</p>
+<p>The connectors speak the plain S3 API, so they work with any service that speaks
+it, such as Amazon S3, Scaleway, OVHcloud, MinIO, Ceph RGW or Garage.</p>
+</div>
 
-<h2 id="how-plakar-secures-your-s3-workflows" class="group pr-8">How Plakar secures your S3 workflows
+
+<div class="lp-column prose max-w-none"><figure class="lp-term not-prose" aria-label="Terminal: backup-host">
+  <div class="lp-term-bar" aria-hidden="true">
+    <span class="lp-term-dot lp-term-dot--r"></span>
+    <span class="lp-term-dot lp-term-dot--y"></span>
+    <span class="lp-term-dot lp-term-dot--g"></span>
+    <span class="lp-term-title">backup-host</span>
+  </div>
+  <pre class="lp-term-body"><code><span class="lp-term-prompt">$</span> <span class="lp-term-cmd"><span class="lp-term-bin">plakar</span> pkg add s3</span>
+<span class="lp-term-prompt">$</span> <span class="lp-term-cmd"><span class="lp-term-bin">plakar</span> source add assets \</span>
+<span class="lp-term-cmd">    s3://s3.fr-par.scw.cloud/acme-assets \</span>
+<span class="lp-term-cmd">    access_key=SCWXXXXXXXXXXXXXXXXX \</span>
+<span class="lp-term-cmd">    secret_access_key=xxxxxxxx-xxxx-xxxx</span>
+<span class="lp-term-prompt">$</span> <span class="lp-term-cmd"><span class="lp-term-bin">plakar</span> at /var/backups backup &#34;@assets&#34;</span>
+<span class="lp-term-out">e41b7c09: <span class="lp-term-ok">OK ✓</span> /exports/2026-11-13.parquet</span>
+<span class="lp-term-out">e41b7c09: <span class="lp-term-ok">OK ✓</span> /exports/2026-11-14.parquet</span>
+<span class="lp-term-out">e41b7c09: <span class="lp-term-ok">OK ✓</span> /exports</span>
+<span class="lp-term-out">e41b7c09: <span class="lp-term-ok">OK ✓</span> /media/hero.webp</span>
+<span class="lp-term-out">e41b7c09: <span class="lp-term-ok">OK ✓</span> /media</span>
+<span class="lp-term-out">e41b7c09: <span class="lp-term-ok">OK ✓</span> /</span>
+<span class="lp-term-out">e41b7c09: backup completed without errors in 9m03.518s</span>
+<span class="lp-term-prompt">$</span> <span class="lp-term-cmd"><span class="lp-term-bin">plakar</span> at /var/backups ls</span>
+<span class="lp-term-out">2026-11-13T03:00:02Z   7aa2f5d1   412 GiB     8m51s /</span>
+<span class="lp-term-out">2026-11-14T03:00:03Z   e41b7c09   415 GiB      9m3s /</span>
+<span class="lp-term-prompt">$</span> <span class="lp-term-cursor"></span></code></pre>
+</figure>
+</div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>Why Plakar</p>
+<h2 id="why-use-plakar-for-s3-bucket-backup" class="group pr-8">Why use Plakar for S3 bucket backup
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="how-plakar-secures-your-s3-workflows"
+      data-anchor="why-use-plakar-for-s3-bucket-backup"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -2539,37 +2533,1313 @@ are compromised.</p>
     </button>
   
 </h2>
-<p>Plakar integrates with S3 as a flexible bridge, enabling secure data movement in
-multiple directions:</p>
-<ul>
-<li><strong>Source Connector</strong>: Take snapshots of one or multiple S3 buckets. Plakar
-encrypts and deduplicates the content before saving it to a trusted Kloset
-Store, creating an independent backup layer.</li>
-<li><strong>Storage Connector</strong>: Use S3-compatible storage (AWS S3, MinIO, Ceph, Wasabi)
-as your Kloset backend. Store encrypted, deduplicated, and versioned snapshots
-from any source like databases, file systems, containers, or other cloud
-services.</li>
-<li><strong>Destination Connector</strong>: Restore verified snapshots back into S3, whether to
-your original bucket, a different region, or an entirely separate account.</li>
-</ul>
-<p>This enables multiple backup strategies:</p>
-<ul>
-<li>Pull data from production buckets into isolated backup storage</li>
-<li>Push encrypted snapshots to low-cost or off-cloud object storage</li>
-<li>Separate backup credentials from production IAM roles for improved security</li>
-</ul>
-<p>Plakar also allows direct inspection of backups. You can browse, search, or
-verify the integrity of your S3 data via the CLI or UI without performing a full
-restore first.</p>
-<p>Instead of relying solely on S3 configuration and access controls, Plakar
-provides cryptographic guarantees and operational control over your data all the
-way from snapshot creation to integrity verification to recovery.</p>
+<div class="lp-cards lp-cards--ruled lp-cols-2 not-prose">
+
+<div class="lp-card"><span class="lp-card-label">egress</span><div class="lp-card-body prose max-w-none">
+<h3 id="off-provider-s3-backups-without-paying-egress-for-every-copy" class="group pr-8">Off-provider S3 backups without paying egress for every copy
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="off-provider-s3-backups-without-paying-egress-for-every-copy"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Run Plakar next to the bucket and only new, compressed chunks leave the
+provider. A copy at another provider no longer costs a full transfer every
+night.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">s3:ListBucket · s3:GetObject</span><div class="lp-card-body prose max-w-none">
+<h3 id="read-only-keys-on-the-source-bucket" class="group pr-8">Read-only keys on the source bucket
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="read-only-keys-on-the-source-bucket"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>A backup lists the bucket and reads its objects, nothing else. The source
+credential needs <code>s3:ListBucket</code> and <code>s3:GetObject</code>, and the keys that write the
+store are a different pair that the application never sees.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">provider A → provider B</span><div class="lp-card-body prose max-w-none">
+<h3 id="back-up-s3-from-any-endpoint-to-any-other" class="group pr-8">Back up S3 from any endpoint to any other
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="back-up-s3-from-any-endpoint-to-any-other"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Source, destination and store are configured separately. Back up a bucket at one
+provider, keep the store at a second one, and restore into a third, a
+self-hosted MinIO or Ceph cluster included.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">7aa2f5d1:/exports</span><div class="lp-card-body prose max-w-none">
+<h3 id="restore-one-s3-prefix-not-the-whole-bucket" class="group pr-8">Restore one S3 prefix, not the whole bucket
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="restore-one-s3-prefix-not-the-whole-bucket"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Pick a prefix in a snapshot and only those objects are written back, under their
+original keys or under a new prefix next to the live data.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">plakar check</span><div class="lp-card-body prose max-w-none">
+<h3 id="s3-backups-verified-apart-from-the-provider" class="group pr-8">S3 backups verified apart from the provider
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="s3-backups-verified-apart-from-the-provider"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Every chunk of a snapshot is addressed by its content, and <code>plakar check</code>
+verifies a snapshot end to end from the backup host, whatever the storage behind
+the store reports.</p>
+</div>
+</div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>Recovery scenarios</p>
+<h2 id="s3-backup-and-recovery-scenarios" class="group pr-8">S3 backup and recovery scenarios
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="s3-backup-and-recovery-scenarios"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<div class="lp-cards lp-cards--accent lp-cols-2 not-prose">
+
+<div class="lp-card"><span class="lp-card-label">aws s3 rm --recursive</span><div class="lp-card-body prose max-w-none">
+<h3 id="an-ai-agent-empties-an-s3-prefix-to-cut-storage-costs" class="group pr-8">An AI agent empties an S3 prefix to cut storage costs
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="an-ai-agent-empties-an-s3-prefix-to-cut-storage-costs"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>An ops agent asked to lower the storage bill runs
+<code>aws s3 rm s3://acme-assets/exports/ --recursive</code> with the operator&rsquo;s
+credentials, then adds a lifecycle rule that expires noncurrent versions after
+one day. The same keys purged the versions. With a snapshot taken before the
+session, in a store whose passphrase the agent never saw,
+<code>plakar diff -recursive</code> lists every removed key and a restore of <code>/exports</code>
+writes them back. The agent&rsquo;s other cleanups stay in place.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">CopyObject &#43; SSE-C</span><div class="lp-card-body prose max-w-none">
+<h3 id="a-leaked-s3-key-re-encrypts-the-bucket-with-sse-c" class="group pr-8">A leaked S3 key re-encrypts the bucket with SSE-C
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="a-leaked-s3-key-re-encrypts-the-bucket-with-sse-c"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>A key with write access to the production bucket leaks from a CI log. The
+attacker copies every object onto itself with <code>CopyObject</code> and an SSE-C key only
+they hold. The objects are still there, unreadable. The Plakar store sits in
+another bucket, ideally at another provider, under credentials the application
+never held, and restores the objects as they were before the first unknown
+request.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">Filter: {}</span><div class="lp-card-body prose max-w-none">
+<h3 id="an-s3-lifecycle-rule-deletes-more-than-intended" class="group pr-8">An S3 lifecycle rule deletes more than intended
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="an-s3-lifecycle-rule-deletes-more-than-intended"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>A rule meant for <code>tmp/</code> is saved with an empty filter and starts expiring
+objects across the whole bucket. Once the noncurrent versions pass their window,
+the bucket has nothing left to roll back to. Nightly snapshots keep each state
+of the bucket for as long as your Plakar retention says, and deduplication
+stores unchanged objects only once.</p>
+</div>
+</div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>Deleted objects</p>
+<h2 id="how-to-restore-deleted-s3-objects" class="group pr-8">How to restore deleted S3 objects
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-to-restore-deleted-s3-objects"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<div class="lp-columns lp-columns--5-7 lp-columns--sticky-right">
+
+<div class="lp-column prose max-w-none"><p>When objects are deleted, overwritten or encrypted with a key you do not hold,
+the snapshot from before the event brings them back. Restore them next to the
+live data first, then move them into place once checked.</p>
+<div class="steps">
+<div class="step"><p><strong>Find the last good snapshot.</strong> <code>plakar ls</code> lists the snapshots with their
+dates, and <code>plakar locate</code> shows which snapshots hold a given object name.</p>
+</div>
+<div class="step"><p><strong>See what changed.</strong> <code>plakar diff -recursive</code> between that snapshot and the
+latest one lists the keys that disappeared or changed.</p>
+</div>
+<div class="step"><p><strong>Restore the prefix next to the original.</strong> A destination whose location ends
+with <code>restore-2026-11-14</code> writes the objects under that prefix, and the live
+<code>exports/</code> is not touched.</p>
+</div>
+<div class="step"><p><strong>Put the objects back in place.</strong> Once checked, restore the same snapshot path
+to a destination on the bucket root, and the objects return under their original
+keys.</p>
+</div>
+</div></div>
+
+
+<div class="lp-column prose max-w-none"><div class="highlight-wrapper codeblock">
+  <div class="codeblock-title">
+    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
+</span></span>
+    <span class="codeblock-label">Shell</span>
+    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
+      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
+</span></span>
+      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar at /var/backups ls
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups locate <span class="s2">&#34;2026-11-*.parquet&#34;</span>
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups diff -recursive 7aa2f5d1 e41b7c09
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ plakar destination add assets-restore <span class="se">\
+</span></span></span><span class="line"><span class="cl">    s3://s3.fr-par.scw.cloud/acme-assets/restore-2026-11-14 <span class="se">\
+</span></span></span><span class="line"><span class="cl">    <span class="nv">access_key</span><span class="o">=</span>... <span class="nv">secret_access_key</span><span class="o">=</span>...
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups restore -to <span class="s2">&#34;@assets-restore&#34;</span> 7aa2f5d1:/exports
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ plakar destination add assets-live <span class="se">\
+</span></span></span><span class="line"><span class="cl">    s3://s3.fr-par.scw.cloud/acme-assets <span class="se">\
+</span></span></span><span class="line"><span class="cl">    <span class="nv">access_key</span><span class="o">=</span>... <span class="nv">secret_access_key</span><span class="o">=</span>...
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups restore -to <span class="s2">&#34;@assets-live&#34;</span> 7aa2f5d1:/exports</span></span></code></pre></div></div>
+</div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>Cross-provider</p>
+<h2 id="how-to-back-up-s3-to-another-provider" class="group pr-8">How to back up S3 to another provider
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-to-back-up-s3-to-another-provider"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<div class="lp-columns lp-columns--5-7 lp-columns--sticky-right">
+
+<div class="lp-column prose max-w-none"><p>A copy at a second provider survives the loss of an account, a region or a set
+of credentials at the first. Plakar reads the bucket at one provider and writes
+encrypted snapshots to a store at another, and neither side holds the other&rsquo;s
+keys.</p>
+<div class="steps">
+<div class="step"><p><strong>Create the store at the second provider.</strong> A bucket there, with its own access
+key, holds the Plakar store. The passphrase stays on the backup host.</p>
+</div>
+<div class="step"><p><strong>Add the production bucket as a source.</strong> A key limited to <code>s3:ListBucket</code> and
+<code>s3:GetObject</code> is enough.</p>
+</div>
+<div class="step"><p><strong>Back up on a schedule from next to the bucket.</strong> Run Plakar on a host or an
+edge in the same region as the production bucket.</p>
+</div>
+<div class="step"><p><strong>Restore wherever you need.</strong> Into the original bucket, a new bucket at either
+provider, or a local disk.</p>
+</div>
+</div></div>
+
+
+<div class="lp-column prose max-w-none"><div class="highlight-wrapper codeblock">
+  <div class="codeblock-title">
+    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
+</span></span>
+    <span class="codeblock-label">Shell</span>
+    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
+      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
+</span></span>
+      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar store add offsite <span class="se">\
+</span></span></span><span class="line"><span class="cl">    s3://s3.eu-west-par.io.cloud.ovh.net/acme-backups <span class="se">\
+</span></span></span><span class="line"><span class="cl">    <span class="nv">access_key</span><span class="o">=</span>... <span class="nv">secret_access_key</span><span class="o">=</span>...
+</span></span><span class="line"><span class="cl">$ plakar at <span class="s2">&#34;@offsite&#34;</span> create
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add assets <span class="se">\
+</span></span></span><span class="line"><span class="cl">    s3://s3.fr-par.scw.cloud/acme-assets <span class="se">\
+</span></span></span><span class="line"><span class="cl">    <span class="nv">access_key</span><span class="o">=</span>... <span class="nv">secret_access_key</span><span class="o">=</span>...
+</span></span><span class="line"><span class="cl">$ plakar at <span class="s2">&#34;@offsite&#34;</span> backup <span class="s2">&#34;@assets&#34;</span>
+</span></span><span class="line"><span class="cl">$ plakar at <span class="s2">&#34;@offsite&#34;</span> check</span></span></code></pre></div></div>
+</div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>Egress</p>
+<h2 id="cutting-egress-costs-when-backing-up-s3-to-another-provider" class="group pr-8">Cutting egress costs when backing up S3 to another provider
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="cutting-egress-costs-when-backing-up-s3-to-another-provider"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>Many teams keep their only backup inside the provider they protect, because
+copying every bucket out each night costs more in data transfer than in storage.
+Plakar cuts what leaves the provider at the source:</p>
+<div class="lp-pairs not-prose">
+
+<div class="lp-pair">
+  <p class="lp-pair-lead">Reads stay inside the provider&rsquo;s region.</p>
+  <div class="lp-pair-body prose max-w-none"><p>Plakar runs on a host or an edge next to the bucket, so listing and reading the
+objects never crosses to the other provider.</p>
+</div>
+</div>
+
+
+<div class="lp-pair">
+  <p class="lp-pair-lead">Only new chunks cross.</p>
+  <div class="lp-pair-body prose max-w-none"><p>Plakar splits objects into content-defined chunks and sends a chunk only when
+the store does not hold it yet. After the first run, a nightly backup transfers
+what changed since the night before.</p>
+</div>
+</div>
+
+
+<div class="lp-pair">
+  <p class="lp-pair-lead">What crosses is compressed and encrypted first.</p>
+  <div class="lp-pair-body prose max-w-none"><p>Chunks are compressed with LZ4, then encrypted, before they leave the host. Even
+the first copy sends a duplicated object once, and text, logs or exports smaller
+than they sit in the bucket.</p>
+</div>
+</div>
+
+
+</div>
+
+<figure class="lp-chart not-prose">
+  <figcaption class="lp-chart-head"><strong>Data sent to the other provider by fourteen nightly S3 backups</strong><span>Each snapshot is a complete copy of the bucket. Only changed data crosses after the first night. Illustrative values.</span></figcaption>
+  <div class="lp-chart-legend" aria-hidden="true">
+    <span><i class="lp-chart-key lp-chart-key--new"></i>new data stored</span>
+    <span><i class="lp-chart-key lp-chart-key--reused"></i>reused, already stored</span>
+  </div>
+  <ol class="lp-chart-bars" aria-label="Data sent to the other provider by fourteen nightly S3 backups"><li class="lp-chart-bar" style="--lp-new: 100.0%">
+        <span class="lp-chart-reused"></span>
+        <span class="lp-chart-new"></span>
+        <span class="lp-chart-x">D1</span>
+        <span class="lp-sr">full first backup</span>
+      </li><li class="lp-chart-bar" style="--lp-new: 5.6%">
+        <span class="lp-chart-reused"></span>
+        <span class="lp-chart-new"></span>
+        <span class="lp-chart-x">D2</span>
+        <span class="lp-sr">4% new data</span>
+      </li><li class="lp-chart-bar" style="--lp-new: 4.2%">
+        <span class="lp-chart-reused"></span>
+        <span class="lp-chart-new"></span>
+        <span class="lp-chart-x">D3</span>
+        <span class="lp-sr">3% new data</span>
+      </li><li class="lp-chart-bar" style="--lp-new: 8.4%">
+        <span class="lp-chart-reused"></span>
+        <span class="lp-chart-new"></span>
+        <span class="lp-chart-x">D4</span>
+        <span class="lp-sr">6% new data</span>
+      </li><li class="lp-chart-bar" style="--lp-new: 3.0%">
+        <span class="lp-chart-reused"></span>
+        <span class="lp-chart-new"></span>
+        <span class="lp-chart-x">D5</span>
+        <span class="lp-sr">2% new data</span>
+      </li><li class="lp-chart-bar" style="--lp-new: 4.2%">
+        <span class="lp-chart-reused"></span>
+        <span class="lp-chart-new"></span>
+        <span class="lp-chart-x">D6</span>
+        <span class="lp-sr">3% new data</span>
+      </li><li class="lp-chart-bar" style="--lp-new: 7.0%">
+        <span class="lp-chart-reused"></span>
+        <span class="lp-chart-new"></span>
+        <span class="lp-chart-x">D7</span>
+        <span class="lp-sr">5% new data</span>
+      </li><li class="lp-chart-bar" style="--lp-new: 5.6%">
+        <span class="lp-chart-reused"></span>
+        <span class="lp-chart-new"></span>
+        <span class="lp-chart-x">D8</span>
+        <span class="lp-sr">4% new data</span>
+      </li><li class="lp-chart-bar" style="--lp-new: 3.0%">
+        <span class="lp-chart-reused"></span>
+        <span class="lp-chart-new"></span>
+        <span class="lp-chart-x">D9</span>
+        <span class="lp-sr">2% new data</span>
+      </li><li class="lp-chart-bar" style="--lp-new: 4.2%">
+        <span class="lp-chart-reused"></span>
+        <span class="lp-chart-new"></span>
+        <span class="lp-chart-x">D10</span>
+        <span class="lp-sr">3% new data</span>
+      </li><li class="lp-chart-bar" style="--lp-new: 9.8%">
+        <span class="lp-chart-reused"></span>
+        <span class="lp-chart-new"></span>
+        <span class="lp-chart-x">D11</span>
+        <span class="lp-sr">7% new data</span>
+      </li><li class="lp-chart-bar" style="--lp-new: 4.2%">
+        <span class="lp-chart-reused"></span>
+        <span class="lp-chart-new"></span>
+        <span class="lp-chart-x">D12</span>
+        <span class="lp-sr">3% new data</span>
+      </li><li class="lp-chart-bar" style="--lp-new: 3.0%">
+        <span class="lp-chart-reused"></span>
+        <span class="lp-chart-new"></span>
+        <span class="lp-chart-x">D13</span>
+        <span class="lp-sr">2% new data</span>
+      </li><li class="lp-chart-bar" style="--lp-new: 5.6%">
+        <span class="lp-chart-reused"></span>
+        <span class="lp-chart-new"></span>
+        <span class="lp-chart-x">D14</span>
+        <span class="lp-sr">4% new data</span>
+      </li></ol>
+</figure>
+
+
+<p class="lp-kicker" data-pagefind-ignore>Native protections</p>
+<h2 id="s3-versioning-replication-and-plakar-snapshots-compared" class="group pr-8">S3 versioning, replication and Plakar snapshots compared
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="s3-versioning-replication-and-plakar-snapshots-compared"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>S3 versioning and replication answer the most frequent incidents inside the
+bucket&rsquo;s own account. A Plakar snapshot adds a copy under other credentials.</p>
+<div class="lp-table not-prose">
+  <table>
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">S3 versioning</th>
+        <th scope="col">S3 replication</th>
+        <th scope="col">Plakar snapshot</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Undo a single delete</th>
+        <td><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">Remove the delete marker</span></span></td>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Depends on delete marker replication</span></span></td>
+        <td><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">Restore the key from any snapshot</span></span></td>
+      </tr>
+      <tr>
+        <th scope="row">Survives a purge of older versions</th>
+        <td><span class="lp-mark lp-mark--no"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6.5 6.5l7 7m0-7l-7 7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">No</span><span class="lp-mark-text">The purged versions are gone</span></span></td>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Depends on the replica&rsquo;s own rules</span></span></td>
+        <td><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">The store keeps its own retention</span></span></td>
+      </tr>
+      <tr>
+        <th scope="row">Credentials apart from the bucket</th>
+        <td><span class="lp-mark lp-mark--no"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6.5 6.5l7 7m0-7l-7 7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">No</span><span class="lp-mark-text">Same account and IAM</span></span></td>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Often the same account</span></span></td>
+        <td><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">Separate keys for the store</span></span></td>
+      </tr>
+      <tr>
+        <th scope="row">Copy at another provider</th>
+        <td><span class="lp-mark lp-mark--no"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6.5 6.5l7 7m0-7l-7 7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">No</span></span></td>
+        <td><span class="lp-mark lp-mark--no"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6.5 6.5l7 7m0-7l-7 7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">No</span><span class="lp-mark-text">Same provider</span></span></td>
+        <td><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">Any S3-compatible endpoint, a disk or SFTP</span></span></td>
+      </tr>
+      <tr>
+        <th scope="row">Point-in-time view of a prefix</th>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Object by object</span></span></td>
+        <td><span class="lp-mark lp-mark--no"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6.5 6.5l7 7m0-7l-7 7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">No</span></span></td>
+        <td><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">Browse, diff or mount a snapshot</span></span></td>
+      </tr>
+      <tr>
+        <th scope="row">Encrypted before it leaves you</th>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Server-side encryption by the service</span></span></td>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Server-side encryption by the service</span></span></td>
+        <td><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">Encrypted on the backup host</span></span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p class="lp-kicker" data-pagefind-ignore>Store on S3</p>
+<h2 id="storing-plakar-backups-in-s3-storage-classes-and-object-lock" class="group pr-8">Storing Plakar backups in S3: storage classes and Object Lock
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="storing-plakar-backups-in-s3-storage-classes-and-object-lock"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<div class="lp-pairs not-prose">
+
+<div class="lp-pair">
+  <p class="lp-pair-lead">Archival storage classes for long retention.</p>
+  <div class="lp-pair-body prose max-w-none"><p><code>storage_class</code> sets the class the provider offers for the objects of the store.
+With an archival class, backup data goes to that class while the store
+configuration and snapshot index stay in <code>STANDARD</code>, so <code>plakar ls</code> lists every
+snapshot at once. Providers map the S3 class names to their own archival tiers,
+such as <code>GLACIER</code> for Scaleway Glacier or <code>DEEP_ARCHIVE</code> for OVHcloud Cold
+Archive.</p>
+</div>
+</div>
+
+
+<div class="lp-pair">
+  <p class="lp-pair-lead">Object Lock retention on the store bucket.</p>
+  <div class="lp-pair-body prose max-w-none"><p>Enable Object Lock with a default retention on the bucket that holds the store,
+and immutability comes from the provider. Plakar sends a Content-MD5 header with
+every write, so Object Lock buckets accept the store&rsquo;s objects.</p>
+</div>
+</div>
+
+
+<div class="lp-pair">
+  <p class="lp-pair-lead">A second copy at another site.</p>
+  <div class="lp-pair-body prose max-w-none"><p><a href="/docs/community/v1.1.0/references/commands/plakar-sync/" ><code>plakar sync</code></a> copies
+snapshots from one store to another, such as a bucket at a second provider or an
+<a href="/integrations/sftp/" >SFTP host</a>.</p>
+</div>
+</div>
+
+
+<div class="lp-pair">
+  <p class="lp-pair-lead">Store keys apart from production keys.</p>
+  <div class="lp-pair-body prose max-w-none"><p>Give the store its own access key, allowed on the backup bucket only, and keep
+it and the store passphrase off the hosts and pipelines that use the production
+bucket.</p>
+</div>
+</div>
+
+
+<div class="lp-pair">
+  <p class="lp-pair-lead">Backups you have verified.</p>
+  <div class="lp-pair-body prose max-w-none"><p><a href="/docs/community/v1.1.0/references/commands/plakar-check/" ><code>plakar check</code></a> reads
+a snapshot back and verifies every chunk against its content address.</p>
+</div>
+</div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>Under the hood</p>
+<h2 id="how-plakar-reads-and-writes-s3-buckets" class="group pr-8">How Plakar reads and writes S3 buckets
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-plakar-reads-and-writes-s3-buckets"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<div class="lp-cards lp-cards--boxed lp-cols-2 not-prose">
+
+<div class="lp-card"><span class="lp-card-label">virtual_host=true</span><div class="lp-card-body prose max-w-none">
+<h3 id="path-style-and-virtual-hosted-s3-urls" class="group pr-8">Path-style and virtual-hosted S3 URLs
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="path-style-and-virtual-hosted-s3-urls"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Path style is the default. <code>virtual_host=true</code> with <code>endpoint</code> handles services
+that put the bucket name in the hostname.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">sse_customer_key</span><div class="lp-card-body prose max-w-none">
+<h3 id="s3-buckets-encrypted-with-sse-c" class="group pr-8">S3 buckets encrypted with SSE-C
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="s3-buckets-encrypted-with-sse-c"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>For buckets that require customer-provided keys, <code>sse_customer_key</code> takes the
+Base64 AES-256 key used to read and write objects.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">port=9000</span><div class="lp-card-body prose max-w-none">
+<h3 id="self-hosted-s3-endpoints" class="group pr-8">Self-hosted S3 endpoints
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="self-hosted-s3-endpoints"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p><code>port</code>, <code>region</code>, <code>use_tls</code> and <code>tls_insecure_no_verify</code> reach MinIO, Ceph RGW
+and Garage clusters on private networks with their own certificates.</p>
+</div>
+</div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>Amazon S3</p>
+<h2 id="amazon-s3-backup-iam-roles-s3-glacier-and-sse-c" class="group pr-8">Amazon S3 backup: IAM roles, S3 Glacier and SSE-C
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="amazon-s3-backup-iam-roles-s3-glacier-and-sse-c"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<div class="lp-cards lp-cards--boxed lp-cols-3 not-prose">
+
+<div class="lp-card"><span class="lp-card-label">no access_key</span><div class="lp-card-body prose max-w-none">
+<h3 id="back-up-amazon-s3-without-stored-keys" class="group pr-8">Back up Amazon S3 without stored keys
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="back-up-amazon-s3-without-stored-keys"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Leave <code>access_key</code> and <code>secret_access_key</code> out and Plakar uses the IAM role of
+the EC2 instance, the ECS task or the EKS pod it runs in, through IRSA or Pod
+Identity. In Plakar Control Plane, leave both credential fields empty to use the
+IAM role of the edge that runs the task.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">storage_class=DEEP_ARCHIVE</span><div class="lp-card-body prose max-w-none">
+<h3 id="keep-plakar-backups-in-s3-glacier" class="group pr-8">Keep Plakar backups in S3 Glacier
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="keep-plakar-backups-in-s3-glacier"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p><code>storage_class</code> takes the Amazon S3 class names: <code>STANDARD</code>, <code>STANDARD_IA</code>,
+<code>ONEZONE_IA</code>, <code>INTELLIGENT_TIERING</code>, <code>GLACIER_IR</code>, <code>GLACIER</code>, <code>DEEP_ARCHIVE</code> and
+<code>REDUCED_REDUNDANCY</code>.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">January 2025</span><div class="lp-card-body prose max-w-none">
+<h3 id="amazon-s3-buckets-re-encrypted-with-sse-c" class="group pr-8">Amazon S3 buckets re-encrypted with SSE-C
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="amazon-s3-buckets-re-encrypted-with-sse-c"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>AWS described this attack in a January 2025 security advisory: leaked keys used
+to copy every object onto itself with an SSE-C key only the attacker holds. The
+recovery scenario above shows the way back.</p>
+</div>
+</div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>Comparison</p>
+<h2 id="s3-backup-tools-compared-plakar-backup-services-and-sync-scripts" class="group pr-8">S3 backup tools compared: Plakar, backup services and sync scripts
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="s3-backup-tools-compared-plakar-backup-services-and-sync-scripts"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>S3 buckets are usually protected in one of three other ways: an enterprise
+backup suite with an object storage module, the cloud provider&rsquo;s own backup
+service, or a scheduled sync to a second bucket. Plakar keeps the open S3 API of
+the last one and adds a verified, encrypted history.</p>
+<div class="lp-table not-prose lp-table--compare">
+  <table>
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th class="lp-col-plakar" scope="col">Plakar</th>
+        <th scope="col">Enterprise backup suites</th>
+        <th scope="col">Cloud provider backup services</th>
+        <th scope="col">A scheduled bucket sync</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Any S3-compatible source</th>
+        <td class="lp-col-plakar"><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">Any S3 API endpoint</span></span></td>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Depends on the product</span></span></td>
+        <td><span class="lp-mark lp-mark--no"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6.5 6.5l7 7m0-7l-7 7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">No</span><span class="lp-mark-text">That provider&rsquo;s buckets</span></span></td>
+        <td><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span></span></td>
+      </tr>
+      <tr>
+        <th scope="row">Copy at another provider</th>
+        <td class="lp-col-plakar"><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">Store on any S3 endpoint, a disk or SFTP</span></span></td>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Depends on the product</span></span></td>
+        <td><span class="lp-mark lp-mark--no"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6.5 6.5l7 7m0-7l-7 7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">No</span><span class="lp-mark-text">Inside that provider</span></span></td>
+        <td><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span></span></td>
+      </tr>
+      <tr>
+        <th scope="row">Read-only source credentials</th>
+        <td class="lp-col-plakar"><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text"><code>s3:ListBucket</code> and <code>s3:GetObject</code></span></span></td>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Depends on the product</span></span></td>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Depends on the service</span></span></td>
+        <td><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span></span></td>
+      </tr>
+      <tr>
+        <th scope="row">Encrypted, deduplicated history</th>
+        <td class="lp-col-plakar"><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">Checked with <code>plakar check</code></span></span></td>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Depends on the product</span></span></td>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Depends on the service</span></span></td>
+        <td><span class="lp-mark lp-mark--no"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6.5 6.5l7 7m0-7l-7 7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">No</span><span class="lp-mark-text">A sync mirrors deletions</span></span></td>
+      </tr>
+      <tr>
+        <th scope="row">Restore one prefix to any bucket</th>
+        <td class="lp-col-plakar"><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">On any S3-compatible endpoint</span></span></td>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Through the suite&rsquo;s console</span></span></td>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Within that provider</span></span></td>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Copied back by hand</span></span></td>
+      </tr>
+      <tr>
+        <th scope="row">File servers and databases in one tool</th>
+        <td class="lp-col-plakar"><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">Same CLI and store</span></span></td>
+        <td><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span></span></td>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">The provider&rsquo;s own services</span></span></td>
+        <td><span class="lp-mark lp-mark--no"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6.5 6.5l7 7m0-7l-7 7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">No</span></span></td>
+      </tr>
+      <tr>
+        <th scope="row">Fleet-wide scheduling</th>
+        <td class="lp-col-plakar"><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">Plakar Control Plane: discovery and policies</span></span></td>
+        <td><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">A central console</span></span></td>
+        <td><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">Within that provider</span></span></td>
+        <td><span class="lp-mark lp-mark--no"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6.5 6.5l7 7m0-7l-7 7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">No</span><span class="lp-mark-text">Your own tooling</span></span></td>
+      </tr>
+      <tr>
+        <th scope="row">Free and open source</th>
+        <td class="lp-col-plakar"><span class="lp-mark lp-mark--yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M5.5 10.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lp-sr">Yes</span><span class="lp-mark-text">The CLI</span></span></td>
+        <td><span class="lp-mark lp-mark--no"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6.5 6.5l7 7m0-7l-7 7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">No</span><span class="lp-mark-text">Commercial licence</span></span></td>
+        <td><span class="lp-mark lp-mark--no"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6.5 6.5l7 7m0-7l-7 7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">No</span><span class="lp-mark-text">A paid service</span></span></td>
+        <td><span class="lp-mark lp-mark--partial"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path d="M6 10h8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg><span class="lp-sr">Partly</span><span class="lp-mark-text">Depends on the tool</span></span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p class="lp-kicker" data-pagefind-ignore>Quickstart</p>
+<h2 id="how-to-back-up-an-s3-bucket-with-the-open-source-plakar-cli" class="group pr-8">How to back up an S3 bucket with the open-source Plakar CLI
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-to-back-up-an-s3-bucket-with-the-open-source-plakar-cli"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<div class="lp-columns lp-columns--5-7">
+
+<div class="lp-column prose max-w-none"><p>The Plakar CLI is free and open source. Install the S3 package, create a store,
+add the bucket as a source, then restore a prefix into a bucket on another
+endpoint, here a MinIO lab.</p>
+<p>The <a href="/docs/community/main/integrations/s3/" >S3 CLI documentation</a> covers every
+option, including addressing styles, ambient credentials and SSE-C.</p>
+</div>
+
+
+<div class="lp-column prose max-w-none"><div class="highlight-wrapper codeblock">
+  <div class="codeblock-title">
+    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
+</span></span>
+    <span class="codeblock-label">Shell</span>
+    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
+      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
+</span></span>
+      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar pkg add s3
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups create
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add prod-assets <span class="se">\
+</span></span></span><span class="line"><span class="cl">    s3://s3.fr-par.scw.cloud/acme-assets <span class="se">\
+</span></span></span><span class="line"><span class="cl">    <span class="nv">access_key</span><span class="o">=</span>... <span class="nv">secret_access_key</span><span class="o">=</span>...
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups backup <span class="s2">&#34;@prod-assets&#34;</span>
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups check
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ plakar destination add minio-restore <span class="se">\
+</span></span></span><span class="line"><span class="cl">    s3://minio.lab.internal:9000/acme-assets-restore <span class="se">\
+</span></span></span><span class="line"><span class="cl">    <span class="nv">access_key</span><span class="o">=</span>... <span class="nv">secret_access_key</span><span class="o">=</span>...
+</span></span><span class="line"><span class="cl">$ plakar at /var/backups restore -to <span class="s2">&#34;@minio-restore&#34;</span> &lt;snapshot_id&gt;:/exports</span></span></code></pre></div></div>
+</div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>Control Plane</p>
+<h2 id="s3-bucket-backups-across-accounts-with-plakar-control-plane" class="group pr-8">S3 bucket backups across accounts with Plakar Control Plane
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="s3-bucket-backups-across-accounts-with-plakar-control-plane"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<div class="lp-columns lp-columns--5-7 lp-columns--sticky-left">
+
+<div class="lp-column prose max-w-none"><p>Plakar Control Plane schedules bucket backups across every account you connect.
+Managed inventories discover the buckets of each cloud account, and other
+S3-compatible endpoints are registered in a self-managed inventory. Tasks run on
+an edge.</p>
+<p><a href="/solutions/control-plane/" >See how Plakar Control Plane works</a>, read the
+<a href="/docs/control-plane/resources/object-storage/s3/" >Control Plane S3 documentation</a>,
+or <a href="/contact/" >contact us</a> to plan a deployment.</p>
+</div>
+
+
+<div class="lp-column prose max-w-none"><div class="steps">
+<div class="step"><p><strong>Bring the buckets into an inventory.</strong> A managed inventory lists the buckets
+of a cloud account. Other endpoints are added as resources of class
+<code>Object Storage</code>, subclass <code>S3</code>.</p>
+</div>
+<div class="step"><p><strong>Choose the credentials.</strong> Enter an access key pair for the endpoint.</p>
+</div>
+<div class="step"><p><strong>Create a store.</strong> Set its passphrase and storage class. A store on an archival
+class is marked Cold so policies account for it.</p>
+</div>
+<div class="step"><p><strong>Let a policy schedule it.</strong> A policy sets the frequency, the retention and the
+target store, and every bucket that matches it is backed up automatically.</p>
+</div>
+</div></div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>FAQ</p>
+<h2 id="s3-backup-faq" class="group pr-8">S3 backup FAQ
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="s3-backup-faq"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<div class="lp-columns lp-columns--1-1">
+
+<div class="lp-column prose max-w-none">
+<h3 id="how-do-i-back-up-an-s3-bucket" class="group pr-8">How do I back up an S3 bucket?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-do-i-back-up-an-s3-bucket"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Install the package with <code>plakar pkg add s3</code>, add the bucket with
+<code>plakar source add assets s3://&lt;endpoint&gt;/&lt;bucket&gt;</code> and a read-only key, then
+run <code>plakar backup &quot;@assets&quot;</code> on a schedule. Each run is a full, deduplicated
+snapshot of the bucket.</p>
+
+<h3 id="is-s3-versioning-a-backup" class="group pr-8">Is S3 versioning a backup?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="is-s3-versioning-a-backup"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Versioning keeps older copies of each object inside the same bucket, under the
+same account and permissions. A backup is a copy held elsewhere, with its own
+credentials and retention. Plakar provides that copy as encrypted snapshots.</p>
+
+<h3 id="how-do-i-restore-deleted-s3-objects" class="group pr-8">How do I restore deleted S3 objects?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-do-i-restore-deleted-s3-objects"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Find the snapshot taken before the deletion with <code>plakar ls</code>, then restore the
+prefix with <code>plakar restore -to @dest &lt;snapshot_id&gt;:/prefix</code>. Restoring under a
+new prefix first leaves the live objects untouched.</p>
+
+<h3 id="how-do-i-back-up-an-s3-bucket-to-another-provider" class="group pr-8">How do I back up an S3 bucket to another provider?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-do-i-back-up-an-s3-bucket-to-another-provider"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Add the bucket as a source and create the Plakar store on a bucket at the other
+provider, or on a disk or SFTP host. Each side gets its own credentials.</p>
+
+<h3 id="where-can-i-restore-an-s3-backup" class="group pr-8">Where can I restore an S3 backup?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="where-can-i-restore-an-s3-backup"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Into the original bucket, a new bucket that the destination creates, a bucket at
+another S3-compatible provider, or a local directory. A restore can cover the
+whole snapshot or one prefix.</p>
+
+<h3 id="can-i-back-up-only-part-of-an-s3-bucket" class="group pr-8">Can I back up only part of an S3 bucket?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="can-i-back-up-only-part-of-an-s3-bucket"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Yes. Put a prefix in the location, such as <code>s3://endpoint/bucket/media</code>, or set
+<code>root</code>. Each source covers one bucket.</p>
+
+<h3 id="which-permissions-does-the-s3-backup-user-need" class="group pr-8">Which permissions does the S3 backup user need?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="which-permissions-does-the-s3-backup-user-need"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p><code>s3:ListBucket</code> on the bucket and <code>s3:GetObject</code> on its objects. Write
+permissions belong to the destination and the store, with other credentials.</p>
+
+<h3 id="what-does-a-snapshot-of-an-s3-bucket-contain" class="group pr-8">What does a snapshot of an S3 bucket contain?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="what-does-a-snapshot-of-an-s3-bucket-contain"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>The content of every object at backup time, with its key, size and last modified
+date. The series of snapshots, kept by your retention policy, is the history of
+the bucket.</p>
+</div>
+
+
+<div class="lp-column prose max-w-none">
+<h3 id="does-plakar-work-with-s3-compatible-storage" class="group pr-8">Does Plakar work with S3-compatible storage?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="does-plakar-work-with-s3-compatible-storage"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Yes. The connectors use the S3 API, so any service that speaks it, such as
+Amazon S3, Scaleway, OVHcloud, MinIO, Ceph RGW or Garage, works as source,
+destination or store.</p>
+
+<h3 id="can-plakar-back-up-amazon-s3-without-stored-keys" class="group pr-8">Can Plakar back up Amazon S3 without stored keys?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="can-plakar-back-up-amazon-s3-without-stored-keys"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Yes. With no access key configured, Plakar uses the ambient credentials of
+Amazon S3: the instance profile of an EC2 instance, an ECS task role, or an EKS
+pod role through IRSA or Pod Identity.</p>
+
+<h3 id="can-i-keep-plakar-backups-in-amazon-s3-glacier" class="group pr-8">Can I keep Plakar backups in Amazon S3 Glacier?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="can-i-keep-plakar-backups-in-amazon-s3-glacier"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Yes. Set <code>storage_class</code> on the store to <code>GLACIER_IR</code>, <code>GLACIER</code> or
+<code>DEEP_ARCHIVE</code>. With <code>GLACIER</code> or <code>DEEP_ARCHIVE</code>, backup data goes to the
+archival class while the snapshot index stays in <code>STANDARD</code>, so every snapshot
+remains listed. Other providers&rsquo; archival tiers use the same option.</p>
+
+<h3 id="how-does-plakar-reduce-egress-costs-for-s3-backups-at-another-provider" class="group pr-8">How does Plakar reduce egress costs for S3 backups at another provider?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-does-plakar-reduce-egress-costs-for-s3-backups-at-another-provider"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Run Plakar next to the bucket, inside the provider&rsquo;s region: it reads the
+objects there and sends to the other provider only the chunks the store does not
+hold yet, compressed with LZ4 and encrypted. After the first run, each backup
+transfers what changed.</p>
+
+<h3 id="how-do-i-protect-s3-backups-from-ransomware" class="group pr-8">How do I protect S3 backups from ransomware?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-do-i-protect-s3-backups-from-ransomware"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Keep the store in another bucket or at another provider, with keys absent from
+the application, enable Object Lock with a default retention on that bucket, and
+keep a second copy with <code>plakar sync</code>.</p>
+
+<h3 id="how-much-storage-does-a-nightly-s3-backup-use" class="group pr-8">How much storage does a nightly S3 backup use?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-much-storage-does-a-nightly-s3-backup-use"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>After the first run, each snapshot stores only new or changed content, so a
+nightly backup of a mostly stable bucket adds little to the store.</p>
+
+<h3 id="should-i-use-the-free-cli-or-plakar-control-plane" class="group pr-8">Should I use the free CLI or Plakar Control Plane?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="should-i-use-the-free-cli-or-plakar-control-plane"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>The free, open-source CLI suits a handful of buckets. Plakar Control Plane adds
+discovery, policies and one view across accounts and teams, with the same S3
+connectors.</p>
+</div>
+
+
+</div>
+
 
     </article>
   </div>
 </section>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://www.plakar.io/","name":"Home","position":1},{"@type":"ListItem","item":"https://www.plakar.io/integrations/","name":"Integrations","position":2},{"@type":"ListItem","item":"https://www.plakar.io/integrations/s3/","name":"S3","position":3}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","applicationCategory":"UtilitiesApplication","description":"Protect your object storage against accidental deletion, ransomware, and cloud misconfigurations. Plakar provides immutable, encrypted snapshots for S3, restorable across any provider or environment.","name":"Plakar S3 integration","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"operatingSystem":"Linux, macOS, Windows, FreeBSD","publisher":{"@type":"Organization","name":"Plakar","url":"https://www.plakar.io/"},"url":"https://www.plakar.io/integrations/s3/"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://www.plakar.io/","name":"Home","position":1},{"@type":"ListItem","item":"https://www.plakar.io/integrations/","name":"Integrations","position":2},{"@type":"ListItem","item":"https://www.plakar.io/integrations/s3/","name":"S3","position":3}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","applicationCategory":"UtilitiesApplication","description":"Free, open-source S3 bucket backup with read-only keys: encrypted, deduplicated snapshots of a bucket or prefix, restored to any S3-compatible endpoint.","name":"Plakar S3 integration","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"operatingSystem":"Linux, macOS, Windows, FreeBSD","publisher":{"@type":"Organization","name":"Plakar","url":"https://www.plakar.io/"},"url":"https://www.plakar.io/integrations/s3/"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Install the package with plakar pkg add s3, add the bucket with plakar source add assets s3://\u003cendpoint\u003e/\u003cbucket\u003e and a read-only key, then run plakar backup \"@assets\" on a schedule. Each run is a full, deduplicated snapshot of the bucket."},"name":"How do I back up an S3 bucket?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Versioning keeps older copies of each object inside the same bucket, under the same account and permissions. A backup is a copy held elsewhere, with its own credentials and retention. Plakar provides that copy as encrypted snapshots."},"name":"Is S3 versioning a backup?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Find the snapshot taken before the deletion with plakar ls, then restore the prefix with plakar restore -to @dest \u003csnapshot_id\u003e:/prefix. Restoring under a new prefix first leaves the live objects untouched."},"name":"How do I restore deleted S3 objects?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Add the bucket as a source and create the Plakar store on a bucket at the other provider, or on a disk or SFTP host. Each side gets its own credentials."},"name":"How do I back up an S3 bucket to another provider?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Into the original bucket, a new bucket that the destination creates, a bucket at another S3-compatible provider, or a local directory. A restore can cover the whole snapshot or one prefix."},"name":"Where can I restore an S3 backup?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Yes. Put a prefix in the location, such as s3://endpoint/bucket/media, or set root. Each source covers one bucket."},"name":"Can I back up only part of an S3 bucket?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"s3:ListBucket on the bucket and s3:GetObject on its objects. Write permissions belong to the destination and the store, with other credentials."},"name":"Which permissions does the S3 backup user need?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"The content of every object at backup time, with its key, size and last modified date. The series of snapshots, kept by your retention policy, is the history of the bucket."},"name":"What does a snapshot of an S3 bucket contain?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Yes. The connectors use the S3 API, so any service that speaks it, such as Amazon S3, Scaleway, OVHcloud, MinIO, Ceph RGW or Garage, works as source, destination or store."},"name":"Does Plakar work with S3-compatible storage?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Yes. With no access key configured, Plakar uses the ambient credentials of Amazon S3: the instance profile of an EC2 instance, an ECS task role, or an EKS pod role through IRSA or Pod Identity."},"name":"Can Plakar back up Amazon S3 without stored keys?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Yes. Set storage_class on the store to GLACIER_IR, GLACIER or DEEP_ARCHIVE. With GLACIER or DEEP_ARCHIVE, backup data goes to the archival class while the snapshot index stays in STANDARD, so every snapshot remains listed. Other providers’ archival tiers use the same option."},"name":"Can I keep Plakar backups in Amazon S3 Glacier?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Run Plakar next to the bucket, inside the provider’s region: it reads the objects there and sends to the other provider only the chunks the store does not hold yet, compressed with LZ4 and encrypted. After the first run, each backup transfers what changed."},"name":"How does Plakar reduce egress costs for S3 backups at another provider?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Keep the store in another bucket or at another provider, with keys absent from the application, enable Object Lock with a default retention on that bucket, and keep a second copy with plakar sync."},"name":"How do I protect S3 backups from ransomware?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"After the first run, each snapshot stores only new or changed content, so a nightly backup of a mostly stable bucket adds little to the store."},"name":"How much storage does a nightly S3 backup use?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"The free, open-source CLI suits a handful of buckets. Plakar Control Plane adds discovery, policies and one view across accounts and teams, with the same S3 connectors."},"name":"Should I use the free CLI or Plakar Control Plane?"}]}</script>
 
 
 
@@ -2579,6 +3849,13 @@ way from snapshot creation to integrity verification to recovery.</p>
 
 
 
+
+  
+  
+  
+  
+    
+  
 
   
   
@@ -2620,8 +3897,6 @@ way from snapshot creation to integrity verification to recovery.</p>
         
       
     
-      
-        
       
     
       
@@ -2817,216 +4092,6 @@ way from snapshot creation to integrity verification to recovery.</p>
 
 
 <a
-  href="/integrations/gcs/"
-  data-categories="source,destination,storage"
-  data-editions="community,control-plane"
-  data-author="official"
-  data-name="google cloud storage"
-  data-date="1781740800"
-  data-search="google cloud storage gcs"
-  class="group/card relative flex flex-col gap-3 p-5 rounded-2xl border border-neutral-100 hover:border-primary-300 bg-neutral-50 shadow-sm hover:shadow-none outline-4 outline-transparent hover:outline-primary-400/20 transition-all duration-300"
->
-  <div class="flex items-start gap-3.5">
-    <div class="h-13 min-w-13 max-w-28 rounded-lg overflow-hidden shrink-0 flex items-center justify-center">
-      
-        <img
-      src="/img/integrations/gcs_hu_6ebbb68241e3db6.webp"
-      srcset="/img/integrations/gcs_hu_6ebbb68241e3db6.webp 64w, /img/integrations/gcs_hu_ddc423a888cab51d.webp 128w, /img/integrations/gcs_hu_5438e1ac1ab9f245.webp 256w" sizes="auto"
-      width="64"
-      height="64"
-      alt="Google Cloud Storage"
-      class="h-full w-auto max-w-full object-contain"
-      loading="lazy"
-      decoding="async"
-      >
-      
-    </div>
-    
-      <span class="ml-auto inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full text-green-800 bg-green-50 uppercase shrink-0">
-        <span class="w-1.5 h-1.5 rounded-full bg-current shrink-0"></span>
-        stable
-      </span>
-    
-  </div>
-
-  
-  <div class="flex flex-col mt-3">
-    <div class="flex items-center gap-2 flex-wrap">
-      <h3 class="text-lg lg:text-xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
-        Google Cloud Storage
-      </h3>
-      
-    </div>
-
-    
-      <div class="text-xs text-primary-500 font-semibold mt-4">
-        
-          Source
-        
-           / Destination
-        
-           / Storage
-        
-      </div>
-    
-  </div>
-
-  
-  
-    <p class="text-sm text-neutral-500 line-clamp-3 mt-1">Protect your Google Cloud Storage buckets against accidental deletion, ransomware, and misconfiguration. Plakar provides immutable, encrypted snapshots for GCS, restorable across any provider or environment.
-</p>
-  
-
-  
-  <div class="mt-auto pt-3 border-t border-neutral-200 flex items-center gap-4">
-    <div class="flex flex-col gap-0.5 min-w-0">
-      <span class="text-xxs font-semibold uppercase tracking-wide text-neutral-400">Platform</span>
-      <span class="text-xs font-semibold flex items-center gap-1.5 flex-wrap">
-        <span class="text-green-600">Community</span>
-        <span class="text-neutral-300">·</span>
-        <span class="text-primary-600">Control Plane</span>
-      </span>
-    </div>
-    <div class="flex flex-col gap-0.5 min-w-0 pl-4 border-l border-neutral-200">
-      <span class="text-xxs font-semibold uppercase tracking-wide text-neutral-400">Author</span>
-      <span class="text-xs font-semibold text-neutral-900 flex items-center gap-1.5 flex-wrap">
-        
-          <img class="w-4 h-4 shrink-0" src="/img/logos/plakar-logo-icon.svg" alt="">
-          <span>Plakar</span>
-        
-      </span>
-    </div>
-    <div class="ml-auto shrink-0 text-neutral-300 group-hover/card:text-primary-500 group-hover/card:translate-x-0.5 transition-all">
-      <div class="w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
-</span></div>
-    </div>
-  </div>
-</a>
-
-      
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a
-  href="/integrations/azblob/"
-  data-categories="source,destination,storage"
-  data-editions="community,control-plane"
-  data-author="official"
-  data-name="azure blob storage"
-  data-date="1781740800"
-  data-search="azure blob storage azblob"
-  class="group/card relative flex flex-col gap-3 p-5 rounded-2xl border border-neutral-100 hover:border-primary-300 bg-neutral-50 shadow-sm hover:shadow-none outline-4 outline-transparent hover:outline-primary-400/20 transition-all duration-300"
->
-  <div class="flex items-start gap-3.5">
-    <div class="h-13 min-w-13 max-w-28 rounded-lg overflow-hidden shrink-0 flex items-center justify-center">
-      
-        <img
-      src="/img/integrations/azblob_hu_80812a41e68f200d.webp"
-      srcset="/img/integrations/azblob_hu_80812a41e68f200d.webp 64w, /img/integrations/azblob_hu_523424b84eb21a3f.webp 128w, /img/integrations/azblob_hu_d106607d23773e03.webp 256w" sizes="auto"
-      width="64"
-      height="64"
-      alt="Azure Blob Storage"
-      class="h-full w-auto max-w-full object-contain"
-      loading="lazy"
-      decoding="async"
-      >
-      
-    </div>
-    
-      <span class="ml-auto inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full text-green-800 bg-green-50 uppercase shrink-0">
-        <span class="w-1.5 h-1.5 rounded-full bg-current shrink-0"></span>
-        stable
-      </span>
-    
-  </div>
-
-  
-  <div class="flex flex-col mt-3">
-    <div class="flex items-center gap-2 flex-wrap">
-      <h3 class="text-lg lg:text-xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
-        Azure Blob Storage
-      </h3>
-      
-    </div>
-
-    
-      <div class="text-xs text-primary-500 font-semibold mt-4">
-        
-          Source
-        
-           / Destination
-        
-           / Storage
-        
-      </div>
-    
-  </div>
-
-  
-  
-    <p class="text-sm text-neutral-500 line-clamp-3 mt-1">Protect your Azure Blob Storage containers against accidental deletion, ransomware, and misconfiguration. Plakar provides immutable, encrypted snapshots for Azure Blob Storage, restorable across any provider or environment.
-</p>
-  
-
-  
-  <div class="mt-auto pt-3 border-t border-neutral-200 flex items-center gap-4">
-    <div class="flex flex-col gap-0.5 min-w-0">
-      <span class="text-xxs font-semibold uppercase tracking-wide text-neutral-400">Platform</span>
-      <span class="text-xs font-semibold flex items-center gap-1.5 flex-wrap">
-        <span class="text-green-600">Community</span>
-        <span class="text-neutral-300">·</span>
-        <span class="text-primary-600">Control Plane</span>
-      </span>
-    </div>
-    <div class="flex flex-col gap-0.5 min-w-0 pl-4 border-l border-neutral-200">
-      <span class="text-xxs font-semibold uppercase tracking-wide text-neutral-400">Author</span>
-      <span class="text-xs font-semibold text-neutral-900 flex items-center gap-1.5 flex-wrap">
-        
-          <img class="w-4 h-4 shrink-0" src="/img/logos/plakar-logo-icon.svg" alt="">
-          <span>Plakar</span>
-        
-      </span>
-    </div>
-    <div class="ml-auto shrink-0 text-neutral-300 group-hover/card:text-primary-500 group-hover/card:translate-x-0.5 transition-all">
-      <div class="w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
-</span></div>
-    </div>
-  </div>
-</a>
-
-      
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a
   href="/integrations/backblaze/"
   data-categories="source,destination,storage"
   data-editions="community,control-plane"
@@ -3084,6 +4149,216 @@ way from snapshot creation to integrity verification to recovery.</p>
   
   
     <p class="text-sm text-neutral-500 line-clamp-3 mt-1">Protect your data with Plakar on Backblaze B2 Cloud Storage. Immutable, encrypted snapshots stored on one of the most cost-effective S3-compatible object storage platforms available, with free egress and enterprise-grade security.
+</p>
+  
+
+  
+  <div class="mt-auto pt-3 border-t border-neutral-200 flex items-center gap-4">
+    <div class="flex flex-col gap-0.5 min-w-0">
+      <span class="text-xxs font-semibold uppercase tracking-wide text-neutral-400">Platform</span>
+      <span class="text-xs font-semibold flex items-center gap-1.5 flex-wrap">
+        <span class="text-green-600">Community</span>
+        <span class="text-neutral-300">·</span>
+        <span class="text-primary-600">Control Plane</span>
+      </span>
+    </div>
+    <div class="flex flex-col gap-0.5 min-w-0 pl-4 border-l border-neutral-200">
+      <span class="text-xxs font-semibold uppercase tracking-wide text-neutral-400">Author</span>
+      <span class="text-xs font-semibold text-neutral-900 flex items-center gap-1.5 flex-wrap">
+        
+          <img class="w-4 h-4 shrink-0" src="/img/logos/plakar-logo-icon.svg" alt="">
+          <span>Plakar</span>
+        
+      </span>
+    </div>
+    <div class="ml-auto shrink-0 text-neutral-300 group-hover/card:text-primary-500 group-hover/card:translate-x-0.5 transition-all">
+      <div class="w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
+</span></div>
+    </div>
+  </div>
+</a>
+
+      
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a
+  href="/integrations/impossible-cloud/"
+  data-categories="source,destination,storage"
+  data-editions="community,control-plane"
+  data-author="official"
+  data-name="impossible cloud"
+  data-date="1789084800"
+  data-search="impossible cloud impossible-cloud"
+  class="group/card relative flex flex-col gap-3 p-5 rounded-2xl border border-neutral-100 hover:border-primary-300 bg-neutral-50 shadow-sm hover:shadow-none outline-4 outline-transparent hover:outline-primary-400/20 transition-all duration-300"
+>
+  <div class="flex items-start gap-3.5">
+    <div class="h-13 min-w-13 max-w-28 rounded-lg overflow-hidden shrink-0 flex items-center justify-center">
+      
+        <img
+      src="/img/integrations/impossible-cloud_hu_5d971219a728b420.webp"
+      srcset="/img/integrations/impossible-cloud_hu_5d971219a728b420.webp 64w, /img/integrations/impossible-cloud_hu_77826bce986d8abd.webp 128w, /img/integrations/impossible-cloud_hu_aa0f6c9aaa47eba2.webp 256w" sizes="auto"
+      width="64"
+      height="64"
+      alt="Impossible Cloud"
+      class="h-full w-auto max-w-full object-contain"
+      loading="lazy"
+      decoding="async"
+      >
+      
+    </div>
+    
+      <span class="ml-auto inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full text-green-800 bg-green-50 uppercase shrink-0">
+        <span class="w-1.5 h-1.5 rounded-full bg-current shrink-0"></span>
+        stable
+      </span>
+    
+  </div>
+
+  
+  <div class="flex flex-col mt-3">
+    <div class="flex items-center gap-2 flex-wrap">
+      <h3 class="text-lg lg:text-xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
+        Impossible Cloud
+      </h3>
+      
+    </div>
+
+    
+      <div class="text-xs text-primary-500 font-semibold mt-4">
+        
+          Source
+        
+           / Destination
+        
+           / Storage
+        
+      </div>
+    
+  </div>
+
+  
+  
+    <p class="text-sm text-neutral-500 line-clamp-3 mt-1">Protect your data with Plakar on Impossible Cloud. Immutable, encrypted snapshots stored on fully S3-compatible object storage built under European data jurisdiction, with no egress fees, no API charges, and enterprise-grade compliance.
+</p>
+  
+
+  
+  <div class="mt-auto pt-3 border-t border-neutral-200 flex items-center gap-4">
+    <div class="flex flex-col gap-0.5 min-w-0">
+      <span class="text-xxs font-semibold uppercase tracking-wide text-neutral-400">Platform</span>
+      <span class="text-xs font-semibold flex items-center gap-1.5 flex-wrap">
+        <span class="text-green-600">Community</span>
+        <span class="text-neutral-300">·</span>
+        <span class="text-primary-600">Control Plane</span>
+      </span>
+    </div>
+    <div class="flex flex-col gap-0.5 min-w-0 pl-4 border-l border-neutral-200">
+      <span class="text-xxs font-semibold uppercase tracking-wide text-neutral-400">Author</span>
+      <span class="text-xs font-semibold text-neutral-900 flex items-center gap-1.5 flex-wrap">
+        
+          <img class="w-4 h-4 shrink-0" src="/img/logos/plakar-logo-icon.svg" alt="">
+          <span>Plakar</span>
+        
+      </span>
+    </div>
+    <div class="ml-auto shrink-0 text-neutral-300 group-hover/card:text-primary-500 group-hover/card:translate-x-0.5 transition-all">
+      <div class="w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
+</span></div>
+    </div>
+  </div>
+</a>
+
+      
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a
+  href="/integrations/gcs/"
+  data-categories="source,destination,storage"
+  data-editions="community,control-plane"
+  data-author="official"
+  data-name="google cloud storage"
+  data-date="1781740800"
+  data-search="google cloud storage gcs"
+  class="group/card relative flex flex-col gap-3 p-5 rounded-2xl border border-neutral-100 hover:border-primary-300 bg-neutral-50 shadow-sm hover:shadow-none outline-4 outline-transparent hover:outline-primary-400/20 transition-all duration-300"
+>
+  <div class="flex items-start gap-3.5">
+    <div class="h-13 min-w-13 max-w-28 rounded-lg overflow-hidden shrink-0 flex items-center justify-center">
+      
+        <img
+      src="/img/integrations/gcs_hu_6ebbb68241e3db6.webp"
+      srcset="/img/integrations/gcs_hu_6ebbb68241e3db6.webp 64w, /img/integrations/gcs_hu_ddc423a888cab51d.webp 128w, /img/integrations/gcs_hu_5438e1ac1ab9f245.webp 256w" sizes="auto"
+      width="64"
+      height="64"
+      alt="Google Cloud Storage"
+      class="h-full w-auto max-w-full object-contain"
+      loading="lazy"
+      decoding="async"
+      >
+      
+    </div>
+    
+      <span class="ml-auto inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full text-green-800 bg-green-50 uppercase shrink-0">
+        <span class="w-1.5 h-1.5 rounded-full bg-current shrink-0"></span>
+        stable
+      </span>
+    
+  </div>
+
+  
+  <div class="flex flex-col mt-3">
+    <div class="flex items-center gap-2 flex-wrap">
+      <h3 class="text-lg lg:text-xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
+        Google Cloud Storage
+      </h3>
+      
+    </div>
+
+    
+      <div class="text-xs text-primary-500 font-semibold mt-4">
+        
+          Source
+        
+           / Destination
+        
+           / Storage
+        
+      </div>
+    
+  </div>
+
+  
+  
+    <p class="text-sm text-neutral-500 line-clamp-3 mt-1">Protect your Google Cloud Storage buckets against accidental deletion, ransomware, and misconfiguration. Plakar provides immutable, encrypted snapshots for GCS, restorable across any provider or environment.
 </p>
   
 

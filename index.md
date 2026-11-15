@@ -137,7 +137,7 @@
 
 - [Rclone](https://www.plakar.io/integrations/rclone/index.md): Back up and restore cloud storage services such as Google Drive, Dropbox, OneDrive and Proton Drive with Plakar, using rclone to reach them. Create immutable, encrypted, and verifiable backups of your cloud files.
 
-- [S3](https://www.plakar.io/integrations/s3/index.md): Protect your object storage against accidental deletion, ransomware, and cloud misconfigurations. Plakar provides immutable, encrypted snapshots for S3, restorable across any provider or environment.
+- [S3](https://www.plakar.io/integrations/s3/index.md): Free, open-source S3 bucket backup with read-only keys: encrypted, deduplicated snapshots of a bucket or prefix, restored to any S3-compatible endpoint.
 
 - [SFTP](https://www.plakar.io/integrations/sftp/index.md): Back up and restore directories to and from remote servers over SFTP. Plakar ensures encrypted, deduplicated, and verifiable snapshots across Linux, BSD, and NAS environments.
 
