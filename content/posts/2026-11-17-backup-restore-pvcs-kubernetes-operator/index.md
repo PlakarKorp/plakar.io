@@ -108,12 +108,10 @@ state before, known state after.
 
 ## Restore, with a check first
 
-This is the part most demos skip, and the reason the video is 18 minutes instead
-of 8.
-
-Before restoring, open the snapshot in the Control Plane and browse it: the
-uploaded image is there, the database files are there. A restore you have not
-inspected is a guess.
+Backing up matters, but being able to browse and inspect a backup before you
+restore it is where the real value is. Before restoring, open the snapshot in
+the Control Plane and browse it: the uploaded image is there, the database files
+are there.
 
 Then the app is prepared. The destination is the same PVC as the source, so both
 deployments are scaled to zero first: nothing writes to the volume mid-restore,
