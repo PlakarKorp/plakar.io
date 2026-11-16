@@ -56,9 +56,10 @@ Events are grouped into domains that follow the areas of Plakar Control Plane.
 Only events of the selected types are delivered to the target URL.
 
 Each domain exposes its own event types. Most domains have a **Request** and a
-**Response** type. The **Alerts** domain has a single **Quota** type. For each
-domain, either select specific event types or select **All** to receive every
-event type in that domain.
+**Response** type. The **Alerts** domain has a **Quota** type and a **Store
+integrity** type, raised when an object of a store fails its integrity check.
+For each domain, either select specific event types or select **All** to receive
+every event type in that domain.
 
 The available domains are:
 

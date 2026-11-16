@@ -107,6 +107,12 @@ A check task verifies the integrity of data in a store app. It checks that the
 backup data can be read correctly and validates file MACs to make sure no
 corruption has occurred. It is performed on a store app.
 
+A check task is not the same as the
+[integrity checks](../../apps/stores#integrity-checks) of a store. A check task
+verifies the restore points themselves: their checksums, their indexes and that
+their file tree can be walked. Integrity checks work at a lower level, and
+verify that each packfile and state of the store matches its own HMAC.
+
 By default, when no filters or restore point are specified, the entire store is
 checked. If you select a specific restore point, only that restore point is
 checked.
