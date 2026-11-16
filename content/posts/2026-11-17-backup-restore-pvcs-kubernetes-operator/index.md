@@ -21,8 +21,7 @@ featured-scope:
 **TL;DR:**
 
 > A walkthrough of the Plakar Kubernetes Operator: a real app on EKS, backed up
-> to S3 and restored, with every step applied through `kubectl`. The video is
-> below, and this post is the written version with the parts worth pausing on.
+> to S3 and restored, with every step applied through `kubectl`.
 
 ---
 
@@ -33,11 +32,16 @@ The
 is how you orchestrate backups and restoration from inside the cluster. It is a
 controller that reconciles custom resources against the Plakar Control Plane:
 you declare a store, a source, a destination and a schedule as YAML, apply them
-with `kubectl`, and the operator makes the API calls. It moves no data itself.
-The Plakar team laid out why backup belongs in that loop in
-[Resilience as Code](/posts/2026-09-23/resilience-as-code-kubernetes-operator/).
-This video is what that looks like in practice: a real app on EKS, two PVCs, one
-S3 bucket, and a restore you can check.
+with `kubectl`, and the operator makes the API calls. In case you missed it, we
+wrote about why in
+[Resilience as Code](/posts/2026-09-23/resilience-as-code-kubernetes-operator/):
+GitOps already solved this for the rest of your infrastructure, and what made it
+reliable was never the YAML but the loop behind it, a controller that
+continuously reconciles reality against the declared state, notices drift and
+corrects it. Backup should be driven by the same loop, from the tools that run
+your platform, not as a separate process. This video is what that looks like in
+practice: a real app on EKS, two PVCs, one S3 bucket, and a restore you can
+check.
 
 ## The setup
 
