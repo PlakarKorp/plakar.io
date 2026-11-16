@@ -47,7 +47,6 @@ related:
   - postgres
   - mongodb
   - mssql
-  - etcd
 
 edition:
   - community

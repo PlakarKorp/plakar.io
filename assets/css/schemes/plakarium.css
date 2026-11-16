@@ -37,3 +37,105 @@
   --color-secondary-800: 122, 39, 25; /* dark orange-brown */
   --color-secondary-900: 64, 19, 12; /* very dark background */
 }
+
+/* Adaptive palette: ui-* follows light/dark, the fixed scales above never change. */
+:root {
+  --ui-white: 255, 255, 255;
+  --ui-black: 0, 0, 0;
+
+  --ui-neutral-50: var(--color-neutral-50);
+  --ui-neutral-100: var(--color-neutral-100);
+  --ui-neutral-200: var(--color-neutral-200);
+  --ui-neutral-300: var(--color-neutral-300);
+  --ui-neutral-400: var(--color-neutral-400);
+  --ui-neutral-500: var(--color-neutral-500);
+  --ui-neutral-600: var(--color-neutral-600);
+  --ui-neutral-700: var(--color-neutral-700);
+  --ui-neutral-800: var(--color-neutral-800);
+  --ui-neutral-900: var(--color-neutral-900);
+
+  --ui-primary-50: var(--color-primary-50);
+  --ui-primary-100: var(--color-primary-100);
+  --ui-primary-200: var(--color-primary-200);
+  --ui-primary-300: var(--color-primary-300);
+  --ui-primary-400: var(--color-primary-400);
+  --ui-primary-500: var(--color-primary-500);
+  --ui-primary-600: var(--color-primary-600);
+  --ui-primary-700: var(--color-primary-700);
+  --ui-primary-800: var(--color-primary-800);
+  --ui-primary-900: var(--color-primary-900);
+
+  --ui-secondary-50: var(--color-secondary-50);
+  --ui-secondary-100: var(--color-secondary-100);
+  --ui-secondary-200: var(--color-secondary-200);
+  --ui-secondary-300: var(--color-secondary-300);
+  --ui-secondary-400: var(--color-secondary-400);
+  --ui-secondary-500: var(--color-secondary-500);
+  --ui-secondary-600: var(--color-secondary-600);
+  --ui-secondary-700: var(--color-secondary-700);
+  --ui-secondary-800: var(--color-secondary-800);
+  --ui-secondary-900: var(--color-secondary-900);
+
+  /* Status colours, Tailwind defaults in light mode */
+  --ui-green-50: 240, 253, 244;
+  --ui-green-600: 22, 163, 74;
+  --ui-green-800: 22, 101, 52;
+  --ui-blue-50: 239, 246, 255;
+  --ui-blue-800: 30, 64, 175;
+  --ui-amber-50: 255, 251, 235;
+  --ui-amber-800: 146, 64, 14;
+  --ui-orange-50: 255, 247, 237;
+  --ui-orange-800: 154, 52, 18;
+  --ui-red-50: 254, 242, 242;
+  --ui-red-800: 153, 27, 27;
+}
+
+html.dark {
+  --ui-white: 28, 28, 34;
+  --ui-black: 255, 255, 255;
+
+  --ui-neutral-50: 28, 28, 34;
+  --ui-neutral-100: 20, 20, 25;
+  --ui-neutral-200: 50, 49, 64; /* borders, a touch lighter so cards separate */
+  --ui-neutral-300: 70, 69, 89;
+  --ui-neutral-400: 106, 105, 132;
+  --ui-neutral-500: 130, 129, 158;
+  --ui-neutral-600: 158, 157, 184;
+  --ui-neutral-700: 190, 189, 206;
+  --ui-neutral-800: 220, 219, 230;
+  --ui-neutral-900: 240, 240, 245;
+
+  --ui-primary-50: 24, 23, 58;
+  --ui-primary-100: 33, 32, 88;
+  --ui-primary-200: 46, 44, 153;
+  --ui-primary-300: 82, 76, 255;
+  --ui-primary-400: 82, 76, 255;
+  --ui-primary-500: 103, 96, 255;
+  --ui-primary-600: 141, 136, 255;
+  --ui-primary-700: 179, 177, 255;
+  --ui-primary-800: 218, 217, 255;
+  --ui-primary-900: 240, 240, 255;
+
+  --ui-secondary-50: 40, 32, 32;
+  --ui-secondary-100: 52, 40, 38;
+  --ui-secondary-200: 122, 39, 25;
+  --ui-secondary-300: 217, 79, 44;
+  --ui-secondary-400: 247, 102, 53;
+  --ui-secondary-500: 255, 133, 71;
+  --ui-secondary-600: 255, 156, 65;
+  --ui-secondary-700: 255, 177, 120;
+  --ui-secondary-800: 255, 209, 168;
+  --ui-secondary-900: 255, 235, 216;
+
+  --ui-green-50: 5, 46, 22;
+  --ui-green-600: 74, 222, 128;
+  --ui-green-800: 134, 239, 172;
+  --ui-blue-50: 23, 37, 84;
+  --ui-blue-800: 147, 197, 253;
+  --ui-amber-50: 69, 26, 3;
+  --ui-amber-800: 252, 211, 77;
+  --ui-orange-50: 67, 20, 7;
+  --ui-orange-800: 253, 186, 116;
+  --ui-red-50: 69, 10, 10;
+  --ui-red-800: 252, 165, 165;
+}

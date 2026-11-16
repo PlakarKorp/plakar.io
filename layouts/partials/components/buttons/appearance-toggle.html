@@ -1,0 +1,6 @@
+{{/* Cycles system -> light -> dark. JS: assets/js/main/appearance.js */}}
+<button type="button" data-appearance-toggle class="appearance-toggle flex items-center justify-center shrink-0 min-h-7 aspect-square {{ if strings.HasPrefix .RelPermalink "/docs" }}lg:min-h-12 lg:aspect-auto lg:px-2.5{{ else }}xl:min-h-12 xl:aspect-auto xl:px-2.5{{ end }} border border-ui-neutral-300 rounded-lg bg-ui-neutral-50 text-ui-neutral-400 hover:text-ui-neutral-600 hover:border-ui-neutral-400 transition-colors cursor-pointer" aria-label="System theme" title="System theme">
+  <span class="appearance-icon" data-for="system">{{ partial "icon.html" "ri/computer-line" }}</span>
+  <span class="appearance-icon" data-for="light">{{ partial "icon.html" "ri/sun-line" }}</span>
+  <span class="appearance-icon" data-for="dark">{{ partial "icon.html" "ri/moon-line" }}</span>
+</button>

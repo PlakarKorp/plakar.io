@@ -16,7 +16,7 @@
 
 {{ if and $fields.properties (not $r.circular) (lt $depth 15) }}
   {{ $top := eq $depth 0 }}
-  <ul class="list-none m-0 p-0 {{ if $top }}divide-y divide-neutral-200{{ else }}mt-0.5 pl-3 border-l border-neutral-200{{ end }}">
+  <ul class="list-none m-0 p-0 {{ if $top }}divide-y divide-ui-neutral-200{{ else }}mt-0.5 pl-3 border-l border-ui-neutral-200{{ end }}">
     {{ range $name, $prop := $fields.properties }}
       {{ $pr := partial "api/resolve.html" (dict "schema" $prop "spec" $.spec "seen" $seen) }}
       {{ $children := partial "api/schema.html" (dict "schema" $prop "spec" $.spec "seen" $seen "depth" (add $depth 1)) }}
@@ -26,8 +26,8 @@
       <li class="m-0 p-0">
         {{ if $children }}
           <details {{ if eq $depth 0 }}open{{ end }} class="group/f">
-            <summary class="{{ $rowClass }} cursor-pointer list-none [&::-webkit-details-marker]:hidden hover:bg-neutral-100/70">
-              <span class="w-3.5 h-3.5 mt-1 shrink-0 text-neutral-400 transition-transform -rotate-90 group-open/f:rotate-0">{{ partial "icon.html" "chevron-down" }}</span>
+            <summary class="{{ $rowClass }} cursor-pointer list-none [&::-webkit-details-marker]:hidden hover:bg-ui-neutral-100/70">
+              <span class="w-3.5 h-3.5 mt-1 shrink-0 text-ui-neutral-400 transition-transform -rotate-90 group-open/f:rotate-0">{{ partial "icon.html" "chevron-down" }}</span>
               {{ $row }}
             </summary>
             <div class="{{ cond $top "px-3 pb-1.5 pl-6" "pb-0.5 pl-4" }}">{{ $children | safeHTML }}</div>

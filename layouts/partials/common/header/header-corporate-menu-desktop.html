@@ -10,7 +10,7 @@
       <div class="relative dropdown-group">
 
         {{ if .HasChildren }}
-          <button class="dropdown-btn px-2 text-base text-neutral-700 hover:text-primary-500 inline-flex items-center gap-1 whitespace-nowrap">
+          <button class="dropdown-btn px-2 text-base text-ui-neutral-700 hover:text-ui-primary-500 inline-flex items-center gap-1 whitespace-nowrap">
             {{ .Name }}
             <span class="dropdown-chevron w-4 h-4 flex items-center justify-center">
               {{ partial "icon.html" "chevron-down" }}
@@ -18,7 +18,7 @@
           </button>
         {{ else }}
           <a href="{{ .URL | relLangURL }}" {{ with .Params.target }}target="{{ . }}"{{ end }}
-             class="px-2 text-base text-neutral-700 hover:text-primary-500 inline-flex items-center whitespace-nowrap">
+             class="px-2 text-base text-ui-neutral-700 hover:text-ui-primary-500 inline-flex items-center whitespace-nowrap">
             {{ .Name }}
           </a>
         {{ end }}
@@ -43,21 +43,21 @@
           {{ end }}
 
           <div class="dropdown-menu absolute top-full mt-4 hidden z-50">
-            <div class="flex flex-wrap items-stretch py-8 px-4 bg-neutral-50 shadow-lg border border-neutral-200 rounded-2xl">
+            <div class="flex flex-wrap items-stretch py-8 px-4 bg-ui-neutral-50 shadow-lg border border-ui-neutral-200 rounded-2xl">
               {{ range sort $sections "weight" }}
                 <div class="w-1/2 lg:w-[30%] flex flex-col gap-6">
-                  <span class="text-primary-500 text-xs">{{ .name }}</span>
+                  <span class="text-ui-primary-500 text-xs">{{ .name }}</span>
                   <div class="flex flex-col gap-2">
                     {{ range sort .items "Weight" }}
                       <a href="{{ .URL | relLangURL }}" {{ with .Params.target }}target="{{ . }}"{{ end }}
-                         class="group/link flex items-center gap-2 p-2 rounded-lg hover:bg-neutral-100">
-                        <div class="w-10 h-10 bg-neutral-100 text-neutral-600 p-2 group-hover/link:bg-neutral-50 group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
+                         class="group/link flex items-center gap-2 p-2 rounded-lg hover:bg-ui-neutral-100">
+                        <div class="w-10 h-10 bg-ui-neutral-100 text-ui-neutral-600 p-2 group-hover/link:bg-ui-neutral-50 group-hover/link:text-ui-primary-500 flex justify-center items-center rounded-lg">
                           {{ partial "icon.html" .Params.icon }}
                         </div>
                         <div class="flex-1">
-                          <div class="text-neutral-900 font-semibold">{{ .Name }}</div>
+                          <div class="text-ui-neutral-900 font-semibold">{{ .Name }}</div>
                           {{ with .Params.description }}
-                            <div class="text-neutral-400 text-xs">{{ . }}</div>
+                            <div class="text-ui-neutral-400 text-xs">{{ . }}</div>
                           {{ end }}
                         </div>
                       </a>

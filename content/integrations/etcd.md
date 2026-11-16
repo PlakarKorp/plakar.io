@@ -43,7 +43,6 @@ related:
   - kubernetes
   - postgres
   - mysql
-  - mongodb
 
 edition:
   - community
