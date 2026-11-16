@@ -46,12 +46,9 @@
       // these rules applied, so boxes are sized to fit the styled text.
       themeCSS: [
         ".node .label { font-weight: 500; }",
-        ".cluster-label p { margin: 0; }",
-        ".cluster-label .nodeLabel {",
+        ".cluster-label .nodeLabel, .cluster-label p {",
         "  font-size: 12.5px; font-weight: 600; letter-spacing: 0.06em;",
         "  text-transform: uppercase; color: rgb(var(--ui-primary-600));",
-        "  padding: 0 6px; border-radius: 4px;",
-        "  background-color: color-mix(in srgb, rgb(var(--ui-primary-500)) 5%, rgb(var(--ui-neutral-50)));",
         "}",
         ".edgeLabel { background: transparent !important; }",
         ".edgeLabel p { margin: 0; padding: 0; background: none !important; }",
