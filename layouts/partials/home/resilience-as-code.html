@@ -38,9 +38,9 @@
   (dict "title" "It's protected" "text" "Backups run on schedule, and every change stays in Git history.")
 }}
 <!-- JS: assets/js/main/home-iac.js pins the section and moves through the steps as you scroll -->
-<section id="home-iac" class="home-iac border-t border-ui-neutral-200" data-stage="0" style="--iac-steps: {{ len $steps }}">
+<section id="home-iac" class="home-iac overflow-x-clip border-t border-ui-neutral-200" data-stage="0" style="--iac-steps: {{ len $steps }}">
   <div class="home-iac-sticky py-24 lg:py-36">
-    <div class="{{ $wrap }} w-full grid lg:grid-cols-[0.85fr_1.15fr] gap-12 lg:gap-20 items-center">
+    <div class="{{ $wrap }} w-full grid grid-cols-1 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] [&>*]:min-w-0 gap-12 lg:gap-20 items-center">
 
       <!-- Story -->
       <div class="flex flex-col gap-6">
@@ -96,7 +96,7 @@
             <div class="home-iac-stage relative h-[25rem] font-mono text-[13px] leading-6">
 
               <!-- 1. Write it -->
-              <div class="home-iac-layer px-5 py-5" data-layer="0">
+              <div class="home-iac-layer overflow-x-auto px-5 py-5" data-layer="0">
                 {{ range $n, $line := $lines }}
                   <div class="home-iac-item flex gap-5 whitespace-pre" style="--i: {{ $n }}"><span class="w-5 shrink-0 select-none text-right text-neutral-600">{{ add $n 1 }}</span><span class="text-neutral-200">{{ $line | safeHTML }}</span></div>
                 {{ end }}

@@ -52,7 +52,7 @@
           <div class="grid grid-cols-2 lg:grid-cols-4 border-x border-ui-neutral-200 divide-x divide-ui-neutral-200 [&>*:nth-child(3)]:border-l-0 lg:[&>*:nth-child(3)]:border-l">
             {{ range slice
               (dict "label" "GitHub stars" "icon" "ri/star-line" "stars" true)
-              (dict "label" "Contributors" "icon" "ri/team-line" "value" (len $people))
+              (dict "label" "Contributors" "icon" "ri/team-line" "value" (printf "%d+" (mul (div (len $people) 10) 10)))
               (dict "label" "Integrations" "icon" "ri/puzzle-2-line" "value" $integrations)
               (dict "label" "Licence" "icon" "ri/open-source-line" "value" "ISC")
             }}
