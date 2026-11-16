@@ -69,8 +69,9 @@ image: img/integrations/aws.png
 
 The AWS integration connects Plakar Control Plane to an AWS account, whether
 Control Plane runs on EC2, at another cloud provider or in a data center. Its
-inventory lists the S3 buckets, RDS databases and EC2 instances of the account
-every 15 minutes with their AWS tags, so a new bucket or RDS database enters a
+inventory lists every resource of the account that AWS Resource Explorer returns
+in Control Plane, with its ARN, Region, service, type and AWS tags, and
+refreshes the list every 15 minutes. A new bucket or RDS database then enters a
 backup policy without a ticket. Its secret provider reads the passwords and keys
 those backups use from AWS Secrets Manager.
 
@@ -81,6 +82,8 @@ store. The [PostgreSQL](/integrations/postgres/) and
 instance or cluster with `pg_dump` or `mysqldump`, and restore them to any
 server they can reach. Plakar encrypts and deduplicates every snapshot before it
 reaches the store.
+
+Five resource types also get a class and their endpoints:
 
 | AWS resource          | Class in Plakar Control Plane | Endpoints discovered                  |
 | --------------------- | ----------------------------- | ------------------------------------- |
@@ -418,9 +421,10 @@ free and open source in the `plakar` CLI as well.
 
 ### Which AWS resources does Plakar discover?
 
-S3 buckets, EC2 instances, and RDS instances, clusters and proxies, Aurora
-included. Each resource comes with its AWS tags, its endpoints and a name taken
-from its `Name` tag or from its ARN.
+Every resource AWS Resource Explorer returns for the account, with its ARN,
+Region, service, type and AWS tags. S3 buckets, EC2 instances, and RDS
+instances, clusters and proxies, Aurora included, also get a class, their
+endpoints and a name taken from their `Name` tag or their ARN.
 
 ### How does Plakar back up an Amazon RDS database?
 
