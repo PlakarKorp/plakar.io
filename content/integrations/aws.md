@@ -272,10 +272,11 @@ $ aws secretsmanager create-secret --name prod/plakar/rds-orders \
 
 ## How to reduce AWS egress costs for backups stored outside AWS {kicker="Egress"}
 
-A backup at another provider survives the loss of the AWS account, but a full
-copy of every bucket and database each night is billed as data transfer out of
-AWS. Plakar keeps that transfer to the changes, on one condition: the edge that
-runs the task sits in the AWS region of the resource.
+A copy outside AWS survives the loss of the account, a leaked root key or a
+closed account. It is often left out because of its cost: a full export of every
+bucket and database each night is billed as data transfer out of AWS, then
+stored again at the other provider. Plakar keeps both to what changed, on one
+condition: the edge that runs the task sits in the AWS region of the resource.
 
 {{< pairs >}}
 
@@ -299,6 +300,14 @@ only recent rows changed sends those rows' chunks, not the whole dump.
 
 The edge compresses each new chunk with LZ4 and encrypts it before upload. Text,
 logs and SQL dumps shrink, and the other provider receives only encrypted data.
+
+{{< /pair >}}
+
+{{< pair lead="History costs what changed." >}}
+
+Each snapshot is a full restore point, but the store keeps each chunk once.
+Thirty nightly snapshots of a bucket take the space of the first copy plus the
+changes, at the provider and storage class you choose.
 
 {{< /pair >}}
 
