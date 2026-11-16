@@ -21,6 +21,7 @@ technology_description: >
   Plakar Control Plane reads the account every 15 minutes, matches AWS tags to
   backup policies, and keeps the credentials its backups use in AWS Secrets
   Manager, read through the IAM role of its EC2 instance.
+technology_image: img/integrations/technology/aws.svg
 
 categories:
   - secrets-manager
@@ -66,7 +67,8 @@ image: img/integrations/aws.png
 
 ## What the AWS integration does {kicker="Overview"}
 
-The AWS integration connects Plakar Control Plane to an AWS account. Its
+The AWS integration connects Plakar Control Plane to an AWS account, whether
+Control Plane runs on EC2, at another cloud provider or in a data center. Its
 inventory lists the S3 buckets, RDS databases and EC2 instances of the account
 every 15 minutes with their AWS tags, so a new bucket or RDS database enters a
 backup policy without a ticket. Its secret provider reads the passwords and keys
@@ -135,11 +137,11 @@ the `production` environment and its data classes schedules all of them.
 
 A coding agent working with a developer's AWS profile creates an RDS PostgreSQL
 instance, `orders-preview`, for a feature branch. The branch ships, and the
-instance now holds real orders. Nothing in AWS records that it needs a backup.
-The inventory lists it at the next synchronization, with the
-`plakar:env=production` tag the pipeline set. A configuration bundle gives it a
-PostgreSQL source, and the `production` policy schedules it like any database
-created by hand.
+instance now holds real orders. No backup plan names it. The deployment pipeline
+tags it `plakar:env=production`, `plakar:class=database` and
+`db-engine=postgres`, as it does for every database it promotes. The inventory
+lists it at the next synchronization, the PostgreSQL bundle gives it a source,
+and the `production` policy schedules it like any database created by hand.
 
 {{< /card >}}
 
@@ -188,19 +190,21 @@ database is reached from inside its own network.
 {{< column >}}
 
 A bucket a data scientist creates from the S3 console, such as
-`acme-ml-features-eu`, needs no ticket to be backed up: AWS tags carry the
-backup intent. A resource tagged `plakar:env=production` and
-`plakar:class=database` gets `production` as the environment and `database` as
-the data class of its source, and every policy scoped to that pair schedules it.
+`acme-ml-features-eu`, gets its backup from its AWS tags. A resource tagged
+`plakar:env=production` and `plakar:class=database` gets `production` as the
+environment and `database` as the data class of its source, and every policy
+scoped to that pair schedules it.
 
 1. Create an AWS inventory in Plakar Control Plane with the **IAM** credential
    type and a region.
 2. Tag the resources at AWS with `plakar:env` and `plakar:class`, using the
    environments and data classes defined in your classification settings.
    Terraform, CloudFormation and the AWS CLI all set them.
-3. Add a configuration bundle to the inventory for each integration, scoped to
-   its class (Object Storage for S3, Database for RDS), with **Auto-create
-   connectors** enabled.
+3. Add a configuration bundle to the inventory for each integration, with
+   **Auto-create connectors** enabled. Scope the S3 bundle to the Object Storage
+   class. RDS databases all share the Database class, so also scope the
+   PostgreSQL and MySQL bundles to a tag your teams set, such as
+   `db-engine=postgres`.
 4. Create a policy for the environment and data classes, with its frequency,
    retention and store.
 5. Click **Sync now**, or wait for the next synchronization. New resources then
@@ -224,11 +228,8 @@ $ aws resourcegroupstaggingapi tag-resources \
 
 {{< /columns >}}
 
-Tags also narrow a configuration bundle. A bundle for `postgres+aws` that
-requires a tag your teams set, such as `db-engine=postgres`, creates sources
-only on the RDS databases that carry it. Tags discovered from AWS are read-only
-in Plakar Control Plane: they change at AWS, and the next synchronization picks
-them up.
+Tags discovered from AWS are read-only in Plakar Control Plane: they change at
+AWS, and the next synchronization picks them up.
 
 ## How to read backup credentials from AWS Secrets Manager {kicker="Secrets"}
 
@@ -399,13 +400,11 @@ bucket.
 
 ## Plakar Control Plane for AWS accounts {kicker="Control Plane"}
 
-The AWS integration is part of Plakar Control Plane, which reaches the AWS APIs
-over HTTPS from wherever it runs: an EC2 instance in the account, another cloud
-provider or a data center. Policies schedule every discovered source whose
-environment and data class they match, and a residency on the inventory keeps
-the backups of its resources in stores of the same residency. The S3, PostgreSQL
-and MySQL integrations it hands resources to are free and open source in the
-`plakar` CLI as well.
+The AWS integration is part of Plakar Control Plane. Policies schedule every
+discovered source whose environment and data class they match, and a residency
+on the inventory keeps the backups of its resources in stores of the same
+residency. The S3, PostgreSQL and MySQL integrations it hands resources to are
+free and open source in the `plakar` CLI as well.
 
 [See how Plakar Control Plane works](/solutions/control-plane/), read the
 [AWS inventory documentation](/docs/control-plane/inventories/managed/aws/), or
