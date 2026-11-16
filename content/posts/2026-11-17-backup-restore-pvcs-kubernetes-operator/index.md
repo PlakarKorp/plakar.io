@@ -153,9 +153,8 @@ The Control Plane itself has a
 [free tier up to 500 GB](/docs/control-plane/intro/overview/).
 
 By the way: if what you want to back up is Kubernetes itself, not just the
-volumes in it, that is the
-[Kubernetes integration](/docs/community/main/integrations/kubernetes/). It
-covers manifests and resource state, persistent volume contents (through CSI
+volumes in it, that is the [Kubernetes integration](/integrations/kubernetes/).
+It covers manifests and resource state, persistent volume contents (through CSI
 `VolumeSnapshot` or directly from the PVC) and KubeVirt VMs. Omar wrote up how
 it works in
 [Backing up Kubernetes clusters with Plakar](/posts/2026-02-18/backing-up-kubernetes-clusters-with-plakar/)
