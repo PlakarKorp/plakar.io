@@ -143,6 +143,20 @@ created by hand.
 
 {{< /card >}}
 
+{{< card label="--delete-automated-backups" >}}
+
+### An AI agent deletes an Amazon RDS instance and its automated backups
+
+An ops agent told to remove unused databases, working with a developer's AWS
+profile, runs `aws rds delete-db-instance` on `orders` with
+`--skip-final-snapshot` and `--delete-automated-backups`. The instance goes, its
+automated backups with it, and no final snapshot is taken. Last night's Plakar
+snapshot sits in a store under other credentials, and its passphrase was never
+in the agent's environment. Create a new instance and restore the dump into it
+with the PostgreSQL integration.
+
+{{< /card >}}
+
 {{< card label="AKIA key in a public repository" >}}
 
 ### An AWS access key for backups pushed to a public repository
