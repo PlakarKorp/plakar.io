@@ -32,11 +32,12 @@ The
 is how you orchestrate backups and restoration from inside the cluster. It is a
 controller that reconciles custom resources against the Plakar Control Plane:
 you declare a store, a source, a destination and a schedule as YAML, apply them
-with `kubectl`, and the operator makes the API calls. In case you missed it,
+with `kubectl`, and the operator makes the API calls. In case you missed it, we
+wrote a blog post on
 [Resilience as Code](/posts/2026-09-23/resilience-as-code-kubernetes-operator/)
-explains why: the reconcile loop that made GitOps reliable should drive backup
-too. This video is what that looks like in practice: a real app on EKS, two
-PVCs, one S3 bucket, and a restore you can check.
+which explains why: the reconcile loop that made GitOps reliable should drive
+backup too. This video is what that looks like in practice: a real app on EKS,
+two PVCs, one S3 bucket, and a restore you can check.
 
 ## The setup
 
