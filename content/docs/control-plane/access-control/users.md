@@ -138,6 +138,24 @@ application, allowing you to review and delete keys that are no longer needed.
 > page, the key cannot be viewed again. Store it securely in a password manager,
 > secrets manager, or another secure location before continuing.
 
+### Rotating an API key
+
+An application rotates its own key through the API, with
+[`POST /api/v1/account/api-keys/rotate`](../../references/openapi/v1/account#userRotateAPIKey)
+authenticated with that key. The response returns the new key, which remains
+valid for the [API key rotation TTL](../organization-settings#token-lifetimes)
+of the organization.
+
+The old key keeps working for 24 hours by default, so processes still using it
+can switch to the new one without interruption. The response reports when it
+stops in `predecessor_expires_at`. To end the old key at once, for example when
+it has leaked, set `revoke_immediately` to `true` in the request.
+
+### Revoking an API key
+
+Deleting a key in the API key dialog revokes it. It stops working on the next
+request, even for a session that signed in with it before the key was deleted.
+
 ## User roles
 
 A user's access is determined by the role assigned to them within each

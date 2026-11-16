@@ -66,8 +66,8 @@ Two time-to-live (TTL) durations are configured together here:
 
 - **Authentication badge TTL:** how long an authentication badge remains valid.
   The badge indicates the current authentication status of a session.
-- **API key rotation TTL:** how long an API key remains valid after its owner
-  rotates it.
+- **API key rotation TTL:** how long the new key issued when an application
+  [rotates its API key](../users#rotating-an-api-key) remains valid.
 
 ### Two-factor authentication
 
