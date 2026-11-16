@@ -65,9 +65,14 @@ at sign-in.
 Two time-to-live (TTL) durations are configured together here:
 
 - **Authentication badge TTL:** how long an authentication badge remains valid.
-  The badge indicates the current authentication status of a session.
+  The badge indicates the current authentication status of a session. Defaults
+  to 1 day.
 - **API key rotation TTL:** how long the new key issued when an application
-  [rotates its API key](../users#rotating-an-api-key) remains valid.
+  [rotates its API key](../users#rotating-an-api-key) remains valid. Defaults to
+  90 days.
+
+When neither this organization nor any organization above it sets a lifetime,
+the default applies and the screen shows it with a **(default)** label.
 
 ### Two-factor authentication
 
