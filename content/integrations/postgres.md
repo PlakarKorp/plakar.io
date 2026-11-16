@@ -10,6 +10,8 @@ description: >
   encrypted snapshots, self-hosted or managed. Restore one table with
   pg_restore.
 
+technology_image: img/integrations/technology/postgres.svg
+
 technology_title: Replication copies every PostgreSQL mistake to every standby
 
 technology_description: >

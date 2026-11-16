@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 460" role="img" aria-label="A DROP TABLE orders on the PostgreSQL primary is replayed through WAL on both standbys, so the orders table is gone from every node. Plakar snapshots taken outside the cluster on the previous nights still hold the orders table." font-family="Inter, system-ui, sans-serif" class="w-full h-auto">
+  <defs>
+    <marker id="pg-arrow-neutral" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="rgb(79,78,102)"/>
+    </marker>
+    <marker id="pg-arrow-primary" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="rgb(82,76,255)"/>
+    </marker>
+  </defs>
+
+  <text x="20" y="26" font-size="15" font-weight="600" fill="rgb(28,28,30)">PostgreSQL cluster</text>
+  <rect x="20" y="40" width="250" height="400" rx="14" fill="#fff" stroke="rgb(231,230,240)" stroke-width="2"/>
+
+  <g font-size="15" font-weight="600" fill="rgb(79,78,102)">
+    <rect x="40" y="62" width="190" height="96" rx="8" fill="rgb(245,244,251)" stroke="rgb(231,230,240)"/>
+    <text x="58" y="92">Primary</text>
+    <rect x="40" y="236" width="190" height="82" rx="8" fill="rgb(245,244,251)" stroke="rgb(231,230,240)"/>
+    <text x="58" y="266">Standby 1</text>
+    <rect x="40" y="338" width="190" height="82" rx="8" fill="rgb(245,244,251)" stroke="rgb(231,230,240)"/>
+    <text x="58" y="368">Standby 2</text>
+  </g>
+  <text x="58" y="126" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="rgb(79,78,102)">DROP TABLE orders;</text>
+
+  <g font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="rgb(160,159,180)">
+    <text x="58" y="298">orders</text>
+    <text x="58" y="400">orders</text>
+  </g>
+  <g stroke="rgb(160,159,180)" stroke-width="1.5">
+    <line x1="56" y1="294" x2="108" y2="294"/>
+    <line x1="56" y1="396" x2="108" y2="396"/>
+  </g>
+
+  <g fill="none" stroke="rgb(79,78,102)" stroke-width="2" stroke-linecap="round">
+    <path d="M230 120 H250 V277 H236" marker-end="url(#pg-arrow-neutral)"/>
+    <path d="M250 277 V379 H236" marker-end="url(#pg-arrow-neutral)"/>
+  </g>
+  <text x="58" y="204" font-size="13" font-weight="500" fill="rgb(79,78,102)">WAL replayed within ms</text>
+
+  <text x="296" y="26" font-size="15" font-weight="600" fill="rgb(82,76,255)">Plakar</text>
+  <path d="M230 84 H288" fill="none" stroke="rgb(82,76,255)" stroke-width="2" stroke-linecap="round" stroke-dasharray="5 5" marker-end="url(#pg-arrow-primary)"/>
+
+  <g>
+    <rect x="296" y="62" width="114" height="70" rx="8" fill="rgb(218,217,255)"/>
+    <rect x="296" y="152" width="114" height="70" rx="8" fill="rgb(218,217,255)"/>
+    <rect x="296" y="242" width="114" height="70" rx="8" fill="rgb(218,217,255)"/>
+    <rect x="296" y="332" width="114" height="70" rx="8" fill="rgb(218,217,255)"/>
+  </g>
+  <g font-size="15" font-weight="600" fill="rgb(82,76,255)">
+    <text x="310" y="92">Thu 02:00</text>
+    <text x="310" y="182">Wed 02:00</text>
+    <text x="310" y="272">Tue 02:00</text>
+    <text x="310" y="362">Mon 02:00</text>
+  </g>
+  <g font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="rgb(82,76,255)">
+    <text x="310" y="116">orders</text>
+    <text x="310" y="206">orders</text>
+    <text x="310" y="296">orders</text>
+    <text x="310" y="386">orders</text>
+  </g>
+</svg>
