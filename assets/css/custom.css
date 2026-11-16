@@ -1583,3 +1583,51 @@ html.dark .home-newsletter {
     rgb(var(--color-primary-600)) 100%
   ) !important;
 }
+
+/* Mermaid diagrams */
+pre.mermaid {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+  padding: 2rem 1.5rem;
+  overflow-x: auto;
+  border: 1px solid rgb(var(--ui-neutral-200));
+  border-radius: 1rem;
+  background-color: rgb(var(--ui-neutral-50));
+  background-image: radial-gradient(
+    rgb(var(--ui-neutral-200)) 1px,
+    transparent 1px
+  );
+  background-size: 16px 16px;
+}
+
+/* Hide the source text until Mermaid has drawn the diagram */
+pre.mermaid:not([data-processed]) {
+  color: transparent;
+}
+
+pre.mermaid svg {
+  max-width: 100%;
+  height: auto;
+}
+
+pre.mermaid svg :is(.node rect, .node polygon, .node circle) {
+  stroke-width: 1px;
+  filter: none !important;
+}
+
+pre.mermaid svg .node rect {
+  rx: 10px;
+  ry: 10px;
+}
+
+pre.mermaid svg .cluster rect {
+  rx: 14px;
+  ry: 14px;
+  stroke-width: 1px;
+  filter: none !important;
+}
+
+pre.mermaid svg .flowchart-link {
+  stroke-width: 1.25px;
+}
