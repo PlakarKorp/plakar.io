@@ -27,13 +27,19 @@ featured-scope:
 
 {{< youtubeLite id="8vPUMGBbGXE" >}}
 
+We built a [Kubernetes integration](/integrations/kubernetes/) for Plakar that
+backs up clusters at three levels: etcd (disaster recovery), manifests (granular
+restore and inspection), and persistent volumes (via CSI snapshots). This
+enables full cluster recovery, fine-grained restores, and data portability
+across environments.
+
 The
 [Kubernetes Operator](/docs/control-plane/infrastructure-as-code/kubernetes-operator/)
-is how you orchestrate backups and restoration from inside the cluster. It is a
-controller that reconciles custom resources against the Plakar Control Plane:
-you declare a store, a source, a destination and a schedule as YAML, apply them
-with `kubectl`, and the operator makes the API calls. In case you missed it, we
-wrote a blog post on
+is the other half: how you orchestrate those backups and restores from inside
+the cluster. It is a controller that reconciles custom resources against the
+Plakar Control Plane: you declare a store, a source, a destination and a
+schedule as YAML, apply them with `kubectl`, and the operator makes the API
+calls. In case you missed it, we wrote a blog post on
 [Resilience as Code](/posts/2026-09-23/resilience-as-code-kubernetes-operator/)
 which explains why: the reconcile loop that made GitOps reliable should drive
 backup too. This video is what that looks like in practice: a real app on EKS,
