@@ -55,8 +55,8 @@ it:
 
 A service account is declared with `service: true` and no address. Its API key
 is minted from the web interface, because an
-[application user](../../../access-control/users#application-users) cannot mint
-its own:
+[application user](../../../access-control/users/applications) cannot mint its
+own:
 
 ```yaml
 - plakarkorp.plakar.member:

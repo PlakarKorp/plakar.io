@@ -12,8 +12,8 @@ aliases:
 # API Automation Service Account
 
 The **API Automation service account** is granted to an
-[application user](../../users#application-users) rather than to a member, so it
-is the role to use for CI/CD pipelines, orchestrators, and anything else that
+[application user](../../users/applications) rather than to a member, so it is
+the role to use for CI/CD pipelines, orchestrators, and anything else that
 authenticates to the API instead of signing in. Every resource class is held at
 run, which lets it start work an organization has already defined and change
 none of it.

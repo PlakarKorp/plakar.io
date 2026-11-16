@@ -27,8 +27,8 @@ Most endpoints require a **badge**, a JWT that PCP issues when a user logs in.
 The badge is sent in the `Authorization` header as a bearer token.
 
 Automation obtains a badge with an API key belonging to an
-[application user](../../../access-control/users#application-users). Exchanging
-the key returns the badge in `token`:
+[application user](../../../access-control/users/applications). Exchanging the
+key returns the badge in `token`:
 
 ```sh
 $ curl -X POST https://pcp.example.com/api/v1/auth/login/apikey \

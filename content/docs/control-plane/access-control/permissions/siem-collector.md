@@ -10,7 +10,7 @@ aliases:
 # Monitoring / SIEM Collector
 
 The **Monitoring collector** is granted to an
-[application user](../../users#application-users) rather than to a member, for
+[application user](../../users/applications) rather than to a member, for
 systems that read the state of an organization and ship it elsewhere. Every
 resource class and the audit log are held at view, so it collects metrics and
 exports log records without changing anything.
