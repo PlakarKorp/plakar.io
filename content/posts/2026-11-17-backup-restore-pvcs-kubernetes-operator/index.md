@@ -45,9 +45,7 @@ check.
 
 ## The setup
 
-Everything comes from a small repo of raw Kubernetes manifests, on purpose: no
-Helm, no Kustomize, so each file reads on its own. If you want the full
-step-by-step walkthrough, every command is in the
+If you want the full step-by-step walkthrough, every command is in the
 [README](https://github.com/PlakarKorp/kubernetes-operator-demo-aws-eks). The
 only templating is `envsubst`, wrapped in a `./run` script, so cluster name,
 bucket name and Control Plane URL come from a `.env` file.
