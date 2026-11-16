@@ -32,7 +32,9 @@ As you may know by now, we built a
 clusters at three levels: etcd (disaster recovery), manifests (granular restore
 and inspection), and persistent volumes (via CSI snapshots). This enables full
 cluster recovery, fine-grained restores, and data portability across
-environments.
+environments. The one and only Omar, who built both the Kubernetes integration
+and the Operator, wrote up how it works in
+[Backing up Kubernetes clusters with Plakar](/posts/2026-02-18/backing-up-kubernetes-clusters-with-plakar/).
 
 The
 [Kubernetes Operator](/docs/control-plane/infrastructure-as-code/kubernetes-operator/)
@@ -149,20 +151,10 @@ comes back in seconds, the WordPress uploads take a few minutes.
 
 ## Where to go from here
 
-The [demo repo](https://github.com/PlakarKorp/kubernetes-operator-demo-aws-eks)
-has the full step-by-step walkthrough, from creating the EKS cluster to
-restoring. The operator is in the Control Plane's
-[infrastructure-as-code docs](/docs/control-plane/infrastructure-as-code/kubernetes-operator/),
-starting with
-[installation](/docs/control-plane/infrastructure-as-code/kubernetes-operator/installation/).
-The Control Plane itself has a
-[free tier up to 500 GB](/docs/control-plane/intro/overview/).
-
-By the way: if what you want to back up is Kubernetes itself, not just the
-volumes in it, that is the [Kubernetes integration](/integrations/kubernetes/).
-It covers manifests and resource state, persistent volume contents (through CSI
-`VolumeSnapshot` or directly from the PVC) and KubeVirt VMs. Omar wrote up how
-it works in
-[Backing up Kubernetes clusters with Plakar](/posts/2026-02-18/backing-up-kubernetes-clusters-with-plakar/)
-and
-[Free backup for KubeVirt VMs and OpenShift](/posts/2026-10-28/free-backup-for-kubevirt-and-openshift/).
+We hope you found this demo useful. If you want to follow the tutorial, start
+with the
+[installation](/docs/control-plane/infrastructure-as-code/kubernetes-operator/installation/)
+of the Operator and a Control Plane
+[free tier](/docs/control-plane/intro/overview/) (up to 500 GB). The
+[demo repo](https://github.com/PlakarKorp/kubernetes-operator-demo-aws-eks) has
+every step, from creating the EKS cluster to restoring.
