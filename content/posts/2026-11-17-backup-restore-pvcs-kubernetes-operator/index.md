@@ -68,9 +68,10 @@ what state you expect back.
 
 ## Wiring the operator
 
-The operator needs a Control Plane to talk to. A ServiceAccount with a bearer
-token and the minimum RBAC to back up and restore PVCs lets the Control Plane
-reach the cluster, and an application user with the Operator role and an API key
+The operator needs a Control Plane to talk to, and the trust runs both ways. On
+the cluster side, a ServiceAccount with a bearer token and the minimum RBAC to
+back up and restore PVCs lets the Control Plane reach the cluster. On the
+Control Plane side, an application user with the Operator role and an API key
 lets the operator reach the Control Plane. The key goes in a Kubernetes secret,
 and the `Plakar` resource points at both:
 
