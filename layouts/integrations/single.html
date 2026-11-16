@@ -116,14 +116,29 @@
 <!-- Technology -->
 <section class="section-light-2 py-7 lg:py-14">
   <div class="max-w-350 mx-auto px-4">
-    <div class="flex flex-row gap-4 items-end justify-end w-full">
+    <div class="flex flex-row gap-12 items-center justify-end w-full">
+      {{ with .Params.technology_image }}
+        {{ with resources.Get . }}
+          <div class="hidden lg:flex lg:w-1/3 justify-center">
+            {{ if eq .MediaType.SubType "svg" }}
+              {{ .Content | safeHTML }}
+            {{ else }}
+              {{ partial "components/image.html" (dict "resource" . "alt" "" "widths" (slice 400 800) "class" "w-full h-auto object-contain") }}
+            {{ end }}
+          </div>
+        {{ end }}
+      {{ end }}
       <div class="flex flex-col w-full lg:w-2/3">
         <h2 class="text-3xl lg:text-5xl font-medium text-right">
           {{ partial "utils/colorize.html" (dict "text" .Params.technology_title "word" .Params.resource) }}
         </h2>
-        <p class="text-lg lg:text-xl text-neutral-700 font-medium w-full pt-8">
-          {{ .Params.technology_description }}
-        </p>
+        <div class="flex flex-col gap-4 pt-8">
+          {{- range split (trim .Params.technology_description "\n") "\n" }}
+          {{- with trim . " " }}
+          <p class="text-lg lg:text-xl text-neutral-700 font-medium w-full">{{ . }}</p>
+          {{- end }}
+          {{- end }}
+        </div>
       </div>
     </div>
   </div>
