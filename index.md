@@ -101,7 +101,7 @@
 
 - [OCI Registry](https://www.plakar.io/integrations/oci/index.md): Use your existing container registry infrastructure to store Plakar backups. Plakar encodes repository data as native OCI artifacts, giving you immutable, encrypted snapshots with registry-native replication and access controls.
 
-- [Kubernetes](https://www.plakar.io/integrations/kubernetes/index.md): Protect your Kubernetes infrastructure at every level. Plakar discovers cluster resources, backs up etcd for disaster recovery, manifests for granular inspection and restore, and persistent volumes via CSI snapshots. All encrypted, deduplicated, and portable across environments.
+- [Kubernetes](https://www.plakar.io/integrations/kubernetes/index.md): Free, open-source Kubernetes backup: objects, PVC data and KubeVirt VMs in encrypted snapshots. Restore a deleted namespace, one kind or a single object.
 
 - [Proxmox](https://www.plakar.io/integrations/proxmox/index.md): Protect your Proxmox clusters against data loss, ransomware, and misconfiguration. Plakar wraps native Proxmox backups into encrypted, deduplicated snapshots that are portable, verifiable, and restorable across clusters or storage backends.
 
