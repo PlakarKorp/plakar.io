@@ -11,8 +11,8 @@
 
   
   
-    <title>Amazon Web Services (AWS) &middot; Plakar</title>
-    <meta name="title" content="Amazon Web Services (AWS) &middot; Plakar">
+    <title>AWS Backup for S3 and RDS with Automatic Discovery &middot; Plakar</title>
+    <meta name="title" content="AWS Backup for S3 and RDS with Automatic Discovery &middot; Plakar">
   
 
   
@@ -27,11 +27,11 @@
     
   
   
-    <meta name="description" content="Manage AWS resources and credentials from Plakar Control Plane. Discover  resources automatically as your AWS account changes, and manage secrets  through AWS Secrets Manager instead of scattering credentials across scripts  and tools.
+    <meta name="description" content="Plakar Control Plane finds the S3 buckets and RDS databases of an AWS account, schedules their backups from AWS tags and reads credentials from Secrets Manager.
 ">
   
   
-    <meta name="keywords" content="AWS inventory,AWS Secrets Manager,AWS resource discovery,cloud inventory management,centralized secrets management,">
+    <meta name="keywords" content="AWS backup,AWS backup inventory,back up new S3 buckets automatically,Amazon RDS backup with IAM authentication,AWS tag-based backup policy,AWS Secrets Manager backup credentials,backup without AWS access keys,">
   
   
   
@@ -67,18 +67,18 @@
   
   <meta property="og:url" content="https://www.plakar.io/integrations/aws/">
   <meta property="og:site_name" content="Plakar | The Open Standard for Backup and Restore">
-  <meta property="og:title" content="Amazon Web Services (AWS)">
-  <meta property="og:description" content="Manage AWS resources and credentials from Plakar Control Plane. Discover  resources automatically as your AWS account changes, and manage secrets  through AWS Secrets Manager instead of scattering credentials across scripts  and tools.">
+  <meta property="og:title" content="AWS Backup for S3 and RDS with Automatic Discovery">
+  <meta property="og:description" content="Plakar Control Plane finds the S3 buckets and RDS databases of an AWS account, schedules their backups from AWS tags and reads credentials from Secrets Manager.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="integrations">
     <meta property="article:published_time" content="2026-08-26T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-17T12:36:21+03:00">
+    <meta property="article:modified_time" content="2026-11-17T13:27:31+01:00">
 
   
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Amazon Web Services (AWS)">
-  <meta name="twitter:description" content="Manage AWS resources and credentials from Plakar Control Plane. Discover  resources automatically as your AWS account changes, and manage secrets  through AWS Secrets Manager instead of scattering credentials across scripts  and tools.">
+  <meta name="twitter:title" content="AWS Backup for S3 and RDS with Automatic Discovery">
+  <meta name="twitter:description" content="Plakar Control Plane finds the S3 buckets and RDS databases of an AWS account, schedules their backups from AWS tags and reads credentials from Secrets Manager.">
 
   
   
@@ -219,7 +219,7 @@
     "articleSection": "Plakar Integrations",
     "name": "Amazon Web Services (AWS)",
     "headline": "Amazon Web Services (AWS)",
-    "description": "Manage AWS resources and credentials from Plakar Control Plane. Discover  resources automatically as your AWS account changes, and manage secrets  through AWS Secrets Manager instead of scattering credentials across scripts  and tools.\n",
+    "description": "Plakar Control Plane finds the S3 buckets and RDS databases of an AWS account, schedules their backups from AWS tags and reads credentials from Secrets Manager.\n",
     "inLanguage": "en-us",
     "url" : "https://www.plakar.io/integrations/aws/",
     "author" : {
@@ -230,12 +230,12 @@
     "dateCreated": "2026-08-26T00:00:00\u002b00:00",
     "datePublished": "2026-08-26T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-17T12:36:21\u002b03:00",
+    "dateModified": "2026-11-17T13:27:31\u002b01:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/integrations/aws/",
-    "wordCount":  394 
+    "wordCount":  2258 
   }]
   </script>
 
@@ -2285,15 +2285,68 @@
               
             </div>
             <h1 class="text-3xl lg:text-6xl font-medium">
-              Discovery and secrets management for <span class="text-primary-500">AWS</span>
+              <span class="text-primary-500">AWS</span> backup that finds new resources
             </h1>
             <p class="text-lg lg:text-2xl text-neutral-600 font-medium pt-6">
-              Manage AWS resources and credentials from Plakar Control Plane. Discover  resources automatically as your AWS account changes, and manage secrets  through AWS Secrets Manager instead of scattering credentials across scripts  and tools.
+              Plakar Control Plane finds the S3 buckets and RDS databases of an AWS account, schedules their backups from AWS tags and reads credentials from Secrets Manager.
 
             </p>
             <div class="flex flex-col gap-2">
               
               
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a href="/docs/control-plane/inventories/managed/aws/" target="_self" class="flex items-center ">
+
+  <div class="text-neutral-50   bg-primary-500 text-neutral-50 inline-flex relative
+    group overflow-hidden min-h-7 lg:min-h-12 px-4 pr-4 rounded-lg items-center gap-2 transition-all
+    duration-150 ease-out hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1 active:shadow-inner">
+
+    
+    <div class="absolute inset-0 bg-primary-600 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-0"></div>
+
+    
+    <div class="relative z-10 flex items-center gap-2">
+      
+        <span class="w-5 h-5 flex items-center justify-center">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4.99989 13.9999L4.99976 5L6.99976 4.99997L6.99986 11.9999L17.1717 12L13.222 8.05024L14.6362 6.63603L21.0001 13L14.6362 19.364L13.222 17.9497L17.1717 14L4.99989 13.9999Z"></path></svg>
+</span>
+        </span>
+      
+      <span class="hidden xl:block">Control Plane Documentation</span>
+      <span class="block xl:hidden">Control Plane Docs</span>
+    </div>
+  </div>
+
+</a>
+
+
+              
+              
+                <a href="/docs/control-plane/secret-providers/aws/" rel="noopener noreferrer" class="inline-flex w-fit items-center gap-2 text-base font-medium text-neutral-900 hover:text-primary-500 transition-colors">
+                  <span class="w-5 h-5 flex items-center justify-center">
+                    <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13 21V23H11V21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3H9C10.1947 3 11.2671 3.52375 12 4.35418C12.7329 3.52375 13.8053 3 15 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H13ZM20 19V5H15C13.8954 5 13 5.89543 13 7V19H20ZM11 19V7C11 5.89543 10.1046 5 9 5H4V19H11Z"></path></svg>
+</span>
+                  </span>
+                  AWS Secrets Manager secret provider
+                </a>
               
             </div>
           </div>
@@ -2337,12 +2390,94 @@
   <div class="max-w-350 mx-auto px-4">
     <div class="flex flex-row gap-12 items-center justify-end w-full">
       
+        
+          <div class="hidden lg:flex lg:w-1/3 justify-center">
+            
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 460" role="img" aria-label="An AWS account holds two resources from the original backup plan and three created later: an S3 bucket from the console, an RDS instance from a coding agent and an Aurora cluster from Terraform. Plakar Control Plane reads the account every 15 minutes, turns AWS tags into backup policies and takes snapshots of all five, with credentials read from AWS Secrets Manager through the IAM role of its EC2 instance." font-family="Inter, system-ui, sans-serif" class="w-full h-auto">
+  <defs>
+    <marker id="aws-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="rgb(82,76,255)"/>
+    </marker>
+  </defs>
+
+  <text x="20" y="26" font-size="15" font-weight="600" fill="rgb(28,28,30)">AWS account</text>
+  <rect x="20" y="40" width="250" height="400" rx="14" fill="#fff" stroke="rgb(231,230,240)" stroke-width="2"/>
+
+  <g stroke="rgb(231,230,240)">
+    <rect x="40" y="62" width="210" height="50" rx="8" fill="rgb(245,244,251)"/>
+    <rect x="40" y="120" width="210" height="50" rx="8" fill="rgb(245,244,251)"/>
+  </g>
+  <g fill="rgb(218,217,255)">
+    <rect x="40" y="178" width="210" height="50" rx="8"/>
+    <rect x="40" y="236" width="210" height="50" rx="8"/>
+    <rect x="40" y="294" width="210" height="50" rx="8"/>
+  </g>
+
+  <g font-size="12" font-weight="600">
+    <text x="54" y="92" fill="rgb(79,78,102)">S3</text>
+    <text x="54" y="150" fill="rgb(79,78,102)">RDS</text>
+    <text x="54" y="200" fill="rgb(82,76,255)">S3</text>
+    <text x="54" y="258" fill="rgb(82,76,255)">RDS</text>
+    <text x="54" y="316" fill="rgb(82,76,255)">Aurora</text>
+  </g>
+  <g font-size="13" font-weight="500">
+    <text x="104" y="92" fill="rgb(79,78,102)">app-uploads</text>
+    <text x="104" y="150" fill="rgb(79,78,102)">orders</text>
+    <text x="104" y="200" fill="rgb(82,76,255)">acme-ml-features-eu</text>
+    <text x="104" y="258" fill="rgb(82,76,255)">orders-preview</text>
+    <text x="104" y="316" fill="rgb(82,76,255)">analytics</text>
+  </g>
+  <g font-size="11" fill="rgb(79,78,102)">
+    <text x="104" y="217">from the console</text>
+    <text x="104" y="275">from a coding agent</text>
+    <text x="104" y="333">from Terraform</text>
+  </g>
+
+  <rect x="40" y="370" width="210" height="50" rx="8" fill="rgb(79,78,102)"/>
+  <text x="58" y="400" font-size="14" font-weight="600" fill="#fff">Secrets Manager</text>
+
+  <text x="294" y="26" font-size="15" font-weight="600" fill="rgb(82,76,255)">Plakar Control Plane</text>
+  <rect x="294" y="40" width="146" height="400" rx="14" fill="#fff" stroke="rgb(82,76,255)" stroke-width="2"/>
+
+  <g fill="none" stroke="rgb(82,76,255)" stroke-width="2" stroke-linecap="round">
+    <path d="M256 62 H262 V344 H256"/>
+    <path d="M262 116 H304" stroke-dasharray="5 5" marker-end="url(#aws-arrow)"/>
+    <path d="M250 395 H304" stroke-dasharray="5 5" marker-end="url(#aws-arrow)"/>
+    <path d="M367 172 V182" marker-end="url(#aws-arrow)"/>
+    <path d="M367 264 V274" marker-end="url(#aws-arrow)"/>
+  </g>
+
+  <g fill="rgb(218,217,255)">
+    <rect x="308" y="62" width="118" height="108" rx="8"/>
+    <rect x="308" y="186" width="118" height="76" rx="8"/>
+    <rect x="308" y="278" width="118" height="66" rx="8"/>
+  </g>
+  <g font-size="15" font-weight="600" fill="rgb(82,76,255)">
+    <text x="322" y="108">Inventory</text>
+    <text x="322" y="218">Tags to</text>
+    <text x="322" y="238">policies</text>
+    <text x="322" y="316">Snapshots</text>
+  </g>
+  <g font-size="12" fill="rgb(79,78,102)">
+    <text x="322" y="128">every 15 minutes</text>
+    <text x="322" y="333">all five resources</text>
+  </g>
+
+  <rect x="308" y="370" width="118" height="50" rx="8" fill="rgb(82,76,255)"/>
+  <text x="322" y="400" font-size="14" font-weight="600" fill="#fff">IAM role</text>
+</svg>
+
+            
+          </div>
+        
+      
       <div class="flex flex-col w-full lg:w-2/3">
         <h2 class="text-3xl lg:text-5xl font-medium text-right">
-          <span class="text-primary-500">AWS</span> infrastructure is easy to spin up, easy to lose
+          <span class="text-primary-500">AWS</span> resources appear faster than backup plans
         </h2>
         <div class="flex flex-col gap-4 pt-8">
-          <p class="text-lg lg:text-xl text-neutral-700 font-medium w-full">AWS makes it fast to provision compute, storage, databases, and other  resources, but speed cuts both ways: resources created quickly can disappear,  become misconfigured, or be compromised just as quickly, and keeping track of  everything across a growing account becomes increasingly difficult. Plakar  adds an inventory and a secret provider for AWS, so resources can be  discovered automatically and access secrets can be managed through AWS Secrets Manager.</p>
+          <p class="text-lg lg:text-xl text-neutral-700 font-medium w-full">An AWS account changes every day. Buckets are created from the console, RDS instances from Terraform or from a coding agent. A bucket or database nobody tagged for backup stays outside every plan, and RDS automated backups last 35 days at most and leave with the instance unless they are retained.</p>
+          <p class="text-lg lg:text-xl text-neutral-700 font-medium w-full">Plakar Control Plane reads the account every 15 minutes, matches AWS tags to backup policies, and keeps the credentials its backups use in AWS Secrets Manager, read through the IAM role of its EC2 instance.</p>
         </div>
       </div>
     </div>
@@ -2354,11 +2489,12 @@
   <div class="max-w-350 mx-auto px-4">
     <article class="prose max-w-full integration-body">
       
-<h2 id="why-protecting-your-aws-environment-matters" class="group pr-8">Why protecting your AWS environment matters
+<p class="lp-kicker" data-pagefind-ignore>Overview</p>
+<h2 id="what-the-aws-integration-does" class="group pr-8">What the AWS integration does
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="why-protecting-your-aws-environment-matters"
+      data-anchor="what-the-aws-integration-does"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -2369,28 +2505,66 @@
     </button>
   
 </h2>
-<p>AWS accounts grow continuously as resources are provisioned by different teams,
-applications, and automation. That makes it easy for resources and the
-credentials used to access them to become difficult to track.</p>
-<ul>
-<li><strong>No built-in inventory discipline</strong>: resources created by hand or by
-automation can drift out of sight, making it hard to know what&rsquo;s actually
-running, let alone what&rsquo;s protected.</li>
-<li><strong>Access credentials are scattered by default</strong>: API keys and application
-credentials used to manage AWS resources are often stored inconsistently
-across scripts, tools, and team members.</li>
-<li><strong>Manual upkeep doesn&rsquo;t scale</strong>: registering every resource and keeping track
-of changes by hand quickly falls behind as an AWS account grows.</li>
-<li><strong>A compromised account can affect everything</strong>: credentials with broad
-permissions can give an attacker access to multiple resources across the
-account at once.</li>
-</ul>
+<p>The AWS integration connects Plakar Control Plane to an AWS account, whether
+Control Plane runs on EC2, at another cloud provider or in a data center. Its
+inventory lists every resource of the account that AWS Resource Explorer returns
+in Control Plane, with its ARN, Region, service, type and AWS tags, and
+refreshes the list every 15 minutes. A new bucket or RDS database then enters a
+backup policy without a ticket. Its secret provider reads the passwords and keys
+those backups use from AWS Secrets Manager.</p>
+<p>The backups run through the integration that matches each resource. The
+<a href="/integrations/s3/" >S3</a> integration backs up a bucket and can also hold the
+store. The <a href="/integrations/postgres/" >PostgreSQL</a> and
+<a href="/integrations/mysql/" >MySQL</a> integrations back up the databases of an RDS
+instance or cluster with <code>pg_dump</code> or <code>mysqldump</code>, and restore them to any
+server they can reach. Plakar encrypts and deduplicates every snapshot before it
+reaches the store.</p>
+<p>Five resource types also get a class and their endpoints:</p>
+<div class="lp-table not-prose">
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">AWS resource</th>
+        <th scope="col">Class in Plakar Control Plane</th>
+        <th scope="col">Endpoints discovered</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">S3 bucket</th>
+        <td>Object Storage, subclass S3</td>
+        <td><code>&lt;bucket&gt;.s3.&lt;region&gt;.amazonaws.com</code></td>
+      </tr>
+      <tr>
+        <th scope="row">RDS DB instance</th>
+        <td>Database</td>
+        <td>Instance address</td>
+      </tr>
+      <tr>
+        <th scope="row">RDS or Aurora cluster</th>
+        <td>Database</td>
+        <td>Writer and reader endpoints</td>
+      </tr>
+      <tr>
+        <th scope="row">RDS Proxy</th>
+        <td>Database</td>
+        <td>Proxy endpoint</td>
+      </tr>
+      <tr>
+        <th scope="row">EC2 instance</th>
+        <td>Compute</td>
+        <td>Public IP address and public DNS name</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-<h2 id="security-and-compromise" class="group pr-8">Security and Compromise
+<p class="lp-kicker" data-pagefind-ignore>Why Plakar</p>
+<h2 id="why-use-plakar-for-aws-backup" class="group pr-8">Why use Plakar for AWS backup
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="security-and-compromise"
+      data-anchor="why-use-plakar-for-aws-backup"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -2401,29 +2575,87 @@ account at once.</li>
     </button>
   
 </h2>
-<p>Access to AWS resources is controlled through IAM identities, roles, and
-credentials. If those credentials leak or permissions are too broad, the impact
-can extend well beyond a single resource:</p>
-<ul>
-<li><strong>Account-wide impact</strong>: an attacker with sufficiently broad permissions can
-create, modify, or delete resources across the account.</li>
-<li><strong>Data loss and disruption</strong>: compromised resources can be deleted,
-reconfigured, or used to access and exfiltrate data.</li>
-<li><strong>Compromised credentials compound the problem</strong>: if the credentials used to
-manage AWS resources are exposed alongside the systems they protect, an
-attacker can continue moving through the environment.</li>
-<li><strong>No clear view of what is affected</strong>: without an up-to-date inventory, it is
-harder to determine which resources exist and what may have been impacted.</li>
-</ul>
-<p>Plakar mitigates this by continuously discovering AWS resources and keeping
-their inventory synchronized, while allowing secrets to remain managed through
-AWS Secrets Manager rather than being stored directly in Control Plane.</p>
+<div class="lp-cards lp-cards--ruled lp-cols-3 not-prose">
 
-<h2 id="how-plakar-protects-your-aws-environment" class="group pr-8">How Plakar protects your AWS environment
+<div class="lp-card"><span class="lp-card-label">egress</span><div class="lp-card-body prose max-w-none">
+<h3 id="aws-backups-kept-outside-aws-for-the-cost-of-what-changed" class="group pr-8">AWS backups kept outside AWS for the cost of what changed
     <button
       type="button"
       class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
-      data-anchor="how-plakar-protects-your-aws-environment"
+      data-anchor="aws-backups-kept-outside-aws-for-the-cost-of-what-changed"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>An edge in the region of the bucket or the database reads the data there. Only
+chunks the store lacks leave AWS, so a nightly copy at another provider costs
+the changes, not the whole account.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">separate credentials</span><div class="lp-card-body prose max-w-none">
+<h3 id="aws-backups-under-credentials-of-their-own" class="group pr-8">AWS backups under credentials of their own
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="aws-backups-under-credentials-of-their-own"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>RDS automated backups, manual snapshots and S3 object versions are managed by
+the same IAM identities as the data. A Plakar store can sit in another AWS
+account or at another provider, opened with its own passphrase.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">one tool</span><div class="lp-card-body prose max-w-none">
+<h3 id="aws-and-the-rest-of-the-stack-with-one-tool" class="group pr-8">AWS and the rest of the stack with one tool
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="aws-and-the-rest-of-the-stack-with-one-tool"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>One set of policies and stores covers the buckets and databases of the AWS
+account, the <a href="/integrations/kubernetes/" >Kubernetes</a> clusters and the
+<a href="/integrations/mongodb/" >MongoDB</a> replica sets that run elsewhere. A policy for
+the <code>production</code> environment and its data classes schedules all of them.</p>
+</div>
+</div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>Scenarios</p>
+<h2 id="aws-backup-scenarios" class="group pr-8">AWS backup scenarios
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="aws-backup-scenarios"
       aria-label="Copy link to this section"
       title="Copy link to this section"
       data-pagefind-ignore>
@@ -2434,25 +2666,750 @@ AWS Secrets Manager rather than being stored directly in Control Plane.</p>
     </button>
   
 </h2>
-<p>Plakar integrates with AWS in two ways:</p>
-<ul>
-<li><strong>Inventory</strong>: connect to an AWS account and automatically discover the
-resources running in it, keeping that inventory synchronized as resources are
-created or removed.</li>
-<li><strong>Secret provider</strong>: manage the secrets used by Plakar Control Plane through
-AWS Secrets Manager instead of storing them in the Control Plane database,
-keeping sensitive credentials under AWS&rsquo;s own secret management system.</li>
-</ul>
-<p>These capabilities work independently of each other. You can use AWS inventory
-for resource discovery without changing how secrets are stored, use AWS Secrets
-Manager as the external secret provider without enabling inventory, or use both
-together.</p>
+<div class="lp-cards lp-cards--accent lp-cols-2 not-prose">
+
+<div class="lp-card"><span class="lp-card-label">rds:db orders-preview</span><div class="lp-card-body prose max-w-none">
+<h3 id="a-coding-agent-creates-the-rds-database-that-becomes-production" class="group pr-8">A coding agent creates the RDS database that becomes production
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="a-coding-agent-creates-the-rds-database-that-becomes-production"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>A coding agent working with a developer&rsquo;s AWS profile creates an RDS PostgreSQL
+instance, <code>orders-preview</code>, for a feature branch. The branch ships, and the
+instance now holds real orders. No backup plan names it. The deployment pipeline
+tags it <code>plakar:env=production</code>, <code>plakar:class=database</code> and
+<code>db-engine=postgres</code>, as it does for every database it promotes. The inventory
+lists it at the next synchronization, the PostgreSQL bundle gives it a source,
+and the <code>production</code> policy schedules it like any database created by hand.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">--delete-automated-backups</span><div class="lp-card-body prose max-w-none">
+<h3 id="an-ai-agent-deletes-an-amazon-rds-instance-and-its-automated-backups" class="group pr-8">An AI agent deletes an Amazon RDS instance and its automated backups
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="an-ai-agent-deletes-an-amazon-rds-instance-and-its-automated-backups"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>An ops agent told to remove unused databases, working with a developer&rsquo;s AWS
+profile, runs <code>aws rds delete-db-instance</code> on <code>orders</code> with
+<code>--skip-final-snapshot</code> and <code>--delete-automated-backups</code>. The instance goes, its
+automated backups with it, and no final snapshot is taken. Last night&rsquo;s Plakar
+snapshot sits in a store under other credentials, and its passphrase was never
+in the agent&rsquo;s environment. Create a new instance and restore the dump into it
+with the PostgreSQL integration.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">AKIA key in a public repository</span><div class="lp-card-body prose max-w-none">
+<h3 id="an-aws-access-key-for-backups-pushed-to-a-public-repository" class="group pr-8">An AWS access key for backups pushed to a public repository
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="an-aws-access-key-for-backups-pushed-to-a-public-repository"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>A script holding the S3 access key of the archive bucket lands in a public
+GitHub repository. The S3 source in Plakar Control Plane points to
+<code>prod/plakar/s3-archive#secret_key</code>, so the key is rotated once in AWS Secrets
+Manager, and the next backup reads the new value with no source to edit.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">private subnet</span><div class="lp-card-body prose max-w-none">
+<h3 id="amazon-rds-databases-with-no-public-endpoint" class="group pr-8">Amazon RDS databases with no public endpoint
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="amazon-rds-databases-with-no-public-endpoint"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>The production RDS cluster sits in a private subnet of another VPC. The AWS
+inventory names an edge pool whose edges run in that VPC. Those edges
+synchronize the inventory and run the backup tasks of its resources, so each
+database is reached from inside its own network.</p>
+</div>
+</div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>How-to</p>
+<h2 id="how-to-discover-s3-buckets-and-rds-databases-and-back-them-up-automatically" class="group pr-8">How to discover S3 buckets and RDS databases and back them up automatically
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-to-discover-s3-buckets-and-rds-databases-and-back-them-up-automatically"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<div class="lp-columns lp-columns--5-7 lp-columns--sticky-right">
+
+<div class="lp-column prose max-w-none"><p>A bucket a data scientist creates from the S3 console, such as
+<code>acme-ml-features-eu</code>, gets its backup from its AWS tags. A resource tagged
+<code>plakar:env=production</code> and <code>plakar:class=database</code> gets <code>production</code> as the
+environment and <code>database</code> as the data class of its source, and every policy
+scoped to that pair schedules it.</p>
+<ol>
+<li>Create an AWS inventory in Plakar Control Plane with the <strong>IAM</strong> credential
+type and a region.</li>
+<li>Tag the resources at AWS with <code>plakar:env</code> and <code>plakar:class</code>, using the
+environments and data classes defined in your classification settings.
+Terraform, CloudFormation and the AWS CLI all set them.</li>
+<li>Add a configuration bundle to the inventory for each integration, with
+<strong>Auto-create connectors</strong> enabled. Scope the S3 bundle to the Object Storage
+class. RDS databases all share the Database class, so also scope the
+PostgreSQL and MySQL bundles to a tag your teams set, such as
+<code>db-engine=postgres</code>.</li>
+<li>Create a policy for the environment and data classes, with its frequency,
+retention and store.</li>
+<li>Click <strong>Sync now</strong>, or wait for the next synchronization. New resources then
+enter the policy on their own.</li>
+</ol>
+</div>
+
+
+<div class="lp-column prose max-w-none"><figure class="lp-term not-prose" aria-label="Terminal: workstation">
+  <div class="lp-term-bar" aria-hidden="true">
+    <span class="lp-term-dot lp-term-dot--r"></span>
+    <span class="lp-term-dot lp-term-dot--y"></span>
+    <span class="lp-term-dot lp-term-dot--g"></span>
+    <span class="lp-term-title">workstation</span>
+  </div>
+  <pre class="lp-term-body"><code><span class="lp-term-comment"># Tag an RDS instance and an S3 bucket for the production policies</span>
+<span class="lp-term-prompt">$</span> <span class="lp-term-cmd">aws resourcegroupstaggingapi tag-resources \</span>
+<span class="lp-term-cmd">    --resource-arn-list arn:aws:rds:eu-west-3:123456789012:db:orders-preview \</span>
+<span class="lp-term-cmd">    --tags plakar:env=production,plakar:class=database</span>
+<span class="lp-term-prompt">$</span> <span class="lp-term-cmd">aws resourcegroupstaggingapi tag-resources \</span>
+<span class="lp-term-cmd">    --resource-arn-list arn:aws:s3:::acme-ml-features-eu \</span>
+<span class="lp-term-cmd">    --tags plakar:env=production,plakar:class=analytics</span></code></pre>
+</figure>
+</div>
+
+
+</div>
+
+<p>Tags discovered from AWS are read-only in Plakar Control Plane: they change at
+AWS, and the next synchronization picks them up.</p>
+
+<p class="lp-kicker" data-pagefind-ignore>Secrets</p>
+<h2 id="how-to-read-backup-credentials-from-aws-secrets-manager" class="group pr-8">How to read backup credentials from AWS Secrets Manager
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-to-read-backup-credentials-from-aws-secrets-manager"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<div class="lp-columns lp-columns--5-7 lp-columns--sticky-right">
+
+<div class="lp-column prose max-w-none"><p>Plakar Control Plane stores a path to the secret, never its value, and resolves
+it each time a task needs the credential. Every app and inventory that uses the
+path reads the current value.</p>
+<ol>
+<li>Create a key/value secret (&ldquo;Other type of secret&rdquo; in the console), encrypted
+with <code>aws/secretsmanager</code> or your own KMS key.</li>
+<li>Add an AWS Secrets Manager provider in Plakar Control Plane with the region
+of the secret. It reads with the IAM role of the instance.</li>
+<li>In any credential field of an app or an inventory, switch from a direct value
+to the provider and enter <code>secret_name#key</code>.</li>
+</ol>
+<p>Plakar reads the version labelled <code>AWSCURRENT</code>, parses it as a JSON object and
+returns the key named after the <code>#</code>.</p>
+</div>
+
+
+<div class="lp-column prose max-w-none"><figure class="lp-term not-prose" aria-label="Terminal: workstation">
+  <div class="lp-term-bar" aria-hidden="true">
+    <span class="lp-term-dot lp-term-dot--r"></span>
+    <span class="lp-term-dot lp-term-dot--y"></span>
+    <span class="lp-term-dot lp-term-dot--g"></span>
+    <span class="lp-term-title">workstation</span>
+  </div>
+  <pre class="lp-term-body"><code><span class="lp-term-comment"># A secret holding the credentials of an RDS backup user</span>
+<span class="lp-term-prompt">$</span> <span class="lp-term-cmd">aws secretsmanager create-secret --name prod/plakar/rds-orders \</span>
+<span class="lp-term-cmd">    --secret-string &#39;{&#34;username&#34;:&#34;plakar_backup&#34;,&#34;password&#34;:&#34;s3cr3t-Example&#34;}&#39;</span>
+<span class="lp-term-comment"># Path entered in the password field of the source:</span>
+<span class="lp-term-comment"># prod/plakar/rds-orders#password</span></code></pre>
+</figure>
+</div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>Egress</p>
+<h2 id="how-to-reduce-aws-egress-costs-for-backups-stored-outside-aws" class="group pr-8">How to reduce AWS egress costs for backups stored outside AWS
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-to-reduce-aws-egress-costs-for-backups-stored-outside-aws"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>A copy outside AWS survives the loss of the account, a leaked root key or a
+closed account. It is often left out because of its cost: a full export of every
+bucket and database each night is billed as data transfer out of AWS, then
+stored again at the other provider. Plakar keeps both to what changed, on one
+condition: the edge that runs the task sits in the AWS region of the resource.</p>
+<div class="lp-pairs not-prose">
+
+<div class="lp-pair">
+  <p class="lp-pair-lead">Reading stays in the region.</p>
+  <div class="lp-pair-body prose max-w-none"><p>The edge lists and reads the bucket, or runs <code>pg_dump</code> and <code>mysqldump</code> against
+the RDS endpoint, inside AWS. Name an edge pool on the inventory to pin its
+tasks to edges running in that region.</p>
+</div>
+</div>
+
+
+<div class="lp-pair">
+  <p class="lp-pair-lead">Unchanged chunks never leave AWS.</p>
+  <div class="lp-pair-body prose max-w-none"><p>Each object and each dump is cut into content-defined chunks, and a chunk
+crosses to the store only when the store does not hold it. An RDS dump in which
+only recent rows changed sends those rows&rsquo; chunks, not the whole dump.</p>
+</div>
+</div>
+
+
+<div class="lp-pair">
+  <p class="lp-pair-lead">What leaves is compressed, then encrypted.</p>
+  <div class="lp-pair-body prose max-w-none"><p>The edge compresses each new chunk with LZ4 and encrypts it before upload. Text,
+logs and SQL dumps shrink, and the other provider receives only encrypted data.</p>
+</div>
+</div>
+
+
+<div class="lp-pair">
+  <p class="lp-pair-lead">History costs what changed.</p>
+  <div class="lp-pair-body prose max-w-none"><p>Each snapshot is a full restore point, but the store keeps each chunk once.
+Thirty nightly snapshots of a bucket take the space of the first copy plus the
+changes, at the provider and storage class you choose.</p>
+</div>
+</div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>IAM roles</p>
+<h2 id="aws-backups-without-long-lived-access-keys" class="group pr-8">AWS backups without long-lived access keys
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="aws-backups-without-long-lived-access-keys"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<div class="lp-cards lp-cards--boxed lp-cols-3 not-prose">
+
+<div class="lp-card"><span class="lp-card-label">credentials_type=iam</span><div class="lp-card-body prose max-w-none">
+<h3 id="aws-inventory-and-secrets-manager-through-the-ec2-instance-role" class="group pr-8">AWS inventory and Secrets Manager through the EC2 instance role
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="aws-inventory-and-secrets-manager-through-the-ec2-instance-role"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>When Plakar Control Plane runs on EC2, the inventory and the secret provider use
+the IAM role attached to the instance, through the standard AWS credential
+chain. A Control Plane outside AWS gives the inventory an access key, which can
+itself come from a secret provider.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">postgres&#43;aws://</span><div class="lp-card-body prose max-w-none">
+<h3 id="rds-postgresql-with-iam-database-authentication" class="group pr-8">RDS PostgreSQL with IAM database authentication
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="rds-postgresql-with-iam-database-authentication"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>The <code>postgres+aws://</code> protocol generates an IAM authentication token for an
+IAM-enabled database user, from the AWS credentials of the edge that runs the
+task. The source stores a user, a host and a region, and no password.</p>
+</div>
+</div>
+
+
+<div class="lp-card"><span class="lp-card-label">ambient credentials</span><div class="lp-card-body prose max-w-none">
+<h3 id="amazon-s3-sources-with-no-stored-access-key" class="group pr-8">Amazon S3 sources with no stored access key
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="amazon-s3-sources-with-no-stored-access-key"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>An S3 source created from the inventory can leave both key fields empty. The
+task then signs its requests with the IAM role of the edge that runs it, as the
+<a href="/integrations/s3/#amazon-s3-backup-iam-roles-s3-glacier-and-sse-c" >Amazon S3 section of the S3 page</a>
+describes.</p>
+</div>
+</div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>IAM policy</p>
+<h2 id="iam-permissions-for-aws-discovery-and-secrets-manager" class="group pr-8">IAM permissions for AWS discovery and Secrets Manager
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="iam-permissions-for-aws-discovery-and-secrets-manager"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<div class="lp-columns lp-columns--5-7">
+
+<div class="lp-column prose max-w-none"><p>The inventory needs read-only permissions. It lists resources through AWS
+Resource Explorer, then describes each EC2 instance, RDS instance, cluster and
+proxy to read its endpoints. <code>rds:DescribeDBProxies</code> covers accounts that run an
+RDS Proxy.</p>
+<p>The secret provider adds two Secrets Manager actions. Scope their <code>Resource</code> to
+the ARNs of the secrets Plakar reads, for example everything under a
+<code>prod/plakar/</code> prefix.</p>
+<p>Backups use their own credentials, set on each source: an IAM database user for
+<code>postgres+aws</code>, a role or key with <code>s3:ListBucket</code> and <code>s3:GetObject</code> for a
+bucket.</p>
+</div>
+
+
+<div class="lp-column prose max-w-none"><div class="highlight-wrapper codeblock">
+  <div class="codeblock-title">
+    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M21 8V20.9932C21 21.5501 20.5552 22 20.0066 22H3.9934C3.44495 22 3 21.556 3 21.0082V2.9918C3 2.45531 3.4487 2 4.00221 2H14.9968L21 8ZM19 9H14V4H5V20H19V9ZM8 7H11V9H8V7ZM8 11H16V13H8V11ZM8 15H16V17H8V15Z"></path></svg>
+</span></span>
+    <span class="codeblock-label">IAM policy for the AWS inventory and Secrets Manager</span>
+    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
+      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
+</span></span>
+      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;Version&#34;</span><span class="p">:</span> <span class="s2">&#34;2012-10-17&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;Statement&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Sid&#34;</span><span class="p">:</span> <span class="s2">&#34;PlakarInventory&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Effect&#34;</span><span class="p">:</span> <span class="s2">&#34;Allow&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Action&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;resource-explorer-2:Search&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;resource-explorer-2:List*&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;resource-explorer-2:Get*&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;ec2:DescribeInstances&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;s3:ListAllMyBuckets&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;rds:DescribeDBInstances&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;rds:DescribeDBClusters&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;rds:DescribeDBProxies&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">],</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Resource&#34;</span><span class="p">:</span> <span class="s2">&#34;*&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Sid&#34;</span><span class="p">:</span> <span class="s2">&#34;PlakarSecrets&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Effect&#34;</span><span class="p">:</span> <span class="s2">&#34;Allow&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Action&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;secretsmanager:GetSecretValue&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;secretsmanager:DescribeSecret&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">],</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;Resource&#34;</span><span class="p">:</span> <span class="s2">&#34;arn:aws:secretsmanager:eu-west-3:123456789012:secret:prod/plakar/*&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+</div>
+
+
+</div>
+
+
+<p class="lp-kicker" data-pagefind-ignore>Control Plane</p>
+<h2 id="plakar-control-plane-for-aws-accounts" class="group pr-8">Plakar Control Plane for AWS accounts
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="plakar-control-plane-for-aws-accounts"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>The AWS integration is part of Plakar Control Plane. Policies schedule every
+discovered source whose environment and data class they match, and a residency
+on the inventory keeps the backups of its resources in stores of the same
+residency. The S3, PostgreSQL and MySQL integrations it hands resources to are
+free and open source in the <code>plakar</code> CLI as well.</p>
+<p><a href="/solutions/control-plane/" >See how Plakar Control Plane works</a>, read the
+<a href="/docs/control-plane/inventories/managed/aws/" >AWS inventory documentation</a>, or
+<a href="/contact/" >contact us</a>.</p>
+
+<p class="lp-kicker" data-pagefind-ignore>FAQ</p>
+<h2 id="aws-backup-faq" class="group pr-8">AWS backup FAQ
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="aws-backup-faq"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<div class="lp-columns lp-columns--1-1">
+
+<div class="lp-column prose max-w-none">
+<h3 id="which-aws-resources-does-plakar-discover" class="group pr-8">Which AWS resources does Plakar discover?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="which-aws-resources-does-plakar-discover"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Every resource AWS Resource Explorer returns for the account, with its ARN,
+Region, service, type and AWS tags. S3 buckets, EC2 instances, and RDS
+instances, clusters and proxies, Aurora included, also get a class, their
+endpoints and a name taken from their <code>Name</code> tag or their ARN.</p>
+
+<h3 id="how-does-plakar-back-up-an-amazon-rds-database" class="group pr-8">How does Plakar back up an Amazon RDS database?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-does-plakar-back-up-an-amazon-rds-database"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>With the PostgreSQL or MySQL integration, on an edge that has the client tools.
+They dump each database with <code>pg_dump</code> or <code>mysqldump</code>, and <code>postgres+aws://</code>
+signs in with an IAM token. The dump restores to the same instance, a new one,
+or any server outside AWS.</p>
+
+<h3 id="how-do-i-make-sure-new-aws-resources-get-a-backup" class="group pr-8">How do I make sure new AWS resources get a backup?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-do-i-make-sure-new-aws-resources-get-a-backup"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Let a configuration bundle cover them. The AWS inventory lists the S3 buckets
+and RDS databases it discovers, a bundle with <strong>Auto-create connectors</strong> gives
+each one in its scope a source, and the policies schedule every source that
+matches them.</p>
+
+<h3 id="how-often-does-the-aws-inventory-refresh" class="group pr-8">How often does the AWS inventory refresh?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-often-does-the-aws-inventory-refresh"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Every 900 seconds (15 minutes) by default. The interval goes down to 30 seconds
+in the inventory&rsquo;s synchronization settings, and <strong>Sync now</strong> refreshes it at
+any time.</p>
+
+<h3 id="which-aws-credentials-does-plakar-control-plane-use" class="group pr-8">Which AWS credentials does Plakar Control Plane use?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="which-aws-credentials-does-plakar-control-plane-use"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>The IAM role of its EC2 instance, for both the inventory and the Secrets Manager
+provider. A Control Plane running outside AWS reads the account with the access
+key of an IAM user that holds the read-only policy.</p>
+</div>
+
+
+<div class="lp-column prose max-w-none">
+<h3 id="how-long-does-aws-keep-rds-automated-backups" class="group pr-8">How long does AWS keep RDS automated backups?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-long-does-aws-keep-rds-automated-backups"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>35 days at most. The backup retention period of an RDS DB instance ranges from 0
+to 35 days, 7 by default in the console, and automated backups are deleted with
+the instance unless <strong>Retain automated backups</strong> is chosen. Plakar snapshots
+follow the retention of the policy that schedules them.</p>
+
+<h3 id="how-does-plakar-back-up-an-s3-bucket-found-on-aws" class="group pr-8">How does Plakar back up an S3 bucket found on AWS?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-does-plakar-back-up-an-s3-bucket-found-on-aws"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>With the S3 integration, which reads the current version of every object of the
+bucket, or of one prefix, into an encrypted snapshot. A restore writes the
+objects to the same bucket, another bucket or another S3 provider.</p>
+
+<h3 id="how-does-plakar-cut-aws-egress-for-backups-at-another-provider" class="group pr-8">How does Plakar cut AWS egress for backups at another provider?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-does-plakar-cut-aws-egress-for-backups-at-another-provider"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>It reads each resource from an edge in the resource&rsquo;s AWS region and uploads
+only the chunks the store does not hold yet, compressed with LZ4 and encrypted.
+After the first backup, data transfer out of AWS follows what changed.</p>
+
+<h3 id="can-i-use-aws-secrets-manager-without-the-aws-inventory" class="group pr-8">Can I use AWS Secrets Manager without the AWS inventory?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="can-i-use-aws-secrets-manager-without-the-aws-inventory"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Yes. The secret provider and the inventory are configured separately, and either
+one works alone.</p>
+
+<h3 id="which-iam-permissions-does-the-secrets-manager-provider-need" class="group pr-8">Which IAM permissions does the Secrets Manager provider need?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="which-iam-permissions-does-the-secrets-manager-provider-need"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p><code>secretsmanager:GetSecretValue</code> and <code>secretsmanager:DescribeSecret</code> on the
+secrets it reads, granted to the IAM role of the EC2 instance that runs Plakar
+Control Plane, next to the inventory permissions.</p>
+
+<h3 id="how-do-i-cover-several-aws-accounts" class="group pr-8">How do I cover several AWS accounts?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="how-do-i-cover-several-aws-accounts"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Create one AWS inventory per account, each with its own credentials. The access
+key of another account can itself come from Secrets Manager. Each inventory can
+use its own edge pool and residency.</p>
+
+<h3 id="where-should-aws-backups-be-stored" class="group pr-8">Where should AWS backups be stored?
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="where-should-aws-backups-be-stored"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Away from the account that holds the data. A store can be an S3 bucket in
+another AWS account, where Object Lock applies once you enable it, or a bucket
+at another provider. A sync between two stores keeps a second copy under other
+credentials.</p>
+</div>
+
+
+</div>
+
 
     </article>
   </div>
 </section>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://www.plakar.io/","name":"Home","position":1},{"@type":"ListItem","item":"https://www.plakar.io/integrations/","name":"Integrations","position":2},{"@type":"ListItem","item":"https://www.plakar.io/integrations/aws/","name":"Amazon Web Services (AWS)","position":3}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","applicationCategory":"UtilitiesApplication","description":"Manage AWS resources and credentials from Plakar Control Plane. Discover  resources automatically as your AWS account changes, and manage secrets  through AWS Secrets Manager instead of scattering credentials across scripts  and tools.","name":"Plakar Amazon Web Services (AWS) integration","operatingSystem":"Linux, macOS, Windows, FreeBSD","publisher":{"@type":"Organization","name":"Plakar","url":"https://www.plakar.io/"},"url":"https://www.plakar.io/integrations/aws/"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://www.plakar.io/","name":"Home","position":1},{"@type":"ListItem","item":"https://www.plakar.io/integrations/","name":"Integrations","position":2},{"@type":"ListItem","item":"https://www.plakar.io/integrations/aws/","name":"Amazon Web Services (AWS)","position":3}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","applicationCategory":"UtilitiesApplication","description":"Plakar Control Plane finds the S3 buckets and RDS databases of an AWS account, schedules their backups from AWS tags and reads credentials from Secrets Manager.","name":"Plakar Amazon Web Services (AWS) integration","operatingSystem":"Linux, macOS, Windows, FreeBSD","publisher":{"@type":"Organization","name":"Plakar","url":"https://www.plakar.io/"},"url":"https://www.plakar.io/integrations/aws/"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Every resource AWS Resource Explorer returns for the account, with its ARN, Region, service, type and AWS tags. S3 buckets, EC2 instances, and RDS instances, clusters and proxies, Aurora included, also get a class, their endpoints and a name taken from their Name tag or their ARN."},"name":"Which AWS resources does Plakar discover?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"With the PostgreSQL or MySQL integration, on an edge that has the client tools. They dump each database with pg_dump or mysqldump, and postgres+aws:// signs in with an IAM token. The dump restores to the same instance, a new one, or any server outside AWS."},"name":"How does Plakar back up an Amazon RDS database?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Let a configuration bundle cover them. The AWS inventory lists the S3 buckets and RDS databases it discovers, a bundle with Auto-create connectors gives each one in its scope a source, and the policies schedule every source that matches them."},"name":"How do I make sure new AWS resources get a backup?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Every 900 seconds (15 minutes) by default. The interval goes down to 30 seconds in the inventory’s synchronization settings, and Sync now refreshes it at any time."},"name":"How often does the AWS inventory refresh?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"The IAM role of its EC2 instance, for both the inventory and the Secrets Manager provider. A Control Plane running outside AWS reads the account with the access key of an IAM user that holds the read-only policy."},"name":"Which AWS credentials does Plakar Control Plane use?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"35 days at most. The backup retention period of an RDS DB instance ranges from 0 to 35 days, 7 by default in the console, and automated backups are deleted with the instance unless Retain automated backups is chosen. Plakar snapshots follow the retention of the policy that schedules them."},"name":"How long does AWS keep RDS automated backups?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"With the S3 integration, which reads the current version of every object of the bucket, or of one prefix, into an encrypted snapshot. A restore writes the objects to the same bucket, another bucket or another S3 provider."},"name":"How does Plakar back up an S3 bucket found on AWS?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"It reads each resource from an edge in the resource’s AWS region and uploads only the chunks the store does not hold yet, compressed with LZ4 and encrypted. After the first backup, data transfer out of AWS follows what changed."},"name":"How does Plakar cut AWS egress for backups at another provider?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Yes. The secret provider and the inventory are configured separately, and either one works alone."},"name":"Can I use AWS Secrets Manager without the AWS inventory?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"secretsmanager:GetSecretValue and secretsmanager:DescribeSecret on the secrets it reads, granted to the IAM role of the EC2 instance that runs Plakar Control Plane, next to the inventory permissions."},"name":"Which IAM permissions does the Secrets Manager provider need?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Create one AWS inventory per account, each with its own credentials. The access key of another account can itself come from Secrets Manager. Each inventory can use its own edge pool and residency."},"name":"How do I cover several AWS accounts?"},{"@type":"Question","acceptedAnswer":{"@type":"Answer","text":"Away from the account that holds the data. A store can be an S3 bucket in another AWS account, where Object Lock applies once you enable it, or a bucket at another provider. A sync between two stores keeps a second copy under other credentials."},"name":"Where should AWS backups be stored?"}]}</script>
 
 
 
@@ -2462,6 +3419,27 @@ together.</p>
 
 
 
+
+  
+  
+  
+  
+    
+  
+
+  
+  
+  
+  
+    
+  
+
+  
+  
+  
+  
+    
+  
 
 
 
@@ -2528,6 +3506,317 @@ together.</p>
       </a>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+      
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a
+  href="/integrations/s3/"
+  data-categories="source,destination,storage"
+  data-editions="community,control-plane"
+  data-author="official"
+  data-name="s3"
+  data-date="1774224000"
+  data-search="s3 s3"
+  class="group/card relative flex flex-col gap-3 p-5 rounded-2xl border border-neutral-100 hover:border-primary-300 bg-neutral-50 shadow-sm hover:shadow-none outline-4 outline-transparent hover:outline-primary-400/20 transition-all duration-300"
+>
+  <div class="flex items-start gap-3.5">
+    <div class="h-13 min-w-13 max-w-28 rounded-lg overflow-hidden shrink-0 flex items-center justify-center">
+      
+        <img
+      src="/img/integrations/s3_hu_4478990bd64d980d.webp"
+      srcset="/img/integrations/s3_hu_4478990bd64d980d.webp 64w, /img/integrations/s3_hu_b30c6f09b1b6aa18.webp 128w, /img/integrations/s3_hu_62a2155665c42737.webp 256w" sizes="auto"
+      width="64"
+      height="64"
+      alt="S3"
+      class="h-full w-auto max-w-full object-contain"
+      loading="lazy"
+      decoding="async"
+      >
+      
+    </div>
+    
+      <span class="ml-auto inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full text-green-800 bg-green-50 uppercase shrink-0">
+        <span class="w-1.5 h-1.5 rounded-full bg-current shrink-0"></span>
+        stable
+      </span>
+    
+  </div>
+
+  
+  <div class="flex flex-col mt-3">
+    <div class="flex items-center gap-2 flex-wrap">
+      <h3 class="text-lg lg:text-xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
+        S3
+      </h3>
+      
+    </div>
+
+    
+      <div class="text-xs text-primary-500 font-semibold mt-4">
+        
+          Source
+        
+           / Destination
+        
+           / Storage
+        
+      </div>
+    
+  </div>
+
+  
+  
+    <p class="text-sm text-neutral-500 line-clamp-3 mt-1">Free, open-source S3 bucket backup with read-only keys: encrypted, deduplicated snapshots of a bucket or prefix, restored to any S3-compatible endpoint.
+</p>
+  
+
+  
+  <div class="mt-auto pt-3 border-t border-neutral-200 flex items-center gap-4">
+    <div class="flex flex-col gap-0.5 min-w-0">
+      <span class="text-xxs font-semibold uppercase tracking-wide text-neutral-400">Platform</span>
+      <span class="text-xs font-semibold flex items-center gap-1.5 flex-wrap">
+        <span class="text-green-600">Community</span>
+        <span class="text-neutral-300">·</span>
+        <span class="text-primary-600">Control Plane</span>
+      </span>
+    </div>
+    <div class="flex flex-col gap-0.5 min-w-0 pl-4 border-l border-neutral-200">
+      <span class="text-xxs font-semibold uppercase tracking-wide text-neutral-400">Author</span>
+      <span class="text-xs font-semibold text-neutral-900 flex items-center gap-1.5 flex-wrap">
+        
+          <img class="w-4 h-4 shrink-0" src="/img/logos/plakar-logo-icon.svg" alt="">
+          <span>Plakar</span>
+        
+      </span>
+    </div>
+    <div class="ml-auto shrink-0 text-neutral-300 group-hover/card:text-primary-500 group-hover/card:translate-x-0.5 transition-all">
+      <div class="w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
+</span></div>
+    </div>
+  </div>
+</a>
+
+      
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a
+  href="/integrations/postgres/"
+  data-categories="source,destination"
+  data-editions="community,control-plane"
+  data-author="official"
+  data-name="postgresql"
+  data-date="1775088000"
+  data-search="postgresql postgres"
+  class="group/card relative flex flex-col gap-3 p-5 rounded-2xl border border-neutral-100 hover:border-primary-300 bg-neutral-50 shadow-sm hover:shadow-none outline-4 outline-transparent hover:outline-primary-400/20 transition-all duration-300"
+>
+  <div class="flex items-start gap-3.5">
+    <div class="h-13 min-w-13 max-w-28 rounded-lg overflow-hidden shrink-0 flex items-center justify-center">
+      
+        <img
+      src="/img/integrations/postgres_hu_9296fabe916ea427.webp"
+      srcset="/img/integrations/postgres_hu_9296fabe916ea427.webp 64w, /img/integrations/postgres_hu_b9ba22ec6e97a142.webp 128w, /img/integrations/postgres_hu_f67c5f77007ae842.webp 240w" sizes="auto"
+      width="64"
+      height="64"
+      alt="PostgreSQL"
+      class="h-full w-auto max-w-full object-contain"
+      loading="lazy"
+      decoding="async"
+      >
+      
+    </div>
+    
+      <span class="ml-auto inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full text-green-800 bg-green-50 uppercase shrink-0">
+        <span class="w-1.5 h-1.5 rounded-full bg-current shrink-0"></span>
+        stable
+      </span>
+    
+  </div>
+
+  
+  <div class="flex flex-col mt-3">
+    <div class="flex items-center gap-2 flex-wrap">
+      <h3 class="text-lg lg:text-xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
+        PostgreSQL
+      </h3>
+      
+    </div>
+
+    
+      <div class="text-xs text-primary-500 font-semibold mt-4">
+        
+          Source
+        
+           / Destination
+        
+      </div>
+    
+  </div>
+
+  
+  
+    <p class="text-sm text-neutral-500 line-clamp-3 mt-1">Free, open-source PostgreSQL backup with pg_dump or pg_basebackup into encrypted snapshots, self-hosted or managed. Restore one table with pg_restore.
+</p>
+  
+
+  
+  <div class="mt-auto pt-3 border-t border-neutral-200 flex items-center gap-4">
+    <div class="flex flex-col gap-0.5 min-w-0">
+      <span class="text-xxs font-semibold uppercase tracking-wide text-neutral-400">Platform</span>
+      <span class="text-xs font-semibold flex items-center gap-1.5 flex-wrap">
+        <span class="text-green-600">Community</span>
+        <span class="text-neutral-300">·</span>
+        <span class="text-primary-600">Control Plane</span>
+      </span>
+    </div>
+    <div class="flex flex-col gap-0.5 min-w-0 pl-4 border-l border-neutral-200">
+      <span class="text-xxs font-semibold uppercase tracking-wide text-neutral-400">Author</span>
+      <span class="text-xs font-semibold text-neutral-900 flex items-center gap-1.5 flex-wrap">
+        
+          <img class="w-4 h-4 shrink-0" src="/img/logos/plakar-logo-icon.svg" alt="">
+          <span>Plakar</span>
+        
+      </span>
+    </div>
+    <div class="ml-auto shrink-0 text-neutral-300 group-hover/card:text-primary-500 group-hover/card:translate-x-0.5 transition-all">
+      <div class="w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
+</span></div>
+    </div>
+  </div>
+</a>
+
+      
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a
+  href="/integrations/mysql/"
+  data-categories="source,destination"
+  data-editions="community,control-plane"
+  data-author="official"
+  data-name="mysql / mariadb"
+  data-date="1775088000"
+  data-search="mysql / mariadb mysql"
+  class="group/card relative flex flex-col gap-3 p-5 rounded-2xl border border-neutral-100 hover:border-primary-300 bg-neutral-50 shadow-sm hover:shadow-none outline-4 outline-transparent hover:outline-primary-400/20 transition-all duration-300"
+>
+  <div class="flex items-start gap-3.5">
+    <div class="h-13 min-w-13 max-w-28 rounded-lg overflow-hidden shrink-0 flex items-center justify-center">
+      
+        <img
+      src="/img/integrations/mysql_hu_2026290e110b49d1.webp"
+      srcset="/img/integrations/mysql_hu_2026290e110b49d1.webp 64w, /img/integrations/mysql_hu_269fe374059cf315.webp 128w, /img/integrations/mysql_hu_b8ca50b559f09130.webp 240w" sizes="auto"
+      width="64"
+      height="64"
+      alt="MySQL / MariaDB"
+      class="h-full w-auto max-w-full object-contain"
+      loading="lazy"
+      decoding="async"
+      >
+      
+    </div>
+    
+      <span class="ml-auto inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full text-green-800 bg-green-50 uppercase shrink-0">
+        <span class="w-1.5 h-1.5 rounded-full bg-current shrink-0"></span>
+        stable
+      </span>
+    
+  </div>
+
+  
+  <div class="flex flex-col mt-3">
+    <div class="flex items-center gap-2 flex-wrap">
+      <h3 class="text-lg lg:text-xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
+        MySQL / MariaDB
+      </h3>
+      
+    </div>
+
+    
+      <div class="text-xs text-primary-500 font-semibold mt-4">
+        
+          Source
+        
+           / Destination
+        
+      </div>
+    
+  </div>
+
+  
+  
+    <p class="text-sm text-neutral-500 line-clamp-3 mt-1">Free, open-source MySQL and MariaDB backup: mysqldump or mariadb-dump into encrypted snapshots. Restore a dropped table through a side database.
+</p>
+  
+
+  
+  <div class="mt-auto pt-3 border-t border-neutral-200 flex items-center gap-4">
+    <div class="flex flex-col gap-0.5 min-w-0">
+      <span class="text-xxs font-semibold uppercase tracking-wide text-neutral-400">Platform</span>
+      <span class="text-xs font-semibold flex items-center gap-1.5 flex-wrap">
+        <span class="text-green-600">Community</span>
+        <span class="text-neutral-300">·</span>
+        <span class="text-primary-600">Control Plane</span>
+      </span>
+    </div>
+    <div class="flex flex-col gap-0.5 min-w-0 pl-4 border-l border-neutral-200">
+      <span class="text-xxs font-semibold uppercase tracking-wide text-neutral-400">Author</span>
+      <span class="text-xs font-semibold text-neutral-900 flex items-center gap-1.5 flex-wrap">
+        
+          <img class="w-4 h-4 shrink-0" src="/img/logos/plakar-logo-icon.svg" alt="">
+          <span>Plakar</span>
+        
+      </span>
+    </div>
+    <div class="ml-auto shrink-0 text-neutral-300 group-hover/card:text-primary-500 group-hover/card:translate-x-0.5 transition-all">
+      <div class="w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
+</span></div>
+    </div>
+  </div>
+</a>
+
       
         
 
@@ -2633,331 +3922,67 @@ together.</p>
 </a>
 
       
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a
-  href="/integrations/ovhcloud/"
-  data-categories="source,destination,secrets-manager,inventory"
-  data-editions="control-plane"
-  data-author="official"
-  data-name="ovhcloud"
-  data-date="1787616000"
-  data-search="ovhcloud ovhcloud"
-  class="group/card relative flex flex-col gap-3 p-5 rounded-2xl border border-neutral-100 hover:border-primary-300 bg-neutral-50 shadow-sm hover:shadow-none outline-4 outline-transparent hover:outline-primary-400/20 transition-all duration-300"
->
-  <div class="flex items-start gap-3.5">
-    <div class="h-13 min-w-13 max-w-28 rounded-lg overflow-hidden shrink-0 flex items-center justify-center">
-      
-        <img
-      src="/img/integrations/ovhcloud_hu_caa1eb1929667c37.webp"
-      srcset="/img/integrations/ovhcloud_hu_caa1eb1929667c37.webp 64w, /img/integrations/ovhcloud_hu_be00d2dffc798de5.webp 128w, /img/integrations/ovhcloud_hu_12879e356304ac02.webp 256w" sizes="auto"
-      width="64"
-      height="64"
-      alt="OVHcloud"
-      class="h-full w-auto max-w-full object-contain"
-      loading="lazy"
-      decoding="async"
-      >
-      
-    </div>
-    
-      <span class="ml-auto inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full text-green-800 bg-green-50 uppercase shrink-0">
-        <span class="w-1.5 h-1.5 rounded-full bg-current shrink-0"></span>
-        stable
-      </span>
-    
-  </div>
-
-  
-  <div class="flex flex-col mt-3">
-    <div class="flex items-center gap-2 flex-wrap">
-      <h3 class="text-lg lg:text-xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
-        OVHcloud
-      </h3>
-      
-    </div>
-
-    
-      <div class="text-xs text-primary-500 font-semibold mt-4">
-        
-          Source
-        
-           / Destination
-        
-           / Secrets Manager
-        
-           / Inventory
-        
-      </div>
-    
-  </div>
-
-  
-  
-    <p class="text-sm text-neutral-500 line-clamp-3 mt-1">Manage OVHcloud Public Cloud from Plakar Control Plane end to end. Discover compute instances, block storage volumes, and object storage automatically, manage secrets through OVHcloud's own secret store, and protect resources with encrypted, deduplicated backups and restores.
-</p>
-  
-
-  
-  <div class="mt-auto pt-3 border-t border-neutral-200 flex items-center gap-4">
-    <div class="flex flex-col gap-0.5 min-w-0">
-      <span class="text-xxs font-semibold uppercase tracking-wide text-neutral-400">Platform</span>
-      <span class="text-xs font-semibold flex items-center gap-1.5 flex-wrap">
-        
-        
-        <span class="text-primary-600">Control Plane</span>
-      </span>
-    </div>
-    <div class="flex flex-col gap-0.5 min-w-0 pl-4 border-l border-neutral-200">
-      <span class="text-xxs font-semibold uppercase tracking-wide text-neutral-400">Author</span>
-      <span class="text-xs font-semibold text-neutral-900 flex items-center gap-1.5 flex-wrap">
-        
-          <img class="w-4 h-4 shrink-0" src="/img/logos/plakar-logo-icon.svg" alt="">
-          <span>Plakar</span>
-        
-      </span>
-    </div>
-    <div class="ml-auto shrink-0 text-neutral-300 group-hover/card:text-primary-500 group-hover/card:translate-x-0.5 transition-all">
-      <div class="w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
-</span></div>
-    </div>
-  </div>
-</a>
-
-      
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a
-  href="/integrations/vault/"
-  data-categories="source,destination,secrets-manager"
-  data-editions="control-plane"
-  data-author="official"
-  data-name="vault"
-  data-date="1784851200"
-  data-search="vault vault"
-  class="group/card relative flex flex-col gap-3 p-5 rounded-2xl border border-neutral-100 hover:border-primary-300 bg-neutral-50 shadow-sm hover:shadow-none outline-4 outline-transparent hover:outline-primary-400/20 transition-all duration-300"
->
-  <div class="flex items-start gap-3.5">
-    <div class="h-13 min-w-13 max-w-28 rounded-lg overflow-hidden shrink-0 flex items-center justify-center">
-      
-        <img
-      src="/img/integrations/vault_hu_a46034bc7d408c2.webp"
-      srcset="/img/integrations/vault_hu_a46034bc7d408c2.webp 64w, /img/integrations/vault_hu_556a7ebb52f374ce.webp 128w, /img/integrations/vault_hu_11744e46768fa473.webp 256w" sizes="auto"
-      width="64"
-      height="64"
-      alt="Vault"
-      class="h-full w-auto max-w-full object-contain"
-      loading="lazy"
-      decoding="async"
-      >
-      
-    </div>
-    
-      <span class="ml-auto inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full text-green-800 bg-green-50 uppercase shrink-0">
-        <span class="w-1.5 h-1.5 rounded-full bg-current shrink-0"></span>
-        stable
-      </span>
-    
-  </div>
-
-  
-  <div class="flex flex-col mt-3">
-    <div class="flex items-center gap-2 flex-wrap">
-      <h3 class="text-lg lg:text-xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
-        Vault
-      </h3>
-      
-    </div>
-
-    
-      <div class="text-xs text-primary-500 font-semibold mt-4">
-        
-          Source
-        
-           / Destination
-        
-           / Secrets Manager
-        
-      </div>
-    
-  </div>
-
-  
-  
-    <p class="text-sm text-neutral-500 line-clamp-3 mt-1">Back up and restore a HashiCorp Vault cluster's secrets. Plakar exports a Vault cluster into an encrypted, deduplicated Kloset snapshot and restores it back to the same cluster or a freshly provisioned one.
-</p>
-  
-
-  
-  <div class="mt-auto pt-3 border-t border-neutral-200 flex items-center gap-4">
-    <div class="flex flex-col gap-0.5 min-w-0">
-      <span class="text-xxs font-semibold uppercase tracking-wide text-neutral-400">Platform</span>
-      <span class="text-xs font-semibold flex items-center gap-1.5 flex-wrap">
-        
-        
-        <span class="text-primary-600">Control Plane</span>
-      </span>
-    </div>
-    <div class="flex flex-col gap-0.5 min-w-0 pl-4 border-l border-neutral-200">
-      <span class="text-xxs font-semibold uppercase tracking-wide text-neutral-400">Author</span>
-      <span class="text-xs font-semibold text-neutral-900 flex items-center gap-1.5 flex-wrap">
-        
-          <img class="w-4 h-4 shrink-0" src="/img/logos/plakar-logo-icon.svg" alt="">
-          <span>Plakar</span>
-        
-      </span>
-    </div>
-    <div class="ml-auto shrink-0 text-neutral-300 group-hover/card:text-primary-500 group-hover/card:translate-x-0.5 transition-all">
-      <div class="w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
-</span></div>
-    </div>
-  </div>
-</a>
-
-      
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<a
-  href="/integrations/openshift/"
-  data-categories="source,destination,inventory"
-  data-editions="community,control-plane"
-  data-author="official"
-  data-name="openshift"
-  data-date="1792972800"
-  data-search="openshift openshift"
-  class="group/card relative flex flex-col gap-3 p-5 rounded-2xl border border-neutral-100 hover:border-primary-300 bg-neutral-50 shadow-sm hover:shadow-none outline-4 outline-transparent hover:outline-primary-400/20 transition-all duration-300"
->
-  <div class="flex items-start gap-3.5">
-    <div class="h-13 min-w-13 max-w-28 rounded-lg overflow-hidden shrink-0 flex items-center justify-center">
-      
-        <img
-      src="/img/integrations/openshift_hu_7b60a2e53a8c461e.webp"
-      srcset="/img/integrations/openshift_hu_7b60a2e53a8c461e.webp 64w, /img/integrations/openshift_hu_efd81aa45b304f44.webp 128w, /img/integrations/openshift_hu_a51c7a1769b7d619.webp 256w" sizes="auto"
-      width="64"
-      height="64"
-      alt="OpenShift"
-      class="h-full w-auto max-w-full object-contain"
-      loading="lazy"
-      decoding="async"
-      >
-      
-    </div>
-    
-      <span class="ml-auto inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full text-green-800 bg-green-50 uppercase shrink-0">
-        <span class="w-1.5 h-1.5 rounded-full bg-current shrink-0"></span>
-        stable
-      </span>
-    
-  </div>
-
-  
-  <div class="flex flex-col mt-3">
-    <div class="flex items-center gap-2 flex-wrap">
-      <h3 class="text-lg lg:text-xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
-        OpenShift
-      </h3>
-      
-        <span class="text-xxs font-semibold px-2 py-0.5 rounded-full text-neutral-50 bg-primary-500 uppercase tracking-wide shrink-0">New</span>
-      
-    </div>
-
-    
-      <div class="text-xs text-primary-500 font-semibold mt-4">
-        
-          Source
-        
-           / Destination
-        
-           / Inventory
-        
-      </div>
-    
-  </div>
-
-  
-  
-    <p class="text-sm text-neutral-500 line-clamp-3 mt-1">Manage OpenShift from Plakar Control Plane end to end. Discover namespaces, persistent volumes and OpenShift Virtualization virtual machines, and protect manifests, volume data and virtual machines with encrypted, deduplicated backups and restores.
-</p>
-  
-
-  
-  <div class="mt-auto pt-3 border-t border-neutral-200 flex items-center gap-4">
-    <div class="flex flex-col gap-0.5 min-w-0">
-      <span class="text-xxs font-semibold uppercase tracking-wide text-neutral-400">Platform</span>
-      <span class="text-xs font-semibold flex items-center gap-1.5 flex-wrap">
-        <span class="text-green-600">Community</span>
-        <span class="text-neutral-300">·</span>
-        <span class="text-primary-600">Control Plane</span>
-      </span>
-    </div>
-    <div class="flex flex-col gap-0.5 min-w-0 pl-4 border-l border-neutral-200">
-      <span class="text-xxs font-semibold uppercase tracking-wide text-neutral-400">Author</span>
-      <span class="text-xs font-semibold text-neutral-900 flex items-center gap-1.5 flex-wrap">
-        
-          <img class="w-4 h-4 shrink-0" src="/img/logos/plakar-logo-icon.svg" alt="">
-          <span>Plakar</span>
-        
-      </span>
-    </div>
-    <div class="ml-auto shrink-0 text-neutral-300 group-hover/card:text-primary-500 group-hover/card:translate-x-0.5 transition-all">
-      <div class="w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path></svg>
-</span></div>
-    </div>
-  </div>
-</a>
-
-      
     </div>
   </div>
 </section>
 
 
 
+
+
+<section class="bg-primary-500 py-14 lg:py-28">
+  <div class="max-w-350 mx-auto px-4">
+    <div class="flex flex-col gap-8 items-end">
+      <h2 class="text-3xl lg:text-5xl font-medium text-right text-neutral w-full">
+        Ready to protect your data using Amazon Web Services (AWS) integration?
+      </h2>
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a href="/docs/control-plane/inventories/managed/aws/" target="_self" class="flex items-center ">
+
+  <div class="text-neutral   bg-neutral-900 hover:text-neutral-900 inline-flex relative
+    group overflow-hidden min-h-7 lg:min-h-12 px-4 pr-4 rounded-lg items-center gap-2 transition-all
+    duration-150 ease-out hover:translate-x-0.5 hover:translate-y-0.5 active:translate-x-1 active:translate-y-1 active:shadow-inner">
+
+    
+    <div class="absolute inset-0 bg-neutral translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-0"></div>
+
+    
+    <div class="relative z-10 flex items-center gap-2">
+      
+        <span class="w-5 h-5 flex items-center justify-center">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4.99989 13.9999L4.99976 5L6.99976 4.99997L6.99986 11.9999L17.1717 12L13.222 8.05024L14.6362 6.63603L21.0001 13L14.6362 19.364L13.222 17.9497L17.1717 14L4.99989 13.9999Z"></path></svg>
+</span>
+        </span>
+      
+      <span class="hidden xl:block">Read the Amazon Web Services (AWS) docs</span>
+      <span class="block xl:hidden">Amazon Web Services (AWS) docs</span>
+    </div>
+  </div>
+
+</a>
+
+
+    </div>
+  </div>
+</section>
 
 
 
