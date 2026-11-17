@@ -9,6 +9,8 @@ description: >
   Free, open-source MongoDB backup: mongodump archives in encrypted,
   deduplicated snapshots. Restore a server, or one collection with mongorestore.
 
+technology_image: img/integrations/technology/mongodb.svg
+
 technology_title: MongoDB replicates a bad write, and the oplog forgets it
 
 technology_description: >
