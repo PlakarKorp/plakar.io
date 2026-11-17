@@ -1,8 +1,8 @@
 
 # User Schedulers
 
-Every [Application user](../access-control/users#application-users) can have its
-own scheduler. Unlike the [manual](../manual-scheduler) and
+Every [Application user](../access-control/users/applications) can have its own
+scheduler. Unlike the [manual](../manual-scheduler) and
 [policy](../policy-scheduler) schedulers, a user scheduler is not created from
 the UI. Application users authenticate with an API key rather than signing in,
 so their scheduler can currently only be created and managed through the Plakar

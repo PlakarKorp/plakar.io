@@ -23,6 +23,8 @@ the permissions their roles grant there.
 
 ## [Managing Users](https://www.plakar.io/docs/control-plane/access-control/users/index.md)
 
+- [Member Users](https://www.plakar.io/docs/control-plane/access-control/users/members/index.md): Create member users, the people who sign in to the web interface.
+- [Application Users](https://www.plakar.io/docs/control-plane/access-control/users/applications/index.md): Create application users and manage the API keys automation uses to reach the API.
 
 
 ## [Two-factor authentication](https://www.plakar.io/docs/control-plane/access-control/two-factor-authentication/index.md)

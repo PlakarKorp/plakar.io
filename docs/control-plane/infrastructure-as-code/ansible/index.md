@@ -37,10 +37,10 @@ Point your job templates at the resulting image, and supply `PLAKAR_API_URL` and
 ## Authentication
 
 The collection authenticates with an API key belonging to an
-[application user](../../access-control/users#application-users), the account
-type intended for automation. Keys carry the `pcp_ak_` prefix, are shown once
-when minted, and belong to the organization they were minted in. An application
-user cannot mint its own key, so this is done from the web interface.
+[application user](../../access-control/users/applications), the account type
+intended for automation. Keys carry the `pcp_ak_` prefix, are shown once when
+minted, and belong to the organization they were minted in. An application user
+cannot mint its own key, so this is done from the web interface.
 
 Create the service account, grant it a role, and mint its key. The
 [Operator](../../access-control/permissions/operator) role suits a playbook that
