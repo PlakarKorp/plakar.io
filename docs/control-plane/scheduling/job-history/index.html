@@ -27,7 +27,7 @@
     
   
   
-    <meta name="description" content="How to monitor job history and view job details in Plakar Control Plane.">
+    <meta name="description" content="Follow the jobs of every scheduler, export them, and open a job to see its details and log.">
   
   
     <meta name="keywords" content="backup,open-source,deduplication,encryption,plakar,cloud backup,database backup,">
@@ -67,17 +67,17 @@
   <meta property="og:url" content="https://www.plakar.io/docs/control-plane/scheduling/job-history/">
   <meta property="og:site_name" content="Plakar | The Open Standard for Backup and Restore">
   <meta property="og:title" content="Job History">
-  <meta property="og:description" content="How to monitor job history and view job details in Plakar Control Plane.">
+  <meta property="og:description" content="Follow the jobs of every scheduler, export them, and open a job to see its details and log.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-06-25T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-17T03:56:10+01:00">
+    <meta property="article:modified_time" content="2026-11-17T03:58:24+01:00">
 
   
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Job History">
-  <meta name="twitter:description" content="How to monitor job history and view job details in Plakar Control Plane.">
+  <meta name="twitter:description" content="Follow the jobs of every scheduler, export them, and open a job to see its details and log.">
 
   
   
@@ -126,8 +126,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/css/main.bundle.min.bf7a9195f6de4dee3a81a6875b41ffd9dd36a299770a16c4966351c32935d19701aecb9e3803f976b48d6be790980debe6e8cf6ba05c2e0fa7c65f351a875088.css"
-    integrity="sha512-v3qRlfbeTe46gaaHW0H/2d02opl3ChbElmNRwyk10ZcBrsueOAP5drSNa&#43;eQmA3r5ujPa6BcLg&#43;nxl81GodQiA==">
+    href="/css/main.bundle.min.2f13ec49165033ae0f45c5c651b2f8ae5f39a3eb75470321b3642cac2dd46f8358334c05b9df5bc1068c586132138f93c699454b1fc1fb33c03d4e6403a32c62.css"
+    integrity="sha512-LxPsSRZQM64PRcXGUbL4rl85o&#43;t1RwMhs2QsrC3Ub4NYM0wFud9bwQaMWGEyE4&#43;TxplFSx/B&#43;zPAPU5kA6MsYg==">
   
     
     <script defer src="/lib/zoom/zoom.min.umd.a527109b68c082a70f3697716dd72a9d5aa8b545cf800cecbbc7399f2ca6f6e0ce3e431f2062b48bbfa47c9ea42822714060bef309be073f49b9c0e30d318d7b.js" integrity="sha512-pScQm2jAgqcPNpdxbdcqnVqotUXPgAzsu8c5nyym9uDOPkMfIGK0i7&#43;kfJ6kKCJxQGC&#43;8wm&#43;Bz9JucDjDTGNew=="></script>
@@ -229,12 +229,12 @@
     "dateCreated": "2026-06-25T00:00:00\u002b00:00",
     "datePublished": "2026-06-25T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-17T03:56:10\u002b01:00",
+    "dateModified": "2026-11-17T03:58:24\u002b01:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/scheduling/job-history/",
-    "wordCount":  346 
+    "wordCount":  375 
   }]
   </script>
 
@@ -10367,50 +10367,30 @@
     </button>
   
 </h1>
-<p>The <strong>Governance &gt; Scheduling</strong> section includes a <strong>Job History</strong> for the
+<p>The <strong>Job history</strong> tab of <strong>Governance &gt; Scheduling</strong> lists every job of the
+organization, whichever scheduler planned it: the
 <a href="../manual-scheduler" >manual scheduler</a>, the
-<a href="../policy-scheduler" >policy scheduler</a>, and each
-<a href="../user-schedulers" >user scheduler</a>, listing all jobs that have run, whether
-they succeeded or failed, along with any jobs that are currently running.</p>
-<p><figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="auto"
-    alt=""
-    width="2798"
-    height="844"
-    src="/docs/control-plane/scheduling/images/manual-scheduler-history_hu_f1865117e27f2ded.webp"
-    srcset="/docs/control-plane/scheduling/images/manual-scheduler-history_hu_f1865117e27f2ded.webp 400w, /docs/control-plane/scheduling/images/manual-scheduler-history_hu_5e73ca97e21d85e3.webp 800w, /docs/control-plane/scheduling/images/manual-scheduler-history_hu_469b8c901113f6.webp 1200w"
-    sizes="(min-width: 768px) 50vw, 65vw"
-    data-zoom-src="/docs/control-plane/scheduling/images/manual-scheduler-history_hu_49c01ab0de914f84.webp"></figure>
-
+<a href="../policy-scheduler" >policy scheduler</a> or a
+<a href="../user-schedulers" >user scheduler</a>. It shows the jobs that have run, whether
+they succeeded or failed, and the jobs that are queued or running. The newest
+jobs come first, grouped by day, and the list is split into pages.</p>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
     decoding="async"
     fetchpriority="auto"
     alt=""
-    width="2786"
-    height="1062"
-    src="/docs/control-plane/scheduling/images/policy-scheduler-history_hu_8eb07c9ab27c0611.webp"
-    srcset="/docs/control-plane/scheduling/images/policy-scheduler-history_hu_8eb07c9ab27c0611.webp 400w, /docs/control-plane/scheduling/images/policy-scheduler-history_hu_ec850a5e5a8404ad.webp 800w, /docs/control-plane/scheduling/images/policy-scheduler-history_hu_ba6e74af3b1c2a2c.webp 1200w"
+    width="2812"
+    height="1452"
+    src="/docs/control-plane/scheduling/images/job-history_hu_c34e3315d22802a1.webp"
+    srcset="/docs/control-plane/scheduling/images/job-history_hu_c34e3315d22802a1.webp 400w, /docs/control-plane/scheduling/images/job-history_hu_7a77f2cd08558002.webp 800w, /docs/control-plane/scheduling/images/job-history_hu_80f88f099afb13b8.webp 1200w"
     sizes="(min-width: 768px) 50vw, 65vw"
-    data-zoom-src="/docs/control-plane/scheduling/images/policy-scheduler-history_hu_2d8dc36ba15a4749.webp"></figure>
-
-<figure><img
-    class="my-0 rounded-md"
-    loading="lazy"
-    decoding="async"
-    fetchpriority="auto"
-    alt=""
-    width="1170"
-    height="595"
-    src="/docs/control-plane/scheduling/images/user-scheduler-history_hu_bfe384a3a93d8861.webp"
-    srcset="/docs/control-plane/scheduling/images/user-scheduler-history_hu_bfe384a3a93d8861.webp 400w, /docs/control-plane/scheduling/images/user-scheduler-history_hu_92322d3f11aed096.webp 800w, /docs/control-plane/scheduling/images/user-scheduler-history_hu_e6432ee24688d9cd.webp 1170w"
-    sizes="(min-width: 768px) 50vw, 65vw"
-    data-zoom-src="/docs/control-plane/scheduling/images/user-scheduler-history_hu_e6432ee24688d9cd.webp"></figure>
-</p>
+    data-zoom-src="/docs/control-plane/scheduling/images/job-history_hu_7ee5cdfd3af00512.webp"></figure>
+<p>Each row shows when the job ran, its status, the task with its apps, the
+scheduler that planned it and how long it took. A failed job also shows its
+error, with a link to open the log. The list can be filtered by status, by the
+scheduler that planned the job, by inventory and by app. The job history can be
+exported as a CSV file, in full or from a given date.</p>
 
 
 <h2 id="job-details" class="group pr-8">Job details
@@ -10428,32 +10408,36 @@ they succeeded or failed, along with any jobs that are currently running.</p>
     </button>
   
 </h2>
-<p>Each job has a details popup with the following information:</p>
+<p>Opening a job shows its details page. When the job produced a restore point, the
+page starts with a <strong>Browse snapshot</strong> button that opens it.</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt=""
+    width="2811"
+    height="1865"
+    src="/docs/control-plane/scheduling/images/job-info_hu_3907d50c63893a54.webp"
+    srcset="/docs/control-plane/scheduling/images/job-info_hu_3907d50c63893a54.webp 400w, /docs/control-plane/scheduling/images/job-info_hu_77933891f2ae9839.webp 800w, /docs/control-plane/scheduling/images/job-info_hu_dc36edf774cdfd95.webp 1200w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/docs/control-plane/scheduling/images/job-info_hu_116eae83d37cc1fd.webp"></figure>
 <ul>
-<li><strong>Job ID</strong> - a unique identifier for the job</li>
-<li><strong>Status</strong> - the current state of the job: <code>succeeded</code>, <code>failed</code>, <code>running</code>,
-or <code>canceled</code></li>
-<li><strong>Restore Point</strong> - the restore point produced by the job, available once the
-backup job completes</li>
-<li><strong>Progress</strong> - the restore point ID, number of objects processed and bytes
-stored so far</li>
-<li><strong>Resources</strong> - a graph of CPU and memory usage over the job&rsquo;s runtime</li>
-<li><strong>Network</strong> - a graph of network throughput over the job&rsquo;s runtime</li>
-<li><strong>Recent Paths</strong> - a live list of the last files being processed, each showing
-whether it has <code>succeeded</code>, <code>failed</code>, or is still in <code>progress</code></li>
-<li><strong>Output</strong> - the full log output for the job, useful for diagnosing failures.
-Logs can also be downloaded from this view using the download icon.</li>
+<li><strong>Details</strong>: the status, the task, when the job was scheduled and started, its
+duration, what it processed so far, and the job ID.</li>
+<li><strong>Resources</strong>: a graph of CPU and memory usage over the job&rsquo;s runtime.</li>
+<li><strong>Network</strong>: a graph of network throughput over the job&rsquo;s runtime.</li>
+<li><strong>Output</strong>: the log output of the job, useful for diagnosing failures.
+<strong>Download</strong> saves the full log.</li>
+<li><strong>Recent paths</strong>: a live list of the last files processed, each showing
+whether it has <code>succeeded</code>, <code>failed</code>, or is still in <code>progress</code>.</li>
 </ul>
-<figure><img class="my-0 rounded-md max-w-150 mx-auto" loading="lazy" decoding="async" fetchpriority="auto" alt="" width="1591" height="1901" src="/docs/control-plane/scheduling/images/job-info-1_hu_f3af6a0f7e870567.webp" srcset="/docs/control-plane/scheduling/images/job-info-1_hu_f3af6a0f7e870567.webp 400w, /docs/control-plane/scheduling/images/job-info-1_hu_a85e2d81999bbbb3.webp 800w, /docs/control-plane/scheduling/images/job-info-1_hu_31b66057846b9189.webp 1200w" sizes="(min-width: 768px) 50vw, 65vw" data-zoom-src="/docs/control-plane/scheduling/images/job-info-1_hu_31b66057846b9189.webp" /></figure>
-<p>If a job is currently running, the output and recent paths update in real time.
-A <strong>Cancel job</strong> button is available to stop the job.</p>
+<p>While a job is running, the output and recent paths update in real time, and a
+<strong>Cancel job</strong> button stops it.</p>
 <p>A job run on an <a href="../../edges" >edge</a> shows the same details. The edge streams
 them back while the job runs, and its output also includes the output of the
 job&rsquo;s <a href="../../edges/hooks" >pre-job and post-job hooks</a>. Cancelling a job on an
 edge still runs its post-job hook.</p>
-<p>Failed or successful jobs from the manual scheduler can be retried directly from
-the job history list. This is not available for jobs triggered by the policy
-scheduler, as those are fully managed by the policies engine.</p>
 
 
 <h2 id="jobs-and-schedules-on-apps" class="group pr-8">Jobs and Schedules on Apps
@@ -10475,36 +10459,52 @@ scheduler, as those are fully managed by the policies engine.</p>
 <a href="/docs/control-plane/apps/destinations/" >destinations</a>) also surfaces scheduling information on
 its own details page:</p>
 <ul>
-<li>The <strong>Dashboard</strong> tab lists all past and upcoming jobs involving that app,
-scoped to that app only.</li>
-<li>The <strong>Scheduling</strong> tab lists all schedules that involve that app, so you can
-see at a glance what is configured to run and when.</li>
-</ul>
+<li>
+<p>The <strong>Scheduling</strong> tab lists all schedules that involve that app, so you can
+see at a glance what is configured to run and when.</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt=""
+    width="2775"
+    height="971"
+    src="/docs/control-plane/scheduling/images/app-job-1_hu_8e64bd4c6b0ecc7f.webp"
+    srcset="/docs/control-plane/scheduling/images/app-job-1_hu_8e64bd4c6b0ecc7f.webp 400w, /docs/control-plane/scheduling/images/app-job-1_hu_4e08cc896836359e.webp 800w, /docs/control-plane/scheduling/images/app-job-1_hu_945a4334602834e3.webp 1200w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/docs/control-plane/scheduling/images/app-job-1_hu_e3976f0e97cb564c.webp"></figure>
+</li>
+<li>
+<p>The <strong>Dashboard</strong> tab lists all past and upcoming jobs involving that app,
+scoped to that app only.</p>
 <p><figure><img
     class="my-0 rounded-md"
     loading="lazy"
     decoding="async"
     fetchpriority="auto"
     alt=""
-    width="2826"
-    height="2046"
-    src="/docs/control-plane/scheduling/images/connector-jobs-1_hu_f1c0e7a8362973c9.webp"
-    srcset="/docs/control-plane/scheduling/images/connector-jobs-1_hu_f1c0e7a8362973c9.webp 400w, /docs/control-plane/scheduling/images/connector-jobs-1_hu_60d072ecd0684fdc.webp 800w, /docs/control-plane/scheduling/images/connector-jobs-1_hu_c8788cacffa08fbb.webp 1200w"
+    width="2753"
+    height="979"
+    src="/docs/control-plane/scheduling/images/app-job-2_hu_a68527987f6d56f2.webp"
+    srcset="/docs/control-plane/scheduling/images/app-job-2_hu_a68527987f6d56f2.webp 400w, /docs/control-plane/scheduling/images/app-job-2_hu_ec565cc1dbc0e3b8.webp 800w, /docs/control-plane/scheduling/images/app-job-2_hu_2d868bfed6e6a9e9.webp 1200w"
     sizes="(min-width: 768px) 50vw, 65vw"
-    data-zoom-src="/docs/control-plane/scheduling/images/connector-jobs-1_hu_300c975eb185aedb.webp"></figure>
+    data-zoom-src="/docs/control-plane/scheduling/images/app-job-2_hu_6afcd9b50ca4311.webp"></figure>
  <figure><img
     class="my-0 rounded-md"
     loading="lazy"
     decoding="async"
     fetchpriority="auto"
     alt=""
-    width="2766"
-    height="738"
-    src="/docs/control-plane/scheduling/images/connector-jobs-2_hu_ad0b367dcc27877a.webp"
-    srcset="/docs/control-plane/scheduling/images/connector-jobs-2_hu_ad0b367dcc27877a.webp 400w, /docs/control-plane/scheduling/images/connector-jobs-2_hu_6d91755f9c637fee.webp 800w, /docs/control-plane/scheduling/images/connector-jobs-2_hu_3e160829c5897fe5.webp 1200w"
+    width="2752"
+    height="732"
+    src="/docs/control-plane/scheduling/images/app-job-3_hu_e58bd6d9364e0c73.webp"
+    srcset="/docs/control-plane/scheduling/images/app-job-3_hu_e58bd6d9364e0c73.webp 400w, /docs/control-plane/scheduling/images/app-job-3_hu_7c36ebc2b7bf33c8.webp 800w, /docs/control-plane/scheduling/images/app-job-3_hu_63b62b8e435fef8a.webp 1200w"
     sizes="(min-width: 768px) 50vw, 65vw"
-    data-zoom-src="/docs/control-plane/scheduling/images/connector-jobs-2_hu_cbb5bb6e0fc978c.webp"></figure>
+    data-zoom-src="/docs/control-plane/scheduling/images/app-job-3_hu_e4c1c8c5b92a5527.webp"></figure>
 </p>
+</li>
+</ul>
 
       </article>
       <footer class="mt-12 flex flex-col gap-6 docs-font border-t border-neutral-200 pt-6">

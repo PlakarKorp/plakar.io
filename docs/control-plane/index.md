@@ -74,7 +74,7 @@
 - [Manual Scheduler](https://www.plakar.io/docs/control-plane/scheduling/manual-scheduler/index.md): How to attach schedules to tasks and monitor job history in Plakar Control Plane.
 - [Policy Scheduler](https://www.plakar.io/docs/control-plane/scheduling/policy-scheduler/index.md): How policies automatically schedule tasks in Plakar Control Plane.
 - [User Schedulers](https://www.plakar.io/docs/control-plane/scheduling/user-schedulers/index.md): How Application users get their own scheduler through the Plakar Control Plane API.
-- [Job History](https://www.plakar.io/docs/control-plane/scheduling/job-history/index.md): How to monitor job history and view job details in Plakar Control Plane.
+- [Job History](https://www.plakar.io/docs/control-plane/scheduling/job-history/index.md): Follow the jobs of every scheduler, export them, and open a job to see its details and log.
 
 
 ## [Access Control](https://www.plakar.io/docs/control-plane/access-control/index.md)
