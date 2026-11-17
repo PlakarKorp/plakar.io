@@ -143,7 +143,7 @@ Settings that apply to the instance rather than to any organization, the
 [Superuser](../permissions/superuser) or a
 [Platform Admin](../permissions/platform-admin) can manage them.
 
-![Managing organizations](../images/users.png)
+![Managing organizations](../users/images/users.png)
 
 New organizations can also be created from here as well, provided your
 permissions in the parent allow it. Provide a name and select the parent
