@@ -4,7 +4,8 @@
 The **Platform Admin** holds the deployment family in full and nothing else.
 That covers
 [Control Plane settings](../../../operations/control-plane-settings), including
-the log and database exports, and the instance license.
+the log and database exports, the instance license and
+[safe mode](../../../operations/safe-mode).
 
 It holds no permission in the organization family and no access to any resource
 class, so it administers no organization and cannot read the data an

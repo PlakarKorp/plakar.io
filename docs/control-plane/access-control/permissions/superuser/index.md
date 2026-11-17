@@ -9,9 +9,10 @@ access is not restricted to a subset, it covers every resource of every class in
 the organization.
 
 The **Superuser** reaches the deployment family, which is what allows it to
-change [Control Plane settings](../../../operations/control-plane-settings) and
-manage the license. Because the instance belongs to no organization, that access
-extends to every organization hosted on it.
+change [Control Plane settings](../../../operations/control-plane-settings),
+manage the license and turn [safe mode](../../../operations/safe-mode) on or
+off. Because the instance belongs to no organization, that access extends to
+every organization hosted on it.
 
 The [Platform Admin](../platform-admin) holds that same deployment access and
 nothing else. It maintains the instance and administers no organization, which

@@ -102,6 +102,7 @@
 - [Webhook Setup](https://www.plakar.io/docs/control-plane/operations/webhooks/index.md): Configure webhooks to receive event notifications from Plakar Control Plane.
 - [Updating Control Plane](https://www.plakar.io/docs/control-plane/operations/updating/index.md): How to update Plakar Control Plane and its underlying deployment infrastructure.
 - [Backup and Restore](https://www.plakar.io/docs/control-plane/operations/backup-and-restore/index.md): How to back up and restore the Plakar Control Plane configuration and data.
+- [Safe Mode](https://www.plakar.io/docs/control-plane/operations/safe-mode/index.md): Put Plakar Control Plane on hold, stopping all tasks and limiting access to the instance administrators.
 
 
 ## [Control Plane Appliance](https://www.plakar.io/docs/control-plane/appliance/index.md)

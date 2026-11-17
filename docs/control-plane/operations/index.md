@@ -5,7 +5,8 @@
 Operating Plakar Control Plane covers the appliance itself rather than the data
 it protects. Its settings apply to every organization it hosts. It sends email
 notifications through an SMTP server and events to webhooks, is updated to new
-releases, and is backed up and restored like any other system.
+releases, and is backed up and restored like any other system. Safe mode puts it
+on hold when it needs to be recovered.
 
 
 
@@ -36,6 +37,10 @@ releases, and is backed up and restored like any other system.
 
 - [Backing Up PCP](https://www.plakar.io/docs/control-plane/operations/backup-and-restore/backup/index.md): Step-by-step guide to back up Plakar Control Plane configuration and data using the UI.
 - [Restoring PCP](https://www.plakar.io/docs/control-plane/operations/backup-and-restore/restore/index.md): How to restore Plakar Control Plane from a backup snapshot to a new appliance.
+
+
+## [Safe Mode](https://www.plakar.io/docs/control-plane/operations/safe-mode/index.md)
+
 
 
 
