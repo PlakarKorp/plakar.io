@@ -12,18 +12,19 @@ description: >
 technology_image: img/integrations/technology/mysql.svg
 
 technology_title:
-  MySQL and MariaDB replicate a DROP TABLE, then expire the binlog
+  MySQL and MariaDB commit every schema change, even from a failed migration
 
 technology_description: >
-  A replica applies every statement it reads from the binary log, so a dropped
-  table or a bulk UPDATE with the wrong filter is gone everywhere within
-  seconds. The binary log itself is purged after its retention period, 30 days
-  by default on MySQL 8.0 and 8.4 (binlog_expire_logs_seconds = 2592000), and a
-  mistake found later has nothing left to replay.
+  Each ALTER TABLE or DROP TABLE is committed on its own. A migration that fails
+  halfway leaves the schema half changed, with no transaction to roll back, and
+  replicas apply the same statements within seconds.
 
-  Plakar runs mysqldump or mariadb-dump, the dump tools both servers ship, and
-  keeps every run as an encrypted, deduplicated snapshot of plain SQL with a
-  manifest of databases, tables, routines and accounts.
+  The binary log can replay up to the mistake only while it is kept, 30 days by
+  default.
+
+  Plakar loads the dump taken before the migration into a side database, under
+  another name, next to production. You copy back what was lost, and the rest of
+  the server keeps its writes.
 
 categories:
   - source

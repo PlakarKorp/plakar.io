@@ -1,49 +1,49 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 460" role="img" aria-label="A timeline of the last 70 days. The MySQL binary log keeps the last 30 days and older events are purged, so a DROP TABLE orders run 45 days ago has nothing left to replay. Weekly Plakar snapshots cover the whole period, and those taken before the drop still hold the orders table." font-family="Inter, system-ui, sans-serif" class="w-full h-auto">
-  <text x="110" y="26" font-size="15" font-weight="600" fill="rgb(28,28,30)">Binary log</text>
-  <text x="270" y="26" font-size="15" font-weight="600" fill="rgb(82,76,255)">Plakar</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 460" role="img" aria-label="A MySQL schema migration of four statements: ALTER TABLE orders and DROP TABLE order_items are committed, ALTER TABLE customers fails, CREATE INDEX never runs. Both commits reach the replicas and no ROLLBACK undoes them. Plakar loads the snapshot taken before the migration into a side database, shop_restore, which still holds order_items." font-family="Inter, system-ui, sans-serif" class="w-full h-auto">
+  <defs>
+    <marker id="mysql-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="rgb(82,76,255)"/>
+    </marker>
+  </defs>
 
-  <g font-size="13" font-weight="500" fill="rgb(79,78,102)">
-    <text x="20" y="60">today</text>
-    <text x="20" y="220">30 days</text>
-    <text x="20" y="380">60 days</text>
+  <text x="20" y="26" font-size="15" font-weight="600" fill="rgb(28,28,30)">Schema migration</text>
+  <rect x="20" y="40" width="390" height="208" rx="14" fill="#fff" stroke="rgb(231,230,240)" stroke-width="2"/>
+
+  <g fill="rgb(245,244,251)" stroke="rgb(231,230,240)">
+    <rect x="36" y="58" width="358" height="38" rx="8"/>
+    <rect x="36" y="104" width="358" height="38" rx="8"/>
   </g>
-  <g stroke="rgb(231,230,240)" stroke-width="1">
-    <line x1="20" y1="66" x2="96" y2="66"/>
-    <line x1="20" y1="226" x2="96" y2="226"/>
-    <line x1="20" y1="386" x2="96" y2="386"/>
+  <rect x="36" y="150" width="358" height="38" rx="8" fill="rgb(79,78,102)"/>
+  <rect x="36" y="196" width="358" height="38" rx="8" fill="none" stroke="rgb(160,159,180)" stroke-width="1.5" stroke-dasharray="5 5"/>
+
+  <g font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+    <text x="50" y="82" fill="rgb(79,78,102)">ALTER TABLE orders</text>
+    <text x="50" y="128" fill="rgb(79,78,102)">DROP TABLE order_items</text>
+    <text x="50" y="174" fill="#fff">ALTER TABLE customers</text>
+    <text x="50" y="220" fill="rgb(160,159,180)">CREATE INDEX</text>
+  </g>
+  <g font-size="12" font-weight="600" text-anchor="end">
+    <text x="380" y="81" fill="rgb(79,78,102)">committed</text>
+    <text x="380" y="127" fill="rgb(79,78,102)">committed</text>
+    <text x="380" y="173" fill="#fff">error</text>
+    <text x="380" y="219" fill="rgb(160,159,180)">never runs</text>
   </g>
 
-  <rect x="110" y="48" width="130" height="168" rx="8" fill="rgb(245,244,251)" stroke="rgb(231,230,240)"/>
-  <text x="124" y="80" font-size="15" font-weight="600" fill="rgb(79,78,102)">Kept</text>
-  <text x="124" y="102" font-size="13" fill="rgb(79,78,102)">replayable</text>
+  <text x="20" y="276" font-size="13" font-weight="500" fill="rgb(79,78,102)">Both commits reach the replicas. No ROLLBACK undoes them.</text>
 
-  <rect x="110" y="226" width="130" height="212" rx="8" fill="none" stroke="rgb(160,159,180)" stroke-width="1.5" stroke-dasharray="5 5"/>
-  <text x="124" y="414" font-size="15" font-weight="600" fill="rgb(160,159,180)">Purged</text>
+  <text x="20" y="318" font-size="15" font-weight="600" fill="rgb(82,76,255)">Plakar</text>
+  <rect x="20" y="332" width="170" height="108" rx="8" fill="rgb(218,217,255)"/>
+  <g font-size="15" font-weight="600" fill="rgb(82,76,255)">
+    <text x="34" y="362">Snapshot before</text>
+    <text x="34" y="382">the migration</text>
+  </g>
+  <text x="34" y="416" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="rgb(82,76,255)">order_items</text>
 
-  <line x1="20" y1="296" x2="410" y2="296" stroke="rgb(79,78,102)" stroke-width="2" stroke-linecap="round"/>
-  <text x="20" y="288" font-size="13" font-weight="500" fill="rgb(79,78,102)">45 days</text>
-  <g font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="rgb(79,78,102)">
-    <text x="124" y="318">DROP TABLE</text>
-    <text x="124" y="336">orders;</text>
-  </g>
+  <path d="M190 386 H230" fill="none" stroke="rgb(82,76,255)" stroke-width="2" stroke-linecap="round" stroke-dasharray="5 5" marker-end="url(#mysql-arrow)"/>
 
-  <g fill="rgb(218,217,255)">
-    <rect x="270" y="48" width="140" height="22" rx="5"/>
-    <rect x="270" y="85" width="140" height="22" rx="5"/>
-    <rect x="270" y="122" width="140" height="22" rx="5"/>
-    <rect x="270" y="160" width="140" height="22" rx="5"/>
-    <rect x="270" y="197" width="140" height="22" rx="5"/>
-    <rect x="270" y="234" width="140" height="22" rx="5"/>
-    <rect x="270" y="271" width="140" height="22" rx="5"/>
-  </g>
-  <g fill="rgb(82,76,255)">
-    <rect x="270" y="326" width="140" height="22" rx="5"/>
-    <rect x="270" y="363" width="140" height="22" rx="5"/>
-    <rect x="270" y="400" width="140" height="22" rx="5"/>
-  </g>
-  <g font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="#fff">
-    <text x="282" y="342">orders</text>
-    <text x="282" y="379">orders</text>
-    <text x="282" y="416">orders</text>
+  <rect x="240" y="332" width="170" height="108" rx="8" fill="#fff" stroke="rgb(82,76,255)" stroke-width="2"/>
+  <text x="254" y="362" font-size="15" font-weight="600" fill="rgb(82,76,255)">Side database</text>
+  <g font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="rgb(82,76,255)">
+    <text x="254" y="392">shop_restore</text>
+    <text x="254" y="416">order_items</text>
   </g>
 </svg>
