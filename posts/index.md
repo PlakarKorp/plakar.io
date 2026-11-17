@@ -4,6 +4,10 @@
 
 
 
+## [How to backup and restore PVCs with the Kubernetes Operator](https://www.plakar.io/posts/2026-11-17/backup-restore-pvcs-kubernetes-operator-walkthrough/index.md)
+
+
+
 ## [Free backup for KubeVirt VMs and OpenShift](https://www.plakar.io/posts/2026-10-28/free-backup-for-kubevirt-and-openshift/index.md)
 
 
