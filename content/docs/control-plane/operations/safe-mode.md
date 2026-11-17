@@ -30,8 +30,8 @@ While safe mode is on:
 
 - Only the Superuser and Platform Admins can sign in. Every other user is
   refused at sign-in. Requests from sessions already open, and from the API keys
-  of [application users](../../access-control/users#application-users), are
-  answered with `503` and the message `control plane is in safe mode`.
+  of [application users](../../access-control/users/applications/), are answered
+  with `503` and the message `control plane is in safe mode`.
 - Schedules start no tasks. An occurrence that falls during safe mode is
   skipped, and the schedule resumes at its next occurrence. Skipped occurrences
   are not run when safe mode is turned off.
