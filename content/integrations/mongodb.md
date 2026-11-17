@@ -11,18 +11,20 @@ description: >
 
 technology_image: img/integrations/technology/mongodb.svg
 
-technology_title: MongoDB replicates a bad write, and the oplog forgets it
+technology_title: Bring back one MongoDB collection, next to the one that broke
 
 technology_description: >
-  Every member of a replica set applies what the primary writes, so an
-  updateMany with the wrong filter or a dropped collection reaches all of them
-  within seconds. The oplog that could replay history is bounded by size, by
-  default 5% of free disk between 990 MB and 50 GB, and a burst of writes
-  shortens the time it covers.
+  Every member of a replica set applies an updateMany with the wrong filter
+  within seconds. The oplog is no undo button: it is bounded by size, not time,
+  and a bulk write fills it fast, the bad one included.
 
-  Plakar runs mongodump, the tool MongoDB ships for logical backups, and keeps
-  every archive as an encrypted, deduplicated snapshot in a store you choose,
-  ready for mongorestore on any server.
+  Plakar keeps each mongodump archive as a snapshot and streams it straight into
+  mongorestore, with no staging disk. One collection comes back under another
+  name, orders_restored next to orders, and you copy back only the documents or
+  fields that changed.
+
+  Production keeps every write made since, and the same archive restores on any
+  server, self-hosted or managed.
 
 categories:
   - source
