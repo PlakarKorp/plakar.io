@@ -12,6 +12,7 @@ summary:
 Operating Plakar Control Plane covers the appliance itself rather than the data
 it protects. Its settings apply to every organization it hosts. It sends email
 notifications through an SMTP server and events to webhooks, is updated to new
-releases, and is backed up and restored like any other system.
+releases, and is backed up and restored like any other system. Safe mode puts it
+on hold when it needs to be recovered.
 
 {{< children description="true" >}}
