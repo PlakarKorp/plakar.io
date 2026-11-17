@@ -10,6 +10,8 @@ description: >
   deduplicated snapshots, read in place without extraction, compared and
   exported as tar.
 
+technology_image: img/integrations/technology/tar.svg
+
 technology_title: Tar archives, kept as one deduplicated history
 
 technology_description: >
