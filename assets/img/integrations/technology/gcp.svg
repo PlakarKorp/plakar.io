@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 460" role="img" aria-label="A GCP project holds a Cloud SQL for MySQL instance with its standard backups, a Cloud SQL for PostgreSQL instance, a Cloud Storage bucket and Secret Manager. The standard backups sit inside the project. Plakar Control Plane lists the project every 15 minutes, reads the backup password from Secret Manager and keeps snapshots in a store outside the project." font-family="Inter, system-ui, sans-serif" class="w-full h-auto">
+  <defs>
+    <marker id="gcp-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="rgb(82,76,255)"/>
+    </marker>
+  </defs>
+
+  <text x="20" y="26" font-size="15" font-weight="600" fill="rgb(28,28,30)">GCP project</text>
+  <rect x="20" y="40" width="250" height="400" rx="14" fill="#fff" stroke="rgb(231,230,240)" stroke-width="2"/>
+
+  <rect x="40" y="62" width="210" height="50" rx="8" fill="rgb(218,217,255)"/>
+  <text x="54" y="84" font-size="12" font-weight="600" fill="rgb(82,76,255)">Cloud SQL</text>
+  <text x="130" y="84" font-size="13" font-weight="500" fill="rgb(82,76,255)">orders-eu</text>
+  <text x="54" y="101" font-size="11" fill="rgb(79,78,102)">MySQL</text>
+
+  <rect x="56" y="120" width="194" height="60" rx="8" fill="none" stroke="rgb(79,78,102)" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <g fill="rgb(245,244,251)" stroke="rgb(231,230,240)">
+    <rect x="68" y="130" width="20" height="20" rx="3"/>
+    <rect x="94" y="130" width="20" height="20" rx="3"/>
+    <rect x="120" y="130" width="20" height="20" rx="3"/>
+    <rect x="146" y="130" width="20" height="20" rx="3"/>
+    <rect x="172" y="130" width="20" height="20" rx="3"/>
+    <rect x="198" y="130" width="20" height="20" rx="3"/>
+    <rect x="224" y="130" width="20" height="20" rx="3"/>
+  </g>
+  <text x="68" y="171" font-size="11" fill="rgb(79,78,102)">7 standard backups, same project</text>
+
+  <rect x="40" y="196" width="210" height="50" rx="8" fill="rgb(245,244,251)" stroke="rgb(231,230,240)"/>
+  <text x="54" y="218" font-size="12" font-weight="600" fill="rgb(79,78,102)">Cloud SQL</text>
+  <text x="130" y="218" font-size="13" font-weight="500" fill="rgb(79,78,102)">billing</text>
+  <text x="54" y="235" font-size="11" fill="rgb(79,78,102)">PostgreSQL</text>
+
+  <rect x="40" y="254" width="210" height="50" rx="8" fill="rgb(218,217,255)"/>
+  <text x="54" y="276" font-size="12" font-weight="600" fill="rgb(82,76,255)">Bucket</text>
+  <text x="130" y="276" font-size="13" font-weight="500" fill="rgb(82,76,255)">acme-reports</text>
+  <text x="54" y="293" font-size="11" fill="rgb(79,78,102)">Cloud Storage</text>
+
+  <rect x="40" y="370" width="210" height="50" rx="8" fill="rgb(79,78,102)"/>
+  <text x="58" y="400" font-size="14" font-weight="600" fill="#fff">Secret Manager</text>
+
+  <text x="294" y="26" font-size="15" font-weight="600" fill="rgb(82,76,255)">Plakar Control Plane</text>
+  <rect x="294" y="40" width="146" height="400" rx="14" fill="#fff" stroke="rgb(82,76,255)" stroke-width="2"/>
+
+  <g fill="none" stroke="rgb(82,76,255)" stroke-width="2" stroke-linecap="round">
+    <path d="M256 62 H262 V304 H256"/>
+    <path d="M262 112 H304" stroke-dasharray="5 5" marker-end="url(#gcp-arrow)"/>
+    <path d="M250 395 H304" stroke-dasharray="5 5" marker-end="url(#gcp-arrow)"/>
+    <path d="M367 168 V188" marker-end="url(#gcp-arrow)"/>
+  </g>
+
+  <g fill="rgb(218,217,255)">
+    <rect x="308" y="62" width="118" height="104" rx="8"/>
+    <rect x="308" y="194" width="118" height="110" rx="8"/>
+  </g>
+  <g font-size="15" font-weight="600" fill="rgb(82,76,255)">
+    <text x="322" y="106">Inventory</text>
+    <text x="322" y="230">Snapshots</text>
+  </g>
+  <g font-size="12" fill="rgb(79,78,102)">
+    <text x="322" y="126">every 15 minutes</text>
+    <text x="322" y="250">in a store</text>
+    <text x="322" y="266">outside the</text>
+    <text x="322" y="282">project</text>
+  </g>
+
+  <rect x="308" y="370" width="118" height="50" rx="8" fill="rgb(82,76,255)"/>
+  <text x="322" y="392" font-size="13" font-weight="600" fill="#fff">Service</text>
+  <text x="322" y="410" font-size="13" font-weight="600" fill="#fff">account</text>
+</svg>
