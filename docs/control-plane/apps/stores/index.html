@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-05-11T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-16T19:29:19+01:00">
+    <meta property="article:modified_time" content="2026-11-17T03:56:10+01:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -229,12 +229,12 @@
     "dateCreated": "2026-05-11T00:00:00\u002b00:00",
     "datePublished": "2026-05-11T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-16T19:29:19\u002b01:00",
+    "dateModified": "2026-11-17T03:56:10\u002b01:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/apps/stores/",
-    "wordCount":  511 
+    "wordCount":  1063 
   }]
   </script>
 
@@ -10388,34 +10388,142 @@ syncs read them back, and checks verify their integrity.</p>
     </button>
   
 </h2>
-<p>Store apps are created from the <strong>Stores</strong> tab of an inventory, by selecting the
-resource that holds the store. The integration, its configuration and the way
-fields are filled work as for every app, as described in
-<a href="/docs/control-plane/apps/#setting-up-an-app" >setting up an app</a>.</p>
-<p><strong>Infrastructure &gt; Stores</strong> opens the <strong>Stores</strong> tab across all inventories,
-which lists every store app of the organization in one place.</p>
+<p>Store apps are created with <strong>Add Store</strong>, from the <strong>Stores</strong> tab of an
+inventory or from <strong>Infrastructure &gt; Stores</strong>, which lists the store apps of
+every inventory. Creating one takes three steps.</p>
+<div class="steps">
+
+<div class="step">
+
+<h3 id="general" class="group pr-8">General
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="general"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Select the inventory and the resource that holds the store, such as an S3
+bucket, and provide a name for the store app. Then choose its storage type:</p>
+<ul>
+<li><strong>Standard</strong>: the store is available at all times.</li>
+<li><strong>Cold</strong>: the store uses archival storage, such as Amazon S3 Glacier, where
+data must be retrieved before it can be read.</li>
+<li><strong>Offline</strong>: the storage is not connected, such as removed media.</li>
+</ul>
+<p>The storage type tells the policies engine how the store behaves. It does not
+change the underlying storage. For S3, archival storage is configured through
+the storage class of the store, as described in
+<a href="../../resources/object-storage/s3#cold-storage-on-amazon-s3-glacier" >Cold Storage on Amazon S3 Glacier</a>.</p>
+<p>Integrity checks are on by default for a new store. See
+<a href="/docs/control-plane/apps/stores/#integrity-checks" >integrity checks</a> for the interval and the advanced settings
+on integrity checks.</p>
 <figure><img
     class="my-0 rounded-md"
     loading="lazy"
     decoding="async"
     fetchpriority="auto"
     alt=""
-    width="2811"
-    height="670"
-    src="/docs/control-plane/apps/images/create-store_hu_e64f310506882a21.webp"
-    srcset="/docs/control-plane/apps/images/create-store_hu_e64f310506882a21.webp 400w, /docs/control-plane/apps/images/create-store_hu_bcef07477bf66e43.webp 800w, /docs/control-plane/apps/images/create-store_hu_d96867099033699b.webp 1200w"
+    width="2059"
+    height="1915"
+    src="/docs/control-plane/apps/images/setup-store-1_hu_2de44dd729375128.webp"
+    srcset="/docs/control-plane/apps/images/setup-store-1_hu_2de44dd729375128.webp 400w, /docs/control-plane/apps/images/setup-store-1_hu_2608e0dad06b2891.webp 800w, /docs/control-plane/apps/images/setup-store-1_hu_40e80fd5c5b55079.webp 1200w"
     sizes="(min-width: 768px) 50vw, 65vw"
-    data-zoom-src="/docs/control-plane/apps/images/create-store_hu_a1438ca8b51ff1f1.webp"></figure>
-<p>A store app also has a <strong>Storage Type</strong>:</p>
-<ul>
-<li><strong>Standard</strong>: the store is available at all times.</li>
-<li><strong>Cold</strong>: the store uses archival storage, such as Amazon S3 Glacier, where
-data must be retrieved before it can be read.</li>
-</ul>
-<p>The storage type tells the policies engine how the store behaves. It does not
-change the underlying storage. For S3, archival storage is configured through
-the storage class of the store, as described in
-<a href="../../resources/object-storage/s3#cold-storage-on-amazon-s3-glacier" >Cold Storage on Amazon S3 Glacier</a>.</p>
+    data-zoom-src="/docs/control-plane/apps/images/setup-store-1_hu_acfbd7f45b7c8d43.webp"></figure>
+</div>
+
+
+<div class="step">
+
+<h3 id="configuration" class="group pr-8">Configuration
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="configuration"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Select the integration, then fill in the passphrase of the Kloset store,
+followed by the fields of the integration. The way fields are filled works as
+for every app, as described in <a href="/docs/control-plane/apps/#setting-up-an-app" >setting up an app</a>.</p>
+</div>
+
+
+<div class="step">
+
+<h3 id="review" class="group pr-8">Review
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="review"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Check the settings of the store app before adding it. A store that does not
+exist yet at the location can be initialized right away, with the compression
+algorithm chosen in the advanced settings. It can also be initialized later from
+the store page, as described in
+<a href="/docs/control-plane/apps/stores/#testing-and-initializing" >testing and initializing</a>.</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt=""
+    width="2056"
+    height="1917"
+    src="/docs/control-plane/apps/images/setup-store-2_hu_b11f4d896e67f2a2.webp"
+    srcset="/docs/control-plane/apps/images/setup-store-2_hu_b11f4d896e67f2a2.webp 400w, /docs/control-plane/apps/images/setup-store-2_hu_60020fa572f0d38d.webp 800w, /docs/control-plane/apps/images/setup-store-2_hu_3ea827de7982aefa.webp 1200w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/docs/control-plane/apps/images/setup-store-2_hu_8f18e68fe8cb4fc.webp"></figure>
+</div>
+
+
+</div>
+
+
+
+<h3 id="changing-the-resource" class="group pr-8">Changing the resource
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="changing-the-resource"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Changing the resource of a store app, while creating or editing it, can change
+the configuration that applies to it. Plakar Control Plane shows what the new
+resource changes and asks whether to keep the current configuration or to start
+again from the configuration bundle of the new resource. The passphrase is kept
+in both cases.</p>
 
 
 <h2 id="testing-and-initializing" class="group pr-8">Testing and initializing
@@ -10445,12 +10553,12 @@ no further preparation.</p>
     decoding="async"
     fetchpriority="auto"
     alt=""
-    width="2779"
-    height="713"
-    src="/docs/control-plane/apps/images/store-app_hu_b792623d6924abe2.webp"
-    srcset="/docs/control-plane/apps/images/store-app_hu_b792623d6924abe2.webp 400w, /docs/control-plane/apps/images/store-app_hu_a7ed5fd9ec18f9c4.webp 800w, /docs/control-plane/apps/images/store-app_hu_9d6ebd151d568a6.webp 1200w"
+    width="2782"
+    height="955"
+    src="/docs/control-plane/apps/images/store-app_hu_5692089bbe316592.webp"
+    srcset="/docs/control-plane/apps/images/store-app_hu_5692089bbe316592.webp 400w, /docs/control-plane/apps/images/store-app_hu_222e9cf7547e7095.webp 800w, /docs/control-plane/apps/images/store-app_hu_5c2aced361c70f5f.webp 1200w"
     sizes="(min-width: 768px) 50vw, 65vw"
-    data-zoom-src="/docs/control-plane/apps/images/store-app_hu_2d730a919e6977c5.webp"></figure>
+    data-zoom-src="/docs/control-plane/apps/images/store-app_hu_e125d6cc5eb8501c.webp"></figure>
 <p>A location that has never held a Kloset store, such as a new S3 bucket, must be
 initialized before it can receive backups. Initializing writes the store
 configuration to the location and leaves an empty store. It happens once per
@@ -10458,7 +10566,8 @@ location and is not destructive. Initializing a location that already holds a
 store fails and leaves that store untouched.</p>
 <p>Backups are compressed as they are written to the store, with an algorithm
 chosen at initialization. <code>LZ4</code> is the default. <code>GZIP</code>, <code>ZSTD</code> or <code>SNAPPY</code> can
-be selected in the advanced settings of the initialization dialog.</p>
+be selected in the advanced settings, when creating the store app or in the
+initialization dialog.</p>
 <details
       class="admonition relative overflow-hidden rounded-lg border-l-4 my-3 px-4 py-3 shadow-sm group"
       data-type="tip"
@@ -10488,13 +10597,110 @@ decompression speed. <code>LZ4</code> performs well on all three for most data, 
 why it is the default. <code>SNAPPY</code> can be faster on large, highly compressible
 files. Keep the default unless a test on your own data shows another algorithm
 performs better.</p></div></details><figure><img class="my-0 rounded-md mx-auto max-w-100" loading="lazy" decoding="async" fetchpriority="auto" alt="" width="899" height="672" src="/docs/control-plane/apps/images/kloset-store-initialization_hu_79deaee3d3a8b9f9.webp" srcset="/docs/control-plane/apps/images/kloset-store-initialization_hu_79deaee3d3a8b9f9.webp 400w, /docs/control-plane/apps/images/kloset-store-initialization_hu_4a789cd382e9ecc0.webp 800w, /docs/control-plane/apps/images/kloset-store-initialization_hu_48f61d5102cba599.webp 899w" sizes="(min-width: 768px) 50vw, 65vw" data-zoom-src="/docs/control-plane/apps/images/kloset-store-initialization_hu_48f61d5102cba599.webp" /></figure>
-<p>Once the store is initialized, its dashboard creates the tasks that act on it:</p>
+<p>Once the store is initialized, the <strong>Operations</strong> card of its dashboard creates
+the tasks that act on it:</p>
 <ul>
-<li><strong>Check Store</strong>: checks the integrity of the store.</li>
-<li><strong>Create Backup</strong>: backs up a source to the store.</li>
-<li><strong>Sync Store</strong>: synchronizes the store with another store.</li>
-<li><strong>Restore Data</strong>: restores from the store to a destination.</li>
+<li><strong>Check</strong>: checks the restore points of the store.</li>
+<li><strong>Backup</strong>: backs up a source to the store.</li>
+<li><strong>Sync</strong>: synchronizes the store with another store.</li>
+<li><strong>Restore</strong>: restores from the store to a destination.</li>
 </ul>
+<p>The same card shows the last job, the success rate and the next planned run of
+the store, with its recent jobs.</p>
+
+
+<h2 id="integrity-checks" class="group pr-8">Integrity checks
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="integrity-checks"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>Plakar Control Plane can regularly download the objects of a store, its
+packfiles and states, and verify each one against its HMAC. A damaged object is
+found when it is checked, before a restore needs it.</p>
+<p>Object names cannot be verified without decrypting the store. An object replaced
+by another under the same name is caught instead by comparing its HMAC with the
+one recorded at the previous check.</p>
+<p>Integrity checks do not replace a
+<a href="../../scheduling/tasks#check-task" >check task</a>. An integrity check works at a
+lower level. It verifies that each packfile and state matches its own HMAC. A
+check task verifies the restore points themselves: their checksums, their
+indexes and that their file tree can be walked.</p>
+<p>Checks are set per store app, in the <strong>Integrity checks</strong> card of its settings
+or in the <a href="/docs/control-plane/apps/stores/#general" >General step</a> when it is created:</p>
+<ul>
+<li><strong>Interval</strong>: how often each object is checked. A new store is checked every
+day. Stores that existed before integrity checks were introduced have them
+turned off until they are turned on.</li>
+<li><strong>Checked objects</strong>: every object, or a share of the objects at each interval,
+picked at random.</li>
+<li><strong>Daily read limit</strong>: caps how much the checks download per day. A store
+larger than the limit is checked over several days. There is no limit by
+default.</li>
+</ul>
+<p>Checks start after the first scan of the store. Checks only run on <strong>Standard</strong>
+stores, and are paused on <strong>Cold</strong> and <strong>Offline</strong> ones.</p>
+<p>The <strong>Integrity</strong> card on the dashboard of the store app shows the status of the
+checks, the current interval, how long a full cycle takes and the share of the
+store checked over a chosen period.</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt=""
+    width="2751"
+    height="1140"
+    src="/docs/control-plane/apps/images/store-integrity_hu_f769a0722b4928d5.webp"
+    srcset="/docs/control-plane/apps/images/store-integrity_hu_f769a0722b4928d5.webp 400w, /docs/control-plane/apps/images/store-integrity_hu_2e5b661fcf6025c1.webp 800w, /docs/control-plane/apps/images/store-integrity_hu_84f83adeef7def36.webp 1200w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/docs/control-plane/apps/images/store-integrity_hu_80668f93d4a1dfab.webp"></figure>
+<p>When an object fails its check or has been replaced, Plakar Control Plane raises
+a store integrity alert. It is sent by <a href="../../operations/email-and-smtp" >email</a>
+and to <a href="../../operations/webhooks" >webhooks</a> subscribed to the <strong>Store
+integrity</strong> event.</p>
+
+
+<h2 id="store-structure" class="group pr-8">Store structure
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="store-structure"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>The <strong>Structure</strong> tab lists the objects the store holds, its states and
+packfiles, with the size of each and the result of its last integrity check. It
+can be filtered by object type and by check result, to find the objects that
+failed.</p>
+<figure><img
+    class="my-0 rounded-md"
+    loading="lazy"
+    decoding="async"
+    fetchpriority="auto"
+    alt=""
+    width="2790"
+    height="1561"
+    src="/docs/control-plane/apps/images/store-structure_hu_3ec2d463718a467b.webp"
+    srcset="/docs/control-plane/apps/images/store-structure_hu_3ec2d463718a467b.webp 400w, /docs/control-plane/apps/images/store-structure_hu_9f80126850a68b2e.webp 800w, /docs/control-plane/apps/images/store-structure_hu_a83d7039fcca72b0.webp 1200w"
+    sizes="(min-width: 768px) 50vw, 65vw"
+    data-zoom-src="/docs/control-plane/apps/images/store-structure_hu_83777ceddb9d778e.webp"></figure>
 
 
 <h2 id="browsing-restore-points" class="group pr-8">Browsing restore points
@@ -10523,12 +10729,12 @@ restore. It can also be downloaded whole,
     decoding="async"
     fetchpriority="auto"
     alt=""
-    width="2781"
-    height="905"
-    src="/docs/control-plane/apps/images/browse-store_hu_715bfe935d1ab24c.webp"
-    srcset="/docs/control-plane/apps/images/browse-store_hu_715bfe935d1ab24c.webp 400w, /docs/control-plane/apps/images/browse-store_hu_a1feb106e18386f2.webp 800w, /docs/control-plane/apps/images/browse-store_hu_347b3cb554f01d51.webp 1200w"
+    width="2783"
+    height="1344"
+    src="/docs/control-plane/apps/images/browse-store_hu_651c897f72021749.webp"
+    srcset="/docs/control-plane/apps/images/browse-store_hu_651c897f72021749.webp 400w, /docs/control-plane/apps/images/browse-store_hu_b5f2e6f35da2a704.webp 800w, /docs/control-plane/apps/images/browse-store_hu_d60e017bd35315df.webp 1200w"
     sizes="(min-width: 768px) 50vw, 65vw"
-    data-zoom-src="/docs/control-plane/apps/images/browse-store_hu_f9dda03d97d8f6ed.webp"></figure>
+    data-zoom-src="/docs/control-plane/apps/images/browse-store_hu_a8e7c25cc906f40c.webp"></figure>
 
       </article>
       <footer class="mt-12 flex flex-col gap-6 docs-font border-t border-neutral-200 pt-6">
@@ -10572,7 +10778,7 @@ restore. It can also be downloaded whole,
   
   <div class="flex items-center justify-between text-xs text-neutral-400">
     
-      <span>Last updated: November 16, 2026</span>
+      <span>Last updated: November 17, 2026</span>
     
     
       <a href="https://github.com/PlakarKorp/plakar.io/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">
@@ -10592,7 +10798,7 @@ restore. It can also be downloaded whole,
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#creating-a-store-app">Creating a store app</a></li><li><a href="#testing-and-initializing">Testing and initializing</a></li><li><a href="#browsing-restore-points">Browsing restore points</a></li></ul>
+      <ul><li><a href="#creating-a-store-app">Creating a store app</a><ul><li><a href="#general">General</a></li><li><a href="#configuration">Configuration</a></li><li><a href="#review">Review</a></li><li><a href="#changing-the-resource">Changing the resource</a></li></ul></li><li><a href="#testing-and-initializing">Testing and initializing</a></li><li><a href="#integrity-checks">Integrity checks</a></li><li><a href="#store-structure">Store structure</a></li><li><a href="#browsing-restore-points">Browsing restore points</a></li></ul>
     </div>
 
     

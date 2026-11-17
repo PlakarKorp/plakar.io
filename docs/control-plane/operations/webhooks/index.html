@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-08-05T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-16T19:29:19+01:00">
+    <meta property="article:modified_time" content="2026-11-17T03:56:10+01:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -229,12 +229,12 @@
     "dateCreated": "2026-08-05T00:00:00\u002b00:00",
     "datePublished": "2026-08-05T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-16T19:29:19\u002b01:00",
+    "dateModified": "2026-11-17T03:56:10\u002b01:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/operations/webhooks/",
-    "wordCount":  323 
+    "wordCount":  338 
   }]
   </script>
 
@@ -10461,9 +10461,10 @@ Python function can be used to verify it:</p>
 <p>Events are grouped into domains that follow the areas of Plakar Control Plane.
 Only events of the selected types are delivered to the target URL.</p>
 <p>Each domain exposes its own event types. Most domains have a <strong>Request</strong> and a
-<strong>Response</strong> type. The <strong>Alerts</strong> domain has a single <strong>Quota</strong> type. For each
-domain, either select specific event types or select <strong>All</strong> to receive every
-event type in that domain.</p>
+<strong>Response</strong> type. The <strong>Alerts</strong> domain has a <strong>Quota</strong> type and a <strong>Store
+integrity</strong> type, raised when an object of a store fails its integrity check.
+For each domain, either select specific event types or select <strong>All</strong> to receive
+every event type in that domain.</p>
 <p>The available domains are:</p>
 <ul>
 <li><strong>Access</strong>: Groups, Invitations, Organizations, Permissions, Users.</li>
@@ -10529,7 +10530,7 @@ Schedules.</li>
   
   <div class="flex items-center justify-between text-xs text-neutral-400">
     
-      <span>Last updated: November 16, 2026</span>
+      <span>Last updated: November 17, 2026</span>
     
     
       <a href="https://github.com/PlakarKorp/plakar.io/issues/new" target="_blank" class="hover:text-primary-500 transition-colors">
