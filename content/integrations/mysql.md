@@ -9,6 +9,8 @@ description: >
   Free, open-source MySQL and MariaDB backup: mysqldump or mariadb-dump into
   encrypted snapshots. Restore a dropped table through a side database.
 
+technology_image: img/integrations/technology/mysql.svg
+
 technology_title:
   MySQL and MariaDB replicate a DROP TABLE, then expire the binlog
 
