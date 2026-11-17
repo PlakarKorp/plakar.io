@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-11-16T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-17T04:05:19+01:00">
+    <meta property="article:modified_time" content="2026-11-17T08:29:22+01:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -229,7 +229,7 @@
     "dateCreated": "2026-11-16T00:00:00\u002b00:00",
     "datePublished": "2026-11-16T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-17T04:05:19\u002b01:00",
+    "dateModified": "2026-11-17T08:29:22\u002b01:00",
     
     
     
@@ -10569,8 +10569,8 @@ cause is fixed.</p>
 <ul>
 <li>Only the Superuser and Platform Admins can sign in. Every other user is
 refused at sign-in. Requests from sessions already open, and from the API keys
-of <a href="../../access-control/users#application-users" >application users</a>, are
-answered with <code>503</code> and the message <code>control plane is in safe mode</code>.</li>
+of <a href="../../access-control/users/applications/" >application users</a>, are answered
+with <code>503</code> and the message <code>control plane is in safe mode</code>.</li>
 <li>Schedules start no tasks. An occurrence that falls during safe mode is
 skipped, and the schedule resumes at its next occurrence. Skipped occurrences
 are not run when safe mode is turned off.</li>
