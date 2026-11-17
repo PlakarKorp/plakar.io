@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 460" role="img" aria-label="An AWS account holds two resources from the original backup plan and three created later: an S3 bucket from the console, an RDS instance from a coding agent and an Aurora cluster from Terraform. Plakar Control Plane reads the account every 15 minutes, turns AWS tags into backup policies and takes snapshots of all five, with credentials read from AWS Secrets Manager through the IAM role of its EC2 instance." font-family="Inter, system-ui, sans-serif" class="w-full h-auto">
+  <defs>
+    <marker id="aws-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="rgb(82,76,255)"/>
+    </marker>
+  </defs>
+
+  <text x="20" y="26" font-size="15" font-weight="600" fill="rgb(28,28,30)">AWS account</text>
+  <rect x="20" y="40" width="250" height="400" rx="14" fill="#fff" stroke="rgb(231,230,240)" stroke-width="2"/>
+
+  <g stroke="rgb(231,230,240)">
+    <rect x="40" y="62" width="210" height="50" rx="8" fill="rgb(245,244,251)"/>
+    <rect x="40" y="120" width="210" height="50" rx="8" fill="rgb(245,244,251)"/>
+  </g>
+  <g fill="rgb(218,217,255)">
+    <rect x="40" y="178" width="210" height="50" rx="8"/>
+    <rect x="40" y="236" width="210" height="50" rx="8"/>
+    <rect x="40" y="294" width="210" height="50" rx="8"/>
+  </g>
+
+  <g font-size="12" font-weight="600">
+    <text x="54" y="92" fill="rgb(79,78,102)">S3</text>
+    <text x="54" y="150" fill="rgb(79,78,102)">RDS</text>
+    <text x="54" y="200" fill="rgb(82,76,255)">S3</text>
+    <text x="54" y="258" fill="rgb(82,76,255)">RDS</text>
+    <text x="54" y="316" fill="rgb(82,76,255)">Aurora</text>
+  </g>
+  <g font-size="13" font-weight="500">
+    <text x="104" y="92" fill="rgb(79,78,102)">app-uploads</text>
+    <text x="104" y="150" fill="rgb(79,78,102)">orders</text>
+    <text x="104" y="200" fill="rgb(82,76,255)">acme-ml-features-eu</text>
+    <text x="104" y="258" fill="rgb(82,76,255)">orders-preview</text>
+    <text x="104" y="316" fill="rgb(82,76,255)">analytics</text>
+  </g>
+  <g font-size="11" fill="rgb(79,78,102)">
+    <text x="104" y="217">from the console</text>
+    <text x="104" y="275">from a coding agent</text>
+    <text x="104" y="333">from Terraform</text>
+  </g>
+
+  <rect x="40" y="370" width="210" height="50" rx="8" fill="rgb(79,78,102)"/>
+  <text x="58" y="400" font-size="14" font-weight="600" fill="#fff">Secrets Manager</text>
+
+  <text x="294" y="26" font-size="15" font-weight="600" fill="rgb(82,76,255)">Plakar Control Plane</text>
+  <rect x="294" y="40" width="146" height="400" rx="14" fill="#fff" stroke="rgb(82,76,255)" stroke-width="2"/>
+
+  <g fill="none" stroke="rgb(82,76,255)" stroke-width="2" stroke-linecap="round">
+    <path d="M256 62 H262 V344 H256"/>
+    <path d="M262 116 H304" stroke-dasharray="5 5" marker-end="url(#aws-arrow)"/>
+    <path d="M250 395 H304" stroke-dasharray="5 5" marker-end="url(#aws-arrow)"/>
+    <path d="M367 172 V182" marker-end="url(#aws-arrow)"/>
+    <path d="M367 264 V274" marker-end="url(#aws-arrow)"/>
+  </g>
+
+  <g fill="rgb(218,217,255)">
+    <rect x="308" y="62" width="118" height="108" rx="8"/>
+    <rect x="308" y="186" width="118" height="76" rx="8"/>
+    <rect x="308" y="278" width="118" height="66" rx="8"/>
+  </g>
+  <g font-size="15" font-weight="600" fill="rgb(82,76,255)">
+    <text x="322" y="108">Inventory</text>
+    <text x="322" y="218">Tags to</text>
+    <text x="322" y="238">policies</text>
+    <text x="322" y="316">Snapshots</text>
+  </g>
+  <g font-size="12" fill="rgb(79,78,102)">
+    <text x="322" y="128">every 15 minutes</text>
+    <text x="322" y="333">all five resources</text>
+  </g>
+
+  <rect x="308" y="370" width="118" height="50" rx="8" fill="rgb(82,76,255)"/>
+  <text x="322" y="400" font-size="14" font-weight="600" fill="#fff">IAM role</text>
+</svg>
