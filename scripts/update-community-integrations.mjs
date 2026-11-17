@@ -22,7 +22,9 @@ const CATEGORIES = {
 // Recipes without one cannot be installed with `plakar pkg add`.
 const isBuilt = async (version, name, pkgVersion) => {
   const res = await fetch(`${DIST}/${TIER}/${version}/${name}/`);
-  if (!res.ok) return false;
+  if (res.status === 404) return false;
+  if (!res.ok)
+    throw new Error(`failed to check package ${name}: HTTP ${res.status}`);
   return (await res.text()).includes(`${name}_${pkgVersion}_`);
 };
 
@@ -76,6 +78,7 @@ const integrations = [];
 for (const { name } of recipes) {
   const path = `${TIER}/${latest}/${name}/recipe.yaml`;
   const recipe = raw(HUB, path);
+  if (!recipe) throw new Error(`failed to read recipe ${path} from ${HUB}`);
   const maintainer = field(recipe, "maintainer");
   if (!maintainer || SKIP_MAINTAINERS.includes(maintainer)) continue;
 
