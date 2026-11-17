@@ -10,6 +10,8 @@ description: >
   Manager secrets, encrypted and restored as new resources in any zone or
   project.
 
+technology_image: img/integrations/technology/scaleway.svg
+
 technology_title: Scaleway snapshots, kept as an independent history
 
 technology_description: >

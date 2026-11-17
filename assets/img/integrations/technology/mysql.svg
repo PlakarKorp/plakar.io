@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 460" role="img" aria-label="A MySQL schema migration of four statements: ALTER TABLE orders and DROP TABLE order_items are committed, ALTER TABLE customers fails, CREATE INDEX never runs. Both commits reach the replicas and no ROLLBACK undoes them. Plakar loads the snapshot taken before the migration into a side database, shop_restore, which still holds order_items." font-family="Inter, system-ui, sans-serif" class="w-full h-auto">
+  <defs>
+    <marker id="mysql-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="rgb(82,76,255)"/>
+    </marker>
+  </defs>
+
+  <text x="20" y="26" font-size="15" font-weight="600" fill="rgb(28,28,30)">Schema migration</text>
+  <rect x="20" y="40" width="390" height="208" rx="14" fill="#fff" stroke="rgb(231,230,240)" stroke-width="2"/>
+
+  <g fill="rgb(245,244,251)" stroke="rgb(231,230,240)">
+    <rect x="36" y="58" width="358" height="38" rx="8"/>
+    <rect x="36" y="104" width="358" height="38" rx="8"/>
+  </g>
+  <rect x="36" y="150" width="358" height="38" rx="8" fill="rgb(79,78,102)"/>
+  <rect x="36" y="196" width="358" height="38" rx="8" fill="none" stroke="rgb(160,159,180)" stroke-width="1.5" stroke-dasharray="5 5"/>
+
+  <g font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+    <text x="50" y="82" fill="rgb(79,78,102)">ALTER TABLE orders</text>
+    <text x="50" y="128" fill="rgb(79,78,102)">DROP TABLE order_items</text>
+    <text x="50" y="174" fill="#fff">ALTER TABLE customers</text>
+    <text x="50" y="220" fill="rgb(160,159,180)">CREATE INDEX</text>
+  </g>
+  <g font-size="12" font-weight="600" text-anchor="end">
+    <text x="380" y="81" fill="rgb(79,78,102)">committed</text>
+    <text x="380" y="127" fill="rgb(79,78,102)">committed</text>
+    <text x="380" y="173" fill="#fff">error</text>
+    <text x="380" y="219" fill="rgb(160,159,180)">never runs</text>
+  </g>
+
+  <text x="20" y="276" font-size="13" font-weight="500" fill="rgb(79,78,102)">Both commits reach the replicas. No ROLLBACK undoes them.</text>
+
+  <text x="20" y="318" font-size="15" font-weight="600" fill="rgb(82,76,255)">Plakar</text>
+  <rect x="20" y="332" width="170" height="108" rx="8" fill="rgb(218,217,255)"/>
+  <g font-size="15" font-weight="600" fill="rgb(82,76,255)">
+    <text x="34" y="362">Snapshot before</text>
+    <text x="34" y="382">the migration</text>
+  </g>
+  <text x="34" y="416" font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="rgb(82,76,255)">order_items</text>
+
+  <path d="M190 386 H230" fill="none" stroke="rgb(82,76,255)" stroke-width="2" stroke-linecap="round" stroke-dasharray="5 5" marker-end="url(#mysql-arrow)"/>
+
+  <rect x="240" y="332" width="170" height="108" rx="8" fill="#fff" stroke="rgb(82,76,255)" stroke-width="2"/>
+  <text x="254" y="362" font-size="15" font-weight="600" fill="rgb(82,76,255)">Side database</text>
+  <g font-size="13" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="rgb(82,76,255)">
+    <text x="254" y="392">shop_restore</text>
+    <text x="254" y="416">order_items</text>
+  </g>
+</svg>

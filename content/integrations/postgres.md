@@ -10,16 +10,21 @@ description: >
   encrypted snapshots, self-hosted or managed. Restore one table with
   pg_restore.
 
-technology_title: Replication copies every PostgreSQL mistake to every standby
+technology_image: img/integrations/technology/postgres.svg
+
+technology_title: Get one PostgreSQL table back, keep everything else
 
 technology_description: >
-  Streaming replication keeps standbys in sync within milliseconds, so a dropped
-  table or a bad UPDATE reaches every replica before anyone notices. A backup is
-  the copy that sits outside the cluster, with a history you can go back to.
+  Standbys replay a DROP TABLE within milliseconds. Point-in-time recovery can
+  rewind the cluster, but only if WAL archiving was set up beforehand, and it
+  rewinds the whole cluster to that moment.
 
-  Plakar drives the tools PostgreSQL already ships, pg_dump, pg_dumpall and
-  pg_basebackup, and keeps each run as an encrypted, deduplicated snapshot with
-  a manifest of roles, databases and relations.
+  Plakar keeps each pg_dump run as a snapshot you restore next to production, in
+  a database of its own. You load the lost table back from it, and every other
+  table keeps today's data.
+
+  Any pg_restore reads these snapshots, on a self-hosted server, a managed
+  service or a newer major version.
 
 categories:
   - source
