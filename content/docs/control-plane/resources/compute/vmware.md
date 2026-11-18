@@ -42,7 +42,7 @@ flowchart TD
 
   Source -->|"vSphere API over HTTPS"| VCenter
   VCenter --> VM
-  VM -->|"Disk data: nbd or nfchttp"| Source
+  VM -->|"Disk data: hotadd, nbd or nfchttp"| Source
   Source --> Backup
   Backup --> Store
 {{< /mermaid >}}
@@ -76,17 +76,36 @@ flowchart TD
 
 ## Transport modes
 
-A source app transfers disks in one of two modes, and the mode decides the
+A source app transfers disks in one of three modes, and the mode decides the
 format the disks are stored in.
 
-| Mode      | Disk format           | Transfer                           |
-| --------- | --------------------- | ---------------------------------- |
-| `nbd`     | Raw disk contents     | Streamed over the ESXi NFC socket. |
-| `nfchttp` | Stream-optimized VMDK | Downloaded over vCenter HTTP NFC.  |
+| Mode      | Disk format           | Transfer                                                |
+| --------- | --------------------- | ------------------------------------------------------- |
+| `hotadd`  | Raw disk contents     | Attached to the machine running the job and read there. |
+| `nbd`     | Raw disk contents     | Streamed over the ESXi NFC socket.                      |
+| `nfchttp` | Stream-optimized VMDK | Downloaded over vCenter HTTP NFC.                       |
 
-`nbd` is the default. It replaces the former `vmware+nbd` protocol, and no
-longer needs a separate NBD server. `nfchttp` produces the stream-optimized VMDK
-files earlier versions of the integration produced.
+The default, `auto`, uses `hotadd` when the machine running the job meets the
+[hot-add prerequisites](#hot-add-prerequisites), and `nbd` otherwise. Selecting
+`hotadd` makes the backup fail instead of falling back to `nbd`. Restores use
+`hotadd` under the same conditions, and `nbd` otherwise.
+
+### Hot-add prerequisites
+
+With `hotadd`, the disks of the snapshot are attached to the machine running the
+job, read as local block devices, then detached. This keeps disk data off the
+network. It requires that:
+
+- The job runs on an [edge](../../../edges) that is a virtual machine managed by
+  the same vCenter Server.
+- The user running the edge is in the `disk` group, so it can read block
+  devices.
+- That virtual machine has a SCSI controller with a free slot.
+- The vSphere account has the `VirtualMachine.Config.AddRemoveDevice` privilege
+  on that virtual machine.
+
+The edge cannot back up its own virtual machine over `hotadd`. With `auto`, that
+backup uses `nbd`.
 
 ## Shared configuration
 
@@ -118,8 +137,9 @@ destination apps.
 
 The following extra settings are available when configuring a source app.
 
-- **Transport Mode**: How disks are transferred and stored, either `nbd` or
-  `nfchttp`. Defaults to `nbd`. See [Transport modes](#transport-modes).
+- **Transport Mode**: How disks are transferred and stored, one of `auto`,
+  `hotadd`, `nbd` or `nfchttp`. Defaults to `auto`. See
+  [Transport modes](#transport-modes).
 - **NSX URL**: The NSX manager endpoint address.
 - **NSX Username**: The username used to authenticate with the NSX manager.
   Defaults to **vSphere Username** when omitted.
