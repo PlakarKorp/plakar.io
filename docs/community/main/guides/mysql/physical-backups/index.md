@@ -3,7 +3,7 @@
 
 The MySQL / MariaDB integration only supports logical dumps. Physical backups
 are done by stopping the server and backing up the data directory directly with
-Plakar's built-in filesystem connector.
+Plakar's built-in [filesystem integration](../../../integrations/fs).
 
 Physical backups are faster to restore than logical dumps and capture
 everything: all databases, configuration files, and InnoDB redo logs. They are

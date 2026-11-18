@@ -32,9 +32,10 @@ where Plakar keeps your backups. Think of it like a safe folder for snapshots.
 You can find out more about the concept and rationale behind Kloset in
 [this post on our blog](https://www.plakar.io/posts/2025-04-29/kloset-the-immutable-data-store/).
 
-For our first backup, we will create a local Kloset Store on the filesystem of
-the host OS. In a real backup scenario you would want to store backups on a
-different physical device, so substitute in a better location if you have one.
+For our first backup, we will create a local Kloset Store on the
+[filesystem](../../integrations/fs) of the host OS. In a real backup scenario
+you would want to store backups on a different physical device, so substitute in
+a better location if you have one.
 
 In your terminal, run the following command:
 

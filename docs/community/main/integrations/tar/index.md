@@ -6,8 +6,9 @@ directory structure and metadata are preserved during import, with encryption
 and deduplication applied. This is useful for ingesting legacy backups and
 exported application data into Plakar for versioned tracking and deduplication.
 
-The TAR integration is built into Plakar and requires no additional package
-installation.
+> [!NOTE]
+>
+> The TAR integration is built into Plakar and requires no package installation.
 
 The integration includes one connector:
 

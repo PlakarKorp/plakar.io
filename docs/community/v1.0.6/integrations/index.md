@@ -74,4 +74,8 @@ Below is a list of links to the documentation for each supported integration.
 
 
 
+## [Filesystem](https://www.plakar.io/docs/community/v1.0.6/integrations/fs/index.md)
+
+
+
 

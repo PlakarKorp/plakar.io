@@ -6,8 +6,10 @@ streams. Data can be piped into Plakar from standard input and restored back to
 standard output or standard error, making it easy to integrate Plakar into
 scripts and Unix pipelines.
 
-The STDIO integration is built into Plakar and requires no additional package
-installation.
+> [!NOTE]
+>
+> The STDIO integration is built into Plakar and requires no package
+> installation.
 
 The STDIO integration provides two connectors:
 

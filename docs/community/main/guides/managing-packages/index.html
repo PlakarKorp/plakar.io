@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-04-10T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-18T17:48:28+01:00">
+    <meta property="article:modified_time" content="2026-11-18T23:14:25+03:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -229,7 +229,7 @@
     "dateCreated": "2026-04-10T00:00:00\u002b00:00",
     "datePublished": "2026-04-10T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-18T17:48:28\u002b01:00",
+    "dateModified": "2026-11-18T23:14:25\u002b03:00",
     
     
     
@@ -1514,6 +1514,8 @@
   
     
   
+    
+  
   
 
   
@@ -1842,6 +1844,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         LDAP
+      </a>
+    
+  
+    
+    
+      <a href="/docs/community/main/integrations/fs/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Filesystem
       </a>
     
   
@@ -3666,6 +3677,8 @@
   
     
   
+    
+  
   
 
   
@@ -3994,6 +4007,15 @@
          class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
          ">
         LDAP
+      </a>
+    
+  
+    
+    
+      <a href="/docs/community/main/integrations/fs/"
+         class="block px-2 py-1.5 rounded-lg text-neutral-600 hover:text-primary-500 hover:bg-neutral-100
+         ">
+        Filesystem
       </a>
     
   
@@ -4893,10 +4915,10 @@
 <p>Integration packages extend Plakar with connectors for cloud storage providers,
 databases, and other systems. This guide covers the full lifecycle of a package:
 installing, listing, upgrading, and removing.</p>
-<p>Plakar ships intentionally clean with only base connectors such as the
-filesystem connector. Plakar can be extended using integrations such as S3,
-SFTP, PostgreSQL, or any other integration only when you need it, keeping the
-base install small and dependency-free.</p>
+<p>Plakar ships intentionally clean with only base integrations such as the
+<a href="../../integrations/fs" >filesystem integration</a>. Plakar can be extended using
+integrations such as S3, SFTP, PostgreSQL, or any other integration only when
+you need it, keeping the base install small and dependency-free.</p>
 <p>Integrations are also versioned independently from Plakar itself, so you can pin
 a connector to a specific version or upgrade it without touching the rest of
 your setup.</p>

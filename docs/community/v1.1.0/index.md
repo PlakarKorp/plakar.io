@@ -76,6 +76,7 @@ through `v1.1.8`.
 - [OpenShift](https://www.plakar.io/docs/community/v1.1.0/integrations/openshift/index.md): Back up and restore OpenShift resources, persistent volumes and OpenShift Virtualization virtual machines with Plakar.
 - [SQLite](https://www.plakar.io/docs/community/v1.1.0/integrations/sqlite/index.md): Host a Kloset store in a single SQLite database file.
 - [LDAP](https://www.plakar.io/docs/community/v1.1.0/integrations/ldap/index.md): Back up an LDAP directory with Plakar.
+- [Filesystem](https://www.plakar.io/docs/community/v1.1.0/integrations/fs/index.md): Back up and restore local or mounted filesystems, and keep Kloset stores on them, with Plakar.
 
 
 ## [Explanations](https://www.plakar.io/docs/community/v1.1.0/explanations/index.md)
