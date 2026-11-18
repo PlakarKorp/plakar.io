@@ -13,16 +13,19 @@ Single sign-on lets people sign in to Plakar Control Plane with an account they
 already hold at an identity provider. Any provider that supports OpenID Connect
 can be used, such as Google, Okta, Entra ID, Keycloak or Auth0.
 
-It is configured at two levels:
+Setting it up takes three steps:
 
-- [Control Plane settings](../../operations/control-plane-settings#single-sign-on)
-  hold the providers, which are available to the whole instance.
-- [Organization settings](../organization-settings#single-sign-on) tie email
-  domains to a provider, which decides who signs in with it and which
-  organization they join.
+1. [Set the public URL](#setting-the-public-url) of the organization, so
+   identity providers can reach Plakar Control Plane.
+2. [Add a provider](#adding-a-provider) in the
+   [Control Plane settings](../../operations/control-plane-settings#single-sign-on),
+   under **System**, where it is available to the whole instance.
+3. [Turn single sign-on on](#turning-single-sign-on-on) in the
+   [organization settings](../organization-settings#sign-in-and-ai-agents).
 
-A provider that is added or changed is used from the next sign-in, with no
-restart.
+Email domains are then [assigned](#assigning-email-domains) to the provider, to
+decide who signs in with it and which organization they join. A provider that is
+added or changed is used from the next sign-in, with no restart.
 
 ## Who manages single sign-on
 
@@ -33,19 +36,51 @@ the root organization who can change the
 [Superuser](../permissions/superuser) and
 [Platform Admins](../permissions/platform-admin).
 
-The same rule applies to the email domains of every organization. Only the
-Superuser and Platform Admins can assign domains. An organization admin cannot
-set up the domains of their own organization. Other members cannot view or
-change the providers. Those who can view the organization settings see its
-domains, but cannot change them.
+The same rule applies to the public URL and the email domains of every
+organization, and to the single sign-on switch of the root organization. An
+organization admin cannot set up the domains of their own organization. Other
+members cannot view or change the providers. Those who can view the organization
+settings see its domains, but cannot change them.
+
+## Setting the public URL
+
+Plakar Control Plane does not know the address it is reached at, so single
+sign-on needs the public URL of the instance, such as `https://pcp.example.com`.
+It is set under **Sign-in and AI agents** in the
+[organization settings](../organization-settings#sign-in-and-ai-agents) of the
+root organization, and handed down to every organization below. Single sign-on
+does not work until it is set.
+
+Members sign in at that address, and the redirect URIs of the providers are
+built on it. Single sign-on is not offered when the instance is reached at any
+other address, such as its IP address.
+
+### Separate addresses for organizations
+
+An organization below the root can have its own public URL, such as
+`https://aws.pcp.example.com` for an AWS organization. Each address belongs to
+one organization only. A sign-in at an address only looks at its organization
+and the organizations below it, so the same email domain can be assigned in
+organizations that sign in at different addresses. Each provider lists the
+redirect URI of every address, and all of them must be registered at the
+provider.
+
+Plakar Control Plane tells the addresses apart by the host name of each request,
+and serves plain HTTP. Each address must reach it through the load balancer or
+reverse proxy in front of the instance, which terminates TLS with a certificate
+covering every address and passes the original host name on. For an example on
+Scaleway, see
+[setting up HTTPS access on a Scaleway Private Network](../../guides/scaleway/https-access-to-a-private-network).
 
 ## Adding a provider
 
 Plakar Control Plane is registered at the provider as an OpenID Connect client,
-with the redirect URI `https://<instance>/auth/sso/<id>/callback`, where `<id>`
-is the id chosen for the provider. The `client id` and `secret` the provider
-issues are then entered in Plakar Control Plane, along with the issuer URL of
-the provider, such as `https://accounts.google.com`.
+with the redirect URI `<public URL>/auth/sso/<id>/callback`, where `<id>` is the
+id chosen for the provider. The id cannot be changed later. The client id and
+client secret the provider issues are then entered in Plakar Control Plane,
+along with the issuer URL of the provider, such as
+`https://accounts.google.com`. The name of the provider is shown on its sign-in
+button, and defaults to its id.
 
 {{< figure src="../images/add-sso-provider.png" alt="" class="mx-auto max-w-130" >}}
 
@@ -55,9 +90,21 @@ Plakar Control Plane finds the endpoints of a provider through OpenID Connect
 discovery, from the issuer URL. Discovery can be run against the issuer before
 the provider is saved, and reports why it failed when it does.
 
+## Turning single sign-on on
+
+Single sign-on is off until it is turned on under **Sign-in and AI agents** in
+the [organization settings](../organization-settings#sign-in-and-ai-agents).
+While it is off, nobody can sign in with a provider. Turning it off only pauses
+single sign-on. Nothing is revoked, and the providers and email domains are
+kept. Providers can still be added and prepared while it is off.
+
+The switch is handed down to the organizations below by default. An organization
+that uses the public URL of an organization above it cannot set its own switch,
+and follows the switch of that organization.
+
 ## Changing a provider
 
-Every setting except the id can be changed, and the change applies from the next
+A provider can be edited at any time, and the change applies from the next
 sign-in.
 
 The identity of a person who signed in with a provider is tied to its issuer.
@@ -91,6 +138,11 @@ domain is matched exactly against the part of the email address after the `@`,
 in lowercase. Assigning `example.com` does not cover `eu.example.com`, which
 must be assigned on its own. Domains are not inherited by sub-organizations.
 
+At sign-in, the organization a person joins is the one that assigns their email
+domain to the provider, among the organization of the address they sign in at
+and the organizations below it. The sign-in is refused when none of them assigns
+the domain, or when more than one does.
+
 {{< figure src="../images/sso-email-domain.png" alt="" class="mx-auto max-w-130" >}}
 
 ## Signing in
@@ -102,16 +154,20 @@ A sign-in is accepted only when the provider vouches that the email address is
 verified. Providers that do not report this are refused. The provider setup
 below notes where a provider needs extra configuration for it.
 
-The first sign-in with a provider creates the account. A sign-in with an email
-address that already belongs to an account is refused, so a provider cannot take
-over an existing account. The person links the provider to their account
-instead.
+A person without an account gets one at their first sign-in with a provider. The
+account is created with that provider already linked, and nothing else is
+needed.
+
+A person who already has an account, with an email address and password, must
+[link the provider](#linking-a-provider-to-an-account) to it first. Until then,
+a sign-in with the provider is refused, so a provider cannot take over an
+existing account.
 
 ## Linking a provider to an account
 
-A person who already has an account links a provider to it from their
-**Account** page. From then on, they can sign in with that provider as well as
-with their existing methods.
+A person who already has an account, with an email address and password, links a
+provider to it from their **Account** page. From then on, they can sign in with
+that provider as well as with their existing methods.
 
 A link is accepted only when the account at the provider has the same email
 address, and the person is a member of the organization that assigns that email
