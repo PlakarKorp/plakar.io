@@ -187,6 +187,7 @@ Each integration tells Plakar how to interact with a specific storage system in 
 - [Azure Blob Storage](https://www.plakar.io/docs/community/v1.1.0/integrations/azblob/index.md): Azure Blob Storage containers (store, source, destination).
 - [Google Cloud Storage](https://www.plakar.io/docs/community/v1.1.0/integrations/gcs/index.md): Google Cloud Storage buckets (store, source, destination).
 - [OCI Registry](https://www.plakar.io/docs/community/v1.1.0/integrations/oci/index.md): OCI registry as a Kloset store backend (store).
+- [SQLite](https://www.plakar.io/docs/community/v1.1.0/integrations/sqlite/index.md): Kloset store in a single SQLite database file, for test and demo environments (store).
 - [WebDAV](https://www.plakar.io/docs/community/v1.1.0/integrations/webdav/index.md): WebDAV remotes (source, destination).
 - [FTP](https://www.plakar.io/docs/community/v1.1.0/integrations/ftp/index.md): Remote directories over FTP (source, destination).
 - [SMB / CIFS](https://www.plakar.io/docs/community/v1.1.0/integrations/smb/index.md): SMB shares (source, destination).
@@ -198,6 +199,7 @@ Each integration tells Plakar how to interact with a specific storage system in 
 - [Microsoft Active Directory](https://www.plakar.io/docs/community/v1.1.0/integrations/msad/index.md): Windows System State of Active Directory Domain Controllers (source, destination).
 - [Windows VSS](https://www.plakar.io/docs/community/v1.1.0/integrations/vss/index.md): Live Windows systems through Volume Shadow Copy Service (source, destination).
 - [IMAP](https://www.plakar.io/docs/community/v1.1.0/integrations/imap/index.md): Mailboxes over IMAP (source, destination).
+- [LDAP](https://www.plakar.io/docs/community/v1.1.0/integrations/ldap/index.md): LDAP directory entries, such as OpenLDAP, stored as LDIF (source).
 - [VMware](https://www.plakar.io/docs/community/v1.1.0/integrations/vmware/index.md): VMware vSphere virtual machines (source, destination).
 - [Proxmox](https://www.plakar.io/docs/community/v1.1.0/integrations/proxmox/index.md): Proxmox VMs and containers via vzdump (source, destination).
 - [Scaleway](https://www.plakar.io/docs/community/v1.1.0/integrations/scaleway/index.md): Scaleway instances, block volumes and Secret Manager secrets (source, destination).
@@ -331,6 +333,7 @@ Plakar Control Plane is a self-hosted backup management system built on top of P
 - [File Storage: SMB](https://www.plakar.io/docs/control-plane/resources/file-storage/smb/index.md): SMB shares.
 - [File Storage: NFS](https://www.plakar.io/docs/control-plane/resources/file-storage/nfs/index.md): NFS exports.
 - [Hypervisor: Proxmox](https://www.plakar.io/docs/control-plane/resources/hypervisor/proxmox/index.md): Back up and restore Proxmox VMs and containers.
+- [Identity: LDAP](https://www.plakar.io/docs/control-plane/resources/identity/ldap/index.md): Back up LDAP directories.
 - [Identity: Microsoft Active Directory](https://www.plakar.io/docs/control-plane/resources/identity/msad/index.md): Back up and restore Active Directory Domain Controllers.
 - [Security: Scaleway Secret Manager](https://www.plakar.io/docs/control-plane/resources/security/scaleway-sm/index.md): Back up and restore Scaleway Secret Manager secrets.
 - [Security: HashiCorp Vault](https://www.plakar.io/docs/control-plane/resources/security/vault/index.md): Back up and restore HashiCorp Vault.
@@ -341,7 +344,7 @@ Plakar Control Plane is a self-hosted backup management system built on top of P
 
 - [Overview](https://www.plakar.io/docs/control-plane/apps/index.md): How source, store and destination apps are set up on resources, and where their fields come from.
 - [Source App](https://www.plakar.io/docs/control-plane/apps/sources/index.md): How source apps work.
-- [Store App](https://www.plakar.io/docs/control-plane/apps/stores/index.md): How store apps work, and how to browse restore points.
+- [Store App](https://www.plakar.io/docs/control-plane/apps/stores/index.md): How store apps are created and initialized, integrity checks that verify the objects of a store, and how to browse restore points.
 - [Destination App](https://www.plakar.io/docs/control-plane/apps/destinations/index.md): How destination apps work.
 
 ### Edges
@@ -369,8 +372,11 @@ Plakar Control Plane is a self-hosted backup management system built on top of P
 
 - [Access Control](https://www.plakar.io/docs/control-plane/access-control/index.md): Organizations, users, authentication and permissions.
 - [Managing Organizations](https://www.plakar.io/docs/control-plane/access-control/organizations/index.md): The organization tree, membership, quotas, and switching organizations.
-- [Organization Settings](https://www.plakar.io/docs/control-plane/access-control/organization-settings/index.md): Per-organization authentication, SMTP, Vector, edge enrollment and webhook settings, and how they are handed down.
-- [Managing Users](https://www.plakar.io/docs/control-plane/access-control/users/index.md): Member and application users, and API keys.
+- [Organization Settings](https://www.plakar.io/docs/control-plane/access-control/organization-settings/index.md): Per-organization token lifetimes, two-factor and single sign-on requirements, SMTP, Vector, edge enrollment and webhook settings, and how they are handed down.
+- [Managing Users](https://www.plakar.io/docs/control-plane/access-control/users/index.md): Member and application users.
+- [Member Users](https://www.plakar.io/docs/control-plane/access-control/users/members/index.md): Create member users, the people who sign in to the web interface.
+- [Application Users](https://www.plakar.io/docs/control-plane/access-control/users/applications/index.md): Create application users, and issue, rotate and revoke the API keys automation uses to reach the API.
+- [Single Sign-On](https://www.plakar.io/docs/control-plane/access-control/sso/index.md): Let members sign in through an OpenID Connect provider such as Google, Okta, Entra ID, Keycloak or Auth0.
 - [Two-factor Authentication](https://www.plakar.io/docs/control-plane/access-control/two-factor-authentication/index.md): Secure accounts with two-factor authentication.
 - [Permissions](https://www.plakar.io/docs/control-plane/access-control/permissions/index.md): How access is granted, and what each built-in role can reach.
 
@@ -393,6 +399,7 @@ Plakar Control Plane is a self-hosted backup management system built on top of P
 - [Updating Control Plane on Proxmox](https://www.plakar.io/docs/control-plane/operations/updating/proxmox/index.md): Update the PCP image on Proxmox.
 - [Updating Control Plane on vSphere](https://www.plakar.io/docs/control-plane/operations/updating/vsphere/index.md): Update the PCP installation on vSphere.
 - [Backup and Restore](https://www.plakar.io/docs/control-plane/operations/backup-and-restore/index.md): Back up and restore the PCP configuration and data.
+- [Safe Mode](https://www.plakar.io/docs/control-plane/operations/safe-mode/index.md): Put PCP on hold, stopping all tasks and limiting access to the instance administrators.
 
 ### Appliance
 
