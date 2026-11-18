@@ -1,0 +1,48 @@
+---
+title: "Filesystem"
+date: "2026-11-18T00:00:00Z"
+weight: 37
+summary:
+  "Back up and restore local or mounted filesystems, and keep Kloset stores on
+  them, with Plakar."
+---
+
+# Filesystem
+
+The Filesystem (FS) integration lets Plakar work directly with local or mounted
+filesystems. Files and directories are backed up into a Kloset store and
+restored back to a local or mounted directory. Any filesystem supported by the
+operating system can be used.
+
+> [!NOTE]
+>
+> The FS integration is built into Plakar and requires no package installation.
+
+The integration includes three connectors:
+
+| Connector type            | Description                                          |
+| ------------------------- | ---------------------------------------------------- |
+| **Store connector**       | Host a Kloset store in a local or mounted directory. |
+| **Source connector**      | Back up files and directories into a Kloset store.   |
+| **Destination connector** | Restore a snapshot to a local or mounted directory.  |
+
+## Configuration
+
+| Option     | Required | Description                                                     |
+| ---------- | -------- | --------------------------------------------------------------- |
+| `location` | Yes      | Path to the directory or mount point, for example `/home/user`. |
+
+Paths can be given directly in commands, without the `fs://` prefix.
+
+## Examples
+
+```bash
+# Create a Kloset store in a local directory
+$ plakar at /var/backups create
+
+# Back up a directory
+$ plakar at /var/backups backup /home/user/documents
+
+# Restore a snapshot to a local directory
+$ plakar at /var/backups restore -to /home/user/restored <snapshot_id>
+```

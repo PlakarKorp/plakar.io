@@ -41,7 +41,9 @@ seo_tags:
   - airgapped backup
   - snapshot technology
 
-links: []
+links:
+  - type: community
+    url: /docs/community/main/integrations/fs/
 
 related:
   - nfs
