@@ -46,3 +46,12 @@ $ plakar at /var/backups backup /home/user/documents
 # Restore a snapshot to a local directory
 $ plakar at /var/backups restore -to /home/user/restored <snapshot_id>
 ```
+
+## See also
+
+- [Your first backup](../../quickstart/first-backup)
+- [Creating a Kloset Store](../../guides/create-kloset-repository)
+- [Excluding files from a backup](../../guides/excluding-files-from-a-backup)
+- [MySQL physical backups](../../guides/mysql/physical-backups)
+- [NFS integration](../nfs)
+- [SMB integration](../smb)
