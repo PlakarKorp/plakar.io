@@ -61,8 +61,9 @@ An organization below the root can have its own public URL, such as
 `https://aws.pcp.example.com` for an AWS organization. Each address belongs to
 one organization only. A sign-in at an address only looks at its organization
 and the organizations below it, so the same email domain can be assigned in
-organizations that sign in at different addresses. The redirect URI of each
-address must be registered at the provider.
+organizations that sign in at different addresses. Each provider lists the
+redirect URI of every address, and all of them must be registered at the
+provider.
 
 Plakar Control Plane tells the addresses apart by the host name of each request,
 and serves plain HTTP. Each address must reach it through the load balancer or
@@ -95,7 +96,7 @@ Single sign-on is off until it is turned on under **Sign-in and AI agents** in
 the [organization settings](../organization-settings#sign-in-and-ai-agents).
 While it is off, nobody can sign in with a provider. Turning it off only pauses
 single sign-on. Nothing is revoked, and the providers and email domains are
-kept.
+kept. Providers can still be added and prepared while it is off.
 
 The switch is handed down to the organizations below by default. An organization
 that uses the public URL of an organization above it cannot set its own switch,

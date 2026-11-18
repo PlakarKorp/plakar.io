@@ -15,6 +15,11 @@ That covers
 the log and database exports, the instance license and
 [safe mode](../../../operations/safe-mode).
 
+It also reaches the
+[organization settings](../../organization-settings#sign-in-and-ai-agents) of
+the root organization, where the public URL and single sign-on of the instance
+are set.
+
 It holds no permission in the organization family and no access to any resource
 class, so it administers no organization and cannot read the data an
 organization holds.
