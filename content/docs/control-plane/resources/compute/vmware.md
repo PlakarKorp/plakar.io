@@ -10,10 +10,11 @@ aliases:
 
 # VMware Compute
 
-The VMware integration allows Plakar Control Plane to back up and restore
-virtual machines managed by VMware vSphere. Plakar connects to vCenter through
-the vSphere API to drive each operation, and transfers virtual machine disks
-directly from vSphere without requiring any additional infrastructure.
+VMware Compute resources represent virtual machines managed by VMware vSphere,
+backed up and restored through the `vmware` protocol of the VMware integration.
+Plakar connects to vCenter through the vSphere API to drive each operation, and
+transfers virtual machine disks directly from vSphere without requiring any
+additional infrastructure.
 
 ## Inventory Management
 
@@ -22,6 +23,27 @@ Virtual machines are discovered by the
 vCenter Server and loads its compute instances each time it synchronizes.
 Resources in a VMware inventory are managed by the inventory and cannot be
 created or deleted manually.
+
+## Backup and restore
+
+A backup takes a temporary vSphere snapshot of the virtual machine and reads its
+disks from that snapshot, so the virtual machine keeps running during the
+backup. Alongside the disks, it stores the configuration needed to recreate the
+virtual machine. The snapshot is removed once the backup completes.
+
+A restore replaces the disks of the virtual machine the destination app points
+at with the disks from the restore point, which must have been taken from that
+same virtual machine. A running virtual machine is shut down before the swap and
+started again afterwards. The disks it had before the restore are deleted.
+
+> [!NOTE]
+>
+> Restoring onto the existing virtual machine is currently the only restore mode
+> available in Plakar Control Plane. This is a limitation of the Plakar Control
+> Plane interface only. The VMware integration itself can already restore a
+> backup as a new virtual machine. Until the interface supports it, this restore
+> mode is available through the
+> [community integration](/docs/community/main/integrations/vmware/#how-a-restore-works).
 
 #### Backup flow
 
@@ -170,3 +192,9 @@ The following extra settings are available when configuring a destination app.
   group. Required when Network Adapter Restore Mode is `disconnected`.
 - **Tmp Dir**: The temporary directory used by VDDK and NBDKit during restore
   operations. Defaults to `/home/plakar/tmp`.
+
+> [!NOTE]
+>
+> **Network Adapter Restore Mode** and **Network Recovery Port Group** only
+> apply to a restore as a new virtual machine. They are not used by a restore
+> onto the existing virtual machine.
