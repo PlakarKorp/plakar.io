@@ -11,10 +11,9 @@ aliases:
 
 Organization settings apply to one organization only. Every organization on the
 instance carries its own settings, so changing them affects that organization
-and the resources that belong to it, and nothing else.
-
-Settings that apply to the appliance as a whole, and so to every organization it
-hosts, are [Control Plane settings](../../operations/control-plane-settings).
+and the resources that belong to it, and nothing else. Settings that apply to
+the appliance as a whole, and so to every organization it hosts, are
+[Control Plane settings](../../operations/control-plane-settings).
 
 ## Handing settings down
 
@@ -91,6 +90,32 @@ at the first sign-in. Only the Superuser and Platform Admins can change the
 domains, not the admins of the organization. See
 [who manages single sign-on](../sso#who-manages-single-sign-on). See
 [Single Sign-On](../sso) for how providers are added.
+
+## Sign-in and AI agents
+
+The address members use to reach this organization, and whether they can sign in
+with an identity provider.
+
+### Public URL
+
+The address that members and identity providers reach this organization at, such
+as `https://pcp.example.com`. Single sign-on needs it, because Plakar Control
+Plane does not know the address it is reached at. The public URL is always
+handed down, and an organization below can set its own. Only the
+[Superuser](../permissions/superuser) and
+[Platform Admins](../permissions/platform-admin) can set it. See
+[setting the public URL](../sso#setting-the-public-url).
+
+### Single sign-on
+
+Lets members of this organization sign in with an identity provider. Turning it
+off only pauses single sign-on. Nothing is revoked, and the providers and email
+domains are kept. It is handed down by default, and can be kept to the
+organization or locked, as described in
+[handing settings down](#handing-settings-down). An organization that uses the
+public URL of an organization above it cannot set its own switch, and follows
+the switch of that organization. See
+[turning single sign-on on](../sso#turning-single-sign-on-on).
 
 ## System
 
