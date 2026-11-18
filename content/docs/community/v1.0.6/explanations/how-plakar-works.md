@@ -53,9 +53,9 @@ the
 When you run a backup command, Plakar will use the integration you specified to
 retrieve the content to be backed up.
 
-For example, the built-in filesystem integration will scan the directory you
-specified, and retrieve the content and metadata of the files and directories to
-be backed up.
+For example, the built-in [filesystem integration](../../integrations/fs) will
+scan the directory you specified, and retrieve the content and metadata of the
+files and directories to be backed up.
 
 There are several steps that Plakar (actually, Kloset) will perform to create a
 backup:
