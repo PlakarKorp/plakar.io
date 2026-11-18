@@ -71,6 +71,13 @@ $ plakar at /var/archives/documents.ptar restore -to /home/user/restored <snapsh
 $ plakar at ptar+https://example.com/documents.ptar ls
 ```
 
+To add data to an archive, create a new one that imports the snapshots of the
+existing archive, along with the new files:
+
+```bash
+$ plakar ptar -o /var/archives/documents-v2.ptar -k /var/archives/documents.ptar /home/user/newfile
+```
+
 ## See also
 
 - [plakar ptar](../../references/commands/plakar-ptar)
