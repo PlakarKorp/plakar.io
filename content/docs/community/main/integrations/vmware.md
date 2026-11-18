@@ -241,7 +241,6 @@ virtual machine from the NSX Manager.
 | ------------------------------ | ----------- | ---------------------------------------------------------------------------------------------------------- |
 | `network_adapter_restore_mode` | No          | `preserve`, `disconnected` or `remove`. See [Network adapters](#network-adapters). Defaults to `preserve`. |
 | `network_recovery_port_group`  | Conditional | Port group used by `network_adapter_restore_mode=disconnected`. Required in that mode.                     |
-| `tmp_dir`                      | No          | Local directory used to stage disk data during the restore. Defaults to `/home/plakar/tmp`.                |
 
 ## Examples
 

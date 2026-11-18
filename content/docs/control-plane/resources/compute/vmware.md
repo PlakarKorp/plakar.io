@@ -192,8 +192,6 @@ The following extra settings are available when configuring a destination app.
   to `preserve`.
 - **Network Recovery Port Group**: A compatible recovery or quarantine port
   group. Required when Network Adapter Restore Mode is `disconnected`.
-- **Tmp Dir**: The temporary directory used by VDDK and NBDKit during restore
-  operations. Defaults to `/home/plakar/tmp`.
 
 > [!NOTE]
 >
