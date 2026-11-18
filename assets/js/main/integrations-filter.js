@@ -98,7 +98,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const applySort = (sortBy) => {
     state.sort = sortBy;
     setActive(sortButtons, "sort", sortBy, "aria-pressed");
+    // Plakar and partner integrations come first, community ones after them,
+    // whatever the sort order. Search keeps this order, as it only hides cards.
+    const rank = (card) => (card.dataset.author === "community" ? 1 : 0);
     const sorted = [...cards].sort((a, b) => {
+      if (rank(a) !== rank(b)) return rank(a) - rank(b);
       if (sortBy === "name")
         return (a.dataset.name || "").localeCompare(b.dataset.name || "");
       return parseInt(b.dataset.date, 10) - parseInt(a.dataset.date, 10);
