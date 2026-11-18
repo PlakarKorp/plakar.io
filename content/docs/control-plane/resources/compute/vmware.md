@@ -85,26 +85,32 @@ format the disks are stored in.
 | `nbd`     | Raw disk contents     | Streamed over the ESXi NFC socket.                      |
 | `nfchttp` | Stream-optimized VMDK | Downloaded over vCenter HTTP NFC.                       |
 
-The default, `auto`, uses `hotadd` when the machine running the job meets the
-[hot-add prerequisites](#hot-add-prerequisites), and `nbd` otherwise. Selecting
-`hotadd` makes the backup fail instead of falling back to `nbd`. Restores use
-`hotadd` under the same conditions, and `nbd` otherwise.
+The default, `auto`, uses `hotadd` when the task runs on an edge set up as
+described in
+[Running VMware tasks on an edge](#running-vmware-tasks-on-an-edge), and `nbd`
+otherwise. Selecting `hotadd` makes the backup fail instead of falling back to
+`nbd`. Restores use `hotadd` under the same conditions, and `nbd` otherwise.
 
-### Hot-add prerequisites
+## Running VMware tasks on an edge
 
-With `hotadd`, the disks of the snapshot are attached to the machine running the
-job, read as local block devices, then detached. This keeps disk data off the
-network. It requires that:
+`nbd` and `nfchttp` work wherever a VMware task runs. To use `hotadd`, tasks
+must run on an [edge](../../../edges) that can attach the disks of the virtual
+machines to itself and read them as local block devices. This keeps disk data
+off the network.
 
-- The job runs on an [edge](../../../edges) that is a virtual machine managed by
-  the same vCenter Server.
+Set up the edge hosts of an edge pool as follows:
+
+- Each edge runs in a virtual machine managed by the same vCenter Server.
 - The user running the edge is in the `disk` group, so it can read block
   devices.
 - That virtual machine has a SCSI controller with a free slot.
 - The vSphere account has the `VirtualMachine.Config.AddRemoveDevice` privilege
   on that virtual machine.
 
-The edge cannot back up its own virtual machine over `hotadd`. With `auto`, that
+Then assign the VMware resources to that pool, so their tasks run on those
+edges. See [selecting an edge](../../../edges/running-tasks#selecting-an-edge).
+
+An edge cannot back up its own virtual machine over `hotadd`. With `auto`, that
 backup uses `nbd`.
 
 ## Shared configuration
