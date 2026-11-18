@@ -21,10 +21,9 @@ The TAR integration provides one connector:
 | -------------------- | ----------------------------------------- |
 | **Source connector** | Import a TAR archive into a Kloset store. |
 
-## Installation
-
-The TAR integration is built into Plakar and requires no additional package
-installation.
+> [!NOTE]
+>
+> The TAR integration is built into Plakar and requires no package installation.
 
 ## Configuration
 

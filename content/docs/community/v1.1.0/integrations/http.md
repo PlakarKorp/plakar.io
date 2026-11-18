@@ -24,10 +24,10 @@ The integration includes one connector:
 - An HTTP or HTTPS endpoint serving a Kloset store, for example one exposed by
   `plakar server`.
 
-## Installation
-
-The integration is pre-installed in Plakar `v1.1.0` or later and requires no
-additional setup.
+> [!NOTE]
+>
+> The HTTP(S) integration is built into Plakar and requires no package
+> installation.
 
 ## Configuration
 
