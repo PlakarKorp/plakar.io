@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-05-11T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-18T14:25:53+01:00">
+    <meta property="article:modified_time" content="2026-11-18T17:48:28+01:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -229,12 +229,12 @@
     "dateCreated": "2026-05-11T00:00:00\u002b00:00",
     "datePublished": "2026-05-11T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-18T14:25:53\u002b01:00",
+    "dateModified": "2026-11-18T17:48:28\u002b01:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/apps/stores/",
-    "wordCount":  1063 
+    "wordCount":  1555 
   }]
   </script>
 
@@ -10798,25 +10798,130 @@ found when it is checked, before a restore needs it.</p>
 <p>Object names cannot be verified without decrypting the store. An object replaced
 by another under the same name is caught instead by comparing its HMAC with the
 one recorded at the previous check.</p>
-<p>Integrity checks do not replace a
-<a href="../../scheduling/tasks#check-task" >check task</a>. An integrity check works at a
-lower level. It verifies that each packfile and state matches its own HMAC. A
-check task verifies the restore points themselves: their checksums, their
-indexes and that their file tree can be walked.</p>
+
+
+<h3 id="when-to-use-integrity-checks-and-check-tasks" class="group pr-8">When to use integrity checks and check tasks
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="when-to-use-integrity-checks-and-check-tasks"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Integrity checks and <a href="../../scheduling/tasks#check-task" >check tasks</a> answer
+different questions, and a store usually needs both.</p>
+<p>An integrity check asks whether the storage still holds what was written to it.
+It verifies that each packfile and state matches its own HMAC, one object at a
+time, without reading the restore points. It runs continuously in the
+background, its reads can be capped, and it finds damage done by the storage
+itself, such as a corrupted or replaced object, soon after it happens.</p>
+<p>A check task asks whether a restore point can be restored. It verifies the
+restore points themselves: their checksums, their indexes and that their file
+tree can be walked. It reads and decrypts all the data of the restore points it
+covers, and runs as a job, from a schedule or on demand.</p>
+<p>Use integrity checks to watch the storage of every store. Use check tasks to
+prove that the restore points you depend on are complete, for example by
+checking the latest restore points after each backup with a short check window,
+and the whole store less often.</p>
+
+
+<h3 id="configuring-integrity-checks" class="group pr-8">Configuring integrity checks
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="configuring-integrity-checks"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
 <p>Checks are set per store app, in the <strong>Integrity checks</strong> card of its settings
 or in the <a href="/docs/control-plane/apps/stores/#general" >General step</a> when it is created:</p>
 <ul>
-<li><strong>Interval</strong>: how often each object is checked. A new store is checked every
-day. Stores that existed before integrity checks were introduced have them
-turned off until they are turned on.</li>
-<li><strong>Checked objects</strong>: every object, or a share of the objects at each interval,
-picked at random.</li>
+<li><strong>Interval</strong>: how often each checked object is checked again, from every hour
+to every year. A new store is checked every day. Stores that existed before
+integrity checks were introduced have them turned off until they are turned
+on.</li>
+<li><strong>Checked objects</strong>: every object, or a share of them from 50% down to 1%.</li>
+<li><strong>Order</strong>: which objects a share covers. <strong>Picked at random each interval</strong>
+draws a new sample at each interval. <strong>Oldest first</strong> and <strong>Newest first</strong>
+always cover the objects written first or last.</li>
 <li><strong>Daily read limit</strong>: caps how much the checks download per day. A store
 larger than the limit is checked over several days. There is no limit by
 default.</li>
 </ul>
 <p>Checks start after the first scan of the store. Checks only run on <strong>Standard</strong>
 stores, and are paused on <strong>Cold</strong> and <strong>Offline</strong> ones.</p>
+
+
+<h3 id="choosing-how-much-to-check" class="group pr-8">Choosing how much to check
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="choosing-how-much-to-check"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>Every check downloads the object it verifies. Checking more objects, more often,
+finds damage sooner but reads more from the storage, which can mean egress and
+request costs on a cloud provider and more load on the storage. Weigh how much
+reading the store costs against how long damage may go unnoticed.</p>
+<p>The interval sets how long damage to an object can go unnoticed, until the next
+check of that object finds it. A short interval finds damage quickly, but reads
+the checked objects again each time.</p>
+<p>The daily read limit keeps the cost predictable. A store larger than the limit
+is still checked in full, but over several days, so damage takes longer to find.
+The <strong>Integrity</strong> card shows how long a full cycle takes at the current limit.</p>
+<p>Checking a share of the objects reads less at each interval, at the price of
+certainty. With a random share, each interval checks a different sample, so
+coverage grows over time without ever being complete. At 10% a day, for example,
+about 96% of the objects have been checked at least once after a month. A
+problem that damages many objects, such as a failing disk, shows up in the first
+samples. A single damaged object can go unnoticed for a long time. Checking
+every object is the only way to be sure each one is verified within a known
+time.</p>
+<p><strong>Newest first</strong> checks the objects written by the latest backups, to catch an
+upload that was damaged when being written to the storage. <strong>Oldest first</strong>
+checks the objects that have been in the store the longest. Unlike a random
+share, both always pick from the same end of the store. At 10% newest first, for
+example, only the newest 10% of the objects are ever checked, and the other 90%
+are never checked.</p>
+
+
+<h3 id="monitoring-integrity-checks" class="group pr-8">Monitoring integrity checks
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="monitoring-integrity-checks"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
 <p>The <strong>Integrity</strong> card on the dashboard of the store app shows the status of the
 checks, the current interval, how long a full cycle takes and the share of the
 store checked over a chosen period.</p>
@@ -10966,7 +11071,7 @@ restore. It can also be downloaded whole,
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#creating-a-store-app">Creating a store app</a><ul><li><a href="#general">General</a></li><li><a href="#configuration">Configuration</a></li><li><a href="#review">Review</a></li><li><a href="#changing-the-resource">Changing the resource</a></li></ul></li><li><a href="#testing-and-initializing">Testing and initializing</a></li><li><a href="#integrity-checks">Integrity checks</a></li><li><a href="#store-structure">Store structure</a></li><li><a href="#browsing-restore-points">Browsing restore points</a></li></ul>
+      <ul><li><a href="#creating-a-store-app">Creating a store app</a><ul><li><a href="#general">General</a></li><li><a href="#configuration">Configuration</a></li><li><a href="#review">Review</a></li><li><a href="#changing-the-resource">Changing the resource</a></li></ul></li><li><a href="#testing-and-initializing">Testing and initializing</a></li><li><a href="#integrity-checks">Integrity checks</a><ul><li><a href="#when-to-use-integrity-checks-and-check-tasks">When to use integrity checks and check tasks</a></li><li><a href="#configuring-integrity-checks">Configuring integrity checks</a></li><li><a href="#choosing-how-much-to-check">Choosing how much to check</a></li><li><a href="#monitoring-integrity-checks">Monitoring integrity checks</a></li></ul></li><li><a href="#store-structure">Store structure</a></li><li><a href="#browsing-restore-points">Browsing restore points</a></li></ul>
     </div>
 
     
