@@ -67,6 +67,10 @@
 - [Supervision and Metrics](https://www.plakar.io/docs/control-plane/edges/monitoring/index.md): Health, readiness, and Prometheus metrics endpoints exposed by edges.
 
 
+## [Backup & Restore](https://www.plakar.io/docs/control-plane/backup-and-restore/index.md)
+
+
+
 ## [Scheduling](https://www.plakar.io/docs/control-plane/scheduling/index.md)
 
 - [Scheduled Tasks](https://www.plakar.io/docs/control-plane/scheduling/tasks/index.md): The different types of tasks you can run in Plakar Control Plane.

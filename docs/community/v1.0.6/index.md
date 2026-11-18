@@ -53,6 +53,7 @@
 - [FTP](https://www.plakar.io/docs/community/v1.0.6/integrations/ftp/index.md): Back up remote directories over FTP, and restore snapshots to FTP destinations.
 - [IMAP](https://www.plakar.io/docs/community/v1.0.6/integrations/imap/index.md): Back up and restore mailboxes over IMAP.
 - [Filesystem](https://www.plakar.io/docs/community/v1.0.6/integrations/fs/index.md): Back up and restore local or mounted filesystems, and keep Kloset stores on them, with Plakar.
+- [PTAR](https://www.plakar.io/docs/community/v1.0.6/integrations/ptar/index.md): Package data into a single portable Kloset archive and read it back with Plakar.
 
 
 ## [Explanations](https://www.plakar.io/docs/community/v1.0.6/explanations/index.md)

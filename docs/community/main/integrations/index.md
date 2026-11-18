@@ -162,4 +162,8 @@ Below is a list of links to the documentation for each supported integration.
 
 
 
+## [PTAR](https://www.plakar.io/docs/community/main/integrations/ptar/index.md)
+
+
+
 

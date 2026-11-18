@@ -74,6 +74,7 @@
 - [SQLite](https://www.plakar.io/docs/community/main/integrations/sqlite/index.md): Host a Kloset store in a single SQLite database file.
 - [LDAP](https://www.plakar.io/docs/community/main/integrations/ldap/index.md): Back up an LDAP directory with Plakar.
 - [Filesystem](https://www.plakar.io/docs/community/main/integrations/fs/index.md): Back up and restore local or mounted filesystems, and keep Kloset stores on them, with Plakar.
+- [PTAR](https://www.plakar.io/docs/community/main/integrations/ptar/index.md): Package data into a single portable Kloset archive and read it back with Plakar.
 
 
 ## [Explanations](https://www.plakar.io/docs/community/main/explanations/index.md)

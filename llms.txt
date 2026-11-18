@@ -182,6 +182,7 @@ Plakar Community version is open-source and free to use. Documentation is versio
 Each integration tells Plakar how to interact with a specific storage system in up to three ways: as a **source** (read data to back up), as a **store** (host a Kloset store), or as a **destination** (restore data back to that system).
 
 - [Filesystem](https://www.plakar.io/docs/community/v1.1.0/integrations/fs/index.md): Local and mounted filesystems, built into Plakar (store, source, destination).
+- [PTAR](https://www.plakar.io/docs/community/v1.1.0/integrations/ptar/index.md): Single-file Kloset archives written by `plakar ptar`, read locally or over HTTP(S), built into Plakar (store, read-only).
 - [S3](https://www.plakar.io/docs/community/v1.1.0/integrations/s3/index.md): S3-compatible object storage (store, source, destination).
 - [SFTP](https://www.plakar.io/docs/community/v1.1.0/integrations/sftp/index.md): SFTP/SSH-accessible servers (store, source, destination).
 - [HTTP(S)](https://www.plakar.io/docs/community/v1.1.0/integrations/http/index.md): HTTP/HTTPS endpoint for stores exposed by `plakar server` (store).
@@ -358,6 +359,10 @@ Plakar Control Plane is a self-hosted backup management system built on top of P
 - [Running Tasks](https://www.plakar.io/docs/control-plane/edges/running-tasks/index.md): Run tasks on edges and how PCP selects an edge.
 - [Pre-job and Post-job Hooks](https://www.plakar.io/docs/control-plane/edges/hooks/index.md): Run scripts on an edge before and after a backup or restore.
 - [Supervision and Metrics](https://www.plakar.io/docs/control-plane/edges/monitoring/index.md): Health, readiness, and Prometheus metrics endpoints exposed by edges.
+
+### Backup & Restore
+
+- [Backup & Restore](https://www.plakar.io/docs/control-plane/backup-and-restore/index.md): Back up, restore, check or sync any resource or store of the organization, immediately or on a schedule.
 
 ### Scheduling
 
