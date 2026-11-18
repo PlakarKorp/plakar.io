@@ -136,26 +136,79 @@ Object names cannot be verified without decrypting the store. An object replaced
 by another under the same name is caught instead by comparing its HMAC with the
 one recorded at the previous check.
 
-Integrity checks do not replace a
-[check task](../../scheduling/tasks#check-task). An integrity check works at a
-lower level. It verifies that each packfile and state matches its own HMAC. A
-check task verifies the restore points themselves: their checksums, their
-indexes and that their file tree can be walked.
+### When to use integrity checks and check tasks
+
+Integrity checks and [check tasks](../../scheduling/tasks#check-task) answer
+different questions, and a store usually needs both.
+
+An integrity check asks whether the storage still holds what was written to it.
+It verifies that each packfile and state matches its own HMAC, one object at a
+time, without reading the restore points. It runs continuously in the
+background, its reads can be capped, and it finds damage done by the storage
+itself, such as a corrupted or replaced object, soon after it happens.
+
+A check task asks whether a restore point can be restored. It verifies the
+restore points themselves: their checksums, their indexes and that their file
+tree can be walked. It reads and decrypts all the data of the restore points it
+covers, and runs as a job, from a schedule or on demand.
+
+Use integrity checks to watch the storage of every store. Use check tasks to
+prove that the restore points you depend on are complete, for example by
+checking the latest restore points after each backup with a short check window,
+and the whole store less often.
+
+### Configuring integrity checks
 
 Checks are set per store app, in the **Integrity checks** card of its settings
 or in the [General step](#general) when it is created:
 
-- **Interval**: how often each object is checked. A new store is checked every
-  day. Stores that existed before integrity checks were introduced have them
-  turned off until they are turned on.
-- **Checked objects**: every object, or a share of the objects at each interval,
-  picked at random.
+- **Interval**: how often each checked object is checked again, from every hour
+  to every year. A new store is checked every day. Stores that existed before
+  integrity checks were introduced have them turned off until they are turned
+  on.
+- **Checked objects**: every object, or a share of them from 50% down to 1%.
+- **Order**: which objects a share covers. **Picked at random each interval**
+  draws a new sample at each interval. **Oldest first** and **Newest first**
+  always cover the objects written first or last.
 - **Daily read limit**: caps how much the checks download per day. A store
   larger than the limit is checked over several days. There is no limit by
   default.
 
 Checks start after the first scan of the store. Checks only run on **Standard**
 stores, and are paused on **Cold** and **Offline** ones.
+
+### Choosing how much to check
+
+Every check downloads the object it verifies. Checking more objects, more often,
+finds damage sooner but reads more from the storage, which can mean egress and
+request costs on a cloud provider and more load on the storage. Weigh how much
+reading the store costs against how long damage may go unnoticed.
+
+The interval sets how long damage to an object can go unnoticed, until the next
+check of that object finds it. A short interval finds damage quickly, but reads
+the checked objects again each time.
+
+The daily read limit keeps the cost predictable. A store larger than the limit
+is still checked in full, but over several days, so damage takes longer to find.
+The **Integrity** card shows how long a full cycle takes at the current limit.
+
+Checking a share of the objects reads less at each interval, at the price of
+certainty. With a random share, each interval checks a different sample, so
+coverage grows over time without ever being complete. At 10% a day, for example,
+about 96% of the objects have been checked at least once after a month. A
+problem that damages many objects, such as a failing disk, shows up in the first
+samples. A single damaged object can go unnoticed for a long time. Checking
+every object is the only way to be sure each one is verified within a known
+time.
+
+**Newest first** checks the objects written by the latest backups, to catch an
+upload that was damaged when being written to the storage. **Oldest first**
+checks the objects that have been in the store the longest. Unlike a random
+share, both always pick from the same end of the store. At 10% newest first, for
+example, only the newest 10% of the objects are ever checked, and the other 90%
+are never checked.
+
+### Monitoring integrity checks
 
 The **Integrity** card on the dashboard of the store app shows the status of the
 checks, the current interval, how long a full cycle takes and the share of the
