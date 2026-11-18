@@ -108,7 +108,9 @@ disk data off the network. It requires that:
 
 - Plakar runs inside a virtual machine managed by the same vCenter Server.
 - The user running Plakar is in the `disk` group, so it can read block devices.
-- That virtual machine has a SCSI controller with a free slot.
+- That virtual machine has a SCSI controller with empty slots. Hot-add attaches
+  the disks being transferred to these slots, so add empty slots to it before
+  using `hotadd`.
 - The vSphere account has the `VirtualMachine.Config.AddRemoveDevice` privilege
   on that virtual machine.
 
