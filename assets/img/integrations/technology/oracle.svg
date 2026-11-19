@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 460" role="img" aria-label="The Oracle database server is lost along with the RMAN backups and archived logs in its fast recovery area. A Plakar snapshot taken off the server holds the datafile pieces, every archived log the backup needs, the control file and the spfile, and RMAN rebuilds the container database from it on a new server, opened at the snapshot's SCN." font-family="Inter, system-ui, sans-serif" class="w-full h-auto">
+  <defs>
+    <marker id="ora-arrow-primary" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="rgb(82,76,255)"/>
+    </marker>
+  </defs>
+
+  <text x="20" y="26" font-size="15" font-weight="600" fill="rgb(28,28,30)">Database server</text>
+  <rect x="20" y="40" width="180" height="168" rx="14" fill="#fff" stroke="rgb(231,230,240)" stroke-width="2"/>
+  <rect x="36" y="56" width="148" height="40" rx="8" fill="rgb(245,244,251)" stroke="rgb(231,230,240)"/>
+  <text x="50" y="81" font-size="14" font-weight="600" fill="rgb(160,159,180)">CDB, 3 PDBs</text>
+  <rect x="36" y="106" width="148" height="88" rx="8" fill="rgb(245,244,251)" stroke="rgb(231,230,240)"/>
+  <text x="50" y="128" font-size="13" font-weight="600" fill="rgb(160,159,180)">Recovery area</text>
+  <g font-size="12" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="rgb(160,159,180)">
+    <text x="50" y="152">backup sets</text>
+    <text x="50" y="172">archived logs</text>
+  </g>
+  <g stroke="rgb(160,159,180)" stroke-width="1.5">
+    <line x1="48" y1="148" x2="138" y2="148"/>
+    <line x1="48" y1="168" x2="152" y2="168"/>
+  </g>
+  <text x="20" y="232" font-size="13" font-weight="500" fill="rgb(79,78,102)">Disk lost: backups go with it</text>
+
+  <text x="228" y="26" font-size="15" font-weight="600" fill="rgb(82,76,255)">Plakar snapshot</text>
+  <rect x="228" y="40" width="172" height="200" rx="14" fill="rgb(218,217,255)" stroke="rgb(82,76,255)" stroke-width="2"/>
+  <g font-size="12" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="rgb(28,28,30)">
+    <text x="244" y="70">datafile pieces</text>
+    <text x="244" y="98">archived logs</text>
+    <text x="244" y="126">controlfile_…</text>
+    <text x="244" y="154">spfile_…</text>
+    <text x="244" y="182">.METADATA.json</text>
+  </g>
+  <text x="244" y="216" font-size="12" font-weight="500" fill="rgb(79,78,102)">encrypted, off the server</text>
+
+  <path d="M314 244 V300" fill="none" stroke="rgb(82,76,255)" stroke-width="2" stroke-linecap="round" marker-end="url(#ora-arrow-primary)"/>
+  <text x="324" y="278" font-size="12" font-weight="500" fill="rgb(82,76,255)">RMAN restore</text>
+
+  <text x="20" y="300" font-size="15" font-weight="600" fill="rgb(28,28,30)">New server, same release and SID</text>
+  <rect x="20" y="312" width="380" height="128" rx="14" fill="#fff" stroke="rgb(82,76,255)" stroke-width="2"/>
+  <g font-size="12" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="rgb(79,78,102)">
+    <text x="40" y="344">SET UNTIL SCN 48211907;</text>
+    <text x="40" y="368">RESTORE DATABASE;</text>
+    <text x="40" y="392">RECOVER DATABASE;</text>
+    <text x="40" y="416">ALTER DATABASE OPEN RESETLOGS;</text>
+  </g>
+  <text x="290" y="392" font-size="14" font-weight="600" fill="rgb(82,76,255)">CDB, 3 PDBs</text>
+  <text x="290" y="412" font-size="12" font-weight="500" fill="rgb(79,78,102)">open</text>
+</svg>
