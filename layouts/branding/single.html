@@ -1,8 +1,6 @@
 {{ define "main" }}
 
 {{ $logoCircle := resources.Get "img/branding/logo-circle-white.svg" }}
-{{ $logoMascotBW := resources.Get "img/branding/logo-mascot-bw.svg" }}
-{{ $logoMascotColor := resources.Get "img/branding/logo-mascot-color.svg" }}
 {{ $logoOutlineBlack := resources.Get "img/branding/logo-outline-black.svg" }}
 {{ $logoOutlineWhite := resources.Get "img/branding/logo-outline-white.svg" }}
 {{ $brandKit := resources.Get "img/branding/logo.zip" }}
@@ -85,30 +83,6 @@
               </div>
 
             </div>
-          </div>
-        </div>
-
-        <!-- Logo variants -->
-        <div class="flex flex-col gap-4">
-          <p class="text-neutral-900 text-lg lg:text-2xl font-medium">
-            These variations of the logo can be used when the background is simple or plain color.
-          </p>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {{ with $logoMascotBW }}
-              <div class="p-6 bg-neutral-50 rounded-md border border-neutral-200 flex items-center justify-center">
-                <img src="{{ .RelPermalink }}" alt="Mascot Black & White">
-              </div>
-            {{ end }}
-            {{ with $logoMascotColor }}
-              <div class="p-6 bg-neutral-50 rounded-md border border-neutral-200 flex items-center justify-center">
-                <img src="{{ .RelPermalink }}" alt="Mascot Color">
-              </div>
-            {{ end }}
-            {{ with $logoCircle }}
-              <div class="p-6 bg-neutral-50 rounded-md border border-neutral-200 flex items-center justify-center">
-                <img src="{{ .RelPermalink }}" alt="Circle White Logo">
-              </div>
-            {{ end }}
           </div>
         </div>
 
