@@ -1,7 +1,6 @@
 {{ define "main" }}
 
 {{ $logoCircle := resources.Get "img/branding/logo-circle-white.svg" }}
-{{ $logoOutlineBlack := resources.Get "img/branding/logo-outline-black.svg" }}
 {{ $logoOutlineWhite := resources.Get "img/branding/logo-outline-white.svg" }}
 {{ $brandKit := resources.Get "img/branding/logo.zip" }}
 
@@ -92,7 +91,7 @@
             Use the single-color black or white logo when the background or print process calls for one color.
           </p>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {{ with $logoOutlineBlack }}
+            {{ with $logoCircle }}
               <div class="p-6 bg-neutral-50 rounded-md border border-neutral-200 flex flex-col items-center gap-4">
                 <img src="{{ .RelPermalink }}" alt="Black Logo">
                 <a href="{{ .RelPermalink }}" download class="text-primary-500 underline text-sm font-medium">Download black logo (svg)</a>
