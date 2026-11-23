@@ -100,21 +100,20 @@ with an identity provider.
 
 The address that members and identity providers reach this organization at, such
 as `https://pcp.example.com`. Single sign-on needs it, because Plakar Control
-Plane does not know the address it is reached at. The public URL is always
-handed down, and an organization below can set its own. Only the
-[Superuser](../permissions/superuser) and
+Plane does not know its own address. Organizations below always inherit it, and
+can set their own. Only the [Superuser](../permissions/superuser) and
 [Platform Admins](../permissions/platform-admin) can set it. See
 [setting the public URL](../sso#setting-the-public-url).
 
 ### Single sign-on
 
 Lets members of this organization sign in with an identity provider. Turning it
-off only pauses single sign-on. Nothing is revoked, and the providers and email
-domains are kept. It is handed down by default, and can be kept to the
-organization or locked, as described in
+off only pauses single sign-on. PCP revokes nothing, and keeps the providers and
+email domains. Organizations below inherit it by default. You can also keep it
+to this organization or lock it, as described in
 [handing settings down](#handing-settings-down). An organization that uses the
-public URL of an organization above it cannot set its own switch, and follows
-the switch of that organization. See
+public URL of an organization above it cannot set its own switch. It follows the
+switch of that organization. See
 [turning single sign-on on](../sso#turning-single-sign-on-on).
 
 ## System

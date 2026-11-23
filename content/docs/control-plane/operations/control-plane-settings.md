@@ -72,8 +72,8 @@ documentation.
 
 ### Single sign-on
 
-The identity providers that members can sign in with. Any OpenID Connect
-provider can be added, such as Google, Okta, Entra ID, Keycloak or Auth0. This
+The identity providers that members can sign in with. You can add any OpenID
+Connect provider, such as Google, Okta, Entra ID, Keycloak or Auth0. This
 section is shown only to the members of the root organization who can change
 these settings. The public URL and the single sign-on switch are in the
 [organization settings](../../access-control/organization-settings#sign-in-and-ai-agents)
