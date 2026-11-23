@@ -10,10 +10,11 @@ aliases:
 
 # VMware Compute
 
-The VMware integration allows Plakar Control Plane to back up and restore
-virtual machines managed by VMware vSphere. Plakar connects to vCenter through
-the vSphere API to drive each operation, and transfers virtual machine disks
-directly from vSphere without requiring any additional infrastructure.
+VMware Compute resources represent virtual machines managed by VMware vSphere,
+backed up and restored through the `vmware` protocol of the VMware integration.
+Plakar connects to vCenter through the vSphere API to drive each operation, and
+transfers virtual machine disks directly from vSphere without requiring any
+additional infrastructure.
 
 ## Inventory Management
 
@@ -22,6 +23,27 @@ Virtual machines are discovered by the
 vCenter Server and loads its compute instances each time it synchronizes.
 Resources in a VMware inventory are managed by the inventory and cannot be
 created or deleted manually.
+
+## Backup and restore
+
+A backup takes a temporary vSphere snapshot of the virtual machine and reads its
+disks from that snapshot, so the virtual machine keeps running during the
+backup. Alongside the disks, it stores the configuration needed to recreate the
+virtual machine. The snapshot is removed once the backup completes.
+
+A restore replaces the disks of the virtual machine the destination app points
+at with the disks from the restore point, which must have been taken from that
+same virtual machine. A running virtual machine is shut down before the swap and
+started again afterwards. The disks it had before the restore are deleted.
+
+> [!NOTE]
+>
+> Restoring onto the existing virtual machine is currently the only restore mode
+> available in Plakar Control Plane. This is a limitation of the Plakar Control
+> Plane interface only. The VMware integration itself can already restore a
+> backup as a new virtual machine. Until the interface supports it, this restore
+> mode is available through the
+> [community integration](/docs/community/main/integrations/vmware/#how-a-restore-works).
 
 #### Backup flow
 
@@ -42,7 +64,7 @@ flowchart TD
 
   Source -->|"vSphere API over HTTPS"| VCenter
   VCenter --> VM
-  VM -->|"Disk data: nbd or nfchttp"| Source
+  VM -->|"Disk data: hotadd, nbd or nfchttp"| Source
   Source --> Backup
   Backup --> Store
 {{< /mermaid >}}
@@ -76,17 +98,44 @@ flowchart TD
 
 ## Transport modes
 
-A source app transfers disks in one of two modes, and the mode decides the
+A source app transfers disks in one of three modes, and the mode decides the
 format the disks are stored in.
 
-| Mode      | Disk format           | Transfer                           |
-| --------- | --------------------- | ---------------------------------- |
-| `nbd`     | Raw disk contents     | Streamed over the ESXi NFC socket. |
-| `nfchttp` | Stream-optimized VMDK | Downloaded over vCenter HTTP NFC.  |
+| Mode      | Disk format           | Transfer                                                |
+| --------- | --------------------- | ------------------------------------------------------- |
+| `hotadd`  | Raw disk contents     | Attached to the machine running the job and read there. |
+| `nbd`     | Raw disk contents     | Streamed over the ESXi NFC socket.                      |
+| `nfchttp` | Stream-optimized VMDK | Downloaded over vCenter HTTP NFC.                       |
 
-`nbd` is the default. It replaces the former `vmware+nbd` protocol, and no
-longer needs a separate NBD server. `nfchttp` produces the stream-optimized VMDK
-files earlier versions of the integration produced.
+The default, `auto`, uses `hotadd` when the task runs on an edge set up as
+described in
+[Running VMware tasks on an edge](#running-vmware-tasks-on-an-edge), and `nbd`
+otherwise. Selecting `hotadd` makes the backup fail instead of falling back to
+`nbd`. Restores use `hotadd` under the same conditions, and `nbd` otherwise.
+
+## Running VMware tasks on an edge
+
+`nbd` and `nfchttp` work wherever a VMware task runs. To use `hotadd`, tasks
+must run on an [edge](../../../edges) that can attach the disks of the virtual
+machines to itself and read them as local block devices. This keeps disk data
+off the network.
+
+Set up the edge hosts of an edge pool as follows:
+
+- Each edge runs in a virtual machine managed by the same vCenter Server.
+- The user running the edge is in the `disk` group, so it can read block
+  devices.
+- That virtual machine has a SCSI controller with empty slots. Hot-add attaches
+  the disks being transferred to these slots, so add empty slots to it before
+  using `hotadd`.
+- The vSphere account has the `VirtualMachine.Config.AddRemoveDevice` privilege
+  on that virtual machine.
+
+Then assign the VMware resources to that pool, so their tasks run on those
+edges. See [selecting an edge](../../../edges/running-tasks#selecting-an-edge).
+
+An edge cannot back up its own virtual machine over `hotadd`. With `auto`, that
+backup uses `nbd`.
 
 ## Shared configuration
 
@@ -118,8 +167,9 @@ destination apps.
 
 The following extra settings are available when configuring a source app.
 
-- **Transport Mode**: How disks are transferred and stored, either `nbd` or
-  `nfchttp`. Defaults to `nbd`. See [Transport modes](#transport-modes).
+- **Transport Mode**: How disks are transferred and stored, one of `auto`,
+  `hotadd`, `nbd` or `nfchttp`. Defaults to `auto`. See
+  [Transport modes](#transport-modes).
 - **NSX URL**: The NSX manager endpoint address.
 - **NSX Username**: The username used to authenticate with the NSX manager.
   Defaults to **vSphere Username** when omitted.
@@ -142,5 +192,9 @@ The following extra settings are available when configuring a destination app.
   to `preserve`.
 - **Network Recovery Port Group**: A compatible recovery or quarantine port
   group. Required when Network Adapter Restore Mode is `disconnected`.
-- **Tmp Dir**: The temporary directory used by VDDK and NBDKit during restore
-  operations. Defaults to `/home/plakar/tmp`.
+
+> [!NOTE]
+>
+> **Network Adapter Restore Mode** and **Network Recovery Port Group** only
+> apply to a restore as a new virtual machine. They are not used by a restore
+> onto the existing virtual machine.
