@@ -28,7 +28,10 @@ import (
 
 const repoURL = "https://github.com/PlakarKorp/plakar.git"
 
-var manPage = regexp.MustCompile(`\.[1-9]$`)
+var (
+	manPage      = regexp.MustCompile(`\.[1-9]$`)
+	validVersion = regexp.MustCompile(`^(main|v[0-9]+\.[0-9]+\.[0-9]+)$`)
+)
 
 func main() {
 	log.SetFlags(0)
@@ -56,36 +59,44 @@ func main() {
 	if tag == "" {
 		tag = version
 	}
+	if !validVersion.MatchString(version) {
+		log.Fatalf("version %q must be main or vX.Y.Z", version)
+	}
 	if *out == "" {
 		*out = filepath.Join(*root, "content", "docs", "community", version, "references", "commands")
 	}
 
-	if *src == "" {
+	if err := update(*root, *src, *out, version, tag, *format); err != nil {
+		log.Fatal(err)
+	}
+}
+
+func update(root, src, out, version, tag string, format bool) error {
+	if src == "" {
 		tmp, err := os.MkdirTemp("", "update-cli-doc-")
 		if err != nil {
-			log.Fatal(err)
+			return err
 		}
 		defer os.RemoveAll(tmp)
 		if err := run("", "git", "clone", "--depth", "1", "-b", tag, repoURL, tmp); err != nil {
-			log.Fatalf("clone failed for tag %q: %v", tag, err)
+			return fmt.Errorf("clone failed for tag %q: %w", tag, err)
 		}
-		*src = tmp
+		src = tmp
 	}
 
-	if err := generate(*src, *out, version, tag); err != nil {
-		log.Fatal(err)
+	if err := generate(src, out, version, tag); err != nil {
+		return err
 	}
 
-	if *format {
-		log.Printf("formatting generated documentation for %s", version)
-		abs, err := filepath.Abs(*out)
-		if err != nil {
-			log.Fatal(err)
-		}
-		if err := run(*root, "npx", "--no-install", "prettier", "--write", abs); err != nil {
-			log.Fatal(err)
-		}
+	if !format {
+		return nil
 	}
+	log.Printf("formatting generated documentation for %s", version)
+	abs, err := filepath.Abs(out)
+	if err != nil {
+		return err
+	}
+	return run(root, "npx", "--no-install", "prettier", "--write", abs)
 }
 
 func generate(src, out, version, tag string) error {
