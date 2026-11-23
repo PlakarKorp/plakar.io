@@ -43,7 +43,7 @@ jobs:
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
         with:
           path: site
-          sparse-checkout: scripts/update-cli-doc
+          sparse-checkout: scripts
           persist-credentials: false
 
       - name: Checkout plakar
@@ -57,16 +57,16 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@d8cbb8045d7f43706b9177cceb36c1f91a6644d5 # v7.1.0
         with:
-          go-version-file: site/scripts/update-cli-doc/go.mod
+          go-version-file: site/scripts/go.mod
           cache: false
 
       - name: Build generator for OpenBSD
-        working-directory: site/scripts/update-cli-doc
+        working-directory: site/scripts
         env:
           GOOS: openbsd
           GOARCH: amd64
           CGO_ENABLED: "0"
-        run: go build -o "$GITHUB_WORKSPACE/update-cli-doc" .
+        run: go build -o "$GITHUB_WORKSPACE/update-cli-doc" ./update-cli-doc
 
       - name: Start OpenBSD
         uses: cross-platform-actions/action@30cde56b87a128507bebea9531205087890ee360 # v1.8.0

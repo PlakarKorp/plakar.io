@@ -119,7 +119,7 @@ renders the man pages on OpenBSD and opens a pull request. To run it locally
 instead, from the repository root:
 
 ```sh
-(cd scripts/update-cli-doc && go build -o /tmp/update-cli-doc .)
+(cd scripts && go build -o /tmp/update-cli-doc ./update-cli-doc)
 /tmp/update-cli-doc <version> <git-tag>
 ```
 
