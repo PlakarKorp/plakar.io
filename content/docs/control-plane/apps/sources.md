@@ -49,7 +49,8 @@ The **Dashboard** tab of the app creates a backup task from the source with
 The **Restore points** tab lists the restore points available for the source. A
 restore point can be opened to view its files and download individual files
 without a full restore. It can also be downloaded whole,
-[checked](../../scheduling/tasks/#check-task), or placed under a
-[legal hold](../compliance/legal-hold).
+[checked](../../scheduling/tasks/#check-task), placed under a
+[legal hold](../compliance/legal-hold), or
+[pruned](../stores#pruning-restore-points).
 
 ![](../images/browse-source.png)
