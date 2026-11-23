@@ -26,7 +26,7 @@ Avoid:
 
 Good:
 
-> An edge executes tasks on behalf of the Control Plane, from a network where
+> An edge executes tasks on behalf of Plakar Control Plane, from a network where
 > the protected resources are reachable.
 
 Avoid:
@@ -34,9 +34,32 @@ Avoid:
 > Edges are a powerful and flexible way to bring backup execution closer to your
 > data.
 
-Technical does not mean verbose. Write "PCP refuses the task when no matching
-edge is available", not "In the event that no suitable edge executor can be
-identified, the Control Plane will be unable to proceed".
+## Voice and sentences
+
+- Use the active voice by default. Use the passive voice only when the actor is
+  unknown or irrelevant, or when it clearly improves clarity. "Can be" is
+  passive too: write "you can pick a store", not "a store can be picked".
+- Use the present tense. Describe what the system does, not what it will do or
+  what was done.
+- One idea per sentence. Name the actor first, then what it does. Rewrite any
+  sentence over about 25 words, or with more than one clause starting with
+  _which_, _that_ or _among_.
+- Address the reader as "you" in procedures and sign-in flows. Name the role,
+  such as "a Superuser" or "members", when a permission depends on it. Do not
+  switch between "a person", "people" and "users" for the same reader.
+- Call the product "Plakar Control Plane" on its first mention in a page, then
+  "PCP" or "Plakar Control Plane". Never "the Control Plane" alone.
+
+Good:
+
+> With hotadd, Plakar attaches the disks of the snapshot to the virtual machine
+> it runs in, reads them as local block devices, then detaches them.
+
+Avoid:
+
+> At sign-in, the organization a person joins is the one that assigns their
+> email domain to the provider, among the organization of the address they sign
+> in at and the organizations below it.
 
 ## Explain the system, not the interface
 
@@ -60,7 +83,11 @@ supported types.
 
 ## Keep it short
 
-- Write less. When unsure whether a detail belongs, leave it out.
+- Write less. When unsure whether a detail belongs, leave it out. Write "PCP
+  refuses the task when no matching edge is available", not "In the event that
+  no suitable edge executor can be identified, the Control Plane will be unable
+  to proceed".
+- Do not state what the reader already knows, such as the format of a URL.
 - Every sentence adds information. Never state a fact twice on a page.
 - Prefer one paragraph to several, and a paragraph to a table for settings.
   Mention only what the reader must supply and what is not obvious.
@@ -99,6 +126,14 @@ system stores it.
 The snapshot stays because it appears in vCenter. The OVF descriptor, VMX file
 and temporary clone describe how the connector works, so they do not.
 
+## Recurring wording
+
+- In link text, say "integration", not "connector": "the
+  [filesystem integration](../fs)".
+- Built-in integrations carry this note instead of an Installation section:
+  `> [!NOTE]` "The X integration is built into Plakar and requires no package
+  installation."
+
 ## Permissions
 
 Name the roles that can perform a restricted action, such as the Superuser and
@@ -124,3 +159,13 @@ goal-oriented and assume the concepts are known.
 A feature page usually follows: what it is and why it exists, how it behaves,
 how to configure it, requirements and limitations, links to related concepts.
 Skip sections the feature does not need.
+
+## Before handing back a page
+
+Reread the page and fix:
+
+- passive constructions, including "can be", that have a known actor
+- sentences over about 25 words
+- a fact stated twice
+- details the reader already knows or can see on screen
+- semicolons and em dashes
