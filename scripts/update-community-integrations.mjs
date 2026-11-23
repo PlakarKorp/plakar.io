@@ -2,10 +2,13 @@
 
 import { execFileSync } from "node:child_process";
 import { writeFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 
 const HUB = "PlakarKorp/hub";
 const TIER = "community";
-const OUTPUT = "data/community-integrations.json";
+const OUTPUT = fileURLToPath(
+  new URL("../data/community-integrations.json", import.meta.url),
+);
 const DIST = "https://plakar.io/dist/plugins/kloset";
 
 // Maintainers whose integrations are listed as Plakar or partner integrations.
