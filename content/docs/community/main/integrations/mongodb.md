@@ -31,10 +31,9 @@ Each protocol matches one of the two MongoDB connection string formats:
 - `mongosh`, `mongodump`, and `mongorestore` available in `$PATH` on the machine
   running Plakar. `mongosh` checks that the server answers before a backup or a
   restore, `mongodump` runs the backup and `mongorestore` the restore.
-- A MongoDB user defined in the `admin` database. Plakar passes no
-  authentication database, so the tools authenticate against `admin`. The
-  built-in `backup` role covers a backup of every database, and the built-in
-  `restore` role covers a restore.
+- A MongoDB user. The built-in `backup` role covers a backup of every database,
+  and the built-in `restore` role covers a restore. See
+  [Authentication](#authentication) for where the user is defined.
 
 ## Installation
 
@@ -127,6 +126,8 @@ connectors.
 | `tls_client_cert`      | No       | Path to a PEM file containing a client certificate and key for mTLS authentication.                                                                   |
 | `tls_client_cert_data` | No       | Inline PEM content of a client certificate for mTLS authentication. Alternative to `tls_client_cert`.                                                 |
 | `tls_client_key_data`  | No       | Inline PEM content of the client key for mTLS authentication. Must be set together with `tls_client_cert_data`. Setting only one of them is an error. |
+| `auth_database`        | No       | Database that holds the user's credentials. See [Authentication](#authentication).                                                                    |
+| `database`             | No       | Source only. Back up this database instead of the whole server. See [Backing up a single database](#backing-up-a-single-database).                    |
 
 > [!TIP]+ Inline certificates
 >
@@ -135,6 +136,19 @@ connectors.
 > configuration, which is useful when the certificates are not stored as files
 > on that machine. Set either a path or its `_data` variant, not both. Setting
 > both is rejected as ambiguous.
+
+### Authentication
+
+The MongoDB tools authenticate the user against a database:
+
+- With `username` and `password`, they use SCRAM and look the user up in
+  `database` when it is set, and in `admin` otherwise.
+- With an external mechanism such as `MONGODB-X509`, they look the user up in
+  `$external`. With `MONGODB-X509`, the client certificate identifies the user,
+  and no username or password is needed.
+
+Set `auth_database` when the user is defined in another database, such as a user
+created in `admin` that backs up a single database.
 
 ## 1. `mongodb` protocol
 
@@ -292,6 +306,27 @@ $ plakar destination add my-atlas-restore \
 $ plakar at /var/backups restore -to "@my-atlas-restore" <snapshot_id>
 ```
 
+## Backing up a single database
+
+By default, a backup dumps every database, including `admin`, so the user needs
+read access to `admin`. Set `database` on the source to back up a single
+database instead. The user then only needs the built-in `read` role on that
+database.
+
+A user created in that database needs nothing else. A user created in `admin`
+also needs `auth_database=admin`, otherwise authentication fails.
+
+```bash
+$ plakar source add shop \
+  location=mongodb://db.example.com \
+  database=shop \
+  username=shop_reader \
+  password=<YOUR_PASSWORD>
+```
+
+A restore loads whatever the snapshot holds, so this snapshot restores only the
+`shop` database.
+
 ## Snapshot contents
 
 A backup runs `mongodump --archive` against the server and streams its output
@@ -299,6 +334,7 @@ into the snapshot, without writing a temporary file on the machine running
 Plakar. Each snapshot holds a single file, `/mongodb-backup.bson`, a standard
 `mongodump` archive. It contains every database the user can read, except
 `local`, with the index definitions, and the users and roles defined in `admin`.
+With `database`, it contains only that database.
 
 ## Restoring a single collection
 
