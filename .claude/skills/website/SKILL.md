@@ -43,6 +43,11 @@ Load images, icons and CSS with `resources.Get`, never a hardcoded path such as
 | `content/posts/<date>/`                     | Blog posts, authors in `data/authors/`                                                          |
 | `content/download/<version>.md`             | One page per release, patch releases included                                                   |
 
+### Front matter and links
+
+- Set `date` no later than today in UTC. Hugo skips pages dated in the future,
+  so they silently disappear from the build and the link check.
+
 The version selector is built from the directories under
 `content/docs/community/` and ordered by `weight` in each version's `_index.md`.
 
