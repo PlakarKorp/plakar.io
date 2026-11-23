@@ -64,20 +64,20 @@ chart release.
 
 The main values for an edge deployment are:
 
-| Value                          | Default                          | Description                                                                                     |
-| ------------------------------ | -------------------------------- | ----------------------------------------------------------------------------------------------- |
-| `controlPlane`                 | `""`                             | Base URL of the Plakar Control Plane. Required.                                                 |
-| `poolEnrollKey.secretName`     | `""`                             | Existing Secret containing the edge pool enrollment key. Required.                              |
-| `poolEnrollKey.secretKey`      | `pool-enroll-key`                | Key containing the edge pool enrollment key inside the Secret.                                  |
-| `replicaCount`                 | `1`                              | Number of independent edges to run.                                                             |
-| `pollHold`                     | `""`                             | Long-poll duration. An empty value uses the binary default.                                     |
-| `persistence.size`             | `5Gi`                            | Storage allocated to each edge.                                                                 |
-| `persistence.storageClassName` | `""`                             | StorageClass used for the edge volume. An empty value uses the cluster default.                 |
-| `persistence.mountPath`        | `/data`                          | Mount point for the edge's persistent data.                                                     |
-| `image.repository`             | `ghcr.io/plakarkorp/plakar-edge` | Edge container image repository.                                                                |
-| `image.tag`                    | `""`                             | Edge image tag. An empty value uses the chart's application version.                            |
-| `scripts.configMapName`        | `""`                             | Existing ConfigMap whose entries are the [hook scripts](../../hooks). Empty refuses every hook. |
-| `scripts.mountPath`            | `/scripts`                       | Mount point of the hook scripts, passed to the edge as `-scripts-dir`.                          |
+| Value                          | Default                          | Description                                                                                                 |
+| ------------------------------ | -------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `controlPlane`                 | `""`                             | Base URL of the Plakar Control Plane. Required.                                                             |
+| `poolEnrollKey.secretName`     | `""`                             | Existing Secret containing the edge pool enrollment key. Required.                                          |
+| `poolEnrollKey.secretKey`      | `pool-enroll-key`                | Key containing the edge pool enrollment key inside the Secret.                                              |
+| `replicaCount`                 | `1`                              | Number of independent edges to run.                                                                         |
+| `pollHold`                     | `""`                             | Long-poll duration. An empty value uses the binary default.                                                 |
+| `persistence.size`             | `5Gi`                            | Storage allocated to each edge. It holds the edge state, its packages and the packfiles of running backups. |
+| `persistence.storageClassName` | `""`                             | StorageClass used for the edge volume. An empty value uses the cluster default.                             |
+| `persistence.mountPath`        | `/data`                          | Mount point for the edge's persistent data.                                                                 |
+| `image.repository`             | `ghcr.io/plakarkorp/plakar-edge` | Edge container image repository.                                                                            |
+| `image.tag`                    | `""`                             | Edge image tag. An empty value uses the chart's application version.                                        |
+| `scripts.configMapName`        | `""`                             | Existing ConfigMap whose entries are the [hook scripts](../../hooks). Empty refuses every hook.             |
+| `scripts.mountPath`            | `/scripts`                       | Mount point of the hook scripts, passed to the edge as `-scripts-dir`.                                      |
 
 The chart also supports standard Kubernetes scheduling and resource settings
 such as `resources`, `serviceAccount`, `nodeSelector`, `tolerations`, and
