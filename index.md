@@ -79,7 +79,7 @@
 
 - [Scaleway](https://www.plakar.io/integrations/scaleway/index.md): Free, agentless Scaleway backup of Instances, Block Storage volumes and Secret Manager secrets, encrypted and restored as new resources in any zone or project.
 
-- [OVHcloud](https://www.plakar.io/integrations/ovhcloud/index.md): Manage OVHcloud Public Cloud from Plakar Control Plane end to end. Discover compute instances, block storage volumes, and object storage automatically, manage secrets through OVHcloud's own secret store, and protect resources with encrypted, deduplicated backups and restores.
+- [OVHcloud](https://www.plakar.io/integrations/ovhcloud/index.md): Back up OVHcloud Public Cloud instances with their Cinder volumes into an encrypted store, restore them in any region and discover every project of the account.
 
 - [Plakar Control Plane](https://www.plakar.io/integrations/pcp/index.md): Protect the Plakar Control Plane appliance against hardware failure, misconfiguration, or a full appliance replacement. Plakar backs up its own configuration and internal database into an encrypted, deduplicated Kloset snapshot.
 
