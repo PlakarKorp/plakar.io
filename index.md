@@ -6,6 +6,7 @@
 
 ## [Plakar Blog](https://www.plakar.io/posts/index.md)
 
+- [Backup for Freedom: OVHcloud Backup Center runs on Plakar](https://www.plakar.io/posts/2026-11-20/ovhcloud-backup-center-plakar/index.md): OVHcloud presented Backup Center at its AI Summit: native backup for Public Cloud, built on the open-source Plakar engine. Managed Kubernetes comes first, with a free Beta and general availability in early 2027.
 - [How to backup and restore PVCs with the Kubernetes Operator](https://www.plakar.io/posts/2026-11-17/backup-restore-pvcs-kubernetes-operator-walkthrough/index.md): An 18-minute walkthrough of the Plakar Kubernetes Operator: WordPress and MariaDB on EKS, backed up to S3 and restored, every step declared in YAML.
 - [Free backup for KubeVirt VMs and OpenShift](https://www.plakar.io/posts/2026-10-28/free-backup-for-kubevirt-and-openshift/index.md): Plakar&rsquo;s Kubernetes integration now backs up KubeVirt VMs: every disk plus the VM manifest, in one consistent snapshot. On OpenShift, a new openshift package keeps restores from doing things you didn&rsquo;t ask for. Both are free.
 - [Take a Glance: Plakar's OpenStack backup is now free in Plakar Community](https://www.plakar.io/posts/2026-10-22/backing-up-openstack-with-plakar/index.md): Plakar&rsquo;s OpenStack backup is now free in Plakar Community (OSS): back up and restore Cinder volumes and Nova servers through the OpenStack APIs. No agent. Encrypted and deduplicated.

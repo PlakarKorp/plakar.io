@@ -4,6 +4,10 @@
 
 
 
+## [Backup for Freedom: OVHcloud Backup Center runs on Plakar](https://www.plakar.io/posts/2026-11-20/ovhcloud-backup-center-plakar/index.md)
+
+
+
 ## [How to backup and restore PVCs with the Kubernetes Operator](https://www.plakar.io/posts/2026-11-17/backup-restore-pvcs-kubernetes-operator-walkthrough/index.md)
 
 
