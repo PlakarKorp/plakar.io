@@ -42,10 +42,10 @@ picks an edge, and what happens when none is available, is described in
 
 ## Creating and managing pools
 
-Pools are created on the **Pools** tab of **Infrastructure > Edges**. Each pool
-has its own enrollment key. An edge that presents this key on its first
-connection is enrolled into the organization and placed in the pool in the same
-step.
+You create pools on the **Pools** tab of **Infrastructure > Edges**, the tab the
+page opens on. Each pool has its own enrollment key. An edge that presents this
+key on its first connection is enrolled into the organization and placed in the
+pool in the same step.
 
 The key is shown only once, when it is generated. A pool has one key at a time,
 so generating a new one invalidates the previous one. Closing enrollment removes
@@ -61,6 +61,32 @@ An edge can be moved to another pool of the same organization, by adding it to
 that pool. It cannot be taken out of its pool, since every edge belongs to one.
 A child organization can only move or add its own edges. The edges of a pool
 shared by an organization above it cannot be moved or added to its pools.
+
+## Organization enrollment key
+
+Besides the keys of its pools, an organization has its own enrollment key, under
+**Edge enrollment** in the
+[organization settings](../../access-control/organization-settings#edge-enrollment).
+An edge that enrolls with it joins the organization's default pool. Unlike a
+pool key, you can show this key again after it is generated.
+
+Regenerating the key or closing enrollment stops new edges from enrolling with
+the old key. It does not affect pool keys or the edges that already enrolled.
+
+The key is
+[handed down](../../access-control/organization-settings#handing-settings-down)
+like other settings. An edge that enrolls with a key inherited from an
+organization above joins the default pool of that organization. Organizations
+below can only use its edges if that pool is
+[shared with them](#sharing-pools-with-child-organizations).
+
+> [!NOTE]
+>
+> Edges enrolled with an inherited key belong to the organization that owns the
+> key, not to the organization that enrolled them. Once that organization stops
+> sharing its default pool, organizations below can no longer see or use those
+> edges. To keep control of its edges, an organization below sets its own key or
+> uses the key of one of its pools.
 
 ## Sharing pools with child organizations
 
