@@ -108,8 +108,8 @@ destination apps.
 - **Conn Username**: The Proxmox SSH username used in remote mode.
 - **Conn Password**: The password used when **Conn Method** is set to password
   authentication.
-- **Conn Identity File**: The path to the private key used when **Conn Method**
-  is set to identity authentication.
+- **Conn Identity Key**: The content of the SSH private key used when **Conn
+  Method** is set to identity authentication.
 - **Dump Dir**: The directory on the node used to create and read `vzdump`
   archives. Defaults to `/var/lib/vz/dump`. This directory needs enough free
   space to hold the archive of the largest workload being backed up or restored.
