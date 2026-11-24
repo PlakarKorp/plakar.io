@@ -11,7 +11,9 @@ aliases:
 
 Last update on: 01/01/2026
 
-{{< alert >}} **The Bounty Program is temporarily on hold.**
+{{< alert >}}
+
+**The Bounty Program is temporarily on hold.**
 
 Ever since Anthropic started releasing security-capable models, we have been
 flooded with **automated reports from AI agents** scanning our codebase and
@@ -52,7 +54,9 @@ automated triage, deduplication and qualification, escalating reports to humans
 when necessary.
 
 Work is already underway to build the tooling that will allow us to reopen the
-program under sustainable conditions. {{< /alert >}}
+program under sustainable conditions.
+
+{{< /alert >}}
 
 ## 1. Objective and Economic Interest
 
