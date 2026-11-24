@@ -48,7 +48,7 @@
             <div class="ml-4 text-xs font-mono text-neutral-500">Plakar Control Plane</div>
           </div>
           <div class="p-2 md:p-4">
-            <img src="{{ $dashboardEnterprise1.RelPermalink }}" alt="Plakar Control Plane Dashboard" class="w-full h-auto rounded shadow-lg opacity-90">
+            {{ partial "components/image.html" (dict "resource" $dashboardEnterprise1 "alt" "Plakar Control Plane Dashboard" "class" "w-full h-auto rounded shadow-lg opacity-90") }}
           </div>
         </div>
       </div>
@@ -247,7 +247,7 @@
           {{ if $logo }}
             <div class="flex flex-col items-center gap-2">
               <div class="h-8 md:h-10 w-auto">
-                <img src="{{ $logo.RelPermalink }}" alt="{{ . }}" class="h-full w-auto object-contain">
+                {{ partial "components/image.html" (dict "resource" $logo "alt" . "class" "h-full w-auto object-contain") }}
               </div>
               <span class="text-xs font-mono text-neutral-500">{{ . }}</span>
             </div>
@@ -381,7 +381,7 @@
       </div>
 
       <div class="w-full md:w-1/2 flex items-center justify-center">
-        <img src="{{ $laptop.RelPermalink }}" alt="Security Demo" class="w-full max-w-md h-auto object-contain drop-shadow-2xl rounded-2xl hover:scale-105 transition-transform duration-500">
+        {{ partial "components/image.html" (dict "resource" $laptop "alt" "Security Demo" "class" "w-full max-w-md h-auto object-contain drop-shadow-2xl rounded-2xl hover:scale-105 transition-transform duration-500") }}
       </div>
     </div>
   </div>

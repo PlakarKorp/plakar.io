@@ -54,7 +54,7 @@
         </div>
         <div class="p-2 md:p-3">
           {{ with $dashboard }}
-            <img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="Plakar Control Plane unified dashboard" class="w-full h-auto rounded" fetchpriority="high">
+            {{ partial "components/image.html" (dict "resource" . "alt" "Plakar Control Plane unified dashboard" "class" "w-full h-auto rounded" "eager" true) }}
           {{ end }}
         </div>
       </div>
@@ -309,14 +309,14 @@
         &ldquo;We manage everything as code, with AI across our development workflow, so we wanted resilience orchestrated the same way, on our own schedule. Plakar&rsquo;s deduplication lets us take as many snapshots as we want without the storage bill climbing, and running on infrastructure and software we control has unlocked a full compliance track for us with French providers.&rdquo;
       </blockquote>
       <figcaption class="flex items-center justify-center gap-4 flex-wrap">
-        {{ with $pierrick }}<img src="{{ .RelPermalink }}" alt="Pierrick Gicquelais" class="w-14 h-14 rounded-full object-cover" loading="lazy">{{ end }}
+        {{ with $pierrick }}{{ partial "components/image.html" (dict "resource" . "alt" "Pierrick Gicquelais" "class" "w-14 h-14 rounded-full object-cover" "widths" (slice 160)) }}{{ end }}
         <div class="text-left">
           <span class="block font-bold text-neutral-900">Pierrick Gicquelais</span>
           <span class="block text-neutral-500 text-sm">Lead Infrastructure &amp; AI Platform</span>
         </div>
         {{ with $alan }}
           <span class="w-px h-10 bg-neutral-200 hidden sm:block"></span>
-          <img src="{{ .RelPermalink }}" alt="Alan" class="h-7 w-auto" loading="lazy">
+          {{ partial "components/image.html" (dict "resource" . "alt" "Alan" "class" "h-7 w-auto" "widths" (slice 160)) }}
         {{ end }}
       </figcaption>
     </figure>
@@ -347,15 +347,15 @@
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {{ range (slice
-        (dict "icon" "corporate/aws" "name" "Amazon Web Services" "fmt" "Marketplace" "href" "https://aws.amazon.com/marketplace/pp/prodview-n3wsyckyby6vq" "ext" true)
-        (dict "icon" "corporate/scaleway" "name" "Scaleway" "fmt" "QCOW2" "href" "/download/" "ext" false)
-        (dict "icon" "corporate/exoscale" "name" "Exoscale" "fmt" "QCOW2" "href" "/download/" "ext" false)
-        (dict "icon" "corporate/ovhcloud" "name" "OVHcloud" "fmt" "QCOW2" "href" "/download/" "ext" false)
-        (dict "icon" "corporate/vmware" "name" "VMware" "fmt" "OVA" "href" "/download/" "ext" false)
-        (dict "icon" "corporate/proxmox" "name" "Proxmox VE" "fmt" "ISO" "href" "/download/" "ext" false)
+        (dict "logo" "img/integrations/aws.png" "name" "Amazon Web Services" "fmt" "Marketplace" "href" "https://aws.amazon.com/marketplace/pp/prodview-n3wsyckyby6vq" "ext" true)
+        (dict "logo" "img/integrations/scaleway.png" "name" "Scaleway" "fmt" "QCOW2" "href" "/download/" "ext" false)
+        (dict "logo" "img/integrations/exoscale.png" "name" "Exoscale" "fmt" "QCOW2" "href" "/download/" "ext" false)
+        (dict "logo" "img/integrations/ovhcloud.png" "name" "OVHcloud" "fmt" "QCOW2" "href" "/download/" "ext" false)
+        (dict "logo" "img/integrations/vmware.png" "name" "VMware" "fmt" "OVA" "href" "/download/" "ext" false)
+        (dict "logo" "img/integrations/proxmox.png" "name" "Proxmox VE" "fmt" "ISO" "href" "/download/" "ext" false)
       ) }}
         <a href="{{ .href }}"{{ if .ext }} target="_blank" rel="noopener"{{ end }} class="bg-neutral-800/50 border border-neutral-700 p-4 rounded-xl flex items-center gap-3 hover:border-primary-500 transition-colors">
-          <span class="w-10 h-10 rounded-lg bg-white p-2 flex items-center justify-center shrink-0">{{ partial "icon.html" .icon }}</span>
+          <span class="w-10 h-10 rounded-lg bg-white p-2 flex items-center justify-center shrink-0">{{ partial "logo.html" (dict "src" .logo) }}</span>
           <span class="flex-1 min-w-0">
             <span class="block text-white font-semibold text-sm truncate">{{ .name }}</span>
             <span class="block font-mono text-[0.62rem] uppercase tracking-wider text-neutral-500">{{ .fmt }}</span>

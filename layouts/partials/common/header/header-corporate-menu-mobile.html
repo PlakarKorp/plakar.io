@@ -21,7 +21,7 @@
             <button class="accordion-toggle w-full flex justify-between items-center py-3 text-neutral-700 hover:text-primary-500">
               {{ .Name }}
               <span class="accordion-chevron w-4 h-4 flex items-center justify-center">
-                {{ partial "icon.html" "chevron-down" }}
+                {{ partial "icon.html" "ri/arrow-down-s-line" }}
               </span>
             </button>
 
@@ -52,7 +52,7 @@
                        class="group/link flex items-center gap-2 p-2 rounded-lg hover:bg-neutral-100">
                       <div class="w-8 h-8 bg-neutral-100 text-neutral-600 group-hover/link:bg-neutral-50 group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
                         <span class="w-4 h-4 flex items-center justify-center">
-                          {{ partial "icon.html" .Params.icon }}
+                          {{ with .Params.logo }}{{ partial "logo.html" (dict "src" .) }}{{ else }}{{ partial "icon.html" .Params.icon }}{{ end }}
                         </span>
                       </div>
                       <div>

@@ -1,0 +1,5 @@
+{{- $logo := resources.Get .src -}}
+{{- if not $logo -}}
+  {{- errorf "logo %q not found in assets" .src -}}
+{{- end -}}
+{{- partial "components/image.html" (dict "resource" $logo "alt" (.alt | default "") "class" (.class | default "w-full h-full object-contain") "widths" (slice 128)) -}}

@@ -1,0 +1,7 @@
+{{- $icon := resources.Get (print "icons/" . ".svg") -}}
+{{- if not $icon -}}
+  {{- errorf "icon %q not found in assets/icons" . -}}
+{{- end -}}
+<span class="relative block icon">
+  {{- $icon.Content | safeHTML -}}
+</span>

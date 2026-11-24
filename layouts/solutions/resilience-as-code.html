@@ -149,7 +149,7 @@
       {{ range (slice
         (dict "icon" "ri/stack-line" "title" "Kubernetes operator" "body" "Install with Helm, then declare sources, stores, schedules, and restores as Kubernetes resources." "href" "/docs/control-plane/infrastructure-as-code/kubernetes-operator/")
         (dict "icon" "ri/box-3-line" "title" "Terraform provider" "body" "Stores, connectors, schedules, inventories, organizations, members, and grants." "href" "/docs/control-plane/references/terraform-provider/")
-        (dict "icon" "ri/terminal-window-line" "title" "Ansible collection" "body" "Sixteen modules, from backup, restore, and sync to inventories and grants. Works with Red Hat AAP." "href" "/docs/control-plane/references/ansible-collection/")
+        (dict "icon" "ri/terminal-box-line" "title" "Ansible collection" "body" "Sixteen modules, from backup, restore, and sync to inventories and grants. Works with Red Hat AAP." "href" "/docs/control-plane/references/ansible-collection/")
         (dict "icon" "ri/flow-chart" "title" "Policies scoped by tag" "body" "Tag connectors with an environment and data class in code, and matching SLA policies pick them up automatically." "href" "/docs/control-plane/compliance/policies/")
         (dict "icon" "ri/file-copy-line" "title" "Configuration bundles" "body" "Defaults applied by organization or inventory, scoped by environment, resource class, and tag." "href" "/docs/control-plane/administration/configuration-bundles/")
         (dict "icon" "ri/user-line" "title" "Scoped API keys" "body" "Application users with keys bound to one organization and an API Automation role for CI/CD." "href" "/docs/control-plane/administration/permissions/api-automation/")
@@ -182,14 +182,14 @@
         &ldquo;We manage everything as code, with AI across our development workflow, so we wanted resilience orchestrated the same way, on our own schedule.&rdquo;
       </blockquote>
       <figcaption class="flex items-center justify-center gap-4 flex-wrap">
-        {{ with $pierrick }}<img src="{{ .RelPermalink }}" alt="Pierrick Gicquelais" class="w-14 h-14 rounded-full object-cover" loading="lazy">{{ end }}
+        {{ with $pierrick }}{{ partial "components/image.html" (dict "resource" . "alt" "Pierrick Gicquelais" "class" "w-14 h-14 rounded-full object-cover" "widths" (slice 160)) }}{{ end }}
         <div class="text-left">
           <span class="block font-bold text-neutral-900">Pierrick Gicquelais</span>
           <span class="block text-neutral-500 text-sm">Lead Infrastructure &amp; AI Platform</span>
         </div>
         {{ with $alan }}
           <span class="w-px h-10 bg-neutral-200 hidden sm:block"></span>
-          <img src="{{ .RelPermalink }}" alt="Alan" class="h-7 w-auto" loading="lazy">
+          {{ partial "components/image.html" (dict "resource" . "alt" "Alan" "class" "h-7 w-auto" "widths" (slice 160)) }}
         {{ end }}
       </figcaption>
     </figure>

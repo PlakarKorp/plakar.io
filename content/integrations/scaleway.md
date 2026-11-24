@@ -68,7 +68,7 @@ date: 2026-08-26
 
 resource: Scaleway
 
-image: img/integrations/scaleway.svg
+image: img/integrations/scaleway.png
 ---
 
 ## What the Scaleway integration does {kicker="Overview"}

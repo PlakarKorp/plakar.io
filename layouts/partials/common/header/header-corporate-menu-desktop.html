@@ -13,7 +13,7 @@
           <button class="dropdown-btn px-2 text-base text-neutral-700 hover:text-primary-500 inline-flex items-center gap-1 whitespace-nowrap">
             {{ .Name }}
             <span class="dropdown-chevron w-4 h-4 flex items-center justify-center">
-              {{ partial "icon.html" "chevron-down" }}
+              {{ partial "icon.html" "ri/arrow-down-s-line" }}
             </span>
           </button>
         {{ else }}
@@ -52,7 +52,7 @@
                       <a href="{{ .URL | relLangURL }}" {{ with .Params.target }}target="{{ . }}"{{ end }}
                          class="group/link flex items-center gap-2 p-2 rounded-lg hover:bg-neutral-100">
                         <div class="w-10 h-10 bg-neutral-100 text-neutral-600 p-2 group-hover/link:bg-neutral-50 group-hover/link:text-primary-500 flex justify-center items-center rounded-lg">
-                          {{ partial "icon.html" .Params.icon }}
+                          {{ with .Params.logo }}{{ partial "logo.html" (dict "src" .) }}{{ else }}{{ partial "icon.html" .Params.icon }}{{ end }}
                         </div>
                         <div class="flex-1">
                           <div class="text-neutral-900 font-semibold">{{ .Name }}</div>

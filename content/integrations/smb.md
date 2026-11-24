@@ -63,7 +63,7 @@ date: 2026-09-21
 
 resource: SMB
 
-image: img/integrations/smb.svg
+image: img/integrations/smb.png
 ---
 
 ## Why protecting network shares matters
