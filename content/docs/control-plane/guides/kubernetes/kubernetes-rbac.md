@@ -39,6 +39,24 @@ contents.
 > with every role described in this guide has permissions equivalent to a
 > cluster administrator.
 
+## Running tasks on an edge in the cluster
+
+When Plakar Control Plane runs outside the cluster, deploy an
+[edge](../../edges) in the cluster with the
+[Helm chart](../../edges/installation/kubernetes), and assign the Kubernetes
+resources to its [pool](../../edges/enrollment#edge-pools). Their backups and
+restores then run on the edge, with the ServiceAccount of the edge pod. Leave
+the **Kubeconfig** field of the apps empty, and the connectors use the
+in-cluster configuration. You need no kubeconfig, and no credential plugin such
+as `aws eks get-token` for EKS.
+
+Bind the roles of this guide to the ServiceAccount of the edge rather than to
+the ServiceAccounts they create, and set `plakar` to the namespace of the edge.
+The chart creates that ServiceAccount, or uses the one named in
+`serviceAccount.name`. Every task of the pool runs with it, so bind only the
+roles those tasks need. The edge reaches the temporary pods directly, so it does
+not need the [port forwarding](#port-forwarding) role.
+
 ## Roles overview
 
 | Operation              | ServiceAccount             | Scope                                    |
