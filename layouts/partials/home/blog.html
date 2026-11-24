@@ -1,0 +1,31 @@
+{{/* Home page section. Shared class strings come from home/classes.html. */}}
+{{ $c := partial "home/classes.html" . }}
+{{ $wrap := $c.wrap }}
+{{ $eyebrow := $c.eyebrow }}
+{{ $h2 := $c.h2 }}
+{{ $link := $c.link }}
+{{ $allPosts := where (where site.RegularPages "Section" "posts") "Params.hidden" "ne" true }}
+
+<!-- ================================================================
+     Blog
+     ================================================================ -->
+{{ $posts := first 3 (sort (where $allPosts "Params.featured-scope" "intersect" (slice "hero-page")) "Date" "desc") }}
+{{ if not $posts }}{{ $posts = first 3 (sort $allPosts "Date" "desc") }}{{ end }}
+<section class="py-24 lg:py-36 border-t border-ui-neutral-200">
+  <div class="{{ $wrap }}">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div class="flex flex-col gap-6">
+        <h2 class="{{ $eyebrow }}"><span class="w-1.5 h-1.5 rounded-full bg-ui-primary-500"></span>From the blog</h2>
+        <p class="{{ $h2 }}">Engineering and releases.</p>
+      </div>
+      <a href="/posts/" class="{{ $link }} shrink-0 md:pb-2">
+        All posts <span class="block w-4 h-4 group-hover:translate-x-0.5 transition-transform">{{ partial "icon.html" "ri/arrow-right-line" }}</span>
+      </a>
+    </div>
+    <div class="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {{ range $posts }}
+        {{ partial "posts/post-card.html" . }}
+      {{ end }}
+    </div>
+  </div>
+</section>

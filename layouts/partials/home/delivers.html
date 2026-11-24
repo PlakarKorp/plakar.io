@@ -1,0 +1,169 @@
+{{/* Home page section. Shared class strings come from home/classes.html. */}}
+{{ $c := partial "home/classes.html" . }}
+{{ $wrap := $c.wrap }}
+{{ $eyebrow := $c.eyebrow }}
+{{ $h2 := $c.h2 }}
+{{ $lead := $c.lead }}
+{{ $card := $c.card }}
+
+<!-- ================================================================
+     What Plakar delivers: bento
+     ================================================================ -->
+<section class="py-24 lg:py-36">
+  <div class="{{ $wrap }}">
+    <div class="grid lg:grid-cols-[1.15fr_1fr] gap-8 lg:gap-24 lg:items-end">
+      <div class="flex flex-col gap-6">
+        <h2 class="{{ $eyebrow }}"><span class="w-1.5 h-1.5 rounded-full bg-ui-primary-500"></span>What Plakar delivers</h2>
+        <p class="{{ $h2 }}">“Recoverable” has to actually mean something.</p>
+      </div>
+      <p class="{{ $lead }} lg:pb-2">
+        One engine that makes protecting everything affordable, keeps every copy out of reach,
+        and checks that each one restores.
+      </p>
+    </div>
+
+    <div class="mt-16 grid md:grid-cols-2 lg:grid-cols-6 gap-4">
+
+      <!-- Efficient -->
+      <div class="{{ $card }} md:col-span-2 lg:col-span-4 flex flex-col overflow-hidden">
+        <div class="flex-1 flex flex-col justify-center gap-3 p-6 lg:p-10 border-b border-ui-neutral-200 bg-ui-neutral-100/40" aria-hidden="true">
+          {{ range slice
+            (dict "label" "Monday" "new" (slice 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1))
+            (dict "label" "Tuesday" "new" (slice 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0))
+            (dict "label" "Wednesday" "new" (slice 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 1 0 0))
+            (dict "label" "Thursday" "new" (slice 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0))
+          }}
+            {{ $count := 0 }}
+            {{ range .new }}{{ $count = add $count . }}{{ end }}
+            <div class="flex items-center gap-4">
+              <span class="hidden sm:block w-20 shrink-0 font-mono text-xs text-ui-neutral-500">{{ .label }}</span>
+              <div class="flex-1 grid grid-cols-[repeat(18,minmax(0,1fr))] gap-1">
+                {{ range .new }}
+                  <span class="h-6 rounded-[3px] {{ if eq . 1 }}bg-ui-primary-500{{ else }}bg-ui-neutral-200/70{{ end }}"></span>
+                {{ end }}
+              </div>
+              <span class="w-16 shrink-0 text-right font-mono text-xs {{ if eq $count 18 }}text-ui-neutral-900{{ else }}text-ui-primary-600{{ end }}">+{{ $count }}</span>
+            </div>
+          {{ end }}
+          <div class="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-xs text-ui-neutral-500">
+            <span class="flex items-center gap-2"><span class="w-3 h-3 rounded-[3px] bg-ui-primary-500"></span>New chunk, stored</span>
+            <span class="flex items-center gap-2"><span class="w-3 h-3 rounded-[3px] bg-ui-neutral-200"></span>Already stored, referenced</span>
+          </div>
+        </div>
+        <div class="p-6 lg:p-8">
+          <h3 class="text-lg font-semibold text-ui-neutral-900">Radically efficient</h3>
+          <p class="mt-2 max-w-xl text-ui-neutral-600">
+            Data is deduplicated and compressed before it leaves your system. Each snapshot only stores
+            what changed, so protecting the whole estate costs a fraction of legacy tools.
+          </p>
+        </div>
+      </div>
+
+      <!-- Zero trust -->
+      <div class="{{ $card }} lg:col-span-2 flex flex-col overflow-hidden">
+        <div class="flex-1 flex flex-col justify-center gap-2 p-6 border-b border-ui-neutral-200 bg-ui-neutral-100/40" aria-hidden="true">
+          <div class="flex items-center gap-3 rounded-lg border border-ui-neutral-200 bg-ui-neutral-50 px-3 py-2.5">
+            <span class="block w-4 h-4 text-ui-neutral-500">{{ partial "icon.html" "ri/database-2-line" }}</span>
+            <span class="font-mono text-xs text-ui-neutral-900">customers.sql</span>
+            <span class="ml-auto text-xs text-ui-neutral-400">your host</span>
+          </div>
+          <div class="flex items-center gap-2 pl-5 text-xs text-ui-primary-600">
+            <span class="h-5 border-l border-dashed border-ui-primary-300"></span>
+            <span class="block w-3.5 h-3.5">{{ partial "icon.html" "ri/lock-2-line" }}</span>
+            encrypted before upload
+          </div>
+          <div class="flex items-center gap-3 rounded-lg border border-ui-neutral-200 bg-ui-neutral-50 px-3 py-2.5">
+            <span class="block w-4 h-4 text-ui-neutral-500">{{ partial "icon.html" "ri/hard-drive-2-line" }}</span>
+            <span class="font-mono text-xs text-ui-neutral-400 truncate">9f2c 41ae 07d3 e1b8 c6…</span>
+            <span class="ml-auto shrink-0 flex items-center gap-1 rounded-full bg-ui-green-50 px-2 py-0.5 text-[11px] font-medium text-ui-green-800">
+              <span class="block w-3 h-3">{{ partial "icon.html" "ri/shield-check-line" }}</span>locked
+            </span>
+          </div>
+        </div>
+        <div class="p-6 lg:p-8">
+          <h3 class="text-lg font-semibold text-ui-neutral-900">Zero-trust and tamperproof</h3>
+          <p class="mt-2 text-ui-neutral-600">
+            Encrypted at the source, so not even the storage provider can read it. On object-lock storage, nobody can alter or delete it.
+          </p>
+        </div>
+      </div>
+
+      <!-- Verified -->
+      <div class="{{ $card }} lg:col-span-2 flex flex-col overflow-hidden">
+        <div class="flex-1 flex flex-col justify-center p-6 border-b border-ui-neutral-200 bg-ui-neutral-100/40" aria-hidden="true">
+          <div class="rounded-lg border border-ui-neutral-200 bg-ui-neutral-50">
+            {{ range slice
+              (dict "id" "dd62691d" "when" "2h ago" "ok" true)
+              (dict "id" "842de8b1" "when" "1d ago" "ok" true)
+              (dict "id" "5c07a9e3" "when" "2d ago" "ok" true)
+              (dict "id" "a1f3b6c8" "when" "now" "ok" false)
+            }}
+              <div class="flex items-center gap-3 px-3 py-2 border-b border-ui-neutral-200 last:border-b-0">
+                <span class="font-mono text-xs text-ui-neutral-900">{{ .id }}</span>
+                <span class="text-xs text-ui-neutral-400">{{ .when }}</span>
+                {{ if .ok }}
+                  <span class="ml-auto flex items-center gap-1 text-xs font-medium text-ui-green-600"><span class="block w-3.5 h-3.5">{{ partial "icon.html" "ri/check-line" }}</span>Verified</span>
+                {{ else }}
+                  <span class="ml-auto flex items-center gap-1.5 text-xs font-medium text-ui-primary-600"><span class="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>Checking</span>
+                {{ end }}
+              </div>
+            {{ end }}
+          </div>
+        </div>
+        <div class="p-6 lg:p-8">
+          <h3 class="text-lg font-semibold text-ui-neutral-900">Verified, not assumed</h3>
+          <p class="mt-2 text-ui-neutral-600">
+            Scheduled checks confirm every snapshot is intact and restorable, so you find out before the day you need it.
+          </p>
+        </div>
+      </div>
+
+      <!-- Never hostage -->
+      <div class="{{ $card }} lg:col-span-2 flex flex-col overflow-hidden">
+        <div class="flex-1 flex flex-col justify-center gap-2 p-6 border-b border-ui-neutral-200 bg-ui-neutral-100/40" aria-hidden="true">
+          {{ range slice
+            (dict "icon" "ri/open-source-line" "label" "Open source, permissive license")
+            (dict "icon" "ri/server-line" "label" "Self-hosted on any infrastructure")
+            (dict "icon" "ri/file-text-line" "label" "Open, documented storage format")
+          }}
+            <div class="flex items-center gap-3 rounded-lg border border-ui-neutral-200 bg-ui-neutral-50 px-3 py-2.5">
+              <span class="block w-4 h-4 text-ui-primary-500">{{ partial "icon.html" .icon }}</span>
+              <span class="text-xs text-ui-neutral-900">{{ .label }}</span>
+              <span class="ml-auto block w-3.5 h-3.5 text-ui-green-600">{{ partial "icon.html" "ri/check-line" }}</span>
+            </div>
+          {{ end }}
+        </div>
+        <div class="p-6 lg:p-8">
+          <h3 class="text-lg font-semibold text-ui-neutral-900">Never held hostage</h3>
+          <p class="mt-2 text-ui-neutral-600">
+            No vendor lock-in and no proprietary format. A usable copy of your data always stays under your control.
+          </p>
+        </div>
+      </div>
+
+      <!-- Driven -->
+      <div class="{{ $card }} lg:col-span-2 flex flex-col overflow-hidden">
+        <div class="flex-1 flex flex-col justify-center p-6 border-b border-ui-neutral-200 bg-ui-neutral-100/40" aria-hidden="true">
+          <div class="rounded-lg border border-neutral-800 bg-neutral-900 p-4 font-mono text-xs leading-relaxed text-neutral-300">
+            <div><span class="text-primary-300">$</span> plakar at @s3 backup /var/lib/pg</div>
+            <div class="text-neutral-500">snapshot dd62691d created</div>
+            <div class="mt-2"><span class="text-primary-300">$</span> plakar at @s3 restore dd62691d</div>
+            <div class="text-green-400">restored 1,204 files</div>
+          </div>
+          <div class="mt-3 flex gap-2">
+            {{ range slice "CLI" "API" "SDK" }}
+              <span class="rounded-md border border-ui-neutral-200 bg-ui-neutral-50 px-2 py-0.5 font-mono text-[11px] text-ui-neutral-600">{{ . }}</span>
+            {{ end }}
+          </div>
+        </div>
+        <div class="p-6 lg:p-8">
+          <h3 class="text-lg font-semibold text-ui-neutral-900">Built to be driven</h3>
+          <p class="mt-2 text-ui-neutral-600">
+            Every action is exposed through the CLI, API and SDK, so people and AI agents can snapshot what they touch and restore it when it breaks.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

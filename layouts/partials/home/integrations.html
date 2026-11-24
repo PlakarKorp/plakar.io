@@ -1,0 +1,60 @@
+{{/* Home page section. Shared class strings come from home/classes.html. */}}
+{{ $c := partial "home/classes.html" . }}
+{{ $wrap := $c.wrap }}
+{{ $eyebrow := $c.eyebrow }}
+{{ $h2 := $c.h2 }}
+{{ $lead := $c.lead }}
+{{ $secondaryButton := $c.secondaryButton }}
+{{ $integrations := sort (where site.RegularPages "Section" "integrations") "Title" }}
+
+<!-- ================================================================
+     Integrations
+     ================================================================ -->
+<section class="py-24 lg:py-36 border-t border-ui-neutral-200 overflow-hidden">
+  <div class="{{ $wrap }} flex flex-col items-center text-center gap-6">
+    <h2 class="{{ $eyebrow }}"><span class="w-1.5 h-1.5 rounded-full bg-ui-primary-500"></span>Integrations</h2>
+    <p class="{{ $h2 }} max-w-4xl">Runs where you run. Writes where you choose.</p>
+    <p class="{{ $lead }} max-w-2xl">
+      Self-host it on-prem, in any cloud or on any hypervisor. Back up databases, clusters, virtual
+      machines and SaaS, and send encrypted snapshots to storage you own.
+    </p>
+  </div>
+
+  <div class="mt-16 flex flex-col gap-3 home-fade-x">
+    {{ range $row := slice 0 1 }}
+      <div class="home-marquee-row">
+        <div class="home-marquee {{ if eq $row 1 }}home-marquee--reverse{{ end }}">
+          {{ range $copy := slice 0 1 }}
+            <div class="flex shrink-0" {{ if eq $copy 1 }}aria-hidden="true"{{ end }}>
+              {{ range $i, $p := $integrations }}
+                {{ if eq (mod $i 2) $row }}
+                  <a href="{{ $p.RelPermalink }}" {{ if eq $copy 1 }}tabindex="-1"{{ end }} class="mx-1.5 flex items-center gap-3 rounded-xl border border-ui-neutral-200 bg-ui-neutral-50 py-2 pl-2 pr-5 hover:border-ui-neutral-300 transition-colors">
+                    <span class="flex items-center justify-center w-9 h-9 shrink-0 overflow-hidden rounded-lg bg-white ring-1 ring-neutral-200/70">
+                      {{ $img := "" }}
+                      {{ with $p.Params.image }}{{ $img = resources.Get . }}{{ end }}
+                      {{ with $img }}
+                        {{ partial "components/image.html" (dict "resource" . "alt" "" "widths" (slice 64) "class" "block w-6 h-6 max-w-none object-contain") }}
+                      {{ else }}
+                        <span class="block w-4 h-4 text-neutral-400">{{ partial "icon.html" "ri/puzzle-2-line" }}</span>
+                      {{ end }}
+                    </span>
+                    <span class="whitespace-nowrap text-sm font-medium text-ui-neutral-800">{{ $p.Title }}</span>
+                  </a>
+                {{ end }}
+              {{ end }}
+            </div>
+          {{ end }}
+        </div>
+      </div>
+    {{ end }}
+  </div>
+
+  <div class="{{ $wrap }} mt-14 flex justify-center">
+    {{ partial "components/buttons/base-button.html" (merge $secondaryButton (dict
+      "label" (printf "Browse all %d integrations" (len $integrations))
+      "labelShort" "Browse integrations"
+      "href" "/integrations/"
+      "icon" "ri/puzzle-2-line"
+    )) }}
+  </div>
+</section>
