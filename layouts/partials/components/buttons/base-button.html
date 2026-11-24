@@ -7,7 +7,8 @@
 {{ if isset . "icon" }}{{ $icon = .icon }}{{ end }}
 {{ $bgColor := .bgColor | default "bg-primary-500" }}
 {{ $bgHoverColor := .bgHoverColor | default "bg-primary-600" }}
-{{ $textHoverColor := .textHoverColor | default "text-neutral-50" }}
+{{/* Applied as is, so pass a hover: class. A plain colour would override textColor. */}}
+{{ $textHoverColor := .textHoverColor | default "" }}
 {{ $border := .border | default "" }}
 {{ $borderColor := .borderColor | default "" }}
 {{ $textColor := .textColor | default "text-neutral-50" }}
