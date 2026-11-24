@@ -61,7 +61,7 @@ date: 2026-03-23
 
 resource: IMAP
 
-image: img/integrations/imap.jpg
+image: img/integrations/imap.png
 ---
 
 ## Why protecting IMAP matters
