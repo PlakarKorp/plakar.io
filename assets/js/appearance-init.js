@@ -1,4 +1,4 @@
-// Inlined at the top of <head> so the page is painted in the right appearance.
+// Loaded as a blocking script at the top of <head>, so the page is painted in the right appearance.
 // The saved choice is "system", "light" or "dark". Without one, it is "system".
 (function () {
   var saved = null;

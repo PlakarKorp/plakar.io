@@ -3,9 +3,9 @@
 (function () {
   var order = ["system", "light", "dark"];
   var labels = {
-    system: "System theme",
-    light: "Light theme",
-    dark: "Dark theme",
+    system: "Theme: system (switch to light)",
+    light: "Theme: light (switch to dark)",
+    dark: "Theme: dark (switch to system)",
   };
   var media = window.matchMedia("(prefers-color-scheme: dark)");
   var root = document.documentElement;

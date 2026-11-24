@@ -40,6 +40,7 @@
 
 /* Adaptive palette: ui-* follows light/dark, the fixed scales above never change. */
 :root {
+  color-scheme: light;
   --ui-white: 255, 255, 255;
   --ui-black: 0, 0, 0;
 
@@ -91,6 +92,8 @@
 }
 
 html.dark {
+  color-scheme: dark;
+
   --ui-white: 28, 28, 34;
   --ui-black: 255, 255, 255;
 
@@ -98,8 +101,8 @@ html.dark {
   --ui-neutral-100: 20, 20, 25;
   --ui-neutral-200: 50, 49, 64; /* borders, a touch lighter so cards separate */
   --ui-neutral-300: 70, 69, 89;
-  --ui-neutral-400: 106, 105, 132;
-  --ui-neutral-500: 130, 129, 158;
+  --ui-neutral-400: 140, 139, 166; /* 5.1:1 on the page background */
+  --ui-neutral-500: 150, 149, 176;
   --ui-neutral-600: 158, 157, 184;
   --ui-neutral-700: 190, 189, 206;
   --ui-neutral-800: 220, 219, 230;
@@ -110,8 +113,8 @@ html.dark {
   --ui-primary-200: 46, 44, 153;
   --ui-primary-300: 82, 76, 255;
   --ui-primary-400: 82, 76, 255;
-  --ui-primary-500: 103, 96, 255;
-  --ui-primary-600: 141, 136, 255;
+  --ui-primary-500: 141, 136, 255; /* 5.7:1 on the page background */
+  --ui-primary-600: 160, 156, 255;
   --ui-primary-700: 179, 177, 255;
   --ui-primary-800: 218, 217, 255;
   --ui-primary-900: 240, 240, 255;
