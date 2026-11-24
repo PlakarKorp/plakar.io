@@ -47,12 +47,22 @@ as when a member is added to an organization.
 The password is the same in both cases. The prefix selects the organization, not
 a different account.
 
+> [!NOTE]
+>
+> When an organization has
+> [its own address](../../access-control/sso#separate-addresses-for-organizations),
+> signing in there with your email address on its own opens that organization. A
+> prefix can then only select that organization or one below it.
+
 ## Signing in with single sign-on
 
 When [single sign-on](../../access-control/sso) is set up, the sign-in page also
 offers a button for each enabled provider.
 
 {{< figure src="../images/sso-signin.png" alt="" class="mx-auto max-w-100" >}}
+
+No organization prefix is needed. You are signed in to the organization that
+assigns your email domain to the provider.
 
 An existing account can only sign in with a provider once the provider is
 [linked to it](../../access-control/sso#linking-a-provider-to-an-account).
