@@ -44,9 +44,8 @@ organizations holds a separate set of roles in each one, so the same person can
 have full administrative access in one organization and limited access in
 another. Nothing granted in one organization carries over to another.
 
-See [permissions](../permissions) for how access is granted, and
-[Managing Organizations](../organizations) for information about managing
-organization membership.
+See [permissions](../permissions) for what each role grants, and
+[members](../organizations#members) for how you grant and revoke roles.
 
 ![Users in an organization](images/users.png)
 
