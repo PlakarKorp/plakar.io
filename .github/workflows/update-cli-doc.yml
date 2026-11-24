@@ -39,34 +39,11 @@ jobs:
           *) echo "::error::version must be main or vX.Y.Z" && exit 1 ;;
           esac
 
-      - name: Checkout generator
+      - name: Checkout script
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
         with:
-          path: site
           sparse-checkout: scripts
           persist-credentials: false
-
-      - name: Checkout plakar
-        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
-        with:
-          repository: PlakarKorp/plakar
-          ref: ${{ env.DOC_TAG }}
-          path: plakar
-          persist-credentials: false
-
-      - name: Set up Go
-        uses: actions/setup-go@d8cbb8045d7f43706b9177cceb36c1f91a6644d5 # v7.1.0
-        with:
-          go-version-file: site/scripts/go.mod
-          cache: false
-
-      - name: Build generator for OpenBSD
-        working-directory: site/scripts
-        env:
-          GOOS: openbsd
-          GOARCH: amd64
-          CGO_ENABLED: "0"
-        run: go build -o "$GITHUB_WORKSPACE/update-cli-doc" ./update-cli-doc
 
       - name: Start OpenBSD
         uses: cross-platform-actions/action@30cde56b87a128507bebea9531205087890ee360 # v1.8.0
@@ -79,13 +56,14 @@ jobs:
       - name: Render man pages on OpenBSD
         shell: cpa.sh {0}
         run: |
-          ./update-cli-doc -src plakar -out out -format=false "$DOC_VERSION" "$DOC_TAG"
+          sudo pkg_add -I git
+          NO_FORMAT=1 ./scripts/update-cli-doc.sh "$DOC_VERSION" "$DOC_TAG"
 
       - name: Upload pages
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: commands
-          path: out/
+          path: content/docs/community/${{ env.DOC_VERSION }}/references/commands/
           if-no-files-found: error
 
   pull-request:

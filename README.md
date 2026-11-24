@@ -108,7 +108,7 @@ the scripts in `scripts/` rather than editing them by hand:
 
 | Script                    | Regenerates                                       |
 | ------------------------- | ------------------------------------------------- |
-| `update-cli-doc/`         | Plakar CLI command reference                      |
+| `update-cli-doc.sh`       | Plakar CLI command reference                      |
 | `update-api-doc.sh`       | Control Plane OpenAPI schema in `static/openapi/` |
 | `update-terraform-doc.sh` | Terraform provider reference                      |
 | `update-ansible-doc.sh`   | Ansible collection reference                      |
@@ -116,12 +116,7 @@ the scripts in `scripts/` rather than editing them by hand:
 
 Regenerate the CLI command reference with the **Update CLI Docs** workflow. It
 renders the man pages on OpenBSD and opens a pull request. To run it locally
-instead, from the repository root:
-
-```sh
-(cd scripts && go build -o /tmp/update-cli-doc ./update-cli-doc)
-/tmp/update-cli-doc <version> <git-tag>
-```
+instead, run `scripts/update-cli-doc.sh <version> <git-tag>`.
 
 The HTML depends on the local `mandoc`, which differs between OpenBSD, macOS and
 Linux, so prefer the workflow for pages you commit.
