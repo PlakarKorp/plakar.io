@@ -1,5 +1,8 @@
 {{- $page := . -}}
 {{- $repo := $page.Params.repo | default "" -}}
+{{- if $page.Params.private -}}
+  {{- $repo = "" -}}
+{{- end -}}
 {{- $category := $page.Params.category | default "product" -}}
 
 {{- $releases := partial "utils/sort-by-version.html" $page.RegularPages -}}
