@@ -19,6 +19,11 @@
 - [Plakar Operator v0.0.2](index.md): Adds Destination, task, and multi-group CRDs, a Helm chart, and a full regression test suite backed by a fake control plane.
 
 
+## [MongoDB](https://www.plakar.io/changelog/mongodb/index.md)
+
+- [MongoDB v1.1.2](index.md): Backs up a single database, sets the authentication database, and fixes backups and restores that failed with an empty error.
+
+
 ## [SMB](https://www.plakar.io/changelog/smb/index.md)
 
 - [SMB v1.1.5](index.md): A security release that keeps restores inside the restore root.

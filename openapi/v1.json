@@ -3877,8 +3877,257 @@
       "EffectiveSetting": {
         "description": "EffectiveSetting schema",
         "properties": {
+          "applies_at": {
+            "nullable": true,
+            "properties": {
+              "defaults": {
+                "items": {
+                  "nullable": true,
+                  "type": "string"
+                },
+                "nullable": true,
+                "type": "array"
+              },
+              "organization_id": {
+                "format": "uuid",
+                "type": "string"
+              },
+              "organization_name": {
+                "type": "string"
+              },
+              "setting": {
+                "properties": {
+                  "agents": {
+                    "nullable": true,
+                    "properties": {
+                      "writes_allowed": {
+                        "type": "boolean"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "alerting": {
+                    "nullable": true,
+                    "properties": {
+                      "email": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "auth": {
+                    "nullable": true,
+                    "properties": {
+                      "api_key_rotation_grace_hours": {
+                        "type": "integer"
+                      },
+                      "api_key_rotation_ttl_days": {
+                        "type": "integer"
+                      },
+                      "badge_ttl_seconds": {
+                        "type": "integer"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "edge": {
+                    "nullable": true,
+                    "properties": {
+                      "enrollment_key": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "logs": {
+                    "nullable": true,
+                    "properties": {
+                      "retention_days": {
+                        "nullable": true,
+                        "type": "integer"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "mailer": {
+                    "nullable": true,
+                    "properties": {
+                      "from_address": {
+                        "type": "string"
+                      },
+                      "host": {
+                        "type": "string"
+                      },
+                      "password": {
+                        "type": "string"
+                      },
+                      "port": {
+                        "type": "integer"
+                      },
+                      "tls": {
+                        "type": "boolean"
+                      },
+                      "username": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "oauth_server": {
+                    "nullable": true,
+                    "properties": {
+                      "access_token_ttl_seconds": {
+                        "type": "integer"
+                      },
+                      "enabled": {
+                        "type": "boolean"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "packages": {
+                    "nullable": true,
+                    "properties": {
+                      "repository_url": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "public_url": {
+                    "nullable": true,
+                    "properties": {
+                      "url": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "replication": {
+                    "nullable": true,
+                    "properties": {
+                      "enrollment_key": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "retention": {
+                    "nullable": true,
+                    "properties": {
+                      "min_versions": {
+                        "nullable": true,
+                        "type": "integer"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "security": {
+                    "nullable": true,
+                    "properties": {
+                      "mfa_enforced": {
+                        "type": "boolean"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "sso": {
+                    "nullable": true,
+                    "properties": {
+                      "providers": {
+                        "items": {
+                          "properties": {
+                            "domains": {
+                              "items": {
+                                "type": "string"
+                              },
+                              "type": "array"
+                            },
+                            "provider": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "type": "array"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "sso_login": {
+                    "nullable": true,
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "vector": {
+                    "nullable": true,
+                    "properties": {
+                      "address": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "webhook": {
+                    "nullable": true,
+                    "properties": {
+                      "auth_type": {
+                        "type": "string"
+                      },
+                      "enabled": {
+                        "type": "boolean"
+                      },
+                      "events": {
+                        "additionalProperties": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "type": "object"
+                      },
+                      "secret": {
+                        "type": "string"
+                      },
+                      "url": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "url": {
+                "nullable": true,
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "defaults": {
+            "items": {
+              "nullable": true,
+              "type": "string"
+            },
+            "nullable": true,
+            "type": "array"
+          },
           "setting": {
             "properties": {
+              "agents": {
+                "nullable": true,
+                "properties": {
+                  "writes_allowed": {
+                    "type": "boolean"
+                  }
+                },
+                "type": "object"
+              },
               "alerting": {
                 "nullable": true,
                 "properties": {
@@ -3946,10 +4195,31 @@
                 },
                 "type": "object"
               },
+              "oauth_server": {
+                "nullable": true,
+                "properties": {
+                  "access_token_ttl_seconds": {
+                    "type": "integer"
+                  },
+                  "enabled": {
+                    "type": "boolean"
+                  }
+                },
+                "type": "object"
+              },
               "packages": {
                 "nullable": true,
                 "properties": {
                   "repository_url": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "public_url": {
+                "nullable": true,
+                "properties": {
+                  "url": {
                     "type": "string"
                   }
                 },
@@ -4006,6 +4276,15 @@
                 },
                 "type": "object"
               },
+              "sso_login": {
+                "nullable": true,
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  }
+                },
+                "type": "object"
+              },
               "vector": {
                 "nullable": true,
                 "properties": {
@@ -4046,6 +4325,7 @@
             "type": "object"
           },
           "source": {
+            "nullable": true,
             "properties": {
               "inheritable": {
                 "type": "boolean"
@@ -11371,6 +11651,58 @@
         },
         "type": "object"
       },
+      "OrganizationMemberResponse": {
+        "description": "OrganizationMemberResponse schema",
+        "properties": {
+          "account": {
+            "type": "string"
+          },
+          "created_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "is_service": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string"
+          },
+          "roles": {
+            "items": {
+              "properties": {
+                "grant_id": {
+                  "format": "uuid",
+                  "type": "string"
+                },
+                "role": {
+                  "properties": {
+                    "category": {
+                      "type": "string"
+                    },
+                    "display_name": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "user_id": {
+            "format": "uuid",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
       "OrganizationMemberResponsePage": {
         "description": "PaginatedResponse_contract.OrganizationMemberResponse schema",
         "properties": {
@@ -11392,6 +11724,32 @@
                 },
                 "name": {
                   "type": "string"
+                },
+                "roles": {
+                  "items": {
+                    "properties": {
+                      "grant_id": {
+                        "format": "uuid",
+                        "type": "string"
+                      },
+                      "role": {
+                        "properties": {
+                          "category": {
+                            "type": "string"
+                          },
+                          "display_name": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
                 },
                 "user_id": {
                   "format": "uuid",
@@ -20191,6 +20549,15 @@
       "Settings": {
         "description": "Settings schema",
         "properties": {
+          "agents": {
+            "nullable": true,
+            "properties": {
+              "writes_allowed": {
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
           "alerting": {
             "nullable": true,
             "properties": {
@@ -20258,10 +20625,31 @@
             },
             "type": "object"
           },
+          "oauth_server": {
+            "nullable": true,
+            "properties": {
+              "access_token_ttl_seconds": {
+                "type": "integer"
+              },
+              "enabled": {
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
           "packages": {
             "nullable": true,
             "properties": {
               "repository_url": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "public_url": {
+            "nullable": true,
+            "properties": {
+              "url": {
                 "type": "string"
               }
             },
@@ -20314,6 +20702,15 @@
                   "type": "object"
                 },
                 "type": "array"
+              }
+            },
+            "type": "object"
+          },
+          "sso_login": {
+            "nullable": true,
+            "properties": {
+              "enabled": {
+                "type": "boolean"
               }
             },
             "type": "object"
@@ -29934,7 +30331,7 @@
   "info": {
     "description": "The Plakar Control Plane API.",
     "title": "Plakar Control Plane API v1",
-    "version": "v0.20"
+    "version": "v0.21"
   },
   "openapi": "3.0.3",
   "paths": {
@@ -36283,6 +36680,14 @@
             }
           },
           {
+            "description": "Only the members who hold this role directly.",
+            "in": "query",
+            "name": "role",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "description": "Organization ID, at or below the caller's.",
             "in": "path",
             "name": "id",
@@ -36507,6 +36912,84 @@
           }
         ],
         "summary": "Remove a member",
+        "tags": ["Organizations"]
+      },
+      "get": {
+        "operationId": "accountGetOrganizationMember",
+        "parameters": [
+          {
+            "description": "Organization ID, at or below the caller's.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "user_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrganizationMemberResponse"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Bad Request _(validation or deserialization error)_"
+          },
+          "401": {
+            "description": "Missing, invalid or expired credentials"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "The caller may not do this"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPError"
+                }
+              }
+            },
+            "description": "Internal Server Error _(panics)_"
+          },
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "badge": []
+          }
+        ],
+        "summary": "Get a member",
         "tags": ["Organizations"]
       },
       "put": {

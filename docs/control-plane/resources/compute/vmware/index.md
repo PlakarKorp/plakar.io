@@ -167,7 +167,7 @@ The following extra settings are available when configuring a source app.
 - **NSX Password**: The password for the NSX account. Defaults to **vSphere
   Password** when omitted.
 - **NSX Skip Verify**: Skip TLS certificate verification when connecting to the
-  NSX manager. Defaults to `false`.
+  NSX manager. Defaults to **vSphere TLS Skip Verify** when omitted.
 
 > [!NOTE]
 >

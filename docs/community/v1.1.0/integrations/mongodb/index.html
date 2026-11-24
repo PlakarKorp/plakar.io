@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-09-22T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-24T12:13:30+01:00">
+    <meta property="article:modified_time" content="2026-11-24T12:18:23+01:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -244,12 +244,12 @@
     "dateCreated": "2026-09-22T00:00:00\u002b00:00",
     "datePublished": "2026-09-22T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-24T12:13:30\u002b01:00",
+    "dateModified": "2026-11-24T12:18:23\u002b01:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/community/v1.1.0/integrations/mongodb/",
-    "wordCount":  895 
+    "wordCount":  1103 
   }]
   </script>
 
@@ -5206,6 +5206,16 @@ connectors.</p>
           <td>No</td>
           <td>Inline PEM content of the client key for mTLS authentication. Must be set together with <code>tls_client_cert_data</code>. Setting only one of them is an error.</td>
       </tr>
+      <tr>
+          <td><code>auth_database</code></td>
+          <td>No</td>
+          <td>Database that holds the user&rsquo;s credentials. See <a href="/docs/community/v1.1.0/integrations/mongodb/#authentication" >Authentication</a>.</td>
+      </tr>
+      <tr>
+          <td><code>database</code></td>
+          <td>No</td>
+          <td>Source only. Back up this database instead of the whole server. See <a href="/docs/community/v1.1.0/integrations/mongodb/#backing-up-a-single-database" >Backing up a single database</a>.</td>
+      </tr>
   </tbody>
 </table>
 <details
@@ -5237,6 +5247,33 @@ running Plakar. The <code>_data</code> variants embed the PEM content directly i
 configuration, which is useful when the certificates are not stored as files
 on that machine. Set either a path or its <code>_data</code> variant, not both. Setting
 both is rejected as ambiguous.</p></div></details>
+
+<h3 id="authentication" class="group pr-8">Authentication
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="authentication"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>The MongoDB tools authenticate the user against a database:</p>
+<ul>
+<li>With <code>username</code> and <code>password</code>, they use SCRAM and look the user up in
+<code>database</code> when it is set, and in <code>admin</code> otherwise.</li>
+<li>With an external mechanism such as <code>MONGODB-X509</code>, they look the user up in
+<code>$external</code>. With <code>MONGODB-X509</code>, the client certificate identifies the user,
+and no username or password is needed.</li>
+</ul>
+<p>Set <code>auth_database</code> when the user is defined in another database, such as a user
+created in <code>admin</code> that backs up a single database.</p>
+
 
 <h2 id="1-mongodb-protocol" class="group pr-8">1. <code>mongodb</code> protocol
     <button
@@ -5540,6 +5577,47 @@ Connector --> Destination
 </span></span><span class="line"><span class="cl">$ plakar at /var/backups restore -to <span class="s2">&#34;@my-atlas-restore&#34;</span> &lt;snapshot_id&gt;</span></span></code></pre></div></div>
 
 
+<h2 id="backing-up-a-single-database" class="group pr-8">Backing up a single database
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="backing-up-a-single-database"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h2>
+<p>By default, a backup dumps every database, including <code>admin</code>, so the user needs
+read access to <code>admin</code>. Set <code>database</code> on the source to back up a single
+database instead. The user then only needs the built-in <code>read</code> role on that
+database.</p>
+<p>A user created in that database needs nothing else. A user created in <code>admin</code>
+also needs <code>auth_database=admin</code>, otherwise authentication fails.</p>
+<div class="highlight-wrapper codeblock">
+  <div class="codeblock-title">
+    <span class="codeblock-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM4 5V19H20V5H4ZM12 15H18V17H12V15ZM8.66685 12L5.83842 9.17157L7.25264 7.75736L11.4953 12L7.25264 16.2426L5.83842 14.8284L8.66685 12Z"></path></svg>
+</span></span>
+    <span class="codeblock-label">Shell</span>
+    <button type="button" class="codeblock-copy" aria-label="Copy" title="Copy">
+      <span class="codeblock-copy-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z"></path></svg>
+</span></span>
+      <span class="codeblock-copied-icon"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ plakar <span class="nb">source</span> add shop <span class="se">\
+</span></span></span><span class="line"><span class="cl">  <span class="nv">location</span><span class="o">=</span>mongodb://db.example.com <span class="se">\
+</span></span></span><span class="line"><span class="cl">  <span class="nv">database</span><span class="o">=</span>shop <span class="se">\
+</span></span></span><span class="line"><span class="cl">  <span class="nv">username</span><span class="o">=</span>shop_reader <span class="se">\
+</span></span></span><span class="line"><span class="cl">  <span class="nv">password</span><span class="o">=</span>&lt;YOUR_PASSWORD&gt;</span></span></code></pre></div></div>
+<p>A restore loads whatever the snapshot holds, so this snapshot restores only the
+<code>shop</code> database.</p>
+
+
 <h2 id="restore-behaviour" class="group pr-8">Restore behaviour
     <button
       type="button"
@@ -5723,7 +5801,7 @@ on the server and replaces them with those from the snapshot.</p></div></details
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#installation">Installation</a></li><li><a href="#server-connection">Server connection</a></li><li><a href="#1-mongodb-protocol">1. mongodb protocol</a><ul><ul><li><a href="#backup-flow">Backup flow</a></li><li><a href="#restore-flow">Restore flow</a></li></ul></li><li><a href="#example">Example</a></li></ul></li><li><a href="#2-mongodbsrv-protocol">2. mongodb+srv protocol</a><ul><ul><li><a href="#backup-flow-1">Backup flow</a></li><li><a href="#restore-flow-1">Restore flow</a></li></ul></li><li><a href="#example-1">Example</a></li></ul></li><li><a href="#restore-behaviour">Restore behaviour</a></li></ul>
+      <ul><li><a href="#installation">Installation</a></li><li><a href="#server-connection">Server connection</a><ul><li><a href="#authentication">Authentication</a></li></ul></li><li><a href="#1-mongodb-protocol">1. mongodb protocol</a><ul><ul><li><a href="#backup-flow">Backup flow</a></li><li><a href="#restore-flow">Restore flow</a></li></ul></li><li><a href="#example">Example</a></li></ul></li><li><a href="#2-mongodbsrv-protocol">2. mongodb+srv protocol</a><ul><ul><li><a href="#backup-flow-1">Backup flow</a></li><li><a href="#restore-flow-1">Restore flow</a></li></ul></li><li><a href="#example-1">Example</a></li></ul></li><li><a href="#backing-up-a-single-database">Backing up a single database</a></li><li><a href="#restore-behaviour">Restore behaviour</a></li></ul>
     </div>
 
     

@@ -72,7 +72,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
     <meta property="article:published_time" content="2026-09-22T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-11-24T12:13:30+01:00">
+    <meta property="article:modified_time" content="2026-11-24T12:18:23+01:00">
 
   
   <meta name="twitter:card" content="summary">
@@ -239,12 +239,12 @@
     "dateCreated": "2026-09-22T00:00:00\u002b00:00",
     "datePublished": "2026-09-22T00:00:00\u002b00:00",
     
-    "dateModified": "2026-11-24T12:13:30\u002b01:00",
+    "dateModified": "2026-11-24T12:18:23\u002b01:00",
     
     
     
     "mainEntityOfPage": "https://www.plakar.io/docs/control-plane/resources/database/mongodb/",
-    "wordCount":  999 
+    "wordCount":  1158 
   }]
   </script>
 
@@ -10615,9 +10615,35 @@ backup and restore.</p>
     </button>
   
 </h2>
-<p>The source and destination apps authenticate against the <code>admin</code> database, so
-the MongoDB user must be defined there. The built-in <code>backup</code> role covers a
-backup of every database, and the built-in <code>restore</code> role covers a restore.</p>
+<p>With a username and password, the source and destination apps authenticate
+against the <code>admin</code> database by default, so the MongoDB user must be defined
+there. The built-in <code>backup</code> role covers a backup of every database, and the
+built-in <code>restore</code> role covers a restore. Set <strong>Auth Database</strong> when the user is
+defined in another database.</p>
+
+
+<h3 id="backing-up-a-single-database" class="group pr-8">Backing up a single database
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="backing-up-a-single-database"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<p>A backup dumps every database, including <code>admin</code>, so the user needs read access
+to <code>admin</code>. Set <strong>Database</strong> on the source app to back up a single database
+instead. The user then only needs the built-in <code>read</code> role on that database. A
+user defined in that database needs nothing else. A user defined in <code>admin</code> also
+needs <strong>Auth Database</strong> set to <code>admin</code>.</p>
+<p>A restore loads whatever the restore point holds, so it restores only that
+database.</p>
 
 
 <h2 id="running-mongodb-tasks-on-an-edge" class="group pr-8">Running MongoDB tasks on an edge
@@ -10844,6 +10870,7 @@ flowchart TD
 <p>The following settings are available when configuring both source and
 destination apps using the <code>mongodb</code> protocol.</p>
 <ul>
+<li><strong>Auth Database</strong>: The database that holds the user&rsquo;s credentials.</li>
 <li><strong>Auth Mechanism</strong>: The authentication mechanism used with the server, such as
 <code>SCRAM-SHA-256</code> or <code>MONGODB-X509</code>.</li>
 <li><strong>Password</strong>: The password used to authenticate to MongoDB.</li>
@@ -10857,6 +10884,27 @@ authentication. Must be set together with <strong>Tls Client Cert Data</strong>.
 only one of them is an error.</li>
 <li><strong>Use Tls</strong>: Use an encrypted TLS/SSL connection. Defaults to <code>true</code>.</li>
 <li><strong>Username</strong>: The username used to authenticate to MongoDB.</li>
+</ul>
+
+
+<h3 id="source-configuration" class="group pr-8">Source configuration
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="source-configuration"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<ul>
+<li><strong>Database</strong>: Back up this database instead of the whole server. See
+<a href="/docs/control-plane/resources/database/mongodb/#backing-up-a-single-database" >Backing up a single database</a>.</li>
 </ul>
 
 
@@ -10976,6 +11024,7 @@ flowchart TD
 <p>The following settings are available when configuring both source and
 destination apps using the <code>mongodb+srv</code> protocol.</p>
 <ul>
+<li><strong>Auth Database</strong>: The database that holds the user&rsquo;s credentials.</li>
 <li><strong>Auth Mechanism</strong>: The authentication mechanism used with the server, such as
 <code>SCRAM-SHA-256</code> or <code>MONGODB-X509</code>.</li>
 <li><strong>Password</strong>: The password used to authenticate to MongoDB.</li>
@@ -10990,6 +11039,27 @@ authentication. Must be set together with <strong>Tls Client Cert Data</strong>.
 only one of them is an error.</li>
 <li><strong>Use Tls</strong>: Use an encrypted TLS/SSL connection. Defaults to <code>true</code>.</li>
 <li><strong>Username</strong>: The username used to authenticate to MongoDB.</li>
+</ul>
+
+
+<h3 id="source-configuration-1" class="group pr-8">Source configuration
+    <button
+      type="button"
+      class="heading-anchor not-prose cursor-default inline-flex items-center justify-center align-middle w-6 h-6 -mr-8 rounded-md opacity-0 transition group-hover:opacity-100 focus-visible:opacity-100 text-neutral-500 hover:bg-neutral-200/70 focus-visible:bg-neutral-200/70"
+      data-anchor="source-configuration-1"
+      aria-label="Copy link to this section"
+      title="Copy link to this section"
+      data-pagefind-ignore>
+      <span class="heading-anchor-icon w-4.5 h-4.5"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.0607 8.11097L14.4749 9.52518C17.2086 12.2589 17.2086 16.691 14.4749 19.4247L14.1214 19.7782C11.3877 22.5119 6.95555 22.5119 4.22188 19.7782C1.48821 17.0446 1.48821 12.6124 4.22188 9.87874L5.6361 11.293C3.68348 13.2456 3.68348 16.4114 5.6361 18.364C7.58872 20.3166 10.7545 20.3166 12.7072 18.364L13.0607 18.0105C15.0133 16.0578 15.0133 12.892 13.0607 10.9394L11.6465 9.52518L13.0607 8.11097ZM19.7782 14.1214L18.364 12.7072C20.3166 10.7545 20.3166 7.58872 18.364 5.6361C16.4114 3.68348 13.2456 3.68348 11.293 5.6361L10.9394 5.98965C8.98678 7.94227 8.98678 11.1081 10.9394 13.0607L12.3536 14.4749L10.9394 15.8891L9.52518 14.4749C6.79151 11.7413 6.79151 7.30911 9.52518 4.57544L9.87874 4.22188C12.6124 1.48821 17.0446 1.48821 19.7782 4.22188C22.5119 6.95555 22.5119 11.3877 19.7782 14.1214Z"></path></svg>
+</span></span>
+      <span class="heading-anchor-done w-4.5 h-4.5 hidden"><span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.9997 15.1709L19.1921 5.97852L20.6063 7.39273L9.9997 17.9993L3.63574 11.6354L5.04996 10.2212L9.9997 15.1709Z"></path></svg>
+</span></span>
+    </button>
+  
+</h3>
+<ul>
+<li><strong>Database</strong>: Back up this database instead of the whole server. See
+<a href="/docs/control-plane/resources/database/mongodb/#backing-up-a-single-database" >Backing up a single database</a>.</li>
 </ul>
 
 
@@ -11010,8 +11080,8 @@ only one of them is an error.</li>
 </h2>
 <p>Each snapshot holds a single file, <code>/mongodb-backup.bson</code>, the archive written
 by <code>mongodump --archive</code>. It contains every database the user can read, except
-<code>local</code>, and the users and roles defined in <code>admin</code>. To restore a single
-collection from it, see
+<code>local</code>, and the users and roles defined in <code>admin</code>. With <strong>Database</strong>, it
+contains only that database. To restore a single collection from it, see
 <a href="/docs/community/main/integrations/mongodb/#restoring-a-single-collection" >Restoring a single collection</a>.</p>
 
 
@@ -11123,7 +11193,7 @@ on the server and replaces them with those from the snapshot.</p></div></details
   <nav class="toc docs-font text-sm">
     <p class="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-3">On this page</p>
     <div class="toc-content text-neutral-600">
-      <ul><li><a href="#mongodb-user">MongoDB user</a></li><li><a href="#running-mongodb-tasks-on-an-edge">Running MongoDB tasks on an edge</a><ul><li><a href="#running-the-edge-in-a-container">Running the edge in a container</a></li></ul></li><li><a href="#inventory-management">Inventory Management</a><ul><li><a href="#adding-mongodb-as-a-resource">Adding MongoDB as a resource</a></li></ul></li><li><a href="#1-mongodb-protocol">1. mongodb protocol</a><ul><ul><li><a href="#backup-flow">Backup flow</a></li><li><a href="#restore-flow">Restore flow</a></li></ul></li><li><a href="#shared-configuration">Shared configuration</a></li></ul></li><li><a href="#2-mongodbsrv-protocol">2. mongodb+srv protocol</a><ul><ul><li><a href="#backup-flow-1">Backup flow</a></li><li><a href="#restore-flow-1">Restore flow</a></li></ul></li><li><a href="#shared-configuration-1">Shared configuration</a></li></ul></li><li><a href="#snapshot-contents">Snapshot contents</a></li><li><a href="#restore-behaviour">Restore behaviour</a></li></ul>
+      <ul><li><a href="#mongodb-user">MongoDB user</a><ul><li><a href="#backing-up-a-single-database">Backing up a single database</a></li></ul></li><li><a href="#running-mongodb-tasks-on-an-edge">Running MongoDB tasks on an edge</a><ul><li><a href="#running-the-edge-in-a-container">Running the edge in a container</a></li></ul></li><li><a href="#inventory-management">Inventory Management</a><ul><li><a href="#adding-mongodb-as-a-resource">Adding MongoDB as a resource</a></li></ul></li><li><a href="#1-mongodb-protocol">1. mongodb protocol</a><ul><ul><li><a href="#backup-flow">Backup flow</a></li><li><a href="#restore-flow">Restore flow</a></li></ul></li><li><a href="#shared-configuration">Shared configuration</a></li><li><a href="#source-configuration">Source configuration</a></li></ul></li><li><a href="#2-mongodbsrv-protocol">2. mongodb+srv protocol</a><ul><ul><li><a href="#backup-flow-1">Backup flow</a></li><li><a href="#restore-flow-1">Restore flow</a></li></ul></li><li><a href="#shared-configuration-1">Shared configuration</a></li><li><a href="#source-configuration-1">Source configuration</a></li></ul></li><li><a href="#snapshot-contents">Snapshot contents</a></li><li><a href="#restore-behaviour">Restore behaviour</a></li></ul>
     </div>
 
     

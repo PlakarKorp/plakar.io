@@ -2,7 +2,7 @@
 
 Organizations, their members and quotas.
 
-Generated from Plakar Control Plane v0.20. See [OpenAPI v1](https://www.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
+Generated from Plakar Control Plane v0.21. See [OpenAPI v1](https://www.plakar.io/docs/control-plane/references/openapi/v1/index.md) for the base URL, authentication and error format.
 
 
 ## List the organizations of the calling user
@@ -130,6 +130,7 @@ Parameters:
 - `limit` (query, integer): Maximum number of items to return.
 - `search` (query, string): Free-text search on members.
 - `is_service` (query, boolean): Only service accounts, or only people.
+- `role` (query, string): Only the members who hold this role directly.
 - `id` (path, string<uuid>, required): Organization ID, at or below the caller's.
 
 Responses:
@@ -156,6 +157,26 @@ Request body (application/json): `AddOrganizationMemberRequest`
 Responses:
 
 - `200` OK: `AddOrganizationMemberResponse`
+- `400` Bad Request _(validation or deserialization error)_: `HTTPError`
+- `401` Missing, invalid or expired credentials
+- `403` The caller may not do this: `HTTPError`
+- `500` Internal Server Error _(panics)_: `HTTPError`
+- `default`
+
+## Get a member
+
+`GET /api/v1/account/organizations/{id}/members/{user_id}`
+
+Authentication: badge
+
+Parameters:
+
+- `id` (path, string<uuid>, required): Organization ID, at or below the caller's.
+- `user_id` (path, string, required)
+
+Responses:
+
+- `200` OK: `OrganizationMemberResponse`
 - `400` Bad Request _(validation or deserialization error)_: `HTTPError`
 - `401` Missing, invalid or expired credentials
 - `403` The caller may not do this: `HTTPError`
