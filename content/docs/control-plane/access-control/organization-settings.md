@@ -147,6 +147,12 @@ instance receives `level`, `msg` and `attrs` fields alongside the original
 
 ### Edge enrollment
 
+> [!WARNING]+ Deprecated
+>
+> The organization enrollment key is deprecated. Create an
+> [edge pool](../../edges/enrollment#creating-and-managing-pools) for your edges
+> and enroll them with the key of that pool instead.
+
 An enrollment key for the organization itself, separate from the keys of its
 pools. Edges that enroll with it join the default pool. Closing or regenerating
 it does not affect pool keys. See

@@ -64,6 +64,12 @@ shared by an organization above it cannot be moved or added to its pools.
 
 ## Organization enrollment key
 
+> [!WARNING]+ Deprecated
+>
+> The organization enrollment key is deprecated. Create an
+> [edge pool](#creating-and-managing-pools) for your edges and enroll them with
+> the key of that pool instead.
+
 Besides the keys of its pools, an organization has its own enrollment key, under
 **Edge enrollment** in the
 [organization settings](../../access-control/organization-settings#edge-enrollment).
@@ -79,14 +85,6 @@ like other settings. An edge that enrolls with a key inherited from an
 organization above joins the default pool of that organization. Organizations
 below can only use its edges if that pool is
 [shared with them](#sharing-pools-with-child-organizations).
-
-> [!NOTE]
->
-> Edges enrolled with an inherited key belong to the organization that owns the
-> key, not to the organization that enrolled them. Once that organization stops
-> sharing its default pool, organizations below can no longer see or use those
-> edges. To keep control of its edges, an organization below sets its own key or
-> uses the key of one of its pools.
 
 ## Sharing pools with child organizations
 
