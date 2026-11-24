@@ -62,7 +62,7 @@ date: 2026-09-21
 
 resource: NFS
 
-image: img/integrations/nfs.svg
+image: img/integrations/nfs.png
 ---
 
 ## Why protecting NFS exports matters
