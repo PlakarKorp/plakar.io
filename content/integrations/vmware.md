@@ -65,7 +65,7 @@ date: 2026-08-10
 
 resource: VMware
 
-image: img/integrations/vmware.svg
+image: img/integrations/vmware.png
 ---
 
 ## Why protecting VMware workloads matters
