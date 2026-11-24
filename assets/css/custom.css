@@ -1631,3 +1631,48 @@ pre.mermaid svg .cluster rect {
 pre.mermaid svg .flowchart-link {
   stroke-width: 1.25px;
 }
+
+/*
+ * Inlined technology illustrations (assets/img/integrations/technology/*.svg)
+ * are drawn with the light palette. In dark mode, map each of those colours to
+ * its adaptive ui-* token. CSS overrides SVG presentation attributes.
+ */
+html.dark .technology-illustration [fill="rgb(28,28,30)"] {
+  fill: rgb(var(--ui-neutral-900));
+}
+html.dark .technology-illustration [fill="rgb(79,78,102)"] {
+  fill: rgb(var(--ui-neutral-700));
+}
+html.dark .technology-illustration [fill="rgb(160,159,180)"] {
+  fill: rgb(var(--ui-neutral-400));
+}
+html.dark .technology-illustration [stroke="rgb(160,159,180)"] {
+  stroke: rgb(var(--ui-neutral-400));
+}
+html.dark .technology-illustration [stroke="rgb(79,78,102)"] {
+  stroke: rgb(var(--ui-neutral-700));
+}
+html.dark .technology-illustration [fill="rgb(245,244,251)"] {
+  fill: rgb(var(--ui-neutral-100));
+}
+html.dark .technology-illustration [stroke="rgb(231,230,240)"] {
+  stroke: rgb(var(--ui-neutral-200));
+}
+html.dark .technology-illustration [fill="#fff"] {
+  fill: rgb(var(--ui-white));
+}
+html.dark .technology-illustration [fill="rgb(218,217,255)"] {
+  fill: rgb(var(--ui-primary-100));
+}
+html.dark .technology-illustration [fill="rgb(82,76,255)"] {
+  fill: rgb(var(--ui-primary-500));
+}
+html.dark .technology-illustration [stroke="rgb(82,76,255)"] {
+  stroke: rgb(var(--ui-primary-500));
+}
+
+/* Integration logos are drawn for a light background: give them a light tile in dark mode. */
+html.dark .logo-tile {
+  background-color: #fff;
+  padding: 0.375rem;
+}

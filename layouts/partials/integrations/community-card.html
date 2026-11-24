@@ -15,14 +15,14 @@
   data-name="{{ lower $i.title }}"
   data-date="{{ $date }}"
   data-search="{{ $searchText }}"
-  class="group/card relative flex flex-col gap-3 p-5 rounded-2xl border border-neutral-100 hover:border-primary-300 bg-neutral-50 shadow-sm hover:shadow-none outline-4 outline-transparent hover:outline-primary-400/20 transition-all duration-300"
+  class="group/card relative flex flex-col gap-3 p-5 rounded-2xl border border-ui-neutral-100 hover:border-ui-primary-300 bg-ui-neutral-50 shadow-sm hover:shadow-none outline-4 outline-transparent hover:outline-ui-primary-400/20 transition-all duration-300"
 >
   <div class="flex items-start gap-3.5">
-    <div class="h-13 w-13 rounded-lg shrink-0 flex items-center justify-center bg-neutral-100 text-neutral-500">
+    <div class="h-13 w-13 rounded-lg shrink-0 flex items-center justify-center bg-ui-neutral-100 text-ui-neutral-500">
       <span class="w-6 h-6">{{ partial "icon.html" "ri/github-fill" }}</span>
     </div>
     {{ with $i.version }}
-      <span class="ml-auto inline-flex items-center text-xs font-semibold px-2.5 py-1 rounded-full text-neutral-600 bg-neutral-100 shrink-0">
+      <span class="ml-auto inline-flex items-center text-xs font-semibold px-2.5 py-1 rounded-full text-ui-neutral-600 bg-ui-neutral-100 shrink-0">
         {{ . }}
       </span>
     {{ end }}
@@ -30,12 +30,12 @@
 
   <!-- Title -->
   <div class="flex flex-col mt-3">
-    <h3 class="text-lg lg:text-xl font-semibold text-neutral-900 group-hover/card:text-primary-500 transition-colors">
+    <h3 class="text-lg lg:text-xl font-semibold text-ui-neutral-900 group-hover/card:text-ui-primary-500 transition-colors">
       {{ $i.title }}
     </h3>
 
     {{ with $categories }}
-      <div class="text-xs text-primary-500 font-semibold mt-4">
+      <div class="text-xs text-ui-primary-500 font-semibold mt-4">
         {{ range $n, $cat := . }}
           {{ if gt $n 0 }} / {{ end }}{{ title $cat }}
         {{ end }}
@@ -45,24 +45,24 @@
 
   <!-- Description -->
   {{ with $i.description }}
-    <p class="text-sm text-neutral-500 line-clamp-3 mt-1">{{ . | plainify }}</p>
+    <p class="text-sm text-ui-neutral-500 line-clamp-3 mt-1">{{ . | plainify }}</p>
   {{ end }}
 
   <!-- Footer -->
-  <div class="mt-auto pt-3 border-t border-neutral-200 flex items-center gap-4">
+  <div class="mt-auto pt-3 border-t border-ui-neutral-200 flex items-center gap-4">
     <div class="flex flex-col gap-0.5 min-w-0">
-      <span class="text-xxs font-semibold uppercase tracking-wide text-neutral-400">Platform</span>
+      <span class="text-xxs font-semibold uppercase tracking-wide text-ui-neutral-400">Platform</span>
       <span class="text-xs font-semibold text-green-600">Community</span>
     </div>
-    <div class="flex flex-col gap-0.5 min-w-0 pl-4 border-l border-neutral-200">
-      <span class="text-xxs font-semibold uppercase tracking-wide text-neutral-400">Author</span>
-      <span class="text-xs font-semibold text-neutral-900 flex items-center gap-1.5 flex-wrap">
-        <span class="w-4 h-4 rounded-full flex items-center justify-center shrink-0 text-neutral-500">{{ partial "icon.html" "ri/team-line" }}</span>
+    <div class="flex flex-col gap-0.5 min-w-0 pl-4 border-l border-ui-neutral-200">
+      <span class="text-xxs font-semibold uppercase tracking-wide text-ui-neutral-400">Author</span>
+      <span class="text-xs font-semibold text-ui-neutral-900 flex items-center gap-1.5 flex-wrap">
+        <span class="w-4 h-4 rounded-full flex items-center justify-center shrink-0 text-ui-neutral-500">{{ partial "icon.html" "ri/team-line" }}</span>
         <span>{{ $i.maintainer }}</span>
-        <span class="text-neutral-400 font-medium">· Community</span>
+        <span class="text-ui-neutral-400 font-medium">· Community</span>
       </span>
     </div>
-    <div class="ml-auto shrink-0 text-neutral-300 group-hover/card:text-primary-500 transition-colors" title="Opens on GitHub">
+    <div class="ml-auto shrink-0 text-ui-neutral-300 group-hover/card:text-ui-primary-500 transition-colors" title="Opens on GitHub">
       <div class="w-4.5 h-4.5">{{ partial "icon.html" "ri/external-link-line" }}</div>
     </div>
   </div>

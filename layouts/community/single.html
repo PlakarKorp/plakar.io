@@ -24,7 +24,7 @@
   <div class="max-w-350 mx-auto flex flex-col">
 
     <div class="flex flex-col pt-16 items-center">
-      <p class="text-base lg:text-2xl text-neutral-900 max-w-6xl text-center px-4">
+      <p class="text-base lg:text-2xl text-ui-neutral-900 max-w-6xl text-center px-4">
         Our mission is to set a <span class="text-secondary-500 font-bold">new open-source standard for data protection</span>.
         Achieving it depends on the strength and engagement of our community.
         This page outlines our community guidelines and explains how our open-source project and commercial offering fit together.
@@ -101,7 +101,7 @@
 
 <!-- We Need You -->
 <section class="section-gradient-secondary-1 py-14 lg:py-28">
-  <div class="max-w-350 mx-auto px-4 flex flex-col gap-16 items-center text-neutral-900">
+  <div class="max-w-350 mx-auto px-4 flex flex-col gap-16 items-center text-ui-neutral-900">
 
     <div class="w-full flex flex-col items-start md:px-20">
       <h2 class="text-3xl lg:text-5xl font-medium">
@@ -117,14 +117,14 @@
     <!-- Block 1: Organize Meetups -->
     <div class="flex flex-col md:flex-row items-center gap-8 max-w-6xl">
       <div class="w-full md:w-1/3 flex justify-center">
-        <div class="bg-neutral-50 border border-neutral-300 rounded-lg p-4 aspect-square flex items-center justify-center shadow-md">
+        <div class="bg-ui-neutral-50 border border-ui-neutral-300 rounded-lg p-4 aspect-square flex items-center justify-center shadow-md">
           {{ partial "components/image.html" (dict "resource" $nestorMeetup "alt" "Organize Meetups" "class" "object-contain w-full h-full") }}
         </div>
       </div>
       <div class="w-full md:w-2/3">
-        <div class="bg-neutral-50 border border-neutral-300 rounded-lg p-6 shadow-md">
+        <div class="bg-ui-neutral-50 border border-ui-neutral-300 rounded-lg p-6 shadow-md">
           <h3 class="text-xl lg:text-3xl text-secondary-500 mb-3">Organize Meetups</h3>
-          <p class="text-neutral-700 text-base lg:text-lg">
+          <p class="text-ui-neutral-700 text-base lg:text-lg">
             Help us bring the Plakar community together in person or online.
             Whether small local gatherings or larger events, meetups are a great way to share ideas and build connections.
             We can support you with content, presentation materials, and even Plakar goodies to give away.
@@ -136,14 +136,14 @@
     <!-- Block 2: Spread the Word -->
     <div class="flex flex-col md:flex-row-reverse items-center gap-8 max-w-6xl">
       <div class="w-full md:w-1/3 flex justify-center">
-        <div class="bg-neutral-50 border border-neutral-300 rounded-lg p-4 aspect-square flex items-center justify-center shadow-md">
+        <div class="bg-ui-neutral-50 border border-ui-neutral-300 rounded-lg p-4 aspect-square flex items-center justify-center shadow-md">
           {{ partial "components/image.html" (dict "resource" $nestorSpread "alt" "Spread the Word" "class" "object-contain w-full h-full") }}
         </div>
       </div>
       <div class="w-full md:w-2/3">
-        <div class="bg-neutral-50 border border-neutral-300 rounded-lg p-6 shadow-md">
+        <div class="bg-ui-neutral-50 border border-ui-neutral-300 rounded-lg p-6 shadow-md">
           <h3 class="text-xl lg:text-3xl text-secondary-500 mb-3">Spread the Word</h3>
-          <p class="text-neutral-700 text-base lg:text-lg">
+          <p class="text-ui-neutral-700 text-base lg:text-lg">
             Share Plakar's story through blog posts, podcasts, videos, and social media.
             Every piece of content helps more people discover and join our mission.
           </p>
@@ -154,14 +154,14 @@
     <!-- Block 3: Improve Documentation -->
     <div class="flex flex-col md:flex-row items-center gap-8 max-w-6xl">
       <div class="w-full md:w-1/3 flex justify-center">
-        <div class="bg-neutral-50 border border-neutral-300 rounded-lg p-4 aspect-square flex items-center justify-center shadow-md">
+        <div class="bg-ui-neutral-50 border border-ui-neutral-300 rounded-lg p-4 aspect-square flex items-center justify-center shadow-md">
           {{ partial "components/image.html" (dict "resource" $nestorDocs "alt" "Improve Documentation" "class" "object-contain w-full h-full") }}
         </div>
       </div>
       <div class="w-full md:w-2/3">
-        <div class="bg-neutral-50 border border-neutral-300 rounded-lg p-6 shadow-md">
+        <div class="bg-ui-neutral-50 border border-ui-neutral-300 rounded-lg p-6 shadow-md">
           <h3 class="text-xl lg:text-3xl text-secondary-500 mb-3">Improve Documentation</h3>
-          <p class="text-neutral-700 text-base lg:text-lg">
+          <p class="text-ui-neutral-700 text-base lg:text-lg">
             Help us make Plakar easier to use by writing or improving tutorials, guides, and examples in different formats: written, video, or interactive.
           </p>
         </div>
@@ -321,7 +321,7 @@
 <!-- Join the Community -->
 
 <section class="section-gradient-secondary-1 py-14 lg:py-20">
-  <div class="max-w-350 mx-auto px-4 flex flex-col gap-10 items-center text-center text-neutral-900">
+  <div class="max-w-350 mx-auto px-4 flex flex-col gap-10 items-center text-center text-ui-neutral-900">
     <h2 class="text-3xl lg:text-5xl font-medium -mt-2 leading-tight">
       All the ways to <span class="text-secondary-500">join</span> the Community
     </h2>
@@ -344,10 +344,10 @@
       ) }}
     </div>
 
-    <div class="bg-neutral-50 border border-neutral-300 rounded-lg shadow-sm px-6 py-5 flex flex-col items-center gap-4">
+    <div class="bg-ui-neutral-50 border border-ui-neutral-300 rounded-lg shadow-sm px-6 py-5 flex flex-col items-center gap-4">
       <div class="flex flex-wrap justify-center gap-4">
         <span class="text-lg lg:text-xl font-medium text-secondary-500">Follow us on:</span>
-        {{ partial "components/social/links.html" (dict "networks" (slice "x" "bluesky" "linkedin" "github-org") "class" "w-7 h-7 text-neutral-900") }}
+        {{ partial "components/social/links.html" (dict "networks" (slice "x" "bluesky" "linkedin" "github-org") "class" "w-7 h-7 text-ui-neutral-900") }}
       </div>
     </div>
 
