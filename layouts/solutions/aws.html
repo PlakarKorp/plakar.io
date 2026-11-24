@@ -47,7 +47,7 @@
     <div class="flex-1 w-full relative flex justify-center lg:justify-end">
       <div class="absolute inset-0 bg-primary-500/10 blur-3xl -z-10 rounded-full"></div>
         <div class="relative w-full max-w-xl lg:max-w-max">
-          <img src="{{ $dashboardEnterprise1.RelPermalink }}" alt="Plakar AWS Dashboard" class="w-full h-auto rounded-md shadow-md hover:scale-[1.02] transition-transform duration-500 border border-neutral-200/50">
+          {{ partial "components/image.html" (dict "resource" $dashboardEnterprise1 "alt" "Plakar AWS Dashboard" "class" "w-full h-auto rounded-md shadow-md hover:scale-[1.02] transition-transform duration-500 border border-neutral-200/50") }}
         </div>
     </div>
 
@@ -261,7 +261,7 @@
       </div>
 
       <div class="w-full md:w-1/2 flex items-center justify-center">
-        <img src="{{ $laptop.RelPermalink }}" alt="Security Demo" class="w-full max-w-md h-auto object-contain drop-shadow-2xl rounded-2xl opacity-90 hover:opacity-100 transition-opacity">
+        {{ partial "components/image.html" (dict "resource" $laptop "alt" "Security Demo" "class" "w-full max-w-md h-auto object-contain drop-shadow-2xl rounded-2xl opacity-90 hover:opacity-100 transition-opacity") }}
       </div>
 
     </div>

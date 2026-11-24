@@ -182,14 +182,14 @@
         &ldquo;We manage everything as code, with AI across our development workflow, so we wanted resilience orchestrated the same way, on our own schedule.&rdquo;
       </blockquote>
       <figcaption class="flex items-center justify-center gap-4 flex-wrap">
-        {{ with $pierrick }}<img src="{{ .RelPermalink }}" alt="Pierrick Gicquelais" class="w-14 h-14 rounded-full object-cover" loading="lazy">{{ end }}
+        {{ with $pierrick }}{{ partial "components/image.html" (dict "resource" . "alt" "Pierrick Gicquelais" "class" "w-14 h-14 rounded-full object-cover" "widths" (slice 160)) }}{{ end }}
         <div class="text-left">
           <span class="block font-bold text-neutral-900">Pierrick Gicquelais</span>
           <span class="block text-neutral-500 text-sm">Lead Infrastructure &amp; AI Platform</span>
         </div>
         {{ with $alan }}
           <span class="w-px h-10 bg-neutral-200 hidden sm:block"></span>
-          <img src="{{ .RelPermalink }}" alt="Alan" class="h-7 w-auto" loading="lazy">
+          {{ partial "components/image.html" (dict "resource" . "alt" "Alan" "class" "h-7 w-auto" "widths" (slice 160)) }}
         {{ end }}
       </figcaption>
     </figure>

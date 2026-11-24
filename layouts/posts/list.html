@@ -42,7 +42,7 @@
           <div class="w-2 h-2 bg-neutral-300 rounded-full"></div>
         </div>
         <div class="p-2 xl:p-6">
-          <img src="{{ $image.RelPermalink }}" alt="Article preview" class="w-full h-auto object-cover rounded-sm">
+          {{ partial "components/image.html" (dict "resource" $image "alt" "Article preview" "class" "w-full h-auto object-cover rounded-sm") }}
         </div>
       </div>
       {{ end }}

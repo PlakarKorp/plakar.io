@@ -3,7 +3,7 @@
 <!-- JS: assets/js/main/download.js -->
 
 {{ $nestorRocket := resources.Get "img/nestor/nestor-rocket.png" }}
-{{ $gradientBlue := resources.Get "img/general/gradient-blue.png" }}
+{{ $gradientBlue := (resources.Get "img/general/gradient-blue.png").Resize "1600x webp q80" }}
 
 {{/* --- OSS Plakar versions --- */}}
 {{ $versions := partial "utils/sort-by-version.html" (where site.RegularPages "Section" "download") }}
@@ -16,7 +16,7 @@
 <!-- Rocket banner -->
 <section class="pt-26 text-neutral-50" style="background-image: url('{{ $gradientBlue.RelPermalink }}'); background-size: 100% 100%; background-repeat: no-repeat; background-position: center;">
   <div class="max-w-350 mx-auto flex justify-center items-end">
-    <img src="{{ $nestorRocket.RelPermalink }}" alt="Nestor rocket" class="w-full max-h-50 md:max-h-112 object-contain object-top">
+    {{ partial "components/image.html" (dict "resource" $nestorRocket "alt" "Nestor rocket" "class" "w-full max-h-50 md:max-h-112 object-contain object-top") }}
   </div>
 </section>
 

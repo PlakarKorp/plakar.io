@@ -1,4 +1,4 @@
-{{ $footerBanner := resources.Get "img/general/plakar-footer-banner.svg" }}
+{{ $footerBanner := resources.Get "img/general/plakar-footer-banner.png" }}
 
 <!-- Footer menu -->
 <section class="section-primary-1 pt-8">
@@ -119,7 +119,7 @@
     </div>
 
     <div class="overflow-hidden md:px-8">
-      <img src="{{ $footerBanner.RelPermalink }}" alt="Footer banner" class="w-full h-auto object-contain">
+      {{ partial "components/image.html" (dict "resource" $footerBanner "alt" "Footer banner" "class" "w-full h-auto object-contain") }}
     </div>
 
   </div>
