@@ -54,6 +54,7 @@ related:
   - mysql
   - mongodb
   - mssql
+  - etcd
 
 edition:
   - community
