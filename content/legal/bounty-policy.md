@@ -14,25 +14,47 @@ Last update on: 01/01/2026
 {{< alert >}}
 **The Bounty Program is temporarily on hold.**
 
-Ever since Anthropic started releasing security-capable models, we have been flooded with **automated reports from AI agents** scanning our codebase and **submitting findings without proper verification**.
+Ever since Anthropic started releasing security-capable models, we have been
+flooded with **automated reports from AI agents** scanning our codebase and
+**submitting findings without proper verification**.
 
-We regularly receive waves of emails from different agents reporting the same issue with different wording and CVSS classifications. Our security team has to review each of them individually to ensure they are indeed duplicates. This does not even account for the follow-up emails, with some AI-assisted researchers asking for updates daily, if not hourly.
+We regularly receive waves of emails from different agents reporting the same
+issue with different wording and CVSS classifications. Our security team has to
+review each of them individually to ensure they are indeed duplicates. This does
+not even account for the follow-up emails, with some AI-assisted researchers
+asking for updates daily, if not hourly.
 
-Nine out of ten reports are incorrectly qualified, factually wrong or rely on unrealistic assumptions about what an attacker has access to. To illustrate, one report we received multiple times claimed that it was possible to read the contents of a store without possessing its encryption key, yet the very first step to reproduce the issue required that key to decrypt a header.
+Nine out of ten reports are incorrectly qualified, factually wrong or rely on
+unrealistic assumptions about what an attacker has access to. To illustrate, one
+report we received multiple times claimed that it was possible to read the
+contents of a store without possessing its encryption key, yet the very first
+step to reproduce the issue required that key to decrypt a header.
 
-The vast majority of reports are along these lines, but they still require human review to ensure we are not overlooking a legitimate vulnerability.
+The vast majority of reports are along these lines, but they still require human
+review to ensure we are not overlooking a legitimate vulnerability.
 
-The one report out of ten that is legitimate often comes with an inflated severity classification, with obvious LOW or MEDIUM issues being reported as HIGH, presumably because of the higher financial reward. In many cases, we are already aware of these findings because we run the very same models ourselves. Pausing the bounty program does not mean we will stop identifying or addressing these issues.
+The one report out of ten that is legitimate often comes with an inflated
+severity classification, with obvious LOW or MEDIUM issues being reported as
+HIGH, presumably because of the higher financial reward. In many cases, we are
+already aware of these findings because we run the very same models ourselves.
+Pausing the bounty program does not mean we will stop identifying or addressing
+these issues.
 
-**We will reopen the program.** This is a temporary pause, not a change in our commitment to security or responsible disclosure.
+**We will reopen the program.** This is a temporary pause, not a change in our
+commitment to security or responsible disclosure.
 
-The problem is not the use of AI in security research, but the asymmetry between the cost of generating a report and the cost of reviewing it. Agents can generate reports at virtually no effort, while humans remain accountable for validating every single one of them.
+The problem is not the use of AI in security research, but the asymmetry between
+the cost of generating a report and the cost of reviewing it. Agents can
+generate reports at virtually no effort, while humans remain accountable for
+validating every single one of them.
 
-This has become unsustainable for our security team. We need to introduce automated triage, deduplication and qualification, escalating reports to humans when necessary.
+This has become unsustainable for our security team. We need to introduce
+automated triage, deduplication and qualification, escalating reports to humans
+when necessary.
 
-Work is already underway to build the tooling that will allow us to reopen the program under sustainable conditions.
+Work is already underway to build the tooling that will allow us to reopen the
+program under sustainable conditions.
 {{< /alert >}}
-
 
 ## 1. Objective and Economic Interest
 
