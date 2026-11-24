@@ -1,7 +1,7 @@
 {{ define "main" }}
 
 {{ $ui := resources.Get "img/general/plakar-ui-demo.png" }}
-{{ $nestor := resources.Get "img/nestor/dance.svg" }}
+{{ $nestor := resources.Get "img/nestor/dance.png" }}
 
 <!-- SECTION: hero -->
 <section class="section-light-2 grid-background pt-38 pb-20 relative overflow-hidden">
@@ -43,7 +43,7 @@
         </div>
         <div class="p-2 md:p-3">
           {{ with $ui }}
-            <img src="{{ .RelPermalink }}" alt="Browse and restore snapshots in the built-in Plakar web UI" class="w-full h-auto rounded" loading="lazy">
+            {{ partial "components/image.html" (dict "resource" . "alt" "Browse and restore snapshots in the built-in Plakar web UI" "class" "w-full h-auto rounded") }}
           {{ end }}
         </div>
       </div>
@@ -227,7 +227,7 @@
           <blockquote class="text-neutral-700 leading-relaxed flex-1">{{ .quote }}</blockquote>
           <figcaption class="border-t border-neutral-100 pt-4 flex items-center gap-3">
             {{ if $photo }}
-              <img src="{{ $photo.RelPermalink }}" alt="{{ .name }}" class="w-11 h-11 rounded-full object-cover shrink-0" loading="lazy">
+              {{ partial "components/image.html" (dict "resource" $photo "alt" .name "class" "w-11 h-11 rounded-full object-cover shrink-0" "widths" (slice 160)) }}
             {{ else }}
               <span class="w-11 h-11 rounded-full bg-secondary-100 text-secondary-700 font-bold text-sm flex items-center justify-center shrink-0" aria-hidden="true">{{ .initials }}</span>
             {{ end }}
@@ -272,7 +272,7 @@
           <p class="text-neutral-400 text-sm flex-1">{{ .body }}</p>
           <div class="flex flex-wrap gap-2 mt-1">
             {{ range .tags }}
-              <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5">{{ with .img }}{{ with resources.Get . }}<img src="{{ .RelPermalink }}" alt="" class="w-4 h-4 rounded-sm">{{ end }}{{ end }}{{ .t }}</span>
+              <span class="inline-flex items-center gap-2 text-[12.5px] font-medium text-neutral-200 bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5">{{ with .img }}{{ with resources.Get . }}{{ partial "components/image.html" (dict "resource" . "alt" "" "class" "w-4 h-4 rounded-sm") }}{{ end }}{{ end }}{{ .t }}</span>
             {{ end }}
           </div>
         </div>
@@ -307,7 +307,7 @@
       </div>
       {{ with $nestor }}
         <div class="shrink-0 w-56 lg:w-64 mx-auto">
-          <img src="{{ .RelPermalink }}" alt="Nestor, Plakar's chipmunk mascot, dancing" class="w-full h-auto block" loading="lazy">
+          {{ partial "components/image.html" (dict "resource" . "alt" "Nestor, Plakar's chipmunk mascot, dancing" "class" "w-full h-auto block") }}
         </div>
       {{ end }}
     </div>

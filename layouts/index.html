@@ -4,9 +4,9 @@
 <!-- JS: assets/js/main/home-hero.js -->
 <!-- JS: assets/js/main/home-sections.js -->
 
-{{ $gradientOrange := resources.Get "img/general/gradient-orange.png" }}
-{{ $gradientBlue := resources.Get "img/general/gradient-blue.png" }}
-{{ $nestorV2 := resources.Get "img/nestor/nestor-v2.svg" }}
+{{ $gradientOrange := (resources.Get "img/general/gradient-orange.png").Resize "1000x webp q75" }}
+{{ $gradientBlue := (resources.Get "img/general/gradient-blue.png").Resize "1600x webp q80" }}
+{{ $nestorV2 := resources.Get "img/nestor/nestor-v2.png" }}
 {{ $cncfLogo := resources.Get "img/community/cncf-member-silver-color.png" }}
 {{ $lfLogo := resources.Get "img/community/lf-member-level-silver.png" }}
 {{ $sylvaLogo := resources.Get "img/community/sylva-logo.png" }}
@@ -821,7 +821,7 @@
         </div>
       </div>
       <div class="shrink-0 w-64 mx-auto">
-        <img src="{{ $nestorV2.RelPermalink }}" alt="Nestor, Plakar's chipmunk mascot, holding Chunky Ptarson" class="w-full h-auto block">
+        {{ partial "components/image.html" (dict "resource" $nestorV2 "alt" "Nestor, Plakar's chipmunk mascot, holding Chunky Ptarson" "class" "w-full h-auto block") }}
       </div>
     </div>
   </div>

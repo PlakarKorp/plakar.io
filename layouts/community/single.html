@@ -2,8 +2,8 @@
 
 {{ $lfLogo := resources.Get "img/community/lf-member-level-silver.png" }}
 {{ $cncfLogo := resources.Get "img/community/cncf-member-silver-color.png" }}
-{{ $backupDone := resources.Get "img/nestor/backup-done.svg" }}
-{{ $nestorDance := resources.Get "img/nestor/dance.svg" }}
+{{ $backupDone := resources.Get "img/nestor/backup-done.png" }}
+{{ $nestorDance := resources.Get "img/nestor/dance.png" }}
 {{ $discord := resources.Get "img/general/discord-screenshot.png" }}
 {{ $nestorMeetup := resources.Get "img/nestor/nestor-speaker.png" }}
 {{ $nestorSpread := resources.Get "img/nestor/nestor-podcaster.png" }}
@@ -47,13 +47,13 @@
 
     <div class="w-full flex justify-center items-end">
       <div class="w-1/4 flex justify-end items-end aspect-square">
-        <img src="{{ $backupDone.RelPermalink }}" alt="Backup done" class="h-2/3 object-contain" />
+        {{ partial "components/image.html" (dict "resource" $backupDone "alt" "Backup done" "class" "h-2/3 object-contain") }}
       </div>
       <div class="w-1/2 overflow-hidden aspect-2/1 flex items-end">
-        <img src="{{ $discord.RelPermalink }}" alt="Discord screenshot" class="w-full h-full object-cover object-top rounded-t-lg" />
+        {{ partial "components/image.html" (dict "resource" $discord "alt" "Discord screenshot" "class" "w-full h-full object-cover object-top rounded-t-lg") }}
       </div>
       <div class="w-1/4 flex justify-start items-end aspect-square">
-        <img src="{{ $nestorDance.RelPermalink }}" alt="Nestor dance" class="h-2/3 object-contain" />
+        {{ partial "components/image.html" (dict "resource" $nestorDance "alt" "Nestor dance" "class" "h-2/3 object-contain") }}
       </div>
     </div>
 
@@ -118,7 +118,7 @@
     <div class="flex flex-col md:flex-row items-center gap-8 max-w-6xl">
       <div class="w-full md:w-1/3 flex justify-center">
         <div class="bg-neutral-50 border border-neutral-300 rounded-lg p-4 aspect-square flex items-center justify-center shadow-md">
-          <img src="{{ $nestorMeetup.RelPermalink }}" alt="Organize Meetups" class="object-contain w-full h-full" />
+          {{ partial "components/image.html" (dict "resource" $nestorMeetup "alt" "Organize Meetups" "class" "object-contain w-full h-full") }}
         </div>
       </div>
       <div class="w-full md:w-2/3">
@@ -137,7 +137,7 @@
     <div class="flex flex-col md:flex-row-reverse items-center gap-8 max-w-6xl">
       <div class="w-full md:w-1/3 flex justify-center">
         <div class="bg-neutral-50 border border-neutral-300 rounded-lg p-4 aspect-square flex items-center justify-center shadow-md">
-          <img src="{{ $nestorSpread.RelPermalink }}" alt="Spread the Word" class="object-contain w-full h-full" />
+          {{ partial "components/image.html" (dict "resource" $nestorSpread "alt" "Spread the Word" "class" "object-contain w-full h-full") }}
         </div>
       </div>
       <div class="w-full md:w-2/3">
@@ -155,7 +155,7 @@
     <div class="flex flex-col md:flex-row items-center gap-8 max-w-6xl">
       <div class="w-full md:w-1/3 flex justify-center">
         <div class="bg-neutral-50 border border-neutral-300 rounded-lg p-4 aspect-square flex items-center justify-center shadow-md">
-          <img src="{{ $nestorDocs.RelPermalink }}" alt="Improve Documentation" class="object-contain w-full h-full" />
+          {{ partial "components/image.html" (dict "resource" $nestorDocs "alt" "Improve Documentation" "class" "object-contain w-full h-full") }}
         </div>
       </div>
       <div class="w-full md:w-2/3">
@@ -362,7 +362,7 @@
       </div>
     </div>
 
-    <img src="{{ $nestorDance.RelPermalink }}" alt="Nestor dance" class="w-32 h-32 mt-8">
+    {{ partial "components/image.html" (dict "resource" $nestorDance "alt" "Nestor dance" "class" "w-32 h-32 mt-8" "widths" (slice 160)) }}
   </div>
 </section>
 
